@@ -17,8 +17,8 @@
   tags:
     - trex-inst-prerequisites
 
-- name: Deploy Multiple T-Rex Versions
+- name: Inst - Multiple T-Rex Versions
   include_tasks: deploy_block.yaml
   loop: "{{ trex_version }}"
   tags:
-    - install-trex
+    - trex-inst

@@ -25,7 +25,7 @@
   loop: "{{ dpdk_version }}"
   register: "dpdk_downloaded"
   tags:
-    - install-dpdk
+    - dpdk-inst
 
 - name: Extract Release Archive
   unarchive:
@@ -37,7 +37,7 @@
   when: "dpdk_downloaded"
   register: "dpdk_extracted"
   tags:
-    - install-dpdk
+    - dpdk-inst
 
 - name: Build igb_uio by default
   lineinfile:
@@ -48,7 +48,7 @@
   when: "dpdk_extracted"
   register: "dpdk_configured"
   tags:
-    - install-dpdk
+    - dpdk-inst
 
 - name: Compile Release I
   become: yes
@@ -57,7 +57,7 @@
   when: "dpdk_configured"
   register: "dpdk_compiled"
   tags:
-    - install-dpdk
+    - dpdk-inst
 
 - name: Link igb_uio Module
   shell: "ln -fs {{ dpdk_target_dir }}/dpdk-{{ item }}/{{ dpdk_build_targets[item][ansible_machine] }}/kmod/igb_uio.ko /lib/modules/`uname -r`/igb_uio.ko && depmod -a"
@@ -65,4 +65,4 @@
   loop: "{{ dpdk_version }}"
   when: "dpdk_compiled"
   tags:
-    - install-dpdk
+    - dpdk-inst

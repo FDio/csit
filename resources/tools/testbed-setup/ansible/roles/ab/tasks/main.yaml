@@ -15,4 +15,4 @@
     name: "{{ packages | flatten(levels=1) }}"
     state: present
   tags:
-    - ab-inst-ab
+    - ab-inst

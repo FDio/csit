@@ -1,7 +1,7 @@
 ---
 # file: roles/common/tasks/main.yaml
 
-- name: Add permanent proxy settings
+- name: Conf - Add permanent proxy settings
   lineinfile:
     path: "/etc/environment"
     state: "present"
@@ -9,7 +9,7 @@
   with_dict: "{{ proxy_env }}"
   when: proxy_env is defined
   tags:
-    - set-proxy
+    - common-conf-proxy
 
 - name: Inst - Update package cache (apt)
   apt:
@@ -27,7 +27,7 @@
   tags:
     - common-inst-prerequisites
 
-- name: Install CSIT PIP requirements
+- name: Inst - CSIT PIP requirements
   pip:
     name:
       - "ecdsa==0.13.3"
@@ -81,24 +81,28 @@
       - "sphinxcontrib-serializinghtml==1.1.3"
       - "urllib3==1.25.6"
   tags:
-    - install-pip
+    - common-inst-pip
 
-- name: Install CSIT PIP requirements - Pandas and SciPy workaround
+- name: Inst - CSIT PIP requirements - Pandas and SciPy workaround
   pip:
     name:
       - "pandas==0.25.3"
+<<<<<<< HEAD
       - "scipy==1.5.4"
+=======
+      - "scipy==1.6.0"
+>>>>>>> Infra: Ansible Ubuntu Focal
   tags:
-    - install-pip
+    - common-inst-pip
 
-- name: Install Meson (repository version is too old)
+- name: Inst - Meson (DPDK)
   pip:
     name:
       - "meson==0.47.1"
   tags:
-    - install-meson
+    - common-inst-meson
 
-- name: Set sudoers admin
+- name: Conf - sudoers admin
   lineinfile:
     path: "/etc/sudoers"
     state: "present"
@@ -106,9 +110,9 @@
     line: "%admin ALL=(ALL) ALL"
     validate: "/usr/sbin/visudo -cf %s"
   tags:
-    - set-sudoers
+    - common-conf-sudoers
 
-- name: Set sudoers sudo
+- name: Conf - sudoers nopasswd
   lineinfile:
     path: "/etc/sudoers"
     state: "present"
@@ -116,6 +120,6 @@
     line: "%sudo ALL=(ALL:ALL) NOPASSWD: ALL"
     validate: "/usr/sbin/visudo -cf %s"
   tags:
-    - set-sudoers
+    - common-conf-sudoers
 
 - meta: flush_handlers
