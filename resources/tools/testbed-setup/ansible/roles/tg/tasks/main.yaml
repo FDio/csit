@@ -1,28 +1,30 @@
 ---
 # file: roles/tg/tasks/main.yaml
 
-- name: TG - Copy csit-initialize-docker-tg.sh
+- name: Conf - csit-initialize-docker-tg.sh
   copy:
    src: "files/csit-initialize-docker-tg.sh"
    dest: "/usr/local/bin/csit-initialize-docker-tg.sh"
    owner: "root"
    group: "root"
-   mode: "744"
-  when: docker_tg is defined
+   mode: 0744
+  when:
+    - docker_tg is defined
   tags:
-    - docker-tg
+    - tg-conf-docker
 
-- name: TG - Start csit-initialize-docker-tg.service
+- name: Conf - Start csit-initialize-docker-tg.service
   copy:
    src: "files/csit-initialize-docker-tg.service"
    dest: "/etc/systemd/system/"
    owner: "root"
    group: "root"
-   mode: "644"
+   mode: 0644
   notify:
     - "Start csit-initialize-docker-tg.service"
-  when: docker_tg is defined
+  when:
+    - docker_tg is defined
   tags:
-    - docker-tg
+    - tg-conf-docker
 
 - meta: flush_handlers

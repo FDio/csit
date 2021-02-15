@@ -15,14 +15,14 @@
       tags: user_add
     - role: common
       tags: common
+    - role: docker
+      tags: docker
     - role: vpp
       tags: vpp
     - role: azure
       tags: azure
     - role: iperf
       tags: iperf
-    - role: docker
-      tags: docker
     - role: dpdk
       tags: dpdk
     - role: cleanup

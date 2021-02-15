@@ -17,19 +17,11 @@
   tags:
     - vpp-inst-prerequisites
 
-- name: Inst - VPP 19.08 PIP requirements
-  pip:
-    name:
-      - "aenum==2.1.2"
-    executable: pip2
-  tags:
-    - install-pip
-
-- name: Copy 80-vpp.conf
+- name: Conf - sysctl
   file:
     src: "/dev/null"
     dest: "/etc/sysctl.d/80-vpp.conf"
     state: "link"
   become: yes
   tags:
-    - create-80-vpp
+    - vpp-conf-sysctl
