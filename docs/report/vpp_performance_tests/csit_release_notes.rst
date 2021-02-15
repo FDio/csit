@@ -28,6 +28,10 @@ Changes in |csit-release|
      FD.io CSIT, with VPP and DPDK performance data added to CSIT
      trending and this report.
 
+   - **Framework speedup**: Shortened overall test job duration
+     by using a different test selection mechanism (using --test
+     instead of --include) and by avoiding unnecessary PAPI reconnects.
+
 #. TEST FRAMEWORK
 
    - **TRex ASTF**: Improved capability to run TRex in advanced stateful mode.
