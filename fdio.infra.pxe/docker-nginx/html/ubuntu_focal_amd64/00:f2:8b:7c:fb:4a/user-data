@@ -1,0 +1,83 @@
+#cloud-config
+autoinstall:
+  version: 1
+  apt:
+    geoip: true
+    preserve_sources_list: false
+    primary:
+    - arches: [amd64, i386]
+      uri: http://ca.archive.ubuntu.com/ubuntu
+    - arches: [default]
+      uri: http://ports.ubuntu.com/ubuntu-ports
+  identity:
+    hostname: t3-sut1
+    password: $6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0
+    realname: testuser
+    username: testuser
+  keyboard:
+    layout: us
+    toggle: null
+    variant: ''
+  locale: en_US.UTF-8
+  network:
+    ethernets:
+      enp25s0f0:
+        addresses: [ 10.30.51.25/24 ]
+        dhcp4: false
+        gateway4: 10.30.51.1
+        nameservers:
+          addresses: [ 1.1.1.1, 8.8.8.8 ]
+    version: 2
+  packages:
+    - python3
+  refresh-installer:
+    update: no
+  ssh:
+    allow-pw: true
+    authorized-keys: []
+    install-server: true
+  storage:
+    config:
+    - grub_device: false
+      id: disk-sda
+      path: /dev/sda
+      ptable: gpt
+      preserve: false
+      type: disk
+      wipe: superblock-recursive
+    - device: disk-sda
+      grub_device: true
+      id: partition-0
+      flag: boot
+      number: 1
+      preserve: false
+      size: 536870912
+      type: partition
+      wipe: superblock
+    - id: format-0
+      fstype: fat32
+      preserve: false
+      type: format
+      volume: partition-0
+    - device: disk-sda
+      flag: ''
+      grub_device: false
+      id: partition-1
+      number: 2
+      preserve: false
+      size: -1
+      type: partition
+      wipe: superblock
+    - fstype: ext4
+      id: format-1
+      preserve: false
+      type: format
+      volume: partition-1
+    - device: format-1
+      id: mount-1
+      path: /
+      type: mount
+    - device: format-0
+      id: mount-0
+      path: /boot/efi
+      type: mount
