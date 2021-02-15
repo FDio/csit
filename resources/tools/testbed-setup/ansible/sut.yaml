@@ -28,8 +28,6 @@
       tags: dpdk
     - role: kernel_vm
       tags: kernel_vm
-    - role: csit_sut_image
-      tags: csit_sut_image
     - role: performance_tuning
       tags: performance_tuning
     - role: cleanup

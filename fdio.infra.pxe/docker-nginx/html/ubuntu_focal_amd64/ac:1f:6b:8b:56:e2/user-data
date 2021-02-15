@@ -1,0 +1,120 @@
+#cloud-config
+autoinstall:
+  version: 1
+  apt:
+    geoip: true
+    preserve_sources_list: false
+    primary:
+    - arches: [amd64, i386]
+      uri: http://ca.archive.ubuntu.com/ubuntu
+    - arches: [default]
+      uri: http://ports.ubuntu.com/ubuntu-ports
+  identity:
+    hostname: s15-t32-sut2
+    password: $6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0
+    realname: testuser
+    username: testuser
+  keyboard:
+    layout: us
+    toggle: null
+    variant: ''
+  locale: en_US.UTF-8
+  network:
+    ethernets:
+      eno1:
+        addresses: [ 10.30.51.59/24 ]
+        dhcp4: false
+        gateway4: 10.30.51.1
+        nameservers:
+          addresses: [ 1.1.1.1, 8.8.8.8 ]
+    version: 2
+  packages:
+    - python3
+  refresh-installer:
+    update: no
+  ssh:
+    allow-pw: true
+    authorized-keys: []
+    install-server: true
+  storage:
+    config:
+    - grub_device: false
+      id: disk-sda
+      path: /dev/sda
+      ptable: gpt
+      preserve: false
+      type: disk
+      wipe: superblock-recursive
+    - grub_device: false
+      id: disk-sdb
+      path: /dev/sdb
+      ptable: gpt
+      preserve: false
+      type: disk
+      wipe: superblock-recursive
+    - device: disk-sda
+      grub_device: true
+      id: partition-0
+      flag: boot
+      number: 1
+      preserve: false
+      size: 536870912
+      type: partition
+      wipe: superblock
+    - device: disk-sdb
+      grub_device: true
+      id: partition-1
+      flag: boot
+      number: 1
+      preserve: false
+      size: 536870912
+      type: partition
+      wipe: superblock
+    - id: format-0
+      fstype: fat32
+      preserve: false
+      type: format
+      volume: partition-0
+    - id: format-1
+      fstype: fat32
+      preserve: false
+      type: format
+      volume: partition-1
+    - device: disk-sda
+      flag: ''
+      grub_device: false
+      id: partition-2
+      number: 2
+      preserve: false
+      size: -1
+      type: partition
+      wipe: superblock
+    - device: disk-sdb
+      flag: ''
+      grub_device: false
+      id: partition-3
+      number: 2
+      preserve: false
+      size: -1
+      type: partition
+      wipe: superblock
+    - name: md0
+      raidlevel: raid1
+      devices: [partition-2, partition-3]
+      spare_devices: []
+      preserve: false
+      type: raid
+      id: raid-0
+    - fstype: ext4
+      id: format-2
+      preserve: false
+      type: format
+      volume: raid-0
+    - device: format-2
+      id: mount-1
+      path: /
+      type: mount
+    - device: format-0
+      id: mount-0
+      path: /boot/efi
+      type: mount
