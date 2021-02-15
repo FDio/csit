@@ -6,7 +6,7 @@
     url: "{{ trex_url }}/v{{ item }}.tar.gz"
     dest: "{{ trex_target_dir }}/trex-core-{{ item }}.tar.gz"
     validate_certs: False
-    mode: 0644
+    mode: "0644"
   register: trex_downloaded
 
 - name: "Create Directory {{ item }}"

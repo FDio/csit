@@ -19,6 +19,8 @@
       tags: dpdk
     - role: aws
       tags: aws
+    - role: docker
+      tags: docker
     - role: tg
       tags: tg
     - role: iperf
@@ -27,8 +29,6 @@
       tags: trex
     - role: ab
       tags: ab
-    - role: docker
-      tags: docker
     - role: cleanup
       tags: cleanup
 #    - role: calibration

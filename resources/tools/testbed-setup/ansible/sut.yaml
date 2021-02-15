@@ -20,14 +20,12 @@
       tags: kernel
     - role: mellanox
       tags: mellanox
+    - role: docker
+      tags: docker
     - role: vpp
       tags: vpp
     - role: dpdk
       tags: dpdk
-    - role: docker
-      tags: docker
-    - role: kubernetes
-      tags: kubernetes
     - role: kernel_vm
       tags: kernel_vm
     - role: csit_sut_image

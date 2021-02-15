@@ -20,6 +20,8 @@
       tags: kernel
     - role: mellanox
       tags: mellanox
+    - role: docker
+      tags: docker
     - role: tg
       tags: tg
     - role: iperf
@@ -28,8 +30,6 @@
       tags: trex
     - role: ab
       tags: ab
-    - role: docker
-      tags: docker
     - role: performance_tuning
       tags: performance_tuning
     - role: cleanup
