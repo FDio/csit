@@ -1,7 +1,7 @@
 ---
 # file: host_vars/10.30.51.49.yaml
 
-hostname: "s19-t33t34-tg1"
+hostname: "s19-t33t211-tg1"
 grub:
   audit: "0"
   hpet: "disable"
