@@ -286,7 +286,7 @@ class Constants:
         u"Intel-X553": 14880952,
         u"Intel-X710": 14880952,
         u"Intel-XL710": 18750000,
-        u"Intel-XXV710": 18750000,
+        u"Intel-XXV710": 30000000,
         u"Intel-E810CQ": 58500000,
         # 2n-clx testbeds show duration stretching on high rates,
         # depending on encapsulation TRex has to generate.
