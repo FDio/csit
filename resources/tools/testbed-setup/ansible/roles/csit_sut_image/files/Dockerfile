@@ -84,8 +84,6 @@ RUN apt-get -q update \
         sshpass \
  && curl -L https://packagecloud.io/fdio/master/gpgkey | sudo apt-key add - \
  && curl -s https://packagecloud.io/install/repositories/fdio/master/script.deb.sh | sudo bash \
- # temp hack due to build.sh
- && apt-get install -y -qq vpp-ext-deps \
  && curl -fsSL https://get.docker.com | sh \
  && rm -rf /var/lib/apt/lists/*
 
