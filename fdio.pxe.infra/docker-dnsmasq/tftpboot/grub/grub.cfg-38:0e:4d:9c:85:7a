@@ -1,0 +1,4 @@
+menuentry "Install s44-nomad" {
+    linux    /casper/ubuntu-focal-amd64/vmlinuz ip=dhcp interface=38:0e:4d:9c:85:7a url=http://old-releases.ubuntu.com/releases/20.04.1/ubuntu-20.04.1-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.28:8081/ubuntu_focal_amd64/38:0e:4d:9c:85:7a/ --- console=ttyS0,115200n8 quiet
+    initrd   /casper/ubuntu-focal-amd64/initrd
+}
