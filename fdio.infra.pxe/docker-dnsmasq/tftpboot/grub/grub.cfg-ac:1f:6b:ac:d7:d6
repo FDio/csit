@@ -1,0 +1,4 @@
+menuentry "Install s33-t27-sut1" {
+    linux    /casper/ubuntu-focal-amd64/vmlinuz ip=dhcp interface=ac:1f:6b:ac:d7:d6 url=https://releases.ubuntu.com/20.04.2/ubuntu-20.04.2-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.28:8081/ubuntu_focal_amd64/ac:1f:6b:ac:d7:d6/ --- console=ttyS0,115200n8 quiet
+    initrd   /casper/ubuntu-focal-amd64/initrd
+}
