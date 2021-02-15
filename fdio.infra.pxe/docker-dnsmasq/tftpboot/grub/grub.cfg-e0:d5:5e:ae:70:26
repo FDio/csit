@@ -1,0 +1,4 @@
+menuentry "Install s27-t211-sut1" {
+    linux    /casper/ubuntu-focal-arm64/vmlinuz ip=dhcp interface=e0:d5:5e:ae:70:26 url=http://10.30.51.28:8081/ubuntu_focal_arm64/ubuntu-20.04.2-live-server-arm64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.28:8081/ubuntu_focal_arm64/e0:d5:5e:ae:70:26/ --- console=ttyAMA0,115200n8 quiet
+    initrd   /casper/ubuntu-focal-arm64/initrd
+}

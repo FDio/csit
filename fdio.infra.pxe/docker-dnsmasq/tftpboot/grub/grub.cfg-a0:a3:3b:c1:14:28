@@ -1,0 +1,4 @@
+menuentry "Install s17-t33-sut1" {
+    linux    /casper/ubuntu-focal-arm64/vmlinuz ip=dhcp interface=a0:a3:3b:c1:14:28 url=http://10.30.51.28:8081/ubuntu_focal_arm64/ubuntu-20.04.2-live-server-arm64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.28:8081/ubuntu_focal_arm64/a0:a3:3b:c1:14:28/ --- console=ttyAMA0,115200n8 quiet
+    initrd   /casper/ubuntu-focal-arm64/initrd
+}
