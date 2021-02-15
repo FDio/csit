@@ -8,6 +8,10 @@ Changes in |csit-release|
 
    - **Bug fixes**.
 
+   - **Speedup**: Shortened overall test job duration
+     by using a different test selection mechanism (using --test
+     instead of --include) and by avoiding unnecessary PAPI reconnects.
+
 #. TEST COVERAGE
 
    - Increased test coverage: **GENEVE**, **ACL** and **MACIP** from ACL plugin.
