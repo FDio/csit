@@ -4,6 +4,12 @@
 - hosts: tg
   become: yes
   become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
   roles:
     - role: user_add
       tags: user_add
@@ -13,6 +19,8 @@
       tags: dpdk
     - role: aws
       tags: aws
+    - role: docker
+      tags: docker
     - role: tg
       tags: tg
     - role: iperf
@@ -21,8 +29,6 @@
       tags: trex
     - role: ab
       tags: ab
-    - role: docker
-      tags: docker
     - role: cleanup
       tags: cleanup
 #    - role: calibration

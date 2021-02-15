@@ -25,7 +25,7 @@
     mode: 0644
   loop: "{{ iperf_version }}"
   tags:
-    - install-iperf
+    - iperf-inst
 
 - name: Extract Release Archive
   unarchive:
@@ -35,7 +35,7 @@
     creates: "{{ iperf_target_dir }}/iperf-{{ item }}/src"
   loop: "{{ iperf_version }}"
   tags:
-    - install-iperf
+    - iperf-inst
 
 - name: Compile Release I
   command: "./configure"
@@ -43,7 +43,7 @@
       chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
   loop: "{{ iperf_version }}"
   tags:
-    - install-iperf
+    - iperf-inst
 
 - name: Compile Release II
   command: "make"
@@ -51,7 +51,7 @@
       chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
   loop: "{{ iperf_version }}"
   tags:
-    - install-iperf
+    - iperf-inst
 
 - name: Compile Release III
   command: "make install"
@@ -59,4 +59,4 @@
       chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
   loop: "{{ iperf_version }}"
   tags:
-    - install-iperf
+    - iperf-inst

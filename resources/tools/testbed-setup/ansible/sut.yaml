@@ -5,6 +5,12 @@
   remote_user: testuser
   become: yes
   become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
   roles:
     - role: baremetal
       tags: baremetal
@@ -14,14 +20,12 @@
       tags: kernel
     - role: mellanox
       tags: mellanox
+    - role: docker
+      tags: docker
     - role: vpp
       tags: vpp
     - role: dpdk
       tags: dpdk
-    - role: docker
-      tags: docker
-    - role: kubernetes
-      tags: kubernetes
     - role: kernel_vm
       tags: kernel_vm
     - role: csit_sut_image
