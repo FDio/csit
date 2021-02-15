@@ -201,18 +201,25 @@ def simple_burst(
                 xsnap1 = client.ports[1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            # Block until done:
             time_start = time.monotonic()
-            client.wait_on_traffic(ports=ports, timeout=duration+30)
+            time.sleep(duration)
+            # Do not block yet, the existing transactions may take long time
+            # to finish. We need an action that is almost reset(),
+            # but without clearing stats.
+            client.stop(block=False)
+            client.stop_latency()
+            client.remove_rx_queue(client.get_all_ports())
+            # Now we can wait for the real traffic stop.
+            client.stop(block=True)
             time_stop = time.monotonic()
             approximated_duration = time_stop - time_start
-
+            # Read the stats after the traffic stopped (or time up).
+            stats = client.get_stats()
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
-
-            # Read the stats after the test
-            stats = client.get_stats()
+            # Now finish the complete reset.
+            client.reset()
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
