@@ -1266,6 +1266,8 @@
         - 147 # rls2009 NDRPDR MLX iter env 6
         - 148 # rls2009 NDRPDR MLX iter env 6
         - 149 # rls2009 NDRPDR MLX iter env 6
+        - 150 # rls2009 NDRPDR MLX iter env 6
+        - 151 # rls2009 NDRPDR MLX iter env 6
     vpp-performance-changes-2n-clx-cmp:
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 54  # rls2101.rel NDRPDR iter env 6
@@ -3475,6 +3477,8 @@
       - 147 # rls2009 NDRPDR MLX iter env 6
       - 148 # rls2009 NDRPDR MLX iter env 6
       - 149 # rls2009 NDRPDR MLX iter env 6
+      - 150 # rls2009 NDRPDR MLX iter env 6
+      - 151 # rls2009 NDRPDR MLX iter env 6
       - 53  # rls2101.rel MRR iter env 6
       - 133 # rls2101.rel MRR MLX iter env 6
       - 54  # rls2101.rel NDRPDR iter env 6
