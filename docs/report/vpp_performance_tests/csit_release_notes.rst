@@ -24,7 +24,7 @@ Changes in |csit-release|
    - **Randomized profiles**: Improved repeatability and cycle length.
      For details, see :ref:`packet_flow_ordering`.
 
-   - **AMD 2n-tx2 testbed**: New physical testbed type installed in
+   - **Arm 2n-tx2 testbed**: New physical testbed type installed in
      FD.io CSIT, with VPP and DPDK performance data added to CSIT
      trending and this report.
 
