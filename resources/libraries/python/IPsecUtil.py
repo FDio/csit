@@ -1662,7 +1662,9 @@ class IPsecUtil:
                 integ_alg, raddr_ip2, addr_incr, spi_d, existing_tunnels
             )
             if u"DUT2" not in nodes.keys():
-                return ckeys[0], ikeys[0], spi_d[u"spi_1"], spi_d[u"spi_2"]
+                return ckeys[0] if len(ckeys) else None,\
+                       ikeys[0] if len(ikeys) else None,\
+                       spi_d[u"spi_1"], spi_d[u"spi_2"]
             IPsecUtil._ipsec_create_tunnel_interfaces_dut2_vat(
                 nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
                 integ_alg, ikeys, raddr_ip1, addr_incr, spi_d, existing_tunnels
@@ -1673,7 +1675,9 @@ class IPsecUtil:
                 integ_alg, raddr_ip2, addr_incr, spi_d, existing_tunnels
             )
             if u"DUT2" not in nodes.keys():
-                return ckeys[0], ikeys[0], spi_d[u"spi_1"], spi_d[u"spi_2"]
+                return ckeys[0] if len(ckeys) else None,\
+                       ikeys[0] if len(ikeys) else None,\
+                       spi_d[u"spi_1"], spi_d[u"spi_2"]
             IPsecUtil._ipsec_create_tunnel_interfaces_dut2_papi(
                 nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
                 integ_alg, ikeys, raddr_ip1, addr_incr, spi_d, existing_tunnels
