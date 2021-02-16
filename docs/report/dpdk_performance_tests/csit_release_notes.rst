@@ -11,7 +11,7 @@ Changes in |csit-release|
    - **AMD 2n-zn2 testbed**: New physical testbed type installed in
      FD.io CSIT, with DPDK performance data added to this report.
 
-   - **AMD 2n-tx2 testbed**: New physical testbed type installed in
+   - **Arm 2n-tx2 testbed**: New physical testbed type installed in
      FD.io CSIT, with DPDK performance data added to this report.
 
 #. DPDK RELEASE VERSION CHANGE
