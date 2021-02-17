@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -67,11 +67,12 @@ def dictize(obj):
     """
     if not hasattr(obj, u"_asdict"):
         return obj
-    ret = obj._asdict()
-    old_get = ret.__getitem__
+    from collections import UserDict
+    overriden = UserDict(obj._asdict())
+    old_get = overriden.__getitem__
     new_get = lambda self, key: dictize(old_get(self, key))
-    ret.__getitem__ = new_get
-    return ret
+    overriden.__getitem__ = new_get
+    return overriden
 
 
 class PapiSocketExecutor:
