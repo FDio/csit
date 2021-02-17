@@ -1029,9 +1029,11 @@ class InterfaceUtil:
         :raises RuntimeError: If it is not possible to create loopback on the
             node.
         """
-        cmd = u"create_loopback"
+        cmd = u"create_loopback_instance"
         args = dict(
-            mac_address=L2Util.mac_to_bin(mac) if mac else 0
+            mac_address=L2Util.mac_to_bin(mac) if mac else 0,
+            is_specified=False,
+            user_instance=0,
         )
         err_msg = f"Failed to create loopback interface on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
@@ -1207,7 +1209,7 @@ class InterfaceUtil:
             node, u"set logging class rdma level debug"
         )
 
-        cmd = u"rdma_create"
+        cmd = u"rdma_create_v2"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
@@ -1216,6 +1218,9 @@ class InterfaceUtil:
             rxq_size=rxq_size,
             txq_size=txq_size,
             mode=getattr(RdmaMode, f"RDMA_API_MODE_{mode.upper()}").value,
+            # TODO: Set True for non-jumbo packets.
+            no_multi_seg=False,
+            max_pktlen=0,
         )
         err_msg = f"Failed to create RDMA interface on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:

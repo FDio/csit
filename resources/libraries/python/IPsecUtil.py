@@ -372,7 +372,7 @@ class IPsecUtil:
             src_addr = u""
             dst_addr = u""
 
-        cmd = u"ipsec_sad_entry_add_del"
+        cmd = u"ipsec_sad_entry_add_del_v2"
         err_msg = f"Failed to add Security Association Database entry " \
             f"on host {node[u'host']}"
         sad_entry = dict(
@@ -385,6 +385,10 @@ class IPsecUtil:
             flags=flags,
             tunnel_src=str(src_addr),
             tunnel_dst=str(dst_addr),
+            tunnel_flags=int(
+                TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+            ),
+            dscp=int(IpDscp.IP_API_DSCP_CS0),
             protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
             udp_src_port=4500,  # default value in api
             udp_dst_port=4500  # default value in api
@@ -482,7 +486,7 @@ class IPsecUtil:
                     IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL_V6
                 )
 
-        cmd = u"ipsec_sad_entry_add_del"
+        cmd = u"ipsec_sad_entry_add_del_v2"
         err_msg = f"Failed to add Security Association Database entry " \
             f"on host {node[u'host']}"
 
@@ -496,6 +500,10 @@ class IPsecUtil:
             flags=flags,
             tunnel_src=str(src_addr),
             tunnel_dst=str(dst_addr),
+            tunnel_flags=int(
+                TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+            ),
+            dscp=int(IpDscp.IP_API_DSCP_CS0),
             protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
             udp_src_port=4500,  # default value in api
             udp_dst_port=4500  # default value in api
