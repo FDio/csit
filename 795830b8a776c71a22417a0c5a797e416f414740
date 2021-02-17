@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6cfe2d4_ebbdff8d",
+        "filename": "terraform-ci-infra/2n_aws_c5n/deploy/main.tf",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-17T10:16:28Z",
+      "side": 1,
+      "message": "in top dir level main.tf you are keeping spacing between \u003d and text to have \u003d sign aligned (that is recommended hcl best practice). in this file it is not. Can you keep style with \u003d aligned?",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "795830b8a776c71a22417a0c5a797e416f414740",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17e1052b_f3c55f4a",
+        "filename": "terraform-ci-infra/2n_aws_c5n/deploy/main.tf",
+        "patchSetId": 17
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-17T10:16:28Z",
+      "side": 1,
+      "message": "VPC is uppercase and below sg is lowercase...can you align?",
+      "range": {
+        "startLine": 9,
+        "startChar": 63,
+        "endLine": 9,
+        "endChar": 66
+      },
+      "revId": "795830b8a776c71a22417a0c5a797e416f414740",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d8994cc_59ee7dad",
+        "filename": "terraform-ci-infra/2n_aws_c5n/main.tf",
+        "patchSetId": 17
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-17T10:16:28Z",
+      "side": 1,
+      "message": "align with previous \u003d (spaces)",
+      "range": {
+        "startLine": 41,
+        "startChar": 21,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "795830b8a776c71a22417a0c5a797e416f414740",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "743605cb_a76eadd4",
+        "filename": "terraform-ci-infra/3n_aws_c5n/deploy/main.tf",
+        "patchSetId": 17
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-17T10:16:28Z",
+      "side": 1,
+      "message": "adept for variable",
+      "range": {
+        "startLine": 456,
+        "startChar": 38,
+        "endLine": 456,
+        "endChar": 54
+      },
+      "revId": "795830b8a776c71a22417a0c5a797e416f414740",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11b4415e_f9813505",
+        "filename": "terraform-ci-infra/3n_aws_c5n/deploy/main.tf",
+        "patchSetId": 17
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-17T10:16:28Z",
+      "side": 1,
+      "message": "adept for variable",
+      "range": {
+        "startLine": 458,
+        "startChar": 26,
+        "endLine": 458,
+        "endChar": 36
+      },
+      "revId": "795830b8a776c71a22417a0c5a797e416f414740",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
