@@ -86,6 +86,14 @@
 | | | Destroy all '${container_group}' containers
 | | END
 
+| Additional Test Tear Down Action For nginx
+| | [Documentation]
+| | ... | Additional teardown for tests which uses nginx.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Kill Program | ${nodes['${dut}']} | nginx
+| | END
+
 | Additional Test Tear Down Action For det44
 | | [Documentation]
 | | ... | Additional teardown for tests which uses DET44 feature.
@@ -208,3 +216,4 @@
 | | ${vnf_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Keyword Should Exist | vnf_manager.Kill All VMs
 | | Run Keyword If | '${vnf_status}' == 'PASS' | vnf_manager.Kill All VMs
+
