@@ -1,0 +1,23 @@
+---
+# file: roles/nginx/defaults/main.yaml
+
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
+
+nginx_version: 1.14.2
+nginx_install_dir: '/opt'
+
+packages_base:
+  - []
+
+packages_by_distro:
+  ubuntu:
+    bionic:
+      - "openssl"
+      - "libssl-dev"
+
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []
+
