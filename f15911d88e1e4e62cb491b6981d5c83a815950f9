@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e90d9530_2dd6ae75",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1664,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-02-18T08:16:21Z",
+      "side": 1,
+      "message": "I\u0027m wondering whether we should unify the return values for 2n and 3n topologies with this change. Leave the DUT2 inverse condition here (if DUT2 exists then create the dut2_tunnel) and only have one return statement at the end of the method?",
+      "range": {
+        "startLine": 1664,
+        "startChar": 12,
+        "endLine": 1664,
+        "endChar": 43
+      },
+      "revId": "f15911d88e1e4e62cb491b6981d5c83a815950f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
