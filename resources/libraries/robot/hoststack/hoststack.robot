@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,6 +16,8 @@
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.HoststackUtil
 | Library | resources.libraries.python.NsimUtil
+| Library | resources.libraries.python.CpuUtils
+| Library | resources.libraries.python.NginxUtil
 | Variables | resources/libraries/python/Constants.py
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/nsim/nsim.robot
@@ -539,3 +541,52 @@
 | | ... | ${vpp_nsim_attr} | ${iperf3_client}
 | | Then Set test message | ${client_output}
 | | Return From Keyword | ${client_defer_fail}
+
+| Set up VCL Nginx or LDP Nginx on DUT node
+| | [Documentation]
+| | ... | Setup for suites which uses CVL or LDP Nginx on DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - mode - VCL Nginx or LDP Nginx.
+| | ... | Type: string
+| | ... | - rps_cps - Test request or connect.
+| | ... | Type: string
+| | ... | - core_num - Nginx work processes number.
+| | ... | Type: int
+| | ... | - qat - Whether to use the qat engine.
+| | ... | Type: string
+| | ... | - tls_tcp - TLS or TCP.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set up VCL Nginx or LDP NGINX on DUT node \| ${mode}\
+| | ... | \| ${rps_cps} \| ${phy_cores} \| ${qat} \| ${tls_tcp} \|
+| |
+| | [Arguments] | ${mode} | ${rps_cps} | ${core_num} | ${qat} | ${tls_tcp}
+| |
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.10.1 | 24
+| | Vpp Node Interfaces Ready Wait | ${dut1}
+| | ${numa}= | Get interfaces numa node | ${dut1} | ${dut1_if1}
+| | ${cpu_idle_str}= | Get cpu idle str | ${dut1} | ${numa}
+| | ... | ${smt_used} | ${cpu_alloc_str}
+| | Run Nginx | ${dut1} | ${mode} | ${rps_cps} | ${core_num}
+| | ... | ${tls_tcp} | ${cpu_idle_str}
+
+| Measure TLS requests or connections per second
+| | [Documentation]
+| | ... | Measure number of requests or connections per second using ab.
+| |
+| | ... | *Arguments:*
+| | ... | - ${ciphers} - Specify SSL/TLS cipher suite
+| | ... | - ${files} - Filename to be requested from the servers
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Measure TLS requests or connections per second
+| | ... | \| AES128-SHA \| 64 \| tls \| rps \|
+| |
+| | [Arguments] | ${ciphers} | ${files} | ${tls_tcp} | ${mode}
+| |
+| | ${output}= | Run ab | ${tg} | ${tls_tcp} | ${ciphers} | ${files} | ${mode}
+| | Set test message | ${output}

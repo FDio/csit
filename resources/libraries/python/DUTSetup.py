@@ -706,7 +706,7 @@ class DUTSetup:
                         node, f"dpkg -i --force-all {vpp_pkg_dir}*.deb",
                         timeout=120, sudo=True, message=message
                     )
-                    exec_cmd_no_error(node, u"dpkg -l | grep vpp", sudo=True)
+                    exec_cmd_no_error(node, u"dpkg -l | grep vsap", sudo=True)
                     if DUTSetup.running_in_container(node):
                         DUTSetup.restart_service(node, Constants.VPP_UNIT)
                 else:
