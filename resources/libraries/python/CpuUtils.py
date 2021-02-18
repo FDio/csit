@@ -262,6 +262,28 @@ class CpuUtils:
         return cpu_range
 
     @staticmethod
+    def get_cpu_idle_str(node, cpu_node, smt_used, cpu_alloc_str, sep=u','):
+        """
+        Get idle CPU List
+        :param node: Node dictionary with cpuinfo.
+        :param cpu_node: Numa node number.
+        :param smt_used: True - we want to use SMT, otherwise false.
+        :param cpu_alloc_str: vpp used cores.
+        :param sep: Separator, default: ','.
+        :type node: dict
+        :type cpu_node: int
+        :type smt_used: bool
+        :type cpu_alloc_str: str
+        :type smt_used: bool
+        :type sep: str
+        """
+        cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
+        cpu_alloc_list = cpu_alloc_str.split(sep)
+        cpu_idle_list = [i for i in cpu_list
+                         if str(i) not in cpu_alloc_list]
+        return sep.join(str(cpu) for cpu in cpu_idle_list)
+
+    @staticmethod
     def cpu_slice_of_list_for_nf(
             node, cpu_node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
             nf_dtc=1, nf_mtcr=2, nf_dtcr=1, skip_cnt=0):
