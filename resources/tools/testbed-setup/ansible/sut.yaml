@@ -26,6 +26,8 @@
       tags: vpp
     - role: dpdk
       tags: dpdk
+    - role: nginx
+      tags: nginx
     - role: kernel_vm
       tags: kernel_vm
     - role: performance_tuning
