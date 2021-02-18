@@ -26,6 +26,8 @@
       tags: dpdk
     - role: docker
       tags: docker
+    - role: nginx
+      tags: nginx
     - role: kubernetes
       tags: kubernetes
     - role: kernel_vm
