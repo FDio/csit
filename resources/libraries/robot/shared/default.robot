@@ -204,7 +204,7 @@
 | | ... | \| Add worker threads to all DUTs \| ${1} \| ${1} \|
 | |
 | | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxd}=${None}
-| | ... | ${txd}=${None}
+| | ... | ${txd}=${None} | ${smt_used}=${None}
 | |
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
@@ -213,7 +213,8 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node
 | | | ... | ${nodes['${dut}']} | @{${dut}_pf_keys}
-| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | | ${smt_used}= | Run Keyword If | ${smt_used} == ${None}
+| | | ... | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
 | | | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}

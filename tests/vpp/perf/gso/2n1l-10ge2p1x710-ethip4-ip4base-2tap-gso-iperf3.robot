@@ -86,7 +86,8 @@
 | | Set Test Variable | \${rxq_ratio} | ${1}
 | |
 | | Given Set Jumbo
-| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Add worker threads to all DUTs
+| | ... | ${phy_cores} | ${rxq} | ${smt_used}=${False}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}

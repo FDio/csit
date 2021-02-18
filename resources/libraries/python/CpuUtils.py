@@ -445,4 +445,4 @@ class CpuUtils:
 
         return CpuUtils.cpu_slice_of_list_per_node(
             node, cpu_node=cpu_node, skip_cnt=skip_cnt, cpu_cnt=cpu_cnt,
-            smt_used=smt_used)
+            smt_used=False)
