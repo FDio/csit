@@ -87,7 +87,7 @@
   pip:
     name:
       - "pandas==0.25.3"
-      - "scipy==1.1.0"
+      - "scipy==1.5.4"
   tags:
     - install-pip
 
