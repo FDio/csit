@@ -259,10 +259,11 @@ class InterfaceUtil:
         """
         for pf_pci in pf_pcis:
             pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
-            cmd = f"ethtool -A {pf_eth} rx off tx off"
+            cmd = f"ethtool -A {pf_eth} rx {rx} tx {tx}"
             ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
-            if int(ret_code) not in (0, 78):
-                raise RuntimeError("Failed to set MTU on {pf_eth}!")
+            # TODO: Document why some codes are deemed good.
+            if int(ret_code) not in (0, 77, 78):
+                raise RuntimeError(f"Failed to set flow control on {pf_eth}!")
 
 
     @staticmethod
