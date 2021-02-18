@@ -1,0 +1,66 @@
+---
+# file: roles/nginx/tasks/main.yaml
+
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - nginx-inst-prerequisites
+
+- name: Inst - Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+  tags:
+    - nginx-inst-prerequisites
+
+- name: Download Nginx {{ nginx_version }}
+  get_url:
+    url: "http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz"
+    dest: "{{ nginx_install_dir }}/nginx-{{ nginx_version }}.tar.gz"
+  register: "nginx_downloaded"
+  tags:
+    - nginx-inst
+
+- name: Install Nginx
+  unarchive:
+    remote_src: true
+    src: "{{ nginx_install_dir }}/nginx-{{ nginx_version }}.tar.gz"
+    dest: "{{ nginx_install_dir }}"
+    creates: "{{ nginx_install_dir }}/nginx-{{ nginx_version }}"
+  when: "nginx_downloaded"
+  register: "nginx_extracted"
+  tags:
+    - nginx-inst
+
+- name: Compile Release I
+  command: "./configure
+                --with-http_stub_status_module
+                --with-http_ssl_module
+                --with-pcre
+                --with-http_realip_module"
+  args:
+      chdir: "{{ nginx_install_dir }}/nginx-{{ nginx_version }}"
+  when: "nginx_extracted"
+  register: "nginx_configured"
+  tags:
+    - nginx-inst
+
+- name: Compile Release II
+  command: "make -j 16"
+  args:
+      chdir: "{{ nginx_install_dir }}/nginx-{{ nginx_version }}"
+  when: "nginx_configured"
+  tags:
+    - nginx-inst
+
+- name: Compile Release III
+  command: "make install"
+  args:
+      chdir: "{{ nginx_install_dir }}/nginx-{{ nginx_version }}"
+  when: "nginx_configured"
+  tags:
+    - nginx-inst
