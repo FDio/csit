@@ -138,7 +138,6 @@ class QemuUtils:
         )
         self._params.add_with_value(u"m", f"{self._opt.get(u'mem')}M")
         self._params.add_with_value(u"numa", u"node,memdev=mem")
-        self._params.add_with_value(u"balloon", u"none")
 
     def add_net_user(self):
         """Set managment port forwarding."""
