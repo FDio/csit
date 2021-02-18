@@ -261,8 +261,12 @@ class InterfaceUtil:
             pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
             cmd = f"ethtool -A {pf_eth} rx off tx off"
             ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
+            cmd = f"ethtool -A {pf_eth} rx on tx on"
+            ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
+            cmd = f"ethtool -A {pf_eth} rx {rx} tx {tx}"
+            ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
             if int(ret_code) not in (0, 78):
-                raise RuntimeError("Failed to set MTU on {pf_eth}!")
+                raise RuntimeError(f"Failed to set MTU on {pf_eth}!")
 
 
     @staticmethod
