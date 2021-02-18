@@ -553,6 +553,17 @@ class Regenerator:
             {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4}
         ]
 
+        http_kwargs_list = [
+            {u"frame_size": 0, u"phy_cores": 1},
+            {u"frame_size": 0, u"phy_cores": 2},
+            {u"frame_size": 64, u"phy_cores": 1},
+            {u"frame_size": 64, u"phy_cores": 2},
+            {u"frame_size": 1024, u"phy_cores": 1},
+            {u"frame_size": 1024, u"phy_cores": 2},
+            {u"frame_size": 2048, u"phy_cores": 1},
+            {u"frame_size": 2048, u"phy_cores": 2},
+        ]
+
         for in_filename in glob(pattern):
             if not self.quiet:
                 print(
@@ -583,6 +594,9 @@ class Regenerator:
                     )
             elif in_filename.endswith(u"-reconf.robot"):
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
+            elif in_filename.endswith(u"-rps.robot") \
+                    or in_filename.endswith(u"-cps.robot"):
+                write_tcp_files(in_filename, in_prolog, http_kwargs_list)
             elif in_filename.endswith(u"-bps.robot"):
                 hoststack_kwargs_list = \
                     hs_quic_kwargs_list if u"quic" in in_filename \
