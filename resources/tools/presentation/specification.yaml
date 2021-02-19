@@ -382,6 +382,10 @@
         - 104 # rls2101.rel NDRPDR reconf iter env 6
         - 106 # rls2101.rel NDRPDR reconf iter env 6
 
+    plot-vpp-gso-2n-skx:
+      csit-vpp-perf-report-iterative-2101-2n-skx:
+        - 129 # rls2101.rel MRR GSO iter env 6
+
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-report-iterative-2101-2n-skx:
         - 11  # rls2101 NDRPDR iter env 6
@@ -431,6 +435,10 @@
     plot-vpp-hdrh-lat-2n-zn2-rnd:
       csit-vpp-perf-report-iterative-2101-2n-zn2:
         - 40  # rls2101.rel NDRPDR iter RND env 6
+
+    plot-vpp-gso-2n-zn2:
+      csit-vpp-perf-report-iterative-2101-2n-zn2:
+        - 56  # rls2101.rel MRR GSO iter env 6
 
     plot-dpdk-throughput-latency-2n-zn2:
       csit-dpdk-perf-report-iterative-2101-2n-zn2:
@@ -544,6 +552,10 @@
       csit-vpp-perf-report-iterative-2101-2n-clx:
         - 58  # rls2101.rel soak env 6
         - 61  # rls2101.rel soak env 6
+
+    plot-vpp-gso-2n-clx:
+      csit-vpp-perf-report-iterative-2101-2n-clx:
+        - 159 # rls2101.rel MRR GSO iter env 6
 
     plot-dpdk-throughput-latency-2n-clx:
       csit-dpdk-perf-report-iterative-2101-2n-clx:
@@ -3073,6 +3085,61 @@
       paper_bgcolor: "white"
       plot_bgcolor: "white"
 
+    plot-scatter-error-bars-gbps:
+      titlefont:
+        size: 16
+      xaxis:
+        title: "<b>Test Cases [Index]</b>"
+        titlefont:
+          size: 14
+        autorange: True
+        fixedrange: False
+        gridcolor: "rgb(230, 230, 230)"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickmode: "linear"
+        tickfont:
+          size: 14
+        zeroline: False
+      yaxis:
+        title: "<b>Traffic Throughput [Gbps]</b>"
+        titlefont:
+          size: 14
+        gridcolor: "rgb(230, 230, 230)"
+        hoverformat: ".4r"
+        tickformat: ".3r"
+        linecolor: "rgb(220, 220, 220)"
+        linewidth: 1
+        showgrid: True
+        showline: True
+        showticklabels: True
+        tickcolor: "rgb(220, 220, 220)"
+        tickfont:
+          size: 14
+        zeroline: False
+        range: [0,10]
+      autosize: False
+      margin:
+        t: 50
+        b: 0
+        l: 80
+        r: 20
+      showlegend: True
+      legend:
+        orientation: "h"
+        font:
+          size: 14
+      width: 700
+      height: 900
+      paper_bgcolor: "#fff"
+      plot_bgcolor: "#fff"
+      hoverlabel:
+        namelength: -1
+
 - type: "static"
   src-path: "{DIR[RST]}"
   dst-path: "{DIR[WORKING,SRC]}"
@@ -3410,6 +3477,7 @@
       - 106 # rls2101.rel NDRPDR reconf iter env 6
       - 68  # rls2101.rel soak env 6
       - 73  # rls2101.rel soak env 6
+      - 129 # rls2101.rel MRR GSO iter env 6
     csit-vpp-perf-report-coverage-2101-2n-skx:
       - 1   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-00
       - 2   # rls2101.rel NDRPDR cov env 6 2n-skx-ip4-01
@@ -3552,6 +3620,7 @@
       - 110 # rls2101.rel NDRPDR reconf iter env 6
       - 58  # rls2101.rel soak env 6
       - 61  # rls2101.rel soak env 6
+      - 159 # rls2101.rel MRR GSO iter env 6
     csit-vpp-perf-report-coverage-2101-2n-clx:
       - 1   # rls2101.rel NDRPDR cov env 6 2n-clx-ip4-00
       - 2   # rls2101.rel NDRPDR cov env 6 2n-clx-ip4-01
@@ -3613,6 +3682,7 @@
       - 50  # rls2101.rel NDRPDR iter RND env 6
       - 51  # rls2101.rel NDRPDR iter RND env 6
       - 52  # rls2101.rel NDRPDR iter RND env 6
+      - 56  # rls2101.rel MRR GSO iter env 6
     csit-vpp-perf-report-coverage-2101-2n-zn2:
       - 1   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-00
       - 2   # rls2101.rel NDRPDR cov env 6 2n-zn2-ip4-01
@@ -4056,8 +4126,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#     pdf:
+#     - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -25567,3 +25637,131 @@
   filter: "'1T1C' and 'NIC_Intel-XL710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
+
+###############################################################################
+
+- type: "plot"
+  title: "Throughput: 2n-skx-128kb-1t1c-ip4routing-iperf3"
+  algorithm: "plot_mrr_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-128kb-1t1c-ip4routing-iperf3"
+  data: "plot-vpp-gso-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-skx-128kb-1t1c-ip4routing-iperf3"
+    layout: "plot-scatter-error-bars-gbps"
+
+- type: "plot"
+  title: "Throughput: 2n-skx-128kb-2t2c-ip4routing-iperf3"
+  algorithm: "plot_mrr_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-128kb-2t2c-ip4routing-iperf3"
+  data: "plot-vpp-gso-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-skx-128kb-2t2c-ip4routing-iperf3"
+    layout: "plot-scatter-error-bars-gbps"
+
+- type: "plot"
+  title: "Throughput: 2n-skx-128kb-4t4c-ip4routing-iperf3"
+  algorithm: "plot_mrr_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-128kb-4t4c-ip4routing-iperf3"
+  data: "plot-vpp-gso-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-skx-128kb-4t4c-ip4routing-iperf3"
+    layout: "plot-scatter-error-bars-gbps"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-128kb-1t1c-ip4routing-iperf3"
+  algorithm: "plot_mrr_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-128kb-1t1c-ip4routing-iperf3"
+  data: "plot-vpp-gso-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-clx-128kb-1t1c-ip4routing-iperf3"
+    layout: "plot-scatter-error-bars-gbps"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-128kb-2t2c-ip4routing-iperf3"
+  algorithm: "plot_mrr_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-128kb-2t2c-ip4routing-iperf3"
+  data: "plot-vpp-gso-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-clx-128kb-2t2c-ip4routing-iperf3"
+    layout: "plot-scatter-error-bars-gbps"
+
+- type: "plot"
+  title: "Throughput: 2n-clx-128kb-4t4c-ip4routing-iperf3"
+  algorithm: "plot_mrr_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-128kb-4t4c-ip4routing-iperf3"
+  data: "plot-vpp-gso-2n-clx"
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-clx-128kb-4t4c-ip4routing-iperf3"
+    layout: "plot-scatter-error-bars-gbps"
+
+- type: "plot"
+  title: "Throughput: 2n-zn2-128kb-1t1c-ip4routing-iperf3"
+  algorithm: "plot_mrr_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-128kb-1t1c-ip4routing-iperf3"
+  data: "plot-vpp-gso-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-zn2-128kb-1t1c-ip4routing-iperf3"
+    layout: "plot-scatter-error-bars-gbps"
+
+- type: "plot"
+  title: "Throughput: 2n-zn2-128kb-2t2c-ip4routing-iperf3"
+  algorithm: "plot_mrr_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-128kb-2t2c-ip4routing-iperf3"
+  data: "plot-vpp-gso-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-zn2-128kb-2t2c-ip4routing-iperf3"
+    layout: "plot-scatter-error-bars-gbps"
+
+- type: "plot"
+  title: "Throughput: 2n-zn2-128kb-4t4c-ip4routing-iperf3"
+  algorithm: "plot_mrr_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-zn2-128kb-4t4c-ip4routing-iperf3"
+  data: "plot-vpp-gso-2n-zn2"
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-zn2-128kb-4t4c-ip4routing-iperf3"
+    layout: "plot-scatter-error-bars-gbps"
