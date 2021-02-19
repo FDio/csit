@@ -262,6 +262,7 @@ data "aws_network_interface" "tg_if2" {
 
 # Instances
 resource "aws_instance" "tg" {
+  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
   ami                         = var.ami_image
   availability_zone           = var.avail_zone
   instance_type               = var.instance_type
@@ -272,7 +273,6 @@ resource "aws_instance" "tg" {
   vpc_security_group_ids      = [aws_security_group.CSITSG.id]
   placement_group             = aws_placement_group.CSITPG.id
   source_dest_check           = false
-  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
   # host_id                   = "1"
 
   root_block_device {
@@ -286,6 +286,7 @@ resource "aws_instance" "tg" {
 }
 
 resource "aws_instance" "dut1" {
+  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
   ami                         = var.ami_image
   availability_zone           = var.avail_zone
   instance_type               = var.instance_type
@@ -296,7 +297,6 @@ resource "aws_instance" "dut1" {
   vpc_security_group_ids      = [aws_security_group.CSITSG.id]
   placement_group             = aws_placement_group.CSITPG.id
   source_dest_check           = false
-  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
   # host_id                   = "2"
 
   root_block_device {
@@ -310,6 +310,7 @@ resource "aws_instance" "dut1" {
 }
 
 resource "aws_instance" "dut2" {
+  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
   ami                         = var.ami_image
   availability_zone           = var.avail_zone
   instance_type               = var.instance_type
@@ -320,7 +321,6 @@ resource "aws_instance" "dut2" {
   vpc_security_group_ids      = [aws_security_group.CSITSG.id]
   placement_group             = aws_placement_group.CSITPG.id
   source_dest_check           = false
-  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
   # host_id                   = "3"
 
   root_block_device {
