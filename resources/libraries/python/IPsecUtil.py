@@ -243,12 +243,14 @@ class IPsecUtil:
     def get_integ_alg_key_len(integ_alg):
         """Return integrity algorithm key length.
 
+        None argument is accepted, returning zero.
+
         :param integ_alg: Integrity algorithm.
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optional[IntegAlg]
         :returns: Key length.
         :rtype: int
         """
-        return integ_alg.key_len
+        return 0 if integ_alg is None else integ_alg.key_len
 
     @staticmethod
     def get_integ_alg_scapy_name(integ_alg):
@@ -366,7 +368,7 @@ class IPsecUtil:
         :type spi: int
         :type crypto_alg: CryptoAlg
         :type crypto_key: str
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optional[IntegAlg]
         :type integ_key: str
         :type tunnel_src: str
         :type tunnel_dst: str
@@ -450,7 +452,7 @@ class IPsecUtil:
         :type spi: int
         :type crypto_alg: CryptoAlg
         :type crypto_key: str
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optional[IntegAlg]
         :type integ_key: str
         :type tunnel_src: str
         :type tunnel_dst: str
@@ -871,7 +873,7 @@ class IPsecUtil:
         :type if2_key: str
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optional[IntegAlg]
         :type raddr_ip2: IPv4Address or IPv6Address
         :type addr_incr: int
         :type spi_d: dict
@@ -902,10 +904,10 @@ class IPsecUtil:
                 ckeys.append(
                     gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
                 )
+                ikeys.append(
+                    gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
+                )
                 if integ_alg:
-                    ikeys.append(
-                        gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                    )
                     integ = f"integ-alg {integ_alg.alg_name} " \
                         f"integ-key {ikeys[i].hex()} "
                 else:
@@ -986,7 +988,7 @@ class IPsecUtil:
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
         :type ckeys: list
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optional[IntegAlg]
         :type ikeys: list
         :type addr_incr: int
         :type spi_d: dict
@@ -1162,7 +1164,7 @@ class IPsecUtil:
         :type if2_key: str
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optional[IntegAlg]
         :type raddr_ip2: IPv4Address or IPv6Address
         :type addr_incr: int
         :type spi_d: dict
@@ -1269,10 +1271,9 @@ class IPsecUtil:
                 ckeys.append(
                     gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
                 )
-                if integ_alg:
-                    ikeys.append(
-                        gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                    )
+                ikeys.append(
+                    gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
+                )
                 # SAD entry for outband / tx path
                 args[u"entry"][u"sad_id"] = i
                 args[u"entry"][u"spi"] = spi_d[u"spi_1"] + i
@@ -1409,7 +1410,7 @@ class IPsecUtil:
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
         :type ckeys: list
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optional[IntegAlg]
         :type ikeys: list
         :type addr_incr: int
         :type spi_d: dict
@@ -1509,10 +1510,9 @@ class IPsecUtil:
                 ckeys.append(
                     gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
                 )
-                if integ_alg:
-                    ikeys.append(
-                        gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                    )
+                ikeys.append(
+                    gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
+                )
                 # SAD entry for outband / tx path
                 args[u"entry"][u"sad_id"] = 100000 + i
                 args[u"entry"][u"spi"] = spi_d[u"spi_2"] + i
@@ -1639,8 +1639,12 @@ class IPsecUtil:
     def vpp_ipsec_create_tunnel_interfaces(
             nodes, tun_if1_ip_addr, tun_if2_ip_addr, if1_key, if2_key,
             n_tunnels, crypto_alg, integ_alg, raddr_ip1, raddr_ip2, raddr_range,
-            existing_tunnels=0):
+            existing_tunnels=0, return_keys=False):
         """Create multiple IPsec tunnel interfaces between two VPP nodes.
+
+        Some deployments (e.g. devicetest) need to know the generated keys.
+        But other deployments (e.g. scale perf test) would get spammed
+        if we returned keys every time.
 
         :param nodes: VPP nodes to create tunnel interfaces.
         :param tun_if1_ip_addr: VPP node 1 ipsec tunnel interface IPv4/IPv6
@@ -1662,6 +1666,7 @@ class IPsecUtil:
             and to 128 in case of IPv6.
         :param existing_tunnels: Number of tunnel interfaces before creation.
             Useful mainly for reconf tests. Default 0.
+        :param return_keys: Whether generated keys should be returned.
         :type nodes: dict
         :type tun_if1_ip_addr: str
         :type tun_if2_ip_addr: str
@@ -1669,11 +1674,14 @@ class IPsecUtil:
         :type if2_key: str
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optonal[IntegAlg]
         :type raddr_ip1: string
         :type raddr_ip2: string
         :type raddr_range: int
         :type existing_tunnels: int
+        :type return_keys: bool
+        :returns: Ckeys, ikeys, spi_1, spi_2.
+        :rtype: Optional[List[bytes], List[bytes], int, int]
         """
         n_tunnels = int(n_tunnels)
         existing_tunnels = int(existing_tunnels)
@@ -1695,25 +1703,27 @@ class IPsecUtil:
                 nodes, tun_ips, if1_key, if2_key, n_tunnels, crypto_alg,
                 integ_alg, raddr_ip2, addr_incr, spi_d, existing_tunnels
             )
-            if u"DUT2" not in nodes.keys():
-                return ckeys[0], ikeys[0], spi_d[u"spi_1"], spi_d[u"spi_2"]
-            IPsecUtil._ipsec_create_tunnel_interfaces_dut2_vat(
-                nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
-                integ_alg, ikeys, raddr_ip1, addr_incr, spi_d, existing_tunnels
-            )
+            if u"DUT2" in nodes.keys():
+                IPsecUtil._ipsec_create_tunnel_interfaces_dut2_vat(
+                    nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
+                    integ_alg, ikeys, raddr_ip1, addr_incr, spi_d,
+                    existing_tunnels,
+                )
         else:
             ckeys, ikeys = IPsecUtil._ipsec_create_tunnel_interfaces_dut1_papi(
                 nodes, tun_ips, if1_key, if2_key, n_tunnels, crypto_alg,
                 integ_alg, raddr_ip2, addr_incr, spi_d, existing_tunnels
             )
-            if u"DUT2" not in nodes.keys():
-                return ckeys[0], ikeys[0], spi_d[u"spi_1"], spi_d[u"spi_2"]
-            IPsecUtil._ipsec_create_tunnel_interfaces_dut2_papi(
-                nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
-                integ_alg, ikeys, raddr_ip1, addr_incr, spi_d, existing_tunnels
-            )
+            if u"DUT2" in nodes.keys():
+                IPsecUtil._ipsec_create_tunnel_interfaces_dut2_papi(
+                    nodes, tun_ips, if2_key, n_tunnels, crypto_alg, ckeys,
+                    integ_alg, ikeys, raddr_ip1, addr_incr, spi_d,
+                    existing_tunnels,
+                )
 
-        return None, None, None, None
+        if return_keys:
+            return ckeys, ikeys, spi_d[u"spi_1"], spi_d[u"spi_2"]
+        return None
 
     @staticmethod
     def _create_ipsec_script_files(dut, instances):
@@ -1778,7 +1788,7 @@ class IPsecUtil:
         :type if2_ip_addr: str
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optional[IntegAlg]
         :type raddr_ip1: string
         :type raddr_ip2: string
         :type raddr_range: int
@@ -1811,10 +1821,10 @@ class IPsecUtil:
                 gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)), u"hex"
             )
             integ = u""
+            ikey = getattr(
+                gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)), u"hex"
+            )
             if integ_alg:
-                ikey = getattr(
-                    gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)), u"hex"
-                )
                 integ = (
                     f"integ-alg {integ_alg.alg_name} "
                     f"local-integ-key {ikey} "
@@ -1892,7 +1902,7 @@ class IPsecUtil:
         :type interface2: str or int
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
-        :type integ_alg: IntegAlg
+        :type integ_alg: Optional[IntegAlg]
         :type tunnel_ip1: str
         :type tunnel_ip2: str
         :type raddr_ip1: string
