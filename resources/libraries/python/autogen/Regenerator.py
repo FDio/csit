@@ -565,7 +565,7 @@ class Regenerator:
                     hs_quic_kwargs_list if u"quic" in in_filename \
                     else hs_bps_kwargs_list
                 write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
-            elif in_filename.endswith(u"-iperf3.robot"):
+            elif in_filename.endswith(u"-iperf3-mrr.robot"):
                 write_iperf3_files(in_filename, in_prolog, iperf3_kwargs_list)
             else:
                 raise RuntimeError(
