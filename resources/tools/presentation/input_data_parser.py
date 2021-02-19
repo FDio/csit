@@ -268,7 +268,7 @@ class ExecutionChecker(ResultVisitor):
         r'tx\s(\d*),\srx\s(\d*)'
     )
     REGEX_BMRR = re.compile(
-        r'Maximum Receive Rate trial results .*: \[(.*)\]'
+        r'.*trial results.*: \[(.*)\]'
     )
     REGEX_RECONF_LOSS = re.compile(
         r'Packets lost due to reconfig: (\d*)'

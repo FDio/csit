@@ -698,6 +698,102 @@ def plot_perf_box_name(plot, input_data):
         return
 
 
+def plot_mrr_error_bars_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_mrr_error_bars_name
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    logging.info(
+        f"    Creating data set for the {plot.get(u'type', u'')} "
+        f"{plot.get(u'title', u'')}."
+    )
+    data = input_data.filter_tests_by_name(
+        plot,
+        params=[u"result", u"parent", u"tags", u"type"])
+    if data is None:
+        logging.error(u"No data.")
+        return
+
+    # Prepare the data for the plot
+    data_x = list()
+    data_names = list()
+    data_y_avg = list()
+    data_y_stdev = list()
+    data_y_max = 0
+    hover_info = list()
+    idx = 1
+    for item in plot.get(u"include", tuple()):
+        reg_ex = re.compile(str(item).lower())
+        for job in data:
+            for build in job:
+                for test_id, test in build.iteritems():
+                    if not re.match(reg_ex, str(test_id).lower()):
+                        continue
+                    try:
+                        data_x.append(idx)
+                        name = re.sub(REGEX_NIC, u'', test[u'parent'].lower().
+                                      replace(u'-mrr', u'').
+                                      replace(u'2n1l-', u''))
+                        data_names.append(f"{idx}. {name}")
+                        data_y_avg.append(test[u"result"][u"receive-rate"])
+                        data_y_stdev.append(test[u"result"][u"receive-stdev"])
+                        hover_info = (
+                            f"{data_names[-1]}\n"
+                            f"average [Gbps]: {data_y_avg[-1]}\n"
+                            f"stdev [Gbps]: {data_y_stdev[-1]}"
+                        )
+                        if data_y_avg[-1] + data_y_stdev[-1] > data_y_max:
+                            data_y_max = data_y_avg[-1] + data_y_stdev[-1]
+                        idx += 1
+                    except (KeyError, TypeError):
+                        pass
+
+    # Add plot traces
+    traces = [
+        plgo.Scatter(
+            x=data_x,
+            y=data_y_avg,
+            error_y=dict(
+                type=u"data",
+                array=data_y_stdev,
+                visible=True
+            ),
+            name=data_names,
+            mode=u"markers",
+            hoverinfo=hover_info
+        ),
+    ]
+
+    try:
+        # Create plot
+        layout = deepcopy(plot[u"layout"])
+        if layout.get(u"title", None):
+            layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
+        if data_y_max:
+            layout[u"yaxis"][u"range"] = [0, data_y_max]
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
+        logging.info(f"    Writing file {plot[u'output-file']}.html.")
+        ploff.plot(
+            plpl,
+            show_link=False,
+            auto_open=False,
+            filename=f"{plot[u'output-file']}.html"
+        )
+    except PlotlyError as err:
+        logging.error(
+            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+        )
+        return
+
+
 def plot_tsa_name(plot, input_data):
     """Generate the plot(s) with algorithm:
     plot_tsa_name
