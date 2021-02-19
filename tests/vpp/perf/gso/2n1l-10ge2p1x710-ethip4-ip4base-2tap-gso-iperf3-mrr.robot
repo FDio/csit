@@ -15,18 +15,18 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-X710 | IP4FWD | BASE | IP4BASE | DRV_VHOST
+| ... | NIC_Intel-X710 | IP4FWD | BASE | IP4BASE | DRV_TAP
 | ... | RXQ_SIZE_4096 | TXQ_SIZE_4096 | GSO_TRUE
-| ... | ethip4-ip4base-2vhost-gso
+| ... | ethip4-ip4base-2tap-gso-iperf3
 |
 | Suite Setup | Setup suite topology interfaces
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
-| Test Teardown | Tear down test | iPerf3 | vhost
+| Test Teardown | Tear down test | iPerf3 | namespace
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput IPv4 routing test cases with VHOST*
+| Documentation | *RFC2544: Pkt throughput IPv4 routing test cases with TAPv2*
 |
 | ... | *[Top] Network Topologies:* DUT1 1-node topology without physical links.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP.
@@ -39,34 +39,30 @@
 | @{plugins_to_enable}= | ping_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
-| ${nic_driver}= | vhost
+| ${nic_driver}= | tap
 | ${nic_rxq_size}= | 4096
 | ${nic_txq_size}= | 4096
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
-# Qemu settings:
 | ${enable_gso}= | ${True}
-| ${enable_csum}= | ${True}
-| ${nf_dtcr}= | ${1}
-| ${nf_dtc}= | ${4}
 # iPerf3 client settings:
 | ${iperf_client_bind}= | 1.1.1.1
 | ${iperf_client_bind_gw}= | 1.1.1.2
 | ${iperf_client_bind_mask}= | 30
-| ${iperf_client_interface}= | ens6
-| ${iperf_client_namespace}= | ${None}
+| ${iperf_client_interface}= | tap0
+| ${iperf_client_namespace}= | tap0_namespace
 | ${iperf_client_udp}= | ${False}
-| ${iperf_client_node}= | DUT1_2
-| ${iperf_client_affinity} | 1
+| ${iperf_client_node}= | DUT1
+| ${iperf_client_affinity} | ${None}
 # iPerf3 server settings:
 | ${iperf_server_bind}= | 2.2.2.2
 | ${iperf_server_bind_gw}= | 2.2.2.1
 | ${iperf_server_bind_mask}= | 30
-| ${iperf_server_interface}= | ens6
-| ${iperf_server_namespace}= | ${None}
-| ${iperf_server_node}= | DUT1_1
+| ${iperf_server_interface}= | tap1
+| ${iperf_server_namespace}= | tap1_namespace
+| ${iperf_server_node}= | DUT1
 | ${iperf_server_pf_key}= | ${None}
 # Trial data overwrite:
 | ${trial_duration}= | ${30}
@@ -93,29 +89,24 @@
 | | And Add worker threads for GSO tests to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver} | validate=${False}
+| | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And VPP Interface Set IP Address
-| | ... | ${dut1} | ${DUT1_${int}1}[0]
-| | ... | ${iperf_server_bind_gw} | ${iperf_server_bind_mask}
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 1.1.1.2 | 30
 | | And VPP Interface Set IP Address
-| | ... | ${dut1} | ${DUT1_${int}2}[0]
-| | ... | ${iperf_client_bind_gw} | ${iperf_client_bind_mask}
-| | And Configure chains of NFs connected via vhost-user on single node
-| | ... | node=DUT1 | nf_nodes=${2} | vnf=iperf3 | auto_scale=${True}
-| | ... | fixed_auto_scale=${True} | validate=${False}
-| | And Get CPU Info from All Nodes | ${nodes}
-| | Traffic should pass with maximum rate on iPerf3
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2.2.2.1 | 30
+| | Set Test Variable | ${iperf_server_pf_key} | ${DUT1_pf1}[0]
+| | Then Traffic should pass with maximum rate on iPerf3
 
 *** Test Cases ***
-| 128KB-1c-ethip4-ip4base-2vhost-gso-iperf3
+| 128KB-1c-ethip4-ip4base-2tap-gso-iperf3-mrr
 | | [Tags] | 128KB | 1C
 | | frame_size=${128000} | phy_cores=${1}
 
-| 128KB-2c-ethip4-ip4base-2vhost-gso-iperf3
+| 128KB-2c-ethip4-ip4base-2tap-gso-iperf3-mrr
 | | [Tags] | 128KB | 2C
 | | frame_size=${128000} | phy_cores=${2}
 
-| 128KB-4c-ethip4-ip4base-2vhost-gso-iperf3
+| 128KB-4c-ethip4-ip4base-2tap-gso-iperf3-mrr
 | | [Tags] | 128KB | 4C
 | | frame_size=${128000} | phy_cores=${4}
