@@ -268,7 +268,7 @@ class ExecutionChecker(ResultVisitor):
         r'tx\s(\d*),\srx\s(\d*)'
     )
     REGEX_BMRR = re.compile(
-        r'Maximum Receive Rate trial results .*: \[(.*)\]'
+        r'.*trial results.*: \[(.*)\]'
     )
     REGEX_RECONF_LOSS = re.compile(
         r'Packets lost due to reconfig: (\d*)'
@@ -1177,8 +1177,10 @@ class ExecutionChecker(ResultVisitor):
                 if groups is not None:
                     items_str = groups.group(1)
                     items_float = [
-                        float(item.strip()) for item in items_str.split(",")
+                        float(item.strip().replace(u"'", u""))
+                        for item in items_str.split(",")
                     ]
+                    logging.info(items_float)
                     # Use whole list in CSIT-1180.
                     stats = jumpavg.AvgStdevStats.for_runs(items_float)
                     test_result[u"result"][u"receive-rate"] = stats.avg
