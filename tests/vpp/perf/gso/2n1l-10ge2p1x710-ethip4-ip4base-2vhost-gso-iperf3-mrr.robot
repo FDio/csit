@@ -17,7 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | IP4FWD | BASE | IP4BASE | DRV_VHOST
 | ... | RXQ_SIZE_4096 | TXQ_SIZE_4096 | GSO_TRUE
-| ... | ethip4-ip4base-2vhost-gso
+| ... | ethip4-ip4base-2vhost-gso-iperf3
 |
 | Suite Setup | Setup suite topology interfaces
 | Suite Teardown | Tear down suite
@@ -108,14 +108,14 @@
 | | Traffic should pass with maximum rate on iPerf3
 
 *** Test Cases ***
-| 128KB-1c-ethip4-ip4base-2vhost-gso-iperf3
+| 128KB-1c-ethip4-ip4base-2vhost-gso-iperf3-mrr
 | | [Tags] | 128KB | 1C
 | | frame_size=${128000} | phy_cores=${1}
 
-| 128KB-2c-ethip4-ip4base-2vhost-gso-iperf3
+| 128KB-2c-ethip4-ip4base-2vhost-gso-iperf3-mrr
 | | [Tags] | 128KB | 2C
 | | frame_size=${128000} | phy_cores=${2}
 
-| 128KB-4c-ethip4-ip4base-2vhost-gso-iperf3
+| 128KB-4c-ethip4-ip4base-2vhost-gso-iperf3-mrr
 | | [Tags] | 128KB | 4C
 | | frame_size=${128000} | phy_cores=${4}

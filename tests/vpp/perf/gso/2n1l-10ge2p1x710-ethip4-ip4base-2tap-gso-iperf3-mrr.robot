@@ -16,8 +16,8 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | IP4FWD | BASE | IP4BASE | DRV_TAP
-| ... | RXQ_SIZE_4096 | TXQ_SIZE_4096 | GSO_FALSE
-| ... | ethip4-ip4base-2tap
+| ... | RXQ_SIZE_4096 | TXQ_SIZE_4096 | GSO_TRUE
+| ... | ethip4-ip4base-2tap-gso
 |
 | Suite Setup | Setup suite topology interfaces
 | Suite Teardown | Tear down suite
@@ -46,7 +46,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
-| ${enable_gso}= | ${False}
+| ${enable_gso}= | ${True}
 # iPerf3 client settings:
 | ${iperf_client_bind}= | 1.1.1.1
 | ${iperf_client_bind_gw}= | 1.1.1.2
@@ -99,14 +99,14 @@
 | | Then Traffic should pass with maximum rate on iPerf3
 
 *** Test Cases ***
-| 128KB-1c-ethip4-ip4base-2tap-iperf3
+| 128KB-1c-ethip4-ip4base-2tap-gso-iperf3-mrr
 | | [Tags] | 128KB | 1C
 | | frame_size=${128000} | phy_cores=${1}
 
-| 128KB-2c-ethip4-ip4base-2tap-iperf3
+| 128KB-2c-ethip4-ip4base-2tap-gso-iperf3-mrr
 | | [Tags] | 128KB | 2C
 | | frame_size=${128000} | phy_cores=${2}
 
-| 128KB-4c-ethip4-ip4base-2tap-iperf3
+| 128KB-4c-ethip4-ip4base-2tap-gso-iperf3-mrr
 | | [Tags] | 128KB | 4C
 | | frame_size=${128000} | phy_cores=${4}
