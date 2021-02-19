@@ -187,6 +187,9 @@
 | | [Documentation] | Setup worker threads in vpp startup configuration on all
 | | ... | DUTs. Based on the SMT configuration of DUT if enabled keyword will
 | | ... | automatically map also the sibling logical cores.
+| | ... | Unless the caller disables that.
+| | ... | TODO: Explain when the callers want to do that.
+| |
 | | ... | Keyword will automatically set the appropriate test TAGs in format
 | | ... | mTnC, where m=logical_core_count and n=physical_core_count.
 | | ... | RXQ are computed automatically by dividing thread count with number 2
@@ -198,13 +201,14 @@
 | | ... | - rx_queues - Number of RX queues. Type: integer
 | | ... | - rxd - Number of RX descriptors. Type: integer
 | | ... | - txd - Number of TX descriptors. Type: integer
+| | ... | - use_smt - Whether to use sibling logical cores.
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Add worker threads to all DUTs \| ${1} \| ${1} \|
 | |
 | | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxd}=${None}
-| | ... | ${txd}=${None}
+| | ... | ${txd}=${None} | ${use_smt}=${True}
 | |
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
@@ -213,76 +217,8 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node
 | | | ... | ${nodes['${dut}']} | @{${dut}_pf_keys}
-| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
-| | | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
-| | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}
-| | | ${skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN}
-| | | ${cpu_wt}= | Run Keyword If | ${cpu_count_int} > 0 |
-| | | ... | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_count_int}
-| | | ... | smt_used=${smt_used}
-| | | ${thr_count_int}= | Run Keyword If | ${smt_used}
-| | | ... | Evaluate | int(${cpu_count_int}*2)
-| | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${2}
-| | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
-| | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
-| | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
-| | | ... | Set variable | ${1}
-| | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | Run Keyword | ${dut}.Add CPU Main Core | ${cpu_main}
-| | | Run Keyword If | ${cpu_count_int} > 0
-| | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
-| | | Run Keyword If | ${smt_used}
-| | | ... | Run Keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
-| | | ... | Run Keyword | ${dut}.Add Buffers Per Numa | ${107520}
-| | | Run Keyword If | ${thr_count_int} > 1
-| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
-| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
-| | END
-| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_main}
-| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
-| | Set Test Variable | ${smt_used}
-| | Set Test Variable | ${cpu_alloc_str}
-| | Set Test Variable | ${cpu_count_int}
-| | Set Test Variable | ${thr_count_int}
-| | Set Test Variable | ${rxd_count_int}
-| | Set Test Variable | ${txd_count_int}
-| | Set Test Variable | ${rxq_count_int}
-
-| Add worker threads for GSO tests to all DUTs
-| | [Documentation] | Setup worker threads in vpp startup configuration on all
-| | ... | DUTs. Based on the SMT configuration of DUT if enabled keyword will
-| | ... | automatically map also the sibling logical cores.
-| | ... | Keyword will automatically set the appropriate test TAGs in format
-| | ... | mTnC, where m=logical_core_count and n=physical_core_count.
-| | ... | RXQ are computed automatically by dividing thread count with number 2
-| | ... | (TODO: Add division by actual number of interfaces). User can manually
-| | ... | override RX, RXD, TXD parameters if needed.
-| |
-| | ... | *Arguments:*
-| | ... | - phy_cores - Number of physical cores to use. Type: integer
-| | ... | - rx_queues - Number of RX queues. Type: integer
-| | ... | - rxd - Number of RX descriptors. Type: integer
-| | ... | - txd - Number of TX descriptors. Type: integer
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Add worker threads for GSO tests to all DUTs \| ${1} \| ${1} \|
-| |
-| | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxd}=${None}
-| | ... | ${txd}=${None}
-| |
-| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
-| | ${thr_count_int} | Convert to Integer | ${phy_cores}
-| | ${rxd_count_int}= | Set variable | ${rxd}
-| | ${txd_count_int}= | Set variable | ${txd}
-| | FOR | ${dut} | IN | @{duts}
-| | | ${numa}= | Get interfaces numa node
-| | | ... | ${nodes['${dut}']} | @{${dut}_pf_keys}
-| | | ${smt_used}= | Set variable | ${False}
+| | | ${smt_available}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | | ${smt_used}= | Set Variable If | ${use_smt} | ${smt_available} | ${False}
 | | | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}
