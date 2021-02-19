@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "159dfd5f_0ae20204",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Purpose of the model metadata?",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 70
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3e5de24_d8086ae0",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Description not fully clear to me. Usage example?",
+      "range": {
+        "startLine": 240,
+        "startChar": 46,
+        "endLine": 241,
+        "endChar": 53
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df5ec578_6462845c",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "\"attr\" missing in https://gerrit.fd.io/r/c/csit/+/28992/32/docs/TNM/topology_model.json",
+      "range": {
+        "startLine": 259,
+        "startChar": 5,
+        "endLine": 259,
+        "endChar": 17
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f99f3c4_7a8dea11",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Unique within what system?",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 35
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbc07997_494df412",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Are you suggesting to store both configuration and operational data in the same model? This may make the instantiations large, and hard to parse, especially if we operational data is measured periodically, resulting in a time series data.",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 331,
+        "endChar": 16
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95f9083e_76fcb01f",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "By more networks, do you mean multiple logical network topologies that are not interconnected, or something else?",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 352,
+        "endChar": 18
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "722cb653_d730d621",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Unique within what system?",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 34
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17d542fe_873b1191",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Is it a functional type (tg, sut, dut, vm, ctr), or application type (vpp, testpmd, l3fwd), or else?",
+      "range": {
+        "startLine": 414,
+        "startChar": 2,
+        "endLine": 414,
+        "endChar": 11
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4af9ea77_a8e577e8",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "How is that different than `node-type` then?",
+      "range": {
+        "startLine": 422,
+        "startChar": 58,
+        "endLine": 422,
+        "endChar": 71
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "836d379c_dd80333b",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Do we need to distinguish between usage of dedicated and shared resources?",
+      "range": {
+        "startLine": 438,
+        "startChar": 1,
+        "endLine": 438,
+        "endChar": 44
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6837a9d9_811512ba",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "If there is a list of configurations, how are those applied (or interpreted), or IOW how are the external dependencies and/or interactions associated with those configurations and the test lifecycle captured here?",
+      "range": {
+        "startLine": 449,
+        "startChar": 23,
+        "endLine": 450,
+        "endChar": 8
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce2a902a_18d82ce8",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Need examples here. And how is operational data correlated to test phases/lifecycle?",
+      "range": {
+        "startLine": 484,
+        "startChar": 26,
+        "endLine": 486,
+        "endChar": 11
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6b7455d_92ceea52",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Need examples here. And how are commands correlated to test phases/lifecycle? Question to self: Do they need to be?",
+      "range": {
+        "startLine": 488,
+        "startChar": 2,
+        "endLine": 488,
+        "endChar": 17
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73bc5797_42c38e32",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "In most if not cases it is an interface ID. Unique within the node.",
+      "range": {
+        "startLine": 531,
+        "startChar": 0,
+        "endLine": 531,
+        "endChar": 78
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ca55990_c378634e",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "We do not have unidirectional links, and will not have them. :) What other link types do you envisage?",
+      "range": {
+        "startLine": 569,
+        "startChar": 0,
+        "endLine": 569,
+        "endChar": 32
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a005bee_bffe3418",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "This seems wrong. Links are not directional, they do not have beginnings, just ends connected to associated termination-points. Or are you suggesting treating each bi-directional link connecting interfaces as a set of uni-directional links? If so, I disagree. We should abstract out the uni-directional nature of any transmission link, and treat links as bi-directional. We do not have, neither do we expect uni-directional links or interfaces.",
+      "range": {
+        "startLine": 571,
+        "startChar": 0,
+        "endLine": 574,
+        "endChar": 15
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22bf33f1_531d3964",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "See comments re **source**.",
+      "range": {
+        "startLine": 576,
+        "startChar": 0,
+        "endLine": 579,
+        "endChar": 15
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "983e25b4_2a6849bc",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "What is this exactly? Just a name and test type, if so what purpose does it serve?",
+      "range": {
+        "startLine": 585,
+        "startChar": 3,
+        "endLine": 595,
+        "endChar": 1
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b2fd91a_14e7e602",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "What is the difference between the topology_model and unified_test_interface models then? Separate models for configuration and time series capture of operational state, or one model?",
+      "range": {
+        "startLine": 639,
+        "startChar": 0,
+        "endLine": 640,
+        "endChar": 64
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45feaeb3_24fa056d",
+        "filename": "docs/TNM/unified_test_interface.json",
+        "patchSetId": 32
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Latency is not be measured for NDR rate during MLRsearch NDRPDR test.",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 14
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "badad9dd_9ac4cc61",
+        "filename": "docs/TNM/unified_test_interface.json",
+        "patchSetId": 32
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-02-19T19:30:45Z",
+      "side": 1,
+      "message": "Latency is not be measured for PDR rate during MLRsearch NDRPDR test.",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 14
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
