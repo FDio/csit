@@ -46,6 +46,30 @@
       "revId": "26724e2d16747a2408a09201874eceb148c6be2e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad3a438c_52232a95",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1615,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-19T18:08:25Z",
+      "side": 1,
+      "message": "Decided to use a bool argument. By default, a single None is returned, but optionally the 4-tuple is returned, including full key lists.",
+      "parentUuid": "ae9e6c16_ac273d31",
+      "range": {
+        "startLine": 1615,
+        "startChar": 8,
+        "endLine": 1615,
+        "endChar": 75
+      },
+      "revId": "26724e2d16747a2408a09201874eceb148c6be2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
