@@ -22,6 +22,30 @@
       "revId": "26724e2d16747a2408a09201874eceb148c6be2e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae9e6c16_ac273d31",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1615,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-02-19T09:33:35Z",
+      "side": 1,
+      "message": "If we can\u0027t think of a use for it, I\u0027d leave it as is. - fixed typo\n\nOne more thing comes to mind. If we use the argument and set it to 0 by default, we won\u0027t need the dummy keys, right? That may be a more elegant solution (as it could be co-opted for other uses). We\u0027d need to change the device test to work with a returned list (and the argument itself), but that\u0027s a minor change.",
+      "parentUuid": "7a53a9b8_7877e7c3",
+      "range": {
+        "startLine": 1615,
+        "startChar": 8,
+        "endLine": 1615,
+        "endChar": 75
+      },
+      "revId": "26724e2d16747a2408a09201874eceb148c6be2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
