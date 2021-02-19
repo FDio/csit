@@ -70,7 +70,7 @@
 | ${iperf_server_pf_key}= | ${None}
 # Trial data overwrite:
 | ${trial_duration}= | ${30}
-| ${trial_multiplicity}= | ${4}
+| ${trial_multiplicity}= | ${10}
 
 *** Keywords ***
 | Local Template
