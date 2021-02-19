@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a53a9b8_7877e7c3",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1615,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-02-19T09:23:25Z",
+      "side": 1,
+      "message": "If there\u0027s a legitimate reason we think this could be useful in the future (VPP Device tests using more tunnels? Would that be a useful functional test?), we should add the parameter or return all keys without logging it (which I prefer, but don\u0027t know if it\u0027s possible).\n\nIf we can\u0027t think of a use for it, I\u0027ll leave it as is.",
+      "range": {
+        "startLine": 1615,
+        "startChar": 8,
+        "endLine": 1615,
+        "endChar": 75
+      },
+      "revId": "26724e2d16747a2408a09201874eceb148c6be2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
