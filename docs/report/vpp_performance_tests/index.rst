@@ -12,6 +12,7 @@ VPP Performance
     reconf_tests/index
     nf_service_density/index
     hoststack_testing/index
+    gso_testing/index
     comparisons/index
     throughput_trending
     test_environment
