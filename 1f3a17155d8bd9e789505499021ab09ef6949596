@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c221fd1_551b8c41",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1684,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-02-22T07:17:34Z",
+      "side": 1,
+      "message": "Isn\u0027t this tuple?",
+      "range": {
+        "startLine": 1684,
+        "startChar": 25,
+        "endLine": 1684,
+        "endChar": 29
+      },
+      "revId": "1f3a17155d8bd9e789505499021ab09ef6949596",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d21ffa90_ec860e3c",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1710,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-02-22T07:17:34Z",
+      "side": 1,
+      "message": "Why is this comma here?",
+      "range": {
+        "startLine": 1710,
+        "startChar": 36,
+        "endLine": 1710,
+        "endChar": 37
+      },
+      "revId": "1f3a17155d8bd9e789505499021ab09ef6949596",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
