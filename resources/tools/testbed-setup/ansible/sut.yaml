@@ -41,6 +41,12 @@
   remote_user: testuser
   become: yes
   become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
   roles:
     - role: user_add
       tags: user_add
@@ -56,6 +62,37 @@
       tags: iperf
     - role: docker
       tags: docker
+    - role: cleanup
+      tags: cleanup
+    # TODO: 'Check Kernel Parameters' failing in
+    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
+    # - role: calibration
+    #   tags: calibration
+
+- hosts: sut_azure
+  become: yes
+  become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
+  roles:
+    - role: user_add
+      tags: user_add
+    - role: common
+      tags: common
+    - role: docker
+      tags: docker
+    - role: vpp
+      tags: vpp
+    - role: azure
+      tags: azure
+    - role: iperf
+      tags: iperf
+    - role: dpdk
+      tags: dpdk
     - role: cleanup
       tags: cleanup
     # TODO: 'Check Kernel Parameters' failing in
