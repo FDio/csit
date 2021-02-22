@@ -5,11 +5,13 @@
   tags:
     - tg
     - tg_aws
+    - tg_azure
 
 - import_playbook: sut.yaml
   tags:
     - sut
     - sut_aws
+    - sut_azure
 
 - import_playbook: vpp_device.yaml
   tags:

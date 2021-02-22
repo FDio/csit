@@ -487,10 +487,10 @@ resource "null_resource" "deploy_tg" {
   provisioner "ansible" {
     plays {
       playbook {
-        file_path = "../../testbed-setup/ansible/site_azure.yaml"
+        file_path = "../../testbed-setup/ansible/site.yaml"
         force_handlers = true
       }
-      hosts = ["tg"]
+      hosts = ["tg_azure"]
       extra_vars = {
         ansible_python_interpreter = "/usr/bin/python3"
         azure = true
@@ -511,10 +511,10 @@ resource "null_resource" "deploy_dut1" {
   provisioner "ansible" {
     plays {
       playbook {
-        file_path = "../../testbed-setup/ansible/site_azure.yaml"
+        file_path = "../../testbed-setup/ansible/site.yaml"
         force_handlers = true
       }
-      hosts = ["sut"]
+      hosts = ["sut_azure"]
       extra_vars = {
         ansible_python_interpreter = "/usr/bin/python3"
         azure = true
@@ -535,10 +535,10 @@ resource "null_resource" "deploy_dut2" {
   provisioner "ansible" {
     plays {
       playbook {
-        file_path = "../../testbed-setup/ansible/site_azure.yaml"
+        file_path = "../../testbed-setup/ansible/site.yaml"
         force_handlers = true
       }
-      hosts = ["sut"]
+      hosts = ["sut_azure"]
       extra_vars = {
         ansible_python_interpreter = "/usr/bin/python3"
         azure = true
