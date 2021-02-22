@@ -1,9 +1,9 @@
 # 3n-dnv
-### tests 60
-### job hrs est. 6
+### tests 72
+### job hrs est. 6.02
 ### job hrs real x
-### test mins est. 6
-### test mins real 6
+### test mins est. 5.02
+### test mins real 5.02
 ## ./container_memif
 ## ./crypto
 ### intel-x553
@@ -36,6 +36,20 @@
 1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
 2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
 ## ./ip4
 ### intel-x553
 #### dpdk-vfio-pci
