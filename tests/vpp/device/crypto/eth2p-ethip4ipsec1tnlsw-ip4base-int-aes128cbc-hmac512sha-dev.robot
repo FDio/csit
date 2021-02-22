@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -84,15 +84,15 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPSec in 2-node circular topology
-| | ${encr_key} | ${auth_key} | ${dut_spi} | ${tg_spi} =
+| | ${encr_keys} | ${auth_keys} | ${dut_spi} | ${tg_spi} =
 | | ... | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${nodes} | ${tun_if1_ip4} | ${tun_if2_ip4} | ${DUT1_${int}2}[0]
 | | ... | ${TG_pf2}[0] | ${n_tunnels} | ${encr_alg} | ${auth_alg}
-| | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range} | return_keys=${True}
 | | Then Send IP Packet and verify ESP encapsulation in received packet
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0] | ${DUT1_${int}1_mac}[0]
-| | ... | ${DUT1_${int}2_mac}[0] | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${laddr_ip4} | ${raddr_ip4}
+| | ... | ${DUT1_${int}2_mac}[0] | ${encr_alg} | ${encr_keys}[0] | ${auth_alg}
+| | ... | ${auth_keys}[0] | ${dut_spi} | ${tg_spi} | ${laddr_ip4} | ${raddr_ip4}
 | | ... | ${tun_if1_ip4} | ${tun_if2_ip4}
 | | And Show Ipsec Security Association | ${dut1}
 
