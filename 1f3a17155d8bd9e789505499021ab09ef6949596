@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ab4ea955_ae340ed2",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1684,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-22T13:51:10Z",
+      "side": 1,
+      "message": "Done.\n\nI mean, the implementations adds keys one by one, so it is easier to return as a list (without converting to some other type).\nIn general, it is good to be as permissive as possible for argument types, but as narrow as possible for return types. CSIT is not a library consumed by some downstream app that would get broken if we decide to switch from list to tuple in the future.",
+      "parentUuid": "412def64_15be8f99",
+      "range": {
+        "startLine": 1684,
+        "startChar": 25,
+        "endLine": 1684,
+        "endChar": 29
+      },
+      "revId": "1f3a17155d8bd9e789505499021ab09ef6949596",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d21ffa90_ec860e3c",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 5
@@ -93,6 +117,30 @@
       "revId": "1f3a17155d8bd9e789505499021ab09ef6949596",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3e0e924_dbaafd58",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1710,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-22T13:51:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a1d9287_461231e7",
+      "range": {
+        "startLine": 1710,
+        "startChar": 36,
+        "endLine": 1710,
+        "endChar": 37
+      },
+      "revId": "1f3a17155d8bd9e789505499021ab09ef6949596",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
