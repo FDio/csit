@@ -221,14 +221,14 @@
 | | # We expect NDR and PDR to have different-looking stats.
 | | Send traffic at specified rate
 | | ... | rate=${pdr}
-| | ... | trial_duration=${1.0}
+| | ... | trial_duration=${PERF_TRIAL_STATS_DURATION}
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
 | | Run Keyword If | ${ndr} != ${pdr}
 | | ... | Send traffic at specified rate
 | | ... | rate=${ndr}
-| | ... | trial_duration=${1.0}
+| | ... | trial_duration=${PERF_TRIAL_STATS_DURATION}
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}

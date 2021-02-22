@@ -239,6 +239,10 @@ class Constants:
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
         u"PERF_TRIAL_LATENCY_DURATION", 5.0)
 
+    # Duration of two stat-specific trials in NDRPDR test.
+    PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
+        u"PERF_TRIAL_STATS_DURATION", 10.0)
+
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
     # override by test.
