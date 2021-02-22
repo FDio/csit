@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eceaedc0_2fe4b5ea",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-22T13:59:10Z",
+      "side": 1,
+      "message": "I copied this keyword to one file, copied \"Add worker threads to all DUTs\" to another file, and created a diff. Except for method name and the example line, there is difference in only one line:\n\n  -| | | ${smt_used}\u003d | Is SMT enabled | ${nodes[\u0027${dut}\u0027][\u0027cpuinfo\u0027]}\n  +| | | ${smt_used}\u003d | Set variable | ${False}\n\nIn other words, this is a big code duplication, that could be avoided by adding an optional argument to \"Add worker threads to all DUTs\" instead.\n\nSee https://gerrit.fd.io/r/c/csit/+/31357 for an implementation with such an optional argument.",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 46
+      },
+      "revId": "ecfe59f83a49e0dda9cead06b81339e4ea545053",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cf76066_59751706",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-22T13:59:10Z",
+      "side": 1,
+      "message": "Not true for this keyword.",
+      "range": {
+        "startLine": 258,
+        "startChar": 24,
+        "endLine": 258,
+        "endChar": 44
+      },
+      "revId": "ecfe59f83a49e0dda9cead06b81339e4ea545053",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
