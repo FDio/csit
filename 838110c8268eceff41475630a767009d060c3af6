@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "6dbbfa57_bad75df6",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-22T15:02:55Z",
+      "side": 1,
+      "message": "The same item can act as an operational data for one CSIT component (e.g. ID of a newly launched docker container) and as a configuration data for other CSIT component (e.g. when we want to execute a command inside of that container).\n\nI see roughly three levels of data, depending on when it is re-used.\n1. Reused by robot/python keyword (the docker ID example).\n2. Reused by PAL (rearch results, maybe stats and show run outputs).\n3. Reused irregularly (various debug outputs, search trial results for creating graphs showing how search algorithms works).\n\nI think we should focus mainly on item 1, which includes static configuration (e.g. topology files) and CLI interactions with external tools (traffic scripts, invoking TRex with traffic profiles).\nItems 2 and 3 can be handled by post-processing output.xml files.\nIn long run, we will handle also items 2 and 3 (mainly to ensure the data is accessible even when the test case fails at various places).\n\nThere will be some level of \"time series\" in our data (e.g. docker container is not created yet, then it is created and exists, then it is destroyed). For item 1, tracking the current state is important. Tracking the whole history is item 2 or 3, depending on importance (e.g. docker IDs are 3, but PAPI history is 2).",
+      "parentUuid": "fbc07997_494df412",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 331,
+        "endChar": 16
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95f9083e_76fcb01f",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
