@@ -1,10 +1,28 @@
 # 2n-tx2
-### tests 87
-### job hrs est. 6.09
+### tests 99
+### job hrs est. 8.42
 ### job hrs real N/A
-### test mins est. 4.20
+### test mins est. 5.10
 ### test mins real N/A
 ## ./container_memif
+### intel-xl710
+#### dpdk-vfio-pci
+##### eth-l2bdbasemaclrn-eth-2memif-1lxc
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1dcr
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1dcr
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1dcr
+##### dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
+##### eth-l2xcbase-eth-2memif-1dcr
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
+##### ethip4-ip4base-eth-2memif-1dcr
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
 ## ./crypto
 ## ./ip4
 ### intel-xl710
