@@ -1,9 +1,9 @@
 # 3n-dnv
-### tests 60
-### job hrs est. 2.5
+### tests 72
+### job hrs est. 1.8
 ### job hrs real x
-### test mins est. 2.5
-### test mins real 2.5
+### test mins est. 1.47
+### test mins real 1.47
 ## ./container_memif
 ## ./crypto
 ### intel-x553
@@ -36,6 +36,20 @@
 1c AND imix AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
 2c AND imix AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
 4c AND imix AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND mrr AND x553 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
 ## ./ip4
 ### intel-x553
 #### dpdk-vfio-pci
