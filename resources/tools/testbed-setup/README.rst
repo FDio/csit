@@ -23,8 +23,8 @@ If run elsewhere, changes will be required in following files:
 #. Inventory directory: `ansible/inventories/sample_inventory/`
 #. Inventory files: `ansible/inventories/sample_inventory/hosts`
 
-The process below assumes that there is a host used for bootstrapping (referred
-to as a "Cobbler provision host" below), with reachable DHCP service.
+The process below assumes that there is a host used for bootstrapping with
+reachable DHCP service.
 
 Ansible host
 ------------
@@ -34,9 +34,9 @@ Prerequisities for running Ansible
 
 - CIMC/IPMI address, username, password are set in BIOS.
 - Ansible can be invoked on any host that has direct SSH connectivity to
-  the remote hosts that will be provisioned (does not need to be Cobbler
-  provision host). This may require installed ssh_keys `ssh-copy-id` on remote
-  host or disabled StrictHostChecking on host running Ansible:
+  the remote hosts that will be provisioned. This may require installed
+  ssh_keys `ssh-copy-id` on remote host or disabled StrictHostChecking on
+  host running Ansible:
 
   ::
 
@@ -61,7 +61,7 @@ Ansible structure
 
 Ansible is defining roles `tg` (Traffic Generator), `sut` (System Under Test),
 `vpp_device` (vpp_device host for functional device testing), `common`
-(Applicable for all hosts in inventory) and `cobbler` (Cobbler provision host).
+(Applicable for all hosts in inventory).
 
 Each host has corresponding Ansible role mapped and is applied only if a host
 with that role is present in inventory file. As a part of optimization the role
@@ -90,7 +90,6 @@ Ansible structure is described below:
    │       ├── hosts
    │       └── host_vars
    ├── roles                           # CSIT roles.
-   │   ├── cobbler                     # Role applied for Cobbler host only.
    │   ├── common                      # Role applied for all hosts.
    │   ├── sut                         # Role applied for all SUTs only.
    │   ├── tg                          # Role applied for all TGs only.
@@ -129,24 +128,3 @@ Running Ansible
 
    In case you want to provision only particular role. You can use tags: `tg`,
    `sut`, `vpp_device`.
-
-Baremetal provisioning of host via Ansible Cobbler module
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Baremetal provisioning of the host with Ansible is done via `Cobbler
-<https://cobbler.github.io/>`_. Ansible contains a role `cobbler` that includes
-a set of tasks for deploying Cobbler in a container on dedicated host.
-Container is built during Ansible run of `cobbler` role and it provides DHCPD,
-TFTPD, HTTTP and Cobbler services.
-
-There is a special set of tasks and handlers in `common` role that does include
-a system into Cobbler and reboots provisioned host.
-
-#. Go to Ansible directory: `$ cd csit/resources/tools/testbed-setup/ansible`
-#. Prepare Cobbler provision host via Ansible on dedicated hosts:
-   `$ ansible-playbook --vault-password-file=vault_pass --extra-vars
-   '@vault.yml' --inventory <inventory_file> site.yaml --limit <cobbler_ip>`
-#. Run Ansible on selected hosts with selected tags:
-   `$ ansible-playbook --vault-password-file=vault_pass --extra-vars
-   '@vault.yml' --inventory <inventory_file> site.yaml --limit <host_ip>
-   --tags 'provision'`
