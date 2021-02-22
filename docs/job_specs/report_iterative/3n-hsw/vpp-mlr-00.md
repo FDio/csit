@@ -1,9 +1,9 @@
 # 3n-hsw
-### tests 156
-### job hrs est. 15.4
+### tests 252
+### job hrs est. 24.1
 ### job hrs real x
 ### test mins est. 5.93
-### test mins real 5.93
+### test mins real x
 #
 # Tests with avf driver are not executed on 3n-hsw systems as it requires
 # enabling of SoftIOMMU thats quite difficult there.
@@ -82,6 +82,118 @@
 1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128gcm
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128gcm
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128gcm
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128gcm
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128gcm
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128gcm
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128gcm
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+##### ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+##### ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128gcm
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128gcm
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128gcm
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128gcm
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128gcm
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128gcm
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes128gcm
+##### ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec2tnlswasync-scheduler-ip4base-int-aes256gcm
+##### ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+##### ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128gcm
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128gcm
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128gcm
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128gcm
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128gcm
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128gcm
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128gcm
+##### ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes256gcm
+##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha
+##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128gcm
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128gcm
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128gcm
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128gcm
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128gcm
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128gcm
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128gcm
+##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
 ## ./ip4
 ### intel-xl710
 #### dpdk-vfio-pci
