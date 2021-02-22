@@ -1,9 +1,9 @@
 # 3n-skx
-### tests 288
-### job hrs est. 30.62
-### job hrs real 30.62
-### test mins est. 6.38
-### test mins real 6.38
+### tests 324
+### job hrs est. 29.9
+### job hrs real x
+### test mins est. 5.54
+### test mins real 5.54
 ## ./container_memif
 ### intel-xxv710
 #### avf
@@ -89,6 +89,34 @@
 1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND xxv710 AND drv_avf AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
 #### dpdk-vfio-pci
 ##### ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
@@ -104,6 +132,20 @@
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+##### ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
 ## ./ip4
 ### intel-x710
 #### avf
