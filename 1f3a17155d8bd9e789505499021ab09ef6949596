@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "412def64_15be8f99",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1684,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-22T13:31:17Z",
+      "side": 1,
+      "message": "Not, it is a list. Let me update docstrings of internal methods to make it more explicit.",
+      "parentUuid": "4c221fd1_551b8c41",
+      "range": {
+        "startLine": 1684,
+        "startChar": 25,
+        "endLine": 1684,
+        "endChar": 29
+      },
+      "revId": "1f3a17155d8bd9e789505499021ab09ef6949596",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d21ffa90_ec860e3c",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2021-02-22T07:17:34Z",
       "side": 1,
       "message": "Why is this comma here?",
+      "range": {
+        "startLine": 1710,
+        "startChar": 36,
+        "endLine": 1710,
+        "endChar": 37
+      },
+      "revId": "1f3a17155d8bd9e789505499021ab09ef6949596",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a1d9287_461231e7",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1710,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-22T13:31:17Z",
+      "side": 1,
+      "message": "Stylistic choice, but those are better to be discussed in a separate change. I will revert.",
+      "parentUuid": "d21ffa90_ec860e3c",
       "range": {
         "startLine": 1710,
         "startChar": 36,
