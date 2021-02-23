@@ -124,14 +124,14 @@
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4-ip4base-ndrpdr
-| | [Tags] | IMIX | 1C
-| | frame_size=IMIX_v4_1 | phy_cores=${1}
-
-| IMIX-2c-ethip4-ip4base-ndrpdr
-| | [Tags] | IMIX | 2C
-| | frame_size=IMIX_v4_1 | phy_cores=${2}
-
-| IMIX-4c-ethip4-ip4base-ndrpdr
-| | [Tags] | IMIX | 4C
-| | frame_size=IMIX_v4_1 | phy_cores=${4}
+#| IMIX-1c-ethip4-ip4base-ndrpdr
+#| | [Tags] | IMIX | 1C
+#| | frame_size=IMIX_v4_1 | phy_cores=${1}
+#
+#| IMIX-2c-ethip4-ip4base-ndrpdr
+#| | [Tags] | IMIX | 2C
+#| | frame_size=IMIX_v4_1 | phy_cores=${2}
+#
+#| IMIX-4c-ethip4-ip4base-ndrpdr
+#| | [Tags] | IMIX | 4C
+#| | frame_size=IMIX_v4_1 | phy_cores=${4}
