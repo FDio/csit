@@ -2487,7 +2487,7 @@
           size: 14
         zeroline: False
       yaxis:
-        title: "<b>Packet Throughput [Gbps]</b>"
+        title: "<b>Data Throughput [Gbps]</b>"
         titlefont:
           size: 14
         gridcolor: "rgb(230, 230, 230)"
@@ -3106,7 +3106,7 @@
           size: 14
         zeroline: False
       yaxis:
-        title: "<b>Traffic Throughput [Gbps]</b>"
+        title: "<b>Data Throughput [Gbps]</b>"
         titlefont:
           size: 14
         gridcolor: "rgb(230, 230, 230)"
@@ -3292,7 +3292,6 @@
       - 34  # rls2101.rel NDRPDR cov env 6 3n-hsw-vhost-00
       - 35  # rls2101.rel NDRPDR cov env 6 3n-hsw-vhost-01
       - 36  # rls2101.rel NDRPDR cov env 6 3n-hsw-vhost-02
-
 
     csit-vpp-perf-report-iterative-2009-3n-skx:
       - 17  # rls2005 MRR iter env 5
@@ -4126,8 +4125,8 @@
   format:
     html:
     - full
-#     pdf:
-#     - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -25642,7 +25641,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-128kb-1t1c-ip4routing-iperf3"
-  algorithm: "plot_mrr_error_bars_name"
+  algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-128kb-1t1c-ip4routing-iperf3"
   data: "plot-vpp-gso-2n-skx"
   include:
@@ -25652,11 +25651,11 @@
     - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2vhost-iperf3-mrr"
   layout:
     title: "2n-skx-128kb-1t1c-ip4routing-iperf3"
-    layout: "plot-scatter-error-bars-gbps"
+    layout: "plot-throughput-gbps"
 
 - type: "plot"
   title: "Throughput: 2n-skx-128kb-2t2c-ip4routing-iperf3"
-  algorithm: "plot_mrr_error_bars_name"
+  algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-128kb-2t2c-ip4routing-iperf3"
   data: "plot-vpp-gso-2n-skx"
   include:
@@ -25666,11 +25665,11 @@
     - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2vhost-iperf3-mrr"
   layout:
     title: "2n-skx-128kb-2t2c-ip4routing-iperf3"
-    layout: "plot-scatter-error-bars-gbps"
+    layout: "plot-throughput-gbps"
 
 - type: "plot"
   title: "Throughput: 2n-skx-128kb-4t4c-ip4routing-iperf3"
-  algorithm: "plot_mrr_error_bars_name"
+  algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-128kb-4t4c-ip4routing-iperf3"
   data: "plot-vpp-gso-2n-skx"
   include:
@@ -25680,11 +25679,11 @@
     - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2vhost-iperf3-mrr"
   layout:
     title: "2n-skx-128kb-4t4c-ip4routing-iperf3"
-    layout: "plot-scatter-error-bars-gbps"
+    layout: "plot-throughput-gbps"
 
 - type: "plot"
   title: "Throughput: 2n-clx-128kb-1t1c-ip4routing-iperf3"
-  algorithm: "plot_mrr_error_bars_name"
+  algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-128kb-1t1c-ip4routing-iperf3"
   data: "plot-vpp-gso-2n-clx"
   include:
@@ -25694,11 +25693,11 @@
     - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2vhost-iperf3-mrr"
   layout:
     title: "2n-clx-128kb-1t1c-ip4routing-iperf3"
-    layout: "plot-scatter-error-bars-gbps"
+    layout: "plot-throughput-gbps"
 
 - type: "plot"
   title: "Throughput: 2n-clx-128kb-2t2c-ip4routing-iperf3"
-  algorithm: "plot_mrr_error_bars_name"
+  algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-128kb-2t2c-ip4routing-iperf3"
   data: "plot-vpp-gso-2n-clx"
   include:
@@ -25708,11 +25707,11 @@
     - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2vhost-iperf3-mrr"
   layout:
     title: "2n-clx-128kb-2t2c-ip4routing-iperf3"
-    layout: "plot-scatter-error-bars-gbps"
+    layout: "plot-throughput-gbps"
 
 - type: "plot"
   title: "Throughput: 2n-clx-128kb-4t4c-ip4routing-iperf3"
-  algorithm: "plot_mrr_error_bars_name"
+  algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-clx-128kb-4t4c-ip4routing-iperf3"
   data: "plot-vpp-gso-2n-clx"
   include:
@@ -25722,11 +25721,11 @@
     - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2vhost-iperf3-mrr"
   layout:
     title: "2n-clx-128kb-4t4c-ip4routing-iperf3"
-    layout: "plot-scatter-error-bars-gbps"
+    layout: "plot-throughput-gbps"
 
 - type: "plot"
   title: "Throughput: 2n-zn2-128kb-1t1c-ip4routing-iperf3"
-  algorithm: "plot_mrr_error_bars_name"
+  algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-zn2-128kb-1t1c-ip4routing-iperf3"
   data: "plot-vpp-gso-2n-zn2"
   include:
@@ -25736,11 +25735,11 @@
     - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-1t1c-ethip4-ip4base-2vhost-iperf3-mrr"
   layout:
     title: "2n-zn2-128kb-1t1c-ip4routing-iperf3"
-    layout: "plot-scatter-error-bars-gbps"
+    layout: "plot-throughput-gbps"
 
 - type: "plot"
   title: "Throughput: 2n-zn2-128kb-2t2c-ip4routing-iperf3"
-  algorithm: "plot_mrr_error_bars_name"
+  algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-zn2-128kb-2t2c-ip4routing-iperf3"
   data: "plot-vpp-gso-2n-zn2"
   include:
@@ -25750,11 +25749,11 @@
     - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-2t2c-ethip4-ip4base-2vhost-iperf3-mrr"
   layout:
     title: "2n-zn2-128kb-2t2c-ip4routing-iperf3"
-    layout: "plot-scatter-error-bars-gbps"
+    layout: "plot-throughput-gbps"
 
 - type: "plot"
   title: "Throughput: 2n-zn2-128kb-4t4c-ip4routing-iperf3"
-  algorithm: "plot_mrr_error_bars_name"
+  algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-zn2-128kb-4t4c-ip4routing-iperf3"
   data: "plot-vpp-gso-2n-zn2"
   include:
@@ -25764,4 +25763,4 @@
     - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-4t4c-ethip4-ip4base-2vhost-iperf3-mrr"
   layout:
     title: "2n-zn2-128kb-4t4c-ip4routing-iperf3"
-    layout: "plot-scatter-error-bars-gbps"
+    layout: "plot-throughput-gbps"
