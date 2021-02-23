@@ -1227,9 +1227,9 @@ class TrafficGenerator(AbstractMeasurer):
             target_duration = approximated_duration
         transmit_rate = self._rate
         if self.transaction_type == u"packet":
-            partial_attempt_count = self._sent
-            expected_attempt_count = self._sent
-            fail_count = self._loss
+            expected_attempt_count = target_duration * transmit_rate * self.ppta
+            pass_count = self._received
+            fail_count = expected_attempt_count - pass_count
         elif self.transaction_type == u"udp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_cps.")
