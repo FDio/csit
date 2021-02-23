@@ -83,7 +83,8 @@ def generate_plots(spec, data):
         u"plot_nf_heatmap": plot_nf_heatmap,
         u"plot_hdrh_lat_by_percentile": plot_hdrh_lat_by_percentile,
         u"plot_hdrh_lat_by_percentile_x_log": plot_hdrh_lat_by_percentile_x_log,
-        u"plot_mrr_error_bars_name": plot_mrr_error_bars_name
+        u"plot_mrr_error_bars_name": plot_mrr_error_bars_name,
+        u"plot_mrr_box_name": plot_mrr_box_name
     }
 
     logging.info(u"Generating the plots ...")
@@ -682,6 +683,95 @@ def plot_perf_box_name(plot, input_data):
                 layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
         if y_max:
             layout[u"yaxis"][u"range"] = [0, max(y_max)]
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
+        logging.info(f"    Writing file {plot[u'output-file']}.html.")
+        ploff.plot(
+            plpl,
+            show_link=False,
+            auto_open=False,
+            filename=f"{plot[u'output-file']}.html"
+        )
+    except PlotlyError as err:
+        logging.error(
+            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+        )
+        return
+
+
+def plot_mrr_box_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_mrr_box_name
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    logging.info(
+        f"    Creating data set for the {plot.get(u'type', u'')} "
+        f"{plot.get(u'title', u'')}."
+    )
+    data = input_data.filter_tests_by_name(
+        plot,
+        params=[u"result", u"parent", u"tags", u"type"])
+    if data is None:
+        logging.error(u"No data.")
+        return
+
+    # Prepare the data for the plot
+    data_x = list()
+    data_names = list()
+    data_y = list()
+    data_y_max = list()
+    idx = 1
+    for item in plot.get(u"include", tuple()):
+        reg_ex = re.compile(str(item).lower())
+        for job in data:
+            for build in job:
+                for test_id, test in build.iteritems():
+                    if not re.match(reg_ex, str(test_id).lower()):
+                        continue
+                    try:
+                        data_x.append(idx)
+                        name = re.sub(REGEX_NIC, u'', test[u'parent'].lower().
+                                      replace(u'-mrr', u'').
+                                      replace(u'2n1l-', u''))
+                        data_names.append(f"{idx}. {name}")
+                        data_y.append(test[u"result"][u"samples"])
+                        data_y_max.append(max(test[u"result"][u"samples"]))
+                        idx += 1
+                    except (KeyError, TypeError):
+                        pass
+
+    logging.info(data_x)
+    logging.info(data_names)
+    logging.info(data_y)
+    logging.info(data_y_max)
+    logging.info(u"-------------------------")
+
+    # Add plot traces
+    traces = list()
+    for idx in range(len(data_x)):
+        traces.append(
+            plgo.Box(
+                x=[data_x[idx], ],
+                y=data_y[idx],
+                name=data_names[idx],
+                hoverinfo=u"y+name"
+            )
+        )
+
+    try:
+        # Create plot
+        layout = deepcopy(plot[u"layout"])
+        if layout.get(u"title", None):
+            layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
+        if data_y_max:
+            layout[u"yaxis"][u"range"] = [0, max(data_y_max) + 1]
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
