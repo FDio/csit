@@ -311,7 +311,7 @@ function parse_results_ndrpdr () {
 
     in_file="${1}" || die "Two arguments needed."
     out_file="${2}" || die "Two arguments needed."
-    if [[ "${FDIO_CSIT_PERF_PARSE_NDR:-no}" == "yes" ]]; then
+    if [[ "${FDIO_CSIT_PERF_PARSE_NDR:-yes}" == "yes" ]]; then
         pattern1='NDR_LOWER: .*, .*<' || die
     else
         pattern1='PDR_LOWER: .*, .*<' || die
