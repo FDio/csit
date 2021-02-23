@@ -1182,6 +1182,7 @@ class ExecutionChecker(ResultVisitor):
                     ]
                     # Use whole list in CSIT-1180.
                     stats = jumpavg.AvgStdevStats.for_runs(items_float)
+                    test_result[u"result"][u"samples"] = items_float
                     test_result[u"result"][u"receive-rate"] = stats.avg
                     test_result[u"result"][u"receive-stdev"] = stats.stdev
                 else:
