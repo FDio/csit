@@ -30,6 +30,8 @@ from resources.libraries.python.topology import NodeType
 __all__ = [u"SetupFramework"]
 
 
+def 
+
 def pack_framework_dir():
     """Pack the testing WS into temp file, return its name.
 
@@ -139,7 +141,7 @@ def create_env_directory_at_node(node):
     )
 
 
-def setup_node(node, tarball, remote_tarball, results=None):
+def setup_node(node, results=None):
     """Copy a tarball to a node and extract it.
 
     :param node: A node where the tarball will be copied and extracted.
@@ -154,8 +156,7 @@ def setup_node(node, tarball, remote_tarball, results=None):
     :rtype: bool
     """
     try:
-        copy_tarball_to_node(tarball, node)
-        extract_tarball_at_node(remote_tarball, node)
+        rsync_to_node(node)
         if node[u"type"] == NodeType.TG:
             create_env_directory_at_node(node)
     except RuntimeError as exc:
@@ -174,16 +175,6 @@ def setup_node(node, tarball, remote_tarball, results=None):
     if isinstance(results, list):
         results.append(result)
     return result
-
-
-def delete_local_tarball(tarball):
-    """Delete local tarball to prevent disk pollution.
-
-    :param tarball: Path of local tarball to delete.
-    :type tarball: str
-    :returns: nothing
-    """
-    remove(tarball)
 
 
 def delete_framework_dir(node):
@@ -209,9 +200,9 @@ def delete_framework_dir(node):
 
 
 def cleanup_node(node, results=None):
-    """Delete a tarball from a node.
+    """Delete the copy of framework on a remote node.
 
-    :param node: A node where the tarball will be delete.
+    :param node: A node where the framework copy will be deleted.
     :param results: A list where to store the result of node cleanup, optional.
     :type node: dict
     :type results: list
@@ -255,17 +246,11 @@ class SetupFramework:
         :raises RuntimeError: If setup framework failed.
         """
 
-        tarball = pack_framework_dir()
-        msg = f"Framework packed to {tarball}"
-        logger.console(msg)
-        logger.trace(msg)
-        remote_tarball = f"{tarball}"
-
         results = list()
         threads = list()
 
         for node in nodes.values():
-            args = node, tarball, remote_tarball, results
+            args = node, results
             thread = threading.Thread(target=setup_node, args=args)
             thread.start()
             threads.append(thread)
@@ -279,7 +264,6 @@ class SetupFramework:
 
         logger.info(f"Results: {results}")
 
-        delete_local_tarball(tarball)
         if all(results):
             logger.console(u"All nodes are ready.")
             for node in nodes.values():
