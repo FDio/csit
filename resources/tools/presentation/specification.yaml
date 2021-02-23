@@ -3106,7 +3106,7 @@
           size: 14
         zeroline: False
       yaxis:
-        title: "<b>Traffic Throughput [Gbps]</b>"
+        title: "<b>Data Throughput [Gbps]</b>"
         titlefont:
           size: 14
         gridcolor: "rgb(230, 230, 230)"
