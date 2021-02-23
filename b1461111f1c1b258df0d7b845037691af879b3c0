@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02a3ab3f_6e61e670",
+        "filename": "tests/vsap/perf/tcp/2n1l-10ge2p1x710-eth-ip4tcphttpsw-ldp-rps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-02-23T09:58:36Z",
+      "side": 1,
+      "message": "\u003e tests/vsap/perf/tcp\n\nAs this suite uses the same VPP as VPP tests (and no specific VSAP package), it would fit into tests/vpp/perf/hoststack instead.\nHaving it there will also make it runnable from existing csit-vpp verify jobs, as we tie [1] test directory with job name.\n\n[1] https://github.com/FDio/csit/blob/0d30d69d515130098eab5d21d8dd59c21400a433/resources/libraries/bash/function/gather.sh#L52-L59",
+      "revId": "b1461111f1c1b258df0d7b845037691af879b3c0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
