@@ -30,87 +30,38 @@ from resources.libraries.python.topology import NodeType
 __all__ = [u"SetupFramework"]
 
 
-def 
+def rsync_framework(node):
+    """Use Rsync to copy framework from robot to DUT or TG.
 
-def pack_framework_dir():
-    """Pack the testing WS into temp file, return its name.
+    It is assumed current working directory is the root directory
+    of the framework to copy.
 
-    :returns: Tarball file name.
-    :rtype: str
-    :raises Exception: When failed to pack testing framework.
+    :param node: Node to copy to.
+    :type node: dict
+    :raises RuntimeError: On non-zero return code.
     """
-
-    try:
-        directory = environ[u"TMPDIR"]
-    except KeyError:
-        directory = None
-
-    if directory is not None:
-        tmpfile = NamedTemporaryFile(
-            suffix=u".tgz", prefix=u"csit-testing-", dir=f"{directory}"
+    path = con.REMOTE_FW_DIR
+    host = node[u"host"]
+    user = node[u"username"]
+    port = node[u"port"]
+    passwd = node[u"password"]
+    node_type = node[u"type"]
+    logger.console(
+        f"Rsyncing framework to {path} on {node_type} "
+        f"host {host}, port {port} starts."
+    )
+    ret_code, output = run([
+        u"sshpass", f"{passwd}", u"rsync", u"-a", u".",
+        f"{user}@{host}:{port}/{path}"
+    ])
+    if ret_code != 0:
+        raise RuntimeError(
+            f"Failed to rsync framework to node {node_type} "
+            f"host {host}, port {port}. Output:\n{output}"
         )
-    else:
-        tmpfile = NamedTemporaryFile(suffix=u".tgz", prefix=u"csit-testing-")
-    file_name = tmpfile.name
-    tmpfile.close()
-
-    run(
-        [
-            u"tar", u"--sparse", u"--exclude-vcs", u"--exclude=output*.xml",
-            u"--exclude=./tmp", u"-zcf", file_name, u"."
-        ], msg=u"Could not pack testing framework"
-    )
-
-    return file_name
-
-
-def copy_tarball_to_node(tarball, node):
-    """Copy tarball file from local host to remote node.
-
-    :param tarball: Path to tarball to upload.
-    :param node: Dictionary created from topology.
-    :type tarball: str
-    :type node: dict
-    :returns: nothing
-    """
     logger.console(
-        f"Copying tarball to {node[u'type']} host {node[u'host']}, "
-        f"port {node[u'port']} starts."
-    )
-    scp_node(node, tarball, u"/tmp/")
-    logger.console(
-        f"Copying tarball to {node[u'type']} host {node[u'host']}, "
-        f"port {node[u'port']} done."
-    )
-
-
-def extract_tarball_at_node(tarball, node):
-    """Extract tarball at given node.
-
-    Extracts tarball using tar on given node to specific CSIT location.
-
-    :param tarball: Path to tarball to upload.
-    :param node: Dictionary created from topology.
-    :type tarball: str
-    :type node: dict
-    :returns: nothing
-    :raises RuntimeError: When failed to unpack tarball.
-    """
-    logger.console(
-        f"Extracting tarball to {con.REMOTE_FW_DIR} on {node[u'type']} "
-        f"host {node[u'host']}, port {node[u'port']} starts."
-    )
-    cmd = f"sudo rm -rf {con.REMOTE_FW_DIR}; mkdir {con.REMOTE_FW_DIR}; " \
-        f"tar -zxf {tarball} -C {con.REMOTE_FW_DIR}; rm -f {tarball}"
-    exec_cmd_no_error(
-        node, cmd,
-        message=f"Failed to extract {tarball} at node {node[u'type']} "
-        f"host {node[u'host']}, port {node[u'port']}",
-        timeout=30, include_reason=True
-    )
-    logger.console(
-        f"Extracting tarball to {con.REMOTE_FW_DIR} on {node[u'type']} "
-        f"host {node[u'host']}, port {node[u'port']} done."
+        f"Rsyncing framework to {path} on {node_type} "
+        f"host {host}, port {port} done."
     )
 
 
