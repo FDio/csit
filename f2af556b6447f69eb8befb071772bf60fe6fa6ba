@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "136cd0d4_7ac7b7ee",
+        "filename": "resources/tools/testbed-setup/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-24T16:10:00Z",
+      "side": 1,
+      "message": "I vote for removing this entirely. It is just and ansible tutorial at the end. We can put link to ansible.com instead.",
+      "revId": "f2af556b6447f69eb8befb071772bf60fe6fa6ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca634912_6f2e4134",
+        "filename": "resources/tools/testbed-setup/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-24T16:10:00Z",
+      "side": 1,
+      "message": "this now makes no sense in context of reading.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 22
+      },
+      "revId": "f2af556b6447f69eb8befb071772bf60fe6fa6ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "272be56d_49916ed4",
+        "filename": "resources/tools/testbed-setup/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-24T16:10:00Z",
+      "side": 1,
+      "message": "not required as per context without cobbler",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 56
+      },
+      "revId": "f2af556b6447f69eb8befb071772bf60fe6fa6ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "982de1dd_f03cb9fa",
+        "filename": "resources/tools/testbed-setup/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-24T16:10:00Z",
+      "side": 1,
+      "message": "10",
+      "range": {
+        "startLine": 47,
+        "startChar": 20,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "f2af556b6447f69eb8befb071772bf60fe6fa6ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "597e1d4d_855891e1",
+        "filename": "resources/tools/testbed-setup/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-24T16:10:00Z",
+      "side": 1,
+      "message": "we have more roles now",
+      "revId": "f2af556b6447f69eb8befb071772bf60fe6fa6ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b266186_69388314",
+        "filename": "resources/tools/testbed-setup/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-02-24T16:10:00Z",
+      "side": 1,
+      "message": "this should be updated as well .",
+      "revId": "f2af556b6447f69eb8befb071772bf60fe6fa6ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
