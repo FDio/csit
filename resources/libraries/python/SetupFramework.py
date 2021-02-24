@@ -31,85 +31,40 @@ from resources.libraries.python.topology import NodeType
 __all__ = [u"SetupFramework"]
 
 
-def pack_framework_dir():
-    """Pack the testing WS into temp file, return its name.
+def rsync_framework(node):
+    """Use Rsync to copy framework from robot to DUT or TG.
 
-    :returns: Tarball file name.
-    :rtype: str
-    :raises Exception: When failed to pack testing framework.
+    It is assumed current working directory is the root directory
+    of the framework to copy.
+
+    :param node: Node to copy to.
+    :type node: dict
+    :raises RuntimeError: On non-zero return code.
     """
-
-    try:
-        directory = environ[u"TMPDIR"]
-    except KeyError:
-        directory = None
-
-    if directory is not None:
-        tmpfile = NamedTemporaryFile(
-            suffix=u".tgz", prefix=u"csit-testing-", dir=f"{directory}"
+    path = con.REMOTE_FW_DIR
+    host = node[u"host"]
+    user = node[u"username"]
+    port = node[u"port"]
+    passwd = node[u"password"]
+    node_type = node[u"type"]
+    logger.console(
+        f"Rsyncing framework to {path} on {node_type} "
+        f"host {host}, port {port} starts."
+    )
+    # TODO: Support priv keys.
+    ret_code, output = run([
+        u"sshpass", u"-p", f"{passwd}", u"rsync", u"-e", f"ssh -p {port}",
+        u"-acy", u"--delete-during", u"--time-limit=2",
+        u".", f"{user}@{host}:{path}"
+    ])
+    if ret_code != 0:
+        raise RuntimeError(
+            f"Failed to rsync framework to node {node_type} "
+            f"host {host}, port {port}. Output:\n{output}"
         )
-    else:
-        tmpfile = NamedTemporaryFile(suffix=u".tgz", prefix=u"csit-testing-")
-    file_name = tmpfile.name
-    tmpfile.close()
-
-    run(
-        [
-            u"tar", u"--sparse", u"--exclude-vcs", u"--exclude=output*.xml",
-            u"--exclude=./tmp", u"-zcf", file_name, u"."
-        ], msg=u"Could not pack testing framework"
-    )
-
-    return file_name
-
-
-def copy_tarball_to_node(tarball, node):
-    """Copy tarball file from local host to remote node.
-
-    :param tarball: Path to tarball to upload.
-    :param node: Dictionary created from topology.
-    :type tarball: str
-    :type node: dict
-    :returns: nothing
-    """
     logger.console(
-        f"Copying tarball to {node[u'type']} host {node[u'host']}, "
-        f"port {node[u'port']} starts."
-    )
-    scp_node(node, tarball, u"/tmp/")
-    logger.console(
-        f"Copying tarball to {node[u'type']} host {node[u'host']}, "
-        f"port {node[u'port']} done."
-    )
-
-
-def extract_tarball_at_node(tarball, node):
-    """Extract tarball at given node.
-
-    Extracts tarball using tar on given node to specific CSIT location.
-
-    :param tarball: Path to tarball to upload.
-    :param node: Dictionary created from topology.
-    :type tarball: str
-    :type node: dict
-    :returns: nothing
-    :raises RuntimeError: When failed to unpack tarball.
-    """
-    logger.console(
-        f"Extracting tarball to {con.REMOTE_FW_DIR} on {node[u'type']} "
-        f"host {node[u'host']}, port {node[u'port']} starts."
-    )
-    cmd = f"sudo rm -rf {con.REMOTE_FW_DIR}; mkdir {con.REMOTE_FW_DIR}; " \
-        f"tar -zxf {tarball} -C {con.REMOTE_FW_DIR}; rm -f {tarball}"
-    exec_cmd_no_error(
-        node, cmd,
-        message=f"Failed to extract {tarball} at node {node[u'type']} "
-        f"host {node[u'host']}, port {node[u'port']}",
-        timeout=30, include_reason=True
-    )
-    logger.console(
-        f"Extracting tarball to {con.REMOTE_FW_DIR} on {node[u'type']} "
-        f"host {node[u'host']}, port {node[u'port']} done."
+        f"Rsyncing framework to {path} on {node_type} "
+        f"host {host}, port {port} done."
     )
 
 
@@ -140,7 +95,7 @@ def create_env_directory_at_node(node):
     )
 
 
-def setup_node(node, tarball, remote_tarball, results=None):
+def setup_node(node, results=None):
     """Copy a tarball to a node and extract it.
 
     :param node: A node where the tarball will be copied and extracted.
@@ -155,8 +110,7 @@ def setup_node(node, tarball, remote_tarball, results=None):
     :rtype: bool
     """
     try:
-        copy_tarball_to_node(tarball, node)
-        extract_tarball_at_node(remote_tarball, node)
+        rsync_framework(node)
         if node[u"type"] == NodeType.TG:
             create_env_directory_at_node(node)
     except (RuntimeError, socket.timeout) as exc:
@@ -175,16 +129,6 @@ def setup_node(node, tarball, remote_tarball, results=None):
     if isinstance(results, list):
         results.append(result)
     return result
-
-
-def delete_local_tarball(tarball):
-    """Delete local tarball to prevent disk pollution.
-
-    :param tarball: Path of local tarball to delete.
-    :type tarball: str
-    :returns: nothing
-    """
-    remove(tarball)
 
 
 def delete_framework_dir(node):
@@ -210,9 +154,9 @@ def delete_framework_dir(node):
 
 
 def cleanup_node(node, results=None):
-    """Delete a tarball from a node.
+    """Delete the copy of framework on a remote node.
 
-    :param node: A node where the tarball will be delete.
+    :param node: A node where the framework copy will be deleted.
     :param results: A list where to store the result of node cleanup, optional.
     :type node: dict
     :type results: list
@@ -256,17 +200,11 @@ class SetupFramework:
         :raises RuntimeError: If setup framework failed.
         """
 
-        tarball = pack_framework_dir()
-        msg = f"Framework packed to {tarball}"
-        logger.console(msg)
-        logger.trace(msg)
-        remote_tarball = f"{tarball}"
-
         results = list()
         threads = list()
 
         for node in nodes.values():
-            args = node, tarball, remote_tarball, results
+            args = node, results
             thread = threading.Thread(target=setup_node, args=args)
             thread.start()
             threads.append(thread)
@@ -280,7 +218,6 @@ class SetupFramework:
 
         logger.info(f"Results: {results}")
 
-        delete_local_tarball(tarball)
         if all(results):
             logger.console(u"All nodes are ready.")
             for node in nodes.values():
