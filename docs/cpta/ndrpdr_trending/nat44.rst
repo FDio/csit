@@ -9,3 +9,5 @@ NAT44 IPv4 Routing
     nat44-ed-tcp-cps
     nat44-ed-udp-pps
     nat44-ed-tcp-pps
+    nat44-ed-udp-tput
+    nat44-ed-tcp-tput

@@ -1058,6 +1058,10 @@ def _generate_url(testbed, test_name):
         bsf = u"udp-pps"
     elif u"-pps" in test_name and u"ethip4tcp" in test_name:
         bsf = u"tcp-pps"
+    elif u"-tput" in test_name and u"ethip4udp" in test_name:
+        bsf = u"udp-tput"
+    elif u"-tput" in test_name and u"ethip4tcp" in test_name:
+        bsf = u"tcp-tput"
     elif u"udpsrcscale" in test_name:
         bsf = u"features-udp"
     elif u"iacl" in test_name:
@@ -1097,6 +1101,8 @@ def _generate_url(testbed, test_name):
             domain += u"-cps"
         elif u"-pps" in test_name:
             domain += u"-pps"
+        elif u"-tput" in test_name:
+            domain += u"-tput"
     elif u"testpmd" in test_name or u"l3fwd" in test_name:
         domain = u"dpdk"
     elif u"memif" in test_name:
