@@ -13,6 +13,7 @@
 
 """Performance testing traffic generator library."""
 
+import math
 import time
 
 from robot.api import logger
@@ -1228,8 +1229,11 @@ class TrafficGenerator(AbstractMeasurer):
         transmit_rate = self._rate
         if self.transaction_type == u"packet":
             partial_attempt_count = self._sent
-            expected_attempt_count = self._sent
-            fail_count = self._loss
+            expected_attempt_count = target_duration * transmit_rate * self.ppta
+            pass_count = self._received
+            fail_count = math.floor(expected_attempt_count - pass_count)
+            if fail_count < 0:  # Remove when debugging is done.
+                raise RuntimeError(f"fail count is {fail_count} from eac {expected_attempt_count}")
         elif self.transaction_type == u"udp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_cps.")
