@@ -1,8 +1,8 @@
 2n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-nat44ed-ip4routing-udp-stf-tput-avf
-``````````````````````````````````````
+64b-nat44ed-ip4routing-udp-tput-avf
+```````````````````````````````````
 
 2t1c
 ::::
