@@ -438,8 +438,6 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | Set Test Variable | \${rate_for_teardown} | ${rate}
-| | FOR | ${action} | IN | @{pre_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | ${results} = | Create List
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
@@ -462,9 +460,8 @@
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | Append To List | ${results} | ${result.approximated_receive_rate}
-| | END
-| | FOR | ${action} | IN | @{post_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
+| | | Run Keyword If | ${i} == 0 | Sleep | ${HALF_SLEEP}
+| | | Run Keyword If | ${i} == 1 | Sleep | ${FULL_SLEEP}
 | | END
 | | Return From Keyword | ${results}
 

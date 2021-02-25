@@ -227,7 +227,9 @@ class Constants:
     SOCKSVR_PATH = u"/run/vpp/api.sock"
 
     # Number of trials to execute in MRR test.
-    PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
+    PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 3)
+    FULL_SLEEP = get_float_from_env(u"FULL_SLEEP", 1.0)
+    HALF_SLEEP = FULL_SLEEP / 2
 
     # Duration of one trial in MRR test.
     PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
