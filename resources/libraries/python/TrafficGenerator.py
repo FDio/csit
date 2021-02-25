@@ -13,6 +13,7 @@
 
 """Performance testing traffic generator library."""
 
+import math
 import time
 
 from robot.api import logger
@@ -1228,6 +1229,13 @@ class TrafficGenerator(AbstractMeasurer):
         transmit_rate = self._rate
         if self.transaction_type == u"packet":
             partial_attempt_count = self._sent
+
+            expected_attempt_count = target_duration * transmit_rate * self.ppta
+            expected_attempt_count = math.ceil(expected_attempt_count)
+            logger.debug(f"Strict expectation for packets to send: {expected_attempt_count} unsent {expected_attempt_count-partial_attempt_count}")
+            expected_attempt_count -= Constants.TREX_CORE_COUNT * self.ppta
+            logger.debug(f"Lenient expectation for packets to send: {expected_attempt_count} unsent {expected_attempt_count-partial_attempt_count}")
+
             expected_attempt_count = self._sent
             fail_count = self._loss
         elif self.transaction_type == u"udp_cps":
