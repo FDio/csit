@@ -44,7 +44,7 @@ Set up and run Vagrant virtualbox
 Before running following commands change working directory to Vagrant specific directory
 (from within root CSIT directory) ::
 
-    cd resources/libraries/tools/vagrant
+    cd resources/tools/vagrant
 
 This allows Vagrant to automatically find Vagrantfile and corresponding Vagrant environment.
 
