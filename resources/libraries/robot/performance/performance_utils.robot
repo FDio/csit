@@ -724,4 +724,5 @@
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in ${unit}: ${results}
 | | ... | append=yes
+| | Save Output | sub_key=MRR | value=${results}
 | | Fail if no traffic forwarded
