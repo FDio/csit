@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -45,7 +45,6 @@ generate_tests || die
 archive_tests || die
 reserve_and_cleanup_testbed || die
 select_tags || die
-compose_pybot_arguments || die
 run_pybot || die
 untrap_and_unreserve_testbed || die
 move_archives || die
