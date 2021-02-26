@@ -44,7 +44,6 @@ generate_tests || die
 archive_tests || die
 activate_docker_topology || die
 select_vpp_device_tags || die
-compose_pybot_arguments || die
 run_pybot || die
 move_archives || die
 die_on_pybot_error || die
