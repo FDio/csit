@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
 |
 | Library | resources.libraries.python.PapiExecutor.Disconnector
 | Library | resources.libraries.python.SetupFramework
@@ -32,7 +31,7 @@
 | ... | skip_tg=${True}
 |
 | Suite Teardown | Run Keywords | Disconnect All Papi Connections
-| ... | AND | Cleanup Framework | ${nodes}
+| ... | AND | Cleanup Framework | ${nodes} | AND | Dump Json
 
 *** Keywords ***
 | Setup Global Variables
