@@ -65,12 +65,13 @@ function archive_parse_test_results () {
 }
 
 
-function build_vpp_ubuntu_amd64 () {
+function build_vpp_ubuntu () {
 
     # This function is using make pkg-verify to build VPP with all dependencies
     # that is ARCH/OS aware. VPP repo is SSOT for building mechanics and CSIT
     # is consuming artifacts. This way if VPP will introduce change in building
     # mechanics they will not be blocked by CSIT repo.
+    #
     # Arguments:
     # - ${1} - String identifier for echo, can be unset.
     # Variables read:
@@ -134,20 +135,77 @@ function initialize_csit_dirs () {
     # Variables read:
     # - VPP_DIR - Path to WORKSPACE, parent of created directories.
     # Directories created:
-    # - csit_current - Holding test results of the patch under test (PUT).
-    # - csit_parent - Holding test results of parent of PUT.
+    # - csit_{part} - See the caller what it is used for.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "csit_current" "csit_parent" || {
-        die "Directory deletion failed."
-    }
-    mkdir -p "csit_current" "csit_parent" || {
-        die "Directory creation failed."
-    }
+    while true; do
+        if [[ ${#} < 1 ]]; then
+            # All directories created.
+            break
+        fi
+        name_part="${1}" || die
+        shift || die
+        dir_name="csit_${name_part}" || die
+        rm -rf "${dir_name}" || die "Directory deletion failed."
+        mkdir -p "${dir_name}" || die "Directory creation failed."
+    done
+}
+
+
+function main_bisect_loop () {
+
+    # Perform the iterative part of bisect entry script.
+    #
+    # The logic is too complex to remain in the entry script.
+    #
+    # At the start, the loop assumes git bisect old/new has just been executed,
+    # and verified more iterations are needed.
+    # The iteration cleans the build directory and builds the new commit.
+    # Then, testbed is reserved, tests run, and testbed unreserved.
+    # Results are copied from the archive location (indexed by iteration number)
+    # and analyzed. The new adjectiove ("old" or "new") is selected,
+    # and git bisect with the adjective is executed.
+    # git.log is examined and if the bisect is finished, loop ends.
+
+    iteration=0
+    while true
+    do
+        let iteration+=1
+        git clean -dffx "build"/ "build-root"/ || die
+        build_vpp_ubuntu "MIDDLE" || die
+        reserve_and_cleanup_testbed || die
+        select_build "build-root" || die
+        check_download_dir || die
+        run_and_parse "csit_middle/${iteration}" || die
+        untrap_and_unreserve_testbed || die
+        cp -f "csit_middle/${iteration}/results.txt" "csit_middle/results.txt" || die
+        set +e
+        python3 "${TOOLS_DIR}/integrated/compare_bisect.py"
+        bisect_rc="${?}"
+        set -e
+        if [[ "${bisect_rc}" == "3" ]]; then
+            adjective="new"
+            cp -f "csit_middle/results.txt" "csit_late/results.txt" || die
+        elif [[ "${bisect_rc}" == "0" ]]; then
+            adjective="old"
+            cp -f "csit_middle/results.txt" "csit_early/results.txt" || die
+        else
+            die "Unexpected return code: ${bisect_rc}"
+        fi
+        git bisect "${adjective}" | tee "git.log" || die
+        git describe || die
+        git status || die
+        if head -n 1 "git.log" | cut -b -11 | fgrep -q "Bisecting:"; then
+            echo "Still bisecting..."
+        else
+            echo "Bisecting done."
+            break
+        fi
+    done
 }
 
 
@@ -359,6 +417,38 @@ function parse_results_soak () {
 }
 
 
+function run_and_parse () {
+
+    # Run test and parse results (creating fake ones on failure).
+    # Retry few times if there was a failure in the test.
+    # Else leave fake results.
+    # Cleanup the testbed between attempts.
+
+    # Variables read:
+    # - TARGET - Directory to store parsed test results.
+    # Files rewritten:
+    # - ${TARGET}/results.txt - Stored parsed (or fake) results.
+    # Functions called:
+    # - ansible_playbook - see ansible.sh
+    # - archive_parse_test_results - see this file
+    # - move_archives - see common.sh
+    # - run_pybot - see common.sh
+
+    set -exuo pipefail
+
+    for try in {1..3}; do
+        run_pybot || die
+        archive_parse_test_results "${1}" || die
+        results=$(<"${TARGET}/results.txt")
+        if [[ "${results}" != "[ 2.0 "* ]]; then
+            break
+        else
+            ansible_playbook "cleanup"
+        fi
+    done
+}
+
+
 function select_build () {
 
     # Arguments:
@@ -384,56 +474,37 @@ function select_build () {
 }
 
 
-function set_aside_commit_build_artifacts () {
+function set_aside_build_artifacts () {
 
-    # Function is copying VPP built artifacts from actual checkout commit for
-    # further use and clean git.
+    # Function used to save VPP .deb artifacts from currently finished build.
+    #
+    # After the artifacts are copied to the target directory,
+    # the main git tree is cleaned up to not interfere with next build.
+    #
+    # Arguments:
+    # - ${1} - String to derive the target directory name from. Required.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories read:
     # - build-root - Existing directory with built VPP artifacts (also DPDK).
     # Directories updated:
     # - ${VPP_DIR} - A local git repository, parent commit gets checked out.
-    # - build_current - Old contents removed, content of build-root copied here.
+    # - build_${1} - Old contents removed, content of build-root copied here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "build_current" || die "Remove operation failed."
-    mkdir -p "build_current" || die "Directory creation failed."
-    mv "build-root"/*".deb" "build_current"/ || die "Move operation failed."
+    dir_name="build_${1}" || die
+    rm -rf "${dir_name}" || die "Remove operation failed."
+    mkdir -p "${dir_name}" || die "Directory creation failed."
+    mv "build-root"/*".deb" "${dir_name}"/ || die "Move operation failed."
     # The previous build could have left some incompatible leftovers,
     # e.g. DPDK artifacts of different version (in build/external).
     # Also, there usually is a copy of dpdk artifact in build-root.
     git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
-    # Finally, check out the parent commit.
-    git checkout HEAD~ || die "Git checkout operation failed."
-    # Display any other leftovers.
-    git status || die "Git status operation failed."
-}
-
-
-function set_aside_parent_build_artifacts () {
-
-    # Function is copying VPP built artifacts from parent checkout commit for
-    # further use. Checkout to parent is not part of this function.
-    # Variables read:
-    # - VPP_DIR - Path to existing directory, parent of accessed directories.
-    # Directories read:
-    # - build-root - Existing directory with built VPP artifacts (also DPDK).
-    # Directories updated:
-    # - build_parent - Old directory removed, build-root debs moved here.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common.sh
-
-    set -exuo pipefail
-
-    cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "build_parent" || die "Remove failed."
-    mkdir -p "build_parent" || die "Directory creation operation failed."
-    mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
+    git status || die
 }
 
 
