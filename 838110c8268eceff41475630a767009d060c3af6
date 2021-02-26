@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "569978cd_d9e8905c",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "159dfd5f_0ae20204",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 70
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3e5de24_d8086ae0",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
@@ -45,6 +69,30 @@
       "revId": "838110c8268eceff41475630a767009d060c3af6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6deee9e_d60c2f3d",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3e5de24_d8086ae0",
+      "range": {
+        "startLine": 240,
+        "startChar": 46,
+        "endLine": 241,
+        "endChar": 53
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "679afb8a_81859fb9",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df5ec578_6462845c",
+      "range": {
+        "startLine": 259,
+        "startChar": 5,
+        "endLine": 259,
+        "endChar": 17
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f99f3c4_7a8dea11",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
@@ -91,6 +163,30 @@
       "revId": "838110c8268eceff41475630a767009d060c3af6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bc0598d_720e2349",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f99f3c4_7a8dea11",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 35
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -164,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "19989a9b_1e498fce",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95f9083e_76fcb01f",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 352,
+        "endChar": 18
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "722cb653_d730d621",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
@@ -184,6 +304,30 @@
       "revId": "838110c8268eceff41475630a767009d060c3af6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "537f1246_39bf8df1",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "722cb653_d730d621",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 34
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -210,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "523bf7a0_6cf954de",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17d542fe_873b1191",
+      "range": {
+        "startLine": 414,
+        "startChar": 2,
+        "endLine": 414,
+        "endChar": 11
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4af9ea77_a8e577e8",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
@@ -230,6 +398,30 @@
       "revId": "838110c8268eceff41475630a767009d060c3af6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b44f1705_9c7535fb",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4af9ea77_a8e577e8",
+      "range": {
+        "startLine": 422,
+        "startChar": 58,
+        "endLine": 422,
+        "endChar": 71
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -256,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "3b1981dd_4a7024f7",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "836d379c_dd80333b",
+      "range": {
+        "startLine": 438,
+        "startChar": 1,
+        "endLine": 438,
+        "endChar": 44
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6837a9d9_811512ba",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
@@ -267,6 +483,30 @@
       "writtenOn": "2021-02-19T19:30:45Z",
       "side": 1,
       "message": "If there is a list of configurations, how are those applied (or interpreted), or IOW how are the external dependencies and/or interactions associated with those configurations and the test lifecycle captured here?",
+      "range": {
+        "startLine": 449,
+        "startChar": 23,
+        "endLine": 450,
+        "endChar": 8
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d2c015f_264e29f1",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "It will be described in the implementation section of the document.",
+      "parentUuid": "6837a9d9_811512ba",
       "range": {
         "startLine": 449,
         "startChar": 23,
@@ -302,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "e8c4c3a8_2371ed23",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "See the chapter \"Unified Test Interface\" --\u003e \"Test\" --\u003e \"State\"",
+      "parentUuid": "ce2a902a_18d82ce8",
+      "range": {
+        "startLine": 484,
+        "startChar": 26,
+        "endLine": 486,
+        "endChar": 11
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6b7455d_92ceea52",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
@@ -313,6 +577,30 @@
       "writtenOn": "2021-02-19T19:30:45Z",
       "side": 1,
       "message": "Need examples here. And how are commands correlated to test phases/lifecycle? Question to self: Do they need to be?",
+      "range": {
+        "startLine": 488,
+        "startChar": 2,
+        "endLine": 488,
+        "endChar": 17
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "939632f1_1e7b05f6",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "It can be e.g. PAPI history.",
+      "parentUuid": "b6b7455d_92ceea52",
       "range": {
         "startLine": 488,
         "startChar": 2,
@@ -348,6 +636,30 @@
     },
     {
       "key": {
+        "uuid": "c71698f7_00e7733b",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "termination point is a logical point in the topology, interface is a resource.",
+      "parentUuid": "73bc5797_42c38e32",
+      "range": {
+        "startLine": 531,
+        "startChar": 0,
+        "endLine": 531,
+        "endChar": 78
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ca55990_c378634e",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
@@ -368,6 +680,30 @@
       "revId": "838110c8268eceff41475630a767009d060c3af6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4792613_d69d4804",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "example removed",
+      "parentUuid": "6ca55990_c378634e",
+      "range": {
+        "startLine": 569,
+        "startChar": 0,
+        "endLine": 569,
+        "endChar": 32
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -394,6 +730,30 @@
     },
     {
       "key": {
+        "uuid": "650563e7_1305826d",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a005bee_bffe3418",
+      "range": {
+        "startLine": 571,
+        "startChar": 0,
+        "endLine": 574,
+        "endChar": 15
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22bf33f1_531d3964",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
@@ -414,6 +774,30 @@
       "revId": "838110c8268eceff41475630a767009d060c3af6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e78df032_6b0519d4",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22bf33f1_531d3964",
+      "range": {
+        "startLine": 576,
+        "startChar": 0,
+        "endLine": 579,
+        "endChar": 15
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -440,6 +824,30 @@
     },
     {
       "key": {
+        "uuid": "b809633a_8c628089",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "The test generator should be able to create the test using this information. If anything is missing here, let me know.",
+      "parentUuid": "983e25b4_2a6849bc",
+      "range": {
+        "startLine": 585,
+        "startChar": 3,
+        "endLine": 595,
+        "endChar": 1
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b2fd91a_14e7e602",
         "filename": "docs/TNM/README.md",
         "patchSetId": 32
@@ -460,6 +868,30 @@
       "revId": "838110c8268eceff41475630a767009d060c3af6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a32f911_7d0d3e97",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 32
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "This information has been added to the beginning of \"Specification of the Topology\".",
+      "parentUuid": "3b2fd91a_14e7e602",
+      "range": {
+        "startLine": 639,
+        "startChar": 0,
+        "endLine": 640,
+        "endChar": 64
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -486,6 +918,30 @@
     },
     {
       "key": {
+        "uuid": "6de6849b_89179a77",
+        "filename": "docs/TNM/unified_test_interface.json",
+        "patchSetId": 32
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45feaeb3_24fa056d",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 14
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "badad9dd_9ac4cc61",
         "filename": "docs/TNM/unified_test_interface.json",
         "patchSetId": 32
@@ -506,6 +962,30 @@
       "revId": "838110c8268eceff41475630a767009d060c3af6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96e6a50d_2b5ace4c",
+        "filename": "docs/TNM/unified_test_interface.json",
+        "patchSetId": 32
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-02-26T08:45:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "badad9dd_9ac4cc61",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 14
+      },
+      "revId": "838110c8268eceff41475630a767009d060c3af6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
