@@ -13,6 +13,7 @@
 
 """Performance testing traffic generator library."""
 
+import math
 import time
 
 from robot.api import logger
@@ -1228,8 +1229,16 @@ class TrafficGenerator(AbstractMeasurer):
         transmit_rate = self._rate
         if self.transaction_type == u"packet":
             partial_attempt_count = self._sent
-            expected_attempt_count = self._sent
-            fail_count = self._loss
+            packet_rate = transmit_rate * self.ppta
+            # We have a float. TRex way of rounding it is not obvious.
+            # The biggest source of mismatch is Inter Stream Gap.
+            # So the code tolerates 10 usec of missing packets.
+            expected_attempt_count = (target_duration - 1e-5) * packet_rate
+            expected_attempt_count = math.ceil(expected_attempt_count)
+            # TRex can send more.
+            expected_attempt_count = max(expected_attempt_count, self._sent)
+            pass_count = self._received
+            fail_count = expected_attempt_count - pass_count
         elif self.transaction_type == u"udp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_cps.")

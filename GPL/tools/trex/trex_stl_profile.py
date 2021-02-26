@@ -201,18 +201,20 @@ def simple_burst(
                 xsnap1 = client.ports[1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            # Block until done:
             time_start = time.monotonic()
-            client.wait_on_traffic(ports=ports, timeout=duration+30)
+            # wait_on_traffic fails if duration stretches by 30 seconds or more.
+            # TRex has some overhead, wait some more.
+            time.sleep(duration + 0.0)
+            client.stop()
             time_stop = time.monotonic()
             approximated_duration = time_stop - time_start
-
+            # Read the stats after the traffic stopped (or time up).
+            stats = client.get_stats()
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
-
-            # Read the stats after the test
-            stats = client.get_stats()
+            # Now finish the complete reset.
+            client.reset()
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
