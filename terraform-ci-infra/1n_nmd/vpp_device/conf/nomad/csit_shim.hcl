@@ -63,7 +63,7 @@ job "${job_name}" {
       # are specific to each driver, so please see specific driver
       # documentation for more information.
       config {
-        image        = "csit_shim-ubuntu1804:local"
+        image        = "${image_x86_64}"
         network_mode = "host"
         pid_mode     = "host"
         volumes      = [
@@ -133,7 +133,7 @@ job "${job_name}" {
       # are specific to each driver, so please see specific driver
       # documentation for more information.
       config {
-        image        = "csit_shim-ubuntu1804:local"
+        image        = "${image_aarch64}"
         network_mode = "host"
         pid_mode     = "host"
         volumes      = [
