@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8891b9f_7a324498",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-01T13:01:17Z",
+      "side": 1,
+      "message": "If you want to make VPP-1878 more visible, you can add code that detects it (by comparing nodes in API and CLI output) and writes a message to console.\nWe tried not gathering CLI output between [0] and [1] (although I am not sure when exactly VPP-1878 started happening), but it seems the only person bothered by the missing data was me.\n\nWho do you expect to go and fix VPP-1878 just because CSIT removed the CLI output?\nAlternatively, what was the last VPP bug that got fixed because CSIT removed a workaround for it?\n\n[0] https://gerrit.fd.io/r/c/csit/+/19924\n[1] https://gerrit.fd.io/r/c/csit/+/25362",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "6f708b5e889deb49e1198c97d87e9c7288aab620",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
