@@ -14,7 +14,7 @@
 """Keywords used in test teardowns."""
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/container.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.topology.Topology
 | Variables | resources/libraries/python/Constants.py
@@ -45,6 +45,7 @@
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
+| | Flush Test
 
 | Tear down test raw
 | | [Documentation]

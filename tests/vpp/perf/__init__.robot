@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
 |
 | Library | resources.libraries.python.PapiExecutor.Disconnector
 | Library | resources.libraries.python.SetupFramework
