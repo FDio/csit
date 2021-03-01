@@ -29,3 +29,15 @@ variable "csit_shim_mem" {
   type        = number
   default     = 10000
 }
+
+variable "csit_shim_image_aarch64" {
+  description = "CSIT SHIM AARCH64 docker image"
+  type        = string
+  default     = "fdiotools/csit_shim-ubuntu2004:prod-aarch64"
+}
+
+variable "csit_shim_image_x86_64" {
+  description = "CSIT SHIM X86_64 docker image"
+  type        = string
+  default     = "fdiotools/csit_shim-ubuntu2004:prod-x86_64"
+}

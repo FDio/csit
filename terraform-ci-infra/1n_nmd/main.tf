@@ -156,6 +156,8 @@ module "vpp_device" {
   # csit_shim
   csit_shim_job_name             = "prod-device-csit-shim"
   csit_shim_group_count          = "1"
-  csit_shim_cpu                  = "1000"
-  csit_shim_mem                  = "5000"
+  csit_shim_cpu                  = "1500"
+  csit_shim_mem                  = "4096"
+  csit_shim_image_aarch64        = "fdiotools/csit_shim-ubuntu2004:2021_02_26_075614-aarch64"
+  csit_shim_image_x86_64         = "fdiotools/csit_shim-ubuntu2004:2021_02_26_081228-x86_64"
 }
