@@ -45,6 +45,7 @@
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
+| | Flush Test
 
 | Tear down test raw
 | | [Documentation]

@@ -44,6 +44,7 @@
 | | ${message_other} = | Set Variable | ${lower_bound.loss_count} packets lost.
 | | ${message} = | Set Variable If | ${lower_bound_lf} >= 1.0
 | | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
+| | Save Output | key=NDRPDR_INVALID | value=${message}
 | | Fail | ${message}
 
 | Display Reconfig Test Message
@@ -197,8 +198,10 @@
 | |
 | | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
+| | Save Output | key=${text}_CPS | value=${tps}
 | | Set Test Message | ${\n}${text}: ${tps} CPS | append=yes
 | | Return From Keyword If | not """${latency}"""
+| | Save Output | key=${text}_LATENCY | value=${latency}
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
 
@@ -233,8 +236,11 @@
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${pps} = | Evaluate | ${tps} * ${ppta}
 | | ${bandwidth} = | Evaluate | ${pps} * (${avg_frame_size}+20)*8 / 1e9
+| | Save Output | key=${text}_PPS | value=${pps}
 | | Set Test Message | ${\n}${text}: ${pps} pps, | append=yes
+| | Save Output | key=${text}_BANDWIDTH | value=${bandwidth}
 | | Set Test Message | ${bandwidth} Gbps (initial) | append=yes
 | | Return From Keyword If | not """${latency}"""
+| | Save Output | key=${text}_LATENCY | value=${latency}
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
