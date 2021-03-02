@@ -22,6 +22,98 @@
       "revId": "d475ae9a60e406b72f05af2523624398555fc5fe",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99ccd1be_98f2545f",
+        "filename": "docs/TNM/unified_test_interface.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-02T13:16:53Z",
+      "side": 1,
+      "message": "Are there any \"non-total\" results?",
+      "range": {
+        "startLine": 116,
+        "startChar": 6,
+        "endLine": 116,
+        "endChar": 13
+      },
+      "revId": "d475ae9a60e406b72f05af2523624398555fc5fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "454ad8aa_39cd4376",
+        "filename": "docs/TNM/unified_test_interface.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-02T13:16:53Z",
+      "side": 1,
+      "message": "Only latency has different values in forward and reverse direction.",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 17
+      },
+      "revId": "d475ae9a60e406b72f05af2523624398555fc5fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7282dfd_4b1c10aa",
+        "filename": "docs/TNM/unified_test_interface.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-02T13:16:53Z",
+      "side": 1,
+      "message": "Do we need this? I think \"ndr\", \"pdr\" and \"hdrh\" can be on the same level.",
+      "range": {
+        "startLine": 118,
+        "startChar": 10,
+        "endLine": 118,
+        "endChar": 22
+      },
+      "revId": "d475ae9a60e406b72f05af2523624398555fc5fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "286219ec_ee149df7",
+        "filename": "docs/TNM/unified_test_interface.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-02T13:16:53Z",
+      "side": 1,
+      "message": "Do we distinguish \"lower_cps\" (e.g. for NDRPDR UDP_CPS test), or do we write the unit somewhere else and use just \"lower\" here?",
+      "range": {
+        "startLine": 120,
+        "startChar": 14,
+        "endLine": 120,
+        "endChar": 25
+      },
+      "revId": "d475ae9a60e406b72f05af2523624398555fc5fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
