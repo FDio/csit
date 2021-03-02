@@ -17,7 +17,7 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECHW | ASYNC | IPSECINT | NIC_Intel-X710 | TNL_4
+| ... | IP4FWD | IPSEC | IPSECSW | ASYNC | IPSECINT | NIC_Intel-X710 | TNL_4
 | ... | SCHEDULER | AES_256_GCM | AES | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes256gcm
