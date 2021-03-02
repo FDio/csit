@@ -1,7 +1,7 @@
 # 3n-hsw
 ### tests 192
 ### job hrs est. 4.13
-### job hrs real x
+### job hrs real 4.13
 ### test mins est. 1.29
 ### test mins real 1.29
 #

@@ -1,9 +1,9 @@
 # 2n-tx2
 ### tests 135
-### job hrs est. 2.12
-### job hrs real N/A
-### test mins est. 0.94
-### test mins real N/A
+### job hrs est. 2.95
+### job hrs real 2.95
+### test mins est. 1.31
+### test mins real 1.31
 ## ./container_memif
 ### intel-xl710
 #### dpdk-vfio-pci

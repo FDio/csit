@@ -1,9 +1,9 @@
 # 3n-tsh
 ### tests 198
-### job hrs est. 22.3
-### job hrs real 22.3
-### test mins est. 6.76
-### test mins real 6.76
+### job hrs est. 6.25
+### job hrs real 6.25
+### test mins est. 1.89
+### test mins real 1.89
 ## ./container_memif
 ### intel-x520-da2
 #### dpdk-vfio-pci
