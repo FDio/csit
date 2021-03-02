@@ -1,9 +1,9 @@
 # 3n-skx
 ### tests 88
-### job hrs est. 11
-### job hrs real 11
-### test mins est. 7.5
-### test mins real 7.5
+### job hrs est. 12.25
+### job hrs real 12.25
+### test mins est. 8.35
+### test mins real 8.35
 ## ./container_memif
 ## ./crypto
 ### intel-xxv710

@@ -1,9 +1,9 @@
 # 3n-tsh
 ### tests 72
-### job hrs est. 9.2
-### job hrs real [No data available]
-### test mins est. 7.6
-### test mins real [No data available]
+### job hrs est. 9.9
+### job hrs real 9.9
+### test mins est. 8.25
+### test mins real 8.25
 ## ./container_memif
 ## ./crypto
 ## ./ip4
