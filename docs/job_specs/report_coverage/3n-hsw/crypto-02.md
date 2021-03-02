@@ -1,9 +1,9 @@
 # 3n-hsw
 ### tests 48
-### job hrs est. 4.75
-### job hrs real 4.75
-### test mins est. 5.94
-### test mins real 5.94
+### job hrs est. 4.7
+### job hrs real 4.7
+### test mins est. 5.88
+### test mins real 5.88
 ## ./container_memif
 ## ./crypto
 ### intel-xl710
