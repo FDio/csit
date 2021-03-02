@@ -1,9 +1,9 @@
 # 3n-hsw
 ### tests 35
-### job hrs est. 3.65
-### job hrs real 3.65
-### test mins est. 6.25
-### test mins real 6.25
+### job hrs est. 3.1
+### job hrs real 3.1
+### test mins est. 5.31
+### test mins real 5.31
 ## ./container_memif
 ### intel-xl710
 #### dpdk-vfio-pci

@@ -1,9 +1,9 @@
 # 3n-hsw
 ### tests 14
-### job hrs est. 1.17
-### job hrs real 1.17
-### test mins est. 5
-### test mins real 5
+### job hrs est. 1
+### job hrs real 1
+### test mins est. 4.29
+### test mins real 4.29
 ## ./container_memif
 ## ./crypto
 ## ./ip4
