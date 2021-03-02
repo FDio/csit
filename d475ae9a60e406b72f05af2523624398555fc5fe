@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffc5932d_8f310bf9",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 35
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-02T09:42:27Z",
+      "side": 1,
+      "message": "I realized there is one use case when this does not exist. It happens when I am bisecting, but I am forced to re-order commits (squash later fix into an earlier breakage) in local git in order to avoid test failures. In that case, Gerrit change does not exist for this exact new commit. But Change-Id still exists, so that is the best value to add into metadata (and it does not need Gerrit access).",
+      "range": {
+        "startLine": 722,
+        "startChar": 8,
+        "endLine": 722,
+        "endChar": 28
+      },
+      "revId": "d475ae9a60e406b72f05af2523624398555fc5fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
