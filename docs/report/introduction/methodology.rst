@@ -19,6 +19,7 @@ Test Methodology
     methodology_acls
     methodology_multi_core_speedup
     methodology_hoststack_testing/index
+    methodology_gso
     methodology_reconf
     methodology_vpp_startup_settings
     methodology_kvm_vms_vhost_user
