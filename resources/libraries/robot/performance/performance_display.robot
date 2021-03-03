@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -34,11 +34,11 @@
 | | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
 | |
 | | ${lower_bound} = | Set Variable | ${interval.measured_low}
-| | ${lower_bound_lf} = | Set Variable | ${lower_bound.loss_fraction}
+| | ${lower_bound_lf} = | Set Variable | ${lower_bound.loss_ratio}
 | | Return From Keyword If | ${lower_bound_lf} <= ${packet_loss_ratio}
 | | Set Test Variable | \${rate_for_teardown} | ${lower_bound_lf}
 | | ${message}= | Catenate | SEPARATOR=${SPACE}
-| | ... | Minimal rate loss fraction ${lower_bound_lf}
+| | ... | Minimal rate loss ratio ${lower_bound_lf}
 | | ... | does not reach target ${packet_loss_ratio}.
 | | ${message_zero} = | Set Variable | Zero packets forwarded!
 | | ${message_other} = | Set Variable | ${lower_bound.loss_count} packets lost.
@@ -52,7 +52,7 @@
 | | ... | due to reconfiguration under traffic.
 | |
 | | ... | *Arguments:*
-| | ... | - result - Result of bidirectional measurtement.
+| | ... | - result - Result of bidirectional measurement.
 | | ... | Type: ReceiveRateMeasurement
 | |
 | | ... | *Example:*
@@ -99,16 +99,19 @@
 | |
 | | [Arguments] | ${result}
 | |
+| | ${rml} = | Set Variable | ${result[0].measured_low.latency}
+| | Log | ${rml.__dict__}
+| | Log | ${dir(rml)}
 | | Display single bound | NDR_LOWER
-| | ... | ${result.ndr_interval.measured_low.target_tr}
-| | ... | ${result.ndr_interval.measured_low.latency}
+| | ... | ${result[0].measured_low.target_tr}
+| | ... | ${result[0].measured_low.latency}
 | | Display single bound | NDR_UPPER
-| | ... | ${result.ndr_interval.measured_high.target_tr}
+| | ... | ${result[0].measured_high.target_tr}
 | | Display single bound | PDR_LOWER
-| | ... | ${result.pdr_interval.measured_low.target_tr}
-| | ... | ${result.pdr_interval.measured_low.latency}
+| | ... | ${result[1].measured_low.target_tr}
+| | ... | ${result[1].measured_low.latency}
 | | Display single bound | PDR_UPPER
-| | ... | ${result.pdr_interval.measured_high.target_tr}
+| | ... | ${result[1].measured_high.target_tr}
 
 | Display result of soak search
 | | [Documentation]
