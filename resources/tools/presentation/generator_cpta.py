@@ -14,6 +14,7 @@
 """Generation of Continuous Performance Trending and Analysis.
 """
 
+import re
 import logging
 import csv
 
@@ -157,7 +158,7 @@ def generate_cpta(spec, data):
 
 
 def _generate_trending_traces(in_data, job_name, build_info,
-                              name=u"", color=u"", incl_tests=u"MRR"):
+                              name=u"", color=u"", incl_tests=u"mrr"):
     """Generate the trending traces:
      - samples,
      - outliers, regress, progress
@@ -168,7 +169,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
     :param build_info: Information about the builds.
     :param name: Name of the plot
     :param color: Name of the color for the plot.
-    :param incl_tests: Included tests, accepted values: MRR, NDR, PDR
+    :param incl_tests: Included tests, accepted values: mrr, ndr, pdr
     :type in_data: OrderedDict
     :type job_name: str
     :type build_info: dict
@@ -179,7 +180,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
     :rtype: tuple(traces, result)
     """
 
-    if incl_tests not in (u"MRR", u"NDR", u"PDR"):
+    if incl_tests not in (u"mrr", u"ndr", u"pdr"):
         return list(), None
 
     data_x = list(in_data.keys())
@@ -202,7 +203,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
                      u"{sut}-ref: {build}<br>"
                      u"csit-ref: {test}-{period}-build-{build_nr}<br>"
                      u"testbed: {testbed}")
-        if incl_tests == u"MRR":
+        if incl_tests == u"mrr":
             hover_str = hover_str.replace(
                 u"<stdev>", f"stdev [Mpps]: {data_y_stdev[index]:.3f}<br>"
             )
@@ -213,23 +214,23 @@ def _generate_trending_traces(in_data, job_name, build_info,
         if u"dpdk" in job_name:
             hover_text.append(hover_str.format(
                 date=date,
-                property=u"average" if incl_tests == u"MRR" else u"throughput",
+                property=u"average" if incl_tests == u"mrr" else u"throughput",
                 value=data_y_mpps[index],
                 sut=u"dpdk",
                 build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
-                test=incl_tests.lower(),
+                test=incl_tests,
                 period=u"weekly",
                 build_nr=str_key,
                 testbed=build_info[job_name][str_key][2]))
         elif u"vpp" in job_name:
             hover_str = hover_str.format(
                 date=date,
-                property=u"average" if incl_tests == u"MRR" else u"throughput",
+                property=u"average" if incl_tests == u"mrr" else u"throughput",
                 value=data_y_mpps[index],
                 sut=u"vpp",
                 build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
-                test=incl_tests.lower(),
-                period=u"daily" if incl_tests == u"MRR" else u"weekly",
+                test=incl_tests,
+                period=u"daily" if incl_tests == u"mrr" else u"weekly",
                 build_nr=str_key,
                 testbed=build_info[job_name][str_key][2])
             if u"-cps" in name:
@@ -382,12 +383,7 @@ def _generate_all_charts(spec, input_data):
 
         logging.info(f"  Generating the chart {graph.get(u'title', u'')} ...")
 
-        incl_tests = graph.get(u"include-tests", u"MRR")
-
         job_name = list(graph[u"data"].keys())[0]
-
-        csv_tbl = list()
-        res = dict()
 
         # Transform the data
         logging.info(
@@ -395,185 +391,213 @@ def _generate_all_charts(spec, input_data):
             f"{graph.get(u'title', u'')}."
         )
 
-        if graph.get(u"include", None):
-            data = input_data.filter_tests_by_name(
-                graph,
-                params=[u"type", u"result", u"throughput", u"tags"],
-                continue_on_error=True
-            )
-        else:
-            data = input_data.filter_data(
-                graph,
-                params=[u"type", u"result", u"throughput", u"tags"],
-                continue_on_error=True)
+        data = input_data.filter_tests_by_name(
+            graph,
+            params=[u"type", u"result", u"throughput", u"tags"],
+            continue_on_error=True
+        )
 
         if data is None or data.empty:
             logging.error(u"No data.")
             return dict()
 
-        chart_data = dict()
-        chart_tags = dict()
-        for job, job_data in data.items():
-            if job != job_name:
-                continue
-            for index, bld in job_data.items():
-                for test_name, test in bld.items():
-                    if chart_data.get(test_name, None) is None:
-                        chart_data[test_name] = OrderedDict()
-                    try:
-                        if incl_tests == u"MRR":
-                            rate = test[u"result"][u"receive-rate"]
-                            stdev = test[u"result"][u"receive-stdev"]
-                        elif incl_tests == u"NDR":
-                            rate = test[u"throughput"][u"NDR"][u"LOWER"]
-                            stdev = float(u"nan")
-                        elif incl_tests == u"PDR":
-                            rate = test[u"throughput"][u"PDR"][u"LOWER"]
-                            stdev = float(u"nan")
-                        else:
+        return_lst = list()
+
+        for ttype in graph.get(u"test-type", (u"mrr", )):
+            for core in graph.get(u"core", tuple()):
+                csv_tbl = list()
+                res = dict()
+                chart_data = dict()
+                chart_tags = dict()
+                for item in graph.get(u"include", tuple()):
+                    reg_ex = re.compile(str(item.format(core=core)).lower())
+                    for job, job_data in data.items():
+                        if job != job_name:
                             continue
-                        chart_data[test_name][int(index)] = {
-                            u"receive-rate": rate,
-                            u"receive-stdev": stdev
-                        }
-                        chart_tags[test_name] = test.get(u"tags", None)
-                    except (KeyError, TypeError):
-                        pass
+                        for index, bld in job_data.items():
+                            for test_id, test in bld.items():
+                                if not re.match(reg_ex, str(test_id).lower()):
+                                    continue
+                                if chart_data.get(test_id, None) is None:
+                                    chart_data[test_id] = OrderedDict()
+                                try:
+                                    if ttype == u"mrr":
+                                        rate = test[u"result"][u"receive-rate"]
+                                        stdev = \
+                                            test[u"result"][u"receive-stdev"]
+                                    elif ttype == u"ndr":
+                                        rate = \
+                                            test["throughput"][u"NDR"][u"LOWER"]
+                                        stdev = float(u"nan")
+                                    elif ttype == u"pdr":
+                                        rate = \
+                                            test["throughput"][u"PDR"][u"LOWER"]
+                                        stdev = float(u"nan")
+                                    else:
+                                        continue
+                                    chart_data[test_id][int(index)] = {
+                                        u"receive-rate": rate,
+                                        u"receive-stdev": stdev
+                                    }
+                                    chart_tags[test_id] = \
+                                        test.get(u"tags", None)
+                                except (KeyError, TypeError):
+                                    pass
 
-        # Add items to the csv table:
-        for tst_name, tst_data in chart_data.items():
-            tst_lst = list()
-            for bld in builds_dict[job_name]:
-                itm = tst_data.get(int(bld), dict())
-                # CSIT-1180: Itm will be list, compute stats.
-                try:
-                    tst_lst.append(str(itm.get(u"receive-rate", u"")))
-                except AttributeError:
-                    tst_lst.append(u"")
-            csv_tbl.append(f"{tst_name}," + u",".join(tst_lst) + u'\n')
+                # Add items to the csv table:
+                for tst_name, tst_data in chart_data.items():
+                    tst_lst = list()
+                    for bld in builds_dict[job_name]:
+                        itm = tst_data.get(int(bld), dict())
+                        # CSIT-1180: Itm will be list, compute stats.
+                        try:
+                            tst_lst.append(str(itm.get(u"receive-rate", u"")))
+                        except AttributeError:
+                            tst_lst.append(u"")
+                    csv_tbl.append(f"{tst_name}," + u",".join(tst_lst) + u'\n')
 
-        # Generate traces:
-        traces = list()
-        index = 0
-        groups = graph.get(u"groups", None)
-        visibility = list()
+                # Generate traces:
+                traces = list()
+                index = 0
+                groups = graph.get(u"groups", None)
+                visibility = list()
 
-        if groups:
-            for group in groups:
-                visible = list()
-                for tag in group:
+                if groups:
+                    for group in groups:
+                        visible = list()
+                        for tag in group:
+                            for tst_name, test_data in chart_data.items():
+                                if not test_data:
+                                    logging.warning(
+                                        f"No data for the test {tst_name}"
+                                    )
+                                    continue
+                                if tag not in chart_tags[tst_name]:
+                                    continue
+                                try:
+                                    trace, rslt = _generate_trending_traces(
+                                        test_data,
+                                        job_name=job_name,
+                                        build_info=build_info,
+                                        name=u'-'.join(tst_name.split(u'.')[-1].
+                                                       split(u'-')[2:-1]),
+                                        color=COLORS[index],
+                                        incl_tests=ttype
+                                    )
+                                except IndexError:
+                                    logging.error(f"Out of colors: index: "
+                                                  f"{index}, test: {tst_name}")
+                                    index += 1
+                                    continue
+                                traces.extend(trace)
+                                visible.extend(
+                                    [True for _ in range(len(trace))]
+                                )
+                                res[tst_name] = rslt
+                                index += 1
+                                break
+                        visibility.append(visible)
+                else:
                     for tst_name, test_data in chart_data.items():
                         if not test_data:
                             logging.warning(f"No data for the test {tst_name}")
-                            continue
-                        if tag not in chart_tags[tst_name]:
                             continue
                         try:
                             trace, rslt = _generate_trending_traces(
                                 test_data,
                                 job_name=job_name,
                                 build_info=build_info,
-                                name=u'-'.join(tst_name.split(u'.')[-1].
-                                               split(u'-')[2:-1]),
+                                name=u'-'.join(
+                                    tst_name.split(u'.')[-1].split(u'-')[2:-1]),
                                 color=COLORS[index],
-                                incl_tests=incl_tests
+                                incl_tests=ttype
                             )
                         except IndexError:
-                            logging.error(f"Out of colors: index: "
-                                          f"{index}, test: {tst_name}")
+                            logging.error(
+                                f"Out of colors: index: "
+                                f"{index}, test: {tst_name}"
+                            )
                             index += 1
                             continue
                         traces.extend(trace)
-                        visible.extend([True for _ in range(len(trace))])
                         res[tst_name] = rslt
                         index += 1
-                        break
-                visibility.append(visible)
-        else:
-            for tst_name, test_data in chart_data.items():
-                if not test_data:
-                    logging.warning(f"No data for the test {tst_name}")
-                    continue
-                try:
-                    trace, rslt = _generate_trending_traces(
-                        test_data,
-                        job_name=job_name,
-                        build_info=build_info,
-                        name=u'-'.join(
-                            tst_name.split(u'.')[-1].split(u'-')[2:-1]),
-                        color=COLORS[index],
-                        incl_tests=incl_tests
-                    )
-                except IndexError:
-                    logging.error(
-                        f"Out of colors: index: {index}, test: {tst_name}"
-                    )
-                    index += 1
-                    continue
-                traces.extend(trace)
-                res[tst_name] = rslt
-                index += 1
 
-        if traces:
-            # Generate the chart:
-            try:
-                layout = deepcopy(graph[u"layout"])
-            except KeyError as err:
-                logging.error(u"Finished with error: No layout defined")
-                logging.error(repr(err))
-                return dict()
-            if groups:
-                show = list()
-                for i in range(len(visibility)):
-                    visible = list()
-                    for vis_idx, _ in enumerate(visibility):
-                        for _ in range(len(visibility[vis_idx])):
-                            visible.append(i == vis_idx)
-                    show.append(visible)
-
-                buttons = list()
-                buttons.append(dict(
-                    label=u"All",
-                    method=u"update",
-                    args=[{u"visible": [True for _ in range(len(show[0]))]}, ]
-                ))
-                for i in range(len(groups)):
+                if traces:
+                    # Generate the chart:
                     try:
-                        label = graph[u"group-names"][i]
-                    except (IndexError, KeyError):
-                        label = f"Group {i + 1}"
-                    buttons.append(dict(
-                        label=label,
-                        method=u"update",
-                        args=[{u"visible": show[i]}, ]
-                    ))
+                        layout = deepcopy(graph[u"layout"])
+                    except KeyError as err:
+                        logging.error(u"Finished with error: No layout defined")
+                        logging.error(repr(err))
+                        return dict()
+                    if groups:
+                        show = list()
+                        for i in range(len(visibility)):
+                            visible = list()
+                            for vis_idx, _ in enumerate(visibility):
+                                for _ in range(len(visibility[vis_idx])):
+                                    visible.append(i == vis_idx)
+                            show.append(visible)
 
-                layout[u"updatemenus"] = list([
-                    dict(
-                        active=0,
-                        type=u"dropdown",
-                        direction=u"down",
-                        xanchor=u"left",
-                        yanchor=u"bottom",
-                        x=-0.12,
-                        y=1.0,
-                        buttons=buttons
+                        buttons = list()
+                        buttons.append(dict(
+                            label=u"All",
+                            method=u"update",
+                            args=[{u"visible":
+                                       [True for _ in range(len(show[0]))]}, ]
+                        ))
+                        for i in range(len(groups)):
+                            try:
+                                label = graph[u"group-names"][i]
+                            except (IndexError, KeyError):
+                                label = f"Group {i + 1}"
+                            buttons.append(dict(
+                                label=label,
+                                method=u"update",
+                                args=[{u"visible": show[i]}, ]
+                            ))
+
+                        layout[u"updatemenus"] = list([
+                            dict(
+                                active=0,
+                                type=u"dropdown",
+                                direction=u"down",
+                                xanchor=u"left",
+                                yanchor=u"bottom",
+                                x=-0.12,
+                                y=1.0,
+                                buttons=buttons
+                            )
+                        ])
+
+                    name_file = (
+                        f"{spec.cpta[u'output-file']}/"
+                        f"{graph[u'output-file-name']}.html"
                     )
-                ])
+                    name_file = name_file.format(core=core, test_type=ttype)
 
-            name_file = (
-                f"{spec.cpta[u'output-file']}/{graph[u'output-file-name']}"
-                f"{spec.cpta[u'output-file-type']}")
+                    logging.info(f"    Writing the file {name_file}")
+                    plpl = plgo.Figure(data=traces, layout=layout)
+                    try:
+                        ploff.plot(
+                            plpl,
+                            show_link=False,
+                            auto_open=False,
+                            filename=name_file
+                        )
+                    except plerr.PlotlyEmptyDataError:
+                        logging.warning(u"No data for the plot. Skipped.")
 
-            logging.info(f"    Writing the file {name_file} ...")
-            plpl = plgo.Figure(data=traces, layout=layout)
-            try:
-                ploff.plot(plpl, show_link=False, auto_open=False,
-                           filename=name_file)
-            except plerr.PlotlyEmptyDataError:
-                logging.warning(u"No data for the plot. Skipped.")
+                return_lst.append(
+                    {
+                        u"job_name": job_name,
+                        u"csv_table": csv_tbl,
+                        u"results": res
+                    }
+                )
 
-        return {u"job_name": job_name, u"csv_table": csv_tbl, u"results": res}
+        return return_lst
 
     builds_dict = dict()
     for job in spec.input[u"builds"].keys():
@@ -618,15 +642,17 @@ def _generate_all_charts(spec, input_data):
         csv_tables[job_name].append(header)
 
     for chart in spec.cpta[u"plots"]:
-        result = _generate_chart(chart)
-        if not result:
+        results = _generate_chart(chart)
+        if not results:
             continue
 
-        csv_tables[result[u"job_name"]].extend(result[u"csv_table"])
+        for result in results:
+            csv_tables[result[u"job_name"]].extend(result[u"csv_table"])
 
-        if anomaly_classifications.get(result[u"job_name"], None) is None:
-            anomaly_classifications[result[u"job_name"]] = dict()
-        anomaly_classifications[result[u"job_name"]].update(result[u"results"])
+            if anomaly_classifications.get(result[u"job_name"], None) is None:
+                anomaly_classifications[result[u"job_name"]] = dict()
+            anomaly_classifications[result[u"job_name"]].\
+                update(result[u"results"])
 
     # Write the tables:
     for job_name, csv_table in csv_tables.items():

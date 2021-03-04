@@ -1954,8 +1954,17 @@ class InputData:
 
         if params is None:
             params = element.get(u"parameters", None)
-            if params:
+            if params and u"type" not in params:
                 params.append(u"type")
+
+        cores = element.get(u"core", None)
+        if cores:
+            tests = list()
+            for core in cores:
+                for test in include:
+                    tests.append(test.format(core=core))
+        else:
+            tests = include
 
         data = pd.Series()
         try:
@@ -1963,7 +1972,7 @@ class InputData:
                 data[job] = pd.Series()
                 for build in builds:
                     data[job][str(build)] = pd.Series()
-                    for test in include:
+                    for test in tests:
                         try:
                             reg_ex = re.compile(str(test).lower())
                             for test_id in self.data[job][
