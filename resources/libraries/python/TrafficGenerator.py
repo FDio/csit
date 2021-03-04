@@ -13,6 +13,7 @@
 
 """Performance testing traffic generator library."""
 
+import math
 import time
 
 from robot.api import logger
@@ -566,7 +567,7 @@ class TrafficGenerator(AbstractMeasurer):
         return limited_duration, (limited_duration == computed_duration)
 
     def trex_astf_start_remote_exec(
-            self, duration, multiplier, async_call=False):
+            self, duration, multiplier, async_call=False, delay=0.0):
         """Execute T-Rex ASTF script on remote node over ssh to start running
         traffic.
 
@@ -601,9 +602,11 @@ class TrafficGenerator(AbstractMeasurer):
         :param duration: Time expressed in seconds for how long to send traffic.
         :param multiplier: Traffic rate in transactions per second.
         :param async_call: If enabled then don't wait for all incoming traffic.
+        :param delay: Correction [s] for TRex needing more time to send all.
         :type duration: float
         :type multiplier: int
         :type async_call: bool
+        :type delay: float
         :raises RuntimeError: In case of T-Rex driver issue.
         """
         self.check_mode(TrexMode.ASTF)
@@ -634,6 +637,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"async_start", async_call)
         command_line.add_if(u"latency", self.use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
+        command_line.add_with_value(u"delay", delay)
 
         self._start_time = time.monotonic()
         self._rate = multiplier
@@ -693,7 +697,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._duration = computed_duration
             self._parse_traffic_results(stdout)
 
-    def trex_stl_start_remote_exec(self, duration, rate, async_call=False):
+    def trex_stl_start_remote_exec(self, duration, rate, async_call=False, delay=0.0):
         """Execute T-Rex STL script on remote node over ssh to start running
         traffic.
 
@@ -708,9 +712,11 @@ class TrafficGenerator(AbstractMeasurer):
         :param duration: Time expressed in seconds for how long to send traffic.
         :param rate: Traffic rate in transactions per second.
         :param async_call: If enabled then don't wait for all incoming traffic.
+        :param delay: Correction [s] for TRex needing more time to send all.
         :type duration: float
         :type rate: str
         :type async_call: bool
+        :type delay: float
         :raises RuntimeError: In case of T-Rex driver issue.
         """
         self.check_mode(TrexMode.STL)
@@ -741,6 +747,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"async_start", async_call)
         command_line.add_if(u"latency", self.use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
+        command_line.add_with_value(u"delay", delay)
 
         # TODO: This is ugly. Handle parsing better.
         self._start_time = time.monotonic()
@@ -791,6 +798,7 @@ class TrafficGenerator(AbstractMeasurer):
             ramp_up_duration=None,
             state_timeout=300.0,
             ramp_up_only=False,
+            delay=0.0,
         ):
         """Send traffic from all configured interfaces on TG.
 
@@ -839,6 +847,7 @@ class TrafficGenerator(AbstractMeasurer):
         :param ramp_up_duration: Duration of ramp-up trials [s].
         :param state_timeout: Time of life of DUT state [s].
         :param ramp_up_only: If true, do not perform main trial measurement.
+        :param delay: Correction [s] for TRex needing more time to send all.
         :type duration: float
         :type rate: float
         :type frame_size: str
@@ -855,6 +864,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type ramp_up_duration: float
         :type state_timeout: float
         :type ramp_up_only: bool
+        :type delay: float
         :returns: TG results.
         :rtype: ReceiveRateMeasurement or None
         :raises ValueError: If TG traffic profile is not supported.
@@ -878,10 +888,11 @@ class TrafficGenerator(AbstractMeasurer):
             rate=rate,
             async_call=async_call,
             ramp_up_only=ramp_up_only,
+            delay=delay,
         )
 
     def _send_traffic_on_tg_internal(
-            self, duration, rate, async_call=False):
+            self, duration, rate, async_call=False, delay=0.0):
         """Send traffic from all configured interfaces on TG.
 
         This is an internal function, it assumes set_rate_provider_defaults
@@ -899,9 +910,11 @@ class TrafficGenerator(AbstractMeasurer):
         :param duration: Duration of test traffic generation in seconds.
         :param rate: Traffic rate in transactions per second.
         :param async_call: Async mode.
+        :param delay: Correction [s] for TRex needing more time to send all.
         :type duration: float
         :type rate: float
         :type async_call: bool
+        :type delay: float
         :returns: TG results.
         :rtype: ReceiveRateMeasurement or None
         :raises ValueError: If TG traffic profile is not supported.
@@ -910,13 +923,13 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             if u"trex-astf" in self.traffic_profile:
                 self.trex_astf_start_remote_exec(
-                    duration, float(rate), async_call
+                    duration, float(rate), async_call, delay=delay
                 )
             elif u"trex-stl" in self.traffic_profile:
                 unit_rate_str = str(rate) + u"pps"
                 # TODO: Suport transaction_scale et al?
                 self.trex_stl_start_remote_exec(
-                    duration, unit_rate_str, async_call
+                    duration, unit_rate_str, async_call, delay=delay
                 )
             else:
                 raise ValueError(u"Unsupported T-Rex traffic profile!")
@@ -924,7 +937,7 @@ class TrafficGenerator(AbstractMeasurer):
         return None if async_call else self._get_measurement_result()
 
     def _send_traffic_on_tg_with_ramp_up(
-            self, duration, rate, async_call=False, ramp_up_only=False):
+            self, duration, rate, async_call=False, ramp_up_only=False, delay=0.0):
         """Send traffic from all interfaces on TG, maybe after ramp-up.
 
         This is an internal function, it assumes set_rate_provider_defaults
@@ -950,10 +963,12 @@ class TrafficGenerator(AbstractMeasurer):
         :param rate: Traffic rate in transactions per second.
         :param async_call: Async mode.
         :param ramp_up_only: If true, do not perform main trial measurement.
+        :param delay: Correction [s] for TRex needing more time to send all.
         :type duration: float
         :type rate: float
         :type async_call: bool
         :type ramp_up_only: bool
+        :type delay: float
         :returns: TG results.
         :rtype: ReceiveRateMeasurement or None
         :raises ValueError: If TG traffic profile is not supported.
@@ -992,6 +1007,7 @@ class TrafficGenerator(AbstractMeasurer):
                     duration=self.ramp_up_duration,
                     rate=self.ramp_up_rate,
                     async_call=async_call,
+                    delay=delay,
                 )
                 self.ramp_up_stop = time.monotonic()
                 logger.debug(u"Ramp-up done.")
@@ -1007,6 +1023,7 @@ class TrafficGenerator(AbstractMeasurer):
             duration=duration,
             rate=rate,
             async_call=async_call,
+            delay=delay,
         )
         trial_end = time.monotonic()
         if self.ramp_up_rate:
@@ -1226,10 +1243,22 @@ class TrafficGenerator(AbstractMeasurer):
         if not target_duration:
             target_duration = approximated_duration
         transmit_rate = self._rate
+        unsent = -1
+        corrected = "none"
         if self.transaction_type == u"packet":
             partial_attempt_count = self._sent
-            expected_attempt_count = self._sent
-            fail_count = self._loss
+            packet_rate = transmit_rate * self.ppta
+            # We have a float. TRex way of rounding it is not obvious.
+            # The biggest source of mismatch is Inter Stream Gap.
+            # So the code tolerates 10 usec of missing packets.
+            expected_attempt_count = (target_duration - 1e-5) * packet_rate
+            expected_attempt_count = math.ceil(expected_attempt_count)
+            # TRex can send more.
+            expected_attempt_count = max(expected_attempt_count, self._sent)
+            pass_count = self._received
+            fail_count = expected_attempt_count - pass_count
+            unsent = expected_attempt_count - self._sent
+            corrected = delay + unsent / packet_rate
         elif self.transaction_type == u"udp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_cps.")
@@ -1282,6 +1311,8 @@ class TrafficGenerator(AbstractMeasurer):
             partial_transmit_count=partial_attempt_count,
         )
         measurement.latency = self.get_latency_int()
+        measurement.unsent = unsent
+        measurement.corrected = corrected
         return measurement
 
     def measure(self, duration, transmit_rate):
