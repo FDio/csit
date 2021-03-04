@@ -1,0 +1,29 @@
+---
+# file: roles/nginx/tasks/main.yaml
+
+
+- name: download nginx-{{ nginx_version }}.tar.gz
+  get_url:
+    url: "http://nginx.org/download/nginx-{{ nginx_version  }}.tar.gz"
+    dest: "{{ lookup('env','HOME') }}/nginx-{{ nginx_version }}.tar.gz"
+  tags:
+    - install-nginx
+
+- name: install nginx
+  shell: cd {{ lookup('env','HOME') }};tar -xf nginx-{{ nginx_version }}.tar.gz;
+         cd nginx-{{ nginx_version }};
+         ./configure
+              --prefix={{ nginx_install_dir }}
+              --with-http_stub_status_module
+              --with-http_ssl_module
+              --with-pcre
+              --with-http_realip_module;
+         make -j`grep processor /proc/cpuinfo |wc -l`&& make install
+  tags:
+    - install-nginx
+
+- name: copy conf file nginx-vsap.conf
+  copy: src=nginx-vsap.conf dest={{ nginx_conf_dir }}
+  tags:
+    - install-nginx
+
