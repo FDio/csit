@@ -83,8 +83,8 @@ def generate_plots(spec, data):
         u"plot_nf_heatmap": plot_nf_heatmap,
         u"plot_hdrh_lat_by_percentile": plot_hdrh_lat_by_percentile,
         u"plot_hdrh_lat_by_percentile_x_log": plot_hdrh_lat_by_percentile_x_log,
-        u"plot_mrr_error_bars_name": plot_mrr_error_bars_name,
-        u"plot_mrr_box_name": plot_mrr_box_name
+        u"plot_mrr_box_name": plot_mrr_box_name,
+        u"plot_ndrpdr_box_name": plot_ndrpdr_box_name
     }
 
     logging.info(u"Generating the plots ...")
@@ -537,6 +537,8 @@ def plot_perf_box_name(plot, input_data):
     """Generate the plot(s) with algorithm: plot_perf_box_name
     specified in the specification file.
 
+    Use only for soak and hoststack tests.
+
     :param plot: Plot to generate.
     :param input_data: Data to process.
     :type plot: pandas.Series
@@ -556,14 +558,6 @@ def plot_perf_box_name(plot, input_data):
         return
 
     # Prepare the data for the plot
-    plot_title = plot.get(u"title", u"").lower()
-
-    if u"-gbps" in plot_title:
-        value = u"gbps"
-        multiplier = 1e6
-    else:
-        value = u"throughput"
-        multiplier = 1.0
     y_vals = OrderedDict()
     test_type = u""
 
@@ -577,25 +571,7 @@ def plot_perf_box_name(plot, input_data):
                     if y_vals.get(test[u"parent"], None) is None:
                         y_vals[test[u"parent"]] = list()
                     try:
-                        if test[u"type"] in (u"NDRPDR", u"CPS"):
-                            test_type = test[u"type"]
-
-                            if u"-pdr" in plot_title:
-                                ttype = u"PDR"
-                            elif u"-ndr" in plot_title:
-                                ttype = u"NDR"
-                            else:
-                                raise RuntimeError(
-                                    u"Wrong title. No information about test "
-                                    u"type. Add '-ndr' or '-pdr' to the test "
-                                    u"title."
-                                )
-
-                            y_vals[test[u"parent"]].append(
-                                test[value][ttype][u"LOWER"] * multiplier
-                            )
-
-                        elif test[u"type"] in (u"SOAK",):
+                        if test[u"type"] in (u"SOAK",):
                             y_vals[test[u"parent"]]. \
                                 append(test[u"throughput"][u"LOWER"])
                             test_type = u"SOAK"
@@ -677,8 +653,6 @@ def plot_perf_box_name(plot, input_data):
         if layout.get(u"title", None):
             if test_type in (u"HOSTSTACK", ):
                 layout[u"title"] = f"<b>Bandwidth:</b> {layout[u'title']}"
-            elif test_type in (u"CPS", ):
-                layout[u"title"] = f"<b>CPS:</b> {layout[u'title']}"
             else:
                 layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
         if y_max:
@@ -700,6 +674,121 @@ def plot_perf_box_name(plot, input_data):
         return
 
 
+def plot_ndrpdr_box_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_ndrpdr_box_name
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    logging.info(
+        f"    Creating data set for the {plot.get(u'type', u'')} "
+        f"{plot.get(u'title', u'')}."
+    )
+    data = input_data.filter_tests_by_name(
+        plot,
+        params=[u"throughput", u"gbps", u"result", u"parent", u"tags", u"type"]
+    )
+    if data is None:
+        logging.error(u"No data.")
+        return
+
+    if u"-gbps" in plot.get(u"title", u"").lower():
+        value = u"gbps"
+        multiplier = 1e6
+    else:
+        value = u"throughput"
+        multiplier = 1.0
+
+    test_type = u""
+
+    for ttype in plot.get(u"test-type", list()):
+        for core in plot.get(u"core", list()):
+            # Prepare the data for the plot
+            data_x = list()
+            data_y = OrderedDict()
+            data_y_max = list()
+            idx = 1
+            for item in plot.get(u"include", tuple()):
+                reg_ex = re.compile(str(item.format(core=core)).lower())
+                for job in data:
+                    for build in job:
+                        for test_id, test in build.iteritems():
+                            if not re.match(reg_ex, str(test_id).lower()):
+                                continue
+                            if data_y.get(test[u"parent"], None) is None:
+                                data_y[test[u"parent"]] = list()
+                                test_type = test[u"type"]
+                                data_x.append(idx)
+                                idx += 1
+                            try:
+                                data_y[test[u"parent"]].append(
+                                    test[value][ttype.upper()][u"LOWER"] *
+                                    multiplier
+                                )
+                            except (KeyError, TypeError):
+                                pass
+
+            # Add plot traces
+            traces = list()
+            for idx, (key, vals) in enumerate(data_y.items()):
+                name = re.sub(
+                    REGEX_NIC, u'', key.lower().replace(u'-ndrpdr', u'').
+                    replace(u'2n1l-', u'')
+                )
+                traces.append(
+                    plgo.Box(
+                        x=[data_x[idx], ] * len(data_x),
+                        y=[y / 1e6 if y else None for y in vals],
+                        name=(
+                            f"{idx+1}."
+                            f"({len(vals):02d} "
+                            f"run"
+                            f"{u's' if len(vals) > 1 else u''}) "
+                            f"{name}"
+                        ),
+                        hoverinfo=u"y+name"
+                    )
+                )
+                data_y_max.append(max(vals))
+
+            try:
+                # Create plot
+                layout = deepcopy(plot[u"layout"])
+                if layout.get(u"title", None):
+                    layout[u"title"] = \
+                        layout[u'title'].format(core=core, test_type=ttype)
+                    if test_type in (u"CPS", ):
+                        layout[u"title"] = f"<b>CPS:</b> {layout[u'title']}"
+                    else:
+                        layout[u"title"] = \
+                            f"<b>Throughput:</b> {layout[u'title']}"
+                if data_y_max:
+                    layout[u"yaxis"][u"range"] = [0, max(data_y_max) / 1e6 + 1]
+                plpl = plgo.Figure(data=traces, layout=layout)
+
+                # Export Plot
+                file_name = (
+                    f"{plot[u'output-file'].format(core=core, test_type=ttype)}"
+                    f".html"
+                )
+                logging.info(f"    Writing file {file_name}")
+                ploff.plot(
+                    plpl,
+                    show_link=False,
+                    auto_open=False,
+                    filename=file_name
+                )
+            except PlotlyError as err:
+                logging.error(
+                    f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+                )
+
+
 def plot_mrr_box_name(plot, input_data):
     """Generate the plot(s) with algorithm: plot_mrr_box_name
     specified in the specification file.
@@ -717,178 +806,80 @@ def plot_mrr_box_name(plot, input_data):
     )
     data = input_data.filter_tests_by_name(
         plot,
-        params=[u"result", u"parent", u"tags", u"type"])
-    if data is None:
-        logging.error(u"No data.")
-        return
-
-    # Prepare the data for the plot
-    data_x = list()
-    data_names = list()
-    data_y = list()
-    data_y_max = list()
-    idx = 1
-    for item in plot.get(u"include", tuple()):
-        reg_ex = re.compile(str(item).lower())
-        for job in data:
-            for build in job:
-                for test_id, test in build.iteritems():
-                    if not re.match(reg_ex, str(test_id).lower()):
-                        continue
-                    try:
-                        data_x.append(idx)
-                        name = re.sub(REGEX_NIC, u'', test[u'parent'].lower().
-                                      replace(u'-mrr', u'').
-                                      replace(u'2n1l-', u''))
-                        data_y.append(test[u"result"][u"samples"])
-                        data_names.append(
-                            f"{idx}."
-                            f"({len(data_y[-1]):02d} "
-                            f"run{u's' if len(data_y[-1]) > 1 else u''}) "
-                            f"{name}"
-                        )
-                        data_y_max.append(max(test[u"result"][u"samples"]))
-                        idx += 1
-                    except (KeyError, TypeError):
-                        pass
-
-    # Add plot traces
-    traces = list()
-    for idx in range(len(data_x)):
-        traces.append(
-            plgo.Box(
-                x=[data_x[idx], ] * len(data_y[idx]),
-                y=data_y[idx],
-                name=data_names[idx],
-                hoverinfo=u"y+name"
-            )
-        )
-
-    try:
-        # Create plot
-        layout = deepcopy(plot[u"layout"])
-        if layout.get(u"title", None):
-            layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
-        if data_y_max:
-            layout[u"yaxis"][u"range"] = [0, max(data_y_max) + 1]
-        plpl = plgo.Figure(data=traces, layout=layout)
-
-        # Export Plot
-        logging.info(f"    Writing file {plot[u'output-file']}.html.")
-        ploff.plot(
-            plpl,
-            show_link=False,
-            auto_open=False,
-            filename=f"{plot[u'output-file']}.html"
-        )
-    except PlotlyError as err:
-        logging.error(
-            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
-        )
-        return
-
-
-def plot_mrr_error_bars_name(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_mrr_error_bars_name
-    specified in the specification file.
-
-    :param plot: Plot to generate.
-    :param input_data: Data to process.
-    :type plot: pandas.Series
-    :type input_data: InputData
-    """
-
-    # Transform the data
-    logging.info(
-        f"    Creating data set for the {plot.get(u'type', u'')} "
-        f"{plot.get(u'title', u'')}."
+        params=[u"result", u"parent", u"tags", u"type"]
     )
-    data = input_data.filter_tests_by_name(
-        plot,
-        params=[u"result", u"parent", u"tags", u"type"])
     if data is None:
         logging.error(u"No data.")
         return
 
-    # Prepare the data for the plot
-    data_x = list()
-    data_names = list()
-    data_y_avg = list()
-    data_y_stdev = list()
-    data_y_max = 0
-    hover_info = list()
-    idx = 1
-    for item in plot.get(u"include", tuple()):
-        reg_ex = re.compile(str(item).lower())
-        for job in data:
-            for build in job:
-                for test_id, test in build.iteritems():
-                    if not re.match(reg_ex, str(test_id).lower()):
-                        continue
-                    try:
-                        data_x.append(idx)
-                        name = re.sub(REGEX_NIC, u'', test[u'parent'].lower().
-                                      replace(u'-mrr', u'').
-                                      replace(u'2n1l-', u''))
-                        data_names.append(f"{idx}. {name}")
-                        data_y_avg.append(
-                            round(test[u"result"][u"receive-rate"], 3)
-                        )
-                        data_y_stdev.append(
-                            round(test[u"result"][u"receive-stdev"], 3)
-                        )
-                        hover_info.append(
-                            f"{data_names[-1]}<br>"
-                            f"average [Gbps]: {data_y_avg[-1]}<br>"
-                            f"stdev [Gbps]: {data_y_stdev[-1]}"
-                        )
-                        if data_y_avg[-1] + data_y_stdev[-1] > data_y_max:
-                            data_y_max = data_y_avg[-1] + data_y_stdev[-1]
-                        idx += 1
-                    except (KeyError, TypeError):
-                        pass
+    for core in plot.get(u"core", list()):
+        # Prepare the data for the plot
+        data_x = list()
+        data_names = list()
+        data_y = list()
+        data_y_max = list()
+        idx = 1
+        for item in plot.get(u"include", tuple()):
+            reg_ex = re.compile(str(item.format(core=core)).lower())
+            for job in data:
+                for build in job:
+                    for test_id, test in build.iteritems():
+                        if not re.match(reg_ex, str(test_id).lower()):
+                            continue
+                        try:
+                            data_x.append(idx)
+                            name = re.sub(
+                                REGEX_NIC, u'', test[u'parent'].lower().
+                                replace(u'-mrr', u'').replace(u'2n1l-', u'')
+                            )
+                            data_y.append(test[u"result"][u"samples"])
+                            data_names.append(
+                                f"{idx}."
+                                f"({len(data_y[-1]):02d} "
+                                f"run{u's' if len(data_y[-1]) > 1 else u''}) "
+                                f"{name}"
+                            )
+                            data_y_max.append(max(data_y[-1]))
+                            idx += 1
+                        except (KeyError, TypeError):
+                            pass
 
-    # Add plot traces
-    traces = list()
-    for idx in range(len(data_x)):
-        traces.append(
-            plgo.Scatter(
-                x=[data_x[idx], ],
-                y=[data_y_avg[idx], ],
-                error_y=dict(
-                    type=u"data",
-                    array=[data_y_stdev[idx], ],
-                    visible=True
-                ),
-                name=data_names[idx],
-                mode=u"markers",
-                text=hover_info[idx],
-                hoverinfo=u"text"
+        # Add plot traces
+        traces = list()
+        for idx in range(len(data_x)):
+            traces.append(
+                plgo.Box(
+                    x=[data_x[idx], ] * len(data_y[idx]),
+                    y=data_y[idx],
+                    name=data_names[idx],
+                    hoverinfo=u"y+name"
+                )
             )
-        )
 
-    try:
-        # Create plot
-        layout = deepcopy(plot[u"layout"])
-        if layout.get(u"title", None):
-            layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
-        if data_y_max:
-            layout[u"yaxis"][u"range"] = [0, int(data_y_max) + 1]
-        plpl = plgo.Figure(data=traces, layout=layout)
+        try:
+            # Create plot
+            layout = deepcopy(plot[u"layout"])
+            if layout.get(u"title", None):
+                layout[u"title"] = (
+                    f"<b>Throughput:</b> {layout[u'title'].format(core=core)}"
+                )
+            if data_y_max:
+                layout[u"yaxis"][u"range"] = [0, max(data_y_max) + 1]
+            plpl = plgo.Figure(data=traces, layout=layout)
 
-        # Export Plot
-        logging.info(f"    Writing file {plot[u'output-file']}.html.")
-        ploff.plot(
-            plpl,
-            show_link=False,
-            auto_open=False,
-            filename=f"{plot[u'output-file']}.html"
-        )
-    except PlotlyError as err:
-        logging.error(
-            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
-        )
-        return
+            # Export Plot
+            file_name = f"{plot[u'output-file'].format(core=core)}.html"
+            logging.info(f"    Writing file {file_name}")
+            ploff.plot(
+                plpl,
+                show_link=False,
+                auto_open=False,
+                filename=file_name
+            )
+        except PlotlyError as err:
+            logging.error(
+                f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+            )
 
 
 def plot_tsa_name(plot, input_data):
