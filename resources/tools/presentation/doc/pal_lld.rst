@@ -187,7 +187,10 @@ The structure of the section "Environment" is as follows (example):
 
       urls:
         URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
-        URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
+        URL[S3_STORAGE,LOG]: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+        URL[NEXUS,LOG]: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+        URL[NEXUS,DOC]: "https://docs.fd.io/csit"
+        DIR[NEXUS,DOC]: "report/_static/archive"
 
       make-dirs:
       # List the directories which are created while preparing the environment.
