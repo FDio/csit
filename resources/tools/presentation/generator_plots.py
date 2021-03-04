@@ -722,70 +722,75 @@ def plot_mrr_box_name(plot, input_data):
         logging.error(u"No data.")
         return
 
-    # Prepare the data for the plot
-    data_x = list()
-    data_names = list()
-    data_y = list()
-    data_y_max = list()
-    idx = 1
-    for item in plot.get(u"include", tuple()):
-        reg_ex = re.compile(str(item).lower())
-        for job in data:
-            for build in job:
-                for test_id, test in build.iteritems():
-                    if not re.match(reg_ex, str(test_id).lower()):
-                        continue
-                    try:
-                        data_x.append(idx)
-                        name = re.sub(REGEX_NIC, u'', test[u'parent'].lower().
-                                      replace(u'-mrr', u'').
-                                      replace(u'2n1l-', u''))
-                        data_y.append(test[u"result"][u"samples"])
-                        data_names.append(
-                            f"{idx}."
-                            f"({len(data_y[-1]):02d} "
-                            f"run{u's' if len(data_y[-1]) > 1 else u''}) "
-                            f"{name}"
-                        )
-                        data_y_max.append(max(test[u"result"][u"samples"]))
-                        idx += 1
-                    except (KeyError, TypeError):
-                        pass
+    cores = plot.get(u"core", list())
+    for core in cores:
+        # Prepare the data for the plot
+        data_x = list()
+        data_names = list()
+        data_y = list()
+        data_y_max = list()
+        idx = 1
+        for item in plot.get(u"include", tuple()):
+            reg_ex = re.compile(str(item.format(core=core)).lower())
+            for job in data:
+                for build in job:
+                    for test_id, test in build.iteritems():
+                        if not re.match(reg_ex, str(test_id).lower()):
+                            continue
+                        try:
+                            data_x.append(idx)
+                            name = re.sub(
+                                REGEX_NIC, u'', test[u'parent'].lower().
+                                replace(u'-mrr', u'').replace(u'2n1l-', u'')
+                            )
+                            data_y.append(test[u"result"][u"samples"])
+                            data_names.append(
+                                f"{idx}."
+                                f"({len(data_y[-1]):02d} "
+                                f"run{u's' if len(data_y[-1]) > 1 else u''}) "
+                                f"{name}"
+                            )
+                            data_y_max.append(max(test[u"result"][u"samples"]))
+                            idx += 1
+                        except (KeyError, TypeError):
+                            pass
 
-    # Add plot traces
-    traces = list()
-    for idx in range(len(data_x)):
-        traces.append(
-            plgo.Box(
-                x=[data_x[idx], ] * len(data_y[idx]),
-                y=data_y[idx],
-                name=data_names[idx],
-                hoverinfo=u"y+name"
+        # Add plot traces
+        traces = list()
+        for idx in range(len(data_x)):
+            traces.append(
+                plgo.Box(
+                    x=[data_x[idx], ] * len(data_y[idx]),
+                    y=data_y[idx],
+                    name=data_names[idx],
+                    hoverinfo=u"y+name"
+                )
             )
-        )
 
-    try:
-        # Create plot
-        layout = deepcopy(plot[u"layout"])
-        if layout.get(u"title", None):
-            layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
-        if data_y_max:
-            layout[u"yaxis"][u"range"] = [0, max(data_y_max) + 1]
-        plpl = plgo.Figure(data=traces, layout=layout)
+        try:
+            # Create plot
+            layout = deepcopy(plot[u"layout"])
+            if layout.get(u"title", None):
+                layout[u"title"] = \
+                    f"<b>Throughput:</b> {layout[u'title'].format(core=core)}"
+            if data_y_max:
+                layout[u"yaxis"][u"range"] = [0, max(data_y_max) + 1]
+            plpl = plgo.Figure(data=traces, layout=layout)
 
-        # Export Plot
-        logging.info(f"    Writing file {plot[u'output-file']}.html.")
-        ploff.plot(
-            plpl,
-            show_link=False,
-            auto_open=False,
-            filename=f"{plot[u'output-file']}.html"
-        )
-    except PlotlyError as err:
-        logging.error(
-            f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
-        )
-        return
+            # Export Plot
+            file_name = f"{plot[u'output-file'].format(core=core)}.html"
+            logging.info(f"    Writing file {file_name}")
+            ploff.plot(
+                plpl,
+                show_link=False,
+                auto_open=False,
+                filename=file_name
+            )
+        except PlotlyError as err:
+            logging.error(
+                f"   Finished with error: {repr(err)}".replace(u"\n", u" ")
+            )
+            return
 
 
 def plot_mrr_error_bars_name(plot, input_data):
