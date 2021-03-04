@@ -10,8 +10,14 @@ Changes in |csit-release|
      :ref:`test_environment_versioning`.
 
    - **GENEVE tests**: Added VPP performance tests for GENEVE tunnels.
+     See :ref:`geneve_methodology` for more details.
 
-     - See :ref:`geneve_methodology` for more details.
+
+   - **GSO tests**: Added VPP performance tests for GSOtap and GSOvirtio.
+     All tested topologies are compared with GSO enabled and disabled.
+     In |csit-release| there is only 1t1c tests running.
+     See :ref:`gso_methodology` for more details.
+
 
    - **NAT44 tests**: Added new test type, pure throughput tests.
      They are similar to PPS tests, but they employ ramp-up trials
