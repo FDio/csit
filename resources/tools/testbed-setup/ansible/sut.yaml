@@ -26,6 +26,8 @@
       tags: vpp
     - role: dpdk
       tags: dpdk
+    - role: nginx
+      tags: nginx
     - role: kernel_vm
       tags: kernel_vm
     - role: csit_sut_image
@@ -60,6 +62,8 @@
       tags: aws
     - role: iperf
       tags: iperf
+    - role: nginx
+      tags: nginx
     - role: docker
       tags: docker
     - role: cleanup
@@ -91,6 +95,8 @@
       tags: azure
     - role: iperf
       tags: iperf
+    - role: nginx
+      tags: nginx
     - role: dpdk
       tags: dpdk
     - role: cleanup
