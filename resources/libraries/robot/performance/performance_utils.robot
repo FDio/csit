@@ -444,7 +444,8 @@
 | | ${results} = | Create List
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
 | | | Call Resetter
-| | | ${result}= | Send traffic on tg
+| | | ${delay} = | Evaluate | (i - 5) / 10
+| | | ${result} = | Send traffic on tg
 | | | ... | duration=${trial_duration}
 | | | ... | rate=${rate}
 | | | ... | frame_size=${frame_size}
@@ -459,6 +460,7 @@
 | | | ... | use_latency=${use_latency}
 | | | ... | ramp_up_duration=${ramp_up_duration}
 | | | ... | ramp_up_rate=${ramp_up_rate}
+| | | ... | delay=${delay}
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | Append To List | ${results} | ${result.approximated_receive_rate}

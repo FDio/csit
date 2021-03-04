@@ -80,6 +80,7 @@ def simple_burst(
         async_start=False,
         traffic_directions=2,
         force=False,
+        delay=0.0,
     ):
     """Send traffic and measure packet loss and latency.
 
@@ -108,6 +109,7 @@ def simple_burst(
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
     :param force: Force start regardless of ports state.
+    :padam delay: Sleep overhead [s].
     :type profile_file: str
     :type framesize: int or str
     :type duration: float
@@ -118,6 +120,7 @@ def simple_burst(
     :type async_start: bool
     :type traffic_directions: int
     :type force: bool
+    :type delay: float
     """
     client = None
     total_rcvd = 0
@@ -201,18 +204,20 @@ def simple_burst(
                 xsnap1 = client.ports[1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            # Block until done:
             time_start = time.monotonic()
-            client.wait_on_traffic(ports=ports, timeout=duration+30)
+            # wait_on_traffic fails if duration stretches by 30 seconds or more.
+            # TRex has some overhead, wait some more.
+            time.sleep(duration + delay)
+            client.stop()
             time_stop = time.monotonic()
             approximated_duration = time_stop - time_start
-
+            # Read the stats after the traffic stopped (or time up).
+            stats = client.get_stats()
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
-
-            # Read the stats after the test
-            stats = client.get_stats()
+            # Now finish the complete reset.
+            client.reset()
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
@@ -314,6 +319,10 @@ def main():
         u"--force", action=u"store_true", default=False,
         help=u"Force start regardless of ports state."
     )
+    parser.add_argument(
+        u"--delay", required=True,
+        help=u"Delay assumed for traffic, sleeps is increased by this (s)."
+    )
 
     args = parser.parse_args()
 
@@ -333,6 +342,7 @@ def main():
         async_start=args.async_start,
         traffic_directions=args.traffic_directions,
         force=args.force,
+        delay=args.delay,
     )
 
 
