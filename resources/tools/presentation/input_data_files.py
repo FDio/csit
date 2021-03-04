@@ -212,6 +212,8 @@ def download_and_unzip_data_file(spec, job, build, pid):
     :rtype: bool
     """
 
+    success = False
+
     # Try to download .gz from s3_storage
     file_name = spec.input[u"file-name"]
     url = u"{0}/{1}".format(
