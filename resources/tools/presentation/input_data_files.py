@@ -200,11 +200,10 @@ def download_and_unzip_data_file(spec, job, build, pid):
     :rtype: bool
     """
 
-    # Try to download .gz from logs.fd.io
-
+    # Try to download .gz from s3_storage
     file_name = spec.input[u"file-name"]
     url = u"{0}/{1}".format(
-        spec.environment[u'urls'][u'URL[NEXUS,LOG]'],
+        spec.environment[u'urls'][u'URL[S3_STORAGE,LOG]'],
         spec.input[u'download-path'].format(
             job=job, build=build[u'build'], filename=file_name
         )
@@ -218,6 +217,25 @@ def download_and_unzip_data_file(spec, job, build, pid):
 
     arch = bool(spec.configuration.get(u"archive-inputs", True))
     success, downloaded_name = _download_file(url, new_name, arch=arch)
+
+    if not success:
+        # Try to download .gz from logs.fd.io
+        file_name = spec.input[u"file-name"]
+        url = u"{0}/{1}".format(
+            spec.environment[u'urls'][u'URL[NEXUS,LOG]'],
+            spec.input[u'download-path'].format(
+                job=job, build=build[u'build'], filename=file_name
+            )
+        )
+        new_name = join(
+            spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+        )
+
+        logging.info(f"Trying to download {url}")
+
+        arch = bool(spec.configuration.get(u"archive-inputs", True))
+        success, downloaded_name = _download_file(url, new_name, arch=arch)
 
     if not success:
 
@@ -260,8 +278,6 @@ def download_and_unzip_data_file(spec, job, build, pid):
         download_path = spec.input[u"zip-download-path"]
         if job.startswith(u"csit-"):
             url = spec.environment[u"urls"][u"URL[JENKINS,CSIT]"]
-        elif job.startswith(u"hc2vpp-"):
-            url = spec.environment[u"urls"][u"URL[JENKINS,HC]"]
         else:
             raise PresentationError(f"No url defined for the job {job}.")
 
