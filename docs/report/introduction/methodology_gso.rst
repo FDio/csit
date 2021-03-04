@@ -41,10 +41,10 @@ Common configuration:
 
 
 VPP GSOtap Topology
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 VPP Configuration
-~~~~~~~~~~~~~~~~~
+_________________
 
 VPP GSOtap tests in |csit-release| are executed without using
 hyperthreading. VPP worker runs on a single core. Multi-core tests are
@@ -62,7 +62,7 @@ pinning scheme is used:
 
 
 iPerf3 Server Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+___________________________
 
 iPerf3 version used 3.7
 
@@ -76,7 +76,7 @@ For the full iPerf3 reference please see:
 
 
 iPerf3 Client Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+___________________________
 
 iPerf3 version used 3.7
 
@@ -90,10 +90,10 @@ For the full iPerf3 reference please see:
 
 
 VPP GSOvhost Topology
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 VPP Configuration
-~~~~~~~~~~~~~~~~~
+_________________
 
 VPP GSOvhost tests in |csit-release| are executed without using
 hyperthreading. VPP worker runs on a single core. Multi-core tests are
@@ -109,7 +109,7 @@ not executed. Following core pinning scheme is used:
   - iperf-c: 1
 
 iPerf3 Server Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+___________________________
 
 iPerf3 version used 3.7
 
@@ -123,7 +123,7 @@ For the full iPerf3 reference please see:
 
 
 iPerf3 Client Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+___________________________
 
 iPerf3 version used 3.7
 
