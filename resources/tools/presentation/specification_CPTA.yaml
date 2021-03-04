@@ -258,74 +258,75 @@
       csit-vpp-perf-mrr-daily-master:
         start: 1100
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
       csit-dpdk-perf-mrr-weekly-master:
         start: 107
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
         start: 1100
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
 
     plot-performance-trending-dpdk-3n-hsw:
       csit-dpdk-perf-mrr-weekly-master:
         start: 107
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
         start: 834
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 72
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
         start: 834
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
 
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 72
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
         start: 858
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 78
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
         start: 858
         end: "lastCompletedBuild"
+        max-builds: 10  # 180
 
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 78
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     plot-performance-trending-vpp-nfv-2n-skx:
       csit-vpp-perf-mrr-weekly-master-2n-skx:
         start: 66
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
         skip:
           - 68
           - 72
@@ -338,13 +339,13 @@
       csit-vpp-perf-mrr-daily-master-2n-clx:
         start: 236
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
 
     plot-performance-trending-vpp-nfv-2n-clx:
       csit-vpp-perf-mrr-weekly-master-2n-clx:
         start: 37
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
         skip:
           - 39
           - 45
@@ -354,77 +355,79 @@
       csit-dpdk-perf-mrr-weekly-master-2n-clx:
         start: 23
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     # 2n-zn2
     plot-performance-trending-vpp-2n-zn2:
       csit-vpp-perf-mrr-daily-master-2n-zn2:
         start: 1
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
 
     plot-performance-trending-dpdk-2n-zn2:
       csit-dpdk-perf-mrr-weekly-master-2n-zn2:
         start: 1
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     # 3n-tsh
     plot-performance-trending-all-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
         start: 144
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
 
     plot-performance-trending-vpp-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
         start: 144
         end: "lastCompletedBuild"
+        max-builds: 10  # 180
 
     plot-performance-trending-dpdk-3n-tsh:
       csit-dpdk-perf-mrr-weekly-master-3n-tsh:
         start: 4
         end: "lastCompletedBuild"
+        max-builds: 10  # 26
 
     # 2n-tx2
     plot-performance-trending-vpp-2n-tx2:
       csit-vpp-perf-mrr-daily-master-2n-tx2:
         start: 1
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
 
     plot-performance-trending-dpdk-2n-tx2:
       csit-dpdk-perf-mrr-weekly-master-2n-tx2:
         start: 1
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     # 3n-dnv
     plot-performance-trending-vpp-3n-dnv:
       csit-vpp-perf-mrr-daily-master-3n-dnv:
         start: 329
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
 
     # 2n-dnv
     plot-performance-trending-vpp-2n-dnv:
       csit-vpp-perf-mrr-daily-master-2n-dnv:
         start: 335
         end: "lastCompletedBuild"
-        max-builds: 180
+        max-builds: 10  # 180
 
     # NDRPDR
     plot-ndrpdr-comparison-2n-skx:
       csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
         start: 76
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     plot-ndrpdr-comparison-3n-skx:
       csit-vpp-perf-ndrpdr-weekly-master-3n-skx:
         start: 76
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
         skip:
           - 87
 
@@ -432,26 +435,26 @@
       csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
         start: 21
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     plot-ndrpdr-comparison-3n-hsw:
       csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
         start: 76
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
 
     table-ndrpdr-comparison-2n-skx:
       csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
         start: 76
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
         reverse: True  # Must be reversed
 
     table-ndrpdr-comparison-3n-skx:
       csit-vpp-perf-ndrpdr-weekly-master-3n-skx:
         start: 76
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
         reverse: True  # Must be reversed
         skip:
           - 87
@@ -460,14 +463,14 @@
       csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
         start: 21
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
         reverse: True  # Must be reversed
 
     table-ndrpdr-comparison-3n-hsw:
       csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
         start: 76
         end: "lastCompletedBuild"
-        max-builds: 26
+        max-builds: 10  # 26
         reverse: True  # Must be reversed
 
   plot-layouts:
