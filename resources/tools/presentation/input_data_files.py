@@ -200,25 +200,27 @@ def download_and_unzip_data_file(spec, job, build, pid):
     :rtype: bool
     """
 
-    # Try to download .gz from s3_storage
-    file_name = spec.input[u"file-name"]
-    url = u"{0}/{1}".format(
-        spec.environment[u'urls'][u'URL[S3_STORAGE,LOG]'],
-        spec.input[u'download-path'].format(
-            job=job, build=build[u'build'], filename=file_name
-        )
-    )
-    new_name = join(
-        spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
-        f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
-    )
+    success = False
 
-    logging.info(f"Trying to download {url}")
-
-    arch = bool(spec.configuration.get(u"archive-inputs", True))
-    success, downloaded_name = _download_file(
-        url, new_name, arch=arch, verify=False
-    )
+    # # Try to download .gz from s3_storage
+    # file_name = spec.input[u"file-name"]
+    # url = u"{0}/{1}".format(
+    #     spec.environment[u'urls'][u'URL[S3_STORAGE,LOG]'],
+    #     spec.input[u'download-path'].format(
+    #         job=job, build=build[u'build'], filename=file_name
+    #     )
+    # )
+    # new_name = join(
+    #     spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+    #     f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+    # )
+    #
+    # logging.info(f"Trying to download {url}")
+    #
+    # arch = bool(spec.configuration.get(u"archive-inputs", True))
+    # success, downloaded_name = _download_file(
+    #     url, new_name, arch=arch, verify=False
+    # )
 
     if not success:
         # Try to download .gz from logs.fd.io
