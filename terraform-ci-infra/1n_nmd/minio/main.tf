@@ -72,11 +72,11 @@ resource "nomad_job" "nomad_job_minio" {
   detach      = false
 }
 
-resource "nomad_job" "nomad_job_mc" {
-  jobspec     = data.template_file.nomad_job_mc.rendered
-  detach      = false
-
-  depends_on  = [
-    nomad_job.nomad_job_minio
-  ]
-}
+#resource "nomad_job" "nomad_job_mc" {
+#  jobspec     = data.template_file.nomad_job_mc.rendered
+#  detach      = false
+#
+#  depends_on  = [
+#    nomad_job.nomad_job_minio
+#  ]
+#}

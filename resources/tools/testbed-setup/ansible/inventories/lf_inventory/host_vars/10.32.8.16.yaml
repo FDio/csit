@@ -39,6 +39,10 @@ nomad_options:
   fingerprint.network.disallow_link_local: true
 nomad_retry_servers: [ "10.30.51.30", "10.30.51.32", "10.30.51.33" ]
 nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647", "10.30.51.30:4647" ]
+nomad_volumes:
+  - name: "prod-volume-data1-1"
+    path: "/data"
+    read_only: false
 
 # Consul settigs.
 consul_nomad_integration: true
