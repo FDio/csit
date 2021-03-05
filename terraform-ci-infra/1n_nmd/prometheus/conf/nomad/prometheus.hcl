@@ -191,7 +191,7 @@ groups:
 - name: "Jenkins Job Health Exporter"
   rules:
   - alert: JenkinsJobHealthExporterFailures
-    expr: jenkins_job_failure{id=~".*"} >= 10
+    expr: jenkins_job_failure{id=~".*"} > jenkins_job_success{id=~".*"}
     for: 0m
     labels:
       severity: critical
@@ -199,7 +199,7 @@ groups:
       summary: "Jenkins Job Health detected high failure rate on jenkins jobs."
       description: "Job: {{ $labels.id }}"
   - alert: JenkinsJobHealthExporterUnstable
-    expr: jenkins_job_unstable{id=~".*"} >= 10
+    expr: jenkins_job_unstable{id=~".*"} > jenkins_job_success{id=~".*"}
     for: 0m
     labels:
       severity: warning
