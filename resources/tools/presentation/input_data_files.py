@@ -90,7 +90,7 @@ def _download_file(url, file_name, arch=False):
     try:
         logging.info(f"    Connecting to {url} ...")
         session = requests_retry_session()
-        response = session.get(url, stream=True)
+        response = session.get(url, stream=True, verify=False)
         code = response.status_code
         logging.info(f"    {code}: {responses[code]}")
 
@@ -100,7 +100,7 @@ def _download_file(url, file_name, arch=False):
             url = url.replace(u"_info", u"")
             logging.info(f"    Connecting to {url} ...")
             session = requests_retry_session()
-            response = session.get(url, stream=True)
+            response = session.get(url, stream=True, verify=False)
             code = response.status_code
             logging.info(f"    {code}: {responses[code]}")
             if code != codes[u"OK"]:
@@ -119,7 +119,7 @@ def _download_file(url, file_name, arch=False):
                 session.close()
             logging.info(f"    Downloading the file {url} to {file_name} ...")
             session = requests_retry_session()
-            response = session.get(url, stream=True)
+            response = session.get(url, stream=True, verify=False)
             if response.status_code == codes[u"OK"]:
                 with open(file_name, u"wb") as file_handle:
                     file_handle.write(response.raw.read())
