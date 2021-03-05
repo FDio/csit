@@ -42,7 +42,7 @@ SEPARATOR = u"__"
 REGEX_RELEASE = re.compile(r'(\D*)(\d{4}|master)(\D*)')
 
 
-def _download_file(url, file_name, arch=False):
+def _download_file(url, file_name, arch=False, verify=True):
     """Download a file with input data.
 
     :param url: URL to the file to download.
@@ -90,7 +90,7 @@ def _download_file(url, file_name, arch=False):
     try:
         logging.info(f"    Connecting to {url} ...")
         session = requests_retry_session()
-        response = session.get(url, stream=True, verify=False)
+        response = session.get(url, stream=True, verify=verify)
         code = response.status_code
         logging.info(f"    {code}: {responses[code]}")
 
@@ -100,7 +100,7 @@ def _download_file(url, file_name, arch=False):
             url = url.replace(u"_info", u"")
             logging.info(f"    Connecting to {url} ...")
             session = requests_retry_session()
-            response = session.get(url, stream=True, verify=False)
+            response = session.get(url, stream=True, verify=verify)
             code = response.status_code
             logging.info(f"    {code}: {responses[code]}")
             if code != codes[u"OK"]:
@@ -119,7 +119,7 @@ def _download_file(url, file_name, arch=False):
                 session.close()
             logging.info(f"    Downloading the file {url} to {file_name} ...")
             session = requests_retry_session()
-            response = session.get(url, stream=True, verify=False)
+            response = session.get(url, stream=True, verify=verify)
             if response.status_code == codes[u"OK"]:
                 with open(file_name, u"wb") as file_handle:
                     file_handle.write(response.raw.read())
@@ -216,7 +216,9 @@ def download_and_unzip_data_file(spec, job, build, pid):
     logging.info(f"Trying to download {url}")
 
     arch = bool(spec.configuration.get(u"archive-inputs", True))
-    success, downloaded_name = _download_file(url, new_name, arch=arch)
+    success, downloaded_name = _download_file(
+        url, new_name, arch=arch, verify=False
+    )
 
     if not success:
         # Try to download .gz from logs.fd.io
