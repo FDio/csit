@@ -54,8 +54,6 @@
       tags: common
     - role: dpdk
       tags: dpdk
-    - role: aws
-      tags: aws
     - role: docker
       tags: docker
     - role: tg
@@ -66,6 +64,8 @@
       tags: trex
     - role: ab
       tags: ab
+    - role: aws
+      tags: aws
     - role: cleanup
       tags: cleanup
     # TODO: 'Check Kernel Parameters' failing in
@@ -87,8 +87,6 @@
       tags: user_add
     - role: common
       tags: common
-    - role: azure
-      tags: azure
     - role: docker
       tags: docker
     - role: tg
@@ -99,6 +97,8 @@
       tags: trex
     - role: ab
       tags: ab
+    - role: azure
+      tags: azure
     - role: cleanup
       tags: cleanup
     # TODO: 'Check Kernel Parameters' failing in
