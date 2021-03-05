@@ -30,7 +30,7 @@ module "alertmanager" {
   alertmanager_port                  = 9093
   alertmanager_slack_jenkins_api_key = "TE07RD1V1/B01LPL8KM0F/KAd80wc9vS8CPMtrNtmQqCfT"
   alertmanager_slack_jenkins_channel = "fdio-jobs-monitoring"
-  alertmanager_slack_default_api_key = "TE07RD1V1/B01L7PQK9S8/hkn7cWKiARfh1H0ppC5aYtbr"
+  alertmanager_slack_default_api_key = "TE07RD1V1/B01L7PQK9S8/vJTSCr3OUprfAEGKBV5uZoJ6"
   alertmanager_slack_default_channel = "fdio-infra-monitoring"
 }
 
@@ -110,9 +110,11 @@ module "nginx" {
 
   # nomad
   nomad_datacenters              = [ "yul1" ]
+  nomad_host_volume              = "prod-volume-data1-1"
 
   # nginx
   nginx_job_name                 = "prod-nginx"
+  nginx_use_host_volume          = true
 }
 
 module "prometheus" {

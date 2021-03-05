@@ -87,6 +87,15 @@ job "${job_name}" {
     # to 1.
     count = 1
 
+    # https://www.nomadproject.io/docs/job-specification/volume
+    %{ if use_host_volume }
+    volume "prod-volume1-nginx" {
+      type      = "host"
+      read_only = false
+      source    = "${host_volume}"
+    }
+    %{ endif }
+
     # The restart stanza configures a tasks's behavior on task failure. Restarts
     # happen on the client that is running the task.
     restart {
