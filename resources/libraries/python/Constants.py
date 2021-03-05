@@ -295,7 +295,7 @@ class Constants:
         # Vxlan traffic will still show stretching at 36 Mpps (>12%),
         # but we do not care about those tests that much.
         u"Mellanox-CX556A": 36000000, # 148809523,
-        u"Amazon-Nitro-50G": 1500000,
+        u"Amazon-Nitro-50G": 1200000,
         u"virtual": 14880952,
     }
 
