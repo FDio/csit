@@ -319,6 +319,11 @@ resource "null_resource" "deploy_tg" {
       }
     }
   }
+
+  provisioner "remote-exec" {
+    on_failure = continue
+    inline = ["sudo reboot"]
+  }
 }
 
 resource "null_resource" "deploy_dut1" {
@@ -351,6 +356,11 @@ resource "null_resource" "deploy_dut1" {
         aws                        = true
       }
     }
+  }
+
+  provisioner "remote-exec" {
+    on_failure = continue
+    inline = ["sudo reboot"]
   }
 }
 

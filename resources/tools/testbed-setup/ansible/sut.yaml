@@ -56,12 +56,12 @@
       tags: vpp
     - role: dpdk
       tags: dpdk
-    - role: aws
-      tags: aws
     - role: iperf
       tags: iperf
     - role: docker
       tags: docker
+    - role: aws
+      tags: aws
     - role: cleanup
       tags: cleanup
     # TODO: 'Check Kernel Parameters' failing in
@@ -87,12 +87,12 @@
       tags: docker
     - role: vpp
       tags: vpp
-    - role: azure
-      tags: azure
     - role: iperf
       tags: iperf
     - role: dpdk
       tags: dpdk
+    - role: azure
+      tags: azure
     - role: cleanup
       tags: cleanup
     # TODO: 'Check Kernel Parameters' failing in
