@@ -110,9 +110,11 @@ module "nginx" {
 
   # nomad
   nomad_datacenters              = [ "yul1" ]
+  nomad_host_volume              = "prod-volume-data1-1"
 
   # nginx
   nginx_job_name                 = "prod-nginx"
+  nginx_use_host_volume          = true
 }
 
 module "prometheus" {
