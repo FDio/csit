@@ -21,7 +21,7 @@ import gzip
 
 from os import rename, mkdir
 from os.path import join
-from http.client import responses
+from http.client import responses, IncompleteRead
 from zipfile import ZipFile, is_zipfile, BadZipfile
 
 import requests
@@ -42,15 +42,19 @@ SEPARATOR = u"__"
 REGEX_RELEASE = re.compile(r'(\D*)(\d{4}|master)(\D*)')
 
 
-def _download_file(url, file_name, arch=False, verify=True):
+def _download_file(url, file_name, arch=False, verify=True, repeat=1):
     """Download a file with input data.
 
     :param url: URL to the file to download.
     :param file_name: Name of file to download.
-    :param arch: If True, also .gz file is downloaded
+    :param arch: If True, also .gz file is downloaded.
+    :param verify: If true, verify the certificate.
+    :param repeat: The number of attempts to download the file.
     :type url: str
     :type file_name: str
     :type arch: bool
+    :type verify: bool
+    :type repeat: int
     :returns: True if the download was successful, otherwise False.
     :rtype: bool
     """
@@ -85,57 +89,63 @@ def _download_file(url, file_name, arch=False, verify=True):
         session.mount(u"https://", adapter)
         return session
 
-    success = False
-    session = None
-    try:
-        logging.info(f"    Connecting to {url} ...")
-        session = requests_retry_session()
-        response = session.get(url, stream=True, verify=verify)
-        code = response.status_code
-        logging.info(f"    {code}: {responses[code]}")
-
-        if code != codes[u"OK"]:
-            if session:
-                session.close()
-            url = url.replace(u"_info", u"")
+    while repeat:
+        repeat -= 1
+        success = False
+        session = None
+        try:
             logging.info(f"    Connecting to {url} ...")
             session = requests_retry_session()
             response = session.get(url, stream=True, verify=verify)
             code = response.status_code
             logging.info(f"    {code}: {responses[code]}")
+
             if code != codes[u"OK"]:
-                return False, file_name
-            file_name = file_name.replace(u"_info", u"")
+                if session:
+                    session.close()
+                url = url.replace(u"_info", u"")
+                logging.info(f"    Connecting to {url} ...")
+                session = requests_retry_session()
+                response = session.get(url, stream=True, verify=verify)
+                code = response.status_code
+                logging.info(f"    {code}: {responses[code]}")
+                if code != codes[u"OK"]:
+                    return False, file_name
+                file_name = file_name.replace(u"_info", u"")
 
-        dst_file_name = file_name.replace(u".gz", u"")
-        logging.info(f"    Downloading the file {url} to {dst_file_name} ...")
-        with open(dst_file_name, u"wb") as file_handle:
-            for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
-                if chunk:
-                    file_handle.write(chunk)
+            dst_file_name = file_name.replace(u".gz", u"")
+            logging.info(f"    Downloading the file {url} to {dst_file_name}")
+            with open(dst_file_name, u"wb") as file_handle:
+                for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
+                    if chunk:
+                        file_handle.write(chunk)
 
-        if arch and u".gz" in file_name:
+            if arch and u".gz" in file_name:
+                if session:
+                    session.close()
+                logging.info(f"    Downloading the file {url} to {file_name}")
+                session = requests_retry_session()
+                response = session.get(url, stream=True, verify=verify)
+                if response.status_code == codes[u"OK"]:
+                    with open(file_name, u"wb") as file_handle:
+                        file_handle.write(response.raw.read())
+                else:
+                    logging.error(
+                        f"Not possible to download the file "
+                        f"{url} to {file_name}"
+                    )
+
+            success = True
+            repeat = 0
+        except IncompleteRead as err:
+            logging.error(f"Connection broken:\n{repr(err)}")
+        except RequestException as err:
+            logging.error(f"HTTP Request exception:\n{repr(err)}")
+        except (IOError, ValueError, KeyError) as err:
+            logging.error(f"Download failed.\n{repr(err)}")
+        finally:
             if session:
                 session.close()
-            logging.info(f"    Downloading the file {url} to {file_name} ...")
-            session = requests_retry_session()
-            response = session.get(url, stream=True, verify=verify)
-            if response.status_code == codes[u"OK"]:
-                with open(file_name, u"wb") as file_handle:
-                    file_handle.write(response.raw.read())
-            else:
-                logging.error(
-                    f"Not possible to download the file {url} to {file_name}"
-                )
-
-        success = True
-    except RequestException as err:
-        logging.error(f"HTTP Request exception:\n{repr(err)}")
-    except (IOError, ValueError, KeyError) as err:
-        logging.error(f"Download failed.\n{repr(err)}")
-    finally:
-        if session:
-            session.close()
 
     logging.info(u"    Download finished.")
     return success, file_name
@@ -217,7 +227,7 @@ def download_and_unzip_data_file(spec, job, build, pid):
 
     arch = bool(spec.configuration.get(u"archive-inputs", True))
     success, downloaded_name = _download_file(
-        url, new_name, arch=arch, verify=False
+        url, new_name, arch=arch, verify=False, repeat=3
     )
 
     if not success:
