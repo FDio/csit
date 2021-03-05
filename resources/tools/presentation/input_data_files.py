@@ -21,7 +21,7 @@ import gzip
 
 from os import rename, mkdir
 from os.path import join
-from http.client import responses, IncompleteRead
+from http.client import responses, HTTPException
 from zipfile import ZipFile, is_zipfile, BadZipfile
 
 import requests
@@ -29,6 +29,8 @@ import requests
 from requests.adapters import HTTPAdapter, Retry
 from requests.exceptions import RequestException
 from requests import codes
+
+from urllib3.exceptions import HTTPError
 
 from pal_errors import PresentationError
 
@@ -89,9 +91,9 @@ def _download_file(url, file_name, arch=False, verify=True, repeat=1):
         session.mount(u"https://", adapter)
         return session
 
+    success = False
     while repeat:
         repeat -= 1
-        success = False
         session = None
         try:
             logging.info(f"    Connecting to {url} ...")
@@ -137,7 +139,7 @@ def _download_file(url, file_name, arch=False, verify=True, repeat=1):
 
             success = True
             repeat = 0
-        except IncompleteRead as err:
+        except (HTTPException, HTTPError) as err:
             logging.error(f"Connection broken:\n{repr(err)}")
         except RequestException as err:
             logging.error(f"HTTP Request exception:\n{repr(err)}")
@@ -247,7 +249,9 @@ def download_and_unzip_data_file(spec, job, build, pid):
         logging.info(f"Trying to download {url}")
 
         arch = bool(spec.configuration.get(u"archive-inputs", True))
-        success, downloaded_name = _download_file(url, new_name, arch=arch)
+        success, downloaded_name = _download_file(
+            url, new_name, arch=arch, verify=True, repeat=3
+        )
 
     if not success:
 
