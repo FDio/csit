@@ -29,6 +29,18 @@
   tags:
     - docker-conf-service
 
+- name: Conf - Docker Daemon
+  template:
+    src: "templates/daemon.json.j2"
+    dest: "/etc/docker/daemon.json"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  when: >
+    docker_daemon is defined
+  tags:
+    - docker-conf-daemon
+
 - name: Conf - Docker HTTP Proxy
   template:
     src: "templates/docker.service.proxy.http"

@@ -1,0 +1,8 @@
+{
+    {% for key, value in docker_daemon.items() -%}
+    "{{ key }}": {{ value }}
+    {%- if not loop.last %},
+    {% endif %}
+    {%- endfor %}
+
+}
