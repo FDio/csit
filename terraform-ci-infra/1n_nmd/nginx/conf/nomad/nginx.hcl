@@ -98,11 +98,14 @@ job "${job_name}" {
 
     # The restart stanza configures a tasks's behavior on task failure. Restarts
     # happen on the client that is running the task.
+    #
+    # https://www.nomadproject.io/docs/job-specification/restart
+    #
     restart {
-      interval  = "10m"
-      attempts  = 2
+      interval  = "30m"
+      attempts  = 40
       delay     = "15s"
-      mode      = "fail"
+      mode      = "delay"
     }
 
     # The "task" stanza creates an individual unit of work, such as a Docker
@@ -124,7 +127,6 @@ job "${job_name}" {
       # documentation for more information.
       config {
         image        = "nginx:stable"
-        dns_servers  = [ "$${attr.unique.network.ip-address}" ]
         port_map {
           https      = 443
         }
@@ -150,10 +152,9 @@ job "${job_name}" {
       template {
         data = <<EOH
           upstream storage {
-            server storage0.storage.service.consul:9000;
-            server storage1.storage.service.consul:9000;
-            server storage2.storage.service.consul:9000;
-            server storage3.storage.service.consul:9000;
+            {{ range service "storage" }}
+              server {{ .Address }}:{{ .Port }};
+            {{ end }}
           }
         EOH
         destination = "custom/upstream.conf"
@@ -268,8 +269,8 @@ job "${job_name}" {
       #     https://www.nomadproject.io/docs/job-specification/resources.html
       #
       resources {
-        cpu        = 1000
-        memory     = 1024
+        cpu        = 2000
+        memory     = 4096
         network {
           mode     = "bridge"
           port "https" {
