@@ -124,7 +124,6 @@ job "${job_name}" {
       # documentation for more information.
       config {
         image        = "nginx:stable"
-        dns_servers  = [ "$${attr.unique.network.ip-address}" ]
         port_map {
           https      = 443
         }
@@ -150,10 +149,9 @@ job "${job_name}" {
       template {
         data = <<EOH
           upstream storage {
-            server storage0.storage.service.consul:9000;
-            server storage1.storage.service.consul:9000;
-            server storage2.storage.service.consul:9000;
-            server storage3.storage.service.consul:9000;
+            {{ range service "storage" }}
+              server {{ .Address }}:{{ .Port }};
+            {{ end }}
           }
         EOH
         destination = "custom/upstream.conf"
@@ -268,8 +266,8 @@ job "${job_name}" {
       #     https://www.nomadproject.io/docs/job-specification/resources.html
       #
       resources {
-        cpu        = 1000
-        memory     = 1024
+        cpu        = 2000
+        memory     = 4096
         network {
           mode     = "bridge"
           port "https" {
