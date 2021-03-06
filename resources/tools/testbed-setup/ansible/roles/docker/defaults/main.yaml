@@ -36,3 +36,9 @@ docker_daemon_environment_http:
 docker_daemon_environment_https:
   - "HTTPS_PROXY={{ proxy_env.https_proxy }}"
   - "NO_PROXY={{ proxy_env.no_proxy }}"
+
+docker_daemon:
+  # https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file
+  dns: [ "172.17.0.1" ]
+  dns-opts: []
+  dns-search: [ "{{ansible_hostname}}" ]
