@@ -71,6 +71,17 @@ job "${job_name}" {
 %{ endif }
   }
 
+  # The reschedule stanza specifies the group's rescheduling strategy. If
+  # specified at the job level, the configuration will apply to all groups
+  # within the job. If the reschedule stanza is present on both the job and the
+  # group, they are merged with the group stanza taking the highest precedence
+  # and then the job.
+  reschedule {
+    delay             = "30s"
+    delay_function    = "constant"
+    unlimited         = true
+  }
+
   # The "group" stanza defines a series of tasks that should be co-located on
   # the same Nomad client. Any task within a group will be placed on the same
   # client.
@@ -85,6 +96,18 @@ job "${job_name}" {
     # be running under this group. This value must be non-negative and defaults
     # to 1.
     count             = ${group_count}
+
+    # The restart stanza configures a tasks's behavior on task failure. Restarts
+    # happen on the client that is running the task.
+    #
+    # https://www.nomadproject.io/docs/job-specification/restart
+    #
+    restart {
+      interval  = "30m"
+      attempts  = 40
+      delay     = "15s"
+      mode      = "delay"
+    }
 
     # The constraint allows restricting the set of eligible nodes. Constraints
     # may filter on attributes or client metadata.
