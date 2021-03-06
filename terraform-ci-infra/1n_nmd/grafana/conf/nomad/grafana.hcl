@@ -120,7 +120,6 @@ job "${job_name}" {
       # documentation for more information.
       config {
         image         = "${image}"
-        dns_servers   = [ "$${attr.unique.network.ip-address}" ]
         volumes       = [
           "secrets/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml",
           "secrets/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml",

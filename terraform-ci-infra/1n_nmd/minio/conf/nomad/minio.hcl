@@ -12,9 +12,7 @@ job "${job_name}" {
   # "service". For a full list of job types and their differences, please see
   # the online documentation.
   #
-  # For more information, please see the online documentation at:
-  #
-  #     https://www.nomadproject.io/docs/jobspec/schedulers.html
+  #     https://www.nomadproject.io/docs/jobspec/schedulers
   #
   type        = "service"
 
@@ -81,31 +79,37 @@ job "${job_name}" {
   # the same Nomad client. Any task within a group will be placed on the same
   # client.
   #
-  # For more information and examples on the "group" stanza, please see
-  # the online documentation at:
-  #
-  #     https://www.nomadproject.io/docs/job-specification/group.html
+  #     https://www.nomadproject.io/docs/job-specification/group
   #
   group "prod-group1-minio" {
     # The "count" parameter specifies the number of the task groups that should
     # be running under this group. This value must be non-negative and defaults
     # to 1.
-    count       = ${group_count}
+    count                = ${group_count}
 
     # https://www.nomadproject.io/docs/job-specification/volume
     %{ if use_host_volume }
     volume "prod-volume1-minio" {
-      type      = "host"
-      read_only = false
-      source    = "${host_volume}"
+      type               = "host"
+      read_only          = false
+      source             = "${host_volume}"
     }
     %{ endif }
 
+    # The restart stanza configures a tasks's behavior on task failure. Restarts
+    # happen on the client that is running the task.
+    #
+    # https://www.nomadproject.io/docs/job-specification/restart
+    #
+    restart {
+      interval           = "30m"
+      attempts           = 40
+      delay              = "15s"
+      mode               = "delay"
+    }
+
     # The "task" stanza creates an individual unit of work, such as a Docker
     # container, web application, or batch processing.
-    #
-    # For more information and examples on the "task" stanza, please see
-    # the online documentation at:
     #
     #     https://www.nomadproject.io/docs/job-specification/task.html
     #
@@ -134,7 +138,7 @@ job "${job_name}" {
       # documentation for more information.
       config {
         image            = "${image}"
-        dns_servers      = [ "$${attr.unique.network.ip-address}" ]
+        dns_servers      = [ "172.17.0.1" ]
         network_mode     = "host"
         command          = "server"
         args             = [ "${host}:${port}${data_dir}" ]
@@ -161,10 +165,7 @@ job "${job_name}" {
 
       # The service stanza instructs Nomad to register a service with Consul.
       #
-      # For more information and examples on the "task" stanza, please see
-      # the online documentation at:
-      #
-      #     https://www.nomadproject.io/docs/job-specification/service.html
+      #     https://www.nomadproject.io/docs/job-specification/service
       #
       service {
         name       = "${service_name}"
@@ -197,10 +198,7 @@ job "${job_name}" {
       # This ensures the task will execute on a machine that contains enough
       # resource capacity.
       #
-      # For more information and examples on the "resources" stanza, please see
-      # the online documentation at:
-      #
-      #     https://www.nomadproject.io/docs/job-specification/resources.html
+      #     https://www.nomadproject.io/docs/job-specification/resources
       #
       resources {
         cpu        = ${cpu}
@@ -212,10 +210,7 @@ job "${job_name}" {
         # your job will be provisioned on, Nomad will provide your tasks with
         # network configuration when they start up.
         #
-        # For more information and examples on the "template" stanza, please see
-        # the online documentation at:
-        #
-        #     https://www.nomadproject.io/docs/job-specification/network.html
+        #     https://www.nomadproject.io/docs/job-specification/network
         #
         network {
           port "http" {
