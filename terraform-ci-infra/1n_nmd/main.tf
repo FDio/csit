@@ -161,5 +161,5 @@ module "vpp_device" {
   csit_shim_cpu                  = "1500"
   csit_shim_mem                  = "4096"
   csit_shim_image_aarch64        = "csit_shim-ubuntu1804:local"
-  csit_shim_image_x86_64         = "csit_shim-ubuntu1804:local"
+  csit_shim_image_x86_64         = "fdiotools/csit_shim-ubuntu2004:sandbox-x86_64"
 }
