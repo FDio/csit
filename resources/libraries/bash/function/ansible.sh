@@ -65,6 +65,7 @@ function ansible_playbook () {
         die "Failed to read hosts from working topology!"
     }
     pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
+    ANSIBLE_HOST_KEY_CHECKING=False
     ANSIBLE_STDOUT_CALLBACK=yaml \
     ANSIBLE_PIPELINING=true \
         ansible-playbook \
