@@ -13,6 +13,7 @@
 
 """Performance testing traffic generator library."""
 
+import math
 import time
 
 from robot.api import logger
@@ -559,7 +560,6 @@ class TrafficGenerator(AbstractMeasurer):
             # so we can compare with what telemetry suggests
             # the real duration was.
             logger.debug(f"Expected duration {computed_duration}")
-            computed_duration += 0.1115
         if not self.duration_limit:
             return computed_duration, True
         limited_duration = min(computed_duration, self.duration_limit)
@@ -634,6 +634,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"async_start", async_call)
         command_line.add_if(u"latency", self.use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
+        command_line.add_with_value(u"delay", Constants.PERF_TRIAL_ASTF_DELAY)
 
         self._start_time = time.monotonic()
         self._rate = multiplier
@@ -741,6 +742,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"async_start", async_call)
         command_line.add_if(u"latency", self.use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
+        command_line.add_with_value(u"delay", Constants.PERF_TRIAL_STL_DELAY)
 
         # TODO: This is ugly. Handle parsing better.
         self._start_time = time.monotonic()
@@ -1226,10 +1228,22 @@ class TrafficGenerator(AbstractMeasurer):
         if not target_duration:
             target_duration = approximated_duration
         transmit_rate = self._rate
+        unsent = -1
+        correction = 0.0
         if self.transaction_type == u"packet":
             partial_attempt_count = self._sent
-            expected_attempt_count = self._sent
-            fail_count = self._loss
+            packet_rate = transmit_rate * self.ppta
+            # We have a float. TRex way of rounding it is not obvious.
+            # The biggest source of mismatch is Inter Stream Gap.
+            # So the code tolerates 10 usec of missing packets.
+            expected_attempt_count = (target_duration - 1e-5) * packet_rate
+            expected_attempt_count = math.ceil(expected_attempt_count)
+            # TRex can send more.
+            expected_attempt_count = max(expected_attempt_count, self._sent)
+            pass_count = self._received
+            fail_count = expected_attempt_count - pass_count
+            unsent = expected_attempt_count - self._sent
+            correction = unsent / packet_rate
         elif self.transaction_type == u"udp_cps":
             if not self.transaction_scale:
                 raise RuntimeError(u"Add support for no-limit udp_cps.")
@@ -1282,6 +1296,8 @@ class TrafficGenerator(AbstractMeasurer):
             partial_transmit_count=partial_attempt_count,
         )
         measurement.latency = self.get_latency_int()
+        measurement.unsent = unsent
+        measurement.correction = correction
         return measurement
 
     def measure(self, duration, transmit_rate):
