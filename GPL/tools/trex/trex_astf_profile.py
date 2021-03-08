@@ -79,6 +79,7 @@ def simple_burst(
         latency,
         async_start=False,
         traffic_directions=2,
+        delay=0.0,
     ):
     """Send traffic and measure packet loss and latency.
 
@@ -123,6 +124,7 @@ def simple_burst(
     :param latency: With latency stats.
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
+    :param delay: Sleep overhead [s].
     :type profile_file: str
     :type duration: float
     :type framesize: int or str
@@ -132,6 +134,7 @@ def simple_burst(
     :type latency: bool
     :type async_start: bool
     :type traffic_directions: int
+    :type delay: float
     """
     client = None
     total_received = 0
@@ -181,7 +184,7 @@ def simple_burst(
             mult=multiplier,
             # Increase the input duration slightly,
             # to ensure it does not end before sleep&stop below happens.
-            duration=duration + 0.1 if duration > 0 else duration,
+            duration=duration,
             nc=True,
             latency_pps=int(multiplier) if latency else 0,
             client_mask=2**len(ports)-1,
@@ -196,8 +199,7 @@ def simple_burst(
                 xsnap1 = client.ports[port_1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            time.sleep(duration)
-
+            time.sleep(duration + delay)
             # Do not block yet, the existing transactions may take long time
             # to finish. We need an action that is almost reset(),
             # but without clearing stats.
@@ -208,7 +210,7 @@ def simple_burst(
             client.stop(block=True)
 
             # Read the stats after the traffic stopped (or time up).
-            stats[time.monotonic() - time_start] = client.get_stats(
+            stats[time.monotonic() - time_start - delay] = client.get_stats(
                 ports=ports
             )
 
@@ -442,6 +444,10 @@ def main():
         u"--traffic_directions", type=int, default=2,
         help=u"Send bi- (2) or uni- (1) directional traffic."
     )
+    parser.add_argument(
+        u"--delay", required=True, type=float, default=0.0,
+        help=u"Delay assumed for traffic, sleep time is increased by this [s]."
+    )
 
     args = parser.parse_args()
 
@@ -460,6 +466,7 @@ def main():
         latency=args.latency,
         async_start=args.async_start,
         traffic_directions=args.traffic_directions,
+        delay=args.delay,
     )
 
 
