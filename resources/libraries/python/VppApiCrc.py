@@ -84,6 +84,12 @@ class VppApiCrcChecker:
         This gets populated with CRCs found in .api.json,
         to serve as a hint when reporting errors."""
 
+        self._options = dict()
+        """Mapping from API name to options dictionary.
+
+        This gets populated with options found in .api.json,
+        to serve as a hint when reporting errors."""
+
         self._reported = dict()
         """Mapping from API name to CRC string.
 
@@ -171,7 +177,25 @@ class VppApiCrcChecker:
                 return _str(crc)
         raise RuntimeError(f"No CRC found for message: {msg_obj!r}")
 
-    def _process_crc(self, api_name, crc):
+    @staticmethod
+    def _get_options(msg_obj):
+        """Utility function to extract API options from an intermediate json.
+
+        :param msg_obj: Loaded json object, item of "messages" list.
+        :type msg_obj: list of various types
+        :returns: Object found as value for "otions" key.
+        :rtype: dict
+        :raises RuntimeError: If no options found.
+        """
+        for item in reversed(msg_obj):
+            if not isinstance(item, dict):
+                continue
+            options = item.get(u"options", None)
+            if options is not None:
+                return options
+        raise RuntimeError(f"No options found for message: {msg_obj!r}")
+
+    def _process_crc(self, api_name, crc, options):
         """Compare API to verified collections, update class state.
 
         Here, API stands for (message name, CRC) pair.
@@ -195,6 +219,8 @@ class VppApiCrcChecker:
         Attempts to overwrite value in _found or _reported should not happen,
         so the code does not check for that, simply overwriting.
 
+        Options are stored, to be examined later.
+
         The intended usage is to call this method multiple times,
         and then raise exception listing all _reported.
 
@@ -205,6 +231,7 @@ class VppApiCrcChecker:
         """
         # Regardless of the result, remember as found.
         self._found[api_name] = crc
+        self._options[api_name] = options
         old_expected = self._expected
         new_expected = old_expected.copy()
         for collection_name, name_to_crc_mapping in old_expected.items():
@@ -248,7 +275,8 @@ class VppApiCrcChecker:
                 for msg_obj in msgs:
                     msg_name = self._get_name(msg_obj)
                     msg_crc = self._get_crc(msg_obj)
-                    self._process_crc(msg_name, msg_crc)
+                    msg_options = self._get_options(msg_obj)
+                    self._process_crc(msg_name, msg_crc, msg_options)
         logger.debug(f"Surviving collections: {self._expected.keys()!r}")
 
     def report_initial_conflicts(self, report_missing=False):
@@ -295,6 +323,8 @@ class VppApiCrcChecker:
     def check_api_name(self, api_name):
         """Fail if the api_name has no, or different from known CRC associated.
 
+        Print warning if options contain anything more than vat_help.
+
         Do not fail if this particular failure has been already reported.
 
         Intended use: Call during test (not in initialization),
@@ -307,6 +337,10 @@ class VppApiCrcChecker:
         api_name = _str(api_name)
         if api_name in self._reported:
             return
+        options = self._options[api_name]
+        options.pop(u"vat_help", None)
+        if options:
+            logger.console(f"{api_name} found with options {options}")
         old_expected = self._expected
         new_expected = old_expected.copy()
         for collection_name, name_to_crc_mapping in old_expected.items():
