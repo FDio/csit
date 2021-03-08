@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76b2bc4e_4cc4a3eb",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-08T20:06:27Z",
+      "side": 1,
+      "message": "VPP ?",
+      "range": {
+        "startLine": 185,
+        "startChar": 15,
+        "endLine": 185,
+        "endChar": 18
+      },
+      "revId": "ef24e25f4d119472e284ca48823c79c34df2291d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
