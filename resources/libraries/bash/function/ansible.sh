@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -34,9 +34,10 @@ function ansible_adhoc () {
         die "Failed to read hosts from working topology!"
     }
     pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
-    ANSIBLE_STDOUT_CALLBACK=yaml \
-    ANSIBLE_PIPELINING=true \
-        ansible \
+    export ANSIBLE_HOST_KEY_CHECKING=False
+    export ANSIBLE_STDOUT_CALLBACK=yaml
+    export ANSIBLE_PIPELINING=true
+    ansible-playbook \
         --vault-password-file=vault_pass \
         --extra-vars '@vault.yml' \
         --inventory inventories/lf_inventory/hosts site.yaml \
@@ -65,9 +66,10 @@ function ansible_playbook () {
         die "Failed to read hosts from working topology!"
     }
     pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
-    ANSIBLE_STDOUT_CALLBACK=yaml \
-    ANSIBLE_PIPELINING=true \
-        ansible-playbook \
+    export ANSIBLE_HOST_KEY_CHECKING=False
+    export ANSIBLE_STDOUT_CALLBACK=yaml
+    export ANSIBLE_PIPELINING=true
+    ansible-playbook \
         --vault-password-file=vault_pass \
         --extra-vars '@vault.yml' \
         --inventory inventories/lf_inventory/hosts site.yaml \
