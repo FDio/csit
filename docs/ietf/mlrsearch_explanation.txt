@@ -1,0 +1,61 @@
+
+A small essay explaining changes done between
+draft-ietf-bmwg-mlrsearch-00.md and draft-ietf-bmwg-mlrsearch-01.md
+
+The 00 version was tracking separate intervals for NDR and PDR.
+I wanted the new version to support configurable numer of target ratios
+(not only 2), but the old description was not flexible enough.
+
+Also, I found one issue with the previous approach. It updates
+intervals only if the new measurement affects the tightest bound.
+But during external search, it is possible for an older measurement
+to become the tightest bound, without the old logic realizing it.
+
+Here is a synthetic example of a bad case scenario.
+Suppose that the previous phase ended with NDR interval (10, 11)
+of some unit, say Mpps; and PDR interval (15, 16).
+Next phase re-measures both bounds of NDR and the new results
+are still valid bounds and interval is still narrow enough.
+But re-measured PDR lower bound gets too high loss,
+so external search for lower bound for PDR starts.
+Nex rate is 13 (= 15 - 2 * (16 - 15)), and it also has too high loss.
+The old code then selects 9 (= 13 - 2 * (15 - 13)) as a new rate.
+If this also gets too high loss, now NDR lower bound is invalid,
+and new computed rate is 7 (= 9 - 2 * (10 - 9)).
+There are two isses with this.
+First, the algorithm should be smart enough to see
+the earlier measurement at 11 can act as a valid lower bound for PDR,
+so measuring at 9 is not needed.
+And even if it was needed for some reason, we want external search
+to keep accelerating, not slowing down just because another target ratio
+(with narrower interval) got invalidated.
+Of course, the second issue is best avoided by fixing the first issue.
+
+So the new logic is designed to prevent the first issue.
+Intead of tracking tightest bounds (valid or not) for each target ratio,
+the new logic simply remembers all results and searches for bounds when needed.
+After few tries I decided to track results separately for each duration.
+This made the code more explicit (compared to the old logic).
+For external search, one valid bound is missing, and a "secondary" bound is needed
+to reconstruct previous interval size. The code searches for second tightest
+current bound, searches for the tightest bound from the previous duration
+and uses whichever leads to narrower interval.
+One case is more complicated than the old code, when the current duration
+contains both bounds, but the lower one comes from a lower target ratio,
+so it can be quite far from the uppr bound.
+In that case the new code also tries expanding down from the upper bound,
+once again prefering the narrower result.
+
+Few optimisations present in the old CSIT code were removed
+(mainly to keep early new implementations simpler).
+Firstly, new code has the same width goal for all phases.
+Secondly, external search always double the interval size (CSIT was quadroupling).
+I will evaluate whether they still offer better overall duration,
+and add them in the next code update.
+
+One optimisation was discovered, but not implemented yet.
+Imagine we are in the internal search, and the current interval size
+is three times the width goal. The current code will always prform two bisects,
+ending in three quarters of width goal. The improvement is to split
+the interval 1:2, so there is 1.66 bisects on average, ending on width goal.
+This would need to be implemented carefully with respect to rounding errors.
