@@ -1,8 +1,8 @@
 ---
 title: Multiple Loss Ratio Search for Packet Throughput (MLRsearch)
 # abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-00
-date: 2021-02-05
+docname: draft-ietf-bmwg-mlrsearch-01
+date: 2021-02-12
 
 ipr: trust200902
 area: ops
@@ -39,10 +39,10 @@ normative:
 
 informative:
   FDio-CSIT-MLRsearch:
-    target: https://docs.fd.io/csit/rls2001/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.html
+    target: https://docs.fd.io/csit/rls2101/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.html
     title: "FD.io CSIT Test Methodology - MLRsearch"
-    date: 2020-02
-  PyPI-MLRsearch:
+    date: 2021-02
+  PyPI-MLRsearch [outdated]:
     target: https://pypi.org/project/MLRsearch/0.3.0/
     title: "MLRsearch 0.3.0, Python Package Index"
     date: 2020-02
@@ -166,9 +166,7 @@ deterministic systems.
 In practice two rates with distinct PLRs are commonly used for packet
 throughput measurements of NFV systems: Non Drop Rate (NDR) with PLR=0
 and Partial Drop Rate (PDR) with PLR>0. The rest of this document
-describes MLRsearch for NDR and PDR. If needed, MLRsearch can be
-adapted to discover more throughput rates with different pre-defined
-PLRs.
+describes MLRsearch for NDR and PDR as an example of target ratio set.
 
 Similarly to other throughput search approaches like binary search,
 MLRsearch is effective for SUTs/DUTs with PLR curve that is continuously
@@ -201,7 +199,7 @@ The main properties of MLRsearch:
   * Final Phase executes measurements according to the final search
     criteria.
   * Final search criteria are defined by following inputs:
-    * PLRs associated with NDR and PDR.
+    * PLR target set (e.g. 0% for NDR and 0.5% for PDR).
     * Final trial duration.
     * Measurement resolution.
 * Initial Phase:
@@ -211,38 +209,29 @@ The main properties of MLRsearch:
   * Trial duration:
     * Start with initial trial duration in the first intermediate phase.
     * Converge geometrically towards the final trial duration.
-  * Track two values for NDR and two for PDR:
-    * The values are called lower_bound and upper_bound.
-    * Each value comes from a specific trial measurement:
-      * Most recent for that transmit rate.
-      * As such the value is associated with that measurement's duration
-        and loss.
-    * A bound can be valid or invalid:
-      * Valid lower_bound must conform with PLR search criteria.
-      * Valid upper_bound must not conform with PLR search criteria.
-      * Example of invalid NDR lower_bound is if it has been measured
-        with non-zero loss.
-      * Invalid bounds are not real boundaries for the searched value:
-        * They are needed to track interval widths.
-      * Valid bounds are real boundaries for the searched value.
-      * Each non-initial phase ends with all bounds valid.
-      * Bound can become invalid if it re-measured at a longer trial
-        duration in a sub-sequent phase.
+  * All previously measured results are kept in two "databases".
+    * One database holds results for current phase, the other for the previous phase.
+    * The database results are not related to any targed loss ratio.
+    * The database results are ordered by increasing transmit rate.
+    * A field "effective loss ratio" is set for every result in the database.
+      * This field is recomputed after every database update (result addition).
+      * The value is the larger of the measured ratio and maximal ratio of lower load measurements.
+    * For any target loss ratio, any of the two databases can be queried for:
+      * Lower bound: Largest load from those which resulted in targed loss ratio or less.
+      * Upper bound: Smallest load from those which resulted in more than targed loss ratio.
+      * Second tightest lower or upper bound. This is useful for external search.
   * Search:
-    * Start with a large (lower_bound, upper_bound) interval width, that
-      determines measurement resolution.
-    * Geometrically converge towards the width goal of the phase.
-    * Each phase halves the previous width goal.
-      * First measurement of the next phase will be internal search
-        which always gives a valid bound and brings the width to the new goal.
-      * Only one bound then needs to be re-measured with new duration.
+    * Each phase aims at the same width goal.
+    * Within a phase, the search deals with ratios in increasing order.
+    * Lower bounds are established first.
+    * Exit from a phase early if smallest ratio does not have large enough lower bound.
+    * Bounds from a previous duration are used if they lead to narrower intervals.
   * Use of internal and external searches:
     * External search:
-      * Measures at transmit rates outside the (lower_bound,
-        upper_bound) interval.
-      * Activated when a bound is invalid, to search for a new valid
-        bound by multiplying (for example doubling) the interval width.
       * It is a variant of "exponential search".
+      * Happens when current duration does not have valid lower (or upper) bound.
+      * Or when valid lower bound comes from previous ratio,
+        and leads to wider interval than suggested by results of previous phase.
     * Internal search:
       * A "binary search" that measures at transmit rates within the
         (lower_bound, upper_bound) valid interval, halving the interval
@@ -336,70 +325,44 @@ which is a simlified version of the existing implementation.
       second intermediate phase is the geometric average of
       initial_trial_duration and final_trial_duration.
    2. IN: relative_width_goal for the current phase. Set to
-      final_relative_width for the final phase; doubled for each
-      preceding phase. For example with two intermediate phases, the
-      first intermediate phase uses quadruple of final_relative_width
-      and the second intermediate phase uses double of
-      final_relative_width.
-   3. IN: ndr_interval, pdr_interval from the previous main loop
-      iteration or the previous phase. If the previous phase is the
-      initial phase, both intervals are formed by a (correctly ordered)
-      pair of MRR2 and MRR. Note that the initial phase is likely
-      to create intervals with invalid bounds.
+      final_relative_width for all non-initial phases.
+   3. IN: "Current" duration result database from the previous phase,
+      now marked as "previous" duration result database.
    4. DO: According to the procedure described in point 2., either exit
       the phase (by jumping to 1.7.), or calculate new transmit rate to
       measure with.
    5. DO: Perform the trial measurement at the new transmit rate and
       trial_duration, compute its loss ratio.
-   6. DO: Update the bounds of both intervals, based on the new
-      measurement. The actual update rules are numerous, as NDR external
-      search can affect PDR interval and vice versa, but the result
-      agrees with rules of both internal and external search. For
-      example, any new measurement below an invalid lower_bound becomes
-      the new lower_bound, while the old measurement (previously acting
-      as the invalid lower_bound) becomes a new and valid upper_bound.
+   6. DO: Update the database of current phase results, including sorting
+      and effective loss ratio re-computation.
       Go to next iteration (1.3.), taking the updated intervals as new
       input.
-   7. OUT: current ndr_interval and pdr_interval. In the final phase
-      this is also considered to be the result of the whole search. For
-      other phases, the next phase loop is started with the current
-      results as an input.
+   7. OUT: Current result database. In the final phase, the database
+      is post-processed so each target ratio gets tightest lower and upper bound.
 2. New transmit rate (or exit) calculation (for point 1.4.):
-   1. If there is an invalid bound then prepare for external search:
-      * IF the most recent measurement at NDR lower_bound transmit
-        rate had the loss higher than zero, then the new transmit rate
-        is NDR lower_bound decreased by two NDR interval widths.
-      * Else, IF the most recent measurement at PDR lower_bound
-        transmit rate had the loss higher than PLR, then the new
-        transmit rate is PDR lower_bound decreased by two PDR interval
-        widths.
-      * Else, IF the most recent measurement at NDR upper_bound
-        transmit rate had no loss, then the new transmit rate is NDR
-        upper_bound increased by two NDR interval widths.
-      * Else, IF the most recent measurement at PDR upper_bound
-        transmit rate had the loss lower or equal to PLR, then the new
-        transmit rate is PDR upper_bound increased by two PDR interval
-        widths.
-   2. Else, if interval width is higher than the current phase goal:
-      * IF NDR interval does not meet the current phase width
-        goal, prepare for internal search. The new transmit rate is a
-        in the middle of NDR lower_bound and NDR upper_bound.
-      * IF PDR interval does not meet the current phase width
-        goal, prepare for internal search. The new transmit rate is a
-        in the middle of PDR lower_bound and PDR upper_bound.
-   3. Else, if some bound has still only been measured at a lower
-      duration, prepare to re-measure at the current duration (and the
-      same transmit rate). The order of priorities is:
-      * NDR lower_bound,
-      * PDR lower_bound,
-      * NDR upper_bound,
-      * PDR upper_bound.
-   4. Else, do not prepare any new rate, to exit the phase.
+   0. TODO: Specify how do maximum and minimum rate affect the computation.
+   1. Execute for each target ratio in increasing order,
+      first chosen transmit rate breaks the ratio loop. If no break happens, phase ends.
+   2. If there is no current result, re-measure lower bound from the previous phase
+      (or upper bound if previous phase had no lower bound).
+   3. If upper bound exists but lower bound not (for the current duration),
+      compute new rate by external search, using either second tightest current
+      upper bound, or upper bound for previous duration (prefer narrower interval).
+   4. If lower bound exists but upper bound not (for the current duration),
+      compute new rate by external search, using either second tightest current
+      lower bound, or lower bound for previous duration (prefer narrower interval).
+   5. If both bound exist, check interval width. If it does not meet the goal,
+      compute new rate using internal search, but also using external search
+      as in 2.4. Chose the higher of the two computed values.
+   6. If both bounds exist and interval is narrow enough, continue with next
+      target ratio.
       This ensures that at the end of each non-initial phase
       all intervals are valid, narrow enough, and measured
       at current phase trial duration.
 
 # FD.io CSIT Implementation
+
+FIXME: Update.
 
 The only known working implementation of MLRsearch is in
 the open-source code running in Linux Foundation
