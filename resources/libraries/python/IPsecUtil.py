@@ -1941,9 +1941,6 @@ class IPsecUtil:
         IPsecUtil.vpp_ipsec_set_ip_route(
             nodes[u"DUT1"], n_tunnels, tunnel_ip1, raddr_ip2, tunnel_ip2,
             interface1, raddr_range)
-        IPsecUtil.vpp_ipsec_set_ip_route(
-            nodes[u"DUT2"], n_tunnels, tunnel_ip2, raddr_ip1, tunnel_ip1,
-            interface2, raddr_range)
 
         IPsecUtil.vpp_ipsec_add_spd(nodes[u"DUT1"], spd_id)
         IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT1"], spd_id, interface1)
@@ -1956,17 +1953,6 @@ class IPsecUtil:
             proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
         )
 
-        IPsecUtil.vpp_ipsec_add_spd(nodes[u"DUT2"], spd_id)
-        IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT2"], spd_id, interface2)
-        IPsecUtil.vpp_ipsec_policy_add(
-            nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
-            proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
-        )
-        IPsecUtil.vpp_ipsec_policy_add(
-            nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
-            proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
-        )
-
         IPsecUtil.vpp_ipsec_add_sad_entries(
             nodes[u"DUT1"], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
             integ_alg, integ_key, tunnel_ip1, tunnel_ip2
@@ -1976,30 +1962,45 @@ class IPsecUtil:
         )
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
-            nodes[u"DUT2"], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
-            integ_alg, integ_key, tunnel_ip1, tunnel_ip2
-        )
-        IPsecUtil.vpp_ipsec_spd_add_entries(
-            nodes[u"DUT2"], n_tunnels, spd_id, p_lo, True, sa_id_1, raddr_ip2
-        )
-
-        IPsecUtil.vpp_ipsec_add_sad_entries(
-            nodes[u"DUT2"], n_tunnels, sa_id_2, spi_2, crypto_alg, crypto_key,
-            integ_alg, integ_key, tunnel_ip2, tunnel_ip1
-        )
-
-        IPsecUtil.vpp_ipsec_spd_add_entries(
-            nodes[u"DUT2"], n_tunnels, spd_id, p_lo, False, sa_id_2, raddr_ip1
-        )
-
-        IPsecUtil.vpp_ipsec_add_sad_entries(
             nodes[u"DUT1"], n_tunnels, sa_id_2, spi_2, crypto_alg, crypto_key,
             integ_alg, integ_key, tunnel_ip2, tunnel_ip1
         )
-
         IPsecUtil.vpp_ipsec_spd_add_entries(
             nodes[u"DUT1"], n_tunnels, spd_id, p_lo, True, sa_id_2, raddr_ip1
         )
+
+        if u"DUT2" in nodes.keys():
+            IPsecUtil.vpp_ipsec_set_ip_route(
+                nodes[u"DUT2"], n_tunnels, tunnel_ip2, raddr_ip1, tunnel_ip1,
+                interface2, raddr_range)
+
+            IPsecUtil.vpp_ipsec_add_spd(nodes[u"DUT2"], spd_id)
+            IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT2"], spd_id, interface2)
+            IPsecUtil.vpp_ipsec_policy_add(
+                nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
+                proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
+            )
+            IPsecUtil.vpp_ipsec_policy_add(
+                nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
+                proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
+            )
+
+            IPsecUtil.vpp_ipsec_add_sad_entries(
+                nodes[u"DUT2"], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
+                integ_alg, integ_key, tunnel_ip1, tunnel_ip2
+            )
+            IPsecUtil.vpp_ipsec_spd_add_entries(
+                nodes[u"DUT2"], n_tunnels, spd_id, p_lo, True, sa_id_1, raddr_ip2
+            )
+
+            IPsecUtil.vpp_ipsec_add_sad_entries(
+                nodes[u"DUT2"], n_tunnels, sa_id_2, spi_2, crypto_alg, crypto_key,
+                integ_alg, integ_key, tunnel_ip2, tunnel_ip1
+            )
+            IPsecUtil.vpp_ipsec_spd_add_entries(
+                nodes[u"DUT2"], n_tunnels, spd_id, p_lo, False, sa_id_2, raddr_ip1
+            )
+
 
     @staticmethod
     def vpp_ipsec_show(node):
