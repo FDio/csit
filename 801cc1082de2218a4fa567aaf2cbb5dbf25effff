@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "609a7fc5_6e016f5c",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-10T01:41:20Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/c/csit/+/31333 installs the identical nginx.conf file in /usr/local/nginx/conf\n\nSince the nginx.conf file is being edited by this script, it would be better to copy the default config installed by ansible and not include another copy of the default nginx.conf file in the CSIT repo.  It is best if there is a single source of truth.",
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa061b94_8ef580f3",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-10T01:41:20Z",
+      "side": 1,
+      "message": "pass in tls_tcp \u0026 rps_cps to make output in _parse_ab_output() more clear.",
+      "range": {
+        "startLine": 99,
+        "startChar": 21,
+        "endLine": 99,
+        "endChar": 24
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "452cfd12_8c251b09",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-10T01:41:20Z",
+      "side": 1,
+      "message": "Use tls_tcp to add customize this label instead of inferring the protocol from the test name.\n\ne.g. \"Measured HTTP values\" and \"Measured HTTPS values\"",
+      "range": {
+        "startLine": 118,
+        "startChar": 18,
+        "endLine": 118,
+        "endChar": 33
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32f9b43e_b4b26796",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-10T01:41:20Z",
+      "side": 1,
+      "message": "Use rps_cps to customize this label instead of inferring the units from the test name.\n\neg. \"CPS rate\" or \"RPS rate\"",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 27
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4846c102_6ce1d455",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-10T01:41:20Z",
+      "side": 1,
+      "message": "What rate is this?  Presumably a data transfer rate -- Tx, Rx, or both (i.e. round trip)?",
+      "range": {
+        "startLine": 123,
+        "startChar": 14,
+        "endLine": 123,
+        "endChar": 18
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08e41075_91d3fee4",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-10T01:41:20Z",
+      "side": 1,
+      "message": "Processing time where?  How is this value used / interpreted?\nIf it is not applicable to VPP performance, then perhaps it can be left out...",
+      "range": {
+        "startLine": 129,
+        "startChar": 14,
+        "endLine": 129,
+        "endChar": 24
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85ce051f_2a27fb7d",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-10T01:41:20Z",
+      "side": 1,
+      "message": "\"Total data transferred\"",
+      "range": {
+        "startLine": 132,
+        "startChar": 15,
+        "endLine": 132,
+        "endChar": 32
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e4c4088_01ec51f8",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-10T01:41:20Z",
+      "side": 1,
+      "message": "Completed",
+      "range": {
+        "startLine": 134,
+        "startChar": 15,
+        "endLine": 134,
+        "endChar": 23
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "866b9e1b_364365f0",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttpsw-ldpreload-nginx-rps.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-10T01:41:20Z",
+      "side": 1,
+      "message": "If I understand the test configuration correctly, this configuration setting means that all of the tests in this file are \u0027http\u0027 tests and not \u0027https\u0027 tests.\n\nTherefore all of the instances of \u0027ip4tcphttpsw\u0027 in this file (including the filename) should be changed to \u0027ip4tcphttp\u0027.\n\nAdditional test suite files can be added for \u0027http\u0027 CPS tests, as well as \u0027https\u0027 RPS \u0026 CPS tests.  However, it makes sense to add them in follow-on gerrit changes so this one can be merged in a timely fashion.  \n\nThe complete set of suites should eventually include:\n\n# This gerrit change set\ntests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-rps.robot\n\n# Additional gerrit change sets\ntests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-cps.robot\ntests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttps-ldpreload-nginx-rps.robot\ntests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttps-ldpreload-nginx-cps.robot",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 19
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
