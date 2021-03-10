@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "78a035a4_d31ca633",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-10T09:24:21Z",
+      "side": 1,
+      "message": "Hi Dave\nIt\u0027s true that the configuration file added in ansible should be used, but when I ran gerrit31334, I didn\u0027t find gerrit31333 running and couldn\u0027t find any log information.\nThe reason why we were able to run successfully in the past is that nginx exists on the CI server of the server, but not every server,Although I have changed it according to your request, using the configuration file of /usr/local/nginx/conf in ansible, we still can\u0027t run successfully, because Gerrit 31333 is not running. Do you know why? Thank you very much for your help.",
+      "parentUuid": "609a7fc5_6e016f5c",
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "aa061b94_8ef580f3",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 22
@@ -39,6 +57,30 @@
       "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34316e18_07999b9b",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-10T09:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa061b94_8ef580f3",
+      "range": {
+        "startLine": 99,
+        "startChar": 21,
+        "endLine": 99,
+        "endChar": 24
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "c621afa6_81f6b0e8",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-10T09:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "452cfd12_8c251b09",
+      "range": {
+        "startLine": 118,
+        "startChar": 18,
+        "endLine": 118,
+        "endChar": 33
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "32f9b43e_b4b26796",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 22
@@ -85,6 +151,30 @@
       "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c96c722_3272290a",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-10T09:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32f9b43e_b4b26796",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 27
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "255b9fcb_3ef2a32e",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-10T09:24:21Z",
+      "side": 1,
+      "message": "Transfer Rate  [Kbytes/sec]",
+      "parentUuid": "4846c102_6ce1d455",
+      "range": {
+        "startLine": 123,
+        "startChar": 14,
+        "endLine": 123,
+        "endChar": 18
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "08e41075_91d3fee4",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 22
@@ -131,6 +245,30 @@
       "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4776dfc_668b3559",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-10T09:24:21Z",
+      "side": 1,
+      "message": "It does not seem to have anything to do with VPP ,remove it",
+      "parentUuid": "08e41075_91d3fee4",
+      "range": {
+        "startLine": 129,
+        "startChar": 14,
+        "endLine": 129,
+        "endChar": 24
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "0e02dfa5_734f10b9",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-10T09:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85ce051f_2a27fb7d",
+      "range": {
+        "startLine": 132,
+        "startChar": 15,
+        "endLine": 132,
+        "endChar": 32
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e4c4088_01ec51f8",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 22
@@ -180,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "d480397c_70365960",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-10T09:24:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e4c4088_01ec51f8",
+      "range": {
+        "startLine": 134,
+        "startChar": 15,
+        "endLine": 134,
+        "endChar": 23
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "866b9e1b_364365f0",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttpsw-ldpreload-nginx-rps.robot",
         "patchSetId": 22
@@ -200,6 +386,30 @@
       "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f1b48b6_6f088c44",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttpsw-ldpreload-nginx-rps.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-10T09:24:21Z",
+      "side": 1,
+      "message": "Yes, your understanding is correct. I will join HTTP first, and then I will join HTTPS, because HTTPS will also rely on OpenSSL,The case name has been modified",
+      "parentUuid": "866b9e1b_364365f0",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 19
+      },
+      "revId": "801cc1082de2218a4fa567aaf2cbb5dbf25effff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
