@@ -19,6 +19,7 @@ from enum import Enum, IntEnum
 from io import open
 from random import choice
 from string import ascii_letters
+from robot.api import logger
 
 from ipaddress import ip_network, ip_address
 
@@ -553,7 +554,7 @@ class IPsecUtil:
     @staticmethod
     def vpp_ipsec_set_ip_route(
             node, n_tunnels, tunnel_src, traffic_addr, tunnel_dst, interface,
-            raddr_range):
+            raddr_range, dst_mac=None):
         """Set IP address and route on interface.
 
         :param node: VPP node to add config on.
@@ -582,6 +583,12 @@ class IPsecUtil:
         if int(n_tunnels) > 10:
             tmp_filename = u"/tmp/ipsec_set_ip.script"
 
+            # tunnel_src = 100.0.0.1
+            # traffic_addr = 20.0.0.0
+            # tunnel_dst = 100.0.0.2
+            # interface = DUT_int_2
+            # raddr_range = 24
+
             with open(tmp_filename, 'w') as tmp_file:
                 if_name = Topology.get_interface_name(node, interface)
                 for i in range(n_tunnels):
@@ -589,8 +596,13 @@ class IPsecUtil:
                         f"{tunnel_src + i * addr_incr}/{raddr_range}\n" \
                         f"exec ip route add {traffic_addr + i}/" \
                         f"{128 if traffic_addr.version == 6 else 32} " \
-                        f"via {tunnel_dst + i * addr_incr} {if_name}\n"
+                        f"via {tunnel_dst + i * addr_incr} {if_name}\n" \
+                        f"exec set ip neighbor {if_name} " \
+                        f"{tunnel_src + i * addr_incr} {dst_mac}\n"
                     tmp_file.write(conf)
+                    if i < 3:
+                        logger.debug(conf)
+
             VatExecutor().execute_script(
                 tmp_filename, node, timeout=300, json_out=False,
                 copy_on_execute=True
@@ -1938,12 +1950,12 @@ class IPsecUtil:
             IPsecUtil.get_integ_alg_key_len(integ_alg)
         ).decode() if integ_alg else u""
 
+        rmac = Topology.get_interface_mac(nodes[u"DUT2"], interface2) \
+            if u"DUT2" in nodes.keys() \
+            else Topology.get_interface_mac(nodes[u"TG"], interface2)
         IPsecUtil.vpp_ipsec_set_ip_route(
             nodes[u"DUT1"], n_tunnels, tunnel_ip1, raddr_ip2, tunnel_ip2,
-            interface1, raddr_range)
-        IPsecUtil.vpp_ipsec_set_ip_route(
-            nodes[u"DUT2"], n_tunnels, tunnel_ip2, raddr_ip1, tunnel_ip1,
-            interface2, raddr_range)
+            interface1, raddr_range, rmac)
 
         IPsecUtil.vpp_ipsec_add_spd(nodes[u"DUT1"], spd_id)
         IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT1"], spd_id, interface1)
@@ -1956,17 +1968,6 @@ class IPsecUtil:
             proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
         )
 
-        IPsecUtil.vpp_ipsec_add_spd(nodes[u"DUT2"], spd_id)
-        IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT2"], spd_id, interface2)
-        IPsecUtil.vpp_ipsec_policy_add(
-            nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
-            proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
-        )
-        IPsecUtil.vpp_ipsec_policy_add(
-            nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
-            proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
-        )
-
         IPsecUtil.vpp_ipsec_add_sad_entries(
             nodes[u"DUT1"], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
             integ_alg, integ_key, tunnel_ip1, tunnel_ip2
@@ -1976,30 +1977,45 @@ class IPsecUtil:
         )
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
-            nodes[u"DUT2"], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
-            integ_alg, integ_key, tunnel_ip1, tunnel_ip2
-        )
-        IPsecUtil.vpp_ipsec_spd_add_entries(
-            nodes[u"DUT2"], n_tunnels, spd_id, p_lo, True, sa_id_1, raddr_ip2
-        )
-
-        IPsecUtil.vpp_ipsec_add_sad_entries(
-            nodes[u"DUT2"], n_tunnels, sa_id_2, spi_2, crypto_alg, crypto_key,
-            integ_alg, integ_key, tunnel_ip2, tunnel_ip1
-        )
-
-        IPsecUtil.vpp_ipsec_spd_add_entries(
-            nodes[u"DUT2"], n_tunnels, spd_id, p_lo, False, sa_id_2, raddr_ip1
-        )
-
-        IPsecUtil.vpp_ipsec_add_sad_entries(
             nodes[u"DUT1"], n_tunnels, sa_id_2, spi_2, crypto_alg, crypto_key,
             integ_alg, integ_key, tunnel_ip2, tunnel_ip1
         )
-
         IPsecUtil.vpp_ipsec_spd_add_entries(
             nodes[u"DUT1"], n_tunnels, spd_id, p_lo, True, sa_id_2, raddr_ip1
         )
+
+        if u"DUT2" in nodes.keys():
+            IPsecUtil.vpp_ipsec_set_ip_route(
+                nodes[u"DUT2"], n_tunnels, tunnel_ip2, raddr_ip1, tunnel_ip1,
+                interface2, raddr_range)
+
+            IPsecUtil.vpp_ipsec_add_spd(nodes[u"DUT2"], spd_id)
+            IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT2"], spd_id, interface2)
+            IPsecUtil.vpp_ipsec_policy_add(
+                nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
+                proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
+            )
+            IPsecUtil.vpp_ipsec_policy_add(
+                nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
+                proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
+            )
+
+            IPsecUtil.vpp_ipsec_add_sad_entries(
+                nodes[u"DUT2"], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
+                integ_alg, integ_key, tunnel_ip1, tunnel_ip2
+            )
+            IPsecUtil.vpp_ipsec_spd_add_entries(
+                nodes[u"DUT2"], n_tunnels, spd_id, p_lo, True, sa_id_1, raddr_ip2
+            )
+
+            IPsecUtil.vpp_ipsec_add_sad_entries(
+                nodes[u"DUT2"], n_tunnels, sa_id_2, spi_2, crypto_alg, crypto_key,
+                integ_alg, integ_key, tunnel_ip2, tunnel_ip1
+            )
+            IPsecUtil.vpp_ipsec_spd_add_entries(
+                nodes[u"DUT2"], n_tunnels, spd_id, p_lo, False, sa_id_2, raddr_ip1
+            )
+
 
     @staticmethod
     def vpp_ipsec_show(node):
