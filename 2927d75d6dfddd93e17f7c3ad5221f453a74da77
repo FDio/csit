@@ -16,6 +16,24 @@
       "revId": "2927d75d6dfddd93e17f7c3ad5221f453a74da77",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c835bf29_9e314951",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-11T10:02:18Z",
+      "side": 1,
+      "message": "ok,remove it.I\u0027ll add it later to the test code in gerrit31334",
+      "parentUuid": "599af860_d33a6f87",
+      "revId": "2927d75d6dfddd93e17f7c3ad5221f453a74da77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
