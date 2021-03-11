@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01448928_f93dee06",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/defaults/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T07:17:51Z",
+      "side": 1,
+      "message": "/opt",
+      "range": {
+        "startLine": 8,
+        "startChar": 20,
+        "endLine": 8,
+        "endChar": 37
+      },
+      "revId": "df2931ed9740e8315a4be7cdf715048f6420e682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e841cd3_262486a8",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T07:17:51Z",
+      "side": 1,
+      "message": "double new line -\u003e single new line",
+      "revId": "df2931ed9740e8315a4be7cdf715048f6420e682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d935fa14_c26e65c4",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T07:17:51Z",
+      "side": 1,
+      "message": "Download Nginx {{ nginx_version }}",
+      "range": {
+        "startLine": 5,
+        "startChar": 8,
+        "endLine": 5,
+        "endChar": 49
+      },
+      "revId": "df2931ed9740e8315a4be7cdf715048f6420e682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "180bc6bb_c6dd43b5",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T07:17:51Z",
+      "side": 1,
+      "message": "single space",
+      "range": {
+        "startLine": 7,
+        "startChar": 58,
+        "endLine": 7,
+        "endChar": 60
+      },
+      "revId": "df2931ed9740e8315a4be7cdf715048f6420e682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24a5a3fe_65926027",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T07:17:51Z",
+      "side": 1,
+      "message": "/opt/ and also put into task variables",
+      "range": {
+        "startLine": 8,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 37
+      },
+      "revId": "df2931ed9740e8315a4be7cdf715048f6420e682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11d2e1b3_5f938fe7",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T07:17:51Z",
+      "side": 1,
+      "message": "nginx-inst",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "df2931ed9740e8315a4be7cdf715048f6420e682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c5fbc95_7f627172",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T07:17:51Z",
+      "side": 1,
+      "message": "Install Nginx",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "df2931ed9740e8315a4be7cdf715048f6420e682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33ca09cb_c9aa07d9",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T07:17:51Z",
+      "side": 1,
+      "message": "command: \"./configure ...\"\n  args:\n      chdir: \"...\"\n  register: ....\n\n\nnext task \n\n   command: \"make ...\"\n   args:\n      chdir: \"...\"\n   when:\n      - nginx_configured",
+      "revId": "df2931ed9740e8315a4be7cdf715048f6420e682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0979b8c3_85cab0c7",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T07:17:51Z",
+      "side": 1,
+      "message": "this should be part of the test not install.",
+      "revId": "df2931ed9740e8315a4be7cdf715048f6420e682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
