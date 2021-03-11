@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "599af860_d33a6f87",
+        "filename": "resources/tools/testbed-setup/ansible/roles/nginx/tasks/main.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-11T09:36:58Z",
+      "side": 1,
+      "message": "As long as this is vsap related it must be part of test code. not ansible",
+      "revId": "2927d75d6dfddd93e17f7c3ad5221f453a74da77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
