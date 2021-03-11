@@ -17,19 +17,6 @@
   tags:
     - perf-inst-prerequisites
 
-- name: Conf - Kernel Parameters
-  lineinfile:
-    path: "/etc/default/grub"
-    state: "present"
-    regexp: "^GRUB_CMDLINE_LINUX="
-    line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value is sameas true %}{{key}} {% else %}{{key}}={{value}} {% endif %}{% endfor %}\""
-  notify:
-    - "Update GRUB"
-  tags:
-    - perf-conf-grub
-
-- meta: flush_handlers
-
 - name: Conf - Turbo Boost
   import_tasks: turbo_boost.yaml
   when: >
@@ -164,8 +151,6 @@
     owner: "root"
     group: "root"
     mode: 0644
-  notify:
-    - "Update GRUB"
   tags:
     - perf-conf-irqbalance
 
@@ -176,6 +161,19 @@
   tags:
     - perf-conf-ondemand
 
+- name: Conf - Kernel Parameters
+  lineinfile:
+    path: "/etc/default/grub"
+    state: "present"
+    regexp: "^GRUB_CMDLINE_LINUX="
+    line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value is sameas true %}{{key}} {% else %}{{key}}={{value}} {% endif %}{% endfor %}\""
+  notify:
+    - "Update GRUB"
+  tags:
+    - perf-conf-grub
+
+- meta: flush_handlers
+
 - name: Conf - Load Kernel Modules By Default
   lineinfile:
     path: "/etc/modules"
@@ -183,6 +181,8 @@
     line: "{{ item }}"
   with_items:
     - "vfio-pci"
+  notify:
+    - "Reboot Server"
   tags:
     - perf-conf-load-kernel-modules
 
