@@ -887,7 +887,7 @@ function select_tags () {
     # TODO: Add missing reasons here (if general) or where used (if specific).
     case "${TEST_CODE}" in
         *"2n-skx"*)
-            test_tag_array+=("!ipsec")
+            test_tag_array+=("!ipsechw")
             ;;
         *"3n-skx"*)
             test_tag_array+=("!ipsechw")
@@ -895,10 +895,10 @@ function select_tags () {
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             ;;
         *"2n-clx"*)
-            test_tag_array+=("!ipsec")
+            test_tag_array+=("!ipsechw")
             ;;
         *"2n-zn2"*)
-            test_tag_array+=("!ipsec")
+            test_tag_array+=("!ipsechw")
             ;;
         *"2n-dnv"*)
             test_tag_array+=("!ipsechw")
