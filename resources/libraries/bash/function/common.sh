@@ -1,5 +1,5 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
-# Copyright (c) 2020 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -887,7 +887,7 @@ function select_tags () {
     # TODO: Add missing reasons here (if general) or where used (if specific).
     case "${TEST_CODE}" in
         *"2n-skx"*)
-            test_tag_array+=("!ipsec")
+            test_tag_array+=("!ipsechw")
             ;;
         *"3n-skx"*)
             test_tag_array+=("!ipsechw")
@@ -895,10 +895,10 @@ function select_tags () {
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             ;;
         *"2n-clx"*)
-            test_tag_array+=("!ipsec")
+            test_tag_array+=("!ipsechw")
             ;;
         *"2n-zn2"*)
-            test_tag_array+=("!ipsec")
+            test_tag_array+=("!ipsechw")
             ;;
         *"2n-dnv"*)
             test_tag_array+=("!ipsechw")
