@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -185,7 +185,11 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"snergster/csit-arm-sut:latest"
 
     # TRex install directory
+<<<<<<< HEAD   (180603 Infra: Do not strict check keys in Ansible)
     TREX_INSTALL_DIR = u"/opt/trex-core-2.82"
+=======
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.88"
+>>>>>>> CHANGE (aadd20 Perf: Bump T-Rex to 2.88)
 
     # TODO: Find the right way how to use it in trex profiles
     # TRex pcap files directory

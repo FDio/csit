@@ -24,7 +24,11 @@ import sys
 import time
 
 sys.path.insert(
+<<<<<<< HEAD   (180603 Infra: Do not strict check keys in Ansible)
     0, u"/opt/trex-core-2.82/scripts/automation/trex_control_plane/interactive/"
+=======
+    0, u"/opt/trex-core-2.88/scripts/automation/trex_control_plane/interactive/"
+>>>>>>> CHANGE (aadd20 Perf: Bump T-Rex to 2.88)
 )
 from trex.stl.api import *
 

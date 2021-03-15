@@ -123,7 +123,11 @@ class TrafficProfileBaseClass:
         """
         self.framesize = kwargs[u"framesize"]
         self._pcap_dir = kwargs.get(
+<<<<<<< HEAD   (180603 Infra: Do not strict check keys in Ansible)
             u"pcap_dir",u"/opt/trex-core-2.82/scripts/avl"
+=======
+            u"pcap_dir",u"/opt/trex-core-2.88/scripts/avl"
+>>>>>>> CHANGE (aadd20 Perf: Bump T-Rex to 2.88)
         )
 
         return self.create_profile()
