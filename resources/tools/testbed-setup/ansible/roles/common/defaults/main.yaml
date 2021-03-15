@@ -34,6 +34,7 @@ packages_by_distro:
       - "python3-cffi-backend"
       - "python3-dev"
       - "python3-pip"
+      - "python3-pyelftools"
       - "python3-setuptools"
     focal:
       - "build-essential"
@@ -45,6 +46,7 @@ packages_by_distro:
       - "python3-cffi-backend"
       - "python3-dev"
       - "python3-pip"
+      - "python3-pyelftools"
       - "python3-setuptools"
 
 packages_by_arch:
@@ -68,4 +70,3 @@ packages_by_arch:
 #  FTP_PROXY: http://proxy.com:80
 #  no_proxy: localhost,127.0.0.1,{{ ansible_default_ipv4.address }}
 #  NO_PROXY: localhost,127.0.0.1,{{ ansible_default_ipv4.address }}
-

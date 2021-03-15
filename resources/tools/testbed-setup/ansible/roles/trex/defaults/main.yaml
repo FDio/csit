@@ -40,7 +40,5 @@ packages_by_arch:
 trex_target_dir: "/opt"
 trex_url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 trex_version:
-  # rls2009
-  - "2.82"
-  # rls2101
-  - "2.86"
+  # master // ubuntu 20.04
+  - "2.88"
