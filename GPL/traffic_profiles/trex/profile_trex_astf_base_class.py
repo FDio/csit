@@ -123,7 +123,7 @@ class TrafficProfileBaseClass:
         """
         self.framesize = kwargs[u"framesize"]
         self._pcap_dir = kwargs.get(
-            u"pcap_dir",u"/opt/trex-core-2.82/scripts/avl"
+            u"pcap_dir",u"/opt/trex-core-2.88/scripts/avl"
         )
 
         return self.create_profile()

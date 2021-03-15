@@ -28,7 +28,7 @@ Functionality:
 import sys
 
 sys.path.insert(
-    0, u"/opt/trex-core-2.82/scripts/automation/trex_control_plane/interactive/"
+    0, u"/opt/trex-core-2.88/scripts/automation/trex_control_plane/interactive/"
 )
 from trex.astf.api import *
 
