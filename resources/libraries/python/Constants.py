@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -185,7 +185,11 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"csit_sut-ubuntu1804:local"
 
     # TRex install directory
+<<<<<<< HEAD   (ab7c99 PAL: Remove instalation of system dependencies)
     TREX_INSTALL_DIR = u"/opt/trex-core-2.86"
+=======
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.88"
+>>>>>>> CHANGE (9f35c0 Perf: Bump T-Rex to 2.88)
 
     # TODO: Find the right way how to use it in trex profiles
     # TRex pcap files directory

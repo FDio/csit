@@ -133,7 +133,11 @@ class TrafficProfileBaseClass:
         """
         self.framesize = kwargs[u"framesize"]
         self._pcap_dir = kwargs.get(
+<<<<<<< HEAD   (ab7c99 PAL: Remove instalation of system dependencies)
             u"pcap_dir",u"/opt/trex-core-2.86/scripts/avl"
+=======
+            u"pcap_dir",u"/opt/trex-core-2.88/scripts/avl"
+>>>>>>> CHANGE (9f35c0 Perf: Bump T-Rex to 2.88)
         )
 
         return self.create_profile()
