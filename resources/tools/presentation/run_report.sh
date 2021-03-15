@@ -18,6 +18,7 @@ sudo apt-get -y install libxml2 libxml2-dev libxslt-dev build-essential \
 
 if [[ ${CFG[BLD_LATEX]} -eq 1 ]] ;
 then
+    export DEBIAN_FRONTEND=noninteractive
     sudo apt-get -y install xvfb texlive-latex-recommended \
         texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra latexmk wkhtmltopdf inkscape
     sudo sed -i.bak 's/^\(main_memory\s=\s\).*/\110000000/' /usr/share/texlive/texmf-dist/web2c/texmf.cnf
