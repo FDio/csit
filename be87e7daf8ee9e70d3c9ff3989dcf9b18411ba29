@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3601bb38_4cc5c277",
+        "filename": "docs/vpp_review_process.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-15T16:26:17Z",
+      "side": 1,
+      "message": "Symptom watcher: Tomas Alexy.\nCSIT investigator: Vratko Polak.\nOther CSIT person: Maciek Konstantynowicz (representing \"CSIT community\" during weekly public call).",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 55
+      },
+      "revId": "be87e7daf8ee9e70d3c9ff3989dcf9b18411ba29",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
