@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "103a9510_816afc00",
+        "filename": "docs/TNM/README.md",
+        "patchSetId": 36
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-15T14:07:30Z",
+      "side": 1,
+      "message": "\"state-changes\"?",
+      "range": {
+        "startLine": 614,
+        "startChar": 2,
+        "endLine": 614,
+        "endChar": 9
+      },
+      "revId": "aa2f734d04fd059f95d3d3dbd875e2bde1059b3f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
