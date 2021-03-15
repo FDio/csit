@@ -197,8 +197,8 @@ class VppApiCrcChecker:
         for item in reversed(msg_obj):
             if not isinstance(item, dict):
                 continue
-            options = item.get(u"options", None)
-            if options is not None:
+            options = item.get(u"options", dict())
+            if not options:
                 break
         if version is None or version.startswith(u"0."):
             options[u"version"] = version
