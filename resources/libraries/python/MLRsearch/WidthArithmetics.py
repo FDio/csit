@@ -16,79 +16,113 @@
 import math
 
 
-# TODO: Say "relative" instead of "logarithmic" where possible.
 
-def step_down(relative_width, current_bound):
+ROUNDING_CONSTANT = 0.999999
+
+def multiply_relative_width(relative_width, coefficient):
+    """Return relative width corresponding to multiplied logarithmic width.
+
+    The multiplication happens in logarithmic space,
+    so the resulting relative width is always less than 1.
+
+    :param relative_width: The base relative width to multiply.
+    :param coefficient: Multiply by this in logarithmic space.
+    :type relative_width: float
+    :type coefficient: float
+    :returns: The relative width of multiplied logarithmic size.
+    :rtype: float
+    """
+    old_log_width = math.log(1.0 - relative_width)
+    # Slight decrease to prevent rounding errors from prolonging the search.
+    # TODO: Make the nines configurable.
+    new_log_width = old_log_width * coefficient * ROUNDING_CONSTANT
+    return 1.0 - math.exp(new_log_width)
+
+def halve_relative_width(relative_width, goal_width):
+    """Return relative width corresponding to half logarithmic width.
+
+    The logic attempts to save some halvings in future by performing
+    uneven split. If rounding error risk is detected,
+    even split is used.
+
+    :param relative_width: The base relative width to halve.
+    :param goal_width: Width goal for final phase.
+    :type relative_width: float
+    :type goal_width: float
+    :returns: The relative width of half logarithmic size.
+    :rtype: float
+    """
+    fallback_width = 1.0 - math.sqrt(1.0 - relative_width)
+    # Wig means Width In Goals.
+    wig = math.log(1.0 - relative_width) / math.log(1.0 - goal_width)
+    cwig = math.ceil(wig)
+    if cwig < 2.0 or cwig != math.ceil(wig * ROUNDING_CONSTANT):
+        return fallback_width
+    coefficient = cwig // 2
+    new_width = multiply_relative_width(relative_width, coefficient)
+    return new_width
+
+def step_down(current_bound, relative_width):
     """Return rate of logarithmic width below.
 
-    :param relative_width: The base relative width to use.
     :param current_bound: The current target transmit rate to move [pps].
-    :type relative_width: float
+    :param relative_width: The base relative width to use.
     :type current_bound: float
+    :type relative_width: float
     :returns: Transmit rate smaller by relative width [pps].
     :rtype: float
     """
     return current_bound * (1.0 - relative_width)
 
-def double_relative_width(relative_width):
-    """Return relative width corresponding to double logarithmic width.
-
-    :param relative_width: The base relative width to double.
-    :type relative_width: float
-    :returns: The relative width of double logarithmic size.
-    :rtype: float
-    """
-    return 1.99999 * relative_width - relative_width * relative_width
-    # The number should be 2.0, but we want to avoid rounding errors,
-    # and ensure half of double is not larger than the original value.
-
-def double_step_down(relative_width, current_bound):
-    """Return rate of double logarithmic width below.
-
-    :param relative_width: The base relative width to double.
-    :param current_bound: The current target transmit rate to move [pps].
-    :type relative_width: float
-    :type current_bound: float
-    :returns: Transmit rate smaller by logarithmically double width [pps].
-    :rtype: float
-    """
-    return step_down(double_relative_width(relative_width), current_bound)
-
-def step_up(relative_width, current_bound):
+def step_up(current_bound, relative_width):
     """Return rate of logarithmic width above.
 
-    :param relative_width: The base relative width to use.
     :param current_bound: The current target transmit rate to move [pps].
-    :type relative_width: float
+    :param relative_width: The base relative width to use.
     :type current_bound: float
+    :type relative_width: float
     :returns: Transmit rate larger by logarithmically double width [pps].
     :rtype: float
     """
     return current_bound / (1.0 - relative_width)
 
-def double_step_up(relative_width, current_bound):
-    """Return rate of double logarithmic width above.
+def multiple_step_down(current_bound, relative_width, coefficient):
+    """Return rate of multiplied logarithmic width below.
+
+    The multiplication happens in logarithmic space,
+    so the resulting applied relative width is always less than 1.
 
     :param relative_width: The base relative width to double.
     :param current_bound: The current target transmit rate to move [pps].
+    :param coefficient: Multiply by this in logarithmic space.
     :type relative_width: float
     :type current_bound: float
-    :returns: Transmit rate larger by logarithmically double width [pps].
+    :type coefficient: float
+    :returns: Transmit rate smaller by logarithmically multiplied width [pps].
     :rtype: float
     """
-    return step_up(double_relative_width(relative_width), current_bound)
+    new_width = multiply_relative_width(relative_width, coefficient)
+    return step_down(current_bound, new_width)
 
-def half_relative_width(relative_width):
-    """Return relative width corresponding to half logarithmic width.
+def multiply_step_up(current_bound, relative_width, coefficient):
+    """Return rate of double logarithmic width above.
 
-    :param relative_width: The base relative width to halve.
+    The multiplication happens in logarithmic space,
+    so the resulting applied relative width is always less than 1.
+
+    :param current_bound: The current target transmit rate to move [pps].
+    :param relative_width: The base relative width to double.
+    :param coefficient: Multiply by this in logarithmic space.
+    :type current_bound: float
     :type relative_width: float
-    :returns: The relative width of half logarithmic size.
+    :type coefficient: float
+    :returns: Transmit rate larger by logarithmically multiplied width [pps].
     :rtype: float
     """
-    return 1.0 - math.sqrt(1.0 - relative_width)
+    new_width = multiply_relative_width(relative_width, coefficient)
+    return step_up(current_bound, new_width)
 
-def half_step_up(relative_width, current_bound):
+def half_step_up(current_bound, relative_width, goal_width):
     """Return rate of half logarithmic width above.
 
     :param relative_width: The base relative width to halve.
@@ -98,4 +132,5 @@ def half_step_up(relative_width, current_bound):
     :returns: Transmit rate larger by logarithmically half width [pps].
     :rtype: float
     """
-    return step_up(half_relative_width(relative_width), current_bound)
+    new_width = halve_relative_width(relative_width, goal_width)
+    return step_up(current_bound, new_width)
