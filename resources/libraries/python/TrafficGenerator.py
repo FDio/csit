@@ -1040,7 +1040,7 @@ class TrafficGenerator(AbstractMeasurer):
         """
         if self._received is None:
             raise RuntimeError(u"The traffic generation has not been issued")
-        if self._received == u"0":
+        if self._received == 0:
             raise RuntimeError(u"No traffic forwarded")
 
     def partial_traffic_loss_accepted(
