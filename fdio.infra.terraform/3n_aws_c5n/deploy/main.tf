@@ -134,7 +134,7 @@ resource "aws_network_interface" "dut1_if1" {
   private_ip        = var.dut1_if1_ip
   private_ips       = [var.dut1_if1_ip]
   security_groups   = [aws_security_group.CSITSG.id]
-  depends_on        = [aws_vpc.CSITVPC, aws_subnet.b]
+  depends_on        = [aws_vpc.CSITVPC, aws_subnet.b, aws_instance.dut1]
 
   attachment {
     instance     = aws_instance.dut1.id
@@ -152,7 +152,7 @@ resource "aws_network_interface" "dut1_if2" {
   private_ip        = var.dut1_if2_ip
   private_ips       = [var.dut1_if2_ip]
   security_groups   = [aws_security_group.CSITSG.id]
-  depends_on        = [aws_vpc.CSITVPC]
+  depends_on        = [aws_vpc.CSITVPC, aws_subnet.c, aws_instance.dut1]
 
   attachment {
     instance     = aws_instance.dut1.id
@@ -170,7 +170,7 @@ resource "aws_network_interface" "dut2_if1" {
   private_ip        = var.dut2_if1_ip
   private_ips       = [var.dut2_if1_ip]
   security_groups   = [aws_security_group.CSITSG.id]
-  depends_on        = [aws_vpc.CSITVPC, aws_subnet.c]
+  depends_on        = [aws_vpc.CSITVPC, aws_subnet.c, aws_instance.dut2]
 
   attachment {
     instance     = aws_instance.dut2.id
@@ -188,7 +188,7 @@ resource "aws_network_interface" "dut2_if2" {
   private_ip        = var.dut2_if2_ip
   private_ips       = [var.dut2_if2_ip]
   security_groups   = [aws_security_group.CSITSG.id]
-  depends_on        = [aws_vpc.CSITVPC, aws_subnet.d]
+  depends_on        = [aws_vpc.CSITVPC, aws_subnet.d, aws_instance.dut2]
 
   attachment {
     instance     = aws_instance.dut2.id
@@ -206,7 +206,7 @@ resource "aws_network_interface" "tg_if1" {
   private_ip        = var.tg_if1_ip
   private_ips       = [var.tg_if1_ip]
   security_groups   = [aws_security_group.CSITSG.id]
-  depends_on        = [aws_vpc.CSITVPC, aws_subnet.b]
+  depends_on        = [aws_vpc.CSITVPC, aws_subnet.b, aws_instance.tg]
 
   attachment {
     instance     = aws_instance.tg.id
@@ -224,7 +224,7 @@ resource "aws_network_interface" "tg_if2" {
   private_ip        = var.tg_if2_ip
   private_ips       = [var.tg_if2_ip]
   security_groups   = [aws_security_group.CSITSG.id]
-  depends_on        = [aws_vpc.CSITVPC, aws_subnet.d]
+  depends_on        = [aws_vpc.CSITVPC, aws_subnet.d, aws_instance.tg]
 
   attachment {
     instance     = aws_instance.tg.id
@@ -262,7 +262,6 @@ data "aws_network_interface" "tg_if2" {
 
 # Instances
 resource "aws_instance" "tg" {
-  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
   ami                         = var.ami_image
   availability_zone           = var.avail_zone
   instance_type               = var.instance_type
@@ -275,6 +274,11 @@ resource "aws_instance" "tg" {
   source_dest_check           = false
   # host_id                   = "1"
 
+  depends_on = [
+    aws_vpc.CSITVPC,
+    aws_placement_group.CSITPG,
+  ]
+
   root_block_device {
     volume_size = 50
   }
@@ -286,7 +290,6 @@ resource "aws_instance" "tg" {
 }
 
 resource "aws_instance" "dut1" {
-  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
   ami                         = var.ami_image
   availability_zone           = var.avail_zone
   instance_type               = var.instance_type
@@ -299,6 +302,12 @@ resource "aws_instance" "dut1" {
   source_dest_check           = false
   # host_id                   = "2"
 
+  depends_on = [
+    aws_vpc.CSITVPC,
+    aws_placement_group.CSITPG,
+    aws_instance.tg
+  ]
+
   root_block_device {
     volume_size = 50
   }
@@ -310,7 +319,6 @@ resource "aws_instance" "dut1" {
 }
 
 resource "aws_instance" "dut2" {
-  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
   ami                         = var.ami_image
   availability_zone           = var.avail_zone
   instance_type               = var.instance_type
@@ -322,6 +330,13 @@ resource "aws_instance" "dut2" {
   placement_group             = aws_placement_group.CSITPG.id
   source_dest_check           = false
   # host_id                   = "3"
+
+  depends_on = [
+    aws_vpc.CSITVPC,
+    aws_placement_group.CSITPG,
+    aws_instance.tg,
+    aws_instance.dut1
+  ]
 
   root_block_device {
     volume_size = 50
@@ -358,7 +373,13 @@ resource "null_resource" "deploy_tg" {
   depends_on = [
     aws_instance.tg,
     aws_network_interface.tg_if1,
-    aws_network_interface.tg_if2
+    aws_network_interface.tg_if2,
+    aws_instance.dut1,
+    aws_network_interface.dut1_if1,
+    aws_network_interface.dut1_if2,
+    aws_instance.dut2,
+    aws_network_interface.dut2_if1,
+    aws_network_interface.dut2_if2
   ]
 
   connection {
@@ -394,9 +415,15 @@ resource "null_resource" "deploy_tg" {
 
 resource "null_resource" "deploy_dut1" {
   depends_on = [
+    aws_instance.tg,
+    aws_network_interface.tg_if1,
+    aws_network_interface.tg_if2,
     aws_instance.dut1,
     aws_network_interface.dut1_if1,
-    aws_network_interface.dut1_if2
+    aws_network_interface.dut1_if2,
+    aws_instance.dut2,
+    aws_network_interface.dut2_if1,
+    aws_network_interface.dut2_if2
   ]
 
   connection {
@@ -432,6 +459,12 @@ resource "null_resource" "deploy_dut1" {
 
 resource "null_resource" "deploy_dut2" {
   depends_on = [
+    aws_instance.tg,
+    aws_network_interface.tg_if1,
+    aws_network_interface.tg_if2,
+    aws_instance.dut1,
+    aws_network_interface.dut1_if1,
+    aws_network_interface.dut1_if2,
     aws_instance.dut2,
     aws_network_interface.dut2_if1,
     aws_network_interface.dut2_if2
