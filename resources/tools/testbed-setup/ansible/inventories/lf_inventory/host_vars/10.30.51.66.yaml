@@ -58,3 +58,10 @@ consul_retry_servers:
   - "10.30.51.30"
   - "10.30.51.32"
   - "10.30.51.33"
+
+# Docker daemon settings.
+docker_daemon:
+  # https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file
+  dns: [ "172.17.0.1" ]
+  dns-opts: []
+  dns-search: [ "{{ansible_hostname}}" ]

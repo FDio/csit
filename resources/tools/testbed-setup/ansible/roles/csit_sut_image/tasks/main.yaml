@@ -23,7 +23,7 @@
     - csit-sut-image
 
 - name: Build CSIT SUT Docker Image
-  shell: "docker build -t csit_sut-ubuntu1804:local ."
+  shell: "docker build -t csit_sut-ubuntu2004:local ."
   args:
     chdir: "/opt/csit-sut"
   tags:

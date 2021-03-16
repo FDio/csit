@@ -36,7 +36,5 @@
       tags: kernel_vm
     - role: csit_sut_image
       tags: csit_sut_image
-    - role: csit_shim_image
-      tags: csit_shim_image
     - role: cleanup
       tags: cleanup
