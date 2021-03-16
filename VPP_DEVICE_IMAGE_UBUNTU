@@ -1,1 +1,5 @@
+<<<<<<< HEAD   (9f35c0 Perf: Bump T-Rex to 2.88)
 snergster/csit-sut:latest
+=======
+csit_sut-ubuntu2004:local
+>>>>>>> CHANGE (699c4c Infra: Upgrade csit-dut image)
