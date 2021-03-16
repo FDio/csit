@@ -179,10 +179,18 @@ class Constants:
     QEMU_VM_DPDK = u"/opt/dpdk-20.02"
 
     # Docker container SUT image
+<<<<<<< HEAD   (307b5a Requirements sync)
     DOCKER_SUT_IMAGE_UBUNTU = u"csit_sut-ubuntu1804:local"
+=======
+    DOCKER_SUT_IMAGE_UBUNTU = u"csit_sut-ubuntu2004:local"
+>>>>>>> CHANGE (6e22e5 Infra: Upgrade csit-dut image)
 
     # Docker container arm SUT image
+<<<<<<< HEAD   (307b5a Requirements sync)
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"csit_sut-ubuntu1804:local"
+=======
+    DOCKER_SUT_IMAGE_UBUNTU_ARM = u"csit_sut-ubuntu2004:local"
+>>>>>>> CHANGE (6e22e5 Infra: Upgrade csit-dut image)
 
     # TRex install directory
     TREX_INSTALL_DIR = u"/opt/trex-core-2.86"
