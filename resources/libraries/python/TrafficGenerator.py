@@ -1437,14 +1437,15 @@ class OptimizedSearch:
             ramp_up_rate=None,
             ramp_up_duration=None,
             state_timeout=300.0,
+            expansion_coefficient=4.0,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
-        If transaction_scale is nonzero, all non-init trial durations
-        are set to 2.0 (as they do not affect the real trial duration)
+        If transaction_scale is nonzero, all init and non-init trial durations
+        are set to 1.0 (as they do not affect the real trial duration)
         and zero intermediate phases are used.
-        The initial phase still uses 1.0 seconds, to force remeasurement.
-        That makes initial phase act as a warmup.
+        This way no re-measurement happens.
+        Warmup has to be handled via resetter or ramp-up mechanisms.
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
@@ -1479,6 +1480,7 @@ class OptimizedSearch:
         :param ramp_up_rate: Rate to use in ramp-up trials [pps].
         :param ramp_up_duration: Duration of ramp-up trials [s].
         :param state_timeout: Time of life of DUT state [s].
+        :param expansion_coefficient: In external search, multiply width by this.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1499,6 +1501,7 @@ class OptimizedSearch:
         :type ramp_up_rate: float
         :type ramp_up_duration: float
         :type state_timeout: float
+        :type expansion_coefficient: float
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: List[Receiverateinterval]
@@ -1514,7 +1517,7 @@ class OptimizedSearch:
         #       even though this is surprising for log readers.
         if transaction_scale:
             initial_trial_duration = 1.0
-            final_trial_duration = 2.0
+            final_trial_duration = 1.0
             number_of_intermediate_phases = 0
             timeout += transaction_scale * 3e-4
         tg_instance.set_rate_provider_defaults(
@@ -1540,6 +1543,7 @@ class OptimizedSearch:
             initial_trial_duration=initial_trial_duration,
             timeout=timeout,
             debug=logger.debug,
+            expansion_coefficient=expansion_coefficient,
         )
         if packet_loss_ratio:
             packet_loss_ratios = [0.0, packet_loss_ratio]

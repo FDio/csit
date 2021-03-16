@@ -23,7 +23,7 @@ class ProgressState:
 
     def __init__(
             self, database, phases, duration, width_goal, packet_loss_ratios,
-            min_rate, max_rate):
+            min_rate, max_rate, stop_time):
         """Convert and store the argument values.
 
         Also initializa the stored width for external search.
@@ -38,6 +38,7 @@ class ProgressState:
             for the current search [tps].
         :param max_rate: Maximal target transmit rate available
             for the current search [tps].
+        :param stop_time: Monotonic time [s] when we should fail on timeout.
         :type result: MeasurementDatabase
         :type phases: int
         :type duration: float
@@ -45,6 +46,7 @@ class ProgressState:
         :type packet_loss_ratios: Iterable[float]
         :type min_rate: float
         :type max_rate: float
+        :type stop_time: float
         """
         self.database = database
         self.phases = int(phases)
@@ -55,3 +57,4 @@ class ProgressState:
         ]
         self.min_rate = float(min_rate)
         self.max_rate = float(max_rate)
+        self.stop_time = float(stop_time)

@@ -21,8 +21,9 @@ from .MeasurementDatabase import MeasurementDatabase
 from .ProgressState import ProgressState
 from .ReceiveRateInterval import ReceiveRateInterval
 from .WidthArithmetics import (
-    double_step_down,
-    double_step_up,
+    multiply_relative_width,
+    multiple_step_down,
+    multiple_step_up,
     half_step_up,
 )
 
@@ -90,7 +91,8 @@ class MultipleLossRatioSearch:
     def __init__(
             self, measurer, final_relative_width=0.005,
             final_trial_duration=30.0, initial_trial_duration=1.0,
-            number_of_intermediate_phases=2, timeout=600.0, debug=None):
+            number_of_intermediate_phases=2, timeout=600.0, debug=None,
+            expansion_coefficient=2.0):
         """Store the measurer object and additional arguments.
 
         :param measurer: Rate provider to use by this search object.
@@ -104,6 +106,7 @@ class MultipleLossRatioSearch:
         :param timeout: The search will fail itself when not finished
             before this overall time [s].
         :param debug: Callable to use instead of logging.debug().
+        :param expansion_coefficient: External search multiplies width by this.
         :type measurer: AbstractMeasurer.AbstractMeasurer
         :type final_relative_width: float
         :type final_trial_duration: float
@@ -111,6 +114,7 @@ class MultipleLossRatioSearch:
         :type number_of_intermediate_phases: int
         :type timeout: float
         :type debug: Optional[Callable[[str], None]]
+        :type expansion_coefficient: float
         """
         self.measurer = measurer
         self.final_trial_duration = float(final_trial_duration)
@@ -120,6 +124,7 @@ class MultipleLossRatioSearch:
         self.timeout = float(timeout)
         self.state = None
         self.debug = logging.debug if debug is None else debug
+        self.expansion_coefficient = float(expansion_coefficient)
 
     def narrow_down_intervals(self, min_rate, max_rate, packet_loss_ratios):
         """Perform initial phase, create state object, proceed with next phases.
@@ -182,24 +187,20 @@ class MultipleLossRatioSearch:
                 max_measurement, mrr_measurement = \
                     (mrr_measurement, max_measurement)
         database = MeasurementDatabase(measurements)
+        stop_time = time.monotonic() + self.timeout
         self.state = ProgressState(
             database, self.number_of_intermediate_phases,
             self.final_trial_duration, self.final_relative_width,
-            packet_loss_ratios, min_rate, max_rate,
+            packet_loss_ratios, min_rate, max_rate, stop_time
         )
-        start_time = time.monotonic()
-        self.ndrpdr(start_time)
+        self.ndrpdr()
         return self.state.database.get_results(ratio_list=packet_loss_ratios)
 
-    def ndrpdr(self, start_time):
+    def ndrpdr(self):
         """Perform trials for this phase. State is updated in-place.
 
         Recursion to smaller durations is performed (if not performed yet).
-        Start time has to be given externally, as the sigle value applies
-        across all recursion levels.
 
-        :param start_time: Result of time.monotonic() just before calling this.
-        :type start_time: float
         :raises RuntimeError: If total duration is larger than timeout.
         """
         state = self.state
@@ -214,20 +215,23 @@ class MultipleLossRatioSearch:
             state.duration = self.initial_trial_duration * math.pow(
                 duration_multiplier, phase_exponent
             )
-            # Recurse. State is updated in-place.
-            self.ndrpdr(start_time)
+            # Shorter durations do not need that narrow widths.
+            saved_width = state.width_goal
+            state.width_goal = multiply_relative_width(saved_width, 2.0)
+            # Recurse.
+            self.ndrpdr()
             # Restore the state for current phase.
+            state.width_goal = saved_width
             state.duration = saved_duration
             state.phases = saved_phases  # Not needed, but just in case.
         self.debug(
-            f"Starting phase with iterations with {state.duration} duration"
+            f"Starting phase with {state.duration} duration"
             f" and {state.width_goal} relative width goal."
         )
         failing_fast = False
         database = state.database
         database.set_current_duration(state.duration)
-        # TODO: Compute stop_time instead, and store it in state.
-        while time.monotonic() < start_time + self.timeout:
+        while time.monotonic() < state.stop_time:
             for index, ratio in enumerate(state.packet_loss_ratios):
                 new_tr = self._select_for_ratio(ratio)
                 if new_tr is None:
@@ -244,6 +248,9 @@ class MultipleLossRatioSearch:
                     # First ratio is fine.
                     continue
                 # We have transmit rate to measure at.
+                # We do not check duration versus stop_time here,
+                # as some measurers can be unpredictably faster
+                # than what duration suggests.
                 measurement = self.measurer.measure(
                     duration=state.duration,
                     transmit_rate=new_tr,
@@ -311,13 +318,22 @@ class MultipleLossRatioSearch:
         state = self.state
         data = state.database
         bounds = data.get_bounds(ratio)
-        cur_lo1, cur_hi1, pre_lo1, pre_hi1, cur_lo2, cur_hi2 = bounds
-        if self.improves(pre_lo1, cur_lo1, cur_hi1):
-            new_tr = pre_lo1.target_tr
+        cur_lo1, cur_hi1, pre_lo, pre_hi, cur_lo2, cur_hi2 = bounds
+        pre_lo_improves = self.improves(pre_lo, cur_lo1, cur_hi1)
+        pre_hi_improves = self.improves(pre_hi, cur_lo1, cur_hi1)
+        if pre_lo_improves and pre_hi_improves:
+            # We allowed larger width for previous phase
+            # as single bisect here needs only one re-measurement.
+            new_tr = self._bisect(pre_lo, pre_hi)
+            if new_tr is not None:
+                self.debug(f"Initial bisect for {ratio}, tr: {new_tr}")
+                return new_tr
+        if pre_lo_improves:
+            new_tr = pre_lo.target_tr
             self.debug(f"Re-measuring lower bound for {ratio}, tr: {new_tr}")
             return new_tr
-        if self.improves(pre_hi1, cur_lo1, cur_hi1):
-            new_tr = pre_hi1.target_tr
+        if pre_hi_improves:
+            new_tr = pre_hi.target_tr
             self.debug(f"Re-measuring upper bound for {ratio}, tr: {new_tr}")
             return new_tr
         if cur_lo1 is None and cur_hi1 is None:
@@ -326,7 +342,7 @@ class MultipleLossRatioSearch:
             # Upper bound exists (cur_hi1).
             # We already tried previous lower bound.
             # So, we want to extend down.
-            new_tr = self._extend_down(cur_hi1, cur_hi2, pre_hi1)
+            new_tr = self._extend_down(cur_hi1, cur_hi2, pre_hi, second_needed=False)
             self.debug(
                 f"Extending down for {ratio}: old {cur_hi1.target_tr} new {new_tr}"
             )
@@ -335,7 +351,7 @@ class MultipleLossRatioSearch:
             # Lower bound exists (cur_lo1).
             # We already tried previous upper bound.
             # So, we want to extend up.
-            new_tr = self._extend_up(cur_lo1, cur_lo2, pre_lo1)
+            new_tr = self._extend_up(cur_lo1, cur_lo2, pre_lo)
             self.debug(
                 f"Extending up for {ratio}: old {cur_lo1.target_tr} new {new_tr}"
             )
@@ -345,7 +361,7 @@ class MultipleLossRatioSearch:
         # or for previous ratio (we are extending down for this ratio).
         # Compute both estimates and choose the higher value.
         bisected_tr = self._bisect(cur_lo1, cur_hi1)
-        extended_tr = self._extend_down(cur_hi1, cur_hi2, pre_hi1)
+        extended_tr = self._extend_down(cur_hi1, cur_hi2, pre_hi, second_needed=True)
         # Only if both are not None we need to decide.
         if bisected_tr and extended_tr and extended_tr > bisected_tr:
             self.debug(
@@ -358,56 +374,67 @@ class MultipleLossRatioSearch:
         )
         return bisected_tr
 
-    def _extend_down(self, cur_hi1, cur_hi2, pre_hi1):
+    def _extend_down(self, cur_hi1, cur_hi2, pre_hi, second_needed=False):
         """Return extended width below, or None if hitting min rate.
+
+        If no second tightest (nor previous) upper bound is available,
+        the behavior is governed by second_needed argument.
+        If true, return None, if false, start from width goal.
+        This is useful, as if a bisect is possible,
+        we want to give it a chance.
 
         :param cur_hi1: Tightest upper bound for current duration. Has to exist.
         :param cur_hi2: Second tightest current upper bound, may not exist.
-        :param pre_hi1: Tightest upper bound, previous duration, may not exist.
+        :param pre_hi: Tightest upper bound, previous duration, may not exist.
+        :param second_needed: Whether second tightest bound is required.
         :type cur_hi1: ReceiveRateMeasurement
         :type cur_hi2: Optional[ReceiveRateMeasurement]
-        :type pre_hi1: Optional[ReceiveRateMeasurement]
+        :type pre_hi: Optional[ReceiveRateMeasurement]
+        :type second_needed: bool
         :returns: The next target transmit rate to measure at.
         :rtype: Optional[float]
         """
+        self.debug(f"Expending down. cur_hi1: {cur_hi1} cur_hi2 {cur_hi2} pre_hi {pre_hi}")
         state = self.state
         old_tr = cur_hi1.target_tr
         next_bound = cur_hi2
-        if self.improves(pre_hi1, cur_hi1, cur_hi2):
-            next_bound = pre_hi1
+        if self.improves(pre_hi, cur_hi1, cur_hi2):
+            next_bound = pre_hi
+        if next_bound is None and second_needed:
+            return None
         old_width = state.width_goal
         if next_bound is not None:
             old_width = ReceiveRateInterval(cur_hi1, next_bound).rel_tr_width
             old_width = max(old_width, state.width_goal)
-        new_tr = double_step_down(old_width, old_tr)
+        new_tr = multiple_step_down(old_tr, old_width, self.expansion_coefficient)
         new_tr = max(new_tr, state.min_rate)
         if new_tr >= old_tr:
             self.debug(u"Extend down hits max rate.")
             return None
         return new_tr
 
-    def _extend_up(self, cur_lo1, cur_lo2, pre_lo1):
+    def _extend_up(self, cur_lo1, cur_lo2, pre_lo):
         """Return extended width above, or None if hitting max rate.
 
         :param cur_lo1: Tightest lower bound for current duration. Has to exist.
         :param cur_lo2: Second tightest current lower bound, may not exist.
-        :param pre_lo1: Tightest lower bound, previous duration, may not exist.
+        :param pre_lo: Tightest lower bound, previous duration, may not exist.
         :type cur_lo1: ReceiveRateMeasurement
         :type cur_lo2: Optional[ReceiveRateMeasurement]
-        :type pre_lo1: Optional[ReceiveRateMeasurement]
+        :type pre_lo: Optional[ReceiveRateMeasurement]
         :returns: The next target transmit rate to measure at.
         :rtype: Optional[float]
         """
         state = self.state
         old_tr = cur_lo1.target_tr
         next_bound = cur_lo2
-        if self.improves(pre_lo1, cur_lo2, cur_lo1):
-            next_bound = pre_lo1
+        if self.improves(pre_lo, cur_lo2, cur_lo1):
+            next_bound = pre_lo
         old_width = state.width_goal
         if next_bound is not None:
             old_width = ReceiveRateInterval(cur_lo1, next_bound).rel_tr_width
             old_width = max(old_width, state.width_goal)
-        new_tr = double_step_up(old_width, old_tr)
+        new_tr = multiple_step_up(old_tr, old_width, self.expansion_coefficient)
         new_tr = min(new_tr, state.max_rate)
         if new_tr <= old_tr:
             self.debug(u"Extend up hits max rate.")
@@ -430,5 +457,5 @@ class MultipleLossRatioSearch:
         if width <= state.width_goal:
             self.debug(u"No more bisects needed.")
             return None
-        new_tr = half_step_up(width, lower_bound.target_tr)
+        new_tr = half_step_up(lower_bound.target_tr, width, state.width_goal)
         return new_tr
