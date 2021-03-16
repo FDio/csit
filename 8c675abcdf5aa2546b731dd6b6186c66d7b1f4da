@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d36111d_36151174",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-16T16:22:08Z",
+      "side": 1,
+      "message": "Per latest understanding of network topology, it would be best to collapse IPv4 address space to a single subnet.  Not sure if it would be better move 10.30.51.xx addresses to 10.32.8.xx or the reverse.\n\nChanging 10.30.51.xx addresses as part of the Stage-2 move would require less downtime at the cost of changing more addresses.\n\nNote: it looks like this only pertains to host addresses.  From the data here, Ipmi addresses appear to already be in the same IPv4 subnet.",
+      "revId": "8c675abcdf5aa2546b731dd6b6186c66d7b1f4da",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39f8778d_bf4e18f7",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-16T16:22:08Z",
+      "side": 1,
+      "message": "Prior to Stage-2, the nomad cluster \u0026 jenkins needs to be re-configured so that the current Nomad Servers and Nomad ip addresses in Jenkins are moved to three of the nomad servers that were relocated to MTL2 in Stage-1",
+      "revId": "8c675abcdf5aa2546b731dd6b6186c66d7b1f4da",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7aefb668_24ef1e4e",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-03-16T16:22:08Z",
+      "side": 1,
+      "message": "Please add \u0027EOL date\u0027 of each server -- for equipment retirement \u0026 replacement planning",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 153
+      },
+      "revId": "8c675abcdf5aa2546b731dd6b6186c66d7b1f4da",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
