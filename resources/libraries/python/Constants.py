@@ -179,10 +179,10 @@ class Constants:
     QEMU_VM_DPDK = u"/opt/dpdk-20.02"
 
     # Docker container SUT image
-    DOCKER_SUT_IMAGE_UBUNTU = u"csit_sut-ubuntu1804:local"
+    DOCKER_SUT_IMAGE_UBUNTU = u"fdiotools/csit_dut-ubuntu2004:2021_03_01_202835_UTC-x86_64"
 
     # Docker container arm SUT image
-    DOCKER_SUT_IMAGE_UBUNTU_ARM = u"csit_sut-ubuntu1804:local"
+    DOCKER_SUT_IMAGE_UBUNTU_ARM = u"fdiotools/csit_dut-ubuntu2004:2021_03_01_202835_UTC-aarch64"
 
     # TRex install directory
     TREX_INSTALL_DIR = u"/opt/trex-core-2.86"
