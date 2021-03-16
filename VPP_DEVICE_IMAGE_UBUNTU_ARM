@@ -1,1 +1,5 @@
+<<<<<<< HEAD   (bbd671 Perf: Bump T-Rex to 2.88)
 csit_dut-ubuntu1804:local
+=======
+csit_dut-ubuntu2004:local
+>>>>>>> CHANGE (102622 Infra: Upgrade csit-dut image)
