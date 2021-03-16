@@ -11,55 +11,54 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ubuntu:18.04
-LABEL Description="CSIT vpp-device ubuntu 18.04 SUT image"
+FROM ubuntu:20.04
+LABEL Description="CSIT vpp-device ubuntu 20.04 SUT image"
 LABEL Version="master"
 
 # Setup the environment
 ENV DEBIAN_FRONTEND=noninteractive
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
-ENV NOTVISIBLE "in users profile"
-ENV VPP_PYTHON_PREFIX=/var/cache/vpp/python
+
+# Configure locales
+RUN apt-get update -qq \
+ && apt-get install -y \
+        apt-utils \
+        locales \
+ && sed -i 's/# \(en_US\.UTF-8 .*\)/\1/' /etc/locale.gen \
+ && locale-gen en_US.UTF-8 \
+ && dpkg-reconfigure --frontend=noninteractive locales \
+ && update-locale LANG=en_US.UTF-8 \
+ && TZ=Etc/UTC && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
+ && rm -r /var/lib/apt/lists/*
+ENV LANG="en_US.UTF-8" LANGUAGE="en_US" LC_ALL="en_US.UTF-8"
 
 # Install packages and Docker
 RUN apt-get -q update \
  && apt-get install -y -qq \
-        # general tools
         apt-transport-https \
         bridge-utils \
+        ca-certificates \
         cloud-init \
+        cmake \
         curl \
+        dkms \
         gdb \
+        gfortran \
+        libapr1 \
+        libblas-dev \
+        libffi-dev \
+        liblapack-dev \
+        libmbedcrypto3 \
+        libmbedtls12 \
+        libmbedx509-0 \
+        libnuma1 \
+        libnuma-dev \
+        libpcap-dev \
+        libpixman-1-dev \
+        libssl-dev \
         locales \
         net-tools \
         openssh-server \
         pciutils \
-        rsyslog \
-        software-properties-common \
-        ssh \
-        sudo \
-        supervisor \
-        tar \
-        vim \
-        wget \
-        # csit requirements
-        cmake \
-        dkms \
-        gfortran \
-        libblas-dev \
-        libffi-dev \
-        liblapack-dev \
-        libpcap-dev \
-        libssl-dev \
-        python-all \
-        python-apt \
-        python-cffi \
-        python-cffi-backend \
-        python-dev \
-        python-enum34 \
-        python-pip \
-        python-setuptools \
-        python-virtualenv \
         python3-all \
         python3-apt \
         python3-cffi \
@@ -69,27 +68,22 @@ RUN apt-get -q update \
         python3-setuptools \
         python3-virtualenv \
         qemu-system \
+        rsyslog \
         socat \
+        software-properties-common \
         strongswan \
-        unzip \
-        tcpdump \
-        zlib1g-dev \
-        # vpp requirements
-        ca-certificates \
-        libapr1 \
-        libmbedcrypto1 \
-        libmbedtls10 \
-        libmbedx509-0 \
-        libnuma1 \
+        ssh \
         sshpass \
- && curl -L https://packagecloud.io/fdio/master/gpgkey | sudo apt-key add - \
- && curl -s https://packagecloud.io/install/repositories/fdio/master/script.deb.sh | sudo bash \
+        sudo \
+        supervisor \
+        tar \
+        tcpdump \
+        unzip \
+        vim \
+        wget \
+        zlib1g-dev \
  && curl -fsSL https://get.docker.com | sh \
  && rm -rf /var/lib/apt/lists/*
-
-# Configure locales
-RUN locale-gen en_US.UTF-8 \
- && dpkg-reconfigure locales
 
 # Fix permissions
 RUN chown root:syslog /var/log \
@@ -111,7 +105,7 @@ RUN pip3 install \
         robotframework==3.1.2 \
         scapy==2.4.3 \
         scp==0.13.2 \
-        ansible==2.7.8 \
+        ansible==2.10.7 \
         dill==0.2.8.2 \
         numpy==1.17.3 \
         hdrhistogram==0.6.1 \
@@ -121,6 +115,7 @@ RUN pip3 install \
         sphinx-rtd-theme==0.4.0 \
         sphinxcontrib-programoutput==0.15 \
         sphinxcontrib-robotdoc==0.11.0 \
+        ply==3.11 \
         alabaster==0.7.12 \
         Babel==2.7.0 \
         bcrypt==3.1.7 \
@@ -156,7 +151,7 @@ RUN pip3 install \
 # ARM workaround
 RUN pip3 install \
         pandas==0.25.3 \
-        scipy==1.1.0
+        scipy==1.5.4
 
 # SSH settings
 RUN echo 'root:Csit1234' | chpasswd \
