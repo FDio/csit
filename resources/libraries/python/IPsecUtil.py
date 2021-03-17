@@ -479,8 +479,8 @@ class IPsecUtil:
                     integ = f"integ-alg {integ_alg.alg_name} " \
                         f"integ-key {integ_key.hex()}" \
                         if integ_alg else u""
-                    tunnel = f"tunnel-src {src_addr + i * addr_incr} " \
-                        f"tunnel-dst {dst_addr + i * addr_incr}" \
+                    tunnel = f"tunnel src {src_addr + i * addr_incr} " \
+                        f"tunnel dst {dst_addr + i * addr_incr}" \
                         if tunnel_src and tunnel_dst else u""
                     conf = f"exec ipsec sa add {sad_id + i} esp spi {spi + i} "\
                         f"crypto-alg {crypto_alg.alg_name} " \
