@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "eb487b29_63588d7d",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-17T11:17:25Z",
+      "side": 1,
+      "message": "No interruption mode is to move following:\n// anytime we can add perf testbed into any Round if there is capacity:\n\n1stRound\n10.30.51.28\n10.30.51.29\n10.30.51.30\n10.30.51.51\n10.30.51.71\n10.30.51.39\n10.30.51.40\n\n2nRound\n10.30.51.32\n10.30.51.34\n10.30.51.35\n10.30.51.50\n10.30.51.65\n10.30.51.66\n\n3rdRound\n10.30.51.33\n10.30.51.67\n10.30.51.68",
+      "revId": "8c675abcdf5aa2546b731dd6b6186c66d7b1f4da",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d36111d_36151174",
         "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
         "patchSetId": 10
@@ -13,6 +30,24 @@
       "writtenOn": "2021-03-16T16:22:08Z",
       "side": 1,
       "message": "Per latest understanding of network topology, it would be best to collapse IPv4 address space to a single subnet.  Not sure if it would be better move 10.30.51.xx addresses to 10.32.8.xx or the reverse.\n\nChanging 10.30.51.xx addresses as part of the Stage-2 move would require less downtime at the cost of changing more addresses.\n\nNote: it looks like this only pertains to host addresses.  From the data here, Ipmi addresses appear to already be in the same IPv4 subnet.",
+      "revId": "8c675abcdf5aa2546b731dd6b6186c66d7b1f4da",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07069888_65a7969b",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-17T11:17:25Z",
+      "side": 1,
+      "message": "one remark. ipmi subnet is separate /24 not sure how it is tagged on access ports..",
+      "parentUuid": "9d36111d_36151174",
       "revId": "8c675abcdf5aa2546b731dd6b6186c66d7b1f4da",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
@@ -47,6 +82,30 @@
       "writtenOn": "2021-03-16T16:22:08Z",
       "side": 1,
       "message": "Please add \u0027EOL date\u0027 of each server -- for equipment retirement \u0026 replacement planning",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 153
+      },
+      "revId": "8c675abcdf5aa2546b731dd6b6186c66d7b1f4da",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c02c3193_2e0e6d1f",
+        "filename": "docs/lab/fdio-dc-inventory-vexxhost.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-17T11:17:25Z",
+      "side": 1,
+      "message": "nice to add. but require refresh of infra periodically. EOL \u003d\u003d vendor || EOL \u003d\u003d fdio || EOL \u003d\u003d Me being able to find valid workaround for issues?",
+      "parentUuid": "7aefb668_24ef1e4e",
       "range": {
         "startLine": 94,
         "startChar": 0,
