@@ -483,8 +483,8 @@ class IPsecUtil:
                         f"tunnel-dst {dst_addr + i * addr_incr}" \
                         if tunnel_src and tunnel_dst else u""
                     conf = f"exec ipsec sa add {sad_id + i} esp spi {spi + i} "\
-                        f"crypto-alg {crypto_alg.alg_name} " \
-                        f"crypto-key {crypto_key.hex()} " \
+                        f"crypto alg {crypto_alg.alg_name} " \
+                        f"crypto key {crypto_key.hex()} " \
                         f"{integ} {tunnel}\n"
                     tmp_file.write(conf)
             vat = VatExecutor()
