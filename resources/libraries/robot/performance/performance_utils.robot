@@ -444,7 +444,7 @@
 | | ${results} = | Create List
 | | FOR | ${i} | IN RANGE | ${trial_multiplicity}
 | | | Call Resetter
-| | | ${result}= | Send traffic on tg
+| | | ${result} = | Send traffic on tg
 | | | ... | duration=${trial_duration}
 | | | ... | rate=${rate}
 | | | ... | frame_size=${frame_size}
