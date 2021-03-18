@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56a904ad_3c8f9ba0",
+        "filename": "resources/libraries/python/MLRsearch/ReceiveRateMeasurement.py",
+        "patchSetId": 59
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-18T14:58:05Z",
+      "side": 1,
+      "message": "This worsens pylint to \"Too many instance attributes (18/10)\".\nNo easy fix for this change, postponing for CSIT 2.0 redesign.",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 33
+      },
+      "revId": "191231c09444d66fe2c71291d4905c767945cd7f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
