@@ -24,7 +24,7 @@ case "${1:-start}" in
             docker network create --driver bridge csit-nw-tg${cnt} || true
             # If the IMAGE is not already loaded then docker run will pull the
             # IMAGE, and all image dependencies, before it starts the container.
-            dcr_image="snergster/csit-sut:latest"
+            dcr_image="csit_sut-ubuntu2004:local"
             # Run the container in the background and print the new container
             # ID.
             dcr_stc_params="--detach=true "
@@ -33,7 +33,7 @@ case "${1:-start}" in
             # containers.
             dcr_stc_params+="--privileged "
             # Publish all exposed ports to random ports on the host interfaces.
-            dcr_stc_params+="--publish 600${cnt}:22 "
+            dcr_stc_params+="--publish 600${cnt}:2222 "
             # Automatically remove the container when it exits.
             dcr_stc_params+="--rm "
             # Size of /dev/shm.
