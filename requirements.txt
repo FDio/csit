@@ -31,7 +31,7 @@ scp==0.13.2
 ansible==2.10.7
 
 # PLRsearch dependencies
-dill==0.3.3
+dill==0.2.8.2
 numpy==1.17.3
 scipy==1.5.4
 
