@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efebb8ff_fb57b3ec",
+        "filename": "resources/libraries/python/GeneveUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-18T14:25:42Z",
+      "side": 1,
+      "message": "I do not get it. How is this better than the following?\n\n    IPUtil.vpp_route_add(\n        node, src_ip, gen_tunnel[u\"ip_mask\"],\n        gateway\u003dtg_if1_ip4, interface\u003ddut_if1\n    )",
+      "range": {
+        "startLine": 167,
+        "startChar": 16,
+        "endLine": 167,
+        "endChar": 22
+      },
+      "revId": "432a719efdd975e010efcd5f4663885a95863b3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
