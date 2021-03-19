@@ -29,4 +29,5 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 common_dirs || die
 cd "${CSIT_DIR}" || die
 activate_virtualenv "${CSIT_DIR}" "${CSIT_DIR}/tox-requirements.txt" || die
-tox  # Return code is turned into Jenkins job vote.
+# Verbosity is increased so console output shows any unwanted downloads.
+tox -vv  # Return code is turned into Jenkins job vote.
