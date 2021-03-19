@@ -1,3 +1,4 @@
+# Copyright (c) 2021 Intel and/or its affiliates.
 # Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -94,6 +95,14 @@
     det44_session_dump: '0xe45a3af7'  # perf teardown
     # TODO: Which test to run to verify det44_* messages?
     # dhcp_proxy_dump / details # honeycomb
+    flow_add: '0x3e5bf1a9'  # dev
+    flow_add_reply: '0x8587dc85'  # dev
+    flow_enable: '0x2024be69' # dev
+    flow_enable_reply: '0xe8d4e804' # dev
+    flow_disable: '0x2024be69' #dev
+    flow_disable_reply: '0xe8d4e804' #dev
+    flow_del: '0xb6b9b02c' #dev
+    flow_del_reply: '0xe8d4e804' #dev
     geneve_add_del_tunnel2: '0x8c2a9999'  # dev
     geneve_add_del_tunnel2_reply: '0x5383d31f'  # dev
     geneve_tunnel_details: '0xe27e2748'  # dev
