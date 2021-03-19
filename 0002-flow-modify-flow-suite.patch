@@ -1,0 +1,165 @@
+From 9d2eb08c5e11f7743c55a7b4f0fe22593d40a1ec Mon Sep 17 00:00:00 2001
+From: xinfeng zhao <xinfengx.zhao@intel.com>
+Date: Fri, 19 Mar 2021 11:41:20 +0800
+Subject: [PATCH 2/3] flow: modify flow suite
+
+Signed-off-by: xinfeng zhao <xinfengx.zhao@intel.com>
+Change-Id: I30c2f433bc851a563f2a1e5fe56a05a11850c080
+---
+ GPL/traffic_scripts/send_flow_packet.py | 22 ++++++++--------
+ resources/libraries/python/FlowUtil.py  | 34 ++++++++++++++++++++++++-
+ 2 files changed, 43 insertions(+), 13 deletions(-)
+
+diff --git a/GPL/traffic_scripts/send_flow_packet.py b/GPL/traffic_scripts/send_flow_packet.py
+index 25b9aa3bd..b0a304cca 100644
+--- a/GPL/traffic_scripts/send_flow_packet.py
++++ b/GPL/traffic_scripts/send_flow_packet.py
+@@ -27,13 +27,11 @@ to the other.
+ """
+ 
+ import sys
+-import time
+ 
+ from scapy.layers.inet import IP, UDP, TCP
+ from scapy.layers.inet6 import IPv6
+ from scapy.layers.l2 import Ether, ARP
+ from scapy.packet import Raw
+-from scapy.volatile import RandIP, RandIP6
+ from scapy.contrib.gtp import *
+ from scapy.layers.ipsec import ESP, AH
+ from scapy.layers.vxlan import VXLAN
+@@ -42,6 +40,7 @@ from scapy.layers.l2tp import L2TP
+ from .PacketVerifier import TxQueue
+ from .TrafficScriptArg import TrafficScriptArg
+ 
++
+ def main():
+     """Send packet from one traffic generator interface to the other."""
+ 
+@@ -54,6 +53,7 @@ def main():
+             u"value"
+         ]
+     )
++    tx_if = args.get_arg(u"tx_if")
+     tx_src_mac = args.get_arg(u"tg_if1_mac")
+     tx_dst_mac = args.get_arg(u"dut_if1_mac")
+     flow_type = args.get_arg(u"flow_type")
+@@ -77,18 +77,17 @@ def main():
+     else:
+         value = None
+ 
+-    tx_if = args.get_arg(u"tx_if")
+     txq = TxQueue(tx_if)
+ 
+     if flow_type == u"IP4":
+-        pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
+-        pkt_raw /= IP(src=src, dst=dst)
++        pkt_raw = (Ether(src=tx_src_mac, dst=tx_dst_mac) /
++                IP(src=src, dst=dst))
+     elif flow_type == u"IP6":
+-        pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
+-        pkt_raw /= IPv6(src=src, dst=dst)
++        pkt_raw = (Ether(src=tx_src_mac, dst=tx_dst_mac) /
++                IPv6(src=src, dst=dst))
+     elif flow_type == u"L2TPV3":
+-        pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
+-        pkt_raw /= IP(src=src, dst=dst, proto=115)
++        pkt_raw = (Ether(src=tx_src_mac, dst=tx_dst_mac) /
++                IP(src=src, dst=dst, proto=115))
+     elif flow_type == u"ETH-TYPE":
+         pkt_raw = Ether(type=value, src=tx_src_mac, dst=tx_dst_mac)
+     else:
+@@ -103,14 +102,14 @@ def main():
+     elif proto == u"ESP":
+         pkt_raw /= ESP(spi=value)
+     elif proto == u"GTPU":
+-        pkt_raw /= UDP()/GTP_U_Header(teid=value)/IP(src="192.168.10.20")
++        pkt_raw /= (UDP()/GTP_U_Header(teid=value)/IP(src=u"192.168.10.20"))
+     elif proto == u"L2TP":
+         import binascii
+         value_hex = hex(value).replace('0x', (8-len(hex(value))+2)*'0')
+         session_id = binascii.a2b_hex(value_hex)
+         pkt_raw /= Raw(session_id)
+     elif proto == u"VXLAN":
+-        pkt_raw /= UDP(sport=sport, dport=dport)/VXLAN(vni=value)
++        pkt_raw /= (UDP(sport=sport, dport=dport)/VXLAN(vni=value))
+     elif proto == u"ARP":
+         pkt_raw /= ARP()
+     else:
+@@ -118,7 +117,6 @@ def main():
+ 
+     pkt_raw /= Raw()
+     txq.send(pkt_raw)
+-    time.sleep(1)
+     sys.exit(0)
+ 
+ if __name__ == u"__main__":
+diff --git a/resources/libraries/python/FlowUtil.py b/resources/libraries/python/FlowUtil.py
+index 3ba54291c..4ea49cae3 100644
+--- a/resources/libraries/python/FlowUtil.py
++++ b/resources/libraries/python/FlowUtil.py
+@@ -12,6 +12,9 @@
+ # limitations under the License.
+ 
+ """Flow Utilities Library."""
++
++import time
++
+ from resources.libraries.python.topology import NodeType, Topology
+ from resources.libraries.python.ssh import exec_cmd_no_error
+ from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+@@ -219,7 +222,7 @@ class FlowUtil:
+                 raise ValueError(f"Action type error: {action}")
+ 
+             err_msg = f"Failed to create {flow} flow on host."
+- 
++
+             args = dict(flow=flow_rule)
+             flow_index = -1
+             with PapiSocketExecutor(node) as papi_exec:
+@@ -258,6 +261,9 @@ class FlowUtil:
+             with PapiSocketExecutor(node) as papi_exec:
+                 papi_exec.add(cmd, **args).get_reply(err_msg)
+ 
++            time.sleep(1)
++            FlowUtil.vpp_show_flow_entry(node)
++
+         else:
+             raise ValueError(
+                 f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
+@@ -321,6 +327,32 @@ class FlowUtil:
+                 f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
+             )
+ 
++    @staticmethod
++    def vpp_show_flow_entry(node):
++        """Show flow entry.
++
++        :param node: DUT node.
++
++        :type node: dict
++        :returns: flow entry.
++        :rtype: str
++        :raises ValueError: If the node has an unknown node type.
++
++        """
++
++        if node[u"type"] == NodeType.DUT:
++            err_msg = u"Failed to enable flow on host"
++            cmd = u"vppctl show flow entry"
++            stdout, _ = exec_cmd_no_error(
++                node, cmd, sudo=False, message=err_msg, retries=120
++            )
++
++            return stdout.strip()
++        else:
++            raise ValueError(
++                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
++            )
++
+     @staticmethod
+     def vpp_flow_verify_action(
+             node, action, value,
+-- 
+2.17.1
+

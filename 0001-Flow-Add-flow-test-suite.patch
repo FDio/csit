@@ -1,0 +1,1328 @@
+From 8e0ecc6b75f4e68b16058db7df58029e9918b20c Mon Sep 17 00:00:00 2001
+From: xinfeng zhao <xinfengx.zhao@intel.com>
+Date: Wed, 17 Mar 2021 15:14:03 +0800
+Subject: [PATCH 1/3] Flow: Add flow test suite
+
+Signed-off-by: xinfeng zhao <xinfengx.zhao@intel.com>
+Reviewed-by: Yulong Pei <yulong.pei@intel.com>
+Change-Id: I4d87a65a0bc783e894c7ad8a74b3176de0e3d63f
+---
+ GPL/traffic_scripts/send_flow_packet.py       | 125 ++++++
+ docs/tag_documentation.rst                    |  20 +
+ resources/api/vpp/supported_crcs.yaml         |   9 +
+ .../bash/entry/bootstrap_vpp_offload.sh       |  53 +++
+ resources/libraries/bash/function/common.sh   |  83 ++++
+ resources/libraries/python/FlowUtil.py        | 371 ++++++++++++++++++
+ .../libraries/robot/shared/default.robot      |   1 +
+ .../libraries/robot/shared/traffic.robot      |  53 +++
+ tests/vpp/offload/__init__.robot              |  57 +++
+ .../offload/flow/eth2p-flow-ip4-gtpu.robot    | 103 +++++
+ .../offload/flow/eth2p-flow-ip4-ntuple.robot  | 143 +++++++
+ .../offload/flow/eth2p-flow-ip6-ntuple.robot  | 143 +++++++
+ 12 files changed, 1161 insertions(+)
+ create mode 100644 GPL/traffic_scripts/send_flow_packet.py
+ create mode 100755 resources/libraries/bash/entry/bootstrap_vpp_offload.sh
+ create mode 100644 resources/libraries/python/FlowUtil.py
+ create mode 100644 tests/vpp/offload/__init__.robot
+ create mode 100644 tests/vpp/offload/flow/eth2p-flow-ip4-gtpu.robot
+ create mode 100644 tests/vpp/offload/flow/eth2p-flow-ip4-ntuple.robot
+ create mode 100644 tests/vpp/offload/flow/eth2p-flow-ip6-ntuple.robot
+
+diff --git a/GPL/traffic_scripts/send_flow_packet.py b/GPL/traffic_scripts/send_flow_packet.py
+new file mode 100644
+index 000000000..25b9aa3bd
+--- /dev/null
++++ b/GPL/traffic_scripts/send_flow_packet.py
+@@ -0,0 +1,125 @@
++#!/usr/bin/env python3
++
++# Copyright (c) 2021 Intel and/or its affiliates.
++#
++# SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
++#
++# Licensed under the Apache License 2.0 or
++# GNU General Public License v2.0 or later;  you may not use this file
++# except in compliance with one of these Licenses. You
++# may obtain a copy of the Licenses at:
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#     https://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
++#
++# Note: If this file is linked with Scapy, which is GPLv2+, your use of it
++# must be under GPLv2+.  If at any point in the future it is no longer linked
++# with Scapy (or other GPLv2+ licensed software), you are free to choose Apache 2.
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++"""Traffic script that send flow packet from one interface
++to the other.
++"""
++
++import sys
++import time
++
++from scapy.layers.inet import IP, UDP, TCP
++from scapy.layers.inet6 import IPv6
++from scapy.layers.l2 import Ether, ARP
++from scapy.packet import Raw
++from scapy.volatile import RandIP, RandIP6
++from scapy.contrib.gtp import *
++from scapy.layers.ipsec import ESP, AH
++from scapy.layers.vxlan import VXLAN
++from scapy.layers.l2tp import L2TP
++
++from .PacketVerifier import TxQueue
++from .TrafficScriptArg import TrafficScriptArg
++
++def main():
++    """Send packet from one traffic generator interface to the other."""
++
++    args = TrafficScriptArg(
++        [
++            u"tg_if1_mac", u"dut_if1_mac", u"flow_type", u"proto",
++        ],
++        [
++            u"src_ip", u"dst_ip", u"src_port", u"dst_port",
++            u"value"
++        ]
++    )
++    tx_src_mac = args.get_arg(u"tg_if1_mac")
++    tx_dst_mac = args.get_arg(u"dut_if1_mac")
++    flow_type = args.get_arg(u"flow_type")
++    proto = args.get_arg(u"proto")
++
++    src = args.get_arg(u"src_ip")
++    dst = args.get_arg(u"dst_ip")
++
++    if args.get_arg(u"src_port").isdigit():
++        sport = int(args.get_arg(u"src_port"))
++    else:
++        sport = None
++
++    if args.get_arg(u"dst_port").isdigit():
++        dport = int(args.get_arg(u"dst_port"))
++    else:
++        dport = None
++
++    if args.get_arg(u"value").isdigit():
++        value = int(args.get_arg(u"value"))
++    else:
++        value = None
++
++    tx_if = args.get_arg(u"tx_if")
++    txq = TxQueue(tx_if)
++
++    if flow_type == u"IP4":
++        pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
++        pkt_raw /= IP(src=src, dst=dst)
++    elif flow_type == u"IP6":
++        pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
++        pkt_raw /= IPv6(src=src, dst=dst)
++    elif flow_type == u"L2TPV3":
++        pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
++        pkt_raw /= IP(src=src, dst=dst, proto=115)
++    elif flow_type == u"ETH-TYPE":
++        pkt_raw = Ether(type=value, src=tx_src_mac, dst=tx_dst_mac)
++    else:
++        raise ValueError(f"Flow type error: {flow_type}")
++
++    if proto == u"TCP":
++        pkt_raw /= TCP(sport=sport, dport=dport)
++    elif proto == u"UDP":
++        pkt_raw /= UDP(sport=sport, dport=dport)
++    elif proto == u"AH":
++        pkt_raw /= AH(spi=value)
++    elif proto == u"ESP":
++        pkt_raw /= ESP(spi=value)
++    elif proto == u"GTPU":
++        pkt_raw /= UDP()/GTP_U_Header(teid=value)/IP(src="192.168.10.20")
++    elif proto == u"L2TP":
++        import binascii
++        value_hex = hex(value).replace('0x', (8-len(hex(value))+2)*'0')
++        session_id = binascii.a2b_hex(value_hex)
++        pkt_raw /= Raw(session_id)
++    elif proto == u"VXLAN":
++        pkt_raw /= UDP(sport=sport, dport=dport)/VXLAN(vni=value)
++    elif proto == u"ARP":
++        pkt_raw /= ARP()
++    else:
++        raise ValueError(f"Flow proto error: {proto}")
++
++    pkt_raw /= Raw()
++    txq.send(pkt_raw)
++    time.sleep(1)
++    sys.exit(0)
++
++if __name__ == u"__main__":
++    main()
+diff --git a/docs/tag_documentation.rst b/docs/tag_documentation.rst
+index e5441f4ea..93986b4e2 100644
+--- a/docs/tag_documentation.rst
++++ b/docs/tag_documentation.rst
+@@ -75,6 +75,10 @@ NIC Model Tags
+ 
+     Intel XXV710 NIC.
+ 
++.. topic:: NIC_Intel-E810CQ
++
++    Intel E810CQ NIC.
++
+ .. topic:: NIC_Cisco-VIC-1227
+ 
+     VIC-1227 by Cisco.
+@@ -619,6 +623,22 @@ Encapsulation Tags
+ 
+     All test cases with GENEVE tunnel in L3 mode.
+ 
++.. topic:: FLOW
++
++    All test cases with FLOW
++
++.. topic:: IP4_N_TUPLE
++
++    All test cases with IP4_N_TUPLE flow.
++
++.. topic:: IP6_N_TUPLE
++
++    All test cases with IP6_N_TUPLE flow.
++
++.. topic:: IP4_GTPU
++
++    All test cases with IP4_GTPU flow.
++
+ Interface Tags
+ --------------
+ 
+diff --git a/resources/api/vpp/supported_crcs.yaml b/resources/api/vpp/supported_crcs.yaml
+index 71b9898f7..3af35a70a 100644
+--- a/resources/api/vpp/supported_crcs.yaml
++++ b/resources/api/vpp/supported_crcs.yaml
+@@ -1,3 +1,4 @@
++# Copyright (c) 2021 Intel and/or its affiliates.
+ # Copyright (c) 2021 Cisco and/or its affiliates.
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+@@ -94,6 +95,14 @@
+     det44_session_dump: '0xe45a3af7'  # perf teardown
+     # TODO: Which test to run to verify det44_* messages?
+     # dhcp_proxy_dump / details # honeycomb
++    flow_add: '0x3e5bf1a9'  # dev
++    flow_add_reply: '0x8587dc85'  # dev
++    flow_enable: '0x2024be69' # dev
++    flow_enable_reply: '0xe8d4e804' # dev
++    flow_disable: '0x2024be69' #dev
++    flow_disable_reply: '0xe8d4e804' #dev
++    flow_del: '0xb6b9b02c' #dev
++    flow_del_reply: '0xe8d4e804' #dev
+     geneve_add_del_tunnel2: '0x8c2a9999'  # dev
+     geneve_add_del_tunnel2_reply: '0x5383d31f'  # dev
+     geneve_tunnel_details: '0xe27e2748'  # dev
+diff --git a/resources/libraries/bash/entry/bootstrap_vpp_offload.sh b/resources/libraries/bash/entry/bootstrap_vpp_offload.sh
+new file mode 100755
+index 000000000..a50167cd5
+--- /dev/null
++++ b/resources/libraries/bash/entry/bootstrap_vpp_offload.sh
+@@ -0,0 +1,53 @@
++#!/usr/bin/env bash
++
++# Copyright (c) 2021 Intel and/or its affiliates.
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at:
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++set -exuo pipefail
++
++# Assumptions:
++# + There is a directory holding CSIT code to use (this script is there).
++# + At least one of the following is true:
++# ++ JOB_NAME environment variable is set,
++# ++ or this entry script has access to arguments.
++# Consequences (and specific assumptions) are multiple,
++# examine tree of functions for current description.
++
++# "set -eu" handles failures from the following two lines.
++BASH_ENTRY_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
++BASH_FUNCTION_DIR="$(readlink -e "${BASH_ENTRY_DIR}/../function")"
++source "${BASH_FUNCTION_DIR}/common.sh" || {
++    echo "Source failed." >&2
++    exit 1
++}
++source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
++source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
++common_dirs || die
++check_prerequisites || die
++get_test_code "${1-}" || die
++get_test_tag_string || die
++select_topology || die
++check_intel_e810_in_topologys || die
++select_arch_os || die
++gather_build || die
++check_download_dir || die
++activate_virtualenv || die
++generate_tests || die
++archive_tests || die
++reserve_and_cleanup_testbed || die
++select_vpp_offload_tags || die
++compose_pybot_arguments || die
++run_pybot || die
++untrap_and_unreserve_testbed || die
++move_archives || die
++die_on_pybot_error || die
+diff --git a/resources/libraries/bash/function/common.sh b/resources/libraries/bash/function/common.sh
+index f8b0f0be2..1bdcdf024 100644
+--- a/resources/libraries/bash/function/common.sh
++++ b/resources/libraries/bash/function/common.sh
+@@ -1,3 +1,4 @@
++# Copyright (c) 2021 Intel and/or its affiliates.
+ # Copyright (c) 2021 Cisco and/or its affiliates.
+ # Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
+ # Licensed under the Apache License, Version 2.0 (the "License");
+@@ -282,6 +283,9 @@ function compose_pybot_arguments () {
+         *"perf"*)
+             PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
+             ;;
++        *"offload"*)
++            PYBOT_ARGS+=("--suite" "tests.${DUT}.offload")
++            ;;
+         *)
+             die "Unknown specification: ${TEST_CODE}"
+     esac
+@@ -504,6 +508,9 @@ function get_test_tag_string () {
+             *"perf"*)
+                 trigger="perftest"
+                 ;;
++            *"offload"*)
++                trigger="offloadtest"
++                ;;
+             *)
+                 die "Unknown specification: ${TEST_CODE}"
+         esac
+@@ -1115,6 +1122,54 @@ function select_vpp_device_tags () {
+     done
+ }
+ 
++
++function select_vpp_offload_tags () {
++
++    # Variables read:
++    # - TEST_CODE - String affecting test selection, usually jenkins job name.
++    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
++    #   Can be unset.
++    # Variables set:
++    # - TAGS - Array of processed tag boolean expressions.
++
++    set -exuo pipefail
++
++    case "${TEST_CODE}" in
++        # Select specific offload tests based on jenkins job type variable.
++        * )
++            if [[ -z "${TEST_TAG_STRING-}" ]]; then
++                # If nothing is specified, we will run pre-selected tests by
++                # following tags. Items of array will be concatenated by OR
++                # in Robot Framework.
++                test_tag_array=()
++            else
++                # If trigger contains tags, split them into array.
++                test_tag_array=(${TEST_TAG_STRING//:/ })
++            fi
++            SELECTION_MODE="--include"
++            ;;
++    esac
++
++    TAGS=()
++
++    # We will prefix with offloadtest to prevent running other tests
++    # (e.g. Functional).
++    prefix="offloadtestAND"
++    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
++        # Automatic prefixing for VPP jobs to limit testing.
++        prefix="${prefix}"
++    fi
++    for tag in "${test_tag_array[@]}"; do
++        if [[ ${tag} == "!"* ]]; then
++            # Exclude tags are not prefixed.
++            TAGS+=("${tag}")
++        else
++            TAGS+=("${prefix}${tag}")
++        fi
++    done
++}
++
++
+ function untrap_and_unreserve_testbed () {
+ 
+     # Use this as a trap function to ensure testbed does not remain reserved.
+@@ -1155,6 +1210,34 @@ function untrap_and_unreserve_testbed () {
+ }
+ 
+ 
++function check_intel_e810_in_topologys () {
++
++    # Check topology DUT NICs, and remove unmatched topology from TOPOLOGIES.
++    #
++    # Variables read:
++    # - TOPOLOGIES - Array of paths to topology yaml to attempt reservation on.
++
++    set -exuo pipefail
++
++    for i in "${!TOPOLOGIES[@]}"; do
++	# NIC SELECTION
++	start_pattern='^  TG:'
++	end_pattern='^ \? \?[A-Za-z0-9]\+:'
++	sed_command="/${start_pattern}/,/${end_pattern}/d"
++
++	# Selected topology DUT NICs
++	reserved=$(sed "${sed_command}" "${TOPOLOGIES[$i]}" \
++		| grep -hoP "model: Intel-E810CQ" | sort -u)
++
++	if [[ ${reserved} == "" ]]; then
++            unset TOPOLOGIES[$i]
++	fi
++    done
++
++    set -x
++}
++
++
+ function warn () {
+ 
+     # Print the message to standard error.
+diff --git a/resources/libraries/python/FlowUtil.py b/resources/libraries/python/FlowUtil.py
+new file mode 100644
+index 000000000..3ba54291c
+--- /dev/null
++++ b/resources/libraries/python/FlowUtil.py
+@@ -0,0 +1,371 @@
++# copyright (c) 2021 Intel and/or its affiliates.
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at:
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++"""Flow Utilities Library."""
++from resources.libraries.python.topology import NodeType, Topology
++from resources.libraries.python.ssh import exec_cmd_no_error
++from resources.libraries.python.PapiExecutor import PapiSocketExecutor
++
++class FlowUtil:
++    """Utilities for flow configuration."""
++
++    @staticmethod
++    def vpp_create_ip4_n_tuple_flow(
++            node, src_ip, dst_ip, src_port, dst_port,
++            proto, action, value=0):
++        """Create IP4_N_TUPLE flow.
++
++        :param node: DUT node.
++        :param src_ip: Source IP4 address.
++        :param dst_ip: Destination IP4 address.
++        :param src_port: Source port.
++        :param dst_port: Destination port.
++        :param proto: TCP or UDP.
++        :param action: Mark, drop or redirect-to-queue.
++        :param value: Action value.
++
++        :type node: dict
++        :type src_ip: str
++        :type dst_ip: str
++        :type src_port: int
++        :type dst_port: int
++        :type proto: str
++        :type action: str
++        :type value: int
++        :returns: flow_index.
++        :rtype: int
++        :raises ValueError: If the node has an unknown node type.
++        """
++
++        from vpp_papi import VppEnum
++
++        flow = "ip4_n_tuple"
++        flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP4_N_TUPLE
++
++        if proto == u"TCP":
++            flow_proto = VppEnum.vl_api_ip_proto_t.IP_API_PROTO_TCP
++        elif proto == u"UDP":
++            flow_proto = VppEnum.vl_api_ip_proto_t.IP_API_PROTO_UDP
++        else:
++            raise ValueError(f"proto error: {proto}")
++
++        pattern = {
++            'src_addr': {'addr': src_ip, 'mask': "255.255.255.255"},
++            'dst_addr': {'addr': dst_ip, 'mask': "255.255.255.255"},
++            'src_port': {'port': src_port, 'mask': 0xFFFF},
++            'dst_port': {'port': dst_port, 'mask': 0xFFFF},
++            'protocol': {'prot': flow_proto}
++        }
++
++        flow_index = FlowUtil.vpp_flow_add(node, flow, flow_type,
++                pattern, action, value)
++
++        return flow_index
++
++    @staticmethod
++    def vpp_create_ip6_n_tuple_flow(
++            node, src_ip, dst_ip, src_port, dst_port,
++            proto, action, value=0):
++        """Create IP6_N_TUPLE flow.
++
++        :param node: DUT node.
++        :param src_ip: Source IP6 address.
++        :param dst_ip: Destination IP6 address.
++        :param src_port: Source port.
++        :param dst_port: Destination port.
++        :param proto: TCP or UDP.
++        :param action: Mark, drop or redirect-to-queue.
++        :param value: Action value.
++
++        :type node: dict
++        :type src_ip: str
++        :type dst_ip: str
++        :type src_port: int
++        :type dst_port: int
++        :type proto: str
++        :type action: str
++        :type value: int
++        :returns: flow_index.
++        :rtype: int
++        :raises ValueError: If the node has an unknown node type.
++        """
++
++        from vpp_papi import VppEnum
++
++        flow = "ip6_n_tuple"
++        flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP6_N_TUPLE
++
++        if proto == u"TCP":
++            flow_proto = VppEnum.vl_api_ip_proto_t.IP_API_PROTO_TCP
++        elif proto == u"UDP":
++            flow_proto = VppEnum.vl_api_ip_proto_t.IP_API_PROTO_UDP
++        else:
++            raise ValueError(f"proto error: {proto}")
++
++        pattern = {
++            'src_addr': {'addr': src_ip, \
++                'mask': "FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF"},
++            'dst_addr': {'addr': dst_ip, \
++                'mask': "FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF"},
++            'src_port': {'port': src_port, 'mask': 0xFFFF},
++            'dst_port': {'port': dst_port, 'mask': 0xFFFF},
++            'protocol': {'prot': flow_proto}
++        }
++
++        flow_index = FlowUtil.vpp_flow_add(node, flow, flow_type,
++                pattern, action, value)
++
++        return flow_index
++
++    @staticmethod
++    def vpp_create_ip4_gtpu_flow(
++            node, src_ip, dst_ip, teid, action, value=0):
++        """Create IP4_GTPU flow.
++
++        :param node: DUT node.
++        :param src_ip: Source IP4 address.
++        :param dst_ip: Destination IP4 address.
++        :param teid: Tunnel endpoint identifier.
++        :param action: Mark, drop or redirect-to-queue.
++        :param value: Action value.
++
++        :type node: dict
++        :type src_ip: str
++        :type dst_ip: str
++        :type teid: int
++        :type action: str
++        :type value: int
++        :returns: flow_index.
++        :rtype: int
++        :raises ValueError: If the node has an unknown node type.
++        """
++
++        from vpp_papi import VppEnum
++
++        flow = "ip4_gtpu"
++        flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP4_GTPU
++        flow_proto = VppEnum.vl_api_ip_proto_t.IP_API_PROTO_UDP
++
++        pattern = {
++            'src_addr': {'addr': src_ip, 'mask': "255.255.255.255"},
++            'dst_addr': {'addr': dst_ip, 'mask': "255.255.255.255"},
++            'protocol': {'prot': flow_proto},
++            'teid': teid
++        }
++
++        flow_index = FlowUtil.vpp_flow_add(node, flow, flow_type,
++                pattern, action, value)
++
++        return flow_index
++
++    @staticmethod
++    def vpp_flow_add(node, flow, flow_type, pattern, action, value=0):
++        """Flow add.
++
++        :param node: DUT node.
++        :param flow: Name of flow.
++        :param flow_type: Type of flow.
++        :param pattern: Pattern of flow.
++        :param action: Mark, drop or redirect-to-queue.
++        :param value: Action value.
++
++        :type node: dict
++        :type node: str
++        :type flow_type: str
++        :type pattern: dict
++        :type action: str
++        :type value: int
++        :returns: flow_index.
++        :rtype: int
++        :raises ValueError: If the node has an unknown node type.
++        """
++
++        from vpp_papi import VppEnum
++
++        if node[u"type"] == NodeType.DUT:
++            cmd = u"flow_add"
++
++            if action == u"redirect-to-queue":
++                flow_rule = {
++                    'type': flow_type,
++                    'actions': VppEnum.vl_api_flow_action_t.FLOW_ACTION_REDIRECT_TO_QUEUE,
++                    'redirect_queue': value,
++                    'flow': {flow : pattern}
++                }
++            elif action == u"mark":
++                flow_rule = {
++                    'type': flow_type,
++                    'actions': VppEnum.vl_api_flow_action_t.FLOW_ACTION_MARK,
++                    'mark_flow_id': value,
++                    'flow': {flow : pattern}
++                }
++            elif action == u"drop":
++                flow_rule = {
++                    'type': flow_type,
++                    'actions': VppEnum.vl_api_flow_action_t.FLOW_ACTION_DROP,
++                    'flow': {flow : pattern}
++                }
++            else:
++                raise ValueError(f"Action type error: {action}")
++
++            err_msg = f"Failed to create {flow} flow on host."
++ 
++            args = dict(flow=flow_rule)
++            flow_index = -1
++            with PapiSocketExecutor(node) as papi_exec:
++                reply = papi_exec.add(cmd, **args).get_reply(err_msg)
++                flow_index = reply[u"flow_index"]
++
++            return flow_index
++        else:
++            raise ValueError(
++                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
++            )
++
++    @staticmethod
++    def vpp_flow_enable(node, interface, flow_index=0):
++        """Flow enable.
++
++        :param node: DUT node.
++        :param interface: Interface sw_if_index.
++        :param flow_index: Flow index.
++
++        :type node: dict
++        :type interface: int
++        :type flow_index: int
++        :returns: Nothing.
++        :raises ValueError: If the node has an unknown node type.
++        """
++
++        if node[u"type"] == NodeType.DUT:
++            err_msg = u"Failed to enable flow on host"
++            cmd = u"flow_enable"
++            sw_if_index = Topology.get_interface_sw_index(node, interface)
++            args = dict(
++                flow_index=int(flow_index),
++                hw_if_index=int(sw_if_index)
++            )
++            with PapiSocketExecutor(node) as papi_exec:
++                papi_exec.add(cmd, **args).get_reply(err_msg)
++
++        else:
++            raise ValueError(
++                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
++            )
++
++    @staticmethod
++    def vpp_flow_disable(node, interface, flow_index=0):
++        """Flow disable.
++
++        :param node: DUT node.
++        :param interface: Interface sw_if_index.
++        :param flow_index: Flow index.
++
++        :type node: dict
++        :type interface: int
++        :type flow_index: int
++        :returns: Nothing.
++        :raises ValueError: If the node has an unknown node type.
++        """
++
++        if node[u"type"] == NodeType.DUT:
++            err_msg = u"Failed to disable flow on host"
++            cmd = u"flow_disable"
++            sw_if_index = Topology.get_interface_sw_index(node, interface)
++            args = dict(
++                flow_index=int(flow_index),
++                hw_if_index=int(sw_if_index)
++            )
++            with PapiSocketExecutor(node) as papi_exec:
++                papi_exec.add(cmd, **args).get_reply(err_msg)
++
++        else:
++            raise ValueError(
++                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
++            )
++
++    @staticmethod
++    def vpp_flow_del(node, flow_index=0):
++        """Flow delete.
++
++        :param node: DUT node.
++        :param flow_index: Flow index.
++
++        :type node: dict
++        :type flow_index: int
++        :returns: Nothing.
++        :raises ValueError: If the node has an unknown node type.
++        """
++
++        if node[u"type"] == NodeType.DUT:
++            err_msg = u"Failed to delete flow on host"
++            cmd = u"flow_del"
++            args = dict(
++                flow_index=int(flow_index)
++            )
++            with PapiSocketExecutor(node) as papi_exec:
++                papi_exec.add(cmd, **args).get_reply(err_msg)
++
++        else:
++            raise ValueError(
++                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
++            )
++
++    @staticmethod
++    def vpp_flow_verify_action(
++            node, action, value,
++            src_mac=u"11:22:33:44:55:66", dst_mac=u"11:22:33:44:55:66"):
++        """Verify the correctness of the flow action.
++
++        :param node: DUT node.
++        :param action: Action.
++        :param value: Action value.
++        :param src_mac: Source mac address.
++        :param dst_mac: Destination mac address.
++
++        :type node: dict
++        :type action: str
++        :type value: int
++        :type src_mac: str
++        :type dst_mac: str
++        :returns: Nothing.
++        :raises ValueError: Unknown node type or verify error.
++        """
++        if node[u"type"] == NodeType.DUT:
++            err_msg = f"Failed to show trace on host {node[u'host']}"
++            cmd = u"vppctl show trace"
++            stdout, _ = exec_cmd_no_error(
++                node, cmd, sudo=False, message=err_msg, retries=120
++            )
++
++            if action == u"drop":
++                mac_matched = f"{src_mac} -> {dst_mac}"
++                if mac_matched in stdout:
++                    raise ValueError(
++                        u"The flow packet dropped failed"
++                    )
++            elif action == u"redirect-to-queue":
++                queue_matched = f"queue {value}"
++                if queue_matched not in stdout:
++                    raise ValueError(
++                        u"The flow packet redirected to queue failed"
++                    )
++            elif action == u"mark":
++                if u"PKT_RX_FDIR" not in stdout:
++                    raise ValueError(u"The flow packet mark failed")
++            else:
++                raise ValueError(u"Action type error")
++        else:
++            raise ValueError(
++                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
++            )
+diff --git a/resources/libraries/robot/shared/default.robot b/resources/libraries/robot/shared/default.robot
+index 891ef2192..e8b9bbda8 100644
+--- a/resources/libraries/robot/shared/default.robot
++++ b/resources/libraries/robot/shared/default.robot
+@@ -25,6 +25,7 @@
+ | Library | resources.libraries.python.CpuUtils
+ | Library | resources.libraries.python.CoreDumpUtil
+ | Library | resources.libraries.python.DUTSetup
++| Library | resources.libraries.python.FlowUtil
+ | Library | resources.libraries.python.L2Util
+ | Library | resources.libraries.python.InterfaceUtil
+ | Library | resources.libraries.python.IPUtil
+diff --git a/resources/libraries/robot/shared/traffic.robot b/resources/libraries/robot/shared/traffic.robot
+index 08f579c9d..74b8a6ee0 100644
+--- a/resources/libraries/robot/shared/traffic.robot
++++ b/resources/libraries/robot/shared/traffic.robot
+@@ -1,3 +1,4 @@
++# Copyright (c) 2021 Intel and/or its affiliates.
+ # Copyright (c) 2020 Cisco and/or its affiliates.
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+@@ -652,3 +653,55 @@
+ | | ... | --tun_vni ${tun_vni} | --tun_src_ip ${tun_src_ip}
+ | | ... | --tun_dst_ip ${tun_dst_ip}
+ | | Run Traffic Script On Node | geneve_tunnel.py | ${node} | ${args}
++
++| Send flow packet and verify action
++| | [Documentation] | Send packet and verify the correctness of flow action.
++| |
++| | ... | *Arguments:*
++| |
++| | ... | _NOTE:_ Arguments are based on topology:
++| | ... | TG(if1)->(if1)DUT
++| |
++| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
++| | ... | - tx_interface - TG Interface 1. Type: string
++| | ... | - tx_dst_mac - MAC address of DUT-if1. Type: string
++| | ... | - src_ip - Source ip address. Type: string
++| | ... | - dst_ip - Destination IP address. Type: string
++| | ... | - src_port - Source port. Type: int
++| | ... | - dst_port - Destination port. Type: int
++| | ... | - flow_type - IP4_N_TUPLE or IP6_N_TUPLE. Type: string
++| | ... | - proto - TCP or UDP. Type: string
++| | ... | - value - Additional packet value. Type: integer
++| | ... | - traffic_script - Traffic script that send packet. Type: string
++| | ... | - action - drop, mark or redirect-to-queue. Type: string
++| | ... | - action_value - action value. Type: integer
++| |
++| | ... | *Return:*
++| | ... | - No value returned
++| |
++| | ... | *Example:*
++| | ... | \| Send flow packet and verify actions \| ${nodes['TG']} \| eth2 \
++| | ... | \| 08:00:27:a2:52:5b \
++| | ... | \| 1.1.1.1 \| 2.2.2.2 \| ${100} \| ${200} \
++| | ... | \| IP4 \| UDP \| send_flow_packet \| mark \| ${7} \|
++| |
++| | [Arguments] | ${tg_node} | ${tx_interface} | ${tx_dst_mac}
++| | ... | ${src_ip}=${None} | ${dst_ip}=${None}
++| | ... | ${src_port}=${None} | ${dst_port}=${None}
++| | ... | ${flow_type}=${None} | ${proto}=${None}
++| | ... | ${value}=${None}
++| | ... | ${traffic_script}=send_flow_packet
++| | ... | ${action}=redirect-to-queue
++| | ... | ${action_value}=${None}
++| |
++| | ${tx_src_mac}= | Get Interface Mac | ${tg_node} | ${tx_interface}
++| | ${tx_if_name}= | Get interface name | ${tg_node} | ${tx_interface}
++| | ${args}= | Catenate
++| | ... | --tg_if1_mac ${tx_src_mac} | --dut_if1_mac ${tx_dst_mac}
++| | ... | --tx_if ${tx_if_name} | --flow_type ${flow_type} | --proto ${proto}
++| | ... | --src_ip ${src_ip} | --dst_ip ${dst_ip}
++| | ... | --src_port ${src_port} | --dst_port ${dst_port}
++| | ... | --value ${value}
++| | Run Traffic Script On Node | ${traffic_script}.py | ${tg_node} | ${args}
++| | Vpp Flow Verify action | ${dut1} | ${action} | ${action_value}
++| | ... | ${tx_src_mac} | ${tx_dst_mac}
+diff --git a/tests/vpp/offload/__init__.robot b/tests/vpp/offload/__init__.robot
+new file mode 100644
+index 000000000..609f1f743
+--- /dev/null
++++ b/tests/vpp/offload/__init__.robot
+@@ -0,0 +1,57 @@
++# Copyright (c) 2021 Intel and/or its affiliates.
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at:
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++*** Settings ***
++| Resource | resources/libraries/robot/shared/default.robot
++| Resource | resources/libraries/robot/shared/interfaces.robot
++|
++| Library | resources.libraries.python.SetupFramework
++| Library | resources.libraries.python.SetupFramework.CleanupFramework
++| Library | resources.libraries.python.CpuUtils
++|
++| Suite Setup | Run Keywords | Setup Global Variables
++| ... | AND | Setup Framework | ${nodes}
++| ... | AND | Setup Corekeeper on All Nodes | ${nodes}
++| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
++| ... | AND | Verify Vpp on All Duts | ${nodes}
++| ... | AND | Get CPU Info from All Nodes | ${nodes}
++| ... | AND | Update All Interface Data on All Nodes | ${nodes}
++|
++| Suite Teardown | Cleanup Framework | ${nodes}
++
++*** Keywords ***
++| Setup Global Variables
++| | [Documentation]
++| | ... | Setup suite Variables. Variables are used across offload testing.
++| |
++| | ... | _NOTE:_ This KW sets following suite variables:
++| | ... | - pre_stats - Statistics actions before traffic.
++| | ... | - post_stats - Statistics actions after traffic.
++| | ... | - pre_run_stats - Statistics actions during traffic before timer.
++| | ... | - post_run_stats - Statistics actions during traffic after timer.
++| | ... | - packages_dir - Path to directory where VPP packages are stored.
++| |
++| | ${pre_stats}= | Create List
++| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
++| | ${post_stats}= | Create List
++| | ... | vpp-show-stats | vpp-show-packettrace | vpp-show-elog
++| | ${pre_run_stats}= | Create List
++| | ... | vpp-clear-runtime
++| | ${post_run_stats}= | Create List
++| | ... | vpp-show-runtime | bash-perf-stat
++| | Set Global Variable | ${pre_stats}
++| | Set Global Variable | ${post_stats}
++| | Set Global Variable | ${pre_run_stats}
++| | Set Global Variable | ${post_run_stats}
++| | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
++| | Set Global Variable | ${nodes}
+diff --git a/tests/vpp/offload/flow/eth2p-flow-ip4-gtpu.robot b/tests/vpp/offload/flow/eth2p-flow-ip4-gtpu.robot
+new file mode 100644
+index 000000000..a51d75f29
+--- /dev/null
++++ b/tests/vpp/offload/flow/eth2p-flow-ip4-gtpu.robot
+@@ -0,0 +1,103 @@
++# Copyright (c) 2021 Intel and/or its affiliates.
++# Licensed under the Apache Licens, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at:
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++*** Settings ***
++| Resource | resources/libraries/robot/shared/default.robot
++|
++| Force Tags | 2_NODE_SINGLE_LINK_TOPO | OFFLOADTEST | HW_ENV | SCAPY
++| ... | NIC_Intel-E810CQ | ETH | FLOW | IP4_GTPU | DRV_VFIO_PCI
++| ... | RXQ_SIZE_0 | TXQ_SIZE_0
++| ... | flow-ip4-gtpu
++|
++| Suite Setup | Setup suite topology interfaces | scapy
++| Test Setup | Setup test
++| Test Teardown | Tear down test | packet_trace
++|
++| Documentation | *IP4-GTPU flow test cases*
++| ...
++| ... | *[Top] Network Topologies:* TG-DUT1 2-node topology with one link\
++| ... | between nodes.
++| ... | *[Enc] Packet Encapsulations:* Eth-IP4-UDP-GTPU.
++| ... | *[Cfg] DUT configuration:* DUT is configured with IP4-GTPU flow.
++| ... | *[Ver] TG verification:* Verify if the flow action is correct.
++
++*** Variables ***
++| @{plugins_to_enable}= | dpdk_plugin.so
++| ${crypto_type}= | ${None}
++| ${nic_name}= | Intel-E810CQ
++| ${nic_driver}= | vfio-pci
++| ${nic_rxq_size}= | 0
++| ${nic_txq_size}= | 0
++| ${nic_pfs}= | 2
++| ${nic_vfs}= | 0
++| ${overhead}= | ${0}
++| ${frame_size}= | ${0}
++| ${phy_cores}= | ${0}
++| ${src_ip}= | 1.1.1.1
++| ${dst_ip}= | 2.2.2.2
++| ${teid}= | ${12345}
++
++*** Keywords ***
++| Initialize Flow Test Configuration
++| | Given Set Max Rate And Jumbo
++| | And Add worker threads to all DUTs | ${8} | ${8}
++| | And Pre-initialize layer driver | ${nic_driver}
++| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
++| | When Initialize layer driver | ${nic_driver}
++| | And Initialize layer interface
++
++*** Test Cases ***
++| flow-ip4-gtpu-action-redirect-to-queue
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip4 Gtpu Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | teid=${teid}
++| | ... | action=redirect-to-queue | value=${7}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
++| | ... | flow_type=IP4 | proto=GTPU
++| | ... | value=${teid}
++| | ... | action=redirect-to-queue | action_value=${7}
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip4-gtpu-action-drop
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip4 Gtpu Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip}
++| | ... | teid=${teid} | action=drop
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
++| | ... | flow_type=IP4 | proto=GTPU
++| | ... | value=${teid}
++| | ... | action=drop
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip4-gtpu-action-mark
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip4 Gtpu Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | teid=${teid}
++| | ... | action=mark | value=${7}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
++| | ... | flow_type=IP4 | proto=GTPU
++| | ... | value=${teid}
++| | ... | action=mark
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
+diff --git a/tests/vpp/offload/flow/eth2p-flow-ip4-ntuple.robot b/tests/vpp/offload/flow/eth2p-flow-ip4-ntuple.robot
+new file mode 100644
+index 000000000..45df4cac4
+--- /dev/null
++++ b/tests/vpp/offload/flow/eth2p-flow-ip4-ntuple.robot
+@@ -0,0 +1,143 @@
++# Copyright (c) 2021 Intel and/or its affiliates.
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at:
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++*** Settings ***
++| Resource | resources/libraries/robot/shared/default.robot
++|
++| Force Tags | 2_NODE_SINGLE_LINK_TOPO | OFFLOADTEST | HW_ENV | SCAPY
++| ... | NIC_Intel-E810CQ | ETH | FLOW | IP4_N_TUPLE | DRV_VFIO_PCI
++| ... | RXQ_SIZE_0 | TXQ_SIZE_0
++| ... | flow-ip4-ntuple
++|
++| Suite Setup | Setup suite topology interfaces | scapy
++| Test Setup | Setup test
++| Test Teardown | Tear down test | packet_trace
++|
++| Documentation | *IP4-N-TUPLE flow test cases*
++| ...
++| ... | *[Top] Network Topologies:* TG-DUT1 2-node topology with one link\
++| ... | between nodes.
++| ... | *[Enc] Packet Encapsulations:* Eth-IP4-TCP or Eth-IP4-UDP.
++| ... | *[Cfg] DUT configuration:* DUT is configured with IP4-N-TUPLE flow.
++| ... | *[Ver] TG verification:* Verify if the flow action is correct.
++
++*** Variables ***
++| @{plugins_to_enable}= | dpdk_plugin.so
++| ${crypto_type}= | ${None}
++| ${nic_name}= | Intel-E810CQ
++| ${nic_driver}= | vfio-pci
++| ${nic_rxq_size}= | 0
++| ${nic_txq_size}= | 0
++| ${nic_pfs}= | 2
++| ${nic_vfs}= | 0
++| ${overhead}= | ${0}
++| ${frame_size}= | ${0}
++| ${phy_cores}= | ${0}
++| ${src_ip}= | 1.1.1.1
++| ${dst_ip}= | 2.2.2.2
++| ${src_port}= | ${100}
++| ${dst_port}= | ${200}
++
++*** Keywords ***
++| Initialize Flow Test Configuration
++| | Given Set Max Rate And Jumbo
++| | And Add worker threads to all DUTs | ${8} | ${8}
++| | And Pre-initialize layer driver | ${nic_driver}
++| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
++| | When Initialize layer driver | ${nic_driver}
++| | And Initialize layer interface
++
++*** Test Cases ***
++| flow-ip4-ntuple-udp-action-redirect-to-queue
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip4 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=UDP | action=redirect-to-queue | value=${7}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP4 | proto=UDP
++| | ... | action=redirect-to-queue | action_value=${7}
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip4-ntuple-udp-action-drop
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip4 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=UDP | action=drop
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP4 | proto=UDP
++| | ... | action=drop
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip4-ntuple-udp-action-mark
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip4 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=UDP | action=mark | value=${7}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP4 | proto=UDP
++| | ... | action=mark
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip4-ntuple-tcp-action-redirect-to-queue
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip4 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=TCP | action=redirect-to-queue | value=${7}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP4 | proto=TCP
++| | ... | action=redirect-to-queue | action_value=${7}
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip4-ntuple-tcp-action-drop
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip4 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=TCP | action=drop
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP4 | proto=TCP
++| | ... | action=drop
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip4-ntuple-tcp-action-mark
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip4 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=TCP | action=mark | value=${7}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP4 | proto=TCP
++| | ... | action=mark
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
+diff --git a/tests/vpp/offload/flow/eth2p-flow-ip6-ntuple.robot b/tests/vpp/offload/flow/eth2p-flow-ip6-ntuple.robot
+new file mode 100644
+index 000000000..8dba0f9fe
+--- /dev/null
++++ b/tests/vpp/offload/flow/eth2p-flow-ip6-ntuple.robot
+@@ -0,0 +1,143 @@
++# Copyright (c) 2021 Intel and/or its affiliates.
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at:
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++*** Settings ***
++| Resource | resources/libraries/robot/shared/default.robot
++|
++| Force Tags | 2_NODE_SINGLE_LINK_TOPO | OFFLOADTEST | HW_ENV | SCAPY
++| ... | NIC_Intel-E810CQ | ETH | FLOW | IP6_N_TUPLE | DRV_VFIO_PCI
++| ... | RXQ_SIZE_0 | TXQ_SIZE_0
++| ... | flow-ip6-ntuple
++|
++| Suite Setup | Setup suite topology interfaces | scapy
++| Test Setup | Setup test
++| Test Teardown | Tear down test | packet_trace
++|
++| Documentation | *IP6-N-TUPLE flow test cases*
++| ...
++| ... | *[Top] Network Topologies:* TG-DUT1 2-node topology with one link\
++| ... | between nodes.
++| ... | *[Enc] Packet Encapsulations:* Eth-IP6-TCP or Eth-IP6-UDP.
++| ... | *[Cfg] DUT configuration:* DUT is configured with IP6-N-TUPLE flow.
++| ... | *[Ver] TG verification:* Verify if the flow action is correct.
++
++*** Variables ***
++| @{plugins_to_enable}= | dpdk_plugin.so
++| ${crypto_type}= | ${None}
++| ${nic_name}= | Intel-E810CQ
++| ${nic_driver}= | vfio-pci
++| ${nic_rxq_size}= | 0
++| ${nic_txq_size}= | 0
++| ${nic_pfs}= | 2
++| ${nic_vfs}= | 0
++| ${overhead}= | ${0}
++| ${frame_size}= | ${0}
++| ${phy_cores}= | ${0}
++| ${src_ip}= | 2001:0db8:3c4d:0015:0000:0000:1a2f:1a2b
++| ${dst_ip}= | 1011:2022:3033:4044:5055:6066:7077:8088
++| ${src_port}= | ${100}
++| ${dst_port}= | ${200}
++
++*** Keywords ***
++| Initialize Flow Test Configuration
++| | Given Set Max Rate And Jumbo
++| | And Add worker threads to all DUTs | ${8} | ${8}
++| | And Pre-initialize layer driver | ${nic_driver}
++| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
++| | When Initialize layer driver | ${nic_driver}
++| | And Initialize layer interface
++
++*** Test Cases ***
++| flow-ip6-ntuple-udp-action-redirect-to-queue
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip6 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=UDP | action=redirect-to-queue | value=${7}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP6 | proto=UDP
++| | ... | action=redirect-to-queue | action_value=${7}
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip6-ntuple-udp-action-drop
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip6 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=UDP | action=drop
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP6 | proto=UDP
++| | ... | action=drop
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip6-ntuple-udp-action-mark
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip6 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=UDP | action=mark | value=${8}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP6 | proto=UDP
++| | ... | action=mark
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip6-ntuple-tcp-action-redirect-to-queue
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip6 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=TCP | action=redirect-to-queue | value=${7}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP6 | proto=TCP
++| | ... | action=redirect-to-queue | action_value=${7}
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip6-ntuple-tcp-action-drop
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip6 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=TCP | action=drop
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP6 | proto=TCP
++| | ... | action=drop
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
++
++| flow-ip6-ntuple-tcp-action-mark
++| | Initialize Flow Test Configuration
++| | ${flow_index} = | Vpp Create Ip6 N Tuple Flow | ${dut1}
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | proto=TCP | action=mark | value=${8}
++| | Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Then Send flow packet and verify action
++| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
++| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
++| | ... | flow_type=IP6 | proto=TCP
++| | ... | action=mark
++| | Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
++| | Vpp Flow Del | ${dut1} | ${flow_index}
+-- 
+2.17.1
+

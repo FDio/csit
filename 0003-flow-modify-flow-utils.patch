@@ -1,0 +1,26 @@
+From 5350f10076eb4b7905556fc2866aa46f12940359 Mon Sep 17 00:00:00 2001
+From: xinfeng zhao <xinfengx.zhao@intel.com>
+Date: Fri, 19 Mar 2021 11:47:56 +0800
+Subject: [PATCH 3/3] flow: modify flow utils
+
+Signed-off-by: xinfeng zhao <xinfengx.zhao@intel.com>
+Change-Id: Ie3bef31583707ff09c4b4320692ba7ee76609f0f
+---
+ resources/libraries/python/FlowUtil.py | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/resources/libraries/python/FlowUtil.py b/resources/libraries/python/FlowUtil.py
+index 4ea49cae3..0e75f54cb 100644
+--- a/resources/libraries/python/FlowUtil.py
++++ b/resources/libraries/python/FlowUtil.py
+@@ -222,7 +222,6 @@ class FlowUtil:
+                 raise ValueError(f"Action type error: {action}")
+ 
+             err_msg = f"Failed to create {flow} flow on host."
+-
+             args = dict(flow=flow_rule)
+             flow_index = -1
+             with PapiSocketExecutor(node) as papi_exec:
+-- 
+2.17.1
+
