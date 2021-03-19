@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,4 +29,5 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 common_dirs || die
 cd "${CSIT_DIR}" || die
 activate_virtualenv "${CSIT_DIR}" "${CSIT_DIR}/tox-requirements.txt" || die
-tox  # Return code is turned into Jenkins job vote.
+# Verbosity is increased so console output shows any unwanted downloads.
+tox -vv  # Return code is turned into Jenkins job vote.
