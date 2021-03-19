@@ -44,6 +44,21 @@ from resources.libraries.python import jumpavg
 from input_data_files import download_and_unzip_data_file
 from pal_errors import PresentationError
 
+# An approach for implemented classes:
+#
+# from resources.libraries.python.model.NdrpdrResult_0 import NdrpdrResult_0
+# ...
+# ndrpdr_result = NdrpdrResult_0.from_json_string(result_only_json_string)
+# hdrh_50_forward = ndrpdr_result.forward_latency.l_50.hdrh
+# ...
+
+# Currently, Universal Test Interface describes leves above NdrpdrResult_0,
+# so the coude will be something like:
+# ...
+# test_output = UniversalTestOutput.from_json_string(test_case_output_json_string)
+# ndrpdr_result = test_output.test.results.test
+# ...
+
 
 # Separator used in file names
 SEPARATOR = u"__"

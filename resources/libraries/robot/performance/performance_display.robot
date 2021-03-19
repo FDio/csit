@@ -44,6 +44,7 @@
 | | ${message_other} = | Set Variable | ${lower_bound.loss_count} packets lost.
 | | ${message} = | Set Variable If | ${lower_bound_lf} >= 1.0
 | | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
+| | Save Output | key=NDRPDR_INVALID | value=${message}
 | | Fail | ${message}
 
 | Display Reconfig Test Message

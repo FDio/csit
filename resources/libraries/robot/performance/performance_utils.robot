@@ -234,12 +234,20 @@
 | | ... | duration_limit=${1.0}
 | | Return From Keyword If | ${disable_latency}
 | | ${rate} = | Evaluate | 0.9 * ${pdr}
-| | Measure and show latency at specified rate | Latency at 90% PDR: | ${rate}
+| | ${f_90} | ${r_90} = | Measure and show latency at specified rate
+| | ... | Latency at 90% PDR: | ${rate}
 | | ${rate} = | Evaluate | 0.5 * ${pdr}
-| | Measure and show latency at specified rate | Latency at 50% PDR: | ${rate}
+| | ${f_50} | ${r_50} = | Measure and show latency at specified rate
+| | ... | Latency at 50% PDR: | ${rate}
 | | ${rate} = | Evaluate | 0.1 * ${pdr}
-| | Measure and show latency at specified rate | Latency at 10% PDR: | ${rate}
-| | Measure and show latency at specified rate | Latency at 0% PDR: | ${0.0}
+| | ${f_10} | ${r_10} = | Measure and show latency at specified rate
+| | ... | Latency at 10% PDR: | ${rate}
+| | ${f_0} | ${r_0} = | Measure and show latency at specified rate
+| | ... | Latency at 0% PDR: | ${0.0}
+| | # FIXME: Compose LatencyPerDirection_0 objects,
+| | # compose DropRateInterval_0 obejects,
+| | # and put them together into NdrpdrResult_0 object.
+| | Save Output | key=test | value=${ndrpdr_result}
 
 | Find Throughput Using MLRsearch
 | | [Documentation]
@@ -317,10 +325,13 @@
 | | ... | - rate - Unidirectional rate [tps] for sending packets.
 | | ... | Type: float
 | |
+| | ... | *Returns*
+| | ... | - 2-tuple of LatencyPerLoad_0, second may be None.
+| |
 | | ... | *Example:*
 | |
-| | ... | \| Measure and show latency at specified rate \| Latency at 90% NDR \
-| | ... | \| ${10000000} \|
+| | ... | \| \${forward} \| \${reverse} = \| Measure and show latency at specified rate \
+| | ... | \| Latency at 90% NDR \| ${10000000} \|
 | |
 | | [Arguments] | ${message_prefix} | ${rate}
 | |
@@ -351,6 +362,7 @@
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | ${latency} = | Get Latency Int
 | | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
+| | Run Keyword And Return | Get Latency Objects
 
 | Send ramp-up traffic
 | | [Documentation]
@@ -724,4 +736,5 @@
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in ${unit}: ${results}
 | | ... | append=yes
+| | Save Output | key=MRR | value=${results}
 | | Fail if no traffic forwarded

@@ -216,10 +216,30 @@ class TrafficGenerator(AbstractMeasurer):
     def get_latency_int(self):
         """Return rounded min/avg/max latency.
 
+        TODO: It is a list with two plain strings,
+        the hdrh part is not an int.
+
         :returns: Latency stats.
         :rtype: list
         """
         return self._latency
+
+    def get_latency_objects(self):
+        """Return pair of latency objects.
+
+        :returns: Two objects, second can be None for unidir tests.
+        :rtype: LatencyPerLoad_0, LatencyPerLoad_0
+        """
+        l_list = self._latency
+        if len(l_list) < 2:
+            forward = l_list[0]
+            reverse = None
+        else:
+            forward, reverse = l_list
+        forward = LatencyPerLoad_0.from_plain_string(forward)
+        if reverse is not None:
+            reverse = LatencyPerLoad_0.from_plain_string(reverse)
+        return forward, reverse
 
     def get_approximated_rate(self):
         """Return approximated rate computed as ratio of transmitted packets
