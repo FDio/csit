@@ -17,6 +17,7 @@ supposed to end up here.
 """
 
 from os import environ, remove
+import socket  # For catching socket.timeout.
 from tempfile import NamedTemporaryFile
 import threading
 
@@ -158,7 +159,7 @@ def setup_node(node, tarball, remote_tarball, results=None):
         extract_tarball_at_node(remote_tarball, node)
         if node[u"type"] == NodeType.TG:
             create_env_directory_at_node(node)
-    except RuntimeError as exc:
+    except (RuntimeError, socket.timeout) as exc:
         logger.console(
             f"Node {node[u'type']} host {node[u'host']}, port {node[u'port']} "
             f"setup failed, error: {exc!r}"
@@ -271,7 +272,7 @@ class SetupFramework:
             threads.append(thread)
 
         logger.info(
-            f"Executing node setups in parallel, waiting for threads to end"
+            u"Executing node setups in parallel, waiting for threads to end."
         )
 
         for thread in threads:
