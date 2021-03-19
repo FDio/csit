@@ -1,3 +1,4 @@
+# Copyright (c) 2021 Intel and/or its affiliates.
 # Copyright (c) 2021 Cisco and/or its affiliates.
 # Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -282,6 +283,9 @@ function compose_pybot_arguments () {
         *"perf"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
             ;;
+        *"offload"*)
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.offload")
+            ;;
         *)
             die "Unknown specification: ${TEST_CODE}"
     esac
@@ -503,6 +507,9 @@ function get_test_tag_string () {
                 ;;
             *"perf"*)
                 trigger="perftest"
+                ;;
+            *"offload"*)
+                trigger="offloadtest"
                 ;;
             *)
                 die "Unknown specification: ${TEST_CODE}"
@@ -1115,6 +1122,54 @@ function select_vpp_device_tags () {
     done
 }
 
+
+function select_vpp_offload_tags () {
+
+    # Variables read:
+    # - TEST_CODE - String affecting test selection, usually jenkins job name.
+    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
+    #   Can be unset.
+    # Variables set:
+    # - TAGS - Array of processed tag boolean expressions.
+
+    set -exuo pipefail
+
+    case "${TEST_CODE}" in
+        # Select specific offload tests based on jenkins job type variable.
+        * )
+            if [[ -z "${TEST_TAG_STRING-}" ]]; then
+                # If nothing is specified, we will run pre-selected tests by
+                # following tags. Items of array will be concatenated by OR
+                # in Robot Framework.
+                test_tag_array=()
+            else
+                # If trigger contains tags, split them into array.
+                test_tag_array=(${TEST_TAG_STRING//:/ })
+            fi
+            SELECTION_MODE="--include"
+            ;;
+    esac
+
+    TAGS=()
+
+    # We will prefix with offloadtest to prevent running other tests
+    # (e.g. Functional).
+    prefix="offloadtestAND"
+    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
+        # Automatic prefixing for VPP jobs to limit testing.
+        prefix="${prefix}"
+    fi
+    for tag in "${test_tag_array[@]}"; do
+        if [[ ${tag} == "!"* ]]; then
+            # Exclude tags are not prefixed.
+            TAGS+=("${tag}")
+        else
+            TAGS+=("${prefix}${tag}")
+        fi
+    done
+}
+
+
 function untrap_and_unreserve_testbed () {
 
     # Use this as a trap function to ensure testbed does not remain reserved.
@@ -1152,6 +1207,34 @@ function untrap_and_unreserve_testbed () {
         WORKING_TOPOLOGY=""
         set -eu
     fi
+}
+
+
+function check_intel_e810_in_topologys () {
+
+    # Check topology DUT NICs, and remove unmatched topology from TOPOLOGIES.
+    #
+    # Variables read:
+    # - TOPOLOGIES - Array of paths to topology yaml to attempt reservation on.
+
+    set -exuo pipefail
+
+    for i in "${!TOPOLOGIES[@]}"; do
+	# NIC SELECTION
+	start_pattern='^  TG:'
+	end_pattern='^ \? \?[A-Za-z0-9]\+:'
+	sed_command="/${start_pattern}/,/${end_pattern}/d"
+
+	# Selected topology DUT NICs
+	reserved=$(sed "${sed_command}" "${TOPOLOGIES[$i]}" \
+		| grep -hoP "model: Intel-E810CQ" | sort -u)
+
+	if [[ ${reserved} == "" ]]; then
+            unset TOPOLOGIES[$i]
+	fi
+    done
+
+    set -x
 }
 
 
