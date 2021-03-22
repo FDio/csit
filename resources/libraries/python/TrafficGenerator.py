@@ -1427,7 +1427,6 @@ class OptimizedSearch:
             initial_trial_duration=1.0,
             number_of_intermediate_phases=2,
             timeout=720.0,
-            doublings=1,
             ppta=1,
             resetter=None,
             traffic_directions=2,
@@ -1438,21 +1437,22 @@ class OptimizedSearch:
             ramp_up_rate=None,
             ramp_up_duration=None,
             state_timeout=300.0,
+            expansion_coefficient=4.0,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
-        If transaction_scale is nonzero, all non-init trial durations
-        are set to 2.0 (as they do not affect the real trial duration)
+        If transaction_scale is nonzero, all init and non-init trial durations
+        are set to 1.0 (as they do not affect the real trial duration)
         and zero intermediate phases are used.
-        The initial phase still uses 1.0 seconds, to force remeasurement.
-        That makes initial phase act as a warmup.
+        This way no re-measurement happens.
+        Warmup has to be handled via resetter or ramp-up mechanisms.
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
         :param minimum_transmit_rate: Minimal load in transactions per second.
         :param maximum_transmit_rate: Maximal load in transactions per second.
-        :param packet_loss_ratio: Fraction of packets lost, for PDR [1].
+        :param packet_loss_ratio: Ratio of packets lost, for PDR [1].
         :param final_relative_width: Final lower bound transmit rate
             cannot be more distant that this multiple of upper bound [1].
         :param final_trial_duration: Trial duration for the final phase [s].
@@ -1462,9 +1462,6 @@ class OptimizedSearch:
             to perform before the final phase [1].
         :param timeout: The search will fail itself when not finished
             before this overall time [s].
-        :param doublings: How many doublings to do in external search step.
-            Default 1 is suitable for fairly stable tests,
-            less stable tests might get better overal duration with 2 or more.
         :param ppta: Packets per transaction, aggregated over directions.
             Needed for udp_pps which does not have a good transaction counter,
             so we need to compute expected number of packets.
@@ -1483,6 +1480,7 @@ class OptimizedSearch:
         :param ramp_up_rate: Rate to use in ramp-up trials [pps].
         :param ramp_up_duration: Duration of ramp-up trials [s].
         :param state_timeout: Time of life of DUT state [s].
+        :param expansion_coefficient: In external search multiply width by this.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1493,7 +1491,6 @@ class OptimizedSearch:
         :type initial_trial_duration: float
         :type number_of_intermediate_phases: int
         :type timeout: float
-        :type doublings: int
         :type ppta: int
         :type resetter: Optional[Callable[[], None]]
         :type traffic_directions: int
@@ -1504,9 +1501,10 @@ class OptimizedSearch:
         :type ramp_up_rate: float
         :type ramp_up_duration: float
         :type state_timeout: float
+        :type expansion_coefficient: float
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
-        :rtype: NdrPdrResult
+        :rtype: List[Receiverateinterval]
         :raises RuntimeError: If total duration is larger than timeout.
         """
         # we need instance of TrafficGenerator instantiated by Robot Framework
@@ -1519,7 +1517,7 @@ class OptimizedSearch:
         #       even though this is surprising for log readers.
         if transaction_scale:
             initial_trial_duration = 1.0
-            final_trial_duration = 2.0
+            final_trial_duration = 1.0
             number_of_intermediate_phases = 0
             timeout += transaction_scale * 3e-4
         tg_instance.set_rate_provider_defaults(
@@ -1544,14 +1542,20 @@ class OptimizedSearch:
             number_of_intermediate_phases=number_of_intermediate_phases,
             initial_trial_duration=initial_trial_duration,
             timeout=timeout,
-            doublings=doublings,
+            debug=logger.debug,
+            expansion_coefficient=expansion_coefficient,
         )
-        result = algorithm.narrow_down_ndr_and_pdr(
+        if packet_loss_ratio:
+            packet_loss_ratios = [0.0, packet_loss_ratio]
+        else:
+            # Happens in reconf tests.
+            packet_loss_ratios = [packet_loss_ratio]
+        results = algorithm.narrow_down_intervals(
             min_rate=minimum_transmit_rate,
             max_rate=maximum_transmit_rate,
-            packet_loss_ratio=packet_loss_ratio,
+            packet_loss_ratios=packet_loss_ratios,
         )
-        return result
+        return results
 
     @staticmethod
     def perform_soak_search(
@@ -1582,7 +1586,7 @@ class OptimizedSearch:
             See GPL/traffic_profiles/trex for implemented modules.
         :param minimum_transmit_rate: Minimal load in transactions per second.
         :param maximum_transmit_rate: Maximal load in transactions per second.
-        :param plr_target: Fraction of packets lost to achieve [1].
+        :param plr_target: Ratio of packets lost to achieve [1].
         :param tdpt: Trial duration per trial.
             The algorithm linearly increases trial duration with trial number,
             this is the increment between succesive trials, in seconds.
