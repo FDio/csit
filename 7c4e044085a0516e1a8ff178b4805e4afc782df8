@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f7d3123_50fe797a",
+        "filename": "resources/libraries/python/GeneveUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-22T14:59:02Z",
+      "side": 1,
+      "message": "2021 was already celebrated",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "7c4e044085a0516e1a8ff178b4805e4afc782df8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f99fdfec_0d6b3b6c",
+        "filename": "resources/libraries/python/GeneveUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-22T14:59:02Z",
+      "side": 1,
+      "message": "is this passing pylint?",
+      "range": {
+        "startLine": 132,
+        "startChar": 40,
+        "endLine": 132,
+        "endChar": 41
+      },
+      "revId": "7c4e044085a0516e1a8ff178b4805e4afc782df8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f91799e_6e9058a6",
+        "filename": "resources/libraries/python/GeneveUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-22T14:59:02Z",
+      "side": 1,
+      "message": "why there is a smiley face at the new line, keep the style of previous",
+      "range": {
+        "startLine": 133,
+        "startChar": 4,
+        "endLine": 133,
+        "endChar": 6
+      },
+      "revId": "7c4e044085a0516e1a8ff178b4805e4afc782df8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
