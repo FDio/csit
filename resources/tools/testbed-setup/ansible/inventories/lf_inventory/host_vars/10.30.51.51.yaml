@@ -58,3 +58,12 @@ consul_retry_servers:
   - "10.30.51.30"
   - "10.30.51.32"
   - "10.30.51.33"
+
+# Docker settings.
+docker_daemon:
+  # https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file
+  default-shm-size: "1073741824"
+  dns: [ "172.17.0.1" ]
+  dns-opts: []
+  dns-search: [ "{{ ansible_hostname }}" ]
+  host: [ "172.17.0.1:/var/run/docker.sock" ]

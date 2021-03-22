@@ -2,15 +2,19 @@
 # file: roles/calibration/defaults/main.yaml
 
 # Packages to install.
-packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
   - []
 
 packages_by_distro:
   ubuntu:
-    - "build-essential"
-    - "dmidecode"
+    bionic:
+      - "build-essential"
+      - "dmidecode"
+    focal:
+      - "build-essential"
+      - "dmidecode"
 
 packages_by_arch:
   aarch64:
@@ -19,16 +23,24 @@ packages_by_arch:
     - []
 
 # Kernel version to check.
-kernel_version: "{{ kernel_version_by_distro_by_arch[ansible_distribution | lower][ansible_machine] }}"
+kernel_version: "{{ kernel_version_by_distro_by_arch[ansible_distribution | lower][ansible_distribution_release][ansible_machine] }}"
 
 kernel_version_by_distro_by_arch:
   ubuntu:
-    x86_64:
-      - "4.15.0-72-generic"
-      - "5.3.0-1020-azure"
-      - "5.3.0-1017-aws"
-    aarch64:
-      - "4.15.0-54-generic"
+    bionic:
+      x86_64:
+        - "4.15.0-72-generic"
+        - "5.3.0-1020-azure"
+        - "4.15.0-1057-aws"
+      aarch64:
+        - "4.15.0-54-generic"
+    focal:
+      x86_64:
+        - "5.4.0-65-generic"
+        - "5.3.0-1020-azure"
+        - "5.3.0-1017-aws"
+      aarch64:
+        - "5.4.0-65-generic"
 
 pma_directory: "/tmp/pma_tools"
 jitter_core: 7

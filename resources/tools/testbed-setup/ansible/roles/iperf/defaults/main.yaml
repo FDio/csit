@@ -1,15 +1,19 @@
 ---
 # file: roles/iperf/defaults/main.yaml
 
-packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
   - []
 
 packages_by_distro:
   ubuntu:
-    - "build-essential"
-    - "lib32z1"
+    bionic:
+      - "build-essential"
+      - "lib32z1"
+    focal:
+      - "build-essential"
+      - "lib32z1"
 
 packages_by_arch:
   aarch64:

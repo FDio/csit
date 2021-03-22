@@ -1,14 +1,17 @@
 ---
 # file: roles/wrk/defaults/main.yaml
 
-packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
   - []
 
 packages_by_distro:
   ubuntu:
-    - "apache2-utils"
+    bionic:
+      - "apache2-utils"
+    focal:
+      - "apache2-utils"
 
 packages_by_arch:
   aarch64:

@@ -1,11 +1,19 @@
 ---
 # file: roles/nomad/tasks/main.yaml
 
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - nomad-inst-prerequisites
+
 - name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
-    update_cache: true
   tags:
     - nomad-inst-prerequisites
 

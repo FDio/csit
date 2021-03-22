@@ -5,6 +5,12 @@
   remote_user: testuser
   become: yes
   become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
   roles:
     - role: baremetal
       tags: baremetal
@@ -14,14 +20,12 @@
       tags: kernel
     - role: mellanox
       tags: mellanox
+    - role: docker
+      tags: docker
     - role: vpp
       tags: vpp
     - role: dpdk
       tags: dpdk
-    - role: docker
-      tags: docker
-    - role: kubernetes
-      tags: kubernetes
     - role: kernel_vm
       tags: kernel_vm
     - role: csit_sut_image
@@ -32,3 +36,66 @@
       tags: cleanup
     - role: calibration
       tags: calibration
+
+- hosts: sut_aws
+  remote_user: testuser
+  become: yes
+  become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
+  roles:
+    - role: user_add
+      tags: user_add
+    - role: common
+      tags: common
+    - role: vpp
+      tags: vpp
+    - role: dpdk
+      tags: dpdk
+    - role: iperf
+      tags: iperf
+    - role: docker
+      tags: docker
+    - role: aws
+      tags: aws
+    - role: cleanup
+      tags: cleanup
+    # TODO: 'Check Kernel Parameters' failing in
+    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
+    # - role: calibration
+    #   tags: calibration
+
+- hosts: sut_azure
+  become: yes
+  become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
+  roles:
+    - role: user_add
+      tags: user_add
+    - role: common
+      tags: common
+    - role: docker
+      tags: docker
+    - role: vpp
+      tags: vpp
+    - role: iperf
+      tags: iperf
+    - role: dpdk
+      tags: dpdk
+    - role: azure
+      tags: azure
+    - role: cleanup
+      tags: cleanup
+    # TODO: 'Check Kernel Parameters' failing in
+    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
+    # - role: calibration
+    #   tags: calibration

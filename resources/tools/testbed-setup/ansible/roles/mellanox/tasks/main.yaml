@@ -1,32 +1,40 @@
 ---
 # file: roles/mellanox/tasks/main.yaml
 
-- name: Mellanox Install - Install Distribution - Release - Machine Prerequisites
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - mellanox-inst-prerequisites
+
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
-    update_cache: true
   tags:
-    - install-dependencies
+    - mellanox-inst-prerequisites
 
-- name: Mellanox Install - Check Presence of Mellanox Hardware
+- name: Inst - Check Presence of Mellanox Hardware
   shell: "lspci | grep Mellanox | awk '{print $1}'"
   register: mellanox_pcis
   failed_when: no
   changed_when: no
   tags:
-    - install-mellanox
+    - mellanox-inst
 
-- name: Mellanox Install - Get OFED
+- name: Inst - Get OFED
   get_url:
     url: "http://content.mellanox.com/ofed/MLNX_OFED-{{ mellanox_version }}/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
     dest: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
     mode: 0644
   when: mellanox_pcis.stdout_lines | length > 0
   tags:
-    - install-mellanox
+    - mellanox-inst
 
-- name: Mellanox Install - Extract OFED
+- name: Inst - Extract OFED
   unarchive:
     remote_src: true
     src: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
@@ -35,26 +43,25 @@
   register: mellanox_firmware_extracted
   when: mellanox_pcis.stdout_lines | length > 0
   tags:
-    - install-mellanox
+    - mellanox-inst
 
-- name: Mellanox Install - Install OFED
+- name: Inst - OFED
   command: "./mlnxofedinstall --with-mft --dpdk --force --upstream-libs"
   args:
     chdir: "/opt/MLNX_OFED_LINUX-{{ mellanox_version }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}"
   when: mellanox_pcis.stdout_lines | length > 0 and mellanox_firmware_extracted
   tags:
-    - install-mellanox
+    - mellanox-inst
 
-- name: Mellanox Install - Switch Infiniband to Ethernet
+- name: Switch Infiniband to Ethernet
   command: "mlxconfig --yes --dev {{ item }} set LINK_TYPE_P1=2 LINK_TYPE_P2=2"
   with_items: "{{ mellanox_pcis.stdout_lines }}"
   tags:
-    - install-mellanox
+    - mellanox-conf
 
-- name: Mellanox Install - FIX qemu-system removal
+- name: FIX qemu-system removal
   package:
     name: "qemu-system"
     state: latest
-    update_cache: true
   tags:
-    - install-mellanox
+    - mellanox-inst

@@ -1,8 +1,9 @@
 ---
 # file: roles/kernel/tasks/main.yaml
 
-- name: Kernel - Install distribution - release
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags: install-kernel
+- name: Inst - Prerequisites
+  include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
+  tags:
+    - kernel-inst-prerequisites
 
 - meta: flush_handlers

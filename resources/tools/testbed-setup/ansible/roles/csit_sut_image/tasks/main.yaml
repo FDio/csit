@@ -6,7 +6,8 @@
     path: "/opt/csit-sut/"
     state: "directory"
     mode: 0755
-  tags: csit-sut-image
+  tags:
+    - csit-sut-image
 
 - name: Copy Build Items
   copy:
@@ -18,10 +19,12 @@
   with_items:
     - Dockerfile
     - supervisord.conf
-  tags: csit-sut-image
+  tags:
+    - csit-sut-image
 
 - name: Build CSIT SUT Docker Image
-  shell: "docker build -t csit_sut-ubuntu1804:local ."
+  shell: "docker build -t csit_sut-ubuntu2004:local ."
   args:
     chdir: "/opt/csit-sut"
-  tags: csit-sut-image
+  tags:
+    - csit-sut-image

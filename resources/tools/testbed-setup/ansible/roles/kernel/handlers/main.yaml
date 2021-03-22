@@ -4,3 +4,5 @@
 - name: Reboot Server
   reboot:
     reboot_timeout: 3600
+  tags:
+    - reboot-server

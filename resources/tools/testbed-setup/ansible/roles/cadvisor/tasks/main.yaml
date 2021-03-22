@@ -1,0 +1,39 @@
+---
+# file: roles/cadvisor/tasks/main.yaml
+
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - cadvisor-inst-prerequisites
+
+- name: Inst - Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+  tags:
+    - cadvisor-inst-prerequisites
+
+- name: Inst - Start a container
+  docker_container:
+    name: "cAdvisor"
+    image: "{{ image }}"
+    state: "started"
+    restart_policy: "unless-stopped"
+    detach: yes
+    devices:
+     - "/dev/kmsg"
+    ports:
+     - "8080:8080"
+    privileged: yes
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:ro"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+      - "/dev/disk/:/dev/disk:ro"
+  tags:
+    - cadvisor-run-container
