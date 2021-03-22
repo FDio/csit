@@ -229,7 +229,7 @@ class Constants:
     # Number of trials to execute in MRR test.
     PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
 
-    # Duration of one trial in MRR test.
+    # Duration [s] of one trial in MRR test.
     PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
 
     # Whether to use latency streams in main search trials.
@@ -238,6 +238,20 @@ class Constants:
     # Duration of one latency-specific trial in NDRPDR test.
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
         u"PERF_TRIAL_LATENCY_DURATION", 5.0)
+
+    # For some testbeds TG takes longer than usual to start sending traffic.
+    # This constant [s] allows longer wait, without affecting
+    # the approximate duration. For example, use 0.098 for AWS.
+    PERF_TRIAL_STL_DELAY = get_float_from_env(u"PERF_TRIAL_STL_DELAY", 0.0)
+
+    # ASTF usually needs a different value for the delay.
+    PERF_TRIAL_ASTF_DELAY = get_float_from_env(
+#        u"PERF_TRIAL_ASTF_DELAY", 0.110
+        u"PERF_TRIAL_ASTF_DELAY", 0.112
+        # For NDR (ip4base min scale, cps and pps):
+        # 0.109 is too low, 0.1095 mostly bad, 0.110 is occasionally risky.
+        # 0.111 does work, but sometimes NDR is not that close to PDR. 0.115 is enough.
+    )
 
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
@@ -295,7 +309,7 @@ class Constants:
         # Vxlan traffic will still show stretching at 36 Mpps (>12%),
         # but we do not care about those tests that much.
         u"Mellanox-CX556A": 36000000, # 148809523,
-        u"Amazon-Nitro-50G": 1500000,
+        u"Amazon-Nitro-50G": 1200000,
         u"virtual": 14880952,
     }
 
