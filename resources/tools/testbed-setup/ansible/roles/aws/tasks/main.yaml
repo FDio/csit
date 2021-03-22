@@ -1,26 +1,40 @@
 ---
 # file: roles/aws/tasks/main.yaml
 
-- name: AWS - Edit repositories
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags: edit-repo
+- name: Edit repositories
+  include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
+  tags:
+    - edit-repo
 
-- name: AWS - Get vfio-pci Patcher Script
+- name: Get vfio-pci With WC Patcher
   get_url:
-    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/vfio-wc-patch.sh"
-    dest: "/opt/vfio-wc-patch.sh"
+    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/get-vfio-with-wc.sh"
+    dest: "/opt/get-vfio-with-wc.sh"
     mode: "744"
-  register: "vfio_patch_downloaded"
   tags:
     - vfio-aws-patch
 
-- name: AWS - Patch vfio-pci
-  shell: "/bin/bash /opt/vfio-wc-patch.sh"
-  when: "vfio_patch_downloaded"
+- name: Create vfio-pci Patch Directory
+  file:
+    path: "/opt/patches/"
+    state: "directory"
   tags:
     - vfio-aws-patch
 
-- name: AWS - Load Kernel Modules By Default
+- name: Get vfio-pci WC Patch
+  get_url:
+    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/patches/linux-4.10-vfio-wc.patch"
+    dest: "/opt/patches/linux-4.10-vfio-wc.patch"
+    mode: "744"
+  tags:
+    - vfio-aws-patch
+
+- name: Compile vfio-pci With WC Patch
+  shell: "/bin/bash /opt/get-vfio-with-wc.sh"
+  tags:
+    - vfio-aws-patch
+
+- name: Load Kernel Modules By Default
   lineinfile:
     path: "/etc/modules"
     state: "present"
@@ -28,11 +42,10 @@
   with_items:
     - "vfio-pci"
     - "igb_uio"
-  register: "modules_added"
   tags:
     - load-kernel-modules
 
-- name: AWS - Add Kernel Modules Options
+- name: Add Kernel Modules Options (igb_uio)
   lineinfile:
     path: "/etc/modprobe.d/igb_uio.conf"
     state: "present"
@@ -40,20 +53,28 @@
     create: "yes"
   with_items:
     - "options igb_uio wc_activate=1"
-  when: "modules_added"
-  register: "modules_added"
   tags:
     - load-kernel-modules
 
-- name: AWS - Reload systemd-modules
+- name: Add Kernel Modules Options (vfio-pci)
+  lineinfile:
+    path: "/etc/modprobe.d/vfio-noiommu.conf"
+    state: "present"
+    line: "{{ item }}"
+    create: "yes"
+  with_items:
+    - "options vfio enable_unsafe_noiommu_mode=1"
+  tags:
+    - load-kernel-modules
+
+- name: Reload systemd-modules
   systemd:
     name: "systemd-modules-load"
     state: "restarted"
-  when: "modules_added"
   tags:
     - reload-systemd-modules
 
-- name: AWS - Performance Tuning - Adjust nr_hugepages
+- name: Performance Tuning - Adjust nr_hugepages
   sysctl:
     name: "vm.nr_hugepages"
     value: "8192"

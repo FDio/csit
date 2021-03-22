@@ -1,33 +1,37 @@
 ---
 # file: roles/kernel/tasks/ubuntu_bionic.yaml
 
-- name: Kernel - Get Available Kernel Versions
+- name: Get Available Kernel Versions
   command: "apt-cache showpkg linux-headers-*"
   changed_when: false
   register: apt_kernel_list
-  tags: install-kernel
+  tags:
+    - kernel-inst
 
-- name: Kernel - Get installed packages with APT
+- name: Get installed packages with APT
   command: "dpkg -l"
   changed_when: false
   register: apt_packages_list
-  tags: install-kernel
+  tags:
+    - kernel-inst
 
-- name: Kernel - Set target APT kernel version
+- name: Set target APT kernel version
   set_fact:
     _kernel: "{{ apt_kernel_list | deb_kernel(
                  kernel_version, ansible_kernel) }}"
-  tags: install-kernel
+  tags:
+    - kernel-inst
 
-- name: Kernel - Ensure Packages Versions
+- name: Ensure Packages Versions
   apt:
     name: "{{ apt_kernel_list | deb_kernel_pkg(
               kernel_version, ansible_kernel, ansible_distribution,
               ansible_architecture, item) }}"
   loop: "{{ kernel_packages }}"
-  tags: install-kernel
+  tags:
+    - kernel-inst
 
-- name: Kernel - Ensure Any Other Kernel Packages Are Removed
+- name: Ensure Any Other Kernel Packages Are Removed
   apt:
     name: "{{ apt_packages_list | deb_installed_kernel(
               apt_kernel_list, kernel_version, ansible_kernel) }}"
@@ -35,12 +39,13 @@
     purge: true
   notify:
     - "Reboot Server"
-  tags: install-kernel
+  tags:
+    - kernel-inst
 
-- name: Kernel - Ensure Any Microcode Is Absent
+- name: Ensure Any Microcode Is Absent
   apt:
     name: "{{ absent_packages }}"
     state: absent
     purge: true
-  tags: install-kernel
-
+  tags:
+    - kernel-inst

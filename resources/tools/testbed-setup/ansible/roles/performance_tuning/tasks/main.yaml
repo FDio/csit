@@ -1,41 +1,31 @@
 ---
 # file: roles/performance_tuning/tasks/main.yaml
 
-- name: Performance Tuning - Install Distribution - Release - Machine Prerequisites
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - perf-inst-prerequisites
+
+- name: Inst - Machine Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
-    update_cache: true
   tags:
-    - install-dependencies
+    - perf-inst-prerequisites
 
-- name: Performance Tuning - Distribution - release - machine optimizations
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags:
-    - machine-optimizations
-
-- name: Performance Tuning - Configure {{ ansible_machine }} Kernel Parameters
-  lineinfile:
-    path: "/etc/default/grub"
-    state: "present"
-    regexp: "^GRUB_CMDLINE_LINUX="
-    line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value %}{{key}}={{value}} {% else %}{{key}} {% endif %}{% endfor %}\""
-  notify:
-    - "Update GRUB"
-  tags:
-    - set-grub
-
-- meta: flush_handlers
-
-- name: Performance Tuning - Turbo Boost
+- name: Conf - Turbo Boost
   import_tasks: turbo_boost.yaml
   when: >
     cpu_microarchitecture == "skylake" or
     cpu_microarchitecture == "cascadelake"
   tags:
-    - turbo-boost
+    - perf-conf-turbo-boost
 
-- name: Performance Tuning - Adjust nr_hugepages
+- name: Conf - Adjust nr_hugepages
   # change the minimum size of the hugepage pool.
   # 2G VPP, 4GB per VNF/CNF, 2G reserve
   sysctl:
@@ -45,9 +35,9 @@
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
     reload: "yes"
   tags:
-    - set-sysctl
+    - perf-conf-sysctl
 
-- name: Performance Tuning - Adjust max_map_count
+- name: Conf - Adjust max_map_count
   # this file contains the maximum number of memory map areas a process
   # may have. memory map areas are used as a side-effect of calling
   # malloc, directly by mmap and mprotect, and also when loading shared
@@ -64,9 +54,9 @@
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
     reload: "yes"
   tags:
-    - set-sysctl
+    - perf-conf-sysctl
 
-- name: Performance Tuning - Adjust hugetlb_shm_group
+- name: Conf - Adjust hugetlb_shm_group
   # hugetlb_shm_group contains group id that is allowed to create sysv
   # shared memory segment using hugetlb page.
   sysctl:
@@ -76,9 +66,9 @@
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
     reload: "yes"
   tags:
-    - set-sysctl
+    - perf-conf-sysctl
 
-- name: Performance Tuning - Adjust swappiness
+- name: Conf - Adjust swappiness
   # this control is used to define how aggressive the kernel will swap
   # memory pages.  higher values will increase agressiveness, lower values
   # decrease the amount of swap.  a value of 0 instructs the kernel not to
@@ -91,9 +81,9 @@
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
     reload: "yes"
   tags:
-    - set-sysctl
+    - perf-conf-sysctl
 
-- name: Performance Tuning - Adjust shmmax
+- name: Conf - Adjust shmmax
   # shared memory max must be greator or equal to the total size of hugepages.
   # for 2mb pages, totalhugepagesize = vm.nr_hugepages * 2 * 1024 * 1024
   # if the existing kernel.shmmax setting (cat /sys/proc/kernel/shmmax)
@@ -106,9 +96,9 @@
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
     reload: "yes"
   tags:
-    - set-sysctl
+    - perf-conf-sysctl
 
-- name: Performance Tuning - Adjust watchdog_cpumask
+- name: Conf - Adjust watchdog_cpumask
   # this value can be used to control on which cpus the watchdog may run.
   # the default cpumask is all possible cores, but if no_hz_full is
   # enabled in the kernel config, and cores are specified with the
@@ -126,9 +116,9 @@
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
     reload: "yes"
   tags:
-    - set-sysctl
+    - perf-conf-sysctl
 
-- name: Performance Tuning - Adjust randomize_va_space
+- name: Conf - Adjust randomize_va_space
   # this option can be used to select the type of process address
   # space randomization that is used in the system, for architectures
   # that support this feature.
@@ -142,45 +132,58 @@
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
     reload: "yes"
   tags:
-    - set-sysctl
+    - perf-conf-sysctl
 
-- name: Performance Tuning - Copy Cpufrequtils File
+- name: Conf - Cpufrequtils
   copy:
     src: "files/cpufrequtils"
     dest: "/etc/default/cpufrequtils"
     owner: "root"
     group: "root"
-    mode: "0644"
+    mode: 0644
   tags:
-    - copy-cpufrequtils
+    - perf-conf-cpufrequtils
 
-- name: Performance Tuning - Copy Irqbalance File
+- name: Conf - Irqbalance
   template:
     src: "files/irqbalance"
     dest: "/etc/default/irqbalance"
     owner: "root"
     group: "root"
-    mode: "0644"
-  notify:
-    - "Update GRUB"
+    mode: 0644
   tags:
-    - copy-irqbalance
+    - perf-conf-irqbalance
 
-- name: Performance Tuning - Set Ondemand Service To Disable
+- name: Conf - Set Ondemand Service To Disable
   service:
     name: "ondemand"
     enabled: "no"
   tags:
-    - set-ondemand
+    - perf-conf-ondemand
 
-- name: Performance Tuning - Load Kernel Modules By Default
+- name: Conf - Kernel Parameters
+  lineinfile:
+    path: "/etc/default/grub"
+    state: "present"
+    regexp: "^GRUB_CMDLINE_LINUX="
+    line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value is sameas true %}{{key}} {% else %}{{key}}={{value}} {% endif %}{% endfor %}\""
+  notify:
+    - "Update GRUB"
+  tags:
+    - perf-conf-grub
+
+- meta: flush_handlers
+
+- name: Conf - Load Kernel Modules By Default
   lineinfile:
     path: "/etc/modules"
     state: "present"
     line: "{{ item }}"
   with_items:
     - "vfio-pci"
+  notify:
+    - "Reboot Server"
   tags:
-    - load-kernel-modules
+    - perf-conf-load-kernel-modules
 
 - meta: flush_handlers

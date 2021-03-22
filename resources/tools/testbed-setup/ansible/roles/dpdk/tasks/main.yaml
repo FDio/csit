@@ -1,15 +1,23 @@
 ---
 # file: roles/dpdk/tasks/main.yaml
 
-- name: DPDK - Install Distribution - Release - Machine Prerequisites
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - dpdk-inst-prerequisites
+
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
-    update_cache: true
   tags:
-    - install-dependencies
+    - dpdk-inst-prerequisites
 
-- name: DPDK - Download Release Archive
+- name: Download Release Archive
   get_url:
     url: "{{ dpdk_url }}/dpdk-{{ item }}.tar.xz"
     dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
@@ -17,9 +25,9 @@
   loop: "{{ dpdk_version }}"
   register: "dpdk_downloaded"
   tags:
-    - install-dpdk
+    - dpdk-inst
 
-- name: DPDK - Extract Release Archive
+- name: Extract Release Archive
   unarchive:
     remote_src: true
     src: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
@@ -29,9 +37,9 @@
   when: "dpdk_downloaded"
   register: "dpdk_extracted"
   tags:
-    - install-dpdk
+    - dpdk-inst
 
-- name: DPDK - Build igb_uio by default
+- name: Build igb_uio by default
   lineinfile:
     dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}/config/common_base"
     regexp: "^CONFIG_RTE_EAL_IGB_UIO"
@@ -40,21 +48,21 @@
   when: "dpdk_extracted"
   register: "dpdk_configured"
   tags:
-    - install-dpdk
+    - dpdk-inst
 
-- name: DPDK - Compile Release I
+- name: Compile Release I
   become: yes
   command: "make install T={{ dpdk_build_targets[item][ansible_machine] }} DESTDIR={{ dpdk_target_dir }}/dpdk-{{ item }} chdir={{ dpdk_target_dir }}/dpdk-{{ item }}"
   loop: "{{ dpdk_version }}"
   when: "dpdk_configured"
   register: "dpdk_compiled"
   tags:
-    - install-dpdk
+    - dpdk-inst
 
-- name: DPDK - Link igb_uio Module
+- name: Link igb_uio Module
   shell: "ln -fs {{ dpdk_target_dir }}/dpdk-{{ item }}/{{ dpdk_build_targets[item][ansible_machine] }}/kmod/igb_uio.ko /lib/modules/`uname -r`/igb_uio.ko && depmod -a"
   ignore_errors: "yes"
   loop: "{{ dpdk_version }}"
   when: "dpdk_compiled"
   tags:
-    - install-dpdk
+    - dpdk-inst

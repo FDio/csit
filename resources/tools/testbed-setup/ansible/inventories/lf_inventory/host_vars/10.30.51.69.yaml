@@ -1,7 +1,7 @@
 ---
 # file: host_vars/10.30.51.69.yaml
 
-hostname: "s27-t34-sut1"
+hostname: "s27-t211-sut1"
 grub:
   audit: "0"
   intel_iommu: "on"

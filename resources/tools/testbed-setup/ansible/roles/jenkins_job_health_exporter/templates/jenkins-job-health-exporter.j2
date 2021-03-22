@@ -1,0 +1,16 @@
+{
+  "jenkins_host": "{{ jenkins_host }}",
+  "poll_interval_sec": {{ poll_interval_sec }},
+  "req_timeout_sec": {{ req_timeout_sec }},
+  "bind_to": "{{ bind_to }}",
+  "last_builds": {{ last_builds }},
+  "jobs": [
+{% for item in jobs %}
+    "{{ item }}"
+{%- if not loop.last %},
+{% endif %}
+{% endfor %}
+
+  ],
+  "verbose": 3
+}

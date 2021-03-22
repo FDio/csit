@@ -1,15 +1,32 @@
 ---
 # file: roles/cleanup/tasks/vpp_device.yaml
 
-- name: Reset vpp_device binary
-  copy:
-   src: 'files/reset_vppdevice.sh'
-   dest: '/usr/local/bin'
-   owner: 'root'
-   group: 'root'
-   mode: '744'
-  tags: reset-sriov
+- name: Host Cleanup
+  block:
+  - name: Reset vpp_device Binary
+    copy:
+     src: "files/reset_vppdevice.sh"
+     dest: "/usr/local/bin"
+     owner: "root"
+     group: "root"
+     mode: "744"
+    tags:
+      - reset-sriov
 
-- name: Reset vpp_device
-  raw: 'reset_vppdevice.sh --force'
-  tags: reset-sriov
+  - name: Clean Images
+    import_tasks: clean_images.yaml
+    vars:
+      images_to_prefetch_by_arch:
+        aarch64:
+          - "fdiotools/builder-ubuntu2004:prod-aarch64"
+          - "fdiotools/builder-ubuntu1804:prod-aarch64"
+          - "fdiotools/builder-centos8:prod-aarch64"
+        x86_64:
+          - "fdiotools/builder-ubuntu2004:prod-x86_64"
+          - "fdiotools/builder-ubuntu1804:prod-x86_64"
+          - "fdiotools/builder-debian10:prod-x86_64"
+          - "fdiotools/builder-debian9:prod-x86_64"
+          - "fdiotools/builder-centos8:prod-x86_64"
+          - "fdiotools/builder-centos7:prod-x86_64"
+    tags:
+      - clean-images

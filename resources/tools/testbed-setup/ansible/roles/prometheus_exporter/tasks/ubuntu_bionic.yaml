@@ -1,0 +1,33 @@
+---
+# file: roles/prometheus_exporter/tasks/ubuntu_bionic.yaml
+
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  tags:
+    - prometheus-inst-prerequisites
+
+- name: Inst - Prerequisites
+  package:
+    name: "init-system-helpers"
+    default_release: "bionic-backports"
+    state: latest
+  tags:
+    - prometheus-inst-prerequisites
+
+- name: Inst - Prometheus Node Exporter
+  apt:
+    deb: "{{ ne_packages }}"
+  notify:
+    - "Restart Prometheus Node Exporter"
+  tags:
+    - prometheus-inst-node-exporter
+
+- name: Inst - Prometheus Blackbox Exporter
+  apt:
+    deb: "{{ be_packages }}"
+  notify:
+    - "Restart Prometheus Blackbox Exporter"
+  tags:
+    - prometheus-inst-blackbox-exporter

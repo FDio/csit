@@ -1,16 +1,24 @@
 ---
 # file: roles/trex/tasks/main.yaml
 
-- name: Install Distribution - Release - Machine Prerequisites
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - trex-inst-prerequisites
+
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
-    update_cache: true
   tags:
-    - install-dependencies
+    - trex-inst-prerequisites
 
-- name: Deploy Multiple T-Rex Versions
+- name: Inst - Multiple T-Rex Versions
   include_tasks: deploy_block.yaml
   loop: "{{ trex_version }}"
   tags:
-    - install-trex
+    - trex-inst

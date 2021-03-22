@@ -1,13 +1,21 @@
 ---
 # file: roles/calibration/tasks/main.yaml
 
-- name: Install Distribution - Release - Machine Prerequisites
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - calibration-inst-prerequisites
+
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
-    update_cache: true
   tags:
-    - install-dependencies
+    - calibration-inst-prerequisites
 
 - name: Check CPU Power States
   shell: "lscpu"

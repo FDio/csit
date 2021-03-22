@@ -29,7 +29,7 @@ nomad_datacenter: "yul1"
 nomad_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
-nomad_node_class: "s5ci"
+nomad_node_class: "builder"
 nomad_options:
   driver.raw_exec.enable: 1
   docker.cleanup.image: true
@@ -38,13 +38,13 @@ nomad_options:
   driver.whitelist: "docker,raw_exec,exec"
   fingerprint.network.disallow_link_local: true
 nomad_retry_servers: [ "10.30.51.30", "10.30.51.32", "10.30.51.33" ]
-nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647" ]
+nomad_servers: [ "10.30.51.32:4647", "10.30.51.33:4647", "10.30.51.30:4647" ]
 nomad_volumes:
   - name: "prod-volume-data1-1"
     path: "/data"
     read_only: false
 
-# Consul settigs.
+# Consul settings.
 consul_nomad_integration: true
 consul_certificates:
   - src: "{{ vault_consul_v1_ca_file }}"
@@ -61,3 +61,10 @@ consul_retry_servers:
   - "10.30.51.30"
   - "10.30.51.32"
   - "10.30.51.33"
+
+# Docker daemon settings.
+docker_daemon:
+  # https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file
+  dns: [ "172.17.0.1" ]
+  dns-opts: []
+  dns-search: [ "{{ansible_hostname}}" ]
