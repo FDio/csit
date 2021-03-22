@@ -11,17 +11,20 @@
     state: "present"
     cache_valid_time: 3600
     install_recommends: False
-  tags: docker-inst-dependencies
+  tags:
+    - docker-inst-dependencies
 
 - name: Conf - Add APT Key
   apt_key:
     url: "{{ docker_apt_gpg_key }}"
     state: "{{ docker_apt_gpg_key_state }}"
-  tags: docker-conf-apt
+  tags:
+    - docker-conf-apt
 
 - name: Conf - Install APT Repository
   apt_repository:
     repo: "{{ docker_apt_repository }}"
     state: "{{ docker_apt_repository_state }}"
-    update_cache: True
-  tags: docker-conf-apt
+    update_cache: yes
+  tags:
+    - docker-conf-apt

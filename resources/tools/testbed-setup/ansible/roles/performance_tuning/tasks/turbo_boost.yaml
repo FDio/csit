@@ -1,36 +1,44 @@
 ---
 # file: roles/performance_tuning/tasks/turbo_boost.yaml
 
-- name: Turbo Boost - Install msr-tools
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - turbo-inst-prerequisites
+
+- name: Inst - msr-tools
   package:
     name:
       - "msr-tools"
     state: latest
-    update_cache: true
   tags:
-    - turbo-boost
+    - turbo-inst-prerequisites
 
-- name: Turbo Boost - Load msr By Default
+- name: Conf - Load msr By Default
   lineinfile:
     path: "/etc/modules"
     state: "present"
     line: "msr"
   tags:
-    - turbo-boost
+    - turbo-conf-msr
 
-- name: Turbo Boost - Custom Startup Service Hook
+- name: Conf - Custom Startup Service Hook
   copy:
     src: "files/disable-turbo-boost.service"
     dest: "/etc/systemd/system/disable-turbo-boost.service"
     owner: "root"
     group: "root"
-    mode: "0644"
+    mode: 0644
   tags:
-    - turbo-boost
+    - turbo-conf-msr
 
-- name: Turbo Boost - Custom Startup Service Hook Enable
+- name: Conf - Custom Startup Service Hook Enable
   service:
     name: "disable-turbo-boost"
     enabled: yes
   tags:
-    - turbo-boost
+    - turbo-conf-msr

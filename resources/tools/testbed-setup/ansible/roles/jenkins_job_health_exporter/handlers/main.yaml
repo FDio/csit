@@ -1,0 +1,9 @@
+---
+# file roles/jenkins_job_health_exporter/handlers/main.yaml
+
+- name: Restart Jenkins Job Health Exporter
+  systemd:
+    daemon_reload: true
+    enabled: true
+    name: "jenkins-job-health-exporter"
+    state: "{{ jenkins_job_health_exporter_restart_handler_state }}"

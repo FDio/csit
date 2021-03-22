@@ -1,7 +1,7 @@
 ---
 # file: roles/vpp/defaults/main.yaml
 
-packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
   - "gdb"
@@ -12,13 +12,22 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    - "build-essential"
-    - "libglib2.0-dev"
-    - "libmbedcrypto1"
-    - "libmbedtls10"
-    - "libmbedx509-0"
-    - "libnuma-dev"
-    - "libpixman-1-dev"
+    bionic:
+      - "build-essential"
+      - "libglib2.0-dev"
+      - "libmbedcrypto1"
+      - "libmbedtls10"
+      - "libmbedx509-0"
+      - "libnuma-dev"
+      - "libpixman-1-dev"
+    focal:
+      - "build-essential"
+      - "libglib2.0-dev"
+      - "libmbedcrypto3"
+      - "libmbedtls12"
+      - "libmbedx509-0"
+      - "libnuma-dev"
+      - "libpixman-1-dev"
 
 packages_by_arch:
   aarch64:

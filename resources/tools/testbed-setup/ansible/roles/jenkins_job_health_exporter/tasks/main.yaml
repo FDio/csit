@@ -1,0 +1,38 @@
+---
+# file: roles/jenkins_job_health_exporter/tasks/main.yaml
+
+- name: Conf - Jenkins Job Health Exporter Config
+  template:
+    src: "templates/jenkins-job-health-exporter.j2"
+    dest: "/etc/jenkins-job-health-exporter.json"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  when:
+    - ansible_hostname == "s42-nomad"
+  tags:
+    - conf-jenkins-job-json
+
+- name: Inst - Jenkins Job Health Exporter Binary
+  get_url:
+    url: "{{ jenkins_job_health_exporter_url }}/{{ jenkins_job_health_exporter_version }}/jenkins-job-health-exporter"
+    dest: "{{ jenkins_job_health_exporter_target_dir }}/jenkins-job-health-exporter"
+    mode: "0755"
+  when:
+    - ansible_hostname == "s42-nomad"
+  tags:
+    - inst-jenkins-job-binary
+
+- name: Inst - Jenkins Job Health Exporter Service
+  template:
+    src: "templates/jenkins-job-health-exporter.service.j2"
+    dest: "/lib/systemd/system/jenkins-job-health-exporter.service"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+  when:
+    - ansible_hostname == "s42-nomad"
+  notify:
+    - "Restart Jenkins Job Health Exporter"
+  tags:
+    - inst-jenkins-job-service

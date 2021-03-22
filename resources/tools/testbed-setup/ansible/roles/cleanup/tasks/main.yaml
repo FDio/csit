@@ -14,18 +14,30 @@
 #     - vpp_device
 #         - Run tasks on vpp_device servers only.
 #         - Reset SRIOV
+#         - Docker image cleanup
+#     - nomad
+#         - Docker image cleanup
 
 - name: tg specific
   include_tasks: tg.yaml
   when: "'tg' in group_names"
-  tags: cleanup
+  tags:
+    - cleanup
 
 - name: sut specific
   include_tasks: sut.yaml
   when: "'sut' in group_names"
-  tags: cleanup
+  tags:
+    - cleanup
 
 - name: vpp_device specific
   include_tasks: vpp_device.yaml
   when: "'vpp_device' in group_names"
-  tags: cleanup
+  tags:
+    - cleanup
+
+- name: nomad specific
+  include_tasks: nomad.yaml
+  when: "'nomad' in group_names"
+  tags:
+    - cleanup

@@ -1,0 +1,22 @@
+---
+# file: roles/cleanup/tasks/nomad.yaml
+
+- name: Host Cleanup
+  block:
+  - name: Clean Images
+    import_tasks: clean_images.yaml
+    vars:
+      images_to_prefetch_by_arch:
+        aarch64:
+          - "fdiotools/builder-ubuntu2004:prod-aarch64"
+          - "fdiotools/builder-ubuntu1804:prod-aarch64"
+          - "fdiotools/builder-centos8:prod-aarch64"
+        x86_64:
+          - "fdiotools/builder-ubuntu2004:prod-x86_64"
+          - "fdiotools/builder-ubuntu1804:prod-x86_64"
+          - "fdiotools/builder-debian10:prod-x86_64"
+          - "fdiotools/builder-debian9:prod-x86_64"
+          - "fdiotools/builder-centos8:prod-x86_64"
+          - "fdiotools/builder-centos7:prod-x86_64"
+    tags:
+      - clean-images

@@ -1,23 +1,35 @@
 ---
 # file: roles/trex/defaults/main.yaml
 
-packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
   - []
 
 packages_by_distro:
   ubuntu:
-    - "build-essential"
-    - "libmnl-dev"
-    - "libnuma-dev"
-    - "libpcap-dev"
-    - "librdmacm-dev"
-    - "librdmacm1"
-    - "libssl-dev"
-    - "pciutils"
-    - "python3-pip"
-    - "zlib1g-dev"
+    bionic:
+      - "build-essential"
+      - "libmnl-dev"
+      - "libnuma-dev"
+      - "libpcap-dev"
+      - "librdmacm-dev"
+      - "librdmacm1"
+      - "libssl-dev"
+      - "pciutils"
+      - "python3-pip"
+      - "zlib1g-dev"
+    focal:
+      - "build-essential"
+      - "libmnl-dev"
+      - "libnuma-dev"
+      - "libpcap-dev"
+      - "librdmacm-dev"
+      - "librdmacm1"
+      - "libssl-dev"
+      - "pciutils"
+      - "python3-pip"
+      - "zlib1g-dev"
 
 packages_by_arch:
   aarch64:
@@ -28,12 +40,5 @@ packages_by_arch:
 trex_target_dir: "/opt"
 trex_url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 trex_version:
-  # rls1908
-  - "2.54"
-  # rls2001
-  # rls2005
-  - "2.73"
-  # rls2009
-  - "2.82"
-  # rls2101
-  - "2.86"
+  # master // ubuntu 20.04
+  - "2.88"

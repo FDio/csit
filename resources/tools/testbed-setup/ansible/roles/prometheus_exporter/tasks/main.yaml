@@ -1,0 +1,15 @@
+---
+# file: roles/prometheus_exporter/tasks/main.yaml
+
+- include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
+  tags:
+    - prometheus-inst
+
+- name: Conf - Prometheus Blackbox Exporter
+  copy:
+   src: 'files/blackbox.yml'
+   dest: '/etc/prometheus/blackbox.yml'
+  notify:
+    - "Restart Prometheus Blackbox Exporter"
+  tags:
+    - prometheus-conf-blackbox-exporter

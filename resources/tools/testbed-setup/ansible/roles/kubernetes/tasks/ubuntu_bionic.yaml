@@ -22,7 +22,7 @@
   apt_repository:
     repo: '{{ kubernetes_apt_repository }}'
     state: '{{ kubernetes_apt_repository_state }}'
-    update_cache: True
+    update_cache: yes
   tags: install-kubernetes
 
 - name: Kubernetes - Install

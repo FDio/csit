@@ -5,6 +5,12 @@
   remote_user: testuser
   become: yes
   become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
   roles:
     - role: baremetal
       tags: baremetal
@@ -14,6 +20,44 @@
       tags: kernel
     - role: mellanox
       tags: mellanox
+    - role: docker
+      tags: docker
+    - role: iperf
+      tags: iperf
+    - role: trex
+      tags: trex
+    - role: ab
+      tags: ab
+    - role: tg
+      tags: tg
+    - role: csit_sut_image
+      tags: csit_sut_image
+    - role: performance_tuning
+      tags: performance_tuning
+    - role: cleanup
+      tags: cleanup
+    - role: calibration
+      tags: calibration
+
+- hosts: tg_aws
+  remote_user: testuser
+  become: yes
+  become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
+  roles:
+    - role: user_add
+      tags: user_add
+    - role: common
+      tags: common
+    - role: dpdk
+      tags: dpdk
+    - role: docker
+      tags: docker
     - role: tg
       tags: tg
     - role: iperf
@@ -22,11 +66,44 @@
       tags: trex
     - role: ab
       tags: ab
-    - role: docker
-      tags: docker
-    - role: performance_tuning
-      tags: performance_tuning
+    - role: aws
+      tags: aws
     - role: cleanup
       tags: cleanup
-    - role: calibration
-      tags: calibration
+    # TODO: 'Check Kernel Parameters' failing in
+    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
+    # - role: calibration
+    #   tags: calibration
+
+- hosts: tg_azure
+  become: yes
+  become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
+  roles:
+    - role: user_add
+      tags: user_add
+    - role: common
+      tags: common
+    - role: docker
+      tags: docker
+    - role: tg
+      tags: tg
+    - role: iperf
+      tags: iperf
+    - role: trex
+      tags: trex
+    - role: ab
+      tags: ab
+    - role: azure
+      tags: azure
+    - role: cleanup
+      tags: cleanup
+    # TODO: 'Check Kernel Parameters' failing in
+    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
+    # - role: calibration
+    #   tags: calibration

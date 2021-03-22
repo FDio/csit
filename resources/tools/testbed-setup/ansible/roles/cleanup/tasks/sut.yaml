@@ -1,72 +1,83 @@
 ---
 # file: roles/cleanup/tasks/sut.yaml
 
-- name: Host cleanup
+- name: Host Cleanup
   block:
-    - name: Kill processes - qemu
+    - name: Kill Processes - Qemu
       import_tasks: kill_process.yaml
       vars:
         process: "qemu"
-      tags: kill-process
+      tags:
+        - kill-process
 
-    - name: Kill processes - l3fwd
+    - name: Kill Processes - L3fwd
       import_tasks: kill_process.yaml
       vars:
         process: "l3fwd"
-      tags: kill-process
+      tags:
+        - kill-process
 
-    - name: Kill processes - testpmd
+    - name: Kill Processes - Testpmd
       import_tasks: kill_process.yaml
       vars:
         process: "testpmd"
-      tags: kill-process
+      tags:
+        - kill-process
 
-    - name: Kill processes - iperf3
+    - name: Kill Processes - iPerf3
       import_tasks: kill_process.yaml
       vars:
         process: "iperf3"
-      tags: kill-process
+      tags:
+        - kill-process
 
-    - name: Kill processes - vpp_echo
+    - name: Kill Processes - vpp_echo
       import_tasks: kill_process.yaml
       vars:
         process: "vpp_echo"
-      tags: kill-process
+      tags:
+        - kill-process
 
-    - name: Find file or dir - Core zip file
+    - name: Find File Or Dir - Core Zip File
       find:
         paths: "/tmp/"
         patterns: "*tar.lzo.lrz.xz*"
       register: files_to_delete
-      tags: remove-file-dir
+      tags:
+        - remove-file-dir
 
-    - name: Remove file or dir - Core zip file
+    - name: Remove File Or Dir - Core Zip File
       file:
         path: "{{ item.path }}"
         state: absent
       with_items: "{{ files_to_delete.files }}"
-      tags: remove-file-dir
+      tags:
+        - remove-file-dir
 
-    - name: Find file or dir - Core dump file
+    - name: Find File Or Dir - Core Dump File
       find:
         paths: "/tmp/"
         patterns: "*core*"
       register: files_to_delete
-      tags: remove-file-dir
+      tags:
+        - remove-file-dir
 
-    - name: Remove file or dir - Core dump file
+    - name: Remove File Or Dir - Core Dump File
       file:
         path: "{{ item.path }}"
         state: absent
       with_items: "{{ files_to_delete.files }}"
-      tags: remove-file-dir
+      tags:
+        - remove-file-dir
 
-    - name: Kill containers - Remove all containers
+    - name: Kill Containers - Remove All Containers
       import_tasks: kill_containers.yaml
-      tags: kill-containers
+      tags:
+        - kill-containers
 
-    - name: Remove packages - Remove VPP
+    - name: Remove Packages - Remove VPP
       import_tasks: remove_package.yaml
       vars:
         package: "*vpp*"
-      tags: remove-package
+      tags:
+        - remove-package
