@@ -140,7 +140,7 @@ def create_env_directory_at_node(node):
     )
 
 
-def setup_node(node, tarball, remote_tarball, results=None):
+def setup_node(node, tarball, remote_tarball, main_logger, results=None):
     """Copy a tarball to a node and extract it.
 
     :param node: A node where the tarball will be copied and extracted.
@@ -159,14 +159,16 @@ def setup_node(node, tarball, remote_tarball, results=None):
         extract_tarball_at_node(remote_tarball, node)
         if node[u"type"] == NodeType.TG:
             create_env_directory_at_node(node)
-    except (RuntimeError, socket.timeout) as exc:
-        logger.console(
-            f"Node {node[u'type']} host {node[u'host']}, port {node[u'port']} "
-            f"setup failed, error: {exc!r}"
-        )
+    except Exception as exc:
+        # any exception must result in result = False
+        # since this runs in a thread and can't be caught anywhere else
+        err_msg = f"Node {node[u'type']} host {node[u'host']}, " \
+                  f"port {node[u'port']} setup failed, error: {exc!r}"
+        main_logger.console(err_msg)
+        main_logger.error(err_msg)
         result = False
     else:
-        logger.console(
+        main_logger.console(
             f"Setup of node {node[u'type']} host {node[u'host']}, "
             f"port {node[u'port']} done."
         )
@@ -266,7 +268,7 @@ class SetupFramework:
         threads = list()
 
         for node in nodes.values():
-            args = node, tarball, remote_tarball, results
+            args = node, tarball, remote_tarball, logger, results
             thread = threading.Thread(target=setup_node, args=args)
             thread.start()
             threads.append(thread)
