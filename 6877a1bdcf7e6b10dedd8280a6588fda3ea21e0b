@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7ebac743_e846b32a",
+        "filename": "fdio.infra.terraform/2n_aws_c5n/deploy/main.tf",
+        "patchSetId": 1
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-23T06:53:11Z",
+      "side": 1,
+      "message": "why deploy TG via ansible depends on DUT?",
+      "revId": "6877a1bdcf7e6b10dedd8280a6588fda3ea21e0b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
