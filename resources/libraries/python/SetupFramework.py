@@ -159,11 +159,13 @@ def setup_node(node, tarball, remote_tarball, results=None):
         extract_tarball_at_node(remote_tarball, node)
         if node[u"type"] == NodeType.TG:
             create_env_directory_at_node(node)
-    except (RuntimeError, socket.timeout) as exc:
-        logger.console(
-            f"Node {node[u'type']} host {node[u'host']}, port {node[u'port']} "
-            f"setup failed, error: {exc!r}"
-        )
+    except Exception as exc:
+        # any exception must result in result = False
+        # since this runs in a thread and can't be caught anywhere else
+        err_msg = f"Node {node[u'type']} host {node[u'host']}, " \
+                  f"port {node[u'port']} setup failed, error: {exc!r}"
+        logger.console(err_msg)
+        logger.error(err_msg)
         result = False
     else:
         logger.console(
