@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -87,9 +87,12 @@ function dpdk_compile () {
     pushd "${DPDK_DIR}" || die "Pushd failed"
 
     # Patch ARM.
-    sed_cmd="s/'RTE_MAX_LCORE', [0-9]*/'RTE_MAX_LCORE', $(nproc --all)/"
     sed_file="config/arm/meson.build"
-    sed -i "${sed_cmd}" "${sed_file}" || die "Patch failed"
+    sed_cmd="s/'RTE_MAX_LCORE', [0-9]*/'RTE_MAX_LCORE', $(nproc --all)/"
+    sed -i "${sed_cmd}" "${sed_file}" || die "RTE_MAX_LCORE Patch failed"
+    sed_cmd="s/'RTE_MAX_NUMA_NODES', [0-9]*/'RTE_MAX_NUMA_NODES', "
+            "$(echo /sys/devices/system/node/node* | wc -w)/"
+    sed -i "${sed_cmd}" "${sed_file}" || die "RTE_MAX_NUMA_NODES Patch failed"
 
     # Patch L3FWD.
     sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128/#define RTE_TEST_RX_DESC_DEFAULT 1024/g"
