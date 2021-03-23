@@ -17,9 +17,9 @@ supposed to end up here.
 """
 
 from os import environ, remove
-import socket  # For catching socket.timeout.
 from tempfile import NamedTemporaryFile
 import threading
+import traceback
 
 from robot.api import logger
 
@@ -140,17 +140,19 @@ def create_env_directory_at_node(node):
     )
 
 
-def setup_node(node, tarball, remote_tarball, results=None):
+def setup_node(node, tarball, remote_tarball, results=None, logs=None):
     """Copy a tarball to a node and extract it.
 
     :param node: A node where the tarball will be copied and extracted.
     :param tarball: Local path of tarball to be copied.
     :param remote_tarball: Remote path of the tarball.
     :param results: A list where to store the result of node setup, optional.
+    :param logs: A list where to store anything that should be logged.
     :type node: dict
     :type tarball: str
     :type remote_tarball: str
     :type results: list
+    :type logs: list
     :returns: True - success, False - error
     :rtype: bool
     """
@@ -159,11 +161,14 @@ def setup_node(node, tarball, remote_tarball, results=None):
         extract_tarball_at_node(remote_tarball, node)
         if node[u"type"] == NodeType.TG:
             create_env_directory_at_node(node)
-    except (RuntimeError, socket.timeout) as exc:
-        logger.console(
-            f"Node {node[u'type']} host {node[u'host']}, port {node[u'port']} "
-            f"setup failed, error: {exc!r}"
-        )
+    except Exception:
+        # any exception must result in result = False
+        # since this runs in a thread and can't be caught anywhere else
+        err_msg = f"Node {node[u'type']} host {node[u'host']}, " \
+                  f"port {node[u'port']} setup failed."
+        logger.console(err_msg)
+        if isinstance(logs, list):
+            logs.append(f"{err_msg} Exception: {traceback.format_exc()}")
         result = False
     else:
         logger.console(
@@ -209,23 +214,26 @@ def delete_framework_dir(node):
     )
 
 
-def cleanup_node(node, results=None):
+def cleanup_node(node, results=None, logs=None):
     """Delete a tarball from a node.
 
     :param node: A node where the tarball will be delete.
     :param results: A list where to store the result of node cleanup, optional.
+    :param logs: A list where to store anything that should be logged.
     :type node: dict
     :type results: list
+    :type logs: list
     :returns: True - success, False - error
     :rtype: bool
     """
     try:
         delete_framework_dir(node)
-    except RuntimeError:
-        logger.error(
-            f"Cleanup of node {node[u'type']} host {node[u'host']}, "
-            f"port {node[u'port']} failed."
-        )
+    except Exception:
+        err_msg = f"Cleanup of node {node[u'type']} host {node[u'host']}, " \
+                  f"port {node[u'port']} failed."
+        logger.console(err_msg)
+        if isinstance(logs, list):
+            logs.append(f"{err_msg} Exception: {traceback.format_exc()}")
         result = False
     else:
         logger.console(
@@ -263,10 +271,11 @@ class SetupFramework:
         remote_tarball = f"{tarball}"
 
         results = list()
+        logs = list()
         threads = list()
 
         for node in nodes.values():
-            args = node, tarball, remote_tarball, results
+            args = node, tarball, remote_tarball, results, logs
             thread = threading.Thread(target=setup_node, args=args)
             thread.start()
             threads.append(thread)
@@ -279,6 +288,9 @@ class SetupFramework:
             thread.join()
 
         logger.info(f"Results: {results}")
+
+        for log in logs:
+            logger.trace(log)
 
         delete_local_tarball(tarball)
         if all(results):
@@ -305,10 +317,12 @@ class CleanupFramework:
         """
 
         results = list()
+        logs = list()
         threads = list()
 
         for node in nodes.values():
-            thread = threading.Thread(target=cleanup_node, args=(node, results))
+            thread = threading.Thread(target=cleanup_node,
+                                      args=(node, results, logs))
             thread.start()
             threads.append(thread)
 
@@ -320,6 +334,9 @@ class CleanupFramework:
             thread.join()
 
         logger.info(f"Results: {results}")
+
+        for log in logs:
+            logger.trace(log)
 
         if all(results):
             logger.console(u"All nodes cleaned up.")
