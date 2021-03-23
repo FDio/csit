@@ -87,9 +87,12 @@ function dpdk_compile () {
     pushd "${DPDK_DIR}" || die "Pushd failed"
 
     # Patch ARM.
-    sed_cmd="s/'RTE_MAX_LCORE', [0-9]*/'RTE_MAX_LCORE', $(nproc --all)/"
     sed_file="config/arm/meson.build"
-    sed -i "${sed_cmd}" "${sed_file}" || die "Patch failed"
+    sed_cmd="s/'RTE_MAX_LCORE', [0-9]*/'RTE_MAX_LCORE', $(nproc --all)/"
+    sed -i "${sed_cmd}" "${sed_file}" || die "RTE_MAX_LCORE Patch failed"
+    sed_cmd="s/'RTE_MAX_NUMA_NODES', [0-9]*/'RTE_MAX_NUMA_NODES', "
+            "$(echo /sys/devices/system/node/node* | wc -w)/"
+    sed -i "${sed_cmd}" "${sed_file}" || die "RTE_MAX_NUMA_NODES Patch failed"
 
     # Patch L3FWD.
     sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128/#define RTE_TEST_RX_DESC_DEFAULT 1024/g"
