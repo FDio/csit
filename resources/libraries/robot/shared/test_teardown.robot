@@ -91,8 +91,7 @@
 | | ... | Additional teardown for tests which uses DET44 feature.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If Test Failed
-| | | ... | Show DET44 verbose | ${nodes['${dut}']}
+| | | Show DET44 verbose | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For geneve4

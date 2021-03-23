@@ -349,6 +349,7 @@ class VppApiCrcChecker:
         api_name = _str(api_name)
         if api_name in self._reported:
             return
+        logger.debug(f"Checking unreported name: {api_name}")
         old_expected = self._expected
         new_expected = old_expected.copy()
         for collection_name, name_to_crc_mapping in old_expected.items():
