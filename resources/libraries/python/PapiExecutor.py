@@ -543,6 +543,7 @@ class PapiSocketExecutor:
             if not isinstance(reply, list):
                 reply = [reply]
             for item in reply:
+                logger.debug(f"Checking reply item, str: {item} repr: {item!r}")
                 self.crc_checker.check_api_name(item.__class__.__name__)
                 dict_item = dictize(item)
                 if u"retval" in dict_item.keys():

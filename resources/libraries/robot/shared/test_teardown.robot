@@ -106,8 +106,7 @@
 | | ... | Additional teardown for tests which uses NAT feature.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If Test Failed
-| | | ... | Show NAT verbose | ${nodes['${dut}']}
+| | | Show NAT verbose | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For nat-ed
