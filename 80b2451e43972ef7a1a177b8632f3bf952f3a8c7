@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8857201_4394e08f",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-24T14:51:15Z",
+      "side": 1,
+      "message": "The exception says this value is too small.",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 18
+      },
+      "revId": "80b2451e43972ef7a1a177b8632f3bf952f3a8c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
