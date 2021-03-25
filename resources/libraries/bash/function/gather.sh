@@ -1,5 +1,5 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
-# Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -34,7 +34,7 @@ function gather_build () {
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
     # - gather_os - Parse os parameter for OS/distro name.
-    # - gather_dpdk, gather_vpp - See their definitions.
+    # - gather_dpdk, gather_vpp gather_nginx - See their definitions.
     # Multiple other side effects are possible,
     # see functions called from here for their current description.
 
@@ -48,6 +48,11 @@ function gather_build () {
         *"hc2vpp"*)
             DUT="hc2vpp"
             # FIXME: Avoid failing on empty ${DOWNLOAD_DIR}.
+            ;;
+        *"nginx"*)
+            DUT="vpp"
+            gather_vpp || die "The function should have died on error."
+            gather_nginx || die "The function should have died on error."
             ;;
         *"vpp"*)
             DUT="vpp"
@@ -166,4 +171,59 @@ function gather_vpp () {
             die "Unable to identify job type from: ${TEST_CODE}"
             ;;
     esac
+}
+
+
+function gather_nginx () {
+
+    # Ensure latest NGINX archive is downloaded.
+    #
+    # Variables read:
+    # - TEST_CODE - The test selection string from environment or argument.
+    # Hardcoded:
+    # - nginx archive name to download if TEST_CODE is not time based.
+    # Directories updated:
+    # - ./ - Assumed ${DOWNLOAD_DIR}, nginx-*.tar.xz is downloaded if not there.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
+
+    nginx_repo="http://nginx.org/download/"
+    # Use downloaded packages with specific version
+    case "${TEST_CODE}" in
+        *"vpp"*)
+            if [[ "${TEST_CODE}" == *"daily"* ]] || \
+               [[ "${TEST_CODE}" == *"weekly"* ]] || \
+               [[ "${TEST_CODE}" == *"timed"* ]];
+            then
+                echo "Downloading latest NGINX packages from repo..."
+                # URL is not in quotes, calling command from variable keeps them.
+                wget_command=("wget" "--no-check-certificate" "-nv" "-O" "-")
+                wget_command+=("${nginx_repo}")
+                nginx_stable_ver="$("${wget_command[@]}" \
+                            | grep -Eo 'nginx-[^\"]+gz' | tail -1)" || {
+                    die "Composite piped command failed."
+                }
+            else
+                echo "Downloading NGINX package of specific version from repo ..."
+                # Downloading NGINX version based on what VPP is using. Currently
+                # it is not easy way to detect from VPP version automatically.
+                nginx_stable_ver="$(< "${CSIT_DIR}/NGINX_VPP_VER")".tar.gz || {
+                    die "Failed to read NGINX VPP version!"
+                }
+            fi
+
+            if [[ ! -f "${nginx_stable_ver}" ]]; then
+                wget -nv --no-check-certificate \
+                "${nginx_repo}/${nginx_stable_ver}" || {
+                    die "Failed to get NGINX package from: ${nginx_repo}"
+                }
+            fi
+            ;;
+        *"vsap"*)
+            warn "Downloading latest NGINX packages from Packagecloud."
+            # TODO download vcl-nginx from packagecloud.io/fdio/vsap
+            ;;
+        esac
 }

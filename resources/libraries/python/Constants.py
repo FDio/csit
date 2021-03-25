@@ -184,6 +184,9 @@ class Constants:
     # Docker container arm SUT image
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"csit_sut-ubuntu2004:local"
 
+    # NGINX install directory
+    NGINX_INSTALL_DIR = u"/opt/nginx"
+
     # TRex install directory
     TREX_INSTALL_DIR = u"/opt/trex-core-2.88"
 
