@@ -469,3 +469,25 @@ class CpuUtils:
         return CpuUtils.cpu_slice_of_list_per_node(
             node, cpu_node=cpu_node, skip_cnt=skip_cnt, cpu_cnt=cpu_cnt,
             smt_used=False)
+
+    @staticmethod
+    def get_cpu_idle_str(node, cpu_node, smt_used, cpu_alloc_str, sep=u','):
+        """
+        Get idle CPU List
+        :param node: Node dictionary with cpuinfo.
+        :param cpu_node: Numa node number.
+        :param smt_used: True - we want to use SMT, otherwise false.
+        :param cpu_alloc_str: vpp used cores.
+        :param sep: Separator, default: ','.
+        :type node: dict
+        :type cpu_node: int
+        :type smt_used: bool
+        :type cpu_alloc_str: str
+        :type smt_used: bool
+        :type sep: str
+        """
+        cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
+        cpu_alloc_list = cpu_alloc_str.split(sep)
+        cpu_idle_list = [i for i in cpu_list
+                         if str(i) not in cpu_alloc_list]
+        return sep.join(str(cpu) for cpu in cpu_idle_list)
