@@ -70,6 +70,23 @@
       tags:
         - remove-file-dir
 
+    - name: Find File Or Dir - Nginx Install Dir
+      find:
+        paths: "/opt/"
+        patterns: "*nginx*"
+        file_ type: "directory"
+      register: files_to_delete
+      tags:
+        - remove-file-dir
+
+    - name: Remove File Or Dir - Nginx Install Dir
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ files_to_delete.files }}"
+      tags:
+        - remove-file-dir
+
     - name: Kill Containers - Remove All Containers
       import_tasks: kill_containers.yaml
       tags:
@@ -79,5 +96,12 @@
       import_tasks: remove_package.yaml
       vars:
         package: "*vpp*"
+      tags:
+        - remove-package
+
+    - name: Remove Packages - Remove VSAP
+      import_tasks: remove_package.yaml
+      vars:
+        package: "*vsap*"
       tags:
         - remove-package
