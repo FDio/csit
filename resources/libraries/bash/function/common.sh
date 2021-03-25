@@ -730,7 +730,7 @@ function select_arch_os () {
     case "${os_id}" in
         "ubuntu"*)
             IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
-            VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_BIONIC"
+            VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_FOCAL"
             PKG_SUFFIX="deb"
             ;;
         "centos"*)
