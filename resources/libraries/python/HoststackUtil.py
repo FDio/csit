@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+e Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -165,6 +165,36 @@ class HoststackUtil():
         return stdout_log, stderr_log
 
     @staticmethod
+    def get_nginx_command(nginx_attributes):
+        """Construct the nginx command using the specified attributes.
+
+        :param nginx_attributes: nginx test program attributes.
+        :type nginx_attributes: dict
+        :returns: Command line components of the nginx command
+            'env_vars' - environment variables
+            'name' - program name
+            'args' - command arguments.
+            'path' - program path.
+        :rtype: dict
+        """
+        # TODO: Use a python class instead of dictionary for the return type
+        nginx_cmd = dict()
+        nginx_cmd[u"env_vars"] = f"VCL_CONFIG={Constants.REMOTE_FW_DIR}/" \
+                                 f"{Constants.RESOURCES_TPL_VCL}/" \
+                                 f"{nginx_attributes[u'vcl_config']}"
+        if nginx_attributes[u"ld_preload"]:
+            nginx_cmd[u"env_vars"] += \
+                f" LD_PRELOAD={Constants.VCL_LDPRELOAD_LIBRARY}"
+        if nginx_attributes[u'transparent_tls']:
+            nginx_cmd[u"env_vars"] += u" LDP_ENV_TLS_TRANS=1"
+
+        nginx_cmd[u"name"] = f"nginx"
+        nginx_cmd[u"path"] = f"{Constants.NGINX_INSTALL_DIR}/sbin/"
+        nginx_cmd[
+            u"args"] = f"-c {Constants.NGINX_INSTALL_DIR}/conf/nginx-tmp.conf "
+        return nginx_cmd
+
+    @staticmethod
     def start_hoststack_test_program(node, namespace, core_list, program):
         """Start the specified HostStack test program.
 
@@ -194,9 +224,14 @@ class HoststackUtil():
 
         env_vars = f"{program[u'env_vars']} " if u"env_vars" in program else u""
         args = program[u"args"]
-        cmd = f"nohup {shell_cmd} \'{env_vars}taskset --cpu-list {core_list} " \
-            f"{program_name} {args} >/tmp/{program_name}_stdout.log " \
-            f"2>/tmp/{program_name}_stderr.log &\'"
+        program_path = program.get('path', '')
+        taskset_cmd = f"taskset --cpu-list {core_list}"
+        if program == "nginx":
+            #  nginx used  `worker_cpu_affinity ` in configuration file
+            taskset_cmd = ""
+        cmd = f"nohup {shell_cmd} \'{env_vars}{taskset_cmd} " \
+              f"{program_path}{program_name} {args} >/tmp/{program_name}_" \
+              f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
             exec_cmd_no_error(node, cmd, sudo=True)
             return DUTSetup.get_pid(node, program_name)[0]
