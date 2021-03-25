@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30e5ad50_c065c155",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-25T18:51:17Z",
+      "side": 1,
+      "message": "Either match \"ubuntu2004\", or rename the file to VPP_STABLE_VER_UBUNTU.\nI think VPP version format is now stable enough to not depend on Ubuntu version.",
+      "range": {
+        "startLine": 731,
+        "startChar": 9,
+        "endLine": 731,
+        "endChar": 15
+      },
+      "revId": "441996e0d05bcf7553bbeb0562adf324a1980821",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
