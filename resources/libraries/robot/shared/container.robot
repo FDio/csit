@@ -14,7 +14,10 @@
 *** Settings ***
 | Documentation | Keywords related to linux containers
 |
+| Library | String
+|
 | Library | resources.libraries.python.CpuUtils
+| Library | resources.libraries.python.ssh
 | Library | resources.libraries.python.topology.Topology
 | Variables | resources/libraries/python/Constants.py
 
@@ -90,13 +93,21 @@
 | | ... | ELSE | Set Variable | ${EMPTY}
 | | ${node_arch}= | Get Node Arch | ${nodes['${dut}']}
 | | ${name}= | Set Variable | ${dut}_${container_group}${nf_id}${DUT1_UUID}
+| | ${vpp_libs}= | Exec Cmd | ${dut}
+| | ... | ls ${root}/usr/lib/${node_arch}-linux-gnu/*vpp*
+| | @{vpp_libs}= | Split String | ${vpp_libs}[1]
+| | ${vpp_mnt}= | Create List
+| | FOR | ${vpp_lib} | IN | @{vpp_libs}
+| | | ${container_vpp_lib} | Remove String | ${vpp_lib} | ${root}
+| | | Append To List | ${vpp_mnt} | ${vpp_lib}:${container_vpp_lib}
+| | END
 | | ${mnt}= | Create List
 | | ... | ${root}/tmp/:/mnt/host/
 | | ... | ${root}/tmp/vpp_sockets/${name}/:/run/vpp/
 | | ... | ${root}/dev/vfio/:/dev/vfio/
 | | ... | ${root}/usr/bin/vpp:/usr/bin/vpp
 | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
-| | ... | ${root}/usr/lib/${node_arch}-linux-gnu/:/usr/lib/${node_arch}-linux-gnu/
+| | ... | @{vpp_mnt}
 | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
 | | ${nf_cpus}= | Set Variable | ${None}
 | | ${nf_cpus}= | Run Keyword If | ${pinning}
