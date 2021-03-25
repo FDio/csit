@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1f83181e_7d15d2b0",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-25T18:42:21Z",
+      "side": 1,
+      "message": "I prefer the current style, as it makes diffs shorter. Either way, the current style was already present, and I am using it in multiple places, so it can be discussed and if needed fixed in a separate change.\n\nMy style:\n\n      old_arg\u003dold_default,\n +    new_arg\u003dnew_default,\n    ):\n\nYour style:\n\n -    old_arg\u003dold_default):\n +    old_arg\u003dold_default,\n +    new_arg\u003dnew_default):",
+      "parentUuid": "80b15229_a1b581c8",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 6
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c5acc23_7acf3332",
         "filename": "GPL/tools/trex/trex_astf_profile.py",
         "patchSetId": 94
@@ -45,6 +69,30 @@
       "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e714b070_fdfc6d53",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-25T18:42:21Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "8c5acc23_7acf3332",
+      "range": {
+        "startLine": 182,
+        "startChar": 12,
+        "endLine": 182,
+        "endChar": 22
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "22fc2b1b_55ab3930",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-25T18:42:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "943f16ab_b2dcbecd",
+      "range": {
+        "startLine": 445,
+        "startChar": 8,
+        "endLine": 445,
+        "endChar": 84
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b577db60_6529413e",
         "filename": "GPL/tools/trex/trex_stl_profile.py",
         "patchSetId": 94
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ccc815f3_e774a772",
+        "filename": "GPL/tools/trex/trex_stl_profile.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-25T18:42:21Z",
+      "side": 1,
+      "message": "See previous reply.",
+      "parentUuid": "b577db60_6529413e",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 6
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9fd0bd61_a93ee69f",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 94
@@ -114,6 +210,30 @@
       "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a79c41d_323f241c",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-25T18:42:21Z",
+      "side": 1,
+      "message": "Here are the two options.\n\n1. Bind library name:\n\n  import math\n  ...\n  b \u003d math.ceil(a)\n\n2. Bind function name:\n\n  from math import ceil\n  ...\n  b \u003d ceil(a)\n\nFor short expressions I prefer option one, it is more explicit at function call.\nI only prefer option two if I have to call function_with_a_long_name defined in a.local.library.with.a.long.path.\n\nBoth options cause the whole module to initialize, so memory usage is basically the same. Option 2 is maybe slightly slower to execute (but maybe the interpreter compiles the additional lookup away), which is not an issue here.",
+      "parentUuid": "9fd0bd61_a93ee69f",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 11
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
