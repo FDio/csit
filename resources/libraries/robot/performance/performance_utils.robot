@@ -456,6 +456,7 @@
 | | | ... | use_latency=${use_latency}
 | | | ... | ramp_up_duration=${ramp_up_duration}
 | | | ... | ramp_up_rate=${ramp_up_rate}
+| | | Additional Test Tear Down Action For nat-ed
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | Append To List | ${results} | ${result.approximated_receive_rate}
