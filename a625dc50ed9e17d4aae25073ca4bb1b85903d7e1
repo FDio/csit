@@ -46,6 +46,23 @@
       "revId": "a625dc50ed9e17d4aae25073ca4bb1b85903d7e1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0a249b7_8e626866",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-25T09:39:39Z",
+      "side": 1,
+      "message": "https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#configuring-nginx-paths\n\nSet the correct:\n--prefix\u003d\u003cPATH\u003e\n--sbin-path\u003d\u003cPATH\u003e\n--conf-path\u003d\u003cPATH\u003e\n\nto your local dir. Do not install nginx into system.",
+      "revId": "a625dc50ed9e17d4aae25073ca4bb1b85903d7e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
