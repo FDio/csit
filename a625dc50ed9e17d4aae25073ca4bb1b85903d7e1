@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2633d9b_8a0c80ac",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-25T08:51:48Z",
+      "side": 1,
+      "message": "we do not want to download nginx for regular tests. I think you will not be able to avoid creating new jobs.\nmaybe we should introduce \"trigger\" keyword to switch between various install stack.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 2
+      },
+      "revId": "a625dc50ed9e17d4aae25073ca4bb1b85903d7e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
