@@ -22,6 +22,30 @@
       "revId": "a625dc50ed9e17d4aae25073ca4bb1b85903d7e1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02a3d6bb_c1188c2b",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-03-25T09:15:05Z",
+      "side": 1,
+      "message": "Yes, I also found this problem. This is not the patch I need to review. I just use it to test the correctness of my code on CI",
+      "parentUuid": "e2633d9b_8a0c80ac",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 2
+      },
+      "revId": "a625dc50ed9e17d4aae25073ca4bb1b85903d7e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
