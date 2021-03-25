@@ -79,6 +79,7 @@ def simple_burst(
         latency,
         async_start=False,
         traffic_directions=2,
+        delay=0.0,
     ):
     """Send traffic and measure packet loss and latency.
 
@@ -98,8 +99,9 @@ def simple_burst(
     Duration details:
     Contrary to stateless mode, ASTF profiles typically limit the number
     of flows/transactions that can happen.
-    The caller is expected to set the duration parameter accordingly to
-    this limit and multiplier, including any overheads.
+    The caller is expected to set the duration parameter to idealized value,
+    but set the delay arguments when TRex is expected
+    to finish processing replies later (including a window for latency).
     See *_traffic_duration output fields for TRex's measurement
     of the real traffic duration (should be without any inactivity overheads).
     If traffic has not ended by the final time, the traffic
@@ -111,11 +113,7 @@ def simple_burst(
 
     :param profile_file: A python module with T-rex traffic profile.
     :param duration: Expected duration for all transactions to finish,
-        assuming only tolerable duration stretching happens.
-        This includes later start of later transactions
-        (according to TPS multiplier) and expected duration of each transaction.
-        Critically, this also includes any delay TRex shows when starting
-        traffic (but not the similar delay during stopping).
+        without any TRex related delays, without even latency.
     :param framesize: Frame size.
     :param multiplier: Multiplier of profile CPS.
     :param port_0: Port 0 on the traffic generator.
@@ -123,6 +121,7 @@ def simple_burst(
     :param latency: With latency stats.
     :param async_start: Start the traffic and exit.
     :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
+    :param delay: Time increase [s] for sleep duration.
     :type profile_file: str
     :type duration: float
     :type framesize: int or str
@@ -132,6 +131,7 @@ def simple_burst(
     :type latency: bool
     :type async_start: bool
     :type traffic_directions: int
+    :type delay: float
     """
     client = None
     total_received = 0
@@ -179,14 +179,12 @@ def simple_burst(
         # Choose CPS and start traffic.
         client.start(
             mult=multiplier,
-            # Increase the input duration slightly,
-            # to ensure it does not end before sleep&stop below happens.
-            duration=duration + 0.1 if duration > 0 else duration,
+            duration=duration,
             nc=True,
             latency_pps=int(multiplier) if latency else 0,
             client_mask=2**len(ports)-1,
         )
-        time_start = time.monotonic()
+        time_stop = time.monotonic() + duration + delay
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -196,8 +194,7 @@ def simple_burst(
                 xsnap1 = client.ports[port_1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            time.sleep(duration)
-
+            time.sleep(duration + delay)
             # Do not block yet, the existing transactions may take long time
             # to finish. We need an action that is almost reset(),
             # but without clearing stats.
@@ -208,7 +205,7 @@ def simple_burst(
             client.stop(block=True)
 
             # Read the stats after the traffic stopped (or time up).
-            stats[time.monotonic() - time_start] = client.get_stats(
+            stats[time.monotonic() - time_stop] = client.get_stats(
                 ports=ports
             )
 
@@ -442,6 +439,10 @@ def main():
         u"--traffic_directions", type=int, default=2,
         help=u"Send bi- (2) or uni- (1) directional traffic."
     )
+    parser.add_argument(
+        u"--delay", required=True, type=float, default=0.0,
+        help=u"Allowed time overhead, sleep time is increased by this [s]."
+    )
 
     args = parser.parse_args()
 
@@ -460,6 +461,7 @@ def main():
         latency=args.latency,
         async_start=args.async_start,
         traffic_directions=args.traffic_directions,
+        delay=args.delay,
     )
 
 
