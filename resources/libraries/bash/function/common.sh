@@ -723,23 +723,23 @@ function select_arch_os () {
 
     set -exuo pipefail
 
-    os_id=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g') || {
-        die "Get OS release failed."
-    }
+    source /etc/os-release
 
-    case "${os_id}" in
+    case "${ID}" in
         "ubuntu"*)
-            IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
-            VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_BIONIC"
-            PKG_SUFFIX="deb"
-            ;;
-        "centos"*)
-            IMAGE_VER_FILE="VPP_DEVICE_IMAGE_CENTOS"
-            VPP_VER_FILE="VPP_STABLE_VER_CENTOS"
-            PKG_SUFFIX="rpm"
+            case "${VERSION}" in
+                *"LTS (Focal Fossa)"*)
+                    IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
+                    VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_FOCAL"
+                    PKG_SUFFIX="deb"
+                    ;;
+                *)
+                    die "Unsupported Ubuntu version!"
+                    ;;
+            esac
             ;;
         *)
-            die "Unable to identify distro or os from ${os_id}"
+            die "Unsupported distro or OS!"
             ;;
     esac
 
