@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,6 +16,7 @@
 *** Settings ***
 | Library | resources.libraries.python.DPDK.DPDKTools
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.ab
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficGenerator
@@ -198,3 +199,30 @@
 | | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
 | | ... | force_init=${True}
 | | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
+
+| Additional Suite Setup Action For ab
+| | [Documentation]
+| | ... | Additional Setup for suites which uses ab TG.
+| |
+| | Verify Program Installed | ${tg} | ab
+| | Iface update numa node | ${tg}
+| | ${running}= | Is TRex running | ${tg}
+| | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
+| | ${curr_driver}= | Get PCI dev driver | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | Run keyword if | '${curr_driver}'!='${None}'
+| | ... | PCI Driver Unbind | ${tg} |
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | ${driver}= | Get Variable Value | ${tg['interfaces']['${tg_if1}']['driver']}
+| | PCI Driver Bind | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']} | ${driver}
+| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | FOR | ${ip_addr} | IN | @{ab_ip_addrs}
+| | | ${ip_addr_on_intf}= | Linux interface has IP | ${tg} | ${intf_name}
+| | | ... | ${ip_addr} | ${ab_ip_prefix}
+| | | Run Keyword If | ${ip_addr_on_intf}==${False} | Set Linux interface IP
+| | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${ab_ip_prefix}
+| | END
+| | Set Linux interface up | ${tg} | ${intf_name}
+| | Check ab | ${tg}
