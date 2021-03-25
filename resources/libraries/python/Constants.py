@@ -197,6 +197,11 @@ class Constants:
     # TRex number of cores
     TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 8)
 
+    # TRex set number of RX/TX descriptors
+    # Set to 0 to use default values
+    TREX_TX_DESCRIPTORS_COUNT = get_int_from_env(u"TREX_TX_DESCRIPTORS_COUNT", 1024)
+    TREX_RX_DESCRIPTORS_COUNT = get_int_from_env(u"TREX_RX_DESCRIPTORS_COUNT", 1024)
+
     # Trex force start regardless ports state
     TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
 
