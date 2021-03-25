@@ -242,7 +242,7 @@ class Constants:
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
     # override by test.
-    EXTENDED_DEBUG = get_pessimistic_bool_from_env(u"EXTENDED_DEBUG")
+    EXTENDED_DEBUG = True  # get_pessimistic_bool_from_env(u"EXTENDED_DEBUG")
 
     # UUID string of DUT1 /tmp volume created outside of the
     # DUT1 docker in case of vpp-device test. ${EMPTY} value means that
