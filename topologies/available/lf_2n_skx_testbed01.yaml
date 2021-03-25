@@ -1,0 +1,52 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/2_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 2-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "10.240.183.211"
+    arch: x86_64
+    port: 22
+    username: root
+    password: tester
+    interfaces:
+      port1:
+        mac_address: "3c:fd:fe:cf:30:a4"
+        pci_address: "0000:81:00.0"
+        driver: i40e
+        link: link1
+        model: Intel-XXV710
+      port2:
+        mac_address: "3c:fd:fe:cf:33:30"
+        pci_address: "0000:83:00.0"
+        driver: i40e
+        link: link2
+        model: Intel-XXV710
+  DUT1:
+    type: DUT
+    host: "10.240.183.100"
+    arch: x86_64
+    port: 22
+    username: root
+    password: tester
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        mac_address: "3c:fd:fe:cf:31:4c"
+        pci_address: "0000:60:00.0"
+        driver: i40e
+        link: link1
+        model: Intel-XXV710
+      port2:
+        mac_address: "3c:fd:fe:b6:c3:4c"
+        pci_address: "0000:86:00.0"
+        driver: i40e
+        link: link2
+        model: Intel-XXV710
+
