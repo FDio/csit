@@ -343,6 +343,24 @@ class TrafficGenerator(AbstractMeasurer):
                     f"EOF'",
                     sudo=True, message=u"T-Rex config generation!"
                 )
+
+                if Constants.TREX_RX_DESCRIPTORS_COUNT != 0:
+                    exec_cmd_no_error(
+                        self._node,
+                        f"sh -c 'cat << EOF >> /etc/trex_cfg.yaml\n"
+                        f"  rx_desc: {Constants.TREX_RX_DESCRIPTORS_COUNT}\n"
+                        f"EOF'",
+                        sudo=True, message=u"T-Rex rx_desc modification!"
+                    )
+
+                if Constants.TREX_TX_DESCRIPTORS_COUNT != 0:
+                    exec_cmd_no_error(
+                        self._node,
+                        f"sh -c 'cat << EOF >> /etc/trex_cfg.yaml\n"
+                        f"  tx_desc: {Constants.TREX_TX_DESCRIPTORS_COUNT}\n"
+                        f"EOF'",
+                        sudo=True, message=u"T-Rex tx_desc modification!"
+                    )
             else:
                 raise ValueError(u"Unknown OSI layer!")
 
