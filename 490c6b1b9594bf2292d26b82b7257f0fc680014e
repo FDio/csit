@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80b15229_a1b581c8",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-03-25T10:37:56Z",
+      "side": 1,
+      "message": "no comma, no smiley, use:\ndelay\u003d0.0):",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 6
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c5acc23_7acf3332",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-03-25T10:37:56Z",
+      "side": 1,
+      "message": "Looks strange here, consider moving and explaining this info in doc string.",
+      "range": {
+        "startLine": 182,
+        "startChar": 12,
+        "endLine": 182,
+        "endChar": 22
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "943f16ab_b2dcbecd",
+        "filename": "GPL/tools/trex/trex_astf_profile.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-03-25T10:37:56Z",
+      "side": 1,
+      "message": "Line too long.",
+      "range": {
+        "startLine": 445,
+        "startChar": 8,
+        "endLine": 445,
+        "endChar": 84
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b577db60_6529413e",
+        "filename": "GPL/tools/trex/trex_stl_profile.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-03-25T10:37:56Z",
+      "side": 1,
+      "message": "no comma, no smiley, use:\ndelay\u003d0.0):",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 6
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fd0bd61_a93ee69f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-03-25T10:37:56Z",
+      "side": 1,
+      "message": "Is it necessary to import the whole library if we use only one method from it?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 11
+      },
+      "revId": "490c6b1b9594bf2292d26b82b7257f0fc680014e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
