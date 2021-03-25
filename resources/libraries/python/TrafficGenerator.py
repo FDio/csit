@@ -329,6 +329,8 @@ class TrafficGenerator(AbstractMeasurer):
                     f"  c: {len(threads)}\n"
                     f"  limit_memory: {Constants.TREX_LIMIT_MEMORY}\n"
                     f"  interfaces: [\"{if1[u'pci']}\",\"{if2[u'pci']}\"]\n"
+                    f"  rx_desc: {Constants.TREX_RX_DESCRIPTORS_COUNT}\n"
+                    f"  tx_desc: {Constants.TREX_TX_DESCRIPTORS_COUNT}\n"
                     f"  port_info:\n"
                     f"      - dest_mac: \'{if1[u'adj_addr']}\'\n"
                     f"        src_mac: \'{if1[u'addr']}\'\n"
