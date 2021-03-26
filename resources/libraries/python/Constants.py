@@ -247,7 +247,7 @@ class Constants:
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
     # override by test.
-    EXTENDED_DEBUG = get_pessimistic_bool_from_env(u"EXTENDED_DEBUG")
+    EXTENDED_DEBUG = True  # get_pessimistic_bool_from_env(u"EXTENDED_DEBUG")
 
     # UUID string of DUT1 /tmp volume created outside of the
     # DUT1 docker in case of vpp-device test. ${EMPTY} value means that
@@ -285,23 +285,23 @@ class Constants:
 
     # Mapping from NIC name to its pps limit.
     NIC_NAME_TO_PPS_LIMIT = {
-        u"Cisco-VIC-1227": 14880952,
-        u"Cisco-VIC-1385": 18750000,
-        u"Intel-X520-DA2": 14880952,
-        u"Intel-X553": 14880952,
-        u"Intel-X710": 14880952,
-        u"Intel-XL710": 18750000,
-        u"Intel-XXV710": 18750000,
-        u"Intel-E810CQ": 58500000,
+        u"Cisco-VIC-1227": 10000,
+        u"Cisco-VIC-1385": 10000,
+        u"Intel-X520-DA2": 10000,
+        u"Intel-X553": 10000,
+        u"Intel-X710": 10000,
+        u"Intel-XL710": 10000,
+        u"Intel-XXV710": 10000,
+        u"Intel-E810CQ": 10000,
         # 2n-clx testbeds show duration stretching on high rates,
         # depending on encapsulation TRex has to generate.
         # 40 Mpps is still too much for dot1q (~8% stretching).
         # 36 Mpps is around the maximal VPP throughput (l2patch 4c8t).
         # Vxlan traffic will still show stretching at 36 Mpps (>12%),
         # but we do not care about those tests that much.
-        u"Mellanox-CX556A": 36000000, # 148809523,
-        u"Amazon-Nitro-50G": 1500000,
-        u"virtual": 14880952,
+        u"Mellanox-CX556A": 10000, # 148809523,
+        u"Amazon-Nitro-50G": 10000,
+        u"virtual": 10000,
     }
 
     # Suite file names use codes for NICs.
