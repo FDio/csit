@@ -270,14 +270,8 @@ function get_available_interfaces () {
             # Add Intel Corporation XL710/X710 Virtual Function to the
             # whitelist.
             pci_id="0x154c"
-            tg_netdev=(enp5s2 enp5s3 enp5s4 enp5s5
-                       enp5s6 enp5s7 enp5s8 enp5s9)
-            tg_netdev+=(enp5s10 enp5s11 enp5s12 enp5s13
-                        enp5s14 enp5s15 enp5s16 enp5s17)
-            dut1_netdev=(enp145s2 enp145s3 enp145s4 enp145s5
-                         enp145s6 enp145s7 enp145s8 enp145s9)
-            dut1_netdev+=(enp145s10 enp145s11 enp145s12 enp145s13
-                          enp145s14 enp145s15 enp145s16 enp145s17)
+            tg_netdev=(enp5)
+            dut1_netdev=(enp145)
             ;;
        "1n_vbox")
             # Add Intel Corporation 82545EM Gigabit Ethernet Controller to the

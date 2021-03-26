@@ -6,7 +6,7 @@ inventory_ipmi_hostname: "10.30.50.70"
 vfs_data_file: "csit-initialize-vfs-tx2.sh"
 grub:
   hugepagesz: "2M"
-  nr_hugepages: 65536
+  nr_hugepages: 32768
 cpu_microarchitecture: "thunderx2"
 
 # User management.
