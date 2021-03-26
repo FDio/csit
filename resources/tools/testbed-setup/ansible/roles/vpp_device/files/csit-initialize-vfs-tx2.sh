@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2020 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,11 +18,11 @@
 PCI_BLACKLIST=($(lspci -Dmmd ':8070:0200' | cut -f1 -d' '))
 # Add I350 Gigabit Network Connection 1521 to blacklist.
 PCI_BLACKLIST+=($(lspci -Dmmd ':1521:0200' | cut -f1 -d' '))
+# Add MT27800 Family [ConnectX-5] 1017 to blacklist.
+PCI_BLACKLIST+=($(lspci -Dmmd ':1017:0200' | cut -f1 -d' '))
 
 # Add Intel Corporation Ethernet Controller XL710 for 40GbE QSFP+ to whitelist.
 PCI_WHITELIST=($(lspci -Dmmd ':1583:0200' | cut -f1 -d' '))
-# Add MT27800 Family [ConnectX-5] 1017 to whitelist.
-PCI_WHITELIST+=($(lspci -Dmmd ':1017:0200' | cut -f1 -d' '))
 
 # See http://pci-ids.ucw.cz/v2.2/pci.ids for more info.
 
@@ -32,9 +32,3 @@ PF_INDICES["0000:05:00.0"]=0
 PF_INDICES["0000:05:00.1"]=1
 PF_INDICES["0000:91:00.0"]=0
 PF_INDICES["0000:91:00.1"]=1
-
-# Mellanox NICs
-PF_INDICES["0000:0b:00.0"]=2
-PF_INDICES["0000:0b:00.1"]=3
-PF_INDICES["0000:9a:00.0"]=2
-PF_INDICES["0000:9a:00.1"]=3
