@@ -268,10 +268,10 @@ class VPPUtil:
         :type fail_on_error: bool
         """
         cmds = [
-            u"trace add dpdk-input 50",
-            u"trace add vhost-user-input 50",
-            u"trace add memif-input 50",
-            u"trace add avf-input 50"
+            u"trace add dpdk-input 50000",
+            u"trace add vhost-user-input 50000",
+            u"trace add memif-input 50000",
+            u"trace add avf-input 50000"
         ]
 
         for cmd in cmds:
