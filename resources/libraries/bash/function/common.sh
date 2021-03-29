@@ -1111,9 +1111,19 @@ function select_vpp_device_tags () {
     # - avf - AVF is not possible to run on enic driver of VirtualBox.
     # - vhost - VirtualBox does not support nesting virtualization on Intel CPU.
     case "${TEST_CODE}" in
+        *"1n-skx"*)
+            test_tag_array+=("!flow")
+            ;;
+        *"1n-tx2"*)
+            test_tag_array+=("!flow")
+            ;;
         *"1n-vbox"*)
             test_tag_array+=("!avf")
             test_tag_array+=("!vhost")
+            test_tag_array+=("!flow")
+            ;;
+        *"2n-clx"*)
+            test_tag_array+=("!nic_virtual")
             ;;
         *)
             ;;
