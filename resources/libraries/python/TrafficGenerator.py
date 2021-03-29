@@ -1307,9 +1307,10 @@ class TrafficGenerator(AbstractMeasurer):
             fail_count = self._loss + unsent
         else:
             raise RuntimeError(f"Unknown parsing {self.transaction_type!r}")
-        if unsent:
+        if unsent and isinstance(self._approximated_duration, float):
+            # Do not report unsent for "manual".
             logger.debug(f"Unsent packets/transactions: {unsent}")
-        if fail_count < 0 and not self.negative_loss:
+        if fail_count < 0:
             fail_count = 0
         measurement = ReceiveRateMeasurement(
             duration=target_duration,
