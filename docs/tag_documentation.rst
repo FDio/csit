@@ -75,6 +75,10 @@ NIC Model Tags
 
     Intel XXV710 NIC.
 
+.. topic:: NIC_Intel-E810CQ
+
+    Intel E810CQ NIC.
+
 .. topic:: NIC_Cisco-VIC-1227
 
     VIC-1227 by Cisco.
@@ -618,6 +622,22 @@ Encapsulation Tags
 .. topic:: GENEVE_L3MODE
 
     All test cases with GENEVE tunnel in L3 mode.
+
+.. topic:: FLOW
+
+    All test cases with FLOW
+
+.. topic:: IP4_N_TUPLE
+
+    All test cases with IP4_N_TUPLE flow.
+
+.. topic:: IP6_N_TUPLE
+
+    All test cases with IP6_N_TUPLE flow.
+
+.. topic:: IP4_GTPU
+
+    All test cases with IP4_GTPU flow.
 
 Interface Tags
 --------------
