@@ -1,1 +1,5 @@
+<<<<<<< HEAD   (e18995 Infra: Do not strict check keys in Ansible)
 csit_dut-ubuntu1804:local
+=======
+csit_sut-ubuntu2004:local
+>>>>>>> CHANGE (9070ef Image sync)
