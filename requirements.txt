@@ -27,13 +27,13 @@ robotframework==3.1.2
 scapy==2.4.3
 scp==0.13.2
 
-# Bootstraping dependencies
-ansible==2.7.8
+# IaaC dependencies
+ansible==2.10.7
 
 # PLRsearch dependencies
 dill==0.2.8.2
 numpy==1.17.3
-scipy==1.1.0
+scipy==1.5.4
 
 # PAL/DOC dependencies
 hdrhistogram==0.6.1
