@@ -1,3 +1,4 @@
+# Copyright (c) 2021 Intel and/or its affiliates.
 # Copyright (c) 2021 Cisco and/or its affiliates.
 # Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -282,6 +283,9 @@ function compose_pybot_arguments () {
         *"perf"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
             ;;
+        *"offload"*)
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.offload")
+            ;;
         *)
             die "Unknown specification: ${TEST_CODE}"
     esac
@@ -503,6 +507,9 @@ function get_test_tag_string () {
                 ;;
             *"perf"*)
                 trigger="perftest"
+                ;;
+            *"offload"*)
+                trigger="offloadtest"
                 ;;
             *)
                 die "Unknown specification: ${TEST_CODE}"
@@ -863,6 +870,12 @@ function select_tags () {
                 awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
             SELECTION_MODE="--test"
             ;;
+        *"offload-weekly"* )
+            #readarray -t test_tag_array <<< $(grep -v "#" \
+            #    ${tfd}/offload_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
+            #    awk {"$awk_nics_sub_cmd"} || echo "offloadtest") || die
+            SELECTION_MODE="--test"
+            ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
@@ -1114,6 +1127,7 @@ function select_vpp_device_tags () {
         fi
     done
 }
+
 
 function untrap_and_unreserve_testbed () {
 
