@@ -1,1 +1,5 @@
+<<<<<<< HEAD   (571108 Infra: Ansible sync)
 snergster/csit-arm-sut:latest
+=======
+csit_sut-ubuntu2004:local
+>>>>>>> CHANGE (328928 Image sync)
