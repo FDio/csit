@@ -1,4 +1,5 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -652,3 +653,55 @@
 | | ... | --tun_vni ${tun_vni} | --tun_src_ip ${tun_src_ip}
 | | ... | --tun_dst_ip ${tun_dst_ip}
 | | Run Traffic Script On Node | geneve_tunnel.py | ${node} | ${args}
+
+| Send flow packet and verify action
+| | [Documentation] | Send packet and verify the correctness of flow action.
+| |
+| | ... | *Arguments:*
+| |
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ... | TG(if1)->(if1)DUT
+| |
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - tx_interface - TG Interface 1. Type: string
+| | ... | - tx_dst_mac - MAC address of DUT-if1. Type: string
+| | ... | - src_ip - Source ip address. Type: string
+| | ... | - dst_ip - Destination IP address. Type: string
+| | ... | - src_port - Source port. Type: int
+| | ... | - dst_port - Destination port. Type: int
+| | ... | - flow_type - IP4_N_TUPLE or IP6_N_TUPLE. Type: string
+| | ... | - proto - TCP or UDP. Type: string
+| | ... | - value - Additional packet value. Type: integer
+| | ... | - traffic_script - Traffic script that send packet. Type: string
+| | ... | - action - drop, mark or redirect-to-queue. Type: string
+| | ... | - action_value - action value. Type: integer
+| |
+| | ... | *Return:*
+| | ... | - No value returned
+| |
+| | ... | *Example:*
+| | ... | \| Send flow packet and verify actions \| ${nodes['TG']} \| eth2 \
+| | ... | \| 08:00:27:a2:52:5b \
+| | ... | \| 1.1.1.1 \| 2.2.2.2 \| ${100} \| ${200} \
+| | ... | \| IP4 \| UDP \| send_flow_packet \| mark \| ${7} \|
+| |
+| | [Arguments] | ${tg_node} | ${tx_interface} | ${tx_dst_mac}
+| | ... | ${src_ip}=${None} | ${dst_ip}=${None}
+| | ... | ${src_port}=${None} | ${dst_port}=${None}
+| | ... | ${flow_type}=${None} | ${proto}=${None}
+| | ... | ${value}=${None}
+| | ... | ${traffic_script}=send_flow_packet
+| | ... | ${action}=redirect-to-queue
+| | ... | ${action_value}=${None}
+| |
+| | ${tx_src_mac}= | Get Interface Mac | ${tg_node} | ${tx_interface}
+| | ${tx_if_name}= | Get interface name | ${tg_node} | ${tx_interface}
+| | ${args}= | Catenate
+| | ... | --tg_if1_mac ${tx_src_mac} | --dut_if1_mac ${tx_dst_mac}
+| | ... | --tx_if ${tx_if_name} | --flow_type ${flow_type} | --proto ${proto}
+| | ... | --src_ip ${src_ip} | --dst_ip ${dst_ip}
+| | ... | --src_port ${src_port} | --dst_port ${dst_port}
+| | ... | --value ${value}
+| | Run Traffic Script On Node | ${traffic_script}.py | ${tg_node} | ${args}
+| | Vpp Flow Verify action | ${dut1} | ${action} | ${action_value}
+| | ... | ${tx_src_mac} | ${tx_dst_mac}
