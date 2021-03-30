@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -133,6 +133,9 @@ class VppCounters:
         :param node: Node to run command on.
         :type node: dict
         """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"show hardware"
+        )
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"show hardware verbose"
         )
