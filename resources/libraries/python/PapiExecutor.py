@@ -1029,9 +1029,10 @@ class PapiExecutor:
         cmd = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_PAPI_PROVIDER}" \
             f" --method {method} --data '{json_data}'{sock}"
         try:
-            ret_code, stdout, _ = self._ssh.exec_command_sudo(
+            ret_code, stdout, stderr = self._ssh.exec_command_sudo(
                 cmd=cmd, timeout=timeout, log_stdout_err=False
             )
+            logger.trace(f"stderr: {stderr}")
         # TODO: Fail on non-empty stderr?
         except SSHTimeout:
             logger.error(
