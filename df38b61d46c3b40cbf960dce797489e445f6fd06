@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "503cbc99_b42be9e0",
+        "filename": "tests/vpp/device/stats/eth2p-avf-dot1qip4-l2bdbasemaclrn-stats-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-03-30T13:54:30Z",
+      "side": 1,
+      "message": "See https://gerrit.fd.io/r/c/vpp/+/31795 for VPP change that needs this.",
+      "range": {
+        "startLine": 78,
+        "startChar": 47,
+        "endLine": 78,
+        "endChar": 70
+      },
+      "revId": "df38b61d46c3b40cbf960dce797489e445f6fd06",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
