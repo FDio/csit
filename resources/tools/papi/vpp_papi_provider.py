@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -226,7 +226,12 @@ def process_stats(args):
     reply = list()
 
     for path in json_data:
-        directory = stats.ls(path)
+        # The ls method can match multiple patterns,
+        # but we feed it one path at a time anyway, because the caller
+        # expect results in a list, one item per path.
+        # Most VPP versions understand a string is a single pattern,
+        # but some blindly iterate (as if it was a list of chars).
+        directory = stats.ls([path])
         data = stats.dump(directory)
         reply.append(data)
 
