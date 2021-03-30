@@ -134,6 +134,9 @@ class VppCounters:
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"show hardware"
+        )
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"show hardware verbose"
         )
 
