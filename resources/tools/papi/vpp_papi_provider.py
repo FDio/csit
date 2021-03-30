@@ -226,7 +226,12 @@ def process_stats(args):
     reply = list()
 
     for path in json_data:
-        directory = stats.ls(path)
+        # The ls method can match multiple patterns,
+        # but we feed it one path at a time anyway, because the caller
+        # expect results in a list, one item per path.
+        # Most VPP versions understand a string is a single pattern,
+        # but some blindly iterate (as if it was a list of chars).
+        directory = stats.ls([path])
         data = stats.dump(directory)
         reply.append(data)
 
