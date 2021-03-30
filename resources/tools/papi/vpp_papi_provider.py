@@ -38,6 +38,8 @@ import json
 import os
 import sys
 
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 # Client name
 CLIENT_NAME = u"csit_papi"
@@ -225,9 +227,13 @@ def process_stats(args):
 
     reply = list()
 
+    eprint(f"json_data: {json_data!r}")
     for path in json_data:
+        eprint(f"path: {path!r}")
         directory = stats.ls(path)
+        eprint(f"directory: {directory!r}")
         data = stats.dump(directory)
+        eprint(f"data: {data!r}")
         reply.append(data)
 
     try:
