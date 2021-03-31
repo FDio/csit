@@ -2,6 +2,8 @@
 
 See:
 https://packaging.python.org/en/latest/distributing.html
+
+TODO: Move as much as possible into setup.cfg
 """
 
 from setuptools import setup, find_packages
@@ -14,7 +16,7 @@ with open(path.join(here, u"README.rst"), encoding=u"utf-8") as f:
 
 setup(
     name=u"MLRsearch",
-    version=u"0.3.0",  # This is currently the only place listing the version.
+    version=u"0.4.0",  # This is currently the only place listing the version.
     description=u"Library for speeding up binary search using shorter measurements.",
     long_description=long_description,
     long_description_content_type=u"text/x-rst",
