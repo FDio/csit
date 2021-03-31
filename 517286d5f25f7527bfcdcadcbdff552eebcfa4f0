@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "feaf77db_db10a3e8",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-03-31T18:38:24Z",
+      "side": 1,
+      "message": "missing docstring for new parameter. Vratko again did poor review",
+      "range": {
+        "startLine": 574,
+        "startChar": 0,
+        "endLine": 574,
+        "endChar": 30
+      },
+      "revId": "517286d5f25f7527bfcdcadcbdff552eebcfa4f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
