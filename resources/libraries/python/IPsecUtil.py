@@ -565,6 +565,7 @@ class IPsecUtil:
         :param raddr_range: Mask specifying range of Policy selector Remote IP
             addresses. Valid values are from 1 to 32 in case of IPv4 and to 128
             in case of IPv6.
+        :param dst_mac: The MAC address of destination tunnels.
         :type node: dict
         :type n_tunnels: int
         :type tunnel_src: str
@@ -572,6 +573,7 @@ class IPsecUtil:
         :type tunnel_dst: str
         :type interface: str
         :type raddr_range: int
+        :type dst_mac: str
         """
         tunnel_src = ip_address(tunnel_src)
         tunnel_dst = ip_address(tunnel_dst)
