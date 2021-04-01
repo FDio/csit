@@ -3,7 +3,7 @@
 
 - name: Enable deb-src APT Repository
   apt_repository:
-    repo: "deb-src http://archive.ubuntu.com/ubuntu bionic main"
+    repo: "deb-src http://archive.ubuntu.com/ubuntu focal main"
     state: "present"
     update_cache: yes
   tags:
