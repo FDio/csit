@@ -397,6 +397,8 @@ resource "null_resource" "deploy_tg" {
       playbook {
         file_path      = var.ansible_file_path
         force_handlers = true
+        # Calibration role would fail otherwise
+        skip_tags      = ["check-kernel-params"]
       }
       hosts      = ["tg_aws"]
       extra_vars = {
@@ -441,6 +443,8 @@ resource "null_resource" "deploy_dut1" {
       playbook {
         file_path      = var.ansible_file_path
         force_handlers = true
+        # Calibration role would fail otherwise
+        skip_tags      = ["check-kernel-params"]
       }
       hosts      = ["sut_aws"]
       extra_vars = {
@@ -485,6 +489,8 @@ resource "null_resource" "deploy_dut2" {
       playbook {
         file_path      = var.ansible_file_path
         force_handlers = true
+        # Calibration role would fail otherwise
+        skip_tags      = ["check-kernel-params"]
       }
       hosts      = ["sut_aws"]
       extra_vars = {

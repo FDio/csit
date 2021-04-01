@@ -64,10 +64,8 @@
       tags: aws
     - role: cleanup
       tags: cleanup
-    # TODO: 'Check Kernel Parameters' failing in
-    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
-    # - role: calibration
-    #   tags: calibration
+    - role: calibration
+      tags: calibration
 
 - hosts: sut_azure
   become: yes
