@@ -1681,7 +1681,50 @@ class InterfaceUtil:
                 if ifc[u"vpp_sw_index"] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
             details = papi_exec.get_details(err_msg)
-        return sorted(details, key=lambda k: k[u"sw_if_index"])
+
+        ret = sorted(details, key=lambda k: k[u"sw_if_index"])
+        logger.debug(f"interface details: {ret}")
+        return ret
+
+    @staticmethod
+    def vpp_sw_interface_rx_placement_dump_all(node):
+        """Dump VPP interface RX placement on node.
+
+        This implementation attempts to list also interfaces
+        not tracked in Topology, until first error.
+
+        :param node: Node to run command on.
+        :type node: dict
+        :returns: Thread mapping information as a list of dictionaries.
+        :rtype: list
+        """
+        cmd = u"sw_interface_rx_placement_dump"
+        err_msg = f"Failed to run '{cmd}' PAPI command on host {node[u'host']}!"
+        details = list()
+        index = 0
+        while 1:
+            try:
+                with PapiSocketExecutor(node) as papi_exec:
+                    papi_exec.add(cmd, sw_if_index=index)
+                    details.append(papi_exec.get_details(err_msg))
+                index += 1
+            except (AsserionError, RuntimeError):
+                break
+        ret = sorted(details, key=lambda k: k[u"sw_if_index"])
+        logger.debug(f"interface details: {ret}")
+        return ret
+
+    @staticmethod
+    def dump_interface_rx_placement_on_all_duts(nodes):
+        """Dump VPP interface RX placement on DUT nodes.
+
+        :param nodes: Nodes to run command on.
+        :type node: list of dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
+                InterfaceUtil.vpp_sw_interface_rx_placement_dump_all(node)
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(

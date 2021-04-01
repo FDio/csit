@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -47,6 +47,7 @@
 | | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
 | | ${post_stats}= | Create List
 | | ... | vpp-show-stats | vpp-show-packettrace | vpp-show-elog
+| | ... | vpp-show-threads
 | | ${pre_run_stats}= | Create List
 | | ... | vpp-clear-runtime
 | | ${post_run_stats}= | Create List
