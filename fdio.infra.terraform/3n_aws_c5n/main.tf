@@ -1,19 +1,18 @@
 module "deploy" {
   source                    = "./deploy"
 
-  # TODO: Use ENV variable for testbed_name for dynamic deployment
-  testbed_name              = "testbed1"
-  topology_name             = "3n_aws_c5n"
+  # Parameters starting with var. can be set using "TF_VAR_*" environment variables
+  # or -var parameter when running "terraform apply", for default values see ./variables.tf
+  testbed_name              = var.testbed_name
+  topology_name             = "2n_aws_c5n"
   environment_name          = "CSIT-AWS"
-  resources_name_prefix     = "CSIT_3n_aws_c5n"
+  resources_name_prefix     = "CSIT_2n_aws_c5n"
 
   # AWS general
-  region                    = "eu-central-1"
-  avail_zone                = "eu-central-1a"
-  instance_type             = "c5n.4xlarge"
-  ami_image                 = "ami-0b418580298265d5c"
-  # eu-central-1/bionic-18.04-amd64-hvm-ssd-20200112
-  # kernel 4.15.0-1057-aws (~4.15.0-74)
+  region                    = var.region
+  avail_zone                = var.avail_zone
+  instance_type             = var.instance_type
+  ami_image                 = var.ami_image
 
   # AWS Network
   vpc_cidr_mgmt             = "192.168.0.0/24"
