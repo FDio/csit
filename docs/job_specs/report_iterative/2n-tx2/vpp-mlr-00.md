@@ -35,6 +35,13 @@
 #1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
 #2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
 #4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+##### ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
+#1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
+#2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
+#4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
+#1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
+#2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
+#4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
 ##### ethip4ipsec4tnlsw-ip4base-int-aes256gcm-udir
 #1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm-udir
 #2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm-udir
@@ -49,6 +56,13 @@
 #1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
 #2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
 #4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+##### ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
+#1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
+#2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
+#4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
+#1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
+#2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
+#4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
 ##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-udir
 #1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-udir
 #2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-udir
@@ -63,6 +77,13 @@
 #1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
 #2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
 #4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+##### ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
+#1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
+#2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
+#4c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
+#1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
+#2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
+#4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
 ##### ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-udir
 #1c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-udir
 #2c AND 1518b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-udir
@@ -70,6 +91,30 @@
 #1c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-udir
 #2c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-udir
 #4c AND imix AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-udir
+##### ethip4ipsec1tnlsw-ip4base-policy-aes256gcm-udir
+#1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm-udir
+#2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm-udir
+#4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm-udir
+##### ethip4ipsec40tnlsw-ip4base-policy-aes256gcm-udir
+#1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes256gcm-udir
+#2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes256gcm-udir
+#4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes256gcm-udir
+##### ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
+#1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
+#2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
+#4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
+##### ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+#1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+#2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+#4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+##### ethip4ipsec40tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+#1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+#2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+#4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+##### ethip4ipsec1000tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+#1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+#2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
+#4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes128cbc-hmac512sha-udir
 ## ./ip4
 ### intel-xl710
 #### dpdk-vfio-pci

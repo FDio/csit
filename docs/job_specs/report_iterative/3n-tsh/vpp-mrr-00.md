@@ -1,9 +1,9 @@
 # 3n-tsh
-### tests 198
-### job hrs est. 6.25
-### job hrs real 6.25
+### tests 234
+### job hrs est. 7.37
+### job hrs real N/A
 ### test mins est. 1.89
-### test mins real 1.89
+### test mins real N/A
 ## ./container_memif
 ### intel-x520-da2
 #### dpdk-vfio-pci
@@ -37,6 +37,13 @@
 1c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
 4c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec4tnlsw-ip4base-int-aes128gcm
+1c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
+2c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
+4c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
+1c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
+2c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
+4c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128gcm
 ##### ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 1c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 2c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
@@ -51,6 +58,13 @@
 1c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
 4c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
+1c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
+2c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
+4c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
+1c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
+2c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
+4c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
 ##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
 1c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
 2c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
@@ -65,6 +79,13 @@
 1c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
 2c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
 4c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+##### ethip4ipsec10000tnlsw-ip4base-int-aes128gcm
+1c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm
+2c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm
+4c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm
+1c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm
+2c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm
+4c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes128gcm
 ##### ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 1c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 2c AND 1518b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
@@ -72,6 +93,30 @@
 1c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 2c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
 4c AND imix AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+##### ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
+1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
+2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
+4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
+##### ethip4ipsec40tnlsw-ip4base-policy-aes256gcm
+1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes256gcm
+2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes256gcm
+4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes256gcm
+##### ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm
+1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm
+2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm
+4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm
+##### ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
+1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
+2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
+4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1tnlsw-ip4base-policy-aes128cbc-hmac512sha
+##### ethip4ipsec40tnlsw-ip4base-policy-aes128cbc-hmac512sha
+1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes128cbc-hmac512sha
+2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes128cbc-hmac512sha
+4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec40tnlsw-ip4base-policy-aes128cbc-hmac512sha
+##### ethip4ipsec1000tnlsw-ip4base-policy-aes128cbc-hmac512sha
+1c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes128cbc-hmac512sha
+2c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes128cbc-hmac512sha
+4c AND 64b AND mrr AND x520-da2 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes128cbc-hmac512sha
 ## ./ip4
 ### intel-x520-da2
 #### dpdk-vfio-pci
