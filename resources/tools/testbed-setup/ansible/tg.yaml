@@ -62,18 +62,14 @@
       tags: tg
     - role: iperf
       tags: iperf
-    - role: trex
-      tags: trex
+    # - role: trex
+    #   tags: trex
     - role: ab
       tags: ab
     - role: aws
       tags: aws
     - role: cleanup
       tags: cleanup
-    # TODO: 'Check Kernel Parameters' failing in
-    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
-    # - role: calibration
-    #   tags: calibration
 
 - hosts: tg_azure
   become: yes

@@ -6,6 +6,15 @@
   tags:
     - edit-repo
 
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - calibration-inst-prerequisites
+
 - name: Get vfio-pci With WC Patcher
   get_url:
     url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/get-vfio-with-wc.sh"
@@ -21,10 +30,18 @@
   tags:
     - vfio-aws-patch
 
-- name: Get vfio-pci WC Patch
+- name: Get vfio-pci WC Patch >=4.10
   get_url:
     url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/patches/linux-4.10-vfio-wc.patch"
     dest: "/opt/patches/linux-4.10-vfio-wc.patch"
+    mode: "744"
+  tags:
+    - vfio-aws-patch
+
+- name: Get vfio-pci WC Patch >=5.8
+  get_url:
+    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/patches/linux-5.8-vfio-wc.patch"
+    dest: "/opt/patches/linux-5.8-vfio-wc.patch"
     mode: "744"
   tags:
     - vfio-aws-patch
@@ -73,6 +90,72 @@
     state: "restarted"
   tags:
     - reload-systemd-modules
+
+- name: Inst - Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+  tags:
+    - calibration-inst-prerequisites
+
+- name: Check CPU Power States
+  shell: "lscpu"
+  register: current_lscpu
+  changed_when: false
+  tags:
+    - check-cpu-frequency
+
+- name: Check CPU Power States
+  assert:
+    that:
+      - "'CPU min MHz' not in current_lscpu.stdout or 'Intel(R) Xeon(R)' not in ansible_processor"
+    fail_msg: "CPU configuration!"
+    success_msg: "CPU configuration match."
+  tags:
+    - check-cpu-frequency
+
+- name: Check Kernel Version
+  assert:
+    that:
+      - ansible_kernel not in kernel_version_by_distro_by_arch
+    fail_msg: "Kernel version!"
+    success_msg: "Kernel version match."
+  tags:
+    - check-kernel-version
+
+- name: Get Spectre Meltdown Checker
+  get_url:
+    url: "https://meltdown.ovh"
+    dest: "/opt/spectre-meltdown-checker.sh"
+    mode: "744"
+  tags:
+    - check-spectre-meltdown
+
+- name: Run Spectre Meltdown Checker
+  shell: "/opt/spectre-meltdown-checker.sh --no-color || true"
+  async: 60
+  poll: 0
+  ignore_errors: true
+  register: spectre_meltdown_async
+  tags:
+    - check-spectre-meltdown
+
+- name: "{{ ansible_machine }} Specific"
+  include_tasks: "{{ ansible_machine }}.yaml"
+  tags:
+    - check-machine-specific
+    - check-jitter-tool
+
+- name: Check Sync Status
+  async_status:
+    jid: "{{ spectre_meltdown_async.ansible_job_id }}"
+  register: "spectre_meltdown_poll_results"
+  until: spectre_meltdown_poll_results.finished
+  retries: 30
+
+- debug: var=spectre_meltdown_poll_results.stdout_lines
+  tags:
+    - check-spectre-meltdown
 
 - name: Performance Tuning - Adjust nr_hugepages
   sysctl:
