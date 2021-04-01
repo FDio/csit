@@ -86,7 +86,7 @@
 | | ... | Additional Statistics Action for show VPP packet trace.
 | |
 | | Run Keyword If | ${extended_debug}==${True}
-| | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
+| | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${1000}
 
 | Additional Statistics Action For vpp-show-runtime
 | | [Documentation]
