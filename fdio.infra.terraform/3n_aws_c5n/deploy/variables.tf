@@ -1,37 +1,32 @@
 variable "region" {
   description = "AWS Region"
   type = string
-  default = "eu-central-1"
 }
 
 variable "ami_image" {
   description = "AWS AMI image name"
   type = string
-  default = "ami-0b418580298265d5c"
 }
 
 variable "testbed_name" {
   description = "Testbed name"
   type = string
-  default = "testbed1"
+}
+
+variable "instance_type" {
+  description = "AWS instance type"
+  type = string
+}
+
+variable "avail_zone" {
+  description = "AWS availability zone"
+  type = string
 }
 
 variable "topology_name" {
   description = "Prefix used when creating a topology file"
   type = string
   default = "3n_aws_c5n"
-}
-
-variable "instance_type" {
-  description = "AWS instance type"
-  type = string
-  default = "c5n.4xlarge"
-}
-
-variable "avail_zone" {
-  description = "AWS availability zone"
-  type = string
-  default = "eu-central-1a"
 }
 
 variable "environment_name" {

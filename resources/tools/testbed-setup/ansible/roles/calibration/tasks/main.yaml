@@ -40,6 +40,8 @@
     fail_msg: "Kernel parameters!"
     success_msg: "Kernel parameters match."
   loop: "{{ grub.keys()|sort }}"
+  when:
+    - grub is defined
   tags:
     - check-kernel-params
 
