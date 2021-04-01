@@ -22,6 +22,30 @@
       "revId": "517286d5f25f7527bfcdcadcbdff552eebcfa4f0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62dae57f_1c774176",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-04-01T07:56:13Z",
+      "side": 1,
+      "message": "Good catch, I\u0027m adding more tests here https://gerrit.fd.io/r/c/csit/+/31840 so I\u0027ll fix it there.",
+      "parentUuid": "feaf77db_db10a3e8",
+      "range": {
+        "startLine": 574,
+        "startChar": 0,
+        "endLine": 574,
+        "endChar": 30
+      },
+      "revId": "517286d5f25f7527bfcdcadcbdff552eebcfa4f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
