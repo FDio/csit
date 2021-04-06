@@ -116,9 +116,13 @@ def extract_tarball_at_node(tarball, node):
 def create_env_directory_at_node(node):
     """Create fresh virtualenv to a directory, install pip requirements.
 
+    Return stdout and stderr of the command,
+    so we see which installs are behaving weird (e.g. attempting download).
+
     :param node: Node to create virtualenv on.
     :type node: dict
-    :returns: nothing
+    :returns: Stdout and stderr.
+    :rtype: str, str
     :raises RuntimeError: When failed to setup virtualenv.
     """
     logger.console(
@@ -129,7 +133,7 @@ def create_env_directory_at_node(node):
         f"-p $(which python3) --system-site-packages --never-download env " \
         f"&& source env/bin/activate && ANSIBLE_SKIP_CONFLICT_CHECK=1 " \
         f"pip3 install -r requirements.txt"
-    exec_cmd_no_error(
+    stdout, stderr = exec_cmd_no_error(
         node, cmd, timeout=100, include_reason=True,
         message=f"Failed install at node {node[u'type']} host {node[u'host']}, "
         f"port {node[u'port']}"
@@ -138,6 +142,7 @@ def create_env_directory_at_node(node):
         f"Virtualenv setup on {node[u'type']} host {node[u'host']}, "
         f"port {node[u'port']} done."
     )
+    return stdout, stderr
 
 
 def setup_node(node, tarball, remote_tarball, results=None, logs=None):
@@ -160,7 +165,10 @@ def setup_node(node, tarball, remote_tarball, results=None, logs=None):
         copy_tarball_to_node(tarball, node)
         extract_tarball_at_node(remote_tarball, node)
         if node[u"type"] == NodeType.TG:
-            create_env_directory_at_node(node)
+            stdout, stderr = create_env_directory_at_node(node)
+            if isinstance(logs, list):
+                logs.append(f"{node[u'host']} Env stdout: {stdout}")
+                logs.append(f"{node[u'host']} Env stderr: {stderr}")
     except Exception:
         # any exception must result in result = False
         # since this runs in a thread and can't be caught anywhere else
