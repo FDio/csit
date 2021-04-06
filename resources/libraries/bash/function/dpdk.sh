@@ -91,7 +91,7 @@ function dpdk_compile () {
     sed_cmd="s/'RTE_MAX_LCORE', [0-9]*/'RTE_MAX_LCORE', $(nproc --all)/"
     sed -i "${sed_cmd}" "${sed_file}" || die "RTE_MAX_LCORE Patch failed"
     sed_cmd="s/'RTE_MAX_NUMA_NODES', [0-9]*/'RTE_MAX_NUMA_NODES', "
-            "$(echo /sys/devices/system/node/node* | wc -w)/"
+    sed_cmd+="$(echo /sys/devices/system/node/node* | wc -w)/"
     sed -i "${sed_cmd}" "${sed_file}" || die "RTE_MAX_NUMA_NODES Patch failed"
 
     # Patch L3FWD.
