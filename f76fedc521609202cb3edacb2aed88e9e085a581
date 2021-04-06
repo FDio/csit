@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be973c46_41d5c62b",
+        "filename": "GPL/traffic_scripts/send_flow_packet.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-06T14:03:44Z",
+      "side": 1,
+      "message": "I know there is vpp_flow_verify_action to check the VPP behavior, but that is just looking at some VPP counters. I would prefer a real check on returning packet here (configurable, so it checks no packet arrives within some time in test cases when that is expected).",
+      "range": {
+        "startLine": 119,
+        "startChar": 20,
+        "endLine": 119,
+        "endChar": 21
+      },
+      "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "955290db_0ee6bf84",
+        "filename": "resources/libraries/bash/entry/bootstrap_vpp_offload.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-06T14:03:44Z",
+      "side": 1,
+      "message": "This (and adding files to tests/vpp/offload) looks like a support for a new CSIT job type (different from both perf and device tests). But the added suites look just like device tests.\nI get that the new suites need NIC capabilities that are not present on currently employed devicetest testbeds, but that should be handled by adding tags and exclusions in other parts of existing bootstrap functions. Search for \"ipsechw\" to see how we avoid running suites which need QAT on testbeds without QAT.",
+      "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "942ed91b_5ed26b25",
+        "filename": "tests/vpp/offload/flow/eth2p-flow-ip4-gtpu.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-06T14:03:44Z",
+      "side": 1,
+      "message": "No sleep!\nIf the previous commands pass while VPP is still unable to process the next packet correctly, it is probably a VPP bug. If there are legitimate reasons for VPP to not be ready when responding to API commands, VPP should be changed to either block before responding (simple but not performant) or generate an event when it becomes ready (more tricky to implement on VPP side, and on CSIT to listen for the event).",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 22
+      },
+      "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
