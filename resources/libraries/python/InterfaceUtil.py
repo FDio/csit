@@ -1681,7 +1681,55 @@ class InterfaceUtil:
                 if ifc[u"vpp_sw_index"] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
             details = papi_exec.get_details(err_msg)
-        return sorted(details, key=lambda k: k[u"sw_if_index"])
+
+        ret = sorted(details, key=lambda k: k[u"sw_if_index"])
+        logger.debug(f"interface details: {ret}")
+        return ret
+
+    @staticmethod
+    def vpp_sw_interface_rx_placement_dump_all(node):
+        """Dump VPP interface RX placement on node.
+
+        This implementation attempts to list also interfaces
+        not tracked in Topology, until first error.
+
+        :param node: Node to run command on.
+        :type node: dict
+        :returns: Thread mapping information as a list of dictionaries.
+        :rtype: list
+        """
+        cmd = u"sw_interface_rx_placement_dump"
+        err_msg = f"Failed to run '{cmd}' PAPI command on host {node[u'host']}!"
+        details = list()
+        # We know index 0 is special and usually not used.
+        index = 1
+        while 1:
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(cmd, sw_if_index=index)
+                replies = papi_exec.get_details(err_msg)
+            logger.debug(f"detail: {replies}")
+            if not replies:
+                break
+            details.extend(replies)
+            index += 1
+            if index > 20:
+                logger.debug(f"stopping at {index}")
+                break
+        ret = sorted(details, key=lambda k: k[u"sw_if_index"])
+        logger.debug(f"interface details: {ret}")
+        return ret
+
+    @staticmethod
+    def dump_interface_rx_placement_on_all_duts(nodes):
+        """Dump VPP interface RX placement on DUT nodes.
+
+        :param nodes: Nodes to run command on.
+        :type node: list of dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
+                InterfaceUtil.vpp_sw_interface_rx_placement_dump_all(node)
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(
@@ -1708,6 +1756,7 @@ class InterfaceUtil:
             worker_id=worker_id,
             is_main=False
         )
+        logger.trace(f"sw_interface_set_rx_placement args: {args}")
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
@@ -1731,16 +1780,22 @@ class InterfaceUtil:
         :type prefix: str
         :type dp_worker_limit: Optional[int]
         """
+        logger.trace(f"prefix {prefix!r}")
         worker_id = 0
         worker_cnt = len(VPPUtil.vpp_show_threads(node)) - 1
         if dp_worker_limit is not None:
             worker_cnt = min(worker_cnt, dp_worker_limit)
         if not worker_cnt:
             return
+        logger.trace(f"worker_cnt {worker_cnt}")
         for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
+            logger.trace(f"placement {placement!r}")
             for interface in node[u"interfaces"].values():
+                logger.trace(f"interface {interface!r}")
                 if placement[u"sw_if_index"] == interface[u"vpp_sw_index"] \
                     and prefix in interface[u"name"]:
+                    logger.trace(f"worker_id {worker_id}")
+                    logger.trace(f"worker_id % worker_cnt {worker_id % worker_cnt}")
                     InterfaceUtil.vpp_sw_interface_set_rx_placement(
                         node, placement[u"sw_if_index"], placement[u"queue_id"],
                         worker_id % worker_cnt
@@ -1769,10 +1824,12 @@ class InterfaceUtil:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
+                logger.trace(f"dp_core_limit {dp_core_limit}")
                 dp_worker_limit = CpuUtils.worker_count_from_cores_and_smt(
                     phy_cores=dp_core_limit,
                     smt_used=CpuUtils.is_smt_enabled(node[u"cpuinfo"]),
                 )
+                logger.trace(f"dp_worker_limit {dp_worker_limit}")
                 InterfaceUtil.vpp_round_robin_rx_placement(
                     node, prefix, dp_worker_limit
                 )
