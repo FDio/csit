@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "776ed63b_c2fe1161",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-07T17:36:51Z",
+      "side": 1,
+      "message": "revert back...ansible still has both",
+      "revId": "e03b1e9f3974974d0711afe9269e599a80636859",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a31665ff_375217ad",
+        "filename": "resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-07T17:36:51Z",
+      "side": 1,
+      "message": "when:\n  - grub is defined\n\n\n\nkeeping same style",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 23
+      },
+      "revId": "e03b1e9f3974974d0711afe9269e599a80636859",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
