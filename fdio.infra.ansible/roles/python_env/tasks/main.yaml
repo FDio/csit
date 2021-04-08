@@ -1,15 +1,5 @@
 ---
-# file: roles/common/tasks/main.yaml
-
-- name: Conf - Add permanent proxy settings
-  lineinfile:
-    path: "/etc/environment"
-    state: "present"
-    line: "{{ item.key }}={{ item.value }}"
-  with_dict: "{{ proxy_env }}"
-  when: proxy_env is defined
-  tags:
-    - common-conf-proxy
+# file: roles/python_env/tasks/main.yaml
 
 - name: Inst - Update package cache (apt)
   apt:
@@ -40,7 +30,7 @@
       - "scapy==2.4.3"
       - "scp==0.13.2"
       - "ansible==2.10.7"
-      - "dill==0.2.8.2"
+      - "dill==0.3.3"
       - "numpy==1.17.3"
       - "hdrhistogram==0.6.1"
       - "plotly==4.1.1"
@@ -90,32 +80,3 @@
       - "scipy==1.5.4"
   tags:
     - common-inst-pip
-
-- name: Inst - Meson (DPDK)
-  pip:
-    name:
-      - "meson==0.47.1"
-  tags:
-    - common-inst-meson
-
-- name: Conf - sudoers admin
-  lineinfile:
-    path: "/etc/sudoers"
-    state: "present"
-    regexp: "^%admin ALL="
-    line: "%admin ALL=(ALL) ALL"
-    validate: "/usr/sbin/visudo -cf %s"
-  tags:
-    - common-conf-sudoers
-
-- name: Conf - sudoers nopasswd
-  lineinfile:
-    path: "/etc/sudoers"
-    state: "present"
-    regexp: "^%sudo"
-    line: "%sudo ALL=(ALL:ALL) NOPASSWD: ALL"
-    validate: "/usr/sbin/visudo -cf %s"
-  tags:
-    - common-conf-sudoers
-
-- meta: flush_handlers

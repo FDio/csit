@@ -33,8 +33,8 @@ module "deploy" {
 
   # Ansible
   ansible_python_executable = "/usr/bin/python3"
-  ansible_file_path         = "../../resources/tools/testbed-setup/ansible/site.yaml"
-  ansible_topology_path     = "../../resources/tools/testbed-setup/ansible/cloud_topology.yaml"
+  ansible_file_path         = "../../fdio.infra.ansible/site.yaml"
+  ansible_topology_path     = "../../fdio.infra.ansible/cloud_topology.yaml"
   ansible_provision_pwd     = "Csit1234"
 
   # First run
