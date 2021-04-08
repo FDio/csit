@@ -1,7 +1,7 @@
 ---
-# file: sut.yaml
+# file: tg.yaml
 
-- hosts: sut
+- hosts: tg
   remote_user: testuser
   become: yes
   become_user: root
@@ -16,18 +16,22 @@
       tags: baremetal
     - role: common
       tags: common
+    - role: python_env
+      tags: python_env
     - role: kernel
       tags: kernel
     - role: mellanox
       tags: mellanox
     - role: docker
       tags: docker
-    - role: vpp
-      tags: vpp
-    - role: dpdk
-      tags: dpdk
-    - role: kernel_vm
-      tags: kernel_vm
+    - role: iperf
+      tags: iperf
+    - role: trex
+      tags: trex
+    - role: ab
+      tags: ab
+    - role: tg
+      tags: tg
     - role: csit_sut_image
       tags: csit_sut_image
     - role: performance_tuning
@@ -37,7 +41,7 @@
     - role: calibration
       tags: calibration
 
-- hosts: sut_aws
+- hosts: tg_aws
   remote_user: testuser
   become: yes
   become_user: root
@@ -52,14 +56,20 @@
       tags: user_add
     - role: common
       tags: common
-    - role: vpp
-      tags: vpp
+    - role: python_env
+      tags: python_env
     - role: dpdk
       tags: dpdk
-    - role: iperf
-      tags: iperf
     - role: docker
       tags: docker
+    - role: tg
+      tags: tg
+    - role: iperf
+      tags: iperf
+    - role: trex
+      tags: trex
+    - role: ab
+      tags: ab
     - role: aws
       tags: aws
     - role: cleanup
@@ -67,7 +77,7 @@
     - role: calibration
       tags: calibration
 
-- hosts: sut_azure
+- hosts: tg_azure
   become: yes
   become_user: root
   gather_facts: false
@@ -81,19 +91,21 @@
       tags: user_add
     - role: common
       tags: common
+    - role: python_env
+      tags: python_env
     - role: docker
       tags: docker
-    - role: vpp
-      tags: vpp
+    - role: tg
+      tags: tg
     - role: iperf
       tags: iperf
-    - role: dpdk
-      tags: dpdk
+    - role: trex
+      tags: trex
+    - role: ab
+      tags: ab
     - role: azure
       tags: azure
     - role: cleanup
       tags: cleanup
-    # TODO: 'Check Kernel Parameters' failing in
-    # resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml
-    # - role: calibration
-    #   tags: calibration
+    - role: calibration
+      tags: calibration

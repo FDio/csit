@@ -1,0 +1,55 @@
+---
+# file: roles/common/tasks/main.yaml
+
+- name: Conf - Add permanent proxy settings
+  lineinfile:
+    path: "/etc/environment"
+    state: "present"
+    line: "{{ item.key }}={{ item.value }}"
+  with_dict: "{{ proxy_env }}"
+  when: proxy_env is defined
+  tags:
+    - common-conf-proxy
+
+- name: Inst - Update package cache (apt)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - common-inst-prerequisites
+
+- name: Inst - Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+  tags:
+    - common-inst-prerequisites
+
+- name: Inst - Meson (DPDK)
+  pip:
+    name:
+      - "meson==0.47.1"
+  tags:
+    - common-inst-meson
+
+- name: Conf - sudoers admin
+  lineinfile:
+    path: "/etc/sudoers"
+    state: "present"
+    regexp: "^%admin ALL="
+    line: "%admin ALL=(ALL) ALL"
+    validate: "/usr/sbin/visudo -cf %s"
+  tags:
+    - common-conf-sudoers
+
+- name: Conf - sudoers nopasswd
+  lineinfile:
+    path: "/etc/sudoers"
+    state: "present"
+    regexp: "^%sudo"
+    line: "%sudo ALL=(ALL:ALL) NOPASSWD: ALL"
+    validate: "/usr/sbin/visudo -cf %s"
+  tags:
+    - common-conf-sudoers
