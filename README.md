@@ -116,10 +116,18 @@ resources
 ```
 .
 ├── docs                            # Main documentaion
+|── fdio.infra.ansible              # Infrastructure provisioning
+|── fdio.infra.pxe                  # Preboot eXecution Environment
+|── fdio.infra.terraform            # Virtual infrastructure deployment
+|── GPL                             # Files licensed under GPL
+│   ├── traffic_profiles            # Performance tests traffic profiles
+│   │   └── trex
+│   └── traffic_scripts             # Functional tests traffic profiles
 ├── PyPI                            # PyPI packages provided by CSIT
 │   ├── jumpavg
 │   └── MLRsearch
 ├── resources
+│   ├── api                         # API coverage
 │   ├── templates                   # Templates (vpp_api_test, kubernetes, ...)
 │   ├── test_data                   # Robot Test configuration
 │   ├── tools
@@ -128,16 +136,10 @@ resources
 │   │   ├── papi                    # PAPI driver
 │   │   ├── presentation            # Report generator
 │   │   ├── scripts                 # Various tools
-│   │   ├── testbed-setup           # Physical testbed setup scripts
 │   │   ├── topology                # Helper scripts for topology manipulation
 │   │   ├── trex                    # TRex driver
 │   │   └── vagrant                 # VPP device vagrant environment
 │   ├── topology_schemas
-│   ├── traffic_profiles            # Performance tests traffic profiles
-│   │   └── trex
-│   └── traffic_scripts             # Functional tests traffic profiles
-│       ├── dhcp
-│       └── lisp
 └── topologies                      # Linux Foundation topology files
     ├── available
     └── enabled
@@ -149,12 +151,6 @@ resources
 
 [Vagrant environment preparation](docs/testing_in_vagrant.rst) documentaion is
 describing local VPP Device functional testing.
-
-### Physical Testbed
-
-[Physical testbed preparation](resources/tools/testbed-setup/README.rst)
-documentation is describing PXE and Ansible setup process. All the software
-requirements for running Performance Teste are part of Ansible playbooks.
 
 ## Report
 

@@ -568,6 +568,6 @@ Links
 .. [CsitShimDcrFile] `csit-shim-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-shim/Dockerfile>`_
 .. [CsitSutDcrFile] `csit-sut-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-sut/Dockerfile>`_
 .. [ansiblelink] `ansible <https://www.ansible.com/>`_
-.. [fdiocsitansible] `Fd.io/CSIT ansible <https://git.fd.io/csit/tree/resources/tools/testbed-setup/ansible>`_
+.. [fdiocsitansible] `Fd.io/CSIT ansible <https://git.fd.io/csit/tree/fdio.infra.ansible>`_
 .. [inteli40e] `Intel i40e <https://downloadmirror.intel.com/26370/eng/readme.txt>`_
 .. [pciids] `pci ids <http://pci-ids.ucw.cz/v2.2/pci.ids>`_
