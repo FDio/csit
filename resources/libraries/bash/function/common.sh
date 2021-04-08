@@ -441,6 +441,14 @@ function get_test_code () {
             NODENESS="1n"
             FLAVOR="tx2"
             ;;
+        *"2n-aws"*)
+            NODENESS="2n"
+            FLAVOR="aws"
+            ;;
+        *"3n-aws"*)
+            NODENESS="3n"
+            FLAVOR="aws"
+            ;;
         *"2n-skx"*)
             NODENESS="2n"
             FLAVOR="skx"
@@ -641,7 +649,7 @@ function reserve_and_cleanup_testbed () {
                     }
                     die "Trap attempt failed, unreserve succeeded. Aborting."
                 }
-                # Cleanup + calibration checks.
+                # Cleanup + calibration checks
                 set +e
                 ansible_playbook "cleanup, calibration"
                 result="$?"
@@ -803,6 +811,9 @@ function select_tags () {
         *"3n-hsw"* | *"2n-tx2"* | *"mrr-daily-master")
             default_nic="nic_intel-xl710"
             ;;
+        *"2n-aws"* | *"3n-aws"*)
+            default_nic="nic_amazon-nitro-50g"
+            ;;
         *)
             default_nic="nic_intel-x710"
             ;;
@@ -930,6 +941,9 @@ function select_tags () {
             # which we do not want to even run.
             test_tag_array+=("!ipsechwNOTnic_intel-xl710")
             ;;
+        *"2n-aws"* | *"3n-aws"*)
+            test_tag_array+=("!ipsechw")
+            ;;
         *)
             # Default to 3n-hsw due to compatibility.
             test_tag_array+=("!drv_avf")
@@ -1042,6 +1056,14 @@ function select_topology () {
         "2n_tx2")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_aws")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_aws*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "3n_aws")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_aws*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
