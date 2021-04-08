@@ -50,7 +50,7 @@ variable "first_run_commands" {
 variable "ansible_file_path" {
   description = "Path to Ansible playbook"
   type = string
-  default = "../../resources/tools/testbed-setup/ansible/site.yaml"
+  default = "../../fdio.infra.ansible/site.yaml"
 }
 
 variable "ansible_python_executable" {
@@ -62,7 +62,7 @@ variable "ansible_python_executable" {
 variable "ansible_topology_path" {
   description = "Path to Ansible playbook which creates a topology file"
   type = string
-  default = "../../resources/tools/testbed-setup/ansible/cloud_topology.yaml"
+  default = "../../fdio.infra.ansible/cloud_topology.yaml"
 }
 
 variable "ansible_provision_pwd" {

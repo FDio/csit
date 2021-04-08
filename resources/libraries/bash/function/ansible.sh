@@ -22,7 +22,7 @@ function ansible_adhoc () {
     #
     # Variable read:
     # - ${WORKING_TOPOLOGY} - Reserved working topology.
-    # - ${TOOLS_DIR} - CSIT tools directory, where testbed-setup is located.
+    # - ${CSIT_DIR} - CSIT main directory, where ansible playbooks are located.
 
     set -exuo pipefail
 
@@ -33,7 +33,7 @@ function ansible_adhoc () {
     hosts=($(fgrep host "${WORKING_TOPOLOGY}" | cut -d ":" -f 2)) || {
         die "Failed to read hosts from working topology!"
     }
-    pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
+    pushd "${CSIT_DIR}"/fdio.infra.ansible || die "Pushd failed!"
     export ANSIBLE_HOST_KEY_CHECKING=False
     export ANSIBLE_STDOUT_CALLBACK=yaml
     export ANSIBLE_PIPELINING=true
@@ -54,7 +54,7 @@ function ansible_playbook () {
     #
     # Variable read:
     # - ${WORKING_TOPOLOGY} - Reserved working topology.
-    # - ${TOOLS_DIR} - CSIT tools directory, where testbed-setup is located.
+    # - ${CSIT_DIR} - CSIT main directory, where ansible playbooks are located.
 
     set -exuo pipefail
 
@@ -65,7 +65,7 @@ function ansible_playbook () {
     hosts=($(fgrep host "${WORKING_TOPOLOGY}" | cut -d ":" -f 2)) || {
         die "Failed to read hosts from working topology!"
     }
-    pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
+    pushd "${CSIT_DIR}"/fdio.infra.ansible || die "Pushd failed!"
     export ANSIBLE_HOST_KEY_CHECKING=False
     export ANSIBLE_STDOUT_CALLBACK=yaml
     export ANSIBLE_PIPELINING=true
