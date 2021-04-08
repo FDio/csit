@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "449cd302_69160ee0",
+        "filename": "resources/tools/testbed-setup/ansible/roles/aws/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2021-04-08T07:32:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "776ed63b_c2fe1161",
+      "revId": "e03b1e9f3974974d0711afe9269e599a80636859",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a31665ff_375217ad",
         "filename": "resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml",
         "patchSetId": 4
@@ -39,6 +57,30 @@
       "revId": "e03b1e9f3974974d0711afe9269e599a80636859",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a7c71a5_2796811b",
+        "filename": "resources/tools/testbed-setup/ansible/roles/calibration/tasks/main.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2284
+      },
+      "writtenOn": "2021-04-08T07:32:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a31665ff_375217ad",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 23
+      },
+      "revId": "e03b1e9f3974974d0711afe9269e599a80636859",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
