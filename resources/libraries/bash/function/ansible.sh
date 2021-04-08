@@ -26,6 +26,15 @@ function ansible_adhoc () {
 
     set -exuo pipefail
 
+    case "$FLAVOR" in
+        "aws")
+            INVENTORY_PATH="cloud_inventory"
+            ;;
+        *)
+            INVENTORY_PATH="lf_inventory"
+            ;;
+    esac
+
     if ! installed sshpass; then
         die "Please install sshpass!"
     fi
@@ -40,7 +49,7 @@ function ansible_adhoc () {
     ansible-playbook \
         --vault-password-file=vault_pass \
         --extra-vars '@vault.yml' \
-        --inventory inventories/lf_inventory/hosts site.yaml \
+        --inventory inventories/$INVENTORY_PATH/hosts site.yaml \
         --limit "$(echo ${hosts[@]//\"})" \
         --module-name shell \
         --args \"$(echo $@)\" || die "Failed to run ansible on host!"
@@ -58,6 +67,15 @@ function ansible_playbook () {
 
     set -exuo pipefail
 
+    case "$FLAVOR" in
+        "aws")
+            INVENTORY_PATH="cloud_inventory"
+            ;;
+        *)
+            INVENTORY_PATH="lf_inventory"
+            ;;
+    esac
+
     if ! installed sshpass; then
         die "Please install sshpass!"
     fi
@@ -72,7 +90,7 @@ function ansible_playbook () {
     ansible-playbook \
         --vault-password-file=vault_pass \
         --extra-vars '@vault.yml' \
-        --inventory inventories/lf_inventory/hosts site.yaml \
+        --inventory inventories/$INVENTORY_PATH/hosts site.yaml \
         --limit "$(echo ${hosts[@]//\"})" \
         --tags "$(echo $@)" || die "Failed to run ansible on host!"
     popd || die "Popd failed!"
