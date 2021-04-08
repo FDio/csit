@@ -1,8 +1,0 @@
-#!/bin/sh
-
-patch boot/grub/menu.lst <<"_EOF"
-17c17
-< 	kernel /boot/bzImage rw root=/dev/sda1 rootwait ipv6.disable=1 console=ttyS0,115200n8 isolcpus=1,2,3,4 nohz_full=1,2,3,4 rcu_nocbs=1,2,3,4 intel_pstate=disable
----
-> 	kernel /boot/bzImage rw root=/dev/vda1 rootwait ipv6.disable=1 console=ttyS0,115200n8 isolcpus=1,2,3,4 nohz_full=1,2,3,4 rcu_nocbs=1,2,3,4 intel_pstate=disable noapic
-_EOF
