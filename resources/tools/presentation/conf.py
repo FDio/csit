@@ -81,7 +81,7 @@ rst_epilog = u"""
 .. _FD.io CSIT Testbeds - Xeon Haswell: https://git.fd.io/csit/tree/docs/lab/testbeds_ucs_hsw_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Cascade Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_clx_hw_bios_cfg.md?h={release}
-.. _Ansible inventory - hosts: https://git.fd.io/csit/tree/resources/tools/testbed-setup/ansible/inventories/lf_inventory/host_vars?h={release}
+.. _Ansible inventory - hosts: https://git.fd.io/csit/tree/fdio.infra.ansible/inventories/lf_inventory/host_vars?h={release}
 .. _FD.io test executor dpdk performance job 3n-hsw: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-hsw
 .. _FD.io test executor dpdk performance job 3n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-skx
 .. _FD.io test executor dpdk performance job 2n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-skx
@@ -102,7 +102,7 @@ rst_epilog = u"""
 .. _FD.io test executor vpp performance job 2n-zn2: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-zn2
 .. _FD.io test executor vpp device jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-device-{srelease}-ubuntu1804-1n-skx
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1804-x86_64/
-.. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
+.. _CSIT Testbed Setup: https://git.fd.io/csit/tree/fdio.infra.ansible?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
 """.format(release=u'rls2101',
            report_week=report_week,
