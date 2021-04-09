@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c918b6a_5b720122",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-09T06:02:24Z",
+      "side": 1,
+      "message": "cleanup is maybe not relevant, but calibration we need. So i suggest remove the whole IF",
+      "revId": "7e0f7bf307356e87a96d4457d18c87c855c632ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
