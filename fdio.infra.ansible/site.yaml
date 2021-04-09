@@ -24,3 +24,7 @@
 - import_playbook: dev.yaml
   tags:
     - dev
+
+- import_playbook: vagrant.yaml
+  tags:
+    - vagrant

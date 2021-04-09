@@ -1,8 +1,0 @@
----
-# file: common/tasks/main.yml
-
-- name: Set /bin/sh to bash instead of dash
-  alternatives:
-    name: sh
-    link: /bin/sh
-    path: /bin/bash
