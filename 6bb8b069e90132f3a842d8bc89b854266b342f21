@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c1db34f_1dfc515d",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-09T13:51:34Z",
+      "side": 1,
+      "message": "missing dot et the end",
+      "revId": "6bb8b069e90132f3a842d8bc89b854266b342f21",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e82ead0_538eea2c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-09T13:51:34Z",
+      "side": 1,
+      "message": "add nitro here.",
+      "revId": "6bb8b069e90132f3a842d8bc89b854266b342f21",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
