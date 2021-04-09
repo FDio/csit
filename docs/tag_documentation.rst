@@ -423,6 +423,10 @@ Test Type Tags
     TODO: Add HTTP tag to the current hoststack tests.
     TODO: Document other tags already used by hoststack tests.
 
+.. topic:: LDP_NGINX
+
+    LDP NGINX is basically un-modified NGINX with VPP via LD_PRELOAD.
+
 .. topic:: NF_DENSITY
 
     Performance tests that measure throughput of multiple VNF and CNF
