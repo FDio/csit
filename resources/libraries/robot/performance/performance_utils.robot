@@ -458,7 +458,7 @@
 | | | ... | ramp_up_rate=${ramp_up_rate}
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
-| | | Append To List | ${results} | ${result.approximated_receive_rate}
+| | | Append To List | ${results} | ${result.receive_rate}
 | | END
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
@@ -709,16 +709,20 @@
 | | ${trial_duration} = | Get Mrr Trial Duration
 | | ${trial_multiplicity} = | Get Mrr Trial Multiplicity
 | | ${use_latency} = | Get Use Latency
-| | # The following also sets \${rate_for_teardown}
-| | ${results} = | Send traffic at specified rate
-| | ... | rate=${max_rate}
-| | ... | trial_duration=${trial_duration}
-| | ... | trial_multiplicity=${trial_multiplicity}
-| | ... | use_latency=${use_latency}
-| | ... | duration_limit=${0.0}
-| | ${unit} = | Set Variable If | """_cps""" in """${transaction_type}"""
-| | ... | estimated connections per second | packets per second
-| | Set Test Message | ${\n}Maximum Receive Rate trial results
-| | Set Test Message | in ${unit}: ${results}
-| | ... | append=yes
-| | Fail if no traffic forwarded
+| | FOR | ${coeff} | IN | ${0.769} | ${0.768} | ${0.767} | ${0.766} | ${0.765} | ${0.764} | ${0.763}
+| | | ${rate} = | Evaluate | ${coeff} * ${max_rate}
+| | | # The following also sets \${rate_for_teardown}
+| | | ${results} = | Send traffic at specified rate
+| | | ... | rate=${rate}
+| | | ... | trial_duration=${trial_duration}
+| | | ... | trial_multiplicity=${trial_multiplicity}
+| | | ... | use_latency=${use_latency}
+| | | ... | duration_limit=${0.0}
+| | | ${unit} = | Set Variable If | """_cps""" in """${transaction_type}"""
+| | | ... | estimated connections per second | packets per second
+| | | Set Test Message | ${\n}Maximum Receive Rate trial results
+| | | Set Test Message | in ${unit}: ${results}
+| | | ... | append=yes
+| | | Log | My log: rate ${rate} results ${results}
+| | | Fail if no traffic forwarded
+| | END
