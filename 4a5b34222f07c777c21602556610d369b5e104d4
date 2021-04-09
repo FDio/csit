@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8cea19a_4a4ba373",
+        "filename": "fdio.infra.ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-09T09:51:50Z",
+      "side": 1,
+      "message": "Before Peter told me that the environment should be cleaned up in time after use, so I added cleanup. According to the request of Vratko email reply, we can leave nginx in the system, so I am not sure whether to delete it or not",
+      "revId": "4a5b34222f07c777c21602556610d369b5e104d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
