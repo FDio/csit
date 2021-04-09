@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "176f2b42_419e0311",
+        "filename": "GPL/traffic_scripts/send_flow_packet.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2021-04-09T08:47:10Z",
+      "side": 1,
+      "message": "checked the pkt info in vpp_flow_verify_action:\n\n            mac_matched \u003d f\"{src_mac} -\u003e {dst_mac}\"\n\n            if action \u003d\u003d u\"drop\":\n                if mac_matched in stdout:\n                    raise ValueError(\n                        u\"The flow packet dropped failed\"\n                    )\n            elif action \u003d\u003d u\"redirect-to-queue\":\n                queue_matched \u003d f\"queue {value}\"\n                if queue_matched not in stdout and\\\n                        mac_matched not in stdout:\n                    raise ValueError(\n                        u\"The flow packet redirected to queue failed\"\n                    )\n            elif action \u003d\u003d u\"mark\":\n                if u\"PKT_RX_FDIR\" not in stdout and\\\n                        mac_matched not in stdout:",
+      "parentUuid": "be973c46_41d5c62b",
+      "range": {
+        "startLine": 119,
+        "startChar": 20,
+        "endLine": 119,
+        "endChar": 21
+      },
+      "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "955290db_0ee6bf84",
         "filename": "resources/libraries/bash/entry/bootstrap_vpp_offload.sh",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2021-04-06T14:03:44Z",
       "side": 1,
       "message": "This (and adding files to tests/vpp/offload) looks like a support for a new CSIT job type (different from both perf and device tests). But the added suites look just like device tests.\nI get that the new suites need NIC capabilities that are not present on currently employed devicetest testbeds, but that should be handled by adding tags and exclusions in other parts of existing bootstrap functions. Search for \"ipsechw\" to see how we avoid running suites which need QAT on testbeds without QAT.",
+      "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db6838a4_b61239cd",
+        "filename": "resources/libraries/bash/entry/bootstrap_vpp_offload.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2021-04-09T08:47:10Z",
+      "side": 1,
+      "message": "fised to use existing bootstrap file",
+      "parentUuid": "955290db_0ee6bf84",
       "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
