@@ -6,7 +6,7 @@ Install prerequisites
 
 Run all commands from command line.
 
-1. Download and install latest virtualbox from `official page
+1. Download and install virtualbox from `official page
    <https://www.virtualbox.org/wiki/Downloads>`_.
    To verify the installation, run VBoxManage:
 
@@ -18,7 +18,7 @@ Run all commands from command line.
 
       VBoxManage --version
 
-   You should see virtualbox manager version printed, eg: 6.1.12r139181
+   Tested version: 6.1.16r140961
 
 2. Download and install latest vagrant `from official page
    <https://www.vagrantup.com/downloads.html>`_.
@@ -26,7 +26,7 @@ Run all commands from command line.
 
       vagrant -v
 
-   You should see vagrant version printed, eg: Vagrant 2.2.9
+   Tested version: Vagrant 2.2.15
 
 3. Install vagrant plugins::
 
@@ -44,7 +44,7 @@ Set up and run Vagrant virtualbox
 Before running following commands change working directory to Vagrant specific directory
 (from within root CSIT directory) ::
 
-    cd resources/libraries/tools/vagrant
+    cd csit.infra.vagrant
 
 This allows Vagrant to automatically find Vagrantfile and corresponding Vagrant environment.
 
@@ -74,7 +74,7 @@ Run tests
 From within the box run the tests using::
 
    cd /home/vagrant/csit/resources/libraries/bash/entry
-   ./bootstrap_vpp_device.sh csit-vpp-device-master-ubuntu1804-1n-vbox
+   ./bootstrap_vpp_device.sh csit-vpp-device-master-ubuntu2004-1n-vbox
 
 To run only selected tests based on TAGS, export environment variables before
 running the test suite::
@@ -83,6 +83,6 @@ running the test suite::
    export GERRIT_EVENT_COMMENT_TEXT="devicetest memif"
 
    # now it will run tests, selected based on tags
-   ./bootstrap_vpp_device.sh csit-vpp-device-master-ubuntu1804-1n-vbox
+   ./bootstrap_vpp_device.sh csit-vpp-device-master-ubuntu2004-1n-vbox
 
 

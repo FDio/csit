@@ -1,0 +1,42 @@
+---
+# file: vagrant/tasks/main.yml
+
+# General
+- name: Adjust number of hugepages
+  sysctl:
+    name: "vm.nr_hugepages"
+    value: "512"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: yes
+
+- name: "Add user for running tests: {{ csit.test_user.name }}"
+  user:
+    name: "{{ csit.test_user.name }}"
+    password: "{{ csit.test_user.password }}"
+    home: "{{ csit.test_user.home }}"
+    shell: "{{ csit.test_user.shell }}"
+
+- name: Add vagrant user to docker group
+  user:
+    name: "vagrant"
+    groups:
+      - "docker"
+
+- name: Reload groups for current session
+  command: "/usr/bin/newgrp docker"
+
+- name: Clone CSIT repository
+  become_user: vagrant
+  git:
+    repo: "{{ csit.repository.url }}"
+    dest: "{{ csit.home }}"
+    accept_hostkey: yes
+    version: "{{ csit.repository.version }}"
+
+- name: Load csit docker image from local drive if it exists (/vagrant/csit-sut.tar)
+  shell: |
+    if [ -z "$(docker images -q `cat {{ csit.home }}/VPP_DEVICE_IMAGE`)" ] && [ -e /vagrant/csit-sut.tar ]; then
+      docker load -i /vagrant/csit-sut.tar;
+    fi;
+  ignore_errors: yes

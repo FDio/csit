@@ -1,0 +1,4 @@
+# Inventory file for VPP Device vagrant environment
+
+[vagrant]
+localhost    ansible_connection=local
