@@ -46,6 +46,30 @@
       "revId": "0191d8c3ebe0eca4a65ef8705c3a7f90fc17fbec",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d8fd65_49a82eb7",
+        "filename": "resources/libraries/bash/entry/check/job_spec.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-09T11:01:39Z",
+      "side": 1,
+      "message": "I give up. Here is a link I copy from (without remembering correctly what I just copied).\nhttps://linuxize.com/post/bash-increment-decrement-variable/",
+      "parentUuid": "2d44f275_3b4837f6",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 24
+      },
+      "revId": "0191d8c3ebe0eca4a65ef8705c3a7f90fc17fbec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
