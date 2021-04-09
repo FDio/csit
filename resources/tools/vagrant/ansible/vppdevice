@@ -1,4 +1,0 @@
-# Inventory file for VPP Device box environment
-
-[vppdevice]
-localhost    ansible_connection=local

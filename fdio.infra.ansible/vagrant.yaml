@@ -1,0 +1,24 @@
+---
+# file: vagrant.yaml
+
+- hosts: vagrant
+  remote_user: vagrant
+  become: yes
+  become_user: root
+  gather_facts: false
+  pre_tasks:
+    - name: Gathering Facts
+      gather_facts:
+      tags:
+        - always
+  roles:
+    - role: common
+      tags: common
+    - role: python_env
+      tags: python_env
+    - role: docker
+      tags: docker
+    - role: vpp
+      tags: vpp
+    - role: vagrant
+      tags: vagrant
