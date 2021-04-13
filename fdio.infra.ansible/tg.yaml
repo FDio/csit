@@ -22,6 +22,8 @@
       tags: kernel
     - role: mellanox
       tags: mellanox
+    - role: intel
+      tags: intel
     - role: docker
       tags: docker
     - role: iperf
