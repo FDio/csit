@@ -20,6 +20,7 @@ does not need to be hard coded here, but can be read from environment variables.
 
 import os
 
+#dummy
 
 def get_str_from_env(env_var_names, default_value):
     """Attempt to read string from environment variable, return that or default.
