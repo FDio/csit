@@ -28,9 +28,9 @@ module "alertmanager" {
   alertmanager_cpu                   = 1000
   alertmanager_mem                   = 1024
   alertmanager_port                  = 9093
-  alertmanager_slack_jenkins_api_key = "TE07RD1V1/B01LPL8KM0F/KAd80wc9vS8CPMtrNtmQqCfT"
+  alertmanager_slack_jenkins_api_key = "TE07RD1V1/B01U1NV9HV3/hKZXJJ74g2JcISq4K3QC1eG9"
   alertmanager_slack_jenkins_channel = "fdio-jobs-monitoring"
-  alertmanager_slack_default_api_key = "TE07RD1V1/B01L7PQK9S8/vJTSCr3OUprfAEGKBV5uZoJ6"
+  alertmanager_slack_default_api_key = "TE07RD1V1/B01UUK23B6C/hZTcCu42FUv8d6rtirHtcYIi"
   alertmanager_slack_default_channel = "fdio-infra-monitoring"
 }
 
