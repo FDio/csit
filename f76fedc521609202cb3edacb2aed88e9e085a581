@@ -146,6 +146,30 @@
       "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cffdfdf6_cdd05583",
+        "filename": "tests/vpp/offload/flow/eth2p-flow-ip4-gtpu.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2021-04-13T07:35:12Z",
+      "side": 1,
+      "message": "this issue is caused by csit method verify_vpp_started in resources/libraries/python/VPPUtil.py\nthe detail lines:\n        cmd \u003d u\"for i in $(sudo vppctl sho int | grep Eth | cut -d\u0027 \u0027 -f1); do\"\\\n              u\" sudo vppctl set int sta $i up; done\"\n        exec_cmd(node, cmd, sudo\u003dFalse)\n\nif the above lines is not used, there is no need to wait here.\n\ntemporarily, I will modify the code and put the wait in python method.",
+      "parentUuid": "a6ce8735_aaba3a77",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 22
+      },
+      "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
