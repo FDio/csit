@@ -829,6 +829,7 @@ function select_tags () {
     awk_nics_sub_cmd+='gsub("cx556a","100ge2p1cx556a");'
     awk_nics_sub_cmd+='gsub("vic1227","10ge2p1vic1227");'
     awk_nics_sub_cmd+='gsub("vic1385","40ge2p1vic1385");'
+    awk_nics_sub_cmd+='gsub("nitro-50g","50ge1p1ENA");'
     awk_nics_sub_cmd+='if ($9 =="drv_avf") drv="avf-";'
     awk_nics_sub_cmd+='else if ($9 =="drv_rdma_core") drv ="rdma-";'
     awk_nics_sub_cmd+='else drv="";'
