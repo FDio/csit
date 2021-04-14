@@ -141,13 +141,13 @@ def generate_cpta(spec, data):
         build_dir=spec.environment[u'paths'][u'DIR[BUILD,HTML]'])
     execute_command(cmd)
 
-    with open(spec.environment[u'paths'][u'DIR[CSS_PATCH_FILE]'], u'w') as \
-            css_file:
-        css_file.write(THEME_OVERRIDES)
-
-    with open(spec.environment[u'paths'][u'DIR[CSS_PATCH_FILE2]'], u'w') as \
-            css_file:
-        css_file.write(THEME_OVERRIDES)
+    # with open(spec.environment[u'paths'][u'DIR[CSS_PATCH_FILE]'], u'w') as \
+    #         css_file:
+    #     css_file.write(THEME_OVERRIDES)
+    #
+    # with open(spec.environment[u'paths'][u'DIR[CSS_PATCH_FILE2]'], u'w') as \
+    #         css_file:
+    #     css_file.write(THEME_OVERRIDES)
 
     if spec.configuration.get(u"archive-inputs", True):
         archive_input_data(spec)
