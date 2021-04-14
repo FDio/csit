@@ -9,7 +9,6 @@ typeset -A CFG
 typeset -A DIR
 
 DIR[WORKING]=_tmp
-CFG[BLD_LATEX]=1
 
 # Create working directories
 mkdir ${DIR[WORKING]}
