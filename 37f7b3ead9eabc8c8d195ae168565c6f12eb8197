@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2f1560b1_9937c076",
+        "filename": "resources/tools/presentation/run_report.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-14T11:51:22Z",
+      "side": 1,
+      "message": "no need for this anymore",
+      "revId": "37f7b3ead9eabc8c8d195ae168565c6f12eb8197",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
