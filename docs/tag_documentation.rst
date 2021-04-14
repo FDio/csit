@@ -83,6 +83,10 @@ NIC Model Tags
 
     VIC-1385 by Cisco.
 
+.. topic:: NIC_Amazon-Nitro-50G
+
+    Amazon EC2 ENA NIC.
+
 Scaling Tags
 ------------
 
