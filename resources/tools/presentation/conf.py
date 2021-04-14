@@ -170,12 +170,12 @@ html_theme_path = [u'env/lib/python3.6/site-packages/sphinx_rtd_theme']
 # html_static_path = ['_build/_static']
 html_static_path = [u'_tmp/src/_static']
 
-html_context = {
-    u'css_files': [
-        # overrides for wide tables in RTD theme
-        u'_static/theme_overrides.css'
-    ]
-}
+# html_context = {
+#     u'css_files': [
+#         # overrides for wide tables in RTD theme
+#         u'_static/theme_overrides.css'
+#     ]
+# }
 
 # If false, no module index is generated.
 html_domain_indices = True
