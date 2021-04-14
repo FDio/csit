@@ -9,7 +9,6 @@ typeset -A CFG
 typeset -A DIR
 
 DIR[WORKING]=_tmp
-CFG[BLD_LATEX]=1
 
 # Install system dependencies
 sudo apt-get -y update
