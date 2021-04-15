@@ -109,6 +109,9 @@
 | ... | ip_address=${EMPTY}
 | ... | parallel=${1}
 | ... | time=${20}
+| ... | udp=${False}
+| ... | bandwidth=10000000
+| ... | length=${0}
 | &{nginx_server_attr}=
 | ... | role=server
 | ... | cpu_cnt=${1}
@@ -353,11 +356,15 @@
 | | ... | - ${transparent_tls} - Use VCL Transparent-TLS mode Type: boolean
 | | ... | - ${ip_version} - IP version (4 or 6) Type: int
 | | ... | - ${parallel} - Number of parallel streams Type: int
+| | ... | - ${bandwidth} - Target bandwidth in bits/sec Type: int
+| | ... | - ${udp} - UDP or TCP protocol Type: boolean
+| | ... | - ${length} - Packet Length Type: int
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Set Iperf3 Client Attributes \| vcl_config=${vcl_config} \|
 | | ... | \| ip_version=${ip_version} \| parallel=${streams} \|
+| | ... | \| bandwidth=${bandwidth} | udp=${True} \|
 | |
 | | [Arguments]
 | | ... | ${vcl_config}=${iperf3_client_attr}[vcl_config]
@@ -365,6 +372,9 @@
 | | ... | ${transparent_tls}=${iperf3_client_attr}[transparent_tls]
 | | ... | ${ip_version}=${iperf3_client_attr}[ip_version]
 | | ... | ${parallel}=${iperf3_client_attr}[parallel]
+| | ... | ${bandwidth}=${iperf3_client_attr}[bandwidth]
+| | ... | ${udp}=${iperf3_client_attr}[udp]
+| | ... | ${length}=${iperf3_client_attr}[length]
 | |
 | | Set To Dictionary | ${iperf3_client_attr} | vcl_config | ${vcl_config}
 | | Set To Dictionary | ${iperf3_client_attr} | ld_preload | ${ld_preload}
@@ -372,6 +382,9 @@
 | | ... | ${transparent_tls}
 | | Set To Dictionary | ${iperf3_client_attr} | ip_version | ${ip_version}
 | | Set To Dictionary | ${iperf3_client_attr} | parallel | ${parallel}
+| | Set To Dictionary | ${iperf3_client_attr} | bandwidth | ${bandwidth}
+| | Set To Dictionary | ${iperf3_client_attr} | udp | ${udp}
+| | Set To Dictionary | ${iperf3_client_attr} | length | ${length}
 
 | Run hoststack test program on DUT
 | | [Documentation]
