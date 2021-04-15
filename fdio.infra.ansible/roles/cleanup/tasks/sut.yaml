@@ -31,6 +31,13 @@
       tags:
         - kill-process
 
+    - name: Kill Processes - nohup
+      import_tasks: kill_process.yaml
+      vars:
+        process: "nohup"
+      tags:
+        - kill-process
+
     - name: Kill Processes - vpp_echo
       import_tasks: kill_process.yaml
       vars:
