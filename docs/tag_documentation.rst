@@ -407,6 +407,12 @@ Test Type Tags
     This implies ASTF traffic profile is used.
     This tag selects specific output processing in PAL.
 
+.. topic:: TCP_RPS
+
+    Tests which measure requests per second on empty TCP connections.
+    This implies ASTF traffic profile is used.
+    This tag selects specific output processing in PAL.
+
 .. topic:: UDP_PPS
 
     Tests which measure packets per second on lightweight UDP transactions.
@@ -426,6 +432,10 @@ Test Type Tags
 ..
     TODO: Add HTTP tag to the current hoststack tests.
     TODO: Document other tags already used by hoststack tests.
+
+.. topic:: LDP_NGINX
+
+    LDP NGINX is un-modified NGINX with VPP via LD_PRELOAD.
 
 .. topic:: NF_DENSITY
 
