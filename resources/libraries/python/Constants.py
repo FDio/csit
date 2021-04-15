@@ -130,6 +130,9 @@ class Constants:
     # shell scripts location
     RESOURCES_LIB_SH = u"resources/libraries/bash"
 
+    # python scripts location
+    RESOURCES_LIB_PY = u"resources/libraries/python"
+
     # Python API provider location
     RESOURCES_PAPI_PROVIDER = u"resources/tools/papi/vpp_papi_provider.py"
 
