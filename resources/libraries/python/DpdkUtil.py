@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -161,7 +161,7 @@ class DpdkUtil:
         :rtype: OptionString
         """
         options = OptionString()
-        options.add(u"testpmd")
+        options.add(u"dpdk-testpmd")
         options.extend(DpdkUtil.get_eal_options(**kwargs))
         options.add(u"--")
         options.extend(DpdkUtil.get_testpmd_pmd_options(**kwargs))
