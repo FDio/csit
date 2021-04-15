@@ -22,6 +22,8 @@ source ${DIR[WORKING]}/env/bin/activate
 # Install python dependencies:
 pip3 install -r requirements.txt
 
+pip3 freeze requirements.txt
+
 export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 
 STATUS=$(python pal.py \
