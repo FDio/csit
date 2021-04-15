@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,10 +15,13 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.HoststackUtil
+| Library | resources.libraries.python.NginxUtil
 | Library | resources.libraries.python.NsimUtil
+| Library | resources.tools.ab.ABTools
 | Variables | resources/libraries/python/Constants.py
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/nsim/nsim.robot
+| Resource | resources/libraries/robot/nginx/default.robot
 |
 | Documentation | L2 keywords to set up VPP to test hoststack.
 
@@ -106,6 +109,16 @@
 | ... | ip_address=${EMPTY}
 | ... | parallel=${1}
 | ... | time=${20}
+| &{nginx_server_attr}=
+| ... | role=server
+| ... | cpu_cnt=${1}
+| ... | cfg_vpp_feature=${Empty}
+| ... | namespace=default
+| ... | vcl_config=vcl_iperf3.conf
+| ... | ld_preload=${True}
+| ... | transparent_tls=${False}
+| ... | json=${True}
+| ... | ip_version=${4}
 
 *** Keywords ***
 | Set VPP Hoststack Attributes
@@ -539,3 +552,72 @@
 | | ... | ${vpp_nsim_attr} | ${iperf3_client}
 | | Then Set test message | ${client_output}
 | | Return From Keyword | ${client_defer_fail}
+
+| Set up LDP or VCL Nginx on DUT node
+| | [Documentation]
+| | ... | Setup for suites which uses VCL or LDP Nginx on DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node.
+| | ... | Type: string
+| | ... | - mode - VCL Nginx or LDP Nginx.
+| | ... | Type: string
+| | ... | - rps_cps - Test request or connect.
+| | ... | Type: string
+| | ... | - core_num - Nginx work processes number.
+| | ... | Type: int
+| | ... | - qat - Whether to use the qat engine.
+| | ... | Type: string
+| | ... | - tls_tcp - TLS or TCP.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set up LDP or VCL NGINX on DUT node \| ${dut} |${mode}\
+| | ... | \| ${rps_cps} \| ${phy_cores} \| ${qat} \| ${tls_tcp} \|
+| |
+| | [Arguments] | ${dut} | ${mode} | ${rps_cps} | ${phy_cores} | ${qat}
+| | ... | ${tls_tcp}
+| |
+| | Set Interface State | ${dut} | ${DUT1_${int}1}[0] | up
+| | VPP Interface Set IP Address | ${dut} | ${DUT1_${int}1}[0]
+| | ... | ${dut_ip_addrs}[0] | ${dut_ip_prefix}
+| | Vpp Node Interfaces Ready Wait | ${dut}
+| | ${skip_cnt}= | Evaluate
+| | ... | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${vpp_hoststack_attr}[phy_cores]
+| | ${numa}= | Get interfaces numa node | ${dut} | ${DUT1_${int}1}[0]
+| | Apply Nginx configuration on DUT | ${dut} | ${phy_cores}
+| | Set To Dictionary | ${nginx_server_attr} | ip_address
+| | ... | ${dut_ip_addrs}[0]
+| | ${core_list}= | Cpu list per node str | ${dut} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${nginx_server_attr}[cpu_cnt]
+| | ${cpu_idle_list}= | Get cpu idle list | ${dut} | ${numa}
+| | ... | ${smt_used} | ${cpu_alloc_str}
+| | ${nginx_server}= | Get Nginx Command | ${nginx_server_attr}
+| | ... | ${nginx_version} | ${packages_dir}
+| | ${server_pid}= | Start Hoststack Test Program
+| | ... | ${dut} | ${nginx_server_attr}[namespace] | ${core_list}
+| | ... | ${nginx_server}
+| | Taskset Nginx PID to idle cores | ${dut} | ${cpu_idle_list}
+
+| Measure TLS requests or connections per second
+| | [Documentation]
+| | ... | Measure number of requests or connections per second using ab.
+| |
+| | ... | *Arguments:*
+| | ... | - ${ciphers} - Specify SSL/TLS cipher suite
+| | ... | - ${files} - Filename to be requested from the servers
+| | ... | - ${tls_tcp} - Test TLS or TCP.
+| | ... | - ${mode} - VCL Nginx or LDP Nginx.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Measure TLS requests or connections per second
+| | ... | \| AES128-SHA \| 64 \| tls \| rps \|
+| |
+| | [Arguments] | ${ciphers} | ${files} | ${tls_tcp} | ${mode}
+| |
+| | ${output}= | Run ab | ${tg} | ${dut_ip_addrs}[0] | ${ab_ip_addrs}[0]
+| | ... | ${tls_tcp} | ${ciphers} | ${files} | ${mode} | ${r_total} | ${c_total}
+| | ... | ${listen_port}
+| | Set test message | ${output}
+| | Log VPP Hoststack data | ${dut1}
