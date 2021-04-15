@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -100,6 +100,9 @@ class HoststackUtil():
             if u"time" in iperf3_attributes:
                 iperf3_cmd[u"args"] += \
                     f" --time {iperf3_attributes[u'time']}"
+            if iperf3_attributes[u"udp"]:
+                iperf3_cmd[u"args"] += u" --udp --length 1460"
+                iperf3_cmd[u"args"] += f" --bandwidth {iperf3_attributes[u'bandwidth']}"
         return iperf3_cmd
 
     @staticmethod
