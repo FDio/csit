@@ -1,0 +1,9 @@
+---
+# file: molecule/default/converge.yaml
+
+- name: Converge
+  hosts: all
+  become: true
+
+  roles:
+    - role: csit.dpdk
