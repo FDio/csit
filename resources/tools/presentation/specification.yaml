@@ -98,7 +98,7 @@
 
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
-    URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
+    URL[S3_STORAGE,LOG]: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
     URL[NEXUS,LOG]: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
     URL[NEXUS,DOC]: "https://docs.fd.io/csit"
     DIR[NEXUS,DOC]: "report/_static/archive"
@@ -2559,7 +2559,9 @@
     arch-file-format:
       - ".gz"
       - ".zip"
-    download-path: "{job}/{build}/archives/{filename}"
+    download-path:
+      - "{job}/{build}/{filename}"
+      - "{job}/{build}/archives/{filename}"
     extract: "output.xml"
 
     zip-file-name: "robot-plugin.zip"
