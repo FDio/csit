@@ -2559,7 +2559,9 @@
     arch-file-format:
       - ".gz"
       - ".zip"
-    download-path: "{job}/{build}/archives/{filename}"
+    download-path:
+      - "{job}/{build}/{filename}"
+      - "{job}/{build}/archives/{filename}"
     extract: "output.xml"
 
     zip-file-name: "robot-plugin.zip"
