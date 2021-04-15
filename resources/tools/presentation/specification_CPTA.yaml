@@ -609,7 +609,9 @@
   general:
     file-name: "output_info.xml.gz"
     file-format: ".gz"
-    download-path: "{job}/{build}/archives/{filename}"
+    download-path:
+      - "{job}/{build}/archives/{filename}"
+      - "{job}/{build}/{filename}"
     extract: "output.xml"
     # Number of days from now to the past. Only files generated in this
     # time period are used.
@@ -622,29 +624,29 @@
 
   builds:
 
-    # 2n-skx ndrpdr
-    csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
-      start: 76
-      end: "lastCompletedBuild"
-      max-builds: 26
-
-    # 3n-skx ndrpdr
-    csit-vpp-perf-ndrpdr-weekly-master-3n-skx:
-      start: 76
-      end: "lastCompletedBuild"
-      max-builds: 26
-
-    # 2n-clx ndrpdr
-    csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
-      start: 21
-      end: "lastCompletedBuild"
-      max-builds: 26
-
-    # 3n-hsw ndrpdr
-    csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
-      start: 76
-      end: "lastCompletedBuild"
-      max-builds: 26
+#     # 2n-skx ndrpdr
+#     csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
+#       start: 76
+#       end: "lastCompletedBuild"
+#       max-builds: 26
+#
+#     # 3n-skx ndrpdr
+#     csit-vpp-perf-ndrpdr-weekly-master-3n-skx:
+#       start: 76
+#       end: "lastCompletedBuild"
+#       max-builds: 26
+#
+#     # 2n-clx ndrpdr
+#     csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
+#       start: 21
+#       end: "lastCompletedBuild"
+#       max-builds: 26
+#
+#     # 3n-hsw ndrpdr
+#     csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
+#       start: 76
+#       end: "lastCompletedBuild"
+#       max-builds: 26
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:

@@ -892,7 +892,9 @@
     arch-file-format:
       - ".gz"
       - ".zip"
-    download-path: "{job}/{build}/archives/{filename}"
+    download-path:
+      - "{job}/{build}/archives/{filename}"
+      - "{job}/{build}/{filename}"
     extract: "output.xml"
 
     # Specifies the secondary source - Jenkins, it is used if the source file
