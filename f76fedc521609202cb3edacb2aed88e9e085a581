@@ -170,6 +170,30 @@
       "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "edc76102_afe86e58",
+        "filename": "tests/vpp/offload/flow/eth2p-flow-ip4-gtpu.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2021-04-15T01:18:05Z",
+      "side": 1,
+      "message": "fixed, thanks",
+      "parentUuid": "cffdfdf6_cdd05583",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 22
+      },
+      "revId": "f76fedc521609202cb3edacb2aed88e9e085a581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
