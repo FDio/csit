@@ -1064,7 +1064,7 @@ function select_topology () {
             ;;
         "3n_aws")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_aws*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
