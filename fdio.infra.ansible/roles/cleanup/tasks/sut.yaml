@@ -81,3 +81,10 @@
         package: "*vpp*"
       tags:
         - remove-package
+
+    - name: Remove Packages - Remove VSAP
+      import_tasks: remove_package.yaml
+      vars:
+        package: "*vsap*"
+      tags:
+        - remove-package
