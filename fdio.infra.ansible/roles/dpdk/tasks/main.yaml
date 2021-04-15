@@ -3,21 +3,21 @@
 
 - name: Inst - Update Package Cache (APT)
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when:
-    - ansible_distribution|lower == 'ubuntu'
+    - ansible_distribution == 'Ubuntu'
   tags:
     - dpdk-inst-prerequisites
 
 - name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
-    state: latest
+    state: "latest"
   tags:
     - dpdk-inst-prerequisites
 
-- name: Download Release Archive
+- name: Inst - Download Release Archive
   get_url:
     url: "{{ dpdk_url }}/dpdk-{{ item }}.tar.xz"
     dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
@@ -27,7 +27,7 @@
   tags:
     - dpdk-inst
 
-- name: Extract Release Archive
+- name: Inst - Extract Release Archive
   unarchive:
     remote_src: true
     src: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
@@ -39,30 +39,24 @@
   tags:
     - dpdk-inst
 
-- name: Build igb_uio by default
-  lineinfile:
-    dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}/config/common_base"
-    regexp: "^CONFIG_RTE_EAL_IGB_UIO"
-    line: "CONFIG_RTE_EAL_IGB_UIO=y"
+- name: Inst - Compile Release I
+  command: "meson -Dexamples=l3fwd build"
+  args:
+    chdir: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
+  environment:
+    CFLAGS: "-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
   loop: "{{ dpdk_version }}"
-  when: "dpdk_extracted"
-  register: "dpdk_configured"
-  tags:
-    - dpdk-inst
-
-- name: Compile Release I
-  become: yes
-  command: "make install T={{ dpdk_build_targets[item][ansible_machine] }} DESTDIR={{ dpdk_target_dir }}/dpdk-{{ item }} chdir={{ dpdk_target_dir }}/dpdk-{{ item }}"
-  loop: "{{ dpdk_version }}"
-  when: "dpdk_configured"
   register: "dpdk_compiled"
   tags:
     - dpdk-inst
 
-- name: Link igb_uio Module
-  shell: "ln -fs {{ dpdk_target_dir }}/dpdk-{{ item }}/{{ dpdk_build_targets[item][ansible_machine] }}/kmod/igb_uio.ko /lib/modules/`uname -r`/igb_uio.ko && depmod -a"
-  ignore_errors: "yes"
+- name: Inst - Compile Release II
+  command: "ninja -C build"
+  args:
+    chdir: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
+  environment:
+    CFLAGS: "-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
   loop: "{{ dpdk_version }}"
-  when: "dpdk_compiled"
+  register: "dpdk_compiled"
   tags:
     - dpdk-inst

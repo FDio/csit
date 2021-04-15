@@ -161,7 +161,7 @@ class DpdkUtil:
         :rtype: OptionString
         """
         options = OptionString()
-        options.add(u"testpmd")
+        options.add(u"dpdk-testpmd")
         options.extend(DpdkUtil.get_eal_options(**kwargs))
         options.add(u"--")
         options.extend(DpdkUtil.get_testpmd_pmd_options(**kwargs))

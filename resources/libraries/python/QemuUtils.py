@@ -65,16 +65,13 @@ class QemuUtils:
 
         # Architecture specific options
         if self._arch == u"aarch64":
-            dpdk_target = u"arm64-armv8a"
             self._opt[u"machine_args"] = \
                 u"virt,accel=kvm,usb=off,mem-merge=off,gic-version=3"
             self._opt[u"console"] = u"ttyAMA0"
         else:
-            dpdk_target = u"x86_64-native"
             self._opt[u"machine_args"] = u"pc,accel=kvm,usb=off,mem-merge=off"
             self._opt[u"console"] = u"ttyS0"
-        self._testpmd_path = f"{Constants.QEMU_VM_DPDK}/" \
-            f"{dpdk_target}-linux-gcc/app"
+        self._testpmd_path = f"{Constants.QEMU_VM_DPDK}/build/app"
         self._vm_info = {
             u"host": node[u"host"],
             u"type": NodeType.VM,

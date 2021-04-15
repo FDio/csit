@@ -23,9 +23,5 @@ packages_by_arch:
 
 dpdk_target_dir: "/opt"
 dpdk_version:
-  - "20.02"
+  - "21.02"
 dpdk_url: "https://fast.dpdk.org/rel"
-dpdk_build_targets:
-  "20.02":
-    aarch64: "arm64-armv8a-linux-gcc"
-    x86_64: "x86_64-native-linux-gcc"
