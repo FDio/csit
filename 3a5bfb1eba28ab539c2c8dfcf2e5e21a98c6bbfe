@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ada84c9_99ad9a04",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-15T09:07:40Z",
+      "side": 1,
+      "message": "${DOWNLOAD_DIR}\nkeep it ins framework dir so it does not leave traces on machine.",
+      "range": {
+        "startLine": 97,
+        "startChar": 20,
+        "endLine": 97,
+        "endChar": 30
+      },
+      "revId": "3a5bfb1eba28ab539c2c8dfcf2e5e21a98c6bbfe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
