@@ -100,6 +100,9 @@ class HoststackUtil():
             if u"time" in iperf3_attributes:
                 iperf3_cmd[u"args"] += \
                     f" --time {iperf3_attributes[u'time']}"
+            if iperf3_attributes[u"udp"]:
+                iperf3_cmd[u"args"] += u" --udp --length 1460"
+                iperf3_cmd[u"args"] += f" --bandwidth {iperf3_attributes[u'bandwidth']}"
         return iperf3_cmd
 
     @staticmethod
