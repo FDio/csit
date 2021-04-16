@@ -282,25 +282,25 @@ def download_and_unzip_data_file(spec, job, build, pid):
                         xml_file.write(file_content)
                 break
 
-    if not success:
-        # Try to download .zip from jenkins.fd.io
-        file_name = spec.input[u"zip-file-name"]
-        download_path = spec.input[u"zip-download-path"]
-        if job.startswith(u"csit-"):
-            url = spec.environment[u"urls"][u"URL[JENKINS,CSIT]"]
-        else:
-            raise PresentationError(f"No url defined for the job {job}.")
-
-        full_name = download_path.format(
-            job=job, build=build[u"build"], filename=file_name
-        )
-        url = u"{0}/{1}".format(url, full_name)
-        new_name = join(
-            spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
-            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
-        )
-        logging.info(f"Downloading {url}")
-        success, downloaded_name = _download_file(url, new_name)
+    # if not success:
+    #     # Try to download .zip from jenkins.fd.io
+    #     file_name = spec.input[u"zip-file-name"]
+    #     download_path = spec.input[u"zip-download-path"]
+    #     if job.startswith(u"csit-"):
+    #         url = spec.environment[u"urls"][u"URL[JENKINS,CSIT]"]
+    #     else:
+    #         raise PresentationError(f"No url defined for the job {job}.")
+    #
+    #     full_name = download_path.format(
+    #         job=job, build=build[u"build"], filename=file_name
+    #     )
+    #     url = u"{0}/{1}".format(url, full_name)
+    #     new_name = join(
+    #         spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+    #         f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+    #     )
+    #     logging.info(f"Downloading {url}")
+    #     success, downloaded_name = _download_file(url, new_name)
 
     if success and downloaded_name.endswith(u".zip"):
         if not is_zipfile(downloaded_name):
