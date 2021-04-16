@@ -15327,9 +15327,9 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 2n-icx-x710-64b-{core}-l2switching-base-scale-avf-{test_type}"
+  title: "Throughput: 2n-icx-e810cq-64b-{core}-l2switching-base-scale-avf-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-x710-64b-{core}-l2switching-base-scale-avf-{test_type}"
+  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-l2switching-base-scale-avf-{test_type}"
   data: "plot-vpp-throughput-lat-tsa-2n-icx"
   core: ["2t1c", ]
   include:
@@ -15340,13 +15340,13 @@
     - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-{core}-avf-eth-l2bdscale100kmaclrn-ndrpdr"
     - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-{core}-avf-eth-l2bdscale1mmaclrn-ndrpdr"
   layout:
-    title: "2n-icx-x710-64b-{core}-l2switching-base-scale-avf-{test_type}"
+    title: "2n-icx-e810cq-64b-{core}-l2switching-base-scale-avf-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 2n-icx-x710-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
+  title: "Throughput: 2n-icx-e810cq-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-x710-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
+  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
   data: "plot-vpp-throughput-lat-tsa-2n-icx"
   core: ["2t1c", ]
   include:
@@ -15357,7 +15357,7 @@
     - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-{core}-eth-l2bdscale100kmaclrn-ndrpdr"
     - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-{core}-eth-l2bdscale1mmaclrn-ndrpdr"
   layout:
-    title: "2n-icx-x710-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
+    title: "2n-icx-e810cq-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
