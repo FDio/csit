@@ -1062,6 +1062,49 @@ class InterfaceUtil:
         return ifc_name, sw_if_index
 
     @staticmethod
+    def create_gtpu_tunnel_interface(node, teid, source_ip, destination_ip):
+        """Create GTPU interface and return sw if index of created interface.
+
+        :param node: Node where to create GTPU interface.
+        :param teid: GTPU Tunnel Endpoint Identifier.
+        :param source_ip: Source IP of a GTPU Tunnel End Point.
+        :param destination_ip: Destination IP of a GTPU Tunnel End Point.
+        :type node: dict
+        :type teid: int
+        :type source_ip: str
+        :type destination_ip: str
+        :returns: SW IF INDEX of created interface.
+        :rtype: int
+        :raises RuntimeError: if it is unable to create GTPU interface on the
+            node.
+        """
+        cmd = u"gtpu_add_del_tunnel"
+        args = dict(
+            is_add=True,
+            src_address=IPAddress.create_ip_address_object(
+                ip_address(source_ip)
+            ),
+            dst_address=IPAddress.create_ip_address_object(
+                ip_address(destination_ip)
+            ),
+            mcast_sw_if_index=Constants.BITWISE_NON_ZERO,
+            encap_vrf_id=0,
+            decap_next_index=2,
+            teid=teid
+        )
+        err_msg = f"Failed to create GTPU tunnel interface " \
+            f"on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+
+        if_key = Topology.add_new_port(node, u"gtpu_tunnel")
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
+        Topology.update_interface_name(node, if_key, ifc_name)
+
+        return sw_if_index
+
+    @staticmethod
     def vpp_create_loopback(node, mac=None):
         """Create loopback interface on VPP node.
 
