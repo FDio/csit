@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,14 +15,14 @@
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
-from resources.libraries.python.ssh import exec_cmd
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
-__all__ = [u"PerfUtil"]
+__all__ = [u"TelemetryUtil"]
 
 
-class PerfUtil:
-    """Class contains methods for perf utility."""
+class TelemetryUtil:
+    """Class contains methods for telemetry utility."""
 
     @staticmethod
     def perf_stat(node, cpu_list=None, duration=1):
@@ -79,4 +79,52 @@ class PerfUtil:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                PerfUtil.perf_stat(node, cpu_list=cpu_list, duration=duration)
+                TelemetryUtil.perf_stat(
+                    node, cpu_list=cpu_list, duration=duration
+                )
+
+    @staticmethod
+    def run_telemetry(node, profile, hook=None):
+        """Get telemetry stat read for duration.
+
+        :param node: Node in the topology.
+        :param profile: Telemetry configuration profile.
+        :param hook: Process ID or socket path (optional).
+        :type node: dict
+        :type profile: str
+        :type hook: str
+        """
+        config = u""
+        config += f"{Constants.REMOTE_FW_DIR}/"
+        config += f"{Constants.RESOURCES_TPL_TELEMETRY}/"
+        config += f"{profile}"
+
+        cd_cmd = u""
+        cd_cmd += f"sh -c \"cd {Constants.REMOTE_FW_DIR}/"
+        cd_cmd += f"{Constants.RESOURCES_TOOLS}"
+
+        bin_cmd = f"python3 -m telemetry --config {config} --hook {hook}\""
+
+        exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
+        exec_cmd_no_error(node, f"cat /tmp/metric.prom", sudo=True)
+
+    @staticmethod
+    def run_telemetry_on_all_duts(nodes, profile):
+        """Get telemetry stat read on all DUTs.
+
+        :param nodes: Nodes in the topology.
+        :param profile: Telemetry configuration profile.
+        :param hooks: Dict of Process IDs or socket paths (optional).
+        :type nodes: dict
+        :type profile: str
+        :type hooks: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                try:
+                    for socket in node[u"sockets"][u"PAPI"].values():
+                        TelemetryUtil.run_telemetry(
+                            node, profile=profile, hook=socket
+                    )
+                except IndexError:
+                    pass

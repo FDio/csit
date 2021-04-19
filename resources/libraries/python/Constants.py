@@ -133,8 +133,14 @@ class Constants:
     # python scripts location
     RESOURCES_LIB_PY = u"resources/libraries/python"
 
+    # shell scripts location
+    RESOURCES_TOOLS = u"resources/tools"
+
     # Python API provider location
     RESOURCES_PAPI_PROVIDER = u"resources/tools/papi/vpp_papi_provider.py"
+
+    # Templates location
+    RESOURCES_TPL = u"resources/templates"
 
     # vat templates location
     RESOURCES_TPL_VAT = u"resources/templates/vat"
@@ -142,14 +148,14 @@ class Constants:
     # Kubernetes templates location
     RESOURCES_TPL_K8S = u"resources/templates/kubernetes"
 
-    # Templates location
-    RESOURCES_TPL = u"resources/templates"
-
     # Container templates location
     RESOURCES_TPL_CONTAINER = u"resources/templates/container"
 
     # VPP Communications Library templates location
     RESOURCES_TPL_VCL = u"resources/templates/vcl"
+
+    # VPP Communications Library templates location
+    RESOURCES_TPL_TELEMETRY = u"resources/templates/telemetry"
 
     # VPP Communications Library LD_PRELOAD library
     VCL_LDPRELOAD_LIBRARY = u"/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so"
