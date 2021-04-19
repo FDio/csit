@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9151ed2_b1e69186",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-19T09:32:51Z",
+      "side": 1,
+      "message": "Currently the keyword is \"green\" [0], even if the check fails and the loud warning is added.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master-2n-clx/704/log.html.gz#s1-s1-s1-s2-s15-t2-k3-k5-k1",
+      "range": {
+        "startLine": 10,
+        "startChar": 19,
+        "endLine": 10,
+        "endChar": 28
+      },
+      "revId": "781b4436f2ee0a4c1d8c40f646991b27e6ccc998",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
