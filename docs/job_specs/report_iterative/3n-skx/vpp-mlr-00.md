@@ -1,5 +1,5 @@
 # 3n-skx
-### tests 267
+### tests 273
 ### job hrs est. 24.6
 ### job hrs real ??.?
 ### test mins est. 5.54
@@ -191,6 +191,10 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2xcbase
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2xcbase
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4vxlan-l2xcbase
+##### ethip4gtpusw-ip4base
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4gtpusw-ip4base
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4gtpusw-ip4base
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4gtpusw-ip4base
 #### dpdk-vfio-pci
 ##### ethip4vxlan-l2bdbasemaclrn
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn
@@ -200,6 +204,10 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2xcbase
 2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2xcbase
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4vxlan-l2xcbase
+##### ethip4gtpusw-ip4base
+1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4gtpusw-ip4base
+2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4gtpusw-ip4base
+4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4gtpusw-ip4base
 ## ./ip6
 ### intel-x710
 #### avf

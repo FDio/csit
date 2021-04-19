@@ -174,7 +174,8 @@ class Topology:
         port_types = (
             u"subinterface", u"vlan_subif", u"memif", u"tap", u"vhost",
             u"loopback", u"gre_tunnel", u"vxlan_tunnel", u"eth_bond",
-            u"eth_avf", u"eth_rdma", u"geneve_tunnel", u"eth_af_xdp"
+            u"eth_avf", u"eth_rdma", u"geneve_tunnel", u"eth_af_xdp",
+            u"gtpu_tunnel"
         )
 
         for node_data in nodes.values():
