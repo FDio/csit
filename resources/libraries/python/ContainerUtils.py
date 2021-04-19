@@ -700,6 +700,7 @@ class ContainerEngine:
         vpp_config.add_buffers_per_numa(215040)
         vpp_config.add_plugin(u"disable", u"default")
         vpp_config.add_plugin(u"enable", u"memif_plugin.so")
+        vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
         vpp_config.add_main_heap_size(u"2G")
         vpp_config.add_main_heap_page_size(u"2M")
         vpp_config.add_statseg_size(u"2G")
@@ -736,6 +737,7 @@ class ContainerEngine:
         vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.add_dpdk_dev_default_rxq(rxq)
         vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
+        vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
 
         # Apply configuration
         self.execute(u"mkdir -p /etc/vpp/")
@@ -753,6 +755,7 @@ class ContainerEngine:
         vpp_config.add_plugin(u"enable", u"crypto_native_plugin.so")
         vpp_config.add_plugin(u"enable", u"crypto_ipsecmb_plugin.so")
         vpp_config.add_plugin(u"enable", u"crypto_openssl_plugin.so")
+        vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
 
         # Apply configuration
         self.execute(u"mkdir -p /etc/vpp/")
