@@ -361,5 +361,6 @@
 | | ${rc} | ${msg}= | Run Keyword And Ignore Error
 | | ... | Dictionaries Should Be Equal
 | | ... | ${setup_vpp_pids} | ${teardown_vpp_pids}
-| | Run Keyword And Return If | '${rc}'=='FAIL' | Log | ${err_msg}
-| | ... | console=yes | level=WARN
+| | Return From Keyword If | "${rc}" == "PASS"
+| | Log | ${err_msg} | console=yes | level=WARN
+| | Fail | ${err_msg}
