@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -34,18 +34,14 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | |
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - pre_stats - Statistics actions before traffic.
-| | ... | - post_stats - Statistics actions after traffic.
-| | ... | - pre_run_stats - Statistics actions during traffic before timer.
-| | ... | - post_run_stats - Statistics actions during traffic after timer.
+| | ... | - stat_runtime - Statistics actions within traffic trial.
+| | ... | - stat_pre_trial - Statistics actions before traffic trials.
+| | ... | - stat_post_trial - Statistics actions after traffic trials.
 | |
-| | ${pre_stats}= | Create List
-| | ... | clear-show-runtime-with-traffic
-| | ${post_stats}= | Create List | noop
-| | ${pre_run_stats}= | Create List | noop
-| | ${post_run_stats}= | Create List | noop
-| | Set Global Variable | ${pre_stats}
-| | Set Global Variable | ${post_stats}
-| | Set Global Variable | ${pre_run_stats}
-| | Set Global Variable | ${post_run_stats}
+| | ${pre_stats}= | Create List | noop
+| | ${stat_pre_trial}= | Create List | noop
+| | ${stat_post_trial}= | Create List | noop
+| | Set Global Variable | ${stat_runtime}
+| | Set Global Variable | ${stat_pre_trial}
+| | Set Global Variable | ${stat_post_trial}
 | | Set Global Variable | ${nodes}
