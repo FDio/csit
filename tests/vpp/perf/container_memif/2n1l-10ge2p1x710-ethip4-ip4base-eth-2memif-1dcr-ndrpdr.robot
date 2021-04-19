@@ -50,7 +50,7 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
@@ -95,7 +95,7 @@
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | 64B-2c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
