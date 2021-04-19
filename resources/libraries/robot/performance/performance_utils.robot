@@ -15,9 +15,9 @@
 | Library | Collections
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.Iperf3
+| Library | resources.libraries.python.TelemetryUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
@@ -38,53 +38,6 @@
 | ${heap_size_mult}= | ${1}
 
 *** Keywords ***
-| Clear and show runtime counters with running traffic
-| | [Documentation]
-| | ... | Start traffic at specified rate then clear runtime counters on all
-| | ... | DUTs. Wait for specified amount of time and capture runtime counters
-| | ... | on all DUTs. Finally stop traffic.
-| |
-| | ... | TODO: Support resetter if this is not the first trial-ish action?
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Clear and show runtime counters with running traffic \|
-| |
-| | ${ppta} = | Get Packets Per Transaction Aggregated
-| | ${ramp_up_duration} = | Get Ramp Up Duration
-| | ${ramp_up_rate} = | Get Ramp Up Rate
-| | ${runtime_duration} = | Get Runtime Duration
-| | ${runtime_rate} = | Get Runtime Rate
-| | ${traffic_directions} = | Get Traffic Directions
-| | ${transaction_duration} = | Get Transaction Duration
-| | ${transaction_scale} = | Get Transaction Scale
-| | ${transaction_type} = | Get Transaction Type
-| | ${use_latency} = | Get Use Latency
-| | # Duration of -1 means we will stop traffic manually.
-| | Send traffic on tg
-| | ... | duration=${-1}
-| | ... | rate=${runtime_rate}
-| | ... | frame_size=${frame_size}
-| | ... | traffic_profile=${traffic_profile}
-| | ... | async_call=${True}
-| | ... | ppta=${ppta}
-| | ... | use_latency=${use_latency}
-| | ... | traffic_directions=${traffic_directions}
-| | ... | transaction_duration=${transaction_duration}
-| | ... | transaction_scale=${transaction_scale}
-| | ... | transaction_type=${transaction_type}
-| | ... | duration_limit=${0.0}
-| | ... | ramp_up_duration=${ramp_up_duration}
-| | ... | ramp_up_rate=${ramp_up_rate}
-| | FOR | ${action} | IN | @{pre_run_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
-| | END
-| | Sleep | ${runtime_duration}
-| | FOR | ${action} | IN | @{post_run_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
-| | END
-| | Stop traffic on tg
-
 | Find critical load using PLRsearch
 | | [Documentation]
 | | ... | Find boundaries for troughput (of hardcoded target loss ratio)
@@ -435,7 +388,10 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | Set Test Variable | \${rate_for_teardown} | ${rate}
-| | FOR | ${action} | IN | @{pre_stats}
+| | FOR | ${action} | IN | @{stat_runtime}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | FOR | ${action} | IN | @{stat_pre_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | ${results} = | Create List
@@ -460,43 +416,10 @@
 | | | # the approximated receive rate is the best estimate we have.
 | | | Append To List | ${results} | ${result.approximated_receive_rate}
 | | END
-| | FOR | ${action} | IN | @{post_stats}
+| | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | Return From Keyword | ${results}
-
-| Clear and show runtime counters with running iperf3
-| | [Documentation]
-| | ... | Start traffic at specified rate then clear runtime counters on all
-| | ... | DUTs. Wait for specified amount of time and capture runtime counters
-| | ... | on all DUTs. Finally stop traffic.
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Clear and show runtime counters with running traffic \|
-| |
-| | ${runtime_duration} = | Get Runtime Duration
-| | ${pids}= | iPerf Client Start Remote Exec
-| | | ... | ${nodes['${iperf_client_node}']}
-| | | ... | duration=${-1}
-| | | ... | rate=${None}
-| | | ... | frame_size=${None}
-| | | ... | async_call=True
-| | | ... | warmup_time=0
-| | | ... | traffic_directions=${1}
-| | | ... | namespace=${iperf_client_namespace}
-| | | ... | udp=${iperf_client_udp}
-| | | ... | host=${iperf_server_bind}
-| | | ... | bind=${iperf_client_bind}
-| | | ... | affinity=${iperf_client_affinity}
-| | FOR | ${action} | IN | @{pre_run_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
-| | END
-| | Sleep | ${runtime_duration}
-| | FOR | ${action} | IN | @{post_run_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
-| | END
-| | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}
 
 | Traffic should pass with maximum rate on iPerf3
 | | [Documentation]
@@ -592,7 +515,10 @@
 | | ${pre_stats}= | Create List
 | | ... | clear-show-runtime-with-iperf3
 | | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
-| | FOR | ${action} | IN | @{pre_stats}
+| | FOR | ${action} | IN | @{stat_runtime}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | FOR | ${action} | IN | @{stat_pre_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | ${results} = | Create List
@@ -616,7 +542,7 @@
 | | | Append To List
 | | | ... | ${results} | ${conv}
 | | END
-| | FOR | ${action} | IN | @{post_stats}
+| | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | Return From Keyword | ${results}

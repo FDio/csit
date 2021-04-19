@@ -26,23 +26,66 @@
 | | Run Keyword If | ${extended_debug}==${True}
 | | ... | Perf Stat On All DUTs | ${nodes} | cpu_list=${cpu_alloc_str}
 
-| Additional Statistics Action For clear-show-runtime-with-traffic
+| Additional Statistics Action For vpp-runtime
 | | [Documentation]
 | | ... | Additional Statistics Action for clear and show runtime counters with
 | | ... | running traffic.
 | |
 | | ... | See documentation of the called keyword for required test variables.
 | |
-| | Clear and show runtime counters with running traffic
+| | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${ramp_up_duration} = | Get Ramp Up Duration
+| | ${ramp_up_rate} = | Get Ramp Up Rate
+| | ${runtime_duration} = | Get Runtime Duration
+| | ${runtime_rate} = | Get Runtime Rate
+| | ${traffic_directions} = | Get Traffic Directions
+| | ${transaction_duration} = | Get Transaction Duration
+| | ${transaction_scale} = | Get Transaction Scale
+| | ${transaction_type} = | Get Transaction Type
+| | ${use_latency} = | Get Use Latency
+| | Send traffic on tg
+| | ... | duration=${-1}
+| | ... | rate=${runtime_rate}
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | async_call=${True}
+| | ... | ppta=${ppta}
+| | ... | use_latency=${use_latency}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | transaction_duration=${transaction_duration}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_type=${transaction_type}
+| | ... | duration_limit=${0.0}
+| | ... | ramp_up_duration=${ramp_up_duration}
+| | ... | ramp_up_rate=${ramp_up_rate}
+| | Run Telemetry On All DUTs
+| | ... | ${nodes} | profile=vpp_runtime.yaml
+| | Stop traffic on tg
 
-| Additional Statistics Action For clear-show-runtime-with-iperf3
+| Additional Statistics Action For vpp-runtime-iperf3
 | | [Documentation]
 | | ... | Additional Statistics Action for clear and show runtime counters with
 | | ... | iPerf3 running traffic.
 | |
 | | ... | See documentation of the called keyword for required test variables.
 | |
-| | Clear and show runtime counters with running iperf3
+| | ${runtime_duration} = | Get Runtime Duration
+| | ${pids}= | iPerf Client Start Remote Exec
+| | | ... | ${nodes['${iperf_client_node}']}
+| | | ... | duration=${-1}
+| | | ... | rate=${None}
+| | | ... | frame_size=${None}
+| | | ... | async_call=True
+| | | ... | warmup_time=0
+| | | ... | traffic_directions=${1}
+| | | ... | namespace=${iperf_client_namespace}
+| | | ... | udp=${iperf_client_udp}
+| | | ... | host=${iperf_server_bind}
+| | | ... | bind=${iperf_client_bind}
+| | | ... | affinity=${iperf_client_affinity}
+| | Run Telemetry On All DUTs
+| | ... | ${nodes} | profile=vpp_runtime.yaml
+| | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}
 
 | Additional Statistics Action For noop
 | | [Documentation]
@@ -50,23 +93,12 @@
 | |
 | | No operation
 
-| Additional Statistics Action For vpp-clear-runtime
-| | [Documentation]
-| | ... | Additional Statistics Action for clear VPP runtime.
-| |
-| | VPP Clear Runtime On All DUTs | ${nodes}
-
 | Additional Statistics Action For vpp-clear-stats
 | | [Documentation]
 | | ... | Additional Statistics Action for clear VPP statistics.
 | |
-| | Clear Statistics On All DUTs | ${nodes}
-
-| Additional Statistics Action For vpp-enable-elog
-| | [Documentation]
-| | ... | Additional Statistics Action for enable VPP elog trace.
-| |
-| | VPP Enable Elog Traces On All DUTs | ${nodes}
+| | Run Telemetry On All DUTs
+| | ... | ${nodes} | profile=vpp_clear_stats.yaml
 
 | Additional Statistics Action For vpp-enable-packettrace
 | | [Documentation]
@@ -75,12 +107,6 @@
 | | Run Keyword If | ${extended_debug}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 
-| Additional Statistics Action For vpp-show-elog
-| | [Documentation]
-| | ... | Additional Statistics Action for show VPP elog trace.
-| |
-| | Show Event Logger On All DUTs | ${nodes}
-
 | Additional Statistics Action For vpp-show-packettrace
 | | [Documentation]
 | | ... | Additional Statistics Action for show VPP packet trace.
@@ -88,14 +114,9 @@
 | | Run Keyword If | ${extended_debug}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
 
-| Additional Statistics Action For vpp-show-runtime
-| | [Documentation]
-| | ... | Additional Statistics Action for show VPP runtime.
-| |
-| | VPP Show Runtime On All DUTs | ${nodes}
-
 | Additional Statistics Action For vpp-show-stats
 | | [Documentation]
 | | ... | Additional Statistics Action for show VPP statistics.
 | |
-| | Show Statistics On All DUTs | ${nodes}
+| | Run Telemetry On All DUTs
+| | ... | ${nodes} | profile=vpp_show_stats.yaml
