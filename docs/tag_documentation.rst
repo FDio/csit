@@ -595,6 +595,10 @@ Encapsulation Tags
 
     All test cases with GRE.
 
+.. topic:: GTPU
+
+    All test cases with GTPU.
+
 .. topic:: IPSEC
 
     All test cases with IPSEC.
