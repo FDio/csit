@@ -23,7 +23,7 @@
 | Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
-| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
+#| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
 | ... | AND | Verify Vpp on All Duts | ${nodes}
 | ... | AND | Verify UIO Driver on all DUTs | ${nodes}
 | ... | AND | Show Vpp Version on All Duts | ${nodes}
@@ -42,22 +42,13 @@
 | | ... | _NOTE:_ This KW sets following suite variables:
 | | ... | - pre_stats - Statistics actions before traffic.
 | | ... | - post_stats - Statistics actions after traffic.
-| | ... | - pre_run_stats - Statistics actions during traffic before timer.
-| | ... | - post_run_stats - Statistics actions during traffic after timer.
 | | ... | - packages_dir - Path to directory where VPP packages are stored.
 | |
 | | ${pre_stats}= | Create List
-| | ... | clear-show-runtime-with-traffic | vpp-clear-stats
-| | ... | vpp-enable-packettrace | vpp-enable-elog
+| | ... | vpp-runtime | vpp-clear-stats | vpp-enable-packettrace
 | | ${post_stats}= | Create List
-| | ... | vpp-show-stats | vpp-show-packettrace | vpp-show-elog
-| | ${pre_run_stats}= | Create List
-| | ... | vpp-clear-runtime
-| | ${post_run_stats}= | Create List
-| | ... | vpp-show-runtime | bash-perf-stat
+| | ... | vpp-show-stats | vpp-show-packettrace
 | | Set Global Variable | ${pre_stats}
 | | Set Global Variable | ${post_stats}
-| | Set Global Variable | ${pre_run_stats}
-| | Set Global Variable | ${post_run_stats}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
 | | Set Global Variable | ${nodes}
