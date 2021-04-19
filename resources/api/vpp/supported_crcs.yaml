@@ -101,6 +101,8 @@
     gpe_enable_disable: '0xc264d7bf'  # dev
     gpe_enable_disable_reply: '0xe8d4e804'  # dev
     # gre_tunnel_add_del / reply # unused L1 keyword: create_gre_tunnel_interface
+    gtpu_add_del_tunnel: '0xca983a2b' # perf
+    gtpu_add_del_tunnel_reply: '0x5383d31f' # perf
     hw_interface_set_mtu: '0xe6746899'  # dev
     hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
     input_acl_set_interface: '0xde7ad708'  # dev
