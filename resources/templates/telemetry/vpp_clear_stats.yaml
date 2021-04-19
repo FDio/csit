@@ -1,0 +1,184 @@
+---
+logging:
+  version: 1
+  formatters:
+    console:
+      format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    prom:
+      format: '%(message)s'
+    json:
+      format: '%(message)s'
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: console
+      stream: ext://sys.stdout
+    prom:
+      class: logging.handlers.RotatingFileHandler
+      level: INFO
+      formatter: prom
+      filename: /tmp/metric.prom
+      mode: w
+    json:
+      class: logging.handlers.RotatingFileHandler
+      level: INFO
+      formatter: json
+      filename: /tmp/metric.json
+      mode: w
+  loggers:
+    prom:
+      handlers: [prom]
+      level: INFO
+      propagate: False
+    json:
+      handlers: [json]
+      level: INFO
+      propagate: False
+  root:
+    level: INFO
+    handlers: [console]
+scheduler:
+  duration: 1
+  multiplicity: 1
+programs:
+  - name: bundle_vpp
+    metrics:
+      counter:
+        - name: calls
+          help: Number of calls total
+          labels:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: vectors
+          help: Number of vectors total
+          labels:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: suspends
+          help: Number of suspends total
+          labels:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: clocks
+          help: Number of clocks total
+          labels:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: vectors_calls
+          help: Number of vectors per call
+          labels:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+    code: |
+      clear runtime
+  - name: bundle_vpp
+    metrics:
+      counter:
+        - name: rx_packets
+          help: Number of received packets for interface
+          labels:
+            - name
+            - index
+        - name: rx_bytes
+          help: Number of received bytes for interface
+          labels:
+            - name
+            - index
+        - name: rx_errors
+          help: Number of errors on interface
+          labels:
+            - name
+            - index
+        - name: tx_packets
+          help: Number of transitted packets for interface
+          labels:
+            - name
+            - index
+        - name: tx_bytes
+          help: Number of transitted bytes for interface
+          labels:
+            - name
+            - index
+        - name: tx_errors
+          help: Number of errors on interface
+          labels:
+            - name
+            - index
+        - name: drops
+          help: Number of dropped packets for interface
+          labels:
+            - name
+            - index
+        - name: punt
+          help: Number of punted packets for interface
+          labels:
+            - name
+            - index
+        - name: ip4
+          help: Number of IPv4 packets for interface
+          labels:
+            - name
+            - index
+        - name: ip6
+          help: Number of IPv6 packets for interface
+          labels:
+            - name
+            - index
+        - name: rx_no_buf
+          help: Number of out of buffer RX packets on interface
+          labels:
+            - name
+            - index
+        - name: rx_miss
+          help: Number of missed RX packets on interface
+          labels:
+            - name
+            - index
+    code: |
+      clear interfaces
+  - name: bundle_vpp
+    metrics:
+      counter:
+        - name: node_counter
+          help: Node counter
+          labels:
+            - name
+            - reason
+            - severity
+            - thread_name
+            - thread_id
+    code: |
+      clear node counters
+  - name: bundle_vpp
+    metrics:
+      counter:
+        - name: calls
+          help: Load operations
+          labels:
+            - name
+            - thread_name
+            - thread_id
+        - name: packets
+          help: Load operations
+          labels:
+            - name
+            - thread_name
+            - thread_id
+    code: |
+      perfmon reset
