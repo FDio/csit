@@ -15,9 +15,9 @@
 | Library | Collections
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.PerfUtil
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.Iperf3
+| Library | resources.libraries.python.TelemetryUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
@@ -76,11 +76,7 @@
 | | ... | duration_limit=${0.0}
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
-| | FOR | ${action} | IN | @{pre_run_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
-| | END
-| | Sleep | ${runtime_duration}
-| | FOR | ${action} | IN | @{post_run_stats}
+| | FOR | ${action} | IN | @{run_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | Stop traffic on tg
@@ -489,11 +485,7 @@
 | | | ... | host=${iperf_server_bind}
 | | | ... | bind=${iperf_client_bind}
 | | | ... | affinity=${iperf_client_affinity}
-| | FOR | ${action} | IN | @{pre_run_stats}
-| | | Run Keyword | Additional Statistics Action For ${action}
-| | END
-| | Sleep | ${runtime_duration}
-| | FOR | ${action} | IN | @{post_run_stats}
+| | FOR | ${action} | IN | @{run_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}

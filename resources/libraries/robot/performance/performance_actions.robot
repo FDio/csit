@@ -19,6 +19,12 @@
 | ... | Performance suite keywords - Actions related to performance tests.
 
 *** Keywords ***
+| Additional Statistics Action For telemetry
+| | [Documentation]
+| | ... | Additional Statistics Action for Telemetry.
+| |
+| | Perf Stat On All DUTs | ${nodes} | profile=full.yaml | pid="$(pidof vpp)"
+
 | Additional Statistics Action For bash-perf-stat
 | | [Documentation]
 | | ... | Additional Statistics Action for bash command "perf stat".
