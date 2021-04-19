@@ -46,14 +46,14 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | avf_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
-| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | avf
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
-| ${nic_vfs}= | 0
+| ${nic_vfs}= | 1
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -83,15 +83,16 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv6 forwarding in circular topology
+| | Then Traffic should pass with maximum rate
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 78B-1c-ethip6-ip6base-ndrpdr
-| | [Tags] | 78B | 1C
+| | [Tags] | 78B | 1C | THIS
 | | frame_size=${78} | phy_cores=${1}
 
 | 78B-2c-ethip6-ip6base-ndrpdr
-| | [Tags] | 78B | 2C
+| | [Tags] | 78B | 2C | THIS
 | | frame_size=${78} | phy_cores=${2}
 
 | 78B-4c-ethip6-ip6base-ndrpdr
