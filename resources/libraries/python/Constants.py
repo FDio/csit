@@ -300,7 +300,7 @@ class Constants:
         u"Intel-X520-DA2": 14880952,
         u"Intel-X553": 14880952,
         u"Intel-X710": 14880952,
-        u"Intel-XL710": 18750000,
+        u"Intel-XL710": 10000,
         u"Intel-XXV710": 18750000,
         u"Intel-E810CQ": 58500000,
         # 2n-clx testbeds show duration stretching on high rates,
