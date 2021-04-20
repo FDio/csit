@@ -22,6 +22,30 @@
       "revId": "715a36dd6488b53b253ed06c842a395ea3477292",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "571ede44_2b5953ab",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4udpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-04-20T23:22:48Z",
+      "side": 1,
+      "message": "frame_size is the interface MTU.  packet length is determined by iperf3.\nFixed by adding iperf3 client attribute \u0027length\u0027 and setting appropriately as required for UDP iperf3 testing.\n\nNote; Per Florin\u0027s input TCP tests do not set \u0027--length\u0027 but use the iperf3 default.",
+      "parentUuid": "6fb5af9a_c9905c2f",
+      "range": {
+        "startLine": 49,
+        "startChar": 21,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "715a36dd6488b53b253ed06c842a395ea3477292",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
