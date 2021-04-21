@@ -1321,6 +1321,7 @@ class TrafficGenerator(AbstractMeasurer):
             partial_transmit_count=partial_attempt_count,
         )
         measurement.latency = self.get_latency_int()
+        measurement.unsent = unsent
         return measurement
 
     def measure(self, duration, transmit_rate):

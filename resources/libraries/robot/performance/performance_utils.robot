@@ -459,6 +459,8 @@
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | Append To List | ${results} | ${result.receive_rate}
+| | | Run Keyword If | ${result.unsent} and "${transaction_type}" == "packet"
+| | | ... | Fail | TG left ${result.unsent} packets unsent!
 | | END
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
