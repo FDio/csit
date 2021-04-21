@@ -16,7 +16,7 @@
 
 import re
 
-from os.path import join
+from os.path import join, exists
 from collections import OrderedDict
 
 import logging
@@ -437,3 +437,25 @@ def file_test_results_html(file_spec, input_data):
     :type input_data: InputData
     """
     file_test_results(file_spec, input_data, frmt=u"html")
+
+
+def generate_empty_files():
+    """Generate empty files to overwrite existing files.
+
+    The files to be generated are specified in the file
+    resources/tools/presentation/empty.txt
+    """
+
+    if not exists(u"empty.txt"):
+        return
+
+    with open(u"empty.txt") as file_list:
+        for line in list(file_list):
+            try:
+                empty_file = open(line, u"w")
+            except (IOError, OSError):
+                continue
+            finally:
+                if empty_file:
+                    empty_file.close()
+                    logging.info(f"Empty file {line} generated.")

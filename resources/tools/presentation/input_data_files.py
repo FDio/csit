@@ -222,18 +222,18 @@ def download_and_unzip_data_file(spec, job, build, pid):
     arch = bool(spec.configuration.get(u"archive-inputs", True))
     downloaded_name = u""
 
-    # Try to download .gz from s3_storage
-    for path in spec.input[u'download-path']:
-        url = u"{0}/{1}".format(
-            spec.environment[u'urls'][u'URL[S3_STORAGE,LOG]'],
-            path.format(job=job, build=build[u'build'], filename=file_name)
-        )
-        logging.info(f"Trying to download {url}")
-        success, downloaded_name = _download_file(
-            url, new_name, arch=arch, verify=False, repeat=3
-        )
-        if success:
-            break
+    # # Try to download .gz from s3_storage
+    # for path in spec.input[u'download-path']:
+    #     url = u"{0}/{1}".format(
+    #         spec.environment[u'urls'][u'URL[S3_STORAGE,LOG]'],
+    #         path.format(job=job, build=build[u'build'], filename=file_name)
+    #     )
+    #     logging.info(f"Trying to download {url}")
+    #     success, downloaded_name = _download_file(
+    #         url, new_name, arch=arch, verify=False, repeat=3
+    #     )
+    #     if success:
+    #         break
 
     if not success:
         # Try to download .gz from logs.fd.io

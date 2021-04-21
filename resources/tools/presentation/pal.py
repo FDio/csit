@@ -24,7 +24,7 @@ from specification_parser import Specification
 from input_data_parser import InputData
 from generator_tables import generate_tables
 from generator_plots import generate_plots
-from generator_files import generate_files
+from generator_files import generate_files, generate_empty_files
 from static_content import prepare_static_content
 from generator_report import generate_report
 from generator_cpta import generate_cpta
@@ -150,6 +150,8 @@ def main():
         generate_tables(spec, data)
         generate_plots(spec, data)
         generate_files(spec, data)
+
+        generate_empty_files()
 
         if spec.output[u"output"] == u"report":
             generate_report(args.release, spec, args.week)
