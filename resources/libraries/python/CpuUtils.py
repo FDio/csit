@@ -446,6 +446,9 @@ class CpuUtils:
             node, pf_key, skip_cnt=0, cpu_cnt=1):
         """Get affinity for vhost. Result will be used to pin vhost threads.
 
+        Currently, sibling logical cores are not used even if smt is enabed.
+        TODO: Explain why do we do it that way.
+
         :param node: Topology node.
         :param pf_key: Topology interface.
         :param skip_cnt: Amount of CPU cores to skip.
