@@ -458,7 +458,7 @@
 | | | ... | ramp_up_rate=${ramp_up_rate}
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
-| | | Append To List | ${results} | ${result.approximated_receive_rate}
+| | | Append To List | ${results} | ${result.receive_rate}
 | | END
 | | FOR | ${action} | IN | @{post_stats}
 | | | Run Keyword | Additional Statistics Action For ${action}
