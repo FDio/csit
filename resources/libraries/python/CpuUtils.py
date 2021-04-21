@@ -13,6 +13,7 @@
 
 """CPU utilities library."""
 
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -103,6 +104,7 @@ class CpuUtils:
         """
         if phy_cores is None:
             return None
+        logger.trace(f"smt_used {smt_used!r}")
         workers_per_core = CpuUtils.NR_OF_THREADS if smt_used else 1
         workers = phy_cores * workers_per_core
         return workers

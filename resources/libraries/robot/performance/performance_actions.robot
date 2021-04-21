@@ -99,3 +99,9 @@
 | | ... | Additional Statistics Action for show VPP statistics.
 | |
 | | Show Statistics On All DUTs | ${nodes}
+
+| Additional Statistics Action For vpp-show-threads
+| | [Documentation]
+| | ... | Additional Statistics Action for show VPP thread allocation.
+| |
+| | Dump Interface Rx Placement On All DUTs | ${nodes}
