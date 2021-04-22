@@ -285,11 +285,11 @@
 | Get Runtime Rate
 | | [Documentation]
 | | ... | Return value of \${runtime_rate} variable,
-| | ... | if not defined return the max rate.
+| | ... | if not defined return the teardown rate.
 | |
 | | ... | The return value controls the rate (TPS unidir) of runtime trial,
-| | ... | which also acts as a warmup. No plans to ever use a different rate,
-| | ... | but keywords look better if access to such values is uniform.
+| | ... | which also acts as a warmup. The default fallback of teardown rate
+| | ... | is useful for NDRPDR stat trials.
 | | ... | Return type: float.
 | |
 | | ... | *Example:*
@@ -298,7 +298,7 @@
 | |
 | | ${runtime_rate} = | Get Variable Value | \${runtime_rate} | ${0.0}
 | | Return From Keyword If | ${runtime_rate} | ${runtime_rate}
-| | Run Keyword And Return | Get Max Rate
+| | Run Keyword And Return | Get Rate For Teardown
 
 | Get Traffic Directions
 | | [Documentation]
