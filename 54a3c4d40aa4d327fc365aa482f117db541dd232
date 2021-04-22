@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "885a1761_c28b84d1",
+        "filename": "fdio.infra.terraform/README.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-22T14:58:46Z",
+      "side": 1,
+      "message": "remove. this is part of requirements file. not need to edit twice in repo",
+      "revId": "54a3c4d40aa4d327fc365aa482f117db541dd232",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dde60321_6b55b7e3",
+        "filename": "fdio.infra.terraform/README.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-22T14:58:46Z",
+      "side": 1,
+      "message": "dot at the end of sentence.",
+      "range": {
+        "startLine": 32,
+        "startChar": 49,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "54a3c4d40aa4d327fc365aa482f117db541dd232",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17a12b98_457ffca0",
+        "filename": "fdio.infra.terraform/README.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-22T14:58:46Z",
+      "side": 1,
+      "message": "store where? be more specific that it is not stored to file? to syslog?",
+      "range": {
+        "startLine": 35,
+        "startChar": 32,
+        "endLine": 35,
+        "endChar": 37
+      },
+      "revId": "54a3c4d40aa4d327fc365aa482f117db541dd232",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ec465d6_83a4cb7d",
+        "filename": "fdio.infra.terraform/README.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-22T14:58:46Z",
+      "side": 1,
+      "message": "try to keep 80 char per line rule.",
+      "range": {
+        "startLine": 44,
+        "startChar": 73,
+        "endLine": 44,
+        "endChar": 81
+      },
+      "revId": "54a3c4d40aa4d327fc365aa482f117db541dd232",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59f5437c_eb25b9e7",
+        "filename": "fdio.infra.terraform/README.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-22T14:58:46Z",
+      "side": 1,
+      "message": "make sure that reader understand this is from CSIT_ROOT folder",
+      "range": {
+        "startLine": 46,
+        "startChar": 7,
+        "endLine": 46,
+        "endChar": 8
+      },
+      "revId": "54a3c4d40aa4d327fc365aa482f117db541dd232",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
