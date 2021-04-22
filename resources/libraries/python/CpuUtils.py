@@ -380,6 +380,30 @@ class CpuUtils:
         )
 
     @staticmethod
+    def get_affinity_dataplane(nodes, node, physical_cores=1):
+
+        """Get affinity of for dataplane (as opposed to crypto) workers.
+
+        The implementation relies on get_affinity_nf.
+        The point is to use sibling cores if possible,
+        wile allocating first few physical cores for dataplane.
+
+        :param nodes: Physical topology nodes.
+        :param node: SUT node.
+        :param physical_cores: Number of physical cores to use.
+        :type nodes: dict
+        :type node: dict
+        :type physical_cores: int
+        :returns: List of CPUs allocated to dataplane workers.
+        :rtype: list
+        """
+        main_and_workers = get_affinity_nf(
+            nodes, node, vs_dtc=0, nf_dtc=physical_cores
+        )
+        workers = main_and_workers[1:]
+        return workers
+
+    @staticmethod
     def get_affinity_trex(
             node, if1_pci, if2_pci, tg_mtc=1, tg_dtc=1, tg_ltc=1):
         """Get affinity for T-Rex. Result will be used to pin T-Rex threads.
