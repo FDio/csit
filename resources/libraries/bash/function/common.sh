@@ -709,6 +709,26 @@ function run_pybot () {
     PYBOT_EXIT_STATUS="$?"
     set -e
 
+    set +x
+    should_test=0
+    for option in "${all_options[@]}"; do
+        if [[ "${option}" == *"--test"* ]]; then
+            should_test=$((should_test+1))
+        fi
+    done
+    set -x
+    have_tested=$(fgrep "</test>" "${ARCHIVE_DIR}/output.xml" | wc -l)
+    echo "${have_tested} tests cases were attempted."
+    if [[ "${should_test}" != "0" ]]; then
+        echo "${should_test} test cases should have been run."
+        # Now we can check for non-obvious errors,
+        # such as typos in job specs, or effects of --exclude.
+        if [[ "${should_test}" != "${have_tested}" ]]; then
+            warn "Mismatch detected, fix the job spec (or bootstrap excludes)!"
+            PYBOT_EXIT_STATUS="3"
+        fi
+    fi
+
     # Generate INFO level output_info.xml for post-processing.
     all_options=("--loglevel" "INFO")
     all_options+=("--log" "none")
@@ -716,6 +736,7 @@ function run_pybot () {
     all_options+=("--output" "${ARCHIVE_DIR}/output_info.xml")
     all_options+=("${ARCHIVE_DIR}/output.xml")
     rebot "${all_options[@]}" || true
+
     popd || die "Change directory operation failed."
 }
 
