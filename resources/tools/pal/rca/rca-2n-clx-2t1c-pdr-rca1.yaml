@@ -1,0 +1,68 @@
+# CSIT progressions.
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+# CSIT regressions.
+64b-2t1c-avf-ethip4-ip4scale200k-rnd: 2
+64b-2t1c-avf-ethip4-ip4scale2m: 7
+64b-2t1c-avf-ethip4-ip4scale2m-rnd: 2
+64b-2t1c-avf-ethip4udp-ip4base-iacl50sf-10kflows: 1
+64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows: 1
+64b-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows: 1
+64b-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows: 1
+64b-2t1c-avf-dot1q-l2xcbase: 3
+64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr: 7
+64b-2t1c-ethip4-ip4scale200k-rnd: 2
+64b-2t1c-ethip4-ip4scale2m: 7
+64b-2t1c-ethip4-ip4scale2m-rnd: 2
+
+# Multiline string, empty lines (or \n) are required,
+# see https://yaml-multiline.info/
+
+footnote: "
+    [1] DONE Apparent regression in ACL tests due to Gerrit 26112. With CSIT
+    using changed VPP API, instead of failing, misconfigured VPP passes
+    the test, albeit with reduced performance. [CSIT-1739]
+
+    [2] DONE Regression in tests using random flow sequencing due to
+    Gerrit 26456. Unpinned random seed to make TRex workers generate
+    different sequences of packets. [CSIT-1731]
+
+    [3] DONE Regression in base dot1q-l2xcbase suites due to Gerrit
+    25363. Unified dot1q handling across various tests. Previously,
+    this one suite was different, using dot1q on one port only.
+
+    [5] DONE Progression in tests with VPP (l2xc) inside a VM due to
+    Gerrit 25309. Make VPP in VM worker placement deterministic.
+    [CSIT-1738]
+
+    [7] POSTPONED Possible anomaly, but stdev of results is high.
+    Performance differences considered to probably be just noise.
+
+    [9] OPEN Progression in all ip6 scale tests. Changes to vppinfra
+    bihash may have improved code efficiency. [CSIT-1735]
+
+    [10] OPEN Progression in ip6 base tests with dot1q. [CSIT-1746]
+
+    [11] OPEN Progression in memif tests, mainly in
+    avf-eth-l2xcbase-eth-2memif-1dcr. Two progression candidates found:
+    Gerrit 24053 and Gerrit 26744. Performance results are not consistent enough
+    to separate the two from other possible causes. [CSIT-1744]
+
+    [12] OPEN Progression in some l2bdscale tests. [CSIT-1745]
+
+    [13] DONE Stateless ACL tests have the same performance in 2005.0-4
+    as in 2001.0-2. The difference shown here is inflated by an API
+    change, see [1]. [CSIT-1739]
+
+    [14] DONE Stateful ACL tests have better performance in 2005.0-4 as
+    in 2001.0-2. The CSIT part of API change, Gerrit 26112, has fixed
+    an earlier CSIT regression in the same tests. The difference shown here
+    is further inflated by the API mismatch, see [1]. [CSIT-1739]
+
+    [15] OPEN Progression in nat44 test (not scale ones). [CSIT-1747]
+
+    [17] OPEN Progression in some vhost tests (dpdk in VM). [CSIT-1749]
+"
