@@ -1138,6 +1138,31 @@ function select_vpp_device_tags () {
     done
 }
 
+
+function set_environment_variables () {
+
+    # Depending on testbed topology, overwrite defaults set in the
+    # resources/libraries/python/Constants.py file
+    #
+    # Variables read:
+    # - TEST_CODE - String affecting test selection, usually jenkins job name.
+    # Variables set:
+    # See specific cases
+
+    set -exuo pipefail
+
+    case "${TEST_CODE}" in
+        *"2n-aws"* | *"3n-aws"*)
+            # T-Rex 2.88 workaround for ENA NICs
+            export TREX_RX_DESCRIPTORS_COUNT=1024
+            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
+            # Settings to prevent duration stretching
+            export PERF_TRIAL_STL_DELAY=0.1
+            ;;
+    esac
+}
+
+
 function untrap_and_unreserve_testbed () {
 
     # Use this as a trap function to ensure testbed does not remain reserved.
