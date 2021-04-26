@@ -1,0 +1,322 @@
+# Tables:
+
+# Detailed Test Results - VPP Performance Results 3n-aws
+- type: "table"
+  title: "Detailed Test Results - VPP Performance Results 3n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,VPP,3N,AWS]}/"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+    data: "data msg"
+  data: "vpp-perf-results-3n-aws"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Test configuration - VPP Performance Test Configs 3n-aws
+- type: "table"
+  title: "Test configuration - VPP Performance Test Configs 3n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,PERF,VPP,3N,AWS]}/"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+    data: "data conf-history"
+  data: "vpp-perf-results-3n-aws"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test Operational Data - VPP Performance Operational Data 3n-aws
+- type: "table"
+  title: "Test Operational Data - VPP Performance Operational Data 3n-aws"
+  algorithm: "table_oper_data_html"
+  output-file: "{DIR[DTO,PERF,VPP,3N,AWS]}/"
+  data: "vpp-perf-results-3n-aws"
+  filter: "all"
+
+# Detailed Test Results - VPP Performance Results 2n-aws
+- type: "table"
+  title: "Detailed Test Results - VPP Performance Results 2n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,VPP,2N,AWS]}/"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+    data: "data msg"
+  data: "vpp-perf-results-2n-aws"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Test configuration - VPP Performance Test Configs 2n-aws
+- type: "table"
+  title: "Test configuration - VPP Performance Test Configs 2n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,PERF,VPP,2N,AWS]}/"
+  columns:
+  - title: " |prein| Test Name |preout| "
+    data: "data name"
+  - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+    data: "data conf-history"
+  data: "vpp-perf-results-2n-aws"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test Operational Data - VPP Performance Operational Data 2n-aws
+- type: "table"
+  title: "Test Operational Data - VPP Performance Operational Data 2n-aws"
+  algorithm: "table_oper_data_html"
+  output-file: "{DIR[DTO,PERF,VPP,2N,AWS]}/"
+  data: "vpp-perf-results-2n-aws"
+  filter: "all"
+
+# Files:
+
+# VPP Performance Results
+- type: "file"
+  title: "VPP Performance Results"
+  algorithm: "file_details_split"
+  output-file: "{DIR[DTR,PERF,VPP,ALL]}"
+  dir-tables:
+    - "{DIR[DTR,PERF,VPP,2N,AWS]}"
+    - "{DIR[DTR,PERF,VPP,3N,AWS]}"
+  data:
+    - "vpp-perf-results-2n-aws"
+    - "vpp-perf-results-3n-aws"
+  filter: "all"
+  data-start-level: 4
+  order-chapters:
+    level-1:
+      - "l2"
+      - "ip4"
+      - "ip6"
+      - "srv6"
+      - "ip4_tunnels"
+      - "ip6_tunnels"
+      - "vm_vhost"
+      - "container_memif"
+      - "crypto"
+      - "vts"
+      - "lb"
+      - "nfv_density"
+      - "hoststack"
+    level-2:
+      - "2n-skx"
+      - "3n-skx"
+      - "2n-clx"
+      - "3n-hsw"
+      - "3n-tsh"
+      - "2n-dnv"
+      - "3n-dnv"
+      - "2n-aws"
+      - "3n-aws"
+    level-3:
+      - "xl710"
+      - "x520"
+      - "xxv710"
+      - "x710"
+      - "x553"
+      - "cx556a"
+      - "vic1227"
+      - "vic1385"
+      - "ena"
+
+# VPP Performance Configuration
+- type: "file"
+  title: "VPP Performance Configuration"
+  algorithm: "file_details_split"
+  output-file: "{DIR[DTC,PERF,VPP,ALL]}"
+  dir-tables:
+    - "{DIR[DTC,PERF,VPP,2N,AWS]}"
+    - "{DIR[DTC,PERF,VPP,3N,AWS]}"
+  data:
+    - "vpp-perf-results-2n-aws"
+    - "vpp-perf-results-3n-aws"
+  filter: "all"
+  data-start-level: 4
+  order-chapters:
+    level-1:
+      - "l2"
+      - "ip4"
+      - "ip6"
+      - "srv6"
+      - "ip4_tunnels"
+      - "ip6_tunnels"
+      - "vm_vhost"
+      - "container_memif"
+      - "crypto"
+      - "vts"
+      - "lb"
+      - "nfv_density"
+      - "hoststack"
+    level-2:
+      - "2n-skx"
+      - "3n-skx"
+      - "2n-clx"
+      - "3n-hsw"
+      - "3n-tsh"
+      - "2n-dnv"
+      - "3n-dnv"
+      - "2n-aws"
+      - "3n-aws"
+    level-3:
+      - "xl710"
+      - "x520"
+      - "xxv710"
+      - "x710"
+      - "x553"
+      - "cx556a"
+      - "vic1227"
+      - "vic1385"
+      - "ena"
+
+# VPP Performance Operational
+- type: "file"
+  title: "VPP Performance Operational"
+  algorithm: "file_details_split_html"
+  output-file: "{DIR[DTO,PERF,VPP,ALL]}"
+  dir-tables:
+    - "{DIR[DTO,PERF,VPP,2N,AWS]}"
+    - "{DIR[DTO,PERF,VPP,3N,AWS]}"
+  data:
+    - "vpp-perf-results-2n-aws"
+    - "vpp-perf-results-3n-aws"
+  filter: "all"
+  data-start-level: 4
+  order-chapters:
+    level-1:
+      - "l2"
+      - "ip4"
+      - "ip6"
+      - "srv6"
+      - "ip4_tunnels"
+      - "ip6_tunnels"
+      - "vm_vhost"
+      - "container_memif"
+      - "crypto"
+      - "vts"
+      - "lb"
+      - "nfv_density"
+      - "hoststack"
+    level-2:
+      - "2n-skx"
+      - "3n-skx"
+      - "2n-clx"
+      - "3n-hsw"
+      - "3n-tsh"
+      - "2n-dnv"
+      - "3n-dnv"
+      - "2n-aws"
+      - "3n-aws"
+    level-3:
+      - "xl710"
+      - "x520"
+      - "xxv710"
+      - "x710"
+      - "x553"
+      - "cx556a"
+      - "vic1227"
+      - "vic1385"
+      - "ena"
+
+# Plots:
+
+- type: "plot"
+  title: "Throughput: 2n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
+  data: "plot-vpp-throughput-tsa-2n-aws"
+  core: ["2t1c", "4t2c"]
+  include:
+    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.64B-{core}-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "2n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
+  data: "plot-vpp-throughput-tsa-2n-aws"
+  core: ["2t1c", "4t2c"]
+  include:
+    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-ndrpdr.1518B-{core}-ethip4-ip4base-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.1518B-{core}-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "2n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-aws-nitro50g-imix-{core}-ip4routing-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-aws-nitro50g-imix-{core}-ip4routing-base-scale-{test_type}"
+  data: "plot-vpp-throughput-tsa-2n-aws"
+  core: ["2t1c", "4t2c"]
+  include:
+    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.IMIX-{core}-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "2n-aws-nitro50g-imix-{core}-ip4routing-base-scale-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
+  data: "plot-vpp-throughput-tsa-3n-aws"
+  core: ["2t1c", "4t2c"]
+  include:
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.64B-{core}-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
+  data: "plot-vpp-throughput-tsa-3n-aws"
+  core: ["2t1c", "4t2c"]
+  include:
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.1518B-{core}-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.1518B-{core}-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Latency by percentile: 2n-aws"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-aws"
+  output-file-links: "{DIR[LAT,VPP]}/2n_aws.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-latency-2n-aws"
+  filter: "'2T1C'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
+  title: "Latency by percentile: 3n-aws"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-aws"
+  output-file-links: "{DIR[LAT,VPP]}/3n_aws.rst"
+  target-links: "../../_static/vpp"
+  data: "plot-vpp-latency-3n-aws"
+  filter: "'2T1C'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
