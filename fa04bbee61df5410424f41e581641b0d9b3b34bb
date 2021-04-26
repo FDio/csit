@@ -178,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "e6e1ced0_26a395f7",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 38
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-04-26T16:34:58Z",
+      "side": 1,
+      "message": "\u003e Hi,Dave \n\u003e That\u0027s what I was told in the previous code review email,Because my English is not very good, so the explanation is not clear, please check the email.\n\u003e csit-dev e-mail list: \"VSAP tests: NGINX LDP\". \n\u003e As to whether nginx should be retained in the environment, Peter asked me to install it in ${download}_ Dir}, he told me to keep the environment clean,\n\u003e https://gerrit.fd.io/r/c/csit/+/31987/4/resources/libraries/bash/function/nginx.sh#97\n\nHi Xi,\n\nSorry for the conflicting comments, I did not review the previous comments/email again when I wrote this.  It is not your English :)\n\nMy primary concern is to minimize the downloading of artifacts from the internet to prevent bad/false/misleading test failures due to TCP connection resets or other data transfer issues.  This is a \u0027best practice\u0027 for not abusing hosting sites.  \n\nLet\u0027s agree that NGINX is part of the SUT and I\u0027ll work with Peter to figure out a solution for locally hosting or caching the downloaded files.",
+      "parentUuid": "1bd9487e_38d92dc8",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 1
+      },
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9dc80901_aa3c6f41",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 38
