@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5df2a01b_280fd4ba",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 38
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-26T08:49:00Z",
+      "side": 1,
+      "message": "OK,remove\u0027basically\u0027",
+      "parentUuid": "b4714807_17d80352",
+      "range": {
+        "startLine": 432,
+        "startChar": 17,
+        "endLine": 432,
+        "endChar": 27
+      },
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75fed306_5e8cd44c",
         "filename": "fdio.infra.ansible/roles/cleanup/tasks/sut.yaml",
         "patchSetId": 38
@@ -39,6 +63,24 @@
       "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be0d952e_bca041da",
+        "filename": "fdio.infra.ansible/roles/cleanup/tasks/sut.yaml",
+        "patchSetId": 38
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-26T08:49:00Z",
+      "side": 1,
+      "message": "OK,remove it",
+      "parentUuid": "75fed306_5e8cd44c",
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "2d932cf8_8b3730d9",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 38
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-26T08:49:00Z",
+      "side": 1,
+      "message": "OK,fixed",
+      "parentUuid": "47de1711_d898461f",
+      "range": {
+        "startLine": 3,
+        "startChar": 25,
+        "endLine": 3,
+        "endChar": 26
+      },
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d26b7912_9941f0f1",
         "filename": "resources/libraries/bash/entry/install_nginx.sh",
         "patchSetId": 38
@@ -76,6 +142,30 @@
       "writtenOn": "2021-04-23T20:34:27Z",
       "side": 1,
       "message": "From a CI/CD perspective, it is not a good idea to be downloading anything from the internet on a per-job basis.  Does nginx really need to be built for every test suite?\n\nAlso, the specification of nginx version in the test suite itself is a maintenence burden.  Is NGINX part of the test environment or SUT (system under test)?\n\nIMHO, it should be part of the test environment which means changing it requires a change in the environment version which requires its own set of testing to verify that the environment change is not introducing anomalies in the VPP test result data.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 1
+      },
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bd9487e_38d92dc8",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 38
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-26T08:49:00Z",
+      "side": 1,
+      "message": "Hi,Dave \nThat\u0027s what I was told in the previous code review email,Because my English is not very good, so the explanation is not clear, please check the email.\ncsit-dev e-mail list: \"VSAP tests: NGINX LDP\". \nAs to whether nginx should be retained in the environment, Peter asked me to install it in ${download}_ Dir}, he told me to keep the environment clean,\nhttps://gerrit.fd.io/r/c/csit/+/31987/4/resources/libraries/bash/function/nginx.sh#97",
+      "parentUuid": "d26b7912_9941f0f1",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "b7af5c07_d08159b8",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 38
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-26T08:49:00Z",
+      "side": 1,
+      "message": "OK,Parameter changed to incoming",
+      "parentUuid": "9dc80901_aa3c6f41",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 21
+      },
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0166977_0b6e4a80",
         "filename": "resources/libraries/robot/hoststack/hoststack.robot",
         "patchSetId": 38
@@ -131,6 +245,30 @@
       "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5475875_ebfe26b1",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 38
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-26T08:49:00Z",
+      "side": 1,
+      "message": "OK,Modified",
+      "parentUuid": "a0166977_0b6e4a80",
+      "range": {
+        "startLine": 578,
+        "startChar": 26,
+        "endLine": 578,
+        "endChar": 33
+      },
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "1c14db26_eafaeed9",
+        "filename": "resources/libraries/robot/nginx/default.robot",
+        "patchSetId": 38
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-26T08:49:00Z",
+      "side": 1,
+      "message": "OK,Modified",
+      "parentUuid": "c84327d6_06b1d43f",
+      "range": {
+        "startLine": 38,
+        "startChar": 72,
+        "endLine": 38,
+        "endChar": 79
+      },
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17cbbc9d_cd256a36",
         "filename": "resources/templates/vcl/vcl_iperf3.conf",
         "patchSetId": 38
@@ -180,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "94d16458_22ee671b",
+        "filename": "resources/templates/vcl/vcl_iperf3.conf",
+        "patchSetId": 38
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-26T08:49:00Z",
+      "side": 1,
+      "message": "It has nothing to do with ab tools, and LDP nginx does not need to be modified vcl.conf So I remove my part, in VCL nginx, I will modify it and generate it automatically",
+      "parentUuid": "17cbbc9d_cd256a36",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 1
+      },
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45cd7af9_115971e6",
         "filename": "resources/templates/vsap/nginx-vsap.conf",
         "patchSetId": 38
@@ -194,6 +380,24 @@
       "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1d4c6ce_f6f5c544",
+        "filename": "resources/templates/vsap/nginx-vsap.conf",
+        "patchSetId": 38
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-04-26T08:49:00Z",
+      "side": 1,
+      "message": "ADD resources/libraries/python/NginxConfigGenerator.py",
+      "parentUuid": "45cd7af9_115971e6",
+      "revId": "fa04bbee61df5410424f41e581641b0d9b3b34bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
