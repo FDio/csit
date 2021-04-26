@@ -43,6 +43,7 @@ check_download_dir || die
 activate_virtualenv || die
 generate_tests || die
 archive_tests || die
+set_environment_variables || die
 reserve_and_cleanup_testbed || die
 select_tags || die
 compose_pybot_arguments || die

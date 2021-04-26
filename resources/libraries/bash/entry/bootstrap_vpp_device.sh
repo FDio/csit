@@ -42,6 +42,7 @@ check_download_dir || die
 activate_virtualenv || die
 generate_tests || die
 archive_tests || die
+set_environment_variables || die
 activate_docker_topology || die
 select_vpp_device_tags || die
 compose_pybot_arguments || die
