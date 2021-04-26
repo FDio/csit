@@ -1,0 +1,37 @@
+# VPP progressions.
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr: 11
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm: 17
+64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm: 7
+64b-2t1c-avf-eth-l2bdscale10kmaclrn: 12
+64b-2t1c-avf-eth-l2xcbase-eth-2memif-1dcr: 11
+64b-2t1c-avf-ethip4udp-ip4base-iacl50sf-10kflows: 14
+64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows: 13
+64b-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows: 14
+64b-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows: 13
+78b-2t1c-avf-ethip6-ip6scale200k: 7
+78b-2t1c-avf-ethip6-ip6scale2m: 7
+64b-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr: 11
+64b-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm: 17
+64b-2t1c-eth-l2bdscale100kmaclrn: 12
+64b-2t1c-eth-l2bdscale10kmaclrn: 12
+64b-2t1c-ethip4udp-ip4base-nat44: 15
+78b-2t1c-ethip6-ip6scale200k: 9
+78b-2t1c-ethip6-ip6scale20k: 9
+78b-2t1c-ethip6-ip6scale2m: 9
+# VPP regressions.
+64b-2t1c-avf-dot1q-ip4base: 7
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 7
+64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 7
+64b-2t1c-avf-eth-l2bdbasemaclrn: 7
+64b-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 7
+64b-2t1c-avf-eth-l2bdscale1mmaclrn: 7
+64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 8
+64b-2t1c-avf-ethip4-ip4scale200k: 7
+64b-2t1c-avf-ethip4-ip4scale200k-rnd: 7
+64b-2t1c-avf-ethip4-ip4scale2m: 7
+64b-2t1c-avf-ethip4-ip4scale2m-rnd: 7
+64b-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 7
+64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 7
+64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 8
+
+# Footnotes are in RCA1 file.

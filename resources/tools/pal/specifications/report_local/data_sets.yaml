@@ -1,0 +1,51 @@
+################################################################################
+###                            D A T A   S E T S                             ###
+################################################################################
+
+- type: "data-sets"
+
+  plot-vpp-throughput-tsa-3n-aws:
+    3n-aws-iter:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+
+  vpp-perf-results-3n-aws:
+    3n-aws-iter:
+      - 1
+      - 2
+
+  plot-vpp-latency-3n-aws:
+    3n-aws-iter:
+      - 1
+      - 2
+
+  plot-vpp-throughput-tsa-2n-aws:
+    2n-aws-iter:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+
+  vpp-perf-results-2n-aws:
+    2n-aws-iter:
+      - 1
+      - 2
+      - 9
+
+  plot-vpp-latency-2n-aws:
+    2n-aws-iter:
+      - 1
+      - 2
+      - 9
