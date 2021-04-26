@@ -992,6 +992,21 @@ function select_tags () {
         fi
     done
     set -x
+
+    # AWS specific CSIT configuration:
+    # T-Rex 2.88 workaround for ENA NICs:
+    # - TREX_RX_DESCRIPTORS_COUNT=1024
+    # - TREX_EXTRA_CMDLINE="--mbuf-factor 19"
+    #
+    # Settings to prevent duration stretching:
+    # - PERF_TRIAL_STL_DELAY=0.1
+    case "${TEST_CODE}" in
+        *"2n-aws"* | *"3n-aws"*)
+            export TREX_RX_DESCRIPTORS_COUNT=1024
+            export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
+            export PERF_TRIAL_STL_DELAY=0.1
+            ;;
+    esac
 }
 
 
