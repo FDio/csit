@@ -1,0 +1,60 @@
+# CSIT progressions.
+64b-2t1c-avf-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 7
+64b-2t1c-avf-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 7
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-eth-l2xcbase: 4
+64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4: 5
+64b-2t1c-ethip4-ip4base-eth-2vhostvr1024-1vm: 7
+# CSIT regressions.
+64b-2t1c-avf-eth-l2bdscale1mmaclrn: 7
+64b-2t1c-avf-ethip4-ip4scale2m: 7
+64b-2t1c-ethip4-ip4scale2m: 7
+imix-2t1c-avf-ethip4ipsec4tnlsw-ip4base-int-aes256gcm: 6
+imix-2t1c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm: 6
+imix-2t1c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm: 6
+imix-2t1c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm: 6
+imix-2t1c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm: 6
+
+# Multiline string, empty lines (or \n) are required,
+# see https://yaml-multiline.info/
+
+footnote: "
+    [4] DONE Progression in high performance tests due to Gerrit 26445.
+    TRex setting improvement. [CSIT-1740]
+
+    [5] DONE Progression in tests with VPP (l2xc) inside a VM due to
+    Gerrit 25309. Make VPP in VM worker placement deterministic.
+    [CSIT-1738]
+
+    [6] DONE Apparent regression in CSIT is caused by VPP renaming
+    the most performant IPsec plugin, thus the current CSIT version used with
+    the previous VPP version measures the less performant VPP IPsec plugin.
+    [CSIT-1742]
+
+    [7] POSTPONED Possible anomaly, but stdev of results is high.
+    Performance differences considered to probably be just noise.
+
+    [8] DONE Regressions in some tests with VPP in VM due to Gerrit
+    26744. Switch to clang-9 compiler identified as cause. Tests using
+    l2xcbase as vswitch with small stdev used for bisect. [CSIT-1741]
+
+    [9] OPEN Progression in all ip6 scale tests. Changes to vppinfra
+    bihash may have improved code efficiency. [CSIT-1735]
+
+    [10] OPEN Progression in ip6 base tests with dot1q. [CSIT-1746]
+
+    [11] OPEN Progression in memif tests, mainly in
+    avf-eth-l2xcbase-eth-2memif-1dcr. Two progression candidates found:
+    Gerrit 24053 and Gerrit 26744. Performance results are not consistent enough
+    to separate the two from other possible causes. [CSIT-1744]
+
+    [12] OPEN Progression in some l2bdscale tests. [CSIT-1745]
+
+    [16] OPEN Apparent progression in IPsec tests, only for aes128cbc-hmac512sha.
+    Considering [6], the positive difference is not large enough,
+    so there was probably a VPP regression. [CSIT-1748]
+
+    [17] OPEN Progression in some vhost tests (dpdk in VM). [CSIT-1749]
+"
