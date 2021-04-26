@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -31,7 +31,7 @@ from pal_utils import archive_input_data, execute_command, classify_anomalies
 
 
 # Command to build the html format of the report
-HTML_BUILDER = u'sphinx-build -v -c conf_cpta -a ' \
+HTML_BUILDER = u'sphinx-build -v -c sphinx_conf/trending -a ' \
                u'-b html -E ' \
                u'-t html ' \
                u'-D version="{date}" ' \
@@ -149,7 +149,7 @@ def generate_cpta(spec, data):
             css_file:
         css_file.write(THEME_OVERRIDES)
 
-    if spec.configuration.get(u"archive-inputs", True):
+    if spec.environment.get(u"archive-inputs", False):
         archive_input_data(spec)
 
     logging.info(u"Done.")
@@ -600,12 +600,12 @@ def _generate_all_charts(spec, input_data):
         return return_lst
 
     builds_dict = dict()
-    for job in spec.input[u"builds"].keys():
+    for job, builds in spec.input.items():
         if builds_dict.get(job, None) is None:
             builds_dict[job] = list()
-        for build in spec.input[u"builds"][job]:
-            status = build[u"status"]
-            if status not in (u"failed", u"not found", u"removed", None):
+        for build in builds:
+            if build[u"status"] not in (u"failed", u"not found", u"removed",
+                                        None):
                 builds_dict[job].append(str(build[u"build"]))
 
     # Create "build ID": "date" dict:

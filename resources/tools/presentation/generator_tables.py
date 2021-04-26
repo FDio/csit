@@ -990,15 +990,15 @@ def _generate_url(testbed, test_name):
 
     if u"1t1c" in test_name or \
         (u"-1c-" in test_name and
-         testbed in (u"3n-hsw", u"3n-tsh", u"2n-dnv", u"3n-dnv")):
+         testbed in (u"3n-hsw", u"3n-tsh", u"2n-dnv", u"3n-dnv", u"2n-tx2")):
         cores = u"1t1c"
     elif u"2t2c" in test_name or \
          (u"-2c-" in test_name and
-          testbed in (u"3n-hsw", u"3n-tsh", u"2n-dnv", u"3n-dnv")):
+          testbed in (u"3n-hsw", u"3n-tsh", u"2n-dnv", u"3n-dnv", u"2n-tx2")):
         cores = u"2t2c"
     elif u"4t4c" in test_name or \
          (u"-4c-" in test_name and
-          testbed in (u"3n-hsw", u"3n-tsh", u"2n-dnv", u"3n-dnv")):
+          testbed in (u"3n-hsw", u"3n-tsh", u"2n-dnv", u"3n-dnv", u"2n-tx2")):
         cores = u"4t4c"
     elif u"2t1c" in test_name or \
          (u"-1c-" in test_name and
@@ -1525,8 +1525,8 @@ def table_failed_tests_html(table, input_data):
                     u"a",
                     attrib=dict(
                         href=f"{lnk_dir}"
-                             f"{_generate_url(table.get(u'testbed', ''), item)}"
-                             f"{lnk_sufix}"
+                        f"{_generate_url(table.get(u'testbed', ''), item)}"
+                        f"{lnk_sufix}"
                     )
                 )
                 ref.text = item
@@ -2063,7 +2063,7 @@ def table_weekly_comparison(table, in_data):
     # Reorganize header in txt table
     txt_table = list()
     with open(txt_file_name, u"rt", encoding='utf-8') as file_handler:
-        for line in file_handler:
+        for line in list(file_handler):
             txt_table.append(line)
     try:
         txt_table.insert(5, txt_table.pop(2))

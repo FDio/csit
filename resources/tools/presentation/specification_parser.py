@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,6 +17,8 @@ Parsing of the specification YAML file.
 """
 
 
+from os.path import join, exists
+
 import logging
 from pprint import pformat
 
@@ -31,7 +33,7 @@ from pal_utils import (
 class Specification:
     """Specification of Presentation and analytics layer.
 
-    - based on specification specified in the specification YAML file
+    - based on specification specified in the specification YAML files
     - presentation and analytics layer is model driven
     """
 
@@ -40,18 +42,19 @@ class Specification:
     TAG_OPENER = u"{"
     TAG_CLOSER = u"}"
 
-    def __init__(self, cfg_file):
+    def __init__(self, cfg_dir):
         """Initialization.
 
-        :param cfg_file: File handler for the specification YAML file.
-        :type cfg_file: BinaryIO
+        :param cfg_dir: Directory with the specification files.
+        :type cfg_dir: str
         """
-        self._cfg_file = cfg_file
+        self._cfg_dir = cfg_dir
         self._cfg_yaml = None
 
         self._specification = {
             u"environment": dict(),
-            u"configuration": dict(),
+            u"data_sets": dict(),
+            u"layouts": dict(),
             u"static": dict(),
             u"input": dict(),
             u"output": dict(),
@@ -80,13 +83,22 @@ class Specification:
         return self._specification[u"environment"]
 
     @property
-    def configuration(self):
-        """Getter - configuration.
+    def data_sets(self):
+        """Getter - data_sets.
 
-        :returns: Configuration of PAL.
+        :returns: Data sets.
         :rtype: dict
         """
-        return self._specification[u"configuration"]
+        return self._specification[u"data_sets"]
+
+    @property
+    def layouts(self):
+        """Getter - layouts.
+
+        :returns: Layouts.
+        :rtype: dict
+        """
+        return self._specification[u"layouts"]
 
     @property
     def static(self):
@@ -105,7 +117,7 @@ class Specification:
             one.
         :rtype: dict
         """
-        return self._specification[u"configuration"][u"mapping"]
+        return self.environment[u"mapping"]
 
     @property
     def ignore(self):
@@ -114,16 +126,18 @@ class Specification:
         :returns: List of ignored test cases.
         :rtype: list
         """
-        return self._specification[u"configuration"][u"ignore"]
+        return self.environment[u"ignore"]
 
     @property
     def alerting(self):
         """Getter - Alerting.
 
+        # TODO
+
         :returns: Specification of alerts.
         :rtype: dict
         """
-        return self._specification[u"configuration"][u"alerting"]
+        return self.environment[u"alerting"]
 
     @property
     def input(self):
@@ -144,35 +158,21 @@ class Specification:
         """
         self._specification[u"input"] = new_value
 
-    @property
-    def builds(self):
-        """Getter - builds defined in specification.
-
-        :returns: Builds defined in the specification.
-        :rtype: dict
-        """
-        return self.input[u"builds"]
-
-    @builds.setter
-    def builds(self, new_value):
-        """Setter - builds defined in specification.
-
-        :param new_value: New value to be set.
-        :type new_value: dict
-        """
-        self.input[u"builds"] = new_value
-
     def add_build(self, job, build):
-        """Add a build to the specification.
+        """Add a build to the list of builds if it does not exist there.
 
         :param job: The job which run the build.
         :param build: The build to be added.
         :type job: str
         :type build: dict
         """
-        if self._specification[u"input"][u"builds"].get(job, None) is None:
-            self._specification[u"input"][u"builds"][job] = list()
-        self._specification[u"input"][u"builds"][job].append(build)
+        if self.input.get(job, None) is None:
+            self.input[job] = list()
+        for existing_build in self.input[job]:
+            if existing_build[u"build"] == build[u"build"]:
+                break
+        else:
+            self.input[job].append(build)
 
     @property
     def output(self):
@@ -224,7 +224,7 @@ class Specification:
         return self._specification[u"cpta"]
 
     def set_input_state(self, job, build_nr, state):
-        """Set the state of input
+        """Set the state of the input.
 
         :param job: Job name.
         :param build_nr: Build number.
@@ -236,7 +236,7 @@ class Specification:
         """
 
         try:
-            for build in self._specification[u"input"][u"builds"][job]:
+            for build in self.input[job]:
                 if build[u"build"] == build_nr:
                     build[u"status"] = state
                     break
@@ -252,7 +252,7 @@ class Specification:
             )
 
     def set_input_file_name(self, job, build_nr, file_name):
-        """Set the state of input
+        """Set the file name for the input.
 
         :param job: Job name.
         :param build_nr: Build number.
@@ -264,7 +264,7 @@ class Specification:
         """
 
         try:
-            for build in self._specification[u"input"][u"builds"][job]:
+            for build in self.input[job]:
                 if build[u"build"] == build_nr:
                     build[u"file-name"] = file_name
                     break
@@ -405,17 +405,14 @@ class Specification:
         """Parse environment specification in the specification YAML file.
         """
 
-        logging.info(u"Parsing specification file: environment ...")
+        logging.info(u"Parsing specification: ENVIRONMENT")
 
         idx = self._get_type_index(u"environment")
         if idx is None:
             return
 
-        try:
-            self._specification[u"environment"][u"configuration"] = \
-                self._cfg_yaml[idx][u"configuration"]
-        except KeyError:
-            self._specification[u"environment"][u"configuration"] = None
+        self._specification[u"environment"][u"spec-files"] = \
+            self._cfg_yaml[idx].get(u"spec-files", None)
 
         try:
             self._specification[u"environment"][u"paths"] = \
@@ -423,105 +420,86 @@ class Specification:
         except KeyError:
             self._specification[u"environment"][u"paths"] = None
 
-        try:
-            self._specification[u"environment"][u"urls"] = \
-                self._cfg_yaml[idx][u"urls"]
-        except KeyError:
-            self._specification[u"environment"][u"urls"] = None
+        self._specification[u"environment"][u"data-sources"] = \
+            self._cfg_yaml[idx].get(u"data-sources", tuple())
+        # Add statistics:
+        for source in self._specification[u"environment"][u"data-sources"]:
+            source[u"successful-downloads"] = 0
 
-        try:
-            self._specification[u"environment"][u"make-dirs"] = \
-                self._cfg_yaml[idx][u"make-dirs"]
-        except KeyError:
-            self._specification[u"environment"][u"make-dirs"] = None
+        self._specification[u"environment"][u"make-dirs"] = \
+            self._cfg_yaml[idx].get(u"make-dirs", None)
 
-        try:
-            self._specification[u"environment"][u"remove-dirs"] = \
-                self._cfg_yaml[idx][u"remove-dirs"]
-        except KeyError:
-            self._specification[u"environment"][u"remove-dirs"] = None
+        self._specification[u"environment"][u"remove-dirs"] = \
+            self._cfg_yaml[idx].get(u"remove-dirs", None)
 
-        try:
-            self._specification[u"environment"][u"build-dirs"] = \
-                self._cfg_yaml[idx][u"build-dirs"]
-        except KeyError:
-            self._specification[u"environment"][u"build-dirs"] = None
+        self._specification[u"environment"][u"build-dirs"] = \
+            self._cfg_yaml[idx].get(u"build-dirs", None)
 
-        try:
-            self._specification[u"environment"][u"testbeds"] = \
-                self._cfg_yaml[idx][u"testbeds"]
-        except KeyError:
-            self._specification[u"environment"][u"testbeds"] = None
+        self._specification[u"environment"][u"testbeds"] = \
+            self._cfg_yaml[idx].get(u"testbeds", None)
 
-        logging.info(u"Done.")
+        self._specification[u"environment"][u"limits"] = \
+            self._cfg_yaml[idx].get(u"limits", None)
 
-    def _load_mapping_table(self):
-        """Load a mapping table if it is specified. If not, use empty list.
+        self._specification[u"environment"][u"urls"] = \
+            self._cfg_yaml[idx].get(u"urls", None)
+
+        self._specification[u"environment"][u"archive-inputs"] = \
+            self._cfg_yaml[idx].get(u"archive-inputs", False)
+
+        self._specification[u"environment"][u"reverse-input"] = \
+            self._cfg_yaml[idx].get(u"reverse-input", False)
+
+        self._specification[u"environment"][u"time-period"] = \
+            self._cfg_yaml[idx].get(u"time-period", None)
+
+        self._specification[u"environment"][u"alerting"] = \
+            self._cfg_yaml[idx].get(u"alerting", None)
+
+        self._specification[u"environment"][u"mapping-file"] = \
+            self._cfg_yaml[idx].get(u"mapping-file", None)
+
+        self._specification[u"environment"][u"ignore-list"] = \
+            self._cfg_yaml[idx].get(u"ignore-list", None)
+
+        # Mapping table:
+        self._load_mapping_table()
+
+        # Ignore list:
+        self._load_ignore_list()
+
+    def _parse_layouts(self):
+        """Parse layouts specification in the specification YAML file.
         """
 
-        mapping_file_name = self._specification[u"configuration"].\
-            get(u"mapping-file", None)
-        if mapping_file_name:
-            try:
-                with open(mapping_file_name, u'r') as mfile:
-                    mapping = load(mfile, Loader=FullLoader)
-                    # Make sure everything is lowercase
-                    self._specification[u"configuration"][u"mapping"] = \
-                        {key.lower(): val.lower() for key, val in
-                         mapping.items()}
-                logging.debug(f"Loaded mapping table:\n{mapping}")
-            except (YAMLError, IOError) as err:
-                raise PresentationError(
-                    msg=f"An error occurred while parsing the mapping file "
-                        f"{mapping_file_name}",
-                    details=repr(err)
-                )
-        else:
-            self._specification[u"configuration"][u"mapping"] = dict()
+        logging.info(u"Parsing specification: LAYOUTS")
 
-    def _load_ignore_list(self):
-        """Load an ignore list if it is specified. If not, use empty list.
-        """
-
-        ignore_list_name = self._specification[u"configuration"].\
-            get(u"ignore-list", None)
-        if ignore_list_name:
-            try:
-                with open(ignore_list_name, u'r') as ifile:
-                    ignore = load(ifile, Loader=FullLoader)
-                    # Make sure everything is lowercase
-                    self._specification[u"configuration"][u"ignore"] = \
-                        [item.lower() for item in ignore]
-                logging.debug(f"Loaded ignore list:\n{ignore}")
-            except (YAMLError, IOError) as err:
-                raise PresentationError(
-                    msg=f"An error occurred while parsing the ignore list file "
-                        f"{ignore_list_name}.",
-                    details=repr(err)
-                )
-        else:
-            self._specification[u"configuration"][u"ignore"] = list()
-
-    def _parse_configuration(self):
-        """Parse configuration of PAL in the specification YAML file.
-        """
-
-        logging.info(u"Parsing specification file: configuration ...")
-
-        idx = self._get_type_index("configuration")
+        idx = self._get_type_index(u"layouts")
         if idx is None:
-            logging.warning(
-                u"No configuration information in the specification file."
-            )
             return
 
         try:
-            self._specification[u"configuration"] = self._cfg_yaml[idx]
+            self._specification[u"layouts"] = self._cfg_yaml[idx]
         except KeyError:
-            raise PresentationError(u"No configuration defined.")
+            raise PresentationError(u"No layouts defined.")
 
-        # Data sets: Replace ranges by lists
-        for set_name, data_set in self.configuration[u"data-sets"].items():
+    def _parse_data_sets(self):
+        """Parse data sets specification in the specification YAML file.
+        """
+
+        logging.info(u"Parsing specification: DATA SETS")
+
+        idx = self._get_type_index(u"data-sets")
+        if idx is None:
+            return
+
+        try:
+            self._specification[u"data_sets"] = self._cfg_yaml[idx]
+        except KeyError:
+            raise PresentationError(u"No Data sets defined.")
+
+        # Replace ranges by lists
+        for set_name, data_set in self.data_sets.items():
             if not isinstance(data_set, dict):
                 continue
             for job, builds in data_set.items():
@@ -541,7 +519,7 @@ class Specification:
                         builds = builds[-max_builds:]
                     if reverse:
                         builds.reverse()
-                    self.configuration[u"data-sets"][set_name][job] = builds
+                    self.data_sets[set_name][job] = builds
                 elif isinstance(builds, list):
                     for idx, item in enumerate(builds):
                         try:
@@ -550,83 +528,64 @@ class Specification:
                             # defined as a range <build_type>
                             builds[idx] = self._get_build_number(job, item)
 
-        # Data sets: add sub-sets to sets (only one level):
-        for set_name, data_set in self.configuration[u"data-sets"].items():
+        # Add sub-sets to sets (only one level):
+        for set_name, data_set in self.data_sets.items():
             if isinstance(data_set, list):
                 new_set = dict()
                 for item in data_set:
                     try:
-                        for key, val in self.configuration[u"data-sets"][item].\
-                                items():
+                        for key, val in self.data_sets[item].items():
                             new_set[key] = val
                     except KeyError:
                         raise PresentationError(
-                            f"Data set {item} is not defined in "
-                            f"the configuration section."
+                            f"Data set {item} is not defined."
                         )
-                self.configuration[u"data-sets"][set_name] = new_set
+                self.data_sets[set_name] = new_set
 
-        # Mapping table:
-        self._load_mapping_table()
-
-        # Ignore list:
-        self._load_ignore_list()
-
-        logging.info(u"Done.")
-
-    def _parse_input(self):
-        """Parse input specification in the specification YAML file.
-
-        :raises: PresentationError if there are no data to process.
+    def _load_mapping_table(self):
+        """Load a mapping table if it is specified. If not, use empty dict.
         """
 
-        logging.info(u"Parsing specification file: input ...")
+        mapping_file_name = self.environment.get(u"mapping-file", None)
+        if mapping_file_name:
+            try:
+                with open(mapping_file_name, u'r') as mfile:
+                    mapping = load(mfile, Loader=FullLoader)
+                    # Make sure everything is lowercase
+                    self.environment[u"mapping"] = \
+                        {key.lower(): val.lower() for key, val in
+                         mapping.items()}
+                logging.debug(f"Loaded mapping table:\n{mapping}")
+            except (YAMLError, IOError) as err:
+                raise PresentationError(
+                    msg=f"An error occurred while parsing the mapping file "
+                    f"{mapping_file_name}",
+                    details=repr(err)
+                )
+        else:
+            self.environment[u"mapping"] = dict()
 
-        idx = self._get_type_index(u"input")
-        if idx is None:
-            raise PresentationError(u"No data to process.")
+    def _load_ignore_list(self):
+        """Load an ignore list if it is specified. If not, use empty list.
+        """
 
-        try:
-            for key, value in self._cfg_yaml[idx][u"general"].items():
-                self._specification[u"input"][key] = value
-            self._specification[u"input"][u"builds"] = dict()
-
-            for job, builds in self._cfg_yaml[idx][u"builds"].items():
-                if builds:
-                    if isinstance(builds, dict):
-                        build_end = builds.get(u"end", None)
-                        max_builds = builds.get(u"max-builds", None)
-                        reverse = bool(builds.get(u"reverse", False))
-                        try:
-                            build_end = int(build_end)
-                        except ValueError:
-                            # defined as a range <start, build_type>
-                            if build_end in (u"lastCompletedBuild",
-                                             u"lastSuccessfulBuild"):
-                                reverse = True
-                            build_end = self._get_build_number(job, build_end)
-                        builds = [x for x in range(builds[u"start"],
-                                                   build_end + 1)
-                                  if x not in builds.get(u"skip", list())]
-                        if reverse:
-                            builds.reverse()
-                        if max_builds and max_builds < len(builds):
-                            builds = builds[:max_builds]
-                    self._specification[u"input"][u"builds"][job] = list()
-                    for build in builds:
-                        self._specification[u"input"][u"builds"][job]. \
-                            append({u"build": build, u"status": None})
-
-                else:
-                    logging.warning(
-                        f"No build is defined for the job {job}. Trying to "
-                        f"continue without it."
-                    )
-
-        except KeyError:
-            raise PresentationError(u"No data to process.")
-
-        logging.info(u"Done.")
+        ignore_list_name = self.environment.get(u"ignore-list", None)
+        if ignore_list_name:
+            try:
+                with open(ignore_list_name, u'r') as ifile:
+                    ignore = load(ifile, Loader=FullLoader)
+                    # Make sure everything is lowercase
+                    self.environment[u"ignore"] = \
+                        [item.lower() for item in ignore]
+                logging.debug(f"Loaded ignore list:\n{ignore}")
+            except (YAMLError, IOError) as err:
+                raise PresentationError(
+                    msg=f"An error occurred while parsing the ignore list file "
+                    f"{ignore_list_name}.",
+                    details=repr(err)
+                )
+        else:
+            self.environment[u"ignore"] = list()
 
     def _parse_output(self):
         """Parse output specification in the specification YAML file.
@@ -634,7 +593,7 @@ class Specification:
         :raises: PresentationError if there is no output defined.
         """
 
-        logging.info(u"Parsing specification file: output ...")
+        logging.info(u"Parsing specification: OUTPUT")
 
         idx = self._get_type_index(u"output")
         if idx is None:
@@ -645,14 +604,12 @@ class Specification:
         except (KeyError, IndexError):
             raise PresentationError(u"No output defined.")
 
-        logging.info(u"Done.")
-
     def _parse_static(self):
         """Parse specification of the static content in the specification YAML
         file.
         """
 
-        logging.info(u"Parsing specification file: static content ...")
+        logging.info(u"Parsing specification: STATIC CONTENT")
 
         idx = self._get_type_index(u"static")
         if idx is None:
@@ -667,8 +624,6 @@ class Specification:
                     pass
 
         self._specification[u"static"] = self._cfg_yaml[idx]
-
-        logging.info(u"Done.")
 
     def _parse_elements_tables(self, table):
         """Parse tables from the specification YAML file.
@@ -691,36 +646,23 @@ class Specification:
                 if table.get(item, None):
                     data_set = table[item].get(u"data", None)
                     if isinstance(data_set, str):
-                        table[item][u"data"] = \
-                            self.configuration[u"data-sets"][data_set]
+                        table[item][u"data"] = self.data_sets[data_set]
                     data_set = table[item].get(u"data-replacement", None)
                     if isinstance(data_set, str):
                         table[item][u"data-replacement"] = \
-                            self.configuration[u"data-sets"][data_set]
-
-            if table.get(u"history", None):
-                for i in range(len(table[u"history"])):
-                    data_set = table[u"history"][i].get(u"data", None)
-                    if isinstance(data_set, str):
-                        table[u"history"][i][u"data"] = \
-                            self.configuration[u"data-sets"][data_set]
-                    data_set = table[u"history"][i].get(
-                        u"data-replacement", None)
-                    if isinstance(data_set, str):
-                        table[u"history"][i][u"data-replacement"] = \
-                            self.configuration[u"data-sets"][data_set]
+                            self.data_sets[data_set]
 
             if table.get(u"columns", None):
                 for i in range(len(table[u"columns"])):
                     data_set = table[u"columns"][i].get(u"data-set", None)
                     if isinstance(data_set, str):
                         table[u"columns"][i][u"data-set"] = \
-                            self.configuration[u"data-sets"][data_set]
+                            self.data_sets[data_set]
                     data_set = table[u"columns"][i].get(
                         u"data-replacement", None)
                     if isinstance(data_set, str):
                         table[u"columns"][i][u"data-replacement"] = \
-                            self.configuration[u"data-sets"][data_set]
+                            self.data_sets[data_set]
 
         except KeyError:
             raise PresentationError(
@@ -742,14 +684,10 @@ class Specification:
         if layout is not None:
             plot[u"layout"].pop(u"layout")
             try:
-                for key, val in (self.configuration[u"plot-layouts"]
-                                 [layout].items()):
+                for key, val in self.layouts[layout].items():
                     plot[u"layout"][key] = val
             except KeyError:
-                raise PresentationError(
-                    f"Layout {layout} is not defined in the "
-                    f"configuration section."
-                )
+                raise PresentationError(f"Layout {layout} is not defined.")
         self._specification[u"plots"].append(plot)
 
     def _parse_elements_files(self, file):
@@ -781,23 +719,17 @@ class Specification:
             layout = plot.get(u"layout", None)
             if layout is not None:
                 try:
-                    plot[u"layout"] = \
-                        self.configuration[u"plot-layouts"][layout]
+                    plot[u"layout"] = self.layouts[layout]
                 except KeyError:
-                    raise PresentationError(
-                        f"Layout {layout} is not defined in the "
-                        f"configuration section."
-                    )
+                    raise PresentationError(f"Layout {layout} is not defined.")
             # Add data sets:
             if isinstance(plot.get(u"data", None), str):
                 data_set = plot[u"data"]
                 try:
-                    plot[u"data"] = \
-                        self.configuration[u"data-sets"][data_set]
+                    plot[u"data"] = self.data_sets[data_set]
                 except KeyError:
                     raise PresentationError(
-                        f"Data set {data_set} is not defined in "
-                        f"the configuration section."
+                        f"Data set {data_set} is not defined."
                     )
         self._specification[u"cpta"] = cpta
 
@@ -806,7 +738,7 @@ class Specification:
         YAML file.
         """
 
-        logging.info(u"Parsing specification file: elements ...")
+        logging.info(u"Parsing specification: ELEMENTS")
 
         count = 1
         for element in self._cfg_yaml:
@@ -815,21 +747,24 @@ class Specification:
             try:
                 element[u"output-file"] = self._replace_tags(
                     element[u"output-file"],
-                    self._specification[u"environment"][u"paths"])
+                    self.environment[u"paths"]
+                )
             except KeyError:
                 pass
 
             try:
                 element[u"input-file"] = self._replace_tags(
                     element[u"input-file"],
-                    self._specification[u"environment"][u"paths"])
+                    self.environment[u"paths"]
+                )
             except KeyError:
                 pass
 
             try:
                 element[u"output-file-links"] = self._replace_tags(
                     element[u"output-file-links"],
-                    self._specification[u"environment"][u"paths"])
+                    self.environment[u"paths"]
+                )
             except KeyError:
                 pass
 
@@ -837,48 +772,36 @@ class Specification:
             if isinstance(element.get(u"data", None), str):
                 data_set = element[u"data"]
                 try:
-                    element[u"data"] = \
-                        self.configuration[u"data-sets"][data_set]
+                    element[u"data"] = self.data_sets[data_set]
                 except KeyError:
                     raise PresentationError(
-                        f"Data set {data_set} is not defined in the "
-                        f"configuration section."
+                        f"Data set {data_set} is not defined."
                     )
             elif isinstance(element.get(u"data", None), list):
                 new_list = list()
                 for item in element[u"data"]:
                     try:
-                        new_list.append(
-                            self.configuration[u"data-sets"][item]
-                        )
+                        new_list.append(self.data_sets[item])
                     except KeyError:
                         raise PresentationError(
-                            f"Data set {item} is not defined in the "
-                            f"configuration section."
+                            f"Data set {item} is not defined."
                         )
                 element[u"data"] = new_list
 
             # Parse elements:
             if element[u"type"] == u"table":
-
                 logging.info(f"  {count:3d} Processing a table ...")
                 self._parse_elements_tables(element)
                 count += 1
-
             elif element[u"type"] == u"plot":
-
                 logging.info(f"  {count:3d} Processing a plot ...")
                 self._parse_elements_plots(element)
                 count += 1
-
             elif element[u"type"] == u"file":
-
                 logging.info(f"  {count:3d} Processing a file ...")
                 self._parse_elements_files(element)
                 count += 1
-
             elif element[u"type"] == u"cpta":
-
                 logging.info(
                     f"  {count:3d} Processing Continuous Performance Trending "
                     f"and Analysis ..."
@@ -886,26 +809,84 @@ class Specification:
                 self._parse_elements_cpta(element)
                 count += 1
 
-        logging.info(u"Done.")
+    def _prepare_input(self):
+        """Use information from data sets and generate list of jobs and builds
+        to download.
+        """
+
+        logging.info(u"Parsing specification: INPUT")
+
+        for data_set in self.data_sets.values():
+            if data_set == "data-sets":
+                continue
+            for job, builds in data_set.items():
+                for build in builds:
+                    self.add_build(
+                        job,
+                        {
+                            u"build": build,
+                            u"status": None,
+                            u"file-name": None,
+                            u"source": None
+                        }
+                    )
+
+        if self.environment[u"reverse-input"]:
+            for builds in self.input.values():
+                builds.sort(key=lambda k: k[u"build"], reverse=True)
 
     def read_specification(self):
-        """Parse specification in the specification YAML file.
+        """Parse specification in the specification YAML files.
 
         :raises: PresentationError if an error occurred while parsing the
             specification file.
         """
-        try:
-            self._cfg_yaml = load(self._cfg_file, Loader=FullLoader)
-        except YAMLError as err:
-            raise PresentationError(msg=u"An error occurred while parsing the "
-                                        u"specification file.",
-                                    details=repr(err))
+
+        # It always starts with environment.yaml file, it must be present.
+        spec_file = join(self._cfg_dir, u"environment.yaml")
+        logging.info(f"Reading {spec_file}")
+        if not exists(spec_file):
+            raise PresentationError(f"The file {spec_file} does not exist.")
+
+        with open(spec_file, u"r") as file_read:
+            try:
+                self._cfg_yaml = load(file_read, Loader=FullLoader)
+            except YAMLError as err:
+                raise PresentationError(
+                    f"An error occurred while parsing the specification file "
+                    f"{spec_file}",
+                    details=repr(err)
+                )
+
+        # Load the other specification files specified in the environment.yaml
+        idx = self._get_type_index(u"environment")
+        if idx is None:
+            raise PresentationError(
+                f"No environment defined in the file {spec_file}"
+            )
+        for spec_file in self._cfg_yaml[idx].get(u"spec-files", tuple()):
+            logging.info(f"Reading {spec_file}")
+            if not exists(spec_file):
+                raise PresentationError(f"The file {spec_file} does not exist.")
+            spec = None
+            with open(spec_file, u"r") as file_read:
+                try:
+                    spec = load(file_read, Loader=FullLoader)
+                except YAMLError as err:
+                    raise PresentationError(
+                        f"An error occurred while parsing the specification "
+                        f"file {spec_file}",
+                        details=repr(err)
+                    )
+            if spec:
+                self._cfg_yaml.extend(spec)
 
         self._parse_env()
-        self._parse_configuration()
-        self._parse_input()
+        self._parse_layouts()
+        self._parse_data_sets()
         self._parse_output()
         self._parse_static()
         self._parse_elements()
+        self._prepare_input()
 
-        logging.debug(f"Specification: \n{pformat(self._specification)}")
+        logging.debug(f"Specification: \n{pformat(self.specification)}")

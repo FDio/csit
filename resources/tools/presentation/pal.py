@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""CSIT Presentation and analytics layer.
+"""CSIT Presentation and Analytics Layer.
 """
 
 import sys
@@ -19,16 +19,19 @@ import argparse
 import logging
 
 from pal_errors import PresentationError
-from environment import Environment, clean_environment
 from specification_parser import Specification
+from environment import Environment, clean_environment
+from static_content import prepare_static_content
 from input_data_parser import InputData
 from generator_tables import generate_tables
 from generator_plots import generate_plots
 from generator_files import generate_files
-from static_content import prepare_static_content
 from generator_report import generate_report
 from generator_cpta import generate_cpta
 from generator_alerts import Alerting, AlertingError
+
+
+OUTPUTS = (u"none", u"report", u"trending", u"convert_to_json")
 
 
 def parse_args():
@@ -45,7 +48,7 @@ def parse_args():
     parser.add_argument(
         u"-s", u"--specification",
         required=True,
-        type=argparse.FileType(u'r'),
+        type=str,
         help=u"Specification YAML file."
     )
     parser.add_argument(
@@ -62,7 +65,9 @@ def parse_args():
     )
     parser.add_argument(
         u"-l", u"--logging",
-        choices=[u"DEBUG", u"INFO", u"WARNING", u"ERROR", u"CRITICAL"],
+        choices=[
+            u"NOTSET", u"DEBUG", u"INFO", u"WARNING", u"ERROR", u"CRITICAL"
+        ],
         default=u"ERROR",
         help=u"Logging level."
     )
@@ -103,33 +108,38 @@ def parse_args():
 def main():
     """Main function."""
 
-    log_levels = {u"NOTSET": logging.NOTSET,
-                  u"DEBUG": logging.DEBUG,
-                  u"INFO": logging.INFO,
-                  u"WARNING": logging.WARNING,
-                  u"ERROR": logging.ERROR,
-                  u"CRITICAL": logging.CRITICAL}
+    log_levels = {
+        u"NOTSET": logging.NOTSET,
+        u"DEBUG": logging.DEBUG,
+        u"INFO": logging.INFO,
+        u"WARNING": logging.WARNING,
+        u"ERROR": logging.ERROR,
+        u"CRITICAL": logging.CRITICAL
+    }
 
     args = parse_args()
-    logging.basicConfig(format=u"%(asctime)s: %(levelname)s: %(message)s",
-                        datefmt=u"%Y/%m/%d %H:%M:%S",
-                        level=log_levels[args.logging])
+    logging.basicConfig(
+        format=u"%(asctime)s: %(levelname)s: %(message)s",
+        datefmt=u"%Y/%m/%d %H:%M:%S",
+        level=log_levels[args.logging]
+    )
 
     logging.info(u"Application started.")
+
     try:
         spec = Specification(args.specification)
         spec.read_specification()
-    except PresentationError:
+    except PresentationError as err:
         logging.critical(u"Finished with error.")
         return 1
 
-    if spec.output[u"output"] not in (u"none", u"report", u"trending"):
+    if spec.output[u"output"] not in OUTPUTS:
         logging.critical(
             f"The output {spec.output[u'output']} is not supported."
         )
         return 1
 
-    ret_code = 1
+    return_code = 1
     try:
         env = Environment(spec.environment, args.force)
         env.set_environment()
@@ -164,7 +174,7 @@ def main():
             logging.info("No output will be generated.")
 
         logging.info(u"Successfully finished.")
-        ret_code = 0
+        return_code = 0
 
     except AlertingError as err:
         logging.critical(f"Finished with an alerting error.\n{repr(err)}")
@@ -175,7 +185,7 @@ def main():
     finally:
         if spec is not None:
             clean_environment(spec.environment)
-    return ret_code
+    return return_code
 
 
 if __name__ == u"__main__":
