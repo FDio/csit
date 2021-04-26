@@ -104,7 +104,7 @@ python pal.py --help
 
 if [[ ${filename} != "" ]]; then
     python pal.py \
-        --specification specification_local.yaml \
+        --specification specifications/report_local \
         --release ${release} \
         --week ${week} \
         --logging INFO \
@@ -114,7 +114,7 @@ fi
 
 if [[ ${directoryname} != "" ]]; then
     python pal.py \
-        --specification specification_local.yaml \
+        --specification specifications/report_local \
         --release ${release} \
         --week ${week} \
         --logging INFO \

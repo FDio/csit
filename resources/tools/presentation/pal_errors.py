@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,11 +29,13 @@ class PresentationError(Exception):
      - relevant data if there are any collected (optional parameter details).
     """
 
-    log_exception = {u"DEBUG": logging.debug,
-                     u"INFO": logging.info,
-                     u"WARNING": logging.warning,
-                     u"ERROR": logging.error,
-                     u"CRITICAL": logging.critical}
+    log_level = {
+        u"DEBUG": logging.debug,
+        u"INFO": logging.info,
+        u"WARNING": logging.warning,
+        u"ERROR": logging.error,
+        u"CRITICAL": logging.critical
+    }
 
     def __init__(self, msg, details=u'', level=u"CRITICAL"):
         """Sets the exception message and the level.
@@ -55,9 +57,9 @@ class PresentationError(Exception):
         self._level = level
 
         try:
-            self.log_exception[self._level](self._msg)
+            self.log_level[self._level](self._msg)
             if self._details:
-                self.log_exception[self._level](self._details)
+                self.log_level[self._level](self._details)
         except KeyError:
             print(u"Wrong log level.")
             sys.exit(1)
