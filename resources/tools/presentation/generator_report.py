@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -87,7 +87,7 @@ THEME_OVERRIDES = u"""/* override table width restrictions */
 """
 
 # Command to build the html format of the report
-HTML_BUILDER = u'sphinx-build -v -c . -a ' \
+HTML_BUILDER = u'sphinx-build -v -c sphinx_conf/report -a ' \
                u'-b html -E ' \
                u'-t html ' \
                u'-D release={release} ' \
@@ -96,7 +96,7 @@ HTML_BUILDER = u'sphinx-build -v -c . -a ' \
                u'{build_dir}/'
 
 # Command to build the pdf format of the report
-PDF_BUILDER = u'sphinx-build -v -c . -a ' \
+PDF_BUILDER = u'sphinx-build -v -c sphinx_conf/report -a ' \
               u'-b latex -E ' \
               u'-t latex ' \
               u'-D release={release} ' \

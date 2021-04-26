@@ -18,7 +18,7 @@ virtualenv -p $(which python3) ${DIR[WORKING]}/env
 source ${DIR[WORKING]}/env/bin/activate
 
 # FIXME: Temporary hack until all docker dns will be solved
-echo "nameserver 172.17.0.1" > /etc/resolv.conf
+# echo "nameserver 172.17.0.1" > /etc/resolv.conf
 
 # Install python dependencies:
 pip3 install -r requirements.txt
@@ -26,9 +26,9 @@ pip3 install -r requirements.txt
 export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 
 python pal.py \
-    --specification specification.yaml \
+    --specification specifications/report \
     --release ${RELEASE} \
-    --week "09" \
+    --week "17" \
     --logging INFO \
     --force
 
