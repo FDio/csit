@@ -1,0 +1,272 @@
+################################################################################
+###                          E N V I R O N M E N T                           ###
+################################################################################
+
+- type: "environment"
+
+  spec-files:
+    - "specifications/report/data_sets.yaml"
+    - "specifications/report/layouts.yaml"
+    - "specifications/report/elements.yaml"
+
+  paths:
+    # Top level directories:
+    ## Working directory
+    DIR[WORKING]: "_tmp"
+    ## Build directories
+    DIR[BUILD,HTML]: "_build"
+    DIR[BUILD,LATEX]: "_build_latex"
+
+    # Static .rst files
+    DIR[RST]: "../../../docs/report"
+
+    # Working directories
+    ## Input data files (.zip, .xml)
+    DIR[WORKING,DATA]: "{DIR[WORKING]}/data"
+    ## Static source files from git
+    DIR[WORKING,SRC]: "{DIR[WORKING]}/src"
+    DIR[WORKING,SRC,STATIC]: "{DIR[WORKING,SRC]}/_static"
+
+    # Static html content
+    DIR[STATIC]: "{DIR[BUILD,HTML]}/_static"
+    DIR[STATIC,VPP]: "{DIR[STATIC]}/vpp"
+    DIR[STATIC,DPDK]: "{DIR[STATIC]}/dpdk"
+    DIR[STATIC,ARCH]: "{DIR[STATIC]}/archive"
+
+    # Detailed test results
+    DIR[DTR]: "{DIR[WORKING,SRC]}/detailed_test_results"
+    DIR[DTR,PERF,DPDK,3N,HSW]: "{DIR[DTR]}/dpdk_performance_results_3n_hsw"
+    DIR[DTR,PERF,DPDK,3N,SKX]: "{DIR[DTR]}/dpdk_performance_results_3n_skx"
+    DIR[DTR,PERF,DPDK,2N,SKX]: "{DIR[DTR]}/dpdk_performance_results_2n_skx"
+    DIR[DTR,PERF,DPDK,2N,ZN2]: "{DIR[DTR]}/dpdk_performance_results_2n_zn2"
+    DIR[DTR,PERF,DPDK,2N,CLX]: "{DIR[DTR]}/dpdk_performance_results_2n_clx"
+    DIR[DTR,PERF,DPDK,2N,DNV]: "{DIR[DTR]}/dpdk_performance_results_2n_dnv"
+    DIR[DTR,PERF,DPDK,3N,DNV]: "{DIR[DTR]}/dpdk_performance_results_3n_dnv"
+    DIR[DTR,PERF,DPDK,3N,TSH]: "{DIR[DTR]}/dpdk_performance_results_3n_tsh"
+    DIR[DTR,PERF,DPDK,2N,TX2]: "{DIR[DTR]}/dpdk_performance_results_2n_tx2"
+    DIR[DTR,PERF,VPP,ALL]: "{DIR[DTR]}/vpp_performance_results"
+    DIR[DTR,PERF,VPP,3N,HSW]: "{DIR[DTR]}/vpp_performance_results_3n_hsw"
+    DIR[DTR,PERF,VPP,3N,SKX]: "{DIR[DTR]}/vpp_performance_results_3n_skx"
+    DIR[DTR,PERF,VPP,2N,SKX]: "{DIR[DTR]}/vpp_performance_results_2n_skx"
+    DIR[DTR,PERF,VPP,2N,ZN2]: "{DIR[DTR]}/vpp_performance_results_2n_zn2"
+    DIR[DTR,PERF,VPP,2N,CLX]: "{DIR[DTR]}/vpp_performance_results_2n_clx"
+    DIR[DTR,PERF,VPP,2N,ICX]: "{DIR[DTR]}/vpp_performance_results_2n_icx"
+    DIR[DTR,PERF,VPP,3N,TSH]: "{DIR[DTR]}/vpp_performance_results_3n_tsh"
+    DIR[DTR,PERF,VPP,2N,TX2]: "{DIR[DTR]}/vpp_performance_results_2n_tx2"
+    DIR[DTR,PERF,VPP,3N,DNV]: "{DIR[DTR]}/vpp_performance_results_3n_dnv"
+    DIR[DTR,PERF,VPP,2N,DNV]: "{DIR[DTR]}/vpp_performance_results_2n_dnv"
+    DIR[DTR,MRR,VPP,ALL]: "{DIR[DTR]}/vpp_mrr_results"
+    DIR[DTR,MRR,VPP,3N,HSW]: "{DIR[DTR]}/vpp_mrr_results_3n_hsw"
+    DIR[DTR,MRR,VPP,3N,SKX]: "{DIR[DTR]}/vpp_mrr_results_3n_skx"
+    DIR[DTR,MRR,VPP,2N,SKX]: "{DIR[DTR]}/vpp_mrr_results_2n_skx"
+    DIR[DTR,MRR,VPP,2N,ZN2]: "{DIR[DTR]}/vpp_mrr_results_2n_zn2"
+    DIR[DTR,MRR,VPP,2N,CLX]: "{DIR[DTR]}/vpp_mrr_results_2n_clx"
+    DIR[DTR,MRR,VPP,2N,ICX]: "{DIR[DTR]}/vpp_mrr_results_2n_icx"
+    DIR[DTR,MRR,VPP,3N,TSH]: "{DIR[DTR]}/vpp_mrr_results_3n_tsh"
+    DIR[DTR,MRR,VPP,2N,TX2]: "{DIR[DTR]}/vpp_mrr_results_2n_tx2"
+    DIR[DTR,MRR,VPP,3N,DNV]: "{DIR[DTR]}/vpp_mrr_results_3n_dnv"
+    DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
+    DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
+
+    # Detailed test configurations
+    DIR[DTC]: "{DIR[WORKING,SRC]}/test_configuration"
+    DIR[DTC,PERF,VPP,ALL]: "{DIR[DTC]}/vpp_performance_configuration"
+    DIR[DTC,PERF,VPP,3N,HSW]: "{DIR[DTC]}/vpp_performance_configuration_3n_hsw"
+    DIR[DTC,PERF,VPP,3N,SKX]: "{DIR[DTC]}/vpp_performance_configuration_3n_skx"
+    DIR[DTC,PERF,VPP,2N,SKX]: "{DIR[DTC]}/vpp_performance_configuration_2n_skx"
+    DIR[DTC,PERF,VPP,2N,ZN2]: "{DIR[DTC]}/vpp_performance_configuration_2n_zn2"
+    DIR[DTC,PERF,VPP,2N,CLX]: "{DIR[DTC]}/vpp_performance_configuration_2n_clx"
+    DIR[DTC,PERF,VPP,2N,ICX]: "{DIR[DTC]}/vpp_performance_configuration_2n_icx"
+    DIR[DTC,PERF,VPP,3N,TSH]: "{DIR[DTC]}/vpp_performance_configuration_3n_tsh"
+    DIR[DTC,PERF,VPP,2N,TX2]: "{DIR[DTC]}/vpp_performance_configuration_2n_tx2"
+    DIR[DTC,PERF,VPP,3N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_3n_dnv"
+    DIR[DTC,PERF,VPP,2N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_2n_dnv"
+    DIR[DTC,MRR,VPP,ALL]: "{DIR[DTC]}/vpp_mrr_configuration"
+    DIR[DTC,MRR,VPP,3N,HSW]: "{DIR[DTC]}/vpp_mrr_configuration_3n_hsw"
+    DIR[DTC,MRR,VPP,3N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_3n_skx"
+    DIR[DTC,MRR,VPP,2N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_2n_skx"
+    DIR[DTC,MRR,VPP,2N,ZN2]: "{DIR[DTC]}/vpp_mrr_configuration_2n_zn2"
+    DIR[DTC,MRR,VPP,2N,CLX]: "{DIR[DTC]}/vpp_mrr_configuration_2n_clx"
+    DIR[DTC,MRR,VPP,2N,ICX]: "{DIR[DTC]}/vpp_mrr_configuration_2n_icx"
+    DIR[DTC,MRR,VPP,3N,TSH]: "{DIR[DTC]}/vpp_mrr_configuration_3n_tsh"
+    DIR[DTC,MRR,VPP,2N,TX2]: "{DIR[DTC]}/vpp_mrr_configuration_2n_tx2"
+    DIR[DTC,MRR,VPP,3N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_3n_dnv"
+    DIR[DTC,MRR,VPP,2N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_2n_dnv"
+    DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTC]}/vpp_device_configuration_ubuntu"
+
+    # Detailed tests operational data
+    DIR[DTO]: "{DIR[WORKING,SRC]}/test_operational_data"
+    DIR[DTO,PERF,VPP,ALL]: "{DIR[DTO]}/vpp_performance_operational_data"
+    DIR[DTO,PERF,VPP,3N,HSW]: "{DIR[DTO]}/vpp_performance_operational_data_3n_hsw"
+    DIR[DTO,PERF,VPP,3N,SKX]: "{DIR[DTO]}/vpp_performance_operational_data_3n_skx"
+    DIR[DTO,PERF,VPP,2N,SKX]: "{DIR[DTO]}/vpp_performance_operational_data_2n_skx"
+    DIR[DTO,PERF,VPP,2N,ZN2]: "{DIR[DTO]}/vpp_performance_operational_data_2n_zn2"
+    DIR[DTO,PERF,VPP,2N,CLX]: "{DIR[DTO]}/vpp_performance_operational_data_2n_clx"
+    DIR[DTO,PERF,VPP,2N,ICX]: "{DIR[DTO]}/vpp_performance_operational_data_2n_icx"
+    DIR[DTO,PERF,VPP,3N,TSH]: "{DIR[DTO]}/vpp_performance_operational_data_3n_tsh"
+    DIR[DTO,PERF,VPP,2N,TX2]: "{DIR[DTO]}/vpp_performance_operational_data_2n_tx2"
+    DIR[DTO,PERF,VPP,3N,DNV]: "{DIR[DTO]}/vpp_performance_operational_data_3n_dnv"
+    DIR[DTO,PERF,VPP,2N,DNV]: "{DIR[DTO]}/vpp_performance_operational_data_2n_dnv"
+
+    # Latencies:
+    DIR[LAT,VPP]: "{DIR[WORKING,SRC]}/vpp_performance_tests/hdrh_packet_latency_by_percentile_graphs"
+    DIR[LAT,DPDK]: "{DIR[WORKING,SRC]}/dpdk_performance_tests/hdrh_packet_latency_by_percentile_graphs"
+
+    # .css patch file to fix tables generated by Sphinx
+    DIR[CSS_PATCH_FILE]: "{DIR[STATIC]}/theme_overrides.css"
+    DIR[CSS_PATCH_FILE2]: "{DIR[WORKING,SRC,STATIC]}/theme_overrides.css"
+
+  # Data sources are used in this order:
+  data-sources:
+    # JSON from S3
+    - type: "json"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/json/{filename}"
+      file-name: "output.json.gz"
+      file-format: ".gz"
+      enabled: False
+    # XML from S3
+    - type: "xml"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/archives/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: False
+    - type: "xml"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/archives/{filename}"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: False
+    - type: "xml"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: False
+    - type: "xml"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: False
+    # XML from logs.nexus
+    - type: "xml"
+      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/archives/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml"
+      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/archives/{filename}"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml"
+      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml"
+      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    # XML from docs.nexus
+    - type: "xml-docs"
+      url: "https://docs.fd.io/csit"
+      path: "report/_static/archive"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml-docs"
+      url: "https://docs.fd.io/csit"
+      path: "report/_static/archive"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml-docs"
+      url: "https://docs.fd.io/csit"
+      path: "report/_static/archive"
+      file-name: "robot-plugin.zip"
+      file-format: ".zip"
+      enabled: True
+
+  archive-inputs: True
+
+  make-dirs:
+  # List the directories which are created while preparing the environment.
+  # All directories MUST be defined in "paths" section.
+    - "DIR[WORKING,DATA]"
+    - "DIR[STATIC,VPP]"
+    - "DIR[STATIC,DPDK]"
+    - "DIR[STATIC,ARCH]"
+    - "DIR[BUILD,LATEX]"
+    - "DIR[WORKING,SRC]"
+    - "DIR[WORKING,SRC,STATIC]"
+
+  remove-dirs:
+  # List the directories which are deleted while cleaning the environment.
+  # All directories MUST be defined in "paths" section.
+  #  - "DIR[BUILD,HTML]"
+    - "DIR[WORKING,DATA]"
+
+  build-dirs:
+  # List the directories where the results (build) is stored.
+  # All directories MUST be defined in "paths" section.
+    - "DIR[BUILD,HTML]"
+    - "DIR[BUILD,LATEX]"
+
+  reverse-input: False  # Needed for trending, not important for the report
+
+  # Number of days from now to the past. Only files generated in this
+  # time period are used.
+  # Only for trending
+  time-period: 180
+
+  # TODO: Change in code needed, it was in type: "configuration"
+  limits:
+    nic:
+      x520: 24460000
+      x553: 29761905
+      x710: 35800000
+      xxv710: 35800000
+      xl710: 35800000
+      cx556a: 148809523.81
+      e810cq: 148809523.81
+
+    link:
+      10ge: 14880952.38
+      25ge: 37202380.95
+      40ge: 59523809.52
+      100ge: 148809523.81
+
+    pci:
+      pci-g3-x8: 74404761.90
+      pci-g3-x16: 148809523.81
+
+################################################################################
+###                               S T A T I C                                ###
+################################################################################
+
+- type: "static"
+  src-path: "{DIR[RST]}"
+  dst-path: "{DIR[WORKING,SRC]}"
+
+################################################################################
+###                               O U T P U T                                ###
+################################################################################
+
+- type: "output"
+  arch-file-format:  # moved from input, TODO: change it in the code
+    - ".gz"
+    - ".zip"
+  output: "report"
+  format:
+    html:
+    - full
+#     pdf:
+#     - minimal
