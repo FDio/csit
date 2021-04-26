@@ -32,8 +32,6 @@ from requests import codes
 
 from urllib3.exceptions import HTTPError
 
-from pal_errors import PresentationError
-
 
 # Chunk size used for file download
 CHUNK_SIZE = 512
@@ -96,27 +94,19 @@ def _download_file(url, file_name, arch=False, verify=True, repeat=1):
         repeat -= 1
         session = None
         try:
-            logging.info(f"    Connecting to {url} ...")
+            logging.info(f"  Connecting to {url} ...")
             session = requests_retry_session()
             response = session.get(url, stream=True, verify=verify)
             code = response.status_code
-            logging.info(f"    {code}: {responses[code]}")
+            logging.info(f"  {code}: {responses[code]}")
 
             if code != codes[u"OK"]:
                 if session:
                     session.close()
-                url = url.replace(u"_info", u"")
-                logging.info(f"    Connecting to {url} ...")
-                session = requests_retry_session()
-                response = session.get(url, stream=True, verify=verify)
-                code = response.status_code
-                logging.info(f"    {code}: {responses[code]}")
-                if code != codes[u"OK"]:
-                    return False, file_name
-                file_name = file_name.replace(u"_info", u"")
+                return False, file_name
 
             dst_file_name = file_name.replace(u".gz", u"")
-            logging.info(f"    Downloading the file {url} to {dst_file_name}")
+            logging.info(f"  Downloading the file {url} to {dst_file_name}")
             with open(dst_file_name, u"wb") as file_handle:
                 for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
                     if chunk:
@@ -125,7 +115,7 @@ def _download_file(url, file_name, arch=False, verify=True, repeat=1):
             if arch and u".gz" in file_name:
                 if session:
                     session.close()
-                logging.info(f"    Downloading the file {url} to {file_name}")
+                logging.info(f"  Downloading the file {url} to {file_name}")
                 session = requests_retry_session()
                 response = session.get(url, stream=True, verify=verify)
                 if response.status_code == codes[u"OK"]:
@@ -148,8 +138,6 @@ def _download_file(url, file_name, arch=False, verify=True, repeat=1):
         finally:
             if session:
                 session.close()
-
-    logging.info(u"    Download finished.")
     return success, file_name
 
 
@@ -165,11 +153,7 @@ def _unzip_file(spec, build, pid):
     """
 
     file_name = build[u"file-name"]
-    if u".zip" in file_name:
-        data_file = spec.input[u"zip-extract"]
-    else:
-        data_file = spec.input[u"extract"]
-
+    data_file = "robot-plugin/output.xml"
     directory = spec.environment[u"paths"][u"DIR[WORKING,DATA]"]
     tmp_dir = join(directory, str(pid))
     try:
@@ -197,6 +181,95 @@ def _unzip_file(spec, build, pid):
         return False
 
 
+def _download_json(source, job, build, w_dir, arch):
+    """
+
+    :param source:
+    :param job:
+    :param build:
+    :param w_dir: Path to working directory
+    :param arch:
+    :return:
+    """
+    success = False
+    downloaded_name = u""
+
+    return success, downloaded_name
+
+
+def _download_xml(source, job, build, w_dir, arch):
+    """
+
+    :param source:
+    :param job:
+    :param build:
+    :param w_dir: Path to working directory
+    :param arch:
+    :return:
+    """
+
+    file_name = source.get(u"file-name", u"")
+    new_name = join(
+        w_dir,
+        f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+    )
+    url = u"{0}/{1}".format(
+        source.get(u"url", u""),
+        source.get(u"path", u"").format(
+            job=job, build=build[u'build'], filename=file_name
+        )
+    )
+    verify = False if u"nginx" in url else True
+    logging.info(f"  Trying to download {url}")
+    success, downloaded_name = _download_file(
+        url, new_name, arch=arch, verify=verify, repeat=3
+    )
+    return success, downloaded_name
+
+
+def _download_xml_docs(source, job, build, w_dir, arch):
+    """
+
+    :param source:
+    :param job:
+    :param build:
+    :param w_dir: Path to working directory
+    :param arch:
+    :return:
+    """
+
+    file_name = source.get(u"file-name", u"")
+    release = re.search(REGEX_RELEASE, job).group(2)
+    for rls in (release, u"master"):
+        try:
+            rls = f"rls{int(rls)}"
+        except ValueError:
+            pass  # It is master
+        url = (
+            f"{source.get(u'url', u'')}/"
+            f"{rls}/"
+            f"{source.get(u'path', u'')}/"
+            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+        )
+        new_name = join(
+            w_dir,
+            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+        )
+
+        logging.info(f"  Trying to download {url}")
+
+        success, downloaded_name = _download_file(url, new_name, arch=arch)
+        if success:
+            if file_name.endswith(u".gz"):
+                with gzip.open(downloaded_name[:-3], u"rb") as gzip_file:
+                    file_content = gzip_file.read()
+                with open(downloaded_name[:-3], u"wb") as xml_file:
+                    xml_file.write(file_content)
+            break
+
+    return success, downloaded_name
+
+
 def download_and_unzip_data_file(spec, job, build, pid):
     """Download and unzip a source file.
 
@@ -212,108 +285,46 @@ def download_and_unzip_data_file(spec, job, build, pid):
     :rtype: bool
     """
 
+    download = {
+        "json": _download_json,
+        "xml": _download_xml,
+        "xml-docs": _download_xml_docs
+    }
+
     success = False
-
-    file_name = spec.input[u"file-name"]
-    new_name = join(
-        spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
-        f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
-    )
-    arch = bool(spec.configuration.get(u"archive-inputs", True))
     downloaded_name = u""
+    arch = bool(spec.environment.get(u"archive-inputs", True))
 
-    # Try to download .gz from s3_storage
-    for path in spec.input[u'download-path']:
-        url = u"{0}/{1}".format(
-            spec.environment[u'urls'][u'URL[S3_STORAGE,LOG]'],
-            path.format(job=job, build=build[u'build'], filename=file_name)
-        )
-        logging.info(f"Trying to download {url}")
-        success, downloaded_name = _download_file(
-            url, new_name, arch=arch, verify=False, repeat=3
-        )
+    for source in spec.environment.get(u"data-sources", tuple()):
+        if not source.get(u"enabled", False):
+            continue
+        download_type = source.get(u"type", None)
+        if not download_type:
+            continue
+        success, downloaded_name = download[download_type](
+                source,
+                job,
+                build,
+                spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+                arch
+            )
         if success:
+            source[u"successful-downloads"] += 1
+            build[u"source"] = source[u"type"]
             break
 
-    if not success:
-        # Try to download .gz from logs.fd.io
-        for path in spec.input[u'download-path']:
-            url = u"{0}/{1}".format(
-                spec.environment[u'urls'][u'URL[NEXUS,LOG]'],
-                path.format(job=job, build=build[u'build'], filename=file_name)
-            )
-            logging.info(f"Trying to download {url}")
-            success, downloaded_name = _download_file(
-                url, new_name, arch=arch, verify=True, repeat=3
-            )
-            if success:
-                break
-
-    if not success:
-        # Try to download .gz or .zip from docs.fd.io
-        file_name = (spec.input[u"file-name"], spec.input[u"zip-file-name"])
-        release = re.search(REGEX_RELEASE, job).group(2)
-        for idx, rls in enumerate((release, u"master", )):
-            try:
-                rls = f"rls{int(rls)}"
-            except ValueError:
-                # It is master
-                pass
-            url = (
-                f"{spec.environment[u'urls'][u'URL[NEXUS,DOC]']}/"
-                f"{rls}/"
-                f"{spec.environment[u'urls'][u'DIR[NEXUS,DOC]']}/"
-                f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name[idx]}"
-            )
-
-            logging.info(f"Downloading {url}")
-
-            new_name = join(
-                spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
-                f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name[idx]}"
-            )
-            success, downloaded_name = _download_file(url, new_name, arch=arch)
-            if success:
-                file_name = file_name[idx]
-                if file_name.endswith(u".gz"):
-                    with gzip.open(downloaded_name[:-3], u"rb") as gzip_file:
-                        file_content = gzip_file.read()
-                    with open(downloaded_name[:-3], u"wb") as xml_file:
-                        xml_file.write(file_content)
-                break
-
-    # if not success:
-    #     # Try to download .zip from jenkins.fd.io
-    #     file_name = spec.input[u"zip-file-name"]
-    #     download_path = spec.input[u"zip-download-path"]
-    #     if job.startswith(u"csit-"):
-    #         url = spec.environment[u"urls"][u"URL[JENKINS,CSIT]"]
-    #     else:
-    #         raise PresentationError(f"No url defined for the job {job}.")
-    #
-    #     full_name = download_path.format(
-    #         job=job, build=build[u"build"], filename=file_name
-    #     )
-    #     url = u"{0}/{1}".format(url, full_name)
-    #     new_name = join(
-    #         spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
-    #         f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
-    #     )
-    #     logging.info(f"Downloading {url}")
-    #     success, downloaded_name = _download_file(url, new_name)
-
+    # TODO: Remove when only .gz is used.
     if success and downloaded_name.endswith(u".zip"):
         if not is_zipfile(downloaded_name):
-            logging.error(f"Zip file {new_name} is corrupted.")
+            logging.error(f"Zip file {downloaded_name} is corrupted.")
             success = False
 
     if success:
-        build[u"file-name"] = downloaded_name
-
-        if file_name.endswith(u".gz"):
+        if downloaded_name.endswith(u".gz"):
             build[u"file-name"] = downloaded_name[:-3]
-
-        if downloaded_name.endswith(u".zip"):
+        # TODO: Remove when only .gz is used.
+        elif downloaded_name.endswith(u".zip"):
+            build[u"file-name"] = downloaded_name
             success = _unzip_file(spec, build, pid)
 
     return success

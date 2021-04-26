@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -572,8 +572,9 @@ class ExecutionChecker(ResultVisitor):
         if msg.message.count(u"return STDOUT Version:") or \
                 msg.message.count(u"VPP Version:") or \
                 msg.message.count(u"VPP version:"):
-            self._version = str(re.search(self.REGEX_VERSION_VPP, msg.message).
-                                group(2))
+            self._version = str(
+                re.search(self.REGEX_VERSION_VPP, msg.message).group(2)
+            )
             self._data[u"metadata"][u"version"] = self._version
             self._msg_type = None
 
@@ -622,10 +623,12 @@ class ExecutionChecker(ResultVisitor):
                 self._data[u"tests"][self._test_id][u"conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          r"VAT command history:", u"",
-                          msg.message, count=1).replace(u'\n', u' |br| ').\
-                replace(u'"', u"'")
+            text = re.sub(
+                r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} VAT command history:",
+                u"",
+                msg.message,
+                count=1
+            ).replace(u'\n', u' |br| ').replace(u'"', u"'")
 
             self._data[u"tests"][self._test_id][u"conf-history"] += (
                 f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
@@ -644,10 +647,12 @@ class ExecutionChecker(ResultVisitor):
                 self._data[u"tests"][self._test_id][u"conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          r"PAPI command history:", u"",
-                          msg.message, count=1).replace(u'\n', u' |br| ').\
-                replace(u'"', u"'")
+            text = re.sub(
+                r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} PAPI command history:",
+                u"",
+                msg.message,
+                count=1
+            ).replace(u'\n', u' |br| ').replace(u'"', u"'")
             self._data[u"tests"][self._test_id][u"conf-history"] += (
                 f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
             )
@@ -1514,8 +1519,9 @@ class InputData:
                     f"Error occurred while parsing output.xml: {repr(err)}"
                 )
                 return None
-        checker = ExecutionChecker(metadata, self._cfg.mapping,
-                                   self._cfg.ignore)
+        checker = ExecutionChecker(
+            metadata, self._cfg.mapping, self._cfg.ignore
+        )
         result.visit(checker)
 
         return checker.data
@@ -1536,7 +1542,7 @@ class InputData:
         :type repeat: int
         """
 
-        logging.info(f"  Processing the job/build: {job}: {build[u'build']}")
+        logging.info(f"Processing the job/build: {job}: {build[u'build']}")
 
         state = u"failed"
         success = False
@@ -1554,7 +1560,7 @@ class InputData:
                 f"Skipped."
             )
         if success:
-            logging.info(f"    Processing data from build {build[u'build']}")
+            logging.info(f"  Processing data from build {build[u'build']}")
             data = self._parse_tests(job, build)
             if data is None:
                 logging.error(
@@ -1574,7 +1580,7 @@ class InputData:
         # If the time-period is defined in the specification file, remove all
         # files which are outside the time period.
         is_last = False
-        timeperiod = self._cfg.input.get(u"time-period", None)
+        timeperiod = self._cfg.environment.get(u"time-period", None)
         if timeperiod and data:
             now = dt.utcnow()
             timeperiod = timedelta(int(timeperiod))
@@ -1589,11 +1595,9 @@ class InputData:
                         data = None
                         is_last = True
                         logging.info(
-                            f"    The build {job}/{build[u'build']} is "
+                            f"  The build {job}/{build[u'build']} is "
                             f"outdated, will be removed."
                         )
-        logging.info(u"  Done.")
-
         return {
             u"data": data,
             u"state": state,
@@ -1613,7 +1617,7 @@ class InputData:
 
         logging.info(u"Downloading and parsing input files ...")
 
-        for job, builds in self._cfg.builds.items():
+        for job, builds in self._cfg.input.items():
             for build in builds:
 
                 result = self._download_and_parse_build(job, build, repeat)
@@ -1641,10 +1645,9 @@ class InputData:
                     if self._input_data.get(job, None) is None:
                         self._input_data[job] = pd.Series()
                     self._input_data[job][str(build_nr)] = build_data
-
                     self._cfg.set_input_file_name(
-                        job, build_nr, result[u"build"][u"file-name"])
-
+                        job, build_nr, result[u"build"][u"file-name"]
+                    )
                 self._cfg.set_input_state(job, build_nr, result[u"state"])
 
                 mem_alloc = \
@@ -1652,6 +1655,16 @@ class InputData:
                 logging.info(f"Memory allocation: {mem_alloc:.0f}MB")
 
         logging.info(u"Done.")
+
+        msg = f"Successful downloads from the sources:\n"
+        for source in self._cfg.environment[u"data-sources"]:
+            if source[u"successful-downloads"]:
+                msg += (
+                    f"{source[u'url']}/{source[u'path']}/"
+                    f"{source[u'file-name']}: "
+                    f"{source[u'successful-downloads']}\n"
+                )
+        logging.info(msg)
 
     def process_local_file(self, local_file, job=u"local", build_nr=1,
                            replace=True):
@@ -1683,7 +1696,7 @@ class InputData:
             u"file-name": local_file
         }
         if replace:
-            self._cfg.builds = dict()
+            self._cfg.input = dict()
         self._cfg.add_build(job, build)
 
         logging.info(f"Processing {job}: {build_nr:2d}: {local_file}")
@@ -1768,7 +1781,7 @@ class InputData:
             )
 
         if replace:
-            self._cfg.builds = dict()
+            self._cfg.input = dict()
 
         for job, files in local_builds.items():
             for idx, local_file in enumerate(files):

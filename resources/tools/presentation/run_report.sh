@@ -26,9 +26,9 @@ pip3 install -r requirements.txt
 export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 
 python pal.py \
-    --specification specification.yaml \
+    --specification specifications/report \
     --release ${RELEASE} \
-    --week "09" \
+    --week "18" \
     --logging INFO \
     --force
 

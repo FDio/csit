@@ -23,7 +23,7 @@ pip3 install -r requirements.txt
 export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
 
 STATUS=$(python pal.py \
-    --specification specification_CPTA.yaml \
+    --specification specifications/trending \
     --logging INFO \
     --force)
 RETURN_STATUS=$?
