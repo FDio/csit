@@ -1,0 +1,79 @@
+# CSIT progressions.
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm: 7
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm: 7
+64b-2t1c-avf-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-avf-eth-l2patch: 7
+64b-2t1c-avf-eth-l2xcbase: 7
+64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc: 5
+64b-2t1c-eth-l2xcbase: 7
+64b-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 5
+# CSIT regressions.
+64b-2t1c-avf-dot1q-ip4base: 7
+64b-2t1c-avf-dot1q-l2xcbase: 7
+64b-2t1c-avf-eth-l2bdscale1mmaclrn: 7
+64b-2t1c-avf-ethip4-ip4scale200k: 7
+64b-2t1c-avf-ethip4-ip4scale200k-rnd: 2
+64b-2t1c-avf-ethip4-ip4scale20k-rnd: 2
+64b-2t1c-avf-ethip4-ip4scale2m: 7
+64b-2t1c-avf-ethip4-ip4scale2m-rnd: 2
+64b-2t1c-avf-ethip4udp-ip4base-iacl50sf-10kflows: 1
+64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows: 1
+64b-2t1c-avf-ethip4udp-ip4base-nat44: 7
+64b-2t1c-avf-ethip4udp-ip4base-oacl50sf-10kflows: 1
+64b-2t1c-avf-ethip4udp-ip4base-oacl50sl-10kflows: 1
+64b-2t1c-ethip4-ip4scale200k-rnd: 2
+64b-2t1c-ethip4-ip4scale2m: 7
+64b-2t1c-ethip4-ip4scale2m-rnd: 2
+78b-2t1c-avf-ethip6-ip6scale20k: 7
+78b-2t1c-avf-ethip6-ip6base: 7
+
+# Multiline string, empty lines (or \n) are required,
+# see https://yaml-multiline.info/
+
+footnote: "
+    [1] DONE Apparent regression in ACL tests due to Gerrit 26112. With CSIT
+    using changed VPP API, instead of failing, misconfigured VPP passes
+    the test, albeit with reduced performance. [CSIT-1739]
+
+    [2] DONE Regression in tests using random flow sequencing due to
+    Gerrit 26456. Unpinned random seed to make TRex workers generate
+    different sequences of packets. [CSIT-1731]
+
+    [5] DONE Progression in tests with VPP (l2xc) inside a VM due to
+    Gerrit 25309. Make VPP in VM worker placement deterministic.
+    [CSIT-1738]
+
+    [7] POSTPONED Possible anomaly, but stdev of results is high.
+    Performance differences considered to probably be just noise.
+
+    [8] DONE Regressions in some tests with VPP in VM due to Gerrit
+    26744. Switch to clang-9 compiler identified as cause. Tests using
+    l2xcbase as vswitch with small stdev used for bisect. [CSIT-1741]
+
+    [9] OPEN Progression in all ip6 scale tests. Changes to vppinfra
+    bihash may have improved code efficiency. [CSIT-1735]
+
+    [11] OPEN Progression in memif tests, mainly in
+    avf-eth-l2xcbase-eth-2memif-1dcr. Two progression candidates found:
+    Gerrit 24053 and Gerrit 26744. Performance results are not consistent enough
+    to separate the two from other possible causes. [CSIT-1744]
+
+    [12] OPEN Progression in some l2bdscale tests. [CSIT-1745]
+
+    [13] DONE Stateless ACL tests have the same performance in 2005.0-4
+    as in 2001.0-2. The difference shown here is inflated by an API
+    change, see [1]. [CSIT-1739]
+
+    [14] DONE Stateful ACL tests have better performance in 2005.0-4 as
+    in 2001.0-2. The CSIT part of API change, Gerrit 26112, has fixed
+    an earlier CSIT regression in the same tests. The difference shown here
+    is further inflated by the API mismatch, see [1]. [CSIT-1739]
+
+    [15] OPEN Progression in nat44 test (not scale ones). [CSIT-1747]
+
+    [17] OPEN Progression in some vhost tests (dpdk in VM). [CSIT-1749]
+"

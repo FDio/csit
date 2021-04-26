@@ -1,0 +1,24 @@
+# VPP progressions.
+1518b-2t1c-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha: 16
+64b-2t1c-avf-eth-l2bdscale100kmaclrn: 12
+64b-2t1c-avf-eth-l2bdscale10kmaclrn: 12
+64b-2t1c-avf-eth-l2xcbase-eth-2memif-1dcr: 11
+64b-2t1c-avf-eth-l2xcbase-eth-2memif-1lxc: 11
+64b-2t1c-avf-dot1q-l2bdbasemaclrn-eth-2memif-1dcr: 11
+64b-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm: 17
+64b-2t1c-avf-ethip4-ip4base-eth-2vhostvr1024-1vm: 7
+64b-2t1c-eth-l2bdbasemaclrn-eth-2memif-1lxc: 11
+64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm: 17
+64b-2t1c-ethip4-ip4base-eth-2memif-1dcr: 11
+64b-2t1c-ethip4-ip4base-eth-2vhostvr1024-1vm: 17
+78b-2t1c-avf-dot1q-ip6base: 10
+78b-2t1c-avf-ethip6-ip6scale200k: 9
+78b-2t1c-avf-ethip6-ip6scale20k: 9
+78b-2t1c-avf-ethip6-ip6scale2m: 9
+78b-2t1c-ethip6-ip6scale2m: 9
+imix-2t1c-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha: 16
+# VPP regressions.
+64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc: 8
+64b-2t1c-avf-ethip4-ip4scale2m: 7
+
+# Footnotes are in RCA1 file.
