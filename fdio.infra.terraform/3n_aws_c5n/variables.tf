@@ -21,7 +21,7 @@ variable "ami_image" {
 variable "instance_type" {
   description = "AWS instance type"
   type = string
-  default = "c5n.4xlarge"
+  default = "c5n.9xlarge"
 }
 
 variable "testbed_name" {
