@@ -61,15 +61,15 @@ Vagrant.configure("2") do |config|
 
     MESSAGE
 
-    config.vm.define "focal", primary: true do |bionic|
+    config.vm.define "focal", primary: true do |focal|
         # Base box definition, currently using
         #  Official Ubuntu 20.04 LTS (Focal) Daily Build
-        bionic.vm.box = "ubuntu/focal64"
-        bionic.vm.box_version = "v20210407.0.0"
-        bionic.vm.box_check_update = false
+        focal.vm.box = "ubuntu/focal64"
+        focal.vm.box_version = "20210415.0.0"
+        focal.vm.box_check_update = false
 
         # Virtualbox machine configuration
-        bionic.vm.provider "virtualbox" do |vb|
+        focal.vm.provider "virtualbox" do |vb|
             vb.name = "vppdevice-focal"
             vb.gui = false
             vb.memory = "8192"
