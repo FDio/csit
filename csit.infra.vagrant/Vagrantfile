@@ -32,7 +32,9 @@ Vagrant.configure("2") do |config|
     # Provision the box using ansible local (no Ansible installation needed
     # on host).
     config.vm.provision "ansible_local" do |ansible|
-        ansible.version = "latest"
+        ansible.version = "2.10.8"
+        ansible.install_mode = "pip"
+        ansible.pip_install_cmd = "curl -s https://bootstrap.pypa.io/get-pip.py | sudo python3"
         ansible.become = true
         ansible.verbose = false
         ansible.limit = "vagrant"
