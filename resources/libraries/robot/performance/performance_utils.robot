@@ -214,7 +214,7 @@
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result[1]}
 | | ... | ${packet_loss_ratio}
-| | Check NDRPDR interval validity | ${result[0]}
+| | # No check for NDR, as we want to see PDR even if the check would fail.
 | | ${pdr} = | Set Variable | ${result[1].measured_low.target_tr}
 | | ${ndr} = | Set Variable | ${result[0].measured_low.target_tr}
 | | # We expect NDR and PDR to have different-looking stats.
