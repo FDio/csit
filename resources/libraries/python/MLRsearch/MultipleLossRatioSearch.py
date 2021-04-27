@@ -94,7 +94,7 @@ class MultipleLossRatioSearch:
             self, measurer, final_relative_width=0.005,
             final_trial_duration=30.0, initial_trial_duration=1.0,
             number_of_intermediate_phases=2, timeout=600.0, debug=None,
-            expansion_coefficient=2.0):
+            expansion_coefficient=2.0, fail_early=True):
         """Store the measurer object and additional arguments.
 
         :param measurer: Rate provider to use by this search object.
@@ -109,6 +109,9 @@ class MultipleLossRatioSearch:
             before this overall time [s].
         :param debug: Callable to use instead of logging.debug().
         :param expansion_coefficient: External search multiplies width by this.
+        :param fail_early: If false, narrow down higher ratio goals
+            even if lower ratio goals are hitting minimal rate.
+            If true, return early in that case (without achieving width goal).
         :type measurer: AbstractMeasurer.AbstractMeasurer
         :type final_relative_width: float
         :type final_trial_duration: float
@@ -117,6 +120,7 @@ class MultipleLossRatioSearch:
         :type timeout: float
         :type debug: Optional[Callable[[str], None]]
         :type expansion_coefficient: float
+        :type fail_early: bool
         """
         self.measurer = measurer
         self.final_trial_duration = float(final_trial_duration)
@@ -127,6 +131,7 @@ class MultipleLossRatioSearch:
         self.state = None
         self.debug = logging.debug if debug is None else debug
         self.expansion_coefficient = float(expansion_coefficient)
+        self.fail_early = bool(fail_early)
 
     def narrow_down_intervals(self, min_rate, max_rate, packet_loss_ratios):
         """Perform initial phase, create state object, proceed with next phases.
@@ -245,8 +250,10 @@ class MultipleLossRatioSearch:
                 if new_tr is None:
                     # Either this ratio is fine, or min rate got invalid result.
                     # If fine, we will continue to handle next ratio.
-                    if index > 0:
+                    if index > 0 or not self.fail_early:
                         # First ratio passed, all next have a valid lower bound.
+                        # Or, some ratios are failing, but we still want to
+                        # achieve the width goal on the remaining ratios.
                         continue
                     lower_bound, _, _, _, _, _ = database.get_bounds(ratio)
                     if lower_bound is None:

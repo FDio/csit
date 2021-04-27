@@ -1477,6 +1477,7 @@ class OptimizedSearch:
             ramp_up_duration=None,
             state_timeout=300.0,
             expansion_coefficient=4.0,
+            fail_early=False,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
@@ -1520,6 +1521,7 @@ class OptimizedSearch:
         :param ramp_up_duration: Duration of ramp-up trials [s].
         :param state_timeout: Time of life of DUT state [s].
         :param expansion_coefficient: In external search multiply width by this.
+        :param fail_early: If false, keep narrowing even if min rate has losses.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -1541,6 +1543,7 @@ class OptimizedSearch:
         :type ramp_up_duration: float
         :type state_timeout: float
         :type expansion_coefficient: float
+        :type fail_early: bool
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: List[Receiverateinterval]
@@ -1583,6 +1586,7 @@ class OptimizedSearch:
             timeout=timeout,
             debug=logger.debug,
             expansion_coefficient=expansion_coefficient,
+            fail_early=fail_early,
         )
         if packet_loss_ratio:
             packet_loss_ratios = [0.0, packet_loss_ratio]
