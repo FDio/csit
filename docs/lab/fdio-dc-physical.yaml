@@ -1,0 +1,472 @@
+---
+# file: fdio-dc-physical.yaml
+
+yul1:
+  rack:
+    name: yul1-10
+    facility_id: 3016.10
+    tenant: Linux Foundation
+    status: active
+    dimensions:
+      type: 4-post cabinet
+      width: 19 inches
+      height: 48U
+      - unit: 47
+        name: yul1-10-lb4m
+        oper_status: production
+        device_type: switch
+        serial_number: N/A
+        mgmt_ip4: N/A
+        lom_ip4: N/A
+        lom_type: N/A
+      - unit: 42..45
+        name: s2-t12-sut1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH06A20119
+        mgmt_ip4: 10.30.51.51
+        lom_ip4: 10.30.50.48
+        lom_type: ipmi
+      - unit: 38..41
+        name: s1-t11-sut1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH06A20154
+        mgmt_ip4: 10.30.51.50
+        lom_ip4: 10.30.50.47
+        lom_type: ipmi
+      - unit: 34-37
+        name: s3-t21-sut1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH06A20167
+        mgmt_ip4: 10.30.51.44
+        lom_ip4: 10.30.50.41
+        lom_type: ipmi
+      - unit: 30-33
+        name: s4-t21-tg1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH06A20158
+        mgmt_ip4: 10.30.51.45
+        lom_ip4: 10.30.50.42
+        lom_type: ipmi
+      - unit: 26-29
+        name: s5-t22-sut1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.52
+        lom_ip4: 10.30.50.49
+        lom_type: ipmi
+      - unit: 22-25
+        name: s6-t22-tg1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.53
+        lom_ip4: 10.30.50.50
+        lom_type: ipmi
+      - unit: 18-21
+        name: s7-t23-sut1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.54
+        lom_ip4: 10.30.50.51
+        lom_type: ipmi
+      - unit: 14-17
+        name: s8-t23-tg1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.55
+        lom_ip4: 10.30.50.52
+        lom_type: ipmi
+      - unit: 10-13
+        name: s9-t24-sut1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH06A20055
+        mgmt_ip4: 10.30.51.56
+        lom_ip4: 10.30.50.53
+        lom_type: ipmi
+      - unit: 6-9
+        name: s10-t24-tg1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH06A20196
+        mgmt_ip4: 10.30.51.57
+        lom_ip4: 10.30.50.54
+        lom_type: ipmi
+  rack:
+    name: yul1-11
+    facility_id: 3016.11
+    tenant: Linux Foundation
+    status: active
+    dimensions:
+      type: 4-post cabinet
+      width: 19 inches
+      height: 48U
+      - unit: 48
+        name: yul1-11-lb6m
+        oper_status: production
+        device_type: switch
+        serial_number: N/A
+        mgmt_ip4: N/A
+        lom_ip4: N/A
+        lom_type: N/A
+      - unit: 47
+        name: yul1-11-lf-tor-switch
+        oper_status: production
+        device_type: switch
+        serial_number: N/A
+        mgmt_ip4: N/A
+        lom_ip4: N/A
+        lom_type: N/A
+      - unit: 46
+        name: mtl1-6-7050QX-32
+        oper_status: production
+        device_type: switch
+        serial_number: N/A
+        mgmt_ip4: N/A
+        lom_ip4: N/A
+        lom_type: N/A
+      - unit: 45
+        name: fdio-marvell-dev
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.38
+        lom_ip4: 10.30.50.38
+        lom_type: ipmi
+      - unit: 44
+        name: s53-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.39
+        lom_ip4: 10.30.50.39
+        lom_type: ipmi
+      - unit: 43
+        name: s54-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.40
+        lom_ip4: 10.30.50.40
+        lom_type: ipmi
+      - unit: 41..42
+        name: s56-t37-sut1
+        oper_status: production
+        device_type: ThunderX2-9980
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.71
+        lom_ip4: 10.30.50.71
+        lom_type: ipmi
+      - unit: 39..40
+        name: s41-nomad
+        oper_status: production
+        device_type: UCSC-C240-M4SX
+        serial_number: FCH1950V1FQ
+        mgmt_ip4: 10.30.51.28
+        lom_ip4: 10.30.50.28
+        lom_type: cimc
+      - unit: 37..38
+        name: s40-nomad
+        oper_status: production
+        device_type: UCSC-C240-M4SX
+        serial_number: FCH2013V0HZ
+        mgmt_ip4: 10.30.51.30
+        lom_ip4: 10.30.50.30
+        lom_type: cimc
+      - unit: 35..36
+        name: s39-nomad
+        oper_status: production
+        device_type: UCSC-C240-M4SX
+        serial_number: FCH2013V0J2
+        mgmt_ip4: 10.30.51.29
+        lom_ip4: 10.30.50.29
+        lom_type: cimc
+      - unit: 34
+        name: s44-nomad
+        oper_status: production
+        device_type: UCSC-C220-M4S
+        serial_number: FCH2139V129
+        mgmt_ip4: 10.30.51.34
+        lom_ip4: 10.30.50.34
+        lom_type: cimc
+      - unit: 33
+        name: s45-nomad
+        oper_status: production
+        device_type: UCSC-C220-M4S
+        serial_number: FCH2139V166
+        mgmt_ip4: 10.30.51.35
+        lom_ip4: 10.30.50.35
+        lom_type: cimc
+      - unit: 31..32
+        name: s42-nomad
+        oper_status: production
+        device_type: UCSC-C240-M3S
+        serial_number: FCH1719V18Y
+        mgmt_ip4: 10.30.51.32
+        lom_ip4: 10.30.50.32
+        lom_type: cimc
+      - unit: 29..30
+        name: t1-tg1
+        oper_status: production
+        device_type: UCSC-C240-M4S
+        serial_number: FCH1950V1HM
+        mgmt_ip4: 10.30.51.16
+        lom_ip4: 10.30.50.16
+        lom_type: cimc
+      - unit: 27..28
+        name: t1-sut1
+        oper_status: production
+        device_type: UCSC-C240-M4S
+        serial_number: FCH1950V1KH
+        mgmt_ip4: 10.30.51.17
+        lom_ip4: 10.30.50.17
+        lom_type: cimc
+      - unit: 25..26
+        name: t1-sut2
+        oper_status: production
+        device_type: UCSC-C240-M4S
+        serial_number: FCH1950V1FP
+        mgmt_ip4: 10.30.51.18
+        lom_ip4: 10.30.50.18
+        lom_type: cimc
+      - unit: 23..24
+        name: t2-tg1
+        oper_status: production
+        device_type: UCSC-C240-M4S
+        serial_number: FCH1950V1KG
+        mgmt_ip4: 10.30.51.20
+        lom_ip4: 10.30.50.20
+        lom_type: cimc
+      - unit: 21..22
+        name: t2-sut1
+        oper_status: production
+        device_type: UCSC-C240-M4S
+        serial_number: FCH1950V1FM
+        mgmt_ip4: 10.30.51.21
+        lom_ip4: 10.30.50.21
+        lom_type: cimc
+      - unit: 19..20
+        name: t2-sut2
+        oper_status: production
+        device_type: UCSC-C240-M4S
+        serial_number: FCH1950V1FN
+        mgmt_ip4: 10.30.51.22
+        lom_ip4: 10.30.50.22
+        lom_type: cimc
+      - unit: 17..18
+        name: t3-tg1
+        oper_status: production
+        device_type: UCSC-C240-M4S
+        serial_number: FCH1950V1H5
+        mgmt_ip4: 10.30.51.24
+        lom_ip4: 10.30.50.24
+        lom_type: cimc
+      - unit: 15..16
+        name: t3-sut1
+        oper_status: production
+        device_type: UCSC-C240-M4S
+        serial_number: FCH1950V1FS
+        mgmt_ip4: 10.30.51.25
+        lom_ip4: 10.30.50.25
+        lom_type: cimc
+      - unit: 13..14
+        name: t3-sut2
+        oper_status: production
+        device_type: UCSC-C240-M4S
+        serial_number: FCH1950V1FL
+        mgmt_ip4: 10.30.51.26
+        lom_ip4: 10.30.50.26
+        lom_type: cimc
+      - unit: 11..12
+        name: s55-t36-sut1
+        oper_status: production
+        device_type: ThunderX2-9980
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.70
+        lom_ip4: 10.30.50.70
+        lom_type: ipmi
+      - unit: 9..10
+        name: s52-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.65
+        lom_ip4: 10.30.50.65
+        lom_type: ipmi
+      - unit: 9..10
+        name: s52-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.66
+        lom_ip4: 10.30.50.66
+        lom_type: ipmi
+      - unit: 9..10
+        name: s52-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.67
+        lom_ip4: 10.30.50.67
+        lom_type: ipmi
+      - unit: 9..10
+        name: s52-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.68
+        lom_ip4: 10.30.50.68
+        lom_type: ipmi
+  rack:
+    name: yul1-12
+    facility_id: 3016.12
+    tenant: Linux Foundation
+    status: active
+    dimensions:
+      type: 4-post cabinet
+      width: 19 inches
+      height: 48U
+    layout:
+      - unit: 40
+        name: s31-t35-sut2
+        oper_status: production
+        device_type: SYS-E300-9A
+        serial_number: CE300AG39040898
+        mgmt_ip4: 10.32.8.13
+        lom_ip4: 10.30.55.13
+        lom_type: ipmi
+      - unit: 39
+        name: s30-t35-sut1
+        oper_status: production
+        device_type: SYS-E300-9A
+        serial_number: CE300AG39040866
+        mgmt_ip4: 10.32.8.12
+        lom_ip4: 10.30.55.12
+        lom_type: ipmi
+      - unit: 38
+        name: s29-t26-sut1
+        oper_status: production
+        device_type: SYS-E300-9A
+        serial_number: CE300AG39040897
+        mgmt_ip4: 10.32.8.11
+        lom_ip4: 10.30.55.11
+        lom_type: ipmi
+      - unit: 34..37
+        name: s28-t26t35-tg1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH06A20137
+        mgmt_ip4: 10.32.8.10
+        lom_ip4: 10.30.55.10
+        lom_type: ipmi
+      - unit: 33
+        name: s61-t210-tg1
+        oper_status: production
+        device_type: AS-1014S-WTRT
+        serial_number: C8150LI50NS2689
+        mgmt_ip4: 10.32.8.25
+        lom_ip4: 10.30.55.25
+        lom_type: ipmi
+      - unit: 32
+        name: s60-t210-sut1
+        oper_status: production
+        device_type: AS-1114S-WTRT
+        serial_number: N/A
+        mgmt_ip4: 10.32.8.24
+        lom_ip4: 10.30.55.24
+        lom_type: ipmi
+      - unit: 31
+        name: s48-nomad
+        oper_status: production
+        device_type: SYS-1029P-WTRT
+        serial_number: C1160LI12NM0540
+        mgmt_ip4: 10.32.8.16
+        lom_ip4: 10.30.55.16
+        lom_type: ipmi
+      - unit: 30
+        name: s47-nomad
+        oper_status: production
+        device_type: SYS-1029P-WTRT
+        serial_number: C1160LI12NM0241
+        mgmt_ip4: 10.32.8.15
+        lom_ip4: 10.30.55.15
+        lom_type: ipmi
+      - unit: 29
+        name: s46-nomad
+        oper_status: production
+        device_type: SYS-1029P-WTRT
+        serial_number: C1160LI12NM0256
+        mgmt_ip4: 10.32.8.14
+        lom_ip4: 10.30.55.14
+        lom_type: ipmi
+      - unit: 25..28
+        name: s57-nomad
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH37A30505
+        mgmt_ip4: 10.32.8.17
+        lom_ip4: 10.30.55.17
+        lom_type: ipmi
+      - unit: 25..28
+        name: s57-nomad
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH37A30505
+        mgmt_ip4: 10.32.8.17
+        lom_ip4: 10.30.55.17
+        lom_type: ipmi
+      - unit: 21..24
+        name: s33-t27-sut1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH37A30567
+        mgmt_ip4: 10.32.8.18
+        lom_ip4: 10.30.55.18
+        lom_type: ipmi
+      - unit: 17..20
+        name: s34-t27-tg1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH37A30565
+        mgmt_ip4: 10.32.8.19
+        lom_ip4: 10.30.55.19
+        lom_type: ipmi
+      - unit: 13..16
+        name: s35-t28-sut1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH37A30509
+        mgmt_ip4: 10.32.8.20
+        lom_ip4: 10.30.55.20
+        lom_type: ipmi
+      - unit: 9..12
+        name: s36-t28-tg1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH37A30511
+        mgmt_ip4: 10.32.8.21
+        lom_ip4: 10.30.55.21
+        lom_type: ipmi
+      - unit: 5..8
+        name: s38-t29-sut1
+        oper_status: production
+        device_type: SYS-7049GP-TRT
+        serial_number: C7470KH37A30566
+        mgmt_ip4: 10.32.8.22
+        lom_ip4: 10.30.55.22
+        lom_type: ipmi
+      - unit: 1..4
+        name: s38-t29-tg1
+        oper_status: production
+        model: SYS-7049GP-TRT
+        serial_number: C7470KH37A30506
+        mgmt_ip4: 10.32.8.23
+        ilo_ip4: 10.30.55.23
+        ilo_type: ipmi
