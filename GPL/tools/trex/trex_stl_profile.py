@@ -216,6 +216,9 @@ def simple_burst(
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
+            # Dump log to compare.
+            output = subprocess.check_output([u"tail", u"-n", u"200", u"/tmp/trex.log"])
+            print(output)
             # Now finish the complete reset.
             client.reset()
 
