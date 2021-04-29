@@ -721,10 +721,12 @@ def plot_ndrpdr_box_name(plot, input_data):
             data_y_max = list()
             idx = 1
             for item in plot.get(u"include", tuple()):
+                logging.info(item)
                 reg_ex = re.compile(str(item.format(core=core)).lower())
                 for job in data:
                     for build in job:
                         for test_id, test in build.iteritems():
+                            logging.info(test_id)
                             if not re.match(reg_ex, str(test_id).lower()):
                                 continue
                             if data_y.get(test[u"parent"], None) is None:
@@ -743,6 +745,8 @@ def plot_ndrpdr_box_name(plot, input_data):
             # Add plot traces
             traces = list()
             for idx, (key, vals) in enumerate(data_y.items()):
+                logging.info(key)
+                logging.info(vals)
                 name = re.sub(
                     REGEX_NIC, u'', key.lower().replace(u'-ndrpdr', u'').
                     replace(u'2n1l-', u'')
