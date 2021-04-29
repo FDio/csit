@@ -142,53 +142,53 @@ def main():
         return 1
 
     return_code = 1
-    try:
-        env = Environment(spec.environment, args.force)
-        env.set_environment()
+    # try:
+    env = Environment(spec.environment, args.force)
+    env.set_environment()
 
-        prepare_static_content(spec)
+    prepare_static_content(spec)
 
         data = InputData(spec, spec.output[u"output"])
-        if args.input_file:
-            data.process_local_file(args.input_file)
-        elif args.input_directory:
-            data.process_local_directory(args.input_directory)
-        else:
-            data.download_and_parse_data(repeat=1)
+    if args.input_file:
+        data.process_local_file(args.input_file)
+    elif args.input_directory:
+        data.process_local_directory(args.input_directory)
+    else:
+        data.download_and_parse_data(repeat=1)
 
-        if args.print_all_oper_data:
-            data.print_all_oper_data()
+    if args.print_all_oper_data:
+        data.print_all_oper_data()
 
-        generate_tables(spec, data)
-        generate_plots(spec, data)
-        generate_files(spec, data)
+    generate_tables(spec, data)
+    generate_plots(spec, data)
+    generate_files(spec, data)
 
-        if spec.output[u"output"] == u"report":
-            generate_report(args.release, spec, args.week)
-        elif spec.output[u"output"] == u"trending":
-            sys.stdout.write(generate_cpta(spec, data))
-            try:
-                alert = Alerting(spec)
-                alert.generate_alerts()
-            except AlertingError as err:
-                logging.warning(repr(err))
+    if spec.output[u"output"] == u"report":
+        generate_report(args.release, spec, args.week)
+    elif spec.output[u"output"] == u"trending":
+        sys.stdout.write(generate_cpta(spec, data))
+        try:
+            alert = Alerting(spec)
+            alert.generate_alerts()
+        except AlertingError as err:
+            logging.warning(repr(err))
         elif spec.output[u"output"] == u"convert-xml-to-json":
             convert_xml_to_json(spec, data)
-        else:
-            logging.info("No output will be generated.")
+    else:
+        logging.info("No output will be generated.")
 
-        logging.info(u"Successfully finished.")
+    logging.info(u"Successfully finished.")
         return_code = 0
 
-    except AlertingError as err:
-        logging.critical(f"Finished with an alerting error.\n{repr(err)}")
-    except PresentationError as err:
-        logging.critical(f"Finished with a PAL error.\n{str(err)}")
-    except (KeyError, ValueError) as err:
-        logging.critical(f"Finished with an error.\n{repr(err)}")
-    finally:
-        if spec is not None:
-            clean_environment(spec.environment)
+    # except AlertingError as err:
+    #     logging.critical(f"Finished with an alerting error.\n{repr(err)}")
+    # except PresentationError as err:
+    #     logging.critical(f"Finished with a PAL error.\n{str(err)}")
+    # except (KeyError, ValueError) as err:
+    #     logging.critical(f"Finished with an error.\n{repr(err)}")
+    # finally:
+    #     if spec is not None:
+    #         clean_environment(spec.environment)
     return return_code
 
 
