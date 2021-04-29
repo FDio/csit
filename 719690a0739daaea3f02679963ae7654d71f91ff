@@ -1,0 +1,1381 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53e42f78_036a8345",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Oh, c\u0027mon",
+      "range": {
+        "startLine": 16,
+        "startChar": 14,
+        "endLine": 16,
+        "endChar": 19
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a33ca2a5_9fbabed3",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Capital D",
+      "range": {
+        "startLine": 36,
+        "startChar": 22,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abebb18d_b6022add",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Capital E",
+      "range": {
+        "startLine": 37,
+        "startChar": 22,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a06474c_02ca8d15",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Capital C",
+      "range": {
+        "startLine": 38,
+        "startChar": 22,
+        "endLine": 38,
+        "endChar": 23
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a60963d_7386266f",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Wrong doc. you are reading DOWNLOAD_DIR/NGINX_VER",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e60279c_7be15792",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 70
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eafcc356_de50a15d",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "What does this line belongs to?",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 19
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a62f5a38_b2f8f743",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": ".\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 64,
+        "endLine": 44,
+        "endChar": 65
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcb9993f_526b3f95",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Update base on code below",
+      "range": {
+        "startLine": 57,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f56f129a_715cb0c9",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Update the doc.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 4
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "686b6667_8163655a",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "We are avoiding doing \\ at the end by:\n\n    # Documentation to param.\n    param\u003d\"value\"\n    # Documentation to param2.\n    param+\u003d\"value2\"\n\n    params\u003d(${param})\n    ./configure \"${params[@]}\" || die ...\n\nPlease update",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 15
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95265554_06d6967d",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Double quotes, dot/exclamation et the end",
+      "range": {
+        "startLine": 106,
+        "startChar": 22,
+        "endLine": 106,
+        "endChar": 23
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84ec8444_2cee1df5",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "update",
+      "range": {
+        "startLine": 116,
+        "startChar": 6,
+        "endLine": 116,
+        "endChar": 16
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6775687_36e753ac",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Exclamation mark",
+      "range": {
+        "startLine": 124,
+        "startChar": 44,
+        "endLine": 124,
+        "endChar": 45
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baa013b9_dc6405ac",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Use global var",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 25
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fb72d97_e73f6b97",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Why are you not using cpu_list_per_node which returns list instead of string. Then operation of difference_update() can do it oneliner. Please rewrite",
+      "range": {
+        "startLine": 474,
+        "startChar": 51,
+        "endLine": 474,
+        "endChar": 64
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "394f4501_6f37c4a3",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "u\",\"",
+      "range": {
+        "startLine": 474,
+        "startChar": 70,
+        "endLine": 474,
+        "endChar": 74
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44902349_c3bc6b4a",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "move to previous line",
+      "range": {
+        "startLine": 169,
+        "startChar": 26,
+        "endLine": 169,
+        "endChar": 39
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "025f5dc0_b4abbcd7",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Update the doc",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bad6357a_ac03a85d",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "for sure it is str",
+      "range": {
+        "startLine": 175,
+        "startChar": 29,
+        "endLine": 175,
+        "endChar": 46
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9e2a966_b8f022f7",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "dict is dict. not need to do class. remove",
+      "range": {
+        "startLine": 183,
+        "startChar": 8,
+        "endLine": 183,
+        "endChar": 76
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2bbfc41_bfbe72e5",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "what kind of indentation is this?",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f420fc1f_d34a6604",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "u\"...\"    - everywhere in CSIT",
+      "range": {
+        "startLine": 232,
+        "startChar": 35,
+        "endLine": 232,
+        "endChar": 41
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da32ee1a_4e492b13",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "This requires additional cleanup rule in ansible to ensure it is not running after and before run",
+      "range": {
+        "startLine": 237,
+        "startChar": 16,
+        "endLine": 237,
+        "endChar": 22
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1df53cfe_58de449b",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "just PapiSocketExecutor.run_cli_cmd(node, u\u0027show error\u0027) not logger.trace",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21c1417c_877aad92",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "raises:",
+      "range": {
+        "startLine": 400,
+        "startChar": 8,
+        "endLine": 400,
+        "endChar": 11
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5074d78b_e9313247",
+        "filename": "resources/libraries/python/NGINX/NGINXTools.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "why we need sudo?\nmake sure you do basic check that nginx_ins_path is really nginx.",
+      "range": {
+        "startLine": 43,
+        "startChar": 41,
+        "endLine": 43,
+        "endChar": 50
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f27b5e24_0615391d",
+        "filename": "resources/libraries/python/NGINX/NGINXTools.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "remove extra space",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 26
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f42c9d5b_e0411f43",
+        "filename": "resources/libraries/python/NGINX/NGINXTools.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "u\"\"",
+      "range": {
+        "startLine": 57,
+        "startChar": 20,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9292b4cb_0febdb0c",
+        "filename": "resources/libraries/python/NginxConfigGenerator.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "lots of already commented common mistake. not going to read in 1st pass.",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76906a7f_8f13cded",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Update docs in whole file",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fb59e31_6f313f10",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "remove double space",
+      "range": {
+        "startLine": 27,
+        "startChar": 11,
+        "endLine": 27,
+        "endChar": 19
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84043d19_38b55666",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "you know what is wrong here. fix.",
+      "range": {
+        "startLine": 35,
+        "startChar": 32,
+        "endLine": 35,
+        "endChar": 38
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fd84d03_11e61dc4",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "remove twice double space in this line",
+      "range": {
+        "startLine": 96,
+        "startChar": 23,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4aa3e21f_d9a631f4",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Nginx is installed within csit dir. TRy to remove as non sudo, and also do sanity check if you are uging rm -rf",
+      "range": {
+        "startLine": 102,
+        "startChar": 31,
+        "endLine": 102,
+        "endChar": 43
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adfebbb4_42a6c134",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "u\"\"",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d71234f5_2163f575",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "class ClassName(): \n\nmake functions under class",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29e3df74_31d8ba1a",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "u\"type\"",
+      "range": {
+        "startLine": 31,
+        "startChar": 15,
+        "endLine": 31,
+        "endChar": 21
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfde77a5_323ccdad",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "u\"   \"",
+      "range": {
+        "startLine": 32,
+        "startChar": 27,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "175d552b_843d020f",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "command -v ab",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8d7d0f2_6f188a9d",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "replace by:\n\n        exec_cmd_no_error(\n            tg_node, command, message\u003dmessage\n        )\n\nnot 180s for simple command.\nnot sudo escalation.\nmessage is error message from below.",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 67
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ec58080_c524f827",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "you are documenting this as ab not AB, please unify naming across files",
+      "range": {
+        "startLine": 38,
+        "startChar": 29,
+        "endLine": 38,
+        "endChar": 32
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d8501fc_39a4d842",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Reason? Like reason for not installed? Little bit weird formulation. Please rephrase to only \"ab not installed on TG node.\"",
+      "range": {
+        "startLine": 38,
+        "startChar": 60,
+        "endLine": 38,
+        "endChar": 67
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "791e075c_5f9272af",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "u\"...\"",
+      "range": {
+        "startLine": 42,
+        "startChar": 35,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a649398_d53bbbd7",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Generator what? .... Topology node.",
+      "range": {
+        "startLine": 45,
+        "startChar": 20,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72f6f806_02d5a319",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Capital and dot at the end. Fix everywhere.",
+      "range": {
+        "startLine": 46,
+        "startChar": 20,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb4bf452_4aa47dc6",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "remove extra space. keep indent",
+      "range": {
+        "startLine": 51,
+        "startChar": 6,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6149a787_a99143d0",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "u\"...\" fix everywhere in patch",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6a3b785_88f47713",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "f\"...\" fix everywhere in patch.",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 73,
+        "endChar": 17
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4d78445_4c07428f",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "This standalone app we are keeping in tools directory. Not in main module of python resources.",
+      "range": {
+        "startLine": 77,
+        "startChar": 17,
+        "endLine": 77,
+        "endChar": 43
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f7e78c3_8e0ff533",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "for complex constructs like this please use optionstring class. See DPDK for inspiration",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 8
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e785a22c_f155eb89",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "same as above. exec_cmd_no_error(........)",
+      "range": {
+        "startLine": 92,
+        "startChar": 21,
+        "endLine": 92,
+        "endChar": 29
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe7d69a4_70a34258",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "fix docstring",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97c39420_0759919f",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "keeplinebreaks\u003dFalse",
+      "range": {
+        "startLine": 115,
+        "startChar": 29,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d6b8411_055b253d",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "update doc",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2109e70_46ce42e3",
+        "filename": "resources/libraries/robot/nginx/default.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "it is not all DUTs and not sure what you meant by NGINX DUT??",
+      "range": {
+        "startLine": 20,
+        "startChar": 30,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f31bddfa_e566f41b",
+        "filename": "resources/libraries/robot/nginx/default.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "Fix this example",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca90fe19_af61f20b",
+        "filename": "resources/libraries/robot/nginx/default.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "no double new line",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e0d1734_d2a1d49b",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "no double new line",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4764da7d_b176330f",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "put interface down",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c819260_ef75bcef",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "992a1215_82e721ba",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "why we need to execute on both level? test is enough",
+      "range": {
+        "startLine": 28,
+        "startChar": 35,
+        "endLine": 28,
+        "endChar": 40
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "677a2d91_6a385f9a",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-04-29T07:53:44Z",
+      "side": 1,
+      "message": "I am voting -1 for hardcoding version into suite names. Unless you are going to test multiple nginx by same run. what is this good for???? You will rename it every time? Stupid. Remove.",
+      "range": {
+        "startLine": 93,
+        "startChar": 39,
+        "endLine": 93,
+        "endChar": 45
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
