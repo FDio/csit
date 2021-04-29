@@ -102,6 +102,48 @@
       build: "13"
 
 - type: "table"
+  title: "Job Specification Duration: 2n-aws-iterative"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-2n-aws-iter"
+  jb-type: "iterative"
+  lines:
+    - job-spec: "vpp-mrr-00"
+      data-set: "vpp-2n-aws-curr-iter-mrr"
+    - job-spec: "vpp-mlr-00"
+      data-set: "vpp-2n-aws-curr-iter"
+
+- type: "table"
+  title: "Job Specification Duration: 2n-aws-coverage"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-2n-aws-cov"
+  jb-type: "coverage"
+  data: "vpp-2n-aws-curr-cov"
+  lines:
+    - job-spec: "vpp-00"
+      build: "1"
+
+- type: "table"
+  title: "Job Specification Duration: 3n-aws-iterative"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-aws-iter"
+  jb-type: "iterative"
+  lines:
+    - job-spec: "vpp-mrr-00"
+      data-set: "vpp-3n-aws-curr-iter-mrr"
+    - job-spec: "vpp-mlr-00"
+      data-set: "vpp-3n-aws-curr-iter"
+
+- type: "table"
+  title: "Job Specification Duration: 3n-aws-coverage"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-aws-cov"
+  jb-type: "coverage"
+  data: "vpp-3n-aws-curr-cov"
+  lines:
+    - job-spec: "vpp-00"
+      build: "1"
+
+- type: "table"
   title: "Job Specification Duration: 2n-skx-iterative"
   algorithm: "table_job_spec_duration"
   output-file: "{DIR[STATIC,VPP]}/job-spec-duration-2n-skx-iter"
@@ -4260,6 +4302,40 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP Performance Results 2n-aws
+- type: "table"
+  title: "Detailed Test Results - VPP Performance Results 2n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,VPP,2N,AWS]}/vpp_performance_results_2n_aws"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "vpp-2n-aws-curr-cov"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - VPP Performance Results 3n-aws
+- type: "table"
+  title: "Detailed Test Results - VPP Performance Results 3n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,VPP,3N,AWS]}/vpp_performance_results_3n_aws"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "vpp-3n-aws-curr-cov"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
 # Test configuration - VPP Performance Test Configs 3n-skx
 - type: "table"
   title: "Test configuration - VPP Performance Test Configs 3n-skx"
@@ -4432,6 +4508,40 @@
   - "name"
   - "conf-history"
 
+# Test configuration - VPP Performance Test Configs 2n-aws
+- type: "table"
+  title: "Test configuration - VPP Performance Test Configs 2n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,PERF,VPP,2N,AWS]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-2n-aws-curr-cov"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP Performance Test Configs 3n-aws
+- type: "table"
+  title: "Test configuration - VPP Performance Test Configs 3n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,PERF,VPP,3N,AWS]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-3n-aws-curr-cov"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
 # Test Operational Data - VPP Performance Operational Data 3n-skx
 - type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 3n-skx"
@@ -4510,6 +4620,22 @@
   algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,2N,DNV]}/"
   data: "vpp-2n-dnv-curr-cov"
+  filter: "all"
+
+# Test Operational Data - VPP Performance Operational Data 2n-aws
+- type: "table"
+  title: "Test Operational Data - VPP Performance Operational Data 2n-aws"
+  algorithm: "table_oper_data_html"
+  output-file: "{DIR[DTO,PERF,VPP,2N,AWS]}/"
+  data: "vpp-2n-aws-curr-cov"
+  filter: "all"
+
+# Test Operational Data - VPP Performance Operational Data 3n-aws
+- type: "table"
+  title: "Test Operational Data - VPP Performance Operational Data 3n-aws"
+  algorithm: "table_oper_data_html"
+  output-file: "{DIR[DTO,PERF,VPP,3N,AWS]}/"
+  data: "vpp-3n-aws-curr-cov"
   filter: "all"
 
 # Detailed Test Results - VPP MRR Results 3n-skx
@@ -4682,6 +4808,40 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP MRR Results 2n-aws
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 2n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,MRR,VPP,2N,AWS]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
+  data: "vpp-2n-aws-curr-iter-mrr"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - VPP MRR Results 3n-aws
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 3n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,MRR,VPP,3N,AWS]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
+  data: "vpp-3n-aws-curr-iter-mrr"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
 # Test configuration - VPP MRR Test Configs 3n-skx
 - type: "table"
   title: "Test configuration - VPP MRR Test Configs 3n-skx"
@@ -4846,6 +5006,40 @@
     - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
       data: "data conf-history"
   data: "vpp-2n-dnv-curr-iter-mrr"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP MRR Test Configs 2n-aws
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 2n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,MRR,VPP,2N,AWS]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-2n-aws-curr-iter-mrr"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP MRR Test Configs 3n-aws
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 3n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,MRR,VPP,3N,AWS]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-3n-aws-curr-iter-mrr"
   filter: "all"
   parameters:
   - "parent"
@@ -5776,6 +5970,8 @@
     - "{DIR[DTR,PERF,VPP,2N,TX2]}"
     - "{DIR[DTR,PERF,VPP,2N,DNV]}"
     - "{DIR[DTR,PERF,VPP,3N,DNV]}"
+    - "{DIR[DTR,PERF,VPP,2N,AWS]}"
+    - "{DIR[DTR,PERF,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-cov"
     - "vpp-3n-skx-curr-cov"
@@ -5787,6 +5983,8 @@
     - "vpp-2n-tx2-curr-cov"
     - "vpp-2n-dnv-curr-cov"
     - "vpp-3n-dnv-curr-cov"
+    - "vpp-2n-aws-curr-cov"
+    - "vpp-3n-aws-curr-cov"
   filter: "'NDRPDR'"
   data-start-level: 4
   order-chapters:
@@ -5815,6 +6013,8 @@
       - "2n-tx2"
       - "2n-dnv"
       - "3n-dnv"
+      - "2n-aws"
+      - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -5825,6 +6025,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
+      - "nitro50g"
 
 # VPP Performance Configuration
 - type: "file"
@@ -5842,6 +6043,8 @@
     - "{DIR[DTC,PERF,VPP,2N,TX2]}"
     - "{DIR[DTC,PERF,VPP,2N,DNV]}"
     - "{DIR[DTC,PERF,VPP,3N,DNV]}"
+    - "{DIR[DTC,PERF,VPP,2N,AWS]}"
+    - "{DIR[DTC,PERF,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-cov"
     - "vpp-3n-skx-curr-cov"
@@ -5853,6 +6056,8 @@
     - "vpp-2n-tx2-curr-cov"
     - "vpp-2n-dnv-curr-cov"
     - "vpp-3n-dnv-curr-cov"
+    - "vpp-2n-aws-curr-cov"
+    - "vpp-3n-aws-curr-cov"
   filter: "'NDRPDR'"
   data-start-level: 4
   order-chapters:
@@ -5881,6 +6086,8 @@
       - "2n-tx2"
       - "2n-dnv"
       - "3n-dnv"
+      - "2n-aws"
+      - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -5891,6 +6098,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
+      - "nitro50g"
 
 # VPP Performance Operational
 - type: "file"
@@ -5908,6 +6116,8 @@
     - "{DIR[DTO,PERF,VPP,2N,TX2]}"
     - "{DIR[DTO,PERF,VPP,2N,DNV]}"
     - "{DIR[DTO,PERF,VPP,3N,DNV]}"
+    - "{DIR[DTO,PERF,VPP,2N,AWS]}"
+    - "{DIR[DTO,PERF,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-cov"
     - "vpp-3n-skx-curr-cov"
@@ -5919,6 +6129,8 @@
     - "vpp-2n-tx2-curr-cov"
     - "vpp-2n-dnv-curr-cov"
     - "vpp-3n-dnv-curr-cov"
+    - "vpp-2n-aws-curr-cov"
+    - "vpp-3n-aws-curr-cov"
   filter: "'NDRPDR'"
   data-start-level: 4
   order-chapters:
@@ -5947,6 +6159,8 @@
       - "2n-tx2"
       - "2n-dnv"
       - "3n-dnv"
+      - "2n-aws"
+      - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -5957,6 +6171,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
+      - "aws"
 
 # VPP MRR Results
 - type: "file"
@@ -5974,6 +6189,8 @@
     - "{DIR[DTR,MRR,VPP,2N,TX2]}"
     - "{DIR[DTR,MRR,VPP,2N,DNV]}"
     - "{DIR[DTR,MRR,VPP,3N,DNV]}"
+    - "{DIR[DTR,MRR,VPP,2N,AWS]}"
+    - "{DIR[DTR,MRR,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-iter-mrr"
     - "vpp-3n-skx-curr-iter-mrr"
@@ -5985,6 +6202,8 @@
     - "vpp-2n-tx2-curr-iter-mrr"
     - "vpp-2n-dnv-curr-iter-mrr"
     - "vpp-3n-dnv-curr-iter-mrr"
+    - "vpp-2n-aws-curr-iter-mrr"
+    - "vpp-3n-aws-curr-iter-mrr"
   filter: "'MRR'"
   data-start-level: 4
   order-chapters:
@@ -6013,6 +6232,8 @@
       - "2n-tx2"
       - "2n-dnv"
       - "3n-dnv"
+      - "2n-aws"
+      - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -6023,6 +6244,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
+      - "nitro50g"
 
 # VPP MRR Configuration
 - type: "file"
@@ -6040,6 +6262,8 @@
     - "{DIR[DTC,MRR,VPP,2N,TX2]}"
     - "{DIR[DTC,MRR,VPP,2N,DNV]}"
     - "{DIR[DTC,MRR,VPP,3N,DNV]}"
+    - "{DIR[DTC,MRR,VPP,2N,AWS]}"
+    - "{DIR[DTC,MRR,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-iter-mrr"
     - "vpp-3n-skx-curr-iter-mrr"
@@ -6051,6 +6275,8 @@
     - "vpp-2n-tx2-curr-iter-mrr"
     - "vpp-2n-dnv-curr-iter-mrr"
     - "vpp-3n-dnv-curr-iter-mrr"
+    - "vpp-2n-aws-curr-iter-mrr"
+    - "vpp-3n-aws-curr-iter-mrr"
   filter: "'MRR'"
   data-start-level: 4
   order-chapters:
@@ -6079,6 +6305,8 @@
       - "2n-tx2"
       - "2n-dnv"
       - "3n-dnv"
+      - "2n-aws"
+      - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -6089,6 +6317,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
+      - "nitro50g"
 
 # VPP Device Results - Ubuntu
 - type: "file"
@@ -7287,6 +7516,58 @@
     - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-{core}-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "3n-dnv-x553-64b-{core}-ip4routing-base-scale-ixgbe-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
+  data: "vpp-2n-aws-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.64B-{core}-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "2n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
+  data: "vpp-2n-aws-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-ndrpdr.1518b-{core}-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.1518b-{core}-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "2n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
+  data: "vpp-3n-aws-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.64B-{core}-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
+  data: "vpp-3n-aws-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.1518b-{core}-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.1518b-{core}-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -12579,6 +12860,28 @@
   target-links: "../../_static/vpp"
   data: "vpp-2n-tx2-curr-iter"
   filter: "'1T1C' and 'NIC_Intel-XL710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
+  title: "Latency by percentile: 2n-aws"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-aws"
+  output-file-links: "{DIR[LAT,VPP]}/2n_aws.rst"
+  target-links: "../../_static/vpp"
+  data: "vpp-2n-aws-curr-iter-best"
+  filter: "'2T1C'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
+  title: "Latency by percentile: 3n-aws"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-aws"
+  output-file-links: "{DIR[LAT,VPP]}/3n_aws.rst"
+  target-links: "../../_static/vpp"
+  data: "vpp-3n-aws-curr-iter-best"
+  filter: "'2T1C'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
