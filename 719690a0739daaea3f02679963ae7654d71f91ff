@@ -1400,6 +1400,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4ad2907_eda91836",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-29T09:32:16Z",
+      "side": 1,
+      "message": "\u003e hardcoding version into suite names\n\nThis was my idea.\n\n\u003e Unless you are going to test multiple nginx by same run.\n\nThat was the idea.\nOn one hand, NGINX is similar to test tools such as wrk, it integrates with VPP to act as an endpoint for TCP traffic. But contrary to wrk, NGINX is releasing newer versions regularly, and we expect the performance to depend on the version (not sure how much).\n\nOne possibility is to keep using only one NGINX version, maybe bump it once a release. That means, release comparison tables in CSIT report would consider NGINX version as part of CSIT environment version.\nThe second option (with NGINX version hardcoded to suite name) you can differentiate the impact of NGINX version from other CSIT changes.\n\nI guess the real question is whether we expect different NGINX versions to show different enough performance. If no, we can go with the first option. My expectation is NGINX version will matter, so I suggested the second option.",
+      "parentUuid": "80976c1e_062a57b7",
+      "range": {
+        "startLine": 93,
+        "startChar": 39,
+        "endLine": 93,
+        "endChar": 45
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
