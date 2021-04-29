@@ -54,6 +54,8 @@
     DIR[DTR,PERF,VPP,2N,TX2]: "{DIR[DTR]}/vpp_performance_results_2n_tx2"
     DIR[DTR,PERF,VPP,3N,DNV]: "{DIR[DTR]}/vpp_performance_results_3n_dnv"
     DIR[DTR,PERF,VPP,2N,DNV]: "{DIR[DTR]}/vpp_performance_results_2n_dnv"
+    DIR[DTR,PERF,VPP,3N,AWS]: "{DIR[DTR]}/vpp_performance_results_3n_aws"
+    DIR[DTR,PERF,VPP,2N,AWS]: "{DIR[DTR]}/vpp_performance_results_2n_aws"
     DIR[DTR,MRR,VPP,ALL]: "{DIR[DTR]}/vpp_mrr_results"
     DIR[DTR,MRR,VPP,3N,SKX]: "{DIR[DTR]}/vpp_mrr_results_3n_skx"
     DIR[DTR,MRR,VPP,2N,SKX]: "{DIR[DTR]}/vpp_mrr_results_2n_skx"
@@ -80,6 +82,8 @@
     DIR[DTC,PERF,VPP,2N,TX2]: "{DIR[DTC]}/vpp_performance_configuration_2n_tx2"
     DIR[DTC,PERF,VPP,3N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_3n_dnv"
     DIR[DTC,PERF,VPP,2N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_2n_dnv"
+    DIR[DTC,PERF,VPP,3N,AWS]: "{DIR[DTC]}/vpp_performance_configuration_3n_aws"
+    DIR[DTC,PERF,VPP,2N,AWS]: "{DIR[DTC]}/vpp_performance_configuration_2n_aws"
     DIR[DTC,MRR,VPP,ALL]: "{DIR[DTC]}/vpp_mrr_configuration"
     DIR[DTC,MRR,VPP,3N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_3n_skx"
     DIR[DTC,MRR,VPP,2N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_2n_skx"
@@ -106,6 +110,8 @@
     DIR[DTO,PERF,VPP,2N,TX2]: "{DIR[DTO]}/vpp_performance_operational_data_2n_tx2"
     DIR[DTO,PERF,VPP,3N,DNV]: "{DIR[DTO]}/vpp_performance_operational_data_3n_dnv"
     DIR[DTO,PERF,VPP,2N,DNV]: "{DIR[DTO]}/vpp_performance_operational_data_2n_dnv"
+    DIR[DTO,PERF,VPP,3N,AWS]: "{DIR[DTO]}/vpp_performance_operational_data_3n_aws"
+    DIR[DTO,PERF,VPP,2N,AWS]: "{DIR[DTO]}/vpp_performance_operational_data_2n_aws"
 
     # Latencies:
     DIR[LAT,VPP]: "{DIR[WORKING,SRC]}/vpp_performance_tests/hdrh_packet_latency_by_percentile_graphs"
@@ -119,39 +125,35 @@
   data-sources:
     # XML
     - type: "xml"
+      url: "https://s3-logs.fd.io/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml"
       url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
       path: "{job}/{build}/archives/{filename}"
       file-name: "output_info.xml.gz"
       file-format: ".gz"
       enabled: True
-    - type: "xml"
-      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/{filename}"
-      file-name: "output_info.xml.gz"
-      file-format: ".gz"
-      enabled: True
+    # To be deprecated soon:
     - type: "xml"
       url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
       path: "{job}/{build}/{filename}"
       file-name: "output_info.xml.gz"
       file-format: ".gz"
       enabled: True
+    # Deprecated:
     - type: "xml"
       url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
       path: "{job}/{build}/archives/{filename}"
       file-name: "output_info.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    - type: "xml"
-      url: "https://s3-logs.fd.io/logs/production/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/{filename}"
-      file-name: "output_info.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    - type: "xml"
-      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/archives/{filename}"
-      file-name: "output.xml.gz"
       file-format: ".gz"
       enabled: True
     - type: "xml"
@@ -168,28 +170,15 @@
       enabled: True
     - type: "xml"
       url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/archives/{filename}"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml"
+      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
       path: "{job}/{build}/{filename}"
       file-name: "output.xml.gz"
       file-format: ".gz"
-      enabled: True
-    # XML from docs.nexus
-    - type: "xml-docs"
-      url: "https://docs.fd.io/csit"
-      path: "report/_static/archive"
-      file-name: "output_info.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    - type: "xml-docs"
-      url: "https://docs.fd.io/csit"
-      path: "report/_static/archive"
-      file-name: "output.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    - type: "xml-docs"
-      url: "https://docs.fd.io/csit"
-      path: "report/_static/archive"
-      file-name: "robot-plugin.zip"
-      file-format: ".zip"
       enabled: True
     # JSON from S3
     - type: "json"
@@ -199,7 +188,7 @@
       file-format: ".gz"
       enabled: False
 
-  archive-inputs: True
+  archive-inputs: False
 
   mapping-file: ""
 
@@ -270,5 +259,5 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#     pdf:
+#     - minimal
