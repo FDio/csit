@@ -192,6 +192,7 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
             if _tests_in_suite(suite[u"name"], tests):
                 groups = re.search(REGEX_NIC_SHORT, suite[u"name"])
                 nic = groups.group(2) if groups else None
+                logging.info(nic) ############################
                 if nic is None:
                     continue
                 if chapters[chapter_l1][chapter_l2].get(nic, None) is None:
@@ -209,6 +210,7 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
                             )
                         )
                         break
+    logging.info(chapters) #######################
     titles = {
         # VPP Perf, MRR
         u"container_memif": u"LXC/DRC Container Memif",
