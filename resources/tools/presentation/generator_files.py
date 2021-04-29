@@ -34,7 +34,7 @@ RST_INCLUDE_TABLE = (u"\n.. only:: html\n\n"
                      u"\n  .. raw:: latex\n\n"
                      u"      \\csvautolongtable{{{file_latex}}}\n\n")
 
-REGEX_NIC_SHORT = re.compile(r'(\d*ge\dp\d)(\D*\d*[a-z]*)-')
+REGEX_NIC_SHORT = re.compile(r'(\d*ge\dp\d)([a-z]*\d*[a-z]*)-')
 
 
 def generate_files(spec, data):
