@@ -1448,6 +1448,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0244e853_feb2918a",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-29T10:39:23Z",
+      "side": 1,
+      "message": "Right, TRex is a good example. We occasionally bump the version, and sometimes the bump affects the results (and we need other CSIT tweaks to reduce the difference).\nWe do not run tests against different TRex versions (in the same rum) mainly because CSIT code is not flexible enough to support that. Also, we have many suites using TRex already, not much time to spare for TRex comparisons.\nNGINX is not that tightly coupled with the rest of the CSIT code, which enables the second option. But if we think the benefits (e.g. trending not showing jumps when we bump the NGINX version) are not worth it, I am fine with the first option.",
+      "parentUuid": "3aff9fe8_01fa77c2",
+      "range": {
+        "startLine": 93,
+        "startChar": 39,
+        "endLine": 93,
+        "endChar": 45
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
