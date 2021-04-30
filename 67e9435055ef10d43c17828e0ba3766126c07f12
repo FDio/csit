@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b55a106_759a3cbc",
+        "filename": "docs/TNM/design.md",
+        "patchSetId": 56
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-30T08:28:48Z",
+      "side": 1,
+      "message": "There are differences between \"generator type\" and \"result type\". For example DPDK MRR tests are different generator type than VPP MRR tests (only VPP supports different NIC drivers), but the result format is the same. On the other hand, -cps and -tput MRR tests are the same generator type, but the output is not (different units, connections or packets).\n\nResult type is important, if it cannot be inferred from the other fields. Generator type is not currently important. Autogen uses its own logic to decide, so we do not need to edit suites (or other metadata outside autogen) to add support for more generator types. I think we can keep generator type as a classification internal to autogen and not visible in the model yet.",
+      "range": {
+        "startLine": 597,
+        "startChar": 0,
+        "endLine": 597,
+        "endChar": 52
+      },
+      "revId": "67e9435055ef10d43c17828e0ba3766126c07f12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e125c88_6833ea8b",
+        "filename": "docs/TNM/design.md",
+        "patchSetId": 56
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-30T08:28:48Z",
+      "side": 1,
+      "message": "The current suites contain a block describing Verification, where it is important to distinguish MRR, NDRPDR or SOAK.",
+      "range": {
+        "startLine": 609,
+        "startChar": 34,
+        "endLine": 609,
+        "endChar": 45
+      },
+      "revId": "67e9435055ef10d43c17828e0ba3766126c07f12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40c3210b_09fb3491",
+        "filename": "docs/TNM/design.md",
+        "patchSetId": 56
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-04-30T08:28:48Z",
+      "side": 1,
+      "message": "This does depend on some generalization of the above mentioned generator type (e.g. for soak tests we have only one test case instead of 12). Maybe we can add something like \"test case type\"? Already some existing tests do not fit frame size (tests with TCP, whether hoststack or ASTF) or core count (async scheduler tests use two types of worker so could track two core counts).",
+      "range": {
+        "startLine": 650,
+        "startChar": 25,
+        "endLine": 650,
+        "endChar": 54
+      },
+      "revId": "67e9435055ef10d43c17828e0ba3766126c07f12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
