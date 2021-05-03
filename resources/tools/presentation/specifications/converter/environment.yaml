@@ -1,0 +1,124 @@
+################################################################################
+###                          E N V I R O N M E N T                           ###
+################################################################################
+
+- type: "environment"
+
+  spec-files:
+    - "specifications/converter/input.yaml"  # Only for converter XML --> JSON
+
+  paths:
+    # Top level directories:
+    ## Working directory
+    DIR[WORKING]: "_tmp"
+    ## Build directories
+    DIR[BUILD,JSON]: "_build"
+
+    # Working directories
+    ## Input data files (.zip, .xml)
+    DIR[WORKING,DATA]: "{DIR[WORKING]}/data"
+
+  # Data sources are used in this order:
+  data-sources:
+    # JSON from S3
+    - type: "json"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output.json.gz"
+      file-format: ".gz"
+      enabled: False
+    # XML
+    - type: "xml"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/archives/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: False
+    - type: "xml"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: False
+    - type: "xml"
+      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/archives/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml"
+      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/archives/{filename}"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/archives/{filename}"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: False
+    - type: "xml"
+      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: False
+    - type: "xml"
+      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml"
+      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+      path: "{job}/{build}/{filename}"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    # XML from docs.nexus
+    - type: "xml-docs"
+      url: "https://docs.fd.io/csit"
+      path: "report/_static/archive"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml-docs"
+      url: "https://docs.fd.io/csit"
+      path: "report/_static/archive"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml-docs"
+      url: "https://docs.fd.io/csit"
+      path: "report/_static/archive"
+      file-name: "robot-plugin.zip"
+      file-format: ".zip"
+      enabled: True
+
+  make-dirs:
+  # List the directories which are created while preparing the environment.
+  # All directories MUST be defined in "paths" section.
+    - "DIR[WORKING,DATA]"
+
+  remove-dirs:
+  # List the directories which are deleted while cleaning the environment.
+  # All directories MUST be defined in "paths" section.
+    - "DIR[WORKING,DATA]"
+
+  build-dirs:
+  # List the directories where the results (build) is stored.
+  # All directories MUST be defined in "paths" section.
+    - "DIR[BUILD,JSON]"
+
+################################################################################
+###                               O U T P U T                                ###
+################################################################################
+
+- type: "output"
+  output: "convert-xml-to-json"
+  # type: flat | structured
+  # - flat - all .gz files in one directory
+  # - structured - .gz files in directories structured as job/build/*.gz
+  structure: "tree"  # Use flat or tree
+  use-template: "json/template_0.1.0.json"
