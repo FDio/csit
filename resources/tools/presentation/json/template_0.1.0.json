@@ -1,0 +1,28 @@
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "resource": [],
+  "network": [],
+  "log": [],
+  "test": {
+    "test-id": "",
+    "test-type": "",
+    "tags": [],
+    "documentation": "",
+    "execution": {
+      "ci": "",
+      "job": "",
+      "build": "",
+      "csit-commit": "",
+      "csit-gerrit-change": "",
+      "start_time": "",
+      "end_time": "",
+      "status": ""
+    },
+    "metric": [],
+    "results": {
+      "test": {},
+      "node": {}
+    }
+  }
+}

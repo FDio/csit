@@ -346,8 +346,8 @@ class ExecutionChecker(ResultVisitor):
             u"timestamp": self._get_timestamp,
             u"vpp-version": self._get_vpp_version,
             u"dpdk-version": self._get_dpdk_version,
-            # TODO: Remove when not needed:
-            u"teardown-vat-history": self._get_vat_history,
+            # # TODO: Remove when not needed:
+            # u"teardown-vat-history": self._get_vat_history,
             u"teardown-papi-history": self._get_papi_history,
             u"test-show-runtime": self._get_show_run,
             u"testbed": self._get_testbed
@@ -608,31 +608,31 @@ class ExecutionChecker(ResultVisitor):
         self._data[u"metadata"][u"generated"] = self._timestamp
         self._msg_type = None
 
-    def _get_vat_history(self, msg):
-        """Called when extraction of VAT command history is required.
-
-        TODO: Remove when not needed.
-
-        :param msg: Message to process.
-        :type msg: Message
-        :returns: Nothing.
-        """
-        if msg.message.count(u"VAT command history:"):
-            self._conf_history_lookup_nr += 1
-            if self._conf_history_lookup_nr == 1:
-                self._data[u"tests"][self._test_id][u"conf-history"] = str()
-            else:
-                self._msg_type = None
-            text = re.sub(
-                r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} VAT command history:",
-                u"",
-                msg.message,
-                count=1
-            ).replace(u'\n', u' |br| ').replace(u'"', u"'")
-
-            self._data[u"tests"][self._test_id][u"conf-history"] += (
-                f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
-            )
+    # def _get_vat_history(self, msg):
+    #     """Called when extraction of VAT command history is required.
+    #
+    #     TODO: Remove when not needed.
+    #
+    #     :param msg: Message to process.
+    #     :type msg: Message
+    #     :returns: Nothing.
+    #     """
+    #     if msg.message.count(u"VAT command history:"):
+    #         self._conf_history_lookup_nr += 1
+    #         if self._conf_history_lookup_nr == 1:
+    #             self._data[u"tests"][self._test_id][u"conf-history"] = str()
+    #         else:
+    #             self._msg_type = None
+    #         text = re.sub(
+    #             r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} VAT command history:",
+    #             u"",
+    #             msg.message,
+    #             count=1
+    #         ).replace(u'\n', u' |br| ').replace(u'"', u"'")
+    #
+    #         self._data[u"tests"][self._test_id][u"conf-history"] += (
+    #             f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
+    #         )
 
     def _get_papi_history(self, msg):
         """Called when extraction of PAPI command history is required.
@@ -652,9 +652,9 @@ class ExecutionChecker(ResultVisitor):
                 u"",
                 msg.message,
                 count=1
-            ).replace(u'\n', u' |br| ').replace(u'"', u"'")
+            ).replace(u'"', u"'")
             self._data[u"tests"][self._test_id][u"conf-history"] += (
-                f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
+                f" **DUT{str(self._conf_history_lookup_nr)}:** {text}"
             )
 
     def _get_show_run(self, msg):
@@ -697,12 +697,13 @@ class ExecutionChecker(ResultVisitor):
         except (IndexError, KeyError):
             return
 
-        dut = u"DUT{nr}".format(
+        dut = u"dut{nr}".format(
             nr=len(self._data[u'tests'][self._test_id][u'show-run'].keys()) + 1)
 
         oper = {
             u"host": host,
             u"socket": sock,
+            u"runtime": runtime,
             u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
         }
 
@@ -1010,19 +1011,11 @@ class ExecutionChecker(ResultVisitor):
         except AttributeError:
             return
 
-        doc_str = suite.doc.\
-            replace(u'"', u"'").\
-            replace(u'\n', u' ').\
-            replace(u'\r', u'').\
-            replace(u'*[', u' |br| *[').\
-            replace(u"*", u"**").\
-            replace(u' |br| *[', u'*[', 1)
-
         self._data[u"suites"][suite.longname.lower().
                               replace(u'"', u"'").
                               replace(u" ", u"_")] = {
                                   u"name": suite.name.lower(),
-                                  u"doc": doc_str,
+                                  u"doc": suite.doc,
                                   u"parent": parent_name,
                                   u"level": len(suite.longname.split(u"."))
                               }
@@ -1091,14 +1084,11 @@ class ExecutionChecker(ResultVisitor):
         test_result[u"parent"] = test.parent.name.lower().\
             replace(u"snat", u"nat")
         test_result[u"tags"] = tags
-        test_result["doc"] = test.doc.\
-            replace(u'"', u"'").\
-            replace(u'\n', u' ').\
-            replace(u'\r', u'').\
-            replace(u'[', u' |br| [').\
-            replace(u' |br| [', u'[', 1)
-        test_result[u"type"] = u"FUNC"
+        test_result["doc"] = test.doc
+        test_result[u"type"] = u""
         test_result[u"status"] = test.status
+        test_result[u"starttime"] = test.starttime
+        test_result[u"endtime"] = test.endtime
 
         if test.status == u"PASS":
             if u"NDRPDR" in tags:
@@ -1371,12 +1361,12 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if teardown_kw.name.count(u"Show Vat History On All Duts"):
-            # TODO: Remove when not needed:
-            self._conf_history_lookup_nr = 0
-            self._msg_type = u"teardown-vat-history"
-            teardown_kw.messages.visit(self)
-        elif teardown_kw.name.count(u"Show Papi History On All Duts"):
+        # if teardown_kw.name.count(u"Show Vat History On All Duts"):
+        #     # TODO: Remove when not needed:
+        #     self._conf_history_lookup_nr = 0
+        #     self._msg_type = u"teardown-vat-history"
+        #     teardown_kw.messages.visit(self)
+        if teardown_kw.name.count(u"Show Papi History On All Duts"):
             self._conf_history_lookup_nr = 0
             self._msg_type = u"teardown-papi-history"
             teardown_kw.messages.visit(self)
