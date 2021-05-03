@@ -1,0 +1,57 @@
+{
+  "version": "0.1.0",
+  "metadata": {},
+  "resource": [],
+  "network": [],
+  "log": [],
+  "test": {
+    "test-id": "",
+    "test-type": "",
+    "tags": [],
+    "documentation": "",
+    "execution": {
+      "ci": "",
+      "job": "",
+      "build": "int",
+      "csit-commit": "",
+      "csit-gerrit-change": "",
+      "start_time": "",
+      "end_time": "",
+      "status": ""
+    },
+    "metric": [],
+    "results": {
+      "test": {
+        "ndr": {
+          "unit": "",
+          "value": {
+            "lower": "",
+            "upper": ""
+          }
+        },
+        "pdr": {
+          "unit": "",
+          "value": {
+            "lower": "",
+            "upper": ""
+          }
+        },
+        "hdrh": {
+          "forward": {
+            "pdr-90": "",
+            "pdr-50": "",
+            "pdr-10": "",
+            "pdr-0": ""
+          },
+          "reverse": {
+            "pdr-90": "",
+            "pdr-50": "",
+            "pdr-10": "",
+            "pdr-0": ""
+          }
+        }
+      },
+      "node": []
+    }
+  }
+}
