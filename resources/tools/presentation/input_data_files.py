@@ -181,22 +181,6 @@ def _unzip_file(spec, build, pid):
         return False
 
 
-def _download_json(source, job, build, w_dir, arch):
-    """
-
-    :param source:
-    :param job:
-    :param build:
-    :param w_dir: Path to working directory
-    :param arch:
-    :return:
-    """
-    success = False
-    downloaded_name = u""
-
-    return success, downloaded_name
-
-
 def _download_xml(source, job, build, w_dir, arch):
     """
 
@@ -219,10 +203,9 @@ def _download_xml(source, job, build, w_dir, arch):
             job=job, build=build[u'build'], filename=file_name
         )
     )
-    verify = False if u"nginx" in url else True
     logging.info(f"  Trying to download {url}")
     success, downloaded_name = _download_file(
-        url, new_name, arch=arch, verify=verify, repeat=3
+        url, new_name, arch=arch, verify=(u"nginx" not in url), repeat=3
     )
     return success, downloaded_name
 
@@ -286,7 +269,6 @@ def download_and_unzip_data_file(spec, job, build, pid):
     """
 
     download = {
-        "json": _download_json,
         "xml": _download_xml,
         "xml-docs": _download_xml_docs
     }
@@ -302,12 +284,12 @@ def download_and_unzip_data_file(spec, job, build, pid):
         if not download_type:
             continue
         success, downloaded_name = download[download_type](
-                source,
-                job,
-                build,
-                spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
-                arch
-            )
+            source,
+            job,
+            build,
+            spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+            arch
+        )
         if success:
             source[u"successful-downloads"] += 1
             build[u"source"] = source[u"type"]
