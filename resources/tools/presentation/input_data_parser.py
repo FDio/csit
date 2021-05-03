@@ -346,8 +346,6 @@ class ExecutionChecker(ResultVisitor):
             u"timestamp": self._get_timestamp,
             u"vpp-version": self._get_vpp_version,
             u"dpdk-version": self._get_dpdk_version,
-            # TODO: Remove when not needed:
-            u"teardown-vat-history": self._get_vat_history,
             u"teardown-papi-history": self._get_papi_history,
             u"test-show-runtime": self._get_show_run,
             u"testbed": self._get_testbed
@@ -608,32 +606,6 @@ class ExecutionChecker(ResultVisitor):
         self._data[u"metadata"][u"generated"] = self._timestamp
         self._msg_type = None
 
-    def _get_vat_history(self, msg):
-        """Called when extraction of VAT command history is required.
-
-        TODO: Remove when not needed.
-
-        :param msg: Message to process.
-        :type msg: Message
-        :returns: Nothing.
-        """
-        if msg.message.count(u"VAT command history:"):
-            self._conf_history_lookup_nr += 1
-            if self._conf_history_lookup_nr == 1:
-                self._data[u"tests"][self._test_id][u"conf-history"] = str()
-            else:
-                self._msg_type = None
-            text = re.sub(
-                r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} VAT command history:",
-                u"",
-                msg.message,
-                count=1
-            ).replace(u'\n', u' |br| ').replace(u'"', u"'")
-
-            self._data[u"tests"][self._test_id][u"conf-history"] += (
-                f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
-            )
-
     def _get_papi_history(self, msg):
         """Called when extraction of PAPI command history is required.
 
@@ -652,9 +624,9 @@ class ExecutionChecker(ResultVisitor):
                 u"",
                 msg.message,
                 count=1
-            ).replace(u'\n', u' |br| ').replace(u'"', u"'")
+            ).replace(u'"', u"'")
             self._data[u"tests"][self._test_id][u"conf-history"] += (
-                f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
+                f"**DUT{str(self._conf_history_lookup_nr)}:** {text}"
             )
 
     def _get_show_run(self, msg):
@@ -697,12 +669,13 @@ class ExecutionChecker(ResultVisitor):
         except (IndexError, KeyError):
             return
 
-        dut = u"DUT{nr}".format(
+        dut = u"dut{nr}".format(
             nr=len(self._data[u'tests'][self._test_id][u'show-run'].keys()) + 1)
 
         oper = {
             u"host": host,
             u"socket": sock,
+            u"runtime": runtime,
             u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
         }
 
@@ -917,38 +890,6 @@ class ExecutionChecker(ResultVisitor):
         except (IndexError, ValueError):
             pass
 
-        # TODO: Remove when not needed
-        latency[u"NDR10"] = {
-            u"direction1": copy.copy(latency_default),
-            u"direction2": copy.copy(latency_default)
-        }
-        latency[u"NDR50"] = {
-            u"direction1": copy.copy(latency_default),
-            u"direction2": copy.copy(latency_default)
-        }
-        latency[u"NDR90"] = {
-            u"direction1": copy.copy(latency_default),
-            u"direction2": copy.copy(latency_default)
-        }
-        try:
-            latency[u"LAT0"][u"direction1"] = process_latency(groups.group(5))
-            latency[u"LAT0"][u"direction2"] = process_latency(groups.group(6))
-            latency[u"NDR10"][u"direction1"] = process_latency(groups.group(7))
-            latency[u"NDR10"][u"direction2"] = process_latency(groups.group(8))
-            latency[u"NDR50"][u"direction1"] = process_latency(groups.group(9))
-            latency[u"NDR50"][u"direction2"] = process_latency(groups.group(10))
-            latency[u"NDR90"][u"direction1"] = process_latency(groups.group(11))
-            latency[u"NDR90"][u"direction2"] = process_latency(groups.group(12))
-            latency[u"PDR10"][u"direction1"] = process_latency(groups.group(13))
-            latency[u"PDR10"][u"direction2"] = process_latency(groups.group(14))
-            latency[u"PDR50"][u"direction1"] = process_latency(groups.group(15))
-            latency[u"PDR50"][u"direction2"] = process_latency(groups.group(16))
-            latency[u"PDR90"][u"direction1"] = process_latency(groups.group(17))
-            latency[u"PDR90"][u"direction2"] = process_latency(groups.group(18))
-            return latency, u"PASS"
-        except (IndexError, ValueError):
-            pass
-
         return latency, u"FAIL"
 
     @staticmethod
@@ -1010,19 +951,11 @@ class ExecutionChecker(ResultVisitor):
         except AttributeError:
             return
 
-        doc_str = suite.doc.\
-            replace(u'"', u"'").\
-            replace(u'\n', u' ').\
-            replace(u'\r', u'').\
-            replace(u'*[', u' |br| *[').\
-            replace(u"*", u"**").\
-            replace(u' |br| *[', u'*[', 1)
-
         self._data[u"suites"][suite.longname.lower().
                               replace(u'"', u"'").
                               replace(u" ", u"_")] = {
                                   u"name": suite.name.lower(),
-                                  u"doc": doc_str,
+                                  u"doc": suite.doc,
                                   u"parent": parent_name,
                                   u"level": len(suite.longname.split(u"."))
                               }
@@ -1080,49 +1013,36 @@ class ExecutionChecker(ResultVisitor):
             name = test.name.lower()
 
         # Remove TC number from the TC long name (backward compatibility):
-        self._test_id = re.sub(
-            self.REGEX_TC_NUMBER, u"", longname.replace(u"snat", u"nat")
-        )
+        self._test_id = re.sub(self.REGEX_TC_NUMBER, u"", longname)
         # Remove TC number from the TC name (not needed):
-        test_result[u"name"] = re.sub(
-            self.REGEX_TC_NUMBER, "", name.replace(u"snat", u"nat")
-        )
+        test_result[u"name"] = re.sub(self.REGEX_TC_NUMBER, "", name)
 
-        test_result[u"parent"] = test.parent.name.lower().\
-            replace(u"snat", u"nat")
+        test_result[u"parent"] = test.parent.name.lower()
         test_result[u"tags"] = tags
-        test_result["doc"] = test.doc.\
-            replace(u'"', u"'").\
-            replace(u'\n', u' ').\
-            replace(u'\r', u'').\
-            replace(u'[', u' |br| [').\
-            replace(u' |br| [', u'[', 1)
-        test_result[u"type"] = u"FUNC"
+        test_result["doc"] = test.doc
+        test_result[u"type"] = u""
         test_result[u"status"] = test.status
+        test_result[u"starttime"] = test.starttime
+        test_result[u"endtime"] = test.endtime
 
         if test.status == u"PASS":
             if u"NDRPDR" in tags:
                 if u"TCP_PPS" in tags or u"UDP_PPS" in tags:
                     test_result[u"msg"] = self._get_data_from_pps_test_msg(
-                        test.message).replace(u'\n', u' |br| '). \
-                        replace(u'\r', u'').replace(u'"', u"'")
+                        test.message)
                 elif u"TCP_CPS" in tags or u"UDP_CPS" in tags:
                     test_result[u"msg"] = self._get_data_from_cps_test_msg(
-                        test.message).replace(u'\n', u' |br| '). \
-                        replace(u'\r', u'').replace(u'"', u"'")
+                        test.message)
                 else:
                     test_result[u"msg"] = self._get_data_from_perf_test_msg(
-                        test.message).replace(u'\n', u' |br| ').\
-                        replace(u'\r', u'').replace(u'"', u"'")
+                        test.message)
             elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
                 test_result[u"msg"] = self._get_data_from_mrr_test_msg(
-                    test.message).replace(u'\n', u' |br| ').\
-                    replace(u'\r', u'').replace(u'"', u"'")
+                    test.message)
             else:
-                test_result[u"msg"] = test.message.replace(u'\n', u' |br| ').\
-                    replace(u'\r', u'').replace(u'"', u"'")
+                test_result[u"msg"] = test.message
         else:
-            test_result[u"msg"] = u"Test Failed."
+            test_result[u"msg"] = test.message
 
         if u"PERFTEST" in tags:
             # Replace info about cores (e.g. -1c-) with the info about threads
@@ -1157,26 +1077,26 @@ class ExecutionChecker(ResultVisitor):
                     )
                     return
 
-        if test.status == u"PASS":
-            if u"DEVICETEST" in tags:
-                test_result[u"type"] = u"DEVICETEST"
-            elif u"NDRPDR" in tags:
-                if u"TCP_CPS" in tags or u"UDP_CPS" in tags:
-                    test_result[u"type"] = u"CPS"
-                else:
-                    test_result[u"type"] = u"NDRPDR"
+        if u"DEVICETEST" in tags:
+            test_result[u"type"] = u"DEVICETEST"
+        elif u"NDRPDR" in tags:
+            if u"TCP_CPS" in tags or u"UDP_CPS" in tags:
+                test_result[u"type"] = u"CPS"
+            else:
+                test_result[u"type"] = u"NDRPDR"
+            if test.status == u"PASS":
                 test_result[u"throughput"], test_result[u"status"] = \
                     self._get_ndrpdr_throughput(test.message)
                 test_result[u"gbps"], test_result[u"status"] = \
                     self._get_ndrpdr_throughput_gbps(test.message)
                 test_result[u"latency"], test_result[u"status"] = \
                     self._get_ndrpdr_latency(test.message)
-            elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
-                if u"MRR" in tags:
-                    test_result[u"type"] = u"MRR"
-                else:
-                    test_result[u"type"] = u"BMRR"
-
+        elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
+            if u"MRR" in tags:
+                test_result[u"type"] = u"MRR"
+            else:
+                test_result[u"type"] = u"BMRR"
+            if test.status == u"PASS":
                 test_result[u"result"] = dict()
                 groups = re.search(self.REGEX_BMRR, test.message)
                 if groups is not None:
@@ -1194,20 +1114,24 @@ class ExecutionChecker(ResultVisitor):
                     groups = re.search(self.REGEX_MRR, test.message)
                     test_result[u"result"][u"receive-rate"] = \
                         float(groups.group(3)) / float(groups.group(1))
-            elif u"SOAK" in tags:
-                test_result[u"type"] = u"SOAK"
+        elif u"SOAK" in tags:
+            test_result[u"type"] = u"SOAK"
+            if test.status == u"PASS":
                 test_result[u"throughput"], test_result[u"status"] = \
                     self._get_plr_throughput(test.message)
-            elif u"HOSTSTACK" in tags:
-                test_result[u"type"] = u"HOSTSTACK"
+        elif u"HOSTSTACK" in tags:
+            test_result[u"type"] = u"HOSTSTACK"
+            if test.status == u"PASS":
                 test_result[u"result"], test_result[u"status"] = \
                     self._get_hoststack_data(test.message, tags)
-            elif u"TCP" in tags:
-                test_result[u"type"] = u"TCP"
-                groups = re.search(self.REGEX_TCP, test.message)
-                test_result[u"result"] = int(groups.group(2))
-            elif u"RECONF" in tags:
-                test_result[u"type"] = u"RECONF"
+        # elif u"TCP" in tags:  # This might be not used
+        #     test_result[u"type"] = u"TCP"
+        #     if test.status == u"PASS":
+        #         groups = re.search(self.REGEX_TCP, test.message)
+        #         test_result[u"result"] = int(groups.group(2))
+        elif u"RECONF" in tags:
+            test_result[u"type"] = u"RECONF"
+            if test.status == u"PASS":
                 test_result[u"result"] = None
                 try:
                     grps_loss = re.search(self.REGEX_RECONF_LOSS, test.message)
@@ -1218,10 +1142,8 @@ class ExecutionChecker(ResultVisitor):
                     }
                 except (AttributeError, IndexError, ValueError, TypeError):
                     test_result[u"status"] = u"FAIL"
-            else:
-                test_result[u"status"] = u"FAIL"
-                self._data[u"tests"][self._test_id] = test_result
-                return
+        else:
+            test_result[u"status"] = u"FAIL"
 
         self._data[u"tests"][self._test_id] = test_result
 
@@ -1370,13 +1292,7 @@ class ExecutionChecker(ResultVisitor):
         :type teardown_kw: Keyword
         :returns: Nothing.
         """
-
-        if teardown_kw.name.count(u"Show Vat History On All Duts"):
-            # TODO: Remove when not needed:
-            self._conf_history_lookup_nr = 0
-            self._msg_type = u"teardown-vat-history"
-            teardown_kw.messages.visit(self)
-        elif teardown_kw.name.count(u"Show Papi History On All Duts"):
+        if teardown_kw.name.count(u"Show Papi History On All Duts"):
             self._conf_history_lookup_nr = 0
             self._msg_type = u"teardown-papi-history"
             teardown_kw.messages.visit(self)
@@ -1876,7 +1792,7 @@ class InputData:
         if params is None:
             params = element.get(u"parameters", None)
             if params:
-                params.append(u"type")
+                params.extend((u"type", u"status"))
 
         data_to_filter = data if data else element[u"data"]
         data = pd.Series()

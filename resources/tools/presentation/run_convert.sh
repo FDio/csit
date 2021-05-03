@@ -2,8 +2,6 @@
 
 set -x
 
-RELEASE=$1
-
 # set default values in config array
 typeset -A CFG
 typeset -A DIR
@@ -30,11 +28,8 @@ pip3 install -r requirements.txt
 export PYTHONPATH=`pwd`:`pwd`/../../../
 
 python pal.py \
-    --specification specifications/report \
-    --release ${RELEASE} \
-    --week "28" \
+    --specification specifications/converter \
     --logging INFO \
-    --force
 
 RETURN_STATUS=$(echo $?)
 exit ${RETURN_STATUS}
