@@ -1,0 +1,21 @@
+################################################################################
+###                      I N P U T   X M L   F I L E S                       ###
+################################################################################
+
+# Only for converter XML --> JSON
+
+- type: "input"
+
+  # 3n-hsw
+
+  csit-vpp-perf-report-iterative-2101-3n-hsw:
+    - 64  # rls2101.rel NDRPDR iter env 6
+    - 71  # rls2101.rel NDRPDR iter env 6
+    - 73  # rls2101.rel NDRPDR iter env 6
+    - 74  # rls2101.rel NDRPDR iter env 6
+    - 80  # rls2101.rel NDRPDR iter env 6
+    - 81  # rls2101.rel NDRPDR iter env 6
+    - 82  # rls2101.rel NDRPDR iter env 6
+    - 83  # rls2101.rel NDRPDR iter env 6
+    - 88  # rls2101.rel NDRPDR iter env 6
+    - 89  # rls2101.rel NDRPDR iter env 6
