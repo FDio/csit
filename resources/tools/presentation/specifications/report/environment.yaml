@@ -130,13 +130,13 @@
       path: "{job}/{build}/archives/{filename}"
       file-name: "output_info.xml.gz"
       file-format: ".gz"
-      enabled: True
+      enabled: False
     - type: "xml"
       url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
       path: "{job}/{build}/{filename}"
       file-name: "output_info.xml.gz"
       file-format: ".gz"
-      enabled: True
+      enabled: False
     - type: "xml"
       url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
       path: "{job}/{build}/archives/{filename}"
@@ -154,13 +154,13 @@
       path: "{job}/{build}/archives/{filename}"
       file-name: "output.xml.gz"
       file-format: ".gz"
-      enabled: True
+      enabled: False
     - type: "xml"
       url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
       path: "{job}/{build}/{filename}"
       file-name: "output.xml.gz"
       file-format: ".gz"
-      enabled: True
+      enabled: False
     - type: "xml"
       url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
       path: "{job}/{build}/{filename}"
@@ -193,7 +193,7 @@
       file-format: ".zip"
       enabled: True
 
-  archive-inputs: True
+  archive-inputs: False
 
   mapping-file: ""
 
@@ -224,7 +224,6 @@
 
   reverse-input: False  # Needed for trending, not important for the report
 
-  # TODO: Change in code needed, it was in type: "configuration"
   limits:
     nic:
       x520: 24460000
@@ -258,7 +257,7 @@
 ################################################################################
 
 - type: "output"
-  arch-file-format:  # moved from input, TODO: change it in the code
+  arch-file-format:
     - ".gz"
     - ".zip"
   output: "report"

@@ -29,9 +29,10 @@ from generator_files import generate_files
 from generator_report import generate_report
 from generator_cpta import generate_cpta
 from generator_alerts import Alerting, AlertingError
+from convert_xml_json import convert_xml_to_json
 
 
-OUTPUTS = (u"none", u"report", u"trending", u"convert_to_json")
+OUTPUTS = (u"none", u"report", u"trending", u"convert-xml-to-json")
 
 
 def parse_args():
@@ -131,6 +132,7 @@ def main():
         spec.read_specification()
     except PresentationError as err:
         logging.critical(u"Finished with error.")
+        logging.critical(repr(err))
         return 1
 
     if spec.output[u"output"] not in OUTPUTS:
@@ -170,6 +172,8 @@ def main():
                 alert.generate_alerts()
             except AlertingError as err:
                 logging.warning(repr(err))
+        elif spec.output[u"output"] == u"convert-xml-to-json":
+            convert_xml_to_json(spec, data)
         else:
             logging.info("No output will be generated.")
 
