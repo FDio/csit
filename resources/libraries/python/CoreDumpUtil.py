@@ -13,11 +13,13 @@
 
 """Core dump library."""
 
+import time
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.LimitUtil import LimitUtil
 from resources.libraries.python.SysctlUtil import SysctlUtil
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error, scp_node
 from resources.libraries.python.topology import NodeType
 
 __all__ = [u"CoreDumpUtil"]
@@ -127,8 +129,8 @@ class CoreDumpUtil:
             self.enable_coredump_limit_vpp(node)
 
     def get_core_files_on_all_nodes(self, nodes, disable_on_success=True):
-        """Process all core files and remove the original core files on all
-        nodes.
+        """Compress all core files into single file and remove the original
+        core files on all nodes.
 
         :param nodes: Nodes in the topology.
         :param disable_on_success: If True, disable setting of core limit by
@@ -137,19 +139,30 @@ class CoreDumpUtil:
         :type disable_on_success: bool
         """
         for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                command = (
-                    f"for f in {Constants.CORE_DUMP_DIR}/*.core; do "
-                    f"sudo gdb /usr/bin/vpp ${{f}} "
-                    f"-ex 'source -v {Constants.REMOTE_FW_DIR}"
-                    f"/resources/tools/scripts/gdb-commands' -ex quit; "
-                    f"sudo rm -f ${{f}}; done"
-                )
-                try:
-                    exec_cmd_no_error(node, command, timeout=3600)
-                    if disable_on_success:
-                        self.set_core_limit_disabled()
-                except RuntimeError:
-                    # If compress was not successful ignore error and skip
-                    # further processing.
-                    continue
+            uuid = str(time.time()).replace(u".", u"")
+            name = f"{uuid}.tar.gz"
+
+            command = (
+                f"[ -e {Constants.CORE_DUMP_DIR}/*.core ]"
+                f" && cd {Constants.CORE_DUMP_DIR}"
+                f" && sudo tar c *.core"
+                f" | gzip -1 > {name}"
+                f" && sudo rm -f *.core"
+            )
+            try:
+                exec_cmd_no_error(node, command, timeout=3600)
+                if disable_on_success:
+                    self.set_core_limit_disabled()
+            except RuntimeError:
+                # If compress was not sucessfull ignore error and skip further
+                # processing.
+                continue
+
+            local_path = f"archives/{name}"
+            remote_path = f"{Constants.CORE_DUMP_DIR}/{name}"
+            try:
+                scp_node(node, local_path, remote_path, get=True, timeout=3600)
+                command = f"rm -f {Constants.CORE_DUMP_DIR}/{name}"
+                exec_cmd_no_error(node, command, sudo=True)
+            except RuntimeError:
+                pass
