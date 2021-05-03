@@ -225,7 +225,6 @@
 
   reverse-input: False  # Needed for trending, not important for the report
 
-  # TODO: Change in code needed, it was in type: "configuration"
   limits:
     nic:
       x520: 24460000
@@ -259,7 +258,7 @@
 ################################################################################
 
 - type: "output"
-  arch-file-format:  # moved from input, TODO: change it in the code
+  arch-file-format:
     - ".gz"
     - ".zip"
   output: "report"
