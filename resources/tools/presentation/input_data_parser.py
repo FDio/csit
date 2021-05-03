@@ -1010,19 +1010,11 @@ class ExecutionChecker(ResultVisitor):
         except AttributeError:
             return
 
-        doc_str = suite.doc.\
-            replace(u'"', u"'").\
-            replace(u'\n', u' ').\
-            replace(u'\r', u'').\
-            replace(u'*[', u' |br| *[').\
-            replace(u"*", u"**").\
-            replace(u' |br| *[', u'*[', 1)
-
         self._data[u"suites"][suite.longname.lower().
                               replace(u'"', u"'").
                               replace(u" ", u"_")] = {
                                   u"name": suite.name.lower(),
-                                  u"doc": doc_str,
+                                  u"doc": suite.doc,
                                   u"parent": parent_name,
                                   u"level": len(suite.longname.split(u"."))
                               }
@@ -1091,14 +1083,11 @@ class ExecutionChecker(ResultVisitor):
         test_result[u"parent"] = test.parent.name.lower().\
             replace(u"snat", u"nat")
         test_result[u"tags"] = tags
-        test_result["doc"] = test.doc.\
-            replace(u'"', u"'").\
-            replace(u'\n', u' ').\
-            replace(u'\r', u'').\
-            replace(u'[', u' |br| [').\
-            replace(u' |br| [', u'[', 1)
-        test_result[u"type"] = u"FUNC"
+        test_result["doc"] = test.doc
+        test_result[u"type"] = None
         test_result[u"status"] = test.status
+        test_result[u"starttime"] = test.starttime
+        test_result[u"endtime"] = test.endtime
 
         if test.status == u"PASS":
             if u"NDRPDR" in tags:
