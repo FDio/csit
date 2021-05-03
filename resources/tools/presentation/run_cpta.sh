@@ -20,7 +20,7 @@ echo "nameserver 172.17.0.1" > /etc/resolv.conf
 # Install python dependencies:
 pip3 install -r requirements.txt
 
-export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
+export PYTHONPATH=`pwd`:`pwd`/../../../
 
 STATUS=$(python pal.py \
     --specification specifications/trending \
