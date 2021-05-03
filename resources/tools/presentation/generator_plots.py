@@ -18,15 +18,15 @@
 import re
 import logging
 
+from collections import OrderedDict
+from copy import deepcopy
+from math import log
+
 import hdrh.histogram
 import hdrh.codec
 import pandas as pd
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
-
-from collections import OrderedDict
-from copy import deepcopy
-from math import log
 
 from plotly.exceptions import PlotlyError
 
@@ -200,7 +200,8 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                         hovertext.append(
                             f"<b>{desc[graph]}</b><br>"
                             f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
-                            f"Percentile: {previous_x:.5f}-{percentile:.5f}%<br>"
+                            f"Percentile: "
+                            f"{previous_x:.5f}-{percentile:.5f}%<br>"
                             f"Latency: {item.value_iterated_to}uSec"
                         )
                         xaxis.append(percentile)
@@ -208,7 +209,8 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                         hovertext.append(
                             f"<b>{desc[graph]}</b><br>"
                             f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
-                            f"Percentile: {previous_x:.5f}-{percentile:.5f}%<br>"
+                            f"Percentile: "
+                            f"{previous_x:.5f}-{percentile:.5f}%<br>"
                             f"Latency: {item.value_iterated_to}uSec"
                         )
                         previous_x = percentile
@@ -351,7 +353,7 @@ def plot_hdrh_lat_by_percentile_x_log(plot, input_data):
                         decoded = hdrh.histogram.HdrHistogram.decode(
                             test[u"latency"][graph][direction][u"hdrh"]
                         )
-                    except hdrh.codec.HdrLengthException:
+                    except (hdrh.codec.HdrLengthException, TypeError):
                         logging.warning(
                             f"No data for direction {(u'W-E', u'E-W')[idx % 2]}"
                         )
@@ -855,10 +857,10 @@ def plot_mrr_box_name(plot, input_data):
 
         # Add plot traces
         traces = list()
-        for idx in range(len(data_x)):
+        for idx, x_item in enumerate(data_x):
             traces.append(
                 plgo.Box(
-                    x=[data_x[idx], ] * len(data_y[idx]),
+                    x=[x_item, ] * len(data_y[idx]),
                     y=data_y[idx],
                     name=data_names[idx],
                     hoverinfo=u"y+name"
@@ -988,7 +990,7 @@ def plot_tsa_name(plot, input_data):
                         REGEX_NIC,
                         u"",
                         test_name.replace(u'-ndrpdr', u'').
-                            replace(u'2n1l-', u'')
+                        replace(u'2n1l-', u'')
                     )
                     vals[name] = OrderedDict()
                     y_val_1 = test_vals[u"1"][0] / 1e6

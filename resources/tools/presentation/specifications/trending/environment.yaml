@@ -256,7 +256,7 @@
 ################################################################################
 
 - type: "output"
-  arch-file-format:  # moved from input, TODO: change it in the code
+  arch-file-format:
     - ".gz"
     - ".zip"
   output: "trending"
