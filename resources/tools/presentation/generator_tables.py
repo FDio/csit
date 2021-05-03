@@ -354,7 +354,7 @@ def table_merged_details(table, input_data):
                         col_data = f" |prein| {col_data} |preout| "
                     elif column[u"data"].split(u" ")[1] in \
                             (u"conf-history", u"show-run"):
-                        col_data = col_data.replace(u" |br| ", u"", 1)
+                        col_data = col_data.replace(u'\n', u' |br| ')  # .replace(u" |br| ", u"", 1)
                         col_data = f" |prein| {col_data[:-5]} |preout| "
                     row_lst.append(f'"{col_data}"')
                 except KeyError:
