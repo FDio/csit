@@ -192,7 +192,7 @@ class Specification:
         :returns: List of specifications of tables to be generated.
         :rtype: list
         """
-        return self._specification[u"tables"]
+        return self._specification.get(u"tables", list())
 
     @property
     def plots(self):
@@ -201,7 +201,7 @@ class Specification:
         :returns: List of specifications of plots to be generated.
         :rtype: list
         """
-        return self._specification[u"plots"]
+        return self._specification.get(u"plots", list())
 
     @property
     def files(self):
@@ -210,7 +210,7 @@ class Specification:
         :returns: List of specifications of files to be generated.
         :rtype: list
         """
-        return self._specification[u"files"]
+        return self._specification.get(u"files", list())
 
     @property
     def cpta(self):
@@ -614,6 +614,8 @@ class Specification:
         idx = self._get_type_index(u"static")
         if idx is None:
             logging.warning(u"No static content specified.")
+            self._specification[u"static"] = dict()
+            return
 
         for key, value in self._cfg_yaml[idx].items():
             if isinstance(value, str):
@@ -816,10 +818,26 @@ class Specification:
 
         logging.info(u"Parsing specification: INPUT")
 
-        for data_set in self.data_sets.values():
-            if data_set == "data-sets":
-                continue
-            for job, builds in data_set.items():
+        idx = self._get_type_index(u"input")
+        if idx is None:
+            logging.info(u"Creating the list of inputs from data sets.")
+            for data_set in self.data_sets.values():
+                if data_set == "data-sets":
+                    continue
+                for job, builds in data_set.items():
+                    for build in builds:
+                        self.add_build(
+                            job,
+                            {
+                                u"build": build,
+                                u"status": None,
+                                u"file-name": None,
+                                u"source": None
+                            }
+                        )
+        else:
+            logging.info(u"Reading pre-defined inputs.")
+            for job, builds in self._cfg_yaml[idx][u"builds"].items():
                 for build in builds:
                     self.add_build(
                         job,

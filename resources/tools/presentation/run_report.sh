@@ -27,7 +27,7 @@ aws_secret_access_key = Csit1234" >> ${HOME}/.aws/credentials
 # Install python dependencies:
 pip3 install -r requirements.txt
 
-export PYTHONPATH=`pwd`:`pwd`/../../../:`pwd`/../../libraries/python
+export PYTHONPATH=`pwd`:`pwd`/../../../
 
 python pal.py \
     --specification specifications/report \

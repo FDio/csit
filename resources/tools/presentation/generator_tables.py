@@ -354,7 +354,7 @@ def table_merged_details(table, input_data):
                         col_data = f" |prein| {col_data} |preout| "
                     elif column[u"data"].split(u" ")[1] in \
                             (u"conf-history", u"show-run"):
-                        col_data = col_data.replace(u" |br| ", u"", 1)
+                        col_data = col_data.replace(u'\n', u' |br| ')
                         col_data = f" |prein| {col_data[:-5]} |preout| "
                     row_lst.append(f'"{col_data}"')
                 except KeyError:
@@ -386,12 +386,7 @@ def _tpc_modify_test_name(test_name, ignore_nic=False):
     :rtype: str
     """
     test_name_mod = test_name.\
-        replace(u"-ndrpdrdisc", u""). \
         replace(u"-ndrpdr", u"").\
-        replace(u"-pdrdisc", u""). \
-        replace(u"-ndrdisc", u"").\
-        replace(u"-pdr", u""). \
-        replace(u"-ndr", u""). \
         replace(u"1t1c", u"1c").\
         replace(u"2t1c", u"1c"). \
         replace(u"2t2c", u"2c").\
@@ -425,7 +420,7 @@ def _tpc_insert_data(target, src, include_tests):
     """Insert src data to the target structure.
 
     :param target: Target structure where the data is placed.
-    :param src: Source data to be placed into the target stucture.
+    :param src: Source data to be placed into the target structure.
     :param include_tests: Which results will be included (MRR, NDR, PDR).
     :type target: list
     :type src: dict
@@ -1252,8 +1247,8 @@ def table_perf_trending_dash_html(table, input_data):
                     u"a",
                     attrib=dict(
                         href=f"{lnk_dir}"
-                             f"{_generate_url(table.get(u'testbed', ''), item)}"
-                             f"{lnk_sufix}"
+                        f"{_generate_url(table.get(u'testbed', ''), item)}"
+                        f"{lnk_sufix}"
                     )
                 )
                 ref.text = item
