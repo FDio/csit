@@ -91,7 +91,7 @@ def generate_plots(spec, data):
     for index, plot in enumerate(spec.plots):
         try:
             logging.info(f"  Plot nr {index + 1}: {plot.get(u'title', u'')}")
-            plot[u"limits"] = spec.configuration[u"limits"]
+            plot[u"limits"] = spec.environment[u"limits"]
             generator[plot[u"algorithm"]](plot, data)
             logging.info(u"  Done.")
         except NameError as err:
