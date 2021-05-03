@@ -205,7 +205,12 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
                         chapters[chapter_l1][chapter_l2][nic][u"tables"].append(
                             (
                                 table_lst.pop(idx),
-                                suite[u"doc"].replace(u'|br|', u'\n\n -')
+                                suite[u"doc"].replace(u'"', u"'").
+                                replace(u'\n', u' ').
+                                replace(u'\r', u'').
+                                replace(u'*[', u'\n\n - *[').
+                                replace(u"*", u"**").
+                                replace(u'\n\n - *[', u' - *[', 1)
                             )
                         )
                         break
