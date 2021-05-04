@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e0801536_c2148829",
+        "filename": "resources/tools/presentation/run_convert.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-04T12:58:08Z",
+      "side": 1,
+      "message": "Why is the second path needed? As far as I know, everything should work when the first path is set.",
+      "range": {
+        "startLine": 24,
+        "startChar": 39,
+        "endLine": 24,
+        "endChar": 40
+      },
+      "revId": "c078906a8500a816497b7da40435909b892cb194",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
