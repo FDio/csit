@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04a342c0_e21210b7",
+        "filename": "resources/tools/presentation/generator_tables.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 2066,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-04T12:54:11Z",
+      "side": 1,
+      "message": "Why do you need to read the whole file at once?",
+      "range": {
+        "startLine": 2066,
+        "startChar": 20,
+        "endLine": 2066,
+        "endChar": 24
+      },
+      "revId": "37ea2ceb606bdfc338cc76330cb9289c12f63852",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "652a1926_f80222b6",
+        "filename": "resources/tools/presentation/specification_parser.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-04T12:54:11Z",
+      "side": 1,
+      "message": "job not in self.input",
+      "range": {
+        "startLine": 169,
+        "startChar": 11,
+        "endLine": 169,
+        "endChar": 44
+      },
+      "revId": "37ea2ceb606bdfc338cc76330cb9289c12f63852",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
