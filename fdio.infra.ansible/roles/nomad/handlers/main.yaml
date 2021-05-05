@@ -7,4 +7,3 @@
     enabled: true
     name: "nomad"
     state: "{{ nomad_restart_handler_state }}"
-
