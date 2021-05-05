@@ -5,10 +5,8 @@
 packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
-  - "cgroup-bin"
   - "curl"
   - "git"
-  - "libcgroup1"
   - "unzip"
   - "htop"
 packages_by_distro:
@@ -29,7 +27,7 @@ nomad_architecture_map:
   32-bit: "386"
   64-bit: "amd64"
 nomad_architecture: "{{ nomad_architecture_map[ansible_architecture] }}"
-nomad_version: "0.12.0"
+nomad_version: "1.0.4"
 nomad_pkg: "nomad_{{ nomad_version }}_linux_{{ nomad_architecture }}.zip"
 nomad_zip_url: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/{{ nomad_pkg }}"
 
@@ -97,7 +95,6 @@ nomad_collection_interval: 60s
 nomad_use_node_name: false
 nomad_publish_allocation_metrics: true
 nomad_publish_node_metrics: true
-nomad_backwards_compatible_metrics: false
 nomad_telemetry_provider_parameters:
   prometheus_metrics: true
 
