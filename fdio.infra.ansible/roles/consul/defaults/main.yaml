@@ -5,10 +5,8 @@
 packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
-  - "cgroup-bin"
   - "curl"
   - "git"
-  - "libcgroup1"
   - "unzip"
   - "htop"
 packages_by_distro:
@@ -29,7 +27,7 @@ consul_architecture_map:
   32-bit: "386"
   64-bit: "amd64"
 consul_architecture: "{{ consul_architecture_map[ansible_architecture] }}"
-consul_version: "1.8.6"
+consul_version: "1.9.5"
 consul_pkg: "consul_{{ consul_version }}_linux_{{ consul_architecture }}.zip"
 consul_zip_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_pkg }}"
 
@@ -92,7 +90,8 @@ consul_encrypt: ""
 consul_ca_file: "{{ consul_ssl_dir }}/ca.pem"
 consul_cert_file: "{{ consul_ssl_dir }}/consul.pem"
 consul_key_file: "{{ consul_ssl_dir }}/consul-key.pem"
-consul_ui: true
+consul_ui_config:
+  enabled: true
 consul_recursors:
   - 1.1.1.1
   - 8.8.8.8

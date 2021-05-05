@@ -36,8 +36,8 @@ nomad_options:
   docker.privileged.enabled: true
   docker.volumes.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
-nomad_retry_servers: [ "10.30.51.32", "10.30.51.33" ]
-nomad_servers: [ "10.30.51.33:4647" ]
+nomad_retry_servers: [ "10.30.51.30", "10.30.51.32", "10.30.51.33" ]
+nomad_servers: [ "10.30.51.30:4647", "10.30.51.32:4647", "10.30.51.33:4647" ]
 
 # Consul settigs.
 consul_nomad_integration: true
@@ -59,7 +59,6 @@ consul_retry_servers:
 
 # Docker daemon settings.
 docker_daemon:
-  # https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file
   dns: [ "172.17.0.1" ]
   dns-opts: []
   dns-search: [ "{{ansible_hostname}}" ]
