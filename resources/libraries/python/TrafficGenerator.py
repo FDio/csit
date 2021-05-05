@@ -412,6 +412,7 @@ class TrafficGenerator(AbstractMeasurer):
                 trex_cmd.add(u"--prefix $(hostname)")
                 trex_cmd.add(u"--hdrh")
                 trex_cmd.add(u"--no-scapy-server")
+                trex_cmd.add(u"--iom 0")
                 trex_cmd.add_if(u"--astf", osi_layer == u"L7")
                 # OptionString does not create double space if extra is empty.
                 trex_cmd.add(f"{Constants.TREX_EXTRA_CMDLINE}")
