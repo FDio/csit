@@ -14,10 +14,3 @@
     enabled: true
     name: "consul"
     state: "{{ consul_restart_handler_state }}"
-
-- name: Stop Systemd-resolved
-  systemd:
-    daemon_reload: true
-    enabled: false
-    name: "systemd-resolved"
-    state: "{{ systemd_resolved_state }}"
