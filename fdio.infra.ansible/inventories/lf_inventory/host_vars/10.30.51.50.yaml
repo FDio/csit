@@ -61,7 +61,6 @@ consul_retry_servers:
 
 # Docker settings.
 docker_daemon:
-  # https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file
   default-shm-size: "1073741824"
   dns: [ "172.17.0.1" ]
   dns-opts: []

@@ -14,14 +14,14 @@ server = {{ consul_node_server | bool | lower }}
 encrypt = "{{ consul_encrypt }}"
 {% if consul_node_server | bool == True %}
 bootstrap_expect = {{ consul_bootstrap_expect }}
-verify_incoming = true
-verify_outgoing = true
-verify_server_hostname = true
+verify_incoming = false
+verify_outgoing = false
+verify_server_hostname = false
 ca_file = "{{ consul_ca_file }}"
 cert_file = "{{ consul_cert_file }}"
 key_file = "{{ consul_key_file }}"
 auto_encrypt {
-  allow_tls = true
+  allow_tls = false
 }
 {% else %}
 verify_incoming = false
@@ -36,7 +36,20 @@ auto_encrypt {
 retry_join = [ {% for ip_port in consul_retry_servers -%} "{{ ip_port }}"{% if not loop.last %}, {% endif %}{%- endfor -%} ]
 {%- endif %}
 
-ui = {{ consul_ui | bool | lower }}
+{% if consul_ui_config -%}
+ui_config {
+{% for key, value in consul_ui_config.items() %}
+  {%- if value|bool %}
+  {{ key }} = {{ value | bool | lower }}
+  {%- elif value|string or value == "" %}
+  {{ key }} = "{{ value }}"
+  {%- else %}
+  {{ key }} = {{ value }}
+  {%- endif %}
+{% endfor %}
+
+}
+{%- endif %}
 
 {% if consul_recursors -%}
 recursors = [ {% for server in consul_recursors -%} "{{ server }}"{% if not loop.last %}, {% endif %}{%- endfor -%} ]

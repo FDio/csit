@@ -2,7 +2,7 @@
 # file: nomad.yaml
 
 - hosts: nomad
-  remote_user: testuser
+  remote_user: localadmin
   become: yes
   become_user: root
   gather_facts: false
