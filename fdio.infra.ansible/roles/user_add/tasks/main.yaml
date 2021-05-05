@@ -22,27 +22,16 @@
   with_subelements:
     - "{{ users }}"
     - ssh_key
-    - skip_missing: yes
+    - skip_missing: true
   tags:
     - user-add-conf
 
-- name: Conf - Allow Password Login
+- name: Conf - Disable Password Login
   lineinfile:
     dest: "/etc/ssh/sshd_config"
-    regexp: "^PasswordAuthentication no"
-    line: "PasswordAuthentication yes"
+    regexp: "^PasswordAuthentication yes"
+    line: "PasswordAuthentication no"
   notify:
     - "Restart SSHd"
   tags:
     - user-add-conf
-
-- name: Conf - Add Visudo Entry
-  lineinfile:
-    dest: "/etc/sudoers"
-    state: present
-    line: "{{ item.username }} ALL=(ALL) NOPASSWD: ALL"
-    validate: "visudo -cf %s"
-  with_items: "{{ users }}"
-  tags:
-    - user-add-conf
-
