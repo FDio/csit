@@ -1,75 +1,15 @@
 ---
 # file: roles/nomad/tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
-  apt:
-    update_cache: yes
-    cache_valid_time: 3600
-  when:
-    - ansible_distribution|lower == 'ubuntu'
+- include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
   tags:
-    - nomad-inst-prerequisites
-
-- name: Inst - Prerequisites
-  package:
-    name: "{{ packages | flatten(levels=1) }}"
-    state: latest
-  tags:
-    - nomad-inst-prerequisites
-
-- name: Conf - Add Nomad Group
-  group:
-    name: "{{ nomad_group }}"
-    state: "{{ nomad_group_state }}"
-  when:
-    - nomad_manage_group | bool
-  tags:
-    - nomad-conf-user
-
-- name: Conf - Add Nomad user
-  user:
-    name: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    groups: "{{ nomad_user_groups }}"
-    state: "{{ nomad_user_state }}"
-    system: true
-  when:
-    - nomad_manage_user | bool
-  tags:
-    - nomad-conf-user
-
-- name: Inst - Clean Nomad
-  file:
-    path: "{{ nomad_inst_dir }}/nomad"
-    state: "absent"
-  tags:
-    - nomad-inst-package
-
-- name: Inst - Download Nomad
-  get_url:
-    url: "{{ nomad_zip_url }}"
-    dest: "{{ nomad_inst_dir }}/{{ nomad_pkg }}"
-  tags:
-    - nomad-inst-package
-
-- name: Inst - Unarchive Nomad
-  unarchive:
-    src: "{{ nomad_inst_dir }}/{{ nomad_pkg }}"
-    dest: "{{ nomad_inst_dir }}/"
-    creates: "{{ nomad_inst_dir }}/nomad"
-    remote_src: true
-  tags:
-    - nomad-inst-package
+    - nomad-inst-dependencies
 
 - name: Inst - Nomad
-  copy:
-    src: "{{ nomad_inst_dir }}/nomad"
-    dest: "{{ nomad_bin_dir }}"
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    force: true
-    mode: 0755
-    remote_src: true
+  package:
+    name:
+      - "{{ nomad_package }}={{ nomad_package_version }}"
+    state: "{{ nomad_package_state }}"
   tags:
     - nomad-inst-package
 
@@ -91,13 +31,10 @@
   tags:
     - nomad-conf
 
-- name: Conf - Create Config Directory
+- name: Conf - Remove Default Configuration
   file:
-    dest: "{{ nomad_config_dir }}"
-    state: directory
-    owner: "{{ nomad_user }}"
-    group: "{{ nomad_group }}"
-    mode: 0755
+    dest: "{{ nomad_config_dir }}/nomad.hcl"
+    state: absent
   tags:
     - nomad-conf
 
@@ -186,7 +123,7 @@
     owner: "root"
     group: "root"
     mode: 0644
-#  notify:
-#    - "Restart Nomad"
+  notify:
+    - "Restart Nomad"
   tags:
     - nomad-conf

@@ -1,26 +1,7 @@
 ---
 # file: roles/consul/defaults/main.yaml
 
-# Inst - Prerequisites.
-packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
-
-packages_base:
-  - "cgroup-bin"
-  - "curl"
-  - "git"
-  - "libcgroup1"
-  - "unzip"
-  - "htop"
-packages_by_distro:
-  ubuntu:
-    - []
-packages_by_arch:
-  aarch64:
-    - []
-  x86_64:
-    - []
-
-# Inst - Download Consul.
+# Inst - Consul Map.
 consul_architecture_map:
   amd64: "amd64"
   x86_64: "amd64"
@@ -29,17 +10,22 @@ consul_architecture_map:
   32-bit: "386"
   64-bit: "amd64"
 consul_architecture: "{{ consul_architecture_map[ansible_architecture] }}"
-consul_version: "1.8.6"
-consul_pkg: "consul_{{ consul_version }}_linux_{{ consul_architecture }}.zip"
-consul_zip_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_pkg }}"
+
+# Inst - Download Consul.
+# Used only for Debian/Ubuntu.
+consul_apt_release_channel: "main"
+consul_apt_repository: "deb [arch={{ consul_architecture }}] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} {{ consul_apt_release_channel }}"
+consul_apt_repository_state: present
+consul_apt_ignore_key_error: true
+consul_apt_gpg_key: "https://apt.releases.hashicorp.com/gpg"
+consul_apt_gpg_key_state: present
+consul_package: "consul"
+consul_package_state: present
+consul_package_version: "1.9.5"
 
 # Inst - System paths.
-consul_bin_dir: "/usr/local/bin"
 consul_config_dir: "/etc/consul.d"
 consul_data_dir: "/var/consul"
-consul_inst_dir: "/opt"
-consul_lockfile: "/var/lock/subsys/consul"
-consul_run_dir: "/var/run/consul"
 consul_ssl_dir: "/etc/consul.d/ssl"
 nomad_config_dir: "/etc/nomad.d"
 
@@ -47,16 +33,10 @@ nomad_config_dir: "/etc/nomad.d"
 consul_node_role: "both"
 consul_restart_handler_state: "restarted"
 nomad_restart_handler_state: "restarted"
-systemd_resolved_state: "stopped"
 
 # Conf - User and group.
 consul_group: "consul"
-consul_group_state: "present"
-consul_manage_group: true
-consul_manage_user: true
 consul_user: "consul"
-consul_user_groups: [ docker, nomad, consul, root ]
-consul_user_state: "present"
 
 # Conf - nomad.d/consul.hcl
 consul_nomad_integration: true
@@ -92,7 +72,8 @@ consul_encrypt: ""
 consul_ca_file: "{{ consul_ssl_dir }}/ca.pem"
 consul_cert_file: "{{ consul_ssl_dir }}/consul.pem"
 consul_key_file: "{{ consul_ssl_dir }}/consul-key.pem"
-consul_ui: true
+consul_ui_config:
+  enabled: true
 consul_recursors:
   - 1.1.1.1
   - 8.8.8.8

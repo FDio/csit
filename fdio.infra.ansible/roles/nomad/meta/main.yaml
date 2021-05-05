@@ -1,9 +1,23 @@
 ---
 # file: roles/nomad/meta/main.yaml
 
-# desc: Install nomad from stable branch and configure service.
+# desc: Install nomad from repo and configure service.
 # inst: Nomad
 # conf: ?
 # info: 1.0 - added role
 
 dependencies: [ docker ]
+
+galaxy_info:
+  role_name: nomad
+  author: fd.io
+  description: Hashicorp Nomad.
+  company: none
+  license: "license (Apache)"
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags:
+    - nomad
