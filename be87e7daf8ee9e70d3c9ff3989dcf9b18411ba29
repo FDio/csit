@@ -22,6 +22,30 @@
       "revId": "be87e7daf8ee9e70d3c9ff3989dcf9b18411ba29",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d473f832_2a204037",
+        "filename": "docs/vpp_review_process.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-05T08:15:04Z",
+      "side": 1,
+      "message": "\u003e Symptom watcher: Tomas Alexy.\n\nSymptom watcher: Viliam Luc.",
+      "parentUuid": "3601bb38_4cc5c277",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 55
+      },
+      "revId": "be87e7daf8ee9e70d3c9ff3989dcf9b18411ba29",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
