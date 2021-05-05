@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cf6f0e60_d772733d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-05T13:58:54Z",
+      "side": 1,
+      "message": "Only for 2n-clx in this patch.\nMention in commit message if that is intentional.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "bb9406479c0eeebaf318108c1d2fe191128ef038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fe9ef47_fbe4e65b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-05T13:58:54Z",
+      "side": 1,
+      "message": "This also removes the 1h case and 4096h cps case.\n1h: I agree, but mention in commit message.\n4096h: Not sure I agree.",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 11
+      },
+      "revId": "bb9406479c0eeebaf318108c1d2fe191128ef038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
