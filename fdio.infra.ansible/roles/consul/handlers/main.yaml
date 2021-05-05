@@ -15,9 +15,9 @@
     name: "consul"
     state: "{{ consul_restart_handler_state }}"
 
-- name: Stop Systemd-resolved
+- name: Restart Systemd-resolved
   systemd:
     daemon_reload: true
-    enabled: false
+    enabled: true
     name: "systemd-resolved"
-    state: "{{ systemd_resolved_state }}"
+    state: "restarted"

@@ -1,75 +1,15 @@
 ---
 # file: roles/consul/tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
-  apt:
-    update_cache: yes
-    cache_valid_time: 3600
-  when:
-    - ansible_distribution|lower == 'ubuntu'
+- include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
   tags:
-    - consul-inst-prerequisites
-
-- name: Inst - Prerequisites
-  package:
-    name: "{{ packages | flatten(levels=1) }}"
-    state: latest
-  tags:
-    - consul-inst-prerequisites
-
-- name: Conf - Add Consul Group
-  group:
-    name: "{{ consul_group }}"
-    state: "{{ consul_group_state }}"
-  when:
-    - consul_manage_group | bool
-  tags:
-    - consul-conf-user
-
-- name: Conf - Add Consul user
-  user:
-    name: "{{ consul_user }}"
-    group: "{{ consul_group }}"
-    groups: "{{ consul_user_groups }}"
-    state: "{{ consul_user_state }}"
-    system: true
-  when:
-    - consul_manage_user | bool
-  tags:
-    - consul-conf-user
-
-- name: Inst - Clean Consul
-  file:
-    path: "{{ consul_inst_dir }}/consul"
-    state: "absent"
-  tags:
-    - consul-inst-package
-
-- name: Inst - Download Consul
-  get_url:
-    url: "{{ consul_zip_url }}"
-    dest: "{{ consul_inst_dir }}/{{ consul_pkg }}"
-  tags:
-    - consul-inst-package
-
-- name: Inst - Unarchive Consul
-  unarchive:
-    src: "{{ consul_inst_dir }}/{{ consul_pkg }}"
-    dest: "{{ consul_inst_dir }}/"
-    creates: "{{ consul_inst_dir }}/consul"
-    remote_src: true
-  tags:
-    - consul-inst-package
+    - consul-inst-dependencies
 
 - name: Inst - Consul
-  copy:
-    src: "{{ consul_inst_dir }}/consul"
-    dest: "{{ consul_bin_dir }}"
-    owner: "{{ consul_user }}"
-    group: "{{ consul_group }}"
-    force: true
-    mode: 0755
-    remote_src: true
+  package:
+    name:
+      - "{{ consul_package }}={{ consul_package_version }}"
+    state: "{{ consul_package_state }}"
   tags:
     - consul-inst-package
 
@@ -91,13 +31,10 @@
   tags:
     - consul-conf
 
-- name: Conf - Create Config Directory
+- name: Conf - Remove Default Configuration
   file:
-    dest: "{{ consul_config_dir }}"
-    state: directory
-    owner: "{{ consul_user }}"
-    group: "{{ consul_group }}"
-    mode: 0755
+    dest: "{{ consul_config_dir }}/consul.hcl"
+    state: absent
   tags:
     - consul-conf
 
@@ -167,6 +104,64 @@
   tags:
     - consul-conf
 
+- name: Conf - Systemd-resolved I
+  lineinfile:
+    dest: "/etc/systemd/resolved.conf"
+    regexp: "#DNS="
+    line: "DNS=127.0.0.1"
+  notify:
+    - "Restart Systemd-resolved"
+  tags:
+    - consul-conf
+
+- name: Conf - Systemd-resolved II
+  lineinfile:
+    dest: "/etc/systemd/resolved.conf"
+    regexp: "#Domains="
+    line: "Domains=~consul"
+  notify:
+    - "Restart Systemd-resolved"
+  tags:
+    - consul-conf
+
+- name: Conf - Iptables I
+  iptables:
+    table: "nat"
+    chain: "OUTPUT"
+    destination: "localhost"
+    protocol: "udp"
+    match: "udp"
+    destination_port: "53"
+    jump: "REDIRECT"
+    to_ports: "8600"
+    comment: "Redirect dns traffic to port 8600"
+  become: true
+  tags:
+    - consul-conf
+
+- name: Conf - Iptables II
+  iptables:
+    table: "nat"
+    chain: "OUTPUT"
+    destination: "localhost"
+    protocol: "tcp"
+    match: "tcp"
+    destination_port: "53"
+    jump: "REDIRECT"
+    to_ports: "8600"
+    comment: "Redirect dns traffic to port 8600"
+  become: true
+  tags:
+    - consul-conf
+
+- name: Conf - Iptables III
+  community.general.iptables_state:
+    state: "saved"
+    path: "/etc/sysconfig/iptables"
+  become: true
+  tags:
+    - consul-conf
+
 - name: Conf - System.d Script
   template:
     src: "consul_systemd.service.j2"
@@ -174,9 +169,8 @@
     owner: "root"
     group: "root"
     mode: 0644
-#  notify:
-#    - "Restart Consul"
-#    - "Stop Systemd-resolved"
+  notify:
+    - "Restart Consul"
 #    - "Restart Nomad"
   tags:
     - consul-conf

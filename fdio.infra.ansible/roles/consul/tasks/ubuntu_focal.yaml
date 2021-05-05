@@ -1,0 +1,38 @@
+---
+# file: roles/consul/tasks/ubuntu_focal.yaml
+
+- name: Inst - Dependencies
+  apt:
+    name:
+      - "apt-transport-https"
+      - "ca-certificates"
+      - "gpg-agent"
+      - "iptables-persistent"
+      - "software-properties-common"
+    state: "present"
+    cache_valid_time: 3600
+    install_recommends: false
+  tags:
+    - nomad-inst-dependencies
+
+- name: Conf - Add APT Key
+  apt_key:
+    url: "{{ nomad_apt_gpg_key }}"
+    state: "{{ nomad_apt_gpg_key_state }}"
+  tags:
+    - nomad-conf-apt
+
+- name: Conf - Install APT Repository
+  apt_repository:
+    repo: "{{ nomad_apt_repository }}"
+    state: "{{ nomad_apt_repository_state }}"
+    update_cache: true
+  tags:
+    - nomad-conf-apt
+
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+  tags:
+    - nomad-conf-apt

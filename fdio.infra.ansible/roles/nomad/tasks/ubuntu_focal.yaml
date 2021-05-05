@@ -1,0 +1,37 @@
+---
+# file: roles/consul/tasks/ubuntu_focal.yaml
+
+- name: Inst - Dependencies
+  apt:
+    name:
+      - "apt-transport-https"
+      - "ca-certificates"
+      - "gpg-agent"
+      - "software-properties-common"
+    state: "present"
+    cache_valid_time: 3600
+    install_recommends: false
+  tags:
+    - consul-inst-dependencies
+
+- name: Conf - Add APT Key
+  apt_key:
+    url: "{{ consul_apt_gpg_key }}"
+    state: "{{ consul_apt_gpg_key_state }}"
+  tags:
+    - consul-conf-apt
+
+- name: Conf - Install APT Repository
+  apt_repository:
+    repo: "{{ consul_apt_repository }}"
+    state: "{{ consul_apt_repository_state }}"
+    update_cache: true
+  tags:
+    - consul-conf-apt
+
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+  tags:
+    - consul-conf-apt
