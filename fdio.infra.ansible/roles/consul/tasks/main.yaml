@@ -3,7 +3,7 @@
 
 - name: Inst - Update Package Cache (APT)
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
@@ -20,9 +20,7 @@
 - name: Conf - Add Consul Group
   group:
     name: "{{ consul_group }}"
-    state: "{{ consul_group_state }}"
-  when:
-    - consul_manage_group | bool
+    state: "present"
   tags:
     - consul-conf-user
 
@@ -30,11 +28,8 @@
   user:
     name: "{{ consul_user }}"
     group: "{{ consul_group }}"
-    groups: "{{ consul_user_groups }}"
-    state: "{{ consul_user_state }}"
+    state: "present"
     system: true
-  when:
-    - consul_manage_user | bool
   tags:
     - consul-conf-user
 
@@ -167,6 +162,15 @@
   tags:
     - consul-conf
 
+- name: Conf - Stop Systemd-resolved
+  systemd:
+    daemon_reload: true
+    enabled: false
+    name: "systemd-resolved"
+    state: "stopped"
+  tags:
+    - consul-conf
+
 - name: Conf - System.d Script
   template:
     src: "consul_systemd.service.j2"
@@ -174,9 +178,10 @@
     owner: "root"
     group: "root"
     mode: 0644
-#  notify:
-#    - "Restart Consul"
-#    - "Stop Systemd-resolved"
-#    - "Restart Nomad"
+  notify:
+    - "Restart Consul"
+    - "Restart Nomad"
   tags:
     - consul-conf
+
+- meta: flush_handlers

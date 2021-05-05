@@ -3,14 +3,10 @@
 
 # Inst - Prerequisites.
 packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
-
 packages_base:
-  - "cgroup-bin"
   - "curl"
   - "git"
-  - "libcgroup1"
   - "unzip"
-  - "htop"
 packages_by_distro:
   ubuntu:
     - []
@@ -20,7 +16,7 @@ packages_by_arch:
   x86_64:
     - []
 
-# Inst - Download Nomad.
+# Inst - Nomad Map.
 nomad_architecture_map:
   amd64: "amd64"
   x86_64: "amd64"
@@ -29,7 +25,7 @@ nomad_architecture_map:
   32-bit: "386"
   64-bit: "amd64"
 nomad_architecture: "{{ nomad_architecture_map[ansible_architecture] }}"
-nomad_version: "0.12.0"
+nomad_version: "1.0.4"
 nomad_pkg: "nomad_{{ nomad_version }}_linux_{{ nomad_architecture }}.zip"
 nomad_zip_url: "https://releases.hashicorp.com/nomad/{{ nomad_version }}/{{ nomad_pkg }}"
 
@@ -48,12 +44,7 @@ nomad_restart_handler_state: "restarted"
 
 # Conf - User and group.
 nomad_group: "nomad"
-nomad_group_state: "present"
-nomad_manage_group: true
-nomad_manage_user: true
 nomad_user: "nomad"
-nomad_user_groups: [ docker, nomad, root ]
-nomad_user_state: "present"
 
 # Conf - base.hcl
 nomad_bind_addr: "0.0.0.0"
@@ -71,14 +62,16 @@ nomad_cert_file: "{{ nomad_ssl_dir }}/nomad.pem"
 nomad_http: false
 nomad_key_file: "{{ nomad_ssl_dir }}/nomad-key.pem"
 nomad_rpc: false
+nomad_verify_https_client: false
+nomad_verify_server_hostname: false
 
 # Conf - client.hcl
 nomad_certificates:
-  - src: "{{ vault_nomad_ca_file }}"
+  - src: "{{ file_nomad_ca_pem }}"
     dest: "{{ nomad_ca_file }}"
-  - src: "{{ vault_nomad_cert_file }}"
+  - src: "{{ file_nomad_client_pem }}"
     dest: "{{ nomad_cert_file }}"
-  - src: "{{ vault_nomad_key_file }}"
+  - src: "{{ file_nomad_client_key_pem }}"
     dest: "{{ nomad_key_file }}"
 nomad_node_class: ""
 nomad_no_host_uuid: true
@@ -97,7 +90,6 @@ nomad_collection_interval: 60s
 nomad_use_node_name: false
 nomad_publish_allocation_metrics: true
 nomad_publish_node_metrics: true
-nomad_backwards_compatible_metrics: false
 nomad_telemetry_provider_parameters:
   prometheus_metrics: true
 
