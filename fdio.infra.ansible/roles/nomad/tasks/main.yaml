@@ -3,7 +3,7 @@
 
 - name: Inst - Update Package Cache (APT)
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
@@ -20,9 +20,7 @@
 - name: Conf - Add Nomad Group
   group:
     name: "{{ nomad_group }}"
-    state: "{{ nomad_group_state }}"
-  when:
-    - nomad_manage_group | bool
+    state: "{{ nomad_user_state }}"
   tags:
     - nomad-conf-user
 
@@ -30,11 +28,8 @@
   user:
     name: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
-    groups: "{{ nomad_user_groups }}"
-    state: "{{ nomad_user_state }}"
+    state: "{{ nomad_group_state }}"
     system: true
-  when:
-    - nomad_manage_user | bool
   tags:
     - nomad-conf-user
 
@@ -186,7 +181,9 @@
     owner: "root"
     group: "root"
     mode: 0644
-#  notify:
-#    - "Restart Nomad"
+  notify:
+    - "Restart Nomad"
   tags:
     - nomad-conf
+
+- meta: flush_handlers
