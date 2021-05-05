@@ -7,3 +7,16 @@
 # info: 1.0 - added role
 
 dependencies: [ ]
+galaxy_info:
+  role_name: consul
+  author: fd.io
+  description: Hashicrop Consul.
+  company: none
+  license: "license (Apache)"
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+  galaxy_tags:
+    - consul
