@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bd5e5ee9_8f8d0fc1",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Update to NGINX",
+      "parentUuid": "53e42f78_036a8345",
+      "range": {
+        "startLine": 16,
+        "startChar": 14,
+        "endLine": 16,
+        "endChar": 19
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a33ca2a5_9fbabed3",
         "filename": "resources/libraries/bash/entry/install_nginx.sh",
         "patchSetId": 40
@@ -45,6 +69,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e834041_a78ca3c9",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a33ca2a5_9fbabed3",
+      "range": {
+        "startLine": 36,
+        "startChar": 22,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3c7e0c33_9288bbb0",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abebb18d_b6022add",
+      "range": {
+        "startLine": 37,
+        "startChar": 22,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a06474c_02ca8d15",
         "filename": "resources/libraries/bash/entry/install_nginx.sh",
         "patchSetId": 40
@@ -91,6 +163,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39c4fa9a_b6102320",
+        "filename": "resources/libraries/bash/entry/install_nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a06474c_02ca8d15",
+      "range": {
+        "startLine": 38,
+        "startChar": 22,
+        "endLine": 38,
+        "endChar": 23
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "f91e3bc1_53bd7918",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Update to # - NGINX_DIR - Path to NGINX framework.",
+      "parentUuid": "9a60963d_7386266f",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5e60279c_7be15792",
         "filename": "resources/libraries/bash/function/nginx.sh",
         "patchSetId": 40
@@ -137,6 +257,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ddc0afa4_7e42b819",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Remove it",
+      "parentUuid": "5e60279c_7be15792",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 70
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "56718f69_bc48bacc",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Remove it",
+      "parentUuid": "eafcc356_de50a15d",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 19
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a62f5a38_b2f8f743",
         "filename": "resources/libraries/bash/function/nginx.sh",
         "patchSetId": 40
@@ -183,6 +351,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b1eaea3_09e9246d",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a62f5a38_b2f8f743",
+      "range": {
+        "startLine": 44,
+        "startChar": 64,
+        "endLine": 44,
+        "endChar": 65
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "ffe44170_d3f7b693",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Yes,update",
+      "parentUuid": "bcb9993f_526b3f95",
+      "range": {
+        "startLine": 57,
+        "startChar": 6,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f56f129a_715cb0c9",
         "filename": "resources/libraries/bash/function/nginx.sh",
         "patchSetId": 40
@@ -229,6 +445,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e17412f2_aa55bb9b",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f56f129a_715cb0c9",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 4
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "d5db1887_835e7e31",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Yes,update it    \n    # Set installation prefix.\n    param\u003d\"--prefix\u003d${NGINX_INS_PATH} \"\n    # Set nginx binary pathname.\n    param+\u003d\"--sbin-path\u003d${NGINX_INS_PATH}/sbin/nginx \"\n    # Set nginx.conf pathname.\n    param+\u003d\"--conf-path\u003d${NGINX_INS_PATH}/conf/nginx.conf \"\n    # Enable ngx_http_stub_status_module.\n    param+\u003d\"--with-http_stub_status_module \"\n    # Force PCRE library usage.\n    param+\u003d\"--with-pcre \"\n    # Enable ngx_http_realip_module.\n    param+\u003d\"--with-http_realip_module \"\n    params\u003d(${param})",
+      "parentUuid": "686b6667_8163655a",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 15
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95265554_06d6967d",
         "filename": "resources/libraries/bash/function/nginx.sh",
         "patchSetId": 40
@@ -275,6 +539,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52b6ee6a_e4010633",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95265554_06d6967d",
+      "range": {
+        "startLine": 106,
+        "startChar": 22,
+        "endLine": 106,
+        "endChar": 23
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "ca1a9481_3f75e948",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84ec8444_2cee1df5",
+      "range": {
+        "startLine": 116,
+        "startChar": 6,
+        "endLine": 116,
+        "endChar": 16
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d6775687_36e753ac",
         "filename": "resources/libraries/bash/function/nginx.sh",
         "patchSetId": 40
@@ -324,6 +636,30 @@
     },
     {
       "key": {
+        "uuid": "66402943_8aaef92f",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Add !",
+      "parentUuid": "d6775687_36e753ac",
+      "range": {
+        "startLine": 124,
+        "startChar": 44,
+        "endLine": 124,
+        "endChar": 45
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "baa013b9_dc6405ac",
         "filename": "resources/libraries/bash/function/nginx.sh",
         "patchSetId": 40
@@ -344,6 +680,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9e5c7df_5f64bda9",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 40
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "${DOWNLOAD_DIR}",
+      "parentUuid": "baa013b9_dc6405ac",
+      "range": {
+        "startLine": 125,
+        "startChar": 13,
+        "endLine": 125,
+        "endChar": 25
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -393,6 +753,54 @@
     },
     {
       "key": {
+        "uuid": "2ebb745d_ae816bee",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "394f4501_6f37c4a3",
+      "range": {
+        "startLine": 474,
+        "startChar": 70,
+        "endLine": 474,
+        "endChar": 74
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66c5be2b_6fd8dd03",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Change to:\ncpu_list \u003d CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)\ncpu_idle_list \u003d [i for i in cpu_list\n                if str(i) not in cpu_alloc_str.split(sep)]\nreturn cpu_idle_list",
+      "parentUuid": "0fb72d97_e73f6b97",
+      "range": {
+        "startLine": 474,
+        "startChar": 51,
+        "endLine": 474,
+        "endChar": 64
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44902349_c3bc6b4a",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 40
@@ -416,6 +824,30 @@
     },
     {
       "key": {
+        "uuid": "9f248bd0_2dd8ae07",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44902349_c3bc6b4a",
+      "range": {
+        "startLine": 169,
+        "startChar": 26,
+        "endLine": 169,
+        "endChar": 39
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "025f5dc0_b4abbcd7",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 40
@@ -430,6 +862,24 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e84505bf_7f5a1649",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Update doc \nnginx_ins_dir: NGINX install dir.",
+      "parentUuid": "025f5dc0_b4abbcd7",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -456,6 +906,30 @@
     },
     {
       "key": {
+        "uuid": "195192f2_062ef0c7",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Fixed str",
+      "parentUuid": "bad6357a_ac03a85d",
+      "range": {
+        "startLine": 175,
+        "startChar": 29,
+        "endLine": 175,
+        "endChar": 46
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9e2a966_b8f022f7",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 40
@@ -479,6 +953,30 @@
     },
     {
       "key": {
+        "uuid": "9df2121f_3029cd14",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9e2a966_b8f022f7",
+      "range": {
+        "startLine": 183,
+        "startChar": 8,
+        "endLine": 183,
+        "endChar": 76
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2bbfc41_bfbe72e5",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 40
@@ -493,6 +991,24 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "476ec66d_a4cba861",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Change indent",
+      "parentUuid": "a2bbfc41_bfbe72e5",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -519,6 +1035,30 @@
     },
     {
       "key": {
+        "uuid": "009dec97_81eae995",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f420fc1f_d34a6604",
+      "range": {
+        "startLine": 232,
+        "startChar": 35,
+        "endLine": 232,
+        "endChar": 41
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da32ee1a_4e492b13",
         "filename": "resources/libraries/python/HoststackUtil.py",
         "patchSetId": 40
@@ -539,6 +1079,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e54eb0de_462b3b6d",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Cleanup add  Kill Processes - nohup",
+      "parentUuid": "da32ee1a_4e492b13",
+      "range": {
+        "startLine": 237,
+        "startChar": 16,
+        "endLine": 237,
+        "endChar": 22
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -582,6 +1146,48 @@
     },
     {
       "key": {
+        "uuid": "baee872c_292cdf56",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1df53cfe_58de449b",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2c39ca2_68fb42e0",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21c1417c_877aad92",
+      "range": {
+        "startLine": 400,
+        "startChar": 8,
+        "endLine": 400,
+        "endChar": 11
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5074d78b_e9313247",
         "filename": "resources/libraries/python/NGINX/NGINXTools.py",
         "patchSetId": 40
@@ -602,6 +1208,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc5b3ee5_f26efb06",
+        "filename": "resources/libraries/python/NGINX/NGINXTools.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Add check path and remove sudo",
+      "parentUuid": "5074d78b_e9313247",
+      "range": {
+        "startLine": 43,
+        "startChar": 41,
+        "endLine": 43,
+        "endChar": 50
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -628,6 +1258,30 @@
     },
     {
       "key": {
+        "uuid": "14092181_5e32dc19",
+        "filename": "resources/libraries/python/NGINX/NGINXTools.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f27b5e24_0615391d",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 26
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f42c9d5b_e0411f43",
         "filename": "resources/libraries/python/NGINX/NGINXTools.py",
         "patchSetId": 40
@@ -651,6 +1305,30 @@
     },
     {
       "key": {
+        "uuid": "46dfce04_2adc59ce",
+        "filename": "resources/libraries/python/NGINX/NGINXTools.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f42c9d5b_e0411f43",
+      "range": {
+        "startLine": 57,
+        "startChar": 20,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9292b4cb_0febdb0c",
         "filename": "resources/libraries/python/NginxConfigGenerator.py",
         "patchSetId": 40
@@ -668,6 +1346,24 @@
     },
     {
       "key": {
+        "uuid": "58c13178_e790ee9d",
+        "filename": "resources/libraries/python/NginxConfigGenerator.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Fixed u\"\" and update doc",
+      "parentUuid": "9292b4cb_0febdb0c",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76906a7f_8f13cded",
         "filename": "resources/libraries/python/NginxUtil.py",
         "patchSetId": 40
@@ -682,6 +1378,24 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93b276e2_823cb847",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "\"\"\"NGINX Utilities Library.\"\"\"",
+      "parentUuid": "76906a7f_8f13cded",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -708,6 +1422,30 @@
     },
     {
       "key": {
+        "uuid": "5b6487ba_c1b18243",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fb59e31_6f313f10",
+      "range": {
+        "startLine": 27,
+        "startChar": 11,
+        "endLine": 27,
+        "endChar": 19
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84043d19_38b55666",
         "filename": "resources/libraries/python/NginxUtil.py",
         "patchSetId": 40
@@ -728,6 +1466,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da655942_d4a7147f",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84043d19_38b55666",
+      "range": {
+        "startLine": 35,
+        "startChar": 32,
+        "endLine": 35,
+        "endChar": 38
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -754,6 +1516,30 @@
     },
     {
       "key": {
+        "uuid": "47ceeb69_8ed8861b",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fd84d03_11e61dc4",
+      "range": {
+        "startLine": 96,
+        "startChar": 23,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4aa3e21f_d9a631f4",
         "filename": "resources/libraries/python/NginxUtil.py",
         "patchSetId": 40
@@ -777,6 +1563,30 @@
     },
     {
       "key": {
+        "uuid": "3dcd32fe_db394cf4",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4aa3e21f_d9a631f4",
+      "range": {
+        "startLine": 102,
+        "startChar": 31,
+        "endLine": 102,
+        "endChar": 43
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "adfebbb4_42a6c134",
         "filename": "resources/libraries/python/NginxUtil.py",
         "patchSetId": 40
@@ -794,6 +1604,24 @@
     },
     {
       "key": {
+        "uuid": "31eafdc6_a7471fa7",
+        "filename": "resources/libraries/python/NginxUtil.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adfebbb4_42a6c134",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d71234f5_2163f575",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 40
@@ -808,6 +1636,24 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06c12d1c_54acc903",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Add Class ABTools",
+      "parentUuid": "d71234f5_2163f575",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -834,6 +1680,30 @@
     },
     {
       "key": {
+        "uuid": "2325e336_0d6ea24b",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29e3df74_31d8ba1a",
+      "range": {
+        "startLine": 31,
+        "startChar": 15,
+        "endLine": 31,
+        "endChar": 21
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bfde77a5_323ccdad",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 40
@@ -854,6 +1724,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13370edd_9e53e22a",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfde77a5_323ccdad",
+      "range": {
+        "startLine": 32,
+        "startChar": 27,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -880,6 +1774,30 @@
     },
     {
       "key": {
+        "uuid": "69b36669_f611d9e9",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "175d552b_843d020f",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e8d7d0f2_6f188a9d",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 40
@@ -900,6 +1818,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfa3ab65_bfd42a48",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "message \u003d u\"ab not installed on TG node!\"\nexec_cmd_no_error(tg_node, cmd, message\u003dmessage)",
+      "parentUuid": "e8d7d0f2_6f188a9d",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 67
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -949,6 +1891,54 @@
     },
     {
       "key": {
+        "uuid": "350cc247_a9b3d8e2",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "message \u003d u\"ab not installed on TG node!\"",
+      "parentUuid": "1d8501fc_39a4d842",
+      "range": {
+        "startLine": 38,
+        "startChar": 60,
+        "endLine": 38,
+        "endChar": 67
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f811550_84048758",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Used ab",
+      "parentUuid": "7ec58080_c524f827",
+      "range": {
+        "startLine": 38,
+        "startChar": 29,
+        "endLine": 38,
+        "endChar": 32
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "791e075c_5f9272af",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 40
@@ -969,6 +1959,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb545f5f_739e60d3",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "791e075c_5f9272af",
+      "range": {
+        "startLine": 42,
+        "startChar": 35,
+        "endLine": 42,
+        "endChar": 43
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -995,6 +2009,30 @@
     },
     {
       "key": {
+        "uuid": "2b378f9b_61f31414",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a649398_d53bbbd7",
+      "range": {
+        "startLine": 45,
+        "startChar": 20,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "72f6f806_02d5a319",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 40
@@ -1015,6 +2053,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1b1da9ac_0de11c6c",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72f6f806_02d5a319",
+      "range": {
+        "startLine": 46,
+        "startChar": 20,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -1041,6 +2103,30 @@
     },
     {
       "key": {
+        "uuid": "00d3fec6_2d8cf942",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb4bf452_4aa47dc6",
+      "range": {
+        "startLine": 51,
+        "startChar": 6,
+        "endLine": 51,
+        "endChar": 22
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6149a787_a99143d0",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 40
@@ -1061,6 +2147,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "456215ed_75fdda9d",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6149a787_a99143d0",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -1087,6 +2197,30 @@
     },
     {
       "key": {
+        "uuid": "9b70e0a1_b5dd18ff",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6a3b785_88f47713",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 73,
+        "endChar": 17
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b4d78445_4c07428f",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 40
@@ -1107,6 +2241,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b4a3a46_9b105176",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Change path to {Constants.REMOTE_FW_DIR}/resources/tools/ab",
+      "parentUuid": "b4d78445_4c07428f",
+      "range": {
+        "startLine": 77,
+        "startChar": 17,
+        "endLine": 77,
+        "endChar": 43
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -1133,6 +2291,30 @@
     },
     {
       "key": {
+        "uuid": "494cabb2_9c1b95ad",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Add func get_cmd_options(**kwargs):",
+      "parentUuid": "9f7e78c3_8e0ff533",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 8
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e785a22c_f155eb89",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 40
@@ -1156,6 +2338,30 @@
     },
     {
       "key": {
+        "uuid": "8e7ab6cc_66953b94",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e785a22c_f155eb89",
+      "range": {
+        "startLine": 92,
+        "startChar": 21,
+        "endLine": 92,
+        "endChar": 29
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe7d69a4_70a34258",
         "filename": "resources/libraries/python/ab.py",
         "patchSetId": 40
@@ -1170,6 +2376,24 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a99e33c_9025f110",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe7d69a4_70a34258",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -1196,6 +2420,30 @@
     },
     {
       "key": {
+        "uuid": "b3fc34e4_216df688",
+        "filename": "resources/libraries/python/ab.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Add parameter keepends\u003dFalse",
+      "parentUuid": "97c39420_0759919f",
+      "range": {
+        "startLine": 115,
+        "startChar": 29,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d6b8411_055b253d",
         "filename": "resources/libraries/robot/hoststack/hoststack.robot",
         "patchSetId": 40
@@ -1210,6 +2458,24 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a7a047a_36da53a1",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Update it",
+      "parentUuid": "5d6b8411_055b253d",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -1236,6 +2502,30 @@
     },
     {
       "key": {
+        "uuid": "ff45afb1_f4a70966",
+        "filename": "resources/libraries/robot/nginx/default.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Rename to Apply Nginx configuration on DUT",
+      "parentUuid": "a2109e70_46ce42e3",
+      "range": {
+        "startLine": 20,
+        "startChar": 30,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f31bddfa_e566f41b",
         "filename": "resources/libraries/robot/nginx/default.robot",
         "patchSetId": 40
@@ -1259,6 +2549,30 @@
     },
     {
       "key": {
+        "uuid": "bd4f7c11_52cb560b",
+        "filename": "resources/libraries/robot/nginx/default.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Fixed it",
+      "parentUuid": "f31bddfa_e566f41b",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca90fe19_af61f20b",
         "filename": "resources/libraries/robot/nginx/default.robot",
         "patchSetId": 40
@@ -1276,6 +2590,24 @@
     },
     {
       "key": {
+        "uuid": "1e61a506_eeacb38b",
+        "filename": "resources/libraries/robot/nginx/default.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca90fe19_af61f20b",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e0d1734_d2a1d49b",
         "filename": "resources/libraries/robot/shared/suite_setup.robot",
         "patchSetId": 40
@@ -1290,6 +2622,24 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd12bda5_a205ee4c",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e0d1734_d2a1d49b",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -1333,6 +2683,48 @@
     },
     {
       "key": {
+        "uuid": "ba17bc7f_a56ee1cb",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c819260_ef75bcef",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b8c3612_16d693e9",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4764da7d_b176330f",
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "992a1215_82e721ba",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps.robot",
         "patchSetId": 40
@@ -1353,6 +2745,30 @@
       "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b343925_a038f111",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps.robot",
+        "patchSetId": 40
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2377
+      },
+      "writtenOn": "2021-05-07T08:03:17Z",
+      "side": 1,
+      "message": "Remove Suite Teardown nginx",
+      "parentUuid": "992a1215_82e721ba",
+      "range": {
+        "startLine": 28,
+        "startChar": 35,
+        "endLine": 28,
+        "endChar": 40
+      },
+      "revId": "719690a0739daaea3f02679963ae7654d71f91ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
