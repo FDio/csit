@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8603d75d_09d5cec5",
+        "filename": "docs/report/introduction/methodology_telemetry.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-05-07T10:14:23Z",
+      "side": 1,
+      "message": "Regarding keyword name: use \"stat_runtime\"? And within that clear \u003e wait \u003e collect runtime statistics incl. perfmon like it\u0027s done in this patch.",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 16
+      },
+      "revId": "4bbdbf177d7a641b24d90413db2caf2898be852c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c25112b8_607150fb",
+        "filename": "docs/report/introduction/methodology_telemetry.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-05-07T10:14:23Z",
+      "side": 1,
+      "message": "Same as per previous comment, no need for two separate keywords, use \"stat_runtime\"?",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 17
+      },
+      "revId": "4bbdbf177d7a641b24d90413db2caf2898be852c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "811273e2_b94a6e64",
+        "filename": "docs/report/introduction/methodology_telemetry.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-05-07T10:14:23Z",
+      "side": 1,
+      "message": "Regarding keyword name: use \"stat_pre_trial\" instead?",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "4bbdbf177d7a641b24d90413db2caf2898be852c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5889d026_964958a3",
+        "filename": "docs/report/introduction/methodology_telemetry.md",
+        "patchSetId": 24
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-05-07T10:14:23Z",
+      "side": 1,
+      "message": "Regarding keyword name: use \"stat_post_trial\" instead?",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 13
+      },
+      "revId": "4bbdbf177d7a641b24d90413db2caf2898be852c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
