@@ -426,6 +426,16 @@
   #     intel-csit-vpp-perf-report-iterative-2101-2n-icx:
   #       - 1   # master NDRPDR iter env 6
 
+  # 3n-icx
+
+  plot-vpp-throughput-lat-tsa-3n-icx:
+    intel-csit-vpp-perf-report-iterative-2101-3n-icx:
+      - 1   # master NDRPDR iter env 6
+
+  plot-vpp-hdrh-lat-3n-icx:
+    intel-csit-vpp-perf-report-iterative-2101-3n-icx:
+      - 1   # master NDRPDR iter env 6
+
   # 3n-tsh
 
   plot-vpp-throughput-lat-tsa-3n-tsh:
@@ -761,6 +771,10 @@
   #   vpp-perf-results-2n-icx:
   #     intel-csit-vpp-perf-report-iterative-2101-2n-icx:
   #       - 1   # master NDRPDR iter env 6
+
+  vpp-perf-results-3n-icx:
+    intel-csit-vpp-perf-report-iterative-2101-3n-icx:
+      - 1   # master NDRPDR iter env 6
 
   vpp-perf-results-3n-tsh:
     csit-vpp-perf-report-coverage-2101-3n-tsh:
