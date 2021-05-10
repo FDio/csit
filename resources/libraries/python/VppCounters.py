@@ -13,10 +13,14 @@
 
 """VPP counters utilities library."""
 
+import datetime
 from pprint import pformat
 
 from robot.api import logger
 
+from resources.libraries.python.model.ExportTelemetry import (
+    export_runtime_counters
+)
 from resources.libraries.python.PapiExecutor import PapiExecutor, \
     PapiSocketExecutor
 from resources.libraries.python.topology import Topology, SocketType, NodeType
@@ -61,6 +65,7 @@ class VppCounters:
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.STATS)
         if sockets:
             for socket in sockets.values():
+                timestamp = str(datetime.datetime.utcnow())
                 with PapiExecutor(node) as papi_exec:
                     stats = papi_exec.add(u"vpp-stats", **args).\
                         get_stats(socket=socket)[0]
@@ -112,6 +117,12 @@ class VppCounters:
                         f"stats runtime ({node[u'host']} - {socket}):\n"
                         f"{pformat(runtime_nz)}"
                     )
+                export_runtime_counters(
+                    host=node[u"host"],
+                    socket=socket,
+                    runtime_nz=runtime_nz,
+                    timestamp=timestamp,
+                )
         # Run also the CLI command, the above sometimes misses some info.
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
 

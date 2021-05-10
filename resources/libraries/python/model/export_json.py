@@ -33,8 +33,8 @@ class export_json():
 
         :param suite_name: Name of suite as detected by Robot.
         :param log_dir: Root directory for json file placement.
-        :param suite_name: str
-        :param log_dir: str
+        :type suite_name: str
+        :type log_dir: str
         """
         self.suite_name = str(suite_name)
         self.suite_path_part = os.path.join(*suite_name.split(u"."))
