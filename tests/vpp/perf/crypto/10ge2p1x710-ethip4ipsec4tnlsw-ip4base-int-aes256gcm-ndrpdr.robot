@@ -93,6 +93,7 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
+| | Set Test Variable | \${rxq_ratio} | ${1}
 | |
 | | # These are enums (not strings) so they cannot be in Variables table.
 | | ${encr_alg}= | Crypto Alg AES GCM 256
