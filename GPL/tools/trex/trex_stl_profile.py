@@ -187,6 +187,7 @@ def simple_burst(
         lost_a = 0
         lost_b = 0
 
+        time_0 = time.monotonic()
         # Choose rate and start traffic:
         client.start(
             ports=ports,
@@ -195,6 +196,7 @@ def simple_burst(
             force=force,
             core_mask=STLClient.CORE_MASK_PIN,
         )
+        time_1 = time.monotonic()
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -208,16 +210,25 @@ def simple_burst(
             # wait_on_traffic fails if duration stretches by 30 seconds or more.
             # TRex has some overhead, wait some more.
             time.sleep(duration + delay)
+            time_2 = time.monotonic()
             client.stop()
             time_stop = time.monotonic()
-            approximated_duration = time_stop - time_start - delay
             # Read the stats after the traffic stopped (or time up).
             stats = client.get_stats()
+            time_3 = time.monotonic()
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
             # Now finish the complete reset.
             client.reset()
+            time_4 = time.monotonic()
+            approximated_duration = time_stop - time_start - delay
+            print(f"start duration: {time_1 - time_0}")
+            print(f"empty duration: {time_start - time_1}")
+            print(f"sleep duration: {time_2 - time_start}")
+            print(f"stop duration: {time_stop - time_2}")
+            print(f"stats duration: {time_3 - time_stop}")
+            print(f"reser duration: {time_4 - time_3}")
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
