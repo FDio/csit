@@ -201,3 +201,43 @@ If measurement of latency is requested, two more packet streams are
 created (one for each direction) with TRex flow_stats parameter set to
 STLFlowLatencyStats. In that case, returned statistics will also include
 min/avg/max latency values and encoded HDRHistogram data.
+
+
+Options for handling of duration stretching
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The current way:
+
+    # "delay" is 0 for LFN, 0.1 for AWS.
+    client.start(duration=target_duration)
+    time_start = time.monotonic()
+    time.sleep(target_duration + delay)
+    client.stop()  # Includes the 10ms of waiting for late packets.
+    time_stop = time.monotonic()
+    approximated_duration = time_stop - time_start - delay
+    # Use approximated_duration for computing MRR rate.
+    # Calculate number of unsent packets from target rate, target duration and opackets.
+    # Print warning if there were unsent packets, but still use the MRR value.
+
+The proposed new way:
+
+    # "delay" is 0 for LFN, 0.1 for AWS.
+    client.start(duration=target_duration)
+    time_start = time.monotonic()
+    time.sleep(target_duration + delay)
+    client.stop()  # Includes the 10ms of waiting for late packets.
+    time_stop = time.monotonic()
+    approximated_duration = time_stop - time_start - delay
+    # Use target_duration for computing MRR rate.
+    # Calculate number of unsent packets from target rate, target duration and opackets.
+    # Print warning if there were unsent packets, but still use the MRR value.
+
+The ideal future way:
+
+    # "delay" is 0 for LFN, 0.1 for AWS.
+    client.start(duration=target_duration, hard_stop=target_duration + delay)
+    client.wait_for_traffic()
+    real_duration = client.get_real_tx_duration()  # TRex does not implement this yet.
+    # Use real_duration for computing MRR rate.
+    unsent_packets = client.get_unsent_packets()  # TRex does not implement this yet.
+    # Print warning if there were unsent packets, but still use the MRR value.
