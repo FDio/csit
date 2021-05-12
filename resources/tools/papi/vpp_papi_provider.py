@@ -209,6 +209,8 @@ def process_json_request(args):
 def process_stats(args):
     """Process the VPP Stats.
 
+    The reply contains single item covering all paths.
+
     :param args: Command line arguments passed to VPP PAPI Provider.
     :type args: ArgumentParser
     :returns: JSON formatted string.
@@ -221,19 +223,9 @@ def process_stats(args):
     except Exception as err:
         raise RuntimeError(f"PAPI init failed:\n{err!r}")
 
-    json_data = json.loads(args.data)
-
-    reply = list()
-
-    for path in json_data:
-        # The ls method can match multiple patterns,
-        # but we feed it one path at a time anyway, because the caller
-        # expect results in a list, one item per path.
-        # Most VPP versions understand a string is a single pattern,
-        # but some blindly iterate (as if it was a list of chars).
-        directory = stats.ls([path])
-        data = stats.dump(directory)
-        reply.append(data)
+    paths = json.loads(args.data)
+    directory = stats.ls(paths)
+    reply = [stats.dump(directory)]
 
     try:
         return json.dumps(reply)

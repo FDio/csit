@@ -872,6 +872,8 @@ class PapiExecutor:
       is "stats".
     - the second parameter must be 'path' as it is used by PapiExecutor
       method 'add'.
+    - even if the parameter contains multiple paths, there is only one
+      reply item (for each .add).
     """
 
     def __init__(self, node):
