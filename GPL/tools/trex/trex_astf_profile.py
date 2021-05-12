@@ -184,7 +184,8 @@ def simple_burst(
             latency_pps=int(multiplier) if latency else 0,
             client_mask=2**len(ports)-1,
         )
-        time_stop = time.monotonic() + duration + delay
+        time_start = time.monotonic()
+        time_stop = time_start + duration + delay
 
         if async_start:
             # For async stop, we need to export the current snapshot.
@@ -194,7 +195,10 @@ def simple_burst(
                 xsnap1 = client.ports[port_1].get_xstats().reference_stats
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
-            time.sleep(duration + delay)
+            # wait_on_traffic fails if duration stretches by 30 seconds or more.
+            # Busy wait, as .sleep() is not precise enough for well-behaved tests.
+            while time.monotonic() < time_stop:
+                pass
             # Do not block yet, the existing transactions may take long time
             # to finish. We need an action that is almost reset(),
             # but without clearing stats.
@@ -205,7 +209,7 @@ def simple_burst(
             client.stop(block=True)
 
             # Read the stats after the traffic stopped (or time up).
-            stats[time.monotonic() - time_stop] = client.get_stats(
+            stats[time.monotonic() - time_start] = client.get_stats(
                 ports=ports
             )
 

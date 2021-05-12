@@ -207,7 +207,11 @@ def simple_burst(
             time_start = time.monotonic()
             # wait_on_traffic fails if duration stretches by 30 seconds or more.
             # TRex has some overhead, wait some more.
-            time.sleep(duration + delay)
+            time_sleep = time_start + duration + delay
+            while time.monotonic() < time_sleep:
+                pass
+            # We include time needed for explicit stop into approximate duration,
+            # as it seems small duration stretching increases it.
             client.stop()
             time_stop = time.monotonic()
             approximated_duration = time_stop - time_start - delay
