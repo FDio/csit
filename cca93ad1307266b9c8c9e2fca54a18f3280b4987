@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "555767c5_a5a27cfa",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-12T12:44:04Z",
+      "side": 1,
+      "message": "Duration: 20 ms. (avg: 0.01750690749613568 stdev: 0.005114656468362614)",
+      "range": {
+        "startLine": 212,
+        "startChar": 10,
+        "endLine": 212,
+        "endChar": 16
+      },
+      "revId": "cca93ad1307266b9c8c9e2fca54a18f3280b4987",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89c25e05_e9a951f2",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-12T12:44:04Z",
+      "side": 1,
+      "message": "Duration: 0.4 us (avg: 3.9850128814578055e-07 stdev: 1.0931398037670276e-07)",
+      "range": {
+        "startLine": 213,
+        "startChar": 21,
+        "endLine": 213,
+        "endChar": 31
+      },
+      "revId": "cca93ad1307266b9c8c9e2fca54a18f3280b4987",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14279ff3_0a0707bf",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-12T12:44:04Z",
+      "side": 1,
+      "message": "Additional duration (above the argument value): 1ms (avg: 1.0010137703968214 stdev: 2.2346508043819287e-06 for argument of 1.0)",
+      "range": {
+        "startLine": 214,
+        "startChar": 8,
+        "endLine": 214,
+        "endChar": 14
+      },
+      "revId": "cca93ad1307266b9c8c9e2fca54a18f3280b4987",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e748debb_621b5ded",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-12T12:44:04Z",
+      "side": 1,
+      "message": "Duration 3 ms. (avg: 0.002884163905400783 stdev: 0.0013956885071792645)\nProbably means TRex was aware of traffic ending sooner, so it started waiting for the 10 ms sooner.",
+      "range": {
+        "startLine": 215,
+        "startChar": 10,
+        "endLine": 215,
+        "endChar": 15
+      },
+      "revId": "cca93ad1307266b9c8c9e2fca54a18f3280b4987",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e75d9873_3d4e0c5c",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-12T12:44:04Z",
+      "side": 1,
+      "message": "I also measured two subsequent steps which do not affect the result.\nReading counters: 3.5 ms (avg: 0.0034661141224205496 stdev: 0.00039794508920297733)\nResettingthe TRex profile so we know the next trial starts cleanly: 20 ms (avg: 0.01984521197155118 stdev: 0.0007373203808849891)",
+      "range": {
+        "startLine": 216,
+        "startChar": 31,
+        "endLine": 216,
+        "endChar": 32
+      },
+      "revId": "cca93ad1307266b9c8c9e2fca54a18f3280b4987",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e326e43_3ac25c82",
+        "filename": "docs/report/introduction/methodology_trex_traffic_generator.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-12T12:44:04Z",
+      "side": 1,
+      "message": "I realized we can do busy waiting to get better precision than sleep:\n\n  time_stop \u003d time_start + target_duration + delay\n  while time.monotonic() \u003c time_stop:\n    pass",
+      "range": {
+        "startLine": 227,
+        "startChar": 4,
+        "endLine": 227,
+        "endChar": 14
+      },
+      "revId": "cca93ad1307266b9c8c9e2fca54a18f3280b4987",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
