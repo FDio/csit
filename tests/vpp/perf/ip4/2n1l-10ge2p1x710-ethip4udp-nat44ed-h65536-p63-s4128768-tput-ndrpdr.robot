@@ -84,7 +84,7 @@
 # Main heap size multiplicator
 | ${heap_size_mult}= | ${2}
 # Ramp-up settings
-| ${ramp_up_rate}= | ${36000}
+| ${ramp_up_rate}= | ${3600}
 # Traffic profile
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
 | ${transaction_type}= | udp_pps
