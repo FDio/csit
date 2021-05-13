@@ -65,6 +65,8 @@ class PerfUtil:
         cmd_base.add_with_value(u"sleep", int(duration))
 
         exec_cmd(node, cmd_base, sudo=True)
+        exec_cmd(node, 'perf stat -e "cpu/event=0x28,umask=0x07,name=CORE_POWER.LVL0_TURBO_LICENSE/" -e "cpu/event=0x28,umask=0x18,name=CORE_POWER.LVL1_TURBO_LICENSE/" -e "cpu/event=0x28,umask=0x20,name=CORE_POWER.LVL2_TURBO_LICENSE/" -C 1 -I 1000',
+            sudo=True)
 
     @staticmethod
     def perf_stat_on_all_duts(nodes, cpu_list=None, duration=1):
