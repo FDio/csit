@@ -96,7 +96,7 @@ function build_vpp_ubuntu_amd64 () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
-    make UNATTENDED=y pkg-verify || die "VPP build using make pkg-verify failed."
+    make UNATTENDED=y pkg-deb-debug || die "VPP build using make pkg-verify failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }

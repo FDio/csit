@@ -82,7 +82,7 @@
 | ${transaction_scale}= | ${n_sessions}
 | ${packets_per_transaction_and_direction}= | ${33}
 # Ramp-up settings
-| ${ramp_up_rate}= | ${36000}
+| ${ramp_up_rate}= | ${3600}
 # Traffic profile
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
 | ${transaction_type}= | udp_pps
