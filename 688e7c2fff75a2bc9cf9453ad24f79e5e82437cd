@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bfd976c2_76e86b80",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 42
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-13T06:39:32Z",
+      "side": 1,
+      "message": "Variables read is missing",
+      "revId": "688e7c2fff75a2bc9cf9453ad24f79e5e82437cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41bc8bc4_fb15f6e4",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 42
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-13T06:39:32Z",
+      "side": 1,
+      "message": "NGINX_VER",
+      "revId": "688e7c2fff75a2bc9cf9453ad24f79e5e82437cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92f36055_87fd20b7",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-13T06:39:32Z",
+      "side": 1,
+      "message": "taskset_cmd \u003d u\"nginx\" if program_name else f\"taskset --cpu-list {core_list}\"",
+      "range": {
+        "startLine": 232,
+        "startChar": 8,
+        "endLine": 232,
+        "endChar": 36
+      },
+      "revId": "688e7c2fff75a2bc9cf9453ad24f79e5e82437cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d723ab25_a2ee8a3d",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-13T06:39:32Z",
+      "side": 1,
+      "message": "remove space",
+      "range": {
+        "startLine": 233,
+        "startChar": 47,
+        "endLine": 233,
+        "endChar": 48
+      },
+      "revId": "688e7c2fff75a2bc9cf9453ad24f79e5e82437cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "762d3f4c_3c8adb74",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-13T06:39:32Z",
+      "side": 1,
+      "message": "remove double space",
+      "range": {
+        "startLine": 233,
+        "startChar": 25,
+        "endLine": 233,
+        "endChar": 27
+      },
+      "revId": "688e7c2fff75a2bc9cf9453ad24f79e5e82437cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0640a2e9_05692363",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-13T06:39:32Z",
+      "side": 1,
+      "message": "remove double space",
+      "range": {
+        "startLine": 233,
+        "startChar": 13,
+        "endLine": 233,
+        "endChar": 15
+      },
+      "revId": "688e7c2fff75a2bc9cf9453ad24f79e5e82437cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "deddf589_b0479055",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 42
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-13T06:39:32Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 395,
+        "startChar": 8,
+        "endLine": 395,
+        "endChar": 14
+      },
+      "revId": "688e7c2fff75a2bc9cf9453ad24f79e5e82437cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47fc05bd_291602bb",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 42
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-13T06:39:32Z",
+      "side": 1,
+      "message": "Better name is:\nTaskset Nginx PID to idle cores",
+      "range": {
+        "startLine": 600,
+        "startChar": 4,
+        "endLine": 600,
+        "endChar": 35
+      },
+      "revId": "688e7c2fff75a2bc9cf9453ad24f79e5e82437cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a8ee4da_2c28e749",
+        "filename": "resources/libraries/robot/nginx/default.robot",
+        "patchSetId": 42
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-13T06:39:32Z",
+      "side": 1,
+      "message": "please use one of (snake_style, PascalCase)",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 28
+      },
+      "revId": "688e7c2fff75a2bc9cf9453ad24f79e5e82437cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
