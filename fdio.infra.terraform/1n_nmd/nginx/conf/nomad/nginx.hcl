@@ -132,8 +132,10 @@ job "${job_name}" {
         }
         privileged   = false
         volumes      = [
-          "/etc/consul.d/ssl/consul.pem:/etc/ssl/certs/nginx-cert.pem",
-          "/etc/consul.d/ssl/consul-key.pem:/etc/ssl/private/nginx-key.pem",
+          "/etc/ssl/certs/docs.nginx.service.consul.crt:/etc/ssl/certs/docs.nginx.service.consul.crt",
+          "/etc/ssl/private/docs.nginx.service.consul.key:/etc/ssl/private/docs.nginx.service.consul.key",
+          "/etc/ssl/certs/logs.nginx.service.consul.crt:/etc/ssl/certs/logs.nginx.service.consul.crt",
+          "/etc/ssl/private/logs.nginx.service.consul.key:/etc/ssl/private/logs.nginx.service.consul.key",
           "custom/upstream.conf:/etc/nginx/conf.d/upstream.conf",
           "custom/logs.conf:/etc/nginx/conf.d/logs.conf",
           "custom/docs.conf:/etc/nginx/conf.d/docs.conf"
@@ -170,8 +172,8 @@ job "${job_name}" {
             ssl_protocols TLSv1.2;
             ssl_prefer_server_ciphers on;
             ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384";
-            ssl_certificate /etc/ssl/certs/nginx-cert.pem;
-            ssl_certificate_key /etc/ssl/private/nginx-key.pem;
+            ssl_certificate /etc/ssl/certs/logs.nginx.service.consul.crt;
+            ssl_certificate_key /etc/ssl/private/logs.nginx.service.consul.key;
             location / {
               chunked_transfer_encoding off;
               proxy_connect_timeout 300;
@@ -229,8 +231,8 @@ job "${job_name}" {
             ssl_protocols TLSv1.2;
             ssl_prefer_server_ciphers on;
             ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384";
-            ssl_certificate /etc/ssl/certs/nginx-cert.pem;
-            ssl_certificate_key /etc/ssl/private/nginx-key.pem;
+            ssl_certificate /etc/ssl/certs/docs.nginx.service.consul.crt;
+            ssl_certificate_key /etc/ssl/private/docs.nginx.service.consul.key;
             location / {
               chunked_transfer_encoding off;
               proxy_connect_timeout 300;
