@@ -18,7 +18,7 @@
 | Variables | ${CURDIR}/../../python/Constants.py
 
 *** Variables ***
-| ${extended_debug}= | ${EXTENDED_DEBUG}
+| ${extended_debug}= | ${True}
 
 *** Keywords ***
 | Get Disable Latency
