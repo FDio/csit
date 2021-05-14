@@ -27,6 +27,7 @@
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPsecUtil
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.NodePath
