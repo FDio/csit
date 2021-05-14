@@ -69,14 +69,14 @@ for ((iter=0; iter<iterations; iter++)); do
         ansible_playbook "cleanup" || die
     fi
     # Testing current first. Good for early failures or for API changes.
-    select_build "build_current" || die
+    select_build "build_parent" || die
     check_download_dir || die
     run_pybot || die
     archive_parse_test_results "csit_current/${iter}" || die
     die_on_pybot_error || die
     # TODO: Use less heavy way to avoid apt remove failures.
     ansible_playbook "cleanup" || die
-    select_build "build_parent" || die
+    select_build "build_current" || die
     check_download_dir || die
     run_pybot || die
     archive_parse_test_results "csit_parent/${iter}" || die
