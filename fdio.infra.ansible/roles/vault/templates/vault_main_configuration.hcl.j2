@@ -1,0 +1,93 @@
+cluster_name = "{{ vault_cluster_name }}"
+max_lease_ttl = "{{ vault_max_lease_ttl }}"
+default_lease_ttl = "{{ vault_default_lease_ttl }}"
+
+disable_clustering = "{{ vault_cluster_disable | bool | lower }}"
+cluster_addr = "{{ vault_cluster_addr }}"
+api_addr = "{{ vault_api_addr }}"
+
+{% for l in vault_tcp_listeners %}
+listener "tcp" {
+    address = "{{ l.vault_address }}:{{ l.vault_port }}"
+    cluster_address = "{{ l.vault_cluster_address }}"
+    {% if (l.vault_proxy_protocol_behavior is defined and l.vault_proxy_protocol_behavior) -%}
+    proxy_protocol_behavior = "{{ l.vault_proxy_protocol_behavior }}"
+    {% if (l.vault_proxy_protocol_authorized_addrs is defined) -%}
+    proxy_protocol_authorized_addrs = "{{ l.vault_proxy_protocol_authorized_addrs }}"
+    {% endif -%}
+    {% endif -%}
+    {% if not (l.vault_tls_disable | bool) -%}
+    tls_cert_file = "{{ l.vault_tls_config_path }}/{{ l.vault_tls_cert_file }}"
+    tls_key_file = "{{ l.vault_tls_config_path }}/{{ l.vault_tls_key_file }}"
+    tls_client_ca_file="{{ l.vault_tls_config_path }}/{{ l.vault_tls_ca_file }}"
+    tls_min_version  = "{{ l.vault_tls_min_version }}"
+    {% if vault_tls_cipher_suites is defined and vault_tls_cipher_suites -%}
+    tls_cipher_suites = "{{ l.vault_tls_cipher_suites}}"
+    {% endif -%}
+    tls_prefer_server_cipher_suites = "{{ l.vault_tls_prefer_server_cipher_suites }}"
+    {% if (l.vault_tls_require_and_verify_client_cert | bool) -%}
+    tls_require_and_verify_client_cert = "{{ l.vault_tls_require_and_verify_client_cert | bool | lower}}"
+    {% endif -%}
+    {% if (l.vault_tls_disable_client_certs | bool) -%}
+    tls_disable_client_certs = "{{ l.vault_tls_disable_client_certs | bool | lower}}"
+    {% endif -%}
+    {% endif -%}
+    tls_disable = "{{ l.vault_tls_disable | bool | lower }}"
+}
+{% endfor %}
+
+{% if (vault_listener_localhost_enable | bool) -%}
+listener "tcp" {
+    address = "127.0.0.1:{{ vault_port }}"
+    cluster_address = "127.0.0.1:8201"
+    tls_disable = "true"
+}
+{% endif -%}
+
+{#
+  Select which storage backend you want generated and placed
+  in the vault configuration file.
+#}
+{%- if vault_backend == 'consul' -%}
+    {% include vault_backend_consul with context %}
+{% elif vault_backend == 'etcd' -%}
+    {% include vault_backend_etcd with context %}
+{% elif vault_backend == 'file' -%}
+    {% include vault_backend_file with context %}
+{% elif vault_backend == 's3' -%}
+    {% include vault_backend_s3 with context %}
+{% elif vault_backend == 'dynamodb' -%}
+    {% include vault_backend_dynamodb with context %}
+{% elif vault_backend == 'mysql' -%}
+    {% include vault_backend_mysql with context %}
+{% elif vault_backend == 'gcs' -%}
+    {% include vault_backend_gcs with context %}
+{% elif vault_backend == 'raft' -%}
+    {% include vault_backend_raft with context %}
+{% endif %}
+
+{% if vault_service_registration_consul_enable -%}
+    {% include vault_service_registration_consul_template with context %}
+{% endif %}
+
+{% if vault_ui %}
+ui = {{ vault_ui | bool | lower }}
+{% endif %}
+
+{% if vault_telemetry_enabled | bool -%}
+telemetry {
+    {% if vault_statsite_address is defined -%}
+    statsite_address = "{{vault_statsite_address}}"
+    {% endif -%}
+    {% if vault_statsd_address is defined -%}
+    statsd_address = "{{vault_statsd_address}}"
+    {% endif -%}
+    {% if vault_prometheus_retention_time is defined -%}
+    prometheus_retention_time = "{{ vault_prometheus_retention_time }}"
+    {% endif -%}
+    {% if vault_telemetry_disable_hostname is defined -%}
+    disable_hostname = {{vault_telemetry_disable_hostname | bool | lower }}
+    {% endif %}
+
+}
+{% endif %}

@@ -4,6 +4,10 @@ variable "region" {
   default = "eu-central-1"
 }
 
+variable "vault-name" {
+    default = "dynamic-aws-creds-vault-admin"
+}
+
 variable "avail_zone" {
   description = "AWS availability zone"
   type = string
