@@ -1,0 +1,6 @@
+{% if vault_consul_address -%}
+service_registration "consul" {
+    address = "{{ vault_consul_address }}"
+    service_address = ""
+}
+{%- endif %}

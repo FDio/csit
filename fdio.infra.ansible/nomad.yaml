@@ -22,6 +22,8 @@
       tags: nomad
     - role: consul
       tags: consul
+    - role: vault
+      tags: vault
     - role: prometheus_exporter
       tags: prometheus_exporter
     - role: jenkins_job_health_exporter
