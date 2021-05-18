@@ -3,6 +3,10 @@ variable "region" {
   type = string
 }
 
+variable "vault-name" {
+    default   = "dynamic-aws-creds-vault-admin"
+}
+
 variable "ami_image" {
   description = "AWS AMI image name"
   type = string

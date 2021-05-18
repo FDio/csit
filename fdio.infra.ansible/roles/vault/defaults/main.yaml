@@ -1,0 +1,66 @@
+---
+# file: roles/vault/defaults/main.yaml
+
+# Inst - Prerequisites.
+packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
+packages_base:
+  - "curl"
+  - "unzip"
+packages_by_distro:
+  ubuntu:
+    - []
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []
+
+# Inst - Vault Map.
+vault_architecture_map:
+  amd64: "amd64"
+  x86_64: "amd64"
+  armv7l: "arm"
+  aarch64: "arm64"
+  32-bit: "386"
+  64-bit: "amd64"
+vault_architecture: "{{ vault_architecture_map[ansible_architecture] }}"
+vault_version: "1.7.1"
+vault_pkg: "vault_{{ vault_version }}_linux_{{ vault_architecture }}.zip"
+vault_zip_url: "https://releases.hashicorp.com/vault/{{ vault_version }}/{{ vault_pkg }}"
+
+# Conf - Service.
+vault_node_role: "server"
+vault_restart_handler_state: "restarted"
+
+# Inst - System paths.
+vault_bin_dir: "/usr/local/bin"
+vault_config_dir: "/etc/vault.d"
+vault_data_dir: "/var/vault"
+vault_inst_dir: "/opt"
+vault_run_dir: "/var/run/vault"
+vault_ssl_dir: "/etc/vault.d/ssl"
+
+# Conf - User and group.
+vault_group: "vault"
+vault_group_state: "present"
+vault_user: "vault"
+vault_user_state: "present"
+
+# Conf - storage.hcl
+vault_path: "{{ vault_data_dir }}"
+
+# Conf - listener.hcl
+vault_address: "0.0.0.0:8200"
+vault_cluster_addr: "https://127.0.0.1:8201"
+vault_tls_disable: true
+vault_disable_mlock: true
+
+# Conf - service_registration.hcl
+vault_consul_address: "127.0.0.1:8500"
+
+# Conf - telemetry.hcl
+vault_disable_hostname: false
+vault_prometheus_retention_time: 30s
+
+# Conf - custom.hcl
+# empty
