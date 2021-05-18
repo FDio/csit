@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffd0b1a0_77b71279",
+        "filename": "docs/TNM/design.md",
+        "patchSetId": 61
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-18T16:46:17Z",
+      "side": 1,
+      "message": "My current implementation uses \"metric\" format instead. What is better for PAL? In worst case I can export in both formats.",
+      "range": {
+        "startLine": 896,
+        "startChar": 13,
+        "endLine": 896,
+        "endChar": 27
+      },
+      "revId": "d87ba9c1c5a174f27c89ca914efe07c05a121a3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
