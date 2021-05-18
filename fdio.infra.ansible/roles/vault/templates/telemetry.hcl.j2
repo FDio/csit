@@ -1,0 +1,4 @@
+telemetry {
+    disable_hostname = {{ vault_disable_hostname | bool | lower }}
+    prometheus_retention_time  = "{{ vault_prometheus_retention_time }}"
+}
