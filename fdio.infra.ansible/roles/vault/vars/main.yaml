@@ -1,0 +1,5 @@
+---
+# file: roles/vault/vars/main.yaml
+
+vault_node_client: "{{ (vault_node_role == 'client') or (vault_node_role == 'both') }}"
+vault_node_server: "{{ (vault_node_role == 'server') or (vault_node_role == 'both') }}"

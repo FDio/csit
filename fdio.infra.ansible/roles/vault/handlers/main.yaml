@@ -1,0 +1,9 @@
+---
+# file roles/vault/handlers/main.yaml
+
+- name: Restart Vault
+  systemd:
+    daemon_reload: true
+    enabled: true
+    name: "vault"
+    state: "{{ vault_restart_handler_state }}"

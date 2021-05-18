@@ -1,0 +1,7 @@
+storage "raft" {
+    {% if vault_path -%}
+        path = "{{ vault_path }}"
+    {%- endif %}
+
+    node_id = "{{ ansible_hostname }}"
+}

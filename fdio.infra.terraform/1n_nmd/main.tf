@@ -76,7 +76,7 @@ module "minio" {
   minio_service_name             = "storage"
   minio_host                     = "http://10.32.8.1{4...7}"
   minio_port                     = 9000
-  minio_container_image          = "minio/minio:RELEASE.2020-12-03T05-49-24Z"
+  minio_container_image          = "minio/minio:RELEASE.2021-05-18T00-53-28Z"
   minio_vault_secret             = {
     use_vault_provider           = false,
     vault_kv_policy_name         = "kv-secret",

@@ -1,0 +1,163 @@
+---
+# file: roles/vault/tasks/main.yaml
+
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - vault-inst-prerequisites
+
+- name: Inst - Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+  tags:
+    - vault-inst-prerequisites
+
+- name: Conf - Add Vault Group
+  group:
+    name: "{{ vault_group }}"
+    state: "{{ vault_user_state }}"
+  tags:
+    - vault-conf-user
+
+- name: Conf - Add Vault user
+  user:
+    name: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    state: "{{ vault_group_state }}"
+    system: true
+  tags:
+    - vault-conf-user
+
+- name: Inst - Clean Vault
+  file:
+    path: "{{ vault_inst_dir }}/vault"
+    state: "absent"
+  tags:
+    - vault-inst-package
+
+- name: Inst - Download Vault
+  get_url:
+    url: "{{ vault_zip_url }}"
+    dest: "{{ vault_inst_dir }}/{{ vault_pkg }}"
+  tags:
+    - vault-inst-package
+
+- name: Inst - Unarchive Vault
+  unarchive:
+    src: "{{ vault_inst_dir }}/{{ vault_pkg }}"
+    dest: "{{ vault_inst_dir }}/"
+    creates: "{{ vault_inst_dir }}/vault"
+    remote_src: true
+  tags:
+    - vault-inst-package
+
+- name: Inst - Vault
+  copy:
+    src: "{{ vault_inst_dir }}/vault"
+    dest: "{{ vault_bin_dir }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    force: true
+    mode: 0755
+    remote_src: true
+  tags:
+    - vault-inst-package
+
+- name: Conf - Create Directories "{{ vault_data_dir }}"
+  file:
+    dest: "{{ vault_data_dir }}"
+    state: directory
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  tags:
+    - vault-conf
+
+- name: Conf - Create Config Directory
+  file:
+    dest: "{{ vault_config_dir }}"
+    state: directory
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0755
+  tags:
+    - vault-conf
+
+- name: Conf - Create Directories "{{ vault_ssl_dir }}"
+  file:
+    dest: "{{ vault_ssl_dir }}"
+    state: directory
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+  tags:
+    - vault-conf
+
+- name: Conf - Listener Configuration
+  template:
+    src: listener.hcl.j2
+    dest: "{{ vault_config_dir }}/listener.hcl"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0644
+  tags:
+    - vault-conf
+
+- name: Conf - Storage Configuration
+  template:
+    src: storage.hcl.j2
+    dest: "{{ vault_config_dir }}/storage.hcl"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0644
+  tags:
+    - vault-conf
+
+- name: Conf - Service Registration Configuration
+  template:
+    src: service_registration.hcl.j2
+    dest: "{{ vault_config_dir }}/service_registration.hcl"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0644
+  tags:
+    - vault-conf
+
+- name: Conf - Telemetry Configuration
+  template:
+    src: telemetry.hcl.j2
+    dest: "{{ vault_config_dir }}/telemetry.hcl"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0644
+  tags:
+    - vault-conf
+
+#- name: Conf - Copy Certificates And Keys
+#  copy:
+#    content: "{{ item.src }}"
+#    dest: "{{ item.dest }}"
+#    owner: "{{ vault_user }}"
+#    group: "{{ vault_group }}"
+#    mode: 0600
+#  no_log: true
+#  loop: "{{ vault_certificates | flatten(levels=1) }}"
+#  tags:
+#    - vault-conf
+
+- name: Conf - System.d Script
+  template:
+    src: "vault_systemd.service.j2"
+    dest: "/lib/systemd/system/vault.service"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify:
+    - "Restart Vault"
+  tags:
+    - vault-conf
+
+- meta: flush_handlers

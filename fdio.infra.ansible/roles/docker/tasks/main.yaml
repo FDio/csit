@@ -80,3 +80,5 @@
   when: docker_users
   tags:
     - docker-conf-user
+
+- meta: flush_handlers
