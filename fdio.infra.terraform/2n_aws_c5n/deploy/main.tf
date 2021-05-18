@@ -1,11 +1,12 @@
-provider "aws" {
-  region = var.region
+data "vault_aws_access_credentials" "creds" {
+  backend         = "${var.vault-name}-path"
+  role            = "${var.vault-name}-role"
 }
 
 resource "aws_vpc" "CSITVPC" {
   cidr_block = var.vpc_cidr_mgmt
 
-  tags = {
+  tags            = {
     "Name"        = "${var.resources_name_prefix}_${var.testbed_name}-vpc"
     "Environment" = var.environment_name
   }
