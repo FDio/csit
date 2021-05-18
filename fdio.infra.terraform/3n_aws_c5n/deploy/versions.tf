@@ -12,6 +12,9 @@ terraform {
       source  = "hashicorp/tls"
       version = "~> 3.0.0"
     }
+    vault          = {
+      version      = ">=2.22.1"
+    }
   }
-  required_version = ">= 0.13"
+  required_version = ">= 1.0.3"
 }

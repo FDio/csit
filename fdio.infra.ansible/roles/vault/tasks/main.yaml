@@ -1,0 +1,133 @@
+---
+# file: roles/vault/tasks/main.yaml
+
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
+  tags:
+    - vault-inst-prerequisites
+
+- name: Inst - Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+  tags:
+    - vault-inst-prerequisites
+
+- name: Conf - Add Vault Group
+  group:
+    name: "{{ vault_group }}"
+    state: "{{ vault_user_state }}"
+  tags:
+    - vault-conf-user
+
+- name: Conf - Add Vault user
+  user:
+    name: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    state: "{{ vault_group_state }}"
+    system: true
+  tags:
+    - vault-conf-user
+
+- name: Inst - Clean Vault
+  file:
+    path: "{{ vault_inst_dir }}/vault"
+    state: "absent"
+  tags:
+    - vault-inst-package
+
+- name: Inst - Download Vault
+  get_url:
+    url: "{{ vault_zip_url }}"
+    dest: "{{ vault_inst_dir }}/{{ vault_pkg }}"
+  tags:
+    - vault-inst-package
+
+- name: Inst - Unarchive Vault
+  unarchive:
+    src: "{{ vault_inst_dir }}/{{ vault_pkg }}"
+    dest: "{{ vault_inst_dir }}/"
+    creates: "{{ vault_inst_dir }}/vault"
+    remote_src: true
+  tags:
+    - vault-inst-package
+
+- name: Inst - Vault
+  copy:
+    src: "{{ vault_inst_dir }}/vault"
+    dest: "{{ vault_bin_dir }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    force: true
+    mode: 0755
+    remote_src: true
+  tags:
+    - vault-inst-package
+
+- name: Inst - Check Vault mlock capability
+  command: "setcap cap_ipc_lock=+ep {{ vault_bin_dir }}/vault"
+  changed_when: false  # read-only task
+  ignore_errors: true
+  register: vault_mlock_capability
+  tags:
+    - vault-inst-package
+
+- name: Inst - Enable non root mlock capability
+  command: "setcap cap_ipc_lock=+ep {{ vault_bin_dir }}/vault"
+  when: vault_mlock_capability is failed
+  tags:
+    - vault-inst-package
+
+- name: Conf - Create directories
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0750
+  with_items:
+    - "{{ vault_data_dir }}"
+    - "{{ vault_config_dir }}"
+    - "{{ vault_ssl_dir }}"
+  tags:
+    - vault-conf
+
+- name: Conf - Vault main configuration
+  template:
+    src: "{{ vault_main_configuration_template }}"
+    dest: "{{ vault_main_config }}"
+    owner: "{{ vault_user }}"
+    group: "{{ vault_group }}"
+    mode: 0400
+  tags:
+    - vault-conf
+
+#- name: Conf - Copy Certificates And Keys
+#  copy:
+#    content: "{{ item.src }}"
+#    dest: "{{ item.dest }}"
+#    owner: "{{ vault_user }}"
+#    group: "{{ vault_group }}"
+#    mode: 0600
+#  no_log: true
+#  loop: "{{ vault_certificates | flatten(levels=1) }}"
+#  tags:
+#    - vault-conf
+
+- name: Conf - System.d Script
+  template:
+    src: "vault_systemd.service.j2"
+    dest: "/lib/systemd/system/vault.service"
+    owner: "root"
+    group: "root"
+    mode: 0644
+#  notify:
+#    - "Restart Vault"
+  tags:
+    - vault-conf
+
+- meta: flush_handlers
