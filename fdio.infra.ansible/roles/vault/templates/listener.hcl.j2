@@ -1,0 +1,14 @@
+listener "tcp" {
+    {% if vault_address -%}
+        address = "{{ vault_address }}"
+    {%- endif %}
+
+    {% if vault_tls_disable | bool -%}
+        tls_disable = {{ vault_tls_disable | bool | lower }}
+    {%- endif %}
+
+}
+
+disable_mlock = {{ vault_disable_mlock | bool | lower }}
+cluster_addr = "{{ vault_cluster_addr }}"
+api_addr = "https://{{ vault_address }}"

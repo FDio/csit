@@ -1,5 +1,6 @@
-provider "aws" {
-  region = var.region
+data "vault_aws_access_credentials" "creds" {
+  backend         = "${var.vault-name}-path"
+  role            = "${var.vault-name}-role"
 }
 
 resource "aws_vpc" "CSITVPC" {
