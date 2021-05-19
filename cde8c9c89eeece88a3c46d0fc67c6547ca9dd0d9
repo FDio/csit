@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1863ca87_66bbbede",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-19T10:03:47Z",
+      "side": 1,
+      "message": "ok lets put ${rxq_mult}",
+      "range": {
+        "startLine": 348,
+        "startChar": 47,
+        "endLine": 348,
+        "endChar": 56
+      },
+      "revId": "cde8c9c89eeece88a3c46d0fc67c6547ca9dd0d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "558d7d2c_8fc35941",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-19T10:03:47Z",
+      "side": 1,
+      "message": "int(${thr_count_int}*${rxq_mult})",
+      "range": {
+        "startLine": 351,
+        "startChar": 30,
+        "endLine": 351,
+        "endChar": 64
+      },
+      "revId": "cde8c9c89eeece88a3c46d0fc67c6547ca9dd0d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
