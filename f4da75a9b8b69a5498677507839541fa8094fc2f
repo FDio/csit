@@ -22,6 +22,30 @@
       "revId": "f4da75a9b8b69a5498677507839541fa8094fc2f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feac1da5_a7b37bfc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-19T16:04:18Z",
+      "side": 1,
+      "message": "I investigated, and it turns out scheduler suites are hardcoding the number of rx queues to 1 [0] [1].\nWith this change, 1 would be still the correct number when HT\u003doff (3n-hsw), but not for bidir suites with HT\u003don (3n-skx would need 2 queues). Not sure about HT\u003don and unidir suites, but I guess they also should use 2 queues (as the VPP configuration should not expect there would be zero traffic in the reverse direction). That means scheduler suites would need another refactor to take HT into account.\n\nI think I can do such refactor after this is merged.\n\n[0] https://github.com/FDio/csit/blob/d4f082106d3e8cfda1c0d52bcafb177b46562944/tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr.robot#L99\n[1] https://github.com/FDio/csit/blob/d4f082106d3e8cfda1c0d52bcafb177b46562944/tests/vpp/perf/crypto/2n1l-10ge2p1x710-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-udir-ndrpdr.robot#L96",
+      "parentUuid": "e453c262_61a45d2f",
+      "range": {
+        "startLine": 7,
+        "startChar": 56,
+        "endLine": 7,
+        "endChar": 66
+      },
+      "revId": "f4da75a9b8b69a5498677507839541fa8094fc2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
