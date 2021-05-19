@@ -276,10 +276,10 @@
 | | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${2}
+| | | ${rxq_mult} = | Get Variable Value | \${rxq_mult} | ${1}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
+| | | ... | ELSE | Evaluate | int(${thr_count_int}*${rxq_mult})
 | | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
@@ -345,10 +345,10 @@
 | | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${2}
+| | | ${rxq_mult} = | Get Variable Value | \${rxq_mult} | ${1}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
+| | | ... | ELSE | Evaluate | int(${thr_count_int}*${rxq_mult})
 | | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
