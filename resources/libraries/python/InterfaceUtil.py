@@ -1684,6 +1684,19 @@ class InterfaceUtil:
         return sorted(details, key=lambda k: k[u"sw_if_index"])
 
     @staticmethod
+    def vpp_sw_interface_rx_placement_dump_on_all_duts(nodes):
+        """Dump VPP interface RX placement on node.
+
+        :param node: Node to run command on.
+        :type node: dict
+        :returns: Thread mapping information as a list of dictionaries.
+        :rtype: list
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
+
+    @staticmethod
     def vpp_sw_interface_set_rx_placement(
             node, sw_if_index, queue_id, worker_id):
         """Set interface RX placement to worker on node.
