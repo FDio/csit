@@ -240,8 +240,8 @@
 | | ... | automatically map also the sibling logical cores.
 | | ... | Keyword will automatically set the appropriate test TAGs in format
 | | ... | mTnC, where m=logical_core_count and n=physical_core_count.
-| | ... | RXQ are computed automatically by dividing thread count with number 2
-| | ... | (TODO: Add division by actual number of interfaces). User can manually
+| | ... | Number of RXQs per interfaces is computed automatically and is
+| | ... | equal to the worker thread count. User can manually
 | | ... | override RX, RXD, TXD parameters if needed.
 | |
 | | ... | *Arguments:*
@@ -276,13 +276,10 @@
 | | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${2}
+| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${1}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
-| | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
-| | | ... | Set variable | ${1}
-| | | ... | ELSE | Set variable | ${rxq_count_int}
+| | | ... | ELSE | Evaluate | int(${thr_count_int}*${rxq_ratio})
 | | | Run Keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run Keyword If | ${cpu_count_int} > 0
 | | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
@@ -309,8 +306,8 @@
 | | ... | automatically map also the sibling logical cores.
 | | ... | Keyword will automatically set the appropriate test TAGs in format
 | | ... | mTnC, where m=logical_core_count and n=physical_core_count.
-| | ... | RXQ are computed automatically by dividing thread count with number 2
-| | ... | (TODO: Add division by actual number of interfaces). User can manually
+| | ... | Number of RXQs per interfaces is computed automatically and is
+| | ... | equal to the worker thread count. User can manually
 | | ... | override RX, RXD, TXD parameters if needed.
 | |
 | | ... | *Arguments:*
@@ -345,13 +342,10 @@
 | | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${2}
+| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${1}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
-| | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
-| | | ... | Set variable | ${1}
-| | | ... | ELSE | Set variable | ${rxq_count_int}
+| | | ... | ELSE | Evaluate | int(${thr_count_int}*${rxq_ratio})
 | | | Run Keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run Keyword If | ${cpu_count_int} > 0
 | | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
