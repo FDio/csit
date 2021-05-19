@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e453c262_61a45d2f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-19T11:30:24Z",
+      "side": 1,
+      "message": "Have you checked also ipsec async scheduler tests? There, some workers are not for dataplane.",
+      "range": {
+        "startLine": 7,
+        "startChar": 56,
+        "endLine": 7,
+        "endChar": 66
+      },
+      "revId": "f4da75a9b8b69a5498677507839541fa8094fc2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

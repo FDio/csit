@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b61eb78_edab3188",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-19T11:30:24Z",
+      "side": 0,
+      "message": "This is still an important case, see the device test failure [0].\n\"num-rx-queues 0\" for dpdk driver for VPP inside VM is obviously a bad idea.\nThe parent CSIT commit leads to \"num-rx-queues 1\" in the same test case.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu2004-x86_64-1n-skx/516/log.html.gz#s1-s1-s1-s13-s1-s1-t1-k2-k9-k6-k1",
+      "range": {
+        "startLine": 283,
+        "startChar": 43,
+        "endLine": 283,
+        "endChar": 64
+      },
+      "revId": "d4f082106d3e8cfda1c0d52bcafb177b46562944",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
