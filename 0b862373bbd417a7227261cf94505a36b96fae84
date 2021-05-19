@@ -2,6 +2,144 @@
   "comments": [
     {
       "key": {
+        "uuid": "41746dfb_6a6f0e76",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 44
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-19T13:46:55Z",
+      "side": 1,
+      "message": "Name conflict with common.sh, but dpdk.sh does the same so we can fix later.",
+      "range": {
+        "startLine": 45,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "0b862373bbd417a7227261cf94505a36b96fae84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02b83762_b32a3653",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 44
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-19T13:46:55Z",
+      "side": 1,
+      "message": "set",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "0b862373bbd417a7227261cf94505a36b96fae84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5270c3eb_17903939",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 44
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-19T13:46:55Z",
+      "side": 1,
+      "message": "Document the argument around line 51.",
+      "range": {
+        "startLine": 61,
+        "startChar": 14,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "0b862373bbd417a7227261cf94505a36b96fae84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3cb5cc24_efa488e2",
+        "filename": "resources/libraries/bash/function/nginx.sh",
+        "patchSetId": 44
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-19T13:46:55Z",
+      "side": 1,
+      "message": "I am surprised the compilation step is necessary. I am not sure how strict the dependency version are. For example, if we change the compiler version on the executor docker image, will it affect NGINX performance? I would prefer if we installed a \"fat\" package (.reb or .rpm depending on OS) with all dependencies statically included. But that requires testing on all the OS/platforms we use, so for 2106 release compilation is fine.",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 22
+      },
+      "revId": "0b862373bbd417a7227261cf94505a36b96fae84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c55a594d_6268ddf1",
+        "filename": "resources/libraries/python/NGINX/NGINXTools.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-19T13:46:55Z",
+      "side": 1,
+      "message": "Not needed for LDP tests (as far as I understand), but not a big deal.",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 33
+      },
+      "revId": "0b862373bbd417a7227261cf94505a36b96fae84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "495d3f4e_ba95a121",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps.robot",
+        "patchSetId": 44
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-19T13:46:55Z",
+      "side": 1,
+      "message": "One version would be enough for 2106 release, but having two proves the versioning support works correctly, so fine.",
+      "range": {
+        "startLine": 20,
+        "startChar": 49,
+        "endLine": 20,
+        "endChar": 55
+      },
+      "revId": "0b862373bbd417a7227261cf94505a36b96fae84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f9bc864_ef73669d",
         "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1.15.0-rps.robot",
         "patchSetId": 44
