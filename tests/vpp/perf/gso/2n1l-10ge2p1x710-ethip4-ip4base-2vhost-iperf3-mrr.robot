@@ -87,7 +87,6 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
-| | Set Test Variable | \${rxq_ratio} | ${1}
 | |
 | | Given Set Jumbo
 | | And Add worker threads for GSO tests to all DUTs | ${phy_cores} | ${rxq}

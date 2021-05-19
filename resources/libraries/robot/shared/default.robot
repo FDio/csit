@@ -276,7 +276,7 @@
 | | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${2}
+| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${1}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
 | | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
@@ -345,7 +345,7 @@
 | | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${2}
+| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${1}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
 | | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
