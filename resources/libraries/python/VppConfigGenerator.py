@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -379,6 +379,22 @@ class VppConfigGenerator:
         if value is None:
             value = Topology.get_uio_driver(self._node)
         path = [u"dpdk", u"uio-driver"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_dpdk_max_simd_bitwidth(self, variant=Constants.GRAPH_NODE_VARIANT):
+        """Add DPDK max-simd-bitwidth configuration.
+
+        :param value: Graph node variant default value.
+        :type value: str
+        """
+        if variant == u"icl":
+            value = 512
+        elif variant in [u"skx", u"hsw"]:
+            value = 256
+        else:
+            return
+
+        path = [u"dpdk", u"max-simd-bitwidth"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_cpu_main_core(self, value):
