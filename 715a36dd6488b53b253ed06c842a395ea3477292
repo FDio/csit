@@ -70,6 +70,30 @@
       "revId": "715a36dd6488b53b253ed06c842a395ea3477292",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5870e6fd_faaa0b3f",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4udpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2021-05-20T18:28:52Z",
+      "side": 1,
+      "message": "Let\u0027s see if we can clarify things because there\u0027s an overlap of terminology. \n\nInterface mtu is called here frame_size as far as I can tell, so let\u0027s just call it mtu. Then, at L4 we have mss (maximum segment size). For udp that runs as part of the host stack what matters is mss, i.e., the maximum datagram size that it should generate. If an application asks udp to generate a datagram that\u0027s larger than the mtu, ip fragmentation needs to happen. \n\nSo, to avoid all of that, iperf can be instructed to send small dgrams through vcl/session layer to udp. UDP stamps the headers and because the dgrams are smaller than the mtu, they pass through all the layers and hit the nic unchanged. \n\nIn csit testbeds, default iperf dgram size (8k I believe) might work fine because nics are configured with 9k mtu. And, in fact, that will yield very good performance, since there\u0027s fewer packets and coalesced memcpy operations. But in practice, over the internet, mtu is 1500 if not smaller, so the test tries to emulate that.",
+      "parentUuid": "d0c9602e_edb0e9ac",
+      "range": {
+        "startLine": 49,
+        "startChar": 21,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "715a36dd6488b53b253ed06c842a395ea3477292",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
