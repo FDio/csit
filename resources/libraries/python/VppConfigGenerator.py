@@ -381,6 +381,22 @@ class VppConfigGenerator:
         path = [u"dpdk", u"uio-driver"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dpdk_max_simd_bitwidth(self, variant=Constants.GRAPH_NODE_VARIANT):
+        """Add DPDK max-simd-bitwidth configuration.
+
+        :param value: Graph node variant default value.
+        :type value: str
+        """
+        if variant == u"icl":
+            value = 512
+        elif variant in [u"skx", u"hsw"]:
+            value = 256
+        else:
+            return
+
+        path = [u"dpdk", u"max-simd-bitwidth"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_cpu_main_core(self, value):
         """Add CPU main core configuration.
 
