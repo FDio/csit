@@ -146,10 +146,14 @@ class CoreDumpUtil:
                     f"sudo rm -f ${{f}}; done"
                 )
                 try:
-                    exec_cmd_no_error(node, command, timeout=3600)
+                    output, _ = exec_cmd_no_error(node, command, timeout=3600)
                     if disable_on_success:
                         self.set_core_limit_disabled()
+                    # Log only one output per Robot invocation,
+                    # overwriting any previously existing log.
+                    with open(u"core.log", u"w") as file_out:
+                        file_out.write(f"{output}\n")
+                    # TODO: Create at ${OUTPUT DIR} instead of cwd.
                 except RuntimeError:
-                    # If compress was not successful ignore error and skip
-                    # further processing.
+                    # If core file does not exist (or other error) ignore.
                     continue
