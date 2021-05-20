@@ -152,6 +152,7 @@
 | | | ... | ${dut}.Add DPDK Dev Default TXD | ${nic_txq_size}
 | | | Run Keyword If | '${crypto_type}' != '${None}'
 | | | ... | ${dut}.Add DPDK Cryptodev | ${thr_count_int}
+| | | Run Keyword | ${dut}.Add DPDK Max Simd Bitwidth | ${GRAPH_NODE_VARIANT}
 | | END
 | | ${_vlan_strip} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${vlan_strip_off}
