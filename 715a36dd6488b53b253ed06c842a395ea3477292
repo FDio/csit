@@ -46,6 +46,30 @@
       "revId": "715a36dd6488b53b253ed06c842a395ea3477292",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0c9602e_edb0e9ac",
+        "filename": "tests/vpp/perf/hoststack/10ge2p1x710-eth-ip4udpbase-ldpreload-iperf3-bps.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-20T15:49:44Z",
+      "side": 1,
+      "message": "\u003e frame_size is the interface MTU.\n\nThat is quite confusing. The usual (TRex stateless) tests set all MTUs to 9200 (important due to VPP-1876) and use frame_size to reflect the L2 size of the actual frame/packet.\nWe also support \"imix\" as frame_size value, which may be the closes fit for packet sizes created by TCP.\nBut this is UDP so I would expect something like \"length \u003d frame_size - l2_overhead\".",
+      "parentUuid": "571ede44_2b5953ab",
+      "range": {
+        "startLine": 49,
+        "startChar": 21,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "715a36dd6488b53b253ed06c842a395ea3477292",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
