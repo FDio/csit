@@ -1,0 +1,232 @@
+#!/usr/bin/env/env python3
+
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""Storage Backend Class."""
+
+from json import loads
+
+from boto3 import client
+from botocore import exceptions
+
+ENDPOINT_URL = u"http://storage.service.consul:9000"
+AWS_ACCESS_KEY_ID = u"csit"
+AWS_SECRET_ACCESS_KEY = u"Csit1234"
+REGION_NAME = u"yul1"
+
+
+class Storage:
+    """
+    Class implements storage object retrieval.
+    S3 Select API allows us to retrieve a subset of data by using simple SQL
+    expressions. By using Select API to retrieve only the data needed by the
+    application, drastic performance improvements can be achieved.
+    """
+    def __init__(self, key_prefix, key_suffix):
+        """
+        Class init function.
+
+        :param key_prefix:
+        :param key_suffix:
+        :type key_prefix:
+        :type key_suffix:
+        """
+        self.bucket = u"docs"
+        self.client = client(
+            u"s3",
+            endpoint_url=ENDPOINT_URL,
+            aws_access_key_id=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+            region_name=REGION_NAME
+        )
+        self.key_prefix = key_prefix
+        self.key_suffix = key_suffix
+
+    def get_matching_s3_keys(self, bucket, prefix=u"", suffix=u""):
+        """
+        This function generates the keys in an S3 bucket. Function act as
+        a Python generator object.
+
+        :param bucket: Name of the S3 bucket.
+        :param prefix: Only fetch keys that start with this prefix (optional).
+        :param suffix: Only fetch keys that end with this suffix (optional).
+        :type bucket: str
+        :type prefix: str
+        :type suffix: str
+        """
+        paginator = self.client.get_paginator(u"list_objects_v2")
+
+        kwargs = {
+            u"Bucket": bucket
+        }
+
+        prefixes = (prefix, ) if isinstance(prefix, str) else prefix
+
+        for key_prefix in prefixes:
+            kwargs[u"Prefix"] = key_prefix
+            try:
+                for page in paginator.paginate(**kwargs):
+                    try:
+                        contents = page[u"Contents"]
+                    except KeyError:
+                        break
+
+                    for obj in contents:
+                        key = obj[u"Key"]
+                        if key.endswith(suffix):
+                            yield obj
+            except exceptions.EndpointConnectionError:
+                raise RuntimeError(u"Connection Error!")
+
+    def get_matching_s3_content(self, expression=u"select * from s3object s"):
+        """
+        This function filters the contents of an S3 object based on a simple
+        structured query language (SQL) statement. In the request, along with
+        the SQL expression, we are specifying JSON serialization of the object.
+        S3 uses this format to parse object data into records, and returns only
+        records that match the specified SQL expression. Data serialization
+        format for the response is set to JSON.
+
+        :param expression: S3 compatible SQL query. Default to match whole file.
+        :type expression: str
+        :raises RuntimeError: If connection to storage fails.
+        """
+        key_iterator = self.get_matching_s3_keys(
+            bucket=self.bucket,
+            prefix=self.key_prefix,
+            suffix=self.key_suffix
+        )
+
+        for key in key_iterator:
+            try:
+                content = self.client.select_object_content(
+                    Bucket=self.bucket,
+                    Key=key["Key"],
+                    ExpressionType=u"SQL",
+                    Expression=expression,
+                    InputSerialization={
+                        u"JSON": {
+                            u"Type": u"Document"
+                        },
+                        u"CompressionType": u"GZIP"
+                    },
+                    OutputSerialization={
+                        u"JSON": {
+                            u"RecordDelimiter": u"\n"
+                        }
+                    }
+                )
+                for event in content[u"Payload"]:
+                    if u"Records" in event:
+                        records = event[u"Records"][u"Payload"].decode(u"utf-8")
+                        print(loads(records))
+            except exceptions.EndpointConnectionError:
+                raise RuntimeError(u"Connection Error!")
+            except exceptions.EventStreamError:
+                raise RuntimeError(
+                    u"The length of a record in the input or result is greater "
+                    u"than maxCharsPerRecord of 1 MB!")
+
+    def get_s3_file_size(self, bucket, key):
+        """
+        Gets the file size of S3 object by a HEAD request. If the file is
+        gzip'd the packed size is reported.
+
+        :param bucket: Name of the S3 bucket.
+        :param key: Name of the S3 key (file).
+        :type bucket: str
+        :type key: str
+        :returns: File size in bytes. Defaults to 0 if any error.
+        :rtype: int
+        :raises ClientError: If an error while retrieval key info.
+        """
+        length = 0
+        try:
+            response = self.client.head_object(Bucket=bucket, Key=key)
+            if response:
+                metadata = response.get(u"ResponseMetadata")
+                header = metadata.get(u"HTTPHeaders")
+                length = int(header.get(u"content-length"))
+        except exceptions.ClientError:
+            raise RuntimeError(f"Client error reading S3 key {bucket} : {key}!")
+
+        return length
+
+
+    def stream_s3_file(bucket, key, file_size, chunk_bytes=5000):
+        """Streams a S3 file via a generator.
+
+        Args:
+            bucket (str): S3 bucket
+            key (str): S3 object path
+            chunk_bytes (int): Chunk size in bytes. Defaults to 5000
+        Returns:
+            tuple[dict]: Returns a tuple of dictionary containing rows of file content
+        """
+        aws_profile = current_app.config.get('AWS_PROFILE_NAME')
+        s3_client = boto3.session.Session(profile_name=aws_profile).client('s3')
+        expression = 'SELECT * FROM S3Object'
+        start_range = 0
+        end_range = min(chunk_bytes, file_size)
+        while start_range < file_size:
+            response = s3_client.select_object_content(
+                Bucket=bucket,
+                Key=key,
+                ExpressionType='SQL',
+                Expression=expression,
+                InputSerialization={
+                    'CSV': {
+                        'FileHeaderInfo': 'USE',
+                        'FieldDelimiter': ',',
+                        'RecordDelimiter': '\n'
+                    }
+                },
+                OutputSerialization={
+                    'JSON': {
+                        'RecordDelimiter': ','
+                    }
+                },
+                ScanRange={
+                    'Start': start_range,
+                    'End': end_range
+                },
+            )
+
+            """
+            select_object_content() response is an event stream that can be looped to concatenate the overall result set
+            Hence, we are joining the results of the stream in a string before converting it to a tuple of dict
+            """
+            result_stream = []
+            for event in response['Payload']:
+                if records := event.get('Records'):
+                    result_stream.append(records['Payload'].decode('utf-8'))
+            yield ast.literal_eval(''.join(result_stream))
+            start_range = end_range
+            end_range = end_range + min(chunk_bytes, file_size - end_range)
+
+
+    def s3_file_processing():
+        bucket = '<s3-bucket>'
+        key = '<s3-key>'
+        file_size = get_s3_file_size(bucket=bucket, key=key)
+        logger.debug(f'Initiating streaming file of {file_size} bytes')
+        chunk_size = 524288  # 512KB or 0.5MB
+        for file_chunk in stream_s3_file(bucket=bucket, key=key,
+                                        file_size=file_size, chunk_bytes=chunk_size):
+            logger.info(f'\n{30 * "*"} New chunk {30 * "*"}')
+            id_set = set()
+            for row in file_chunk:
+                # perform any other processing here
+                id_set.add(int(row.get('id')))
+            logger.info(f'{min(id_set)} --> {max(id_set)}')
