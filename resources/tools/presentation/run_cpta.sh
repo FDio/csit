@@ -14,8 +14,12 @@ mkdir ${DIR[WORKING]}
 virtualenv -p $(which python3) ${DIR[WORKING]}/env
 source ${DIR[WORKING]}/env/bin/activate
 
-# FIXME: Temporary hack until all docker dns will be solved
-echo "nameserver 172.17.0.1" > /etc/resolv.conf
+# FIXME: s3 config (until migrated to vault, then account will be reset)
+mkdir -p ${HOME}/.aws
+echo "[nomad-s3]" >> ${HOME}/.aws/config
+echo "[nomad-s3]
+aws_access_key_id = csit
+aws_secret_access_key = Csit1234" >> ${HOME}/.aws/credentials
 
 # Install python dependencies:
 pip3 install -r requirements.txt
