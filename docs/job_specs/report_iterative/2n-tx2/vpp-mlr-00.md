@@ -1,7 +1,7 @@
 # 2n-tx2
-### tests 99
-### job hrs est. 9.4
-### job hrs real 9.4
+### tests 87
+### job hrs est. 8.2
+### job hrs real ??.?
 ### test mins est. 5.68
 ### test mins real 5.68
 ## ./container_memif
@@ -11,10 +11,6 @@
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1dcr
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1dcr
 4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdbasemaclrn-eth-2memif-1dcr
-##### dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn-eth-2memif-1dcr
 ##### eth-l2xcbase-eth-2memif-1dcr
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase-eth-2memif-1dcr
@@ -134,10 +130,6 @@
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
 4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
-##### dot1q-ip4base
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip4base
 ##### ethip4-ip4base-iacldstbase
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-iacldstbase
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-iacldstbase
@@ -178,10 +170,6 @@
 1c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m
 2c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m
 4c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m
-##### dot1q-ip6base
-1c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
-2c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
-4c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-ip6base
 ##### ethip6-ip6base-iacldstbase
 1c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
 2c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
@@ -214,10 +202,6 @@
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase
 4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2xcbase
-##### dot1q-l2xcbase
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2xcbase
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2xcbase
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2xcbase
 ##### eth-l2patch
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2patch
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2patch
