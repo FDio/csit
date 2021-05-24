@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a90da593_37644bc1",
+        "filename": "docs/report/introduction/methodology_telemetry.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-24T15:47:16Z",
+      "side": 1,
+      "message": "Teardown is in case of failure, but i will rephrase and fix",
+      "parentUuid": "208d9930_4a5ef130",
+      "range": {
+        "startLine": 70,
+        "startChar": 36,
+        "endLine": 70,
+        "endChar": 59
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ffb34b3_59e9fef6",
         "filename": "resources/tools/telemetry/metrics.py",
         "patchSetId": 29
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8f46af74_4199017a",
+        "filename": "resources/tools/telemetry/metrics.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-24T15:47:16Z",
+      "side": 1,
+      "message": "yeah i was considering which one. easy to switch. just need to check if TSDB support it. As with diffs we actually have to track also epoch time itself. BUT As in PAL model we can capture approximated command time we might be able to use monotonic. But imagine all data being part of DB... how to sort?\nBut ok.. i will switch to monotonic",
+      "parentUuid": "8ffb34b3_59e9fef6",
+      "range": {
+        "startLine": 18,
+        "startChar": 17,
+        "endLine": 18,
+        "endChar": 21
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "528e97e4_ac1121b8",
         "filename": "resources/tools/telemetry/metrics.py",
         "patchSetId": 29
@@ -59,6 +107,30 @@
       "writtenOn": "2021-05-24T15:29:49Z",
       "side": 1,
       "message": "Interpreter evaluates this only once. Use None here and call time/monotonic in the function body.\n\n$ python3\nPython 3.7.3 (default, Jun 11 2019, 15:08:33) \n[GCC 6.3.0 20170516] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n\u003e\u003e\u003e import time\n\u003e\u003e\u003e def foo(t\u003dtime.time()):\n...     print(f\"{t}\")\n... \n\u003e\u003e\u003e foo()\n1621868916.763917\n\u003e\u003e\u003e time.sleep(1)\n\u003e\u003e\u003e foo()\n1621868916.763917\n\u003e\u003e\u003e",
+      "range": {
+        "startLine": 111,
+        "startChar": 56,
+        "endLine": 111,
+        "endChar": 62
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a6ac3fe_80411431",
+        "filename": "resources/tools/telemetry/metrics.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-24T15:47:16Z",
+      "side": 1,
+      "message": "This is default. override but later call. so\n```\nfoo(time())\nfoo(time())\n```\ne.g L538",
+      "parentUuid": "528e97e4_ac1121b8",
       "range": {
         "startLine": 111,
         "startChar": 56,
