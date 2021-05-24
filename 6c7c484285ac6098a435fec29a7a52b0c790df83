@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "719fb714_2da0214b",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x710-ethip4gtpusw-ip4base-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-24T12:10:05Z",
+      "side": 1,
+      "message": "When a plain IPv4 packet (L2 length of 64 bytes) arrives from TG to DUT1, it gets encapsulated, so the GTPU packet continuing from DUT1 to DUT2 will have L2 length of 64 bytes plus this overhead value. In order to avoid exceeding DUT1-DUT2 bandwidth limit, the correct value has to be set here (it is not 0, but I am not familiar enough with GTPU to tell you the correct value here).",
+      "range": {
+        "startLine": 60,
+        "startChar": 19,
+        "endLine": 60,
+        "endChar": 20
+      },
+      "revId": "6c7c484285ac6098a435fec29a7a52b0c790df83",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
