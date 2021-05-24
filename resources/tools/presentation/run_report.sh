@@ -18,6 +18,8 @@ virtualenv -p $(which python3) ${DIR[WORKING]}/env
 source ${DIR[WORKING]}/env/bin/activate
 
 # FIXME: s3 config (until migrated to vault, then account will be reset)
+rm ${HOME}/.aws/config
+rm ${HOME}/.aws/credentials
 mkdir -p ${HOME}/.aws
 echo "[nomad-s3]" >> ${HOME}/.aws/config
 echo "[nomad-s3]
