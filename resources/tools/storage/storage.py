@@ -261,7 +261,7 @@ class Storage:
 
         for key in key_iterator:
             try:
-                yield loads(
+                yield key[u"Key"], loads(
                     self._get_matching_s3_object(
                         key=key[u"Key"]
                     )

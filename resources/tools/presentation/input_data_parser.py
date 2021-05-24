@@ -27,6 +27,7 @@ import logging
 from collections import OrderedDict
 from os import remove, walk, listdir
 from os.path import isfile, isdir, join
+from shutil import rmtree
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
@@ -1500,7 +1501,7 @@ class InputData:
         """
         return self.data[job][build][u"tests"]
 
-    def _parse_tests(self, job, build):
+    def _parse_tests_xml(self, job, build):
         """Process data from robot output.xml file and return JSON structured
         data.
 
@@ -1531,6 +1532,39 @@ class InputData:
         result.visit(checker)
 
         return checker.data
+
+    @staticmethod
+    def _parse_tests_json(job, build):
+        """Process data from json files and return JSON structured
+        data.
+
+        :param job: The name of job which build output data will be processed.
+        :param build: The build which output data will be processed.
+        :type job: str
+        :type build: dict
+        :returns: JSON data structure.
+        :rtype: dict
+        """
+        print(u"JSON")
+
+        # The main data structure
+        data = {
+            u"metadata": dict(),
+            u"suites": dict(),
+            u"tests": dict()
+        }
+
+
+
+
+
+        try:
+            # Clean:
+            rmtree(build[u"file-name"])
+        except FileNotFoundError:
+            pass  # It does not exist
+
+        return data
 
     def _download_and_parse_build(self, job, build, repeat, pid=10000):
         """Download and parse the input data file.
@@ -1567,7 +1601,20 @@ class InputData:
             )
         if success:
             logging.info(f"  Processing data from build {build[u'build']}")
-            data = self._parse_tests(job, build)
+            if build[u"source"] == u"xml":
+                data = self._parse_tests_xml(job, build)
+                try:
+                    remove(build[u"file-name"])
+                except OSError as err:
+                    logging.error(
+                        f"Cannot remove the file {build[u'file-name']}: {repr(err)}"
+                    )
+            elif build[u"source"] == u"json":
+                data = self._parse_tests_json(job, build)
+            else:
+                raise NotImplementedError(
+                    f"The source type {build[u'source']} is not implemented."
+                )
             if data is None:
                 logging.error(
                     f"Input data file from the job {job}, build "
@@ -1575,13 +1622,6 @@ class InputData:
                 )
             else:
                 state = u"processed"
-
-            try:
-                remove(build[u"file-name"])
-            except OSError as err:
-                logging.error(
-                    f"Cannot remove the file {build[u'file-name']}: {repr(err)}"
-                )
 
         # If the time-period is defined in the specification file, remove all
         # files which are outside the time period.
@@ -1665,11 +1705,19 @@ class InputData:
         msg = f"Successful downloads from the sources:\n"
         for source in self._cfg.environment[u"data-sources"]:
             if source[u"successful-downloads"]:
-                msg += (
-                    f"{source[u'url']}/{source[u'path']}/"
-                    f"{source[u'file-name']}: "
-                    f"{source[u'successful-downloads']}\n"
-                )
+                if source[u"type"] == u"xml":
+                    msg += (
+                        f"{source[u'url']}/{source[u'path']}/"
+                        f"{source[u'file-name']}: "
+                        f"{source[u'successful-downloads']}\n"
+                    )
+                elif source[u"type"] == u"json":
+                    msg += (
+                        f"{source[u'url']}, "
+                        f"profile-name={source[u'profile-name']}, "
+                        f"bucket={source[u'bucket']}: "
+                        f"{source[u'successful-downloads']}\n"
+                    )
         logging.info(msg)
 
     def process_local_file(self, local_file, job=u"local", build_nr=1,

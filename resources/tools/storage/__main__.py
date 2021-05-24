@@ -36,15 +36,21 @@ def main():
         help=u"S3 compatible SQL query."
     )
 
-    args = parser.parse_args()
+    # args = parser.parse_args()
+    # json_iterator = Storage(
+    #     endpoint_url=u"http://storage.service.consul:9000",
+    #     bucket=u"docs",
+    #     profile_name=u"nomad-s3"
+    # ).s3_file_processing(
+    #     prefix=u"", expression=args.expression
+    # )
 
     json_iterator = Storage(
         endpoint_url=u"http://storage.service.consul:9000",
         bucket=u"docs",
         profile_name=u"nomad-s3"
-    ).s3_file_processing(
-        prefix=u"", expression=args.expression
-    )
+    ).s3_dump_file_processing()
+
     for item in json_iterator:
         print(dumps(item, indent=4, sort_keys=False))
 
