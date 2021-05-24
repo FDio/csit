@@ -16,6 +16,24 @@
       "revId": "f2de7c48d20c2944a5b31a907ecef566e05aeaeb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0caaa102_d5d1edf4",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-24T13:05:19Z",
+      "side": 1,
+      "message": "Fixed this (and many others) in https://gerrit.fd.io/r/c/csit/+/32421",
+      "parentUuid": "ad7d9e87_7ffb8561",
+      "revId": "f2de7c48d20c2944a5b31a907ecef566e05aeaeb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
