@@ -117,6 +117,13 @@
 
   # Data sources are used in this order:
   data-sources:
+    # JSON from S3
+    - type: "json"
+      url: "http://storage.service.consul:9000"
+      profile-name: "nomad-s3"
+      bucket: "docs"
+      file-format: "json.gz"
+      enabled: True
     # XML
     - type: "xml"
       url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
@@ -191,13 +198,6 @@
       file-name: "robot-plugin.zip"
       file-format: ".zip"
       enabled: True
-    # JSON from S3
-    - type: "json"
-      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/{filename}"
-      file-name: "output.json.gz"
-      file-format: ".gz"
-      enabled: False
 
   archive-inputs: True
 
