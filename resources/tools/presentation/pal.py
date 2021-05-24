@@ -142,6 +142,7 @@ def main():
         return 1
 
     return_code = 1
+
     try:
         env = Environment(spec.environment, args.force)
         env.set_environment()

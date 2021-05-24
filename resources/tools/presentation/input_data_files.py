@@ -19,12 +19,15 @@ import re
 import logging
 import gzip
 
-from os import rename, mkdir
+from os import rename, mkdir, makedirs, error
 from os.path import join
+from shutil import rmtree
 from http.client import responses, HTTPException
 from zipfile import ZipFile, is_zipfile, BadZipfile
+from json import dump
 
 import requests
+import botocore
 
 from requests.adapters import HTTPAdapter, Retry
 from requests.exceptions import RequestException
@@ -32,6 +35,7 @@ from requests import codes
 
 from urllib3.exceptions import HTTPError
 
+from resources.tools.storage import Storage
 
 # Chunk size used for file download
 CHUNK_SIZE = 512
@@ -62,7 +66,7 @@ def _download_file(url, file_name, arch=False, verify=True, repeat=1):
     def requests_retry_session(retries=3,
                                backoff_factor=0.3,
                                status_forcelist=(500, 502, 504)):
-        """
+        """Create a session with retry capabilities.
 
         :param retries: Total number of retries to allow.
         :param backoff_factor: A backoff factor to apply between attempts after
@@ -181,15 +185,118 @@ def _unzip_file(spec, build, pid):
         return False
 
 
-def _download_xml(source, job, build, w_dir, arch):
+def _download_json(source, job, build, w_dir, arch):
+    """Download a set of json files for specified job and build.
+
+    :param source: The source specified in the specification file.
+    :param job: The job from which the data will be downloaded.
+    :param build:  The build from which the data will be downloaded.
+    :param w_dir: Path to working directory
+    :param arch: If true, archive the downloaded files. Not supported.
+    :type source: dict
+    :type job: str
+    :type build: dict
+    :type w_dir: str
+    :type arch: bool
+    :returns: Tuple (successful download: true | false, path to directory
+        with json files).
+    :rtype: tuple(bool, str)
     """
 
-    :param source:
-    :param job:
-    :param build:
+    _ = arch  # No archiving supported.
+    json_dir = join(w_dir, u"json")
+
+    logging.info(f"  Trying to download from {source.get(u'url', u'')}")
+
+    # Check the information about the source
+    if not source.get(u"url", None):
+        logging.error(u"Missing the parameter 'url' in source specification.")
+        return False, json_dir
+    if not source.get(u"profile-name", None):
+        logging.error(
+            u"Missing the parameter 'profile-name' in source specification."
+        )
+        return False, json_dir
+    if not source.get(u"bucket", None):
+        logging.error(
+            u"Missing the parameter 'bucket' in source specification."
+        )
+        return False, json_dir
+    if not source.get(u"file-format", None):
+        logging.error(
+            u"Missing the parameter 'file-format' in source specification."
+        )
+        return False, json_dir
+
+    try:
+        # Clean:
+        rmtree(json_dir)
+    except FileNotFoundError:
+        pass  # It does not exist
+    try:
+        # Make brand new empty directory for downloaded json files.
+        makedirs(json_dir)
+    except error as err:
+        logging.error(f"Cannot create the directory {json_dir}\n{err!r}")
+        return False, json_dir
+
+    try:
+        json_iterator = Storage(
+            endpoint_url=source[u"url"],
+            bucket=source[u"bucket"],
+            profile_name=source[u"profile-name"]
+        ).s3_dump_file_processing(
+            prefix=join(job, str(build[u'build'])),
+            suffix=source[u"file-format"]
+        )
+    except ValueError as err:
+        logging.error(
+            f"The specified url {source[u'url']} does not exist\n{err!r}"
+        )
+        return False, json_dir
+    except botocore.exceptions.ProfileNotFound as err:
+        logging.error(f"botocore: {err!r}")
+        return False, json_dir
+    except botocore.exceptions.ConnectTimeoutError as err:
+        logging.error(f"{err!r}")
+        return False, json_dir
+
+    try:
+        length = 0
+        for item in json_iterator:
+            file_path = join(json_dir, u".".join(item[0].split(u"/")[2:]))[:-3]
+            try:
+                with open(file_path, u"w") as file_handler:
+                    dump(item[1], file_handler)
+                length += len(str(item[1]))
+            except OSError as err:
+                logging.warning(f"{err!r}")
+                return False, json_dir
+    except botocore.exceptions.ClientError as err:
+        logging.error(f"{err!r}")
+        return False, json_dir
+    except botocore.exceptions.ConnectTimeoutError as err:
+        logging.error(f"{err!r}")
+        return False, json_dir
+
+    return bool(length), json_dir
+
+
+def _download_xml(source, job, build, w_dir, arch):
+    """Download an xml file for specified job and build.
+
+    :param source: The source specified in the specification file.
+    :param job: The job from which the data will be downloaded.
+    :param build:  The build from which the data will be downloaded.
     :param w_dir: Path to working directory
-    :param arch:
-    :return:
+    :param arch: If true, archive the downloaded files.
+    :type source: dict
+    :type job: str
+    :type build: dict
+    :type w_dir: str
+    :type arch: bool
+    :returns: Tuple (successful download: true | false, path to xml file).
+    :rtype: tuple(bool, str)
     """
 
     file_name = source.get(u"file-name", u"")
@@ -211,14 +318,20 @@ def _download_xml(source, job, build, w_dir, arch):
 
 
 def _download_xml_docs(source, job, build, w_dir, arch):
-    """
+    """Download an xml file for specified job and build from docs.fd.io
 
-    :param source:
-    :param job:
-    :param build:
+    :param source: The source specified in the specification file.
+    :param job: The job from which the data will be downloaded.
+    :param build:  The build from which the data will be downloaded.
     :param w_dir: Path to working directory
-    :param arch:
-    :return:
+    :param arch: If true, archive the downloaded files.
+    :type source: dict
+    :type job: str
+    :type build: dict
+    :type w_dir: str
+    :type arch: bool
+    :returns: Tuple (successful download: true | false, path to xml file).
+    :rtype: tuple(bool, str)
     """
 
     file_name = source.get(u"file-name", u"")
@@ -308,5 +421,7 @@ def download_and_unzip_data_file(spec, job, build, pid):
         elif downloaded_name.endswith(u".zip"):
             build[u"file-name"] = downloaded_name
             success = _unzip_file(spec, build, pid)
+        else:
+            build[u"file-name"] = downloaded_name
 
     return success
