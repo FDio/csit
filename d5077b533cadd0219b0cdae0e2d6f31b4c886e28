@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14d92ecd_0ac488b2",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-24T08:29:50Z",
+      "side": 0,
+      "message": "so what is plan with obsoleting tests vs just hide them?",
+      "revId": "d5077b533cadd0219b0cdae0e2d6f31b4c886e28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
