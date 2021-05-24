@@ -337,12 +337,11 @@ class CpuUtils:
     def get_affinity_nf(
             nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
             vs_dtc=1, nf_dtc=1, nf_mtcr=2, nf_dtcr=1):
-
         """Get affinity of NF (network function). Result will be used to compute
         the amount of CPUs and also affinity.
 
         :param nodes: Physical topology nodes.
-        :param node: SUT node.
+        :param node: SUT node name, e.g. "DUT1".
         :param nf_chains: Number of NF chains.
         :param nf_nodes: Number of NF nodes in chain.
         :param nf_chain: Chain number indexed from 1.
@@ -378,6 +377,35 @@ class CpuUtils:
             nf_nodes=nf_nodes, nf_chain=nf_chain, nf_node=nf_node,
             nf_mtcr=nf_mtcr, nf_dtcr=nf_dtcr, nf_dtc=nf_dtc, skip_cnt=skip_cnt
         )
+
+    @staticmethod
+    def get_affinity_dataplane(nodes, name, physical_cores=1):
+        """Chose dataplane (as opposed to crypto) workers for async scheduler.
+
+        The implementation relies on get_affinity_nf.
+        The point is to use sibling cores if possible,
+        while allocating first few physical cores for dataplane work.
+
+        The node name is used to indirectly detect NUMA.
+
+        :param nodes: Physical topology nodes.
+        :param name: SUT node name, e.g. "DUT1".
+        :param physical_cores: Number of physical cores for dataplane work.
+        :type nodes: dict
+        :type node: dict
+        :type physical_cores: int
+        :returns: List of worker numbers to be selected for dataplane work.
+        :rtype: list
+        """
+        # get_affinity_nf always allocates 1 logical cpu for "NF" main thread,
+        # and skips one for vswitch main thread.
+        # To get values usable for "vswitch" workers,
+        # we need to use negative vs_dtc.
+        main_and_workers = CpuUtils.get_affinity_nf(
+            nodes, name, vs_dtc=-1, nf_dtc=physical_cores
+        )
+        workers = main_and_workers[1:]
+        return workers
 
     @staticmethod
     def get_affinity_trex(
