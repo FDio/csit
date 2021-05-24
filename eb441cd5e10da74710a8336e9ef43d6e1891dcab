@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "208d9930_4a5ef130",
+        "filename": "docs/report/introduction/methodology_telemetry.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-24T15:29:49Z",
+      "side": 1,
+      "message": "As shown below, ndrpdr test have two such blocks (one for pdr, one for ndr).\nIn case of test failure, we also have one such block in teardown \"performance\" action.",
+      "range": {
+        "startLine": 70,
+        "startChar": 36,
+        "endLine": 70,
+        "endChar": 59
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ffb34b3_59e9fef6",
+        "filename": "resources/tools/telemetry/metrics.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-24T15:29:49Z",
+      "side": 1,
+      "message": "The result of time() attempts to be close to calendar time, while the results of monotonic() attempt to give correct time differences. When a device is heavily out of sync with the external world, and then abruptly synchronizes (e.g. using NTP protocol), it is possible for time() result to jump forward or back, so for correct ordering monotonic() is more reliable. But monotonic() is less reliable when ordering events happening at different devices.\n\nBased on the two quotes from https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md\nI think we want to use monotonic() instead of time() in this file.\n\n\"If more than one MetricPoint is exposed for a Metric, then its MetricPoints MUST have monotonically increasing timestamps.\"\n\n\"Time synchronization is a hard problem and data should be internally consistent in each system. As such, ingestors should be able to attach the current timestamp from their perspective to data rather than based on the system time of the exposer device.\"",
+      "range": {
+        "startLine": 18,
+        "startChar": 17,
+        "endLine": 18,
+        "endChar": 21
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "528e97e4_ac1121b8",
+        "filename": "resources/tools/telemetry/metrics.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-24T15:29:49Z",
+      "side": 1,
+      "message": "Interpreter evaluates this only once. Use None here and call time/monotonic in the function body.\n\n$ python3\nPython 3.7.3 (default, Jun 11 2019, 15:08:33) \n[GCC 6.3.0 20170516] on linux\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n\u003e\u003e\u003e import time\n\u003e\u003e\u003e def foo(t\u003dtime.time()):\n...     print(f\"{t}\")\n... \n\u003e\u003e\u003e foo()\n1621868916.763917\n\u003e\u003e\u003e time.sleep(1)\n\u003e\u003e\u003e foo()\n1621868916.763917\n\u003e\u003e\u003e",
+      "range": {
+        "startLine": 111,
+        "startChar": 56,
+        "endLine": 111,
+        "endChar": 62
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
