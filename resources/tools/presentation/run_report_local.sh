@@ -83,8 +83,10 @@ fi
 if [[ ${cfg_install_latex} -eq 1 ]] ;
 then
     sudo apt-get -y install xvfb texlive-latex-recommended \
-        texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra latexmk wkhtmltopdf inkscape
-    sudo sed -i.bak 's/^\(main_memory\s=\s\).*/\110000000/' /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+        texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra \
+        latexmk wkhtmltopdf inkscape
+    target="/usr/share/texlive/texmf-dist/web2c/texmf.cnf"
+    sudo sed -i.bak 's/^\(main_memory\s=\s\).*/\110000000/' "${target}"
 fi
 
 # Create working directories

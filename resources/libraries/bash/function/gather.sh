@@ -124,7 +124,8 @@ function gather_vpp () {
     # - ${CSIT_DIR}/DPDK_STABLE_VER - DPDK version to use
     #   by csit-vpp not-timed jobs.
     # - ${CSIT_DIR}/${VPP_VER_FILE} - Ubuntu VPP version to use.
-    # - ../*vpp*.deb|rpm - Relative to ${DOWNLOAD_DIR}, copied for vpp-csit jobs.
+    # - ../*vpp*.deb|rpm - Relative to ${DOWNLOAD_DIR},
+    #   copied for vpp-csit jobs.
     # Directories updated:
     # - ${DOWNLOAD_DIR}, vpp-*.deb files are copied here for vpp-csit jobs.
     # - ./ - Assumed ${DOWNLOAD_DIR}, *vpp*.deb|rpm files
@@ -157,8 +158,10 @@ function gather_vpp () {
             download_artifacts || die
             ;;
         "vpp-csit-"*)
+            # Shorten line.
+            pgks="${PKG_SUFFIX}"
             # Use locally built packages.
-            mv "${DOWNLOAD_DIR}"/../*vpp*."${PKG_SUFFIX}" "${DOWNLOAD_DIR}"/ || {
+            mv "${DOWNLOAD_DIR}"/../*vpp*."${pkgs}" "${DOWNLOAD_DIR}"/ || {
                 die "Move command failed."
             }
             ;;

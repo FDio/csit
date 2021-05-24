@@ -147,19 +147,19 @@ function download_centos_artifacts () {
     }
     # If version is set we will add suffix.
     artifacts=()
-    packages=(vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins vpp-api-python)
+    pkgs=(vpp vpp-selinux-policy vpp-devel vpp-lib vpp-plugins vpp-api-python)
     if [ -z "${VPP_VERSION-}" ]; then
-        artifacts+=(${packages[@]})
+        artifs+=(${pkgs[@]})
     else
-        artifacts+=(${packages[@]/%/-${VPP_VERSION-}})
+        artifs+=(${pkgs[@]/%/-${VPP_VERSION-}})
     fi
 
     if [[ "${INSTALL:-false}" == "true" ]]; then
-        sudo yum -y install "${artifacts[@]}" || {
+        sudo yum -y install "${artifs[@]}" || {
             die "Install VPP artifact failed."
         }
     else
-        sudo yum -y install --downloadonly --downloaddir=. "${artifacts[@]}" || {
+        sudo yum -y install --downloadonly --downloaddir=. "${artifs[@]}" || {
             die "Download VPP artifacts failed."
         }
     fi
@@ -181,20 +181,20 @@ function download_opensuse_artifacts () {
         die "Packagecloud FD.io repo fetch failed."
     }
     # If version is set we will add suffix.
-    artifacts=()
+    artifs=()
     packages=(vpp vpp-devel vpp-lib vpp-plugins libvpp0)
     if [ -z "${VPP_VERSION-}" ]; then
-        artifacts+=(${packages[@]})
+        artifs+=(${packages[@]})
     else
-        artifacts+=(${packages[@]/%/-${VPP_VERSION-}})
+        artifs+=(${packages[@]/%/-${VPP_VERSION-}})
     fi
 
     if [[ "${INSTALL:-false}" == "true" ]]; then
-        sudo yum -y install "${artifacts[@]}" || {
+        sudo yum -y install "${artifs[@]}" || {
             die "Install VPP artifact failed."
         }
     else
-        sudo yum -y install --downloadonly --downloaddir=. "${artifacts[@]}" || {
+        sudo yum -y install --downloadonly --downloaddir=. "${artifs[@]}" || {
             die "Download VPP artifacts failed."
         }
     fi

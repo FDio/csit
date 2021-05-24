@@ -95,8 +95,10 @@ function dpdk_compile () {
     sed -i "${sed_cmd}" "${sed_file}" || die "RTE_MAX_NUMA_NODES Patch failed"
 
     # Patch L3FWD.
-    sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128/#define RTE_TEST_RX_DESC_DEFAULT 1024/g"
-    sed_txd="s/^#define RTE_TEST_TX_DESC_DEFAULT 512/#define RTE_TEST_TX_DESC_DEFAULT 1024/g"
+    sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128"
+    sed_rxd+="/#define RTE_TEST_RX_DESC_DEFAULT 1024/g"
+    sed_txd="s/^#define RTE_TEST_TX_DESC_DEFAULT 512"
+    sed_txd+="/#define RTE_TEST_TX_DESC_DEFAULT 1024/g"
     sed_file="./main.c"
     pushd examples/l3fwd || die "Pushd failed"
     sed -i "${sed_rxd}" "${sed_file}" || die "Patch failed"
@@ -207,8 +209,10 @@ function dpdk_l3fwd_compile () {
 
     pushd "${DPDK_DIR}" || die "Pushd failed"
     # Patch L3FWD.
-    sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128/#define RTE_TEST_RX_DESC_DEFAULT 2048/g"
-    sed_txd="s/^#define RTE_TEST_TX_DESC_DEFAULT 512/#define RTE_TEST_TX_DESC_DEFAULT 2048/g"
+    sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128"
+    sed_rxd+="/#define RTE_TEST_RX_DESC_DEFAULT 2048/g"
+    sed_txd="s/^#define RTE_TEST_TX_DESC_DEFAULT 512"
+    sed_txd+="/#define RTE_TEST_TX_DESC_DEFAULT 2048/g"
     sed_file="./main.c"
     pushd examples/l3fwd || die "Pushd failed"
     sed -i "${sed_rxd}" "${sed_file}" || die "Patch failed"
