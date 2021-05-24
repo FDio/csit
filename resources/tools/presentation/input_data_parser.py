@@ -225,9 +225,9 @@ class ExecutionChecker(ResultVisitor):
     REGEX_PERF_MSG_INFO = re.compile(
         r'NDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
         r'PDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
-        r'Latency at 90% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
-        r'Latency at 50% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
-        r'Latency at 10% PDR:.*\[\'(.*)\', \'(.*)\'\].*\n'
+        r'Latency at 90% PDR:.*\[\'(.*)\', \'(.*)\'].*\n'
+        r'Latency at 50% PDR:.*\[\'(.*)\', \'(.*)\'].*\n'
+        r'Latency at 10% PDR:.*\[\'(.*)\', \'(.*)\'].*\n'
     )
     REGEX_CPS_MSG_INFO = re.compile(
         r'NDR_LOWER:\s(\d+.\d+)\s.*\s.*\n.*\n.*\n'
@@ -237,7 +237,7 @@ class ExecutionChecker(ResultVisitor):
         r'NDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*\n'
         r'PDR_LOWER:\s(\d+.\d+)\s.*\s(\d+.\d+)\s.*\n.*\n.*'
     )
-    REGEX_MRR_MSG_INFO = re.compile(r'.*\[(.*)\]')
+    REGEX_MRR_MSG_INFO = re.compile(r'.*\[(.*)]')
 
     REGEX_VSAP_MSG_INFO = re.compile(
         r'Transfer Rate: (\d*.\d*).*\n'
@@ -250,16 +250,16 @@ class ExecutionChecker(ResultVisitor):
 
     # Needed for CPS and PPS tests
     REGEX_NDRPDR_LAT_BASE = re.compile(
-        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
-        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\']\s\n.*\n.*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\']'
     )
     REGEX_NDRPDR_LAT = re.compile(
-        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
-        r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]\s\n'
-        r'Latency.*\[\'(.*)\', \'(.*)\'\]'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\']\s\n.*\n.*\n'
+        r'LATENCY.*\[\'(.*)\', \'(.*)\']\s\n.*\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\']\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\']\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\']\s\n'
+        r'Latency.*\[\'(.*)\', \'(.*)\']'
     )
 
     REGEX_VERSION_VPP = re.compile(
@@ -273,11 +273,11 @@ class ExecutionChecker(ResultVisitor):
         r'Total\s(rps|cps|throughput):\s(\d*).*$'
     )
     REGEX_MRR = re.compile(
-        r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
+        r'MaxReceivedRate_Results\s\[pkts/(\d*)sec]:\s'
         r'tx\s(\d*),\srx\s(\d*)'
     )
     REGEX_BMRR = re.compile(
-        r'.*trial results.*: \[(.*)\]'
+        r'.*trial results.*: \[(.*)]'
     )
     REGEX_RECONF_LOSS = re.compile(
         r'Packets lost due to reconfig: (\d*)'
@@ -1498,7 +1498,7 @@ class InputData:
         """
         return self.data[job][build][u"tests"]
 
-    def _parse_tests(self, job, build):
+    def _parse_tests_xml(self, job, build):
         """Process data from robot output.xml file and return JSON structured
         data.
 
@@ -1539,6 +1539,21 @@ class InputData:
 
         return checker.data
 
+    @staticmethod
+    def _parse_tests_json(job, build):
+        """Process data from json files and return JSON structured
+        data.
+
+        :param job: The name of job which build output data will be processed.
+        :param build: The build which output data will be processed.
+        :type job: str
+        :type build: dict
+        :returns: JSON data structure.
+        :rtype: dict
+        """
+
+        raise NotImplementedError("To be implemented in the following patch.")
+
     def _download_and_parse_build(self, job, build, repeat, pid=10000):
         """Download and parse the input data file.
 
@@ -1574,7 +1589,21 @@ class InputData:
             )
         if success:
             logging.info(f"  Processing data from build {build[u'build']}")
-            data = self._parse_tests(job, build)
+            if build[u"source"] == u"xml":
+                data = self._parse_tests_xml(job, build)
+                try:
+                    remove(build[u"file-name"])
+                except OSError as err:
+                    logging.error(
+                        u"Cannot remove the file "
+                        f"{build[u'file-name']}: {repr(err)}"
+                    )
+            elif build[u"source"] == u"json":
+                data = self._parse_tests_json(job, build)
+            else:
+                raise NotImplementedError(
+                    f"The source type {build[u'source']} is not implemented."
+                )
             if data is None:
                 logging.error(
                     f"Input data file from the job {job}, build "
@@ -1582,13 +1611,6 @@ class InputData:
                 )
             else:
                 state = u"processed"
-
-            try:
-                remove(build[u"file-name"])
-            except OSError as err:
-                logging.error(
-                    f"Cannot remove the file {build[u'file-name']}: {repr(err)}"
-                )
 
         # If the time-period is defined in the specification file, remove all
         # files which are outside the time period.
@@ -1672,11 +1694,19 @@ class InputData:
         msg = f"Successful downloads from the sources:\n"
         for source in self._cfg.environment[u"data-sources"]:
             if source[u"successful-downloads"]:
-                msg += (
-                    f"{source[u'url']}/{source[u'path']}/"
-                    f"{source[u'file-name']}: "
-                    f"{source[u'successful-downloads']}\n"
-                )
+                if source[u"type"] == u"xml":
+                    msg += (
+                        f"{source[u'url']}/{source[u'path']}/"
+                        f"{source[u'file-name']}: "
+                        f"{source[u'successful-downloads']}\n"
+                    )
+                elif source[u"type"] == u"json":
+                    msg += (
+                        f"{source[u'url']}, "
+                        f"profile-name={source[u'profile-name']}, "
+                        f"bucket={source[u'bucket']}: "
+                        f"{source[u'successful-downloads']}\n"
+                    )
         logging.info(msg)
 
     def process_local_file(self, local_file, job=u"local", build_nr=1,
@@ -1713,7 +1743,14 @@ class InputData:
         self._cfg.add_build(job, build)
 
         logging.info(f"Processing {job}: {build_nr:2d}: {local_file}")
-        data = self._parse_tests(job, build)
+        if build[u"source"] == u"xml":
+            data = self._parse_tests_xml(job, build)
+        elif build[u"source"] == u"json":
+            data = self._parse_tests_json(job, build)
+        else:
+            raise NotImplementedError(
+                f"The source type {build[u'source']} is not implemented."
+            )
         if data is None:
             raise PresentationError(
                 f"Error occurred while parsing the file {local_file}"
