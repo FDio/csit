@@ -23,41 +23,70 @@ from boto3 import client, resource
 from botocore import exceptions
 from botocore.client import Config
 
-ENDPOINT_URL = u"http://storage.service.consul:9000"
-AWS_ACCESS_KEY_ID = u"csit"
-AWS_SECRET_ACCESS_KEY = u"Csit1234"
-REGION_NAME = u"yul1"
 S3_API_LIMIT = 1048576
 
 
 class Storage:
-    """
-    Class implements storage object retrieval.
+    """Class implementing storage object retrieval.
+
     S3 Select API allows us to retrieve a subset of data by using simple SQL
     expressions. By using Select API to retrieve only the data needed by the
     application, drastic performance improvements can be achieved.
     """
-    def __init__(self):
+    def __init__(self, endpoint_url, aws_access_key_id, aws_secret_access_key,
+                 region_name):
+        """ Class init function to create S3 client object.
+
+        :param endpoint_url:
+        :param aws_access_key_id:
+        :param aws_secret_access_key:
+        :param region_name:
+        :type endpoint_url: str
+        :type aws_access_key_id: str
+        :type aws_secret_access_key: str
+        :type region_name: str
         """
-        Class init function to create S3 client object.
-        """
+
+        self._endpoint_url = endpoint_url
+        self._aws_access_key_id = aws_access_key_id
+        self._aws_secret_access_key = aws_secret_access_key
+        self._region_name = region_name
+
         self.bucket = u"docs"
         self.client = client(
             u"s3",
-            endpoint_url=ENDPOINT_URL,
-            aws_access_key_id=AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-            region_name=REGION_NAME
+            endpoint_url=self._endpoint_url,
+            aws_access_key_id=self._aws_access_key_id,
+            aws_secret_access_key=self._aws_secret_access_key,
+            region_name=self._region_name
         )
         self.resource = resource(
             u"s3",
-            endpoint_url=ENDPOINT_URL,
-            aws_access_key_id=AWS_ACCESS_KEY_ID,
-            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+            endpoint_url=self._endpoint_url,
+            aws_access_key_id=self._aws_access_key_id,
+            aws_secret_access_key=self._aws_secret_access_key,
             config=Config(
                 signature_version=u"s3v4"
             ),
-            region_name=REGION_NAME
+            region_name=self._region_name
+        )
+
+    def __str__(self):
+        """TODO: To implement or not to implement?
+        """
+        raise NotImplementedError
+
+    def __repr__(self):
+        """Return a string executable as Python constructor call.
+
+        :returns: Executable constructor call.
+        :rtype: str
+        """
+        return (
+            f"Storage(endpoint_url={self._endpoint_url!r}, "
+            f"aws_access_key_id={self._aws_access_key_id!r}, "
+            f"aws_secret_access_key={self._aws_secret_access_key!r}, "
+            f"region_name={self._region_name!r})"
         )
 
     def _get_matching_s3_keys(

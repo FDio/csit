@@ -21,6 +21,11 @@ from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
 from .storage import Storage
 
+ENDPOINT_URL = u"http://storage.service.consul:9000"
+AWS_ACCESS_KEY_ID = u"csit"
+AWS_SECRET_ACCESS_KEY = u"Csit1234"
+REGION_NAME = u"yul1"
+
 
 def main():
     """
@@ -38,7 +43,12 @@ def main():
 
     args = parser.parse_args()
 
-    json_iterator = Storage().s3_file_processing(
+    json_iterator = Storage(
+        endpoint_url=ENDPOINT_URL,
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        region_name=REGION_NAME
+    ).s3_file_processing(
         prefix=u"", suffix=u"json.gz", expression=args.expression
     )
     for item in json_iterator:
