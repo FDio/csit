@@ -36,6 +36,8 @@
     owner: "root"
     group: "root"
     mode: "0644"
+  notify:
+    - "Restart Docker"
   when: >
     docker_daemon is defined
   tags:
@@ -80,3 +82,5 @@
   when: docker_users
   tags:
     - docker-conf-user
+
+- meta: flush_handlers
