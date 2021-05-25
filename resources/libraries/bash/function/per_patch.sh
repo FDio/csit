@@ -1,5 +1,5 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
-# Copyright (c) 2020 PANTHEON.tech s.r.o.
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -96,7 +96,7 @@ function build_vpp_ubuntu_amd64 () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
-    make UNATTENDED=y pkg-verify || die "VPP build using make pkg-verify failed."
+    make UNATTENDED=y pkg-verify || die "VPP build with make pkg-verify failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }

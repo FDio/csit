@@ -86,6 +86,7 @@ class HoststackUtil():
         ip_address = f" {iperf3_attributes[u'ip_address']}" if u"ip_address" \
                      in iperf3_attributes else u""
         iperf3_cmd[u"name"] = u"iperf3"
+        # TODO: Use OptionString library.
         iperf3_cmd[u"args"] = f"--{iperf3_attributes[u'role']}{ip_address} " \
                               f"--interval 0{json_results} " \
                               f"--version{iperf3_attributes[u'ip_version']}"
@@ -102,9 +103,11 @@ class HoststackUtil():
                     f" --time {iperf3_attributes[u'time']}"
             if iperf3_attributes[u"udp"]:
                 iperf3_cmd[u"args"] += u" --udp"
-                iperf3_cmd[u"args"] += f" --bandwidth {iperf3_attributes[u'bandwidth']}"
+                iperf3_cmd[u"args"] += u" --bandwidth"
+                iperf3_cmd[u"args"] += f" {iperf3_attributes[u'bandwidth']}"
             if iperf3_attributes[u"length"] > 0:
-                iperf3_cmd[u"args"] += f" --length {iperf3_attributes[u'length']}"
+                iperf3_cmd[u"args"] += u" --length"
+                iperf3_cmd[u"args"] += f" {iperf3_attributes[u'length']}"
         return iperf3_cmd
 
     @staticmethod

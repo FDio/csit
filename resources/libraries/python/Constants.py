@@ -202,8 +202,12 @@ class Constants:
 
     # TRex set number of RX/TX descriptors
     # Set to 0 to use default values
-    TREX_TX_DESCRIPTORS_COUNT = get_int_from_env(u"TREX_TX_DESCRIPTORS_COUNT", 0)
-    TREX_RX_DESCRIPTORS_COUNT = get_int_from_env(u"TREX_RX_DESCRIPTORS_COUNT", 0)
+    TREX_TX_DESCRIPTORS_COUNT = get_int_from_env(
+        u"TREX_TX_DESCRIPTORS_COUNT", 0
+    )
+    TREX_RX_DESCRIPTORS_COUNT = get_int_from_env(
+        u"TREX_RX_DESCRIPTORS_COUNT", 0
+    )
 
     # Trex force start regardless ports state
     TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")

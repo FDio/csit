@@ -1,5 +1,5 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
-# Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -124,7 +124,8 @@ function gather_vpp () {
     # - ${CSIT_DIR}/DPDK_STABLE_VER - DPDK version to use
     #   by csit-vpp not-timed jobs.
     # - ${CSIT_DIR}/${VPP_VER_FILE} - Ubuntu VPP version to use.
-    # - ../*vpp*.deb|rpm - Relative to ${DOWNLOAD_DIR}, copied for vpp-csit jobs.
+    # - ../*vpp*.deb|rpm - Relative to ${DOWNLOAD_DIR},
+    #   copied for vpp-csit jobs.
     # Directories updated:
     # - ${DOWNLOAD_DIR}, vpp-*.deb files are copied here for vpp-csit jobs.
     # - ./ - Assumed ${DOWNLOAD_DIR}, *vpp*.deb|rpm files
@@ -157,8 +158,10 @@ function gather_vpp () {
             download_artifacts || die
             ;;
         "vpp-csit-"*)
+            # Shorten line.
+            pgks="${PKG_SUFFIX}"
             # Use locally built packages.
-            mv "${DOWNLOAD_DIR}"/../*vpp*."${PKG_SUFFIX}" "${DOWNLOAD_DIR}"/ || {
+            mv "${DOWNLOAD_DIR}"/../*vpp*."${pkgs}" "${DOWNLOAD_DIR}"/ || {
                 die "Move command failed."
             }
             ;;

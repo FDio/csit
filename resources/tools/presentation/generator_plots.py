@@ -200,7 +200,8 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                         hovertext.append(
                             f"<b>{desc[graph]}</b><br>"
                             f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
-                            f"Percentile: {previous_x:.5f}-{percentile:.5f}%<br>"
+                            f"Percentile: {previous_x:.5f}"
+                            f"-{percentile:.5f}%<br>"
                             f"Latency: {item.value_iterated_to}uSec"
                         )
                         xaxis.append(percentile)
@@ -208,7 +209,8 @@ def plot_hdrh_lat_by_percentile(plot, input_data):
                         hovertext.append(
                             f"<b>{desc[graph]}</b><br>"
                             f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
-                            f"Percentile: {previous_x:.5f}-{percentile:.5f}%<br>"
+                            f"Percentile: {previous_x:.5f}"
+                            f"-{percentile:.5f}%<br>"
                             f"Latency: {item.value_iterated_to}uSec"
                         )
                         previous_x = percentile
