@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e52aee8_7cea1c98",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-25T09:01:41Z",
+      "side": 1,
+      "message": "perf",
+      "range": {
+        "startLine": 104,
+        "startChar": 40,
+        "endLine": 104,
+        "endChar": 43
+      },
+      "revId": "01da282414607dd1774b5cec60ef4e6970dc52f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1f8d5fd_b2caf9a8",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-25T09:01:41Z",
+      "side": 1,
+      "message": "perf",
+      "range": {
+        "startLine": 105,
+        "startChar": 46,
+        "endLine": 105,
+        "endChar": 49
+      },
+      "revId": "01da282414607dd1774b5cec60ef4e6970dc52f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e41f9fcc_95a382a4",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1025,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-25T09:01:41Z",
+      "side": 1,
+      "message": "Tunnel Endpoint Identifier",
+      "range": {
+        "startLine": 1025,
+        "startChar": 26,
+        "endLine": 1025,
+        "endChar": 44
+      },
+      "revId": "01da282414607dd1774b5cec60ef4e6970dc52f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee170ead_fbd75537",
+        "filename": "resources/libraries/robot/overlay/gtpu.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-25T09:01:41Z",
+      "side": 1,
+      "message": "interface.",
+      "range": {
+        "startLine": 26,
+        "startChar": 56,
+        "endLine": 26,
+        "endChar": 65
+      },
+      "revId": "01da282414607dd1774b5cec60ef4e6970dc52f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
