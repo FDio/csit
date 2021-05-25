@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d4e1c045_72ee2567",
+        "filename": "docs/report/introduction/methodology_telemetry.rst",
+        "patchSetId": 29
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-25T15:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a90da593_37644bc1",
+      "range": {
+        "startLine": 70,
+        "startChar": 36,
+        "endLine": 70,
+        "endChar": 59
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ffb34b3_59e9fef6",
         "filename": "resources/tools/telemetry/metrics.py",
         "patchSetId": 29
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "669d0ee5_61bb0770",
+        "filename": "resources/tools/telemetry/metrics.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-25T15:54:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f46af74_4199017a",
+      "range": {
+        "startLine": 18,
+        "startChar": 17,
+        "endLine": 18,
+        "endChar": 21
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "528e97e4_ac1121b8",
         "filename": "resources/tools/telemetry/metrics.py",
         "patchSetId": 29
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "This is default. override but later call. so\n```\nfoo(time())\nfoo(time())\n```\ne.g L538",
       "parentUuid": "528e97e4_ac1121b8",
+      "range": {
+        "startLine": 111,
+        "startChar": 56,
+        "endLine": 111,
+        "endChar": 62
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "486c2555_0ed03cd3",
+        "filename": "resources/tools/telemetry/metrics.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-25T15:54:06Z",
+      "side": 1,
+      "message": "If we want to force callers to think about what time is correct for them, just do not give any default value here (so foo() becomes syntax error).\n\nThe issue with the current code is that it looks almost like foo() will use the time of the call (but it uses time of import instead, which can lead to timestamps not being ordered or otherwise wrong).",
+      "parentUuid": "0a6ac3fe_80411431",
       "range": {
         "startLine": 111,
         "startChar": 56,
