@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5a76bb2_dd2ce9a8",
+        "filename": "docs/TNM/examples/output_uti/64b-1t1c-eth-l2patch-mrr.json",
+        "patchSetId": 64
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-25T12:56:24Z",
+      "side": 1,
+      "message": "Please use \"avg\" to match vocabulary from jumpavg package.",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "4d83bdbc25196a57022696343dcebdd83d6a2a4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
