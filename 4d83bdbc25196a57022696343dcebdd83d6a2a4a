@@ -22,6 +22,29 @@
       "revId": "4d83bdbc25196a57022696343dcebdd83d6a2a4a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e67e4ac0_b1b2841a",
+        "filename": "docs/TNM/examples/output_uti/78b-1t1c-ethip6-ip6base-ndrpdr.json",
+        "patchSetId": 64
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-25T15:18:43Z",
+      "side": 1,
+      "message": "\"latency\"? Just to be different from the key in line 64.",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 18
+      },
+      "revId": "4d83bdbc25196a57022696343dcebdd83d6a2a4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
