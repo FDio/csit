@@ -212,6 +212,30 @@
       "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dce54870_10271590",
+        "filename": "resources/tools/telemetry/metrics.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-25T18:21:14Z",
+      "side": 1,
+      "message": "There are few \"correct times\"\nTime of running command to get value.\nTime of real retrieval of data from app.\nTime of capturing data into class (multithread?)\nTime of retrieving data from probe (as per above link to prober device). \n\nAll those are slightly off. The point here was to capture at least something if not explicitly specified.\n\nL44 L56 are times when value is actually set or inc",
+      "parentUuid": "486c2555_0ed03cd3",
+      "range": {
+        "startLine": 111,
+        "startChar": 56,
+        "endLine": 111,
+        "endChar": 62
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
