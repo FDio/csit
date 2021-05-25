@@ -26,6 +26,13 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
+
+mkdir -p ${HOME}/.aws
+echo "[nomad-s3]" >> ${HOME}/.aws/config
+echo "[nomad-s3]
+aws_access_key_id = csit
+aws_secret_access_key = Csit1234" >> ${HOME}/.aws/credentials
+
 common_dirs || die
 cd "${CSIT_DIR}" || die
 activate_virtualenv "${CSIT_DIR}" "${CSIT_DIR}/tox-requirements.txt" || die
