@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d96cf587_5d8ef676",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-26T13:26:13Z",
+      "side": 1,
+      "message": "IncrementUtil?",
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e6852e5_d98c982d",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-26T13:26:13Z",
+      "side": 1,
+      "message": "Add :param: and :type:.",
+      "range": {
+        "startLine": 21,
+        "startChar": 75,
+        "endLine": 21,
+        "endChar": 76
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "407a6afa_aa2d8bb6",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-26T13:26:13Z",
+      "side": 1,
+      "message": "Docstring is missing.",
+      "range": {
+        "startLine": 23,
+        "startChar": 48,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6b52b17_8943dfe4",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-26T13:26:13Z",
+      "side": 1,
+      "message": "In Python3, you can write just super().\n\nDo you have any patricular sideclass (sibling in diamond inheritance) in mind?\nIn general I think it is more safe to call superclass init (with omitted arguments) before setting this subclass\u0027 fields.\n\nPersonally, I prefer to not have any super() calls until I am reasonably sure all signatures (including expected subclasses) are compatible. Not having super() means this code is not built with extensive subclassing in mind, so any subclass implementers need to be extra careful, instead of just relying on super().\n\nStrictly speaking, methods present in superclass should be implemented in subclass with compatible signature, and this applies to constructors as well. In python, you can pass classes in arguments, so you can encounter a situation like this:\n\nclass Foo(object):\n    def __init__(self):\n        print(f\"Foo constructor before super.\")\n        super().__init__()\n        print(f\"Foo constructor after super.\")\n\ndef foo_compliant_factory(cls):\n    return cls()\n\nclass Bar(Foo, ObjIncrement):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n\nfoo \u003d foo_compliant_factory(Foo)\nbar \u003d foo_compliant_factory(Bar)  # TypeError: __init__() missing 2 required positional arguments: \u0027current_value\u0027 and \u0027increment\u0027",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66b909a5_69869778",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-26T13:26:13Z",
+      "side": 1,
+      "message": "Add :returns: and :rtype: (for every method returning something).",
+      "range": {
+        "startLine": 40,
+        "startChar": 55,
+        "endLine": 40,
+        "endChar": 56
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "373cd7b6_9a013bfd",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-26T13:26:13Z",
+      "side": 1,
+      "message": "Add a constructor, so I can see its argument types.\nAnd tidbits like negative increment not changing the value due to line 78.",
+      "range": {
+        "startLine": 68,
+        "startChar": 59,
+        "endLine": 68,
+        "endChar": 60
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "241f6279_328d404a",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-26T13:26:13Z",
+      "side": 1,
+      "message": "What is \u002730.0.0.1/24\u0027 incremented by 1?\n\u002730.0.1.1/24\u0027 or \u002730.0.1.0/24\u0027 or \u002730.0.0.1/24\u0027?",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 20
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
