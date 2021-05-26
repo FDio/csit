@@ -333,12 +333,12 @@ class Constants:
     NIC_NAME_TO_DRIVER = {
         u"Intel-X520-DA2": [u"vfio-pci"],
         u"Intel-X553": [u"vfio-pci"],
-        u"Intel-X710": [u"vfio-pci", u"avf"],
-        u"Intel-XL710": [u"vfio-pci", u"avf"],
-        u"Intel-XXV710": [u"vfio-pci", u"avf"],
-        u"Intel-E810CQ": [u"vfio-pci", u"avf"],
+        u"Intel-X710": [u"vfio-pci", u"avf", u"af_xdp"],
+        u"Intel-XL710": [u"vfio-pci", u"avf", u"af_xdp"],
+        u"Intel-XXV710": [u"vfio-pci", u"avf", u"af_xdp"],
+        u"Intel-E810CQ": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Amazon-Nitro-50G": [u"vfio-pci"],
-        u"Mellanox-CX556A": [u"rdma-core"],
+        u"Mellanox-CX556A": [u"rdma-core", u"af_xdp"],
     }
 
     # Each driver needs different prugin to work.
@@ -346,6 +346,7 @@ class Constants:
         u"vfio-pci": u"dpdk_plugin.so",
         u"avf": u"avf_plugin.so",
         u"rdma-core": u"rdma_plugin.so",
+        u"af_xdp": u"af_xdp_plugin.so",
     }
 
     # Tags to differentiate tests for different NIC driver.
@@ -353,6 +354,7 @@ class Constants:
         u"vfio-pci": u"DRV_VFIO_PCI",
         u"avf": u"DRV_AVF",
         u"rdma-core": u"DRV_RDMA_CORE",
+        u"af_xdp": u"DRV_AF_XDP",
     }
 
     # Suite names have to be different, add prefix.
@@ -360,6 +362,7 @@ class Constants:
         u"vfio-pci": u"",
         u"avf": u"avf-",
         u"rdma-core": u"rdma-",
+        u"af_xdp": u"af-xdp-",
     }
 
     # Number of virtual functions of physical nic.
@@ -367,6 +370,7 @@ class Constants:
         u"vfio-pci": u"nic_vfs}= | 0",
         u"avf": u"nic_vfs}= | 1",
         u"rdma-core": u"nic_vfs}= | 0",
+        u"af_xdp": u"nic_vfs}= | 0",
     }
 
     # Not each driver is supported by each NIC.
