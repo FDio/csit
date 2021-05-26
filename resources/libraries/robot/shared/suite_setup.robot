@@ -141,15 +141,15 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Additional Suite Setup Action For performance_dut \| DUT1 \|
+| | ... | \| Additional Suite Setup Action For performance vf \| DUT1 \|
 | |
 | | [Arguments] | ${dut}
 | |
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | ${_vf}=
-| | | ... | Run Keyword | Init ${nic_driver} interface
-| | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | numvfs=${nic_vfs}
-| | | ... | osi_layer=${osi_layer}
+| | | ... | Run Keyword | Init interface
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
+| | | ... | numvfs=${nic_vfs} | osi_layer=${osi_layer}
 | | | ${_mac}=
 | | | ... | Create List | ${EMPTY}
 | | | ${_ip4_addr}=
@@ -176,6 +176,26 @@
 | | Set Suite Variable
 | | ... | ${int} | prevf
 
+| Additional Suite Setup Action For performance pf
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement for
+| | ... | single DUT (inner loop).
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Additional Suite Setup Action For performance pf \| DUT1 \|
+| |
+| | [Arguments] | ${dut}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Run Keyword | Init interface
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
+| | | ... | numvfs=${0} | osi_layer=${osi_layer}
+| | END
+
 | Additional Suite Setup Action For performance
 | | [Documentation]
 | | ... | Additional Setup for suites which uses performance measurement.
@@ -183,6 +203,8 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If | ${nic_vfs} > 0
 | | | ... | Additional Suite Setup Action For performance vf | ${dut}
+| | | ... | ELSE
+| | | ... | Additional Suite Setup Action For performance pf | ${dut}
 | | END
 | | Initialize traffic generator
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
