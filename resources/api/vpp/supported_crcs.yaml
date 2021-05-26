@@ -49,6 +49,8 @@
     # ^^ ip4fwdANDiaclANDacl10AND100_flows
     add_node_next: '0x2457116d'  # dev
     add_node_next_reply: '0x2ed75f32'  # dev
+    af_xdp_create: '0x66f1ee9a'  # perf
+    af_xdp_create_reply: '0x5383d31f'  # perf
     avf_create: '0xdaab8ae2'  # dev
     avf_create_reply: '0x5383d31f'  # dev
     bond_add_member: '0xe7d14948'  # perf
