@@ -56,7 +56,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC4303 and RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | crypto_native_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
+| ... | crypto_native_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_sw_scheduler_plugin.so
 | ... | crypto_openssl_plugin.so
 | ${crypto_type}= | ${None}

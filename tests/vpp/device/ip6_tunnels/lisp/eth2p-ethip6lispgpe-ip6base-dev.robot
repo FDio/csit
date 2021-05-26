@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -44,7 +44,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | lisp_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | lisp_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
