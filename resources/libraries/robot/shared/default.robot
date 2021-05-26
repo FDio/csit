@@ -29,6 +29,7 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
+| Library | resources.libraries.python.IrqUtil
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Namespaces
 | Library | resources.libraries.python.PapiHistory
