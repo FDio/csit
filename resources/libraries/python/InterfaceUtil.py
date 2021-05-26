@@ -246,6 +246,24 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
+    def set_interface_queues_combined(node, pf_pcis, num_queues=1):
+        """Set number of queues for specified interfaces.
+
+        :param node: Topology node.
+        :param pf_pcis: List of node's interfaces PCI addresses.
+        :param num_queues: Number of queues. Default: 1.
+        :type nodes: dict
+        :type pf_pcis: list
+        :type num_queues: int
+        """
+        for pf_pci in pf_pcis:
+            pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
+            cmd = f"ethtool -L {pf_eth} combined {num_queues}"
+            ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
+            if int(ret_code) not in (0, 78):
+                raise RuntimeError("Failed to set queues on {pf_eth}!")
+
+    @staticmethod
     def set_interface_flow_control(node, pf_pcis, rx=u"off", tx=u"off"):
         """Set Ethernet flow control for specified interfaces.
 
@@ -264,7 +282,6 @@ class InterfaceUtil:
             ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
             if int(ret_code) not in (0, 78):
                 raise RuntimeError("Failed to set MTU on {pf_eth}!")
-
 
     @staticmethod
     def set_pci_parameter(node, pf_pcis, key, value):
@@ -1183,6 +1200,61 @@ class InterfaceUtil:
         return Topology.get_interface_by_sw_index(node, sw_if_index)
 
     @staticmethod
+    def vpp_create_af_xdp_interface(
+            node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
+            mode=u"auto"):
+        """Create AF_XDP interface on VPP node.
+
+        :param node: DUT node from topology.
+        :param if_key: Physical interface key from topology file of interface
+            to be bound to rdma-core driver.
+        :param num_rx_queues: Number of RX queues.
+        :param rxq_size: Size of RXQ (0 = Default API; 512 = Default VPP).
+        :param txq_size: Size of TXQ (0 = Default API; 512 = Default VPP).
+        :param mode: RDMA interface mode - auto/ibv/dv.
+        :type node: dict
+        :type if_key: str
+        :type num_rx_queues: int
+        :type rxq_size: int
+        :type txq_size: int
+        :type mode: str
+        :returns: Interface key (name) in topology file.
+        :rtype: str
+        :raises RuntimeError: If it is not possible to create RDMA interface on
+            the node.
+        """
+        PapiSocketExecutor.run_cli_cmd(
+            node, u"set logging class rdma level debug"
+        )
+
+        cmd = u"rdma_create_v2"
+        pci_addr = Topology.get_interface_pci_addr(node, if_key)
+        args = dict(
+            name=InterfaceUtil.pci_to_eth(node, pci_addr),
+            host_if=InterfaceUtil.pci_to_eth(node, pci_addr),
+            rxq_num=int(num_rx_queues) if num_rx_queues else 0,
+            rxq_size=rxq_size,
+            txq_size=txq_size,
+            mode=getattr(RdmaMode, f"RDMA_API_MODE_{mode.upper()}").value,
+            # TODO: Set True for non-jumbo packets.
+            no_multi_seg=False,
+            max_pktlen=0,
+        )
+        err_msg = f"Failed to create AF_XDP interface on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+
+        InterfaceUtil.vpp_set_interface_mac(
+            node, sw_if_index, Topology.get_interface_mac(node, if_key)
+        )
+        InterfaceUtil.add_eth_interface(
+            node, sw_if_index=sw_if_index, ifc_pfx=u"eth_af_xdp",
+            host_if_key=if_key
+        )
+
+        return Topology.get_interface_by_sw_index(node, sw_if_index)
+
+    @staticmethod
     def vpp_create_rdma_interface(
             node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
             mode=u"auto"):
@@ -1604,6 +1676,90 @@ class InterfaceUtil:
                 f"AVF needs ice or i40e compatible driver, not {kernel_driver}"
                 f"at node {node[u'host']} ifc {ifc_key}"
             )
+        current_driver = DUTSetup.get_pci_dev_driver(
+            node, pf_pci_addr.replace(u":", r"\:"))
+
+        VPPUtil.stop_vpp_service(node)
+        if current_driver != kernel_driver:
+            # PCI device must be re-bound to kernel driver before creating VFs.
+            DUTSetup.verify_kernel_module(node, kernel_driver, force_load=True)
+            # Stop VPP to prevent deadlock.
+            # Unbind from current driver.
+            DUTSetup.pci_driver_unbind(node, pf_pci_addr)
+            # Bind to kernel driver.
+            DUTSetup.pci_driver_bind(node, pf_pci_addr, kernel_driver)
+
+        # Initialize PCI VFs.
+        DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs)
+
+        vf_ifc_keys = []
+        # Set MAC address and bind each virtual function to uio driver.
+        for vf_id in range(numvfs):
+            vf_mac_addr = u":".join(
+                [pf_mac_addr[0], pf_mac_addr[2], pf_mac_addr[3], pf_mac_addr[4],
+                 pf_mac_addr[5], f"{vf_id:02x}"
+                 ]
+            )
+
+            pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
+            InterfaceUtil.set_linux_interface_trust_on(
+                node, pf_dev, vf_id=vf_id
+            )
+            if osi_layer == u"L2":
+                InterfaceUtil.set_linux_interface_spoof_off(
+                    node, pf_dev, vf_id=vf_id
+                )
+            InterfaceUtil.set_linux_interface_mac(
+                node, pf_dev, vf_mac_addr, vf_id=vf_id
+            )
+            InterfaceUtil.set_linux_interface_state(
+                node, pf_dev, state=u"up"
+            )
+
+            DUTSetup.pci_vf_driver_unbind(node, pf_pci_addr, vf_id)
+            DUTSetup.pci_vf_driver_bind(node, pf_pci_addr, vf_id, uio_driver)
+
+            # Add newly created ports into topology file
+            vf_ifc_name = f"{ifc_key}_vif"
+            vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
+            vf_ifc_key = Topology.add_new_port(node, vf_ifc_name)
+            Topology.update_interface_name(
+                node, vf_ifc_key, vf_ifc_name+str(vf_id+1)
+            )
+            Topology.update_interface_mac_address(node, vf_ifc_key, vf_mac_addr)
+            Topology.update_interface_pci_address(node, vf_ifc_key, vf_pci_addr)
+            Topology.set_interface_numa_node(
+                node, vf_ifc_key, Topology.get_interface_numa_node(
+                    node, ifc_key
+                )
+            )
+            vf_ifc_keys.append(vf_ifc_key)
+
+        return vf_ifc_keys
+
+    @staticmethod
+    def init_af_xdp_interface(node, ifc_key, numvfs=0, osi_layer=u"L2"):
+        """Init PCI device by bind them to linux driver for AF_XDP driver
+        testing on DUT.
+
+        :param node: DUT node.
+        :param ifc_key: Interface key from topology file.
+        :param numvfs: Number of VIFs to initialize, 0 - disable the VIFs.
+        :param osi_layer: OSI Layer type to initialize TG with.
+            Default value "L2" sets linux interface spoof off.
+        :type node: dict
+        :type ifc_key: str
+        :type numvfs: int
+        :type osi_layer: str
+        :returns: Virtual Function topology interface keys.
+        :rtype: list
+        :raises RuntimeError: If a reason preventing initialization is found.
+        """
+        # Read PCI address and driver.
+        pf_pci_addr = Topology.get_interface_pci_addr(node, ifc_key)
+        pf_mac_addr = Topology.get_interface_mac(node, ifc_key).split(":")
+        uio_driver = Topology.get_uio_driver(node)
+        kernel_driver = Topology.get_interface_driver(node, ifc_key)
         current_driver = DUTSetup.get_pci_dev_driver(
             node, pf_pci_addr.replace(u":", r"\:"))
 
