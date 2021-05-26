@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -38,7 +38,7 @@
 | ... | *[Ref] Applicable standard specifications:*
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | nsim_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | nsim_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0

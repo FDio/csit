@@ -53,7 +53,7 @@
 | ... | RFC8926.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | geneve_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | geneve_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
