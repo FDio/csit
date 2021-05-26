@@ -57,7 +57,8 @@
 | ... | RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | crypto_native_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
+| ... | crypto_native_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${crypto_type}= | HW_DH895xcc
 | ${nic_name}= | Intel-X710

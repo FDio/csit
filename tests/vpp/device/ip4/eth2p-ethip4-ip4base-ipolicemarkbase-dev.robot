@@ -38,7 +38,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2474, RFC2697, RFC2698.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci

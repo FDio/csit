@@ -45,7 +45,7 @@
 | ... | RFC4787.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | nat_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | nat_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci

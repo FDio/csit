@@ -40,7 +40,7 @@
 | ... | *[Ref] Applicable standard specifications:* IEEE 802.1q.
 
 *** Variables ***
-| @{plugins_to_enable}= | avf_plugin.so
+| @{plugins_to_enable}= | avf_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | avf
