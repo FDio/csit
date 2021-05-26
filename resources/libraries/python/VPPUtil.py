@@ -346,10 +346,16 @@ class VPPUtil:
     def show_log(node):
         """Show logging on the specified topology node.
 
+        If the PAPI command fails, stop VPP,
+        so subsequent keywords can examine core file.
+
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show logging")
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, u"show logging")
+        except AssertionError:
+            DUTSetup.stop_service(node, Constants.VPP_UNIT)
 
     @staticmethod
     def show_log_on_all_duts(nodes):
