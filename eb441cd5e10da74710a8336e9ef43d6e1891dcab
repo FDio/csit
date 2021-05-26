@@ -236,6 +236,30 @@
       "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f521e02_9cfaee0d",
+        "filename": "resources/tools/telemetry/metrics.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-26T16:12:19Z",
+      "side": 1,
+      "message": "\u003e The point here was to capture at least something if not explicitly specified.\n\nMy current preference order (from preferred to not preferred):\n1. Use time at the current add_sample call (needs None as default, and getting time in method body).\n2. Raise exception as number of arguments does not match (by not giving a default for timestamp argument) to force the call site to choose their timestamp value.\n3. Use time of metrics.py being imported (the current implementation with function call as the default).\n\nActually, I am not sure about the exact interpreter behavior. Maybe the current implementation sets the time of first ever add_sample call, which still may be seven suites ago, just few seconds later than the actual import.\n\nWe can debate whether 1. or 2. is the best, but I do not see how 3. could be the best.\n\n\u003e L44 L56 are times when value is actually set or inc\n\nYes, but this comment thread is only relevant for call sites (currently none) which skip the timestamp argument.",
+      "parentUuid": "dce54870_10271590",
+      "range": {
+        "startLine": 111,
+        "startChar": 56,
+        "endLine": 111,
+        "endChar": 62
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
