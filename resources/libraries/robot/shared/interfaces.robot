@@ -165,6 +165,17 @@
 | |
 | | No operation
 
+| Pre-initialize layer af_xdp on all DUTs
+| | [Documentation]
+| | ... | Pre-initialize af_xdp driver.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Set Interface State PCI
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | state=up
+| | | Set Interface Queues Combined
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | num_queues=${rxq_count_int}
+| | END
+
 | Pre-initialize layer rdma-core on all DUTs
 | | [Documentation]
 | | ... | Pre-initialize rdma-core driver.
@@ -377,6 +388,32 @@
 | | | Set List Value | ${${dut}_vf${pf}_pci} | ${vf} | ${_pci}
 | | | Set List Value | ${${dut}_vf${pf}_vlan} | ${vf} | ${_vlan}
 | | END
+
+| Initialize layer af_xdp on node
+| | [Documentation]
+| | ... | Initialize AF_XDP (eBPF) interfaces on DUT on NIC PF.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - pf - NIC physical function (physical port). Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer af_xdp on node \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | ${_af_xdp}= | VPP Create AF XDP Interface
+| | ... | ${nodes['${dut}']} | ${${dut}_vf${pf}}[0]
+| | ... | num_rx_queues=${65535}
+| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
+| | ${cpu_skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM}+${CPU_CNT_MAIN}
+| | ${cpu_skip_cnt}= | Evaluate | ${cpu_skip_cnt}+${cpu_count_int}
+| | ${cpu_skip_cnt}= | Evaluate | ${cpu_skip_cnt}+(${pf}-${1})*${rxq_count_int}
+| | Set Interface IRQs Affinity
+| | ... | ${nodes['${dut}']} | ${_af_xdp}
+| | ... | cpu_skip_cnt=${cpu_skip_cnt} | cpu_cnt=${rxq_count_int}
+| | Set List Value | ${${dut}_vf${pf}} | 0 | ${_af_xdp}
 
 | Initialize layer rdma-core on node
 | | [Documentation]
