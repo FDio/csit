@@ -334,6 +334,36 @@ class CpuUtils:
         return result
 
     @staticmethod
+    def get_affinity_af_xdp(
+            node, pf_key, cpu_skip_cnt=0, cpu_cnt=1):
+        """Get affinity for AF_XDP interface. Result will be used to pin IRQs.
+
+        :param node: Topology node.
+        :param pf_key: Topology interface.
+        :param cpu_skip_cnt: Amount of CPU cores to skip.
+        :param cpu_cnt: CPU threads count.
+        :type node: dict
+        :type pf_key: str
+        :type cpu_skip_cnt: int
+        :type cpu_cnt: int
+        :returns: List of CPUs allocated to AF_XDP interface.
+        :rtype: list
+        """
+        if pf_key:
+            cpu_node = Topology.get_interface_numa_node(node, pf_key)
+        else:
+            cpu_node = 0
+
+        smt_used = CpuUtils.is_smt_enabled(node[u"cpuinfo"])
+        if smt_used:
+            cpu_cnt = cpu_cnt // CpuUtils.NR_OF_THREADS
+
+        return CpuUtils.cpu_slice_of_list_per_node(
+            node, cpu_node, skip_cnt=cpu_skip_cnt, cpu_cnt=cpu_cnt,
+            smt_used=smt_used
+        )
+
+    @staticmethod
     def get_affinity_nf(
             nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
             vs_dtc=1, nf_dtc=1, nf_mtcr=2, nf_dtcr=1):
