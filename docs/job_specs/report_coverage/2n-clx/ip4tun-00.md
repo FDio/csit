@@ -1,6 +1,6 @@
 # 2n-clx
 ### tests 54
-### job hrs est. 5,2
+### job hrs est. 5.2
 ### job hrs real x
 ### test mins est. 5.78
 ### test mins real x
@@ -78,8 +78,6 @@
 ## ./nfv_density/dcr_memif/chain_ipsec
 ## ./nfv_density/dcr_memif/pipeline
 ## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
 ## ./srv6
 ## ./tcp
 ## ./vm_vhost
-## ./vts

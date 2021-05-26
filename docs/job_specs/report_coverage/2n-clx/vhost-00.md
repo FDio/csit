@@ -16,7 +16,6 @@
 ## ./nfv_density/dcr_memif/chain_ipsec
 ## ./nfv_density/dcr_memif/pipeline
 ## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
 ## ./srv6
 ## ./tcp
 ## ./vm_vhost
@@ -143,4 +142,3 @@
 1c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
 2c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
 4c AND imix AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
-## ./vts
