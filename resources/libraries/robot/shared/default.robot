@@ -63,6 +63,7 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/container.robot
 | Resource | resources/libraries/robot/shared/memif.robot
+| Resource | resources/libraries/robot/shared/output.robot
 | Resource | resources/libraries/robot/shared/suite_teardown.robot
 | Resource | resources/libraries/robot/shared/suite_setup.robot
 | Resource | resources/libraries/robot/shared/test_teardown.robot
