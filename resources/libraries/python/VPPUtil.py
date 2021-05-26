@@ -346,10 +346,26 @@ class VPPUtil:
     def show_log(node):
         """Show logging on the specified topology node.
 
+        Use increasingly robust methods to get more output
+        in various failure scenarios.
+
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show logging")
+        try:
+            PapiSocketExecutor.run_cli_cmd(node, u"show logging")
+        except AssertionError:
+            pass
+        else:
+            return
+        # There are some failure states where VPP does not crash,
+        # but PAPI becomes unresponsive.
+        # Try less brittle methods of getting some info.
+        ret_code, _, _ = exec_cmd(u"vppctl show logging", cmd, sudo=True)
+        if ret_code == 0:
+            return
+        # Last hope is file logs.
+        DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
     @staticmethod
     def show_log_on_all_duts(nodes):
