@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "189d4454_650c112e",
+        "filename": "docs/TNM/examples/output_uti/64b-1t1c-eth-l2patch-mrr.json",
+        "patchSetId": 64
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-05-27T07:44:02Z",
+      "side": 1,
+      "message": "agree",
+      "parentUuid": "c5a76bb2_dd2ce9a8",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "4d83bdbc25196a57022696343dcebdd83d6a2a4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e67e4ac0_b1b2841a",
         "filename": "docs/TNM/examples/output_uti/78b-1t1c-ethip6-ip6base-ndrpdr.json",
         "patchSetId": 64
@@ -36,6 +60,30 @@
       "writtenOn": "2021-05-25T15:18:43Z",
       "side": 1,
       "message": "\"latency\"? Just to be different from the key in line 64.",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 18
+      },
+      "revId": "4d83bdbc25196a57022696343dcebdd83d6a2a4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bff5d20c_b6f0fb80",
+        "filename": "docs/TNM/examples/output_uti/78b-1t1c-ethip6-ip6base-ndrpdr.json",
+        "patchSetId": 64
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-05-27T07:44:02Z",
+      "side": 1,
+      "message": "agree, I\u0027ll change it to latency",
+      "parentUuid": "e67e4ac0_b1b2841a",
       "range": {
         "startLine": 58,
         "startChar": 12,
