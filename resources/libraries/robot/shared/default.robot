@@ -106,7 +106,7 @@
 | |
 | | ${results}= | Create List
 | | ${status} | ${value}= | Run Keyword And Ignore Error
-| | ... | VPP Show Runtime On All DUTs
+| | ... | VPP Show Runtime On All DUTs | devicetest_stats
 | | Append To List | ${results} | ${status}
 | | ${status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Show Statistics On All DUTs | ${nodes}
