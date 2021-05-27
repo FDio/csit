@@ -19,11 +19,10 @@ from re import search
 from string import Template
 from time import sleep
 
-from robot.libraries.BuiltIn import BuiltIn
-
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.robot_interaction import get_library_instance
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
@@ -584,7 +583,7 @@ class ContainerEngine:
             u"setsid /usr/bin/vpp -c /etc/vpp/startup.conf "
             u">/tmp/vppd.log 2>&1 < /dev/null &")
 
-        topo_instance = BuiltIn().get_library_instance(
+        topo_instance = get_library_instance(
             u"resources.libraries.python.topology.Topology"
         )
         topo_instance.add_new_socket(
