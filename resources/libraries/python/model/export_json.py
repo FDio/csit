@@ -17,6 +17,8 @@
 import json
 import os
 
+from robot.api import logger
+
 from resources.libraries.python.robot_interaction import get_variable
 from resources.libraries.python.time_measurement import datetime_utc_str as now
 
@@ -88,6 +90,7 @@ class export_json():
             log_dir, suite_path_part, test_name + u".json.log"
         )
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        logger.debug(f"to export: {self.data!r}")
         with open(file_path, u"w") as file_out:
             json.dump(self.data, file_out, indent=1)
         # Not explicitly forgetting data here, so accidental double flush
