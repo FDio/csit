@@ -17,6 +17,8 @@ from pprint import pformat
 
 from robot.api import logger
 
+from resources.libraries.python.model.ExportLog import export_runtime_counters
+from resources.libraries.python.time_measurement import datetime_uts_str as now
 from resources.libraries.python.PapiExecutor import (
     PapiExecutor, PapiSocketExecutor
 )
@@ -52,18 +54,21 @@ class VppCounters:
                 VppCounters.vpp_show_errors(node)
 
     @staticmethod
-    def vpp_show_runtime(node, log_zeros=False):
+    def vpp_show_runtime(node, trial_type, log_zeros=False):
         """Run "show runtime" CLI command.
 
         :param node: Node to run command on.
+        :param trial_type: Description used when exporting telemetry.
         :param log_zeros: Log also items with zero values.
         :type node: dict
+        :type trial_type: str
         :type log_zeros: bool
         """
         args = dict(path=u"^/sys/node")
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.STATS)
         if sockets:
             for socket in sockets.values():
+                timestamp = now()
                 with PapiExecutor(node) as papi_exec:
                     stats = papi_exec.add(u"vpp-stats", **args).\
                         get_stats(socket=socket)[0]
@@ -115,14 +120,25 @@ class VppCounters:
                         f"stats runtime ({node[u'host']} - {socket}):\n"
                         f"{pformat(runtime_nz)}"
                     )
+                export_runtime_counters(
+                    host=node[u"host"],
+                    socket=socket,
+                    trial_type=trial_type,
+                    runtime_nz=runtime_nz,
+                    timestamp=timestamp,
+                )
         # Run also the CLI command, the above sometimes misses some info.
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
 
     @staticmethod
-    def vpp_show_runtime_on_all_duts():
-        """Clear VPP runtime counters on all DUTs."""
+    def vpp_show_runtime_on_all_duts(trial_type):
+        """Clear VPP runtime counters on all DUTs.
+
+        :param trial_type: Description used when exporting telemetry.
+        :type trial_type: str
+        """
         for node in duts_iterator():
-            VppCounters.vpp_show_runtime(node)
+            VppCounters.vpp_show_runtime(node, trial_type)
 
     @staticmethod
     def vpp_show_hardware(node):
