@@ -33,6 +33,10 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.model.ExportLog import (
+    export_papi_command_sent, export_papi_command_context, export_papi_replies
+)
+from resources.libraries.python.time_measurement import datetime_utc_str as now
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType
@@ -775,10 +779,30 @@ class PapiSocketExecutor:
         replies = list()
         for command in local_list:
             api_name = command[u"api_name"]
+            api_args = command[u"api_args"]
             papi_fn = getattr(vpp_instance.api, api_name)
+            export_papi_command_sent(
+                host=self._node[u"host"],
+                port=self._node[u"port"],
+                socket=self._remote_vpp_socket,
+                cmd_name=api_name,
+                cmd_args=api_args,
+                timestamp=now(),
+            )
             try:
                 try:
-                    reply = papi_fn(**command[u"api_args"])
+                    logger.debug(f"api args before call {api_args!r}")
+                    reply = papi_fn(**api_args)
+                    logger.debug(f"api args after call {api_args!r}")
+                    # The call should have added context to the args.
+                    context = api_args[u"context"]
+                    export_papi_command_context(
+                        host=self._node[u"host"],
+                        port=self._node[u"port"],
+                        socket=self._remote_vpp_socket,
+                        context=context,
+                        timestamp=now(),
+                    )
                 except (IOError, struct.error) as err:
                     # Occasionally an error happens, try reconnect.
                     logger.warn(f"Reconnect after error: {err!r}")
@@ -787,12 +811,21 @@ class PapiSocketExecutor:
                     time.sleep(1)
                     vpp_instance.connect_sync(u"csit_socket")
                     logger.trace(u"Reconnected.")
-                    reply = papi_fn(**command[u"api_args"])
+                    reply = papi_fn(**api_args)
+                    # The context remained the same as it is in args now.
             except (AttributeError, IOError, struct.error) as err:
                 raise AssertionError(err_msg) from err
-            # *_dump commands return list of objects, convert, ordinary reply.
+            # *_dump commands return list of objects, convert ordinary reply.
             if not isinstance(reply, list):
                 reply = [reply]
+            export_papi_replies(
+                host=self._node[u"host"],
+                port=self._node[u"port"],
+                socket=self._remote_vpp_socket,
+                context=context,
+                replies=reply,
+                timestamp=now(),
+            )
             for item in reply:
                 self.crc_checker.check_api_name(item.__class__.__name__)
                 dict_item = dictize(item)
