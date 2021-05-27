@@ -92,7 +92,8 @@
 | | [Documentation]
 | | ... | Additional Statistics Action for show VPP runtime.
 | |
-| | VPP Show Runtime On All DUTs
+| | ${trial_type} = | Get Trial Type
+| | VPP Show Runtime On All DUTs | ${trial_type}
 
 | Additional Statistics Action For vpp-show-stats
 | | [Documentation]
