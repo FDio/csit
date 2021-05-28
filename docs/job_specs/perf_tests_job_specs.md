@@ -16,7 +16,7 @@ environments listed in round brackets (...).
 
 ### NICs
 
-- Primary: xxv710 (2n-skx, 3n-skx), xl710 (3n-hsw), x553 (3n-tsh).
+- Primary: xxv710 (2n-skx, 3n-skx), x553 (3n-tsh).
 - Secondary: x710 (2n-skx, 3n-skx).
 
 ### Test Suites
@@ -38,9 +38,8 @@ environments listed in round brackets (...).
 ## Full List Test Jobs
 ### NICs
 
-- Primary: xxv710 (2n-skx, 3n-skx), xl710 (3n-hsw), x553 (3n-tsh).
-- Secondary: x520 (3n-hsw), x710 (skx, hsw), vic1227 (3n-hsw), vic1385
-  (3n-hsw).
+- Primary: xxv710 (2n-skx, 3n-skx), x553 (3n-tsh).
+- Secondary: x710 (skx).
 
 ### Test Suites
 
@@ -130,7 +129,6 @@ time required to complete data collection for report.
     - vpp-ipsec
 
 - Analyse trending testbed load - PM, MK
-  - 3x 3n-hsw
   - 2x 3n-skx
     - tunnel tests only
   - 4x 2n-skx
