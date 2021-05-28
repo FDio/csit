@@ -21,6 +21,26 @@ from resources.libraries.python.robot_interaction import get_variable
 from resources.libraries.python.time_measurement import datetime_utc_str as now
 
 
+class CsitEncoder(json.JSONEncoder):
+    """JSON encoder extension class, handling all CSIT export needs."""
+
+    def default(self, obj):
+        """Return unchanged if obj is a serializable type, else its repr().
+
+        Example: VPP PAPI code can give data with its own MACAddres type values.
+
+        :param obj: Object to make serializable.
+        :type obj: object
+        :returns: Serializable equivalent of the argument.
+        :rtype: object
+        :raises ValueError: If the argument does not support string conversion.
+        """
+        try:
+            return json.JSONEncoder.default(self, obj)
+        except TypeError:
+            return repr(obj)
+
+
 class export_json():
     """Class handling the json data setting and export.
     """
@@ -89,7 +109,7 @@ class export_json():
         )
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, u"w") as file_out:
-            json.dump(self.data, file_out, indent=1)
+            json.dump(self.data, file_out, indent=1, cls=CsitEncoder)
         # Not explicitly forgetting data here, so accidental double flush
         # does not lose information.
         # We rely on explicit "time reset" at start of test setup,

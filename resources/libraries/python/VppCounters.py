@@ -122,6 +122,7 @@ class VppCounters:
                     )
                 export_runtime_counters(
                     host=node[u"host"],
+                    port=node[u"port"],
                     socket=socket,
                     trial_type=trial_type,
                     runtime_nz=runtime_nz,
