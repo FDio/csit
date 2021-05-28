@@ -124,7 +124,7 @@ class Constants:
     that works regardless of current working directory.
     """
 
-    MODEL_VERSION = u"0.1.0"
+    MODEL_VERSION = u"0.1.1"
 
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = u"/tmp/openvpp-testing"
