@@ -21,6 +21,38 @@ from resources.libraries.python.robot_interaction import get_variable
 from resources.libraries.python.time_measurement import datetime_utc_str as now
 
 
+class CsitEncoder(json.JSONEncoder):
+    """JSON encoder extension class, handling all CSIT export needs."""
+
+    def default(self, obj):
+        """Recursively convert to more a serializable form.
+
+        VPP PAPI code can give data with its own MACAddres type.
+        The default json.JSONEncoder method raises TypeError on that.
+        First point of CsitEncoder is to expect that and apply str().
+
+        But PAPI responses are namedtuples, which confuses
+        the json.JSONEncoder method (so it does not recurse).
+
+        Dictization (see PapiExecutor) helps somewhat, but it turns namedtuple
+        into a UserDict, which also confuses json.JSONEncoder.
+        Therefore, we recursively convert any Mapping into an ordinary dict,
+        which finally makes json.JSONEncoder str() apply to the leaf value.
+
+        :param obj: Object to make serializable, dictized when applicable.
+        :type obj: object
+        :returns: Serializable equivalent of the argument.
+        :rtype: object
+        :raises ValueError: If the argument does not support string conversion.
+        """
+        if isinstance(obj, Mapping):
+            return {key: self.default(obj[key]) for key in obj}
+        try:
+            return json.JSONEncoder.default(self, obj)
+        except TypeError:
+            return str(obj)
+
+
 class export_json():
     """Class handling the json data setting and export.
     """
@@ -89,7 +121,7 @@ class export_json():
         )
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, u"w") as file_out:
-            json.dump(self.data, file_out, indent=1)
+            json.dump(self.data, file_out, indent=1, cls=CsitEncoder)
         # Not explicitly forgetting data here, so accidental double flush
         # does not lose information.
         # We rely on explicit "time reset" at start of test setup,
