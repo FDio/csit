@@ -260,6 +260,30 @@
       "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1346cee_54fd6fa7",
+        "filename": "resources/tools/telemetry/metrics.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-05-28T05:51:05Z",
+      "side": 1,
+      "message": "\u003e this comment thread is only relevant for call sites (currently none) \\\n\nso not an objective for this patch.\n\nPylint were fixed. Volume testing done. We can tune in RC testing",
+      "parentUuid": "6f521e02_9cfaee0d",
+      "range": {
+        "startLine": 111,
+        "startChar": 56,
+        "endLine": 111,
+        "endChar": 62
+      },
+      "revId": "eb441cd5e10da74710a8336e9ef43d6e1891dcab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
