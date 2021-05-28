@@ -198,6 +198,7 @@
 | | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
 | | Set Test Message | ${\n}${text}: ${tps} CPS | append=yes
+| | Export Search Bound | ${text} | ${tps}
 | | Return From Keyword If | not """${latency}"""
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
@@ -235,6 +236,7 @@
 | | ${bandwidth} = | Evaluate | ${pps} * (${avg_frame_size}+20)*8 / 1e9
 | | Set Test Message | ${\n}${text}: ${pps} pps, | append=yes
 | | Set Test Message | ${bandwidth} Gbps (initial) | append=yes
+| | Export Search Bound | ${text} | ${pps} | ${bandwidth}
 | | Return From Keyword If | not """${latency}"""
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
