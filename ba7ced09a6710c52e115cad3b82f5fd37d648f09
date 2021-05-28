@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "bb5c8447_0d70fb4b",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-28T14:45:04Z",
+      "side": 1,
+      "message": "Moving NetworkIncrement to IPaddress.py makes sense. Should I move ObjIncrement there as well? It\u0027s supposed to be used with any object, so having a separate file (IncrementUtil is a good name if the policy is to have a file for every utility function set that\u0027s a bit different as opposed to having one file with disparate small utilities) still makes sense for it.",
+      "parentUuid": "c342ffe3_f56d97be",
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e6852e5_d98c982d",
         "filename": "resources/libraries/python/CommonUtil.py",
         "patchSetId": 15
@@ -80,6 +98,30 @@
       "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0299a1af_9ce5236a",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-28T14:45:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2e6852e5_d98c982d",
+      "range": {
+        "startLine": 21,
+        "startChar": 75,
+        "endLine": 21,
+        "endChar": 76
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -106,6 +148,30 @@
     },
     {
       "key": {
+        "uuid": "99d5302f_e4a0b2b4",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-28T14:45:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "407a6afa_aa2d8bb6",
+      "range": {
+        "startLine": 23,
+        "startChar": 48,
+        "endLine": 23,
+        "endChar": 49
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6b52b17_8943dfe4",
         "filename": "resources/libraries/python/CommonUtil.py",
         "patchSetId": 15
@@ -117,6 +183,30 @@
       "writtenOn": "2021-05-26T13:26:13Z",
       "side": 1,
       "message": "In Python3, you can write just super().\n\nDo you have any patricular sideclass (sibling in diamond inheritance) in mind?\nIn general I think it is more safe to call superclass init (with omitted arguments) before setting this subclass\u0027 fields.\n\nPersonally, I prefer to not have any super() calls until I am reasonably sure all signatures (including expected subclasses) are compatible. Not having super() means this code is not built with extensive subclassing in mind, so any subclass implementers need to be extra careful, instead of just relying on super().\n\nStrictly speaking, methods present in superclass should be implemented in subclass with compatible signature, and this applies to constructors as well. In python, you can pass classes in arguments, so you can encounter a situation like this:\n\nclass Foo(object):\n    def __init__(self):\n        print(f\"Foo constructor before super.\")\n        super().__init__()\n        print(f\"Foo constructor after super.\")\n\ndef foo_compliant_factory(cls):\n    return cls()\n\nclass Bar(Foo, ObjIncrement):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n\nfoo \u003d foo_compliant_factory(Foo)\nbar \u003d foo_compliant_factory(Bar)  # TypeError: __init__() missing 2 required positional arguments: \u0027current_value\u0027 and \u0027increment\u0027",
+      "range": {
+        "startLine": 27,
+        "startChar": 8,
+        "endLine": 27,
+        "endChar": 33
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9aaf445_893bae73",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-28T14:45:04Z",
+      "side": 1,
+      "message": "I didn\u0027t have any sideclasses in mind, just simple inheritance. It\u0027s likely that not having super() here is the best - I don\u0027t see the need for more complicated inheritance.",
+      "parentUuid": "f6b52b17_8943dfe4",
       "range": {
         "startLine": 27,
         "startChar": 8,
@@ -152,6 +242,30 @@
     },
     {
       "key": {
+        "uuid": "416392a9_9dcbf3d4",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-28T14:45:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "66b909a5_69869778",
+      "range": {
+        "startLine": 40,
+        "startChar": 55,
+        "endLine": 40,
+        "endChar": 56
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "373cd7b6_9a013bfd",
         "filename": "resources/libraries/python/CommonUtil.py",
         "patchSetId": 15
@@ -175,6 +289,30 @@
     },
     {
       "key": {
+        "uuid": "f2d98859_388e9fbc",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-28T14:45:04Z",
+      "side": 1,
+      "message": "Right, the types are different in NetworkIncrement.\nI guess clarifying what happens when trying to decrement an increment is somewhat valuable, so I\u0027ll add it.",
+      "parentUuid": "373cd7b6_9a013bfd",
+      "range": {
+        "startLine": 68,
+        "startChar": 59,
+        "endLine": 68,
+        "endChar": 60
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "241f6279_328d404a",
         "filename": "resources/libraries/python/CommonUtil.py",
         "patchSetId": 15
@@ -186,6 +324,30 @@
       "writtenOn": "2021-05-26T13:26:13Z",
       "side": 1,
       "message": "What is \u002730.0.0.1/24\u0027 incremented by 1?\n\u002730.0.1.1/24\u0027 or \u002730.0.1.0/24\u0027 or \u002730.0.0.1/24\u0027?",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 20
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d314bca_ca738036",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-28T14:45:04Z",
+      "side": 1,
+      "message": "\"30.0.0.1/24\" is not a valid network:\nip_network(\"30.0.0.1/24\") # ValueError: 30.0.0.1/24 has host bits set",
+      "parentUuid": "241f6279_328d404a",
       "range": {
         "startLine": 73,
         "startChar": 9,
@@ -232,6 +394,24 @@
       "writtenOn": "2021-05-26T13:46:03Z",
       "side": 1,
       "message": "Maybe insert -bypass- to where crypto algs are in other suite names, to better signal no crypto work is being done in this configuration?",
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08adda6e_0d9d8d94",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec100spd-ip4base-policy-ndrpdr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-28T14:45:04Z",
+      "side": 1,
+      "message": "-bypass- is kinda vague, since it\u0027s just the policy action - the existing policy testcases are also using a BYPASS rule, but doing other crypto work. But I agree with adding something, maybe -nocrypto-?",
+      "parentUuid": "b0e4f660_47246126",
       "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
