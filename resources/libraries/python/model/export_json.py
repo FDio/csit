@@ -14,11 +14,56 @@
 """Module supporting structure-unaware json in-memory data.
 """
 
+from collections.abc import Mapping, Iterable
 import json
 import os
 
 from resources.libraries.python.robot_interaction import get_variable
 from resources.libraries.python.time_measurement import datetime_utc_str as now
+
+
+class CsitEncoder(json.JSONEncoder):
+    """JSON encoder extension class, handling all CSIT export needs."""
+
+    # Pylint wants to keep "o", to match the parent class method argument name.
+    # Otherwise, it would be too short a name.
+    def default(self, o):
+        """Recursively convert to more a serializable form.
+
+        VPP PAPI code can give data with its own MACAddres type.
+        The default json.JSONEncoder method raises TypeError on that.
+        First point of CsitEncoder is to expect that and apply str().
+
+        But PAPI responses are namedtuples, which confuses
+        the json.JSONEncoder method (so it does not recurse).
+
+        Dictization (see PapiExecutor) helps somewhat, but it turns namedtuple
+        into a UserDict, which also confuses json.JSONEncoder.
+        Therefore, we recursively convert any Mapping into an ordinary dict,
+        which finally makes json.JSONEncoder str() apply to the leaf value.
+        We also convert iterables to list,
+        and prevent numbers from getting converted to strings.
+
+        :param o: Object to make serializable, dictized when applicable.
+        :type o: object
+        :returns: Serializable equivalent of the argument.
+        :rtype: object
+        :raises ValueError: If the argument does not support string conversion.
+        """
+        # Recursion ends at scalar values, do not change the known ones.
+        if isinstance(o, (str, bytes, int, float, bool)):
+            return o
+        # Recurse over mappings.
+        if isinstance(o, Mapping):
+            return {key: self.default(o[key]) for key in o}
+        # Recurse over iterables.
+        if isinstance(o, Iterable):
+            return [self.default(item) for item in o]
+        try:
+            # Allow siblings in diamond inheritance to do their thing.
+            return super().default(o)
+        except TypeError:
+            return str(o)
 
 
 class export_json():
@@ -89,7 +134,7 @@ class export_json():
         )
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, u"w") as file_out:
-            json.dump(self.data, file_out, indent=1)
+            json.dump(self.data, file_out, indent=1, cls=CsitEncoder)
         # Not explicitly forgetting data here, so accidental double flush
         # does not lose information.
         # We rely on explicit "time reset" at start of test setup,
