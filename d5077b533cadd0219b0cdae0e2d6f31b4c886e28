@@ -34,6 +34,24 @@
       "revId": "d5077b533cadd0219b0cdae0e2d6f31b4c886e28",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1afc2f3_f36308d4",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-05-28T14:01:19Z",
+      "side": 0,
+      "message": "Suggest we delete them later, few weeks from the time we stop running them, in order to ensure no issue in CSIT CI/CD system and no issue raised in community.",
+      "parentUuid": "927b620b_16b6bdbd",
+      "revId": "d5077b533cadd0219b0cdae0e2d6f31b4c886e28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
