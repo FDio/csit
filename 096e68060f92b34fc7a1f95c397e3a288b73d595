@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35668cd3_f7a8e309",
+        "filename": "resources/libraries/bash/entry/check/model_version.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-28T17:22:02Z",
+      "side": 1,
+      "message": "Works: https://jenkins.fd.io/job/csit-verify-tox-master-ubuntu2004-x86_64/835/",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 10
+      },
+      "revId": "096e68060f92b34fc7a1f95c397e3a288b73d595",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee73a91b_f0333e3a",
+        "filename": "resources/libraries/bash/entry/check/model_version.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-28T17:22:02Z",
+      "side": 1,
+      "message": "Works: https://jenkins.fd.io/job/csit-verify-tox-master-ubuntu2004-x86_64/837/",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 10
+      },
+      "revId": "096e68060f92b34fc7a1f95c397e3a288b73d595",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45815314_e83a2acd",
+        "filename": "resources/libraries/bash/entry/check/model_version.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-05-28T17:22:02Z",
+      "side": 1,
+      "message": "Works: https://jenkins.fd.io/job/csit-verify-tox-master-ubuntu2004-x86_64/836/",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 6
+      },
+      "revId": "096e68060f92b34fc7a1f95c397e3a288b73d595",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
