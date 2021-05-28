@@ -14,8 +14,14 @@
 """Module with keywords that publish metric and other log events.
 """
 
+from copy import deepcopy
+
 from resources.libraries.python.model.metric_item import metric_item
 from resources.libraries.python.model.util import get_export_data
+from resources.libraries.python.time_measurement import datetime_utc_str as now
+
+
+# TODO: Split into ExportLogMetric and ExportLogPapi?
 
 
 def add_metric_items(
@@ -96,23 +102,27 @@ def add_single_metric_item(
     add_metric_items(source_type, source_id, msg, [item], timestamp, log_level)
 
 
-def export_runtime_counters(host, socket, trial_type, runtime_nz, timestamp):
+def export_runtime_counters(
+        host, port, socket, trial_type, runtime_nz, timestamp
+    ):
     """Add telemetry record for results of querying node counters in runtime.
 
     :param host: Node "host" attribute, usually its IPv4 address.
+    :param port: SSH port number to use when connecting to the host.
     :param socket: Socket path, VPPs in container will differ by this.
     :param runtime_nz: Object with non-zero-sum counters.
         See VPPCounters.vpp_show_runtime for the internal structure.
     :param trial_type: Description to distinguish from other runtime results.
     :param timestamp: UTC time just before the counter values were collected.
     :type host: str
+    :type port: int
     :type socket: str
     :type trial_type: str
     :type runtime_nz: List[Mapping[str, Union[str, Sequence[int]]]]
     :type timestamp: str
     """
-    source_type = u"node,socket"
-    source_id = f"{host},{socket}"
+    source_type = u"host,port,socket"
+    source_id = f"{host},{port},{socket}"
     msg = f"show-running for {trial_type}"
     labels = dict(
         host=host,
@@ -130,3 +140,142 @@ def export_runtime_counters(host, socket, trial_type, runtime_nz, timestamp):
                 # TODO: Detect and add state ("active", "polling", "any wait").
                 items.append(metric_item(name, value, labels))
     add_metric_items(source_type, source_id, msg, items, timestamp)
+
+
+def export_papi_command_sent(
+        host, port, socket, cmd_name, cmd_args, timestamp=None
+    ):
+    """Add a log item about PAPI command execution staring.
+
+    Replies arrive in a separate log item.
+    PAPI context number is not known before sending starts,
+    and it may block.
+
+    Timestamp marks time just before sending starts.
+    Current time is used if timestamp is missing.
+    Log level is always INFO.
+    Args are deep-copied to make sure the values logged here
+    are not affected by any further manipulation from the caller.
+
+    :param host: Node "host" attribute, usually its IPv4 address.
+    :param port: SSH port number to use when connecting to the host.
+    :param socket: Socket path, VPPs in container will differ by this.
+    :param cmd_name: Name of the command message being sent.
+    :param cmd_args: Arguments of the command message.
+    :param timestamp: Local UTC time just before sending.
+    :type host: str
+    :type port: int
+    :type socket: str
+    :type cmd_name: str
+    :type cmd_args: Mapping[str, object]
+    :type timestamp: Optional[str]
+    """
+    data = get_export_data()
+    if data is None:
+        return
+    papi_record = {
+        u"source": {
+            u"source-type": u"host,port,socket",
+            u"source-id": f"{host},{port},{socket}",
+        },
+        u"msg-type": u"papi-command",
+        u"log-level": u"INFO",
+        u"timestamp": now() if timestamp is None else str(timestamp),
+        u"msg": str(cmd_name),
+        u"data": deepcopy(cmd_args),
+    }
+    data[u"log"].append(papi_record)
+
+
+def export_papi_command_context(host, port, socket, context, timestamp=None):
+    """Add a log item about PAPI command context number.
+
+    For sync calls, this event happens just before reply event.
+    For async calls, this event happens just after command sent event.
+    In either case, the context number is related to the command sent,
+    appearing in the log immediately before this event,
+    regardless of timestamp.
+
+    The context number may be needed to identify which async replies
+    are caused by the last command.
+    Also, a big jump in the context number signifies
+    we stopped PAPI logging for a while, e.g. for large scale tests
+    where the data is repetitious and the number of events is huge.
+
+    Timestamp marks time just after sending unblocked.
+    Current time is used if timestamp is missing.
+    Log level is always DEBUG.
+
+    :param host: Node "host" attribute, usually its IPv4 address.
+    :param port: SSH port number to use when connecting to the host.
+    :param socket: Socket path, VPPs in container will differ by this.
+    :param context: A number identifier assigned by PAPI library.
+    :param timestamp: Local UTC time just after sending.
+    :type host: str
+    :type port: int
+    :type socket: str
+    :type context: int
+    :type timestamp: Optional[str]
+    """
+    data = get_export_data()
+    if data is None:
+        return
+    papi_record = {
+        u"source": {
+            u"source-type": u"host,port,socket",
+            u"source-id": f"{host},{port},{socket}",
+        },
+        u"msg-type": u"papi-context",
+        u"log-level": u"DEBUG",
+        u"timestamp": now() if timestamp is None else str(timestamp),
+        u"msg": str(context),
+    }
+    data[u"log"].append(papi_record)
+
+
+def export_papi_replies(
+        host, port, socket, context, replies, timestamp=None
+    ):
+    """Add a log item about PAPI replies.
+
+    This is intended for sync calls, which unblock after receiving
+    all the replies needed.
+    For async calls, separate event will be added.
+
+    The context number is refers to the corresponding command sent,
+    appearing in the log somewhere before this event.
+
+    Timestamp marks time just after all replies are gathered.
+    Current time is used if timestamp is missing.
+    Log level is always DEBUG.
+    Replies are deep-copied to make sure the values logged here
+    are not affected by any further processing in the caller.
+
+    :param host: Node "host" attribute, usually its IPv4 address.
+    :param port: SSH port number to use when connecting to the host.
+    :param socket: Socket path, VPPs in container will differ by this.
+    :param context: A number identifier assigned by PAPI library.
+    :param replies: Unprocessed response objects as returned by PAPI library.
+    :param timestamp: Local UTC time just before sending.
+    :type host: str
+    :type port: int
+    :type socket: str
+    :type context: int
+    :type replies: Sequence[Mapping[str, object]]
+    :type timestamp: Optional[str]
+    """
+    data = get_export_data()
+    if data is None:
+        return
+    papi_record = {
+        u"source": {
+            u"source-type": u"host,port,socket",
+            u"source-id": f"{host},{port},{socket}",
+        },
+        u"msg-type": u"papi-replies",
+        u"log-level": u"DEBUG",
+        u"timestamp": now() if timestamp is None else str(timestamp),
+        u"msg": f"replies for context {context}",
+        u"data": [deepcopy(item) for item in replies],
+    }
+    data[u"log"].append(papi_record)
