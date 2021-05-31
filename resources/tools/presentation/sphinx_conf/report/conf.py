@@ -46,8 +46,8 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
-report_week = u'09'
-project = u'FD.io CSIT-2101.{week}'.format(week=report_week)
+report_week = u'28'
+project = u'FD.io CSIT-2106.{week}'.format(week=report_week)
 copyright = u'2021, FD.io'
 author = u'FD.io CSIT'
 
@@ -78,11 +78,9 @@ rst_epilog = u"""
 .. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.html
 .. _CSIT VPP Device Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.device.html
 .. _VPP test framework documentation: https://docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
-.. _FD.io CSIT Testbeds - Xeon Haswell: https://git.fd.io/csit/tree/docs/lab/testbeds_ucs_hsw_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Cascade Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_clx_hw_bios_cfg.md?h={release}
 .. _Ansible inventory - hosts: https://git.fd.io/csit/tree/fdio.infra.ansible/inventories/lf_inventory/host_vars?h={release}
-.. _FD.io test executor dpdk performance job 3n-hsw: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-hsw
 .. _FD.io test executor dpdk performance job 3n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-skx
 .. _FD.io test executor dpdk performance job 2n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-skx
 .. _FD.io test executor dpdk performance job 2n-clx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-clx
@@ -91,7 +89,6 @@ rst_epilog = u"""
 .. _FD.io test executor dpdk performance job 3n-tsh: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-tsh
 .. _FD.io test executor dpdk performance job 2n-tx2: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-tx2
 .. _FD.io test executor dpdk performance job 2n-zn2: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-zn2
-.. _FD.io test executor vpp performance job 3n-hsw: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-hsw
 .. _FD.io test executor vpp performance job 3n-skx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-skx
 .. _FD.io test executor vpp performance job 2n-skx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-skx
 .. _FD.io test executor vpp performance job 3n-tsh: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-tsh
@@ -105,17 +102,17 @@ rst_epilog = u"""
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1804-x86_64/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/fdio.infra.ansible?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
-""".format(release=u'rls2101',
+""".format(release=u'rls2106',
            report_week=report_week,
-           prev_release=u'rls2009',
-           srelease=u'2101',
-           csitrelease=u'2101',
-           csit_prev_release=u'2009',
-           vpprelease=u'21.01',
-           vpp_prev_release=u'20.09',
+           prev_release=u'rls2101',
+           srelease=u'2106',
+           csitrelease=u'2106',
+           csit_prev_release=u'2101',
+           vpprelease=u'21.06',
+           vpp_prev_release=u'21.01',
            dpdkrelease=u'21.02',
            dpdk_prev_release=u'20.11',
-           sdpdkrelease=u'2011',
+           sdpdkrelease=u'2102',
            trex_version=u'v2.88',
            vpp_release_commit_id=u'3d2d96e5547484290c9368bac0a420afa8c4c068')
 

@@ -7,7 +7,7 @@ L2 Ethernet Switching
 =====================
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls2101>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls2106>`_.
 
 .. toctree::
 
@@ -16,7 +16,6 @@ CSIT source code for the test cases used for plots can be found in
     l2-2n-clx-xxv710
     l2-2n-clx-cx556a
     l2-2n-zn2-xxv710
-    l2-3n-hsw-xl710
     l2-3n-tsh-x520
     l2-2n-tx2-xl710
 
