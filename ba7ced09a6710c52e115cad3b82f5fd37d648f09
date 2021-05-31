@@ -407,6 +407,30 @@
     },
     {
       "key": {
+        "uuid": "dd62b134_8b1582af",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-31T13:22:32Z",
+      "side": 1,
+      "message": "Or maybe this:\ncreate spd bidir match nth entry [outbound] [bypass]\n\nA bit shorter, not sure if as clear. Or maybe even clearer?",
+      "parentUuid": "52073339_f5f57ac8",
+      "range": {
+        "startLine": 706,
+        "startChar": 30,
+        "endLine": 706,
+        "endChar": 44
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0e4f660_47246126",
         "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec100spd-ip4base-policy-ndrpdr.robot",
         "patchSetId": 15
