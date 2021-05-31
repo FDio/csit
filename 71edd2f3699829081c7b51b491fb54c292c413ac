@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02201356_0a164272",
+        "filename": "resources/libraries/bash/entry/check/model_version.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-05-31T05:42:31Z",
+      "side": 1,
+      "message": "CSIT model version checker ...",
+      "range": {
+        "startLine": 40,
+        "startChar": 10,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "71edd2f3699829081c7b51b491fb54c292c413ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12bf0839_29844acc",
+        "filename": "resources/libraries/bash/entry/check/model_version.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-05-31T05:42:31Z",
+      "side": 1,
+      "message": "CSIT model version checker ...",
+      "range": {
+        "startLine": 49,
+        "startChar": 10,
+        "endLine": 49,
+        "endChar": 39
+      },
+      "revId": "71edd2f3699829081c7b51b491fb54c292c413ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ea0eb7d_b9991190",
+        "filename": "resources/libraries/bash/entry/check/model_version.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-05-31T05:42:31Z",
+      "side": 1,
+      "message": "CSIT model version checker ...",
+      "range": {
+        "startLine": 55,
+        "startChar": 5,
+        "endLine": 55,
+        "endChar": 35
+      },
+      "revId": "71edd2f3699829081c7b51b491fb54c292c413ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
