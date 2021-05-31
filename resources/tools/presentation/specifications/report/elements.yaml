@@ -367,138 +367,6 @@
 ################################################################################
 # VPP
 
-# VPP Performance Changes 3n-hsw 1t1c pdr
-- type: "table"
-  title: "VPP Performance Changes 3n-hsw 1t1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  columns:
-    - title: "2005.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-h1"
-    - title: "2009.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-ref-env-old"
-    - title: "2009.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-ref-env-new"
-    - title: "2101.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-cmp"
-  comparisons:
-    - title: "2009.0-6 vs 2009.0-5"
-      reference: 2
-      compare: 3
-#      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca1.yaml"
-    - title: "2101.0-6 vs 2009.0-6"
-      reference: 3
-      compare: 4
-#      rca-file: "rca/rca-3n-hsw-1t1c-pdr-rca2.yaml"
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
-
-# VPP Performance Changes 3n-hsw 2t2c pdr
-- type: "table"
-  title: "VPP Performance Changes 3n-hsw 2t2c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  columns:
-    - title: "2005.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-h1"
-    - title: "2009.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-ref-env-old"
-    - title: "2009.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-ref-env-new"
-    - title: "2101.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-cmp"
-  comparisons:
-    - title: "2009.0-6 vs 2009.0-5"
-      reference: 2
-      compare: 3
-#      rca-file: "rca/rca-3n-hsw-2t2c-pdr-rca1.yaml"
-    - title: "2101.0-6 vs 2009.0-6"
-      reference: 3
-      compare: 4
-#      rca-file: "rca/rca-3n-hsw-2t2c-pdr-rca2.yaml"
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: PDR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
-
-# VPP Performance Changes 3n-hsw 1t1c ndr
-- type: "table"
-  title: "VPP Performance Changes 3n-hsw 1t1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  columns:
-    - title: "2005.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-h1"
-    - title: "2009.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-ref-env-old"
-    - title: "2009.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-ref-env-new"
-    - title: "2101.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-cmp"
-  comparisons:
-    - title: "2009.0-6 vs 2009.0-5"
-      reference: 2
-      compare: 3
-#      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca1.yaml"
-    - title: "2101.0-6 vs 2009.0-6"
-      reference: 3
-      compare: 4
-#      rca-file: "rca/rca-3n-hsw-1t1c-ndr-rca2.yaml"
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
-
-# VPP Performance Changes 3n-hsw 2t2c ndr
-- type: "table"
-  title: "VPP Performance Changes 3n-hsw 2t2c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  columns:
-    - title: "2005.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-h1"
-    - title: "2009.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-ref-env-old"
-    - title: "2009.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-ref-env-new"
-    - title: "2101.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-cmp"
-  comparisons:
-    - title: "2009.0-6 vs 2009.0-5"
-      reference: 2
-      compare: 3
-#      rca-file: "rca/rca-3n-hsw-2t2c-ndr-rca1.yaml"
-    - title: "2101.0-6 vs 2009.0-6"
-      reference: 3
-      compare: 4
-#      rca-file: "rca/rca-3n-hsw-2t2c-ndr-rca2.yaml"
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: NDR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
-
 # VPP Performance Changes 3n-skx 2t1c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 2t1c pdr"
@@ -1663,98 +1531,6 @@
 #     - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
     - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
 
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "3n-skx xxv710"
-      data-set: "vpp-compare-testbeds-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "3n-skx xxv710"
-      data-set: "vpp-compare-testbeds-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "3n-skx xxv710"
-      data-set: "vpp-compare-testbeds-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "3n-skx xxv710"
-      data-set: "vpp-compare-testbeds-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
-
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr"
@@ -1838,98 +1614,6 @@
     - ""
     - "2n-skx, 2n-clx - testbeds and NICs tested."
     - "Diff - difference between 2n-skx and 2n-clx testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c ndr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-hsw-clx-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "2n-clx xxv710"
-      data-set: "vpp-compare-testbeds-hsw-clx-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c ndr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-2c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-hsw-clx-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "2n-clx xxv710"
-      data-set: "vpp-compare-testbeds-hsw-clx-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c pdr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '1C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-hsw-clx-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "2n-clx xxv710"
-      data-set: "vpp-compare-testbeds-hsw-clx-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c pdr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-2c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'NDRPDR' and '2C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-hsw-clx-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "2n-clx xxv710"
-      data-set: "vpp-compare-testbeds-hsw-clx-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
 
 # # VPP Comparison Across Testbeds 2n-clx to 2n-icx 1c ndr
 # - type: "table"
@@ -2106,105 +1790,6 @@
     - ""
     - "3n-skx, 2n-skx - topologies tested."
     - "Diff - difference between 3n-skx and 2n-skx topologies."
-
-# VPP Performance Changes 3n-hsw 1t1c mrr
-- type: "table"
-  title: "VPP Performance Changes 3n-hsw 1t1c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-1t1c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  columns:
-    - title: "2005.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
-    - title: "2009.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env-old"
-    - title: "2009.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env-new"
-    - title: "2101.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
-  comparisons:
-    - title: "2009.0-6 vs 2009.0-5"
-      reference: 2
-      compare: 3
-#      rca-file: "rca/rca-3n-hsw-1t1c-mrr-rca1.yaml"
-    - title: "2101.0-6 vs 2009.0-6"
-      reference: 3
-      compare: 4
-#      rca-file: "rca/rca-3n-hsw-1t1c-mrr-rca2.yaml"
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
-
-# VPP Performance Changes 3n-hsw 2t2c mrr
-- type: "table"
-  title: "VPP Performance Changes 3n-hsw 2t2c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-2t2c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  columns:
-    - title: "2005.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
-    - title: "2009.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env-old"
-    - title: "2009.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env-new"
-    - title: "2101.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
-  comparisons:
-    - title: "2009.0-6 vs 2009.0-5"
-      reference: 2
-      compare: 3
-#      rca-file: "rca/rca-3n-hsw-2t2c-mrr-rca1.yaml"
-    - title: "2101.0-6 vs 2009.0-6"
-      reference: 3
-      compare: 4
-#      rca-file: "rca/rca-3n-hsw-2t2c-mrr-rca2.yaml"
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
-
-# VPP Performance Changes 3n-hsw 4t4c mrr
-- type: "table"
-  title: "VPP Performance Changes 3n-hsw 4t4c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-hsw-4t4c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T4C' and 'MRR' and 'NIC_Intel-XL710' and not 'NF_DENSITY'"
-  columns:
-    - title: "2005.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-h1"
-    - title: "2009.0-5"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env-old"
-    - title: "2009.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-ref-env-new"
-    - title: "2101.0-6"
-      data-set: "vpp-performance-changes-3n-hsw-mrr-cmp"
-  comparisons:
-    - title: "2009.0-6 vs 2009.0-5"
-      reference: 2
-      compare: 3
-#      rca-file: "rca/rca-3n-hsw-4t4c-mrr-rca1.yaml"
-    - title: "2101.0-6 vs 2009.0-6"
-      reference: 3
-      compare: 4
-#      rca-file: "rca/rca-3n-hsw-4t4c-mrr-rca2.yaml"
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: MRR throughput on 3n-hsw with xl710.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "5" for CSIT rls2009, "6" for CSIT rls2101).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
 
 # VPP Performance Changes 3n-skx 2t1c mrr
 - type: "table"
@@ -3073,75 +2658,6 @@
 #     - '2009.0-6 vs 2009.0-5: Compares CSIT environment current vs previous with previous VPP code.'
     - '2101.0-6 vs 2009.0-6: Compares VPP code current vs previous in the current CSIT environment.'
 
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '1C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-mrr-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "3n-skx xxv710"
-      data-set: "vpp-compare-testbeds-mrr-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '2C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-mrr-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "3n-skx xxv710"
-      data-set: "vpp-compare-testbeds-mrr-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-4c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '4C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-mrr-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "3n-skx xxv710"
-      data-set: "vpp-compare-testbeds-mrr-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 3n-skx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 3n-skx xxv710 testbeds."
-
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr"
@@ -3268,75 +2784,6 @@
     - "3n-skx, 2n-skx - topologies tested."
     - "Diff - difference between 3n-skx and 2n-skx topologies."
 
-# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c mrr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 1c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-1c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '1C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-mrr-hsw-clx-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "2n-clx xxv710"
-      data-set: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c mrr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 2c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-2c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '2C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-mrr-hsw-clx-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "2n-clx xxv710"
-      data-set: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
-
-# VPP Comparison Across Testbeds 3n-hsw to 2n-clx 4c mrr
-- type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 2n-clx 4c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-2n-clx-4c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "('NIC_Intel-XXV710' or 'NIC_Intel-XL710') and 'MRR' and '4C'"
-  columns:
-    - title: "3n-hsw xl710"
-      data-set: "vpp-compare-testbeds-mrr-hsw-clx-ref"
-      tag: "NIC_Intel-XL710"
-    - title: "2n-clx xxv710"
-      data-set: "vpp-compare-testbeds-mrr-hsw-clx-cmp"
-      tag: "NIC_Intel-XXV710"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw xl710, 2n-clx xxv710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw xl710 and 2n-clx xxv710 testbeds."
-
 # # VPP Comparison Across Testbeds 2n-clx to 2n-icx 1c mrr
 # - type: "table"
 #   title: "VPP Comparison Across Testbeds 2n-clx to 2n-icx 1c mrr"
@@ -3405,23 +2852,6 @@
 #     - ""
 #     - "2n-clx xxv710, 2n-icx e810cq - testbeds and NICs tested."
 #     - "Diff - difference between 2n-clx xxv710 and 2n-icx e810cq testbeds."
-
-# Detailed Test Results - VPP Performance Results 3n-hsw
-- type: "table"
-  title: "Detailed Test Results - VPP Performance Results 3n-hsw"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,PERF,VPP,3N,HSW]}/"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-      data: "data msg"
-  data: "vpp-perf-results-3n-hsw"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "msg"
 
 # Detailed Test Results - VPP Performance Results 3n-skx
 - type: "table"
@@ -3596,23 +3026,6 @@
   - "parent"
   - "msg"
 
-# Test configuration - VPP Performance Test Configs 3n-hsw
-- type: "table"
-  title: "Test configuration - VPP Performance Test Configs 3n-hsw"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTC,PERF,VPP,3N,HSW]}/"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-      data: "data conf-history"
-  data: "vpp-perf-results-3n-hsw"
-  filter: "all"
-  parameters:
-  - "parent"
-  - "name"
-  - "conf-history"
-
 # Test configuration - VPP Performance Test Configs 3n-skx
 - type: "table"
   title: "Test configuration - VPP Performance Test Configs 3n-skx"
@@ -3783,14 +3196,6 @@
   - "name"
   - "conf-history"
 
-# Test Operational Data - VPP Performance Operational Data 3n-hsw
-- type: "table"
-  title: "Test Operational Data - VPP Performance Operational Data 3n-hsw"
-  algorithm: "table_oper_data_html"
-  output-file: "{DIR[DTO,PERF,VPP,3N,HSW]}/"
-  data: "vpp-perf-results-3n-hsw"
-  filter: "all"
-
 # Test Operational Data - VPP Performance Operational Data 3n-skx
 - type: "table"
   title: "Test Operational Data - VPP Performance Operational Data 3n-skx"
@@ -3870,23 +3275,6 @@
   output-file: "{DIR[DTO,PERF,VPP,2N,DNV]}/"
   data: "vpp-perf-results-2n-dnv"
   filter: "all"
-
-# Detailed Test Results - VPP MRR Results 3n-hsw
-- type: "table"
-  title: "Detailed Test Results - VPP MRR Results 3n-hsw"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,MRR,VPP,3N,HSW]}/"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-      data: "data msg"
-  data: "vpp-mrr-results-3n-hsw"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "msg"
 
 # Detailed Test Results - VPP MRR Results 3n-skx
 - type: "table"
@@ -4057,23 +3445,6 @@
   - "name"
   - "parent"
   - "msg"
-
-# Test configuration - VPP MRR Test Configs 3n-hsw
-- type: "table"
-  title: "Test configuration - VPP MRR Test Configs 3n-hsw"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTC,MRR,VPP,3N,HSW]}/"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-      data: "data conf-history"
-  data: "vpp-mrr-results-3n-hsw"
-  filter: "all"
-  parameters:
-  - "parent"
-  - "name"
-  - "conf-history"
 
 # Test configuration - VPP MRR Test Configs 3n-skx
 - type: "table"
@@ -4281,98 +3652,6 @@
   - "conf-history"
 
 ################################################################################
-
-# DPDK Performance Changes 3n-hsw 1t1c pdr
-- type: "table"
-  title: "DPDK Performance Changes 3n-hsw 1t1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-1t1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710'"
-  columns:
-    - title: "2005"
-      data-set: "dpdk-performance-changes-3n-hsw-h1"
-    - title: "2009"
-      data-set: "dpdk-performance-changes-3n-hsw-ref"
-    - title: "2101"
-      data-set: "dpdk-performance-changes-3n-hsw-cmp"
-  comparisons:
-    - title: "Diff"
-      reference: 2
-      compare: 3
-  legend:
-    - ""
-    - "2005, 2009, 2101 - DPDK versions tested."
-    - "Diff - difference between 2009 and 2101 DPDK version."
-
-# DPDK Performance Changes 3n-hsw 2t2c pdr
-- type: "table"
-  title: "DPDK Performance Changes 3n-hsw 2t2c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-2t2c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710'"
-  columns:
-    - title: "2005"
-      data-set: "dpdk-performance-changes-3n-hsw-h1"
-    - title: "2009"
-      data-set: "dpdk-performance-changes-3n-hsw-ref"
-    - title: "2101"
-      data-set: "dpdk-performance-changes-3n-hsw-cmp"
-  comparisons:
-    - title: "Diff"
-      reference: 2
-      compare: 3
-  legend:
-    - ""
-    - "2005, 2009, 2101 - DPDK versions tested."
-    - "Diff - difference between 2009 and 2101 DPDK version."
-
-# DPDK Performance Changes 3n-hsw 1t1c pdr
-- type: "table"
-  title: "DPDK Performance Changes 3n-hsw 1t1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-1t1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XL710'"
-  columns:
-    - title: "2005"
-      data-set: "dpdk-performance-changes-3n-hsw-h1"
-    - title: "2009"
-      data-set: "dpdk-performance-changes-3n-hsw-ref"
-    - title: "2101"
-      data-set: "dpdk-performance-changes-3n-hsw-cmp"
-  comparisons:
-    - title: "Diff"
-      reference: 2
-      compare: 3
-  legend:
-    - ""
-    - "2005, 2009, 2101 - DPDK versions tested."
-    - "Diff - difference between 2009 and 2101 DPDK version."
-
-# DPDK Performance Changes 3n-hsw 2t2c ndr
-- type: "table"
-  title: "DPDK Performance Changes 3n-hsw 2t2c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-changes-3n-hsw-2t2c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XL710'"
-  columns:
-    - title: "2005"
-      data-set: "dpdk-performance-changes-3n-hsw-h1"
-    - title: "2009"
-      data-set: "dpdk-performance-changes-3n-hsw-ref"
-    - title: "2101"
-      data-set: "dpdk-performance-changes-3n-hsw-cmp"
-  comparisons:
-    - title: "Diff"
-      reference: 2
-      compare: 3
-  legend:
-    - ""
-    - "2005, 2009, 2101 - DPDK versions tested."
-    - "Diff - difference between 2009 and 2101 DPDK version."
 
 # DPDK Performance Changes 3n-skx 2t1c pdr
 - type: "table"
@@ -5018,48 +4297,6 @@
     - "2005, 2009, 2101 - DPDK versions tested."
     - "Diff - difference between 2009 and 2101 DPDK version."
 
-# DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr
-- type: "table"
-  title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-3n-hsw-3n-skx-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NIC_Intel-X710'"
-  columns:
-    - title: "3n-hsw x710"
-      data-set: "dpdk-compare-testbeds-ref"
-    - title: "3n-skx x710"
-      data-set: "dpdk-compare-testbeds-cmp"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw x710, 3n-skx x710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw x710 and 3n-skx x710 testbeds."
-
-# DPDK Comparison Across Testbeds 3n-hsw to 3n-skx pdr
-- type: "table"
-  title: "DPDK Comparison Across Testbeds 3n-hsw to 3n-skx pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-3n-hsw-3n-skx-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NIC_Intel-X710'"
-  columns:
-    - title: "3n-hsw x710"
-      data-set: "dpdk-compare-testbeds-ref"
-    - title: "3n-skx x710"
-      data-set: "dpdk-compare-testbeds-cmp"
-  comparisons:
-    - title: "Diff"
-      reference: 1
-      compare: 2
-  legend:
-    - ""
-    - "3n-hsw x710, 3n-skx x710 - testbeds and NICs tested."
-    - "Diff - difference between 3n-hsw x710 and 3n-skx x710 testbeds."
-
 # DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr
 - type: "table"
   title: "DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr"
@@ -5143,23 +4380,6 @@
     - ""
     - "3n-skx, 2n-skx - topologies tested."
     - "Diff - difference between 3n-skx and 2n-skx topologies."
-
-# Detailed Test Results - DPDK Performance Results 3n-hsw
-- type: "table"
-  title: "Detailed Test Results - DPDK Performance Results 3n-hsw"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,PERF,DPDK,3N,HSW]}/dpdk_performance_results_3n_hsw"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-      data: "data msg"
-  data: "dpdk-perf-results-3n-hsw"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "msg"
 
 # Detailed Test Results - DPDK Performance Results 3n-skx
 - type: "table"
@@ -5316,7 +4536,6 @@
 #     - "{DIR[DTR,PERF,VPP,2N,ICX]}"
 #     - "{DIR[DTR,PERF,VPP,3N,ICX]}"
     - "{DIR[DTR,PERF,VPP,2N,ZN2]}"
-    - "{DIR[DTR,PERF,VPP,3N,HSW]}"
     - "{DIR[DTR,PERF,VPP,3N,TSH]}"
     - "{DIR[DTR,PERF,VPP,2N,TX2]}"
     - "{DIR[DTR,PERF,VPP,2N,DNV]}"
@@ -5328,7 +4547,6 @@
 #     - "vpp-perf-results-2n-icx"
 #     - "vpp-perf-results-3n-icx"
     - "vpp-perf-results-2n-zn2"
-    - "vpp-perf-results-3n-hsw"
     - "vpp-perf-results-3n-tsh"
     - "vpp-perf-results-2n-tx2"
     - "vpp-perf-results-2n-dnv"
@@ -5357,7 +4575,6 @@
 #       - "2n-icx"
 #       - "3n-icx"
       - "2n-zn2"
-      - "3n-hsw"
       - "3n-tsh"
       - "2n-tx2"
       - "2n-dnv"
@@ -5385,7 +4602,6 @@
 #     - "{DIR[DTC,PERF,VPP,2N,ICX]}"
 #     - "{DIR[DTC,PERF,VPP,3N,ICX]}"
     - "{DIR[DTC,PERF,VPP,2N,ZN2]}"
-    - "{DIR[DTC,PERF,VPP,3N,HSW]}"
     - "{DIR[DTC,PERF,VPP,3N,TSH]}"
     - "{DIR[DTC,PERF,VPP,2N,TX2]}"
     - "{DIR[DTC,PERF,VPP,2N,DNV]}"
@@ -5397,7 +4613,6 @@
 #     - "vpp-perf-results-2n-icx"
 #     - "vpp-perf-results-3n-icx"
     - "vpp-perf-results-2n-zn2"
-    - "vpp-perf-results-3n-hsw"
     - "vpp-perf-results-3n-tsh"
     - "vpp-perf-results-2n-tx2"
     - "vpp-perf-results-2n-dnv"
@@ -5426,7 +4641,6 @@
 #       - "2n-icx"
 #       - "3n-icx"
       - "2n-zn2"
-      - "3n-hsw"
       - "3n-tsh"
       - "2n-tx2"
       - "2n-dnv"
@@ -5454,7 +4668,6 @@
 #     - "{DIR[DTO,PERF,VPP,2N,ICX]}"
 #     - "{DIR[DTO,PERF,VPP,3N,ICX]}"
     - "{DIR[DTO,PERF,VPP,2N,ZN2]}"
-    - "{DIR[DTO,PERF,VPP,3N,HSW]}"
     - "{DIR[DTO,PERF,VPP,3N,TSH]}"
     - "{DIR[DTO,PERF,VPP,2N,TX2]}"
     - "{DIR[DTO,PERF,VPP,2N,DNV]}"
@@ -5466,7 +4679,6 @@
 #     - "vpp-perf-results-2n-icx"
 #     - "vpp-perf-results-3n-icx"
     - "vpp-perf-results-2n-zn2"
-    - "vpp-perf-results-3n-hsw"
     - "vpp-perf-results-3n-tsh"
     - "vpp-perf-results-2n-tx2"
     - "vpp-perf-results-2n-dnv"
@@ -5495,7 +4707,6 @@
 #       - "2n-icx"
 #       - "3n-icx"
       - "2n-zn2"
-      - "3n-hsw"
       - "3n-tsh"
       - "2n-tx2"
       - "2n-dnv"
@@ -5523,7 +4734,6 @@
 #     - "{DIR[DTR,MRR,VPP,2N,ICX]}"
 #     - "{DIR[DTR,MRR,VPP,3N,ICX]}"
     - "{DIR[DTR,MRR,VPP,2N,ZN2]}"
-    - "{DIR[DTR,MRR,VPP,3N,HSW]}"
     - "{DIR[DTR,MRR,VPP,3N,TSH]}"
     - "{DIR[DTR,MRR,VPP,2N,TX2]}"
     - "{DIR[DTR,MRR,VPP,2N,DNV]}"
@@ -5535,7 +4745,6 @@
 #     - "vpp-mrr-results-2n-icx"
 #     - "vpp-mrr-results-3n-icx"
     - "vpp-mrr-results-2n-zn2"
-    - "vpp-mrr-results-3n-hsw"
     - "vpp-mrr-results-3n-tsh"
     - "vpp-mrr-results-2n-tx2"
     - "vpp-mrr-results-2n-dnv"
@@ -5564,7 +4773,6 @@
 #       - "2n-icx"
 #       - "3n-icx"
       - "2n-zn2"
-      - "3n-hsw"
       - "3n-tsh"
       - "2n-tx2"
       - "2n-dnv"
@@ -5592,7 +4800,6 @@
 #     - "{DIR[DTC,MRR,VPP,2N,ICX]}"
 #     - "{DIR[DTC,MRR,VPP,3N,ICX]}"
     - "{DIR[DTC,MRR,VPP,2N,ZN2]}"
-    - "{DIR[DTC,MRR,VPP,3N,HSW]}"
     - "{DIR[DTC,MRR,VPP,3N,TSH]}"
     - "{DIR[DTC,MRR,VPP,2N,TX2]}"
     - "{DIR[DTC,MRR,VPP,2N,DNV]}"
@@ -5604,7 +4811,6 @@
 #     - "vpp-mrr-results-2n-icx"
 #     - "vpp-mrr-results-3n-icx"
     - "vpp-mrr-results-2n-zn2"
-    - "vpp-mrr-results-3n-hsw"
     - "vpp-mrr-results-3n-tsh"
     - "vpp-mrr-results-2n-tx2"
     - "vpp-mrr-results-2n-dnv"
@@ -5633,7 +4839,6 @@
 #       - "2n-icx"
 #       - "3n-icx"
       - "2n-zn2"
-      - "3n-hsw"
       - "3n-tsh"
       - "2n-tx2"
       - "2n-dnv"
@@ -5666,16 +4871,6 @@
   output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}"
   dir-tables: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}"
   data: "vpp-device-results-ubuntu"
-  filter: "all"
-  data-start-level: 4
-
-# DPDK Performance Results 3n-hsw
-- type: "file"
-  title: "DPDK Performance Results 3n-hsw"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,PERF,DPDK,3N,HSW]}"
-  dir-tables: "{DIR[DTR,PERF,DPDK,3N,HSW]}"
-  data: "dpdk-perf-results-3n-hsw"
   filter: "all"
   data-start-level: 4
 
@@ -5761,48 +4956,6 @@
 
 ################################################################################
 ###                                P L O T S                                 ###
-################################################################################
-
-# Hoststack tests 3n-hsw
-
-- type: "plot"
-  title: "Bandwidth: 3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-ldpreload-iperf3"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-ldpreload-iperf3-bps"
-  data: "plot-vpp-hoststack-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpbase-Ldpreload-Iperf3-Bps.1460B-1t1c-eth-ip4tcpbase-ldpreload-iperf3-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpscale1Cl10S-Ldpreload-Iperf3-Bps.1460B-1t1c-eth-ip4tcpscale1cl10s-ldpreload-iperf3-bps"
-  layout:
-    title: "3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-ldpreload-iperf3"
-    layout: "plot-hoststack"
-
-- type: "plot"
-  title: "Bandwidth: 3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps"
-  data: "plot-vpp-hoststack-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpbase-Nsim-Ldpreload-Iperf3-Bps.1460B-1t1c-eth-ip4tcpbase-nsim-ldpreload-iperf3-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Tcpscale1Cl10S-Nsim-Ldpreload-Iperf3-Bps.1460B-1t1c-eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3-bps"
-  layout:
-    title: "3n-hsw-xl710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
-    layout: "plot-hoststack"
-
-- type: "plot"
-  title: "Bandwidth: 3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho"
-  algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho-bps"
-  data: "plot-vpp-hoststack-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicbase-Vppecho-Bps.1280B-1t1c-eth-ip4udpquicbase-vppecho-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicscale1Cl10S-Vppecho-Bps.1280B-1t1c-eth-ip4udpquicscale1cl10s-vppecho-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicscale10Cl1S-Vppecho-Bps.1280B-1t1c-eth-ip4udpquicscale10cl1s-vppecho-bps"
-    - "Tests.Vpp.Perf.Hoststack.40Ge2P1Xl710-Eth-Ip4Udpquicscale10Cl10S-Vppecho-Bps.1280B-1t1c-eth-ip4udpquicscale10cl10s-vppecho-bps"
-  layout:
-    title: "3n-hsw-xl710-1280b-1t1c-eth-ip4udpquic-vppecho"
-    layout: "plot-hoststack"
-
 ################################################################################
 
 # Soak Test (PLRsearch), boxes - 2n-clx
@@ -5915,55 +5068,6 @@
     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
   layout:
     title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
-    layout: "plot-throughput"
-
-###############################################################################
-
-# Reconf tests 3n-hsw
-
-- type: "plot"
-  title: "Effective Blocked Time: 3n-hsw-xl710-64b-{core}-ethip4ipsec4tnlsw-1atnl-ip4base-reconf"
-  algorithm: "plot_nf_reconf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-{core}-ethip4ipsec4tnlsw-1atnl-ip4base-reconf"
-  data: "plot-vpp-ipsec-reconf-3n-hsw"
-  core: ["1t1c", "2t2c", "4t4c"]
-  include:
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-{core}-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-{core}-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-{core}-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-{core}-ethip4ipsec4tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
-  layout:
-    title: "ethip4ipsec4tnlsw-1atnl-ip4base"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Effective Blocked Time: 3n-hsw-xl710-64b-{core}-ethip4ipsec1000tnlsw-1atnl-ip4base-reconf"
-  algorithm: "plot_nf_reconf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-{core}-ethip4ipsec1000tnlsw-1atnl-ip4base-reconf"
-  data: "plot-vpp-ipsec-reconf-3n-hsw"
-  core: ["1t1c", "2t2c", "4t4c"]
-  include:
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-{core}-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-{core}-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-{core}-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-{core}-ethip4ipsec1000tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
-  layout:
-    title: "ethip4ipsec1000tnlsw-1atnl-ip4base"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Effective Blocked Time: 3n-hsw-xl710-64b-{core}-ethip4ipsec60000tnlsw-1atnl-ip4base-reconf"
-  algorithm: "plot_nf_reconf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-{core}-ethip4ipsec60000tnlsw-1atnl-ip4base-reconf"
-  data: "plot-vpp-ipsec-reconf-3n-hsw"
-  core: ["1t1c", "2t2c", "4t4c"]
-  include:
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac256Sha-Reconf.64B-{core}-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac256sha-reconf"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Reconf.64B-{core}-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-reconf"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes128Gcm-Reconf.64B-{core}-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes128gcm-reconf"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec60000Tnlsw-1Atnl-Ip4Base-Int-Aes256Gcm-Reconf.64B-{core}-ethip4ipsec60000tnlsw-1atnl-ip4base-int-aes256gcm-reconf"
-  layout:
-    title: "ethip4ipsec60000tnlsw-1atnl-ip4base"
     layout: "plot-throughput"
 
 ###############################################################################
@@ -6725,21 +5829,6 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-hsw-xl710-64b-{core}-ip4routing-base-scale-dpdk-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-{core}-ip4routing-base-scale-dpdk-{test_type}"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Dot1Q-Ip4Base-Ndrpdr.64B-{core}-dot1q-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Base-Ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-Ndrpdr.64B-{core}-ethip4-ip4scale2m-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-rnd-Ndrpdr.64B-{core}-ethip4-ip4scale2m-rnd-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-{core}-ip4routing-base-scale-dpdk-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
   title: "Throughput: 3n-skx-x710-64b-{core}-ip4routing-base-scale-avf-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-{core}-ip4routing-base-scale-avf-{test_type}"
@@ -6917,19 +6006,6 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-hsw-xl710-64b-{core}-ip4tunnel-base-dpdk-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-{core}-ip4tunnel-base-dpdk-{test_type}"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Ip4 Tunnels.40Ge2P1Xl710-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-{core}-ethip4vxlan-l2xcbase-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4 Tunnels.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-{core}-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-{core}-ip4tunnel-base-dpdk-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-{core}-ip4tunnel-base-scale-avf-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-{core}-ip4tunnel-base-scale-avf-{test_type}"
@@ -7046,21 +6122,6 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-hsw-xl710-78b-{core}-ip6routing-base-scale-dpdk-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-{core}-ip6routing-base-scale-dpdk-{test_type}"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-Ndrpdr.78B-{core}-dot1q-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Ndrpdr.78B-{core}-ethip6-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-Ndrpdr.78B-{core}-ethip6-ip6scale2m-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-{core}-ethip6-ip6scale2m-rnd-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-78b-{core}-ip6routing-base-scale-dpdk-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
   title: "Throughput: 3n-skx-x710-78b-{core}-ip6routing-base-scale-avf-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-{core}-ip6routing-base-scale-avf-{test_type}"
@@ -7152,38 +6213,6 @@
     - "Tests.Vpp.Perf.Ip6.10Ge2P1X553-Ethip6-Ip6Scale2M-Ndrpdr.78B-{core}-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "3n-dnv-x553-78b-{core}-ip6routing-base-scale-ixgbe-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-hsw-xl710-imix-{core}-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-imix-{core}-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-{core}-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-{core}-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-{core}-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-imix-{core}-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-hsw-xl710-imix-{core}-ipsec-ip4routing-base-scale-hw-dpdk-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-imix-{core}-ipsec-ip4routing-base-scale-hw-dpdk-{test_type}"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1Tnlhw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1Tnlhw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-{core}-ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlhw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec1000tnlhw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlhw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-{core}-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-imix-{core}-ipsec-ip4routing-base-scale-hw-dpdk-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -7348,23 +6377,6 @@
     - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-{core}-eth-l2bdscale1mmaclrn-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-hsw-xl710-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Patch-Ndrpdr.64B-{core}-eth-l2patch-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Dot1Q-L2Xcbase-Ndrpdr.64B-{core}-dot1q-l2xcbase-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Xcbase-Ndrpdr.64B-{core}-eth-l2xcbase-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-{core}-dot1q-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-{core}-eth-l2bdscale1mmaclrn-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-{core}-base-scale-dpdk-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -7613,23 +6625,6 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 3n-hsw-xl710-78b-{core}-srv6-ip6routing-base-dpdk-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-{core}-srv6-ip6routing-base-dpdk-{test_type}"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-{core}-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-{core}-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-{core}-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-{core}-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-{core}-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-{core}-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-78b-{core}-srv6-ip6routing-base-dpdk-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
   title: "Throughput: 3n-skx-xxv710-78b-{core}-srv6-ip6routing-base-avf-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-{core}-srv6-ip6routing-base-avf-{test_type}"
@@ -7742,38 +6737,6 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-{core}-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-{core}-vhost-base-dpdk-vpp-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-hsw-xl710-64b-{core}-vhost-base-dpdk-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-{core}-vhost-base-dpdk-{test_type}"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-{core}-vhost-base-dpdk-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 3n-hsw-xl710-64b-{core}-vhost-base-dpdk-vpp-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-{core}-vhost-base-dpdk-vpp-{test_type}"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-{core}-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1V-m-Vppl2Xc-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-{core}-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-{core}-vhost-base-dpdk-vpp-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -8424,20 +7387,6 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-hsw-xl710-64b-ip4routing-base-scale-dpdk-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-ip4routing-base-scale-dpdk-{test_type}-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Dot1Q-Ip4Base-Ndrpdr.64B-.t.c-dot1q-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale2M-rnd-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-rnd-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-ip4routing-base-scale-dpdk-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
   title: "Speedup: 3n-skx-x710-64b-ip4routing-base-scale-avf-{test_type}-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-ip4routing-base-scale-avf-{test_type}-tsa"
@@ -8509,18 +7458,6 @@
     - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-features-ip4routing-base-dpdk-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-hsw-xl710-64b-ip4tunnel-base-dpdk-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-ip4tunnel-base-dpdk-{test_type}-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Ip4 Tunnels.40Ge2P1Xl710-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-.t.c-ethip4vxlan-l2xcbase-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4 Tunnels.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-ip4tunnel-base-dpdk-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -8605,20 +7542,6 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-hsw-xl710-78b-ip6routing-base-scale-dpdk-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-ip6routing-base-scale-dpdk-{test_type}-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale2M-rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-rnd-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-78b-ip6routing-base-scale-dpdk-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
   title: "Speedup: 3n-skx-x710-78b-ip6routing-base-scale-avf-{test_type}-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-ip6routing-base-scale-avf-{test_type}-tsa"
@@ -8659,36 +7582,6 @@
     - "Tests.Vpp.Perf.Ip6.25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-avf-ethip6-ip6scale2m-ndrpdr"
   layout:
     title: "3n-skx-xxv710-78b-ip6routing-base-scale-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-hsw-xl710-imix-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-imix-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-imix-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-hsw-xl710-imix-ipsec-ip4routing-base-scale-hw-dpdk-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-imix-ipsec-ip4routing-base-scale-hw-dpdk-{test_type}-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1Tnlhw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1Tnlhw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlhw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlhw-ip4base-int-aes256gcm-ndrpdr"
-    - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1000Tnlhw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-imix-ipsec-ip4routing-base-scale-hw-dpdk-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -8798,22 +7691,6 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-hsw-xl710-64b-l2switching-base-scale-dpdk-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-l2switching-base-scale-dpdk-{test_type}-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Patch-Ndrpdr.64B-.t.c-eth-l2patch-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Dot1Q-L2Xcbase-Ndrpdr.64B-.t.c-dot1q-l2xcbase-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Xcbase-Ndrpdr.64B-.t.c-eth-l2xcbase-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale1mmaclrn-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-l2switching-base-scale-dpdk-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
   title: "Speedup: 3n-skx-x710-64b-l2switching-base-scale-avf-{test_type}-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-l2switching-base-scale-avf-{test_type}-tsa"
@@ -8906,22 +7783,6 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-hsw-xl710-78b-srv6-ip6routing-base-dpdk-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-srv6-ip6routing-base-dpdk-{test_type}-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
-    - "Tests.Vpp.Perf.Srv6.40Ge2P1Xl710-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-78b-srv6-ip6routing-base-dpdk-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
   title: "Speedup: 3n-skx-xxv710-78b-srv6-ip6routing-base-avf-{test_type}-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-srv6-ip6routing-base-avf-{test_type}-tsa"
@@ -8995,36 +7856,6 @@
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-.t.c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
   layout:
     title: "2n-skx-xxv710-64b-vhost-base-dpdk-vpp-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-hsw-xl710-64b-vhost-base-dpdk-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-vhost-base-dpdk-{test_type}-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-vhost-base-dpdk-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 3n-hsw-xl710-64b-vhost-base-dpdk-vpp-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-vhost-base-dpdk-vpp-{test_type}-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
-  include:
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr10241Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1V-m-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-.t.c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-vhost-base-dpdk-vpp-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -9719,34 +8550,6 @@
     - "tests.dpdk.perf.10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
   layout:
     title: "3n-skx-x710-64b-{core}-base-{test_type}"
-    layout: "plot-throughput"
-
-# 3n-hsw
-
-- type: "plot"
-  title: "DPDK Throughput: 3n-hsw-xl710-64b-{core}-base-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,DPDK]}/3n-hsw-xl710-64b-{core}-base-{test_type}"
-  data: "plot-dpdk-throughput-latency-3n-hsw"
-  core: ["1t1c", "2t2c"]
-  include:
-    - "tests.dpdk.perf.40ge2p1xl710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.40ge2p1xl710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "3n-hsw-xl710-64b-{core}-base-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "DPDK Throughput: 3n-hsw-x710-64b-{core}-base-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,DPDK]}/3n-hsw-x710-64b-{core}-base-{test_type}"
-  data: "plot-dpdk-throughput-latency-3n-hsw"
-  core: ["1t1c", "2t2c"]
-  include:
-    - "tests.dpdk.perf.10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "3n-hsw-x710-64b-{core}-base-{test_type}"
     layout: "plot-throughput"
 
 ## 2n-dnv-x553
@@ -13046,28 +11849,6 @@
     layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
-  title: "Latency by percentile: 3n-hsw"
-  algorithm: "plot_hdrh_lat_by_percentile_x_log"
-  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-hsw"
-  output-file-links: "{DIR[LAT,VPP]}/3n_hsw.rst"
-  target-links: "../../_static/vpp"
-  data: "plot-vpp-hdrh-lat-3n-hsw"
-  filter: "'1T1C' and 'NIC_Intel-XL710'"
-  layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
-
-- type: "plot"
-  title: "Latency by percentile: 3n-hsw RND"
-  algorithm: "plot_hdrh_lat_by_percentile_x_log"
-  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-hsw"
-  output-file-links: "{DIR[LAT,VPP]}/3n_hsw.rst"
-  target-links: "../../_static/vpp"
-  data: "plot-vpp-hdrh-lat-3n-hsw-rnd"
-  filter: "'1T1C' and 'NIC_Intel-XL710'"
-  layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
-
-- type: "plot"
   title: "Latency by percentile: 3n-tsh"
   algorithm: "plot_hdrh_lat_by_percentile_x_log"
   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-tsh"
@@ -13130,17 +11911,6 @@
   target-links: "../../_static/dpdk"
   data: "plot-dpdk-hdrh-lat-2n-zn2"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
-  layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
-
-- type: "plot"
-  title: "Latency by percentile: DPDK 3n-hsw"
-  algorithm: "plot_hdrh_lat_by_percentile_x_log"
-  output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-3n-hsw"
-  output-file-links: "{DIR[LAT,DPDK]}/3n_hsw.rst"
-  target-links: "../../_static/dpdk"
-  data: "plot-dpdk-hdrh-lat-3n-hsw"
-  filter: "'1T1C' and 'NIC_Intel-XL710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
