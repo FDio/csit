@@ -415,6 +415,24 @@
       "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ff51089_030421db",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec100spd-ip4base-policy-ndrpdr.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-31T12:25:23Z",
+      "side": 1,
+      "message": "Now that I think about it, 1spd and 100spd in the right thing to name - there are only two SPDs. What varies is the number of SPD rules/entries, so I think we should change that to 1srl/spr or 1prl (spd/security policy rule or policy rule) or something with entries (pen for policy entry? spe for security policy entry?).\n\nThe RFC only mentions entries, not rules, so I\u0027m going to change every mention of rule to entry to be consistent with that. Based on this, I\u0027m leaning towards pen or spe (and from these two, I like spe more).",
+      "parentUuid": "08adda6e_0d9d8d94",
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
