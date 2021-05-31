@@ -383,6 +383,30 @@
     },
     {
       "key": {
+        "uuid": "52073339_f5f57ac8",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-05-31T13:19:25Z",
+      "side": 1,
+      "message": "The important thing is that only the nth rule matches the traffic, not the action itself. The action is not configurable, so maybe it should be in the name.\n\nThe full name should be something like create an spd in each direction with n entries, nth entry matches outbound traffic with action bypass. Shortened it could look like:\ncreate spd in each dir nth entry matches [outbound] [bypass]\n\nI think that\u0027s clear and short enough. Not sure about adding outbound and bypass though.\n\nI changed rule to entry to match RFC.",
+      "parentUuid": "c5be9ebd_5be3ba73",
+      "range": {
+        "startLine": 706,
+        "startChar": 30,
+        "endLine": 706,
+        "endChar": 44
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b0e4f660_47246126",
         "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec100spd-ip4base-policy-ndrpdr.robot",
         "patchSetId": 15
