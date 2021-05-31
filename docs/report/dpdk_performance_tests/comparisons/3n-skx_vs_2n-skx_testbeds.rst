@@ -40,5 +40,5 @@ Comparison tables in ASCII and CSV formats:
 
     Comparison tables in ASCII and CSV formats:
 
-      - `ASCII MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.txt>`_
-      - `CSV MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-hsw-3n-skx-mrr.csv>`_
+      - `ASCII MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-skx-2n-skx-mrr.txt>`_
+      - `CSV MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-skx-2n-skx-mrr.csv>`_
