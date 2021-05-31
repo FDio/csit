@@ -6,8 +6,7 @@ NICs Comparison
 
 Relative comparison of VPP packet throughput (NDR, PDR and MRR) between
 NICs (measured for |csit-release) is calculated from results of tests
-running on 3-Node Intel Xeon Haswell testbeds (3n-hsw) in 1-core, 2-core
-and 4-core (MRR only) configurations.
+running on 3n-skx, 2n-skx testbeds.
 
 Listed mean and standard deviation values are computed based on a series
 of the same tests executed against respective VPP releases to verify
