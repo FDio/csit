@@ -227,54 +227,6 @@ All Intel Xeon Skylake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux, with 56 logical
 cores and 28 physical cores per processor socket.
 
-3-Node Xeon Haswell (3n-hsw)
-----------------------------
-
-Three 3n-hsw testbeds are in operation in FD.io labs. Each 3n-hsw
-testbed is built with three Cisco UCS-c240m3 servers, each in turn
-equipped with two Intel Xeon Haswell-SP E5-2699v3 processors (45 MB
-Cache, 2.3 GHz, 18 cores). 3n-hsw physical topology is shown below.
-
-.. only:: latex
-
-    .. raw:: latex
-
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_tmp/src/introduction/}}
-                \includegraphics[width=0.90\textwidth]{testbed-3n-hsw}
-                \label{fig:testbed-3n-hsw}
-        \end{figure}
-
-.. only:: html
-
-    .. figure:: testbed-3n-hsw.svg
-        :alt: testbed-3n-hsw
-        :align: center
-
-SUT1 and SUT2 servers are populated with the following NIC models:
-
-#. NIC-1: VIC 1385 2p40GE Cisco.
-#. NIC-2: NIC x520 2p10GE Intel.
-#. NIC-3: empty.
-#. NIC-4: NIC xl710-QDA2 2p40GE Intel.
-#. NIC-5: NIC x710-DA2 2p10GE Intel.
-#. NIC-6: QAT 8950 50G (Walnut Hill) Intel.
-
-TG servers run T-Rex application and are populated with the following
-NIC models:
-
-#. NIC-1: NIC xl710-QDA2 2p40GE Intel.
-#. NIC-2: NIC x710-DA2 2p10GE Intel.
-#. NIC-3: empty.
-#. NIC-4: NIC xl710-QDA2 2p40GE Intel.
-#. NIC-5: NIC x710-DA2 2p10GE Intel.
-#. NIC-6: NIC x710-DA2 2p10GE Intel. (For self-tests.)
-
-All Intel Xeon Haswell servers run with Intel Hyper-Threading disabled,
-making the number of logical cores exposed to Linux match the number of
-18 physical cores per processor socket.
-
 2-Node Atom Denverton (2n-dnv)
 ------------------------------
 
