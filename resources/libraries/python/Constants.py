@@ -117,12 +117,7 @@ def get_optimistic_bool_from_env(env_var_names):
 
 
 class Constants:
-    """Constants used in CSIT.
-
-    TODO: Yaml files are easier for humans to edit.
-    Figure out how to set the attributes by parsing a file
-    that works regardless of current working directory.
-    """
+    """Constants used in CSIT."""
 
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = u"/tmp/openvpp-testing"
@@ -196,7 +191,6 @@ class Constants:
     # TRex install directory
     TREX_INSTALL_DIR = u"/opt/trex-core-2.88"
 
-    # TODO: Find the right way how to use it in trex profiles
     # TRex pcap files directory
     TREX_PCAP_DIR = f"{TREX_INSTALL_DIR}/scripts/avl"
 
@@ -293,8 +287,6 @@ class Constants:
 
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
-        u"Cisco-VIC-1227": 10000000000,
-        u"Cisco-VIC-1385": 24500000000,
         u"Intel-X520-DA2": 10000000000,
         u"Intel-X553": 10000000000,
         u"Intel-X710": 10000000000,
@@ -308,8 +300,6 @@ class Constants:
 
     # Mapping from NIC name to its pps limit.
     NIC_NAME_TO_PPS_LIMIT = {
-        u"Cisco-VIC-1227": 14880952,
-        u"Cisco-VIC-1385": 18750000,
         u"Intel-X520-DA2": 14880952,
         u"Intel-X553": 14880952,
         u"Intel-X710": 14880952,
@@ -329,8 +319,6 @@ class Constants:
 
     # Suite file names use codes for NICs.
     NIC_NAME_TO_CODE = {
-        u"Cisco-VIC-1227": u"10ge2p1vic1227",
-        u"Cisco-VIC-1385": u"40ge2p1vic1385",
         u"Intel-X520-DA2": u"10ge2p1x520",
         u"Intel-X553": u"10ge2p1x553",
         u"Intel-X710": u"10ge2p1x710",
@@ -343,8 +331,6 @@ class Constants:
 
     # Not each driver is supported by each NIC.
     NIC_NAME_TO_DRIVER = {
-        u"Cisco-VIC-1227": [u"vfio-pci"],
-        u"Cisco-VIC-1385": [u"vfio-pci"],
         u"Intel-X520-DA2": [u"vfio-pci"],
         u"Intel-X553": [u"vfio-pci"],
         u"Intel-X710": [u"vfio-pci", u"avf"],
@@ -385,8 +371,6 @@ class Constants:
 
     # Not each driver is supported by each NIC.
     DPDK_NIC_NAME_TO_DRIVER = {
-        u"Cisco-VIC-1227": [u"vfio-pci"],
-        u"Cisco-VIC-1385": [u"vfio-pci"],
         u"Intel-X520-DA2": [u"vfio-pci"],
         u"Intel-X553": [u"vfio-pci"],
         u"Intel-X710": [u"vfio-pci"],
@@ -436,8 +420,6 @@ class Constants:
     PERF_TYPE_TO_SUITE_DOC_VER = {
         u"mrr": u'''fication:* In MaxReceivedRate tests TG sends traffic\\
 | ... | at line rate and reports total received packets over trial period.\\''',
-        # TODO: Figure out how to include the full "*[Ver] TG verification:*"
-        # while keeping this readable and without breaking line length limit.
         u"ndrpdr": u'''ication:* TG finds and reports throughput NDR (Non Drop\\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\\
