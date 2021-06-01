@@ -12,7 +12,6 @@
    1. [2-Node-Cascadelake Xeon Intel (2n-clx)](#2-node-cascadelake-xeon-intel-2n-clx)
    1. [2-Node-Zen2 EPYC AMD (2n-zn2)](#2-node-zen2-epyc-amd-2n-zn)
    1. [2-Node-ThunderX2 Arm Marvell (2x-tx2)](#2-node-thunderx2-arm-marvell-2n-tx2)
-   1. [3-Node-Haswell Xeon Intel (3n-skx)](#3-node-haswell-xeon-intel-3n-skx)
    1. [3-Node-Skylake Xeon Intel (3n-skx)](#3-node-skylake-xeon-intel-3n-skx)
    1. [3-Node-TaiShan Arm Huawei (3n-tsh)](#3-node-taishan-arm-huawei-3n-tsh)
    1. [3-Node-Rangeley Atom Testbeds](#3-node-rangeley-atom-testbeds)
@@ -30,12 +29,11 @@
       1. [1-Node-ThunderX2 Servers (1n-tx2) PROD](#1-node-thunderx2-servers-1n-tx2-prod)
       1. [1-Node-Cascadelake Servers (1n-clx) PROD](#1-node-cascadelake-servers-1n-clx-prod)
       1. [2-Node-Skylake Servers (2n-skx) PROD](#2-node-skylake-servers-2n-skx-prod)
-      1. [2-Node-Denverton Servers (2n-dnv) TODO](#2-node-denverton-servers-2n-dnv-todo)
+      1. [2-Node-Denverton Servers (2n-dnv) PROD](#2-node-denverton-servers-2n-dnv-prod)
       1. [2-Node-IxiaPS1L47 Servers (2n-ps1) VERIFY](#2-node-ixiaps1l47-servers-2n-ps1-verify)
       1. [2-Node-Cascadelake Servers (2n-clx) PROD](#2-node-cascadelake-servers-2n-clx-prod)
       1. [2-Node-Zen2 Servers (2n-zn2) PROD](#2-node-zen2-servers-2n-zn2-prod])
-      1. [2-Node-ThunderX2 Servers (2n-tx2) WIP](#2-node-thunderx2-servers-2n-tx2-wip)
-      1. [3-Node-Haswell Servers (3n-hsw) PROD](#3-node-haswell-servers-3n-hsw-prod)
+      1. [2-Node-ThunderX2 Servers (2n-tx2) PROD](#2-node-thunderx2-servers-2n-tx2-prod)
       1. [3-Node-Skylake Servers (3n-skx) PROD](#3-node-skylake-servers-3n-skx-prod)
       1. [3-Node-Rangeley Servers (3n-rng) VERIFY](#3-node-rangeley-servers-3n-rng-verify)
       1. [3-Node-Taishan Servers (3n-tsh) PROD](#3-node-taishan-servers-3n-tsh-prod)
@@ -44,11 +42,11 @@
       1. [1-Node-ThunderX2 Wiring (1n-tx2) PROD](#1-node-thunderx2-wiring-1n-tx2-prod)
       1. [1-Node-Cascadelake Wiring (1n-clx) PROD](#1-node-cascadelake-wiring-1n-clx-prod)
       1. [2-Node-Skylake Wiring (2n-skx) PROD](#2-node-skylake-wiring-2n-skx-prod)
-      1. [2-Node-Denverton Wiring (2n-dnv) TODO](#2-node-denverton-wiring-2n-dnv-todo)
+      1. [2-Node-Denverton Wiring (2n-dnv) PROD](#2-node-denverton-wiring-2n-dnv-prod)
       1. [2-Node-IxiaPS1L47 Wiring (2n-ps1) VERIFY](#2-node-ixiaps1l47-wiring-2n-ps1-verify)
       1. [2-Node-Cascadelake Wiring (2n-clx) PROD](#2-node-cascadelake-wiring-2n-clx-prod)
       1. [2-Node-Zen2 Wiring (2n-zn2) PROD](#2-node-zen2-wiring-2n-zn2-prod])
-      1. [2-Node-ThunderX2 Wiring (2n-tx2) WIP](#2-node-thunderx2-wiring-2n-tx2-wip)
+      1. [2-Node-ThunderX2 Wiring (2n-tx2) PROD](#2-node-thunderx2-wiring-2n-tx2-prod)
       1. [3-Node-Haswell Wiring (3n-hsw) PROD](#3-node-haswell-wiring-3n-hsw-prod)
       1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
       1. [3-Node-Rangeley Wiring (3n-rng) TODO](#3-node-rangeley-wiring-3n-rng-todo)
@@ -72,7 +70,7 @@ hosted by LFN FD.io CSIT project.
 
 ```
  #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #clx #zn2
- 1. 1-Node-VIRL        dev    hsw   ---   3    3    0    3    0    0    0    0    0    0    0    0
+ 1. 1-Node-Haswell     nomad  hsw   ---   4    4    0    4    0    0    0    0    0    0    0    0
  2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0
  3. 1-Node-ThunderX2   perf   tx2   na    1    1    .5   0    .5   0    0    0    1    0    0    0
  4. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    0    2    0    0    0
@@ -81,13 +79,12 @@ hosted by LFN FD.io CSIT project.
  7. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0    0
  8. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0
  9. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    6    0
-10. 3-Node-Haswell     perf   hsw   hsw   3    6    3    9    0    0    0    0    0    0    0    0
-11. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0
-12. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0
-13. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    0    2    0    0
-14. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0
-15. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    2
-                                 Totals: 27   36   18   12   19    1    2    3    3    2    7    2
+10. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0
+11. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0
+12. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    0    2    0    0
+13. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0
+14. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    2
+                                 Totals: 25   31   15    4   19    1    2    3    3    2    7    2
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -236,15 +233,6 @@ Name         | Comment
 10.30.50.13  | LF Reserved
 10.30.50.14  | LF Reserved
 10.30.50.15  | LF Reserved
-10.30.50.16  | t1-tg1
-10.30.50.17  | t1-sut1
-10.30.50.18  | t1-sut2
-10.30.50.20  | t2-tg1
-10.30.50.21  | t2-sut1
-10.30.50.22  | t2-sut2
-10.30.50.24  | t3-tg1
-10.30.50.25  | t3-sut1
-10.30.50.26  | t3-sut-2
 10.30.50.28  | s41-nomad
 10.30.50.29  | s39-nomad
 10.30.51.29  | s22-t35-sut1 screen -r /dev/ttyusb0
@@ -322,22 +310,7 @@ Name                      | Comment
 10.30.51.6                | LF Reserved
 10.30.51.7                | LF Reserved
 10.30.51.8                | LF Reserved
-10.30.51.9                | s22-t35-sut1 (netgate-1)
-10.30.51.10               | s23-t35-sut2 (netgate-2)
-10.30.51.11               | s24-t35-sut3 (netgate-3)
-10.30.51.12               | softiron-1 (decommissioned)
-10.30.51.13               | softiron-2 (decommissioned)
-10.30.51.14               | softiron-3 (decommissioned)
 10.30.51.15               | LF Reserved
-10.30.51.16               | t1-tg1
-10.30.51.17               | t1-sut1
-10.30.51.18               | t1-sut2
-10.30.51.20               | t2-tg1
-10.30.51.21               | t2-sut1
-10.30.51.22               | t2-sut2
-10.30.51.24               | t3-tg1
-10.30.51.25               | t3-sut1
-10.30.51.26               | t3-sut-2
 10.30.51.28               | s41-nomad
 10.30.51.29               | s39-nomad
 10.30.51.30               | s40-nomad
@@ -350,9 +323,6 @@ Name                      | Comment
 10.30.51.38               | fdio-marvell-dev
 10.30.51.39               | s53-nomad
 10.30.51.40               | s54-nomad
-10.30.51.41               | s20-t34-sut1 (decommissioned)
-10.30.51.42               | s21-t34-sut2 (decommissioned)
-10.30.51.43               | fdio-mcbin3 (decommissioned)
 10.30.51.44               | s3-t21-sut1
 10.30.51.45               | s4-t21-tg1
 10.30.51.46               | s11-t31-sut1
@@ -379,9 +349,7 @@ Name                      | Comment
 10.30.51.69               | s27-t34-sut1
 10.30.51.70               | s55-t36-sut1
 10.30.51.71               | s56-t37-sut1
-10.30.51.72-10.30.51.105  | FREE
-10.30.51.106-10.30.51.180 | FREE
-10.30.51.181-10.30.51.254 | FREE
+10.30.51.72-10.30.51.254  | FREE
 10.30.51.255              | Broadcast
 10.32.8.0                 | network
 10.32.8.1                 | Router
@@ -421,13 +389,13 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 2TB 12G SAS 7.2K RPM SFF HDD.
     - NICs configuration:
         - Numa0: Right PCIe Riser Board (Riser 1) (x8, x8, x8 PCIe3.0 lanes)
-            - PCIe Slot1: Cisco VIC 1385 2p40GE.
-            - PCIe Slot2: Intel NIC x520 2p10GE.
+            - PCIe Slot1: empty.
+            - PCIe Slot2: empty.
             - PCIe Slot3: empty.
         - Numa1: Left PCIe Riser Board (Riser 2) (x8, x16, x8 PCIe3.0 lanes)
-            - PCIe Slot4: Intel NIC xl710 2p40GE.
-            - PCIe Slot5: Intel NIC x710 2p10GE.
-            - PCIe Slot6: Intel QAT 8950 50G (Walnut Hill)
+            - PCIe Slot4: empty.
+            - PCIe Slot5: empty.
+            - PCIe Slot6: empty
         - MLOM slot: Cisco VIC 1227 2p10GE (x8 PCIe2.0 lanes).
 2. Server-Type-A2: Purpose - Haswell Xeon TG (Traffic Generators) for FD.io performance testing.
     - Quantity: 3 servers.
@@ -440,14 +408,14 @@ FD.io CSIT lab contains following server types:
         - RAM Memory: 16* 32GB DDR4-2133MHz.
         - Disks: 2* 2TB 12G SAS 7.2K RPM SFF HDD.
     - NICs configuration:
-        - Numa0: Right PCIe Riser Board (Riser 1) (x8, x8, x8 lanes)
-            - PCIe Slot1: Intel NIC xl710 2p40GE.
-            - PCIe Slot2: Intel NIC x710 2p10GE.
-            - PCIe Slot3: Intel NIC x710 2p10GE.
-        - Numa1: Left PCIe Riser Board (Riser 2) (x8, x16, x8 lanes)
-            - PCIe Slot4: Intel NIC xl710 2p40GE.
-            - PCIe Slot5: Intel NIC x710 2p10GE.
-            - PCIe Slot6: Intel NIC x710 2p10GE.
+        - Numa0: Right PCIe Riser Board (Riser 1) (x8, x8, x8 PCIe3.0 lanes)
+            - PCIe Slot1: empty.
+            - PCIe Slot2: empty.
+            - PCIe Slot3: empty.
+        - Numa1: Left PCIe Riser Board (Riser 2) (x8, x16, x8 PCIe3.0 lanes)
+            - PCIe Slot4: empty.
+            - PCIe Slot5: empty.
+            - PCIe Slot6: empty
         - MLOM slot: empty.
 3. Server-Type-A3: Purpose - Haswell Xeon VIRL hosts for FD.io functional testing.
     - Quantity: 3 servers.
@@ -735,7 +703,6 @@ FD.io CSIT lab contains following server types:
             - no cards.
         - Numa1:
             - no cards.
-
 19. Server-Type-D1: Purpose - Zen2 EPYC SUT for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
@@ -979,7 +946,7 @@ connectivity and wiring across defined CSIT testbeds:
         - s10-t24-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
 ```
 
-#### 2-Node-Denverton Servers (2n-dnv) WIP
+#### 2-Node-Denverton Servers (2n-dnv) PROD
 
 Note: ServerB28 (TG) is shared between testbed26 & testbed35
 
@@ -1173,7 +1140,7 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s61-t210-tg1-c3/p2 - 25GE-port2 xxv710-DA2-2p25GE.
 ```
 
-#### 2-Node-ThunderX2 Servers (2x-tx2) WIP
+#### 2-Node-ThunderX2 Servers (2x-tx2) PROD
 
 Note: Server19 (TG) is shared between testbed33 & testbed34
 
@@ -1206,161 +1173,6 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
         - s19-t33t34-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
         - s19-t33t34-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
         - s19-t33t34-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
-```
-
-#### 3-Node-Haswell Servers (3n-hsw) PROD
-
-```
- 1. SUT [Server-Type-A1]:
-    - testbedname: testbed1.
-    - hostname: t1-sut1.
-    - CIMC IP: 10.30.50.17
-    - Host IP: 10.30.51.17
-    - portnames:
-        - t1-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
-        - t1-sut1-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
-        - t1-sut1-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-        - t1-sut1-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-        - t1-sut1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t1-sut1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t1-sut1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t1-sut1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t1-sut1-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-        - t1-sut1-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
- 2. SUT [Server-Type-A1]:
-    - testbedname: testbed1.
-    - hostname: t1-sut2.
-    - CIMC IP: 10.30.50.18
-    - Host IP: 10.30.51.18
-    - portnames:
-        - t1-sut2-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
-        - t1-sut2-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
-        - t1-sut2-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-        - t1-sut2-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-        - t1-sut2-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t1-sut2-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t1-sut2-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t1-sut2-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t1-sut2-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-        - t1-sut2-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
- 3. TG [Server-Type-A2]:
-    - testbedname: testbed1.
-    - hostname: t1-tg1.
-    - CIMC IP: 10.30.50.16
-    - Host IP: 10.30.51.16
-    - portnames:
-        - t1-tg1-c1/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t1-tg1-c1/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t1-tg1-c2/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t1-tg1-c2/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t1-tg1-c3/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t1-tg1-c3/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t1-tg1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t1-tg1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t1-tg1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t1-tg1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t1-tg1-c6/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t1-tg1-c6/p2 - 10GE port2 on Intel NIC x710 2p10GE.
- 4. SUT [Server-Type-A1]:
-    - testbedname: testbed2.
-    - hostname: t2-sut1.
-    - CIMC IP: 10.30.50.21
-    - Host IP: 10.30.51.21
-    - portnames:
-        - t2-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
-        - t2-sut1-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
-        - t2-sut1-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-        - t2-sut1-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-        - t2-sut1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t2-sut1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t2-sut1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t2-sut1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t2-sut1-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-        - t2-sut1-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
- 5. SUT [Server-Type-A1]:
-    - testbedname: testbed2.
-    - hostname: t2-sut2.
-    - CIMC IP: 10.30.50.22
-    - Host IP: 10.30.51.22
-    - portnames:
-        - t2-sut2-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
-        - t2-sut2-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
-        - t2-sut2-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-        - t2-sut2-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-        - t2-sut2-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t2-sut2-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t2-sut2-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t2-sut2-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t2-sut2-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-        - t2-sut2-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
- 6. TG [Server-Type-A2]:
-    - testbedname: testbed2.
-    - hostname: t2-tg1.
-    - CIMC IP: 10.30.50.20
-    - Host IP: 10.30.51.20
-    - portnames:
-        - t2-tg1-c1/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t2-tg1-c1/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t2-tg1-c2/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t2-tg1-c2/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t2-tg1-c3/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t2-tg1-c3/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t2-tg1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t2-tg1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t2-tg1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t2-tg1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t2-tg1-c6/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t2-tg1-c6/p2 - 10GE port2 on Intel NIC x710 2p10GE.
- 7. SUT [Server-Type-A1]:
-    - testbedname: testbed3.
-    - hostname: t3-sut1.
-    - CIMC IP: 10.30.50.25
-    - Host IP: 10.30.51.25
-    - portnames:
-        - t3-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
-        - t3-sut1-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
-        - t3-sut1-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-        - t3-sut1-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-        - t3-sut1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t3-sut1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t3-sut1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t3-sut1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t3-sut1-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-        - t3-sut1-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
- 8. SUT [Server-Type-A1]:
-    - testbedname: testbed3.
-    - hostname: t3-sut2.
-    - CIMC IP: 10.30.50.26
-    - Host IP: 10.30.51.26
-    - portnames:
-        - t3-sut2-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
-        - t3-sut2-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
-        - t3-sut2-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-        - t3-sut2-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-        - t3-sut2-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t3-sut2-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t3-sut2-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t3-sut2-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t3-sut2-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-        - t3-sut2-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
- 9. TG [Server-Type-A2]:
-    - testbedname: testbed3.
-    - hostname: t3-tg1.
-    - CIMC IP: 10.30.50.24
-    - Host IP: 10.30.51.24
-    - portnames:
-        - t3-tg1-c1/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t3-tg1-c1/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t3-tg1-c2/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t3-tg1-c2/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t3-tg1-c3/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t3-tg1-c3/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t3-tg1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
-        - t3-tg1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        - t3-tg1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t3-tg1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        - t3-tg1-c6/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        - t3-tg1-c6/p2 - 10GE port2 on Intel NIC x710 2p10GE.
 ```
 
 #### 3-Node-Skylake Servers (3n-skx) PROD
@@ -1531,7 +1343,7 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
         - s19-t33t34-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 ```
 
-#### 3-Node-Denverton Servers (3n-dnv) WIP
+#### 3-Node-Denverton Servers (3n-dnv) PROD
 
 ```
 - ServerB30 [Server-Type-B10]:
@@ -1664,7 +1476,7 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
         - s9-t24-sut1-c4/p2 to s10-t24-tg1-c4/p2.
 ```
 
-#### 2-Node-Denverton Wiring (2n-dnv) WIP
+#### 2-Node-Denverton Wiring (2n-dnv) PROD
 
 ```
 - testbed26:
@@ -1761,90 +1573,13 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
         - s60-t210-sut1-c3/p2 to s61-t210-tg1-c1/p2.
 ```
 
-#### 2-Node-ThunderX2 Wiring (2n-tx2) WIP
+#### 2-Node-ThunderX2 Wiring (2n-tx2) PROD
 
 ```
 - testbed34:
     - ring1 10GE-ports x520-2p10GE on SUTs:
         - s27-t34-sut1-c18/p1 - s19-t33t34-tg1-c8/p1.
         - s27-t34-sut1-c18/p2 - s19-t33t34-tg1-c8/p2.
-```
-
-
-#### 3-Node-Haswell Wiring (3n-hsw) PROD
-
-```
- 1. testbed1:
-    - ring of 40GE ports on Cisco VIC 1385 2p40GE on SUTs
-        - t1-tg1-c1/p1 to t1-sut1-c1/p2.
-        - t1-sut1-c1/p1 to t1-sut2-c1/p2.
-        - t1-sut2-c1/p1 to t1-tg1-c1/p2.
-    - ring of 10GE ports on Intel NIC x520 2p10GE on SUTs
-        - t1-tg1-c2/p1 to t1-sut1-c2/p2.
-        - t1-sut1-c2/p1 to t1-sut2-c2/p2.
-        - t1-sut2-c2/p1 to t1-tg1-c2/p2.
-    - ring of 40GE ports on Intel NIC xl710 2p40GE on SUTs
-        - t1-tg1-c4/p1 to t1-sut1-c4/p2.
-        - t1-sut1-c4/p1 to t1-sut2-c4/p2.
-        - t1-sut2-c4/p1 to t1-tg1-c4/p2.
-    - ring of 10GE ports on Intel NIC x710 2p10GE on SUTs
-        - t1-tg1-c5/p1 to t1-sut1-c5/p2.
-        - t1-sut1-c5/p1 to t1-sut2-c5/p2.
-        - t1-sut2-c5/p1 to t1-tg1-c5/p2.
-    - ring of 10GE ports on Cisco VIC 1227 2p10GE on SUTs
-        - t1-tg1-c2/p1 to t1-sut1-cm/p2.
-        - t1-sut1-cm/p1 to t1-sut2-cm/p2.
-        - t1-sut2-cm/p1 to t1-tg1-c2/p2.
-    - TG loopback ports Intel NIC x710 2p10GE
-        - t1-tg1-c6/p1 to t1-tg1-c6/p2.
-
- 2. testbed2:
-    - ring of 40GE ports on Cisco VIC 1385 2p40GE on SUTs
-        - t2-tg1-c1/p1 to t2-sut1-c1/p2.
-        - t2-sut1-c1/p1 to t2-sut2-c1/p2.
-        - t2-sut2-c1/p1 to t2-tg1-c1/p2.
-    - ring of 10GE ports on Intel NIC x520 2p10GE on SUTs
-        - t2-tg1-c2/p1 to t2-sut1-c2/p2.
-        - t2-sut1-c2/p1 to t2-sut2-c2/p2.
-        - t2-sut2-c2/p1 to t2-tg1-c2/p2.
-    - ring of 40GE ports on Intel NIC xl710 2p40GE on SUTs
-        - t2-tg1-c4/p1 to t2-sut1-c4/p2.
-        - t2-sut1-c4/p1 to t2-sut2-c4/p2.
-        - t2-sut2-c4/p1 to t2-tg1-c4/p2.
-    - ring of 10GE ports on Intel NIC x710 2p10GE on SUTs
-        - t2-tg1-c5/p1 to t2-sut1-c5/p2.
-        - t2-sut1-c5/p1 to t2-sut2-c5/p2.
-        - t2-sut2-c5/p1 to t2-tg1-c5/p2.
-    - ring of 10GE ports on Cisco VIC 1227 2p10GE on SUTs
-        - t2-tg1-c2/p1 to t2-sut1-cm/p2.
-        - t2-sut1-cm/p1 to t2-sut2-cm/p2.
-        - t2-sut2-cm/p1 to t2-tg1-c2/p2.
-    - TG loopback ports Intel NIC x710 2p10GE
-        - t2-tg1-c6/p1 to t2-tg1-c6/p2.
-
- 3. testbed3:
-    - ring of 40GE ports on Cisco VIC 1385 2p40GE on SUTs
-        - t3-tg1-c1/p1 to t3-sut1-c1/p2.
-        - t3-sut1-c1/p1 to t3-sut2-c1/p2.
-        - t3-sut2-c1/p1 to t3-tg1-c1/p2.
-    - ring of 10GE ports on Intel NIC x520 2p10GE on SUTs
-        - t3-tg1-c2/p1 to t3-sut1-c2/p2.
-        - t3-sut1-c2/p1 to t3-sut2-c2/p2.
-        - t3-sut2-c2/p1 to t3-tg1-c2/p2.
-    - ring of 40GE ports on Intel NIC xl710 2p40GE on SUTs
-        - t3-tg1-c4/p1 to t3-sut1-c4/p2.
-        - t3-sut1-c4/p1 to t3-sut2-c4/p2.
-        - t3-sut2-c4/p1 to t3-tg1-c4/p2.
-    - ring of 10GE ports on Intel NIC x710 2p10GE on SUTs
-        - t3-tg1-c5/p1 to t3-sut1-c5/p2.
-        - t3-sut1-c5/p1 to t3-sut2-c5/p2.
-        - t3-sut2-c5/p1 to t3-tg1-c5/p2.
-    - ring of 10GE ports on Cisco VIC 1227 2p10GE on SUTs
-        - t3-tg1-c2/p1 to t3-sut1-cm/p2.
-        - t3-sut1-cm/p1 to t3-sut2-cm/p2.
-        - t3-sut2-cm/p1 to t3-tg1-c2/p2.
-    - TG loopback ports Intel NIC x710 2p10GE
-        - t3-tg1-c6/p1 to t3-tg1-c6/p2.
 ```
 
 #### 3-Node-Skylake Wiring (3n-skx) PROD
@@ -1912,7 +1647,7 @@ To be completed.
         - s18-t33-sut2-c4/p1 - s19-t33t34-tg1-c4/p1.
 ```
 
-#### 3-Node-Denverton Wiring (3n-dnv) WIP
+#### 3-Node-Denverton Wiring (3n-dnv) PROD
 
 ```
 - testbed35:
