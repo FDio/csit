@@ -109,8 +109,8 @@ def main():
         f"frame_loss={total_lost}; "
         f"latency_stream_0(usec)=-1/-1/-1; "
         f"latency_stream_1(usec)=-1/-1/-1; "
-        f"latency_hist_stream_0={}; "
-        f"latency_hist_stream_1={}; "
+        f"latency_hist_stream_0=; "
+        f"latency_hist_stream_1=; "
     )
 
 
