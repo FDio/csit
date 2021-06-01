@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4c5a7a2c_99dc33e3",
+        "filename": "resources/libraries/bash/entry/check/model_version.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-01T13:10:53Z",
+      "side": 1,
+      "message": "Done in patch set #10.",
+      "parentUuid": "02201356_0a164272",
+      "range": {
+        "startLine": 40,
+        "startChar": 10,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "71edd2f3699829081c7b51b491fb54c292c413ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12bf0839_29844acc",
         "filename": "resources/libraries/bash/entry/check/model_version.sh",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "72878c4d_f6cfcaf3",
+        "filename": "resources/libraries/bash/entry/check/model_version.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-01T13:10:53Z",
+      "side": 1,
+      "message": "Done in patch set #10.",
+      "parentUuid": "12bf0839_29844acc",
+      "range": {
+        "startLine": 49,
+        "startChar": 10,
+        "endLine": 49,
+        "endChar": 39
+      },
+      "revId": "71edd2f3699829081c7b51b491fb54c292c413ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0ea0eb7d_b9991190",
         "filename": "resources/libraries/bash/entry/check/model_version.sh",
         "patchSetId": 8
@@ -68,6 +116,30 @@
       "revId": "71edd2f3699829081c7b51b491fb54c292c413ac",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32b5b19f_bd2924a7",
+        "filename": "resources/libraries/bash/entry/check/model_version.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-01T13:10:53Z",
+      "side": 1,
+      "message": "Done in patch set #10.",
+      "parentUuid": "0ea0eb7d_b9991190",
+      "range": {
+        "startLine": 55,
+        "startChar": 5,
+        "endLine": 55,
+        "endChar": 35
+      },
+      "revId": "71edd2f3699829081c7b51b491fb54c292c413ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
