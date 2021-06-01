@@ -337,6 +337,30 @@
     },
     {
       "key": {
+        "uuid": "15f351ea_3e43d166",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-06-01T07:16:05Z",
+      "side": 1,
+      "message": "Upon further reflection, not supporting negative increments doesn\u0027t make much sense. The only objection would be that the name is Increment and thus a negative increment may be a bit counter-intuitive, but I don\u0027t think that\u0027s that big of a deal.",
+      "parentUuid": "f2d98859_388e9fbc",
+      "range": {
+        "startLine": 68,
+        "startChar": 59,
+        "endLine": 68,
+        "endChar": 60
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "241f6279_328d404a",
         "filename": "resources/libraries/python/CommonUtil.py",
         "patchSetId": 15
