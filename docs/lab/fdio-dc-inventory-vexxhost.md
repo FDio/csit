@@ -79,10 +79,10 @@ s56-t37-sut1,up,t37,2n-tx2,ThunderX2-9980,N/A,10.30.51.71,10.30.50.71,3016.11,u4
 s41-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FQ,10.30.51.28,10.30.50.28,3016.11,u39-u40
 s40-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH2013V0HZ,10.30.51.30,10.30.50.30,3016.11,u37-u38
 s39-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0J2,10.30.51.29,10.30.50.29,3016.11,u35-u36
-s42-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH1950V1FN,10.30.51.32,10.30.50.32,3016.11,u19-u20
-s43-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH1950V1H5,10.30.51.33,10.30.50.33,3016.11,u17-u18
-s44-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FS,10.30.51.34,10.30.50.34,3016.11,u15-u16
-s45-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FL,10.30.51.35,10.30.50.35,3016.11,u13-u14
+s42-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH1950V1FN,10.30.51.22,10.30.50.22,3016.11,u19-u20
+s43-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH1950V1H5,10.30.51.24,10.30.50.24,3016.11,u17-u18
+s44-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FS,10.30.51.25,10.30.50.25,3016.11,u15-u16
+s45-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FL,10.30.51.26,10.30.50.26,3016.11,u13-u14
 s55-t36-sut1,up,t36,1n-tx2,ThunderX2-9980,N/A,10.30.51.70,10.30.50.70,3016.11,u11-u12
 s52-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.65,10.30.50.65,3016.11,u9-u10
 s51-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.66,10.30.50.66,3016.11,u9-u10
@@ -108,11 +108,6 @@ s35-t28-sut1,up,t28,2n-clx,SYS-7049GP-TRT,C7470KH37A30509,10.32.8.20,10.30.55.20
 s36-t28-tg1,up,t28,2n-clx,SYS-7049GP-TRT,C7470KH37A30511,10.32.8.21,10.30.55.21,3016.12,u9-u12
 s37-t29-sut1,up,t29,2n-clx,SYS-7049GP-TRT,C7470KH37A30566,10.32.8.22,10.30.55.22,3016.12,u5-u8
 s38-t29-tg1,up,t29,2n-clx,SYS-7049GP-TRT,C7470KH37A30506,10.32.8.23,10.30.55.23,3016.12,u1-u4
-
-
-Todos:
-
-- Rename: s55-t36-sut1 -> s55-t14-sut1  // ubuntu2004 refresh
 
 Notes:
 

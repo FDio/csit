@@ -47,7 +47,6 @@
       1. [2-Node-Cascadelake Wiring (2n-clx) PROD](#2-node-cascadelake-wiring-2n-clx-prod)
       1. [2-Node-Zen2 Wiring (2n-zn2) PROD](#2-node-zen2-wiring-2n-zn2-prod])
       1. [2-Node-ThunderX2 Wiring (2n-tx2) PROD](#2-node-thunderx2-wiring-2n-tx2-prod)
-      1. [3-Node-Haswell Wiring (3n-hsw) PROD](#3-node-haswell-wiring-3n-hsw-prod)
       1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
       1. [3-Node-Rangeley Wiring (3n-rng) TODO](#3-node-rangeley-wiring-3n-rng-todo)
       1. [3-Node-Taishan Wiring (3n-tsh) PROD](#3-node-taishan-wiring-3n-tsh-prod)
@@ -70,7 +69,7 @@ hosted by LFN FD.io CSIT project.
 
 ```
  #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #clx #zn2
- 1. 1-Node-Haswell     nomad  hsw   ---   4    4    0    4    0    0    0    0    0    0    0    0
+ 1. 1-Node-Haswell     nomad  hsw   na    4    4    0    4    0    0    0    0    0    0    0    0
  2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0
  3. 1-Node-ThunderX2   perf   tx2   na    1    1    .5   0    .5   0    0    0    1    0    0    0
  4. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    0    2    0    0    0
@@ -233,16 +232,16 @@ Name         | Comment
 10.30.50.13  | LF Reserved
 10.30.50.14  | LF Reserved
 10.30.50.15  | LF Reserved
+10.30.50.22  | s42-nomad
+10.30.50.24  | s43-nomad
+10.30.50.25  | s44-nomad
+10.30.50.26  | s45-nomad
 10.30.50.28  | s41-nomad
 10.30.50.29  | s39-nomad
 10.30.51.29  | s22-t35-sut1 screen -r /dev/ttyusb0
 10.30.50.30  | s40-nomad
 10.30.51.30  | s23-t35-sut2 screen -r /dev/ttyusb1
 10.30.51.30  | s24-t35-sut3 screen -r /dev/ttyusb2
-10.30.50.32  | s42-nomad
-10.30.50.33  | s43-nomad
-10.30.50.34  | s44-nomad
-10.30.50.35  | s45-nomad
 10.30.50.36  | s17-t33-sut1
 10.30.50.37  | s18-t33-sut2
 10.30.50.38  | fdio-marvell-dev
@@ -311,13 +310,13 @@ Name                      | Comment
 10.30.51.7                | LF Reserved
 10.30.51.8                | LF Reserved
 10.30.51.15               | LF Reserved
+10.30.51.22               | s42-nomad
+10.30.51.24               | s43-nomad
+10.30.51.25               | s44-nomad
+10.30.51.26               | s45-nomad
 10.30.51.28               | s41-nomad
 10.30.51.29               | s39-nomad
 10.30.51.30               | s40-nomad
-10.30.51.32               | s42-nomad
-10.30.51.33               | s43-nomad
-10.30.51.34               | s44-nomad
-10.30.51.35               | s45-nomad
 10.30.51.36               | s17-t33-sut1
 10.30.51.37               | s18-t33-sut2
 10.30.51.38               | fdio-marvell-dev

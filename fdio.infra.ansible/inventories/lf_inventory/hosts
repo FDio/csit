@@ -2,9 +2,6 @@ all:
   children:
     tg:
       hosts:
-        10.30.51.16: #t1-tg1 - haswell
-        10.30.51.20: #t2-tg1 - haswell
-        10.30.51.24: #t3-tg1 - haswell
         10.30.51.45: #s4-t21-tg1 - skylake
         10.30.51.48: #s13-t31-tg1 - skylake
         10.30.51.49: #s19-t33t34-tg1 - skylake
@@ -19,12 +16,6 @@ all:
         10.32.8.25: #s61-t210-tg1 - epyc
     sut:
       hosts:
-        10.30.51.17: #t1-sut1 - haswell
-        10.30.51.18: #t1-sut2 - haswell
-        10.30.51.21: #t2-sut1 - haswell
-        10.30.51.22: #t2-sut2 - haswell
-        10.30.51.25: #t3-sut1 - haswell
-        10.30.51.26: #t3-sut2 - haswell
         10.30.51.36: #s17-t33-sut1 - taishan
         10.30.51.37: #s18-t33-sut2 - taishan
         10.30.51.44: #s3-t21-sut1 - skylake
@@ -52,13 +43,13 @@ all:
         10.30.51.71: #s56-t37-sut1 - thunderx2 9980
     nomad:
       hosts:
+        10.30.51.22: #s42-nomad - haswell
+        10.30.51.24: #s43-nomad - haswell
+        10.30.51.25: #s44-nomad - haswell
+        10.30.51.26: #s45-nomad - haswell
         10.30.51.28: #s41-nomad - haswell
         10.30.51.29: #s39-nomad - haswell
         10.30.51.30: #s40-nomad - haswell
-        10.30.51.32: #s42-nomad - ivy bridge
-        10.30.51.33: #s43-nomad - ivy bridge
-        10.30.51.34: #s44-nomad - ivy bridge
-        10.30.51.35: #s45-nomad - ivy bridge
         10.32.8.14: #s46-nomad - skylake
         10.32.8.15: #s47-nomad - skylake
         10.32.8.16: #s48-nomad - skylake
