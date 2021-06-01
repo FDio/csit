@@ -65,7 +65,6 @@ s7-t23-sut1,up,t23,2n-skx,SYS-7049GP-TRT,N/A,10.30.51.54,10.30.50.51,3016.10,u18
 s8-t23-tg1,up,t23,2n-skx,SYS-7049GP-TRT,C7470KH06A20035,10.30.51.55,10.30.50.52,3016.10,u14-u17
 s9-t24-sut1,up,t24,2n-skx,SYS-7049GP-TRT,C7470KH06A20055,10.30.51.56,10.30.50.53,3016.10,u10-u13
 s10-t24-tg1,up,t24,2n-skx,SYS-7049GP-TRT,C7470KH06A20196,10.30.51.57,10.30.50.54,3016.10,u6-u9
-s43-nomad,up,nomad-cluster1,nomad-server,UCSC-C220-M3L,FCH1726V1M4,10.30.51.33,10.30.50.33,r3016.10,u5
 
 #### Rack YUL1-11 (3016.11)
 
@@ -80,18 +79,10 @@ s56-t37-sut1,up,t37,2n-tx2,ThunderX2-9980,N/A,10.30.51.71,10.30.50.71,3016.11,u4
 s41-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FQ,10.30.51.28,10.30.50.28,3016.11,u39-u40
 s40-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH2013V0HZ,10.30.51.30,10.30.50.30,3016.11,u37-u38
 s39-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0J2,10.30.51.29,10.30.50.29,3016.11,u35-u36
-s44-nomad,up,nomad-cluster1,nomad-client,UCSC-C220-M4S,FCH2139V129,10.30.51.34,10.30.50.34,3016.11,u34
-s45-nomad,up,nomad-cluster1,nomad-client,UCSC-C220-M4S,FCH2139V166,10.30.51.35,10.30.50.35,3016.11,u33
-s42-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M3S,FCH1719V18Y,10.30.51.32,10.30.50.32,3016.11,u31-u32
-t1-tg1,up,t1,3n-hsw,UCSC-C240-M4SX,FCH1950V1HM,10.30.51.16,10.30.50.16,3016.11,u29-u30
-t1-sut1,up,t1,3n-hsw,UCSC-C240-M4SX,FCH1950V1KH,10.30.51.17,10.30.50.17,3016.11,u27-u28
-t1-sut2,up,t1,3n-hsw,UCSC-C240-M4SX,FCH1950V1FP,10.30.51.18,10.30.50.18,3016.11,u25-u26
-t2-tg1,up,t2,3n-hsw,UCSC-C240-M4SX,FCH1950V1KG,10.30.51.20,10.30.50.20,3016.11,u23-u24
-t2-sut1,up,t2,3n-hsw,UCSC-C240-M4SX,FCH1950V1FM,10.30.51.21,10.30.50.21,3016.11,u21-u22
-t2-sut2,up,t2,3n-hsw,UCSC-C240-M4SX,FCH1950V1FN,10.30.51.22,10.30.50.22,3016.11,u19-u20
-t3-tg1,up,t3,3n-hsw,UCSC-C240-M4SX,FCH1950V1H5,10.30.51.24,10.30.50.24,3016.11,u17-u18
-t3-sut1,up,t3,3n-hsw,UCSC-C240-M4SX,FCH1950V1FS,10.30.51.25,10.30.50.25,3016.11,u15-u16
-t3-sut2,up,t3,3n-hsw,UCSC-C240-M4SX,FCH1950V1FL,10.30.51.26,10.30.50.26,3016.11,u13-u14
+s42-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH1950V1FN,10.30.51.32,10.30.50.32,3016.11,u19-u20
+s43-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH1950V1H5,10.30.51.33,10.30.50.33,3016.11,u17-u18
+s44-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FS,10.30.51.34,10.30.50.34,3016.11,u15-u16
+s45-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FL,10.30.51.35,10.30.50.35,3016.11,u13-u14
 s55-t36-sut1,up,t36,1n-tx2,ThunderX2-9980,N/A,10.30.51.70,10.30.50.70,3016.11,u11-u12
 s52-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.65,10.30.50.65,3016.11,u9-u10
 s51-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.66,10.30.50.66,3016.11,u9-u10
@@ -129,3 +120,5 @@ Notes:
   on 16-Sep-2020, per Vexxhost ticket
   [#FDU-009676 - New arm hardware - 2xThunderX2](https://secure.vexxhost.com/billing/viewticket.php?tid=FDU-009676&c=ncHht136),
   search for "softiron".
+- UCSC-C240-M4 EoL:
+  [End-of-Life Announcement for the Cisco Unified Computing System C-Series](https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-c-series-rack-servers/eos-eol-notice-c51-741235.html)
