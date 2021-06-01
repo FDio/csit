@@ -178,9 +178,9 @@
     owner: "root"
     group: "root"
     mode: 0644
-  notify:
-    - "Restart Consul"
-    - "Restart Nomad"
+  #notify:
+  #  - "Restart Consul"
+  #  - "Restart Nomad"
   tags:
     - consul-conf
 

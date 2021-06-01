@@ -267,29 +267,29 @@ yul1:
         oper_status: production
         device_type: UCSC-C240-M4S
         serial_number: FCH1950V1FN
-        mgmt_ip4: 10.30.51.32
-        lom_ip4: 10.30.50.32
+        mgmt_ip4: 10.30.51.22
+        lom_ip4: 10.30.50.22
       - unit: 17..18
         name: s43-nomad
         oper_status: production
         device_type: UCSC-C240-M4S
         serial_number: FCH1950V1H5
-        mgmt_ip4: 10.30.51.33
-        lom_ip4: 10.30.50.33
+        mgmt_ip4: 10.30.51.24
+        lom_ip4: 10.30.50.24
       - unit: 15..16
         name: s44-nomad
         oper_status: production
         device_type: UCSC-C240-M4S
         serial_number: FCH1950V1FS
-        mgmt_ip4: 10.30.51.34
-        lom_ip4: 10.30.50.34
+        mgmt_ip4: 10.30.51.25
+        lom_ip4: 10.30.50.25
       - unit: 13..14
         name: s45-nomad
         oper_status: production
         device_type: UCSC-C240-M4S
         serial_number: FCH1950V1FL
-        mgmt_ip4: 10.30.51.35
-        lom_ip4: 10.30.50.35
+        mgmt_ip4: 10.30.51.26
+        lom_ip4: 10.30.50.26
       - unit: 11..12
         name: s55-t36-sut1
         oper_status: production

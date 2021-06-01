@@ -181,8 +181,8 @@
     owner: "root"
     group: "root"
     mode: 0644
-  notify:
-    - "Restart Nomad"
+#  notify:
+#    - "Restart Nomad"
   tags:
     - nomad-conf
 
