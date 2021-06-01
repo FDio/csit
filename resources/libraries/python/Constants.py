@@ -293,8 +293,6 @@ class Constants:
 
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
-        u"Cisco-VIC-1227": 10000000000,
-        u"Cisco-VIC-1385": 24500000000,
         u"Intel-X520-DA2": 10000000000,
         u"Intel-X553": 10000000000,
         u"Intel-X710": 10000000000,
@@ -308,8 +306,6 @@ class Constants:
 
     # Mapping from NIC name to its pps limit.
     NIC_NAME_TO_PPS_LIMIT = {
-        u"Cisco-VIC-1227": 14880952,
-        u"Cisco-VIC-1385": 18750000,
         u"Intel-X520-DA2": 14880952,
         u"Intel-X553": 14880952,
         u"Intel-X710": 14880952,
@@ -329,8 +325,6 @@ class Constants:
 
     # Suite file names use codes for NICs.
     NIC_NAME_TO_CODE = {
-        u"Cisco-VIC-1227": u"10ge2p1vic1227",
-        u"Cisco-VIC-1385": u"40ge2p1vic1385",
         u"Intel-X520-DA2": u"10ge2p1x520",
         u"Intel-X553": u"10ge2p1x553",
         u"Intel-X710": u"10ge2p1x710",
@@ -343,8 +337,6 @@ class Constants:
 
     # Not each driver is supported by each NIC.
     NIC_NAME_TO_DRIVER = {
-        u"Cisco-VIC-1227": [u"vfio-pci"],
-        u"Cisco-VIC-1385": [u"vfio-pci"],
         u"Intel-X520-DA2": [u"vfio-pci"],
         u"Intel-X553": [u"vfio-pci"],
         u"Intel-X710": [u"vfio-pci", u"avf"],
@@ -385,8 +377,6 @@ class Constants:
 
     # Not each driver is supported by each NIC.
     DPDK_NIC_NAME_TO_DRIVER = {
-        u"Cisco-VIC-1227": [u"vfio-pci"],
-        u"Cisco-VIC-1385": [u"vfio-pci"],
         u"Intel-X520-DA2": [u"vfio-pci"],
         u"Intel-X553": [u"vfio-pci"],
         u"Intel-X710": [u"vfio-pci"],
