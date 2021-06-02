@@ -761,8 +761,10 @@ def plot_ndrpdr_box_name(plot, input_data):
                         hoverinfo=u"y+name"
                     )
                 )
-                data_y_max.append(max(vals))
-
+                try:
+                    data_y_max.append(max(vals))
+                except ValueError as err:
+                    logging.warning(f"No values to use.\n{err!r}")
             try:
                 # Create plot
                 layout = deepcopy(plot[u"layout"])
