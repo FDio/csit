@@ -81,25 +81,44 @@ rst_epilog = u"""
 .. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Cascade Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_clx_hw_bios_cfg.md?h={release}
 .. _Ansible inventory - hosts: https://git.fd.io/csit/tree/fdio.infra.ansible/inventories/lf_inventory/host_vars?h={release}
-.. _FD.io test executor dpdk performance job 3n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-skx
-.. _FD.io test executor dpdk performance job 2n-skx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-skx
-.. _FD.io test executor dpdk performance job 2n-clx: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-clx
-.. _FD.io test executor dpdk performance job 2n-dnv: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-dnv
-.. _FD.io test executor dpdk performance job 3n-dnv: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-dnv
-.. _FD.io test executor dpdk performance job 3n-tsh: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-3n-tsh
-.. _FD.io test executor dpdk performance job 2n-tx2: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-tx2
-.. _FD.io test executor dpdk performance job 2n-zn2: https://jenkins.fd.io/job/csit-dpdk-perf-report-iterative-{srelease}-2n-zn2
-.. _FD.io test executor vpp performance job 3n-skx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-skx
-.. _FD.io test executor vpp performance job 2n-skx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-skx
-.. _FD.io test executor vpp performance job 3n-tsh: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-tsh
-.. _FD.io test executor vpp performance job 2n-tx2: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-tx2
-.. _FD.io test executor vpp performance job 3n-dnv: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-3n-dnv
-.. _FD.io test executor vpp performance job 2n-dnv: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-dnv
-.. _FD.io test executor vpp performance job 2n-clx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-clx
-.. _FD.io test executor vpp performance job 2n-icx: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-icx
-.. _FD.io test executor vpp performance job 2n-zn2: https://jenkins.fd.io/job/csit-vpp-perf-report-iterative-{srelease}-2n-zn2
-.. _FD.io test executor vpp device jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-device-{srelease}-ubuntu1804-1n-skx
-.. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu1804-x86_64/
+.. _build logs from FD.io dpdk performance job 3n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-3n-skx
+.. _build logs from FD.io dpdk performance job 2n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-skx
+.. _build logs from FD.io dpdk performance job 2n-clx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-clx
+.. _build logs from FD.io dpdk performance job 2n-dnv: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-dnv
+.. _build logs from FD.io dpdk performance job 3n-dnv: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-3n-dnv
+.. _build logs from FD.io dpdk performance job 3n-tsh: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-3n-tsh
+.. _build logs from FD.io dpdk performance job 2n-tx2: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-tx2
+.. _build logs from FD.io dpdk performance job 2n-zn2: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-zn2
+.. _build logs from FD.io vpp performance job 3n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-skx
+.. _build logs from FD.io vpp performance job 2n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-skx
+.. _build logs from FD.io vpp performance job 3n-tsh: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-tsh
+.. _build logs from FD.io vpp performance job 2n-tx2: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-tx2
+.. _build logs from FD.io vpp performance job 3n-dnv: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-dnv
+.. _build logs from FD.io vpp performance job 2n-dnv: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-dnv
+.. _build logs from FD.io vpp performance job 2n-clx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-clx
+.. _build logs from FD.io vpp performance job 2n-icx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-icx
+.. _build logs from FD.io vpp performance job 3n-icx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-icx
+.. _build logs from FD.io vpp performance job 2n-zn2: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-zn2
+.. _build logs from FD.io dpdk coverage job 3n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-3n-skx
+.. _build logs from FD.io dpdk coverage job 2n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-skx
+.. _build logs from FD.io dpdk coverage job 2n-clx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-clx
+.. _build logs from FD.io dpdk coverage job 2n-dnv: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-dnv
+.. _build logs from FD.io dpdk coverage job 3n-dnv: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-3n-dnv
+.. _build logs from FD.io dpdk coverage job 3n-tsh: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-3n-tsh
+.. _build logs from FD.io dpdk coverage job 2n-tx2: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-tx2
+.. _build logs from FD.io dpdk coverage job 2n-zn2: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-zn2
+.. _build logs from FD.io vpp coverage job 3n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-skx
+.. _build logs from FD.io vpp coverage job 2n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-skx
+.. _build logs from FD.io vpp coverage job 3n-tsh: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-tsh
+.. _build logs from FD.io vpp coverage job 2n-tx2: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-tx2
+.. _build logs from FD.io vpp coverage job 3n-dnv: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-dnv
+.. _build logs from FD.io vpp coverage job 2n-dnv: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-dnv
+.. _build logs from FD.io vpp coverage job 2n-clx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-clx
+.. _build logs from FD.io vpp coverage job 2n-icx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-icx
+.. _build logs from FD.io vpp coverage job 3n-icx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-icx
+.. _build logs from FD.io vpp coverage job 2n-zn2: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-zn2
+.. _build logs from FD.io vpp device jobs using Ubuntu: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-{srelease}-ubuntu2004-1n-skx
+.. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu2004-x86_64/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/fdio.infra.ansible?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
 """.format(release=u'rls2106',
