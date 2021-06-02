@@ -3,8 +3,9 @@
 
 .. note::
 
-    Data sources for reported test operational data: i) `FD.io test executor vpp
-    performance job 2n-dnv`_, ii) archived FD.io jobs test result `output files
+    Data sources for reported test operational data:
+    i) `build logs from FD.io vpp coverage job 2n-dnv`_,
+    ii) archived FD.io jobs test result `output files
     <../../_static/archive/>`_.
 
 .. toctree::

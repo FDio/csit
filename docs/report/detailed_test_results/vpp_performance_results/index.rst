@@ -4,14 +4,14 @@ VPP Throughput
 .. note::
 
     Data sources for reported test results:
-    i) `FD.io test executor vpp performance job 2n-skx`_,
-    `FD.io test executor vpp performance job 3n-skx`_,
-    `FD.io test executor vpp performance job 2n-clx`_,
-    `FD.io test executor vpp performance job 2n-zn2`_,
-    `FD.io test executor vpp performance job 3n-tsh`_,
-    `FD.io test executor vpp performance job 2n-tx2`_,
-    `FD.io test executor vpp performance job 2n-dnv`_,
-    `FD.io test executor vpp performance job 3n-dnv`_,
+    i) `build logs from FD.io vpp coverage job 2n-skx`_,
+    `build logs from FD.io vpp coverage job 3n-skx`_,
+    `build logs from FD.io vpp coverage job 2n-clx`_,
+    `build logs from FD.io vpp coverage job 2n-zn2`_,
+    `build logs from FD.io vpp coverage job 3n-tsh`_,
+    `build logs from FD.io vpp coverage job 2n-tx2`_,
+    `build logs from FD.io vpp coverage job 2n-dnv`_,
+    `build logs from FD.io vpp coverage job 3n-dnv`_,
     ii) archived FD.io jobs test results
     `output files <../../_static/archive/>`_.
 
