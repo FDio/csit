@@ -126,7 +126,7 @@ class DpdkUtil:
         options.add_equals_from_dict(
             u"max-pkt-len", u"pmd_max_pkt_len", kwargs
         )
-        # Set the max packet length.
+        # Set the mbuf size
         options.add_equals_from_dict(
             u"mbuf-size", u"pmd_mbuf_size", kwargs
         )

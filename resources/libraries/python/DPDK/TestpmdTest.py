@@ -68,7 +68,7 @@ class TestpmdTest:
                 pmd_nb_ports=u"2",
                 pmd_portmask=u"0x3",
                 pmd_max_pkt_len=pmd_max_pkt_len,
-                pmd_mbuf_size=u"16384",
+                pmd_mbuf_size=u"32768",
                 pmd_rxd=rxq_size,
                 pmd_txd=txq_size,
                 pmd_rxq=queue_nums,
