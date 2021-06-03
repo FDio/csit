@@ -22,6 +22,30 @@
       "revId": "1bb2ef1e74179bf0fc36b1aff5a93c0c4437d340",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5aa50d9c_226a7544",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vpp-mlr-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-06-03T12:55:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "343190a0_a701c87a",
+      "range": {
+        "startLine": 2,
+        "startChar": 10,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "1bb2ef1e74179bf0fc36b1aff5a93c0c4437d340",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
