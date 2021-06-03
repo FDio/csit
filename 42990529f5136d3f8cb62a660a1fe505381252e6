@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b64132c4_4ec6fc60",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-03T13:49:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e453979e_cfb49814",
+      "range": {
+        "startLine": 245,
+        "startChar": 54,
+        "endLine": 245,
+        "endChar": 55
+      },
+      "revId": "42990529f5136d3f8cb62a660a1fe505381252e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51933ce2_6caa127a",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 21
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "5b9f75ac_af751664",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 1704,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-03T13:49:42Z",
+      "side": 1,
+      "message": "Nope. That is not the same in context of if..else. I cannot do it for other drivers.",
+      "parentUuid": "5684e1da_73e03bda",
+      "range": {
+        "startLine": 1704,
+        "startChar": 20,
+        "endLine": 1704,
+        "endChar": 21
+      },
+      "revId": "42990529f5136d3f8cb62a660a1fe505381252e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "afe0e9d8_03eb15b0",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 21
@@ -82,6 +130,30 @@
       "writtenOn": "2021-06-03T13:37:19Z",
       "side": 1,
       "message": "Surprising, why not ${rxq_count_int}?",
+      "range": {
+        "startLine": 409,
+        "startChar": 24,
+        "endLine": 409,
+        "endChar": 32
+      },
+      "revId": "42990529f5136d3f8cb62a660a1fe505381252e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f45d878c_1ab2537c",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-03T13:49:42Z",
+      "side": 1,
+      "message": "😄. This is one of the VPP-api-magic-bullet. ...code is correct.",
+      "parentUuid": "afe0e9d8_03eb15b0",
       "range": {
         "startLine": 409,
         "startChar": 24,
