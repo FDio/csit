@@ -33,16 +33,6 @@ Legend to the tables:
 
 .. include:: ../../../_build/_static/vpp/failed-tests-3n-skx-ndrpdr.rst
 
-3n-hsw-mrr
-----------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-3n-hsw.rst
-
-3n-hsw-ndrpdr
--------------
-
-.. include:: ../../../_build/_static/vpp/failed-tests-3n-hsw-ndrpdr.rst
-
 3n-tsh-mrr
 ----------
 
