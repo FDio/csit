@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ba86ef6_f94acbd8",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1716,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-03T18:12:36Z",
+      "side": 1,
+      "message": "Else raise \"driver not supported\"?",
+      "range": {
+        "startLine": 1716,
+        "startChar": 12,
+        "endLine": 1716,
+        "endChar": 13
+      },
+      "revId": "415a9308c99cb4670724d4bb40b3196a3c366430",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "bde80e74_6216df5b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 1704,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-03T18:12:36Z",
+      "side": 1,
+      "message": "Code duplication, just because some day we may add a driver that behaves differently (and we would need to re-duplicate again)?\nI do not agree, but 3 lines and 4 horizontal spaces are not a blocking issue.",
+      "parentUuid": "5b9f75ac_af751664",
+      "range": {
+        "startLine": 1704,
+        "startChar": 20,
+        "endLine": 1704,
+        "endChar": 21
+      },
+      "revId": "42990529f5136d3f8cb62a660a1fe505381252e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "afe0e9d8_03eb15b0",
         "filename": "resources/libraries/robot/shared/interfaces.robot",
         "patchSetId": 21
@@ -154,6 +178,30 @@
       "side": 1,
       "message": "😄. This is one of the VPP-api-magic-bullet. ...code is correct.",
       "parentUuid": "afe0e9d8_03eb15b0",
+      "range": {
+        "startLine": 409,
+        "startChar": 24,
+        "endLine": 409,
+        "endChar": 32
+      },
+      "revId": "42990529f5136d3f8cb62a660a1fe505381252e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8fce646_8bd37d91",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-03T18:12:36Z",
+      "side": 1,
+      "message": "I see the VPP .api comment \"65535 can be used as special value to request all available queues\".\nI also see \"The AF_XDP interface will claim NIC RX queue starting from 0, up to the requested number of RX queues (only 1 by default).\" in VPP .md doc.\nIs that the reason? Contrary to other drivers (such as AVF), this driver does not create the queues, it just claims them (they were created in a previous initialization layer, honoring ${rxq_count_int} value).\n\nIf that is true, the difference in behavior is only visible when the caller changed ${rxq_count_int} value since the previous layer, and using 65535 here prevents such callers from losing packets due to unhandled queues.\nThe previous layer is \"Pre-initialize layer af_xdp on all DUTs\", I think.\n\nSo I agree 65535 value works, but for ordinary maintainers it still looks surprising, and needs a mention in Documentation (or use the unsurprising ${rxq_count_int} which does not need a mention in Documentation).",
+      "parentUuid": "f45d878c_1ab2537c",
       "range": {
         "startLine": 409,
         "startChar": 24,
