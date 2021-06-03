@@ -408,6 +408,30 @@
     },
     {
       "key": {
+        "uuid": "464c6be1_5cf9b30c",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-03T11:23:07Z",
+      "side": 1,
+      "message": "Then add :raises: (already to constructor, if it accepts string values which fail to convert).",
+      "parentUuid": "2d314bca_ca738036",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 20
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c5be9ebd_5be3ba73",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 15
@@ -467,6 +491,30 @@
       "side": 1,
       "message": "Or maybe this:\ncreate spd bidir match nth entry [outbound] [bypass]\n\nA bit shorter, not sure if as clear. Or maybe even clearer?",
       "parentUuid": "52073339_f5f57ac8",
+      "range": {
+        "startLine": 706,
+        "startChar": 30,
+        "endLine": 706,
+        "endChar": 44
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6cbb69e_7be033e6",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-03T11:23:07Z",
+      "side": 1,
+      "message": "Currently I prefer vpp_ipsec_create_spds_match_nth_entry.\n\nIn the dosctring, mention that the implementation is currently hardcoded to be bidirectional, outbound, and uses bypass action, but that we can add optional arguments to tweak such details in the future, without changing the keyword name.",
+      "parentUuid": "dd62b134_8b1582af",
       "range": {
         "startLine": 706,
         "startChar": 30,
