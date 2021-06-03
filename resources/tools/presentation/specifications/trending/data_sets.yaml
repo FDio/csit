@@ -5,9 +5,6 @@
 - type: "data-sets"
 
   # Compressed failed tests (last builds)
-  table-last-failed-tests-3n-hsw:
-    csit-vpp-perf-mrr-daily-master:
-      - "lastCompletedBuild"
   table-last-failed-tests-3n-skx:
     csit-vpp-perf-mrr-daily-master-3n-skx:
       - "lastCompletedBuild"
@@ -32,9 +29,6 @@
   table-last-failed-tests-2n-dnv:
     csit-vpp-perf-mrr-daily-master-2n-dnv:
       - "lastCompletedBuild"
-  table-last-failed-tests-3n-hsw-ndrpdr:
-    csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
-      - "lastCompletedBuild"
   table-last-failed-tests-3n-skx-ndrpdr:
     csit-vpp-perf-ndrpdr-weekly-master-3n-skx:
       - "lastCompletedBuild"
@@ -43,9 +37,6 @@
       - "lastCompletedBuild"
   table-last-failed-tests-2n-clx-ndrpdr:
     csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
-      - "lastCompletedBuild"
-  table-last-failed-tests-dpdk-3n-hsw:
-    csit-dpdk-perf-mrr-weekly-master:
       - "lastCompletedBuild"
   table-last-failed-tests-dpdk-3n-skx:
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
@@ -67,23 +58,23 @@
   plot-performance-trending-all-3n-hsw:
     csit-vpp-perf-mrr-daily-master:
       start: 1100
-      end: "lastCompletedBuild"
+      end: 1704
       max-builds: 180
     csit-dpdk-perf-mrr-weekly-master:
       start: 107
-      end: "lastCompletedBuild"
+      end: 179
       max-builds: 26
 
   plot-performance-trending-vpp-3n-hsw:
     csit-vpp-perf-mrr-daily-master:
       start: 1100
-      end: "lastCompletedBuild"
+      end: 1704
       max-builds: 180
 
   plot-performance-trending-dpdk-3n-hsw:
     csit-dpdk-perf-mrr-weekly-master:
       start: 107
-      end: "lastCompletedBuild"
+      end: 179
       max-builds: 26
 
   # 3n-skx
@@ -238,7 +229,7 @@
   plot-ndrpdr-comparison-3n-hsw:
     csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
       start: 76
-      end: "lastCompletedBuild"
+      end: 142
       max-builds: 26
 
   table-ndrpdr-comparison-2n-skx:
@@ -258,13 +249,6 @@
   table-ndrpdr-comparison-2n-clx:
     csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
       start: 21
-      end: "lastCompletedBuild"
-      max-builds: 26
-      reverse: True  # Must be reversed
-
-  table-ndrpdr-comparison-3n-hsw:
-    csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
-      start: 76
       end: "lastCompletedBuild"
       max-builds: 26
       reverse: True  # Must be reversed

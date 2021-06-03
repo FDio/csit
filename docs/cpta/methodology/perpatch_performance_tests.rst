@@ -15,7 +15,7 @@ They are not started automatically, must be triggered on demand.
 They allow full tag expressions, but some tags are enforced (such as MRR).
 
 Only the three types of tesbed based on Xeon processors have jobs created.
-Their Gerrit triggers words are "perftest-3n-hsw", "perftest-3n-skx"
+Their Gerrit triggers words are "perftest-3n-skx"
 and "perftest-2n-skx".
 
 If additional arguments are added to the Gerrit trigger, they are treated
