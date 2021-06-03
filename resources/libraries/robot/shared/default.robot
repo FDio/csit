@@ -246,7 +246,10 @@
 | |
 | | ... | *Arguments:*
 | | ... | - phy_cores - Number of physical cores to use. Type: integer
+| | ... | - dp_cores - Number of cores to use for dataplane work. Type: integer
+| | ... |   None means the same as phy_cores.
 | | ... | - rx_queues - Number of RX queues. Type: integer
+| | ... |   None means autodetect (based on SMT, ratio and dp_cores).
 | | ... | - rxd - Number of RX descriptors. Type: integer
 | | ... | - txd - Number of TX descriptors. Type: integer
 | |
@@ -255,10 +258,13 @@
 | | ... | \| Add worker threads to all DUTs \| ${1} \| ${1} \|
 | |
 | | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxd}=${None}
-| | ... | ${txd}=${None}
+| | ... | ${txd}=${None} | ${dp_cores}=${None}
 | |
-| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
-| | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | ${dp_count}= | Set Variable If | "${dp_cores}" == "None"
+| | ... | ${phy_cores} | ${dp_cores}
+| | ${cpu_count_int}= | Convert to Integer | ${phy_cores}
+| | ${thr_count_int}= | Convert to Integer | ${phy_cores}
+| | ${dp_count_int}= | Convert to Integer | ${dp_count}
 | | ${rxd_count_int}= | Set variable | ${rxd}
 | | ${txd_count_int}= | Set variable | ${txd}
 | | FOR | ${dut} | IN | @{duts}
@@ -276,10 +282,13 @@
 | | | ${thr_count_int}= | Run Keyword If | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
+| | | ${dp_thr_count_int}= | Run Keyword If | ${smt_used}
+| | | ... | Evaluate | int(${dp_count_int}*2)
+| | | ... | ELSE | Set variable | ${dp_count_int}
 | | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${1}
 | | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
+| | | ... | ELSE | Evaluate | int(${dp_thr_count_int}/${rxq_ratio})
 | | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}

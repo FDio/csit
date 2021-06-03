@@ -97,7 +97,7 @@
 | | ... | - phy_cores - Total number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${1}. Type: integer
 | |
-| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${1}
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
 | |
@@ -107,6 +107,7 @@
 | |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | ... | dp_cores=${dp_cores}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
