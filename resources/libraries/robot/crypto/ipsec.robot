@@ -245,11 +245,11 @@
 | |
 | | [Arguments] | ${dp_cores}
 | |
-| | VPP Round Robin Rx Placement on all DUTs
+| | ${list_of_lists} = | VPP Round Robin Rx Placement on all DUTs
 | | ... | ${nodes} | prefix=${EMPTY} | dp_core_limit=${dp_cores}
-| | FOR | ${dut} | IN | @{duts}
+| | FOR | ${index} | ${dut} | IN ENUMERATE | @{duts}
 | | | Disable Crypto Work of VPP Worker Threads on node
-| | | ... | ${dut} | ${dp_cores}
+| | | ... | ${dut} | ${list_of_lists}[${index}]
 | | END
 
 | Disable Crypto Work of VPP Worker Threads on node
@@ -259,13 +259,12 @@
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
-| | ... | - dp_cores - Number of physical cores. Type: integer
+| | ... | - worker_ids - IDs of workers to disable work on.
+| | ... | Type: list of integers
 | |
-| | [Arguments] | ${dut} | ${dp_cores}
+| | [Arguments] | ${dut} | ${worker_ids}
 | |
-| | # Workers From Physical Cores keyword is currently defined in default.robot
-| | ${dp_worker_count} = | Workers From Physical Cores | ${dp_cores}
-| | FOR | ${worker_index} | IN RANGE | ${dp_worker_count}
+| | FOR | ${worker_index} | IN | @{worker_ids}
 | | | VPP IPSec Crypto SW Scheduler Set Worker
 | | | ... | ${nodes['${dut}']} | ${worker_index} | crypto_enable=${False}
 | | END

@@ -1725,40 +1725,67 @@ class InterfaceUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_round_robin_rx_placement(
-        node, prefix, dp_worker_limit=None
-    ):
-        """Set Round Robin interface RX placement on all worker threads
-        on node.
+    def vpp_round_robin_rx_placement(node, prefix, cpu_ids=None):
+        """Set Round Robin interface RX placement for all workers on node.
 
-        If specified, dp_core_limit limits the number of physical cores used
+        Use prefix to limit interface type.
+
+        If no workers are used (e.g. in device test), return early.
+
+        If specified, cpu_ids restricts the number logical core IDs to use
         for data plane I/O work. Other cores are presumed to do something else,
         e.g. asynchronous crypto processing.
         None means all workers are used for data plane work.
-        Note this keyword specifies workers, not cores.
 
-        :param node: Topology nodes.
+        Beware, the worker ordering when cpu_ids is not specified (None)
+        is different (for compatibility reasons) than when it is specified.
+        When not specified, workers are ordered by their ID.
+        When specified, the provided order is used,
+        usually meaning workers pinned to sibling cores are preferred.
+
+        The list of worker IDs is computed and returned, so other keywords
+        can use it. Returns None if cpu_ids were not specified.
+
+        :param node: Topology node.
         :param prefix: Interface name prefix.
-        :param dp_worker_limit: How many cores for data plane work.
+        :param cpu_ids: If given, use workers on these only, in this order.
         :type node: dict
         :type prefix: str
-        :type dp_worker_limit: Optional[int]
+        :type cpu_its: Optional[Iterable[int]]
+        :returns: List of worker IDs if cpu_ids was specified.
+        :rtype: Optional[List[int]]
         """
-        worker_id = 0
-        worker_cnt = len(VPPUtil.vpp_show_threads(node)) - 1
-        if dp_worker_limit is not None:
-            worker_cnt = min(worker_cnt, dp_worker_limit)
+        thread_data = VPPUtil.vpp_show_threads(node)
+        worker_cnt = len(thread_data) - 1
         if not worker_cnt:
-            return
+            return None
+        cpu_to_worker_id = dict()
+        for item in thread_data:
+            if u"vpp_wk_" not in item.name:
+                continue
+            worker_id = int(item.name[7:])
+            cpu_to_worker_id[item.cpu_id] = worker_id
+        # TODO: Store cpu_to_worker_id to Topology?
+        if cpu_ids is None:
+            worker_ids = None
+        else:
+            worker_ids = [cpu_to_worker_id[cpu_id] for cpu_id in cpu_ids]
+            worker_cnt = len(worker_ids)
+        id_counter = 0
         for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
             for interface in node[u"interfaces"].values():
                 if placement[u"sw_if_index"] == interface[u"vpp_sw_index"] \
                     and prefix in interface[u"name"]:
+                    if worker_ids is None:
+                        worker_id = id_counter % worker_cnt
+                    else:
+                        worker_id = worker_ids[id_counter % worker_cnt]
                     InterfaceUtil.vpp_sw_interface_set_rx_placement(
                         node, placement[u"sw_if_index"], placement[u"queue_id"],
-                        worker_id % worker_cnt
+                        worker_id
                     )
-                    worker_id += 1
+                    id_counter += 1
+        return worker_ids
 
     @staticmethod
     def vpp_round_robin_rx_placement_on_all_duts(
@@ -1771,21 +1798,34 @@ class InterfaceUtil:
         for data plane I/O work. Other cores are presumed to do something else,
         e.g. asynchronous crypto processing.
         None means all cores are used for data plane work.
-        Note this keyword specifies cores, not workers.
+        Note this keyword specifies physical cores, not workers.
+
+        Beware, the worker ordering when dp_core_limit is not specified
+        is different (for compatibility reasons) than when it is specified.
+        When not specified, workers are ordered by their ID.
+        When specified, workers pinned to sibling cores are preferred.
+
+        The list of worker IDs is computed and returned, so other keywords
+        can use it. Returns None if dp_core_limit was not specified.
+        The actual return value is list of lists (IDs for each DUT node).
 
         :param nodes: Topology nodes.
         :param prefix: Interface name prefix.
-        :param dp_worker_limit: How many cores for data plane work.
+        :param dp_core_limit: How many cores for data plane work.
         :type nodes: dict
         :type prefix: str
-        :type dp_worker_limit: Optional[int]
+        :type dp_core_limit: Optional[int]
+        :returns: Lists of worker IDs if dp_core_limit was specified.
+        :rtype: List[Optional[List[int]]]
         """
-        for node in nodes.values():
+        ret = list()
+        for name, node in nodes.items():
             if node[u"type"] == NodeType.DUT:
-                dp_worker_limit = CpuUtils.worker_count_from_cores_and_smt(
-                    phy_cores=dp_core_limit,
-                    smt_used=CpuUtils.is_smt_enabled(node[u"cpuinfo"]),
+                cpu_ids = CpuUtils.get_affinity_dataplane(
+                    nodes, name, physical_cores=dp_core_limit
+                ) if dp_core_limit else None
+                worker_ids = InterfaceUtil.vpp_round_robin_rx_placement(
+                    node, prefix, cpu_ids
                 )
-                InterfaceUtil.vpp_round_robin_rx_placement(
-                    node, prefix, dp_worker_limit
-                )
+                ret.append(worker_ids)
+        return ret
