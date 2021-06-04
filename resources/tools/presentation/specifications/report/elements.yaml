@@ -1416,9 +1416,9 @@
   filter: "'1T1C'"
   columns:
     - title: "2009.0-6"
-      data-set: "vpp-3n-tsh-hist-iter-new-env"
+      data-set: "vpp-2n-tx2-hist-iter-new-env"
     - title: "2101.0-6"
-      data-set: "vpp-3n-tsh-prev-iter-old-env"
+      data-set: "vpp-2n-tx2-prev-iter-old-env"
     - title: "2101.0-7"
       data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2106.0-7"
@@ -1447,9 +1447,9 @@
   filter: "'2T2C'"
   columns:
     - title: "2009.0-6"
-      data-set: "vpp-3n-tsh-hist-iter-new-env"
+      data-set: "vpp-2n-tx2-hist-iter-new-env"
     - title: "2101.0-6"
-      data-set: "vpp-3n-tsh-prev-iter-old-env"
+      data-set: "vpp-2n-tx2-prev-iter-old-env"
     - title: "2101.0-7"
       data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2106.0-7"
@@ -1478,9 +1478,9 @@
   filter: "'1T1C'"
   columns:
     - title: "2009.0-6"
-      data-set: "vpp-3n-tsh-hist-iter-new-env"
+      data-set: "vpp-2n-tx2-hist-iter-new-env"
     - title: "2101.0-6"
-      data-set: "vpp-3n-tsh-prev-iter-old-env"
+      data-set: "vpp-2n-tx2-prev-iter-old-env"
     - title: "2101.0-7"
       data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2106.0-7"
@@ -1509,9 +1509,9 @@
   filter: "'2T2C'"
   columns:
     - title: "2009.0-6"
-      data-set: "vpp-3n-tsh-hist-iter-new-env"
+      data-set: "vpp-2n-tx2-hist-iter-new-env"
     - title: "2101.0-6"
-      data-set: "vpp-3n-tsh-prev-iter-old-env"
+      data-set: "vpp-2n-tx2-prev-iter-old-env"
     - title: "2101.0-7"
       data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2106.0-7"
@@ -4619,22 +4619,22 @@
   - "parent"
   - "msg"
 
-# Detailed Test Results - DPDK Performance Results 2n-tx2
-- type: "table"
-  title: "Detailed Test Results - DPDK Performance Results 2n-tx2"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,PERF,DPDK,2N,TX2]}/dpdk_performance_results_2n_tx2"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-      data: "data msg"
-  data: "dpdk-2n-tx2-curr-iter-best"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "msg"
+# # Detailed Test Results - DPDK Performance Results 2n-tx2
+# - type: "table"
+#   title: "Detailed Test Results - DPDK Performance Results 2n-tx2"
+#   algorithm: "table_merged_details"
+#   output-file: "{DIR[DTR,PERF,DPDK,2N,TX2]}/dpdk_performance_results_2n_tx2"
+#   columns:
+#     - title: " |prein| Test Name |preout| "
+#       data: "data name"
+#     - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+#       data: "data msg"
+#   data: "dpdk-2n-tx2-curr-iter-best"
+#   filter: "all"
+#   parameters:
+#   - "name"
+#   - "parent"
+#   - "msg"
 
 ################################################################################
 ###                                F I L E S                                 ###
@@ -5060,15 +5060,15 @@
   filter: "all"
   data-start-level: 4
 
-# DPDK Performance Results 2n-tx2
-- type: "file"
-  title: "DPDK Performance Results 2n-tx2"
-  algorithm: "file_test_results"
-  output-file: "{DIR[DTR,PERF,DPDK,2N,TX2]}"
-  dir-tables: "{DIR[DTR,PERF,DPDK,2N,TX2]}"
-  data: "dpdk-2n-tx2-curr-iter-best"
-  filter: "all"
-  data-start-level: 4
+# # DPDK Performance Results 2n-tx2
+# - type: "file"
+#   title: "DPDK Performance Results 2n-tx2"
+#   algorithm: "file_test_results"
+#   output-file: "{DIR[DTR,PERF,DPDK,2N,TX2]}"
+#   dir-tables: "{DIR[DTR,PERF,DPDK,2N,TX2]}"
+#   data: "dpdk-2n-tx2-curr-iter-best"
+#   filter: "all"
+#   data-start-level: 4
 
 ################################################################################
 ###                                P L O T S                                 ###
@@ -8717,18 +8717,18 @@
 
 # 2n-tx2-xl710
 
-- type: "plot"
-  title: "DPDK Throughput: 2n-tx2-xl710-64b-{core}-base-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,DPDK]}/2n-tx2-xl710-64b-{core}-base-{test_type}"
-  data: "dpdk-2n-tx2-curr-iter"
-  core: ["1t1c", "2t2c"]
-  include:
-    - "tests.dpdk.perf.2N1L-40ge2p1xl710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
-    - "tests.dpdk.perf.2N1L-40ge2p1xl710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
-  layout:
-    title: "2n-tx2-xl710-64b-{core}-base-{test_type}"
-    layout: "plot-throughput"
+# - type: "plot"
+#   title: "DPDK Throughput: 2n-tx2-xl710-64b-{core}-base-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,DPDK]}/2n-tx2-xl710-64b-{core}-base-{test_type}"
+#   data: "dpdk-2n-tx2-curr-iter"
+#   core: ["1t1c", "2t2c"]
+#   include:
+#     - "tests.dpdk.perf.2N1L-40ge2p1xl710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
+#     - "tests.dpdk.perf.2N1L-40ge2p1xl710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
+#   layout:
+#     title: "2n-tx2-xl710-64b-{core}-base-{test_type}"
+#     layout: "plot-throughput"
 
 ################################################################################
 ###   2n-clx                                                                 ###
@@ -11975,16 +11975,16 @@
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
-- type: "plot"
-  title: "Latency by percentile: DPDK 2n-tx2"
-  algorithm: "plot_hdrh_lat_by_percentile_x_log"
-  output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-2n-tx2"
-  output-file-links: "{DIR[LAT,DPDK]}/2n-tx2.rst"
-  target-links: "../../_static/dpdk"
-  data: "dpdk-2n-tx2-curr-iter-best"
-  filter: "'1T1C' and 'NIC_Intel-XL710'"
-  layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
+# - type: "plot"
+#   title: "Latency by percentile: DPDK 2n-tx2"
+#   algorithm: "plot_hdrh_lat_by_percentile_x_log"
+#   output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-2n-tx2"
+#   output-file-links: "{DIR[LAT,DPDK]}/2n-tx2.rst"
+#   target-links: "../../_static/dpdk"
+#   data: "dpdk-2n-tx2-curr-iter-best"
+#   filter: "'1T1C' and 'NIC_Intel-XL710'"
+#   layout:
+#     layout: "plot-hdrh-latency-percentile-x-log"
 
 ###############################################################################
 
