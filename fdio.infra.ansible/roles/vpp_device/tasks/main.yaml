@@ -1,17 +1,7 @@
 ---
 # file: roles/vpp_device/tasks/main.yaml
 
-- name: VPP_device - Load Kernel Modules By Default
-  lineinfile:
-    path: "/etc/modules"
-    state: "present"
-    line: "{{ item }}"
-  with_items:
-    - "vfio-pci"
-  tags:
-    - load-kernel-modules
-
-- name: VPP_device - Disable ipv6 router advertisement
+- name: Disable IPv6 Router Advertisement
   sysctl:
     name: "net.ipv6.conf.default.accept_ra"
     value: "0"
@@ -21,7 +11,7 @@
   tags:
     - set-sysctl
 
-- name: VPP_device - Disable ipv6 router advertisement
+- name: Disable IPv6 Router Advertisement
   sysctl:
     name: "net.ipv6.conf.all.accept_ra"
     value: "0"
@@ -31,45 +21,45 @@
   tags:
     - set-sysctl
 
-- name: VPP_device - Copy csit-initialize-vfs.sh
+- name: Copy csit-initialize-vfs.sh
   copy:
    src: "files/csit-initialize-vfs.sh"
    dest: "/usr/local/bin/"
    owner: "root"
    group: "root"
-   mode: "744"
+   mode: 0744
   tags:
     - copy-vf-script
 
-- name: VPP_device - Copy csit-initialize-vfs-data.sh
+- name: Copy csit-initialize-vfs-data.sh
   copy:
    src: "files/{{ vfs_data_file }}"
    dest: "/usr/local/bin/csit-initialize-vfs-data.sh"
    owner: "root"
    group: "root"
-   mode: "744"
+   mode: 0744
   tags: copy-vf-data-script
   when:
     - vfs_data_file is defined
 
-- name: VPP_device - Copy default csit-initialize-vfs-data.sh
+- name: Copy Default csit-initialize-vfs-data.sh
   copy:
    src: "files/csit-initialize-vfs-default.sh"
    dest: "/usr/local/bin/csit-initialize-vfs-data.sh"
    owner: "root"
    group: "root"
-   mode: "744"
+   mode: 0744
   tags: copy-vf-data-script
   when:
     - vfs_data_file is not defined
 
-- name: VPP_device - Start csit-initialize-vfs.service
+- name: Start csit-initialize-vfs.service
   copy:
    src: "files/csit-initialize-vfs.service"
    dest: "/etc/systemd/system/"
    owner: "root"
    group: "root"
-   mode: "644"
+   mode: 0644
   notify:
     - "Start csit-initialize-vfs.service"
   tags:
@@ -77,7 +67,7 @@
 
 - meta: flush_handlers
 
-- name: VPP_device - Set hugepages in GRUB
+- name: Set Hugepages In GRUB
   lineinfile:
     path: "/etc/default/grub"
     state: "present"
@@ -85,8 +75,34 @@
     line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value %}{{key}}={{value}} {% else %}{{key}} {% endif %}{% endfor %}\""
   notify:
     - "Update GRUB"
-    - "Reboot server"
   tags:
     - set-grub
+
+- name: Download iAVF driver
+  get_url:
+    url: "{{ iavf_url }}"
+    dest: "{{ iavf_target_dir }}/iavf-{{ iavf_version }}.tar.gz"
+    validate_certs: False
+    mode: 0644
+  tags:
+    - install-iavf
+
+- name: Extract iAVF driver
+  unarchive:
+    remote_src: true
+    src: "{{ iavf_target_dir }}/iavf-{{ iavf_version }}.tar.gz"
+    dest: "{{ iavf_target_dir }}/"
+    creates: "{{ iavf_target_dir }}/iavf-{{ iavf_version }}/src/"
+  tags:
+    - install-iavf
+
+- name: Compile iAVF driver
+  command: "make install"
+  args:
+      chdir: "{{ iavf_target_dir }}/iavf-{{ iavf_version }}/src/"
+  notify:
+    - "Reboot server"
+  tags:
+    - install-iavf
 
 - meta: flush_handlers
