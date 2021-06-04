@@ -1740,6 +1740,7 @@ class InterfaceUtil:
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
         current_driver = DUTSetup.get_pci_dev_driver(
             node, pf_pci_addr.replace(u":", r"\:"))
+        pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
 
         VPPUtil.stop_vpp_service(node)
         if current_driver != kernel_driver:
@@ -1754,6 +1755,11 @@ class InterfaceUtil:
         # Initialize PCI VFs.
         DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs)
 
+        if not numvfs:
+            InterfaceUtil.set_linux_interface_trust_on(node, pf_dev)
+            if osi_layer == u"L2":
+                InterfaceUtil.set_linux_interface_spoof_off(node, pf_dev)
+
         vf_ifc_keys = []
         # Set MAC address and bind each virtual function to uio driver.
         for vf_id in range(numvfs):
@@ -1763,7 +1769,6 @@ class InterfaceUtil:
                  ]
             )
 
-            pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
             InterfaceUtil.set_linux_interface_trust_on(
                 node, pf_dev, vf_id=vf_id
             )
