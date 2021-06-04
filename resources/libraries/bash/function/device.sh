@@ -263,8 +263,8 @@ function get_available_interfaces () {
             # Add Intel Corporation XL710/X710 Virtual Function to the
             # whitelist.
             pci_id="0x154c"
-            tg_netdev=(enp24)
-            dut1_netdev=(enp59)
+            tg_netdev=(ens1 enp24)
+            dut1_netdev=(ens5 enp59)
             ;;
        "1n_tx2")
             # Add Intel Corporation XL710/X710 Virtual Function to the
@@ -601,6 +601,8 @@ function start_topology_containers () {
     # Mount vfio to be able to bind to see bound interfaces. We cannot use
     # --device=/dev/vfio as this does not see newly bound interfaces.
     dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
+    # Disable manipulation with hugepages by VPP.
+    dcr_stc_params+="--volume /dev/null:/etc/sysctl.d/80-vpp.conf "
     # Mount docker.sock to be able to use docker deamon of the host.
     dcr_stc_params+="--volume /var/run/docker.sock:/var/run/docker.sock "
     # Mount /opt/boot/ where VM kernel and initrd are located.

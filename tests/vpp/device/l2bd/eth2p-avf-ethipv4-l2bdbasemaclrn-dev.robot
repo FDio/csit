@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,32 +15,32 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | IP4FWD | BASE | DOT1Q | IP4BASE | DRV_AVF
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | avf-dot1qip4-l2bdbasemaclrn
+| ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | DRV_AVF
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | EXPECTED_FAILING
+| ... | avf-ethipv4-l2bdbasemaclrn
 |
 | Suite Setup | Setup suite topology interfaces | scapy
-| Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv4 routing with IEEE 802.1Q test cases*
+| Documentation | *L2 bridge-domain test cases*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with\
-| ... | single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing. IEEE 802.1Q\
-| ... | tagging is applied on links between TG-DUT1.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and\
-| ... | two static IPv4 /30 route entries. DUT1 is tested with ${nic_name}.
-| ... | *[Ver] TG verification:* Test IPv4 packets are sent in one direction \
-| ... | by TG on link to DUT1; on receive TG verifies packets for correctness \
-| ... | and drops as applicable.
-| ... | *[Ref] Applicable standard specifications:* IEEE 802.1q.
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
+| ... | with single links between nodes.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.\
+| ... | Both apply to all links.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-domain \
+| ... | switching.
+| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61 \
+| ... | are sent in both directions by TG on links to DUT1; on receive TG \
+| ... | verifies packets for correctness and their IPv4 src-addr, \
+| ... | dst-addr and MAC addresses.
+| ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
-| @{plugins_to_enable}= | avf_plugin.so
+| @{plugins_to_enable}= | avf_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | avf
@@ -48,7 +48,7 @@
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 1
-| ${overhead}= | ${4}
+| ${overhead}= | ${0}
 
 *** Keywords ***
 | Local Template
@@ -72,12 +72,11 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize layer dot1q
 | | And Initialize L2 bridge domain
 | | Then Send IPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 
 *** Test Cases ***
-| 68B-avf-dot1qip4-l2bdbasemaclrn-dev
-| | [Tags] | 68B
-| | frame_size=${68} | phy_cores=${0}
+| 64B-avf-ethipv4-l2bdbasemaclrn-dev
+| | [Tags] | 64B
+| | frame_size=${64} | phy_cores=${0}
