@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2020 Cisco and/or its affiliates.
-# Copyright (c) 2019 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -86,17 +86,18 @@ function download_ubuntu_artifacts () {
             repository installation was not successful."
     fi
 
-    packages=$(apt-cache -o Dir::Etc::SourceList=${apt_fdio_repo_file} \
-               -o Dir::Etc::SourceParts=${apt_fdio_repo_file} dumpavail \
+    apt_cache_options="\
+        -o Dir::Etc::SourceList=$(basename ${apt_fdio_repo_file}) \
+        -o Dir::Etc::SourceParts=$(dirname ${apt_fdio_repo_file})"
+
+    packages=$(apt-cache ${apt_cache_options} dumpavail \
                | grep Package: | cut -d " " -f 2 | grep vpp) || {
                    die "Retrieval of available VPP packages failed."
                }
     if [ -z "${VPP_VERSION-}" ]; then
         # If version is not specified, find out the most recent version
-        VPP_VERSION=$(apt-cache -o Dir::Etc::SourceList=${apt_fdio_repo_file} \
-                      -o Dir::Etc::SourceParts=${apt_fdio_repo_file} \
-                      --no-all-versions show vpp | grep Version: | \
-                      cut -d " " -f 2) || {
+        VPP_VERSION=$(apt-cache ${apt_cache_options} --no-all-versions \
+                      show vpp | grep Version: | cut -d " " -f 2) || {
                           die "Retrieval of most recent VPP version failed."
                       }
     fi
