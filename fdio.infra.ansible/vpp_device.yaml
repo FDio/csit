@@ -2,7 +2,7 @@
 # file: vpp_device.yaml
 
 - hosts: vpp_device
-  remote_user: testuser
+  remote_user: localadmin
   become: yes
   become_user: root
   gather_facts: false
