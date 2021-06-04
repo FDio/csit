@@ -1146,7 +1146,7 @@
       - 19  # rls2009 NDRPDR iter env 6
       - 20  # rls2009 NDRPDR iter env 6
 
-  vpp-2n-tx2-iter-old-env:
+  vpp-2n-tx2-prev-iter-old-env:
     csit-vpp-perf-report-iterative-2101-2n-tx2:
       - 22  # rls2101.rel NDRPDR iter env 6
       - 23  # rls2101.rel NDRPDR iter env 6
