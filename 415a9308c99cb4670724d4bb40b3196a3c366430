@@ -22,6 +22,30 @@
       "revId": "415a9308c99cb4670724d4bb40b3196a3c366430",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac770685_3683acdb",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 1716,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-04T05:33:23Z",
+      "side": 1,
+      "message": "Again comments just to prove you are smart enough? Read the code properly.",
+      "parentUuid": "8ba86ef6_f94acbd8",
+      "range": {
+        "startLine": 1716,
+        "startChar": 12,
+        "endLine": 1716,
+        "endChar": 13
+      },
+      "revId": "415a9308c99cb4670724d4bb40b3196a3c366430",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
