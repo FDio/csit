@@ -1,0 +1,163 @@
+<<<<<<< HEAD   (091ec6 Requirements sync)
+=======
+---
+# file: roles/vpp_device/tasks/main.yaml
+
+- name: VPP_device - Load Kernel Modules By Default
+  lineinfile:
+    path: "/etc/modules"
+    state: "present"
+    line: "{{ item }}"
+  with_items:
+    - "vfio-pci"
+  when:
+    - cpu_microarchitecture == "thunderx2"
+  tags:
+    - load-kernel-modules
+
+- name: Disable IPv6 Router Advertisement
+  sysctl:
+    name: "net.ipv6.conf.default.accept_ra"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Disable IPv6 Router Advertisement
+  sysctl:
+    name: "net.ipv6.conf.all.accept_ra"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Disable IPv6 MLDv1 interval
+  sysctl:
+    name: "net.ipv6.conf.all.mldv1_unsolicited_report_interval=0"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Disable IPv6 MLDv2 interval
+  sysctl:
+    name: "net.ipv6.conf.all.mldv2_unsolicited_report_interval=0"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Disable IPv6 Autoconf
+  sysctl:
+    name: "net.ipv6.conf.all.autoconf=0"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Disable IPv6 MC Forwarding
+  sysctl:
+    name: "net.ipv6.conf.all.mc_forwarding=0"
+    value: "0"
+    state: "present"
+    sysctl_file: "/etc/sysctl.d/90-csit.conf"
+    reload: "yes"
+  tags:
+    - set-sysctl
+
+- name: Copy csit-initialize-vfs.sh
+  copy:
+   src: "files/csit-initialize-vfs.sh"
+   dest: "/usr/local/bin/"
+   owner: "root"
+   group: "root"
+   mode: 0744
+  tags:
+    - copy-vf-script
+
+- name: Copy csit-initialize-vfs-data.sh
+  copy:
+   src: "files/{{ vfs_data_file }}"
+   dest: "/usr/local/bin/csit-initialize-vfs-data.sh"
+   owner: "root"
+   group: "root"
+   mode: 0744
+  tags: copy-vf-data-script
+  when:
+    - vfs_data_file is defined
+
+- name: Copy Default csit-initialize-vfs-data.sh
+  copy:
+   src: "files/csit-initialize-vfs-default.sh"
+   dest: "/usr/local/bin/csit-initialize-vfs-data.sh"
+   owner: "root"
+   group: "root"
+   mode: 0744
+  tags: copy-vf-data-script
+  when:
+    - vfs_data_file is not defined
+
+- name: Start csit-initialize-vfs.service
+  copy:
+   src: "files/csit-initialize-vfs.service"
+   dest: "/etc/systemd/system/"
+   owner: "root"
+   group: "root"
+   mode: 0644
+  notify:
+    - "Start csit-initialize-vfs.service"
+  tags:
+    - start-vf-service
+
+- meta: flush_handlers
+
+- name: Set Hugepages In GRUB
+  lineinfile:
+    path: "/etc/default/grub"
+    state: "present"
+    regexp: "^GRUB_CMDLINE_LINUX="
+    line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value %}{{key}}={{value}} {% else %}{{key}} {% endif %}{% endfor %}\""
+  notify:
+    - "Update GRUB"
+  tags:
+    - set-grub
+
+- name: Download iAVF driver
+  get_url:
+    url: "{{ iavf_url }}"
+    dest: "{{ iavf_target_dir }}/iavf-{{ iavf_version }}.tar.gz"
+    validate_certs: False
+    mode: 0644
+  tags:
+    - install-iavf
+
+- name: Extract iAVF driver
+  unarchive:
+    remote_src: true
+    src: "{{ iavf_target_dir }}/iavf-{{ iavf_version }}.tar.gz"
+    dest: "{{ iavf_target_dir }}/"
+    creates: "{{ iavf_target_dir }}/iavf-{{ iavf_version }}/src/"
+  tags:
+    - install-iavf
+
+- name: Compile iAVF driver
+  command: "make install"
+  args:
+      chdir: "{{ iavf_target_dir }}/iavf-{{ iavf_version }}/src/"
+  notify:
+    - "Reboot server"
+  tags:
+    - install-iavf
+
+- meta: flush_handlers
+>>>>>>> CHANGE (f754ea Infra: vpp_device -> Ubuntu 20.04)
