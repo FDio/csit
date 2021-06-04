@@ -1569,7 +1569,11 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
     - ring3 10GE-ports x710-4p10GE:
         - s1-t11-sut1-c2/p3 to s1-t11-sut1-c4/p3.
     - ring4 10GE-ports x710-4p10GE:
-        - s1-t11-sut1-c2/p3 to s1-t11-sut1-c4/p3.
+        - s1-t11-sut1-c2/p4 to s1-t11-sut1-c4/p4.
+    - ring5 100GE-ports e810-2p100GE:
+        - s1-t11-sut1-c5/p1 to s1-t11-sut1-c6/p1.
+    - ring6 100GE-ports e810-2p100GE:
+        - s1-t11-sut1-c5/p2 to s1-t11-sut1-c6/p2.
 - testbed12:
     - ring1 10GE-ports x710-4p10GE:
         - s2-t12-sut1-c2/p1 to s2-t12-sut1-c4/p1.
@@ -1578,7 +1582,11 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
     - ring3 10GE-ports x710-4p10GE:
         - s2-t12-sut1-c2/p3 to s2-t12-sut1-c4/p3.
     - ring4 10GE-ports x710-4p10GE:
-        - s2-t12-sut1-c2/p3 to s2-t12-sut1-c4/p3.
+        - s2-t12-sut1-c2/p4 to s2-t12-sut1-c4/p4.
+    - ring5 100GE-ports e810-2p100GE:
+        - s2-t12-sut1-c5/p1 to s2-t12-sut1-c6/p1.
+    - ring6 100GE-ports e810-2p100GE:
+        - s2-t12-sut1-c5/p2 to s2-t12-sut1-c6/p2.
 ```
 
 #### 1-Node-ThunderX2 Wiring (1n-tx2) PROD
