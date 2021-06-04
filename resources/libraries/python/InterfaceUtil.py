@@ -1613,6 +1613,29 @@ class InterfaceUtil:
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
+    def set_linux_interface_promisc(
+            node, interface, namespace=None, vf_id=None, state=u"on"):
+        """Set promisc state for interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param namespace: Exec command in namespace. (Optional, Default: None)
+        :param vf_id: Virtual Function id. (Optional, Default: None)
+        :param state: State of feature. (Optional, Default: on)
+        :type node: dict
+        :type interface: str
+        :type namespace: str
+        :type vf_id: int
+        :type state: str
+        """
+        promisc_str = f"vf {vf_id} promisc {state}" if vf_id is not None \
+            else f"promisc {state}"
+        ns_str = f"ip netns exec {namespace}" if namespace else u""
+
+        cmd = f"{ns_str} ip link set dev {interface} {promisc_str}"
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def set_linux_interface_trust_on(
             node, interface, namespace=None, vf_id=None):
         """Set trust on (promisc) for interface in linux.
@@ -1740,6 +1763,7 @@ class InterfaceUtil:
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
         current_driver = DUTSetup.get_pci_dev_driver(
             node, pf_pci_addr.replace(u":", r"\:"))
+        pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
 
         VPPUtil.stop_vpp_service(node)
         if current_driver != kernel_driver:
@@ -1754,6 +1778,10 @@ class InterfaceUtil:
         # Initialize PCI VFs.
         DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs)
 
+        if not numvfs:
+            if osi_layer == u"L2":
+                InterfaceUtil.set_linux_interface_promisc(node, pf_dev)
+
         vf_ifc_keys = []
         # Set MAC address and bind each virtual function to uio driver.
         for vf_id in range(numvfs):
@@ -1763,7 +1791,6 @@ class InterfaceUtil:
                  ]
             )
 
-            pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
             InterfaceUtil.set_linux_interface_trust_on(
                 node, pf_dev, vf_id=vf_id
             )
