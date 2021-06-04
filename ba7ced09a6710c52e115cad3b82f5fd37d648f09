@@ -432,6 +432,30 @@
     },
     {
       "key": {
+        "uuid": "62761240_d9a34f23",
+        "filename": "resources/libraries/python/CommonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-06-04T09:11:54Z",
+      "side": 1,
+      "message": "The current implementation (in newer patch sets) only accepts Union[ipaddress.IPv4Network, ipaddress.IPv6Network].\nI wanted to preserve the behavior between the two classes (and the constructor) - you pass the object to be incremented.",
+      "parentUuid": "464c6be1_5cf9b30c",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 20
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c5be9ebd_5be3ba73",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 15
@@ -515,6 +539,30 @@
       "side": 1,
       "message": "Currently I prefer vpp_ipsec_create_spds_match_nth_entry.\n\nIn the dosctring, mention that the implementation is currently hardcoded to be bidirectional, outbound, and uses bypass action, but that we can add optional arguments to tweak such details in the future, without changing the keyword name.",
       "parentUuid": "dd62b134_8b1582af",
+      "range": {
+        "startLine": 706,
+        "startChar": 30,
+        "endLine": 706,
+        "endChar": 44
+      },
+      "revId": "ba7ced09a6710c52e115cad3b82f5fd37d648f09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff9c376e_38a0010f",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-06-04T09:11:54Z",
+      "side": 1,
+      "message": "Well, I can add the optional arguments right now without supporting the protect action (there would be a need for two sa_ids (for each direction) which would require a considerable amount of testing and this patch is not about that).",
+      "parentUuid": "c6cbb69e_7be033e6",
       "range": {
         "startLine": 706,
         "startChar": 30,
