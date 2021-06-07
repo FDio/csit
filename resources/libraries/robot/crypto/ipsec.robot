@@ -246,7 +246,7 @@
 | | [Arguments] | ${dp_cores}
 | |
 | | VPP Round Robin Rx Placement on all DUTs
-| | ... | ${nodes} | prefix=port | dp_core_limit=${dp_cores}
+| | ... | ${nodes} | prefix=${EMPTY} | dp_core_limit=${dp_cores}
 | | FOR | ${dut} | IN | @{duts}
 | | | Disable Crypto Work of VPP Worker Threads on node
 | | | ... | ${dut} | ${dp_cores}
