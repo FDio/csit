@@ -42,6 +42,7 @@
     # TODO: Add
     csit-vpp-perf-report-iterative-2106-3n-skx:
       - 3   # rls2101.rel NDRPDR iter env 7
+      - 4   # rls2101.rel NDRPDR iter env 7
       - 5   # rls2101.rel NDRPDR iter env 7
       - 7   # rls2101.rel NDRPDR iter env 7
 
@@ -221,7 +222,9 @@
       - 3   # rls2101.rel NDRPDR iter env 7
       - 4   # rls2101.rel NDRPDR iter env 7
       - 5   # rls2101.rel NDRPDR iter env 7
+      - 6   # rls2101.rel NDRPDR iter env 7
       - 7   # rls2101.rel NDRPDR iter env 7
+      - 8   # rls2101.rel NDRPDR iter env 7
 
   vpp-2n-skx-curr-iter:
     # TODO: Replace
@@ -470,6 +473,7 @@
     # TODO: Add
     csit-vpp-perf-report-iterative-2106-2n-zn2:
       - 3   # rls2101.rel NDRPDR iter env 7
+      - 6   # rls2101.rel NDRPDR iter env 7
 
   vpp-2n-zn2-curr-iter:
     # TODO: Replace
@@ -662,9 +666,11 @@
   vpp-2n-clx-prev-iter-new-env:
     # TODO: Add
     csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 10  # rls2101.rel NDRPDR iter env 7
       - 11  # rls2101.rel NDRPDR iter env 7
       - 15  # rls2101.rel NDRPDR iter env 7
       - 13  # rls2101.rel NDRPDR iter env 7
+      - 14  # rls2101.rel NDRPDR iter env 7
 
   vpp-2n-clx-curr-iter:
     # TODO: Replace
@@ -1200,6 +1206,10 @@
       - 6   # rls2101.rel NDRPDR iter env 7
       - 10  # rls2101.rel NDRPDR iter env 7
       - 8   # rls2101.rel NDRPDR iter env 7
+      - 11  # rls2101.rel NDRPDR iter env 7
+      - 12  # rls2101.rel NDRPDR iter env 7
+      - 13  # rls2101.rel NDRPDR iter env 7
+#       - 14  # rls2101.rel NDRPDR iter env 7
 
   vpp-3n-dnv-curr-iter:
     # TODO: Replace
