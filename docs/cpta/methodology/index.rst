@@ -12,3 +12,4 @@ Trending Methodology
     jenkins_jobs
     testbed_hw_configuration
     perpatch_performance_tests
+    bisecting
