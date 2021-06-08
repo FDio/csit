@@ -13,9 +13,8 @@
 
 """CPU utilities library."""
 
-from robot.libraries.BuiltIn import BuiltIn
-
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.robot_interaction import get_variable
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import Topology
 
@@ -397,8 +396,8 @@ class CpuUtils:
         skip_cnt = Constants.CPU_CNT_SYSTEM + Constants.CPU_CNT_MAIN + vs_dtc
 
         interface_list = list()
-        interface_list.append(BuiltIn().get_variable_value(f"${{{node}_if1}}"))
-        interface_list.append(BuiltIn().get_variable_value(f"${{{node}_if2}}"))
+        interface_list.append(get_variable(f"${{{node}_if1}}"))
+        interface_list.append(get_variable(f"${{{node}_if2}}"))
 
         cpu_node = Topology.get_interfaces_numa_node(
             nodes[node], *interface_list)
