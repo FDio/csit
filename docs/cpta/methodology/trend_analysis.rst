@@ -1,3 +1,5 @@
+.. _trend_analysis:
+
 Trend Analysis
 --------------
 
