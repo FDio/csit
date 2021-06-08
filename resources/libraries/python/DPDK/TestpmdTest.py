@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -63,7 +63,7 @@ class TestpmdTest:
                 eal_pci_whitelist0=if_pci0,
                 eal_pci_whitelist1=if_pci1,
                 eal_in_memory=True,
-                pmd_num_mbufs=16384,
+                pmd_num_mbufs=32768,
                 pmd_fwd_mode=u"io",
                 pmd_nb_ports=u"2",
                 pmd_portmask=u"0x3",
