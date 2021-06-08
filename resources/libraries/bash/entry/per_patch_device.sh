@@ -39,14 +39,15 @@ source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
-build_vpp_ubuntu_amd64 "CURRENT" || die
-set_aside_commit_build_artifacts || die
-initialize_csit_dirs || die
+git status || die
+git describe || die
+build_vpp_ubuntu "CURRENT" || die
+initialize_csit_dirs "current" || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 set_perpatch_dut || die
 select_arch_os || die
-select_build "build_current" || die
+select_build "build-root" || die
 check_download_dir || die
 activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
@@ -54,8 +55,7 @@ archive_tests || die
 prepare_topology || die
 select_topology || die
 activate_docker_topology || die
-select_tags || die
-compose_pybot_arguments || die
+select_vpp_device_tags || die
 run_pybot || die
 move_archives || die
 die_on_pybot_error || die
