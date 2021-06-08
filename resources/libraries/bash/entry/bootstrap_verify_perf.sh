@@ -47,7 +47,6 @@ prepare_topology || die
 select_topology || die
 reserve_and_cleanup_testbed || die
 select_tags || die
-compose_pybot_arguments || die
 set_environment_variables || die
 run_pybot || die
 untrap_and_unreserve_testbed || die
