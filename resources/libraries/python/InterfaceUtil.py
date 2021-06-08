@@ -1842,7 +1842,9 @@ class InterfaceUtil:
                 if ifc[u"vpp_sw_index"] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
             details = papi_exec.get_details(err_msg)
-        return sorted(details, key=lambda k: k[u"sw_if_index"])
+        ret = sorted(details, key=lambda k: k[u"sw_if_index"])
+        logger.trace(f"sw_interface_rx_placement_dump: {ret}")
+        return ret
 
     @staticmethod
     def vpp_sw_interface_rx_placement_dump_on_all_duts(nodes):
