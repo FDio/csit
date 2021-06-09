@@ -17,9 +17,12 @@ from pprint import pformat
 
 from robot.api import logger
 
-from resources.libraries.python.PapiExecutor import PapiExecutor, \
-    PapiSocketExecutor
-from resources.libraries.python.topology import Topology, SocketType, NodeType
+from resources.libraries.python.PapiExecutor import (
+    PapiExecutor, PapiSocketExecutor
+)
+from resources.libraries.python.topology import (
+    Topology, SocketType, NodeType, duts_iterator
+)
 
 
 class VppCounters:
@@ -116,15 +119,10 @@ class VppCounters:
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
 
     @staticmethod
-    def vpp_show_runtime_on_all_duts(nodes):
-        """Clear VPP runtime counters on all DUTs.
-
-        :param nodes: VPP nodes.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                VppCounters.vpp_show_runtime(node)
+    def vpp_show_runtime_on_all_duts():
+        """Run vpp_show_runtime for every DUT node."""
+        for node in duts_iterator():
+            VppCounters.vpp_show_runtime(node)
 
     @staticmethod
     def vpp_show_hardware(node):
