@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "449c137c_5a2a8f11",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-09T11:28:02Z",
+      "side": 1,
+      "message": "That probably depends on frame size, this is the first (power of two) size large enough for 9000B frame.\nWe can make the value conditional (as in line 59), but that does not help with 9000B test case. Not sure if testpmd supports chained buffers, but even if it did, it would affect performance (and we do not want that).\n\nIf you are asking about hugepages and VMs, I see:\n  mount -t hugetlbfs -o \"rw,relatime,pagesize\u003d2M\" hugetlbfs /dev/hugepages\n\nexecuted inside the VM, but I am not sure where to look for the capacity on the host side. If you are worried about tests with many VMs (e.g. service density), I can make line 66 conditional on number of lcores (in the correct function, this one is for DPDK tests, without VPP nor VMs).\nBut I prefer to do that in a separate change (only if service density tests really need that), as lcores can be specified in several ways (comma separated numbers or intervals).\n\nThe ordinary (not service density) vhost tests should not be impacted, the forwarding app inside VM is still much faster than VPP running on host as vswitch.",
+      "parentUuid": "7dee4c34_e3514196",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 39
+      },
+      "revId": "0595797d36c817061ee6ff5875be3598c0186500",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c37bafd5_a4db89b7",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 6
@@ -39,6 +63,24 @@
       "revId": "0595797d36c817061ee6ff5875be3598c0186500",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80437d05_05bf8e8d",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-09T11:28:02Z",
+      "side": 1,
+      "message": "Right, I had a loogging line in between, but without it the edit does not make much sense.\n\nDone.",
+      "parentUuid": "c37bafd5_a4db89b7",
+      "revId": "0595797d36c817061ee6ff5875be3598c0186500",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +104,30 @@
       "revId": "0595797d36c817061ee6ff5875be3598c0186500",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4ed32b7_9f8caf41",
+        "filename": "resources/libraries/robot/dpdk/default.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-09T11:28:02Z",
+      "side": 1,
+      "message": "Good catch, fixed also one occurence in a keyword for containers.",
+      "parentUuid": "2293ec5e_8fbea014",
+      "range": {
+        "startLine": 93,
+        "startChar": 30,
+        "endLine": 93,
+        "endChar": 53
+      },
+      "revId": "0595797d36c817061ee6ff5875be3598c0186500",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
