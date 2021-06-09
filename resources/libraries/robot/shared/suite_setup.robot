@@ -24,6 +24,7 @@
 | Variables | resources/libraries/python/Constants.py
 |
 | Documentation | Suite setup keywords.
+
 *** Keywords ***
 | Create suite topology variables
 | | [Documentation]
