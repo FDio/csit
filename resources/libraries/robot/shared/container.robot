@@ -332,7 +332,7 @@
 | | ... | ELSE | Set variable | ${thr_count_int}
 | | ${rxq_count_int}= | Run keyword if | ${rx_queues}
 | | ... | Set variable | ${rx_queues}
-| | ... | ELSE | Evaluate | int(${thr_count_int}/2)
+| | ... | ELSE | Evaluate | int(${thr_count_int}/1)
 | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | ... | Set variable | ${1}
 | | ... | ELSE | Set variable | ${rxq_count_int}
