@@ -19,6 +19,8 @@ from enum import IntFlag
 import json
 import os
 
+from robot.api import logger
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.robot_interaction import get_variable
 from resources.libraries.python.time_measurement import datetime_utc_str as now
@@ -167,7 +169,11 @@ class export_json():
             log_dir, suite_path_part, test_name + u".json.log"
         )
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        logger.debug(u"Debugging a circular reference.")
+        logger.debug(f"data repr {data!r}")
         data = _pre_serialize_root(data)
+        logger.debug(u"After pre_serialize():")
+        logger.debug(f"data repr {data!r}")
         with open(file_path, u"w") as file_out:
             json.dump(data, file_out, indent=1)
         # Not explicitly forgetting data here, so accidental double flush
