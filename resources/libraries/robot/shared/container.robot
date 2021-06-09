@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -332,7 +332,7 @@
 | | ... | ELSE | Set variable | ${thr_count_int}
 | | ${rxq_count_int}= | Run keyword if | ${rx_queues}
 | | ... | Set variable | ${rx_queues}
-| | ... | ELSE | Evaluate | int(${thr_count_int}/2)
+| | ... | ELSE | Evaluate | int(${thr_count_int}/1)
 | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | ... | Set variable | ${1}
 | | ... | ELSE | Set variable | ${rxq_count_int}
