@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dee4c34_e3514196",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-09T06:58:07Z",
+      "side": 1,
+      "message": "what are the memory constraints?",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 39
+      },
+      "revId": "0595797d36c817061ee6ff5875be3598c0186500",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c37bafd5_a4db89b7",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-09T06:58:07Z",
+      "side": 1,
+      "message": "restore file to defaults. Change is pointless.",
+      "revId": "0595797d36c817061ee6ff5875be3598c0186500",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2293ec5e_8fbea014",
+        "filename": "resources/libraries/robot/dpdk/default.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-09T06:58:07Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 93,
+        "startChar": 30,
+        "endLine": 93,
+        "endChar": 53
+      },
+      "revId": "0595797d36c817061ee6ff5875be3598c0186500",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
