@@ -54,20 +54,31 @@
   tags:
     - check-kernel-version
 
+- name: Spectre Meltdown Checker Status
+  stat:
+    path: "/opt/spectre-meltdown-checker.sh"
+  register: spectre_meltdown_status
+  tags:
+    - check-spectre-meltdown
+
 - name: Get Spectre Meltdown Checker
   get_url:
     url: "https://meltdown.ovh"
     dest: "/opt/spectre-meltdown-checker.sh"
     mode: "744"
+  when:
+    - not spectre_meltdown_status.stat.exists
   tags:
     - check-spectre-meltdown
 
 - name: Run Spectre Meltdown Checker
-  shell: "/opt/spectre-meltdown-checker.sh --no-color || true"
-  async: 60
-  poll: 0
+  shell: "/opt/spectre-meltdown-checker.sh --no-color --sysfs-only || true"
   ignore_errors: true
-  register: spectre_meltdown_async
+  register: spectre_meltdown_sync
+  tags:
+    - check-spectre-meltdown
+
+- debug: var=spectre_meltdown_sync.stdout_lines
   tags:
     - check-spectre-meltdown
 
@@ -76,14 +87,3 @@
   tags:
     - check-machine-specific
     - check-jitter-tool
-
-- name: Check Sync Status
-  async_status:
-    jid: "{{ spectre_meltdown_async.ansible_job_id }}"
-  register: "spectre_meltdown_poll_results"
-  until: spectre_meltdown_poll_results.finished
-  retries: 30
-
-- debug: var=spectre_meltdown_poll_results.stdout_lines
-  tags:
-    - check-spectre-meltdown
