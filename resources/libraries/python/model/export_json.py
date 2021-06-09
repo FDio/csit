@@ -14,12 +14,56 @@
 """Module supporting structure-unaware json in-memory data.
 """
 
+from collections.abc import Mapping, Iterable
+from enum import IntFlag
 import json
 import os
+
+from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.robot_interaction import get_variable
 from resources.libraries.python.time_measurement import datetime_utc_str as now
+
+
+def _pre_serialize(data):
+    """Recursively convert to a more serializable form.
+
+    VPP PAPI code can give data with its own MACAddres type,
+    or various other enum and flag types.
+    The default json.JSONEncoder method raises TypeError on that.
+    First point of this function is to apply str() or repr()
+    to leaf values that need it.
+
+    Also, PAPI responses are namedtuples, which confuses
+    the json.JSONEncoder method (so it does not recurse).
+    Dictization (see PapiExecutor) helps somewhat, but it turns namedtuple
+    into a UserDict, which also confuses json.JSONEncoder.
+    Therefore, we recursively convert any Mapping into an ordinary dict.
+
+    We also convert iterables to list,
+    and prevent numbers from getting converted to strings.
+
+    :param data: Object to make serializable, dictized when applicable.
+    :type data: object
+    :returns: Serializable equivalent of the argument.
+    :rtype: object
+    :raises ValueError: If the argument does not support string conversion.
+    """
+    # Recursion ends at scalar values, do not change the known ones.
+    if isinstance(data, (str, bytes, int, float, bool)):
+        # Some flags identify as int without being directly serializable.
+        if isinstance(data, IntFlag):
+            return repr(data)
+        return data
+    # Recurse over and convert mappings.
+    if isinstance(data, Mapping):
+        return {str(key): _pre_serialize(data[key]) for key in data}
+    # Recurse over and convert iterables.
+    if isinstance(data, Iterable):
+        return [_pre_serialize(item) for item in data]
+    # Unknown structure, attempt str().
+    return str(data)
 
 
 class export_json():
@@ -86,6 +130,11 @@ class export_json():
             log_dir, suite_path_part, test_name + u".json.log"
         )
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        logger.debug(u"Debugging a circular reference.")
+        logger.debug(f"data repr {data!r}")
+        data = _pre_serialize(data)
+        logger.debug(u"After pre_serialize():")
+        logger.debug(f"data repr {data!r}")
         with open(file_path, u"w") as file_out:
             json.dump(data, file_out, indent=1)
         # Not explicitly forgetting data here, so accidental double flush
