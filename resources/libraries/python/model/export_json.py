@@ -18,6 +18,8 @@ from collections.abc import Mapping, Iterable
 import json
 import os
 
+from robot.api import logger
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.robot_interaction import get_variable
 from resources.libraries.python.time_measurement import datetime_utc_str as now
@@ -56,7 +58,7 @@ class CsitEncoder(json.JSONEncoder):
             return o
         # Recurse over and convert mappings.
         if isinstance(o, Mapping):
-            return {key: self.default(o[key]) for key in o}
+            return {str(key): self.default(o[key]) for key in o}
         # Recurse over and convert iterables.
         if isinstance(o, Iterable):
             return [self.default(item) for item in o]
@@ -131,6 +133,9 @@ class export_json():
             log_dir, suite_path_part, test_name + u".json.log"
         )
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        logger.debug(u"Debugging a circular reference.")
+        logger.debug(f"data str {data}")
+        logger.debug(f"data repr {data!r}")
         with open(file_path, u"w") as file_out:
             json.dump(data, file_out, indent=1, cls=CsitEncoder)
         # Not explicitly forgetting data here, so accidental double flush
