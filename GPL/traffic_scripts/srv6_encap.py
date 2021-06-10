@@ -28,7 +28,7 @@
 import sys
 
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, IPv6ExtHdrSegmentRouting,\
-    ipv6nh
+    ipv6nh, ICMPv6MLReport2
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
@@ -295,6 +295,10 @@ def main():
 
         if tx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
+            continue
+        elif tx_pkt_recv.haslayer(ICMPv6MLReport2):
+            # read another packet in the queue if the current one is
+            # ICMPv6MLReport2
             continue
         else:
             # otherwise process the current packet
