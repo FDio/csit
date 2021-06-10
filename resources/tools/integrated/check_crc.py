@@ -62,8 +62,8 @@ def main():
             u"",
             u"In the former case, please consult the following document",
             u"to see how to make CSIT accept the .api editing change.",
-            u"https://github.com/FDio/csit/blob/master/docs/automating_vpp_api_flag_day.rst"
-            u"",
+            u"https://github.com/FDio/csit/blob/master/docs/"
+            u"automating_vpp_api_flag_day.rst",
             u"For the latter case, please rebase the patch to see",
             u"if that fixes the problem. If repeated rebases do not help",
             u"send and email to csit-dev@lists.fd.io asking to investigate.",

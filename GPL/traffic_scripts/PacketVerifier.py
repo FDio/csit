@@ -76,6 +76,7 @@
 
 import os
 import select
+import time
 
 from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
 from scapy.config import conf

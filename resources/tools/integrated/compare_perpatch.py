@@ -72,7 +72,7 @@ def main():
     for test_index in range(num_tests):
         parent_values = list()
         current_values = list()
-        for iteration_index in range(len(parent_iterations)):
+        for iteration_index, _ in enumerate(parent_iterations):
             parent_values.extend(
                 json.loads(parent_iterations[iteration_index][test_index])
             )

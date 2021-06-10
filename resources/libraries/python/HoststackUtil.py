@@ -35,7 +35,6 @@ class HoststackUtil():
             'args' - command arguments.
         :rtype: dict
         """
-        # TODO: Use a python class instead of dictionary for the return type
         proto = vpp_echo_attributes[u"uri_protocol"]
         addr = vpp_echo_attributes[u"uri_ip4_addr"]
         port = vpp_echo_attributes[u"uri_port"]
@@ -71,7 +70,6 @@ class HoststackUtil():
             'args' - command arguments.
         :rtype: dict
         """
-        # TODO: Use a python class instead of dictionary for the return type
         iperf3_cmd = {}
         iperf3_cmd[u"env_vars"] = f"VCL_CONFIG={Constants.REMOTE_FW_DIR}/" \
             f"{Constants.RESOURCES_TPL_VCL}/" \
@@ -102,9 +100,11 @@ class HoststackUtil():
                     f" --time {iperf3_attributes[u'time']}"
             if iperf3_attributes[u"udp"]:
                 iperf3_cmd[u"args"] += u" --udp"
-                iperf3_cmd[u"args"] += f" --bandwidth {iperf3_attributes[u'bandwidth']}"
+                iperf3_cmd[u"args"] += \
+                    f" --bandwidth {iperf3_attributes[u'bandwidth']}"
             if iperf3_attributes[u"length"] > 0:
-                iperf3_cmd[u"args"] += f" --length {iperf3_attributes[u'length']}"
+                iperf3_cmd[u"args"] += \
+                    f" --length {iperf3_attributes[u'length']}"
         return iperf3_cmd
 
     @staticmethod

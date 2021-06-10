@@ -36,6 +36,8 @@ numpy==1.17.3
 scipy==1.5.4
 
 # PAL/DOC dependencies
+boto3==1.17.78
+botocore==1.20.78
 hdrhistogram==0.6.1
 pandas==0.25.3
 plotly==4.1.1

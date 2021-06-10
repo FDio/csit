@@ -255,9 +255,9 @@ def main():
         if rx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
             continue
-        else:
-            # otherwise process the current packet
-            break
+
+        # otherwise process the current packet
+        break
 
     check_srv6(
         rx_pkt_recv, rx_src_mac, rx_dst_mac, src_ip, dst_ip, dir0_srcsid,
@@ -270,20 +270,20 @@ def main():
         ip_pkt[Raw].load += (b"\0" * (size_limit - 14 - len(ip_pkt)))
 
     rx_pkt_send = (
-            Ether(src=rx_dst_mac, dst=rx_src_mac) /
-            IPv6(src=dir1_srcsid, dst=dir1_dstsid1) /
-            IPv6ExtHdrSegmentRouting(
-                segleft=1 if dir1_dstsid3 == u"None" else 2,
-                lastentry=1 if dir1_dstsid3 == u"None" else 2,
-                addresses=[dir1_dstsid2, dir1_dstsid1]
-                if dir1_dstsid3 == u"None"
-                else [dir1_dstsid3, dir1_dstsid2, dir1_dstsid1]
-            ) /
-            ip_pkt
+        Ether(src=rx_dst_mac, dst=rx_src_mac) /
+        IPv6(src=dir1_srcsid, dst=dir1_dstsid1) /
+        IPv6ExtHdrSegmentRouting(
+            segleft=1 if dir1_dstsid3 == u"None" else 2,
+            lastentry=1 if dir1_dstsid3 == u"None" else 2,
+            addresses=[dir1_dstsid2, dir1_dstsid1]
+            if dir1_dstsid3 == u"None"
+            else [dir1_dstsid3, dir1_dstsid2, dir1_dstsid1]
+        ) /
+        ip_pkt
     ) if dir1_dstsid2 != u"None" else (
-            Ether(src=rx_dst_mac, dst=rx_src_mac) /
-            IPv6(src=dir1_srcsid, dst=dir1_dstsid1) /
-            ip_pkt
+        Ether(src=rx_dst_mac, dst=rx_src_mac) /
+        IPv6(src=dir1_srcsid, dst=dir1_dstsid1) /
+        ip_pkt
     )
     rx_txq.send(rx_pkt_send)
 
@@ -296,9 +296,9 @@ def main():
         if tx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
             continue
-        else:
-            # otherwise process the current packet
-            break
+
+        # otherwise process the current packet
+        break
 
     if decap == u"True":
         check_ip(tx_pkt_recv, tx_dst_mac, tx_src_mac, dst_ip, src_ip)

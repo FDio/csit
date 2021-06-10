@@ -243,6 +243,7 @@ class QemuUtils:
         :type virtio_feature_mask: int
         """
         self._nic_id += 1
+        self._jumbo_frames = jumbo_frames
         self._params.add_with_value(
             u"chardev", f"socket,id=char{self._nic_id},"
             f"path={socket}{u',server' if server is True else u''}"

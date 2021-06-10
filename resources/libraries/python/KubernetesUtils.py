@@ -488,8 +488,6 @@ class KubernetesUtils:
         vpp_config.add_unix_cli_listen(value=u"0.0.0.0:5002")
         vpp_config.add_unix_nodaemon()
         vpp_config.add_socksvr()
-        vpp_config.add_heapsize(u"4G")
-        vpp_config.add_ip_heap_size(u"4G")
         vpp_config.add_ip6_heap_size(u"4G")
         vpp_config.add_ip6_hash_buckets(u"2000000")
         if not kwargs[u"jumbo"]:
