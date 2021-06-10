@@ -29,8 +29,8 @@ import sys
 import ipaddress
 
 from scapy.layers.inet import ICMP, IP
-from scapy.layers.inet6 import IPv6, ICMPv6EchoRequest, ICMPv6EchoReply,\
-    ICMPv6ND_NS
+from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply,\
+    ICMPv6ND_NS, ICMPv6MLReport2
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
@@ -125,6 +125,10 @@ def main():
 
             elif icmp_reply.haslayer(ICMPv6ND_NS):
                 # read another packet in the queue in case of ICMPv6ND_NS packet
+                continue
+            elif icmp_reply.haslayer(ICMPv6MLReport2):
+                # read another packet in the queue if the current one is
+                # ICMPv6MLReport2
                 continue
             else:
                 # otherwise process the current packet
