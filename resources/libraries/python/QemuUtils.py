@@ -243,6 +243,8 @@ class QemuUtils:
         :type virtio_feature_mask: int
         """
         self._nic_id += 1
+        if jumbo_frames:
+            logger.debug(u"Jumbo frames temporarily disabled!")
         self._params.add_with_value(
             u"chardev", f"socket,id=char{self._nic_id},"
             f"path={socket}{u',server' if server is True else u''}"
