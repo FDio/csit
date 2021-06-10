@@ -29,7 +29,7 @@ import sys
 import ipaddress
 
 from scapy.layers.inet import ICMP, IP
-from scapy.layers.inet6 import IPv6, ICMPv6EchoRequest, ICMPv6EchoReply,\
+from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply,\
     ICMPv6ND_NS
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
@@ -105,9 +105,9 @@ def main():
         raise ValueError(u"IP not in correct format")
 
     icmp_request = (
-            Ether(src=src_mac, dst=dst_mac) /
-            ip_layer(src=src_ip, dst=dst_ip) /
-            icmp_req()
+        Ether(src=src_mac, dst=dst_mac) /
+        ip_layer(src=src_ip, dst=dst_ip) /
+        icmp_req()
     )
 
     # Send created packet on the interface

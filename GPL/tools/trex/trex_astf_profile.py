@@ -28,15 +28,15 @@ with other parameters, reads the profile and sends the traffic. At the end, it
 parses for various counters.
 """
 
+sys.path.insert(
+    0, u"/opt/trex-core-2.88/scripts/automation/trex_control_plane/interactive/"
+)
+from trex.astf.api import ASTFClient, ASTFProfile, TRexError
+
 import argparse
 import json
 import sys
 import time
-
-sys.path.insert(
-    0, u"/opt/trex-core-2.88/scripts/automation/trex_control_plane/interactive/"
-)
-from trex.astf.api import *
 
 
 def fmt_latency(lat_min, lat_avg, lat_max, hdrh):

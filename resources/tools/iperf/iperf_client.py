@@ -44,7 +44,10 @@ def simple_burst(args):
         try:
             for i in range(0, args.instances):
                 cmd = u"exec sudo "
-                cmd += f"ip netns exec {args.namespace} " if args.namespace else u""
+                cmd += (
+                    f"ip netns exec {args.namespace} "
+                    if args.namespace else u""
+                )
                 cmd += f"iperf3 "
                 cmd += f"--client {args.host} "
                 cmd += f"--bind {args.bind} "

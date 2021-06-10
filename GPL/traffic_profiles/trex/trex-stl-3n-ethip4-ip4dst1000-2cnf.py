@@ -163,4 +163,3 @@ def register():
     :rtype: Object
     """
     return TrafficStreams()
-

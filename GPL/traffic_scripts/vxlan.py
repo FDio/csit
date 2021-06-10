@@ -21,6 +21,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Traffic script for vxlan verification."""
+
 from scapy.fields import BitField, XByteField, X3BytesField
 from scapy.layers.inet import UDP
 from scapy.layers.l2 import Ether
