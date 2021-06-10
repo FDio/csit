@@ -38,33 +38,33 @@ from .PacketVerifier import RxQueue, TxQueue
 from .TrafficScriptArg import TrafficScriptArg
 
 
-def valid_ipv4(ip):
-    """Check if IP address has the correct IPv4 address format.
+def valid_ipv4(ip_address):
+    """Check IPv4 address.
 
-    :param ip: IP address.
-    :type ip: str
-    :return: True in case of correct IPv4 address format,
-             otherwise return False.
+    :param ip_address: IPv4 address to check.
+    :type ip_address: str
+    :returns: True if IP address is correct.
     :rtype: bool
+    :raises AttributeError, AddressValueError: If IP address is not valid.
     """
     try:
-        ipaddress.IPv4Address(ip)
+        ipaddress.IPv4Address(ip_address)
         return True
     except (AttributeError, ipaddress.AddressValueError):
         return False
 
 
-def valid_ipv6(ip):
-    """Check if IP address has the correct IPv6 address format.
+def valid_ipv6(ip_address):
+    """Check IPv6 address.
 
-    :param ip: IP address.
-    :type ip: str
-    :return: True in case of correct IPv6 address format,
-             otherwise return False.
+    :param ip_address: IPv6 address to check.
+    :type ip_address: str
+    :returns: True if IP address is correct.
     :rtype: bool
+    :raises AttributeError, AddressValueError: If IP address is not valid.
     """
     try:
-        ipaddress.IPv6Address(ip)
+        ipaddress.IPv6Address(ip_address)
         return True
     except (AttributeError, ipaddress.AddressValueError):
         return False
@@ -105,9 +105,9 @@ def main():
         raise ValueError(u"IP not in correct format")
 
     icmp_request = (
-            Ether(src=src_mac, dst=dst_mac) /
-            ip_layer(src=src_ip, dst=dst_ip) /
-            icmp_req()
+        Ether(src=src_mac, dst=dst_mac) /
+        ip_layer(src=src_ip, dst=dst_ip) /
+        icmp_req()
     )
 
     # Send created packet on the interface

@@ -92,7 +92,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
         )
         # Direction 1 --> 0
         base_pkt_b = (
-          Ether() /
+            Ether() /
             IP(
                 src=self.p2_src_start_ip,
                 dst=self.p2_dst_start_ip,
@@ -130,7 +130,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 0 --> 1
         vm2 = STLScVmRaw(
             [
-              STLVmFlowVar(
+                STLVmFlowVar(
                     name=u"dport",
                     min_value=self.p2_dst_start_udp_port,
                     max_value=self.p2_dst_end_udp_port,
