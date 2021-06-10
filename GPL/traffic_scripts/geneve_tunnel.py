@@ -30,7 +30,7 @@ import sys
 from ipaddress import ip_address
 from scapy.contrib.geneve import GENEVE
 from scapy.layers.inet import IP, UDP
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS
+from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
@@ -280,6 +280,10 @@ def main():
         if rx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
             continue
+        elif rx_pkt_recv.haslayer(ICMPv6MLReport2):
+            # read another packet in the queue if the current one is
+            # ICMPv6MLReport2
+            continue
         else:
             # otherwise process the current packet
             break
@@ -332,6 +336,10 @@ def main():
 
         if tx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
+            continue
+        elif tx_pkt_recv.haslayer(ICMPv6MLReport2):
+            # read another packet in the queue if the current one is
+            # ICMPv6MLReport2
             continue
         else:
             # otherwise process the current packet
