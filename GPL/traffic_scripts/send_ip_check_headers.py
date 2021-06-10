@@ -42,17 +42,33 @@ from .PacketVerifier import RxQueue, TxQueue
 from .TrafficScriptArg import TrafficScriptArg
 
 
-def valid_ipv4(ip):
+def valid_ipv4(ip_address):
+    """Check IPv4 address.
+
+    :param ip_address: IPv4 address to check.
+    :type ip_address: str
+    :returns: True if IP address is correct.
+    :rtype: bool
+    :raises AttributeError, AddressValueError: If IP address is not valid.
+    """
     try:
-        ipaddress.IPv4Address(ip)
+        ipaddress.IPv4Address(ip_address)
         return True
     except (AttributeError, ipaddress.AddressValueError):
         return False
 
 
-def valid_ipv6(ip):
+def valid_ipv6(ip_address):
+    """Check IPv6 address.
+
+    :param ip_address: IPv6 address to check.
+    :type ip_address: str
+    :returns: True if IP address is correct.
+    :rtype: bool
+    :raises AttributeError, AddressValueError: If IP address is not valid.
+    """
     try:
-        ipaddress.IPv6Address(ip)
+        ipaddress.IPv6Address(ip_address)
         return True
     except (AttributeError, ipaddress.AddressValueError):
         return False
@@ -90,7 +106,7 @@ def main():
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
 
-    sent_packets =list()
+    sent_packets = list()
     pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
 
     if encaps_tx == u"Dot1q":

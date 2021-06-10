@@ -70,24 +70,24 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # Direction 0 --> 1
         base_pkt_a = (
-          Ether() /
-          IP(
-              src=self.p1_src_start_ip,
-              dst=self.p1_dst_start_ip,
-              proto=61
-          )
+            Ether() /
+            IP(
+                src=self.p1_src_start_ip,
+                dst=self.p1_dst_start_ip,
+                proto=61
+            )
         )
         # Direction 1 --> 0
         base_pkt_b = (
-          Ether() /
-          Dot1Q(
-              vlan=self.vlan_id
-          ) /
-          IP(
-              src=self.p2_src_start_ip,
-              dst=self.p2_dst_start_ip,
-              proto=61
-          )
+            Ether() /
+            Dot1Q(
+                vlan=self.vlan_id
+            ) /
+            IP(
+                src=self.p2_src_start_ip,
+                dst=self.p2_dst_start_ip,
+                proto=61
+            )
         )
 
         # Direction 0 --> 1

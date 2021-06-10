@@ -40,7 +40,7 @@ import sys
 sys.path.insert(
     0, u"/opt/trex-core-2.88/scripts/automation/trex_control_plane/interactive/"
 )
-from trex.stl.api import *
+from trex.stl.api import STLClient, STLError
 
 
 def main():

@@ -26,7 +26,6 @@
 """Traffic script for IPsec verification."""
 
 import sys
-import logging
 
 from ipaddress import ip_address
 from scapy.layers.l2 import Ether
@@ -117,9 +116,9 @@ def main():
             # read another packet in the queue if the current one is
             # ICMPv6MLReport2
             continue
-        else:
-            # otherwise process the current packet
-            break
+
+        # otherwise process the current packet
+        break
 
     if pkt_recv is None:
         raise RuntimeError(u"Rx timeout")

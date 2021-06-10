@@ -243,9 +243,9 @@ def main():
         if rx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
             continue
-        else:
-            # otherwise process the current packet
-            break
+
+        # otherwise process the current packet
+        break
 
     check_ipsec(
         rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, src_tun, dst_tun, src_ip,
@@ -275,9 +275,9 @@ def main():
             # read another packet in the queue if the current one is
             # ICMPv6MLReport2
             continue
-        else:
-            # otherwise process the current packet
-            break
+
+        # otherwise process the current packet
+        break
 
     check_ip(tx_pkt_recv, ip_layer, tx_dst_mac, tx_src_mac, dst_ip, src_ip)
 

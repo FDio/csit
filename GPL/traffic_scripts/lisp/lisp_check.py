@@ -66,17 +66,33 @@ class LispInnerIPv6(IPv6):
     name = u"Lisp Inner Layer - IPv6"
 
 
-def valid_ipv4(ip):
+def valid_ipv4(ip_address):
+    """Check IPv4 address.
+
+    :param ip_address: IPv4 address to check.
+    :type ip_address: str
+    :returns: True if IP address is correct.
+    :rtype: bool
+    :raises AttributeError, AddressValueError: If IP address is not valid.
+    """
     try:
-        ipaddress.IPv4Address(ip)
+        ipaddress.IPv4Address(ip_address)
         return True
     except (AttributeError, ipaddress.AddressValueError):
         return False
 
 
-def valid_ipv6(ip):
+def valid_ipv6(ip_address):
+    """Check IPv6 address.
+
+    :param ip_address: IPv6 address to check.
+    :type ip_address: str
+    :returns: True if IP address is correct.
+    :rtype: bool
+    :raises AttributeError, AddressValueError: If IP address is not valid.
+    """
     try:
-        ipaddress.IPv6Address(ip)
+        ipaddress.IPv6Address(ip_address)
         return True
     except (AttributeError, ipaddress.AddressValueError):
         return False
@@ -85,7 +101,8 @@ def valid_ipv6(ip):
 def main():
     """Send IP ICMP packet from one traffic generator interface to the other.
 
-    :raises RuntimeError: If the received packet is not correct."""
+    :raises RuntimeError: If the received packet is not correct.
+    """
 
     args = TrafficScriptArg(
         [

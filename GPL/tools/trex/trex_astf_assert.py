@@ -40,7 +40,7 @@ import sys
 sys.path.insert(
     0, u"/opt/trex-core-2.88/scripts/automation/trex_control_plane/interactive/"
 )
-from trex.astf.api import *
+from trex.astf.api import ASTFClient, TRexError
 
 
 def main():

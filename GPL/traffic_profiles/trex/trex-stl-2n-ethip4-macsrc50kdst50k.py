@@ -124,11 +124,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"mac_src",
-                    pkt_offset= 8
+                    pkt_offset=8
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"mac_dst",
-                    pkt_offset= 2
+                    pkt_offset=2
                 ),
                 STLVmFlowVar(
                     name=u"ip_src",
@@ -176,11 +176,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"mac_src",
-                    pkt_offset= 8
+                    pkt_offset=8
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"mac_dst",
-                    pkt_offset= 2
+                    pkt_offset=2
                 ),
                 STLVmFlowVar(
                     name=u"ip_src",

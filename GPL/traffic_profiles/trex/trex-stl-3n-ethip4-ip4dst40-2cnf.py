@@ -145,7 +145,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 STLVmWrFlowVar(
                     fv_name=u"dst",
                     pkt_offset=u"IP.dst"
-                  ),
+                ),
                 STLVmFixIpv4(
                     offset=u"IP"
                 )
@@ -164,4 +164,3 @@ def register():
     :rtype: Object
     """
     return TrafficStreams()
-

@@ -94,18 +94,18 @@ class IPsecProto(IntEnum):
 
 class IPsecSadFlags(IntEnum):
     """IPsec Security Association Database flags."""
-    IPSEC_API_SAD_FLAG_NONE = 0,
+    IPSEC_API_SAD_FLAG_NONE = 0
     # Enable extended sequence numbers
-    IPSEC_API_SAD_FLAG_USE_ESN = 0x01,
+    IPSEC_API_SAD_FLAG_USE_ESN = 0x01
     # Enable Anti - replay
-    IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY = 0x02,
+    IPSEC_API_SAD_FLAG_USE_ANTI_REPLAY = 0x02
     # IPsec tunnel mode if non-zero, else transport mode
-    IPSEC_API_SAD_FLAG_IS_TUNNEL = 0x04,
+    IPSEC_API_SAD_FLAG_IS_TUNNEL = 0x04
     # IPsec tunnel mode is IPv6 if non-zero, else IPv4 tunnel
     # only valid if is_tunnel is non-zero
-    IPSEC_API_SAD_FLAG_IS_TUNNEL_V6 = 0x08,
+    IPSEC_API_SAD_FLAG_IS_TUNNEL_V6 = 0x08
     # Enable UDP encapsulation for NAT traversal
-    IPSEC_API_SAD_FLAG_UDP_ENCAP = 0x10,
+    IPSEC_API_SAD_FLAG_UDP_ENCAP = 0x10
     # IPsec SA is or inbound traffic
     IPSEC_API_SAD_FLAG_IS_INBOUND = 0x40
 
