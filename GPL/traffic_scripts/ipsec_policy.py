@@ -205,9 +205,9 @@ def main():
         if rx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
             continue
-        else:
-            # otherwise process the current packet
-            break
+
+        # otherwise process the current packet
+        break
 
     check_ip(rx_pkt_recv, ip_layer, src_ip, dst_ip)
 

@@ -280,9 +280,9 @@ def main():
         if rx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
             continue
-        else:
-            # otherwise process the current packet
-            break
+
+        # otherwise process the current packet
+        break
 
     check_geneve(
         rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, geneve_tunnel_mac,
