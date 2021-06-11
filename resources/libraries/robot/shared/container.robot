@@ -325,15 +325,15 @@
 | | Acquire all '${container_group}' containers
 | | Create all '${container_group}' containers
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
-| | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | ${dp_count_int} | Convert to Integer | ${phy_cores}
 | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
-| | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | ${dp_count_int}= | Run keyword if | ${smt_used}
 | | ... | Evaluate | int(${cpu_count_int}*2)
-| | ... | ELSE | Set variable | ${thr_count_int}
+| | ... | ELSE | Set variable | ${dp_count_int}
 | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${1}
 | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
 | | ... | Set variable | ${rx_queues}
-| | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
+| | ... | ELSE | Evaluate | int(${dp_count_int}/${rxq_ratio})
 | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | ... | Set variable | ${1}
 | | ... | ELSE | Set variable | ${rxq_count_int}

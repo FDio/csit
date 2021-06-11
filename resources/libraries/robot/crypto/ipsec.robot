@@ -232,40 +232,15 @@
 | | | VPP Ipsec Set Async Mode | ${nodes['${dut}']}
 | | END
 
-| Disable Crypto Work of VPP Worker Threads on all VPP DUTs
+| Set Data Plane And Feature Plane Workers for IPsec on all VPP DUTs
 | | [Documentation]
 | | ... | Disable crypto work for specified data plane CPU cores
-| | ... | on all DUT nodes.
-| | ... | Currently only "port" (physical) interfaces are supported.
-| | ... | Will need a redesign if virtual interfaces (memif, vhost-user)
-| | ... | are present.
+| | ... | on all DUT nodes (leaving feature plane workers enabled).
+| | ... | Set Round Robin interface RX placement on data plane CPU cores
+| | ... | on all DUT nodes (leaving feature plane workers disabled).
 | |
-| | ... | *Arguments:*
-| | ... | - dp_cores - Number of physical cores. Type: integer
-| |
-| | [Arguments] | ${dp_cores}
-| |
+| | Return From Keyword If | ${fp_count_int}==${0}
 | | VPP Round Robin Rx Placement on all DUTs
-| | ... | ${nodes} | prefix=port | dp_core_limit=${dp_cores}
-| | FOR | ${dut} | IN | @{duts}
-| | | Disable Crypto Work of VPP Worker Threads on node
-| | | ... | ${dut} | ${dp_cores}
-| | END
-
-| Disable Crypto Work of VPP Worker Threads on node
-| | [Documentation]
-| | ... | Disable crypto work for specified data plane cores
-| | ... | on DUT node.
-| |
-| | ... | *Arguments:*
-| | ... | - dut - DUT node. Type: string
-| | ... | - dp_cores - Number of physical cores. Type: integer
-| |
-| | [Arguments] | ${dut} | ${dp_cores}
-| |
-| | # Workers From Physical Cores keyword is currently defined in default.robot
-| | ${dp_worker_count} = | Workers From Physical Cores | ${dp_cores}
-| | FOR | ${worker_index} | IN RANGE | ${dp_worker_count}
-| | | VPP IPSec Crypto SW Scheduler Set Worker
-| | | ... | ${nodes['${dut}']} | ${worker_index} | crypto_enable=${False}
-| | END
+| | ... | ${nodes} | prefix=${EMPTY} | workers=${cpu_dp}
+| | VPP IPSec Crypto SW Scheduler Set Worker on all DUTs
+| | ... | ${nodes} | workers=${cpu_dp} | crypto_enable=${False}
