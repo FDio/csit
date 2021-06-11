@@ -29,8 +29,9 @@ from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil, IpDscp, MPLS_LABEL_INVALID
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import scp_node
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import Topology, NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.VPPUtil import VPPUtil
 
 
 IPSEC_UDP_PORT_NONE = 0xffff
@@ -324,27 +325,57 @@ class IPsecUtil:
 
     @staticmethod
     def vpp_ipsec_crypto_sw_scheduler_set_worker(
-            node, worker_index, crypto_enable=False):
+            node, workers, crypto_enable=False):
         """Enable or disable crypto on specific vpp worker threads.
 
         :param node: VPP node to enable or disable crypto for worker threads.
-        :param worker_index: VPP worker thread index.
+        :param workers: List of VPP thread numbers.
         :param crypto_enable: Disable or enable crypto work.
         :type node: dict
-        :type worker_index: int
+        :type workers: Iterable[int]
         :type crypto_enable: bool
         :raises RuntimeError: If failed to enable or disable crypto for worker
             thread or if no API reply received.
         """
-        cmd = u"crypto_sw_scheduler_set_worker"
-        err_msg = f"Failed to disable/enable crypto for worker thread " \
-            f"on host {node[u'host']}"
-        args = dict(
-            worker_index=worker_index,
-            crypto_enable=crypto_enable
-        )
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_reply(err_msg)
+        for worker in workers:
+            cmd = u"crypto_sw_scheduler_set_worker"
+            err_msg = f"Failed to disable/enable crypto for worker thread " \
+                f"on host {node[u'host']}"
+            args = dict(
+                worker_index=worker - 1,
+                crypto_enable=crypto_enable
+            )
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
+    def vpp_ipsec_crypto_sw_scheduler_set_worker_on_all_duts(
+            nodes, workers, crypto_enable=False):
+        """Enable or disable crypto on specific vpp worker threads.
+
+        :param node: VPP node to enable or disable crypto for worker threads.
+        :param workers: List of VPP thread numbers.
+        :param crypto_enable: Disable or enable crypto work.
+        :type node: dict
+        :type workers: Iterable[int]
+        :type crypto_enable: bool
+        :raises RuntimeError: If failed to enable or disable crypto for worker
+            thread or if no API reply received.
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                thread_data = VPPUtil.vpp_show_threads(node)
+                worker_cnt = len(thread_data) - 1
+                if not worker_cnt:
+                    return None
+                worker_ids = list()
+                for item in thread_data:
+                    if str(item.cpu_id) in workers.split(u","):
+                        worker_ids.append(item.id)
+
+                IPsecUtil.vpp_ipsec_crypto_sw_scheduler_set_worker(
+                    node, workers=worker_ids, crypto_enable=crypto_enable
+                )
 
     @staticmethod
     def vpp_ipsec_add_sad_entry(
