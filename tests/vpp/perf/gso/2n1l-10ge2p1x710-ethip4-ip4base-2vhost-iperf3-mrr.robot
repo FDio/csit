@@ -46,6 +46,7 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
+| ${smt_used}= | ${False}
 # Qemu settings:
 | ${enable_gso}= | ${False}
 | ${enable_csum}= | ${False}
