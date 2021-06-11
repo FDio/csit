@@ -246,7 +246,7 @@
 | | [Arguments] | ${dp_cores}
 | |
 | | VPP Round Robin Rx Placement on all DUTs
-| | ... | ${nodes} | prefix=port | dp_core_limit=${dp_cores}
+| | ... | ${nodes} | prefix=${EMPTY} | dp_core_limit=${dp_cores}
 | | FOR | ${dut} | IN | @{duts}
 | | | Disable Crypto Work of VPP Worker Threads on node
 | | | ... | ${dut} | ${dp_cores}
@@ -263,9 +263,7 @@
 | |
 | | [Arguments] | ${dut} | ${dp_cores}
 | |
-| | # Workers From Physical Cores keyword is currently defined in default.robot
-| | ${dp_worker_count} = | Workers From Physical Cores | ${dp_cores}
-| | FOR | ${worker_index} | IN RANGE | ${dp_worker_count}
+| | FOR | ${worker_index} | IN RANGE | ${fp_count_int}
 | | | VPP IPSec Crypto SW Scheduler Set Worker
 | | | ... | ${nodes['${dut}']} | ${worker_index} | crypto_enable=${False}
 | | END

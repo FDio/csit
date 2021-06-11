@@ -486,7 +486,7 @@
 | | ${smt_used}= | Is SMT enabled | ${nodes['${iperf_server_node}']['cpuinfo']}
 | | ${vm_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Get Library Instance | vnf_manager
-| | ${vth}= | Evaluate | (${thr_count_int} + 1)
+| | ${vth}= | Evaluate | (${dp_count_int} + 1)
 | | ${cpu_skip_cnt}= | Set Variable If | '${vm_status}' == 'PASS'
 | | ... | ${CPU_CNT_SYSTEM}
 | | ... | ${${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN} + ${cpu_count_int} + ${vth}}
