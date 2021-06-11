@@ -675,7 +675,8 @@ class ExecutionChecker(ResultVisitor):
         oper = {
             u"host": host,
             u"socket": sock,
-            u"runtime": runtime,
+            # Needed for json converter, enable when 'threads' is gone.
+            # u"runtime": runtime,
             u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
         }
 
