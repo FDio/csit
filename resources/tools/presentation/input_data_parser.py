@@ -703,6 +703,11 @@ class ExecutionChecker(ResultVisitor):
         oper = {
             u"host": host,
             u"socket": sock,
+<<<<<<< HEAD   (9f7f73 Trenring: Reduce nr of builds to save RAM)
+=======
+            # Needed for json converter, enable when 'threads' is gone.
+            # u"runtime": runtime,
+>>>>>>> CHANGE (4255e5 PAL: reduce amount of data)
             u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
         }
 
