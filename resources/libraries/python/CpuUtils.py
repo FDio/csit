@@ -85,29 +85,6 @@ class CpuUtils:
                     )
 
     @staticmethod
-    def worker_count_from_cores_and_smt(phy_cores, smt_used):
-        """Simple conversion utility, needs smt from caller.
-
-        The implementation assumes we pack 1 or 2 workers per core,
-        depending on hyperthreading.
-
-        Some keywords use None to indicate no core/worker limit,
-        so this converts None to None.
-
-        :param phy_cores: How many physical cores to use for workers.
-        :param smt_used: Whether symmetric multithreading is used.
-        :type phy_cores: Optional[int]
-        :type smt_used: bool
-        :returns: How many VPP workers fit into the given number of cores.
-        :rtype: Optional[int]
-        """
-        if phy_cores is None:
-            return None
-        workers_per_core = CpuUtils.NR_OF_THREADS if smt_used else 1
-        workers = phy_cores * workers_per_core
-        return workers
-
-    @staticmethod
     def cpu_node_count(node):
         """Return count of numa nodes.
 
@@ -502,8 +479,8 @@ class CpuUtils:
 
     @staticmethod
     def get_cpu_idle_list(node, cpu_node, smt_used, cpu_alloc_str, sep=u","):
-        """
-        Get idle CPU List
+        """Get idle CPU List.
+
         :param node: Node dictionary with cpuinfo.
         :param cpu_node: Numa node number.
         :param smt_used: True - we want to use SMT, otherwise false.
@@ -521,3 +498,92 @@ class CpuUtils:
         cpu_idle_list = [i for i in cpu_list
                          if str(i) not in cpu_alloc_str.split(sep)]
         return cpu_idle_list
+
+    @staticmethod
+    def get_affinity_vpp_vswitch(
+            nodes, node, phy_cores, rx_queues=None, rxd=None, txd=None):
+        """Get affinity or VPP switch.
+
+        :param nodes: Topology nodes.
+        :param node: Topology node string.
+        :param phy_cores: Number of physical cores to allocate.
+        :param rx_queues: Number of RX queues. (Optional, Default: None)
+        :param rxd: Number of RX descriptors. (Optional, Default: None)
+        :param txd: Number of TX descriptors. (Optional, Default: None)
+        :type nodes: dict
+        :type node: str
+        :type phy_cores: int
+        :type rx_queues: int
+        :type rxd: int
+        :type txd: int
+        :returns: Compute resource information dictionary.
+        :rtype: dict
+        """
+        dp_cores_count = BuiltIn().get_variable_value(
+            f"${{dp_cores_count}}", phy_cores
+        )
+        fp_cores_count = BuiltIn().get_variable_value(
+            f"${{fp_cores_count}}", phy_cores - dp_cores_count
+        )
+        rxq_ratio = BuiltIn().get_variable_value(
+            f"${{rxq_ratio}}", 1
+        )
+        dut_pf_keys = BuiltIn().get_variable_value(
+            f"${{{node}_pf_keys}}"
+        )
+        smt_used = BuiltIn().get_variable_value(
+            f"${{smt_used}}", CpuUtils.is_smt_enabled(nodes[node][u"cpuinfo"])
+        )
+
+        cpu_node = Topology.get_interfaces_numa_node(nodes[node], *dut_pf_keys)
+        skip_cnt = Constants.CPU_CNT_SYSTEM
+        cpu_main = CpuUtils.cpu_list_per_node_str(
+            nodes[node], cpu_node,
+            skip_cnt=skip_cnt,
+            cpu_cnt=Constants.CPU_CNT_MAIN,
+            smt_used=smt_used
+        )
+        skip_cnt += Constants.CPU_CNT_MAIN
+        cpu_dp = CpuUtils.cpu_list_per_node_str(
+            nodes[node], cpu_node,
+            skip_cnt=skip_cnt,
+            cpu_cnt=int(dp_cores_count),
+            smt_used=smt_used
+        ) if int(dp_cores_count) else u""
+        skip_cnt = skip_cnt + int(dp_cores_count)
+        cpu_fp = CpuUtils.cpu_list_per_node_str(
+            nodes[node], cpu_node,
+            skip_cnt=skip_cnt,
+            cpu_cnt=int(fp_cores_count),
+            smt_used=smt_used
+        ) if int(fp_cores_count) else u""
+
+        fp_count_int = \
+            int(fp_cores_count) * CpuUtils.NR_OF_THREADS if smt_used \
+            else int(fp_cores_count)
+        dp_count_int = \
+            int(dp_cores_count) * CpuUtils.NR_OF_THREADS if smt_used \
+            else int(dp_cores_count)
+
+        rxq_count_int = rx_queues if rx_queues else int(dp_count_int/rxq_ratio)
+        rxq_count_int = 1 if not rxq_count_int else rxq_count_int
+
+        compute_resource_info = dict()
+        compute_resource_info[u"buffers_numa"] = 215040 if smt_used else 107520
+        compute_resource_info[u"smt_used"] = smt_used
+        compute_resource_info[u"cpu_main"] = cpu_main
+        compute_resource_info[u"cpu_dp"] = cpu_dp
+        compute_resource_info[u"cpu_fp"] = cpu_fp
+        compute_resource_info[u"cpu_wt"] = \
+            u",".join(filter(None, [cpu_dp, cpu_fp]))
+        compute_resource_info[u"cpu_alloc_str"] = \
+            u",".join(filter(None, [cpu_main, cpu_dp, cpu_fp]))
+        compute_resource_info[u"cpu_count_int"] = \
+            int(dp_cores_count) + int(fp_cores_count)
+        compute_resource_info[u"rxd_count_int"] = rxd
+        compute_resource_info[u"txd_count_int"] = txd
+        compute_resource_info[u"rxq_count_int"] = rxq_count_int
+        compute_resource_info[u"fp_count_int"] = fp_count_int
+        compute_resource_info[u"dp_count_int"] = dp_count_int
+
+        return compute_resource_info

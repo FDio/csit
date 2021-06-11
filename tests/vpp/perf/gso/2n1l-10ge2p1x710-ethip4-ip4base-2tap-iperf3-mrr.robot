@@ -47,6 +47,7 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 | ${enable_gso}= | ${False}
+| ${smt_used}= | ${False}
 # iPerf3 client settings:
 | ${iperf_client_bind}= | 1.1.1.1
 | ${iperf_client_bind_gw}= | 1.1.1.2
