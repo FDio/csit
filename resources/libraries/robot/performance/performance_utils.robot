@@ -512,9 +512,10 @@
 | | ... | ${nodes['${iperf_client_node}']}
 | | ... | namespace=${iperf_client_namespace}
 | | ... | default_route=${iperf_client_bind_gw}
-| | ${pre_stats}= | Create List
-| | ... | clear-show-runtime-with-iperf3
-| | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
+| | ${stat_runtime}= | Create List
+| | ... | vpp-runtime-iperf3
+| | ${stat_pre_trial}= | Create List
+| | ... | vpp-runtime-iperf3 | vpp-clear-stats | vpp-enable-packettrace
 | | FOR | ${action} | IN | @{stat_runtime}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
