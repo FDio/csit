@@ -75,7 +75,7 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${4}
-| ${dp_cores}= | ${1}
+| ${dp_cores_count}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4dst${n_tunnels}-udir
 | ${traffic_directions}= | ${1}
@@ -94,7 +94,7 @@
 | | ... | - phy_cores - Total number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${1}. Type: integer
 | |
-| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${1}
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
 | |
@@ -109,13 +109,13 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Enable IPSec Async Mode on all VPP DUTs
-| | And Disable Crypto Work of VPP Worker Threads on all VPP DUTs | ${dp_cores}
+| | And Disable Crypto Work of VPP Worker Threads on all VPP DUTs
 | | And Initialize IPSec in 2-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${nodes} | ${tun_if1_ip4} | ${tun_if2_ip4} | ${DUT1_${int}2}[0]
 | | ... | ${TG_pf2}[0] | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
-| | Then Find NDR and PDR intervals using optimized search
+#| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | 64B-2c-ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-udir-ndrpdr
@@ -127,7 +127,7 @@
 | | frame_size=${64} | phy_cores=${3}
 
 | 64B-4c-ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-udir-ndrpdr
-| | [Tags] | 64B | 4C
+| | [Tags] | 64B | 4C | THIS
 | | frame_size=${64} | phy_cores=${4}
 
 | 1518B-2c-ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-udir-ndrpdr

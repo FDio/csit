@@ -75,8 +75,6 @@
 | ${cpu_alloc_str}= | ${0}
 
 *** Keywords ***
-# TODO: Sort keywords alphabetically.
-
 | Call Resetter
 | | [Documentation]
 | | ... | Check for a presence of test variable \${resetter}.
@@ -122,29 +120,6 @@
 | | Append To List | ${results} | ${status}
 | | Should Not Contain Match | ${results} | FAIL
 | | ... | msg=At least one of statistic commands failed!
-
-| Workers From Physical Cores
-| | [Documentation]
-| | ... | Convert from core count to worker count.
-| |
-| | ... | This just calls CpuUtils.worker_count_from_cores_and_smt keyword
-| | ... | with the global \${smt_used} value.
-| | ... | See documentation there.
-| |
-| | ... | *Arguments:*
-| | ... | - phy_cores - Number of physical cores to convert from. Type: integer.
-| |
-| | ... | *Return value:*
-| | ... | - Number of workers active on the given number of cores.
-| |
-| | ... | *Example:*
-| |
-| | ... | \| \${dp_workers} = \| Workers from Physical Cores \| \${1} \|
-| |
-| | [Arguments] | ${phy_cores}
-| |
-| | Run Keyword And Return | Worker Count From Cores And Smt
-| | ... | phy_cores=${phy_cores} | smt_used=${smt_used}
 
 | Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
@@ -241,9 +216,7 @@
 | | ... | automatically map also the sibling logical cores.
 | | ... | Keyword will automatically set the appropriate test TAGs in format
 | | ... | mTnC, where m=logical_core_count and n=physical_core_count.
-| | ... | RXQ are computed automatically by dividing thread count with number 2
-| | ... | (TODO: Add division by actual number of interfaces). User can manually
-| | ... | override RX, RXD, TXD parameters if needed.
+| | ... | User can manually override RXQ, RXD, TXD parameters if needed.
 | |
 | | ... | *Arguments:*
 | | ... | - phy_cores - Number of physical cores to use. Type: integer
@@ -258,120 +231,33 @@
 | | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxd}=${None}
 | | ... | ${txd}=${None}
 | |
-| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
-| | ${thr_count_int} | Convert to Integer | ${phy_cores}
-| | ${rxd_count_int}= | Set variable | ${rxd}
-| | ${txd_count_int}= | Set variable | ${txd}
 | | FOR | ${dut} | IN | @{duts}
-| | | ${numa}= | Get interfaces numa node
-| | | ... | ${nodes['${dut}']} | @{${dut}_pf_keys}
-| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
-| | | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
-| | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}
-| | | ${skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN}
-| | | ${cpu_wt}= | Run Keyword If | ${cpu_count_int} > 0 |
-| | | ... | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_count_int}
-| | | ... | smt_used=${smt_used}
-| | | ${thr_count_int}= | Run Keyword If | ${smt_used}
-| | | ... | Evaluate | int(${cpu_count_int}*2)
-| | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${1}
-| | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
-| | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
-| | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
-| | | ... | Set variable | ${1}
-| | | ... | ELSE | Set variable | ${rxq_count_int}
+| | | &{compute_resource_info}= | Get Affinity Vswitch
+| | | ... | ${nodes} | ${dut} | ${phy_cores} | rx_queues=${rx_queues}
+| | | ... | rxd=${rxd} | txd=${txd}
+| | | Set Test Variable | &{compute_resource_info}
+| | | Create compute resources variables
 | | | Run Keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run Keyword If | ${cpu_count_int} > 0
 | | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
-| | | Run Keyword If | ${smt_used}
-| | | ... | Run Keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
-| | | ... | Run Keyword | ${dut}.Add Buffers Per Numa | ${107520}
-| | | Run Keyword If | ${thr_count_int} > 1
-| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
-| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+| | | Run Keyword | ${dut}.Add Buffers Per Numa | ${buffers_numa}
 | | END
-| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_main}
-| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
-| | Set Test Variable | ${smt_used}
-| | Set Test Variable | ${cpu_alloc_str}
-| | Set Test Variable | ${cpu_count_int}
-| | Set Test Variable | ${thr_count_int}
-| | Set Test Variable | ${rxd_count_int}
-| | Set Test Variable | ${txd_count_int}
-| | Set Test Variable | ${rxq_count_int}
 
-| Add worker threads for GSO tests to all DUTs
-| | [Documentation] | Setup worker threads in vpp startup configuration on all
-| | ... | DUTs. Based on the SMT configuration of DUT if enabled keyword will
-| | ... | automatically map also the sibling logical cores.
-| | ... | Keyword will automatically set the appropriate test TAGs in format
-| | ... | mTnC, where m=logical_core_count and n=physical_core_count.
-| | ... | RXQ are computed automatically by dividing thread count with number 2
-| | ... | (TODO: Add division by actual number of interfaces). User can manually
-| | ... | override RX, RXD, TXD parameters if needed.
+| Create compute resources variables
+| | [Documentation]
+| | ... | Create compute resources variables
 | |
-| | ... | *Arguments:*
-| | ... | - phy_cores - Number of physical cores to use. Type: integer
-| | ... | - rx_queues - Number of RX queues. Type: integer
-| | ... | - rxd - Number of RX descriptors. Type: integer
-| | ... | - txd - Number of TX descriptors. Type: integer
+| | ... | _NOTE:_ This KW sets various suite variables based on computed
+| | ... | resources.
 | |
-| | ... | *Example:*
-| |
-| | ... | \| Add worker threads for GSO tests to all DUTs \| ${1} \| ${1} \|
-| |
-| | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxd}=${None}
-| | ... | ${txd}=${None}
-| |
-| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
-| | ${thr_count_int} | Convert to Integer | ${phy_cores}
-| | ${rxd_count_int}= | Set variable | ${rxd}
-| | ${txd_count_int}= | Set variable | ${txd}
-| | FOR | ${dut} | IN | @{duts}
-| | | ${numa}= | Get interfaces numa node
-| | | ... | ${nodes['${dut}']} | @{${dut}_pf_keys}
-| | | ${smt_used}= | Set variable | ${False}
-| | | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
-| | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}
-| | | ${skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN}
-| | | ${cpu_wt}= | Run Keyword If | ${cpu_count_int} > 0 |
-| | | ... | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_count_int}
-| | | ... | smt_used=${smt_used}
-| | | ${thr_count_int}= | Run Keyword If | ${smt_used}
-| | | ... | Evaluate | int(${cpu_count_int}*2)
-| | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_ratio} = | Get Variable Value | \${rxq_ratio} | ${1}
-| | | ${rxq_count_int}= | Run Keyword If | ${rx_queues}
-| | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/${rxq_ratio})
-| | | ${rxq_count_int}= | Run Keyword If | ${rxq_count_int} == 0
-| | | ... | Set variable | ${1}
-| | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | Run Keyword | ${dut}.Add CPU Main Core | ${cpu_main}
-| | | Run Keyword If | ${cpu_count_int} > 0
-| | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
-| | | Run Keyword If | ${smt_used}
-| | | ... | Run Keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
-| | | ... | Run Keyword | ${dut}.Add Buffers Per Numa | ${107520}
-| | | Run Keyword If | ${thr_count_int} > 1
-| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
-| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+| | ${variables}= | Get Dictionary Keys | ${compute_resource_info}
+| | FOR | ${variable} | IN | @{variables}
+| | | ${value}= | Get From Dictionary | ${compute_resource_info} | ${variable}
+| | | Set Test Variable | ${${variable}} | ${value}
 | | END
-| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_main}
-| | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
-| | Set Test Variable | ${smt_used}
-| | Set Test Variable | ${cpu_alloc_str}
-| | Set Test Variable | ${cpu_count_int}
-| | Set Test Variable | ${thr_count_int}
-| | Set Test Variable | ${rxd_count_int}
-| | Set Test Variable | ${txd_count_int}
-| | Set Test Variable | ${rxq_count_int}
+| | Run Keyword If | ${dp_count_int} > 1
+| | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
+| | Set Tags | ${dp_count_int}T${cpu_count_int}C
 
 | Add DPDK VLAN strip offload switch off between DUTs
 | | [Documentation]
