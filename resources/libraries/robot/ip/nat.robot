@@ -51,7 +51,7 @@
 | | ... | - n_sessions - Expected number of opened sessions.
 | |
 | | ${max_sessions}= | Compute Max Translations Per Thread
-| | ... | ${n_sessions} | ${thr_count_int}
+| | ... | ${n_sessions} | ${dp_count_int}
 | | Enable NAT44 Plugin | ${dut1} | mode=${nat_mode} | sessions=${max_sessions}
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]

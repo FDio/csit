@@ -288,7 +288,7 @@ class NATUtil:
         :rtype: int
         """
         # vpp-device tests have not dedicated physical core so
-        # ${thr_count_int} == 0 but we need to use one thread
+        # ${dp_count_int} == 0 but we need to use one thread
         threads = 1 if not int(threads) else int(threads)
         rest, mult = modf(log2(sessions/(10*threads)))
         return 2 ** (int(mult) + (1 if rest else 0)) * 10
