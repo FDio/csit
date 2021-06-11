@@ -35,7 +35,7 @@
 
 - name: Disable IPv6 MLDv1 interval
   sysctl:
-    name: "net.ipv6.conf.all.mldv1_unsolicited_report_interval=0"
+    name: "net.ipv6.conf.all.mldv1_unsolicited_report_interval"
     value: "0"
     state: "present"
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
@@ -45,7 +45,7 @@
 
 - name: Disable IPv6 MLDv2 interval
   sysctl:
-    name: "net.ipv6.conf.all.mldv2_unsolicited_report_interval=0"
+    name: "net.ipv6.conf.all.mldv2_unsolicited_report_interval"
     value: "0"
     state: "present"
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
@@ -55,7 +55,7 @@
 
 - name: Disable IPv6 Autoconf
   sysctl:
-    name: "net.ipv6.conf.all.autoconf=0"
+    name: "net.ipv6.conf.all.autoconf"
     value: "0"
     state: "present"
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
@@ -65,7 +65,7 @@
 
 - name: Disable IPv6 MC Forwarding
   sysctl:
-    name: "net.ipv6.conf.all.mc_forwarding=0"
+    name: "net.ipv6.conf.all.mc_forwarding"
     value: "0"
     state: "present"
     sysctl_file: "/etc/sysctl.d/90-csit.conf"
