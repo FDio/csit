@@ -675,6 +675,7 @@ class ExecutionChecker(ResultVisitor):
         oper = {
             u"host": host,
             u"socket": sock,
+            # Needed for json converter, enable when 'threads' is gone.
             u"runtime": runtime,
             u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
         }
@@ -1478,6 +1479,8 @@ class InputData:
         if success:
             logging.info(f"  Processing data from build {build[u'build']}")
             data = self._parse_tests(job, build)
+            logging.info("data:")
+            logging.info(data)
             if data is None:
                 logging.error(
                     f"Input data file from the job {job}, build "
