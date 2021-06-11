@@ -675,7 +675,8 @@ class ExecutionChecker(ResultVisitor):
         oper = {
             u"host": host,
             u"socket": sock,
-            u"runtime": runtime,
+            # Needed for json converter, enable when 'threads' is gone.
+            # u"runtime": runtime,
             u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
         }
 
@@ -1543,6 +1544,7 @@ class InputData:
 
                 if result[u"data"]:
                     data = result[u"data"]
+                    logging.info(data)
                     build_data = pd.Series({
                         u"metadata": pd.Series(
                             list(data[u"metadata"].values()),
