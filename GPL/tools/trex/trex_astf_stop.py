@@ -41,6 +41,8 @@ import argparse
 import json
 import sys
 
+from collections import OrderedDict  # Needed to parse xstats representation.
+
 sys.path.insert(
     0, u"/opt/trex-core-2.88/scripts/automation/trex_control_plane/interactive/"
 )
