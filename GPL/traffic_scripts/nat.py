@@ -30,7 +30,7 @@ import sys
 import ipaddress
 
 from scapy.layers.inet import IP, TCP, UDP
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2
+from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
@@ -136,9 +136,16 @@ def main():
         if ether.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
             continue
-        else:
-            # otherwise process the current packet
-            break
+        elif ether.haslayer(ICMPv6MLReport2):
+            # read another packet in the queue if the current one is
+            # ICMPv6MLReport2
+            continue
+        elif ether.haslayer(ICMPv6ND_RA):
+            # read another packet in the queue if the current one is
+            # ICMPv6ND_RA
+            continue
+
+        break
 
     if rx_dst_mac != ether[Ether].dst or rx_src_mac != ether[Ether].src:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")
@@ -202,9 +209,12 @@ def main():
             # read another packet in the queue if the current one is
             # ICMPv6MLReport2
             continue
-        else:
-            # otherwise process the current packet
-            break
+        elif ether.haslayer(ICMPv6ND_RA):
+            # read another packet in the queue if the current one is
+            # ICMPv6ND_RA
+            continue
+
+        break
 
     if ether[Ether].dst != tx_src_mac or ether[Ether].src != tx_dst_mac:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")

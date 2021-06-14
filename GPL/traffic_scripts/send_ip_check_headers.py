@@ -34,7 +34,7 @@ import ipaddress
 
 from robot.api import logger
 from scapy.layers.inet import IP
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2
+from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
 from scapy.layers.l2 import Ether, Dot1Q
 from scapy.packet import Raw
 
@@ -145,9 +145,12 @@ def main():
             # read another packet in the queue if the current one is
             # ICMPv6MLReport2
             continue
-        else:
-            # otherwise process the current packet
-            break
+        elif ether.haslayer(ICMPv6ND_RA):
+            # read another packet in the queue if the current one is
+            # ICMPv6ND_RA
+            continue
+
+        break
 
     if rx_dst_mac == ether[Ether].dst and rx_src_mac == ether[Ether].src:
         logger.trace(u"MAC matched")

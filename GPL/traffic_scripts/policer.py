@@ -30,7 +30,7 @@ import sys
 from ipaddress import ip_address
 from scapy.layers.l2 import Ether
 from scapy.layers.inet import IP, TCP
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2
+from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
 from scapy.packet import Raw
 
 from .TrafficScriptArg import TrafficScriptArg
@@ -115,6 +115,10 @@ def main():
         elif pkt_recv.haslayer(ICMPv6MLReport2):
             # read another packet in the queue if the current one is
             # ICMPv6MLReport2
+            continue
+        elif pkt_recv.haslayer(ICMPv6ND_RA):
+            # read another packet in the queue if the current one is
+            # ICMPv6ND_RA
             continue
 
         # otherwise process the current packet
