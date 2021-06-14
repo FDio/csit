@@ -5074,6 +5074,48 @@
 ###                                P L O T S                                 ###
 ################################################################################
 
+# Hoststack tests 3n-skx
+
+- type: "plot"
+  title: "Bandwidth: 3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps"
+  data: "vpp-3n-skx-curr-iter-hoststack"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpbase-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpbase-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpscale1Cl10S-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpscale1cl10s-ldpreload-iperf3-bps"
+  layout:
+    title: "3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3"
+    layout: "plot-hoststack"
+
+- type: "plot"
+  title: "Bandwidth: 3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps"
+  data: "vpp-3n-skx-curr-iter-hoststack"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpbase-Nsim-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpbase-nsim-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpscale1Cl10S-Nsim-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3-bps"
+  layout:
+    title: "3n-skx-xxv710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
+    layout: "plot-hoststack"
+
+- type: "plot"
+  title: "Bandwidth: 3n-skx-xxv710-1280b-2t1c-eth-ip4udpquic-vppecho"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1280b-2t1c-eth-ip4udpquic-vppecho-bps"
+  data: "vpp-3n-skx-curr-iter-hoststack"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicbase-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicbase-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicscale1Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale1cl10s-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicscale10Cl1S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl1s-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicscale10Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl10s-vppecho-bps"
+  layout:
+    title: "3n-skx-xxv710-1280b-2t1c-eth-ip4udpquic-vppecho"
+    layout: "plot-hoststack"
+
+################################################################################
+
 # Soak Test (PLRsearch), boxes - 2n-clx
 - type: "plot"
   title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
