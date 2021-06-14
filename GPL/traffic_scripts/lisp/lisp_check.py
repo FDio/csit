@@ -34,7 +34,7 @@ from scapy.all import bind_layers, Packet
 from scapy.fields import FlagsField, BitField, IntField
 from scapy.layers.inet import ICMP, IP, UDP
 from scapy.layers.inet6 import ICMPv6EchoRequest
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2
+from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
@@ -165,6 +165,10 @@ def main():
         elif ether.haslayer(ICMPv6MLReport2):
             # read another packet in the queue if the current one is
             # ICMPv6MLReport2
+            continue
+        elif ether.haslayer(ICMPv6ND_RA):
+            # read another packet in the queue if the current one is
+            # ICMPv6ND_RA
             continue
 
         # otherwise process the current packet
