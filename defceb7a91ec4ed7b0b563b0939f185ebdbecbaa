@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07ce7311_c8e6501e",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vsap-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-06-15T14:08:11Z",
+      "side": 1,
+      "message": "Can results for both cx556a and e810cq for nginx-1.15.0?",
+      "range": {
+        "startLine": 34,
+        "startChar": 22,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "defceb7a91ec4ed7b0b563b0939f185ebdbecbaa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
