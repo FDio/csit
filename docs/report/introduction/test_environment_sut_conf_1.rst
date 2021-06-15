@@ -5,19 +5,6 @@ System provisioning is done by combination of PXE boot unattented
 install and
 `Ansible <https://www.ansible.com>`_ described in `CSIT Testbed Setup`_.
 
-Below a subset of the running configuration:
-
-1. Ubuntu 18.04.2 LTS
-
-::
-
-    $ lsb_release -a
-    No LSB modules are available.
-    Distributor ID: Ubuntu
-    Description:    Ubuntu 18.04.2 LTS
-    Release:        18.04
-    Codename:       bionic
-
 Linux Boot Parameters
 ~~~~~~~~~~~~~~~~~~~~~
 

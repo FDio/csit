@@ -14,8 +14,7 @@ applied in BIOS and requires server SUT reload for it to take effect,
 making it impractical for continuous changes of HT mode of operation.
 
 |csit-release| performance tests are executed with server SUTs' Intel
-XEON processors configured with Intel Hyper-Threading Disabled for all
-Xeon Haswell testbeds (3n-hsw) and with Intel Hyper-Threading Enabled
+XEON processors configured with Intel Hyper-Threading Enabled
 for all Xeon Skylake and Xeon Cascadelake testbeds.
 
 More information about physical testbeds is provided in
@@ -26,13 +25,6 @@ Multi-core Tests
 
 |csit-release| multi-core tests are executed in the following VPP worker
 thread and physical core configurations:
-
-#. Intel Xeon Haswell testbeds (3n-hsw) with Intel HT disabled
-   (1 logical CPU core per each physical core):
-
-  #. 1t1c - 1 VPP worker thread on 1 physical core.
-  #. 2t2c - 2 VPP worker threads on 2 physical cores.
-  #. 4t4c - 4 VPP worker threads on 4 physical cores.
 
 #. Intel Xeon Skylake and Cascadelake testbeds (2n-skx, 3n-skx, 2n-clx)
    with Intel HT enabled (2 logical CPU cores per each physical core):

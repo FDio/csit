@@ -26,8 +26,8 @@ Two physical server topology types are used:
 Current FD.io production testbeds are built with SUT servers based on
 the following processor architectures:
 
-- Intel Xeon: Skylake Platinum 8180, Haswell-SP E5-2699v3,
-  Cascade Lake Platinum 8280, Cascade Lake 6252N.
+- Intel Xeon: Skylake Platinum 8180, Cascade Lake Platinum 8280,
+  Cascade Lake 6252N.
 - Intel Atom: Denverton C3858.
 - Arm: TaiShan 2280, hip07-d05.
 - AMD EPYC: Zen2 7532.

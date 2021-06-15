@@ -14,7 +14,7 @@ Linux cmdline
 ::
 
     $ cat /proc/cmdline
-    BOOT_IMAGE=/boot/vmlinuz-4.15.0-54-generic root=/dev/mapper/huawei--1--vg-root ro isolcpus=1-15,17-31,33-47,49-63 nohz_full=1-15     17-31,33-47,49-63 rcu_nocbs=1-15     17-31,33-47,49-63 intel_iommu=on nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 console=ttyAMA0,115200n8
+    BOOT_IMAGE=/boot/vmlinuz-5.4.0-65-generic root=UUID=7d1d0e77-4df0-43df-9619-a99db29ffb83 ro audit=0 intel_iommu=on isolcpus=1-27,29-55 nmi_watchdog=0 nohz_full=1-27,29-55 nosoftlockup processor.max_cstate=1 rcu_nocbs=1-27,29-55 console=ttyAMA0,115200n8 quiet
 
 Linux uname
 ^^^^^^^^^^^
@@ -22,7 +22,7 @@ Linux uname
 ::
 
     $ uname -a
-    Linux s17-t33-sut1 4.15.0-54-generic #58-Ubuntu SMP Mon Jun 24 10:56:40 UTC 2019 aarch64 aarch64 aarch64 GNU/Linux
+    Linux 5.4.0-65-generic #73-Ubuntu SMP Mon Jan 18 17:25:17 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
 
 
 System-level Core Jitter

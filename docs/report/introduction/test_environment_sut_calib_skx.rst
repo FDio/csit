@@ -15,7 +15,7 @@ Linux cmdline
 ::
 
     $ cat /proc/cmdline
-    BOOT_IMAGE=/boot/vmlinuz-4.15.0-72-generic root=UUID=e05120bb-7127-43db-b1e3-a66edd4c43bd ro isolcpus=1-27,29-55,57-83,85-111 nohz_full=1-27,29-55,57-83,85-111 rcu_nocbs=1-27,29-55,57-83,85-111 numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off console=tty0 console=ttyS0,115200n8
+    BOOT_IMAGE=/boot/vmlinuz-5.4.0-65-generic root=UUID=55d44abd-94d6-4b26-9d93-5877a8658016 ro audit=0 hpet=disable intel_idle.max_cstate=1 intel_iommu=on intel_pstate=disable iommu=pt isolcpus=1-27,29-55,57-83,85-111 mce=off nmi_watchdog=0 nohz_full=1-27,29-55,57-83,85-111 nosoftlockup numa_balancing=disable processor.max_cstate=1 rcu_nocbs=1-27,29-55,57-83,85-111 tsc=reliable console=ttyS0,115200n8 quiet
 
 
 Linux uname
@@ -24,7 +24,7 @@ Linux uname
 ::
 
     $ uname -a
-    Linux s3-t21-sut1 4.15.0-72-generic #81-Ubuntu SMP Tue Nov 26 12:20:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+    Linux 5.4.0-65-generic #73-Ubuntu SMP Mon Jan 18 17:25:17 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
 
 
 System-level Core Jitter
