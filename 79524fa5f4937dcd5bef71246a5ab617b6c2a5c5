@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ab516bf0_2054a715",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-15T12:36:29Z",
+      "side": 1,
+      "message": "Done, also for line 89 to keep naming consistent.\n\nNot sure about the iteration variable in line 105, kept \"package\" for now.",
+      "parentUuid": "b65d5bf2_f60567ef",
+      "range": {
+        "startLine": 185,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 12
+      },
+      "revId": "79524fa5f4937dcd5bef71246a5ab617b6c2a5c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "15b54457_7b45b8dc",
         "filename": "resources/tools/iperf/iperf_client.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "79524fa5f4937dcd5bef71246a5ab617b6c2a5c5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb99b034_55e39668",
+        "filename": "resources/tools/iperf/iperf_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-15T12:36:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15b54457_7b45b8dc",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 41
+      },
+      "revId": "79524fa5f4937dcd5bef71246a5ab617b6c2a5c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
