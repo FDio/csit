@@ -22,6 +22,30 @@
       "revId": "7333a491a42b3986ff618a03d5baceccc135e46c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94943bc4_64b3ac26",
+        "filename": "docs/job_specs/report_coverage/3n-skx/crypto-04.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-06-15T13:30:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f9f7fd0_7a68d76e",
+      "range": {
+        "startLine": 2,
+        "startChar": 10,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "7333a491a42b3986ff618a03d5baceccc135e46c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
