@@ -18,7 +18,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | HOSTSTACK
+| ... | RXQ_SIZE_256 | TXQ_SIZE_256 | HOSTSTACK
 | ... | NSIM | LDPRELOAD | IPERF3 | 1CLIENT | 1STREAM | 1460B
 | ... | eth-ip4tcpbase-nsim-ldpreload-iperf3
 |
@@ -41,22 +41,25 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | nsim_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | 256
+| ${nic_txq_size}= | 256
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
-| ${pkts_per_drop}= | ${100}
+| ${pkts_per_drop}= | ${1000}
 
 *** Keywords ***
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
+| | ${bandwidth} = | Get From Dictionary
+| | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
 | | Set VPP NSIM Attributes | output_nsim_enable=${True} |
 | | ... | packets_per_drop=${pkts_per_drop}
+| | ... | bw_in_bits_per_second=${bandwidth}
 | | ${defer_fail}= | Get Test Results From Hoststack Iperf3 Test
 | | Run Keyword If | ${defer_fail}==True | FAIL
 | | ... | Defered Failure From Hoststack Iperf3 Test Program

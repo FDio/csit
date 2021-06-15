@@ -290,7 +290,7 @@ class Constants:
         u"Intel-X520-DA2": 10000000000,
         u"Intel-X553": 10000000000,
         u"Intel-X710": 10000000000,
-        u"Intel-XL710": 24500000000,
+        u"Intel-XL710": 40000000000,
         u"Intel-XXV710": 24500000000,
         u"Intel-E810CQ": 100000000000,
         u"Mellanox-CX556A": 100000000000,
@@ -303,7 +303,7 @@ class Constants:
         u"Intel-X520-DA2": 14880952,
         u"Intel-X553": 14880952,
         u"Intel-X710": 14880952,
-        u"Intel-XL710": 18750000,
+        u"Intel-XL710": 18750000, # How is this calculated for 40G bps?
         u"Intel-XXV710": 18750000,
         u"Intel-E810CQ": 58500000,
         # 2n-clx testbeds show duration stretching on high rates,

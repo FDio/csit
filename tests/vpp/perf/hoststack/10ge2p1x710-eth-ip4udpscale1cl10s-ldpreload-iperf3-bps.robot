@@ -18,7 +18,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | UDP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | HOSTSTACK
+| ... | RXQ_SIZE_256 | TXQ_SIZE_256 | HOSTSTACK
 | ... | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 1460B
 | ... | eth-ip4udpscale1cl10s-ldpreload-iperf3
 |
@@ -41,8 +41,8 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | 256
+| ${nic_txq_size}= | 256
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
