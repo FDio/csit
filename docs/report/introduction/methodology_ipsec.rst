@@ -47,7 +47,3 @@ dpdk_cryptodev
 | crypto_ipsecmb    | async/crypto worker | AES[128]-CBC     | SHA[256|512]   | 1, 4, 1k tunnels |
 +-------------------+---------------------+------------------+----------------+------------------+
 
-..
-    VPP IPsec with HW crypto are executed in both tunnel and policy modes,
-    with tests running on 3-node Haswell testbeds (3n-hsw), as these are the
-    only testbeds equipped with Intel QAT cards.

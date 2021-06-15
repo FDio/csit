@@ -12,7 +12,7 @@ Linux cmdline
 ::
 
     $ cat /proc/cmdline
-    BOOT_IMAGE=/boot/vmlinuz-4.15.0-72-generic root=UUID=1672f0ef-755e-4a26-884d-02a3f4ac933c ro isolcpus=1-15,33-47,17-31,49-63 nohz_full=1-15,33-47,17-31,49-63 rcu_nocbs=1-15,33-47,17-31,49-63 numa_balancing=disable amd_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=0 hpet=disable tsc=reliable mce=off splash quiet vt.handoff=1
+    BOOT_IMAGE=/boot/vmlinuz-5.4.0-65-generic root=UUID=3c4b56e3-1f01-4211-a652-ea77468f58b7 ro amd_iommu=on audit=0 hpet=disable iommu=pt isolcpus=1-15,17-31,33-47,49-63 nmi_watchdog=0 nohz_full=off nosoftlockup numa_balancing=disable processor.max_cstate=0 rcu_nocbs=1-15,17-31,33-47,49-63 tsc=reliable console=ttyS0,115200n8 quiet
 
 
 Linux uname
@@ -21,7 +21,7 @@ Linux uname
 ::
 
     $ uname -a
-    Linux s60-t210-sut1 4.15.0-72-generic #81-Ubuntu SMP Tue Nov 26 12:20:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+    Linux 5.4.0-65-generic #73-Ubuntu SMP Mon Jan 18 17:25:17 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
 
 
 System-level Core Jitter

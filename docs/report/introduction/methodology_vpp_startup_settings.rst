@@ -26,7 +26,7 @@ List of VPP startup.conf settings applied to all tests:
    256). For Xeon Skylake platforms configured with 2MB hugepages and VPP
    data-size and buffer-size defaults (2048B and 2496B respectively), this
    results in value of 215040 (256 * 840 = 215040, 840 * 2496B buffers fit
-   in 2MB hugepage ). For Xeon Haswell nodes value of 107520 is used.
+   in 2MB hugepage).
 
 Per Test Settings
 ~~~~~~~~~~~~~~~~~
