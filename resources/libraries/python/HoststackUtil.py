@@ -84,6 +84,7 @@ class HoststackUtil():
         ip_address = f" {iperf3_attributes[u'ip_address']}" if u"ip_address" \
                      in iperf3_attributes else u""
         iperf3_cmd[u"name"] = u"iperf3"
+        # TODO: Use OptionString library.
         iperf3_cmd[u"args"] = f"--{iperf3_attributes[u'role']}{ip_address} " \
                               f"--interval 0{json_results} " \
                               f"--version{iperf3_attributes[u'ip_version']}"

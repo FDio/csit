@@ -43,6 +43,7 @@ def simple_burst(args):
     if args.warmup_time > 0:
         try:
             for i in range(0, args.instances):
+                # TODO: Use OptionString.
                 cmd = u"exec sudo "
                 cmd += (
                     f"ip netns exec {args.namespace} "
