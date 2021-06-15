@@ -56,7 +56,7 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
-| ${overhead}= | 8
+| ${overhead}= | ${8}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-3n-ethip6-ip6src253
 

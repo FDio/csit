@@ -514,7 +514,8 @@
 | | ... | Set Variable | ${353.83333}
 | | ... | ELSE
 | | ... | Convert To Number | ${frame_size}
-| | ${avg_frame_size} = | Evaluate | $bare_avg_frame_size + $max_overhead
+| | # Do not use $max_overhead (without braces), that does not tolerate string.
+| | ${avg_frame_size} = | Evaluate | ${bare_avg_frame_size} + ${max_overhead}
 | | Set Test Variable | \${avg_frame_size}
 | | ${bare_max_frame_size} = | Run Keyword If | '${frame_size}' == 'IMIX_v4_1'
 | | ... | Set Variable | ${1518}
