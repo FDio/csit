@@ -6,7 +6,7 @@
 
   vpp-device-results-ubuntu:
     csit-vpp-device-2101-ubuntu1804-1n-skx:
-      - 56  # rls2101.rc1 VPP DEV env 7
+      - 58  # rls2101.rc1 VPP DEV env 7
 
 ################################################################################
 
@@ -52,25 +52,12 @@
       - 12  # rls2101.rel NDRPDR iter env 7
 
   vpp-3n-skx-curr-iter:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-3n-skx:
-    csit-vpp-perf-report-iterative-2101-3n-skx:
-      - 36  # rls2101.rel NDRPDR iter env 6
-      - 37  # rls2101.rel NDRPDR iter env 6
-      - 38  # rls2101.rel NDRPDR iter env 6
-      - 39  # rls2101.rel NDRPDR iter env 6
-      - 40  # rls2101.rel NDRPDR iter env 6
-      - 41  # rls2101.rel NDRPDR iter env 6
-      - 42  # rls2101.rel NDRPDR iter env 6
-      - 47  # rls2101.rel NDRPDR iter env 6
-      - 48  # rls2101.rel NDRPDR iter env 6
-      - 50  # rls2101.rel NDRPDR iter env 6
+    csit-vpp-perf-report-iterative-2106-3n-skx:
+      - 20  # rls2106.rc1 NDRPDR iter env 7
 
   vpp-3n-skx-curr-iter-best:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-3n-skx:
-    csit-vpp-perf-report-iterative-2101-3n-skx:
-      - 36  # rls2101.rel NDRPDR iter env 6
+    csit-vpp-perf-report-iterative-2106-3n-skx:
+      - 20  # rls2106.rc1 NDRPDR iter env 7
 
   vpp-3n-skx-hist-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -85,15 +72,15 @@
       - 2   # rls2101.rel MRR iter env 7
 
   vpp-3n-skx-curr-iter-mrr:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-3n-skx:
-    csit-vpp-perf-report-iterative-2101-3n-skx:
-      - 35  # rls2101.rel MRR iter env 6
+    csit-vpp-perf-report-iterative-2106-3n-skx:
+      - 19  # rls2106.rc1 MRR iter env 7
 
   vpp-3n-skx-curr-iter-hoststack:
     csit-vpp-perf-report-iterative-2106-3n-skx:
       - 13  # rls2106.rc1 NDRPDR iter env 7
       - 14  # rls2106.rc1 NDRPDR iter env 7
+      - 21  # rls2106.rc1 NDRPDR iter env 7
+      - 22  # rls2106.rc1 NDRPDR iter env 7
 
   vpp-3n-skx-curr-cov:
     # TODO: Replace
@@ -294,10 +281,8 @@
       - 2   # rls2009 MRR iter env 7
 
   vpp-2n-skx-curr-iter-mrr:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-skx:
-    csit-vpp-perf-report-iterative-2101-2n-skx:
-      - 62  # rls2101.rel MRR iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-skx:
+      - 24  # rls2106.rc1 MRR iter env 7
 
   vpp-2n-skx-curr-soak:
     # TODO: Replace
@@ -337,38 +322,16 @@
       - 73  # rls2101.rel soak env 6
 
   vpp-2n-skx-curr-nfv-ndrpdr:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-skx:
-    csit-vpp-perf-report-iterative-2101-2n-skx:
-      - 67  # rls2101.rel NDRPDR nf-density iter env 6
-      - 72  # rls2101.rel NDRPDR nf-density iter env 6
-      - 79  # rls2101.rel NDRPDR nf-density iter env 6
-      - 83  # rls2101.rel NDRPDR nf-density iter env 6
-      - 88  # rls2101.rel NDRPDR nf-density iter env 6
-      - 97  # rls2101.rel NDRPDR nf-density iter env 6
-      - 103 # rls2101.rel NDRPDR nf-density iter env 6
-      - 108 # rls2101.rel NDRPDR nf-density iter env 6
-      - 109 # rls2101.rel NDRPDR nf-density iter env 6
-      - 110 # rls2101.rel NDRPDR nf-density iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-skx:
+      - 26  # rls2106.rc1 NDRPDR nf-density iter env 7
 
   vpp-2n-skx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2106-2n-skx:
       - 13  # rls2106.rc1 MRR nf-density iter env 7
 
   vpp-2n-skx-curr-nfv-reconf:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-skx:
-    csit-vpp-perf-report-iterative-2101-2n-skx:
-      - 64  # rls2101.rel NDRPDR reconf iter env 6
-      - 66  # rls2101.rel NDRPDR reconf iter env 6
-      - 71  # rls2101.rel NDRPDR reconf iter env 6
-      - 74  # rls2101.rel NDRPDR reconf iter env 6
-      - 78  # rls2101.rel NDRPDR reconf iter env 6
-      - 87  # rls2101.rel NDRPDR reconf iter env 6
-      - 95  # rls2101.rel NDRPDR reconf iter env 6
-      - 100 # rls2101.rel NDRPDR reconf iter env 6
-      - 104 # rls2101.rel NDRPDR reconf iter env 6
-      - 106 # rls2101.rel NDRPDR reconf iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-skx:
+      - 27  # rls2106.rc1 NDRPDR nf-density iter env 7
 
   vpp-2n-skx-curr-gso:
     csit-vpp-perf-report-iterative-2106-2n-skx:
@@ -539,10 +502,8 @@
       - 2   # rls2101.rel MRR iter env 7
 
   vpp-2n-zn2-curr-iter-mrr:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-zn2:
-    csit-vpp-perf-report-iterative-2101-2n-zn2:
-      - 30  # rls2101.rel MRR iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-zn2:
+      - 1   # rls2106.rc1 MRR iter env 7
 
   vpp-2n-zn2-curr-cov:
     # TODO: Replace
@@ -691,55 +652,12 @@
       - 21  # rls2101.rel NDRPDR iter env 7
 
   vpp-2n-clx-curr-iter:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-clx:
-    csit-vpp-perf-report-iterative-2101-2n-clx:
-      - 54  # rls2101.rel NDRPDR iter env 6
-      - 59  # rls2101.rel NDRPDR iter env 6
-      - 60  # rls2101.rel NDRPDR iter env 6
-      - 63  # rls2101.rel NDRPDR iter env 6
-      - 66  # rls2101.rel NDRPDR iter env 6
-      - 68  # rls2101.rel NDRPDR iter env 6
-      - 73  # rls2101.rel NDRPDR iter env 6
-      - 75  # rls2101.rel NDRPDR iter env 6
-      - 86  # rls2101.rel NDRPDR iter env 6
-      - 90  # rls2101.rel NDRPDR iter env 6
-      - 80  # rls2101.rel NDRPDR iter RND env 6
-      - 87  # rls2101.rel NDRPDR iter RND env 6
-      - 91  # rls2101.rel NDRPDR iter RND env 6
-      - 92  # rls2101.rel NDRPDR iter RND env 6
-      - 93  # rls2101.rel NDRPDR iter RND env 6
-      - 94  # rls2101.rel NDRPDR iter RND env 6
-      - 95  # rls2101.rel NDRPDR iter RND env 6
-      - 100 # rls2101.rel NDRPDR iter RND env 6
-      - 106 # rls2101.rel NDRPDR iter RND env 6
-      - 108 # rls2101.rel NDRPDR iter RND env 6
-      - 112 # rls2101.rel NDRPDR iter NAT env 6
-      - 113 # rls2101.rel NDRPDR iter NAT env 6
-      - 114 # rls2101.rel NDRPDR iter NAT env 6
-      - 115 # rls2101.rel NDRPDR iter NAT env 6
-      - 116 # rls2101.rel NDRPDR iter NAT env 6
-      - 117 # rls2101.rel NDRPDR iter NAT env 6
-      - 118 # rls2101.rel NDRPDR iter NAT env 6
-      - 119 # rls2101.rel NDRPDR iter NAT env 6
-      - 120 # rls2101.rel NDRPDR iter NAT env 6
-      - 121 # rls2101.rel NDRPDR iter NAT env 6
-      - 122 # rls2101.rel NDRPDR iter MLX env 6
-      - 123 # rls2101.rel NDRPDR iter MLX env 6
-      - 124 # rls2101.rel NDRPDR iter MLX env 6
-      - 126 # rls2101.rel NDRPDR iter MLX env 6
-      - 127 # rls2101.rel NDRPDR iter MLX env 6
-      - 128 # rls2101.rel NDRPDR iter MLX env 6
-      - 129 # rls2101.rel NDRPDR iter MLX env 6
-      - 130 # rls2101.rel NDRPDR iter MLX env 6
-      - 131 # rls2101.rel NDRPDR iter MLX env 6
-      - 132 # rls2101.rel NDRPDR iter MLX env 6
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 35  # rls2106.rc1 NDRPDR iter env 7
 
   vpp-2n-clx-curr-iter-best:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-clx:
-    csit-vpp-perf-report-iterative-2101-2n-clx:
-      - 75  # rls2101.rel NDRPDR iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 35  # rls2106.rc1 NDRPDR iter env 7
 
   vpp-2n-clx-hist-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2101-2n-clx:
@@ -756,86 +674,40 @@
       - 8   # rls2101.rel MRR iter env 7
 
   vpp-2n-clx-curr-iter-mrr:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-clx:
-    csit-vpp-perf-report-iterative-2101-2n-clx:
-      - 53  # rls2101.rel MRR iter env 6
-      - 133 # rls2101.rel MRR MLX iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 34  # rls2106.rc1 MRR iter env 7
 
   vpp-2n-clx-curr-iter-gso:
     csit-vpp-perf-report-iterative-2106-2n-clx:
       - 25  # rls2106.rc1 MRR GSO iter env 7
 
+  vpp-2n-clx-curr-iter-vsap:
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 41  # rls2106.rc1 MRR GSO iter env 7
+      - 42  # rls2106.rc1 MRR GSO iter env 7
+
   vpp-2n-clx-curr-nfv-ndrpdr:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-clx:
-    csit-vpp-perf-report-iterative-2101-2n-clx:
-      - 57  # rls2101.rel NDRPDR nf-density iter env 6
-      - 62  # rls2101.rel NDRPDR nf-density iter env 6
-      - 70  # rls2101.rel NDRPDR nf-density iter env 6
-      - 71  # rls2101.rel NDRPDR nf-density iter env 6
-      - 82  # rls2101.rel NDRPDR nf-density iter env 6
-      - 88  # rls2101.rel NDRPDR nf-density iter env 6
-      - 89  # rls2101.rel NDRPDR nf-density iter env 6
-      - 96  # rls2101.rel NDRPDR nf-density iter env 6
-      - 97  # rls2101.rel NDRPDR nf-density iter env 6
-      - 98  # rls2101.rel NDRPDR nf-density iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 38  # rls2106.rc1 NDRPDR nf-density iter env 7
 
   vpp-2n-clx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2106-2n-clx:
       - 23  # rls2106.rc1 MRR nf-density iter env 7
 
   vpp-2n-clx-curr-nfv-reconf:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-clx:
-    csit-vpp-perf-report-iterative-2101-2n-clx:
-      - 55  # rls2101.rel NDRPDR reconf iter env 6
-      - 64  # rls2101.rel NDRPDR reconf iter env 6
-      - 76  # rls2101.rel NDRPDR reconf iter env 6
-      - 83  # rls2101.rel NDRPDR reconf iter env 6
-      - 99  # rls2101.rel NDRPDR reconf iter env 6
-      - 101 # rls2101.rel NDRPDR reconf iter env 6
-      - 102 # rls2101.rel NDRPDR reconf iter env 6
-      - 107 # rls2101.rel NDRPDR reconf iter env 6
-      - 109 # rls2101.rel NDRPDR reconf iter env 6
-      - 110 # rls2101.rel NDRPDR reconf iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 37  # rls2106.rc1 NDRPDR reconf iter env 7
 
   vpp-2n-clx-curr-soak:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-clx:
-    csit-vpp-perf-report-iterative-2101-2n-clx:
-      - 58  # rls2101.rel soak env 6
-      - 61  # rls2101.rel soak env 6
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 24  # rls2106.rc1 soak env 7
   vpp-soak-vs-ndr-2n-clx-ref:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-clx:
-    csit-vpp-perf-report-iterative-2101-2n-clx:
-      - 54  # rls2101.rel NDRPDR iter env 6
-      - 59  # rls2101.rel NDRPDR iter env 6
-      - 60  # rls2101.rel NDRPDR iter env 6
-      - 63  # rls2101.rel NDRPDR iter env 6
-      - 66  # rls2101.rel NDRPDR iter env 6
-      - 68  # rls2101.rel NDRPDR iter env 6
-      - 73  # rls2101.rel NDRPDR iter env 6
-      - 75  # rls2101.rel NDRPDR iter env 6
-      - 86  # rls2101.rel NDRPDR iter env 6
-      - 90  # rls2101.rel NDRPDR iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 35  # rls2106.rc1 NDRPDR iter env 7
   vpp-soak-vs-ndr-2n-clx:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-clx:
-    csit-vpp-perf-report-iterative-2101-2n-clx:
-      - 54  # rls2101.rel NDRPDR iter env 6
-      - 59  # rls2101.rel NDRPDR iter env 6
-      - 60  # rls2101.rel NDRPDR iter env 6
-      - 63  # rls2101.rel NDRPDR iter env 6
-      - 66  # rls2101.rel NDRPDR iter env 6
-      - 68  # rls2101.rel NDRPDR iter env 6
-      - 73  # rls2101.rel NDRPDR iter env 6
-      - 75  # rls2101.rel NDRPDR iter env 6
-      - 86  # rls2101.rel NDRPDR iter env 6
-      - 90  # rls2101.rel NDRPDR iter env 6
-      - 58  # rls2101.rel soak env 6
-      - 61  # rls2101.rel soak env 6
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 35  # rls2106.rc1 NDRPDR iter env 7
+      - 24  # rls2106.rc1 soak env 7
 
   vpp-2n-clx-curr-cov:
     # TODO: Replace
@@ -977,10 +849,8 @@
       - 22  # rls2101.rel MRR iter env 6
 
   vpp-3n-tsh-curr-iter-mrr:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-3n-tsh:
-    csit-vpp-perf-report-iterative-2101-3n-tsh:
-      - 22  # rls2101.rel MRR iter env 6
+    csit-vpp-perf-report-iterative-2106-3n-tsh:
+      - 9   # rls2106.rc1 MRR iter env 7
 
   vpp-3n-tsh-curr-cov:
     # TODO: Replace
@@ -1092,25 +962,12 @@
       - 31  # rls2101.rel NDRPDR iter env 6
 
   vpp-2n-tx2-curr-iter:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-tx2:
-    csit-vpp-perf-report-iterative-2101-2n-tx2:
-      - 22  # rls2101.rel NDRPDR iter env 6
-      - 23  # rls2101.rel NDRPDR iter env 6
-      - 24  # rls2101.rel NDRPDR iter env 6
-      - 25  # rls2101.rel NDRPDR iter env 6
-      - 26  # rls2101.rel NDRPDR iter env 6
-      - 27  # rls2101.rel NDRPDR iter env 6
-      - 28  # rls2101.rel NDRPDR iter env 6
-      - 29  # rls2101.rel NDRPDR iter env 6
-      - 30  # rls2101.rel NDRPDR iter env 6
-      - 31  # rls2101.rel NDRPDR iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-tx2:
+      - 9   # rls2106.rc1 NDRPDR iter env 7
 
   vpp-2n-tx2-curr-iter-best:
-    # TODO: Replace
-    # csit-vpp-perf-report-iterative-2106-2n-tx2:
-    csit-vpp-perf-report-iterative-2101-2n-tx2:
-      - 29  # rls2101.rel NDRPDR iter env 6
+    csit-vpp-perf-report-iterative-2106-2n-tx2:
+      - 9   # rls2106.rc1 NDRPDR iter env 7
 
   vpp-2n-tx2-hist-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2101-2n-tx2:
@@ -1234,8 +1091,8 @@
       - 21  # rls2106.rc1 NDRPDR iter env 7
       - 22  # rls2106.rc1 NDRPDR iter env 7
       - 23  # rls2106.rc1 NDRPDR iter env 7
-#       - 24  # rls2106.rc1 NDRPDR iter env 7
-#       - 25  # rls2106.rc1 NDRPDR iter env 7
+      - 24  # rls2106.rc1 NDRPDR iter env 7
+      - 26  # rls2106.rc1 NDRPDR iter env 7
 
   vpp-3n-dnv-hist-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2009-3n-dnv:

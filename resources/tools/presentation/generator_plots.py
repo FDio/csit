@@ -606,6 +606,19 @@ def plot_perf_box_name(plot, input_data):
                                 )
                             test_type = u"HOSTSTACK"
 
+                        elif test[u"type"] in (u"LDP_NGINX",):
+                            if u"TCP_CPS" in test[u"tags"]:
+                                test_type = u"VSAP_CPS"
+                                y_vals[test[u"parent"]].append(
+                                    test[u"result"][u"cps"] / 1e6
+                                )
+                            elif u"TCP_RPS" in test[u"tags"]:
+                                test_type = u"VSAP_RPS"
+                                y_vals[test[u"parent"]].append(
+                                    test[u"result"][u"rps"] / 1e6
+                                )
+                            else:
+                                continue
                         else:
                             continue
 
@@ -662,6 +675,12 @@ def plot_perf_box_name(plot, input_data):
         if layout.get(u"title", None):
             if test_type in (u"HOSTSTACK", ):
                 layout[u"title"] = f"<b>Bandwidth:</b> {layout[u'title']}"
+            elif test_type == u"VSAP_CPS":
+                layout[u"title"] = f"<b>CPS:</b> {layout[u'title']}"
+                layout[u"yaxis"][u"title"] = u"<b>Connection Rate [Mcps]</b>"
+            elif test_type == u"VSAP_RPS":
+                layout[u"title"] = f"<b>RPS:</b> {layout[u'title']}"
+                layout[u"yaxis"][u"title"] = u"<b>Connection Rate [Mrps]</b>"
             else:
                 layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
         if y_max:
