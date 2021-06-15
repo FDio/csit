@@ -5074,6 +5074,104 @@
 ###                                P L O T S                                 ###
 ################################################################################
 
+# VSAP tests 2n-clx
+
+- type: "plot"
+  title: "2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
+  data: "vpp-2n-clx-curr-iter-vsap"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.14.2-Cps.0B-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.15.0-Cps.0B-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.15.0-cps"
+  layout:
+    title: "2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
+    layout: "plot-hoststack"
+
+- type: "plot"
+  title: "2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
+  data: "vpp-2n-clx-curr-iter-vsap"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.14.2-Cps.64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.15.0-Cps.64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.15.0-cps"
+  layout:
+    title: "2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
+    layout: "plot-hoststack"
+
+- type: "plot"
+  title: "2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
+  data: "vpp-2n-clx-curr-iter-vsap"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.14.2-Cps.1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.15.0-Cps.1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.15.0-cps"
+  layout:
+    title: "2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
+    layout: "plot-hoststack"
+
+- type: "plot"
+  title: "2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
+  data: "vpp-2n-clx-curr-iter-vsap"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.14.2-Cps.2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.15.0-Cps.2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.15.0-cps"
+  layout:
+    title: "2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
+    layout: "plot-hoststack"
+
+- type: "plot"
+  title: "2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
+  data: "vpp-2n-clx-curr-iter-vsap"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.14.2-rps.0B-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.14.2-rps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.15.0-rps.0B-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.15.0-rps"
+  layout:
+    title: "2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
+    layout: "plot-hoststack"
+
+- type: "plot"
+  title: "2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
+  data: "vpp-2n-clx-curr-iter-vsap"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.14.2-rps.64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.14.2-rps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.15.0-rps.64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.15.0-rps"
+  layout:
+    title: "2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
+    layout: "plot-hoststack"
+
+- type: "plot"
+  title: "2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
+  data: "vpp-2n-clx-curr-iter-vsap"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.14.2-rps.1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.14.2-rps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.15.0-rps.1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.15.0-rps"
+  layout:
+    title: "2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
+    layout: "plot-hoststack"
+
+- type: "plot"
+  title: "2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
+  data: "vpp-2n-clx-curr-iter-vsap"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.14.2-rps.2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.14.2-rps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1E810Cq-Eth-Ip4Tcphttp-Ldpreload-Nginx-1.15.0-rps.2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-1.15.0-rps"
+  layout:
+    title: "2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
+    layout: "plot-hoststack"
+
 # Hoststack tests 3n-skx
 
 - type: "plot"
@@ -5089,15 +5187,15 @@
     layout: "plot-hoststack"
 
 - type: "plot"
-  title: "Bandwidth: 3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
+  title: "Bandwidth: 3n-skx-xxv710-1460b-2t1c-eth-ip4udp-ldpreload-iperf3"
   algorithm: "plot_perf_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1460b-2t1c-eth-ip4udp-ldpreload-iperf3-bps"
   data: "vpp-3n-skx-curr-iter-hoststack"
   include:
-    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpbase-Nsim-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpbase-nsim-ldpreload-iperf3-bps"
-    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpscale1Cl10S-Nsim-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpbase-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4udpbase-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpscale1Cl10S-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4udpscale1cl10s-ldpreload-iperf3-bps"
   layout:
-    title: "3n-skx-xxv710-1460b-1t1c-eth-ip4tcp-nsim-ldpreload-iperf3"
+    title: "3n-skx-xxv710-1460b-2t1c-eth-ip4udp-ldpreload-iperf3"
     layout: "plot-hoststack"
 
 - type: "plot"
