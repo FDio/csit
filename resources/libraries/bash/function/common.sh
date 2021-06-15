@@ -526,7 +526,8 @@ function get_test_tag_string () {
         TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}" || true)
         if [[ -z "${TEST_TAG_STRING-}" ]]; then
             # Probably we got a base64 encoded comment.
-            comment=$(base64 --decode <<< "${GERRIT_EVENT_COMMENT_TEXT}" || true)
+            comment="${GERRIT_EVENT_COMMENT_TEXT}"
+            comment=$(base64 --decode <<< "${comment}" || true)
             comment=$(fgrep "${trigger}" <<< "${comment}" || true)
             TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}" || true)
         fi

@@ -66,7 +66,8 @@ function k8s_utils.contiv_vpp_deploy {
     k8s_contiv_patch="kubecon.contiv-vpp-yaml-patch.diff"
 
     # Pull the most recent Docker images
-    bash <(curl -s https://raw.githubusercontent.com/contiv/vpp/master/k8s/pull-images.sh)
+    url="https://raw.githubusercontent.com/contiv/vpp/master/k8s/pull-images.sh"
+    bash <(curl -s "${url}")
 
     # Apply resources
     wget ${k8s_contiv}
@@ -80,17 +81,21 @@ function k8s_utils.contiv_vpp_deploy {
 
 function k8s_utils.cri_shim_install {
     # Install the CRI Shim on host
-    sudo su root -c 'bash <(curl -s https://raw.githubusercontent.com/contiv/vpp/master/k8s/cri-install.sh)'
+    url"https://raw.githubusercontent.com/contiv/vpp/master/k8s/cri-install.sh"
+    sudo su root -c "bash <(curl -s '${url}')"
 }
 
 function k8s_utils.cri_shim_uninstall {
     # Uninstall the CRI Shim on host
-    sudo su root -c 'bash <(curl -s https://raw.githubusercontent.com/contiv/vpp/master/k8s/cri-install.sh) --uninstall'
+    url="https://raw.githubusercontent.com/contiv/vpp/master/k8s/cri-install.sh"
+    sudo su root -c "bash <(curl -s '${url}') --uninstall"
 }
 
 function k8s_utils.kube_proxy_install {
     # Installing custom version of Kube-Proxy to enable Kubernetes services
-    bash <(curl -s https://raw.githubusercontent.com/contiv/vpp/master/k8s/proxy-install.sh)
+    url="https://raw.githubusercontent.com/contiv/vpp/master/k8s/"
+    url+="proxy-install.sh"
+    bash <(curl -s "${url}")
 }
 
 function k8s_utils.apply {
@@ -113,7 +118,9 @@ function k8s_utils.resource_delete {
 
 function k8s_utils.affinity_non_vpp {
     # Set affinity for all non VPP docker containers to CPU 0
-    for i in `sudo docker ps --format "{{.ID}} {{.Names}}" | grep -v vpp | cut -d' ' -f1`; do
+    command='sudo docker ps --format "{{.ID}} {{.Names}}"'
+    command+=" | grep -v vpp | cut -d' ' -f1"
+    for i in $(${command}); do
         sudo docker update --cpuset-cpus 0 ${i}
     done
 }

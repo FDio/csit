@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This module gets a bandwith limit together with other parameters, reads
+"""This script gets a bandwith limit together with other parameters, reads
 the iPerf3 configuration and sends the traffic. At the end, it measures
 the packet loss and latency.
 """
