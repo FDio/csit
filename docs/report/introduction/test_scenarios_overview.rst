@@ -11,7 +11,7 @@ Brief overview of test scenarios covered in this report:
 
 #. **VPP Performance**: VPP performance tests are executed in physical
    FD.io testbeds, focusing on VPP network data plane performance in
-   NIC-to-NIC switching topologies. Tested across Intel Xeon Haswell
+   NIC-to-NIC switching topologies. Tested across Intel Cascadelake
    and Skylake servers, ARM, Denverton, range of NICs (10GE, 25GE, 40GE) and
    multi-thread/multi-core configurations. VPP application runs in bare-metal
    host user-mode handling NICs. TRex is used as a traffic generator.
@@ -55,7 +55,7 @@ against |vpp-release| artifacts. References are provided to the
 original FD.io Jenkins job results and all archived source files.
 
 FD.io CSIT system is developed using two main coding platforms: :abbr:`RF (Robot
-Framework)` and Python2.7. |csit-release| source code for the executed test
+Framework)` and Python. |csit-release| source code for the executed test
 suites is available in CSIT branch |release| in the directory
 :file:`./tests/<name_of_the_test_suite>`. A local copy of CSIT source code
 can be obtained by cloning CSIT git repository - :command:`git clone

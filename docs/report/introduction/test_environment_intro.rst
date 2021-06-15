@@ -79,7 +79,17 @@ Following is the list of CSIT versions to date:
 
   - The main change is TRex version upgrade:
     `increase from 2.82 to 2.86 <https://gerrit.fd.io/r/c/csit/+/29980>`_.
+- Ver. 7 associated with CSIT rls2106 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2106>`_, `Linux
+  <https://docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  `TRex
+  <https://docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2106>`_).
 
+  - TRex version upgrade:
+    `increase from 2.86 to 2.88 <https://gerrit.fd.io/r/c/csit/+/31652>`_.
+  - Ubuntu upgrade:
+    `upgrade from 18.04 LTS to 20.04.2 LTS <https://gerrit.fd.io/r/c/csit/+/31290>`_.
 
 To identify performance changes due to VPP code development between previous
 and current VPP release version, both have been tested in CSIT environment of
@@ -101,7 +111,7 @@ topology types are used:
   server as TG both connected in ring topology.
 
 Tested SUT servers are based on a range of processors including Intel
-Xeon Haswell-SP, Intel Xeon Skylake-SP, Intel Xeon Cascade Lake-SP, Arm,
+Intel Xeon Skylake-SP, Intel Xeon Cascade Lake-SP, Arm,
 Intel Atom. More detailed description is provided in
 :ref:`tested_physical_topologies`. Tested logical topologies are
 described in :ref:`tested_logical_topologies`.
@@ -112,5 +122,4 @@ Server Specifications
 Complete technical specifications of compute servers used in CSIT
 physical testbeds are maintained in FD.io CSIT repository:
 `FD.io CSIT testbeds - Xeon Cascade Lake`_,
-`FD.io CSIT testbeds - Xeon Skylake, Arm, Atom`_ and
-`FD.io CSIT Testbeds - Xeon Haswell`_.
+`FD.io CSIT testbeds - Xeon Skylake, Arm, Atom`_.
