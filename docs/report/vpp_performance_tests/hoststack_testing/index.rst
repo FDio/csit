@@ -5,3 +5,4 @@ Hoststack Testing
 
     iperf3/index
     quic/index
+    vsap/index

@@ -239,6 +239,15 @@ class ExecutionChecker(ResultVisitor):
     )
     REGEX_MRR_MSG_INFO = re.compile(r'.*\[(.*)\]')
 
+    REGEX_VSAP_MSG_INFO = re.compile(
+        r'Transfer Rate: (\d*.\d*).*\n'
+        r'Latency: (\d*.\d*).*\n'
+        r'Completed requests: (\d*).*\n'
+        r'Failed requests: (\d*).*\n'
+        r'Total data transferred: (\d*).*\n'
+        r'Connection [cr]ps rate:\s*(\d*.\d*)'
+    )
+
     # Needed for CPS and PPS tests
     REGEX_NDRPDR_LAT_BASE = re.compile(
         r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
@@ -927,6 +936,39 @@ class ExecutionChecker(ResultVisitor):
 
         return result, status
 
+    def _get_vsap_data(self, msg, tags):
+        """Get data from the vsap test message.
+
+        :param msg: The test message to be parsed.
+        :param tags: Test tags.
+        :type msg: str
+        :type tags: list
+        :returns: Parsed data as a JSON dict and the status (PASS/FAIL).
+        :rtype: tuple(dict, str)
+        """
+        result = dict()
+        status = u"FAIL"
+
+        groups = re.search(self.REGEX_VSAP_MSG_INFO, msg)
+        if groups is not None:
+            try:
+                result[u"transfer-rate"] = float(groups.group(1)) * 1e3
+                result[u"latency"] = float(groups.group(2))
+                result[u"completed-requests"] = int(groups.group(3))
+                result[u"failed-requests"] = int(groups.group(4))
+                result[u"bytes-transferred"] = int(groups.group(5))
+                if u"TCP_CPS"in tags:
+                    result[u"cps"] = float(groups.group(6))
+                elif u"TCP_RPS" in tags:
+                    result[u"rps"] = float(groups.group(6))
+                else:
+                    return result, status
+                status = u"PASS"
+            except (IndexError, ValueError):
+                pass
+
+        return result, status
+
     def visit_suite(self, suite):
         """Implements traversing through the suite and its direct children.
 
@@ -1125,6 +1167,10 @@ class ExecutionChecker(ResultVisitor):
             if test.status == u"PASS":
                 test_result[u"result"], test_result[u"status"] = \
                     self._get_hoststack_data(test.message, tags)
+        elif u"LDP_NGINX" in tags:
+            test_result[u"type"] = u"LDP_NGINX"
+            test_result[u"result"], test_result[u"status"] = \
+                self._get_vsap_data(test.message, tags)
         # elif u"TCP" in tags:  # This might be not used
         #     test_result[u"type"] = u"TCP"
         #     if test.status == u"PASS":
