@@ -48,7 +48,7 @@
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
-| ${pkts_per_drop}= | ${100}
+| ${pkts_per_drop}= | ${1000}
 
 *** Keywords ***
 | Local template
