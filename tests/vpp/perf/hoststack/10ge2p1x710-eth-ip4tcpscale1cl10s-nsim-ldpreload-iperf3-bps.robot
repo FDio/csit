@@ -41,14 +41,14 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | nsim_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | 256
+| ${nic_txq_size}= | 256
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
-| ${pkts_per_drop}= | ${100}
+| ${pkts_per_drop}= | ${1000}
 | ${streams}= | ${10}
 
 *** Keywords ***
@@ -57,8 +57,11 @@
 | |
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | Set Iperf3 Client Attributes | parallel=${streams}
+| | ${bandwidth} = | Get From Dictionary
+| | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
 | | Set VPP NSIM Attributes | output_nsim_enable=${True} |
 | | ... | packets_per_drop=${pkts_per_drop}
+| | ... | bw_in_bits_per_second=${bandwidth}
 | | ${defer_fail}= | Get Test Results From Hoststack Iperf3 Test
 | | Run Keyword If | ${defer_fail}==True | FAIL
 | | ... | Defered Failure From Hoststack Iperf3 Test Program

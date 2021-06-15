@@ -48,15 +48,18 @@
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
-| ${pkts_per_drop}= | ${100}
+| ${pkts_per_drop}= | ${1000}
 
 *** Keywords ***
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
+| | ${bandwidth} = | Get From Dictionary
+| | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
 | | Set VPP NSIM Attributes | output_nsim_enable=${True} |
 | | ... | packets_per_drop=${pkts_per_drop}
+| | ... | bw_in_bits_per_second=${bandwidth}
 | | ${defer_fail}= | Get Test Results From Hoststack Iperf3 Test
 | | Run Keyword If | ${defer_fail}==True | FAIL
 | | ... | Defered Failure From Hoststack Iperf3 Test Program
