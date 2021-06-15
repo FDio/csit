@@ -1,6 +1,6 @@
 # 2n-clx
-### tests 405
-### job hrs est. 33.8
+### tests 429
+### job hrs est. 35.82
 ### job hrs real ??.?
 ### test mins est. 5.01
 ### test mins real 5.01
@@ -47,6 +47,38 @@
 2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4base-eth-2memif-1dcr
 4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4base-eth-2memif-1dcr
 ## ./crypto
+## ./hoststack
+### intel-e810cq
+#### dpdk-vfio-pci
+##### eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 0b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 64b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 1024b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 2048b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 0b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 64b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 1024b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 2048b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+##### eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 0b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 64b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 1024b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 2048b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 0b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 64b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 1024b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 2048b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+### mellanox-cx556a
+#### dpdk-vfio-pci
+##### eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 0b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 64b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 1024b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 2048b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 0b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 64b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 1024b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 2048b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
 ## ./ip4
 ### intel-x710
 #### avf
