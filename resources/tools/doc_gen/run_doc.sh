@@ -21,11 +21,18 @@ mkdir --parents ${WORKING_DIR}/tests/
 cp -r src/* ${WORKING_DIR}/
 
 # Copy the source files to be processed:
-rsync -a --include '*/' --include '*.py' --exclude '*' ../../../resources/libraries/python/ ${WORKING_DIR}/resources/libraries/python/
+from_dir="../../../resources/libraries/python/"
+to_dir="${WORKING_DIR}/resources/libraries/python/"
+command="rsync -a --include '*/'"
+${command} --include '*.py' --exclude '*' "${from_dir}" "${to_dir}"
 cp ../../../resources/__init__.py ${WORKING_DIR}/resources/
 cp ../../../resources/libraries/__init__.py ${WORKING_DIR}/resources/libraries/
-rsync -a --include '*/' --include '*.robot' --exclude '*' ../../../resources/libraries/robot/ ${WORKING_DIR}/resources/libraries/robot/
-rsync -a --include '*/' --include '*.robot' --exclude '*' ../../../tests/ ${WORKING_DIR}/tests/
+from_dir="../../../resources/libraries/robot/"
+to_dir="${WORKING_DIR}/resources/libraries/robot/"
+${command} --include '*.robot' --exclude '*' "${from_dir}" "${to_dir}"
+from_dir="../../../tests/"
+to_dir="${WORKING_DIR}/tests/"
+${command} --include '*.robot' --exclude '*' "${from_dir}" "${to_dir}"
 
 # Create virtual environment:
 virtualenv --python=$(which python3) ${WORKING_DIR}/env
@@ -44,7 +51,9 @@ find ./${WORKING_DIR}/env -type f -name '*.rst' | xargs rm -f
 
 # Generate the documentation:
 DATE=$(date -u '+%d-%b-%Y')
-sphinx-build -v -c ${WORKING_DIR} -a  -b html -E -D release=$1 -D version="$1 documentation - $DATE" ${WORKING_DIR} ${BUILD_DIR}/
+command="sphinx-build -v -c '${WORKING_DIR}' -a  -b html -E -D release='$1' -D"
+command+=" version='$1 documentation - $DATE' '${WORKING_DIR}' '${BUILD_DIR}/'"
+${command}
 
 find . -type d -name 'env' | xargs rm -rf
 

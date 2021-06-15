@@ -373,8 +373,7 @@ class VppApiCrcChecker:
         if not matching:
             self._reported[api_name] = crc
             self.log_and_raise(
-                f"No active collection contains API {api_name!r} with CRC "
-                f"{crc!r}"
+                f"No active collection has API {api_name!r} with CRC {crc!r}"
             )
         options = self._options[api_name]
         options.pop(u"vat_help", None)
