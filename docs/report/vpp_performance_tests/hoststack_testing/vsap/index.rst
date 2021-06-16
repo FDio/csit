@@ -109,20 +109,20 @@ VSAP with ldpreload
 
     \clearpage
 
-2t1c-e810cq-base-scale-cps
+2t1c-e810cq-base-scale-rps
 --------------------------
 
 .. raw:: html
 
-    <iframe id="ifrm01r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps.html"></iframe>
+    <iframe id="ifrm01r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps}
-            \label{fig:2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps}
+            \label{fig:2n-clx-e810cg-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps}
     \end{figure}
 
 .. raw:: latex
@@ -131,15 +131,15 @@ VSAP with ldpreload
 
 .. raw:: html
 
-    <iframe id="ifrm02r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps.html"></iframe>
+    <iframe id="ifrm02r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps}
-            \label{fig:2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps}
+            \label{fig:2n-clx-e810cg-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps}
     \end{figure}
 
 .. raw:: latex
@@ -148,15 +148,15 @@ VSAP with ldpreload
 
 .. raw:: html
 
-    <iframe id="ifrm03r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps.html"></iframe>
+    <iframe id="ifrm03r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps}
-            \label{fig:2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps}
+            \label{fig:2n-clx-e810cg-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps}
     \end{figure}
 
 .. raw:: latex
@@ -165,13 +165,13 @@ VSAP with ldpreload
 
 .. raw:: html
 
-    <iframe id="ifrm04r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps.html"></iframe>
+    <iframe id="ifrm04r" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps}
-            \label{fig:2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps}
+            \label{fig:2n-clx-e810cg-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps}
     \end{figure}
