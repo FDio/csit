@@ -51,7 +51,6 @@ def main():
     tx_if = args.get_arg(u"tx_if")
     rx_if = args.get_arg(u"rx_if")
     timeout = int(args.get_arg(u"timeout"))
-    wait_step = 1
 
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
@@ -83,17 +82,7 @@ def main():
     txq.send(icmp_request)
 
     for _ in range(1000):
-        while True:
-            icmp_reply = rxq.recv(
-                wait_step, ignore=sent_packets, do_raise=False
-            )
-            if icmp_reply is None:
-                timeout -= wait_step
-                if timeout < 0:
-                    raise RuntimeError(u"ICMP echo Rx timeout")
-
-            break
-
+        icmp_reply = rxq.recv(timeout, ignore=sent_packets)
         if icmp_reply[ip_layer][icmp_resp].type == icmp_type:
             if icmp_reply[ip_layer].src == dst_ip and \
                     icmp_reply[ip_layer].dst == src_ip:
