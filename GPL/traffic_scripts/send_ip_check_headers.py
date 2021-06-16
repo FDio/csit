@@ -49,7 +49,6 @@ def valid_ipv4(ip_address):
     :type ip_address: str
     :returns: True if IP address is correct.
     :rtype: bool
-    :raises AttributeError, AddressValueError: If IP address is not valid.
     """
     try:
         ipaddress.IPv4Address(ip_address)
@@ -65,7 +64,6 @@ def valid_ipv6(ip_address):
     :type ip_address: str
     :returns: True if IP address is correct.
     :rtype: bool
-    :raises AttributeError, AddressValueError: If IP address is not valid.
     """
     try:
         ipaddress.IPv6Address(ip_address)
