@@ -46,6 +46,30 @@
       "revId": "defceb7a91ec4ed7b0b563b0939f185ebdbecbaa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be1dc0c8_66db18ac",
+        "filename": "docs/job_specs/report_iterative/2n-clx/vsap-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-06-16T07:04:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78e106a8_b263db80",
+      "range": {
+        "startLine": 34,
+        "startChar": 22,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "defceb7a91ec4ed7b0b563b0939f185ebdbecbaa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
