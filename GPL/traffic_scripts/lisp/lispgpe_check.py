@@ -141,28 +141,10 @@ def main():
     sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    while True:
-        if tx_if == rx_if:
-            ether = rxq.recv(2, ignore=sent_packets)
-        else:
-            ether = rxq.recv(2)
-
-        if ether is None:
-            raise RuntimeError(u"ICMP echo Rx timeout")
-
-        if ether.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        if ether.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is ICMPv6ND_RA
-            continue
-        elif ether.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-
-        # otherwise process the current packet
-        break
+    if tx_if == rx_if:
+        ether = rxq.recv(2, ignore=sent_packets)
+    else:
+        ether = rxq.recv(2)
 
     if rx_dst_mac == ether[Ether].dst and rx_src_mac == ether[Ether].src:
         print(u"MAC addresses match.")

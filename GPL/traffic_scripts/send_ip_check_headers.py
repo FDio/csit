@@ -97,28 +97,10 @@ def main():
     sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    while True:
-        if tx_if == rx_if:
-            ether = rxq.recv(2, ignore=sent_packets)
-        else:
-            ether = rxq.recv(2)
-
-        if ether is None:
-            raise RuntimeError(u"IP packet Rx timeout")
-
-        if ether.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif ether.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif ether.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        break
+    if tx_if == rx_if:
+        ether = rxq.recv(2, ignore=sent_packets)
+    else:
+        ether = rxq.recv(2)
 
     if rx_dst_mac == ether[Ether].dst and rx_src_mac == ether[Ether].src:
         logger.trace(u"MAC matched")

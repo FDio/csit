@@ -234,26 +234,7 @@ def main():
     sent_packets.append(tx_pkt_send)
     tx_txq.send(tx_pkt_send)
 
-    while True:
-        rx_pkt_recv = rx_rxq.recv(2)
-
-        if rx_pkt_recv is None:
-            raise RuntimeError(f"{ip_layer.__name__} packet Rx timeout")
-
-        if rx_pkt_recv.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif rx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif rx_pkt_recv.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        # otherwise process the current packet
-        break
+    rx_pkt_recv = rx_rxq.recv(2)
 
     check_ipsec(
         rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, src_tun, dst_tun, src_ip,
@@ -270,30 +251,7 @@ def main():
                    e_pkt)
     rx_txq.send(rx_pkt_send)
 
-    while True:
-        tx_pkt_recv = tx_rxq.recv(2, ignore=sent_packets)
-
-        if tx_pkt_recv is None:
-            raise RuntimeError(f"{ip_layer.__name__} packet Rx timeout")
-
-        if tx_pkt_recv.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        # otherwise process the current packet
-        break
+    tx_pkt_recv = tx_rxq.recv(2, ignore=sent_packets)
 
     check_ip(tx_pkt_recv, ip_layer, tx_dst_mac, tx_src_mac, dst_ip, src_ip)
 
