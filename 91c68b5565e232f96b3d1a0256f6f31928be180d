@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "333f91eb_0b3657c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-16T11:36:41Z",
+      "side": 1,
+      "message": "Simplification done in [0].\n\nhttps://gerrit.fd.io/r/c/csit/+/32748",
+      "range": {
+        "startLine": 20,
+        "startChar": 15,
+        "endLine": 20,
+        "endChar": 22
+      },
+      "revId": "91c68b5565e232f96b3d1a0256f6f31928be180d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
