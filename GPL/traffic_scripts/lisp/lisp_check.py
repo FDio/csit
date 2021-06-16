@@ -28,7 +28,6 @@ a LISP-encapsulated packet on the other interface and verifies received packet.
 """
 
 import sys
-import ipaddress
 
 from scapy.all import bind_layers, Packet
 from scapy.fields import FlagsField, BitField, IntField
@@ -40,6 +39,7 @@ from scapy.packet import Raw
 
 from ..PacketVerifier import RxQueue, TxQueue
 from ..TrafficScriptArg import TrafficScriptArg
+from ..ValidIp import valid_ipv4, valid_ipv6
 
 
 class LispHeader(Packet):
@@ -64,36 +64,6 @@ class LispInnerIPv6(IPv6):
     """Scapy inner LISP layer for IPv6-in-IPv6."""
 
     name = u"Lisp Inner Layer - IPv6"
-
-
-def valid_ipv4(ip_address):
-    """Check IPv4 address.
-
-    :param ip_address: IPv4 address to check.
-    :type ip_address: str
-    :returns: True if IP address is correct.
-    :rtype: bool
-    """
-    try:
-        ipaddress.IPv4Address(ip_address)
-        return True
-    except (AttributeError, ipaddress.AddressValueError):
-        return False
-
-
-def valid_ipv6(ip_address):
-    """Check IPv6 address.
-
-    :param ip_address: IPv6 address to check.
-    :type ip_address: str
-    :returns: True if IP address is correct.
-    :rtype: bool
-    """
-    try:
-        ipaddress.IPv6Address(ip_address)
-        return True
-    except (AttributeError, ipaddress.AddressValueError):
-        return False
 
 
 def main():
