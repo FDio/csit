@@ -213,13 +213,12 @@ class RxQueue(PacketVerifier):
         PacketVerifier.__init__(self, interface_name)
         self._sock = conf.L2listen(iface=interface_name, type=ETH_P_ALL)
 
-    def recv(self, timeout=3, ignore=None, verbose=True, do_raise=True):
+    def recv(self, timeout=3, ignore=None, verbose=True):
         """Read next received packet.
 
         Returns scapy's Ether() object created from next packet in the queue.
         Queue is being filled in parallel in subprocess. If no packet
-        arrives in given timeout None is returned or RuntimeError is raised,
-        depending on do_raise argument.
+        arrives in given timeoutm RuntimeError is raised.
 
         If the list of packets to ignore is given, they are logged
         but otherwise ignored upon arrival, not adding to the timeout.
@@ -231,14 +230,12 @@ class RxQueue(PacketVerifier):
         :param timeout: How many seconds to wait for next packet.
         :param ignore: List of packets that should be ignored.
         :param verbose: Used to suppress detailed logging of received packets.
-        :param do_raise: Whether timeout should raise exception or return None.
         :type timeout: int
         :type ignore: list
         :type verbose: bool
-        :type do_raise: bool
         :returns: Ether() initialized object from packet data.
-        :rtype: Optional[scapy.Ether]
-        :raises RuntimeError: On timeout, if do_raise is true.
+        :rtype: scapy.Ether
+        :raises RuntimeError: If no relevant packet arrived within timeout.
         """
         time_end = time.monotonic() + timeout
         ignore = ignore if ignore else list()
@@ -247,9 +244,7 @@ class RxQueue(PacketVerifier):
         while 1:
             time_now = time.monotonic()
             if time_now >= time_end:
-                if do_raise:
-                    raise RuntimeError("Timed out waiting for a packet.")
-                return None
+                raise RuntimeError("Timed out waiting for a packet.")
             timedelta = time_end - time_now
             rlist, _, _ = select.select([self._sock], [], [], timedelta)
             if self._sock not in rlist:
