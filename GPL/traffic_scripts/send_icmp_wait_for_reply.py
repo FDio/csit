@@ -28,8 +28,7 @@
 import sys
 
 from scapy.layers.inet import ICMP, IP
-from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply,\
-    ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
@@ -85,23 +84,13 @@ def main():
 
     for _ in range(1000):
         while True:
-            icmp_reply = rxq.recv(wait_step, ignore=sent_packets)
+            icmp_reply = rxq.recv(
+                wait_step, ignore=sent_packets, do_raise=False
+            )
             if icmp_reply is None:
                 timeout -= wait_step
                 if timeout < 0:
                     raise RuntimeError(u"ICMP echo Rx timeout")
-
-            elif icmp_reply.haslayer(ICMPv6ND_NS):
-                # read another packet in the queue in case of ICMPv6ND_NS packet
-                continue
-            elif icmp_reply.haslayer(ICMPv6MLReport2):
-                # read another packet in the queue if the current one is
-                # ICMPv6MLReport2
-                continue
-            elif icmp_reply.haslayer(ICMPv6ND_RA):
-                # read another packet in the queue if the current one is
-                # ICMPv6ND_RA
-                continue
 
             break
 
