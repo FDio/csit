@@ -80,7 +80,7 @@ import time
 
 from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
 from scapy.config import conf
-from scapy.layers.inet6 import IPv6
+from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
 from scapy.layers.l2 import Ether, ARP
 from scapy.packet import Raw, Padding
 
@@ -125,8 +125,8 @@ def extract_one_packet(buf):
 
     try:
         ether_type = Ether(buf[0:14]).type
-    except AttributeError:
-        raise RuntimeError(f"No EtherType in packet {buf!r}")
+    except AttributeError as exc:
+        raise RuntimeError(f"No EtherType in packet {buf!r}") from exc
 
     if ether_type == ETH_P_IP:
         # 14 is Ethernet fame header size.
@@ -174,8 +174,7 @@ def extract_one_packet(buf):
     else:
         raise RuntimeError(f"Unknown protocol {ether_type}")
 
-    if pkt_len < 60:
-        pkt_len = 60
+    pkt_len = max(60, pkt_len)
 
     if len(buf) < pkt_len:
         return None
@@ -214,26 +213,32 @@ class RxQueue(PacketVerifier):
         PacketVerifier.__init__(self, interface_name)
         self._sock = conf.L2listen(iface=interface_name, type=ETH_P_ALL)
 
-    def recv(self, timeout=3, ignore=None, verbose=True):
+    def recv(self, timeout=3, ignore=None, verbose=True, do_raise=True):
         """Read next received packet.
 
         Returns scapy's Ether() object created from next packet in the queue.
         Queue is being filled in parallel in subprocess. If no packet
-        arrives in given timeout None is returned.
+        arrives in given timeout None is returned or RuntimeError is raised,
+        depending on do_raise argument.
 
         If the list of packets to ignore is given, they are logged
         but otherwise ignored upon arrival, not adding to the timeout.
         Each time a packet is ignored, it is removed from the ignored list.
 
+        Some automatically generated packet types related to IPv6
+        are always ignored, not adding to the timeout.
+
         :param timeout: How many seconds to wait for next packet.
         :param ignore: List of packets that should be ignored.
         :param verbose: Used to suppress detailed logging of received packets.
+        :param do_raise: Whether timeout should raise exception or return None.
         :type timeout: int
         :type ignore: list
         :type verbose: bool
-
+        :type do_raise: bool
         :returns: Ether() initialized object from packet data.
-        :rtype: scapy.Ether
+        :rtype: Optional[scapy.Ether]
+        :raises RuntimeError: On timeout, if do_raise is true.
         """
         time_end = time.monotonic() + timeout
         ignore = ignore if ignore else list()
@@ -242,6 +247,8 @@ class RxQueue(PacketVerifier):
         while 1:
             time_now = time.monotonic()
             if time_now >= time_end:
+                if do_raise:
+                    raise RuntimeError("Timed out waiting of a packet")
                 return None
             timedelta = time_end - time_now
             rlist, _, _ = select.select([self._sock], [], [], timedelta)
@@ -261,6 +268,13 @@ class RxQueue(PacketVerifier):
             if pkt_pad in ignore:
                 ignore.remove(pkt_pad)
                 print(u"Received packet ignored.")
+                continue
+            if (
+                pkt.haslayer(ICMPv6ND_NS)
+                or pkt.haslayer(ICMPv6MLReport2)
+                or pkt.haslayer(ICMPv6ND_RA)
+            ):
+                print(u"Received IPv6 related packet ignored.")
                 continue
             return pkt
 
