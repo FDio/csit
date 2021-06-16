@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "58edc27d_f8807b91",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-16T16:28:22Z",
+      "side": 1,
+      "message": "Documentation for the keys would be useful, I do not know what \"fp\" is (\"dp\" is dataplane).",
+      "range": {
+        "startLine": 586,
+        "startChar": 32,
+        "endLine": 586,
+        "endChar": 34
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6633c10_211634c3",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-16T16:28:22Z",
+      "side": 1,
+      "message": "List of VPP thread numbers.",
+      "range": {
+        "startLine": 332,
+        "startChar": 24,
+        "endLine": 332,
+        "endChar": 48
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e184ec8c_d968bd6e",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-16T16:28:22Z",
+      "side": 1,
+      "message": "Iterable[int]\n\nBoth also for vpp_ipsec_crypto_sw_scheduler_set_worker_on_all_duts",
+      "range": {
+        "startLine": 335,
+        "startChar": 23,
+        "endLine": 335,
+        "endChar": 26
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "687c3649_035494ab",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1943,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-16T16:28:22Z",
+      "side": 1,
+      "message": "Comma separated worker index numbers intended for dataplane work.\nAlso for line 1986.",
+      "range": {
+        "startLine": 1943,
+        "startChar": 24,
+        "endLine": 1943,
+        "endChar": 43
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e1d6b38_286e250a",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-16T16:28:22Z",
+      "side": 1,
+      "message": "You are also moving the DP work, so perhaps \"Separate\"?",
+      "range": {
+        "startLine": 235,
+        "startChar": 2,
+        "endLine": 235,
+        "endChar": 9
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdde0970_df191372",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-16T16:28:22Z",
+      "side": 1,
+      "message": "So async scheduler tests will get tags \"2T2C\", \"2T3C\" and \"2T4C\"?\nUnexpected, but I like it.\nNot sure if PAL is ready, but I do not expect big problems there.",
+      "range": {
+        "startLine": 260,
+        "startChar": 15,
+        "endLine": 260,
+        "endChar": 48
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
