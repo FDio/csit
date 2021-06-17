@@ -332,6 +332,30 @@
     },
     {
       "key": {
+        "uuid": "e4f5812c_f687d2c1",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-17T11:25:35Z",
+      "side": 1,
+      "message": "\u003e dp\u003d\u003d0 round robin is by default doing ....round robin all/all\n\nAre you saying dp\u003d\u003d0 is silently understood as dp\u003d\u003dmax in some keywords? I thought dp\u003d\u003d0 is only for scenarios where we have zero workers so everything has to be done on vpp_main (as in device tests).\n\n\u003e does not hurt anything if fp\u003d\u003d0.\n\nNot sure why a fp\u003d\u003d0 suite would like to call this keyword.\nI think the simplest way to finish this discussion is to just remove line 242, and hope suites do the right thing, or else other keywords give clear enough errors.",
+      "parentUuid": "91606883_90fd3e80",
+      "range": {
+        "startLine": 242,
+        "startChar": 31,
+        "endLine": 242,
+        "endChar": 33
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fdde0970_df191372",
         "filename": "resources/libraries/robot/shared/default.robot",
         "patchSetId": 7
