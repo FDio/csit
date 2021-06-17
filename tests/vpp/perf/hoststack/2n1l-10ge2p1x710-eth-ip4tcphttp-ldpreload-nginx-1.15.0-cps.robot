@@ -17,7 +17,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | LDP_NGINX | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1.15.0
+| ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1.15.0-cps
 |
 | Suite Setup | Setup suite topology interfaces | ab | nginx
 | Suite Teardown | Tear down suite | ab
