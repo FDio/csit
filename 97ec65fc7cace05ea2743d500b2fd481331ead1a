@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "2bc534c7_a4b5c4ab",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-17T08:48:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58edc27d_f8807b91",
+      "range": {
+        "startLine": 586,
+        "startChar": 32,
+        "endLine": 586,
+        "endChar": 34
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6633c10_211634c3",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 7
@@ -213,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "24f6040a_65e7f547",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-17T08:48:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3941aea5_f441703f",
+      "range": {
+        "startLine": 235,
+        "startChar": 2,
+        "endLine": 235,
+        "endChar": 9
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0a6fce2_0874f5c0",
         "filename": "resources/libraries/robot/crypto/ipsec.robot",
         "patchSetId": 7
@@ -248,6 +296,30 @@
       "side": 1,
       "message": "ok",
       "parentUuid": "d0a6fce2_0874f5c0",
+      "range": {
+        "startLine": 242,
+        "startChar": 31,
+        "endLine": 242,
+        "endChar": 33
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91606883_90fd3e80",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-17T08:48:27Z",
+      "side": 1,
+      "message": "Not sure. The problem is that if dp\u003d\u003d0 round robin is by default doing ....round robin all/all\nBut if someone put fp\u003d\u003d0 the VPP is reporting API error, clearly one cannot set 0 workers to disable the feature (not logical but under some condition i can accept).\nThis whole KW can be used, as is now, for all ipsec tests and does not hurt anything if fp\u003d\u003d0. That is why FAIL i think does not fit.\n\n\nSo:\ndp\u003d0, fp\u003d0 - invalid as API error, but can be backward compatible for all IPSec\ndp\u003dN, fp\u003d0 - invalid as API error, but can be backward compatible for all IPSec\ndp\u003d0, fp\u003dN - valid, legal (could make no sense for some combination but validity should be handled by caller)\ndp\u003dN, fp\u003dN - valid, legal (could make no sense for some combination but validity should be handled by caller)",
+      "parentUuid": "0a72a991_7730805d",
       "range": {
         "startLine": 242,
         "startChar": 31,
@@ -304,6 +376,30 @@
       "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f368e261_2615d550",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-17T08:48:27Z",
+      "side": 1,
+      "message": "It is same as before as thr_count_int was renamed to dp_count_int so no change\nMaybe we can add new tag for doing fp_threads",
+      "parentUuid": "7d257549_2eb6bb6b",
+      "range": {
+        "startLine": 260,
+        "startChar": 15,
+        "endLine": 260,
+        "endChar": 48
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
