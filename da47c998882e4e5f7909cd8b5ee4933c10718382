@@ -16,6 +16,24 @@
       "revId": "da47c998882e4e5f7909cd8b5ee4933c10718382",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4c37a7a_1da83845",
+        "filename": "GPL/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-17T12:43:13Z",
+      "side": 1,
+      "message": "The loop is there so the ifs below can skip over mismatching ICMP responses.\nThe script passes on the first matching ICMP response packet, so the \"timeout\" timeout is for the matching packet both before and after this Change.\nThe difference is what the impact of mismatching ICMP responses is. The previous code failed after \"wait_step\" timeout with no packets, the new code waits until the \"timeout\" timeout.\n\nThe documentation is not specific enough to tell if \"wait_step\" timeout is important, or whether it is just an implementation detail. The new logic is simpler, so I prefer it.\n\"Max packet count limit reached\" is explicit enough, so I kept it there even though replacing \"for\" with an infinite loops would still work.",
+      "parentUuid": "c6494e9d_97d7e6ee",
+      "revId": "da47c998882e4e5f7909cd8b5ee4933c10718382",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }

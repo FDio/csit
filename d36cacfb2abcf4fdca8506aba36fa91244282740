@@ -22,6 +22,30 @@
       "revId": "d36cacfb2abcf4fdca8506aba36fa91244282740",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b805025_d758bf82",
+        "filename": "GPL/traffic_scripts/PacketVerifier.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-17T12:43:13Z",
+      "side": 0,
+      "message": "It was introduced in the parent change.\nsend_icmp_wait_for_reply.py was the only script that did not raise immediately on None (so in parent change it is the only call site with do_raise\u003dFalse).\nIn this change, also send_icmp_wait_for_reply.py does raise immediately on timeout (but a different one).",
+      "parentUuid": "22dee7dc_7be88792",
+      "range": {
+        "startLine": 234,
+        "startChar": 25,
+        "endLine": 234,
+        "endChar": 79
+      },
+      "revId": "d36cacfb2abcf4fdca8506aba36fa91244282740",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
