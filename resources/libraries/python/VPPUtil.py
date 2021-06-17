@@ -376,7 +376,9 @@ class VPPUtil:
             reply = papi_exec.add(cmd).get_reply()
 
         threads_data = reply[u"thread_data"]
-        logger.trace(f"show threads:\n{threads_data}")
+        logger.trace(f"show threads before sorting:\n{threads_data}")
+        threads_data.sort(key=lambda item: (item.cpu_socket, item.core))
+        logger.trace(f"show threads after sorting:\n{threads_data}")
 
         return threads_data
 
