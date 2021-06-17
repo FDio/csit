@@ -356,6 +356,30 @@
     },
     {
       "key": {
+        "uuid": "1639975b_26fab912",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-17T11:44:54Z",
+      "side": 1,
+      "message": "dp\u003d\u003d0 will technically never happen because in main KW it is replaced by phy-cores, maybe useful in vpp_device tests.\n\n\u003e I think the simplest way to finish this discussion is to just remove line 242\n\nfair enough at least it will crash TC.",
+      "parentUuid": "e4f5812c_f687d2c1",
+      "range": {
+        "startLine": 242,
+        "startChar": 31,
+        "endLine": 242,
+        "endChar": 33
+      },
+      "revId": "97ec65fc7cace05ea2743d500b2fd481331ead1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fdde0970_df191372",
         "filename": "resources/libraries/robot/shared/default.robot",
         "patchSetId": 7
