@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6494e9d_97d7e6ee",
+        "filename": "GPL/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-17T09:14:44Z",
+      "side": 1,
+      "message": "it is not the same logic. previously timeout was for for single packet not for all packets. and done in loop in case we need to recevie more packets.",
+      "revId": "da47c998882e4e5f7909cd8b5ee4933c10718382",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

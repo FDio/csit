@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22dee7dc_7be88792",
+        "filename": "GPL/traffic_scripts/PacketVerifier.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-17T09:14:44Z",
+      "side": 0,
+      "message": "I do not remember why it was there. I think this was intended for negative test cases. To actually do reverse logic. Like packet should not arrive.",
+      "range": {
+        "startLine": 234,
+        "startChar": 25,
+        "endLine": 234,
+        "endChar": 79
+      },
+      "revId": "d36cacfb2abcf4fdca8506aba36fa91244282740",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
