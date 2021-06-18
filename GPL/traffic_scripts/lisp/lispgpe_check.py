@@ -141,9 +141,9 @@ def main():
     txq.send(pkt_raw)
 
     if tx_if == rx_if:
-        ether = rxq.recv(2, ignore=sent_packets, skip_ip6=True)
+        ether = rxq.recv(2, ignore=sent_packets)
     else:
-        ether = rxq.recv(2, skip_ip6=True)
+        ether = rxq.recv(2)
 
     if rx_dst_mac == ether[Ether].dst and rx_src_mac == ether[Ether].src:
         print(u"MAC addresses match.")

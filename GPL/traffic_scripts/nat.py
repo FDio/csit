@@ -94,7 +94,7 @@ def main():
     sent_packets.append(pkt_raw)
     tx_txq.send(pkt_raw)
 
-    ether = rx_rxq.recv(2, skip_ip6=True)
+    ether = rx_rxq.recv(2)
 
     if rx_dst_mac != ether[Ether].dst or rx_src_mac != ether[Ether].src:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")
@@ -145,7 +145,7 @@ def main():
     pkt_raw /= Raw()
     rx_txq.send(pkt_raw)
 
-    ether = tx_rxq.recv(2, ignore=sent_packets, skip_ip6=True)
+    ether = tx_rxq.recv(2, ignore=sent_packets)
 
     if ether[Ether].dst != tx_src_mac or ether[Ether].src != tx_dst_mac:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")

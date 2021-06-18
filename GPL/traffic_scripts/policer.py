@@ -104,7 +104,7 @@ def main():
     sent_packets.append(pkt_send)
     txq.send(pkt_send)
 
-    pkt_recv = rxq.recv(2, sent_packets, skip_ip6=True)
+    pkt_recv = rxq.recv(2, sent_packets)
 
     if ip_layer == IP:
         check_ipv4(pkt_recv, dscp)

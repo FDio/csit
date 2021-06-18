@@ -245,7 +245,7 @@ def main():
     sent_packets.append(tx_pkt_send)
     tx_txq.send(tx_pkt_send)
 
-    rx_pkt_recv = rx_rxq.recv(2, skip_ip6=True)
+    rx_pkt_recv = rx_rxq.recv(2)
 
     check_srv6(
         rx_pkt_recv, rx_src_mac, rx_dst_mac, src_ip, dst_ip, dir0_srcsid,
@@ -275,7 +275,7 @@ def main():
     )
     rx_txq.send(rx_pkt_send)
 
-    tx_pkt_recv = tx_rxq.recv(2, ignore=sent_packets, skip_ip6=True)
+    tx_pkt_recv = tx_rxq.recv(2, ignore=sent_packets)
 
     if decap == u"True":
         check_ip(tx_pkt_recv, tx_dst_mac, tx_src_mac, dst_ip, src_ip)

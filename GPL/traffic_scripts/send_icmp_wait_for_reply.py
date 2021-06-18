@@ -85,7 +85,7 @@ def main():
     for _ in range(1000):
         while True:
             icmp_reply = rxq.recv(
-                wait_step, ignore=sent_packets, do_raise=False, skip_ip6=True
+                wait_step, ignore=sent_packets, do_raise=False
             )
             if icmp_reply is None:
                 timeout -= wait_step
