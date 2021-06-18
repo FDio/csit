@@ -17,7 +17,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | LDP_NGINX | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1.15.0
+| ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1.15.0-cps
 |
 | Suite Setup | Setup suite topology interfaces | ab | nginx
 | Suite Teardown | Tear down suite | ab
@@ -40,8 +40,8 @@
 | ${nic_name}= | Intel-X710
 | ${crypto_type}= | ${None}
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | ${512}
+| ${nic_txq_size}= | ${512}
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
@@ -72,8 +72,6 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${dp_count_int}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXD | ${512}
 | | | Run keyword | ${dut}.Add Session Event Queues Memfd Segment
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | Run keyword | ${dut}.Add session enable
