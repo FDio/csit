@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "218e4424_cc525360",
+        "filename": "GPL/traffic_scripts/lisp/lisp_check.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-18T19:05:59Z",
+      "side": 0,
+      "message": "This if makes it clear that this suite does not need ignore_selfcast\u003dTrue (in patch set 10 line 95).",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 10
+      },
+      "revId": "7482331d1ad5a65f4abc5eb50033e95d30aea7af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}

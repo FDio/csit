@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5075761e_99b5d3a7",
+        "filename": "GPL/traffic_scripts/nat.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-18T19:05:59Z",
+      "side": 1,
+      "message": "Not setting ignore_selfcast here, just because the new wrapper currently does not support unconditional filtering on tx side (and never filtering on rx side).\nI guess the author intended False or True here, not sure which yet.\nWill need to examine device test logs (before and after this).",
+      "range": {
+        "startLine": 67,
+        "startChar": 56,
+        "endLine": 67,
+        "endChar": 57
+      },
+      "revId": "b6ac9f3481ec574887cdb1a0b7bdc844b4f438fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40069973_8dd58acb",
+        "filename": "GPL/traffic_scripts/policer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-18T19:05:59Z",
+      "side": 1,
+      "message": "I suspect it is not needed, but True happens to match the previous behavior.\nOnce again, I will examine device test logs.",
+      "range": {
+        "startLine": 93,
+        "startChar": 31,
+        "endLine": 93,
+        "endChar": 37
+      },
+      "revId": "b6ac9f3481ec574887cdb1a0b7bdc844b4f438fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
