@@ -271,7 +271,7 @@ def main():
     tx_sent_packets.append(tx_pkt_send)
     tx_txq.send(tx_pkt_send)
 
-    rx_pkt_recv = rx_rxq.recv(2, skip_ip6=True)
+    rx_pkt_recv = rx_rxq.recv(2)
 
     check_geneve(
         rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, geneve_tunnel_mac,
@@ -312,7 +312,7 @@ def main():
     )
     rx_txq.send(rx_pkt_send)
 
-    tx_pkt_recv = tx_rxq.recv(2, ignore=tx_sent_packets, skip_ip6=True)
+    tx_pkt_recv = tx_rxq.recv(2, ignore=tx_sent_packets)
 
     check_ip(
         tx_pkt_recv, ip_layer, tx_dst_mac, tx_src_mac, str(dst_ip), str(src_ip)

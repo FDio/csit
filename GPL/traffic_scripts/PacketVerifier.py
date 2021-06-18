@@ -213,9 +213,7 @@ class RxQueue(PacketVerifier):
         PacketVerifier.__init__(self, interface_name)
         self._sock = conf.L2listen(iface=interface_name, type=ETH_P_ALL)
 
-    def recv(
-        self, timeout=3, ignore=None, verbose=True, do_raise=True, skip_ip6=False
-    ):
+    def recv(self, timeout=3, ignore=None, verbose=True, do_raise=True):
         """Read next received packet.
 
         Returns scapy's Ether() object created from next packet in the queue.
@@ -228,19 +226,16 @@ class RxQueue(PacketVerifier):
         Each time a packet is ignored, it is removed from the ignored list.
 
         Some automatically generated packet types related to IPv6
-        can be optionally ignored, not adding to the timeout.
+        are always ignored, not adding to the timeout.
 
         :param timeout: How many seconds to wait for next packet.
         :param ignore: List of packets that should be ignored.
         :param verbose: Used to suppress detailed logging of received packets.
         :param do_raise: Whether timeout should raise exception or return None.
-        :param skip_ip6: If true, ignore automatically generated packets
-            related to IPv6.
         :type timeout: int
         :type ignore: list
         :type verbose: bool
         :type do_raise: bool
-        :type skip_ip6: bool
         :returns: Ether() initialized object from packet data.
         :rtype: Optional[scapy.Ether]
         :raises RuntimeError: On timeout, if do_raise is true.
@@ -274,7 +269,7 @@ class RxQueue(PacketVerifier):
                 ignore.remove(pkt_pad)
                 print(u"Received packet ignored.")
                 continue
-            if skip_ip6 and (
+            if (
                 pkt.haslayer(ICMPv6ND_NS)
                 or pkt.haslayer(ICMPv6MLReport2)
                 or pkt.haslayer(ICMPv6ND_RA)

@@ -196,7 +196,7 @@ def main():
     sent_packets.append(tx_pkt_send)
     tx_txq.send(tx_pkt_send)
 
-    rx_pkt_recv = rx_rxq.recv(2, skip_ip6=True)
+    rx_pkt_recv = rx_rxq.recv(2)
 
     check_ip(rx_pkt_recv, ip_layer, src_ip, dst_ip)
 
@@ -208,7 +208,7 @@ def main():
     rx_pkt_send /= Raw()
     rx_txq.send(rx_pkt_send)
 
-    tx_pkt_recv = tx_rxq.recv(2, sent_packets, skip_ip6=True)
+    tx_pkt_recv = tx_rxq.recv(2, sent_packets)
 
     check_ipsec(tx_pkt_recv, ip_layer, src_tun, dst_ip, src_ip, sa_in)
 
