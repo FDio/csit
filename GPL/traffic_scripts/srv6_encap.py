@@ -240,7 +240,7 @@ def main():
         tx_pkt_send[Raw].load += (b"\0" * (size_limit - len(tx_pkt_send)))
     tx_txq.send(tx_pkt_send)
 
-    rx_pkt_recv = rx_rxq.recv(2)
+    rx_pkt_recv = rx_rxq.recv()
 
     check_srv6(
         rx_pkt_recv, rx_src_mac, rx_dst_mac, src_ip, dst_ip, dir0_srcsid,
@@ -270,7 +270,7 @@ def main():
     )
     rx_txq.send(rx_pkt_send)
 
-    tx_pkt_recv = tx_rxq.recv(2)
+    tx_pkt_recv = tx_rxq.recv()
 
     if decap == u"True":
         check_ip(tx_pkt_recv, tx_dst_mac, tx_src_mac, dst_ip, src_ip)
