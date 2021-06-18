@@ -81,11 +81,9 @@ def main():
     sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    ether = rxq.recv(2, ignore=sent_packets)
+    ether = rxq.recv(2, ignore=sent_packets, skip_ip6=True)
 
     # Check whether received packet contains layers Ether, IP and VXLAN
-    if ether is None:
-        raise RuntimeError(u"Packet Rx timeout")
     ip = ether.payload
 
     if ip.src != rx_src_ip:

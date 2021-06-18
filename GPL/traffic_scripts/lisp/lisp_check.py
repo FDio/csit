@@ -33,7 +33,7 @@ from scapy.all import bind_layers, Packet
 from scapy.fields import FlagsField, BitField, IntField
 from scapy.layers.inet import ICMP, IP, UDP
 from scapy.layers.inet6 import ICMPv6EchoRequest
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
@@ -118,29 +118,10 @@ def main():
     sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    while True:
-        if tx_if == rx_if:
-            ether = rxq.recv(2, ignore=sent_packets)
-        else:
-            ether = rxq.recv(2)
-
-        if ether is None:
-            raise RuntimeError(u"ICMP echo Rx timeout")
-
-        if ether.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif ether.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif ether.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        # otherwise process the current packet
-        break
+    if tx_if == rx_if:
+        ether = rxq.recv(2, ignore=sent_packets, skip_ip6=True)
+    else:
+        ether = rxq.recv(2, skip_ip6=True)
 
     if rx_dst_mac == ether[Ether].dst and rx_src_mac == ether[Ether].src:
         print(u"MAC addresses match.")
@@ -156,7 +137,7 @@ def main():
         if not isinstance(ip, IPv6):
             raise RuntimeError(f"Not an IP packet received {ip!r}")
     elif not isinstance(ip, ip_format):
-            raise RuntimeError(f"Not an IP packet received {ip!r}")
+        raise RuntimeError(f"Not an IP packet received {ip!r}")
 
     lisp = ether.getlayer(lisp_layer)
     if not lisp:

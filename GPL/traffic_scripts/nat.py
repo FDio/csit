@@ -28,7 +28,7 @@
 import sys
 
 from scapy.layers.inet import IP, TCP, UDP
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
@@ -94,25 +94,7 @@ def main():
     sent_packets.append(pkt_raw)
     tx_txq.send(pkt_raw)
 
-    while True:
-        ether = rx_rxq.recv(2)
-
-        if ether is None:
-            raise RuntimeError(u"IP packet Rx timeout")
-
-        if ether.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif ether.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif ether.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        break
+    ether = rx_rxq.recv(2, skip_ip6=True)
 
     if rx_dst_mac != ether[Ether].dst or rx_src_mac != ether[Ether].src:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")
@@ -163,25 +145,7 @@ def main():
     pkt_raw /= Raw()
     rx_txq.send(pkt_raw)
 
-    while True:
-        ether = tx_rxq.recv(2, ignore=sent_packets)
-
-        if ether is None:
-            raise RuntimeError(u"IP packet Rx timeout")
-
-        if ether.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif ether.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif ether.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        break
+    ether = tx_rxq.recv(2, ignore=sent_packets, skip_ip6=True)
 
     if ether[Ether].dst != tx_src_mac or ether[Ether].src != tx_dst_mac:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")

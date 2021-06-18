@@ -27,8 +27,7 @@
 
 import sys
 
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, IPv6ExtHdrSegmentRouting,\
-    ipv6nh, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import IPv6, IPv6ExtHdrSegmentRouting, ipv6nh
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
@@ -246,26 +245,7 @@ def main():
     sent_packets.append(tx_pkt_send)
     tx_txq.send(tx_pkt_send)
 
-    while True:
-        rx_pkt_recv = rx_rxq.recv(2)
-
-        if rx_pkt_recv is None:
-            raise RuntimeError(f"{IPv6.name} packet Rx timeout")
-
-        if rx_pkt_recv.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif rx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif rx_pkt_recv.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        # otherwise process the current packet
-        break
+    rx_pkt_recv = rx_rxq.recv(2, skip_ip6=True)
 
     check_srv6(
         rx_pkt_recv, rx_src_mac, rx_dst_mac, src_ip, dst_ip, dir0_srcsid,
@@ -295,26 +275,7 @@ def main():
     )
     rx_txq.send(rx_pkt_send)
 
-    while True:
-        tx_pkt_recv = tx_rxq.recv(2, ignore=sent_packets)
-
-        if tx_pkt_recv is None:
-            raise RuntimeError(f"{IPv6.name} packet Rx timeout")
-
-        if tx_pkt_recv.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        # otherwise process the current packet
-        break
+    tx_pkt_recv = tx_rxq.recv(2, ignore=sent_packets, skip_ip6=True)
 
     if decap == u"True":
         check_ip(tx_pkt_recv, tx_dst_mac, tx_src_mac, dst_ip, src_ip)
