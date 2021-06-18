@@ -28,11 +28,11 @@
 import sys
 
 from scapy.layers.inet import IP, TCP, UDP
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
-from .PacketVerifier import RxQueue, TxQueue
+from .PacketVerifier import start_4_queues
 from .TrafficScriptArg import TrafficScriptArg
 from .ValidIp import valid_ipv4, valid_ipv6
 
@@ -64,12 +64,8 @@ def main():
         sport_out = None
     dst_port = int(args.get_arg(u"dst_port"))
 
-    tx_txq = TxQueue(args.get_arg(u"tx_if"))
-    tx_rxq = RxQueue(args.get_arg(u"tx_if"))
-    rx_txq = TxQueue(args.get_arg(u"rx_if"))
-    rx_rxq = RxQueue(args.get_arg(u"rx_if"))
+    tx_txq, tx_rxq, rx_txq, rx_rxq = start_4_queues(args)
 
-    sent_packets = list()
     pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
 
     if valid_ipv4(src_ip_in) and valid_ipv4(dst_ip):
@@ -91,28 +87,9 @@ def main():
         raise ValueError(u"Incorrect protocol")
 
     pkt_raw /= Raw()
-    sent_packets.append(pkt_raw)
     tx_txq.send(pkt_raw)
 
-    while True:
-        ether = rx_rxq.recv(2)
-
-        if ether is None:
-            raise RuntimeError(u"IP packet Rx timeout")
-
-        if ether.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif ether.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif ether.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        break
+    ether = rx_rxq.recv(2)
 
     if rx_dst_mac != ether[Ether].dst or rx_src_mac != ether[Ether].src:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")
@@ -163,25 +140,7 @@ def main():
     pkt_raw /= Raw()
     rx_txq.send(pkt_raw)
 
-    while True:
-        ether = tx_rxq.recv(2, ignore=sent_packets)
-
-        if ether is None:
-            raise RuntimeError(u"IP packet Rx timeout")
-
-        if ether.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif ether.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif ether.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        break
+    ether = tx_rxq.recv(2)
 
     if ether[Ether].dst != tx_src_mac or ether[Ether].src != tx_dst_mac:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")
