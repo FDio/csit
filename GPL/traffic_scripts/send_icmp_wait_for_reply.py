@@ -26,6 +26,7 @@
 """Traffic script that sends an IP ICMPv4 or ICMPv6."""
 
 import sys
+import time
 
 from scapy.layers.inet import ICMP, IP
 from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply
@@ -49,7 +50,6 @@ def main():
     dst_ip = args.get_arg(u"dst_ip")
     src_ip = args.get_arg(u"src_ip")
     timeout = int(args.get_arg(u"timeout"))
-    wait_step = 1
 
     txq, _, _, rxq = start_4_queues(args)
 
@@ -77,15 +77,12 @@ def main():
     icmp_request /= Raw()
     txq.send(icmp_request)
 
+    time_stop = time.monotonic() + timeout
     for _ in range(1000):
-        while True:
-            icmp_reply = rxq.recv(wait_step, do_raise=False)
-            if icmp_reply is None:
-                timeout -= wait_step
-                if timeout < 0:
-                    raise RuntimeError(u"ICMP echo Rx timeout")
-
-            break
+        remaining = time_stop - time.monotonic()
+        if remaining <= 0.0:
+            raise RuntimeError(u"Timed out waiting for packet.")
+        icmp_reply = rxq.recv(remaining)
 
         if icmp_reply[ip_layer][icmp_resp].type == icmp_type:
             if icmp_reply[ip_layer].src == dst_ip and \
