@@ -183,9 +183,44 @@ def table_oper_data_html(table, input_data):
             tcol = ET.SubElement(
                 trow, u"td", attrib=dict(align=u"left", colspan=u"6")
             )
-            if dut_data.get(u"threads", None) is None:
+            if dut_data.get(u"runtime", None) is None:
                 tcol.text = u"No Data"
                 continue
+
+            try:
+                threads_nr = len(dut_data[u"runtime"][0][u"clocks"])
+            except (IndexError, KeyError):
+                tcol.text = u"No Data"
+                continue
+
+            threads = OrderedDict({idx: list() for idx in range(threads_nr)})
+            for item in dut_data[u"runtime"]:
+                for idx in range(threads_nr):
+                    if item[u"vectors"][idx] > 0:
+                        clocks = item[u"clocks"][idx] / item[u"vectors"][idx]
+                    elif item[u"calls"][idx] > 0:
+                        clocks = item[u"clocks"][idx] / item[u"calls"][idx]
+                    elif item[u"suspends"][idx] > 0:
+                        clocks = item[u"clocks"][idx] / item[u"suspends"][idx]
+                    else:
+                        clocks = 0.0
+
+                    if item[u"calls"][idx] > 0:
+                        vectors_call = item[u"vectors"][idx] / item[u"calls"][
+                            idx]
+                    else:
+                        vectors_call = 0.0
+
+                    if int(item[u"calls"][idx]) + int(item[u"vectors"][idx]) + \
+                        int(item[u"suspends"][idx]):
+                        threads[idx].append([
+                            item[u"name"],
+                            item[u"calls"][idx],
+                            item[u"vectors"][idx],
+                            item[u"suspends"][idx],
+                            clocks,
+                            vectors_call
+                        ])
 
             bold = ET.SubElement(tcol, u"b")
             bold.text = (
@@ -200,7 +235,7 @@ def table_oper_data_html(table, input_data):
             )
             thead.text = u"\t"
 
-            for thread_nr, thread in dut_data[u"threads"].items():
+            for thread_nr, thread in threads.items():
                 trow = ET.SubElement(
                     tbl, u"tr", attrib=dict(bgcolor=colors[u"header"])
                 )
