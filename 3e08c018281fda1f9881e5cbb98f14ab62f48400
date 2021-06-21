@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b47b46b2_655a191d",
+        "filename": "docs/TNM/design.md",
+        "patchSetId": 67
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-21T15:03:16Z",
+      "side": 1,
+      "message": "Do we have also \"log-level\" for metric log items?",
+      "range": {
+        "startLine": 922,
+        "startChar": 28,
+        "endLine": 922,
+        "endChar": 29
+      },
+      "revId": "3e08c018281fda1f9881e5cbb98f14ab62f48400",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
