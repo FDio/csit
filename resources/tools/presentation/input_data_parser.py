@@ -673,50 +673,17 @@ class ExecutionChecker(ResultVisitor):
                         replace(u"'", u'"').replace(u'b"', u'"').
                         replace(u'u"', u'"').split(u":", 1)[1])
 
-        try:
-            threads_nr = len(runtime[0][u"clocks"])
-        except (IndexError, KeyError):
-            return
-
         dut = u"dut{nr}".format(
             nr=len(self._data[u'tests'][self._test_id][u'show-run'].keys()) + 1)
 
-        oper = {
-            u"host": host,
-            u"socket": sock,
-            # Needed for json converter, enable when 'threads' is gone.
-            # u"runtime": runtime,
-            u"threads": OrderedDict({idx: list() for idx in range(threads_nr)})
-        }
-
-        for item in runtime:
-            for idx in range(threads_nr):
-                if item[u"vectors"][idx] > 0:
-                    clocks = item[u"clocks"][idx] / item[u"vectors"][idx]
-                elif item[u"calls"][idx] > 0:
-                    clocks = item[u"clocks"][idx] / item[u"calls"][idx]
-                elif item[u"suspends"][idx] > 0:
-                    clocks = item[u"clocks"][idx] / item[u"suspends"][idx]
-                else:
-                    clocks = 0.0
-
-                if item[u"calls"][idx] > 0:
-                    vectors_call = item[u"vectors"][idx] / item[u"calls"][idx]
-                else:
-                    vectors_call = 0.0
-
-                if int(item[u"calls"][idx]) + int(item[u"vectors"][idx]) + \
-                        int(item[u"suspends"][idx]):
-                    oper[u"threads"][idx].append([
-                        item[u"name"],
-                        item[u"calls"][idx],
-                        item[u"vectors"][idx],
-                        item[u"suspends"][idx],
-                        clocks,
-                        vectors_call
-                    ])
-
-        self._data[u'tests'][self._test_id][u'show-run'][dut] = copy.copy(oper)
+        self._data[u'tests'][self._test_id][u'show-run'][dut] = \
+            copy.copy(
+                {
+                    u"host": host,
+                    u"socket": sock,
+                    u"runtime": runtime,
+                }
+            )
 
     def _get_ndrpdr_throughput(self, msg):
         """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER from the test
@@ -2022,15 +1989,6 @@ class InputData:
         """Print all operational data to console.
         """
 
-        tbl_hdr = (
-            u"Name",
-            u"Nr of Vectors",
-            u"Nr of Packets",
-            u"Suspends",
-            u"Cycles per Packet",
-            u"Average Vector Size"
-        )
-
         for job in self._input_data.values:
             for build in job.values:
                 for test_id, test_data in build[u"tests"].items():
@@ -2038,12 +1996,59 @@ class InputData:
                     if test_data.get(u"show-run", None) is None:
                         continue
                     for dut_name, data in test_data[u"show-run"].items():
-                        if data.get(u"threads", None) is None:
+                        if data.get(u"runtime", None) is None:
                             continue
+                        try:
+                            threads_nr = len(data[u"runtime"][0][u"clocks"])
+                        except (IndexError, KeyError):
+                            continue
+                        threads = OrderedDict(
+                            {idx: list() for idx in range(threads_nr)})
+                        for item in data[u"runtime"]:
+                            for idx in range(threads_nr):
+                                if item[u"vectors"][idx] > 0:
+                                    clocks = item[u"clocks"][idx] / \
+                                             item[u"vectors"][idx]
+                                elif item[u"calls"][idx] > 0:
+                                    clocks = item[u"clocks"][idx] / \
+                                             item[u"calls"][idx]
+                                elif item[u"suspends"][idx] > 0:
+                                    clocks = item[u"clocks"][idx] / \
+                                             item[u"suspends"][idx]
+                                else:
+                                    clocks = 0.0
+
+                                if item[u"calls"][idx] > 0:
+                                    vectors_call = item[u"vectors"][idx] / \
+                                                   item[u"calls"][idx]
+                                else:
+                                    vectors_call = 0.0
+
+                                if int(item[u"calls"][idx]) + int(
+                                    item[u"vectors"][idx]) + \
+                                    int(item[u"suspends"][idx]):
+                                    threads[idx].append([
+                                        item[u"name"],
+                                        item[u"calls"][idx],
+                                        item[u"vectors"][idx],
+                                        item[u"suspends"][idx],
+                                        clocks,
+                                        vectors_call
+                                    ])
+
                         print(f"Host IP: {data.get(u'host', '')}, "
                               f"Socket: {data.get(u'socket', '')}")
-                        for thread_nr, thread in data[u"threads"].items():
-                            txt_table = prettytable.PrettyTable(tbl_hdr)
+                        for thread_nr, thread in threads.items():
+                            txt_table = prettytable.PrettyTable(
+                                (
+                                    u"Name",
+                                    u"Nr of Vectors",
+                                    u"Nr of Packets",
+                                    u"Suspends",
+                                    u"Cycles per Packet",
+                                    u"Average Vector Size"
+                                )
+                            )
                             avg = 0.0
                             for row in thread:
                                 txt_table.add_row(row)
