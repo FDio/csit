@@ -302,14 +302,6 @@ performance tested across a range of NIC drivers and NIC models:
 |                       | ciphers in async mode, in combination with   |
 |                       | IPv4 routing. Intel QAT HW acceleration.     |
 +-----------------------+----------------------------------------------+
-| IPSecHW               | IPSec encryption with AES-GCM, CBC-SHA-256   |
-|                       | ciphers, in combination with IPv4 routing.   |
-|                       | Intel QAT HW acceleration.                   |
-+-----------------------+----------------------------------------------+
-| IPSec+LISP            | IPSec encryption with CBC-SHA1 ciphers, in   |
-|                       | combination with LISP-GPE overlay tunneling  |
-|                       | for IPv4-over-IPv4.                          |
-+-----------------------+----------------------------------------------+
 | IPSecSW               | IPSec encryption with AES-GCM, CBC-SHA-256   |
 |                       | ciphers, in combination with IPv4 routing.   |
 +-----------------------+----------------------------------------------+
