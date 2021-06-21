@@ -10,12 +10,12 @@
 
   builds:
     csit-vpp-perf-report-iterative-2101-3n-hsw:
-      - 65  # rls2101.rel NDRPDR reconf iter env 6
-      - 69  # rls2101.rel Hoststack iter env 6
+#       - 65  # rls2101.rel NDRPDR reconf iter env 6
+#       - 69  # rls2101.rel Hoststack iter env 6
       - 64  # rls2101.rel NDRPDR iter env 6
-      - 63  # rls2101.rel MRR iter env 6
-    csit-vpp-perf-report-iterative-2101-2n-skx:
-      - 94  # rls2101.rel NDRPDR iter env 6
-      - 68  # rls2101.rel soak env 6
-    csit-vpp-device-2101-ubuntu1804-1n-skx:
-      - 358  # rls2101.rel VPP DEV env 6
+#       - 63  # rls2101.rel MRR iter env 6
+#     csit-vpp-perf-report-iterative-2101-2n-skx:
+#       - 94  # rls2101.rel NDRPDR iter env 6
+#       - 68  # rls2101.rel soak env 6
+#     csit-vpp-device-2101-ubuntu1804-1n-skx:
+#       - 358  # rls2101.rel VPP DEV env 6
