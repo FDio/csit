@@ -88,7 +88,7 @@ from scapy.packet import Raw, Padding
 conf.use_pcap = True
 
 __all__ = [
-    u"RxQueue", u"TxQueue", u"Interface", u"create_gratuitous_arp_request",
+    u"RxQueue", u"TxQueue", u"create_gratuitous_arp_request",
     u"auto_pad", u"checksum_equal"
 ]
 
@@ -294,41 +294,12 @@ class TxQueue(PacketVerifier):
         self._sock.send(pkt)
 
 
-class Interface:
-    """Class for network interfaces. Contains methods for sending and receiving
-     packets."""
-    def __init__(self, if_name):
-        """Initialize the interface class.
-
-        :param if_name: Name of the interface.
-        :type if_name: str
-        """
-        self.if_name = if_name
-        self.sent_packets = []
-        self.rxq = RxQueue(if_name)
-        self.txq = TxQueue(if_name)
-
-    def send_pkt(self, pkt):
-        """Send the provided packet out the interface."""
-        self.sent_packets.append(pkt)
-        self.txq.send(pkt)
-
-    def recv_pkt(self, timeout=3):
-        """Read one packet from the interface's receive queue.
-
-        :param timeout: Timeout value in seconds.
-        :type timeout: int
-        :returns: Ether() initialized object from packet data.
-        :rtype: scapy.Ether
-        """
-        return self.rxq.recv(timeout, self.sent_packets)
-
-
 def create_gratuitous_arp_request(src_mac, src_ip):
     """Creates scapy representation of gratuitous ARP request."""
-    return (Ether(src=src_mac, dst=u"ff:ff:ff:ff:ff:ff") /
-            ARP(psrc=src_ip, hwsrc=src_mac, pdst=src_ip)
-            )
+    return (
+        Ether(src=src_mac, dst=u"ff:ff:ff:ff:ff:ff")
+        / ARP(psrc=src_ip, hwsrc=src_mac, pdst=src_ip)
+    )
 
 
 def auto_pad(packet):
