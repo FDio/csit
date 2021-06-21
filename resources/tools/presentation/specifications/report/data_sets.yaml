@@ -5,8 +5,8 @@
 - type: "data-sets"
 
   vpp-device-results-ubuntu:
-    csit-vpp-device-2101-ubuntu1804-1n-skx:
-      - 133  # rls2101.rc2 VPP DEV env 7
+    csit-vpp-device-2106-ubuntu2004-x86_64-1n-skx:
+      - 133  # rls2106.rc2 VPP DEV env 7
 
 ################################################################################
 
