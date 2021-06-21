@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9f7d1e80_ddff1d96",
+        "filename": "docs/TNM/examples/output_uti/64b-1t1c-eth-l2patch-mrr.json",
+        "patchSetId": 64
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-21T14:49:19Z",
+      "side": 1,
+      "message": "Updated in design document (patch 67) but not here yet.",
+      "parentUuid": "189d4454_650c112e",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "4d83bdbc25196a57022696343dcebdd83d6a2a4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e67e4ac0_b1b2841a",
         "filename": "docs/TNM/examples/output_uti/78b-1t1c-ethip6-ip6base-ndrpdr.json",
         "patchSetId": 64
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "agree, I\u0027ll change it to latency",
       "parentUuid": "e67e4ac0_b1b2841a",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 18
+      },
+      "revId": "4d83bdbc25196a57022696343dcebdd83d6a2a4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eccc255b_2843358b",
+        "filename": "docs/TNM/examples/output_uti/78b-1t1c-ethip6-ip6base-ndrpdr.json",
+        "patchSetId": 64
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-21T14:49:19Z",
+      "side": 1,
+      "message": "Updated in design document (patch 67) but not here yet.",
+      "parentUuid": "bff5d20c_b6f0fb80",
       "range": {
         "startLine": 58,
         "startChar": 12,
