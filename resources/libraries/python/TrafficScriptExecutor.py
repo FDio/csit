@@ -46,12 +46,7 @@ class TrafficScriptExecutor:
         :type node: dict
         :type script_args: str
         :type timeout: int
-        :raises RuntimeError: ICMP echo Rx timeout.
-        :raises RuntimeError: DHCP REQUEST Rx timeout.
-        :raises RuntimeError: DHCP DISCOVER Rx timeout.
-        :raises RuntimeError: TCP/UDP Rx timeout.
-        :raises RuntimeError: ARP reply timeout.
-        :raises RuntimeError: Traffic script execution failed.
+        :raises RuntimeError: If timed out or other failure.
         """
         ssh = SSH()
         ssh.connect(node)
@@ -64,22 +59,9 @@ class TrafficScriptExecutor:
             f'sh -c "{TrafficScriptExecutor._escape(cmd)}"', timeout=timeout
         )
         if ret_code != 0:
-            if u"RuntimeError: ICMP echo Rx timeout" in stderr:
-                msg = "ICMP echo Rx timeout"
-            elif u"RuntimeError: IP packet Rx timeout" in stderr:
-                msg = u"IP packet Rx timeout"
-            elif u"RuntimeError: DHCP REQUEST Rx timeout" in stderr:
-                msg = u"DHCP REQUEST Rx timeout"
-            elif u"RuntimeError: DHCP DISCOVER Rx timeout" in stderr:
-                msg = u"DHCP DISCOVER Rx timeout"
-            elif u"RuntimeError: TCP/UDP Rx timeout" in stderr:
-                msg = u"TCP/UDP Rx timeout"
-            elif u"Error occurred: ARP reply timeout" in stdout:
-                msg = u"ARP reply timeout"
-            elif u"RuntimeError: ESP packet Rx timeout" in stderr:
-                msg = u"ESP packet Rx timeout"
-            else:
-                msg = u"Traffic script execution failed"
+            msg = u"Timed out waiting for a packet."
+            if msg not in stderr:
+                msg = u"Traffic script execution failed."
             raise RuntimeError(msg)
 
     @staticmethod

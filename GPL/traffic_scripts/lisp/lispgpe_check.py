@@ -34,11 +34,11 @@ from scapy.all import bind_layers, Packet
 from scapy.fields import FlagsField, BitField, XBitField, IntField
 from scapy.layers.inet import ICMP, IP, UDP
 from scapy.layers.inet6 import ICMPv6EchoRequest
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
-from ..PacketVerifier import RxQueue, TxQueue
+from ..PacketVerifier import start_4_queues
 from ..TrafficScriptArg import TrafficScriptArg
 from ..ValidIp import valid_ipv4, valid_ipv6
 
@@ -117,8 +117,7 @@ def main():
     rx_if = args.get_arg(u"rx_if")
     ot_mode = args.get_arg(u"ot_mode")
 
-    rxq = RxQueue(rx_if)
-    txq = TxQueue(tx_if)
+    txq, _, _, rxq = start_4_queues(args)
 
     pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
 
@@ -136,32 +135,9 @@ def main():
     bind_layers(UDP, LispGPEHeader, dport=4341)
 
     pkt_raw /= Raw()
-    sent_packets = list()
-    sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    while True:
-        if tx_if == rx_if:
-            ether = rxq.recv(2, ignore=sent_packets)
-        else:
-            ether = rxq.recv(2)
-
-        if ether is None:
-            raise RuntimeError(u"ICMP echo Rx timeout")
-
-        if ether.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        if ether.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is ICMPv6ND_RA
-            continue
-        elif ether.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-
-        # otherwise process the current packet
-        break
+    ether = rxq.recv(2)
 
     if rx_dst_mac == ether[Ether].dst and rx_src_mac == ether[Ether].src:
         print(u"MAC addresses match.")
@@ -177,7 +153,7 @@ def main():
         if not isinstance(ip, IPv6):
             raise RuntimeError(f"Not an IP packet received {ip!r}")
     elif not isinstance(ip, ip_format):
-            raise RuntimeError(f"Not an IP packet received {ip!r}")
+        raise RuntimeError(f"Not an IP packet received {ip!r}")
 
     lisp = ether.getlayer(LispGPEHeader).underlayer
     if not lisp:

@@ -27,12 +27,11 @@
 
 import sys
 
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, IPv6ExtHdrSegmentRouting,\
-    ipv6nh, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import IPv6, IPv6ExtHdrSegmentRouting, ipv6nh
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
-from .PacketVerifier import RxQueue, TxQueue
+from .PacketVerifier import start_4_queues
 from .TrafficScriptArg import TrafficScriptArg
 
 
@@ -212,11 +211,6 @@ def main():
         ]
     )
 
-    tx_txq = TxQueue(args.get_arg(u"tx_if"))
-    tx_rxq = RxQueue(args.get_arg(u"tx_if"))
-    rx_txq = TxQueue(args.get_arg(u"rx_if"))
-    rx_rxq = RxQueue(args.get_arg(u"rx_if"))
-
     tx_src_mac = args.get_arg(u"tx_src_mac")
     tx_dst_mac = args.get_arg(u"tx_dst_mac")
     rx_src_mac = args.get_arg(u"rx_src_mac")
@@ -235,37 +229,18 @@ def main():
     dir1_dstsid3 = args.get_arg(u"dir1_dstsid3")
     static_proxy = args.get_arg(u"static_proxy")
 
+    tx_txq, tx_rxq, rx_txq, rx_rxq = start_4_queues(args)
+
     ip_pkt = IPv6(src=src_ip, dst=dst_ip)
 
-    sent_packets = list()
     tx_pkt_send = (Ether(src=tx_src_mac, dst=tx_dst_mac) / ip_pkt)
     tx_pkt_send /= Raw()
     size_limit = 78
     if len(tx_pkt_send) < size_limit:
         tx_pkt_send[Raw].load += (b"\0" * (size_limit - len(tx_pkt_send)))
-    sent_packets.append(tx_pkt_send)
     tx_txq.send(tx_pkt_send)
 
-    while True:
-        rx_pkt_recv = rx_rxq.recv(2)
-
-        if rx_pkt_recv is None:
-            raise RuntimeError(f"{IPv6.name} packet Rx timeout")
-
-        if rx_pkt_recv.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif rx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif rx_pkt_recv.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        # otherwise process the current packet
-        break
+    rx_pkt_recv = rx_rxq.recv(2)
 
     check_srv6(
         rx_pkt_recv, rx_src_mac, rx_dst_mac, src_ip, dst_ip, dir0_srcsid,
@@ -295,26 +270,7 @@ def main():
     )
     rx_txq.send(rx_pkt_send)
 
-    while True:
-        tx_pkt_recv = tx_rxq.recv(2, ignore=sent_packets)
-
-        if tx_pkt_recv is None:
-            raise RuntimeError(f"{IPv6.name} packet Rx timeout")
-
-        if tx_pkt_recv.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        # otherwise process the current packet
-        break
+    tx_pkt_recv = tx_rxq.recv(2)
 
     if decap == u"True":
         check_ip(tx_pkt_recv, tx_dst_mac, tx_src_mac, dst_ip, src_ip)
