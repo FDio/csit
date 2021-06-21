@@ -17,7 +17,7 @@
 import socket
 
 from io import StringIO
-from time import time, sleep
+from time import monotonic, sleep
 
 from paramiko import RSAKey, SSHClient, AutoAddPolicy
 from paramiko.ssh_exception import SSHException, NoValidConnectionsError
@@ -25,6 +25,9 @@ from robot.api import logger
 from scp import SCPClient, SCPException
 
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.model.ExportLog import (
+    export_ssh_command, export_ssh_result, export_ssh_timeout
+)
 
 __all__ = [
     u"exec_cmd", u"exec_cmd_no_error", u"SSH", u"SSHTimeout", u"scp_node"
@@ -82,7 +85,7 @@ class SSH:
                     raise IOError(f"Cannot connect to {node['host']}")
         else:
             try:
-                start = time()
+                start = monotonic()
                 pkey = None
                 if u"priv_key" in node:
                     pkey = RSAKey.from_private_key(StringIO(node[u"priv_key"]))
@@ -101,7 +104,7 @@ class SSH:
                 SSH.__existing_connections[node_hash] = self._ssh
                 logger.debug(
                     f"New SSH to {self._ssh.get_transport().getpeername()} "
-                    f"took {time() - start} seconds: {self._ssh}"
+                    f"took {monotonic() - start} seconds: {self._ssh}"
                 )
             except SSHException as exc:
                 raise IOError(f"Cannot connect to {node[u'host']}") from exc
@@ -174,7 +177,8 @@ class SSH:
 
         logger.trace(f"exec_command on {peer} with timeout {timeout}: {cmd}")
 
-        start = time()
+        start = monotonic()
+        export_ssh_command(self._node[u"host"], self._node[u"port"], cmd)
         chan.exec_command(cmd)
         while not chan.exit_status_ready() and timeout is not None:
             if chan.recv_ready():
@@ -187,7 +191,15 @@ class SSH:
                 stderr += s_err.decode(encoding=u'utf-8', errors=u'ignore') \
                     if isinstance(s_err, bytes) else s_err
 
-            if time() - start > timeout:
+            duration = monotonic() - start
+            if duration > timeout:
+                export_ssh_timeout(
+                    host=self._node[u"host"],
+                    port=self._node[u"port"],
+                    stdout=stdout,
+                    stderr=stderr,
+                    duration=duration,
+                )
                 raise SSHTimeout(
                     f"Timeout exception during execution of command: {cmd}\n"
                     f"Current contents of stdout buffer: "
@@ -209,8 +221,8 @@ class SSH:
             stderr += s_err.decode(encoding=u'utf-8', errors=u'ignore') \
                 if isinstance(s_err, bytes) else s_err
 
-        end = time()
-        logger.trace(f"exec_command on {peer} took {end-start} seconds")
+        duration = monotonic() - start
+        logger.trace(f"exec_command on {peer} took {duration} seconds")
 
         logger.trace(f"return RC {return_code}")
         if log_stdout_err or int(return_code):
@@ -220,6 +232,14 @@ class SSH:
             logger.trace(
                 f"return STDERR {stderr}"
             )
+        export_ssh_result(
+            host=self._node[u"host"],
+            port=self._node[u"port"],
+            code=return_code,
+            stdout=stdout,
+            stderr=stderr,
+            duration=duration,
+        )
         return return_code, stdout, stderr
 
     def exec_command_sudo(
@@ -400,13 +420,13 @@ class SSH:
                 self._ssh.get_transport(), sanitize=lambda x: x,
                 socket_timeout=timeout
             )
-        start = time()
+        start = monotonic()
         if not get:
             scp.put(local_path, remote_path)
         else:
             scp.get(remote_path, local_path)
         scp.close()
-        end = time()
+        end = monotonic()
         logger.trace(f"SCP took {end-start} seconds")
 
 
