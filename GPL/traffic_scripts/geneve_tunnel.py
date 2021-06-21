@@ -30,11 +30,11 @@ import sys
 from ipaddress import ip_address
 from scapy.contrib.geneve import GENEVE
 from scapy.layers.inet import IP, UDP
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
-from .PacketVerifier import RxQueue, TxQueue
+from .PacketVerifier import start_4_queues
 from .TrafficScriptArg import TrafficScriptArg
 
 
@@ -75,36 +75,36 @@ def check_geneve(
             raise RuntimeError(
                 f"Received packet hasn't outer Ether layer: {pkt_recv!r}"
             )
-        elif not isinstance(pkt_recv[1], ip_layer):
+        if not isinstance(pkt_recv[1], ip_layer):
             raise RuntimeError(
                 f"Received packet hasn't outer {ip_layer.__name__} layer: "
                 f"{pkt_recv!r}"
             )
-        elif not isinstance(pkt_recv[2], UDP):
+        if not isinstance(pkt_recv[2], UDP):
             raise RuntimeError(
                 f"Received packet hasn't UDP layer: {pkt_recv!r}"
             )
-        elif not isinstance(pkt_recv[3], GENEVE):
+        if not isinstance(pkt_recv[3], GENEVE):
             raise RuntimeError(
                 f"Received packet hasn't GENEVE layer: {pkt_recv!r}"
             )
-        elif not isinstance(pkt_recv[4], Ether):
+        if not isinstance(pkt_recv[4], Ether):
             raise RuntimeError(
                 f"Received packet hasn't inner Ether layer: {pkt_recv!r}"
             )
-        elif not isinstance(pkt_recv[5], ip_layer):
+        if not isinstance(pkt_recv[5], ip_layer):
             raise RuntimeError(
                 f"Received packet hasn't inner {ip_layer.__name__} layer: "
                 f"{pkt_recv!r}"
             )
-        elif not isinstance(pkt_recv[6], Raw):
+        if not isinstance(pkt_recv[6], Raw):
             raise RuntimeError(
                 f"Received packet hasn't inner Raw layer: {pkt_recv!r}"
             )
-    except IndexError:
+    except IndexError as exc:
         raise RuntimeError(
             f"Received packet doesn't contain all layers: {pkt_recv!r}"
-        )
+        ) from exc
 
     if pkt_recv[Ether].src != outer_src_mac:
         raise RuntimeError(
@@ -237,11 +237,6 @@ def main():
         ]
     )
 
-    tx_txq = TxQueue(args.get_arg(u"tx_if"))
-    tx_rxq = RxQueue(args.get_arg(u"tx_if"))
-    rx_txq = TxQueue(args.get_arg(u"rx_if"))
-    rx_rxq = RxQueue(args.get_arg(u"rx_if"))
-
     rx_src_mac = args.get_arg(u"rx_src_mac")
     rx_dst_mac = args.get_arg(u"rx_dst_mac")
     tx_src_mac = args.get_arg(u"tx_src_mac")
@@ -256,7 +251,8 @@ def main():
     geneve_tunnel_mac = u"d0:0b:ee:d0:00:00"
     geneve_udp_dport = 6081
 
-    tx_sent_packets = list()
+    tx_txq, tx_rxq, rx_txq, rx_rxq = start_4_queues(args)
+
     src_ip = ip_address(tun_src_ip)
     dst_ip = ip_address(tun_dst_ip)
     ip_layer = IP if src_ip.version == 4 else IPv6
@@ -268,29 +264,9 @@ def main():
     if len(tx_pkt_send) < size_limit:
         tx_pkt_send[Raw].load += b"\0" * (size_limit - len(tx_pkt_send))
 
-    tx_sent_packets.append(tx_pkt_send)
     tx_txq.send(tx_pkt_send)
 
-    while True:
-        rx_pkt_recv = rx_rxq.recv(2)
-
-        if rx_pkt_recv is None:
-            raise RuntimeError(f"GENEVE packet Rx timeout")
-
-        if rx_pkt_recv.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif rx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif rx_pkt_recv.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        # otherwise process the current packet
-        break
+    rx_pkt_recv = rx_rxq.recv(2)
 
     check_geneve(
         rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, geneve_tunnel_mac,
@@ -331,26 +307,7 @@ def main():
     )
     rx_txq.send(rx_pkt_send)
 
-    while True:
-        tx_pkt_recv = tx_rxq.recv(2, ignore=tx_sent_packets)
-        ip_layer = IP
-
-        if tx_pkt_recv is None:
-            raise RuntimeError(f"{ip_layer.__name__} packet Rx timeout")
-
-        if tx_pkt_recv.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        break
+    tx_pkt_recv = tx_rxq.recv(2)
 
     check_ip(
         tx_pkt_recv, ip_layer, tx_dst_mac, tx_src_mac, str(dst_ip), str(src_ip)

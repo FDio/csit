@@ -32,11 +32,11 @@ import sys
 
 from robot.api import logger
 from scapy.layers.inet import IP
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether, Dot1Q
 from scapy.packet import Raw
 
-from .PacketVerifier import RxQueue, TxQueue
+from .PacketVerifier import start_4_queues
 from .TrafficScriptArg import TrafficScriptArg
 from .ValidIp import valid_ipv4, valid_ipv6
 
@@ -59,9 +59,6 @@ def main():
     rx_src_mac = args.get_arg(u"dut_if2_mac")
     src_ip = args.get_arg(u"src_ip")
     dst_ip = args.get_arg(u"dst_ip")
-    tx_if = args.get_arg(u"tx_if")
-    rx_if = args.get_arg(u"rx_if")
-
     encaps_tx = args.get_arg(u"encaps_tx")
     vlan_tx = args.get_arg(u"vlan_tx")
     vlan_outer_tx = args.get_arg(u"vlan_outer_tx")
@@ -69,10 +66,8 @@ def main():
     vlan_rx = args.get_arg(u"vlan_rx")
     vlan_outer_rx = args.get_arg(u"vlan_outer_rx")
 
-    rxq = RxQueue(rx_if)
-    txq = TxQueue(tx_if)
+    txq, _, _, rxq = start_4_queues(args)
 
-    sent_packets = list()
     pkt_raw = Ether(src=tx_src_mac, dst=tx_dst_mac)
 
     if encaps_tx == u"Dot1q":
@@ -92,31 +87,9 @@ def main():
         raise ValueError(u"IP not in correct format")
 
     pkt_raw /= Raw()
-    sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    while True:
-        if tx_if == rx_if:
-            ether = rxq.recv(2, ignore=sent_packets)
-        else:
-            ether = rxq.recv(2)
-
-        if ether is None:
-            raise RuntimeError(u"IP packet Rx timeout")
-
-        if ether.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif ether.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif ether.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        break
+    ether = rxq.recv(2)
 
     if rx_dst_mac == ether[Ether].dst and rx_src_mac == ether[Ether].src:
         logger.trace(u"MAC matched")
