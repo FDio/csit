@@ -72,97 +72,129 @@ class JSONData:
         """
         return self._data
 
-    def add_element(self, value, path_to_value):
-        """Add an element to the json structure.
+    def update(self, kwargs):
+        """Update the data with new data from the dictionary.
 
-        :param value: Element value.
-        :param path_to_value: List of tuples where the first item is the element
-            on the path and the second one is its type.
-        :type value: dict, list, str, int, float, bool
-        :type path_to_value: list
-        :raises: IndexError if the path is empty.
-        :raises: TypeError if the val is of not supported type.
+        :param kwargs: Key value pairs to be added to the data.
+        :type kwargs: dict
         """
+        self._data.update(kwargs)
 
-        def _add_element(val, path, structure):
-            """Add an element to the given path.
+    def set_key(self, key, val):
+        """Setter.
 
-            :param val: Element value.
-            :param path: List of tuples where the first item is the element
-            on the path and the second one is its type.
-            :param structure: The structure where the element is added.
-            :type val: dict, list, str, int, float, bool
-            :type path: list
-            :type structure: dict
-            :raises TypeError if there is a wrong type in the path.
-            """
-            if len(path) == 1:
-                if isinstance(structure, dict):
-                    if path[0][1] is dict:
-                        if path[0][0] not in structure:
-                            structure[path[0][0]] = dict()
-                        structure[path[0][0]].update(val)
-                    elif path[0][1] is list:
-                        if path[0][0] not in structure:
-                            structure[path[0][0]] = list()
-                        if isinstance(val, list):
-                            structure[path[0][0]].extend(val)
-                        else:
-                            structure[path[0][0]].append(val)
-                    else:
-                        structure[path[0][0]] = val
-                elif isinstance(structure, list):
-                    if path[0][0] == -1 or path[0][0] >= len(structure):
-                        if isinstance(val, list):
-                            structure.extend(val)
-                        else:
-                            structure.append(val)
-                    else:
-                        structure[path[0][0]] = val
-                return
-
-            if isinstance(structure, dict):
-                if path[0][1] is dict:
-                    if path[0][0] not in structure:
-                        structure[path[0][0]] = dict()
-                elif path[0][1] is list:
-                    if path[0][0] not in structure:
-                        structure[path[0][0]] = list()
-            elif isinstance(structure, list):
-                if path[0][0] == -1 or path[0][0] >= len(structure):
-                    if path[0][1] is list:
-                        structure.append(list())
-                    elif path[0][1] is dict:
-                        structure.append(dict())
-                    else:
-                        structure.append(0)
-                    path[0][0] = len(structure) - 1
-            else:
-                raise TypeError(
-                    u"Only the last item in the path can be different type "
-                    u"then list or dictionary."
-                )
-            _add_element(val, path[1:], structure[path[0][0]])
-
-        if not isinstance(value, (dict, list, str, int, float, bool)):
-            raise TypeError(
-                u"The value must be one of these types: dict, list, str, int, "
-                u"float, bool.\n"
-                f"Value: {value}\n"
-                f"Path: {path_to_value}"
-            )
-        _add_element(deepcopy(value), path_to_value, self._data)
-
-    def get_element(self, path):
-        """Get the element specified by the path.
-
-        :param path: List of keys and indices to the requested element or
-            sub-tree.
-        :type path: list
-        :returns: Element specified by the path.
-        :rtype: any
+        :param key: The key to be updated / added.
+        :param val: The key value.
+        :type key: str
+        :type val: object
         """
-        raise NotImplementedError
+        self._data[key] = deepcopy(val)
+
+    def add_to_list(self, key, val):
+        """Add an item to the list identified by key.
+
+        :param key: The key identifying the list.
+        :param val: The val to be appended to the list. If val is a list,
+            extend is used.
+        """
+        if self._data.get(key, None) is None:
+            self._data[key] = list()
+        if isinstance(val, list):
+            self._data[key].extend(val)
+        else:
+            self._data[key].append(val)
+
+    # def add_element(self, value, path_to_value):
+    #     """Add an element to the json structure.
+    #
+    #     :param value: Element value.
+    #     :param path_to_value: List of tuples where the first item is the element
+    #         on the path and the second one is its type.
+    #     :type value: dict, list, str, int, float, bool
+    #     :type path_to_value: list
+    #     :raises: IndexError if the path is empty.
+    #     :raises: TypeError if the val is of not supported type.
+    #     """
+    #
+    #     def _add_element(val, path, structure):
+    #         """Add an element to the given path.
+    #
+    #         :param val: Element value.
+    #         :param path: List of tuples where the first item is the element
+    #         on the path and the second one is its type.
+    #         :param structure: The structure where the element is added.
+    #         :type val: dict, list, str, int, float, bool
+    #         :type path: list
+    #         :type structure: dict
+    #         :raises TypeError if there is a wrong type in the path.
+    #         """
+    #         if len(path) == 1:
+    #             if isinstance(structure, dict):
+    #                 if path[0][1] is dict:
+    #                     if path[0][0] not in structure:
+    #                         structure[path[0][0]] = dict()
+    #                     structure[path[0][0]].update(val)
+    #                 elif path[0][1] is list:
+    #                     if path[0][0] not in structure:
+    #                         structure[path[0][0]] = list()
+    #                     if isinstance(val, list):
+    #                         structure[path[0][0]].extend(val)
+    #                     else:
+    #                         structure[path[0][0]].append(val)
+    #                 else:
+    #                     structure[path[0][0]] = val
+    #             elif isinstance(structure, list):
+    #                 if path[0][0] == -1 or path[0][0] >= len(structure):
+    #                     if isinstance(val, list):
+    #                         structure.extend(val)
+    #                     else:
+    #                         structure.append(val)
+    #                 else:
+    #                     structure[path[0][0]] = val
+    #             return
+    #
+    #         if isinstance(structure, dict):
+    #             if path[0][1] is dict:
+    #                 if path[0][0] not in structure:
+    #                     structure[path[0][0]] = dict()
+    #             elif path[0][1] is list:
+    #                 if path[0][0] not in structure:
+    #                     structure[path[0][0]] = list()
+    #         elif isinstance(structure, list):
+    #             if path[0][0] == -1 or path[0][0] >= len(structure):
+    #                 if path[0][1] is list:
+    #                     structure.append(list())
+    #                 elif path[0][1] is dict:
+    #                     structure.append(dict())
+    #                 else:
+    #                     structure.append(0)
+    #                 path[0][0] = len(structure) - 1
+    #         else:
+    #             raise TypeError(
+    #                 u"Only the last item in the path can be different type "
+    #                 u"then list or dictionary."
+    #             )
+    #         _add_element(val, path[1:], structure[path[0][0]])
+    #
+    #     if not isinstance(value, (dict, list, str, int, float, bool)):
+    #         raise TypeError(
+    #             u"The value must be one of these types: dict, list, str, int, "
+    #             u"float, bool.\n"
+    #             f"Value: {value}\n"
+    #             f"Path: {path_to_value}"
+    #         )
+    #     _add_element(deepcopy(value), path_to_value, self._data)
+
+    # def get_element(self, path):
+    #     """Get the element specified by the path.
+    #
+    #     :param path: List of keys and indices to the requested element or
+    #         sub-tree.
+    #     :type path: list
+    #     :returns: Element specified by the path.
+    #     :rtype: any
+    #     """
+    #     raise NotImplementedError
 
     def dump(self, file_out, indent=None):
         """Write JSON data to a file.
@@ -207,50 +239,26 @@ def _export_test_from_xml_to_json(tid, in_data, out, template, metadata):
     :type metadata: dict
     """
 
-    p_metadata = [(u"metadata", dict), ]
-    p_test = [(u"test", dict), ]
-    p_log = [(u"log", list), (-1, list)]
-
     data = JSONData(template=template)
 
-    data.add_element({u"suite-id": metadata.pop(u"suite-id", u"")}, p_metadata)
-    data.add_element(
-        {u"suite-doc": metadata.pop(u"suite-doc", u"")}, p_metadata
-    )
-    data.add_element({u"testbed": metadata.pop(u"testbed", u"")}, p_metadata)
-    data.add_element(
-        {u"sut-version": metadata.pop(u"sut-version", u"")}, p_metadata
-    )
-
-    data.add_element({u"test-id": tid}, p_test)
+    data.update(metadata)
+    data.set_key(u"test-id", tid)
     t_type = in_data.get(u"type", u"")
     t_type = u"NDRPDR" if t_type == u"CPS" else t_type  # It is NDRPDR
-    data.add_element({u"test-type": t_type}, p_test)
+    data.set_key(u"test-type", t_type)
     tags = in_data.get(u"tags", list())
-    data.add_element({u"tags": tags}, p_test)
-    data.add_element(
-        {u"documentation": in_data.get(u"documentation", u"")}, p_test
-    )
-    data.add_element({u"message": in_data.get(u"msg", u"")}, p_test)
-    execution = {
-        u"start_time": in_data.get(u"starttime", u""),
-        u"end_time": in_data.get(u"endtime", u""),
-        u"status": in_data.get(u"status", u"FAILED"),
-    }
-    execution.update(metadata)
-    data.add_element({u"execution": execution}, p_test)
-
-    log_item = {
-        u"source": {
-            u"type": u"node",
-            u"id": ""
-        },
-        u"msg-type": u"",
-        u"log-level": u"INFO",
-        u"timestamp": in_data.get(u"starttime", u""),  # replacement
-        u"msg": u"",
-        u"data": []
-    }
+    data.set_key(u"tags", tags)
+    data.set_key(u"documentation", in_data.get(u"documentation", u""))
+    data.set_key(u"message", in_data.get(u"msg", u""))
+    data.set_key(u"start-time", in_data.get(u"starttime", u""))
+    data.set_key(u"end-time", in_data.get(u"endtime", u""))
+    data.set_key(u"status", in_data.get(u"status", u"FAILED"))
+    sut_type = u""
+    if u"vpp" in tid:
+        sut_type = u"vpp"
+    elif u"dpdk" in tid:
+        sut_type = u"dpdk"
+    data.set_key(u"sut-type", sut_type)
 
     # Process configuration history:
     in_papi = deepcopy(in_data.get(u"conf-history", None))
@@ -264,20 +272,33 @@ def _export_test_from_xml_to_json(tid, in_data, out, template, metadata):
             if groups:
                 node_id = f"dut{groups.group(1)}"
             else:
-                log_item[u"source"][u"id"] = node_id
-                log_item[u"msg-type"] = u"papi"
-                log_item[u"msg"] = line
-                data.add_element(log_item, p_log)
+                data.add_to_list(
+                    u"log",
+                    {
+                        u"source-type": u"node",
+                        u"source-id": node_id,
+                        u"msg-type": u"papi",
+                        u"log-level": u"INFO",
+                        u"timestamp": in_data.get(u"starttime", u""),
+                        u"msg": line,
+                        u"data": list()
+                    }
+                )
 
     # Process show runtime:
     in_sh_run = deepcopy(in_data.get(u"show-run", None))
     if in_sh_run:
         # Transform to openMetrics format
         for key, val in in_sh_run.items():
-            log_item[u"source"][u"id"] = key
-            log_item[u"msg-type"] = u"metric"
-            log_item[u"msg"] = u"show-runtime"
-            log_item[u"data"] = list()
+            log_item = {
+                u"source-type": u"node",
+                u"source-id": key,
+                u"msg-type": u"metric",
+                u"log-level": u"INFO",
+                u"timestamp": in_data.get(u"starttime", u""),
+                u"msg": u"show-runtime",
+                u"data": list()
+            }
             for item in val.get(u"runtime", list()):
                 for metric, m_data in item.items():
                     if metric == u"name":
@@ -295,7 +316,7 @@ def _export_test_from_xml_to_json(tid, in_data, out, template, metadata):
                                 }
                             }
                         )
-            data.add_element(log_item, p_log)
+            data.add_to_list(u"log", log_item)
 
     # Process results:
     results = dict()
@@ -387,7 +408,7 @@ def _export_test_from_xml_to_json(tid, in_data, out, template, metadata):
         }
     else:
         pass
-    data.add_element({u"results": results}, p_test)
+    data.set_key(u"results", results)
 
     data.dump(out, indent=u"    ")
 
@@ -456,7 +477,7 @@ def convert_xml_to_json(spec, data):
                     {
                         u"ci": u"jenkins.fd.io",
                         u"job": job,
-                        u"build": build_nr,
+                        u"build-number": build_nr,
                         u"suite-id": suite_id,
                         u"suite-doc": build[u"suites"].get(suite_id, dict()).
                                       get(u"doc", u""),
@@ -465,11 +486,11 @@ def convert_xml_to_json(spec, data):
                     }
                 )
 
-    # gzip the json files:
-    for file in get_files(build_dir, u"json"):
-        with open(file, u"rb") as src:
-            with gzip.open(f"{file}.gz", u"wb") as dst:
-                dst.writelines(src)
-            os.remove(file)
+    # # gzip the json files:
+    # for file in get_files(build_dir, u"json"):
+    #     with open(file, u"rb") as src:
+    #         with gzip.open(f"{file}.gz", u"wb") as dst:
+    #             dst.writelines(src)
+    #         os.remove(file)
 
     logging.info(u"Done.")
