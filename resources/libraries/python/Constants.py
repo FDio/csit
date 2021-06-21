@@ -133,7 +133,7 @@ class Constants:
     # consider whether the parser (PAL) understands the new value correctly.
     # Renaming a field is the same as adding a new one and removing the old one.
     # TODO: Move the above into the model documentation.
-    MODEL_VERSION = u"0.5.0"
+    MODEL_VERSION = u"0.6.0"
 
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = u"/tmp/openvpp-testing"
