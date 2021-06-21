@@ -100,7 +100,7 @@ def main():
     pkt_send /= Raw()
     txq.send(pkt_send)
 
-    pkt_recv = rxq.recv(2)
+    pkt_recv = rxq.recv()
 
     if ip_layer == IP:
         check_ipv4(pkt_recv, dscp)
