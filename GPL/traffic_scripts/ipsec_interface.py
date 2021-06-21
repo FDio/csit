@@ -229,7 +229,7 @@ def main():
         tx_pkt_send[Raw].load += (b"\0" * (size_limit - len(tx_pkt_send)))
     tx_txq.send(tx_pkt_send)
 
-    rx_pkt_recv = rx_rxq.recv(2)
+    rx_pkt_recv = rx_rxq.recv()
 
     check_ipsec(
         rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, src_tun, dst_tun, src_ip,
@@ -245,7 +245,7 @@ def main():
     rx_pkt_send = (Ether(src=rx_dst_mac, dst=rx_src_mac) / e_pkt)
     rx_txq.send(rx_pkt_send)
 
-    tx_pkt_recv = tx_rxq.recv(2)
+    tx_pkt_recv = tx_rxq.recv()
 
     check_ip(tx_pkt_recv, ip_layer, tx_dst_mac, tx_src_mac, dst_ip, src_ip)
 
