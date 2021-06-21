@@ -20,9 +20,10 @@ from collections import Counter
 from yaml import safe_load
 
 from robot.api import logger
-from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
+from robot.libraries.BuiltIn import RobotNotRunningError
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.robot_interaction import get_variable
 
 __all__ = [
     u"DICT__nodes", u"Topology", u"NodeType", u"SocketType", u"NodeSubTypeTG"
@@ -35,7 +36,7 @@ def load_topo_from_yaml():
     :returns: Nodes from loaded topology.
     """
     try:
-        topo_path = BuiltIn().get_variable_value(u"${TOPOLOGY_PATH}")
+        topo_path = get_variable(u"${TOPOLOGY_PATH}")
     except RobotNotRunningError:
         return ''
 
@@ -53,6 +54,36 @@ class NodeType:
     # Virtual Machine (this node running on DUT node)
     # pylint: disable=invalid-name
     VM = u"VM"
+
+
+# Not sure where to place this.
+# It cannot be in robot_interaction due to circular imports.
+# Maybe separate NodeType to a different file that does not need get_variable?
+def duts_iterator():
+    """Return iterator over DUT nodes.
+
+    A very common pattern is iterating over all DUT nodes.
+
+    TODO: Deepcopy nodes so callers can modify them inside the loop?
+
+    Instead:
+        for node in get_variable(u"${nodes}").values()
+            if node[u"type"] == NodeType.DUT:
+                do_something_with(node)
+
+    Use:
+        for node in duts_iterator():
+            do_something_with(node)
+
+    Or even:
+        map(do_something_with, duts_iterator())
+
+    :returns: Iterator over DUT nodes.
+    :rtype: Iterator[dict]
+    """
+    for node in get_variable(u"${nodes}").values():
+        if node[u"type"] == NodeType.DUT:
+            yield node
 
 
 class NodeSubTypeTG:
