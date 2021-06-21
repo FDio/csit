@@ -332,3 +332,41 @@ def export_mlrsearch_debug(message, timestamp=None):
         u"data": u"",
     }
     data[u"log"].append(mlrsearch_record)
+
+
+def export_plrsearch_by_level(level, message, timestamp=None):
+    """Add a log item with a message from PLRsearch.
+
+    No-op outside test case (e.g. in suite setup).
+    Message is put as message, data is an empty string.
+
+    Timestamp marks time when PLRsearch thinks the message applies.
+    Current time is used if timestamp is missing.
+    Log level is transormed to smaller range.
+
+    The record puts the original level value into "message" field,
+    and the actual message into "data" field,
+    as on some levels the messages are quite long.
+
+    :param level: Text to indicate PLRsearch logging level.
+    :param message: Text to log.
+    :param timestamp: Local UTC time just before sending.
+    :type level: str
+    :type message: str
+    :type timestamp: Optional[str]
+    """
+    data = get_export_data()
+    if data is None:
+        return
+    plr_level = level.lower()
+    log_level = u"INFO" if plr_level in (u"error", u"info") else u"DEBUG"
+    mlrsearch_record = {
+        u"source-type": u"search_algorithm",
+        u"source-id": u"plrsearch",
+        u"msg-type": f"plrsearch_{plr_level}",
+        u"log-level": log_level,
+        u"timestamp": now() if timestamp is None else str(timestamp),
+        u"msg": f"original level: {level}",
+        u"data": str(message),
+    }
+    data[u"log"].append(mlrsearch_record)
