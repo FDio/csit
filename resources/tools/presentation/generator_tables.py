@@ -24,6 +24,7 @@ from xml.etree import ElementTree as ET
 from datetime import datetime as dt
 from datetime import timedelta
 from copy import deepcopy
+from json import loads
 
 import plotly.graph_objects as go
 import plotly.offline as ploff
@@ -187,14 +188,16 @@ def table_oper_data_html(table, input_data):
                 tcol.text = u"No Data"
                 continue
 
+            runtime = loads(dut_data[u"runtime"])
+
             try:
-                threads_nr = len(dut_data[u"runtime"][0][u"clocks"])
+                threads_nr = len(runtime[0][u"clocks"])
             except (IndexError, KeyError):
                 tcol.text = u"No Data"
                 continue
 
             threads = OrderedDict({idx: list() for idx in range(threads_nr)})
-            for item in dut_data[u"runtime"]:
+            for item in runtime:
                 for idx in range(threads_nr):
                     if item[u"vectors"][idx] > 0:
                         clocks = item[u"clocks"][idx] / item[u"vectors"][idx]

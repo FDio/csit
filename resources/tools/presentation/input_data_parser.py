@@ -295,7 +295,7 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_TC_PAPI_CLI = re.compile(r'.*\((\d+.\d+.\d+.\d+.) - (.*)\)')
 
-    def __init__(self, metadata, mapping, ignore):
+    def __init__(self, metadata, mapping, ignore, for_output):
         """Initialisation.
 
         :param metadata: Key-value pairs to be included in "metadata" part of
@@ -303,9 +303,11 @@ class ExecutionChecker(ResultVisitor):
         :param mapping: Mapping of the old names of test cases to the new
             (actual) one.
         :param ignore: List of TCs to be ignored.
+        :param for_output: Output to be generated from downloaded data.
         :type metadata: dict
         :type mapping: dict
         :type ignore: list
+        :type for_output: str
         """
 
         # Type of message to parse out from the test messages
@@ -325,6 +327,8 @@ class ExecutionChecker(ResultVisitor):
 
         # Ignore list
         self._ignore = ignore
+
+        self._for_output = for_output
 
         # Number of PAPI History messages found:
         # 0 - no message
@@ -669,10 +673,6 @@ class ExecutionChecker(ResultVisitor):
         except (AttributeError, IndexError):
             sock = u""
 
-        runtime = loads(str(msg.message).replace(u' ', u'').replace(u'\n', u'').
-                        replace(u"'", u'"').replace(u'b"', u'"').
-                        replace(u'u"', u'"').split(u":", 1)[1])
-
         dut = u"dut{nr}".format(
             nr=len(self._data[u'tests'][self._test_id][u'show-run'].keys()) + 1)
 
@@ -681,7 +681,10 @@ class ExecutionChecker(ResultVisitor):
                 {
                     u"host": host,
                     u"socket": sock,
-                    u"runtime": runtime,
+                    u"runtime": str(msg.message).replace(u' ', u'').
+                                replace(u'\n', u'').replace(u"'", u'"').
+                                replace(u'b"', u'"').replace(u'u"', u'"').
+                                split(u":", 1)[1]
                 }
             )
 
@@ -1225,9 +1228,10 @@ class ExecutionChecker(ResultVisitor):
         :type test_kw: Keyword
         :returns: Nothing.
         """
-        if test_kw.name.count(u"Show Runtime On All Duts") or \
-                test_kw.name.count(u"Show Runtime Counters On All Duts") or \
-                test_kw.name.count(u"Vpp Show Runtime On All Duts"):
+        if ((self._for_output != u"trending") and
+            (test_kw.name.count(u"Show Runtime On All Duts") or
+             test_kw.name.count(u"Show Runtime Counters On All Duts") or
+             test_kw.name.count(u"Vpp Show Runtime On All Duts"))):
             self._msg_type = u"test-show-runtime"
             self._sh_run_counter += 1
         else:
@@ -1366,15 +1370,19 @@ class InputData:
           (as described in ExecutionChecker documentation)
     """
 
-    def __init__(self, spec):
+    def __init__(self, spec, for_output):
         """Initialization.
 
         :param spec: Specification.
+        :param for_output: Output to be generated from downloaded data.
         :type spec: Specification
+        :type for_output: str
         """
 
         # Specification:
         self._cfg = spec
+
+        self._for_output = for_output
 
         # Data store:
         self._input_data = pd.Series()
@@ -1450,7 +1458,7 @@ class InputData:
                 )
                 return None
         checker = ExecutionChecker(
-            metadata, self._cfg.mapping, self._cfg.ignore
+            metadata, self._cfg.mapping, self._cfg.ignore, self._for_output
         )
         result.visit(checker)
 
@@ -1998,13 +2006,14 @@ class InputData:
                     for dut_name, data in test_data[u"show-run"].items():
                         if data.get(u"runtime", None) is None:
                             continue
+                        runtime = loads(data[u"runtime"])
                         try:
-                            threads_nr = len(data[u"runtime"][0][u"clocks"])
+                            threads_nr = len(runtime[0][u"clocks"])
                         except (IndexError, KeyError):
                             continue
                         threads = OrderedDict(
                             {idx: list() for idx in range(threads_nr)})
-                        for item in data[u"runtime"]:
+                        for item in runtime:
                             for idx in range(threads_nr):
                                 if item[u"vectors"][idx] > 0:
                                     clocks = item[u"clocks"][idx] / \
