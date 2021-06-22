@@ -85,15 +85,18 @@ class TelemetryUtil:
                 )
 
     @staticmethod
-    def run_telemetry(node, profile, hook=None):
+    def run_telemetry(node, profile, hook=None, context=u"unknown"):
         """Get telemetry stat read for duration.
 
         :param node: Node in the topology.
         :param profile: Telemetry configuration profile.
         :param hook: Process ID or socket path (optional).
+        :param context: Additional identifier to distinguish multiple
+            telemetries within the same test case, e.g. "teardown".
         :type node: dict
         :type profile: str
         :type hook: str
+        :type context: str
         """
         config = u""
         config += f"{Constants.REMOTE_FW_DIR}/"
@@ -108,25 +111,26 @@ class TelemetryUtil:
 
         exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
         stdout, _ = exec_cmd_no_error(node, f"cat /tmp/metric.prom", sudo=True)
-        export_telemetry(node[u"host"], node[u"port"], u"TODO", stdout)
+        export_telemetry(node[u"host"], node[u"port"], context, stdout)
 
     @staticmethod
-    def run_telemetry_on_all_duts(nodes, profile):
+    def run_telemetry_on_all_duts(nodes, profile, context=u"unknown"):
         """Get telemetry stat read on all DUTs.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
-        :param hooks: Dict of Process IDs or socket paths (optional).
+        :param context: Additional identifier to distinguish multiple
+            telemetries within the same test case, e.g. "teardown".
         :type nodes: dict
         :type profile: str
-        :type hooks: dict
+        :type context: str
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 try:
                     for socket in node[u"sockets"][u"PAPI"].values():
                         TelemetryUtil.run_telemetry(
-                            node, profile=profile, hook=socket
+                            node, profile=profile, hook=socket, context=context
                         )
                 except IndexError:
                     pass
