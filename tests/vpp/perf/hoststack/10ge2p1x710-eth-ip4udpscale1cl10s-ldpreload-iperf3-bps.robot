@@ -20,7 +20,7 @@
 | ... | UDP | NIC_Intel-X710 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | HOSTSTACK
 | ... | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 1460B
-| ... | eth-ip4udpscale1cl10s-ldpreload-iperf3
+| ... | eth-ip4udpscale1cl10s-ldpreload-iperf3-bps
 |
 | Suite Setup | Setup suite topology interfaces with no TG
 | Suite Teardown | Tear down suite | hoststack
