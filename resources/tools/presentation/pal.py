@@ -148,7 +148,7 @@ def main():
 
         prepare_static_content(spec)
 
-        data = InputData(spec)
+        data = InputData(spec, spec.output[u"output"])
         if args.input_file:
             data.process_local_file(args.input_file)
         elif args.input_directory:

@@ -1225,9 +1225,10 @@ class ExecutionChecker(ResultVisitor):
         :type test_kw: Keyword
         :returns: Nothing.
         """
-        if test_kw.name.count(u"Show Runtime On All Duts") or \
-                test_kw.name.count(u"Show Runtime Counters On All Duts") or \
-                test_kw.name.count(u"Vpp Show Runtime On All Duts"):
+        if (self._for_output != u"trending" and
+            (test_kw.name.count(u"Show Runtime On All Duts") or
+             test_kw.name.count(u"Show Runtime Counters On All Duts") or
+             test_kw.name.count(u"Vpp Show Runtime On All Duts"))):
             self._msg_type = u"test-show-runtime"
             self._sh_run_counter += 1
         else:
@@ -1366,15 +1367,19 @@ class InputData:
           (as described in ExecutionChecker documentation)
     """
 
-    def __init__(self, spec):
+    def __init__(self, spec, for_output):
         """Initialization.
 
         :param spec: Specification.
+        :param for_output: Output to be generated from downloaded data.
         :type spec: Specification
+        :type for_output: str
         """
 
         # Specification:
         self._cfg = spec
+
+        self._for_output = for_output
 
         # Data store:
         self._input_data = pd.Series()
