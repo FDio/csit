@@ -17,9 +17,9 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | LDP_NGINX | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1.14.2
+| ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1.14.2-cps
 |
-| Suite Setup | Setup suite topology interfaces | ab | nginx
+| Suite Setup | Setup suite topology interfaces | ab | nginx | performance_no_tg
 | Suite Teardown | Tear down suite | ab
 | Test Setup | Setup test
 | Test Teardown | Tear down test | nginx
@@ -40,10 +40,11 @@
 | ${nic_name}= | Intel-X710
 | ${crypto_type}= | ${None}
 | ${nic_driver}= | vfio-pci
-| ${nic_rxq_size}= | 0
-| ${nic_txq_size}= | 0
+| ${nic_rxq_size}= | ${512}
+| ${nic_txq_size}= | ${512}
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
+| ${osi_layer}= | L7
 | ${overhead}= | ${0}
 | ${ciphers}= | 0
 | ${rps_cps}= | cps
@@ -72,8 +73,6 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${dp_count_int}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXD | ${512}
 | | | Run keyword | ${dut}.Add Session Event Queues Memfd Segment
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | Run keyword | ${dut}.Add session enable

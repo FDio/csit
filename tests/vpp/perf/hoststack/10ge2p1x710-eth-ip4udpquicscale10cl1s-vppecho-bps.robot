@@ -20,7 +20,7 @@
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VPPECHO
 | ... | HOSTSTACK | 10CLIENT | 1STREAM | 1280B
-| ... | eth-ip4udpquicscale10cl1s-vppecho
+| ... | eth-ip4udpquicscale10cl1s-vppecho-bps
 |
 | Suite Setup | Setup suite topology interfaces with no TG
 | Suite Teardown | Tear down suite
@@ -46,6 +46,7 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
+| ${osi_layer}= | L7
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
 | ${clients}= | ${10}
