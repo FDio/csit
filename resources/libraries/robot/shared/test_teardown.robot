@@ -88,14 +88,6 @@
 | | | Destroy all '${container_group}' containers
 | | END
 
-| Additional Test Tear Down Action For nginx
-| | [Documentation]
-| | ... | Additional teardown for tests which uses nginx.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Kill Program | ${nodes['${dut}']} | nginx
-| | END
-
 | Additional Test Tear Down Action For det44
 | | [Documentation]
 | | ... | Additional teardown for tests which uses DET44 feature.
@@ -166,6 +158,14 @@
 | | | Vpp Get Ip Table Summary | ${nodes['${dut}']}
 | | END
 
+| Additional Test Tear Down Action For nginx
+| | [Documentation]
+| | ... | Additional teardown for tests which uses nginx.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Kill Program | ${nodes['${dut}']} | nginx
+| | END
+
 | Additional Test Tear Down Action For packet_trace
 | | [Documentation]
 | | ... | Additional teardown for tests which uses packet trace.
@@ -190,6 +190,7 @@
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
+| | ... | trial_type=teardown
 
 | Additional Test Tear Down Action For srv6
 | | [Documentation]
