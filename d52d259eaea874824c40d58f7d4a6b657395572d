@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61dd1860_53a48957",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-22T16:03:51Z",
+      "side": 1,
+      "message": "Leave original comments. It is not main",
+      "revId": "d52d259eaea874824c40d58f7d4a6b657395572d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
