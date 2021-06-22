@@ -54,29 +54,6 @@
     csit-dpdk-perf-mrr-weekly-master-2n-tx2:
       - "lastCompletedBuild"
 
-  # 3n-hsw
-  plot-performance-trending-all-3n-hsw:
-    csit-vpp-perf-mrr-daily-master:
-      start: 1100
-      end: 1704
-      max-builds: 180
-    csit-dpdk-perf-mrr-weekly-master:
-      start: 107
-      end: 179
-      max-builds: 26
-
-  plot-performance-trending-vpp-3n-hsw:
-    csit-vpp-perf-mrr-daily-master:
-      start: 1100
-      end: 1704
-      max-builds: 180
-
-  plot-performance-trending-dpdk-3n-hsw:
-    csit-dpdk-perf-mrr-weekly-master:
-      start: 107
-      end: 179
-      max-builds: 26
-
   # 3n-skx
   plot-performance-trending-all-3n-skx:
     csit-vpp-perf-mrr-daily-master-3n-skx:
@@ -224,12 +201,6 @@
     csit-vpp-perf-ndrpdr-weekly-master-2n-clx:
       start: 21
       end: "lastCompletedBuild"
-      max-builds: 26
-
-  plot-ndrpdr-comparison-3n-hsw:
-    csit-vpp-perf-ndrpdr-weekly-master-3n-hsw:
-      start: 76
-      end: 142
       max-builds: 26
 
   table-ndrpdr-comparison-2n-skx:
