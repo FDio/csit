@@ -46,6 +46,7 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
+| ${osi_layer}= | L2
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
 | ${streams}= | ${10}
