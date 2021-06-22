@@ -28,6 +28,7 @@ import gzip
 from os.path import join
 from shutil import rmtree
 from copy import deepcopy
+from json import loads
 
 from pal_utils import get_files
 
@@ -207,7 +208,8 @@ def _export_test_from_xml_to_json(tid, in_data, out, template, metadata):
                 u"msg": u"show_runtime",
                 u"data": list()
             }
-            for item in val.get(u"runtime", list()):
+            runtime = loads(val.get(u"runtime", list()))
+            for item in runtime:
                 for metric, m_data in item.items():
                     if metric == u"name":
                         continue
