@@ -198,7 +198,20 @@
 
 | Additional Suite Setup Action For performance
 | | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement.
+| | ... | Additional Setup for suites which uses performance measurement,
+| | ... | including traffic generator initialization.
+| |
+| | Additional Suite Setup Action For performance no TG
+| | Initialize traffic generator
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${dut1} | ${DUT1_${int}1}[0]
+| | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
+| | ... | ${osi_layer}
+
+| Additional Suite Setup Action For performance no TG
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement,
+| | ... | but without a typical traffic generator.
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If | ${nic_vfs} > 0
@@ -206,11 +219,6 @@
 | | | ... | ELSE
 | | | ... | Additional Suite Setup Action For performance pf | ${dut}
 | | END
-| | Initialize traffic generator
-| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
-| | ... | ${dut1} | ${DUT1_${int}1}[0]
-| | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
-| | ... | ${osi_layer}
 
 | Additional Suite Setup Action For ipsechw
 | | [Documentation]
