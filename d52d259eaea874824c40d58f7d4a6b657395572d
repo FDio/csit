@@ -16,6 +16,24 @@
       "revId": "d52d259eaea874824c40d58f7d4a6b657395572d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f32c8f34_d9f673ba",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-22T16:34:00Z",
+      "side": 1,
+      "message": "Ah, right, the keyword running the actions does not know whether its non-runtime traffic is main (in MRR) or not (in NDR/PDR stats).\n\nUsed \"target\" in next patch.",
+      "parentUuid": "61dd1860_53a48957",
+      "revId": "d52d259eaea874824c40d58f7d4a6b657395572d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
