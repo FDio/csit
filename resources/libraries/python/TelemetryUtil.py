@@ -15,6 +15,7 @@
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.model.ExportLog import export_telemetry
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
@@ -106,7 +107,8 @@ class TelemetryUtil:
         bin_cmd = f"python3 -m telemetry --config {config} --hook {hook}\""
 
         exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
-        exec_cmd_no_error(node, f"cat /tmp/metric.prom", sudo=True)
+        stdout, _ = exec_cmd_no_error(node, f"cat /tmp/metric.prom", sudo=True)
+        export_telemetry(node[u"host"], node[u"port"], u"TODO", stdout)
 
     @staticmethod
     def run_telemetry_on_all_duts(nodes, profile):
