@@ -28,12 +28,11 @@
 import sys
 
 from scapy.layers.inet import ICMP, IP
-from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply,\
-    ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
-from .PacketVerifier import RxQueue, TxQueue
+from .PacketVerifier import start_4_queues
 from .TrafficScriptArg import TrafficScriptArg
 from .ValidIp import valid_ipv4, valid_ipv6
 
@@ -49,14 +48,10 @@ def main():
     src_mac = args.get_arg(u"src_mac")
     dst_ip = args.get_arg(u"dst_ip")
     src_ip = args.get_arg(u"src_ip")
-    tx_if = args.get_arg(u"tx_if")
-    rx_if = args.get_arg(u"rx_if")
     timeout = int(args.get_arg(u"timeout"))
     wait_step = 1
 
-    rxq = RxQueue(rx_if)
-    txq = TxQueue(tx_if)
-    sent_packets = []
+    txq, _, _, rxq = start_4_queues(args)
 
     # Create empty ip ICMP packet
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
@@ -80,28 +75,15 @@ def main():
 
     # Send created packet on the interface
     icmp_request /= Raw()
-    sent_packets.append(icmp_request)
     txq.send(icmp_request)
 
     for _ in range(1000):
         while True:
-            icmp_reply = rxq.recv(wait_step, ignore=sent_packets)
+            icmp_reply = rxq.recv(wait_step, do_raise=False)
             if icmp_reply is None:
                 timeout -= wait_step
                 if timeout < 0:
                     raise RuntimeError(u"ICMP echo Rx timeout")
-
-            elif icmp_reply.haslayer(ICMPv6ND_NS):
-                # read another packet in the queue in case of ICMPv6ND_NS packet
-                continue
-            elif icmp_reply.haslayer(ICMPv6MLReport2):
-                # read another packet in the queue if the current one is
-                # ICMPv6MLReport2
-                continue
-            elif icmp_reply.haslayer(ICMPv6ND_RA):
-                # read another packet in the queue if the current one is
-                # ICMPv6ND_RA
-                continue
 
             break
 
