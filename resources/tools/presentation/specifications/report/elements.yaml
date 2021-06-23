@@ -5290,41 +5290,41 @@
 
 # Reconf tests 2n-skx
 
-# - type: "plot"
-#   title: "NFV Effective Blocked Time: 2n-skx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
-#   algorithm: "plot_nf_reconf_box_name"
-#   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-reconf"
-#   data: "vpp-2n-skx-curr-nfv-reconf"
-#   core: ["2t1c", "4t2c", "8t4c"]
-#   include:
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
-#   layout:
-#     title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
-#     layout: "plot-throughput"
-#
-# ###############################################################################
-#
-# # Reconf tests 2n-clx
-#
-# - type: "plot"
-#   title: "NFV Effective Blocked Time: 2n-clx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
-#   algorithm: "plot_nf_reconf_box_name"
-#   output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-reconf"
-#   data: "vpp-2n-clx-curr-nfv-reconf"
-#   core: ["2t1c", "4t2c", "8t4c"]
-#   include:
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
-#     - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
-#   layout:
-#     title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
-#     layout: "plot-throughput"
+- type: "plot"
+  title: "NFV Effective Blocked Time: 2n-skx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-reconf"
+  data: "vpp-2n-skx-curr-nfv-reconf"
+  core: ["2t1c", "4t2c", "8t4c"]
+  include:
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
+  layout:
+    title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
+    layout: "plot-throughput"
+
+###############################################################################
+
+# Reconf tests 2n-clx
+
+- type: "plot"
+  title: "NFV Effective Blocked Time: 2n-clx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-reconf"
+  data: "vpp-2n-clx-curr-nfv-reconf"
+  core: ["2t1c", "4t2c", "8t4c"]
+  include:
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
+  layout:
+    title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
+    layout: "plot-throughput"
 
 ###############################################################################
 
