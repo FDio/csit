@@ -430,16 +430,20 @@ class DUTSetup:
         )
 
     @staticmethod
-    def pci_driver_unbind_list(node, *pci_addrs):
+    def pci_driver_unbind_list(node, driver, *pci_addrs):
         """Unbind PCI devices from current driver on node.
 
         :param node: DUT node.
         :param pci_addrs: PCI device addresses.
+        :param driver: Don't unbind if bound to this driver.
         :type node: dict
+        :type driver: str
         :type pci_addrs: list
         """
         for pci_addr in pci_addrs:
-            DUTSetup.pci_driver_unbind(node, pci_addr)
+            drv = DUTSetup.get_pci_dev_driver(node, pci_addr)
+            if drv is not None and drv != driver:
+                DUTSetup.pci_driver_unbind(node, pci_addr)
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
@@ -543,61 +547,31 @@ class DUTSetup:
     def get_pci_dev_driver(node, pci_addr):
         """Get current PCI device driver on node.
 
-        .. note::
-            # lspci -vmmks 0000:00:05.0
-            Slot:   00:05.0
-            Class:  Ethernet controller
-            Vendor: Red Hat, Inc
-            Device: Virtio network device
-            SVendor:        Red Hat, Inc
-            SDevice:        Device 0001
-            PhySlot:        5
-            Driver: virtio-pci
-
         :param node: DUT node.
         :param pci_addr: PCI device address.
         :type node: dict
         :type pci_addr: str
         :returns: Driver or None
-        :raises RuntimeError: If PCI rescan or lspci command execution failed.
-        :raises RuntimeError: If it is not possible to get the interface driver
-            information from the node.
+        :rtype: Union[str, None]
+        :raises RuntimeError: If readlink on the driver fails.
         """
         ssh = SSH()
         ssh.connect(node)
 
-        for i in range(3):
-            logger.trace(f"Try number {i}: Get PCI device driver")
+        cmd = f"test -d /sys/bus/pci/devices/{pci_addr}/driver"
+        ret_code, _, _ = ssh.exec_command(cmd)
+        if int(ret_code):
+            # the directory doesn't exist which means the device is not bound
+            # to any driver
+            return None
 
-            cmd = f"lspci -vmmks {pci_addr}"
-            ret_code, stdout, _ = ssh.exec_command(cmd)
-            if int(ret_code):
-                raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
+        cmd = f"basename $(readlink -f " \
+              f"/sys/bus/pci/devices/{pci_addr}/driver)"
+        ret_code, stdout, _ = ssh.exec_command(cmd)
+        if int(ret_code):
+            raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
 
-            for line in stdout.splitlines():
-                if not line:
-                    continue
-                name = None
-                value = None
-                try:
-                    name, value = line.split(u"\t", 1)
-                except ValueError:
-                    if name == u"Driver:":
-                        return None
-                if name == u"Driver:":
-                    return value
-
-            if i < 2:
-                logger.trace(
-                    f"Driver for PCI device {pci_addr} not found, "
-                    f"executing pci rescan and retrying"
-                )
-                cmd = u"sh -c \"echo 1 > /sys/bus/pci/rescan\""
-                ret_code, _, _ = ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
-                    raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
-
-        return None
+        return stdout.strip()
 
     @staticmethod
     def verify_kernel_module(node, module, force_load=False):
