@@ -26,6 +26,7 @@
 """Traffic script that sends an IP ICMPv4 or ICMPv6."""
 
 import sys
+import time
 
 from scapy.layers.inet import ICMP, IP
 from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply
@@ -49,7 +50,6 @@ def main():
     dst_ip = args.get_arg(u"dst_ip")
     src_ip = args.get_arg(u"src_ip")
     timeout = int(args.get_arg(u"timeout"))
-    wait_step = 1
 
     txq, _, _, rxq = start_4_queues(args)
 
@@ -73,26 +73,39 @@ def main():
         icmp_req()
     )
 
-    # Send created packet on the interface
+    # We tweak the filter function to skip over non-matching ICMP replies.
+    old_filter = rxq.filter_f
+    countdown = 1000
+    def new_filter(packet):
+        """Skip additionally on non-match.
+
+        Here, "additionally" means we are also skipping based on default filter.
+        After 1000 packets (not skipped by old filter) or if ICMP parsing fails,
+        raise an error.
+
+        :param packet: Packet to maybe skip on receive.
+        :type packet: scapy.Ether
+        :returns: True if packet is to be skipped.
+        :rtype: bool
+        :raise RuntimeError: On too many packets or parsing error.
+        """
+        if old_filter(packet):
+            return True
+        if packet[ip_layer][icmp_resp].type == icmp_type:
+            if packet[ip_layer].src == dst_ip and \
+                    packet[ip_layer].dst == src_ip:
+                return False
+        countdown -= 1
+        if countdown <= 0:
+            raise RuntimeError(u"Max packet count limit reached.")
+        return True
+    rxq.filter_f = new_filter
+
+    # Only now send created packet on the interface.
     icmp_request /= Raw()
     txq.send(icmp_request)
 
-    for _ in range(1000):
-        while True:
-            icmp_reply = rxq.recv(wait_step, do_raise=False)
-            if icmp_reply is None:
-                timeout -= wait_step
-                if timeout < 0:
-                    raise RuntimeError(u"ICMP echo Rx timeout")
-
-            break
-
-        if icmp_reply[ip_layer][icmp_resp].type == icmp_type:
-            if icmp_reply[ip_layer].src == dst_ip and \
-                    icmp_reply[ip_layer].dst == src_ip:
-                break
-    else:
-        raise RuntimeError(u"Max packet count limit reached")
+    icmp_reply = rxq.recv(timeout)
 
     print(u"ICMP echo reply received.")
 
