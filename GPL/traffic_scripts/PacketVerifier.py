@@ -235,34 +235,29 @@ class FilteringRxQueue(PacketVerifier):
         self._sock = conf.L2listen(iface=interface_name, type=ETH_P_ALL)
         self.filter_f = (lambda pkt: False) if filter_f is None else filter_f
 
-    def recv(self, timeout=1, verbose=True, do_raise=True):
+    def recv(self, timeout=1, verbose=True):
         """Read packets within timeout, return first one that is not filtered.
 
         Returns scapy's Ether() object created from next packet in the queue.
         Queue is being filled in parallel in subprocess. If no packet
-        (passing the filter) arrives in given timeout, None is returned
-        or RuntimeError is raised, depending on do_raise argument.
+        (passing the filter) arrives in given timeout, RuntimeError is raised.
 
         Benign interrupt signals and filtered-out packets
         are silently ignored, without affecting timeout.
 
         :param timeout: How many seconds to wait for next packet.
         :param verbose: Used to suppress detailed logging of received packets.
-        :param do_raise: Whether timeout should raise exception or return None.
         :type timeout: int
         :type verbose: bool
-        :type do_raise: bool
         :returns: Ether() initialized object from packet data.
-        :rtype: Optional[scapy.Ether]
-        :raises RuntimeError: On timeout, if do_raise is true.
+        :rtype: scapy.Ether
+        :raises RuntimeError: If no relevant packet arrived within timeout.
         """
         time_end = time.monotonic() + timeout
         while 1:
             time_now = time.monotonic()
             if time_now >= time_end:
-                if do_raise:
-                    raise RuntimeError("Timed out waiting for a packet.")
-                return None
+                raise RuntimeError("Timed out waiting for a packet.")
             timedelta = time_end - time_now
             rlist, _, _ = select.select([self._sock], [], [], timedelta)
             if self._sock not in rlist:
