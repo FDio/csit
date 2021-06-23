@@ -33,7 +33,7 @@ from scapy.layers.inet import IP, UDP
 from scapy.layers.l2 import Ether
 from scapy.packet import Raw
 
-from .PacketVerifier import RxQueue, TxQueue
+from .PacketVerifier import start_4_queues
 from .TrafficScriptArg import TrafficScriptArg
 from . import vxlan
 
@@ -49,8 +49,6 @@ def main():
         ]
     )
 
-    tx_if = args.get_arg(u"tx_if")
-    rx_if = args.get_arg(u"rx_if")
     tx_src_mac = args.get_arg(u"tx_src_mac")
     tx_dst_mac = args.get_arg(u"tx_dst_mac")
     tx_src_ip = args.get_arg(u"tx_src_ip")
@@ -60,10 +58,7 @@ def main():
     rx_dst_ip = args.get_arg(u"rx_dst_ip")
     rx_vni = args.get_arg(u"rx_vni")
 
-    rxq = RxQueue(rx_if)
-    txq = TxQueue(tx_if)
-
-    sent_packets = []
+    txq, _, _, rxq = start_4_queues(args)
 
     tx_pkt_p = (Ether(src=u"02:00:00:00:00:01", dst=u"02:00:00:00:00:02") /
                 IP(src=u"192.168.1.1", dst=u"192.168.1.2") /
@@ -78,14 +73,11 @@ def main():
 
     pkt_raw /= Raw()
     # Send created packet on one interface and receive on the other
-    sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    ether = rxq.recv(2, ignore=sent_packets)
+    ether = rxq.recv(2)
 
     # Check whether received packet contains layers Ether, IP and VXLAN
-    if ether is None:
-        raise RuntimeError(u"Packet Rx timeout")
     ip = ether.payload
 
     if ip.src != rx_src_ip:

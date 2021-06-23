@@ -30,11 +30,11 @@ import sys
 from ipaddress import ip_address
 from scapy.layers.l2 import Ether
 from scapy.layers.inet import IP, TCP
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NS, ICMPv6MLReport2, ICMPv6ND_RA
+from scapy.layers.inet6 import IPv6
 from scapy.packet import Raw
 
 from .TrafficScriptArg import TrafficScriptArg
-from .PacketVerifier import RxQueue, TxQueue
+from .PacketVerifier import start_4_queues
 
 
 def check_ipv4(pkt_recv, dscp):
@@ -77,15 +77,11 @@ def check_ipv6(pkt_recv, dscp):
         raise RuntimeError(f"Not a TCP packet received: {pkt_recv!r}")
 
 
-# TODO: Pylint says too-many-locals and too-many-statements. Refactor!
 def main():
     """Send and receive TCP packet."""
     args = TrafficScriptArg(
         [u"src_mac", u"dst_mac", u"src_ip", u"dst_ip", u"dscp"]
     )
-
-    rxq = RxQueue(args.get_arg(u"rx_if"))
-    txq = TxQueue(args.get_arg(u"tx_if"))
 
     src_mac = args.get_arg(u"src_mac")
     dst_mac = args.get_arg(u"dst_mac")
@@ -93,39 +89,18 @@ def main():
     dst_ip = args.get_arg(u"dst_ip")
     dscp = int(args.get_arg(u"dscp"))
 
+    txq, _, _, rxq = start_4_queues(args)
+
     ip_layer = IPv6 if ip_address(src_ip).version == 6 else IP
 
-    sent_packets = list()
     pkt_send = (Ether(src=src_mac, dst=dst_mac) /
                 ip_layer(src=src_ip, dst=dst_ip) /
                 TCP())
 
     pkt_send /= Raw()
-    sent_packets.append(pkt_send)
     txq.send(pkt_send)
 
-    while True:
-        pkt_recv = rxq.recv(2, sent_packets)
-        if pkt_recv is None:
-            raise RuntimeError(u"ICMPv6 echo reply Rx timeout")
-
-        if pkt_recv.haslayer(ICMPv6ND_NS):
-            # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
-            continue
-        elif pkt_recv.haslayer(ICMPv6ND_RA):
-            # read another packet in the queue if the current one is
-            # ICMPv6ND_RA
-            continue
-
-        # otherwise process the current packet
-        break
-
-    if pkt_recv is None:
-        raise RuntimeError(u"Rx timeout")
+    pkt_recv = rxq.recv(2)
 
     if ip_layer == IP:
         check_ipv4(pkt_recv, dscp)

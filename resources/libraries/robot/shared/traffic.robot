@@ -133,7 +133,7 @@
 | | ... | --tg_dst_mac ${rx_dst_mac} | --dut_if1_mac ${tx_dst_mac}
 | | ... | --dut_if2_mac ${rx_src_mac} | --src_ip ${src_ip} | --dst_ip ${dst_ip}
 | | ... | --tx_if ${tx_port_name} | --rx_if ${rx_port_name}
-| | Run Keyword And Expect Error | IP packet Rx timeout |
+| | Run Keyword And Expect Error | Timed out waiting for a packet.
 | | ... | Run Traffic Script On Node | send_ip_check_headers.py
 | | ... | ${tg_node} | ${args}
 
