@@ -88,7 +88,7 @@
       - 33  # rls2106.rc2 NDRPDR iter env 7
 
   vpp-3n-skx-curr-cov:
-    csit-vpp-perf-report-iterative-2106-3n-skx
+    csit-vpp-perf-report-iterative-2106-3n-skx:
       - 25  # rls2106.rc2 NDRPDR iter env 7
     # TODO: Replace
     # csit-vpp-perf-report-coverage-2106-3n-skx:
