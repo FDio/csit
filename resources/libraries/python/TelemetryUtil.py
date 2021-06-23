@@ -111,22 +111,28 @@ class TelemetryUtil:
         export_telemetry(node[u"host"], node[u"port"], u"TODO", stdout)
 
     @staticmethod
-    def run_telemetry_on_all_duts(nodes, profile):
-        """Get telemetry stat read on all DUTs.
+    def run_telemetry_on_all_duts(nodes, profile, context=u"unknown"):
+        """Get and export telemetry from all DUTs.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
-        :param hooks: Dict of Process IDs or socket paths (optional).
+        :param context: Additional identifier to distinguish multiple
+            telemetries within the same test case, e.g. "teardown".
         :type nodes: dict
         :type profile: str
-        :type hooks: dict
+        :type context: str
         """
         for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                try:
-                    for socket in node[u"sockets"][u"PAPI"].values():
-                        TelemetryUtil.run_telemetry(
-                            node, profile=profile, hook=socket
-                        )
-                except IndexError:
-                    pass
+            if node[u"type"] != NodeType.DUT:
+                continue
+            try:
+                sockets = node[u"sockets"][u"PAPI"].values()
+            except IndexError:
+                continue
+            for socket in sockets:
+                stdout = TelemetryUtil.run_telemetry(
+                    node, profile=profile, hook=socket
+                )
+                export_telemetry(
+                    node[u"host"], node[u"port"], socket, context, stdout
+                )
