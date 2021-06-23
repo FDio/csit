@@ -156,7 +156,8 @@ def main():
     src_tun = args.get_arg(u"src_tun")
     dst_tun = args.get_arg(u"dst_tun")
 
-    tx_txq, tx_rxq, rx_txq, rx_rxq = start_4_queues(args)
+    # TODO: Re-enable ip6 filtering when adding IPsec tests with IPv6.
+    tx_txq, tx_rxq, rx_txq, rx_rxq = start_4_queues(args, filter_ip6=False)
 
     ip_layer = IP if ip_address(src_ip).version == 4 else IPv6
 
