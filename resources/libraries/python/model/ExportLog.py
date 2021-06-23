@@ -16,7 +16,10 @@
 
 from copy import deepcopy
 
+from robot.api import logger
+
 from resources.libraries.python.model.util import get_export_data
+from resources.libraries.python.model.telemetry import split_telemetry_text
 from resources.libraries.python.time_measurement import datetime_utc_str as now
 
 
@@ -371,3 +374,49 @@ def export_plrsearch_by_level(level, message, timestamp=None):
         data=str(message),
     )
     data[u"log"].append(mlrsearch_record)
+
+
+def export_telemetry(host, port, socket, message, text, timestamp=None):
+    """Add a log item with collection of metrics.
+
+    No-op outside test case (e.g. in suite setup).
+    Message is put as message, data is an empty string.
+
+    Timestamp marks time when all metrics were done gathering.
+    Current time is used if timestamp is missing.
+    Log level is always DEBUG.
+
+    Argument "message" can be used to distinguish metric when
+    they are gathered multiple times within a test case, e.g. "teardown".
+
+    Multiple log events are exported, one for each openmetric block.
+
+    :param host: Node "host" attribute, usually its IPv4 address.
+    :param port: SSH port number to use when connecting to the host.
+    :param socket: Socket path, VPPs in container will differ by this.
+    :param message: Additional info on circumstances of the metric.
+    :param text: Textual form of the metric data to export.
+    :param timestamp: Local UTC time just before sending.
+    :type host: str
+    :type port: int
+    :type socket: str
+    :type message: str
+    :type text: str
+    :type timestamp: Optional[str]
+    """
+    data = get_export_data()
+    if data is None:
+        return
+    timestamp = now() if timestamp is None else str(timestamp)
+    for block in split_telemetry_text(text):
+        name = block.split(u" ", 3)[2]
+        telemetry_record = dict(
+            source_type=u"host,port,socket",
+            source_id=f"{host},{port},{socket}",
+            msg_type=u"metric",
+            log_level=u"INFO",
+            timestamp=timestamp,
+            msg=f"{message} {name}",
+            data=block,
+        )
+        data[u"log"].append(telemetry_record)
