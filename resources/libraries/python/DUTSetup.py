@@ -406,7 +406,7 @@ class DUTSetup:
         message = f"Failed to create {numvfs} VFs on {pf_pci_addr} device " \
             f"on {node[u'host']}"
 
-        exec_cmd_no_error(
+        exec_cmd(
             node, command, timeout=120, sudo=True, message=message
         )
 
