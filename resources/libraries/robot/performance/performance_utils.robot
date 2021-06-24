@@ -18,9 +18,9 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.Iperf3
+| Library | resources.libraries.python.SearchAlgorithms
 | Library | resources.libraries.python.TelemetryUtil
 | Library | resources.libraries.python.TrafficGenerator
-| Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.Trace
 | Variables | resources/libraries/python/Constants.py
 | Resource | resources/libraries/robot/performance/performance_actions.robot
@@ -144,7 +144,7 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
-| | ${result} = | Perform optimized ndrpdr search
+| | ${result} = | Perform ndrpdr search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
 | | ... | minimum_transmit_rate=${min_rate_soft}
@@ -233,7 +233,7 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
-| | ${result} = | Perform optimized ndrpdr search
+| | ${result} = | Perform ndrpdr search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
 | | ... | minimum_transmit_rate=${min_rate_soft}
