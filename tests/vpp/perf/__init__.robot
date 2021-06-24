@@ -48,7 +48,7 @@
 | | ${stat_runtime}= | Create List
 | | ... | vpp-runtime
 | | ${stat_pre_trial}= | Create List
-| | ... | vpp-runtime | vpp-clear-stats | vpp-enable-packettrace
+| | ... | vpp-clear-stats | vpp-enable-packettrace
 | | ${stat_post_trial}= | Create List
 | | ... | vpp-show-stats | vpp-show-packettrace
 | | Set Global Variable | ${stat_runtime}
