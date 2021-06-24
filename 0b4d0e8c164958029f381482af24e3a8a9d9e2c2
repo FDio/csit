@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca16a162_21f7555d",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-24T12:51:35Z",
+      "side": 1,
+      "message": "inc_fmt",
+      "range": {
+        "startLine": 98,
+        "startChar": 21,
+        "endLine": 98,
+        "endChar": 28
+      },
+      "revId": "0b4d0e8c164958029f381482af24e3a8a9d9e2c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bb42f2c_fcf84831",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-24T12:51:35Z",
+      "side": 1,
+      "message": "The second operand is constant since the instance was constructed, so you can compute (and remember) it in the constructor.",
+      "range": {
+        "startLine": 122,
+        "startChar": 20,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "0b4d0e8c164958029f381482af24e3a8a9d9e2c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c17b668_61822c63",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-24T12:51:35Z",
+      "side": 1,
+      "message": "You do not resetting the NetworkIncrement instances, so ranges for direction 2 do not match the ranges for direction 1.\nIt does not affect the test results (the traffic does not match any range), but the code would be less surprising if you reset the instances.",
+      "range": {
+        "startLine": 833,
+        "startChar": 28,
+        "endLine": 833,
+        "endChar": 29
+      },
+      "revId": "0b4d0e8c164958029f381482af24e3a8a9d9e2c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8eabdba_3045a603",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-24T12:51:35Z",
+      "side": 1,
+      "message": "I wanted to check if there is a flow cache also for inbound traffic, but I have not found any flow cache in VPP master codebase. Where should I look at?",
+      "range": {
+        "startLine": 461,
+        "startChar": 33,
+        "endLine": 461,
+        "endChar": 41
+      },
+      "revId": "0b4d0e8c164958029f381482af24e3a8a9d9e2c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a09e37f9_32b03ab1",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000spe-cache-ip4base-policy-outbound-nocrypto-ndrpdr.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-24T12:51:35Z",
+      "side": 1,
+      "message": "Mention flow cache?",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 13
+      },
+      "revId": "0b4d0e8c164958029f381482af24e3a8a9d9e2c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
