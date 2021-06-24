@@ -1824,8 +1824,9 @@ class InterfaceUtil:
             # PCI device must be re-bound to kernel driver before creating VFs.
             DUTSetup.verify_kernel_module(node, kernel_driver, force_load=True)
             # Stop VPP to prevent deadlock.
-            # Unbind from current driver.
-            DUTSetup.pci_driver_unbind(node, pf_pci_addr)
+            # Unbind from current driver if bound.
+            if current_driver:
+                DUTSetup.pci_driver_unbind(node, pf_pci_addr)
             # Bind to kernel driver.
             DUTSetup.pci_driver_bind(node, pf_pci_addr, kernel_driver)
 
