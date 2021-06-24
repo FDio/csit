@@ -56,6 +56,36 @@ class NodeType:
     VM = u"VM"
 
 
+# Not sure where to place this.
+# It cannot be in robot_interaction due to circular imports.
+# Maybe separate NodeType to a different file that does not need get_variable?
+def dut_iterator():
+    """Return iterator over DUT nodes.
+
+    A very common pattern is iterating over all DUT nodes.
+
+    TODO: Deepcopy nodes so callers can modify them inside the loop?
+
+    Instead:
+        for node in get_variable(u"${nodes}").values()
+            if node[u"type"] == NodeType.DUT:
+                do_something_with(node)
+
+    Use:
+        for node in dut_iterator():
+            do_something_with(node)
+
+    Or even:
+        map(do_something_with, dut_iterator())
+
+    :returns: Iterator over DUT nodes.
+    :rtype: Iterator[dict]
+    """
+    for node in get_variable(u"${nodes}").values():
+        if node[u"type"] == NodeType.DUT:
+            yield node
+
+
 class NodeSubTypeTG:
     """Defines node sub-type TG - traffic generator."""
     # T-Rex traffic generator

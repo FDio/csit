@@ -104,7 +104,7 @@
 | |
 | | ${results}= | Create List
 | | ${status} | ${value}= | Run Keyword And Ignore Error
-| | ... | VPP Show Runtime On All DUTs | ${nodes}
+| | ... | VPP Show Runtime On All DUTs
 | | Append To List | ${results} | ${status}
 | | ${status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Show Statistics On All DUTs | ${nodes}
