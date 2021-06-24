@@ -11,11 +11,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Metric library."""
+"""Metric library.
+
+Time measurements are done by time.time().
+Although time.time() is susceptible to big (or even negative) jumps
+when a system is badly synchronized, it is still better
+than time.monotonic(), as that value has no relation to epoch time.
+"""
 
 from collections import namedtuple
 from threading import Lock
-from time import monotonic
+from time import time
 import re
 
 
@@ -41,7 +47,7 @@ class Value:
         """
         with self._lock:
             self._value += amount
-            self._timestamp = monotonic()
+            self._timestamp = time()
 
     def set(self, value):
         """
@@ -53,7 +59,7 @@ class Value:
         """
         with self._lock:
             self._value = value
-            self._timestamp = monotonic()
+            self._timestamp = time()
 
     def get(self):
         """
@@ -616,4 +622,4 @@ class Info(MetricBase):
         :rtype: tuple
         """
         with self._lock:
-            return ((u"_info", self._value, 1.0, monotonic()),)
+            return ((u"_info", self._value, 1.0, time()),)
