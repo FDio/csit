@@ -456,6 +456,11 @@ class VppConfigGenerator:
         path = [u"ip6", u"heap-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_spd_flow_cache_ipv4_outbound(self):
+        """Add SPD flow cache for IP4 outbound traffic"""
+        path = [u"ipsec", u"ipv4-outbound-spd-flow-cache"]
+        self.add_config_item(self._nodeconfig, "on", path)
+
     def add_statseg_size(self, value):
         """Add Stats Heap Size configuration.
 
