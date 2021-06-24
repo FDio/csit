@@ -1,4 +1,5 @@
 # Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,9 +17,10 @@ import re
 
 from enum import IntEnum
 
-from ipaddress import ip_address
+from ipaddress import ip_address, ip_network
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
@@ -87,6 +89,48 @@ class IpDscp(IntEnum):
     IP_API_DSCP_EF = 46
     IP_API_DSCP_CS6 = 48
     IP_API_DSCP_CS7 = 50
+
+
+class NetworkIncrement(ObjIncrement):
+    """
+    An iterator object which accepts an IPv4Network or IPv6Network and
+    returns a new network incremented by the increment each time it's
+    iterated or when inc_fmt is called. The increment may be positive,
+    negative or 0 (in which case the network is always the same).
+    """
+    def __init__(self, initial_value, increment):
+        """
+        :param initial_value: The initial network.
+        :param increment: The current network will be incremented by this
+            amount in each iteration/var_str call.
+        :type initial_value:
+            Union[ipaddress.IPv4Network, ipaddress.IPv6Network].
+        :type increment: int
+        """
+        super().__init__(initial_value, increment)
+        self._prefix_len = self._value.prefixlen
+        host_len = self._value.max_prefixlen - self._prefix_len
+        self._net_increment = self._increment * (1 << host_len)
+
+    def _incr(self):
+        """
+        Increment the network, e.g.:
+        '30.0.0.0/24' incremented by 1 (the next network) is '30.0.1.0/24'.
+        '30.0.0.0/24' incremented by 2 is '30.0.2.0/24'.
+        """
+        self._value = ip_network(
+            f"{self._value.network_address + self._net_increment}"
+            f"/{self._prefix_len}"
+        )
+
+    def _str_fmt(self):
+        """
+        The string representation of the network is
+        '<ip_address_start> - <ip_address_stop>' for the purposes of the
+        'ipsec policy add spd' cli.
+        """
+        return f"{self._value.network_address} - " \
+               f"{self._value.broadcast_address}"
 
 
 class IPUtil:
