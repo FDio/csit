@@ -16,6 +16,24 @@
       "revId": "1cd10647015899b16176306aa62d77c0fd247cc3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfb0ad42_6b2ade0a",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-24T19:32:39Z",
+      "side": 0,
+      "message": "Back in [1], you added this part of docstring without actually adding the argument. The run_telemetry has \"hook\" argument, called with value of \"socket\" variable.\n\nIf the intent was to add \"hooks\" parameter to override the behavior, I can add it in a separate Change.\n\n[1] https://gerrit.fd.io/r/c/csit/+/32030/28..29/resources/libraries/python/TelemetryUtil.py",
+      "parentUuid": "18078cff_8c04afd6",
+      "revId": "1cd10647015899b16176306aa62d77c0fd247cc3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }

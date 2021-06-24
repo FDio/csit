@@ -50,6 +50,24 @@
       "revId": "d1b1eb5d6e1b8597f8b9d09603ace4803333a544",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87e034d1_82b05783",
+        "filename": "resources/libraries/python/model/telemetry.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-24T19:32:39Z",
+      "side": 1,
+      "message": "I will let Tibor decide.\nCurrently, options are 32830, 32822, or neither (meaning PAL will parse from SSH stdout log event instead).",
+      "parentUuid": "e6d28cb3_c1ecef5f",
+      "revId": "d1b1eb5d6e1b8597f8b9d09603ace4803333a544",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
