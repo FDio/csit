@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8d81312_9608f656",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-24T18:41:20Z",
+      "side": 1,
+      "message": "Remove this line",
+      "revId": "d1b1eb5d6e1b8597f8b9d09603ace4803333a544",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59ce7366_e36e2ac6",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-24T18:41:20Z",
+      "side": 1,
+      "message": "Leave the original nesting and condition. Just add export funtion calling",
+      "revId": "d1b1eb5d6e1b8597f8b9d09603ace4803333a544",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6d28cb3_c1ecef5f",
+        "filename": "resources/libraries/python/model/telemetry.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-24T18:41:20Z",
+      "side": 1,
+      "message": "Do not alter export anyhow. How many times should i say? 1:1 output. Post processing will be done in PAL",
+      "revId": "d1b1eb5d6e1b8597f8b9d09603ace4803333a544",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

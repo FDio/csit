@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18078cff_8c04afd6",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-24T18:41:20Z",
+      "side": 0,
+      "message": "This MUST stay!!!!!!",
+      "revId": "1cd10647015899b16176306aa62d77c0fd247cc3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
