@@ -400,11 +400,24 @@ class DUTSetup:
         :type numvfs: int
         :raises RuntimeError: Failed to create VFs on PCI.
         """
+        cmd = f"test -f /sys/bus/pci/devices/{pf_pci_addr}/sriov_numvfs"
+        sriov_supported, _, _ = exec_cmd(node, cmd)
+        # if sriov_numvfs exists, then sriov_supported == 0
+        if int(sriov_supported):
+            if numvfs == 0:
+                # sriov is not supported and we want 0 VFs
+                # no need to do anything
+                return
+            else:
+                raise RuntimeError(
+                    f"Can't configure {numvfs} VFs on {pf_pci_addr} device "
+                    f"on {node[u'host']} since it doesn't support SR-IOV.")
+
         pci = pf_pci_addr.replace(u":", r"\:")
         command = f"sh -c \"echo {numvfs} | " \
-            f"tee /sys/bus/pci/devices/{pci}/sriov_numvfs\""
+                  f"tee /sys/bus/pci/devices/{pci}/sriov_numvfs\""
         message = f"Failed to create {numvfs} VFs on {pf_pci_addr} device " \
-            f"on {node[u'host']}"
+                  f"on {node[u'host']}"
 
         exec_cmd_no_error(
             node, command, timeout=120, sudo=True, message=message
@@ -543,17 +556,6 @@ class DUTSetup:
     def get_pci_dev_driver(node, pci_addr):
         """Get current PCI device driver on node.
 
-        .. note::
-            # lspci -vmmks 0000:00:05.0
-            Slot:   00:05.0
-            Class:  Ethernet controller
-            Vendor: Red Hat, Inc
-            Device: Virtio network device
-            SVendor:        Red Hat, Inc
-            SDevice:        Device 0001
-            PhySlot:        5
-            Driver: virtio-pci
-
         :param node: DUT node.
         :param pci_addr: PCI device address.
         :type node: dict
@@ -566,38 +568,19 @@ class DUTSetup:
         ssh = SSH()
         ssh.connect(node)
 
-        for i in range(3):
-            logger.trace(f"Try number {i}: Get PCI device driver")
-
-            cmd = f"lspci -vmmks {pci_addr}"
-            ret_code, stdout, _ = ssh.exec_command(cmd)
+        driver_path = f"/sys/bus/pci/devices/{pci_addr}/driver"
+        cmd = f"test -d {driver_path}"
+        ret_code, ret_val, _ = exec_cmd(node, cmd)
+        if int(ret_code):
+            # the directory doesn't exist which means the device is not bound
+            # to any driver
+            return None
+        else:
+            cmd = f"basename $(readlink -f {driver_path})"
+            ret_code, ret_val, _ = exec_cmd(node, cmd)
             if int(ret_code):
                 raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
-
-            for line in stdout.splitlines():
-                if not line:
-                    continue
-                name = None
-                value = None
-                try:
-                    name, value = line.split(u"\t", 1)
-                except ValueError:
-                    if name == u"Driver:":
-                        return None
-                if name == u"Driver:":
-                    return value
-
-            if i < 2:
-                logger.trace(
-                    f"Driver for PCI device {pci_addr} not found, "
-                    f"executing pci rescan and retrying"
-                )
-                cmd = u"sh -c \"echo 1 > /sys/bus/pci/rescan\""
-                ret_code, _, _ = ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
-                    raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
-
-        return None
+            return ret_val.strip()
 
     @staticmethod
     def verify_kernel_module(node, module, force_load=False):
