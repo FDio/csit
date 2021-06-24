@@ -420,6 +420,13 @@ class DUTSetup:
         :type pci_addr: str
         :raises RuntimeError: If PCI device unbind failed.
         """
+        cmd = f"test -d /sys/bus/pci/devices/{pci_addr}/driver"
+        ret_code, _, _ = exec_cmd(node, cmd)
+        if int(ret_code):
+            # the directory doesn't exist which means the device is not bound
+            # to any driver
+            return
+
         pci = pci_addr.replace(u":", r"\:")
         command = f"sh -c \"echo {pci_addr} | " \
             f"tee /sys/bus/pci/devices/{pci}/driver/unbind\""
