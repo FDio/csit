@@ -108,8 +108,8 @@ class NetworkIncrement(ObjIncrement):
         :type increment: int
         """
         super().__init__(initial_value, increment)
-        self._prefix_len = self._current_value.prefixlen
-        host_len = self._current_value.max_prefixlen - self._prefix_len
+        self._prefix_len = self._next_value.prefixlen
+        host_len = self._next_value.max_prefixlen - self._prefix_len
         self._net_increment = self._increment * (1 << host_len)
 
     def _incr(self):

@@ -832,17 +832,17 @@ class IPsecUtil:
 
             if bidirectional:
                 # reset the networks so that we're using a unified config
-                no_match_src_addr_range = NetworkIncrement(
+                # the address ranges are switched
+                no_match_dst_addr_range = NetworkIncrement(
                     ip_network(src_addr_range), 1
                 )
-                next(no_match_src_addr_range)
+                next(no_match_dst_addr_range)
 
-                no_match_dst_addr_range = NetworkIncrement(
+                no_match_src_addr_range = NetworkIncrement(
                     ip_network(dst_addr_range), 1
                 )
-                next(no_match_dst_addr_range)
+                next(no_match_src_addr_range)
                 # non-matching entries direction 2
-                # the address ranges are switched
                 IPsecUtil.vpp_ipsec_add_spd_entries(
                     node, no_match_entry_amount, spd_id_dir2,
                     ObjIncrement(matching_priority + 1, 1), action,
