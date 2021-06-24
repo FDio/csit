@@ -116,13 +116,16 @@ class TelemetryUtil:
         return stdout
 
     @staticmethod
-    def run_telemetry_on_all_duts(nodes, profile):
+    def run_telemetry_on_all_duts(nodes, profile, context=u"unknown"):
         """Get and export telemetry from all DUTs.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
+        :param context: Additional identifier to distinguish multiple
+            telemetries within the same test case, e.g. "teardown".
         :type nodes: dict
         :type profile: str
+        :type context: str
         """
         for node in nodes.values():
             if node[u"type"] != NodeType.DUT:
@@ -136,5 +139,5 @@ class TelemetryUtil:
                     node, profile=profile, hook=socket
                 )
                 export_telemetry(
-                    node[u"host"], node[u"port"], socket, u"TODO", stdout
+                    node[u"host"], node[u"port"], socket, context, stdout
                 )
