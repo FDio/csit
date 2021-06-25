@@ -37,9 +37,9 @@
 | | ... | Setup suite Variables. Variables are used across device testing.
 | |
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - stat_runtime - Statistics actions within traffic trial.
-| | ... | - stat_pre_trial - Statistics actions before traffic trials.
-| | ... | - stat_post_trial - Statistics actions after traffic trials.
+| | ... | - stat_runtime - Statistics actions during separate "runtime" traffic.
+| | ... | - stat_pre_trial - Statistics actions before target traffic starts.
+| | ... | - stat_post_trial - Statistics actions after target traffic ends.
 | | ... | - packages_dir - Path to directory where VPP packages are stored.
 | |
 | | ${stat_runtime}= | Create List
