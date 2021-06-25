@@ -235,7 +235,7 @@ class FilteringRxQueue(PacketVerifier):
         self._sock = conf.L2listen(iface=interface_name, type=ETH_P_ALL)
         self.filter_f = (lambda pkt: False) if filter_f is None else filter_f
 
-    def recv(self, timeout=3, verbose=True, do_raise=True):
+    def recv(self, timeout=1, verbose=True, do_raise=True):
         """Read packets within timeout, return first one that is not filtered.
 
         Returns scapy's Ether() object created from next packet in the queue.
