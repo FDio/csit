@@ -195,38 +195,42 @@ def _export_test_from_xml_to_json(tid, in_data, out, template, metadata):
                 )
 
     # Process show runtime:
-    in_sh_run = deepcopy(in_data.get(u"show-run", None))
-    if in_sh_run:
-        # Transform to openMetrics format
-        for key, val in in_sh_run.items():
-            log_item = {
-                u"source_type": u"node",
-                u"source_id": key,
-                u"msg_type": u"metric",
-                u"log_level": u"INFO",
-                u"timestamp": in_data.get(u"starttime", u""),
-                u"msg": u"show_runtime",
-                u"data": list()
-            }
-            runtime = loads(val.get(u"runtime", list()))
-            for item in runtime:
-                for metric, m_data in item.items():
-                    if metric == u"name":
-                        continue
-                    for idx, m_item in enumerate(m_data):
-                        log_item[u"data"].append(
-                            {
-                                u"name": metric,
-                                u"value": m_item,
-                                u"labels": {
-                                    u"host": val.get(u"host", u""),
-                                    u"socket": val.get(u"socket", u""),
-                                    u"graph_node": item.get(u"name", u""),
-                                    u"thread_id": str(idx)
+    if in_data.get(u"telemetry-show-run", None):
+        for item in in_data[u"telemetry-show-run"].values():
+            data.add_to_list(u"log", item.get(u"runtime", dict()))
+    else:
+        in_sh_run = deepcopy(in_data.get(u"show-run", None))
+        if in_sh_run:
+            # Transform to openMetrics format
+            for key, val in in_sh_run.items():
+                log_item = {
+                    u"source_type": u"node",
+                    u"source_id": key,
+                    u"msg_type": u"metric",
+                    u"log_level": u"INFO",
+                    u"timestamp": in_data.get(u"starttime", u""),
+                    u"msg": u"show_runtime",
+                    u"data": list()
+                }
+                runtime = loads(val.get(u"runtime", list()))
+                for item in runtime:
+                    for metric, m_data in item.items():
+                        if metric == u"name":
+                            continue
+                        for idx, m_item in enumerate(m_data):
+                            log_item[u"data"].append(
+                                {
+                                    u"name": metric,
+                                    u"value": m_item,
+                                    u"labels": {
+                                        u"host": val.get(u"host", u""),
+                                        u"socket": val.get(u"socket", u""),
+                                        u"graph_node": item.get(u"name", u""),
+                                        u"thread_id": str(idx)
+                                    }
                                 }
-                            }
-                        )
-            data.add_to_list(u"log", log_item)
+                            )
+                data.add_to_list(u"log", log_item)
 
     # Process results:
     results = dict()
