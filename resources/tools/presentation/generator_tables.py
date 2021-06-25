@@ -24,7 +24,6 @@ from xml.etree import ElementTree as ET
 from datetime import datetime as dt
 from datetime import timedelta
 from copy import deepcopy
-from json import loads
 
 import plotly.graph_objects as go
 import plotly.offline as ploff
@@ -1367,7 +1366,11 @@ def table_last_failed_tests(table, input_data):
                 if not groups:
                     continue
                 nic = groups.group(0)
-                failed_tests.append(f"{nic}-{tst_data[u'name']}")
+                msg = tst_data[u'msg'].replace(u"\n", u"")
+                msg = re.sub(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',
+                             'xxx.xxx.xxx.xxx', msg)
+                msg = msg.split(u'Also teardown failed')[0]
+                failed_tests.append(f"{nic}-{tst_data[u'name']}###{msg}")
             tbl_list.append(passed)
             tbl_list.append(failed)
             tbl_list.append(duration)

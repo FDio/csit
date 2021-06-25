@@ -22,10 +22,11 @@ import smtplib
 import logging
 import re
 
+from difflib import SequenceMatcher
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from os.path import isdir
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 
 from pal_errors import PresentationError
 
@@ -67,6 +68,8 @@ class AlertingError(PresentationError):
 class Alerting:
     """Class implementing the alerting mechanism.
     """
+
+    error_msgs = list()
 
     def __init__(self, spec):
         """Initialization.
@@ -245,12 +248,12 @@ class Alerting:
         :type test_set: str
         :type sort: bool
         :returns: CSIT build number, VPP version, Number of passed tests,
-            Number of failed tests, Compressed failed tests.
+            Number of failed tests, Compressed failed tests, All error messages.
         :rtype: tuple(str, str, int, int, str, OrderedDict)
         """
 
         directory = self.configs[alert[u"way"]][u"output-dir"]
-        failed_tests = OrderedDict()
+        failed_tests = defaultdict(dict)
         file_path = f"{directory}/{test_set}.txt"
         version = u""
         try:
@@ -273,20 +276,47 @@ class Alerting:
                         duration = f"{(minutes // 60):02d}:{(minutes % 60):02d}"
                         continue
                     try:
-                        test = line[:-1].split(u'-')
+                        line, error_msg = line[:-1].split(u'###', maxsplit=1)
+                        test = line.split(u'-')
                         name = u'-'.join(test[3:-1])
-                    except IndexError:
+                    except ValueError:
                         continue
-                    if failed_tests.get(name, None) is None:
-                        failed_tests[name] = dict(nics=list(),
-                                                  framesizes=list(),
-                                                  cores=list())
-                    if test[0] not in failed_tests[name][u"nics"]:
-                        failed_tests[name][u"nics"].append(test[0])
-                    if test[1] not in failed_tests[name][u"framesizes"]:
-                        failed_tests[name][u"framesizes"].append(test[1])
-                    if test[2] not in failed_tests[name][u"cores"]:
-                        failed_tests[name][u"cores"].append(test[2])
+
+                    if not self.error_msgs:
+                        self.error_msgs.append(error_msg)
+                    for e_msg in self.error_msgs:
+                        if SequenceMatcher(None, str(e_msg),
+                                           str(error_msg)).ratio() > 0.5:
+                            error_msg = e_msg
+                            break
+                    if error_msg not in self.error_msgs:
+                        self.error_msgs.append(error_msg)
+
+                    error_msg_index = self.error_msgs.index(error_msg)
+
+                    if failed_tests.get(name, {}).get(error_msg_index) is None:
+                        failed_tests[name][error_msg_index] = \
+                            dict(nics=list(),
+                                 framesizes=list(),
+                                 cores=list())
+
+                    if test[0] not in \
+                            failed_tests[name][error_msg_index][u"nics"]:
+                        failed_tests[name][error_msg_index][u"nics"].\
+                            append(test[0])
+                    if test[1] not in \
+                            failed_tests[name][error_msg_index][u"framesizes"]:
+                        failed_tests[name][error_msg_index][u"framesizes"].\
+                            append(test[1])
+                    check_core = test[2] + f"[{str(error_msg_index)}]"
+                    if check_core not in \
+                            failed_tests[name][error_msg_index][u"cores"]:
+                        failed_tests[name][error_msg_index][u"cores"].\
+                            append(test[2]
+                                   + "["
+                                   + str(error_msg_index)
+                                   + "]")
+
         except IOError:
             logging.error(f"No such file or directory: {file_path}")
             return None, None, None, None, None, None
@@ -294,9 +324,11 @@ class Alerting:
             sorted_failed_tests = OrderedDict()
             for key in sorted(failed_tests.keys()):
                 sorted_failed_tests[key] = failed_tests[key]
-            return build, version, passed, failed, duration, sorted_failed_tests
+            return build, version, passed, failed, duration,\
+                   sorted_failed_tests, self.error_msgs
 
-        return build, version, passed, failed, duration, failed_tests
+        return build, version, passed, failed, duration, failed_tests,\
+               self.error_msgs
 
     def _list_gressions(self, alert, idx, header, re_pro):
         """Create a file with regressions or progressions for the test set
@@ -367,7 +399,8 @@ class Alerting:
                     f"The test set {test_set} does not include information "
                     f"about test bed. Using empty string instead."
                 )
-            build, version, passed, failed, duration, failed_tests = \
+            build, version, passed, failed, duration, failed_tests,\
+            self.error_msgs = \
                 self._get_compressed_failed_tests(alert, test_set)
             if build is None:
                 text += (
@@ -404,31 +437,46 @@ class Alerting:
 
             max_len = MaxLens(0, 0, 0, 0)
 
-            for name, params in failed_tests.items():
-                failed_tests[name][u"nics"] = u",".join(sorted(params[u"nics"]))
-                failed_tests[name][u"framesizes"] = \
-                    u",".join(sorted(params[u"framesizes"]))
-                failed_tests[name][u"cores"] = \
-                    u",".join(sorted(params[u"cores"]))
-                if len(name) > max_len.name:
-                    max_len.name = len(name)
-                if len(failed_tests[name][u"nics"]) > max_len.nics:
-                    max_len.nics = len(failed_tests[name][u"nics"])
-                if len(failed_tests[name][u"framesizes"]) > max_len.frmsizes:
-                    max_len.frmsizes = len(failed_tests[name][u"framesizes"])
-                if len(failed_tests[name][u"cores"]) > max_len.cores:
-                    max_len.cores = len(failed_tests[name][u"cores"])
+            for test, message in failed_tests.items():
+                for e_message, params in message.items():
+                    failed_tests[test][e_message][u"nics"] = \
+                        u" ".join(sorted(params[u"nics"]))
+                    failed_tests[test][e_message][u"framesizes"] = \
+                        u" ".join(sorted(params[u"framesizes"]))
+                    failed_tests[test][e_message][u"cores"] = \
+                        u" ".join(sorted(params[u"cores"]))
+                    if len(test) > max_len.name:
+                        max_len.name = len(test)
+                    if len(failed_tests[test][e_message][u"nics"]) > \
+                            max_len.nics:
+                        max_len.nics = \
+                            len(failed_tests[test][e_message][u"nics"])
+                    if len(failed_tests[test][e_message][u"framesizes"]) > \
+                            max_len.frmsizes:
+                        max_len.frmsizes = \
+                            len(failed_tests[test][e_message][u"framesizes"])
+                    if len(failed_tests[test][e_message][u"cores"]) > \
+                            max_len.cores:
+                        max_len.cores = \
+                            len(failed_tests[test][e_message][u"cores"])
 
-            for name, params in failed_tests.items():
-                text += (
-                    f"{name + u' ' * (max_len.name - len(name))}  "
-                    f"{params[u'nics']}"
-                    f"{u' ' * (max_len.nics - len(params[u'nics']))}  "
-                    f"{params[u'framesizes']}"
-                    f"{u' ' * (max_len.frmsizes-len(params[u'framesizes']))}  "
-                    f"{params[u'cores']}"
-                    f"{u' ' * (max_len.cores - len(params[u'cores']))}\n"
-                )
+            for test, message in failed_tests.items():
+                test_added = False
+                for e_message, params in message.items():
+                    if not test_added:
+                        test_added = True
+                    else:
+                        test = ""
+                    text += (
+                        f"{test + u' ' * (max_len.name - len(test))}  "
+                        f"{params[u'nics']}"
+                        f"{u' ' * (max_len.nics - len(params[u'nics']))}  "
+                        f"{params[u'framesizes']}"
+                        f"""{u' ' * (max_len.frmsizes
+                                     - len(params[u'framesizes']))}  """
+                        f"{params[u'cores']}"
+                        f"{u' ' * (max_len.cores - len(params[u'cores']))}\n"
+                    )
 
             gression_hdr = (
                 f"\n\n{test_set_short}, "
@@ -445,6 +493,11 @@ class Alerting:
         file_name = f"{self.configs[alert[u'way']][u'output-dir']}/" \
                     f"{self.configs[alert[u'way']][u'output-file']}"
         logging.info(f"Writing the file {file_name}.txt ...")
+
+        text += f"\n\nLegend:\n\n"
+
+        for e_msg in self.error_msgs:
+            text += f"[{str(self.error_msgs.index(e_msg))}] - {e_msg}\n"
 
         try:
             with open(f"{file_name}.txt", u'w') as txt_file:
