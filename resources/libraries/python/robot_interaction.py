@@ -88,3 +88,25 @@ def get_variable(name, default=None):
         return _builtin().get_variable_value(name, default)
     except RobotNotRunningError:
         return default
+
+def set_global_variable(name, default=None):
+    """Store value into Robot variable of global scope.
+
+    It is recommended to include the "${" and "}" in the variable name.
+    Inside, you can use more curly bracket substitutions
+    supported by Robot, e.g. u"${${foo}}" gets you the value of the variable
+    whose name is stored in variable named "foo".
+    Beware of f-formatting, which also treats curly braces in a special way,
+    use double braces to escape, e.g. f"${{text{python_var}text}}".
+
+    TODO: Maybe silent noop instead of RobotNotRunningError?
+
+    :param name: Variable name, insensitive to case and spaces/underscores.
+    :param default: What value to return if the variable does not exist.
+    :type name: str
+    :type default: object
+    :returns: Found value or default.
+    :rtype: object
+    :raise RobotNotRunningError: If Robot is not running.
+    """
+    _builtin().set_global_variable(name)
