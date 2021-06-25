@@ -106,6 +106,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -119,6 +120,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -132,6 +134,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -145,6 +148,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -158,6 +162,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -171,6 +176,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -184,6 +190,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -197,6 +204,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -210,6 +218,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -223,6 +232,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -236,6 +246,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -249,6 +260,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -262,6 +274,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -275,6 +288,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -288,6 +302,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 -
   type: "table"
@@ -301,6 +316,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 # 3n-skx
 -
@@ -544,6 +560,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 -
@@ -566,6 +583,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 30  # days
 
 -
@@ -660,6 +678,7 @@
     - "name"
     - "parent"
     - "status"
+     - "msg"
   window: 7  # days
 
 -
@@ -682,6 +701,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 30  # days
 
 -
@@ -776,6 +796,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 -
@@ -798,6 +819,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 30  # days
 
 -
@@ -892,6 +914,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 -
@@ -985,6 +1008,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 -
@@ -1078,6 +1102,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 -
@@ -1171,6 +1196,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 -
@@ -1264,6 +1290,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 -
