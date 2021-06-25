@@ -269,7 +269,10 @@ class FilteringRxQueue(PacketVerifier):
                 # Might have been an interrupt.
                 continue
             pkt = self._sock.recv(0x7fff)
-            print(f"Received packet on {self._ifname} of len {len(pkt)}")
+            print(
+                f"{time.monotonic()}: Received packet on {self._ifname}"
+                f" of len {len(pkt)}"
+            )
             if verbose:
                 if hasattr(pkt, u"show2"):
                     pkt.show2()
@@ -400,7 +403,10 @@ class TxQueue(PacketVerifier):
         :type append_to: Optional[List[scapy.Ether]]
         """
         pkt = auto_pad(pkt)
-        print(f"Sending packet out of {self._ifname} of len {len(pkt)}")
+        print(
+            f"{time.monotonic()}: Sending packet out of {self._ifname}"
+            f" of len {len(pkt)}"
+        )
         if verbose:
             pkt.show2()
             print()
