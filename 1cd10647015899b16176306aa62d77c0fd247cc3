@@ -34,6 +34,24 @@
       "revId": "1cd10647015899b16176306aa62d77c0fd247cc3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0cbc0ab_0949b689",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-06-25T11:22:35Z",
+      "side": 0,
+      "message": "You are not supposed to remove it if you do not know why it is there. So no additional change. You are either adding functionality or fixing. Removing essential parts of code you do not understand is not really an option.\n\nIf you do not understand how it was designed. Do not do any changes",
+      "parentUuid": "cfb0ad42_6b2ade0a",
+      "revId": "1cd10647015899b16176306aa62d77c0fd247cc3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
