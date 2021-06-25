@@ -1358,7 +1358,11 @@ def table_last_failed_tests(table, input_data):
                 if not groups:
                     continue
                 nic = groups.group(0)
-                failed_tests.append(f"{nic}-{tst_data[u'name']}")
+                msg = tst_data[u'msg'].replace("\n\n", "\n").replace("\n", "")
+                msg = re.sub(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',
+                             'xxx.xxx.xxx.xxx', msg)
+                msg = msg.split(u'Also teardown failed')[0]
+                failed_tests.append(f"{nic}-{tst_data[u'name']}###{msg}")
             tbl_list.append(str(passed))
             tbl_list.append(str(failed))
             tbl_list.extend(failed_tests)
