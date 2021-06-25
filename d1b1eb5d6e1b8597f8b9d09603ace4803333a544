@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "5519a47f_d8706dd1",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-25T17:23:46Z",
+      "side": 1,
+      "message": "Moved the nesting edit into [2]. Sadly, it is not compatible with 32908, so I will not be rebasing 32910 before 32908 is reviewed.\n\n[2] https://gerrit.fd.io/r/c/csit/+/32910",
+      "parentUuid": "59ce7366_e36e2ac6",
+      "revId": "d1b1eb5d6e1b8597f8b9d09603ace4803333a544",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e6d28cb3_c1ecef5f",
         "filename": "resources/libraries/python/model/telemetry.py",
         "patchSetId": 10
