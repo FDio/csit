@@ -89,7 +89,7 @@ def main():
     pkt_raw /= Raw()
     txq.send(pkt_raw)
 
-    ether = rxq.recv(2)
+    ether = rxq.recv()
 
     if rx_dst_mac == ether[Ether].dst and rx_src_mac == ether[Ether].src:
         logger.trace(u"MAC matched")

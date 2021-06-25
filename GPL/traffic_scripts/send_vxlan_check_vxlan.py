@@ -75,7 +75,7 @@ def main():
     # Send created packet on one interface and receive on the other
     txq.send(pkt_raw)
 
-    ether = rxq.recv(2)
+    ether = rxq.recv()
 
     # Check whether received packet contains layers Ether, IP and VXLAN
     ip = ether.payload
