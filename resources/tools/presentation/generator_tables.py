@@ -94,7 +94,7 @@ def table_oper_data_html(table, input_data):
     )
     data = input_data.filter_data(
         table,
-        params=[u"name", u"parent", u"show-run", u"type"],
+        params=[u"name", u"parent", u"telemetry-show-run", u"type"],
         continue_on_error=True
     )
     if data.empty:
@@ -147,7 +147,8 @@ def table_oper_data_html(table, input_data):
         )
         thead.text = u"\t"
 
-        if tst_data.get(u"show-run", u"No Data") == u"No Data":
+        if tst_data.get(u"telemetry-show-run", None) is None or \
+                isinstance(tst_data[u"telemetry-show-run"], str):
             trow = ET.SubElement(
                 tbl, u"tr", attrib=dict(bgcolor=colors[u"header"])
             )
@@ -177,7 +178,7 @@ def table_oper_data_html(table, input_data):
             u"Average Vector Size"
         )
 
-        for dut_data in tst_data[u"show-run"].values():
+        for dut_data in tst_data[u"telemetry-show-run"].values():
             trow = ET.SubElement(
                 tbl, u"tr", attrib=dict(bgcolor=colors[u"header"])
             )
@@ -188,39 +189,41 @@ def table_oper_data_html(table, input_data):
                 tcol.text = u"No Data"
                 continue
 
-            runtime = loads(dut_data[u"runtime"])
+            runtime = dict()
+            for item in dut_data[u"runtime"].get(u"data", tuple()):
+                tid = int(item[u"labels"][u"thread_id"])
+                if runtime.get(tid, None) is None:
+                    runtime[tid] = dict()
+                gnode = item[u"labels"][u"graph_node"]
+                if runtime[tid].get(gnode, None) is None:
+                    runtime[tid][gnode] = dict()
+                try:
+                    runtime[tid][gnode][item[u"name"]] = float(item[u"value"])
+                except ValueError:
+                    runtime[tid][gnode][item[u"name"]] = item[u"value"]
 
-            try:
-                threads_nr = len(runtime[0][u"clocks"])
-            except (IndexError, KeyError):
-                tcol.text = u"No Data"
-                continue
-
-            threads = OrderedDict({idx: list() for idx in range(threads_nr)})
-            for item in runtime:
-                for idx in range(threads_nr):
-                    if item[u"vectors"][idx] > 0:
-                        clocks = item[u"clocks"][idx] / item[u"vectors"][idx]
-                    elif item[u"calls"][idx] > 0:
-                        clocks = item[u"clocks"][idx] / item[u"calls"][idx]
-                    elif item[u"suspends"][idx] > 0:
-                        clocks = item[u"clocks"][idx] / item[u"suspends"][idx]
+            threads = dict({idx: list() for idx in range(len(runtime))})
+            for idx, run_data in runtime.items():
+                for gnode, gdata in run_data.items():
+                    if gdata[u"vectors"] > 0:
+                        clocks = gdata[u"clocks"] / gdata[u"vectors"]
+                    elif gdata[u"calls"] > 0:
+                        clocks = gdata[u"clocks"] / gdata[u"calls"]
+                    elif gdata[u"suspends"] > 0:
+                        clocks = gdata[u"clocks"] / gdata[u"suspends"]
                     else:
                         clocks = 0.0
-
-                    if item[u"calls"][idx] > 0:
-                        vectors_call = item[u"vectors"][idx] / item[u"calls"][
-                            idx]
+                    if gdata[u"calls"] > 0:
+                        vectors_call = gdata[u"vectors"] / gdata[u"calls"]
                     else:
                         vectors_call = 0.0
-
-                    if int(item[u"calls"][idx]) + int(item[u"vectors"][idx]) + \
-                        int(item[u"suspends"][idx]):
+                    if int(gdata[u"calls"]) + int(gdata[u"vectors"]) + \
+                            int(gdata[u"suspends"]):
                         threads[idx].append([
-                            item[u"name"],
-                            item[u"calls"][idx],
-                            item[u"vectors"][idx],
-                            item[u"suspends"][idx],
+                            gnode,
+                            int(gdata[u"calls"]),
+                            int(gdata[u"vectors"]),
+                            int(gdata[u"suspends"]),
                             clocks,
                             vectors_call
                         ])
@@ -393,8 +396,7 @@ def table_merged_details(table, input_data):
                         col_data = col_data.replace(u'\n', u' |br| ').\
                             replace(u'\r', u'').replace(u'"', u"'")
                         col_data = f" |prein| {col_data} |preout| "
-                    elif column[u"data"].split(u" ")[1] in \
-                            (u"conf-history", u"show-run"):
+                    elif column[u"data"].split(u" ")[1] in (u"conf-history", ):
                         col_data = col_data.replace(u'\n', u' |br| ')
                         col_data = f" |prein| {col_data[:-5]} |preout| "
                     row_lst.append(f'"{col_data}"')

@@ -337,6 +337,8 @@ class ExecutionChecker(ResultVisitor):
         self._conf_history_lookup_nr = 0
 
         self._sh_run_counter = 0
+        self._telemetry_kw_counter = 0
+        self._telemetry_msg_counter = 0
 
         # Test ID of currently processed test- the lowercase full path to the
         # test
@@ -361,7 +363,8 @@ class ExecutionChecker(ResultVisitor):
             u"dpdk-version": self._get_dpdk_version,
             u"teardown-papi-history": self._get_papi_history,
             u"test-show-runtime": self._get_show_run,
-            u"testbed": self._get_testbed
+            u"testbed": self._get_testbed,
+            u"test-telemetry": self._get_telemetry
         }
 
     @property
@@ -688,6 +691,66 @@ class ExecutionChecker(ResultVisitor):
                 }
             )
 
+    def _get_telemetry(self, msg):
+        """Called when extraction of VPP telemetry data is required.
+
+        :param msg: Message to process.
+        :type msg: Message
+        :returns: Nothing.
+        """
+
+        if self._telemetry_kw_counter > 1:
+            return
+        if not msg.message.count(u"vpp_runtime_calls"):
+            return
+
+        if u"telemetry-show-run" not in \
+                self._data[u"tests"][self._test_id].keys():
+            self._data[u"tests"][self._test_id][u"telemetry-show-run"] = dict()
+
+        self._telemetry_msg_counter += 1
+        dut = f"dut{self._telemetry_msg_counter}"
+        runtime = {
+            u"source_type": u"node",
+            u"source_id": dut,
+            u"msg_type": u"metric",
+            u"log_level": u"INFO",
+            u"timestamp": msg.timestamp,
+            u"msg": u"show_runtime",
+            u"host": dut,  # No info, should be host IP
+            u"socket": u"",  # No info
+            u"data": list()
+        }
+        for line in msg.message.splitlines():
+            if not line.startswith(u"vpp_runtime_"):
+                continue
+            try:
+                params, value = line.rsplit(u" ", maxsplit=2)[:-1]
+                cut = params.index(u"{")
+                name = params[:cut].split(u"_", maxsplit=2)[-1]
+                labels = eval(
+                    u"dict" + params[cut:].replace('{', '(').replace('}', ')')
+                )
+                labels[u"graph_node"] = labels.pop(u"name")
+                runtime[u"data"].append(
+                    {
+                        u"name": name,
+                        u"value": value,
+                        u"labels": labels
+                    }
+                )
+            except (TypeError, ValueError, IndexError):
+                continue
+
+        self._data[u'tests'][self._test_id][u'telemetry-show-run'][dut] = \
+            copy.copy(
+                {
+                    u"host": dut,
+                    u"socket": u"",
+                    u"runtime": runtime
+                }
+            )
+
     def _get_ndrpdr_throughput(self, msg):
         """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER from the test
         message.
@@ -1003,6 +1066,8 @@ class ExecutionChecker(ResultVisitor):
         """
 
         self._sh_run_counter = 0
+        self._telemetry_kw_counter = 0
+        self._telemetry_msg_counter = 0
 
         longname_orig = test.longname.lower()
 
@@ -1228,10 +1293,13 @@ class ExecutionChecker(ResultVisitor):
         :type test_kw: Keyword
         :returns: Nothing.
         """
-        if ((self._for_output != u"trending") and
-            (test_kw.name.count(u"Show Runtime On All Duts") or
-             test_kw.name.count(u"Show Runtime Counters On All Duts") or
-             test_kw.name.count(u"Vpp Show Runtime On All Duts"))):
+        if self._for_output == u"trending":
+            return
+
+        if test_kw.name.count(u"Run Telemetry On All Duts"):
+            self._msg_type = u"test-telemetry"
+            self._telemetry_kw_counter += 1
+        elif test_kw.name.count(u"Show Runtime On All Duts"):
             self._msg_type = u"test-show-runtime"
             self._sh_run_counter += 1
         else:
@@ -2034,8 +2102,8 @@ class InputData:
                                     vectors_call = 0.0
 
                                 if int(item[u"calls"][idx]) + int(
-                                    item[u"vectors"][idx]) + \
-                                    int(item[u"suspends"][idx]):
+                                        item[u"vectors"][idx]) + \
+                                        int(item[u"suspends"][idx]):
                                     threads[idx].append([
                                         item[u"name"],
                                         item[u"calls"][idx],
