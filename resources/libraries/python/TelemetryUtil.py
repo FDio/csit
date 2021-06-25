@@ -11,10 +11,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Linux perf utility."""
+"""Telemetry integration layer.
+
+Look at resources/tools/telemetry/ for the standalone telemetry code.
+"""
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.model.ExportLog import export_telemetry
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
@@ -85,7 +89,7 @@ class TelemetryUtil:
 
     @staticmethod
     def run_telemetry(node, profile, hook=None):
-        """Get telemetry stat read for duration.
+        """Gather telemetry by calling standalone code, return stdout.
 
         :param node: Node in the topology.
         :param profile: Telemetry configuration profile.
@@ -93,6 +97,8 @@ class TelemetryUtil:
         :type node: dict
         :type profile: str
         :type hook: str
+        :returns: Textual telemetry data, available for post-procesing.
+        :rtype: str
         """
         config = u""
         config += f"{Constants.REMOTE_FW_DIR}/"
@@ -106,18 +112,17 @@ class TelemetryUtil:
         bin_cmd = f"python3 -m telemetry --config {config} --hook {hook}\""
 
         exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
-        exec_cmd_no_error(node, f"cat /tmp/metric.prom", sudo=True)
+        stdout, _ = exec_cmd_no_error(node, f"cat /tmp/metric.prom", sudo=True)
+        return stdout
 
     @staticmethod
     def run_telemetry_on_all_duts(nodes, profile):
-        """Get telemetry stat read on all DUTs.
+        """Get and export telemetry from all DUTs.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
-        :param hooks: Dict of Process IDs or socket paths (optional).
         :type nodes: dict
         :type profile: str
-        :type hooks: dict
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
@@ -125,6 +130,13 @@ class TelemetryUtil:
                     for socket in node[u"sockets"][u"PAPI"].values():
                         TelemetryUtil.run_telemetry(
                             node, profile=profile, hook=socket
+                        )
+                        export_telemetry(
+                            host=node[u"host"],
+                            port=node[u"port"],
+                            socket=socket,
+                            message=u"TODO",
+                            text=stdout
                         )
                 except IndexError:
                     pass
