@@ -35,6 +35,8 @@
 | | END
 | | Remove All Added VIF Ports On All DUTs From Topology | ${nodes}
 
+# Additional Suite Tear Down Actions in alphabetical order
+
 | Additional Suite Tear Down Action For ab
 | | [Documentation]
 | | ... | Additional teardown for suites which uses ab.
@@ -47,12 +49,6 @@
 | | | Run Keyword If | ${ip_addr_on_intf}==${True} | Delete Linux Interface IP
 | | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${ab_ip_prefix}
 | | END
-
-| Additional Suite Tear Down Action For performance
-| | [Documentation]
-| | ... | Additional teardown for suites which uses performance measurement.
-| |
-| | Run Keyword And Ignore Error | Teardown traffic generator | ${tg}
 
 | Additional Suite Tear Down Action For dpdk
 | | [Documentation]
@@ -71,3 +67,9 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Kill Program | ${nodes['${dut}']} | iperf3
 | | | Kill Program | ${nodes['${dut}']} | vpp_echo
+
+| Additional Suite Tear Down Action For performance
+| | [Documentation]
+| | ... | Additional teardown for suites which uses performance measurement.
+| |
+| | Run Keyword And Ignore Error | Teardown traffic generator | ${tg}

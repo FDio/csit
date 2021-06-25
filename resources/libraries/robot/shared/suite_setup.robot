@@ -111,16 +111,34 @@
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
 
-| Additional Suite Setup Action For scapy
+# Additional Suite Setup Actions in alphabetical order
+
+| Additional Suite Setup Action For ab
 | | [Documentation]
-| | ... | Additional Setup for suites which uses scapy as Traffic generator.
+| | ... | Additional Setup for suites which uses ab TG.
 | |
-| | FOR | ${dut} | IN | @{duts}
-| | | Set Suite Variable | ${${dut}_vf1} | ${${dut}_${int}1}
-| | | Set Suite Variable | ${${dut}_vf2} | ${${dut}_${int}2}
+| | Verify Program Installed | ${tg} | ab
+| | Iface update numa node | ${tg}
+| | ${running}= | Is TRex running | ${tg}
+| | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
+| | ${curr_driver}= | Get PCI dev driver | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | Run keyword if | '${curr_driver}'!='${None}'
+| | ... | PCI Driver Unbind | ${tg} |
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | ${driver}= | Get Variable Value | ${tg['interfaces']['${tg_if1}']['driver']}
+| | PCI Driver Bind | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']} | ${driver}
+| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | FOR | ${ip_addr} | IN | @{ab_ip_addrs}
+| | | ${ip_addr_on_intf}= | Linux interface has IP | ${tg} | ${intf_name}
+| | | ... | ${ip_addr} | ${ab_ip_prefix}
+| | | Run Keyword If | ${ip_addr_on_intf}==${False} | Set Linux interface IP
+| | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${ab_ip_prefix}
 | | END
-| | Set Interface State | ${tg} | ${TG_pf1}[0] | up
-| | Set Interface State | ${tg} | ${TG_pf2}[0] | up
+| | Set Linux interface up | ${tg} | ${intf_name}
+| | Check ab | ${tg}
 
 | Additional Suite Setup Action For dpdk
 | | [Documentation]
@@ -129,6 +147,60 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Initialize DPDK Framework | ${nodes['${dut}']}
 | | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0] | ${nic_driver}
+| | END
+
+| Additional Suite Setup Action For ipsechw
+| | [Documentation]
+| | ... | Additional Setup for suites which uses QAT HW.
+| |
+| | ${numvfs}= | Set Variable If
+| | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
+| | ... | '${crypto_type}' == 'HW_C3xxx' | ${16}
+| | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
+| | ... | force_init=${True}
+| | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
+
+| Additional Suite Setup Action For nginx
+| | [Documentation]
+| | ... | Additional Setup for suites which uses Nginx.
+| |
+| | Install NGINX framework on all DUTs | ${nodes} | ${packages_dir}
+| | ... |  ${nginx_version}
+
+| Additional Suite Setup Action For performance
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${nic_vfs} > 0
+| | | ... | Additional Suite Setup Action For performance vf | ${dut}
+| | | ... | ELSE
+| | | ... | Additional Suite Setup Action For performance pf | ${dut}
+| | END
+| | Initialize traffic generator
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${dut1} | ${DUT1_${int}1}[0]
+| | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
+| | ... | ${osi_layer}
+
+| Additional Suite Setup Action For performance pf
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement for
+| | ... | single DUT (inner loop).
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Additional Suite Setup Action For performance pf \| DUT1 \|
+| |
+| | [Arguments] | ${dut}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Run Keyword | Init interface
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
+| | | ... | numvfs=${0} | osi_layer=${osi_layer}
 | | END
 
 | Additional Suite Setup Action For performance vf
@@ -176,83 +248,13 @@
 | | Set Suite Variable
 | | ... | ${int} | prevf
 
-| Additional Suite Setup Action For performance pf
+| Additional Suite Setup Action For scapy
 | | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement for
-| | ... | single DUT (inner loop).
-| |
-| | ... | *Arguments:*
-| | ... | - dut - DUT node. Type: string
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Additional Suite Setup Action For performance pf \| DUT1 \|
-| |
-| | [Arguments] | ${dut}
-| |
-| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
-| | | Run Keyword | Init interface
-| | | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0] | driver=${nic_driver}
-| | | ... | numvfs=${0} | osi_layer=${osi_layer}
-| | END
-
-| Additional Suite Setup Action For performance
-| | [Documentation]
-| | ... | Additional Setup for suites which uses performance measurement.
+| | ... | Additional Setup for suites which uses scapy as Traffic generator.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword If | ${nic_vfs} > 0
-| | | ... | Additional Suite Setup Action For performance vf | ${dut}
-| | | ... | ELSE
-| | | ... | Additional Suite Setup Action For performance pf | ${dut}
+| | | Set Suite Variable | ${${dut}_vf1} | ${${dut}_${int}1}
+| | | Set Suite Variable | ${${dut}_vf2} | ${${dut}_${int}2}
 | | END
-| | Initialize traffic generator
-| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
-| | ... | ${dut1} | ${DUT1_${int}1}[0]
-| | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
-| | ... | ${osi_layer}
-
-| Additional Suite Setup Action For ipsechw
-| | [Documentation]
-| | ... | Additional Setup for suites which uses QAT HW.
-| |
-| | ${numvfs}= | Set Variable If
-| | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
-| | ... | '${crypto_type}' == 'HW_C3xxx' | ${16}
-| | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
-| | ... | force_init=${True}
-| | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
-
-| Additional Suite Setup Action For nginx
-| | [Documentation]
-| | ... | Additional Setup for suites which uses Nginx.
-| |
-| | Install NGINX framework on all DUTs | ${nodes} | ${packages_dir}
-| | ... |  ${nginx_version}
-
-| Additional Suite Setup Action For ab
-| | [Documentation]
-| | ... | Additional Setup for suites which uses ab TG.
-| |
-| | Verify Program Installed | ${tg} | ab
-| | Iface update numa node | ${tg}
-| | ${running}= | Is TRex running | ${tg}
-| | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
-| | ${curr_driver}= | Get PCI dev driver | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | Run keyword if | '${curr_driver}'!='${None}'
-| | ... | PCI Driver Unbind | ${tg} |
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | ${driver}= | Get Variable Value | ${tg['interfaces']['${tg_if1}']['driver']}
-| | PCI Driver Bind | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']} | ${driver}
-| | ${intf_name}= | Get Linux interface name | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | FOR | ${ip_addr} | IN | @{ab_ip_addrs}
-| | | ${ip_addr_on_intf}= | Linux interface has IP | ${tg} | ${intf_name}
-| | | ... | ${ip_addr} | ${ab_ip_prefix}
-| | | Run Keyword If | ${ip_addr_on_intf}==${False} | Set Linux interface IP
-| | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${ab_ip_prefix}
-| | END
-| | Set Linux interface up | ${tg} | ${intf_name}
-| | Check ab | ${tg}
+| | Set Interface State | ${tg} | ${TG_pf1}[0] | up
+| | Set Interface State | ${tg} | ${TG_pf2}[0] | up

@@ -19,12 +19,34 @@
 | ... | Performance suite keywords - Actions related to performance tests.
 
 *** Keywords ***
+# Additional Statistics Actions in alphabetical order
+
 | Additional Statistics Action For bash-perf-stat
 | | [Documentation]
 | | ... | Additional Statistics Action for bash command "perf stat".
 | |
 | | Run Keyword If | ${extended_debug}==${True}
 | | ... | Perf Stat On All DUTs | ${nodes} | cpu_list=${cpu_alloc_str}
+
+| Additional Statistics Action For noop
+| | [Documentation]
+| | ... | Additional Statistics Action for no operation.
+| |
+| | No operation
+
+| Additional Statistics Action For vpp-clear-stats
+| | [Documentation]
+| | ... | Additional Statistics Action for clear VPP statistics.
+| |
+| | Run Telemetry On All DUTs
+| | ... | ${nodes} | profile=vpp_clear_stats.yaml
+
+| Additional Statistics Action For vpp-enable-packettrace
+| | [Documentation]
+| | ... | Additional Statistics Action for enable VPP packet trace.
+| |
+| | Run Keyword If | ${extended_debug}==${True}
+| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 
 | Additional Statistics Action For vpp-runtime
 | | [Documentation]
@@ -86,26 +108,6 @@
 | | Run Telemetry On All DUTs
 | | ... | ${nodes} | profile=vpp_runtime.yaml
 | | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}
-
-| Additional Statistics Action For noop
-| | [Documentation]
-| | ... | Additional Statistics Action for no operation.
-| |
-| | No operation
-
-| Additional Statistics Action For vpp-clear-stats
-| | [Documentation]
-| | ... | Additional Statistics Action for clear VPP statistics.
-| |
-| | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vpp_clear_stats.yaml
-
-| Additional Statistics Action For vpp-enable-packettrace
-| | [Documentation]
-| | ... | Additional Statistics Action for enable VPP packet trace.
-| |
-| | Run Keyword If | ${extended_debug}==${True}
-| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 
 | Additional Statistics Action For vpp-show-packettrace
 | | [Documentation]

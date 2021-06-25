@@ -62,6 +62,7 @@
 | | Clean Sockets On All Nodes | ${nodes}
 
 # Additional Test Tear Down Actions in alphabetical order
+
 | Additional Test Tear Down Action For acl
 | | [Documentation]
 | | ... | Additional teardown for tests which uses ACL feature.
@@ -84,14 +85,6 @@
 | |
 | | FOR | ${container_group} | IN | @{container_groups}
 | | | Destroy all '${container_group}' containers
-| | END
-
-| Additional Test Tear Down Action For nginx
-| | [Documentation]
-| | ... | Additional teardown for tests which uses nginx.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Kill Program | ${nodes['${dut}']} | nginx
 | | END
 
 | Additional Test Tear Down Action For det44
@@ -162,6 +155,14 @@
 | | | Show NAT44 Summary | ${nodes['${dut}']}
 | | | Show NAT Base Data | ${nodes['${dut}']}
 | | | Vpp Get Ip Table Summary | ${nodes['${dut}']}
+| | END
+
+| Additional Test Tear Down Action For nginx
+| | [Documentation]
+| | ... | Additional teardown for tests which uses nginx.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Kill Program | ${nodes['${dut}']} | nginx
 | | END
 
 | Additional Test Tear Down Action For packet_trace

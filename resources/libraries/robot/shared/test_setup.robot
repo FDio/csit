@@ -35,6 +35,8 @@
 | | | Run Keyword | Additional Test Setup Action For ${action}
 | | END
 
+# Additional Test Setup Actions in alphabetical order
+
 | Additional Test Setup Action For namespace
 | | [Documentation]
 | | ... | Additional Setup for tests which uses namespace.
