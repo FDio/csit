@@ -243,6 +243,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 2n-skx"
@@ -255,6 +256,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 2n-clx"
@@ -267,6 +269,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 2n-zn2"
@@ -279,6 +282,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 3n-tsh"
@@ -291,6 +295,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 2n-tx2"
@@ -303,6 +308,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 3n-dnv"
@@ -315,6 +321,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 2n-dnv"
@@ -327,6 +334,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 3n-skx-ndrpdr"
@@ -339,6 +347,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 2n-skx-ndrpdr"
@@ -351,6 +360,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) VPP 2n-clx-ndrpdr"
@@ -363,6 +373,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) DPDK 3n-tsh"
@@ -375,6 +386,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) DPDK 2n-tx2"
@@ -387,6 +399,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) DPDK 3n-skx"
@@ -399,6 +412,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) DPDK 2n-skx"
@@ -411,6 +425,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 - type: "table"
   title: "Last failed tests (last builds) DPDK 2n-clx"
@@ -423,6 +438,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
 
 # 3n-skx
 - type: "table"
@@ -647,6 +663,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 - type: "table"
@@ -667,6 +684,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 30  # days
 
 - type: "table"
@@ -753,6 +771,7 @@
     - "name"
     - "parent"
     - "status"
+     - "msg"
   window: 7  # days
 
 - type: "table"
@@ -773,6 +792,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 30  # days
 
 - type: "table"
@@ -859,6 +879,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 - type: "table"
@@ -879,6 +900,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 30  # days
 
 - type: "table"
@@ -965,6 +987,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 - type: "table"
@@ -1050,6 +1073,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 - type: "table"
@@ -1135,6 +1159,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 - type: "table"
@@ -1220,6 +1245,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 - type: "table"
@@ -1305,6 +1331,7 @@
     - "name"
     - "parent"
     - "status"
+    - "msg"
   window: 7  # days
 
 - type: "table"
