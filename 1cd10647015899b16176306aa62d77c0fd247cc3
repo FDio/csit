@@ -52,6 +52,24 @@
       "revId": "1cd10647015899b16176306aa62d77c0fd247cc3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c50737c_3db0eee7",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-25T17:09:31Z",
+      "side": 0,
+      "message": "Moved edits related to \"hooks\" argument into [1].\nWill rebase on that soon.\n\n[1] https://gerrit.fd.io/r/c/csit/+/32908",
+      "parentUuid": "a0cbc0ab_0949b689",
+      "revId": "1cd10647015899b16176306aa62d77c0fd247cc3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
