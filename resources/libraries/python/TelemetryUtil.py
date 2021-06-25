@@ -125,18 +125,16 @@ class TelemetryUtil:
         :type profile: str
         """
         for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                try:
-                    for socket in node[u"sockets"][u"PAPI"].values():
-                        TelemetryUtil.run_telemetry(
-                            node, profile=profile, hook=socket
-                        )
-                        export_telemetry(
-                            host=node[u"host"],
-                            port=node[u"port"],
-                            socket=socket,
-                            message=u"TODO",
-                            text=stdout
-                        )
-                except IndexError:
-                    pass
+            if node[u"type"] != NodeType.DUT:
+                continue
+            try:
+                sockets = node[u"sockets"][u"PAPI"].values()
+            except IndexError:
+                continue
+            for socket in sockets:
+                stdout = TelemetryUtil.run_telemetry(
+                    node, profile=profile, hook=socket
+                )
+                export_telemetry(
+                    node[u"host"], node[u"port"], socket, u"TODO", stdout
+                )
