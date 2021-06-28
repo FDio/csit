@@ -86,6 +86,9 @@
       - 29  # rls2106.rc2 NDRPDR iter env 7
       - 31  # rls2106.rc2 NDRPDR iter env 7
       - 33  # rls2106.rc2 NDRPDR iter env 7
+      - 34  # rls2106.rc2 NDRPDR iter env 7
+      - 35  # rls2106.rc2 NDRPDR iter env 7
+      - 36  # rls2106.rc2 NDRPDR iter env 7
 
   vpp-3n-skx-curr-cov:
     csit-vpp-perf-report-iterative-2106-3n-skx:
@@ -372,7 +375,9 @@
     csit-vpp-perf-report-iterative-2106-2n-zn2:
       - 28  # rls2106.rc2 NDRPDR iter env 7
       - 29  # rls2106.rc2 NDRPDR iter env 7
+      - 31  # rls2106.rc2 NDRPDR iter env 7
       - 32  # rls2106.rc2 NDRPDR iter env 7
+      - 33  # rls2106.rc2 NDRPDR iter env 7
 
   vpp-2n-zn2-curr-iter-best:
     csit-vpp-perf-report-iterative-2106-2n-zn2:
@@ -697,6 +702,7 @@
     csit-vpp-perf-report-iterative-2106-3n-tsh:
       - 13  # rls2106.rc2 NDRPDR iter env 7
       - 14  # rls2106.rc2 NDRPDR iter env 7
+      - 15  # rls2106.rc2 NDRPDR iter env 7
       - 16  # rls2106.rc2 NDRPDR iter env 7
       - 17  # rls2106.rc2 NDRPDR iter env 7
 
