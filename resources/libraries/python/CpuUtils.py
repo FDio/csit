@@ -62,10 +62,14 @@ class CpuUtils:
 
     @staticmethod
     def get_cpu_info_from_all_nodes(nodes):
-        """Assuming all nodes are Linux nodes, retrieve the following
+        """Detect CPU related information and store it into topology.
+
+        Assuming all nodes are Linux nodes, retrieve the following
            cpu information from all nodes:
                - cpu architecture
                - cpu layout
+
+        The nodes argument is ignored, operating on the global variable instead.
 
         :param nodes: DICT__nodes from Topology.DICT__nodes.
         :type nodes: dict
@@ -74,14 +78,15 @@ class CpuUtils:
         """
         for node in nodes.values():
             stdout, _ = exec_cmd_no_error(node, u"uname -m")
-            node[u"arch"] = stdout.strip()
+            node = Topology.set_node_arch(node, stdout.strip())
             stdout, _ = exec_cmd_no_error(node, u"lscpu -p")
-            node[u"cpuinfo"] = list()
+            cpuinfo = list()
             for line in stdout.split(u"\n"):
                 if line and line[0] != u"#":
-                    node[u"cpuinfo"].append(
+                    cpuinfo.append(
                         [CpuUtils.__str2int(x) for x in line.split(u",")]
                     )
+            Topology.set_node_cpuinfo(node, cpuinfo)
 
     @staticmethod
     def cpu_node_count(node):
