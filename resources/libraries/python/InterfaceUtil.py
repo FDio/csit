@@ -641,7 +641,9 @@ class InterfaceUtil:
         from VPP.
 
         :param node: Node selected from DICT__nodes.
-        :type node: dict
+        :type node: topology.NodeDict
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
         interface_list = InterfaceUtil.vpp_get_interface_data(node)
         interface_dict = dict()
@@ -651,9 +653,15 @@ class InterfaceUtil:
         for if_name, if_data in node[u"interfaces"].items():
             ifc_dict = interface_dict.get(if_data[u"mac_address"])
             if ifc_dict is not None:
-                if_data[u"name"] = ifc_dict[u"interface_name"]
-                if_data[u"vpp_sw_index"] = ifc_dict[u"sw_if_index"]
-                if_data[u"mtu"] = ifc_dict[u"mtu"][0]
+                node = Topology.update_interface_name(
+                    node, if_name, ifc_dict[u"interface_name"]
+                )
+                node = Topology.update_interface_sw_if_index(
+                    node, if_name, ifc_dict[u"sw_if_index"]
+                )
+                node = Topology.update_interface_mtu(
+                    node, if_name, ifc_dict[u"mtu"][0]
+                )
                 logger.trace(
                     f"Interface {if_name} found by MAC "
                     f"{if_data[u'mac_address']}"
@@ -663,7 +671,10 @@ class InterfaceUtil:
                     f"Interface {if_name} not found by MAC "
                     f"{if_data[u'mac_address']}"
                 )
-                if_data[u"vpp_sw_index"] = None
+                node = Topology.update_interface_sw_if_index(
+                    node, if_name, None
+                )
+        return node
 
     @staticmethod
     def update_nic_interface_names(node):
@@ -674,22 +685,23 @@ class InterfaceUtil:
         :param node: Node dictionary.
         :type node: dict
         """
-        for ifc in node[u"interfaces"].values():
+        for key, ifc in node[u"interfaces"].items():
             if_pci = ifc[u"pci_address"].replace(u".", u":").split(u":")
             loc = f"{int(if_pci[1], 16):x}/{int(if_pci[2], 16):x}/" \
                 f"{int(if_pci[3], 16):x}"
             if ifc[u"model"] == u"Intel-XL710":
-                ifc[u"name"] = f"FortyGigabitEthernet{loc}"
+                name = f"FortyGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Intel-X710":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
+                name = f"TenGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Intel-X520-DA2":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
+                name = f"TenGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Cisco-VIC-1385":
-                ifc[u"name"] = f"FortyGigabitEthernet{loc}"
+                name = f"FortyGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Cisco-VIC-1227":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
+                name = f"TenGigabitEthernet{loc}"
             else:
-                ifc[u"name"] = f"UnknownEthernet{loc}"
+                name = f"UnknownEthernet{loc}"
+            Topology.update_interface_name(node, key, name)
 
     @staticmethod
     def update_nic_interface_names_on_all_duts(nodes):
@@ -717,7 +729,9 @@ class InterfaceUtil:
             "00:00:00:00:00:00": "lo"
 
         :param node: Node selected from DICT__nodes.
-        :type node: dict
+        :type node: topology.nodeDict
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         :raises RuntimeError: If getting of interface name and MAC fails.
         """
         # First setup interface driver specified in yaml file
@@ -736,11 +750,12 @@ class InterfaceUtil:
         tmp = u"{" + stdout.rstrip().replace(u"\n", u",") + u"}"
 
         interfaces = JsonParser().parse_data(tmp)
-        for interface in node[u"interfaces"].values():
-            name = interfaces.get(interface[u"mac_address"])
+        for iface_key, iface_value in node[u"interfaces"].items():
+            name = interfaces.get(iface_value[u"mac_address"])
             if name is None:
                 continue
-            interface[u"name"] = name
+            node = Topology.update_interface_name(node, iface_key, name)
+        return node
 
     @staticmethod
     def iface_update_numa_node(node):
@@ -748,8 +763,9 @@ class InterfaceUtil:
            information from the node.
 
         :param node: Node from topology.
-        :type node: dict
-        :returns: Nothing.
+        :type node: topology.NodeDict
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         :raises ValueError: If numa node ia less than 0.
         :raises RuntimeError: If update of numa node failed.
         """
@@ -768,12 +784,13 @@ class InterfaceUtil:
                             f"Reading numa location failed for: {if_pci}"
                         )
                     else:
-                        Topology.set_interface_numa_node(
+                        node = Topology.set_interface_numa_node(
                             node, if_key, numa_node
                         )
                         break
             else:
                 raise RuntimeError(f"Update numa node failed for: {if_pci}")
+        return node
 
     @staticmethod
     def update_all_interface_data_on_all_nodes(
@@ -782,6 +799,8 @@ class InterfaceUtil:
 
         This method updates the topology dictionary by querying interface lists
         of all nodes mentioned in the topology dictionary.
+
+        The nodes argument is ignored, operating on the global variable instead.
 
         :param nodes: Nodes in the topology.
         :param skip_tg: Skip TG node.
@@ -792,10 +811,10 @@ class InterfaceUtil:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT and not skip_vpp:
-                InterfaceUtil.update_vpp_interface_data_on_node(node)
+                node = InterfaceUtil.update_vpp_interface_data_on_node(node)
             elif node[u"type"] == NodeType.TG and not skip_tg:
-                InterfaceUtil.update_tg_interface_data_on_node(node)
-            InterfaceUtil.iface_update_numa_node(node)
+                node = InterfaceUtil.update_tg_interface_data_on_node(node)
+            node = InterfaceUtil.iface_update_numa_node(node)
 
     @staticmethod
     def create_vlan_subinterface(node, interface, vlan):
@@ -825,10 +844,10 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        if_key = Topology.add_new_port(node, u"vlan_subif")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node, if_key = Topology.add_new_port(node, u"vlan_subif")
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
+        node = Topology.update_interface_name(node, if_key, ifc_name)
 
         return f"{interface}.{vlan}", sw_if_index
 
@@ -869,10 +888,10 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        if_key = Topology.add_new_port(node, u"vxlan_tunnel")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node, if_key = Topology.add_new_port(node, u"vxlan_tunnel")
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
+        node = Topology.update_interface_name(node, if_key, ifc_name)
 
         return sw_if_index
 
@@ -1014,10 +1033,10 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        if_key = Topology.add_new_port(node, u"subinterface")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node, if_key = Topology.add_new_port(node, u"subinterface")
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
+        node = Topology.update_interface_name(node, if_key, ifc_name)
 
         return f"{interface}.{sub_id}", sw_if_index
 
@@ -1053,10 +1072,10 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        if_key = Topology.add_new_port(node, u"gre_tunnel")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node, if_key = Topology.add_new_port(node, u"gre_tunnel")
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
+        node = Topology.update_interface_name(node, if_key, ifc_name)
 
         return ifc_name, sw_if_index
 
@@ -1096,10 +1115,10 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        if_key = Topology.add_new_port(node, u"gtpu_tunnel")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node, if_key = Topology.add_new_port(node, u"gtpu_tunnel")
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
+        node = Topology.update_interface_name(node, if_key, ifc_name)
 
         return sw_if_index
 
@@ -1126,13 +1145,13 @@ class InterfaceUtil:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        if_key = Topology.add_new_port(node, u"loopback")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node, if_key = Topology.add_new_port(node, u"loopback")
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
+        node = Topology.update_interface_name(node, if_key, ifc_name)
         if mac:
             mac = InterfaceUtil.vpp_get_interface_mac(node, ifc_name)
-            Topology.update_interface_mac_address(node, if_key, mac)
+            node = Topology.update_interface_mac_address(node, if_key, mac)
 
         return sw_if_index
 
@@ -1202,24 +1221,24 @@ class InterfaceUtil:
         :type ifc_pfx: str
         :type host_if_key: str
         """
-        if_key = Topology.add_new_port(node, ifc_pfx)
+        node, if_key = Topology.add_new_port(node, ifc_pfx)
 
         if ifc_name and sw_if_index is None:
             sw_if_index = InterfaceUtil.vpp_get_interface_sw_index(
                 node, ifc_name)
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         if sw_if_index and ifc_name is None:
             ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
+        node = Topology.update_interface_name(node, if_key, ifc_name)
         ifc_mac = InterfaceUtil.vpp_get_interface_mac(node, sw_if_index)
-        Topology.update_interface_mac_address(node, if_key, ifc_mac)
+        node = Topology.update_interface_mac_address(node, if_key, ifc_mac)
         if host_if_key is not None:
-            Topology.set_interface_numa_node(
+            node = Topology.set_interface_numa_node(
                 node, if_key, Topology.get_interface_numa_node(
                     node, host_if_key
                 )
             )
-            Topology.update_interface_pci_address(
+            node = Topology.update_interface_pci_address(
                 node, if_key, Topology.get_interface_pci_addr(node, host_if_key)
             )
 
@@ -1853,13 +1872,17 @@ class InterfaceUtil:
             # Add newly created ports into topology file
             vf_ifc_name = f"{ifc_key}_vif"
             vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
-            vf_ifc_key = Topology.add_new_port(node, vf_ifc_name)
-            Topology.update_interface_name(
+            node, vf_ifc_key = Topology.add_new_port(node, vf_ifc_name)
+            node = Topology.update_interface_name(
                 node, vf_ifc_key, vf_ifc_name+str(vf_id+1)
             )
-            Topology.update_interface_mac_address(node, vf_ifc_key, vf_mac_addr)
-            Topology.update_interface_pci_address(node, vf_ifc_key, vf_pci_addr)
-            Topology.set_interface_numa_node(
+            node = Topology.update_interface_mac_address(
+                node, vf_ifc_key, vf_mac_addr
+            )
+            node = Topology.update_interface_pci_address(
+                node, vf_ifc_key, vf_pci_addr
+            )
+            node = Topology.set_interface_numa_node(
                 node, vf_ifc_key, Topology.get_interface_numa_node(
                     node, ifc_key
                 )

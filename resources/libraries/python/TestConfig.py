@@ -223,11 +223,15 @@ class TestConfig:
         if vxlan_count > 10:
             commands = list()
             for i in range(0, vxlan_count):
-                vxlan_subif_key = Topology.add_new_port(node, u"vxlan_tunnel")
+                node, vxlan_subif_key = Topology.add_new_port(
+                    node, u"vxlan_tunnel"
+                )
                 vxlan_subif_name = f"vxlan_tunnel{i}"
                 founds = dict(vxlan=False, vlan=False)
                 vxlan_subif_idx = None
-                vlan_subif_key = Topology.add_new_port(node, u"vlan_subif")
+                node, vlan_subif_key = Topology.add_new_port(
+                    node, u"vlan_subif"
+                )
                 vlan_subif_name = \
                     f"{Topology.get_interface_name(node, node_vlan_if)}.{i + 1}"
                 vlan_idx = None
@@ -241,18 +245,18 @@ class TestConfig:
                         founds[u"vlan"] = True
                     if founds[u"vxlan"] and founds[u"vlan"]:
                         break
-                Topology.update_interface_sw_if_index(
+                node = Topology.update_interface_sw_if_index(
                     node, vxlan_subif_key, vxlan_subif_idx)
-                Topology.update_interface_name(
+                node = Topology.update_interface_name(
                     node, vxlan_subif_key, vxlan_subif_name)
                 commands.append(
                     f"sw_interface_set_flags sw_if_index {vxlan_subif_idx} "
                     f"admin-up link-up\n"
                 )
-                Topology.update_interface_sw_if_index(
+                node = Topology.update_interface_sw_if_index(
                     node, vlan_subif_key, vlan_idx
                 )
-                Topology.update_interface_name(
+                node = Topology.update_interface_name(
                     node, vlan_subif_key, vlan_subif_name
                 )
                 commands.append(
@@ -276,11 +280,15 @@ class TestConfig:
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(0, vxlan_count):
-                vxlan_subif_key = Topology.add_new_port(node, u"vxlan_tunnel")
+                node, vxlan_subif_key = Topology.add_new_port(
+                    node, u"vxlan_tunnel"
+                )
                 vxlan_subif_name = f"vxlan_tunnel{i}"
                 founds = dict(vxlan=False, vlan=False)
                 vxlan_subif_idx = None
-                vlan_subif_key = Topology.add_new_port(node, u"vlan_subif")
+                node, vlan_subif_key = Topology.add_new_port(
+                    node, u"vlan_subif"
+                )
                 vlan_subif_name = \
                     f"{Topology.get_interface_name(node, node_vlan_if)}.{i+1}"
                 vlan_idx = None
@@ -295,17 +303,17 @@ class TestConfig:
                         founds[u"vlan"] = True
                     if founds[u"vxlan"] and founds[u"vlan"]:
                         break
-                Topology.update_interface_sw_if_index(
+                node = Topology.update_interface_sw_if_index(
                     node, vxlan_subif_key, vxlan_subif_idx
                 )
-                Topology.update_interface_name(
+                node = Topology.update_interface_name(
                     node, vxlan_subif_key, vxlan_subif_name
                 )
                 args1[u"sw_if_index"] = vxlan_subif_idx
-                Topology.update_interface_sw_if_index(
+                node = Topology.update_interface_sw_if_index(
                     node, vlan_subif_key, vlan_idx
                 )
-                Topology.update_interface_name(
+                node = Topology.update_interface_name(
                     node, vlan_subif_key, vlan_subif_name
                 )
                 args2[u"sw_if_index"] = vlan_idx

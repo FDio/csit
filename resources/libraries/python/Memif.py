@@ -151,20 +151,20 @@ class Memif:
         )
 
         # Update Topology
-        if_key = Topology.add_new_port(node, u"memif")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node, if_key = Topology.add_new_port(node, u"memif")
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
 
         ifc_name = Memif.vpp_get_memif_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
+        node = Topology.update_interface_name(node, if_key, ifc_name)
 
         ifc_mac = Memif.vpp_get_memif_interface_mac(node, sw_if_index)
-        Topology.update_interface_mac_address(node, if_key, ifc_mac)
+        node = Topology.update_interface_mac_address(node, if_key, ifc_mac)
 
-        Topology.update_interface_memif_socket(
+        node = Topology.update_interface_memif_socket(
             node, if_key, u"/tmp/" + filename
         )
-        Topology.update_interface_memif_id(node, if_key, mid)
-        Topology.update_interface_memif_role(node, if_key, str(role))
+        node = Topology.update_interface_memif_id(node, if_key, mid)
+        node = Topology.update_interface_memif_role(node, if_key, str(role))
 
         return sw_if_index
 
