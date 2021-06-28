@@ -16,32 +16,21 @@
 import re
 
 from collections import Counter
+from collections.abc import Mapping
 
-from yaml import safe_load
+from yaml import safe_load, YAMLError
 
 from robot.api import logger
-from robot.libraries.BuiltIn import RobotNotRunningError
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.robot_interaction import get_variable
+from resources.libraries.python.frozen_dict import FrozenDict
+from resources.libraries.python.robot_interaction import (
+    get_variable, set_global_variable
+)
 
 __all__ = [
     u"DICT__nodes", u"Topology", u"NodeType", u"SocketType", u"NodeSubTypeTG"
 ]
-
-
-def load_topo_from_yaml():
-    """Load topology from file defined in "${TOPOLOGY_PATH}" variable.
-
-    :returns: Nodes from loaded topology.
-    """
-    try:
-        topo_path = get_variable(u"${TOPOLOGY_PATH}")
-    except RobotNotRunningError:
-        return ''
-
-    with open(topo_path) as work_file:
-        return safe_load(work_file.read())[u"nodes"]
 
 
 class NodeType:
@@ -74,7 +63,91 @@ class SocketType:
     STATS = u"STATS"
 
 
-DICT__nodes = load_topo_from_yaml()
+class SubNodeDict(FrozenDict):
+    """FrozenDict with string keys and values of int, string or SubNodeDict.
+
+    Also tuples are allowed.
+
+    Topology node substructures are intended to be if this type.
+    Current implementation uses FrozenDict everywhere instead,
+    this class definition is just to make docstrings more expressive.
+    """
+    pass
+
+
+class NodeDict(SubNodeDict):
+    """FrozenDict with string keys and values of string or SubNodeDict.
+
+    Topology node structure is intended to be if this type.
+    Current implementation uses FrozenDict everywhere instead,
+    this class definition is just to make docstrings more expressive.
+    """
+    pass
+
+
+class NodesDict(NodeDict):
+    """FrozenDict with string keys and values of string or NodeDict.
+
+    Topology "nodes" structure is intended to be if this type.
+    Current implementation uses FrozenDict everywhere instead,
+    this class definition is just to make docstrings more expressive.
+    """
+    pass
+
+# TODO: Use real *Type types in the code, instead of FrozenDict everywhere.
+
+
+# Robot expects a dict-like object, cannot use None.
+DICT__nodes = dict()
+
+
+def _replace_nodes(new_nodes, reason="unknown", log_level=u"TRACE"):
+    """Set global nodes structure to the new value, log it.
+
+    :param new_nodes: Set global nodes structure to this value.
+    :param reason: Message explaining why the update is made.
+    :param log_level: Importance of the update, expressed as log level.
+    :type new_nodes: topology.NodesDict
+    :type reason: str
+    :type log_level: str
+    """
+    global DICT__nodes
+    # One more freeze to be extra sure.
+    new_nodes = FrozenDict(new_nodes)
+    DICT__nodes = new_nodes
+    # Robot keeps its own copy, we need to update that explicitly.
+    set_global_variable(u"\\${nodes}", DICT__nodes)
+    # TODO: Add JSON export here.
+    # TODO: Export diff instead/alongside whole new state?
+    # TODO: Skip or tweak reason/log_level if new_nodes==DICT__nodes?
+    logger.write(
+        msg=f"Updated nodes structure. Reason: {reason}\n{new_nodes}",
+        level=log_level,
+    )
+
+
+def _get_nodes():
+    """Return cached value, initialize from file on first access.
+
+    If not cached, load topology from file defined in
+    "${TOPOLOGY_PATH}" Robot variable.
+    If the path is not defined or load fails, initialize as empty.
+
+    :returns: Complete "nodes" scructure.
+    :rtype: topology.NodesDict
+    """
+    global DICT__nodes
+    if isinstance(DICT__nodes, dict):
+        # FrozenDict is a Mapping, but not a dict.
+        topo_path = get_variable(u"${TOPOLOGY_PATH}", u"")
+        try:
+            with open(topo_path, u"r") as work_file:
+                new_nodes = FrozenDict(safe_load(work_file)[u"nodes"])
+        except (IOError, YAMLError, KeyError):
+            new_nodes = FrozenDict({})
+        _replace_nodes(new_nodes, reason=u"initial read", log_level=u"INFO")
+    # TODO: Return a shallow copy to be extra sure?
+    return DICT__nodes
 
 
 class Topology:
@@ -94,26 +167,104 @@ class Topology:
     does not rely on the data retrieved from nodes, this allows to call most of
     the methods without having filled active topology with internal nodes data.
     """
+
+    ROBOT_LIBRARY_SCOPE = u"GLOBAL"
+    # TODO: Move DICT__nodes here?
+
     @staticmethod
-    def add_node_item(node, value, path):
-        """Add item to topology node.
+    def initialize_topology():
+        """Populate \\${nodes} data by reading from file.
+
+        Some Robot code reads from \\${nodes} Robot variable,
+        before calling any other keyword in this file.
+
+        Call this from top-level suite setup.
+        """
+        _get_nodes()
+
+    @staticmethod
+    def _add_node_item_recursive(cursor, value, path):
+        """Add string value anywhere into nodes structure.
+
+        If a key on a path does not exist, it is created.
+        If a middle of a path contains an empty string (instead of sub-mapping),
+        it is overwritten with empty sub-mapping (to add the rest of path).
+        If a middle of a path contains a non-empty string,
+        a sub-mapping is still created, but with the string as additional
+        key (and empty string value).
+
+        Implementation recursively tracks a cursor and returns updated subtrees.
+        This in the recursive part of the implementation,
+        not updating the global nodes state yet.
+
+        :param cursor: Reference to the "cursor" structure.
+        :param value: Value to insert.
+        :param path: Remaining path from cursor.
+        :type cursor: topology.SubNodeDict
+        :type value: Union[str, int, topology.SubNodeDict]
+        :type path: Sequence[str]
+        :returns: Modified structure, cursor remains unmodified.
+        :rtype: topology.SubNodeDict
+        :raises KeyError: If path is empty.
+        """
+        if not path:
+            raise KeyError(u"Empty path!")
+        key, *rest = path
+        if not rest:
+            # End of the path, add/replace the value.
+            return cursor.including(key, value)
+        # Middle of path. Is sub-structure ready?
+        sub_cursor = FrozenDict({})
+        if key in cursor:
+            middle_val = cursor[key]
+            # TODO: What if middle_val is a list/tuple?
+            if isinstance(middle_val, Mapping):
+                # Sub-structure is ready.
+                sub_cursor = middle_val
+            elif isinstance(middle_val, str) and middle_val:
+                # Save old string as a key.
+                sub_cursor = FrozenDict({middle_val: u""})
+            # Replace with empty sub-structure.
+        # Else use empty sub-structure for the rest of the path.
+        sub_cursor = Topology._add_node_item_recursive(sub_cursor, value, rest)
+        return cursor.including(key, sub_cursor)
+
+    @staticmethod
+    def add_node_item(node, value, path, reason=u"unknown", log_level=u"TRACE"):
+        """Add item to one of topology nodes, return the updated node.
+
+        TODO: Refactor keywords to use node key (e.g. "TG") instead of "node".
+
+        This is the non-recursive part, updating global nodes content,
+        after checking the "node" argument really is one of nodes.
 
         :param node: Topology node.
         :param value: Value to insert.
         :param path: Path where to insert item.
-        :type node: dict
+        :param reason: Message explaining why the update is made.
+        :param log_level: Importance of the update, expressed as log level.
+        :type node: topology.NodeDict
         :type value: str
-        :type path: list
+        :type path: Sequence[str]
+        :type reason: str
+        :type log_level: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
+        :raises KeyError: If path is empty.
+        :raises ValueError: If node is not found in nodes.
         """
-        if len(path) == 1:
-            node[path[0]] = value
-            return
-        if path[0] not in node:
-            node[path[0]] = dict()
-        elif isinstance(node[path[0]], str):
-            node[path[0]] = dict() if node[path[0]] == u"" \
-                else {node[path[0]]: u""}
-        Topology.add_node_item(node[path[0]], value, path[1:])
+        if not path:
+            raise KeyError(u"Empty path!")
+        nodes = _get_nodes()
+        for node_key, node_struct in nodes:
+            if node_struct == node:
+                break
+        else:
+            raise ValueError(f"Node not found: {node}")
+        full_path = node_key, *path
+        new_nodes = Topology._add_node_item_recursive(nodes, value, full_path)
+        _replace_nodes(new_nodes=new_nodes, reason=reason, log_level=log_level)
+        return new_nodes[node_key]
 
     @staticmethod
     def add_new_port(node, ptype):
@@ -121,7 +272,7 @@ class Topology:
 
         :param node: Node to add new port on.
         :param ptype: Port type, used as key prefix.
-        :type node: dict
+        :type node: topology.NodeDict
         :type ptype: str
         :returns: Port key or None
         :rtype: string or None
@@ -131,7 +282,8 @@ class Topology:
         for i in range(1, max_ports):
             if node[u"interfaces"].get(str(ptype) + str(i)) is None:
                 iface = str(ptype) + str(i)
-                node[u"interfaces"][iface] = dict()
+                path = [u"interfaces", iface]
+                Topology.add_node_item(node, dict(), path, u"add_new_port")
                 break
         return iface
 
@@ -139,16 +291,25 @@ class Topology:
     def remove_port(node, iface_key):
         """Remove required port from active topology.
 
+        Any KeyError silently aborts the operation.
+
         :param node: Node to remove port on.
         :param: iface_key: Topology key of the interface.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
-        :returns: Nothing
+        :returns: Node structure after removal, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
+        # TODO: Implement del_node_item(node, path, reason, log_level)?
         try:
-            node[u"interfaces"].pop(iface_key)
+            interfaces = node[u"interfaces"].copy()
+            interfaces.pop(iface_key)
+            node_after_removal = Topology.add_node_item(
+                node, interfaces, [u"interfaces"], u"remove_port"
+            )
+            return node_after_removal
         except KeyError:
-            pass
+            return node
 
     @staticmethod
     def remove_all_ports(node, ptype):
@@ -156,21 +317,28 @@ class Topology:
 
         :param node: Node to remove ports on.
         :param: ptype: Port type, used as key prefix.
-        :type node: dict
+        :type node: topology.NodeDict
         :type ptype: str
-        :returns: Nothing
+        :returns: Node structure after removal, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        for if_key in list(node[u"interfaces"]):
-            if if_key.startswith(str(ptype)):
-                node[u"interfaces"].pop(if_key)
+        interfaces = {
+            if_key: if_val for if_key, if_val in node[u"interfaces"].items()
+            if not if_key.startswith(str(ptype))
+        }
+        node_after_removal = Topology.add_node_item(
+            node, interfaces, [u"interfaces"], u"remove_all_ports"
+        )
+        return node_after_removal
 
     @staticmethod
     def remove_all_added_ports_on_all_duts_from_topology(nodes):
         """Remove all added ports on all DUT nodes in the topology.
 
+        The nodes argument is ignored, operating on the global variable instead.
+
         :param nodes: Nodes in the topology.
-        :type nodes: dict
-        :returns: Nothing
+        :type nodes: topology.NodesDict
         """
         port_types = (
             u"subinterface", u"vlan_subif", u"memif", u"tap", u"vhost",
@@ -179,34 +347,45 @@ class Topology:
             u"gtpu_tunnel"
         )
 
-        for node_data in nodes.values():
+        # Implementation compares node_data, so it has to be updated frequently.
+        for node_key in _get_nodes().copy():
+            node_data = _get_nodes()[node_key]
             if node_data[u"type"] == NodeType.DUT:
                 for ptype in port_types:
-                    Topology.remove_all_ports(node_data, ptype)
+                    # TODO: Avoid logging one by one?
+                    node_data = Topology.remove_all_ports(node_data, ptype)
+                    # TODO: Override reason?
 
     @staticmethod
     def remove_all_vif_ports(node):
         """Remove all Virtual Interfaces on DUT node.
 
         :param node: Node to remove VIF ports on.
-        :type node: dict
-        :returns: Nothing
+        :type node: topology.NodeDict
+        :returns: Node structure after removal, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
         reg_ex = re.compile(r"port\d+_vif\d+")
-        for if_key in list(node[u"interfaces"]):
-            if re.match(reg_ex, if_key):
-                node[u"interfaces"].pop(if_key)
+        interfaces = {
+            if_key: if_val for if_key, if_val in node[u"interfaces"].items()
+            if not re.match(reg_ex, if_key)
+        }
+        return Topology.add_node_item(
+            node, interfaces, [u"interfaces"], u"remove_all_vif_ports"
+        )
 
     @staticmethod
     def remove_all_added_vif_ports_on_all_duts_from_topology(nodes):
         """Remove all added Virtual Interfaces on all DUT nodes in
         the topology.
 
+        The nodes argument is ignored, operating on the global variable instead.
+
         :param nodes: Nodes in the topology.
-        :type nodes: dict
-        :returns: Nothing
+        :type nodes: topology.NodesDict
         """
-        for node_data in nodes.values():
+        # Each node is edited only once, so we do not need to track.
+        for node_data in _get_nodes().copy().values():
             if node_data[u"type"] == NodeType.DUT:
                 Topology.remove_all_vif_ports(node_data)
 
@@ -217,11 +396,16 @@ class Topology:
         :param node: Node to update sw_if_index on.
         :param iface_key: Topology key of the interface.
         :param sw_if_index: Internal index to store.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type sw_if_index: int
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"vpp_sw_index"] = int(sw_if_index)
+        path = [u"interfaces", iface_key, u"vpp_sw_index"]
+        return Topology.add_node_item(
+            node, int(sw_if_index), path, u"update_interface_sw_if_index"
+        )
 
     @staticmethod
     def update_interface_name(node, iface_key, name):
@@ -230,11 +414,16 @@ class Topology:
         :param node: Node to update name on.
         :param iface_key: Topology key of the interface.
         :param name: Interface name to store.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type name: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"name"] = str(name)
+        path = [u"interfaces", iface_key, u"name"]
+        return Topology.add_node_item(
+            node, str(name), path, u"update_interface_name"
+        )
 
     @staticmethod
     def update_interface_mac_address(node, iface_key, mac_address):
@@ -243,11 +432,16 @@ class Topology:
         :param node: Node to update MAC on.
         :param iface_key: Topology key of the interface.
         :param mac_address: MAC address.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type mac_address: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"mac_address"] = str(mac_address)
+        path = [u"interfaces", iface_key, u"mac_address"]
+        return Topology.add_node_item(
+            node, str(mac_address), path, u"update_interface_mac_address"
+        )
 
     @staticmethod
     def update_interface_pci_address(node, iface_key, pci_address):
@@ -256,11 +450,16 @@ class Topology:
         :param node: Node to update PCI on.
         :param iface_key: Topology key of the interface.
         :param pci_address: PCI address.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type pci_address: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"pci_address"] = str(pci_address)
+        path = [u"interfaces", iface_key, u"pci_address"]
+        return Topology.add_node_item(
+            node, str(pci_address), path, u"update_interface_pci_address"
+        )
 
     @staticmethod
     def update_interface_vlan(node, iface_key, vlan):
@@ -269,11 +468,16 @@ class Topology:
         :param node: Node to update VLAN on.
         :param iface_key: Topology key of the interface.
         :param vlan: VLAN ID.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type vlan: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"vlan"] = int(vlan)
+        path = [u"interfaces", iface_key, u"vlan"]
+        return Topology.add_node_item(
+            node, int(vlan), path, u"update_interface_vlan"
+        )
 
     @staticmethod
     def update_interface_vhost_socket(node, iface_key, vhost_socket):
@@ -282,11 +486,16 @@ class Topology:
         :param node: Node to update socket name on.
         :param iface_key: Topology key of the interface.
         :param vhost_socket: Path to named socket on node.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type vhost_socket: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"vhost_socket"] = str(vhost_socket)
+        path = [u"interfaces", iface_key, u"vhost_socket"]
+        return Topology.add_node_item(
+            node, str(vhost_socket), path, u"update_interface_vhost_socket"
+        )
 
     @staticmethod
     def update_interface_memif_socket(node, iface_key, memif_socket):
@@ -295,11 +504,16 @@ class Topology:
         :param node: Node to update socket name on.
         :param iface_key: Topology key of the interface.
         :param memif_socket: Path to named socket on node.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type memif_socket: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"memif_socket"] = str(memif_socket)
+        path = [u"interfaces", iface_key, u"memif_socket"]
+        return Topology.add_node_item(
+            node, str(memif_socket), path, u"update_interface_memif_socket"
+        )
 
     @staticmethod
     def update_interface_memif_id(node, iface_key, memif_id):
@@ -308,11 +522,16 @@ class Topology:
         :param node: Node to update memif ID on.
         :param iface_key: Topology key of the interface.
         :param memif_id: Memif interface ID.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type memif_id: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"memif_id"] = str(memif_id)
+        path = [u"interfaces", iface_key, u"memif_id"]
+        return Topology.add_node_item(
+            node, str(memif_id), path, u"update_interface_memif_id"
+        )
 
     @staticmethod
     def update_interface_memif_role(node, iface_key, memif_role):
@@ -321,11 +540,16 @@ class Topology:
         :param node: Node to update memif role on.
         :param iface_key: Topology key of the interface.
         :param memif_role: Memif role.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type memif_role: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"memif_role"] = str(memif_role)
+        path = [u"interfaces", iface_key, u"memif_role"]
+        return Topology.add_node_item(
+            node, str(memif_role), path, u"update_interface_memif_role"
+        )
 
     @staticmethod
     def update_interface_tap_dev_name(node, iface_key, dev_name):
@@ -334,24 +558,31 @@ class Topology:
         :param node: Node to update tap device name on.
         :param iface_key: Topology key of the interface.
         :param dev_name: Device name of the tap interface.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type dev_name: str
-        :returns: Nothing
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"interfaces"][iface_key][u"dev_name"] = str(dev_name)
+        path = [u"interfaces", iface_key, u"dev_name"]
+        return Topology.add_node_item(
+            node, str(dev_name), path, u"update_interface_tap_dev_name"
+        )
 
     @staticmethod
     def get_node_by_hostname(nodes, hostname):
         """Get node from nodes of the topology by hostname.
 
+        The nodes argument is ignored, operating on the global variable instead.
+
         :param nodes: Nodes of the test topology.
         :param hostname: Host name.
-        :type nodes: dict
+        :type nodes: topology.NodesDict
         :type hostname: str
         :returns: Node dictionary or None if not found.
+        :rtype: Optional[NodeDict]
         """
-        for node in nodes.values():
+        for node in _get_nodes().values():
             if node[u"host"] == hostname:
                 return node
 
@@ -361,14 +592,16 @@ class Topology:
     def get_links(nodes):
         """Get list of links(networks) in the topology.
 
+        The nodes argument is ignored, operating on the global variable instead.
+
         :param nodes: Nodes of the test topology.
-        :type nodes: dict
+        :type nodes: topology.NodesDict
         :returns: Links in the topology.
         :rtype: list
         """
         links = list()
 
-        for node in nodes.values():
+        for node in _get_nodes().values():
             for interface in node[u"interfaces"].values():
                 link = interface.get(u"link")
                 if link is not None:
@@ -385,7 +618,7 @@ class Topology:
         :param node: The node dictionary.
         :param key: Key by which to select the interface.
         :param value: Value that should be found using the key.
-        :type node: dict
+        :type node: topology.NodeDict
         :type key: string
         :type value: string
         :returns: Interface key from topology file
@@ -410,7 +643,7 @@ class Topology:
 
         :param node: The node topology dictionary.
         :param iface_name: Interface name (string form).
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_name: string
         :returns: Interface key.
         :rtype: str
@@ -426,7 +659,7 @@ class Topology:
 
         :param node: The node topology dictionary.
         :param link_name: Name of the link that a interface is connected to.
-        :type node: dict
+        :type node: topology.NodeDict
         :type link_name: string
         :returns: Interface key of the interface connected to the given link.
         :rtype: str
@@ -442,7 +675,7 @@ class Topology:
         :param node: The node topology directory.
         :param link_names: List of names of the link that a interface is
             connected to.
-        :type node: dict
+        :type node: topology.NodeDict
         :type link_names: list
         :returns: Dictionary of interface names that are connected to the given
             links.
@@ -467,7 +700,7 @@ class Topology:
         :param node: The node topology dictionary.
         :param sw_if_index: sw_if_index of the link that a interface is
             connected to.
-        :type node: dict
+        :type node: topology.NodeDict
         :type sw_if_index: int
         :returns: Interface name of the interface connected to the given link.
         :rtype: str
@@ -482,7 +715,7 @@ class Topology:
 
         :param node: Node to get interface sw_if_index on.
         :param iface_key: Interface key from topology file, or sw_if_index.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str/int
         :returns: Return sw_if_index or None if not found.
         :rtype: int or None
@@ -501,7 +734,7 @@ class Topology:
 
         :param node: Node to get interface sw_if_index on.
         :param iface_name: Interface name.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_name: str
         :returns: Return sw_if_index or None if not found.
         :raises TypeError: If provided interface name is not a string.
@@ -521,7 +754,7 @@ class Topology:
         Returns physical layer MTU (max. size of Ethernet frame).
         :param node: Node to get interface MTU on.
         :param iface_key: Interface key from topology file.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: MTU or None if not found.
         :rtype: int
@@ -538,7 +771,7 @@ class Topology:
         Returns name in string format, retrieved from the node.
         :param node: Node to get interface name on.
         :param iface_key: Interface key from topology file.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: Interface name or None if not found.
         :rtype: str
@@ -557,12 +790,10 @@ class Topology:
         :param node: Node in topology.
         :param interface: Name, sw_if_index, link name or key of an interface
             on the node.
-        :type node: dict
+        :type node: topology.NodeDict
         :type interface: str or int
-
         :returns: Interface key.
         :rtype: str
-
         :raises TypeError: If provided with invalid interface argument.
         :raises RuntimeError: If the interface does not exist in topology.
         """
@@ -602,7 +833,7 @@ class Topology:
             on the node.
         :param wanted_format: Format of return value wanted.
             Valid options are: sw_if_index, key, name.
-        :type node: dict
+        :type node: topology.NodeDict
         :type interface: str or int
         :type wanted_format: str
         :returns: Interface name, interface key or sw_if_index.
@@ -635,7 +866,7 @@ class Topology:
 
         :param node: Node to get numa id on.
         :param iface_key: Interface key from topology file.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: numa node id, None if not available.
         :rtype: int
@@ -658,7 +889,7 @@ class Topology:
 
         :param node: Node from DICT__nodes.
         :param iface_keys: Interface keys for lookup.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_keys: strings
         :returns: Numa node of most given interfaces or 0.
         :rtype: int
@@ -684,7 +915,7 @@ class Topology:
 
         :param node: Node to get interface mac on.
         :param iface_key: Interface key from topology file.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: Return MAC or None if not found.
         """
@@ -699,7 +930,7 @@ class Topology:
 
         :param node: Node to get interface mac on.
         :param iface_key: Interface key from topology file.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: Return IP4 or None if not found.
         """
@@ -714,7 +945,7 @@ class Topology:
 
         :param node: Node to get prefix length on.
         :param iface_key: Interface key from topology file.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: Prefix length from topology file or the default
             IP4 prefix length if not found.
@@ -729,12 +960,14 @@ class Topology:
         """Get node and interface adjacent to specified interface
         on local network.
 
+        The nodes argument is ignored, operating on the global variable instead.
+
         :param nodes_info: Dictionary containing information on all nodes
             in topology.
         :param node: Node that contains specified interface.
         :param iface_key: Interface key from topology file.
-        :type nodes_info: dict
-        :type node: dict
+        :type nodes_info: topology.NodesDict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: Return (node, interface_key) tuple or None if not found.
         :rtype: (dict, str)
@@ -752,7 +985,7 @@ class Topology:
             return None
 
         # find link
-        for node_data in nodes_info.values():
+        for node_data in _get_nodes().values():
             # skip self
             if node_data[u"host"] == node[u"host"]:
                 continue
@@ -770,7 +1003,7 @@ class Topology:
 
         :param node: Node to get interface PCI address on.
         :param iface_key: Interface key from topology file.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: Return PCI address or None if not found.
         """
@@ -785,7 +1018,7 @@ class Topology:
 
         :param node: Node to get interface driver on.
         :param iface_key: Interface key from topology file.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: Return interface driver or None if not found.
         """
@@ -800,7 +1033,7 @@ class Topology:
 
         :param node: Node to get interface driver on.
         :param iface_key: Interface key from topology file.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :returns: Return interface vlan or None if not found.
         """
@@ -814,7 +1047,7 @@ class Topology:
         """Get all node interfaces.
 
         :param node: Node to get list of interfaces from.
-        :type node: dict
+        :type node: topology.NodeDict
         :returns: Return list of keys of all interfaces.
         :rtype: list
         """
@@ -826,7 +1059,7 @@ class Topology:
 
         :param node: Node to get interface sw_if_index on.
         :param link_name: Link name.
-        :type node: dict
+        :type node: topology.NodeDict
         :type link_name: str
         :returns: MAC address string.
         :rtype: str
@@ -842,7 +1075,7 @@ class Topology:
 
         :param node: Node topology dictionary.
         :param filter_list: Link filter criteria.
-        :type node: dict
+        :type node: topology.NodeDict
         :type filter_list: list of strings
         :returns: List of link names occupied by the node.
         :rtype: None or list of string
@@ -873,8 +1106,8 @@ class Topology:
         :param node2: Node topology dictionary.
         :param filter_list_node1: Link filter criteria for node1.
         :param filter_list_node2: Link filter criteria for node2.
-        :type node1: dict
-        :type node2: dict
+        :type node1: topology.NodeDict
+        :type node2: topology.NodeDict
         :type filter_list_node1: list of strings
         :type filter_list_node2: list of strings
         :returns: List of strings that represent connecting link names.
@@ -906,8 +1139,8 @@ class Topology:
 
         :param node1: Connected node.
         :param node2: Connected node.
-        :type node1: dict
-        :type node2: dict
+        :type node1: topology.NodeDict
+        :type node2: topology.NodeDict
         :returns: Name of a link connecting the two nodes together.
         :rtype: str
         :raises RuntimeError: If no links are found.
@@ -922,8 +1155,8 @@ class Topology:
 
         :param node1: First node, node to get egress interface on.
         :param node2: Second node.
-        :type node1: dict
-        :type node2: dict
+        :type node1: topology.NodeDict
+        :type node2: topology.NodeDict
         :returns: Egress interfaces.
         :rtype: list
         """
@@ -948,8 +1181,8 @@ class Topology:
 
         :param node1: First node, node to get egress interface name on.
         :param node2: Second node.
-        :type node1: dict
-        :type node2: dict
+        :type node1: topology.NodeDict
+        :type node2: topology.NodeDict
         :returns: Egress interface name.
         :rtype: str
         """
@@ -978,9 +1211,9 @@ class Topology:
         :param tgen: Traffic generator node data.
         :param dut1: DUT1 node data.
         :param dut2: DUT2 node data.
-        :type tgen: dict
-        :type dut1: dict
-        :type dut2: dict
+        :type tgen: topology.NodeDict
+        :type dut1: topology.NodeDict
+        :type dut2: topology.NodeDict
         :returns: Dictionary of possible link combinations.
         :rtype: dict
         """
@@ -1006,7 +1239,7 @@ class Topology:
         """Find out whether the node is TG.
 
         :param node: Node to examine.
-        :type node: dict
+        :type node: topology.NodeDict
         :returns: True if node is type of TG, otherwise False.
         :rtype: bool
         """
@@ -1017,7 +1250,7 @@ class Topology:
         """Return host (hostname/ip address) of the node.
 
         :param node: Node created from topology.
-        :type node: dict
+        :type node: topology.NodeDict
         :returns: Hostname or IP address.
         :rtype: str
         """
@@ -1029,7 +1262,7 @@ class Topology:
            Default to x86_64 if no arch present
 
         :param node: Node created from topology.
-        :type node: dict
+        :type node: topology.NodeDict
         :returns: Node architecture
         :rtype: str
         """
@@ -1044,7 +1277,7 @@ class Topology:
         """Return Crytodev configuration of the node.
 
         :param node: Node created from topology.
-        :type node: dict
+        :type node: topology.NodeDict
         :returns: Cryptodev configuration string.
         :rtype: str
         """
@@ -1058,7 +1291,7 @@ class Topology:
         """Return uio-driver configuration of the node.
 
         :param node: Node created from topology.
-        :type node: dict
+        :type node: topology.NodeDict
         :returns: uio-driver configuration string.
         :rtype: str
         """
@@ -1074,16 +1307,50 @@ class Topology:
         :param node: Node to set numa_node on.
         :param iface_key: Interface key from topology file.
         :param numa_node_id: Num_node ID.
-        :type node: dict
+        :type node: topology.NodeDict
         :type iface_key: str
         :type numa_node_id: int
         :returns: Return iface_key or None if not found.
+        :rtype: Optional[str]
         """
         try:
             node[u"interfaces"][iface_key][u"numa_node"] = numa_node_id
+            # No KeyError, meaning it is safe to update real nodes.
+            path = [u"interfaces", iface_key, u"numa_node"]
+            Topology.add_node_item(
+                node, numa_node_id, path, u"set_interface_numa_node"
+            )
             return iface_key
         except KeyError:
             return None
+
+    @staticmethod
+    def set_node_arch(node, arch):
+        """Set architecture for the topology node.
+
+        :param node: Node to set numa_node on.
+        :param arch: Output of "uname -m".
+        :type node: topology.NodeDict
+        :type arch: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
+        """
+        path = [u"arch"]
+        return Topology.add_node_item(node, arch, path, u"set_node_arch")
+
+    @staticmethod
+    def set_node_cpuinfo(node, cpuinfo):
+        """Set CPU info for the topology node.
+
+        :param node: Node to set numa_node on.
+        :param arch: Parsed output of "lscpu -p".
+        :type node: topology.NodeDict
+        :type arch: Iterable[Iterable[int]]
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
+        """
+        path = [u"cpuinfo"]
+        return Topology.add_node_item(node, cpuinfo, path, u"set_node_cpuinfo")
 
     @staticmethod
     def add_new_socket(node, socket_type, socket_id, socket_path):
@@ -1093,13 +1360,17 @@ class Topology:
         :param socket_type: Socket type.
         :param socket_id: Socket id, currently equals to unique node key.
         :param socket_path: Socket absolute path.
-        :type node: dict
+        :type node: topology.NodeDict
         :type socket_type: SocketType
         :type socket_id: str
         :type socket_path: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
         path = [u"sockets", socket_type, socket_id]
-        Topology.add_node_item(node, socket_path, path)
+        return Topology.add_node_item(
+            node, socket_path, path, u"add_new_socket"
+        )
 
     @staticmethod
     def del_node_socket_id(node, socket_type, socket_id):
@@ -1108,11 +1379,18 @@ class Topology:
         :param node: Node to delete socket from.
         :param socket_type: Socket type.
         :param socket_id: Socket id, currently equals to unique node key.
-        :type node: dict
+        :type node: topology.NodeDict
         :type socket_type: SocketType
         :type socket_id: str
+        :returns: Node structure after update, useful for subsequent calls.
+        :rtype: topology.NodeDict
         """
-        node[u"sockets"][socket_type].pop(socket_id)
+        subnode = node[u"sockets"][socket_type]
+        subnode.pop(socket_id)
+        path = [u"sockets", socket_type]
+        return Topology.add_node_item(
+            node, subnode, path, u"del_node_socket_id"
+        )
 
     @staticmethod
     def get_node_sockets(node, socket_type=None):
@@ -1120,10 +1398,10 @@ class Topology:
 
         :param node: Node to get sockets from.
         :param socket_type: Socket type or None for all sockets.
-        :type node: dict
+        :type node: topology.NodeDict
         :type socket_type: SocketType
         :returns: Node sockets or None if not found.
-        :rtype: dict
+        :rtype: Optional[topology.SubNodeDict]
         """
         try:
             if socket_type:
@@ -1136,10 +1414,14 @@ class Topology:
     def clean_sockets_on_all_nodes(nodes):
         """Remove temporary socket files from topology file.
 
+        The nodes argument is ignored, operating on the global variable instead.
+
         :param nodes: SUT nodes.
-        :type node: dict
+        :type node: topology.NodesDict
         """
-        for node in nodes.values():
-            if u"sockets" in list(node.keys()):
-                # Containers are disconnected and destroyed already.
-                node.pop(u"sockets")
+        new_nodes = {
+            # Containers are disconnected and destroyed already.
+            node_key: node_struct.excluding(u"sockets")
+            for node_key, node_struct in _get_nodes().items()
+        }
+        _replace_nodes(new_nodes, reason="clean_sockets_on_all_nodes")
