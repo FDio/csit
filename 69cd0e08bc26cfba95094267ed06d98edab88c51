@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5fd1006e_1b954281",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-06-28T10:18:20Z",
+      "side": 1,
+      "message": "I believe this comment was supposed to point to lines 111 and 112. I\u0027ll fix this.",
+      "parentUuid": "93b803a9_e889fe34",
+      "range": {
+        "startLine": 121,
+        "startChar": 20,
+        "endLine": 121,
+        "endChar": 29
+      },
+      "revId": "69cd0e08bc26cfba95094267ed06d98edab88c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7c3c83c_b85cb38a",
         "filename": "resources/libraries/python/IncrementUtil.py",
         "patchSetId": 28
@@ -36,6 +60,30 @@
       "writtenOn": "2021-06-24T17:29:03Z",
       "side": 1,
       "message": "I was thinking about how to use generator functions, and I got here before I realized that you probably do not need to switch between formatted and unformatted outputs.\n\n  def raw_and_fmt_iterators(first_value, f_increment, f_format):\n    value \u003d first_value\n    def raw_generator_function():\n      nonlocal value\n      while 1:\n        to_yield \u003d value\n        value \u003d f_increment(value)\n        yield to_yield\n    def fmt_generator_function():\n      nonlocal value\n      while 1:\n        to_yield \u003d f_format(value)\n        value \u003d f_increment(value)\n        yield to_yield\n    return raw_generator_function(), fmt_generator_function()\n\n  raw_it, fmt_it \u003d raw_and_fmt_iterators(42, lambda x: x + 3, str)\n  for _ in range(3):\n    print(f\"{next(raw_it)!r}\")\n  for _ in range(3):\n    print(f\"{next(fmt_it)!r}\")\n  for _ in range(3):\n    print(f\"{next(raw_it)!r}\")\n    print(f\"{next(fmt_it)!r}\")",
+      "range": {
+        "startLine": 14,
+        "startChar": 33,
+        "endLine": 14,
+        "endChar": 34
+      },
+      "revId": "69cd0e08bc26cfba95094267ed06d98edab88c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "980f97a7_64b67f57",
+        "filename": "resources/libraries/python/IncrementUtil.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-06-28T10:18:20Z",
+      "side": 1,
+      "message": "What am I supposed to do with this comment?",
+      "parentUuid": "b7c3c83c_b85cb38a",
       "range": {
         "startLine": 14,
         "startChar": 33,
