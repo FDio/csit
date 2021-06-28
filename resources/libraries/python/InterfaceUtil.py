@@ -674,22 +674,23 @@ class InterfaceUtil:
         :param node: Node dictionary.
         :type node: dict
         """
-        for ifc in node[u"interfaces"].values():
+        for key, ifc in node[u"interfaces"].items():
             if_pci = ifc[u"pci_address"].replace(u".", u":").split(u":")
             loc = f"{int(if_pci[1], 16):x}/{int(if_pci[2], 16):x}/" \
                 f"{int(if_pci[3], 16):x}"
             if ifc[u"model"] == u"Intel-XL710":
-                ifc[u"name"] = f"FortyGigabitEthernet{loc}"
+                name = f"FortyGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Intel-X710":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
+                name = f"TenGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Intel-X520-DA2":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
+                name = f"TenGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Cisco-VIC-1385":
-                ifc[u"name"] = f"FortyGigabitEthernet{loc}"
+                name = f"FortyGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Cisco-VIC-1227":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
+                name = f"TenGigabitEthernet{loc}"
             else:
-                ifc[u"name"] = f"UnknownEthernet{loc}"
+                name = f"UnknownEthernet{loc}"
+            Topology.update_interface_name(node, key, name)
 
     @staticmethod
     def update_nic_interface_names_on_all_duts(nodes):
@@ -716,6 +717,8 @@ class InterfaceUtil:
             "52:54:00:e1:8a:0f": "eth2"
             "00:00:00:00:00:00": "lo"
 
+        The nodes argument is ignored, operating on the global variable instead.
+
         :param node: Node selected from DICT__nodes.
         :type node: dict
         :raises RuntimeError: If getting of interface name and MAC fails.
@@ -736,11 +739,11 @@ class InterfaceUtil:
         tmp = u"{" + stdout.rstrip().replace(u"\n", u",") + u"}"
 
         interfaces = JsonParser().parse_data(tmp)
-        for interface in node[u"interfaces"].values():
-            name = interfaces.get(interface[u"mac_address"])
+        for iface_key, iface_value in node[u"interfaces"].items():
+            name = interfaces.get(iface_value[u"mac_address"])
             if name is None:
                 continue
-            interface[u"name"] = name
+            Topology.update_interface_name(node, iface_key, name)
 
     @staticmethod
     def iface_update_numa_node(node):
