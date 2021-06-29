@@ -568,7 +568,7 @@
 
   vpp-2n-clx-curr-iter-gso:
     csit-vpp-perf-report-iterative-2106-2n-clx:
-      - 44  # rls2106.rc2 MRR GSO iter env 7
+      - 45  # rls2106.rc2 MRR GSO iter env 7
 
   vpp-2n-clx-curr-iter-vsap:
     csit-vpp-perf-report-iterative-2106-2n-clx:
@@ -585,7 +585,7 @@
 
   vpp-2n-clx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2106-2n-clx:
-      - 45  # rls2106.rc2 MRR nf-density iter env 7
+      - 44  # rls2106.rc2 MRR nf-density iter env 7
 
   vpp-2n-clx-curr-nfv-reconf:
     csit-vpp-perf-report-iterative-2106-2n-clx:

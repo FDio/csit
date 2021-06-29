@@ -28,12 +28,6 @@
 
     </script>
 
-..
-    10ge2p1x520-64b-1t1c-ethip4vxlan-l2xcbase
-    10ge2p1x520-64b-1t1c-ethip4vxlan-l2bdbasemaclrn
-    10ge2p1x520-64b-1t1c-dot1q-ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
-    10ge2p1x520-64b-1t1c-dot1q-ethip4vxlan-l2bdscale100l2bd100vlan100vxlan
-
 3n-tsh-x520
 ~~~~~~~~~~~
 
