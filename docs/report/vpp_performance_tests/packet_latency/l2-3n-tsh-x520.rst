@@ -28,47 +28,11 @@
 
     </script>
 
-..
-    10ge2p1x520-64b-1t1c-dot1q-l2xcbase
-    10ge2p1x520-64b-1t1c-dot1q-l2bdbasemaclrn
-    10ge2p1x520-64b-1t1c-eth-l2patch
-    10ge2p1x520-64b-1t1c-eth-l2xcbase
-    10ge2p1x520-64b-1t1c-eth-l2bdbasemaclrn
-    10ge2p1x520-64b-1t1c-eth-l2bdscale10kmaclrn
-    10ge2p1x520-64b-1t1c-eth-l2bdscale100kmaclrn
-    10ge2p1x520-64b-1t1c-eth-l2bdscale1mmaclrn
-
-    10ge2p1x520-64b-1t1c-eth-l2bdbasemaclrn-iacl50sf-10kflows
-    10ge2p1x520-64b-1t1c-eth-l2bdbasemaclrn-iacl50sl-10kflows
-    10ge2p1x520-64b-1t1c-eth-l2bdbasemaclrn-oacl50sf-10kflows
-    10ge2p1x520-64b-1t1c-eth-l2bdbasemaclrn-oacl50sl-10kflows
-    10ge2p1x520-64b-1t1c-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows
-
 3n-tsh-x520
 ~~~~~~~~~~~
 
 64b-1t1c-l2switching-base-scale-ixgbe
 -------------------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-l2xcbase.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-l2xcbase.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-l2xcbase}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-l2xcbase}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
 
 .. raw:: html
 
