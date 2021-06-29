@@ -413,3 +413,19 @@ def export_telemetry(host, port, socket, message, text, timestamp=None):
         data=parse_telemetry_text(text),
     )
     data[u"log"].append(telemetry_record)
+
+
+def export_topology_update(message, log_level, timestamp=None):
+    """FIXME"""
+    data = get_export_data()
+    if data is None:
+        return
+    topology_record = dict(
+        msg_type=u"topology_update",
+        log_level=log_level,
+        timestamp=timestamp_or_now(timestamp),
+        msg=str(message),
+        data=u"",
+        # FIXME: Move topo dump part to data, leave reason in message.
+    )
+    data[u"log"].append(topology_record)
