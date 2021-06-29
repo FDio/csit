@@ -664,7 +664,7 @@ def plot_perf_box_name(plot, input_data):
         try:
             val_max = max(df_y[col])
             if val_max:
-                y_max.append(int(val_max / 1e6) + 2)
+                y_max.append(int(val_max / 1e6))
         except (ValueError, TypeError) as err:
             logging.error(repr(err))
             continue
@@ -683,8 +683,8 @@ def plot_perf_box_name(plot, input_data):
                 layout[u"yaxis"][u"title"] = u"<b>Connection Rate [Mrps]</b>"
             else:
                 layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
-        if y_max:
-            layout[u"yaxis"][u"range"] = [0, max(y_max)]
+        if y_max and max(y_max) > 1:
+            layout[u"yaxis"][u"range"] = [0, max(y_max) + 2]
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot

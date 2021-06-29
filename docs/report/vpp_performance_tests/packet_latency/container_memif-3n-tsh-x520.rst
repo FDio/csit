@@ -28,38 +28,11 @@
 
     </script>
 
-..
-    10ge2p1x520-64b-1t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr
-    10ge2p1x520-64b-1t1c-eth-l2xcbase-eth-2memif-1dcr
-    10ge2p1x520-64b-1t1c-eth-l2xcbase-eth-2memif-1lxc
-    10ge2p1x520-64b-1t1c-eth-l2bdbasemaclrn-eth-2memif-1lxc
-    10ge2p1x520-64b-1t1c-ethip4-ip4base-eth-2memif-1dcr
-
 3n-tsh-x520
 ~~~~~~~~~~~
 
 64b-1t1c-memif-base-ixgbe
 -------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
 
 .. raw:: html
 

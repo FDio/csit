@@ -28,14 +28,6 @@
 
     </script>
 
-..
-    10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid
-    10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids
-    10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps
-    10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-dyn
-    10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-masq
-    10ge2p1x520-78b-1t1c-ethip6srhip6-ip6base-srv6proxy-stat
-
 3n-tsh-x520
 ~~~~~~~~~~~
 

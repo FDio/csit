@@ -31,8 +31,8 @@
 2n-zn2-cx556a
 ~~~~~~~~~~~~~
 
-64b-2t1c-vhost-base-rdma-core-testpmd
--------------------------------------
+64b-2t1c-vhost-base-rdma-core
+-----------------------------
 
 .. raw:: html
 
@@ -68,47 +68,4 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-zn2-cx556a-64b-2t1c-rdma-l2-vhost-base-pdr}
             \label{fig:2n-zn2-cx556a-64b-2t1c-rdma-l2-vhost-base-pdr}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-2t1c-vhost-base-rdma-core-vpp
----------------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-zn2-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-zn2-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr}
-            \label{fig:2n-zn2-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-ndr}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-zn2-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-pdr.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-zn2-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-pdr}
-            \label{fig:2n-zn2-cx556a-64b-2t1c-rdma-l2-vhost-vppl2xc-base-pdr}
     \end{figure}
