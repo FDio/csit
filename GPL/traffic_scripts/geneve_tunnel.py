@@ -305,9 +305,9 @@ def main():
         GENEVE(vni=rx_pkt_recv[GENEVE].vni) /
         rx_inner_pkt
     )
-    rx_txq.send(rx_pkt_send)
+    monotonic_sent = rx_txq.send(rx_pkt_send)
 
-    tx_pkt_recv = tx_rxq.recv(2)
+    tx_pkt_recv = tx_rxq.recv(2, monotonic_sent=monotonic_sent)
 
     check_ip(
         tx_pkt_recv, ip_layer, tx_dst_mac, tx_src_mac, str(dst_ip), str(src_ip)

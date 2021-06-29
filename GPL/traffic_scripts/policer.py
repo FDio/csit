@@ -98,9 +98,9 @@ def main():
                 TCP())
 
     pkt_send /= Raw()
-    txq.send(pkt_send)
+    monotonic_sent = txq.send(pkt_send)
 
-    pkt_recv = rxq.recv(2)
+    pkt_recv = rxq.recv(2, monotonic_sent=monotonic_sent)
 
     if ip_layer == IP:
         check_ipv4(pkt_recv, dscp)

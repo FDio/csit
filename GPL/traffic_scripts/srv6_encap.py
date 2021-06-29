@@ -238,9 +238,9 @@ def main():
     size_limit = 78
     if len(tx_pkt_send) < size_limit:
         tx_pkt_send[Raw].load += (b"\0" * (size_limit - len(tx_pkt_send)))
-    tx_txq.send(tx_pkt_send)
+    monotonic_sent = tx_txq.send(tx_pkt_send)
 
-    rx_pkt_recv = rx_rxq.recv(2)
+    rx_pkt_recv = rx_rxq.recv(2, monotonic_sent=monotonic_sent)
 
     check_srv6(
         rx_pkt_recv, rx_src_mac, rx_dst_mac, src_ip, dst_ip, dir0_srcsid,
@@ -268,9 +268,9 @@ def main():
         IPv6(src=dir1_srcsid, dst=dir1_dstsid1) /
         ip_pkt
     )
-    rx_txq.send(rx_pkt_send)
+    monotonic_sent = rx_txq.send(rx_pkt_send)
 
-    tx_pkt_recv = tx_rxq.recv(2)
+    tx_pkt_recv = tx_rxq.recv(2, monotonic_sent=monotonic_sent)
 
     if decap == u"True":
         check_ip(tx_pkt_recv, tx_dst_mac, tx_src_mac, dst_ip, src_ip)

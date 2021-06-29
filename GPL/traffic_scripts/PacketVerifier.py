@@ -70,6 +70,7 @@
   Example end.
 """
 
+from datetime import datetime
 import os
 import select
 import time
@@ -235,7 +236,7 @@ class FilteringRxQueue(PacketVerifier):
         self._sock = conf.L2listen(iface=interface_name, type=ETH_P_ALL)
         self.filter_f = (lambda pkt: False) if filter_f is None else filter_f
 
-    def recv(self, timeout=3, verbose=True, do_raise=True):
+    def recv(self, timeout=3, verbose=True, do_raise=True, monotonic_sent=None):
         """Read packets within timeout, return first one that is not filtered.
 
         Returns scapy's Ether() object created from next packet in the queue.
@@ -246,30 +247,41 @@ class FilteringRxQueue(PacketVerifier):
         Benign interrupt signals and filtered-out packets
         are silently ignored, without affecting timeout.
 
+        Optionally, travel time is computed for the non-skipped packet.
+
+        TODO: Can library code infer monotonic_sent without passing from caller?
+
         :param timeout: How many seconds to wait for next packet.
         :param verbose: Used to suppress detailed logging of received packets.
         :param do_raise: Whether timeout should raise exception or return None.
+        :param monotonic_sent: Monotonic time to compute travel time from.
+            If None, no travel time is computed.
         :type timeout: int
         :type verbose: bool
         :type do_raise: bool
+        :type monotonic_sent: float
         :returns: Ether() initialized object from packet data.
         :rtype: Optional[scapy.Ether]
         :raises RuntimeError: On timeout, if do_raise is true.
         """
-        time_end = time.monotonic() + timeout
+        monotonic_end = time.monotonic() + timeout
         while 1:
-            time_now = time.monotonic()
-            if time_now >= time_end:
+            monotonic_now = time.monotonic()
+            if monotonic_now >= monotonic_end:
                 if do_raise:
                     raise RuntimeError("Timed out waiting for a packet.")
                 return None
-            timedelta = time_end - time_now
+            timedelta = monotonic_end - monotonic_now
             rlist, _, _ = select.select([self._sock], [], [], timedelta)
             if self._sock not in rlist:
                 # Might have been an interrupt.
                 continue
             pkt = self._sock.recv(0x7fff)
-            print(f"Received packet on {self._ifname} of len {len(pkt)}")
+            monotonic_now = time.monotonic()
+            print(
+                f"{datetime.utcnow()}: Received packet on {self._ifname}"
+                f" of len {len(pkt)}"
+            )
             if verbose:
                 if hasattr(pkt, u"show2"):
                     pkt.show2()
@@ -280,6 +292,8 @@ class FilteringRxQueue(PacketVerifier):
             if self.filter_f(pkt):
                 print(u"Received packet ignored.")
                 continue
+            if monotonic_sent is not None:
+                print(f"Travel time [s]: {monotonic_now - monotonic_sent}")
             return pkt
 
 
@@ -385,12 +399,16 @@ class TxQueue(PacketVerifier):
         self._remember = remember
 
     def send(self, pkt, verbose=True):
-        """Send packet out of the bound interface.
+        """Send packet out of the bound interface, return monotonic time.
 
         Auto-pad the packet before sending.
 
         Optionally append the padded packet to a list,
         useful for the default rx filter.
+
+        The returned time is useful for precise measurement of round trip time.
+        As the value is not even close to the epoch time,
+        the print output uses calendar time instead.
 
         :param pkt: Packet to send.
         :param verbose: Used to suppress detailed logging of sent packets.
@@ -398,9 +416,14 @@ class TxQueue(PacketVerifier):
         :type pkt: string or scapy Packet derivative.
         :type verbose: bool
         :type append_to: Optional[List[scapy.Ether]]
+        :returns: Monotonic time justr after send.
+        :rtype float:
         """
         pkt = auto_pad(pkt)
-        print(f"Sending packet out of {self._ifname} of len {len(pkt)}")
+        print(
+            f"{datetime.utcnow()}: Sending packet out of {self._ifname}"
+            f" of len {len(pkt)}"
+        )
         if verbose:
             pkt.show2()
             print()
@@ -408,6 +431,7 @@ class TxQueue(PacketVerifier):
             self._remember.append(pkt)
 
         self._sock.send(pkt)
+        return time.monotonic()
 
 
 def start_queue_pair(interface_name, ignore_list=None):
