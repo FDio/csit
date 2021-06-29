@@ -91,14 +91,16 @@ class Tap:
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        if_key = Topology.add_new_port(node, u"tap")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
-        Topology.update_interface_name(node, if_key, tap_name)
+        node, if_key = Topology.add_new_port(node, u"tap")
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node = Topology.update_interface_name(node, if_key, tap_name)
         if mac is None:
             mac = Tap.vpp_get_tap_interface_mac(node, tap_name)
-        Topology.update_interface_mac_address(node, if_key, mac)
+        node = Topology.update_interface_mac_address(node, if_key, mac)
         tap_dev_name = Tap.vpp_get_tap_dev_name(node, tap_name)
-        Topology.update_interface_tap_dev_name(node, if_key, tap_dev_name)
+        node = Topology.update_interface_tap_dev_name(
+            node, if_key, tap_dev_name
+        )
 
         return sw_if_index
 

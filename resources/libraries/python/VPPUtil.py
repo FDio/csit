@@ -70,10 +70,12 @@ class VPPUtil:
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
         DUTSetup.restart_service(node, Constants.VPP_UNIT)
         if node_key:
-            Topology.add_new_socket(
-                node, SocketType.PAPI, node_key, Constants.SOCKSVR_PATH)
-            Topology.add_new_socket(
-                node, SocketType.STATS, node_key, Constants.SOCKSTAT_PATH)
+            node = Topology.add_new_socket(
+                node, SocketType.PAPI, node_key, Constants.SOCKSVR_PATH
+            )
+            node = Topology.add_new_socket(
+                node, SocketType.STATS, node_key, Constants.SOCKSTAT_PATH
+            )
 
     @staticmethod
     def restart_vpp_service_on_all_duts(nodes):

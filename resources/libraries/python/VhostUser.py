@@ -81,16 +81,16 @@ class VhostUser:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         # Update the Topology:
-        if_key = Topology.add_new_port(node, u"vhost")
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        node, if_key = Topology.add_new_port(node, u"vhost")
+        node = Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
 
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
-        Topology.update_interface_name(node, if_key, ifc_name)
+        node = Topology.update_interface_name(node, if_key, ifc_name)
 
         ifc_mac = InterfaceUtil.vpp_get_interface_mac(node, sw_if_index)
-        Topology.update_interface_mac_address(node, if_key, ifc_mac)
+        node = Topology.update_interface_mac_address(node, if_key, ifc_mac)
 
-        Topology.update_interface_vhost_socket(node, if_key, socket)
+        node = Topology.update_interface_vhost_socket(node, if_key, socket)
 
         return sw_if_index
 
