@@ -651,9 +651,15 @@ class InterfaceUtil:
         for if_name, if_data in node[u"interfaces"].items():
             ifc_dict = interface_dict.get(if_data[u"mac_address"])
             if ifc_dict is not None:
-                if_data[u"name"] = ifc_dict[u"interface_name"]
-                if_data[u"vpp_sw_index"] = ifc_dict[u"sw_if_index"]
-                if_data[u"mtu"] = ifc_dict[u"mtu"][0]
+                Topology.update_interface_name(
+                    node, if_name, ifc_dict[u"interface_name"]
+                )
+                Topology.update_interface_sw_if_index(
+                    node, if_name, ifc_dict[u"sw_if_index"]
+                )
+                Topology.update_interface_mtu(
+                    node, if_name, ifc_dict[u"mtu"][0]
+                )
                 logger.trace(
                     f"Interface {if_name} found by MAC "
                     f"{if_data[u'mac_address']}"
@@ -663,7 +669,9 @@ class InterfaceUtil:
                     f"Interface {if_name} not found by MAC "
                     f"{if_data[u'mac_address']}"
                 )
-                if_data[u"vpp_sw_index"] = None
+                Topology.update_interface_sw_if_index(
+                    node, if_name, None
+                )
 
     @staticmethod
     def update_nic_interface_names(node):
@@ -674,22 +682,23 @@ class InterfaceUtil:
         :param node: Node dictionary.
         :type node: dict
         """
-        for ifc in node[u"interfaces"].values():
+        for key, ifc in node[u"interfaces"].items():
             if_pci = ifc[u"pci_address"].replace(u".", u":").split(u":")
             loc = f"{int(if_pci[1], 16):x}/{int(if_pci[2], 16):x}/" \
                 f"{int(if_pci[3], 16):x}"
             if ifc[u"model"] == u"Intel-XL710":
-                ifc[u"name"] = f"FortyGigabitEthernet{loc}"
+                name = f"FortyGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Intel-X710":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
+                name = f"TenGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Intel-X520-DA2":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
+                name = f"TenGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Cisco-VIC-1385":
-                ifc[u"name"] = f"FortyGigabitEthernet{loc}"
+                name = f"FortyGigabitEthernet{loc}"
             elif ifc[u"model"] == u"Cisco-VIC-1227":
-                ifc[u"name"] = f"TenGigabitEthernet{loc}"
+                name = f"TenGigabitEthernet{loc}"
             else:
-                ifc[u"name"] = f"UnknownEthernet{loc}"
+                name = f"UnknownEthernet{loc}"
+            Topology.update_interface_name(node, key, name)
 
     @staticmethod
     def update_nic_interface_names_on_all_duts(nodes):
@@ -718,7 +727,6 @@ class InterfaceUtil:
 
         :param node: Node selected from DICT__nodes.
         :type node: dict
-        :raises RuntimeError: If getting of interface name and MAC fails.
         """
         # First setup interface driver specified in yaml file
         InterfaceUtil.tg_set_interfaces_default_driver(node)
@@ -736,11 +744,11 @@ class InterfaceUtil:
         tmp = u"{" + stdout.rstrip().replace(u"\n", u",") + u"}"
 
         interfaces = JsonParser().parse_data(tmp)
-        for interface in node[u"interfaces"].values():
-            name = interfaces.get(interface[u"mac_address"])
+        for iface_key, iface_value in node[u"interfaces"].items():
+            name = interfaces.get(iface_value[u"mac_address"])
             if name is None:
                 continue
-            interface[u"name"] = name
+            Topology.update_interface_name(node, iface_key, name)
 
     @staticmethod
     def iface_update_numa_node(node):
@@ -749,7 +757,6 @@ class InterfaceUtil:
 
         :param node: Node from topology.
         :type node: dict
-        :returns: Nothing.
         :raises ValueError: If numa node ia less than 0.
         :raises RuntimeError: If update of numa node failed.
         """
