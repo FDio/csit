@@ -56,10 +56,10 @@
 | |
 | | ${sid_1}= | Evaluate | (${mid}*2)-1
 | | ${sid_2}= | Evaluate | (${mid}*2)
-| | ${memif_1}= | Create memif interface | ${dut_node}
+| | ${dut_node} | ${memif_1}= | Create memif interface | ${dut_node}
 | | ... | ${filename1}${mid}${DUT1_UUID}-${sid_1} | ${mid} | ${sid_1}
 | | ... | rxq=${rxq} | txq=${txq} | role=${role}
-| | ${memif_2}= | Create memif interface | ${dut_node}
+| | ${dut_node} | ${memif_2}= | Create memif interface | ${dut_node}
 | | ... | ${filename2}${mid}${DUT1_UUID}-${sid_2} | ${mid} | ${sid_2}
 | | ... | rxq=${rxq} | txq=${txq} | role=${role}
 | | Set Interface State | ${dut_node} | ${memif_1} | up
@@ -93,7 +93,8 @@
 | | [Arguments] | ${dut_node} | ${filename} | ${mid}=${1} | ${sid}=${1}
 | | ... | ${memif_if}=memif_if1 | ${rxq}=${1} | ${txq}=${1} | ${role}=SLAVE
 | |
-| | ${memif}= | Create memif interface | ${dut_node} | ${filename}${mid}-${sid}
-| | ... | ${mid} | ${sid} | rxq=${rxq} | txq=${txq} | role=${role}
+| | ${dut_node} | ${memif}= | Create memif interface | ${dut_node}
+| | ... | ${filename}${mid}-${sid} | ${mid} | ${sid}
+| | ... | rxq=${rxq} | txq=${txq} | role=${role}
 | | Set Interface State | ${dut_node} | ${memif} | up
 | | Set Test Variable | ${${memif_if}} | ${memif}
