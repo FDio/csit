@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7759fb1c_201cc379",
+        "filename": "docs/report/introduction/methodology_hoststack_testing/methodology_vsap_ab_with_nginx.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-06-29T07:37:26Z",
+      "side": 1,
+      "message": "We should merge https://gerrit.fd.io/r/c/csit/+/32727 first.",
+      "range": {
+        "startLine": 36,
+        "startChar": 10,
+        "endLine": 36,
+        "endChar": 14
+      },
+      "revId": "bbc8299762f766abf9b831c7fb9576db53165ee8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
