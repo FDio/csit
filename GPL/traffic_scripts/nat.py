@@ -87,9 +87,9 @@ def main():
         raise ValueError(u"Incorrect protocol")
 
     pkt_raw /= Raw()
-    tx_txq.send(pkt_raw)
+    monotonic_sent = tx_txq.send(pkt_raw)
 
-    ether = rx_rxq.recv(2)
+    ether = rx_rxq.recv(2, monotonic_sent=monotonic_sent)
 
     if rx_dst_mac != ether[Ether].dst or rx_src_mac != ether[Ether].src:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")
@@ -138,9 +138,9 @@ def main():
         # flags=0x12 => SYN, ACK flags set
         pkt_raw[TCP].flags = 0x12
     pkt_raw /= Raw()
-    rx_txq.send(pkt_raw)
+    monotonic_sent = rx_txq.send(pkt_raw)
 
-    ether = tx_rxq.recv(2)
+    ether = tx_rxq.recv(2, monotonic_sent=monotonic_sent)
 
     if ether[Ether].dst != tx_src_mac or ether[Ether].src != tx_dst_mac:
         raise RuntimeError(f"Matching packet unsuccessful: {ether!r}")

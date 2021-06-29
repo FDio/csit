@@ -75,11 +75,13 @@ def main():
 
     # Send created packet on the interface
     icmp_request /= Raw()
-    txq.send(icmp_request)
+    monotonic_sent = txq.send(icmp_request)
 
     for _ in range(1000):
         while True:
-            icmp_reply = rxq.recv(wait_step, do_raise=False)
+            icmp_reply = rxq.recv(
+                wait_step, do_raise=False, monotonic_sent=monotonic_sent
+            )
             if icmp_reply is None:
                 timeout -= wait_step
                 if timeout < 0:

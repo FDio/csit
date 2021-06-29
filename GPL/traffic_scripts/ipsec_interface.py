@@ -227,9 +227,9 @@ def main():
     size_limit = 78 if ip_layer == IPv6 else 64
     if len(tx_pkt_send) < size_limit:
         tx_pkt_send[Raw].load += (b"\0" * (size_limit - len(tx_pkt_send)))
-    tx_txq.send(tx_pkt_send)
+    monotonic_sent = tx_txq.send(tx_pkt_send)
 
-    rx_pkt_recv = rx_rxq.recv(2)
+    rx_pkt_recv = rx_rxq.recv(2, monotonic_sent=monotonic_sent)
 
     check_ipsec(
         rx_pkt_recv, ip_layer, rx_src_mac, rx_dst_mac, src_tun, dst_tun, src_ip,
@@ -243,9 +243,9 @@ def main():
         ip_pkt[Raw].load += (b"\0" * (size_limit - 14 - len(ip_pkt)))
     e_pkt = sa_out.encrypt(ip_pkt)
     rx_pkt_send = (Ether(src=rx_dst_mac, dst=rx_src_mac) / e_pkt)
-    rx_txq.send(rx_pkt_send)
+    monotonic_sent = rx_txq.send(rx_pkt_send)
 
-    tx_pkt_recv = tx_rxq.recv(2)
+    tx_pkt_recv = tx_rxq.recv(2, monotonic_sent=monotonic_sent)
 
     check_ip(tx_pkt_recv, ip_layer, tx_dst_mac, tx_src_mac, dst_ip, src_ip)
 
