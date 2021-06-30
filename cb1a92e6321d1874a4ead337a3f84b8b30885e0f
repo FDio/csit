@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6bab0c1_a7f9cd15",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-06-30T12:52:52Z",
+      "side": 1,
+      "message": "What about:\nline, error_msg \u003d line[:-1].split(u\u0027###\u0027, maxsplit\u003d1)\n+ update except section",
+      "range": {
+        "startLine": 275,
+        "startChar": 24,
+        "endLine": 276,
+        "endChar": 52
+      },
+      "revId": "cb1a92e6321d1874a4ead337a3f84b8b30885e0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac0c2dd5_934b0f73",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-06-30T12:52:52Z",
+      "side": 1,
+      "message": "remove white space",
+      "range": {
+        "startLine": 467,
+        "startChar": 53,
+        "endLine": 467,
+        "endChar": 54
+      },
+      "revId": "cb1a92e6321d1874a4ead337a3f84b8b30885e0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b641f614_b623319c",
+        "filename": "resources/tools/presentation/generator_tables.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-06-30T12:52:52Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 22
+      },
+      "revId": "cb1a92e6321d1874a4ead337a3f84b8b30885e0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15379a8b_9e766685",
+        "filename": "resources/tools/presentation/generator_tables.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1361,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-06-30T12:52:52Z",
+      "side": 1,
+      "message": "What about using only replace(u\"\\n\", u\"\") ?",
+      "range": {
+        "startLine": 1361,
+        "startChar": 39,
+        "endLine": 1361,
+        "endChar": 78
+      },
+      "revId": "cb1a92e6321d1874a4ead337a3f84b8b30885e0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
