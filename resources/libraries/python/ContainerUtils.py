@@ -19,6 +19,8 @@ from re import search
 from string import Template
 from time import sleep
 
+from robot.api import logger
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
@@ -583,16 +585,14 @@ class ContainerEngine:
             u"setsid /usr/bin/vpp -c /etc/vpp/startup.conf "
             u">/tmp/vppd.log 2>&1 < /dev/null &")
 
-        topo_instance = get_library_instance(
-            u"resources.libraries.python.topology.Topology"
-        )
-        topo_instance.add_new_socket(
+        logger.trace(f"container node {self.container.node!r}")
+        Topology.add_new_socket(
             self.container.node,
             SocketType.PAPI,
             self.container.name,
             self.container.api_socket,
         )
-        topo_instance.add_new_socket(
+        Topology.add_new_socket(
             self.container.node,
             SocketType.STATS,
             self.container.name,
