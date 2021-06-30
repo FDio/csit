@@ -105,11 +105,13 @@
 | | ... | nf_chain=${nf_chain} | nf_node=${nf_node}
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | &{cont_args}= | Create Dictionary
-| | ... | name=${name} | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
+| | ... | name=${name} | mnt=${mnt} | env=${env} | root=${root}
+| | # Robot parsing of named arguments does not play nice with ProtectedDict.
+| | Set To Dictionary | ${cont_args} | node | ${nodes['${dut}']}
 | | ... | root=${root}
 | | Run Keyword If | ${pinning}
 | | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
-| | Run Keyword | ${container_group}.Construct container | &{cont_args}
+| | Run Keyword | ${container_group}.Construct container | ${cont_args}
 
 | Construct chain of containers
 | | [Documentation] | Construct 1 chain of 1..N CNFs on selected/all DUT nodes.
