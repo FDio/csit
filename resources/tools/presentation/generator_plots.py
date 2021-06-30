@@ -682,7 +682,7 @@ def plot_perf_box_name(plot, input_data):
                 layout[u"title"] = f"<b>RPS:</b> {layout[u'title']}"
                 layout[u"yaxis"][u"title"] = u"<b>Connection Rate [Mrps]</b>"
             else:
-                layout[u"title"] = f"<b>Throughput:</b> {layout[u'title']}"
+                layout[u"title"] = f"<b>Tput:</b> {layout[u'title']}"
         if y_max and max(y_max) > 1:
             layout[u"yaxis"][u"range"] = [0, max(y_max) + 2]
         plpl = plgo.Figure(data=traces, layout=layout)
@@ -796,7 +796,7 @@ def plot_ndrpdr_box_name(plot, input_data):
                         layout[u"title"] = f"<b>CPS:</b> {layout[u'title']}"
                     else:
                         layout[u"title"] = \
-                            f"<b>Throughput:</b> {layout[u'title']}"
+                            f"<b>Tput:</b> {layout[u'title']}"
                 if data_y_max:
                     layout[u"yaxis"][u"range"] = [0, max(data_y_max) / 1e6 + 1]
                 plpl = plgo.Figure(data=traces, layout=layout)
@@ -891,7 +891,7 @@ def plot_mrr_box_name(plot, input_data):
             layout = deepcopy(plot[u"layout"])
             if layout.get(u"title", None):
                 layout[u"title"] = (
-                    f"<b>Throughput:</b> {layout[u'title'].format(core=core)}"
+                    f"<b>Tput:</b> {layout[u'title'].format(core=core)}"
                 )
             if data_y_max:
                 layout[u"yaxis"][u"range"] = [0, max(data_y_max) + 1]
