@@ -135,7 +135,7 @@ class Constants:
     # Parser (PAL) has to know exact major version and minimal minor version,
     # and unless bugs, it can ignore patch version and bumped minor version.
     # TODO: Move the above into the model documentation.
-    MODEL_VERSION = u"0.6.0"
+    MODEL_VERSION = u"0.7.0"
 
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = u"/tmp/openvpp-testing"

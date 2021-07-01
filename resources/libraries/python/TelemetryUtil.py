@@ -11,10 +11,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Linux perf utility."""
+"""Telemetry integration layer."""
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.model.ExportLog import export_telemetry
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
@@ -85,7 +86,7 @@ class TelemetryUtil:
 
     @staticmethod
     def run_telemetry(node, profile, hook=None):
-        """Get telemetry stat read for duration.
+        """Gather telemetry by calling remote script, return its stdout.
 
         :param node: Node in the topology.
         :param profile: Telemetry configuration profile.
@@ -93,6 +94,8 @@ class TelemetryUtil:
         :type node: dict
         :type profile: str
         :type hook: str
+        :returns: Textual telemetry data, available for post-procesing.
+        :rtype: str
         """
         config = u""
         config += f"{Constants.REMOTE_FW_DIR}/"
@@ -106,11 +109,12 @@ class TelemetryUtil:
         bin_cmd = f"python3 -m telemetry --config {config} --hook {hook}\""
 
         exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
-        exec_cmd_no_error(node, f"cat /tmp/metric.prom", sudo=True)
+        stdout, _ = exec_cmd_no_error(node, f"cat /tmp/metric.prom", sudo=True)
+        return stdout
 
     @staticmethod
     def run_telemetry_on_all_duts(nodes, profile, hooks=None):
-        """Get telemetry stat read on all DUTs.
+        """Get and export telemetry from all DUTs.
 
         The key for "hooks" dict is the node key, e.g. "DUT2",
         the corresponding value is a sequence of string hooks for that DUT.
@@ -132,6 +136,10 @@ class TelemetryUtil:
                     for hook in hook_iterable:
                         TelemetryUtil.run_telemetry(
                             node, profile=profile, hook=hook
+                        )
+                        export_telemetry(
+                            node[u"host"], node[u"port"], socket,
+                            u"TODO", stdout
                         )
                 except IndexError:
                     pass
