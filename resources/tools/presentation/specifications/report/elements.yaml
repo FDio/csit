@@ -6178,8 +6178,10 @@
   include:
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-{core}-avf-ethip4vxlan-l2xcbase-ndrpdr"
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Gtpusw-Ip4Base-Ndrpdr.64B-{core}-avf-ethip4gtpusw-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-{core}-ethip4vxlan-l2xcbase-ndrpdr"
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-{core}-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Gtpusw-Ip4Base-Ndrpdr.64B-{core}-ethip4gtpusw-ip4base-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-{core}-ip4tunnel-base-[avf,dpdk]-{test_type}"
     layout: "plot-throughput"
@@ -7395,8 +7397,10 @@
   include:
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2xcbase-ndrpdr"
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-avf-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Gtpusw-Ip4Base-Ndrpdr.64B-.t.c-avf-ethip4gtpusw-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-.t.c-ethip4vxlan-l2xcbase-ndrpdr"
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Gtpusw-Ip4Base-Ndrpdr.64B-.t.c-ethip4gtpusw-ip4base-ndrpdr"
   layout:
     title: "3n-skx-xxv710-64b-ip4tunnel-base-[avf,dpdk]-{test_type}"
     layout: "plot-throughput-speedup-analysis"
