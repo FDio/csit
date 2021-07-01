@@ -16,6 +16,8 @@
 This is a centralized space for interaction using Builtin library.
 """
 
+
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 
 # Module level cache for BuiltIn class instance.
@@ -54,14 +56,19 @@ def get_library_instance(name):
 
     If robot is not running, return None.
 
+    It is also possible that the requested library instance
+    has not been imported yet. Return None (instead of raising RuntimeError)
+    in that case as well.
+
     :param name: Library name, insensitive to case and spaces/underscores.
     :type name: str
     :returns: Current library instance as found by Builtin.
-    :rtype: object
+    :rtype: Optional[object]
     """
     try:
-        return _builtin().get_library_instance(name)
-    except RobotNotRunningError:
+        instance = _builtin().get_library_instance(name)
+        logger.trace(f"instance {instance} type {type(instance)}")
+    except (RobotNotRunningError, RuntimeError):
         return None
 
 def get_variable(name, default=None):
