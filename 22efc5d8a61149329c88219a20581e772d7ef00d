@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6347fb1f_6a869f54",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-02T08:48:18Z",
+      "side": 1,
+      "message": "remove from there, it is not exposed to robot",
+      "range": {
+        "startLine": 112,
+        "startChar": 50,
+        "endLine": 112,
+        "endChar": 55
+      },
+      "revId": "22efc5d8a61149329c88219a20581e772d7ef00d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32dbb652_a652f91f",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-02T08:48:18Z",
+      "side": 1,
+      "message": "incorrect comment",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 1
+      },
+      "revId": "22efc5d8a61149329c88219a20581e772d7ef00d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b053675_cb0b0557",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-02T08:48:18Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 2
+      },
+      "revId": "22efc5d8a61149329c88219a20581e772d7ef00d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1983a61a_23d3e1b2",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-02T08:48:18Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 1
+      },
+      "revId": "22efc5d8a61149329c88219a20581e772d7ef00d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
