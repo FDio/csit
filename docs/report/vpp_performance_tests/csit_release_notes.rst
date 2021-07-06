@@ -47,8 +47,8 @@ List of known issues in |csit-release| for VPP performance tests:
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  1 | `VPP-662                                | 9000B packets not supported by NICs VIC1227 and VIC1387.                                                  |
-|    | <https://jira.fd.io/browse/VPP-662>`_   |                                                                                                           |
+|  1 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
+|    | <https://jira.fd.io/browse/CSIT-1782>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  2 | `CSIT-1763                              | Adapt ramp-up phase of nat44 tests for different frame sizes.                                             |
 |    | <https://jira.fd.io/browse/CSIT-1763>`_ | Currently ramp-up phase rate and duration values are correctly set for tests with 64B frame size.         |
