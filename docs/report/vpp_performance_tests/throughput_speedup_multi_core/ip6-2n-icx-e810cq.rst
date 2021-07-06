@@ -34,25 +34,26 @@
 78b-ip6routing-base-scale-avf
 -----------------------------
 
-.. raw:: html
+..
+    .. raw:: html
 
-    <center>
-    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-78b-ip6routing-base-scale-avf-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-78b-ip6routing-base-scale-avf-ndr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-78b-ip6routing-base-scale-avf-ndr-tsa}
-            \label{fig:2n-icx-e810cq-78b-ip6routing-base-scale-avf-ndr-tsa}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-78b-ip6routing-base-scale-avf-ndr-tsa}
+                \label{fig:2n-icx-e810cq-78b-ip6routing-base-scale-avf-ndr-tsa}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
 .. raw:: html
 
@@ -77,25 +78,26 @@
 78b-ip6routing-base-scale-dpdk
 ------------------------------
 
-.. raw:: html
+..
+    .. raw:: html
 
-    <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-78b-ip6routing-base-scale-dpdk-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-78b-ip6routing-base-scale-dpdk-ndr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-78b-ip6routing-base-scale-dpdk-ndr-tsa}
-            \label{fig:2n-icx-e810cq-78b-ip6routing-base-scale-dpdk-ndr-tsa}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-78b-ip6routing-base-scale-dpdk-ndr-tsa}
+                \label{fig:2n-icx-e810cq-78b-ip6routing-base-scale-dpdk-ndr-tsa}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
 .. raw:: html
 
