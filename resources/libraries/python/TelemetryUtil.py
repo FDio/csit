@@ -11,7 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Linux perf utility."""
+"""Telemetry utility."""
+
+from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
@@ -104,9 +106,19 @@ class TelemetryUtil:
         cd_cmd += f"{Constants.RESOURCES_TOOLS}"
 
         bin_cmd = f"python3 -m telemetry --config {config} --hook {hook}\""
+        hostname = node[u"host"]
 
         exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
-        exec_cmd_no_error(node, f"cat /tmp/metric.prom", sudo=True)
+        stdout, _ = exec_cmd_no_error(
+            node,
+            u"echo '# TYPE target info';"
+            u"echo '# HELP target Target metadata';"
+            f"echo 'target_info{{hostname=\"{hostname}\",hook=\"{hook}\"}} 1'\n"
+            f";"
+            f"sudo -E -S cat /tmp/metric.prom",
+            sudo=False
+        )
+        logger.info(stdout)
 
     @staticmethod
     def run_telemetry_on_all_duts(nodes, profile):
