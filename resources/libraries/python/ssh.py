@@ -410,7 +410,9 @@ class SSH:
         logger.trace(f"SCP took {end-start} seconds")
 
 
-def exec_cmd(node, cmd, timeout=600, sudo=False, disconnect=False):
+def exec_cmd(
+        node, cmd, timeout=600, sudo=False, disconnect=False,
+        log_stdout_err=True):
     """Convenience function to ssh/exec/return rc, out & err.
 
     Returns (rc, stdout, stderr).
@@ -420,11 +422,15 @@ def exec_cmd(node, cmd, timeout=600, sudo=False, disconnect=False):
     :param timeout: Timeout value in seconds. Default: 600.
     :param sudo: Sudo privilege execution flag. Default: False.
     :param disconnect: Close the opened SSH connection if True.
+    :param log_stdout_err: If True, stdout and stderr are logged. stdout
+        and stderr are logged also if the return code is not zero
+        independently of the value of log_stdout_err.
     :type node: dict
     :type cmd: str or OptionString
     :type timeout: int
     :type sudo: bool
     :type disconnect: bool
+    :type log_stdout_err: bool
     :returns: RC, Stdout, Stderr.
     :rtype: tuple(int, str, str)
     """
@@ -445,10 +451,12 @@ def exec_cmd(node, cmd, timeout=600, sudo=False, disconnect=False):
 
     try:
         if not sudo:
-            ret_code, stdout, stderr = ssh.exec_command(cmd, timeout=timeout)
+            ret_code, stdout, stderr = ssh.exec_command(
+                cmd, timeout=timeout, log_stdout_err=log_stdout_err
+        )
         else:
             ret_code, stdout, stderr = ssh.exec_command_sudo(
-                cmd, timeout=timeout
+                cmd, timeout=timeout, log_stdout_err=log_stdout_err
             )
     except SSHException as err:
         logger.error(repr(err))
@@ -462,7 +470,7 @@ def exec_cmd(node, cmd, timeout=600, sudo=False, disconnect=False):
 
 def exec_cmd_no_error(
         node, cmd, timeout=600, sudo=False, message=None, disconnect=False,
-        retries=0, include_reason=False):
+        retries=0, include_reason=False, log_stdout_err=True):
     """Convenience function to ssh/exec/return out & err.
 
     Verifies that return code is zero.
@@ -478,6 +486,9 @@ def exec_cmd_no_error(
     :param disconnect: Close the opened SSH connection if True.
     :param retries: How many times to retry on failure.
     :param include_reason: Whether default info should be appended to message.
+    :param log_stdout_err: If True, stdout and stderr are logged. stdout
+        and stderr are logged also if the return code is not zero
+        independently of the value of log_stdout_err.
     :type node: dict
     :type cmd: str or OptionString
     :type timeout: int
@@ -486,13 +497,15 @@ def exec_cmd_no_error(
     :type disconnect: bool
     :type retries: int
     :type include_reason: bool
+    :type log_stdout_err: bool
     :returns: Stdout, Stderr.
     :rtype: tuple(str, str)
     :raises RuntimeError: If bash return code is not 0.
     """
     for _ in range(retries + 1):
         ret_code, stdout, stderr = exec_cmd(
-            node, cmd, timeout=timeout, sudo=sudo, disconnect=disconnect
+            node, cmd, timeout=timeout, sudo=sudo, disconnect=disconnect,
+            log_stdout_err=log_stdout_err
         )
         if ret_code == 0:
             break
