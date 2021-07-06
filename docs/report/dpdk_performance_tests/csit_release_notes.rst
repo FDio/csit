@@ -4,6 +4,16 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
+
+#. DPDK PERFORMANCE TESTS
+
+   - CSIT test environment is versioned, see
+     :ref:`test_environment_versioning`.
+
+   - **Upgrade to Ubuntu 20.04 LTS**: Reinstall base operating system to Ubuntu
+     20.04.2 LTS. Upgrade includes also baseline Docker containers used for
+     spawning topology.
+
 #. DPDK RELEASE VERSION CHANGE
 
    - |csit-release| tested |dpdk-release|, as used by |vpp-release|.
