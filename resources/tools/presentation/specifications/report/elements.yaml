@@ -3056,39 +3056,41 @@
   - "parent"
   - "msg"
 
-# # Detailed Test Results - VPP Performance Results 2n-icx
-# - type: "table"
-#   title: "Detailed Test Results - VPP Performance Results 2n-icx"
-#   algorithm: "table_merged_details"
-#   output-file: "{DIR[DTR,PERF,VPP,2N,ICX]}/"
-#   columns:
-#     - title: " |prein| Test Name |preout| "
-#       data: "data name"
-#     - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-#       data: "data msg"
-#   data: "vpp-2n-icx-curr-iter-best"
-#   filter: "'NDRPDR'"
-#   parameters:
-#   - "name"
-#   - "parent"
-#   - "msg"
+# Detailed Test Results - VPP Performance Results 2n-icx
+- type: "table"
+  title: "Detailed Test Results - VPP Performance Results 2n-icx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,VPP,2N,ICX]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "vpp-2n-icx-curr-iter-best"
+  filter: "'NDRPDR'"
+  remove-ndr: True
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
 
-# # Detailed Test Results - VPP Performance Results 3n-icx
-# - type: "table"
-#   title: "Detailed Test Results - VPP Performance Results 3n-icx"
-#   algorithm: "table_merged_details"
-#   output-file: "{DIR[DTR,PERF,VPP,3N,ICX]}/"
-#   columns:
-#     - title: " |prein| Test Name |preout| "
-#       data: "data name"
-#     - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-#       data: "data msg"
-#   data: "vpp-3n-icx-curr-iter-best"
-#   filter: "'NDRPDR'"
-#   parameters:
-#   - "name"
-#   - "parent"
-#   - "msg"
+# Detailed Test Results - VPP Performance Results 3n-icx
+- type: "table"
+  title: "Detailed Test Results - VPP Performance Results 3n-icx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,VPP,3N,ICX]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "vpp-3n-icx-curr-iter-best"
+  filter: "'NDRPDR'"
+  remove-ndr: True
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
 
 # Detailed Test Results - VPP Performance Results 3n-tsh
 - type: "table"
@@ -3226,39 +3228,41 @@
   - "name"
   - "conf-history"
 
-# # Test configuration - VPP Performance Test Configs 2n-icx
-# - type: "table"
-#   title: "Test configuration - VPP Performance Test Configs 2n-icx"
-#   algorithm: "table_merged_details"
-#   output-file: "{DIR[DTC,PERF,VPP,2N,ICX]}/"
-#   columns:
-#     - title: " |prein| Test Name |preout| "
-#       data: "data name"
-#     - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-#       data: "data conf-history"
-#   data: "vpp-2n-icx-curr-iter-best"
-#   filter: "'NDRPDR'"
-#   parameters:
-#   - "parent"
-#   - "name"
-#   - "conf-history"
+# Test configuration - VPP Performance Test Configs 2n-icx
+- type: "table"
+  title: "Test configuration - VPP Performance Test Configs 2n-icx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,PERF,VPP,2N,ICX]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-2n-icx-curr-iter-best"
+  filter: "'NDRPDR'"
+  remove-ndr: True
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
 
-# # Test configuration - VPP Performance Test Configs 3n-icx
-# - type: "table"
-#   title: "Test configuration - VPP Performance Test Configs 3n-icx"
-#   algorithm: "table_merged_details"
-#   output-file: "{DIR[DTC,PERF,VPP,3N,ICX]}/"
-#   columns:
-#     - title: " |prein| Test Name |preout| "
-#       data: "data name"
-#     - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-#       data: "data conf-history"
-#   data: "vpp-3n-icx-curr-iter-best"
-#   filter: "'NDRPDR'"
-#   parameters:
-#   - "parent"
-#   - "name"
-#   - "conf-history"
+# Test configuration - VPP Performance Test Configs 3n-icx
+- type: "table"
+  title: "Test configuration - VPP Performance Test Configs 3n-icx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,PERF,VPP,3N,ICX]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-3n-icx-curr-iter-best"
+  filter: "'NDRPDR'"
+  remove-ndr: True
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
 
 # Test configuration - VPP Performance Test Configs 3n-tsh
 - type: "table"
@@ -4665,8 +4669,8 @@
     - "{DIR[DTR,PERF,VPP,2N,SKX]}"
     - "{DIR[DTR,PERF,VPP,3N,SKX]}"
     - "{DIR[DTR,PERF,VPP,2N,CLX]}"
-#     - "{DIR[DTR,PERF,VPP,2N,ICX]}"
-#     - "{DIR[DTR,PERF,VPP,3N,ICX]}"
+    - "{DIR[DTR,PERF,VPP,2N,ICX]}"
+    - "{DIR[DTR,PERF,VPP,3N,ICX]}"
     - "{DIR[DTR,PERF,VPP,2N,ZN2]}"
     - "{DIR[DTR,PERF,VPP,3N,TSH]}"
     - "{DIR[DTR,PERF,VPP,2N,TX2]}"
@@ -4676,8 +4680,8 @@
     - "vpp-2n-skx-curr-cov"
     - "vpp-3n-skx-curr-cov"
     - "vpp-2n-clx-curr-cov"
-#     - "vpp-2n-icx-curr-iter-best"
-#     - "vpp-3n-icx-curr-iter-best"
+    - "vpp-2n-icx-curr-iter-best"
+    - "vpp-3n-icx-curr-iter-best"
     - "vpp-2n-zn2-curr-cov"
     - "vpp-3n-tsh-curr-cov"
     - "vpp-2n-tx2-curr-cov"
@@ -4704,8 +4708,8 @@
       - "2n-skx"
       - "3n-skx"
       - "2n-clx"
-#       - "2n-icx"
-#       - "3n-icx"
+      - "2n-icx"
+      - "3n-icx"
       - "2n-zn2"
       - "3n-tsh"
       - "2n-tx2"
@@ -4731,8 +4735,8 @@
     - "{DIR[DTC,PERF,VPP,2N,SKX]}"
     - "{DIR[DTC,PERF,VPP,3N,SKX]}"
     - "{DIR[DTC,PERF,VPP,2N,CLX]}"
-#     - "{DIR[DTC,PERF,VPP,2N,ICX]}"
-#     - "{DIR[DTC,PERF,VPP,3N,ICX]}"
+    - "{DIR[DTC,PERF,VPP,2N,ICX]}"
+    - "{DIR[DTC,PERF,VPP,3N,ICX]}"
     - "{DIR[DTC,PERF,VPP,2N,ZN2]}"
     - "{DIR[DTC,PERF,VPP,3N,TSH]}"
     - "{DIR[DTC,PERF,VPP,2N,TX2]}"
@@ -4742,8 +4746,8 @@
     - "vpp-2n-skx-curr-cov"
     - "vpp-3n-skx-curr-cov"
     - "vpp-2n-clx-curr-cov"
-#     - "vpp-2n-icx-curr-iter-best"
-#     - "vpp-3n-icx-curr-iter-best"
+    - "vpp-2n-icx-curr-iter-best"
+    - "vpp-3n-icx-curr-iter-best"
     - "vpp-2n-zn2-curr-cov"
     - "vpp-3n-tsh-curr-cov"
     - "vpp-2n-tx2-curr-cov"
@@ -4770,8 +4774,8 @@
       - "2n-skx"
       - "3n-skx"
       - "2n-clx"
-#       - "2n-icx"
-#       - "3n-icx"
+      - "2n-icx"
+      - "3n-icx"
       - "2n-zn2"
       - "3n-tsh"
       - "2n-tx2"
