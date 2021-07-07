@@ -119,6 +119,24 @@ def get_optimistic_bool_from_env(env_var_names):
 class Constants:
     """Constants used in CSIT."""
 
+    # Version for CSIT data model. TODO: Add link to documentation.
+    # It is recommended to use semantic versioning: https://semver.org/
+    # If old parsed does not work with new data (backward incompatible
+    # model change), bump the major version. If the above works,
+    # but a new parser does not work with old data (forward incompatible
+    # model change), bump he minor version.
+    # That means, if the new model misses a field present in the old model,
+    # bump the major version. If the new model adds a field
+    # not present in the old model, bump the minor version.
+    # Any other edit in the implmenetation bumps the patch version.
+    # If you change value type or formatting,
+    # consider whether the parser (PAL) understands the new value correctly.
+    # Renaming a field is the same as adding a new one and removing the old one.
+    # Parser (PAL) has to know exact major version and minimal minor version,
+    # and unless bugs, it can ignore patch version and bumped minor version.
+    # TODO: Move the above into the model documentation.
+    MODEL_VERSION = u"0.1.0"
+
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = u"/tmp/openvpp-testing"
 
