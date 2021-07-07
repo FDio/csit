@@ -279,3 +279,30 @@ def export_ssh_timeout(
         ),
     )
     data[u"log"].append(papi_record)
+
+
+def export_mlrsearch_debug(message, timestamp=None):
+    """Add a log item with debug messages from MLRsearch.
+
+    Message is put as message, data is an empty string.
+
+    Timestamp marks time when MLRsearch thinks the message applies.
+    Current time is used if timestamp is missing.
+    Log level is always DEBUG.
+
+    :param message: Text to log.
+    :param timestamp: Local UTC time just before sending.
+    :type message: str
+    :type timestamp: Optional[str]
+    """
+    data = get_export_data()
+    mlrsearch_record = dict(
+        source_type=u"search_algorithm",
+        source_id=u"mlrsearch",
+        msg_type=u"mlrsearch_debug",
+        log_level=u"DEBUG",
+        timestamp=timestamp_or_now(timestamp),
+        msg=str(message),
+        data=u"",
+    )
+    data[u"log"].append(mlrsearch_record)
