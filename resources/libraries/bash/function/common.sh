@@ -631,6 +631,14 @@ function reserve_and_cleanup_testbed () {
 
     while true; do
         for topo in "${TOPOLOGIES[@]}"; do
+            case "${TEST_CODE}" in
+                *"2n-aws"* | *"3n-aws"*)
+                    terraform_init
+                    terraform_apply
+                    ;;
+                *)
+                    ;;
+            esac
             set +e
             scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
             opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
