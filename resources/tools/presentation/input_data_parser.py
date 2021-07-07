@@ -295,6 +295,10 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_TC_PAPI_CLI = re.compile(r'.*\((\d+.\d+.\d+.\d+.) - (.*)\)')
 
+    REGEX_SH_RUN_HOST = re.compile(
+        r'hostname=\"(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3})\",hook=\"(.*)\"'
+    )
+
     def __init__(self, metadata, mapping, ignore, for_output):
         """Initialisation.
 
@@ -701,7 +705,7 @@ class ExecutionChecker(ResultVisitor):
 
         if self._telemetry_kw_counter > 1:
             return
-        if not msg.message.count(u"vpp_runtime_calls"):
+        if not msg.message.count(u"# TYPE vpp_runtime_calls"):
             return
 
         if u"telemetry-show-run" not in \
@@ -709,23 +713,33 @@ class ExecutionChecker(ResultVisitor):
             self._data[u"tests"][self._test_id][u"telemetry-show-run"] = dict()
 
         self._telemetry_msg_counter += 1
-        dut = f"dut{self._telemetry_msg_counter}"
+        groups = re.search(self.REGEX_SH_RUN_HOST, msg.message)
+        if not groups:
+            return
+        try:
+            host = groups.group(1)
+        except (AttributeError, IndexError):
+            host = u""
+        try:
+            sock = groups.group(2)
+        except (AttributeError, IndexError):
+            sock = u""
         runtime = {
             u"source_type": u"node",
-            u"source_id": dut,
+            u"source_id": host,
             u"msg_type": u"metric",
             u"log_level": u"INFO",
             u"timestamp": msg.timestamp,
             u"msg": u"show_runtime",
-            u"host": dut,  # No info, should be host IP
-            u"socket": u"",  # No info
+            u"host": host,
+            u"socket": sock,
             u"data": list()
         }
         for line in msg.message.splitlines():
             if not line.startswith(u"vpp_runtime_"):
                 continue
             try:
-                params, value = line.rsplit(u" ", maxsplit=2)[:-1]
+                params, value, timestamp = line.rsplit(u" ", maxsplit=2)
                 cut = params.index(u"{")
                 name = params[:cut].split(u"_", maxsplit=2)[-1]
                 labels = eval(
@@ -736,17 +750,17 @@ class ExecutionChecker(ResultVisitor):
                     {
                         u"name": name,
                         u"value": value,
+                        u"timestamp": timestamp,
                         u"labels": labels
                     }
                 )
             except (TypeError, ValueError, IndexError):
                 continue
-
-        self._data[u'tests'][self._test_id][u'telemetry-show-run'][dut] = \
-            copy.copy(
+        self._data[u'tests'][self._test_id][u'telemetry-show-run']\
+            [f"dut{self._telemetry_msg_counter}"] = copy.copy(
                 {
-                    u"host": dut,
-                    u"socket": u"",
+                    u"host": host,
+                    u"socket": sock,
                     u"runtime": runtime
                 }
             )
