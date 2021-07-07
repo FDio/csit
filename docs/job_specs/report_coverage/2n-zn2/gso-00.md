@@ -38,8 +38,6 @@
 ## ./nfv_density/dcr_memif/chain_ipsec
 ## ./nfv_density/dcr_memif/pipeline
 ## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
 ## ./srv6
 ## ./tcp
 ## ./vm_vhost
-## ./vts
