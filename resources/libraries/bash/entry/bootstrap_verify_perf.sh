@@ -32,17 +32,19 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
 source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
+source "${BASH_FUNCTION_DIR}/terraform.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
-select_topology || die
 select_arch_os || die
 gather_build || die
 check_download_dir || die
 activate_virtualenv || die
 generate_tests || die
 archive_tests || die
+prepare_topology || die
+select_topology || die
 reserve_and_cleanup_testbed || die
 select_tags || die
 compose_pybot_arguments || die

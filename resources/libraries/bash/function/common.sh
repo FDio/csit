@@ -481,11 +481,6 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="tsh"
             ;;
-        *)
-            # Fallback to 3-node Haswell by default (backward compatibility)
-            NODENESS="3n"
-            FLAVOR="hsw"
-            ;;
     esac
 }
 
@@ -538,9 +533,6 @@ function get_test_tag_string () {
                 TEST_TAG_STRING="${test_tag_array[@]:1}" || true
             elif [[ "${test_tag_array[0]}" == "skx" ]]; then
                 export GRAPH_NODE_VARIANT="skx"
-                TEST_TAG_STRING="${test_tag_array[@]:1}" || true
-            elif [[ "${test_tag_array[0]}" == "hsw" ]]; then
-                export GRAPH_NODE_VARIANT="hsw"
                 TEST_TAG_STRING="${test_tag_array[@]:1}" || true
             fi
         fi
@@ -604,6 +596,34 @@ function move_archives () {
             rm -rf "${ARCHIVE_DIR}"/* || die "Delete failed."
         fi
     fi
+}
+
+
+function prepare_topology () {
+
+    # Prepare virtual testbed topology if needed based on flavor.
+
+    # Variables read:
+    # - NODENESS - Node multiplicity of testbed, either "2n" or "3n".
+    # - FLAVOR - Node flavor string, e.g. "clx" or "skx".
+    # Functions called:
+    # - die - Print to stderr and exit.
+    # - terraform_init - Terraform init topology.
+    # - terraform_apply - Terraform apply topology.
+
+    set -exuo pipefail
+
+    case_text="${NODENESS}_${FLAVOR}"
+    case "${case_text}" in
+        "2n_aws")
+            terraform_init || die "Failed to call terraform init."
+            terraform_apply || die "Failed to call terraform apply."
+            ;;
+        "3n_aws")
+            terraform_init || die "Failed to call terraform init."
+            terraform_apply || die "Failed to call terraform apply."
+            ;;
+    esac
 }
 
 
@@ -809,7 +829,7 @@ function select_tags () {
         *"3n-skx"* | *"2n-skx"* | *"2n-clx"* | *"2n-zn2"*)
             default_nic="nic_intel-xxv710"
             ;;
-        *"3n-hsw"* | *"2n-tx2"* | *"mrr-daily-master")
+        *"2n-tx2"* | *"mrr-daily-master")
             default_nic="nic_intel-xl710"
             ;;
         *"2n-aws"* | *"3n-aws"*)
@@ -897,7 +917,6 @@ function select_tags () {
     #
     # Reasons for blacklisting:
     # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
-    # TODO: Add missing reasons here (if general) or where used (if specific).
     case "${TEST_CODE}" in
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
@@ -936,20 +955,8 @@ function select_tags () {
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
             ;;
-        *"3n-hsw"*)
-            test_tag_array+=("!drv_avf")
-            # All cards have access to QAT. But only one card (xl710)
-            # resides in same NUMA as QAT. Other cards must go over QPI
-            # which we do not want to even run.
-            test_tag_array+=("!ipsechwNOTnic_intel-xl710")
-            ;;
         *"2n-aws"* | *"3n-aws"*)
             test_tag_array+=("!ipsechw")
-            ;;
-        *)
-            # Default to 3n-hsw due to compatibility.
-            test_tag_array+=("!drv_avf")
-            test_tag_array+=("!ipsechwNOTnic_intel-xl710")
             ;;
     esac
 
@@ -1000,7 +1007,7 @@ function select_topology () {
 
     # Variables read:
     # - NODENESS - Node multiplicity of testbed, either "2n" or "3n".
-    # - FLAVOR - Node flavor string, currently either "hsw" or "skx".
+    # - FLAVOR - Node flavor string, e.g. "clx" or "skx".
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # - TOPOLOGIES_DIR - Path to existing directory with available topologies.
     # Variables set:
@@ -1013,8 +1020,6 @@ function select_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        # TODO: Move tags to "# Blacklisting certain tags per topology" section.
-        # TODO: Double link availability depends on NIC used.
         "1n_vbox")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
@@ -1047,10 +1052,6 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_dnv*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
-        "3n_hsw")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_hsw*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
         "3n_tsh")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
@@ -1068,7 +1069,7 @@ function select_topology () {
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *)
-            # No falling back to 3n_hsw default, that should have been done
+            # No falling back to default, that should have been done
             # by the function which has set NODENESS and FLAVOR.
             die "Unknown specification: ${case_text}"
     esac
@@ -1198,6 +1199,13 @@ function untrap_and_unreserve_testbed () {
         python3 "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }
+        case "${TEST_CODE}" in
+            *"2n-aws"* | *"3n-aws"*)
+                terraform_destroy || die "Failed to call terraform destroy."
+                ;;
+            *)
+                ;;
+        esac
         WORKING_TOPOLOGY=""
         set -eu
     fi
