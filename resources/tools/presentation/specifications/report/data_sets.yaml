@@ -555,6 +555,7 @@
       - 76  # rls2106.rel NDRPDR iter env 7
       - 77  # rls2106.rel NDRPDR iter env 7
       - 82  # rls2106.rel NDRPDR iter env 7
+      - 83  # rls2106.rel NDRPDR iter env 7
       - 84  # rls2106.rel NDRPDR iter env 7
       - 85  # rls2106.rel NDRPDR iter env 7
       - 86  # rls2106.rel NDRPDR iter env 7
@@ -609,6 +610,7 @@
       - 79  # rls2106.rel NDRPDR reconf iter env 7
       - 90  # rls2106.rel NDRPDR reconf iter env 7
       - 93  # rls2106.rel NDRPDR reconf iter env 7
+      - 94  # rls2106.rel NDRPDR reconf iter env 7
       - 96  # rls2106.rel NDRPDR reconf iter env 7
 
   vpp-2n-clx-curr-soak:
@@ -621,6 +623,7 @@
       - 76  # rls2106.rel NDRPDR iter env 7
       - 77  # rls2106.rel NDRPDR iter env 7
       - 82  # rls2106.rel NDRPDR iter env 7
+      - 83  # rls2106.rel NDRPDR iter env 7
       - 84  # rls2106.rel NDRPDR iter env 7
       - 85  # rls2106.rel NDRPDR iter env 7
       - 86  # rls2106.rel NDRPDR iter env 7
@@ -631,6 +634,7 @@
       - 76  # rls2106.rel NDRPDR iter env 7
       - 77  # rls2106.rel NDRPDR iter env 7
       - 82  # rls2106.rel NDRPDR iter env 7
+      - 83  # rls2106.rel NDRPDR iter env 7
       - 84  # rls2106.rel NDRPDR iter env 7
       - 85  # rls2106.rel NDRPDR iter env 7
       - 86  # rls2106.rel NDRPDR iter env 7
@@ -853,6 +857,7 @@
       - 23  # rls2106.rel NDRPDR iter env 7
       - 24  # rls2106.rel NDRPDR iter env 7
       - 25  # rls2106.rel NDRPDR iter env 7
+      - 26  # rls2106.rel NDRPDR iter env 7
       - 28  # rls2106.rel NDRPDR iter env 7
 
   vpp-2n-tx2-curr-iter-best:

@@ -390,7 +390,7 @@ def table_merged_details(table, input_data):
                         # Temporary solution: remove NDR results from message:
                         if bool(table.get(u'remove-ndr', False)):
                             try:
-                                col_data = col_data.split(u" |br| ", 1)[1]
+                                col_data = col_data.split(u"\n", 1)[1]
                             except IndexError:
                                 pass
                         col_data = col_data.replace(u'\n', u' |br| ').\
