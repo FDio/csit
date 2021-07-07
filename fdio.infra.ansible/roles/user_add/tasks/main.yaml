@@ -33,5 +33,7 @@
     line: "PasswordAuthentication no"
   notify:
     - "Restart SSHd"
+  when:
+    - sshd_disable_password_login
   tags:
     - user-add-conf
