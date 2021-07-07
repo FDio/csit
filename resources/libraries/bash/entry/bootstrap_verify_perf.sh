@@ -32,6 +32,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
 source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
+source "${BASH_FUNCTION_DIR}/terraform.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 get_test_code "${1-}" || die

@@ -9,3 +9,6 @@ users_create_homedirs: true
 
 # Default list of users to create.
 users: []
+
+# Default enable password login.
+sshd_disable_password_login: false
