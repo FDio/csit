@@ -33,6 +33,9 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.model.ExportLog import (
+    export_papi_command_sent, export_papi_command_context, export_papi_replies
+)
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType
@@ -772,13 +775,34 @@ class PapiSocketExecutor:
         local_list = self._api_command_list
         # Clear first as execution may fail.
         self._api_command_list = list()
-        replies = list()
+        responses = list()
         for command in local_list:
             api_name = command[u"api_name"]
+            api_args = command[u"api_args"]
             papi_fn = getattr(vpp_instance.api, api_name)
+            export_papi_command_sent(
+                host=self._node[u"host"],
+                port=self._node[u"port"],
+                socket=self._remote_vpp_socket,
+                cmd_name=api_name,
+                cmd_args=api_args,
+            )
             try:
                 try:
-                    reply = papi_fn(**command[u"api_args"])
+                    replies = papi_fn(**api_args)
+                    # During a sync call, VPP PAPI code adds context value
+                    # to the args, but due to ** behavior, that edit
+                    # is invisible here.
+                    # So we access the VPP code internals instead.
+                    callable_object = vpp_instance.get_context
+                    with callable_object.lock:
+                        context = callable_object.context.value
+                    export_papi_command_context(
+                        host=self._node[u"host"],
+                        port=self._node[u"port"],
+                        socket=self._remote_vpp_socket,
+                        context=context,
+                    )
                 except (IOError, struct.error) as err:
                     # Occasionally an error happens, try reconnect.
                     logger.warn(f"Reconnect after error: {err!r}")
@@ -787,15 +811,25 @@ class PapiSocketExecutor:
                     time.sleep(1)
                     vpp_instance.connect_sync(u"csit_socket")
                     logger.trace(u"Reconnected.")
-                    reply = papi_fn(**command[u"api_args"])
+                    replies = papi_fn(**api_args)
+                    # The context remained the same as it is in args now.
             except (AttributeError, IOError, struct.error) as err:
                 raise AssertionError(err_msg) from err
-            # *_dump commands return list of objects, convert, ordinary reply.
-            if not isinstance(reply, list):
-                reply = [reply]
-            for item in reply:
+            # *_dump commands return list of objects, convert ordinary reply.
+            if not isinstance(replies, list):
+                replies = [replies]
+            # We need to dictize before export and export before checks.
+            dict_replies = [dictize(item) for item in replies]
+            export_papi_replies(
+                host=self._node[u"host"],
+                port=self._node[u"port"],
+                socket=self._remote_vpp_socket,
+                context=context,
+                replies=dict_replies,
+            )
+            for item in replies:
                 self.crc_checker.check_api_name(item.__class__.__name__)
-                dict_item = dictize(item)
+            for dict_item in dict_replies:
                 if u"retval" in dict_item.keys():
                     # *_details messages do not contain retval.
                     retval = dict_item[u"retval"]
@@ -805,8 +839,8 @@ class PapiSocketExecutor:
                             f"Retval {retval!r} does not match expected "
                             f"retval {exp_rv!r}"
                         )
-                replies.append(dict_item)
-        return replies
+                responses.append(dict_item)
+        return responses
 
 
 class Disconnector:
