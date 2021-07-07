@@ -1,0 +1,9 @@
+all:
+  children:
+    tg:
+      hosts:
+        3.68.219.210
+    sut:
+      hosts:
+        52.59.212.231
+        

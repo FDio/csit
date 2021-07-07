@@ -631,6 +631,14 @@ function reserve_and_cleanup_testbed () {
 
     while true; do
         for topo in "${TOPOLOGIES[@]}"; do
+            case "${TEST_CODE}" in
+                *"2n-aws"* | *"3n-aws"*)
+                    terraform_init || die "Failed to call terraform init."
+                    terraform_apply || die "Failed to call terraform apply."
+                    ;;
+                *)
+                    ;;
+            esac
             set +e
             scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
             opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
@@ -1198,6 +1206,13 @@ function untrap_and_unreserve_testbed () {
         python3 "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }
+        case "${TEST_CODE}" in
+            *"2n-aws"* | *"3n-aws"*)
+                terraform_destroy || die "Failed to call terraform destroy."
+                ;;
+            *)
+                ;;
+        esac
         WORKING_TOPOLOGY=""
         set -eu
     fi

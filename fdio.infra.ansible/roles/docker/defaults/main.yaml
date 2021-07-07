@@ -27,7 +27,7 @@ docker_yum_gpg_key: https://download.docker.com/linux/centos/gpg
 
 # A list of users who will be added to the docker group.
 docker_users:
-  - "{{ ansible_user }}"
+  - "{{ ansible_env.USER }}"
 
 # Proxy settings.
 docker_daemon_environment_http:
