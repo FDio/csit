@@ -20,9 +20,10 @@ from collections import Counter
 from yaml import safe_load
 
 from robot.api import logger
-from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
+from robot.libraries.BuiltIn import RobotNotRunningError
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.robot_interaction import get_variable
 
 __all__ = [
     u"DICT__nodes", u"Topology", u"NodeType", u"SocketType", u"NodeSubTypeTG"
@@ -35,7 +36,7 @@ def load_topo_from_yaml():
     :returns: Nodes from loaded topology.
     """
     try:
-        topo_path = BuiltIn().get_variable_value(u"${TOPOLOGY_PATH}")
+        topo_path = get_variable(u"\\${TOPOLOGY_PATH}")
     except RobotNotRunningError:
         return ''
 
