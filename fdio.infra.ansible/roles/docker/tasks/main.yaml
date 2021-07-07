@@ -75,11 +75,9 @@
 
 - name: Conf - Users to Docker Group
   user:
-    name: "{{ item }}"
+    name: "{{ ansible_user }}"
     groups: "docker"
     append: True
-  loop: "{{ docker_users }}"
-  when: docker_users
   tags:
     - docker-conf-user
 
