@@ -374,6 +374,24 @@
 | | ${transaction_type} = | Get Variable Value | \${transaction_type} | packet
 | | Return From Keyword | ${transaction_type}
 
+| Get Trial Type
+| | [Documentation]
+| | ... | Return value of \${trial_type} variable,
+| | ... | or "unknown" if not defined.
+| |
+| | ... | The return value provides some identifier for methods excutable
+| | ... | from various contexts, useful when the methods lack other ways
+| | ... | (e.g. optional arguments) to get the context information.
+| | ... | Typical example: distinguishing NDR trial from PDR trial
+| | ... | when exporting telemetry
+| | ... | (as that is done via additional action, so no arguments available).
+| | ... | *Example:*
+| |
+| | ... | \| \${trial_type} = \| Get Trial Type \|
+| |
+| | ${trial_type} = | Get Variable Value | \${trial_type} | unknown
+| | Return From Keyword | ${trial_type}
+
 | Get Use Latency
 | | [Documentation]
 | | ... | Return value of \${use_latency} variable,
