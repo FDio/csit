@@ -76,7 +76,7 @@ module "minio" {
   minio_service_name             = "storage"
   minio_host                     = "http://10.32.8.1{4...7}"
   minio_port                     = 9000
-  minio_container_image          = "minio/minio:RELEASE.2020-12-03T05-49-24Z"
+  minio_container_image          = "minio/minio:RELEASE.2021-07-08T01-15-01Z"
   minio_vault_secret             = {
     use_vault_provider           = false,
     vault_kv_policy_name         = "kv-secret",
@@ -91,7 +91,7 @@ module "minio" {
 
   # minio client
   mc_job_name                    = "prod-mc"
-  mc_container_image             = "minio/mc:RELEASE.2020-12-10T01-26-17Z"
+  mc_container_image             = "minio/mc:RELEASE.2021-07-08T01-15-01Z"
   mc_extra_commands              = [
     "mc policy set public LOCALMINIO/logs.fd.io",
     "mc policy set public LOCALMINIO/docs.fd.io",
