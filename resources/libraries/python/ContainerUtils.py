@@ -66,8 +66,11 @@ class ContainerManager:
         except KeyError:
             raise RuntimeError(f"Failed to get container with name: {name}")
 
-    def construct_container(self, **kwargs):
+    def construct_container(self, kwargs):
         """Construct container object on node with specified parameters.
+
+        Using kwargs instead of **kwargs, as for Robot call sites
+        the starred form would convert from ProtectedDict to dict.
 
         :param kwargs: Key-value pairs used to construct container.
         :param kwargs: dict
@@ -87,11 +90,14 @@ class ContainerManager:
         # Store container instance
         self.containers[kwargs[u"name"]] = self.engine.container
 
-    def construct_containers(self, **kwargs):
+    def construct_containers(self, kwargs):
         """Construct 1..N container(s) on node with specified name.
 
         Ordinal number is automatically added to the name of container as
         suffix.
+
+        Using kwargs instead of **kwargs, as for Robot call sites
+        the starred form would convert from ProtectedDict to dict.
 
         :param kwargs: Named parameters.
         :param kwargs: dict
@@ -101,7 +107,7 @@ class ContainerManager:
             # Name will contain ordinal suffix
             kwargs[u"name"] = u"".join([name, str(i+1)])
             # Create container
-            self.construct_container(i=i, **kwargs)
+            self.construct_container(dict(i=i, **kwargs))
 
     def acquire_all_containers(self):
         """Acquire all containers."""
@@ -583,16 +589,13 @@ class ContainerEngine:
             u"setsid /usr/bin/vpp -c /etc/vpp/startup.conf "
             u">/tmp/vppd.log 2>&1 < /dev/null &")
 
-        topo_instance = get_library_instance(
-            u"resources.libraries.python.topology.Topology"
-        )
-        topo_instance.add_new_socket(
+        Topology.add_new_socket(
             self.container.node,
             SocketType.PAPI,
             self.container.name,
             self.container.api_socket,
         )
-        topo_instance.add_new_socket(
+        Topology.add_new_socket(
             self.container.node,
             SocketType.STATS,
             self.container.name,
