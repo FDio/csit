@@ -120,22 +120,29 @@ class TelemetryUtil:
         )
 
     @staticmethod
-    def run_telemetry_on_all_duts(nodes, profile):
+    def run_telemetry_on_all_duts(nodes, profile, hooks=None):
         """Get telemetry stat read on all DUTs.
+
+        The key for "hooks" dict is the node key, e.g. "DUT2",
+        the corresponding value is a sequence of string hooks for that DUT.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
         :param hooks: Dict of Process IDs or socket paths (optional).
         :type nodes: dict
         :type profile: str
-        :type hooks: dict
+        :type hooks: Optional[Mapping[str, Iterable[str]]]
         """
-        for node in nodes.values():
+        for node_key, node in nodes.items():
             if node[u"type"] == NodeType.DUT:
                 try:
-                    for socket in node[u"sockets"][u"PAPI"].values():
+                    if hooks is None:
+                        hook_iterable = node[u"sockets"][u"PAPI"].values()
+                    else:
+                        hook_iterable = hooks[node_key]
+                    for hook in hook_iterable:
                         TelemetryUtil.run_telemetry(
-                            node, profile=profile, hook=socket
+                            node, profile=profile, hook=hook
                         )
                 except IndexError:
                     pass
