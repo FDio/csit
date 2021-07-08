@@ -22,10 +22,13 @@ from yaml import safe_load, YAMLError
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.model.ExportLog import export_topology_update
 from resources.libraries.python.protected_struct import ProtectedDict
 from resources.libraries.python.robot_interaction import (
     get_variable, set_global_variable
 )
+
+from resources.libraries.python.model.util import get_export_data
 
 __all__ = [
     u"DICT__nodes", u"Topology", u"NodeType", u"SocketType", u"NodeSubTypeTG"
@@ -96,13 +99,17 @@ def _notify_nodes(reason="unknown", log_level=u"TRACE"):
     :type reason: str
     :type log_level: str
     """
+    nodes = _get_nodes()
     # TODO: Skip or tweak reason/log_level if new_nodes==DICT__nodes?
+    message = f"Updated nodes structure. Reason: {reason}\n{nodes}"
     logger.write(
-        msg=f"Updated nodes structure. Reason: {reason}\n{_get_nodes()}",
+        msg=message,
         level=log_level,
     )
-    # TODO: Add JSON export here.
     # TODO: Export diff instead/alongside whole new state?
+    export_topology_update(reason, nodes, log_level)
+    if reason == u"initial read":
+        logger.info(f"data log: {get_export_data()[u'log']}")
 
 
 def _replace_nodes(new_nodes, reason="unknown", log_level=u"TRACE"):
