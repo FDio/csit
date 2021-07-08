@@ -1,3 +1,5 @@
+.. _vpp_performance_tests_release_notes:
+
 Release Notes
 =============
 
@@ -9,16 +11,23 @@ Changes in |csit-release|
    - CSIT test environment is versioned, see
      :ref:`test_environment_versioning`.
 
-   - **Upgrade to Ubuntu 20.04 LTS**: Reinstall base operating system to Ubuntu
-     20.04.2 LTS. Upgrade includes also baseline Docker containers used for
-     spawning topology.
+   - **Upgrade to Ubuntu 20.04 LTS**: Reinstall base operating system to
+     Ubuntu 20.04.2 LTS. Upgrade includes also baseline Docker
+     containers used for spawning topology.
+
+   - Initial test data for Intel Xeon Ice Lake platforms. Current
+     CSIT-2106 report data for Intel Xeon Ice Lake comes from an
+     external source (Intel labs running CSIT code on 8360Y D Stepping
+     and 6338N processors). For detail about the physical setup
+     see :ref:`tested_physical_topologies`. Tested VPP and CSIT
+     versions are pre-release, VPP 21.06-rc0~779-gd640ae52f.
 
    - **AF_XDP**: Added af_xdp driver testing for all testcases.
 
    - **GTPU tunnel**: Added GTPU HW Offload IPv4 routing tests.
 
-   - **Telemetry retouch**: Redesign telemetry retrieval from DUT. Include
-     VPP perfmon plugin telemetry.
+   - **Telemetry retouch**: Redesign telemetry retrieval from DUT.
+     Include VPP perfmon plugin telemetry.
 
 #. TEST FRAMEWORK
 

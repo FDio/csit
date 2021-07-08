@@ -1,3 +1,5 @@
+.. _latency_methodology:
+
 Packet Latency
 --------------
 
