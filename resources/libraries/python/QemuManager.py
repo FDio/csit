@@ -113,7 +113,7 @@ class QemuManager:
                 zip(self.machines.values(), self.machines_affinity.values()):
             index = list(self.machines.values()).index(machine)
             name = list(self.machines.keys())[index]
-            self.nodes[name] = machine.qemu_start()
+            Topology.add_new_node(name, machine.qemu_start())
             if pinning:
                 machine.qemu_set_affinity(*machine_affinity)
                 cpus.extend(machine_affinity)
@@ -125,10 +125,10 @@ class QemuManager:
         :param force: Force kill all Qemu instances by pkill qemu if True.
         :type force: bool
         """
-        for node in list(self.nodes.values()):
+        for name, node in list(self.nodes.items()):
             if node["type"] == NodeType.VM:
                 try:
-                    self.nodes.popitem(node)
+                    Topology.remove_node(name)
                 except TypeError:
                     pass
         for machine in self.machines.values():
