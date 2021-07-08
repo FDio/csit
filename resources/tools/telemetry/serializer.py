@@ -102,7 +102,7 @@ class Serializer:
                     else:
                         labelstr = u""
 
-                    timestamp = f" {int(float(line.timestamp) * 1000):d}" \
+                    timestamp = f" {line.timestamp}" \
                         if line.timestamp else u""
                     output.append(
                         f"{line.name}{labelstr} {line.value}{timestamp}\n"
