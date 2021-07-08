@@ -86,10 +86,10 @@
 | |
 | | Start Suite Setup Export
 | | ${nic_model_list}= | Create list | ${nic_name}
-| | &{info}= | Compute Circular Topology
+| | ${info}= | Compute Circular Topology
 | | ... | ${nodes} | filter_list=${nic_model_list} | nic_pfs=${nic_pfs}
 | | ... | always_same_link=${False} | topo_has_tg=${True}
-| | Set suite variable | &{topology_info} | &{info}
+| | Set suite variable | ${topology_info} | ${info}
 | | Create suite topology variables | @{actions}
 | | Finalize Suite Setup Export
 
