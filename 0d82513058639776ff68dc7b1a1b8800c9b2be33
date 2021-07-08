@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4762fddb_7b3d663c",
+        "filename": "docs/job_specs/report_coverage/3n-tsh/l2-04.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-07-08T07:07:14Z",
+      "side": 1,
+      "message": "3n-tsh",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 8
+      },
+      "revId": "0d82513058639776ff68dc7b1a1b8800c9b2be33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
