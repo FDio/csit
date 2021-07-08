@@ -60,9 +60,10 @@ def get_library_instance(name):
     :rtype: object
     """
     try:
-        return _builtin().get_library_instance(name)
-    except RobotNotRunningError:
+        instance = _builtin().get_library_instance(name)
+    except (RobotNotRunningError, RuntimeError):
         return None
+    return instance
 
 def get_variable(name, default=None):
     """Return value stored in Robot variable of current scope.
@@ -88,3 +89,23 @@ def get_variable(name, default=None):
         return _builtin().get_variable_value(name, default)
     except RobotNotRunningError:
         return default
+
+def set_global_variable(name, value):
+    """Store value into Robot variable of global scope.
+
+    It is recommended to include the "\\${" and "}" in the variable name.
+    Inside, you can use more curly bracket substitutions
+    supported by Robot, e.g. u"\\${${foo}}" gets you the value of the variable
+    whose name is stored in variable named "foo".
+    Beware of f-formatting, which also treats curly braces in a special way,
+    use double braces to escape, e.g. f"\\${{text{python_var}text}}".
+
+    TODO: Maybe silent noop instead of RobotNotRunningError?
+
+    :param name: Variable name, insensitive to case and spaces/underscores.
+    :param value: What value to set as a global variable.
+    :type name: str
+    :type value: object
+    :raise RobotNotRunningError: If Robot is not running.
+    """
+    _builtin().set_global_variable(name, value)
