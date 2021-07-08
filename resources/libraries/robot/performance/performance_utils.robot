@@ -394,6 +394,7 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | Set Test Variable | \${rate_for_teardown} | ${rate}
+| | Set Test Variable | \${runtime_rate} | ${rate}
 | | Set Test Variable | \${trial_type}
 | | FOR | ${action} | IN | @{stat_runtime}
 | | | Run Keyword | Additional Statistics Action For ${action}
