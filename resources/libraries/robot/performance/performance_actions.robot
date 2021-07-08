@@ -42,6 +42,7 @@
 | | ${transaction_duration} = | Get Transaction Duration
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
+| | ${trial_type} = | Get Trial Type
 | | ${use_latency} = | Get Use Latency
 | | Send traffic on tg
 | | ... | duration=${-1}
@@ -59,7 +60,7 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vpp_runtime.yaml
+| | ... | ${nodes} | profile=vpp_runtime.yaml | context=${trial_type}
 | | Stop traffic on tg
 
 | Additional Statistics Action For vpp-runtime-iperf3
@@ -70,6 +71,7 @@
 | | ... | See documentation of the called keyword for required test variables.
 | |
 | | ${runtime_duration} = | Get Runtime Duration
+| | ${trial_type} = | Get Trial Type
 | | ${pids}= | iPerf Client Start Remote Exec
 | | | ... | ${nodes['${iperf_client_node}']}
 | | | ... | duration=${-1}
@@ -84,7 +86,7 @@
 | | | ... | bind=${iperf_client_bind}
 | | | ... | affinity=${iperf_client_affinity}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vpp_runtime.yaml
+| | ... | ${nodes} | profile=vpp_runtime.yaml | context=${trial_type}
 | | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}
 
 | Additional Statistics Action For noop
@@ -118,5 +120,6 @@
 | | [Documentation]
 | | ... | Additional Statistics Action for show VPP statistics.
 | |
+| | ${trial_type} = | Get Trial Type
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vpp_show_stats.yaml
+| | ... | ${nodes} | profile=vpp_show_stats.yaml | context=${trial_type}
