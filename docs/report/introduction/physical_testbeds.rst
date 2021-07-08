@@ -26,11 +26,17 @@ Two physical server topology types are used:
 Current FD.io production testbeds are built with SUT servers based on
 the following processor architectures:
 
-- Intel Xeon: Skylake Platinum 8180, Cascade Lake Platinum 8280,
-  Cascade Lake 6252N.
+- Intel Xeon: Skylake Platinum 8180, Cascadelake 6252N, (Icelake 8358 
+  installation in progress).
 - Intel Atom: Denverton C3858.
 - Arm: TaiShan 2280, hip07-d05.
 - AMD EPYC: Zen2 7532.
+
+|csit-release| report data for Intel Xeon Icelake testbeds comes from
+testbeds in Intel labs set up per CSIT specification and running CSIT
+code. Physical setup used is specified in 2n-icx and 3n-icx sections
+below. For details about tested VPP and CSIT versions
+see :ref:`vpp_performance_tests_release_notes`.
 
 Server SUT performance depends on server and processor type, hence
 results for testbeds based on different servers must be reported
@@ -83,7 +89,7 @@ NIC models:
 All AMD EPYC Zen2 7532 servers run with AMD SMT enabled, doubling the
 number of logical cores exposed to Linux.
 
-2-Node Xeon Cascade Lake (2n-clx)
+2-Node Xeon Cascadelake (2n-clx)
 ---------------------------------
 
 Three 2n-clx testbeds are in operation in FD.io labs. Each 2n-clx testbed
@@ -128,7 +134,75 @@ NIC models:
 #. NIC-5: empty, future expansion.
 #. NIC-6: x710-DA4 4p10GE Intel. (For self-tests.)
 
-All Intel Xeon Cascade Lake servers run with Intel Hyper-Threading enabled,
+All Intel Xeon Cascadelake servers run with Intel Hyper-Threading enabled,
+doubling the number of logical cores exposed to Linux.
+
+2-Node Xeon Icelake (2n-icx) EXPERIMENTAL
+-----------------------------------------
+
+One 2n-icx testbed located in Intel labs was used for CSIT testing. It
+is built with two SuperMicro SYS-740GP-TNRT servers. SUT is equipped
+with two Intel Xeon Gold 6338N processors (48 MB Cache, 2.20 GHz, 32
+cores). TG is equiped with two Intel Xeon Ice Lake Platinum 8360Y
+processors (54 MB Cache, 2.40 GHz, 36 cores). 2n-icx physical topology
+is shown below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-2n-icx}
+                \label{fig:testbed-2n-icx}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: testbed-2n-icx.svg
+        :alt: testbed-2n-icx
+        :align: center
+
+SUT and TG servers are populated with the following NIC models:
+
+#. NIC-1: E810-2CQDA2 2p100GbE Intel.
+
+All Intel Xeon Icelake servers run with Intel Hyper-Threading enabled,
+doubling the number of logical cores exposed to Linux.
+
+3-Node Xeon Icelake (3n-icx) EXPERIMENTAL
+-----------------------------------------
+
+One 3n-icx testbed located in Intel labs was used for CSIT testing. It
+is built with three SuperMicro SYS-740GP-TNRT servers. SUTs are
+equipped each with two Intel Xeon Platinum 8360Y processors (54 MB
+Cache, 2.40 GHz, 36 cores). TG is equiped with two Intel Xeon Ice Lake
+Platinum 8360Y processors (54 MB Cache, 2.40 GHz, 36 cores). 3n-icx
+physical topology is shown below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-3n-icx}
+                \label{fig:testbed-3n-icx}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: testbed-3n-icx.svg
+        :alt: testbed-3n-icx
+        :align: center
+
+SUT and TG servers are populated with the following NIC models:
+
+#. NIC-1: E810-2CQDA2 2p100GbE Intel.
+
+All Intel Xeon Icelake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux.
 
 2-Node Xeon Skylake (2n-skx)
