@@ -20,7 +20,6 @@ from robot.api import logger
 
 from .Constants import Constants
 from .CpuUtils import CpuUtils
-from .DropRateSearch import DropRateSearch
 from .MLRsearch.AbstractMeasurer import AbstractMeasurer
 from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
@@ -33,7 +32,7 @@ from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
 
-__all__ = [u"TGDropRateSearchImpl", u"TrafficGenerator", u"OptimizedSearch"]
+__all__ = [u"TrafficGenerator", u"OptimizedSearch"]
 
 
 def check_subtype(node):
@@ -59,66 +58,6 @@ def check_subtype(node):
     else:
         return NodeSubTypeTG.TREX
     raise RuntimeError(msg)
-
-
-class TGDropRateSearchImpl(DropRateSearch):
-    """Drop Rate Search implementation."""
-
-    # def __init__(self):
-    #     super(TGDropRateSearchImpl, self).__init__()
-
-    def measure_loss(
-            self, rate, frame_size, loss_acceptance, loss_acceptance_type,
-            traffic_profile):
-        """Runs the traffic and evaluate the measured results.
-
-        :param rate: Offered traffic load.
-        :param frame_size: Size of frame.
-        :param loss_acceptance: Permitted drop ratio or frames count.
-        :param loss_acceptance_type: Type of permitted loss.
-        :param traffic_profile: Module name as a traffic profile identifier.
-            See GPL/traffic_profiles/trex for implemented modules.
-        :type rate: float
-        :type frame_size: str
-        :type loss_acceptance: float
-        :type loss_acceptance_type: LossAcceptanceType
-        :type traffic_profile: str
-        :returns: Drop threshold exceeded? (True/False)
-        :rtype: bool
-        :raises NotImplementedError: If TG is not supported.
-        :raises RuntimeError: If TG is not specified.
-        """
-        # we need instance of TrafficGenerator instantiated by Robot Framework
-        # to be able to use trex_stl-*()
-        tg_instance = get_library_instance(
-            u"resources.libraries.python.TrafficGenerator"
-        )
-        subtype = check_subtype(tg_instance.node)
-        if subtype == NodeSubTypeTG.TREX:
-            unit_rate = str(rate) + self.get_rate_type_str()
-            tg_instance.trex_stl_start_remote_exec(
-                self.get_duration(), unit_rate, frame_size, traffic_profile
-            )
-            loss = tg_instance.get_loss()
-            sent = tg_instance.get_sent()
-            if self.loss_acceptance_type_is_percentage():
-                loss = (float(loss) / float(sent)) * 100
-            logger.trace(
-                f"comparing: {loss} < {loss_acceptance} {loss_acceptance_type}"
-            )
-            return float(loss) <= float(loss_acceptance)
-        return False
-
-    def get_latency(self):
-        """Returns min/avg/max latency.
-
-        :returns: Latency stats.
-        :rtype: list
-        """
-        tg_instance = get_library_instance(
-            u"resources.libraries.python.TrafficGenerator"
-        )
-        return tg_instance.get_latency_int()
 
 
 class TrexMode:

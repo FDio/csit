@@ -21,7 +21,6 @@
 | Library | resources.libraries.python.TelemetryUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
-| Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Trace
 | Variables | resources/libraries/python/Constants.py
 | Resource | resources/libraries/robot/performance/performance_actions.robot
