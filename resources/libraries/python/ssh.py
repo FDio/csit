@@ -17,7 +17,7 @@
 import socket
 
 from io import StringIO
-from time import time, sleep
+from time import monotonic, sleep
 
 from paramiko import RSAKey, SSHClient, AutoAddPolicy
 from paramiko.ssh_exception import SSHException, NoValidConnectionsError
@@ -25,6 +25,9 @@ from robot.api import logger
 from scp import SCPClient, SCPException
 
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.model.ExportLog import (
+    export_ssh_command, export_ssh_result, export_ssh_timeout
+)
 
 __all__ = [
     u"exec_cmd", u"exec_cmd_no_error", u"SSH", u"SSHTimeout", u"scp_node"
@@ -82,7 +85,7 @@ class SSH:
                     raise IOError(f"Cannot connect to {node['host']}")
         else:
             try:
-                start = time()
+                start = monotonic()
                 pkey = None
                 if u"priv_key" in node:
                     pkey = RSAKey.from_private_key(StringIO(node[u"priv_key"]))
@@ -101,7 +104,7 @@ class SSH:
                 SSH.__existing_connections[node_hash] = self._ssh
                 logger.debug(
                     f"New SSH to {self._ssh.get_transport().getpeername()} "
-                    f"took {time() - start} seconds: {self._ssh}"
+                    f"took {monotonic() - start} seconds: {self._ssh}"
                 )
             except SSHException as exc:
                 raise IOError(f"Cannot connect to {node[u'host']}") from exc
@@ -142,7 +145,7 @@ class SSH:
             f"Reconnecting peer done: {node[u'host']}, {node[u'port']}"
         )
 
-    def exec_command(self, cmd, timeout=10, log_stdout_err=True):
+    def exec_command(self, cmd, timeout=10, log_stdout_err=True, export=True):
         """Execute SSH command on a new channel on the connected Node.
 
         :param cmd: Command to run on the Node.
@@ -151,9 +154,12 @@ class SSH:
         :param log_stdout_err: If True, stdout and stderr are logged. stdout
             and stderr are logged also if the return code is not zero
             independently of the value of log_stdout_err.
+        :param export: If false, do not attempt JSON export.
+            Needed for calls outside Robot (e.g. from reservation script).
         :type cmd: str or OptionString
         :type timeout: int
         :type log_stdout_err: bool
+        :type export: bool
         :returns: return_code, stdout, stderr
         :rtype: tuple(int, str, str)
         :raises SSHTimeout: If command is not finished in timeout time.
@@ -174,7 +180,9 @@ class SSH:
 
         logger.trace(f"exec_command on {peer} with timeout {timeout}: {cmd}")
 
-        start = time()
+        if export:
+            export_ssh_command(self._node[u"host"], self._node[u"port"], cmd)
+        start = monotonic()
         chan.exec_command(cmd)
         while not chan.exit_status_ready() and timeout is not None:
             if chan.recv_ready():
@@ -187,7 +195,16 @@ class SSH:
                 stderr += s_err.decode(encoding=u'utf-8', errors=u'ignore') \
                     if isinstance(s_err, bytes) else s_err
 
-            if time() - start > timeout:
+            duration = monotonic() - start
+            if duration > timeout:
+                if export:
+                    export_ssh_timeout(
+                        host=self._node[u"host"],
+                        port=self._node[u"port"],
+                        stdout=stdout,
+                        stderr=stderr,
+                        duration=duration,
+                    )
                 raise SSHTimeout(
                     f"Timeout exception during execution of command: {cmd}\n"
                     f"Current contents of stdout buffer: "
@@ -209,8 +226,8 @@ class SSH:
             stderr += s_err.decode(encoding=u'utf-8', errors=u'ignore') \
                 if isinstance(s_err, bytes) else s_err
 
-        end = time()
-        logger.trace(f"exec_command on {peer} took {end-start} seconds")
+        duration = monotonic() - start
+        logger.trace(f"exec_command on {peer} took {duration} seconds")
 
         logger.trace(f"return RC {return_code}")
         if log_stdout_err or int(return_code):
@@ -220,20 +237,33 @@ class SSH:
             logger.trace(
                 f"return STDERR {stderr}"
             )
+        if export:
+            export_ssh_result(
+                host=self._node[u"host"],
+                port=self._node[u"port"],
+                code=return_code,
+                stdout=stdout,
+                stderr=stderr,
+                duration=duration,
+            )
         return return_code, stdout, stderr
 
     def exec_command_sudo(
-            self, cmd, cmd_input=None, timeout=30, log_stdout_err=True):
+            self, cmd, cmd_input=None, timeout=30, log_stdout_err=True,
+            export=True):
         """Execute SSH command with sudo on a new channel on the connected Node.
 
         :param cmd: Command to be executed.
         :param cmd_input: Input redirected to the command.
         :param timeout: Timeout.
         :param log_stdout_err: If True, stdout and stderr are logged.
+        :param export: If false, do not attempt JSON export.
+            Needed for calls outside Robot (e.g. from reservation script).
         :type cmd: str
         :type cmd_input: str
         :type timeout: int
         :type log_stdout_err: bool
+        :type export: bool
         :returns: return_code, stdout, stderr
         :rtype: tuple(int, str, str)
 
@@ -254,7 +284,7 @@ class SSH:
         else:
             command = f"sudo -E -S {cmd} <<< \"{cmd_input}\""
         return self.exec_command(
-            command, timeout, log_stdout_err=log_stdout_err
+            command, timeout, log_stdout_err=log_stdout_err, export=export
         )
 
     def exec_command_lxc(
@@ -400,19 +430,20 @@ class SSH:
                 self._ssh.get_transport(), sanitize=lambda x: x,
                 socket_timeout=timeout
             )
-        start = time()
+        start = monotonic()
         if not get:
             scp.put(local_path, remote_path)
         else:
             scp.get(remote_path, local_path)
         scp.close()
-        end = time()
-        logger.trace(f"SCP took {end-start} seconds")
+        duration = monotonic() - start
+        logger.trace(f"SCP took {duration} seconds")
 
 
 def exec_cmd(
         node, cmd, timeout=600, sudo=False, disconnect=False,
-        log_stdout_err=True):
+        log_stdout_err=True, export=True
+    ):
     """Convenience function to ssh/exec/return rc, out & err.
 
     Returns (rc, stdout, stderr).
@@ -425,14 +456,17 @@ def exec_cmd(
     :param log_stdout_err: If True, stdout and stderr are logged. stdout
         and stderr are logged also if the return code is not zero
         independently of the value of log_stdout_err.
+    :param export: If false, do not attempt JSON export.
+        Needed for calls outside Robot (e.g. from reservation script).
     :type node: dict
     :type cmd: str or OptionString
     :type timeout: int
     :type sudo: bool
     :type disconnect: bool
     :type log_stdout_err: bool
+    :type export: bool
     :returns: RC, Stdout, Stderr.
-    :rtype: tuple(int, str, str)
+    :rtype: Tuple[int, str, str]
     """
     if node is None:
         raise TypeError(u"Node parameter is None")
@@ -452,11 +486,13 @@ def exec_cmd(
     try:
         if not sudo:
             ret_code, stdout, stderr = ssh.exec_command(
-                cmd, timeout=timeout, log_stdout_err=log_stdout_err
+                cmd, timeout=timeout, log_stdout_err=log_stdout_err,
+                export=export
             )
         else:
             ret_code, stdout, stderr = ssh.exec_command_sudo(
-                cmd, timeout=timeout, log_stdout_err=log_stdout_err
+                cmd, timeout=timeout, log_stdout_err=log_stdout_err,
+                export=export
             )
     except SSHException as err:
         logger.error(repr(err))
@@ -470,7 +506,8 @@ def exec_cmd(
 
 def exec_cmd_no_error(
         node, cmd, timeout=600, sudo=False, message=None, disconnect=False,
-        retries=0, include_reason=False, log_stdout_err=True):
+        retries=0, include_reason=False, log_stdout_err=True, export=True
+    ):
     """Convenience function to ssh/exec/return out & err.
 
     Verifies that return code is zero.
@@ -489,6 +526,8 @@ def exec_cmd_no_error(
     :param log_stdout_err: If True, stdout and stderr are logged. stdout
         and stderr are logged also if the return code is not zero
         independently of the value of log_stdout_err.
+    :param export: If false, do not attempt JSON export.
+        Needed for calls outside Robot thread (e.g. parallel framework setup).
     :type node: dict
     :type cmd: str or OptionString
     :type timeout: int
@@ -498,6 +537,7 @@ def exec_cmd_no_error(
     :type retries: int
     :type include_reason: bool
     :type log_stdout_err: bool
+    :type export: bool
     :returns: Stdout, Stderr.
     :rtype: tuple(str, str)
     :raises RuntimeError: If bash return code is not 0.
@@ -505,7 +545,7 @@ def exec_cmd_no_error(
     for _ in range(retries + 1):
         ret_code, stdout, stderr = exec_cmd(
             node, cmd, timeout=timeout, sudo=sudo, disconnect=disconnect,
-            log_stdout_err=log_stdout_err
+            log_stdout_err=log_stdout_err, export=export
         )
         if ret_code == 0:
             break
