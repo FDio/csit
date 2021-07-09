@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "ead218dc_530633ae",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-07-09T13:44:59Z",
+      "side": 1,
+      "message": "That is the case, but won\u0027t be an issue once there is just one variable.",
+      "parentUuid": "98a5aea9_a447d178",
+      "range": {
+        "startLine": 121,
+        "startChar": 20,
+        "endLine": 121,
+        "endChar": 34
+      },
+      "revId": "56f3f2e81c6fc92000f65e3b35a5767849c71326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e60562dc_2b6d1e2a",
         "filename": "resources/libraries/python/IncrementUtil.py",
         "patchSetId": 30
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Oh. If they are the same thing, why do you need to track them both (and initialize to different values in constructor)?\nIt seems one of them can be replaced by a local variable.",
       "parentUuid": "baaafe10_12b79e6d",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "56f3f2e81c6fc92000f65e3b35a5767849c71326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd0a7f0a_38c3d5bd",
+        "filename": "resources/libraries/python/IncrementUtil.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-07-09T13:44:59Z",
+      "side": 1,
+      "message": "Good point, it could be replaced by a local variable. And then the value-storing variable can be named even something else, like _value.",
+      "parentUuid": "cff3f55c_56970943",
       "range": {
         "startLine": 44,
         "startChar": 24,
