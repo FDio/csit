@@ -397,7 +397,7 @@ class MultipleLossRatioSearch:
 
         If no second tightest (nor previous) upper bound is available,
         the behavior is governed by second_needed argument.
-        If true, return None, if false, start from width goal.
+        If true, return None. If false, start from width goal.
         This is useful, as if a bisect is possible,
         we want to give it a chance.
 
