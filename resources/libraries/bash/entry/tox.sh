@@ -31,3 +31,9 @@ cd "${CSIT_DIR}" || die
 activate_virtualenv "${CSIT_DIR}" "${CSIT_DIR}/tox-requirements.txt" || die
 # Verbosity is increased so console output shows any unwanted downloads.
 tox -vv  # Return code is turned into Jenkins job vote.
+TOX_EXIT_STATUS="$?"
+
+mkdir -p "${CSIT_DIR}/archives"
+mv *.log "${CSIT_DIR}/archives"
+
+exit "${TOX_EXIT_STATUS}"
