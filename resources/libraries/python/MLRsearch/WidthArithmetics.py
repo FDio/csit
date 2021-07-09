@@ -54,10 +54,12 @@ def halve_relative_width(relative_width, goal_width):
     fallback_width = 1.0 - math.sqrt(1.0 - relative_width)
     # Wig means Width In Goals.
     wig = math.log(1.0 - relative_width) / math.log(1.0 - goal_width)
-    cwig = math.ceil(wig)
-    if wig <= 2.0 or cwig != math.ceil(wig * ROUNDING_CONSTANT):
+    cwig = 2.0 * math.ceil(wig / 2.0)
+    fwig = 2.0 * math.ceil(wig * ROUNDING_CONSTANT / 2.0)
+    if wig <= 2.0 or cwig != fwig:
+        # Avoid too uneven splits.
         return fallback_width
-    coefficient = cwig // 2
+    coefficient = cwig / 2
     new_width = multiply_relative_width(goal_width, coefficient)
     return new_width
 
