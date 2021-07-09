@@ -16,9 +16,10 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
-| ... | SCALE | IPSEC | IPSECSW | IPSECSPD | SPD_INBOUND | SPE_1000 | NOCRYPTO
+| ... | SCALE | IPSEC | IPSECSW | IPSECSPD | SPD_INBOUND | SPD_FLOW_CACHE
+| ... | SPE_1000 | NOCRYPTO
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto
+| ... | ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -36,7 +37,8 @@
 | ... | static IPv4 /24 route entries, one SPD on each inbound interface in
 | ... | each direction and ${rule amount} SPD entry(ies) in each SPD. Only
 | ... | inbound traffic is matched and only the last rule is the matching
-| ... | rule. DUT1 tested with ${nic_name}.\
+| ... | rule. SPD flow-cache for IPv4 inbound traffic is enabled.
+| ... | DUT1 tested with ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -88,6 +90,7 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
+| | And Enable SPD flow cache IPv4 Inbound
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
@@ -99,50 +102,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| 64B-1c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| 64B-2c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| 64B-4c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| 1518B-1c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| 1518B-2c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| 1518B-4c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| 9000B-1c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| 9000B-2c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| 9000B-4c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| IMIX-1c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| IMIX-2c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4ipsec1000spe-ip4base-policy-inbound-nocrypto-ndrpdr
+| IMIX-4c-ethip4ipsec1000spe-cache-ip4base-policy-inbound-nocrypto-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
