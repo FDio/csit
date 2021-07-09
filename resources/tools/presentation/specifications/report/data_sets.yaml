@@ -83,13 +83,15 @@
 
   vpp-3n-skx-curr-iter-hoststack:
     csit-vpp-perf-report-iterative-2106-3n-skx:
+#       - 39  # rls2106.rel NDRPDR iter env 7
       - 46  # rls2106.rel NDRPDR iter env 7
       - 47  # rls2106.rel NDRPDR iter env 7
       - 48  # rls2106.rel NDRPDR iter env 7
       - 51  # rls2106.rel NDRPDR iter env 7
-      - 53  # rls2106.rel NDRPDR iter env 7
+#       - 53  # rls2106.rel NDRPDR iter env 7
       - 54  # rls2106.rel NDRPDR iter env 7
       - 56  # rls2106.rel NDRPDR iter env 7
+      - 57  # rls2106.rel NDRPDR iter env 7
       - 58  # rls2106.rel NDRPDR iter env 7
 
   vpp-3n-skx-curr-cov:
@@ -277,6 +279,7 @@
       - 83  # rls2106.rel NDRPDR nf-density iter env 7
       - 84  # rls2106.rel NDRPDR nf-density iter env 7
       - 85  # rls2106.rel NDRPDR nf-density iter env 7
+      - 86  # rls2106.rel NDRPDR nf-density iter env 7
 
   vpp-2n-skx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2106-2n-skx:
@@ -571,6 +574,7 @@
       - 84  # rls2106.rel NDRPDR iter env 7
       - 85  # rls2106.rel NDRPDR iter env 7
       - 86  # rls2106.rel NDRPDR iter env 7
+      - 87  # rls2106.rel NDRPDR iter env 7
       - 88  # rls2106.rel NDRPDR iter env 7
 
   vpp-2n-clx-curr-iter-best:
@@ -604,6 +608,13 @@
       - 74  # rls2106.rel VSAP iter env 7
       - 81  # rls2106.rel VSAP iter env 7
       - 91  # rls2106.rel VSAP iter env 7
+      - 105 # rls2106.rel VSAP iter env 7
+      - 106 # rls2106.rel VSAP iter env 7
+      - 107 # rls2106.rel VSAP iter env 7
+      - 108 # rls2106.rel VSAP iter env 7
+      - 109 # rls2106.rel VSAP iter env 7
+      - 110 # rls2106.rel VSAP iter env 7
+      - 111 # rls2106.rel VSAP iter env 7
 
   vpp-2n-clx-curr-nfv-ndrpdr:
     csit-vpp-perf-report-iterative-2106-2n-clx:
@@ -612,7 +623,11 @@
       - 89  # rls2106.rel NDRPDR nf-density iter env 7
       - 92  # rls2106.rel NDRPDR nf-density iter env 7
       - 99  # rls2106.rel NDRPDR nf-density iter env 7
+      - 100 # rls2106.rel NDRPDR nf-density iter env 7
       - 101 # rls2106.rel NDRPDR nf-density iter env 7
+      - 102 # rls2106.rel NDRPDR nf-density iter env 7
+      - 103 # rls2106.rel NDRPDR nf-density iter env 7
+      - 104 # rls2106.rel NDRPDR nf-density iter env 7
 
   vpp-2n-clx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2106-2n-clx:
@@ -626,6 +641,7 @@
       - 90  # rls2106.rel NDRPDR reconf iter env 7
       - 93  # rls2106.rel NDRPDR reconf iter env 7
       - 94  # rls2106.rel NDRPDR reconf iter env 7
+      - 95  # rls2106.rel NDRPDR reconf iter env 7
       - 96  # rls2106.rel NDRPDR reconf iter env 7
       - 97  # rls2106.rel NDRPDR reconf iter env 7
       - 98  # rls2106.rel NDRPDR reconf iter env 7
@@ -644,6 +660,7 @@
       - 84  # rls2106.rel NDRPDR iter env 7
       - 85  # rls2106.rel NDRPDR iter env 7
       - 86  # rls2106.rel NDRPDR iter env 7
+      - 87  # rls2106.rel NDRPDR iter env 7
       - 88  # rls2106.rel NDRPDR iter env 7
   vpp-soak-vs-ndr-2n-clx:
     csit-vpp-perf-report-iterative-2106-2n-clx:
@@ -655,6 +672,7 @@
       - 84  # rls2106.rel NDRPDR iter env 7
       - 85  # rls2106.rel NDRPDR iter env 7
       - 86  # rls2106.rel NDRPDR iter env 7
+      - 87  # rls2106.rel NDRPDR iter env 7
       - 88  # rls2106.rel NDRPDR iter env 7
       - 73  # rls2106.rel soak env 7
       - 80  # rls2106.rel soak env 7
@@ -751,6 +769,7 @@
       - 20  # rls2106.rel NDRPDR iter env 7
       - 21  # rls2106.rel NDRPDR iter env 7
       - 23  # rls2106.rel NDRPDR iter env 7
+      - 25  # rls2106.rel NDRPDR iter env 7
 
   vpp-3n-tsh-curr-iter-best:
     csit-vpp-perf-report-iterative-2106-3n-tsh:
@@ -870,6 +889,7 @@
     csit-vpp-perf-report-iterative-2106-2n-tx2:
       - 19  # rls2106.rel NDRPDR iter env 7
       - 20  # rls2106.rel NDRPDR iter env 7
+      - 21  # rls2106.rel NDRPDR iter env 7
       - 22  # rls2106.rel NDRPDR iter env 7
       - 23  # rls2106.rel NDRPDR iter env 7
       - 24  # rls2106.rel NDRPDR iter env 7
@@ -1009,9 +1029,12 @@
 
   vpp-3n-dnv-curr-cov:
     csit-vpp-perf-report-coverage-2106-3n-dnv:
+      - 11  # rls2106.rel NDRPDR cov env 7
       - 12  # rls2106.rel NDRPDR cov env 7
       - 16  # rls2106.rel NDRPDR cov env 7
       - 17  # rls2106.rel NDRPDR cov env 7
+      - 20  # rls2106.rel NDRPDR cov env 7
+      - 21  # rls2106.rel NDRPDR cov env 7
 
 #  dpdk-performance-changes-3n-dnv-h1:
 #    csit-dpdk-perf-verify-2101-3n-dnv:
