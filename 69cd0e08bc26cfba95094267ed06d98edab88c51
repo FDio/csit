@@ -141,6 +141,30 @@
       "revId": "69cd0e08bc26cfba95094267ed06d98edab88c51",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26a2fbb9_a40bed54",
+        "filename": "resources/libraries/python/IncrementUtil.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-09T12:36:24Z",
+      "side": 1,
+      "message": "One more example. Allows changing formatting function, but no support for iterator protocol.\n\n  class FormattingIterator:\n    def __init__(self, value, f_increment, f_format\u003dlambda x: x):\n      self.value \u003d value\n      self.f_increment \u003d f_increment\n      self.f_format \u003d f_format\n\n    def inc_fmt(self):\n      old_value \u003d self.value\n      self.value \u003d self.f_increment(old_value)\n      return self.f_format(old_value)\n\n\n  fmt_it \u003d FormattingIterator(42, lambda x: x + 3)\n  for _ in range(3):\n    print(f\"{fmt_it.inc_fmt()!r}\")\n  fmt_it.f_format \u003d str\n  for _ in range(3):\n    print(f\"{fmt_it.inc_fmt()!r}\")",
+      "parentUuid": "bc2164d6_ed6f4632",
+      "range": {
+        "startLine": 14,
+        "startChar": 33,
+        "endLine": 14,
+        "endChar": 34
+      },
+      "revId": "69cd0e08bc26cfba95094267ed06d98edab88c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
