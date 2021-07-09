@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5c0d741d_b99ba64f",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-07-09T11:52:04Z",
+      "side": 1,
+      "message": "_incr starts with self._current_value \u003d\u003d self._next_value - this happens before _incr is called, so I think the problem you\u0027re describing doesn\u0027t exist.\n\nBut I could just use _next_value instead of _current_value, but that\u0027s a bit confusing - I\u0027d rather leave it as is.",
+      "parentUuid": "a70a4cfe_398b7b1b",
+      "range": {
+        "startLine": 121,
+        "startChar": 20,
+        "endLine": 121,
+        "endChar": 34
+      },
+      "revId": "56f3f2e81c6fc92000f65e3b35a5767849c71326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e60562dc_2b6d1e2a",
         "filename": "resources/libraries/python/IncrementUtil.py",
         "patchSetId": 30
@@ -36,6 +60,30 @@
       "writtenOn": "2021-07-09T11:12:24Z",
       "side": 1,
       "message": "The docstring should be more clear on the requirement of old next_value to be replaced with new incremented next_value (and no relation to current_value whatsoever).",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "56f3f2e81c6fc92000f65e3b35a5767849c71326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baaafe10_12b79e6d",
+        "filename": "resources/libraries/python/IncrementUtil.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-07-09T11:52:04Z",
+      "side": 1,
+      "message": "\u003e old next_value to be replaced with new incremented next_value\n\nIs there a difference between that sentence and \"The function must compute the next iterated value and store it in self._next_value.\"?\n\nThere is a relation between current_value and next_value - they\u0027re the same thing. This piece of the code could be rewritten to say:\nself._next_value \u003d self._current_value + self._increment\n\nIt\u0027s the same computation, but it\u0027s less confusing since it better captures what we\u0027re computing.",
+      "parentUuid": "e60562dc_2b6d1e2a",
       "range": {
         "startLine": 44,
         "startChar": 24,
