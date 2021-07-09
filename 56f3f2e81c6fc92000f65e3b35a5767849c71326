@@ -93,6 +93,30 @@
       "revId": "56f3f2e81c6fc92000f65e3b35a5767849c71326",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cff3f55c_56970943",
+        "filename": "resources/libraries/python/IncrementUtil.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-09T12:42:17Z",
+      "side": 1,
+      "message": "Oh. If they are the same thing, why do you need to track them both (and initialize to different values in constructor)?\nIt seems one of them can be replaced by a local variable.",
+      "parentUuid": "baaafe10_12b79e6d",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "56f3f2e81c6fc92000f65e3b35a5767849c71326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
