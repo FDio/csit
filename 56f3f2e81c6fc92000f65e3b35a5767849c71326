@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a70a4cfe_398b7b1b",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-09T11:12:24Z",
+      "side": 1,
+      "message": "As mentioned in [0], the implementation is wrong. Current value (if not None) is already one increment less than next_value. _incr() should increment next_value once more.\n\n[0] https://gerrit.fd.io/r/c/csit/+/32308/28/resources/libraries/python/IPUtil.py#121",
+      "range": {
+        "startLine": 121,
+        "startChar": 20,
+        "endLine": 121,
+        "endChar": 34
+      },
+      "revId": "56f3f2e81c6fc92000f65e3b35a5767849c71326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e60562dc_2b6d1e2a",
+        "filename": "resources/libraries/python/IncrementUtil.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-09T11:12:24Z",
+      "side": 1,
+      "message": "The docstring should be more clear on the requirement of old next_value to be replaced with new incremented next_value (and no relation to current_value whatsoever).",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "56f3f2e81c6fc92000f65e3b35a5767849c71326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

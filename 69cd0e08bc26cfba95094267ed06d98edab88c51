@@ -93,6 +93,30 @@
       "revId": "69cd0e08bc26cfba95094267ed06d98edab88c51",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1df9ff0e_abfe7fc1",
+        "filename": "resources/libraries/python/IncrementUtil.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-09T11:12:24Z",
+      "side": 1,
+      "message": "Just a side remark on a possible implementation that uses just a single value (instead of both _current_value and _next_value).\nYou can ignore this if the implementation with two values works correctly.",
+      "parentUuid": "980f97a7_64b67f57",
+      "range": {
+        "startLine": 14,
+        "startChar": 33,
+        "endLine": 14,
+        "endChar": 34
+      },
+      "revId": "69cd0e08bc26cfba95094267ed06d98edab88c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
