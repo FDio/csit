@@ -117,6 +117,30 @@
       "revId": "69cd0e08bc26cfba95094267ed06d98edab88c51",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc2164d6_ed6f4632",
+        "filename": "resources/libraries/python/IncrementUtil.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-09T11:32:09Z",
+      "side": 1,
+      "message": "Improved example:\n\n  def fmt_iterator(\n    first_value\u003d1,\n    f_increment\u003dlambda x: x + 1,\n    f_format\u003dlambda x: x\n  ):\n    value \u003d first_value\n    def generator_function():\n      nonlocal value\n      while 1:\n        yield f_format(value)\n        value \u003d f_increment(value)\n    iterator \u003d generator_function()\n    return iterator\n\n  fmt_it \u003d fmt_iterator()\n  for _ in range(3):\n    print(f\"{next(fmt_it)!r}\")\n  fmt_it \u003d fmt_iterator(42)\n  for _ in range(3):\n    print(f\"{next(fmt_it)!r}\")\n  fmt_it \u003d fmt_iterator(42, lambda x: x + 3)\n  for _ in range(3):\n    print(f\"{next(fmt_it)!r}\")\n  fmt_it \u003d fmt_iterator(42, lambda x: x + 3, str)\n  for _ in range(3):\n    print(f\"{next(fmt_it)!r}\")",
+      "parentUuid": "1df9ff0e_abfe7fc1",
+      "range": {
+        "startLine": 14,
+        "startChar": 33,
+        "endLine": 14,
+        "endChar": 34
+      },
+      "revId": "69cd0e08bc26cfba95094267ed06d98edab88c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
