@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "98a5aea9_a447d178",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-09T12:44:34Z",
+      "side": 1,
+      "message": "\u003e _incr starts with self._current_value \u003d\u003d self._next_value \n\nIt seems the relation between them is different at start of different methods.",
+      "parentUuid": "5c0d741d_b99ba64f",
+      "range": {
+        "startLine": 121,
+        "startChar": 20,
+        "endLine": 121,
+        "endChar": 34
+      },
+      "revId": "56f3f2e81c6fc92000f65e3b35a5767849c71326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e60562dc_2b6d1e2a",
         "filename": "resources/libraries/python/IncrementUtil.py",
         "patchSetId": 30
