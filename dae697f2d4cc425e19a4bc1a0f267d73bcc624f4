@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4071b153_7fe22c03",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Mostly means measured loss ratio, except when it means target loss ratio.\nNo time for too big terminology edits in this Change though.",
+      "range": {
+        "startLine": 106,
+        "startChar": 2,
+        "endLine": 106,
+        "endChar": 8
+      },
+      "revId": "dae697f2d4cc425e19a4bc1a0f267d73bcc624f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}

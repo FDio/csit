@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e8c47ac9_a7af1810",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b287494a_75a8b857",
+      "range": {
+        "startLine": 175,
+        "startChar": 8,
+        "endLine": 175,
+        "endChar": 14
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cbfabf1a_6fb69f0b",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94f5dd01_cd17acbd",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "This was meant to be an implicit definition, but added explicit definition in patch set #8. Also defined target loss ratio and described relations between the three ratios.",
+      "parentUuid": "cbfabf1a_6fb69f0b",
+      "range": {
+        "startLine": 218,
+        "startChar": 6,
+        "endLine": 218,
+        "endChar": 40
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "950efa35_a88e9e53",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87557b91_b7068efd",
+      "range": {
+        "startLine": 220,
+        "startChar": 46,
+        "endLine": 222,
+        "endChar": 45
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a3c7581_a432ffb4",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
         "patchSetId": 5
@@ -91,6 +163,30 @@
       "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adcd50ee_5550dd36",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "The worh \"previous\" was misleading. Done in patch set #9.",
+      "parentUuid": "8a3c7581_a432ffb4",
+      "range": {
+        "startLine": 228,
+        "startChar": 6,
+        "endLine": 230,
+        "endChar": 40
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +236,54 @@
     },
     {
       "key": {
+        "uuid": "e3c879b0_19d7558b",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Specified bound directions in patch set #8. Done.",
+      "parentUuid": "c0dd08cf_bd2d03cf",
+      "range": {
+        "startLine": 236,
+        "startChar": 6,
+        "endLine": 236,
+        "endChar": 61
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3a7b12d_e0dee2cf",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c9e7e5d_ade4aed6",
+      "range": {
+        "startLine": 236,
+        "startChar": 67,
+        "endLine": 236,
+        "endChar": 72
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa2c31bc_707931ef",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
         "patchSetId": 5
@@ -160,6 +304,30 @@
       "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9da2e71_47198c7d",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa2c31bc_707931ef",
+      "range": {
+        "startLine": 240,
+        "startChar": 6,
+        "endLine": 240,
+        "endChar": 43
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "0c231949_d7cf780b",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc801154_8d3d5aa2",
+      "range": {
+        "startLine": 248,
+        "startChar": 10,
+        "endLine": 248,
+        "endChar": 25
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10ca4016_75e5a0a2",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
         "patchSetId": 5
@@ -206,6 +398,30 @@
       "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b896db6d_6c0a9c70",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "No, it is too technical for this section. See lines 435-450 in this patch set.\nAdded a two-liner to hint how uneven splits can work better.",
+      "parentUuid": "10ca4016_75e5a0a2",
+      "range": {
+        "startLine": 250,
+        "startChar": 6,
+        "endLine": 251,
+        "endChar": 63
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "9bbe370b_7a56b21b",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cbc8adb_5c5ff1d9",
+      "range": {
+        "startLine": 257,
+        "startChar": 34,
+        "endLine": 257,
+        "endChar": 43
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "246ab3ff_88b64010",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
         "patchSetId": 5
@@ -252,6 +492,30 @@
       "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22c1454d_965486a0",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "246ab3ff_88b64010",
+      "range": {
+        "startLine": 258,
+        "startChar": 4,
+        "endLine": 258,
+        "endChar": 52
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -278,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "ed83084e_345420c7",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3598a50b_7d53e12e",
+      "range": {
+        "startLine": 260,
+        "startChar": 13,
+        "endLine": 260,
+        "endChar": 20
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94810575_9521c917",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
         "patchSetId": 5
@@ -298,6 +586,30 @@
       "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "486872d4_f09ee45d",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Binary search never detects that case. If min_rate and max_rate are valid bounds at the start of binary search, all subsequent bounds lead to valid bounds. Added a two-liner about re-measurement for next duration being the risky event.",
+      "parentUuid": "94810575_9521c917",
+      "range": {
+        "startLine": 278,
+        "startChar": 2,
+        "endLine": 279,
+        "endChar": 63
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -324,6 +636,30 @@
     },
     {
       "key": {
+        "uuid": "62b79612_5db0ea80",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "No, I meant \"too\".\nI could be more explicit on what is \"too close\", but I hope the interval width description is enough (even though implicit).",
+      "parentUuid": "bcdcc2b9_c873d545",
+      "range": {
+        "startLine": 316,
+        "startChar": 13,
+        "endLine": 316,
+        "endChar": 16
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6f25d8e1_92a30ff7",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
         "patchSetId": 5
@@ -344,6 +680,30 @@
       "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce0e532b_644c3aa6",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done. Later patch sets use min_rate and max_rate.",
+      "parentUuid": "6f25d8e1_92a30ff7",
+      "range": {
+        "startLine": 318,
+        "startChar": 46,
+        "endLine": 318,
+        "endChar": 58
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -370,6 +730,30 @@
     },
     {
       "key": {
+        "uuid": "cea8335b_0856b461",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0ee3d05_32892b04",
+      "range": {
+        "startLine": 325,
+        "startChar": 47,
+        "endLine": 325,
+        "endChar": 59
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "721aa268_44002af5",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
         "patchSetId": 5
@@ -393,6 +777,30 @@
     },
     {
       "key": {
+        "uuid": "76ea4269_f20915f5",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "721aa268_44002af5",
+      "range": {
+        "startLine": 326,
+        "startChar": 17,
+        "endLine": 326,
+        "endChar": 21
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f85afa91_a85f0d22",
         "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
         "patchSetId": 5
@@ -413,6 +821,30 @@
       "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd383c88_7091d4ac",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T13:16:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f85afa91_a85f0d22",
+      "range": {
+        "startLine": 327,
+        "startChar": 11,
+        "endLine": 327,
+        "endChar": 15
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
