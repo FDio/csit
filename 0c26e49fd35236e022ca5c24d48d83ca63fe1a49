@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b42759f_f55df45e",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T13:57:02Z",
+      "side": 1,
+      "message": "respectively",
+      "range": {
+        "startLine": 253,
+        "startChar": 45,
+        "endLine": 253,
+        "endChar": 56
+      },
+      "revId": "0c26e49fd35236e022ca5c24d48d83ca63fe1a49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
