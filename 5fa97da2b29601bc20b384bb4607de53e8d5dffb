@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7c5dcc0e_4b946807",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T11:30:51Z",
+      "side": 1,
+      "message": "Also here.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 14
+      },
+      "revId": "5fa97da2b29601bc20b384bb4607de53e8d5dffb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd68f5fe_dba647ac",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T11:30:51Z",
+      "side": 1,
+      "message": "I prefer to hardcode the release version here. When we create next release branch, this expression will return the new version, not matching the rest of this paragraph (next release we will hopefully have Icelakes in fd.io lab, probably with different stepping).",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "5fa97da2b29601bc20b384bb4607de53e8d5dffb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
