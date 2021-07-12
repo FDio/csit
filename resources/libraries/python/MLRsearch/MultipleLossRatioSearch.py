@@ -397,7 +397,7 @@ class MultipleLossRatioSearch:
 
         If no second tightest (nor previous) upper bound is available,
         the behavior is governed by second_needed argument.
-        If true, return None, if false, start from width goal.
+        If true, return None. If false, start from width goal.
         This is useful, as if a bisect is possible,
         we want to give it a chance.
 
@@ -414,6 +414,9 @@ class MultipleLossRatioSearch:
         """
         state = self.state
         old_tr = cur_hi1.target_tr
+        if state.min_rate >= old_tr:
+            self.debug(u"Extend down hits min rate.")
+            return None
         next_bound = cur_hi2
         if self.improves(pre_hi, cur_hi1, cur_hi2):
             next_bound = pre_hi
@@ -427,9 +430,6 @@ class MultipleLossRatioSearch:
             old_tr, old_width, self.expansion_coefficient
         )
         new_tr = max(new_tr, state.min_rate)
-        if new_tr >= old_tr:
-            self.debug(u"Extend down hits max rate.")
-            return None
         return new_tr
 
     def _extend_up(self, cur_lo1, cur_lo2, pre_lo):
@@ -446,6 +446,9 @@ class MultipleLossRatioSearch:
         """
         state = self.state
         old_tr = cur_lo1.target_tr
+        if state.max_rate <= old_tr:
+            self.debug(u"Extend up hits max rate.")
+            return None
         next_bound = cur_lo2
         if self.improves(pre_lo, cur_lo2, cur_lo1):
             next_bound = pre_lo
@@ -455,9 +458,6 @@ class MultipleLossRatioSearch:
             old_width = max(old_width, state.width_goal)
         new_tr = multiple_step_up(old_tr, old_width, self.expansion_coefficient)
         new_tr = min(new_tr, state.max_rate)
-        if new_tr <= old_tr:
-            self.debug(u"Extend up hits max rate.")
-            return None
         return new_tr
 
     def _bisect(self, lower_bound, upper_bound):
