@@ -7,6 +7,7 @@ Test Methodology
 .. toctree::
 
     methodology_terminology
+    methodology_thread_allocation
     methodology_vpp_forwarding_modes
     methodology_data_plane_throughput/index
     methodology_trex_traffic_generator
