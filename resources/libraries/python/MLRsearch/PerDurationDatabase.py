@@ -25,7 +25,7 @@ class PerDurationDatabase:
     so the logic is quite simple.
 
     Several utility methods are added, accomplishing tasks useful for MLRsearch
-    (to be called by MeasurementDatabade).
+    (to be called by MeasurementDatabase).
     """
 
     def __init__(self, duration, measurements):
@@ -61,6 +61,8 @@ class PerDurationDatabase:
         """Sort by target_tr, fail on detecting duplicate target_tr.
 
         Also set effective loss ratios.
+
+        :raises ValueError: If duration does not match or if TR duplicity.
         """
         measurements = self.measurements
         measurements.sort(key=lambda measurement: measurement.target_tr)
