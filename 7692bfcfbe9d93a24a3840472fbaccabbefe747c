@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "888af29f_a40a2db2",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-00.md",
+        "patchSetId": 17
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-12T15:55:51Z",
+      "side": 0,
+      "message": "Xml2rfc complains this is never referenced, so removed.\n\nThe other warning is:\n\n  Expected a title or title abbreviation of not more than 40 character\n  for the page header, found 60 characters\n\nbut I do not see what title is the offender.",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 10
+      },
+      "revId": "7692bfcfbe9d93a24a3840472fbaccabbefe747c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
