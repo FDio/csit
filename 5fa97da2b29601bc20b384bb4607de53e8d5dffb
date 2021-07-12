@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bd361e29_d7010b08",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T13:39:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c5dcc0e_4b946807",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 14
+      },
+      "revId": "5fa97da2b29601bc20b384bb4607de53e8d5dffb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd68f5fe_dba647ac",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "5fa97da2b29601bc20b384bb4607de53e8d5dffb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a43e17f1_eb1cf5b3",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T13:39:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd68f5fe_dba647ac",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "5fa97da2b29601bc20b384bb4607de53e8d5dffb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
