@@ -1,0 +1,418 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b287494a_75a8b857",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "always",
+      "range": {
+        "startLine": 175,
+        "startChar": 8,
+        "endLine": 175,
+        "endChar": 14
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbfabf1a_6fb69f0b",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "Definition of \"effective loss ratio\" seems to be missing.",
+      "range": {
+        "startLine": 218,
+        "startChar": 6,
+        "endLine": 218,
+        "endChar": 40
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87557b91_b7068efd",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "Think it should be: This is achieved by sorting results by load and use effective loss ratio of the previous load, if the current loss ratio is smaller.\n\nAssuming \"effective loss ratio\" is defined somewhere :)",
+      "range": {
+        "startLine": 220,
+        "startChar": 46,
+        "endLine": 222,
+        "endChar": 45
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a3c7581_a432ffb4",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "Meaning unclear: If both upper and lower bound is in previous measurement results for this duration ...",
+      "range": {
+        "startLine": 228,
+        "startChar": 6,
+        "endLine": 230,
+        "endChar": 40
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0dd08cf_bd2d03cf",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "Seemingly contradictory statement: \"If a bound is missing for this duration\" where is \"the second tightest bound for the current duration\" from?",
+      "range": {
+        "startLine": 236,
+        "startChar": 6,
+        "endLine": 236,
+        "endChar": 61
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c9e7e5d_ade4aed6",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "choose",
+      "range": {
+        "startLine": 236,
+        "startChar": 67,
+        "endLine": 236,
+        "endChar": 72
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa2c31bc_707931ef",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "The logic guarantees that measurements for ...",
+      "range": {
+        "startLine": 240,
+        "startChar": 6,
+        "endLine": 240,
+        "endChar": 43
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc801154_8d3d5aa2",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "\"binary search\" - why quotation marks?",
+      "range": {
+        "startLine": 248,
+        "startChar": 10,
+        "endLine": 248,
+        "endChar": 25
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10ca4016_75e5a0a2",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "If there is a different logic (not binary search) governing the splits, it should be stated here, no? And how does the logic know if it can get to the target width goal faster?",
+      "range": {
+        "startLine": 250,
+        "startChar": 6,
+        "endLine": 251,
+        "endChar": 63
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cbc8adb_5c5ff1d9",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "prescribed",
+      "range": {
+        "startLine": 257,
+        "startChar": 34,
+        "endLine": 257,
+        "endChar": 43
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "246ab3ff_88b64010",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "Meaning unclear: In this case ... In which case?",
+      "range": {
+        "startLine": 258,
+        "startChar": 4,
+        "endLine": 258,
+        "endChar": 52
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3598a50b_7d53e12e",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "target",
+      "range": {
+        "startLine": 260,
+        "startChar": 13,
+        "endLine": 260,
+        "endChar": 20
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94810575_9521c917",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "This is due to the fact that MLRsearch will employ external exponential search to validate the interval for binary search. But for cases like that, wouldn\u0027t binary search yield invalid results? If so, shouldn\u0027t this be noted?",
+      "range": {
+        "startLine": 278,
+        "startChar": 2,
+        "endLine": 279,
+        "endChar": 63
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcdcc2b9_c873d545",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "to",
+      "range": {
+        "startLine": 316,
+        "startChar": 13,
+        "endLine": 316,
+        "endChar": 16
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f25d8e1_92a30ff7",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "MRR is set to minimal_transmit_rate",
+      "range": {
+        "startLine": 318,
+        "startChar": 46,
+        "endLine": 318,
+        "endChar": 58
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0ee3d05_32892b04",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "MRR2 is set to minimal_transmit_rate",
+      "range": {
+        "startLine": 325,
+        "startChar": 47,
+        "endLine": 325,
+        "endChar": 59
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "721aa268_44002af5",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "is less",
+      "range": {
+        "startLine": 326,
+        "startChar": 17,
+        "endLine": 326,
+        "endChar": 21
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f85afa91_a85f0d22",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-01.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-12T12:15:26Z",
+      "side": 1,
+      "message": "set to",
+      "range": {
+        "startLine": 327,
+        "startChar": 11,
+        "endLine": 327,
+        "endChar": 15
+      },
+      "revId": "f2c2352ca5e2194905a4e516a9a97df6e9d979b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
