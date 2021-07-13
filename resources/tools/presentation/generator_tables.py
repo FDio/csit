@@ -1341,6 +1341,8 @@ def table_last_failed_tests(table, input_data):
             build = str(build)
             try:
                 version = input_data.metadata(job, build).get(u"version", u"")
+                duration = \
+                    input_data.metadata(job, build).get(u"elapsedtime", u"")
             except KeyError:
                 logging.error(f"Data for {job}: {build} is not present.")
                 return
@@ -1361,6 +1363,7 @@ def table_last_failed_tests(table, input_data):
                 failed_tests.append(f"{nic}-{tst_data[u'name']}")
             tbl_list.append(str(passed))
             tbl_list.append(str(failed))
+            tbl_list.append(duration)
             tbl_list.extend(failed_tests)
 
     file_name = f"{table[u'output-file']}{table[u'output-file-ext']}"

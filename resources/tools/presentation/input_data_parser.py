@@ -362,7 +362,6 @@ class ExecutionChecker(ResultVisitor):
         # Dictionary defining the methods used to parse different types of
         # messages
         self.parse_msg = {
-            u"timestamp": self._get_timestamp,
             u"vpp-version": self._get_vpp_version,
             u"dpdk-version": self._get_dpdk_version,
             u"teardown-papi-history": self._get_papi_history,
@@ -613,18 +612,6 @@ class ExecutionChecker(ResultVisitor):
                 pass
             finally:
                 self._msg_type = None
-
-    def _get_timestamp(self, msg):
-        """Called when extraction of timestamp is required.
-
-        :param msg: Message to process.
-        :type msg: Message
-        :returns: Nothing.
-        """
-
-        self._timestamp = msg.timestamp[:14]
-        self._data[u"metadata"][u"generated"] = self._timestamp
-        self._msg_type = None
 
     def _get_papi_history(self, msg):
         """Called when extraction of PAPI command history is required.
@@ -1355,9 +1342,6 @@ class ExecutionChecker(ResultVisitor):
         elif setup_kw.name.count(u"Install Dpdk Framework On All Duts") and \
                 not self._version:
             self._msg_type = u"dpdk-version"
-        elif setup_kw.name.count(u"Set Global Variable") \
-                and not self._timestamp:
-            self._msg_type = u"timestamp"
         elif setup_kw.name.count(u"Setup Framework") and not self._testbed:
             self._msg_type = u"testbed"
         else:
@@ -1543,6 +1527,15 @@ class InputData:
             metadata, self._cfg.mapping, self._cfg.ignore, self._for_output
         )
         result.visit(checker)
+
+        checker.data[u"metadata"][u"tests_total"] = \
+            result.statistics.total.all.total
+        checker.data[u"metadata"][u"tests_passed"] = \
+            result.statistics.total.all.passed
+        checker.data[u"metadata"][u"tests_failed"] = \
+            result.statistics.total.all.failed
+        checker.data[u"metadata"][u"elapsedtime"] = result.suite.elapsedtime
+        checker.data[u"metadata"][u"generated"] = result.suite.endtime[:14]
 
         return checker.data
 

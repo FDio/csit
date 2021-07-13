@@ -19,6 +19,7 @@ import re
 import logging
 
 from collections import OrderedDict
+from datetime import datetime, timedelta
 from copy import deepcopy
 from math import log
 
@@ -27,6 +28,7 @@ import hdrh.codec
 import pandas as pd
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
+import plotly.exceptions as plerr
 
 from plotly.exceptions import PlotlyError
 
@@ -84,7 +86,8 @@ def generate_plots(spec, data):
         u"plot_hdrh_lat_by_percentile": plot_hdrh_lat_by_percentile,
         u"plot_hdrh_lat_by_percentile_x_log": plot_hdrh_lat_by_percentile_x_log,
         u"plot_mrr_box_name": plot_mrr_box_name,
-        u"plot_ndrpdr_box_name": plot_ndrpdr_box_name
+        u"plot_ndrpdr_box_name": plot_ndrpdr_box_name,
+        u"plot_statistics": plot_statistics
     }
 
     logging.info(u"Generating the plots ...")
@@ -100,6 +103,124 @@ def generate_plots(spec, data):
                 f"{repr(err)}"
             )
     logging.info(u"Done.")
+
+
+def plot_statistics(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_statistics
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    data_x = list()
+    data_y_pass = list()
+    data_y_fail = list()
+    data_y_duration = list()
+    hover_text = list()
+    hover_str = (
+        u"date: {date}<br>"
+        u"passed: {passed}<br>"
+        u"failed: {failed}<br>"
+        u"duration: {duration}<br>"
+        u"{sut}-ref: {build}<br>"
+        u"csit-ref: {test}-{period}-build-{build_nr}<br>"
+        u"testbed: {testbed}"
+    )
+    for job, builds in plot[u"data"].items():
+        for build_nr in builds:
+            try:
+                meta = input_data.metadata(job, str(build_nr))
+                generated = meta[u"generated"]
+                date = datetime(
+                    int(generated[0:4]),
+                    int(generated[4:6]),
+                    int(generated[6:8]),
+                    int(generated[9:11]),
+                    int(generated[12:])
+                )
+                d_y_pass = meta[u"tests_passed"]
+                d_y_fail = meta[u"tests_failed"]
+                minutes = meta[u"elapsedtime"] // 60000
+                duration = f"{(minutes // 60):02d}:{(minutes % 60):02d}"
+                version = meta[u"version"]
+            except (KeyError, IndexError, ValueError, AttributeError):
+                continue
+            data_x.append(date)
+            data_y_pass.append(d_y_pass)
+            data_y_fail.append(d_y_fail)
+            data_y_duration.append(minutes)
+            hover_text.append(hover_str.format(
+                date=date,
+                passed=d_y_pass,
+                failed=d_y_fail,
+                duration=duration,
+                sut=u"vpp" if u"vpp" in job else u"dpdk",
+                build=version,
+                test=u"mrr" if u"mrr" in job else u"ndrpdr",
+                period=u"daily" if u"daily" in job else u"weekly",
+                build_nr=build_nr,
+                testbed=meta[u"testbed"]
+            ))
+
+    traces = [
+        plgo.Bar(
+            x=data_x,
+            y=data_y_pass,
+            name=u"Passed",
+            text=hover_text,
+            hoverinfo=u"text"
+        ),
+        plgo.Bar(
+            x=data_x,
+            y=data_y_fail,
+            name=u"Failed",
+            text=hover_text,
+            hoverinfo=u"text"),
+        plgo.Scatter(
+            x=data_x,
+            y=data_y_duration,
+            name=u"Duration",
+            yaxis=u"y2",
+            text=hover_text,
+            hoverinfo=u"text"
+        )
+    ]
+
+    name_file = f"{plot[u'output-file']}.html"
+
+    logging.info(f"    Writing the file {name_file}")
+    plpl = plgo.Figure(data=traces, layout=plot[u"layout"])
+    tickvals = [min(data_y_duration), max(data_y_duration)]
+    step = (tickvals[1] - tickvals[0]) / 6
+    for i in range(6):
+        tickvals.append(int(tickvals[0] + step * (i + 1)))
+    plpl.update_layout(
+        yaxis2=dict(
+            title=u"Duration [hh:mm]",
+            anchor=u"x",
+            overlaying=u"y",
+            side=u"right",
+            tickmode=u"array",
+            tickvals=tickvals,
+            ticktext=[f"{(val // 60):02d}:{(val % 60):02d}" for val in tickvals]
+        )
+    )
+    plpl.update_layout(barmode=u"stack")
+    try:
+        ploff.plot(
+            plpl,
+            show_link=False,
+            auto_open=False,
+            filename=name_file
+        )
+    except plerr.PlotlyEmptyDataError:
+        logging.warning(u"No data for the plot. Skipped.")
+
+
+
 
 
 def plot_hdrh_lat_by_percentile(plot, input_data):
