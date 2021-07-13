@@ -246,7 +246,7 @@ class Alerting:
         :type sort: bool
         :returns: CSIT build number, VPP version, Number of passed tests,
             Number of failed tests, Compressed failed tests.
-        :rtype: tuple(str, str, int, int, OrderedDict)
+        :rtype: tuple(str, str, int, int, str, OrderedDict)
         """
 
         directory = self.configs[alert[u"way"]][u"output-dir"]
@@ -268,6 +268,10 @@ class Alerting:
                     if idx == 3:
                         failed = line[:-1]
                         continue
+                    if idx == 4:
+                        minutes = int(line[:-1]) // 60000
+                        duration = f"{(minutes // 60):02d}:{(minutes % 60):02d}"
+                        continue
                     try:
                         test = line[:-1].split(u'-')
                         name = u'-'.join(test[3:-1])
@@ -285,14 +289,14 @@ class Alerting:
                         failed_tests[name][u"cores"].append(test[2])
         except IOError:
             logging.error(f"No such file or directory: {file_path}")
-            return None, None, None, None, None
+            return None, None, None, None, None, None
         if sort:
             sorted_failed_tests = OrderedDict()
             for key in sorted(failed_tests.keys()):
                 sorted_failed_tests[key] = failed_tests[key]
-            return build, version, passed, failed, sorted_failed_tests
+            return build, version, passed, failed, duration, sorted_failed_tests
 
-        return build, version, passed, failed, failed_tests
+        return build, version, passed, failed, duration, failed_tests
 
     def _list_gressions(self, alert, idx, header, re_pro):
         """Create a file with regressions or progressions for the test set
@@ -352,7 +356,7 @@ class Alerting:
             try:
                 groups = re.search(
                     re.compile(
-                        r'((vpp|dpdk)-\dn-(skx|clx|hsw|tsh|dnv|zn2|tx2)-.*)'
+                        r'((vpp|dpdk)-\dn-(skx|clx|tsh|dnv|zn2|tx2)-.*)'
                     ),
                     test_set
                 )
@@ -363,7 +367,7 @@ class Alerting:
                     f"The test set {test_set} does not include information "
                     f"about test bed. Using empty string instead."
                 )
-            build, version, passed, failed, failed_tests = \
+            build, version, passed, failed, duration, failed_tests = \
                 self._get_compressed_failed_tests(alert, test_set)
             if build is None:
                 text += (
@@ -373,8 +377,11 @@ class Alerting:
                 )
                 continue
             text += (
-                f"\n\n{test_set_short}, {failed} tests failed, {passed} tests "
-                f"passed, CSIT build: {alert[u'urls'][idx]}/{build}, "
+                f"\n\n{test_set_short}, "
+                f"{failed} tests failed, "
+                f"{passed} tests passed, "
+                f"duration: {duration}, "
+                f"CSIT build: {alert[u'urls'][idx]}/{build}, "
                 f"{device} version: {version}\n\n"
             )
 
