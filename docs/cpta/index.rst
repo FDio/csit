@@ -56,6 +56,14 @@ analysis and anomaly detection methodology.
 
 .. toctree::
     :maxdepth: 2
+    :caption: Statistics
+
+    stats/vpp_mrr
+    stats/vpp_ndrpdr
+    stats/dpdk_mrr
+
+.. toctree::
+    :maxdepth: 2
     :caption: Performance Data
 
     Download <data/index>
