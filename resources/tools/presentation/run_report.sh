@@ -19,8 +19,8 @@ source ${DIR[WORKING]}/env/bin/activate
 
 # FIXME: s3 config (until migrated to vault, then account will be reset)
 mkdir -p ${HOME}/.aws
-echo "[nomad-s3]" >> ${HOME}/.aws/config
-echo "[nomad-s3]
+echo "
+[nomad-s3]
 aws_access_key_id = csit
 aws_secret_access_key = Csit1234" >> ${HOME}/.aws/credentials
 
