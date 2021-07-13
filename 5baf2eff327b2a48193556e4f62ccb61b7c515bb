@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5da9b1bf_0c5c5be6",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "This is not true in tests with feature workers.\nCurrently we have just one type of them (ipsecsw async scheduler), where all test cases always use 1 physical core for dataplane work.",
+      "range": {
+        "startLine": 22,
+        "startChar": 45,
+        "endLine": 22,
+        "endChar": 55
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efc5859d_dcad4483",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "I think AF_XDP tests use interrupt mode.",
+      "range": {
+        "startLine": 23,
+        "startChar": 23,
+        "endLine": 23,
+        "endChar": 32
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fdfee2b_8d5cf812",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "When I imagine next release if we forget to update this file, this part would look weird.\nMaybe do it the other way? Do not mention release version here, but add few lines (before line 36) on how before rls2106 we did it differently, but we stopped doing that to avoid uneven load on encap/decap tests (and other tests with asymmetric traffic on DUT).",
+      "range": {
+        "startLine": 30,
+        "startChar": 37,
+        "endLine": 30,
+        "endChar": 52
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "512a328e_4150e4a2",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "Nope. Most tests do everything on dataplane workers (so zero cores for feature workers), and scheduler test cases use 1, 2 and 3 feature workers.",
+      "range": {
+        "startLine": 45,
+        "startChar": 42,
+        "endLine": 45,
+        "endChar": 52
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e5d54f1_8620642d",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "The format we currently use is {dataplane_threads}t{all_phys_cores}c, for example a scheduler test with 1 dataplane core and 3 cores total (HT on) is \"2t3c\" [0].\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/3380/log.html.gz#s1-s1-s1-s1-s2-t2",
+      "range": {
+        "startLine": 51,
+        "startChar": 25,
+        "endLine": 51,
+        "endChar": 31
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a15edcf_dedbfb0c",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "Colon.",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 17
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79a3f52b_89bd516b",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "worker\n\nDuring debugging I have seen VPP does not start if we configure two cores for main thread(s).",
+      "range": {
+        "startLine": 55,
+        "startChar": 19,
+        "endLine": 55,
+        "endChar": 26
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26539688_733381fa",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "That reminds me. The above is only true for performance tests. Device tests have no dataplane workers, no feature workers, main thread is polling (I guess).",
+      "range": {
+        "startLine": 57,
+        "startChar": 25,
+        "endLine": 57,
+        "endChar": 41
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df75c4d0_2b3d0b1f",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "Need to check, but I think perf test main thread has no queues.",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 4
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "892208cd_d6593313",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "No trailing space.",
+      "range": {
+        "startLine": 74,
+        "startChar": 64,
+        "endLine": 74,
+        "endChar": 65
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bbaede3_2b000164",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "uses the automatic VPP",
+      "range": {
+        "startLine": 81,
+        "startChar": 49,
+        "endLine": 81,
+        "endChar": 68
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d2c97f6_8ba2b740",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T16:09:22Z",
+      "side": 1,
+      "message": "Basically we use the same logic as for VPP dataplane threads.",
+      "range": {
+        "startLine": 90,
+        "startChar": 57,
+        "endLine": 90,
+        "endChar": 58
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
