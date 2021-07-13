@@ -42,7 +42,7 @@ TCP/IP with iperf3
 
 .. raw:: html
 
-    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps.html"></iframe>
+    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../../_static/vpp/3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps.html"></iframe>
 
 .. raw:: latex
 
