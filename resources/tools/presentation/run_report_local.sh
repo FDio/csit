@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (64c9c4 Report: Add tables with builds durations)
 #!/bin/bash
 
 # set -x
@@ -124,3 +125,5 @@ fi
 
 RETURN_STATUS=$(echo $?)
 exit ${RETURN_STATUS}
+=======
+>>>>>>> CHANGE (8079ed Migrate report/trending/docs to bash framework)
