@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e78c688_e9a1c497",
+        "filename": "resources/libraries/robot/crypto/ipsec.robot",
+        "patchSetId": 33
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-13T14:59:10Z",
+      "side": 1,
+      "message": "Looks like a leak, move back to https://gerrit.fd.io/r/c/csit/+/32895",
+      "range": {
+        "startLine": 247,
+        "startChar": 2,
+        "endLine": 247,
+        "endChar": 37
+      },
+      "revId": "13be1cc5cfe97f7de0ae097614cca2be0273ca71",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
