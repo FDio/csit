@@ -7,7 +7,6 @@
   spec-files:
     - "specifications/report/data_sets.yaml"
     - "specifications/report/layouts.yaml"
-    - "specifications/report/elements.yaml"
 
   paths:
     # Top level directories:
