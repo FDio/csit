@@ -610,12 +610,12 @@ def plot_perf_box_name(plot, input_data):
                             if u"TCP_CPS" in test[u"tags"]:
                                 test_type = u"VSAP_CPS"
                                 y_vals[test[u"parent"]].append(
-                                    test[u"result"][u"cps"] / 1e6
+                                    test[u"result"][u"cps"]
                                 )
                             elif u"TCP_RPS" in test[u"tags"]:
                                 test_type = u"VSAP_RPS"
                                 y_vals[test[u"parent"]].append(
-                                    test[u"result"][u"rps"] / 1e6
+                                    test[u"result"][u"rps"]
                                 )
                             else:
                                 continue
@@ -677,10 +677,10 @@ def plot_perf_box_name(plot, input_data):
                 layout[u"title"] = f"<b>Bandwidth:</b> {layout[u'title']}"
             elif test_type == u"VSAP_CPS":
                 layout[u"title"] = f"<b>CPS:</b> {layout[u'title']}"
-                layout[u"yaxis"][u"title"] = u"<b>Connection Rate [Mcps]</b>"
+                layout[u"yaxis"][u"title"] = u"<b>Connection Rate [cps]</b>"
             elif test_type == u"VSAP_RPS":
                 layout[u"title"] = f"<b>RPS:</b> {layout[u'title']}"
-                layout[u"yaxis"][u"title"] = u"<b>Connection Rate [Mrps]</b>"
+                layout[u"yaxis"][u"title"] = u"<b>Connection Rate [rps]</b>"
             else:
                 layout[u"title"] = f"<b>Tput:</b> {layout[u'title']}"
         if y_max and max(y_max) > 1:
