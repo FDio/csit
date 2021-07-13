@@ -1,7 +1,145 @@
 ################################################################################
-###                               T A B L E S                                ###
+###                                P L O T S                                 ###
 ################################################################################
 
+- type: "plot"
+  title: "Statistics: 3n-skx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-3n-skx-mrr"
+  data: "plot-performance-trending-vpp-3n-skx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 3n-skx ndrpdr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-3n-skx-ndrpdr"
+  data: "plot-ndrpdr-comparison-3n-skx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 3n-skx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-3n-skx-mrr"
+  data: "plot-performance-trending-dpdk-3n-skx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot
+  title: "Statistics: 2n-skx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-skx-mrr"
+  data: "plot-performance-trending-vpp-2n-skx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 2n-skx ndrpdr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-skx-ndrpdr"
+  data: "plot-ndrpdr-comparison-2n-skx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 2n-skx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-2n-skx-mrr"
+  data: "plot-performance-trending-dpdk-2n-skx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 2n-clx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-clx-mrr"
+  data: "plot-performance-trending-vpp-2n-clx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 2n-clx ndrpdr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-clx-ndrpdr"
+  data: "plot-ndrpdr-comparison-2n-clx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 2n-clx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-2n-skx-mrr"
+  data: "plot-performance-trending-dpdk-2n-clx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 2n-zn2 mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-zn2-mrr"
+  data: "plot-performance-trending-vpp-2n-zn2"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 2n-zn2 mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-2n-zn2-mrr"
+  data: "plot-performance-trending-dpdk-2n-zn2"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 3n-tsh mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-3n-tsh-mrr"
+  data: "plot-performance-trending-vpp-3n-tsh"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 3n-tsh mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-3n-tsh-mrr"
+  data: "plot-performance-trending-dpdk-3n-tsh"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 2n-tx2 mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-tx2-mrr"
+  data: "plot-performance-trending-vpp-2n-tx2"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 2n-tx2 mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-2n-tx2-mrr"
+  data: "plot-performance-trending-dpdk-2n-tx2"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 3n-dnv mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-3n-dnv-mrr"
+  data: "plot-performance-trending-vpp-3n-dnv"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 2n-dnv mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-dnv-mrr"
+  data: "plot-performance-trending-vpp-2n-dnv"
+  layout:
+    layout: "plot-statistics"
+
+################################################################################
+###                               T A B L E S                                ###
 ################################################################################
 
 # VPP NDRPDR weekly comparison 2n-skx-xxv710 2t1c ndr
