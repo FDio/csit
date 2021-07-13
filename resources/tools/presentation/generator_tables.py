@@ -917,7 +917,11 @@ def table_perf_trending_dash(table, input_data):
         if len(data_t) < 2:
             continue
 
-        classification_lst, avgs, _ = classify_anomalies(data_t)
+        try:
+            classification_lst, avgs, _ = classify_anomalies(data_t)
+        except ValueError as err:
+            logging.info(f"{err} Skipping")
+            return
 
         win_size = min(len(data_t), table[u"window"])
         long_win_size = min(len(data_t), table[u"long-trend-window"])
@@ -1341,6 +1345,8 @@ def table_last_failed_tests(table, input_data):
             build = str(build)
             try:
                 version = input_data.metadata(job, build).get(u"version", u"")
+                duration = \
+                    input_data.metadata(job, build).get(u"elapsedtime", u"")
             except KeyError:
                 logging.error(f"Data for {job}: {build} is not present.")
                 return
@@ -1359,15 +1365,16 @@ def table_last_failed_tests(table, input_data):
                     continue
                 nic = groups.group(0)
                 failed_tests.append(f"{nic}-{tst_data[u'name']}")
-            tbl_list.append(str(passed))
-            tbl_list.append(str(failed))
+            tbl_list.append(passed)
+            tbl_list.append(failed)
+            tbl_list.append(duration)
             tbl_list.extend(failed_tests)
 
     file_name = f"{table[u'output-file']}{table[u'output-file-ext']}"
     logging.info(f"    Writing file: {file_name}")
     with open(file_name, u"wt") as file_handler:
         for test in tbl_list:
-            file_handler.write(test + u'\n')
+            file_handler.write(f"{test}\n")
 
 
 def table_failed_tests(table, input_data):
