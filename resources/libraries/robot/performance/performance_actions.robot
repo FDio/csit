@@ -12,6 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.IPsecUtil
 | Variables | resources/libraries/python/Constants.py
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 |
@@ -92,6 +93,12 @@
 | | ... | Additional Statistics Action for no operation.
 | |
 | | No operation
+
+| Additional Statistics Action For vpp-show-ipsec-all
+| | [Documentation]
+| | ... | Additional Statistics Action for show VPP IPsec all.
+| |
+| | Run Keyword | VPP IPsec Show All
 
 | Additional Statistics Action For vpp-clear-stats
 | | [Documentation]
