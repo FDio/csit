@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2ef9555_05b9b516",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-14T13:00:40Z",
+      "side": 1,
+      "message": "Do not do this, at least unless you want to update autogen and tc_naming checker as well.\n\nIt should be easier to update just the dynamic tags set here [1]\n\n[1] https://github.com/FDio/csit/blob/a275fa0062158d712152f542b7bc9ec40b5c5f31/resources/libraries/robot/shared/default.robot#L260",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 11
+      },
+      "revId": "272358c0a11375d04c5531ae051225639d6e70f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
