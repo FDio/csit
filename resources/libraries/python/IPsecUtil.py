@@ -737,7 +737,7 @@ class IPsecUtil:
     def vpp_ipsec_create_spds_match_nth_entry(
             node, dir1_interface, dir2_interface, entry_amount,
             src_addr_range, dst_addr_range, action=PolicyAction.BYPASS,
-            inbound=False, bidirectional=True):
+            inbound=False, bidirectional=True, other_dir_traffic=False):
         """Create one matching SPD entry for inbound or outbound traffic on
         a DUT for each traffic direction and also create entry_amount - 1
         non-matching SPD entries. Create a Security Policy Database on each
@@ -766,6 +766,8 @@ class IPsecUtil:
             outbound.
         :param bidirectional: When True, will create SPDs in both directions
             of traffic. When False, only in one direction.
+        :param other_dir_traffic: Add an entry for all IPv4/IPv6 traffic in the
+            other traffic direction. Other selectors are the same.
         :type node: dict
         :type dir1_interface: Union[string, int]
         :type dir2_interface: Union[string, int]
@@ -777,6 +779,7 @@ class IPsecUtil:
         :type action: IPsecUtil.PolicyAction
         :type inbound: bool
         :type bidirectional: bool
+        :type other_dir_traffic: bool
         :raises NotImplemented: When the action is PolicyAction.PROTECT.
         """
 
@@ -796,6 +799,12 @@ class IPsecUtil:
             raddr_range=dst_addr_range
         )
 
+        if other_dir_traffic:
+            IPsecUtil.vpp_ipsec_add_spd_entry(
+                node, spd_id_dir1, matching_priority, action,
+                inbound=not inbound
+            )
+
         if bidirectional:
             IPsecUtil.vpp_ipsec_add_spd(node, spd_id_dir2)
             IPsecUtil.vpp_ipsec_spd_add_if(node, spd_id_dir2, dir2_interface)
@@ -806,6 +815,12 @@ class IPsecUtil:
                 inbound=inbound, laddr_range=dst_addr_range,
                 raddr_range=src_addr_range
             )
+
+            if other_dir_traffic:
+                IPsecUtil.vpp_ipsec_add_spd_entry(
+                    node, spd_id_dir2, matching_priority, action,
+                    inbound=not inbound
+                )
 
         # non-matching entries
         no_match_entry_amount = entry_amount - 1
@@ -2212,6 +2227,26 @@ class IPsecUtil:
                 sa_id=ObjIncrement(sa_id_2, 1),
                 raddr_range=NetworkIncrement(ip_network(raddr_ip1), 1)
             )
+
+    @staticmethod
+    def vpp_ipsec_show_spd_on_all_duts(nodes):
+        """Run "show ipsec spd" debug CLI command on all DUTs.
+
+        :param nodes: Nodes to run command on.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                IPsecUtil.vpp_ipsec_show_spd(node)
+
+    @staticmethod
+    def vpp_ipsec_show_spd(node):
+        """Run "show ipsec spd" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd(node, u"show ipsec spd")
 
     @staticmethod
     def vpp_ipsec_show_all(node):
