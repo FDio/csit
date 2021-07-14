@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b592efda_c085c3af",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-14T05:46:19Z",
+      "side": 1,
+      "message": "So?, similar if we do not run some combination for report/trending. This is describing methodology.",
+      "parentUuid": "5da9b1bf_0c5c5be6",
+      "range": {
+        "startLine": 22,
+        "startChar": 45,
+        "endLine": 22,
+        "endChar": 55
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efc5859d_dcad4483",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2021-07-13T16:09:22Z",
       "side": 1,
       "message": "I think AF_XDP tests use interrupt mode.",
+      "range": {
+        "startLine": 23,
+        "startChar": 23,
+        "endLine": 23,
+        "endChar": 32
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5084f54c_f5f93b95",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-14T05:46:19Z",
+      "side": 1,
+      "message": "Have you read how AF_XDP is done? I guess not.",
+      "parentUuid": "efc5859d_dcad4483",
       "range": {
         "startLine": 23,
         "startChar": 23,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "99e7695a_51fc7693",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-14T05:46:19Z",
+      "side": 1,
+      "message": "As of XY release we are doing something. What is wrong with your imagination?",
+      "parentUuid": "9fdfee2b_8d5cf812",
+      "range": {
+        "startLine": 30,
+        "startChar": 37,
+        "endLine": 30,
+        "endChar": 52
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "512a328e_4150e4a2",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "5aa05fb8_74dcf806",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-14T05:46:19Z",
+      "side": 1,
+      "message": "This one is correct because of wrong ASYNC test configuration. I suggest to just add comment that some test are not compliant with methodology.",
+      "parentUuid": "512a328e_4150e4a2",
+      "range": {
+        "startLine": 45,
+        "startChar": 42,
+        "endLine": 45,
+        "endChar": 52
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4e5d54f1_8620642d",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -105,6 +201,30 @@
       "writtenOn": "2021-07-13T16:09:22Z",
       "side": 1,
       "message": "The format we currently use is {dataplane_threads}t{all_phys_cores}c, for example a scheduler test with 1 dataplane core and 3 cores total (HT on) is \"2t3c\" [0].\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/3380/log.html.gz#s1-s1-s1-s1-s2-t2",
+      "range": {
+        "startLine": 51,
+        "startChar": 25,
+        "endLine": 51,
+        "endChar": 31
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33b23cc4_b36ca156",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-14T05:46:19Z",
+      "side": 1,
+      "message": "Same as above. THe tests are not compliant. We should add a note.",
+      "parentUuid": "4e5d54f1_8620642d",
       "range": {
         "startLine": 51,
         "startChar": 25,
@@ -209,6 +329,30 @@
     },
     {
       "key": {
+        "uuid": "b3fad53f_6c1c4e4a",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-14T05:46:19Z",
+      "side": 1,
+      "message": "it has TXq bot not used afaik.",
+      "parentUuid": "df75c4d0_2b3d0b1f",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 4
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "892208cd_d6593313",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -243,6 +387,30 @@
       "writtenOn": "2021-07-13T16:09:22Z",
       "side": 1,
       "message": "uses the automatic VPP",
+      "range": {
+        "startLine": 81,
+        "startChar": 49,
+        "endLine": 81,
+        "endChar": 68
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fdb7124_cdcbc482",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-07-14T05:46:19Z",
+      "side": 1,
+      "message": "Both wrong.\n\nit follows the same amount of TxQs as all workers in VPP.",
+      "parentUuid": "0bbaede3_2b000164",
       "range": {
         "startLine": 81,
         "startChar": 49,
