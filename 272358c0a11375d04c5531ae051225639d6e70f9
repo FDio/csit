@@ -22,6 +22,30 @@
       "revId": "272358c0a11375d04c5531ae051225639d6e70f9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e5660c8_d12f7445",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-07-14T13:32:09Z",
+      "side": 1,
+      "message": "\u003e Do not do this, at least unless you want to update autogen and tc_naming checker as well.\n\u003e \n\u003e It should be easier to update just the dynamic tags set here [1]\n\u003e \n\u003e [1] https://github.com/FDio/csit/blob/a275fa0062158d712152f542b7bc9ec40b5c5f31/resources/libraries/robot/shared/default.robot#L260\n\n\nAlso, from PAL point of view, it would be good to keep the TC names as they are and add, not replace, a (dynamic) tag.",
+      "parentUuid": "b2ef9555_05b9b516",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 11
+      },
+      "revId": "272358c0a11375d04c5531ae051225639d6e70f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
