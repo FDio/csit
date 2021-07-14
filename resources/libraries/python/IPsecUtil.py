@@ -2214,6 +2214,17 @@ class IPsecUtil:
             )
 
     @staticmethod
+    def vpp_ipsec_show_all_on_all_duts(nodes):
+        """Run "show ipsec all" debug CLI command on all DUTs.
+
+        :param nodes: Nodes to run command on.
+        :type nodes: dict
+        """
+        for node in nodes:
+            if node[u"type"] == NodeType.DUT:
+                IPsecUtil.vpp_ipsec_show_all(node)
+
+    @staticmethod
     def vpp_ipsec_show_all(node):
         """Run "show ipsec all" debug CLI command.
 
