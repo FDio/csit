@@ -1,1 +1,0 @@
-exec ipsec policy add spd {spd_id} priority {priority} {direction} action {action} {selector}
