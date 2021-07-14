@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9be94623_abbb5b23",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-14T12:16:44Z",
+      "side": 1,
+      "message": "Oh [6] was never cherry-picked to rls2106? I thought it was.\nSo this document describes rls2106 with [6] and with improved thread tags (not implemented yet).\n\n[6] https://gerrit.fd.io/r/c/csit/+/32687",
+      "parentUuid": "80631971_e73950df",
+      "range": {
+        "startLine": 59,
+        "startChar": 52,
+        "endLine": 59,
+        "endChar": 63
+      },
+      "revId": "ff0fd39b85e9d352e422a34c5ec2b74afb11e82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "31c6c52a_12dada82",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 6
