@@ -645,9 +645,13 @@ def plot_perf_box_name(plot, input_data):
         tst_name = re.sub(REGEX_NIC, u"",
                           col.lower().replace(u'-ndrpdr', u'').
                           replace(u'2n1l-', u''))
+        if test_type in (u"VSAP_CPS", u"VSAP_RPS"):
+            data_y = [y if y else None for y in df_y[col]]
+        else:
+            data_y = [y / 1e6 if y else None for y in df_y[col]]
         kwargs = dict(
             x=[str(i + 1) + u'.'] * len(df_y[col]),
-            y=[y / 1e6 if y else None for y in df_y[col]],
+            y=data_y,
             name=(
                 f"{i + 1}. "
                 f"({nr_of_samples[i]:02d} "
