@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "80631971_e73950df",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T11:44:11Z",
+      "side": 1,
+      "message": "re [1] this is wrong lcore resource mapping, as data-plane workers and feature workers are not running on sibling lcores, so can\u0027t be used as a reference here.\n\nI was using the test cases we have reviewed and determined as representative to the current implementation:\n\n[3] 2c (1c-1c in updated notation): https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/476/log.html.gz#s1-s1-s1-s1-s7-t1-k2-k14-k6-k9-k1-k1-k1-k12\n\n[4] 3c (1c-2c): https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/476/log.html.gz#s1-s1-s1-s1-s7-t2-k2-k14-k6-k9-k1-k1-k1-k12\n\n[5] 4c (1c-3c): https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-skx/476/log.html.gz#s1-s1-s1-s1-s7-t3-k2-k14-k6-k9-k1-k1-k1-k12\n\nIf rls2106 tests are different, then test cases will have to get corrected. Will open a jira issue to track this.",
+      "parentUuid": "684ea7e8_2d97ea63",
+      "range": {
+        "startLine": 59,
+        "startChar": 52,
+        "endLine": 59,
+        "endChar": 63
+      },
+      "revId": "ff0fd39b85e9d352e422a34c5ec2b74afb11e82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "31c6c52a_12dada82",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "ff0fd39b85e9d352e422a34c5ec2b74afb11e82d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06fd4ee8_91ea1d23",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T11:44:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31c6c52a_12dada82",
+      "range": {
+        "startLine": 86,
+        "startChar": 36,
+        "endLine": 86,
+        "endChar": 37
+      },
+      "revId": "ff0fd39b85e9d352e422a34c5ec2b74afb11e82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
