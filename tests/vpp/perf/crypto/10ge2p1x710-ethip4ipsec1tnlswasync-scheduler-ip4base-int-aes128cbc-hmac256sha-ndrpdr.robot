@@ -121,50 +121,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-2c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 64B | 2C
+| 64B-1c-1c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 64B | 1C_1C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-3c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 64B | 3C
+| 64B-1c-2c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 64B | 1C_2C
 | | frame_size=${64} | phy_cores=${3}
 
-| 64B-4c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 64B | 4C
+| 64B-1c-3c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 64B | 1C_3C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-2c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 1518B | 2C
+| 1518B-1c-1c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 1518B | 1C_1C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-3c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 1518B | 3C
+| 1518B-1c-2c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 1518B | 1C_2C
 | | frame_size=${1518} | phy_cores=${3}
 
-| 1518B-4c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 1518B | 4C
+| 1518B-1c-3c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 1518B | 1C_3C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-2c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 9000B | 2C
+| 9000B-1c-1c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 9000B | 1C_1C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-3c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 9000B | 3C
+| 9000B-1c-2c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 9000B | 1C_2C
 | | frame_size=${9000} | phy_cores=${3}
 
-| 9000B-4c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | 9000B | 4C
+| 9000B-1c-3c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | 9000B | 1C_3C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-2c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | IMIX | 2C
+| IMIX-1c-1c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | IMIX | 1C_1C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-3c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | IMIX | 3C
+| IMIX-1c-2c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | IMIX | 1C_2C
 | | frame_size=IMIX_v4_1 | phy_cores=${3}
 
-| IMIX-4c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
-| | [Tags] | IMIX | 4C
+| IMIX-1c-3c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| | [Tags] | IMIX | 1C_3C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
