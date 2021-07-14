@@ -120,6 +120,7 @@
       - 22  # rls2106.rel NDRPDR COV env 7
       - 24  # rls2106.rel NDRPDR COV env 7
       - 25  # rls2106.rel NDRPDR COV env 7
+      - 26  # rls2106.rel NDRPDR COV env 7
       - 27  # rls2106.rel NDRPDR COV env 7
 
   dpdk-3n-skx-hist-iter:
@@ -858,6 +859,7 @@
       - 6   # rls2106.rel NDRPDR COV env 7
       - 7   # rls2106.rel NDRPDR COV env 7
       - 8   # rls2106.rel NDRPDR COV env 7
+      - 11  # rls2106.rel NDRPDR COV env 7
 
   dpdk-3n-tsh-hist-iter:
     csit-dpdk-perf-report-iterative-2009-3n-tsh:
