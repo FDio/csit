@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "684ea7e8_2d97ea63",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-14T11:15:24Z",
+      "side": 1,
+      "message": "I checked what the rls2106 test are actually setting, and it is \"8T4C\" here (so different from master), both in robot [1] and in report [2].\n\n[1] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-2106-3n-skx/6/log.html.gz#s1-s1-s1-s1-s24-t2\n[2] https://docs.fd.io/csit/master/report/detailed_test_results/vpp_mrr_results_3n_skx/crypto_xxv710.html#ge2p1xxv710-avf-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-mrr",
+      "range": {
+        "startLine": 59,
+        "startChar": 52,
+        "endLine": 59,
+        "endChar": 63
+      },
+      "revId": "ff0fd39b85e9d352e422a34c5ec2b74afb11e82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31c6c52a_12dada82",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-14T11:15:24Z",
+      "side": 1,
+      "message": "Trailing space.",
+      "range": {
+        "startLine": 86,
+        "startChar": 36,
+        "endLine": 86,
+        "endChar": 37
+      },
+      "revId": "ff0fd39b85e9d352e422a34c5ec2b74afb11e82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
