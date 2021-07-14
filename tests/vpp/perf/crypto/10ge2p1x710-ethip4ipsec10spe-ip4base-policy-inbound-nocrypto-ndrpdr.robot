@@ -95,6 +95,7 @@
 | | And VPP IPsec create SPDs match nth entry
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0] | ${rule_amount}
 | | ... | ${local_addr_range_ip4} | ${remote_addr_range_ip4} | inbound=${True}
+| | ... | inbound_outbound_traffic=${True}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

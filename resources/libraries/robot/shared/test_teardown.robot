@@ -126,6 +126,7 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If Test Failed
 | | | ... | Show Ipsec Security Association | ${nodes['${dut}']}
+| | | Run Keyword | VPP IPsec Show All | ${nodes['${dut}']}
 | | END
 
 | Additional Test Tear Down Action For linux_bridge

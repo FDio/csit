@@ -93,6 +93,12 @@
 | |
 | | No operation
 
+| Additional Statistics Action For vpp-show-ipsec-spd
+| | [Documentation]
+| | ... | Additional Statistics Action for show VPP IPsec spd.
+| |
+| | Run Keyword | VPP IPsec Show SPD on All Duts | ${nodes}
+
 | Additional Statistics Action For vpp-clear-stats
 | | [Documentation]
 | | ... | Additional Statistics Action for clear VPP statistics.
