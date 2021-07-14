@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.Iperf3
+| Library | resources.libraries.python.IPsecUtil
 | Library | resources.libraries.python.TelemetryUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
