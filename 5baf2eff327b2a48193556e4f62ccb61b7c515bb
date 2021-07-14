@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "49deb615_7632ef38",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Cores, data plane workers are typically tested in 1, 2 and 4\nphysical core configurations ...",
+      "parentUuid": "5da9b1bf_0c5c5be6",
+      "range": {
+        "startLine": 22,
+        "startChar": 45,
+        "endLine": 22,
+        "endChar": 55
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efc5859d_dcad4483",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "44834b6b_814775ea",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Note Peter\u0027s comment.\nBut as it is irrelevant here, removed reference to poll-mode.",
+      "parentUuid": "efc5859d_dcad4483",
+      "range": {
+        "startLine": 23,
+        "startChar": 23,
+        "endLine": 23,
+        "endChar": 32
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9fdfee2b_8d5cf812",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -140,6 +188,30 @@
       "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3c49b69_6772ffdc",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Edited text addressing this.",
+      "parentUuid": "99e7695a_51fc7693",
+      "range": {
+        "startLine": 30,
+        "startChar": 37,
+        "endLine": 30,
+        "endChar": 52
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -260,6 +332,30 @@
     },
     {
       "key": {
+        "uuid": "33922701_07174b74",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a15edcf_dedbfb0c",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 17
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79a3f52b_89bd516b",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -283,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "b1d18d18_7f7ea46f",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79a3f52b_89bd516b",
+      "range": {
+        "startLine": 55,
+        "startChar": 19,
+        "endLine": 55,
+        "endChar": 26
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26539688_733381fa",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -303,6 +423,30 @@
       "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8717129f_e40caf4d",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Removed reference to poll/interrupt mode, as it\u0027s irrelevant here.",
+      "parentUuid": "26539688_733381fa",
+      "range": {
+        "startLine": 57,
+        "startChar": 25,
+        "endLine": 57,
+        "endChar": 41
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -353,6 +497,30 @@
     },
     {
       "key": {
+        "uuid": "eab26d64_c3806b4f",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3fad53f_6c1c4e4a",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 4
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "892208cd_d6593313",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -373,6 +541,30 @@
       "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "321a8fad_d7eca559",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "892208cd_d6593313",
+      "range": {
+        "startLine": 74,
+        "startChar": 64,
+        "endLine": 74,
+        "endChar": 65
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -423,6 +615,30 @@
     },
     {
       "key": {
+        "uuid": "cf1db745_0d7280e7",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bbaede3_2b000164",
+      "range": {
+        "startLine": 81,
+        "startChar": 49,
+        "endLine": 81,
+        "endChar": 68
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d2c97f6_8ba2b740",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 5
@@ -443,6 +659,30 @@
       "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5f52d45_56ce5baa",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-14T09:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d2c97f6_8ba2b740",
+      "range": {
+        "startLine": 90,
+        "startChar": 57,
+        "endLine": 90,
+        "endChar": 58
+      },
+      "revId": "5baf2eff327b2a48193556e4f62ccb61b7c515bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
