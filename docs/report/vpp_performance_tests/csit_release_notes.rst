@@ -8,34 +8,76 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - CSIT test environment is versioned, see
-     :ref:`test_environment_versioning`.
-
-   - **Upgrade to Ubuntu 20.04 LTS**: Reinstall base operating system to
-     Ubuntu 20.04.2 LTS. Upgrade includes also baseline Docker
-     containers used for spawning topology.
-
-   - Initial test data for Intel Xeon Ice Lake platforms. Current
-     CSIT-2106 report data for Intel Xeon Ice Lake comes from an
-     external source (Intel labs running CSIT code on 8360Y D Stepping
-     and 6338N processors). For detail about the physical setup
-     see :ref:`tested_physical_topologies`. Tested VPP and CSIT
-     versions are pre-release, VPP 21.06-rc0~779-gd640ae52f.
-
-   - **AF_XDP**: Added af_xdp driver testing for all testcases.
+   - **AF_XDP**: Added af_xdp driver support for all test cases. Test
+     results will be added in sub-sequent CSIT-2106 report.
 
    - **GTPU tunnel**: Added GTPU HW Offload IPv4 routing tests.
 
-   - **Telemetry retouch**: Redesign telemetry retrieval from DUT.
-     Include VPP perfmon plugin telemetry.
+   - **Intel Xeon Ice Lake**: Added initial test data for these
+     platforms. Current CSIT-2106 report data for Intel Xeon Ice Lake
+     comes from an external source (Intel labs running CSIT code on
+     "8360Y D Stepping" and "6338N" processors). For details about the
+     physical setup see :ref:`tested_physical_topologies`. Tested
+     VPP and CSIT versions are pre-release, VPP
+     21.06-rc0~779-gd640ae52f.
+
+   - **MLRsearch improvements**: Added support for multiple packet
+     throughput rates in a single search, each rate is associated
+     with a distinct Packet Loss Ratio (PLR) criterion. Previously
+     only Non Drop Rate (NDR) (PLR=0) and single Partial Drop Rate
+     (PDR) (PLR<0.5%) were supported. Implemented number of
+     optimizations improving rate discovery efficiency.
+
+   - **Reduction of tests**: Removed obsolete VPP use cases and
+     superfluous test combinations from continuous and report test
+     executions, including:
+
+     - All vts tests, obsolete use cases.
+     - dot1q tests apart from dot1q-l2bd, superfluous combinations.
+     - -100flows, -100kflows in all acl tests.
+     - nat44 tests
+
+       - -pps tests, replaced by -tput tests.
+       - h1-p1-s1 single session tests, unessential combination.
+       - h4096-p63-s258048 tests, unessential scale combination.
+
+     - ipsec tests
+
+       - ethip4ipsectptlispgpe.
+       - policy-aes128gcm.
+       - policy-aes128cbc-hmac256sha.
+       - policy-aes128cbc-hmac512sha.
+       - int-aes128cbc-hmac256sha.
+       - scale of
+
+         - 400tnlsw.
+         - 5000tnlsw.
+         - 20000tnlsw.
+         - 60000tnlsw.
 
 #. TEST FRAMEWORK
 
-   - **CSIT PAPI support**: Due to issues with PAPI performance, VAT is
-     still used in CSIT for all VPP scale tests. See known issues below.
+   - **Telemetry retouch**: Refactored telemetry retrieval from DUTs and
+     SUTs. Included VPP perfmon plugin telemetry with all perfmon
+     bundles available in VPP release.
 
-   - **General Code Housekeeping**: Ongoing code optimizations,
-     speed ups and bug fixes.
+   - **Upgrade to Ubuntu 20.04 LTS**: Re-installed base operating system
+     to Ubuntu 20.04.2 LTS. Upgrade included also baseline Docker
+     containers used for spawning topology.
+
+   - **CSIT test environment** version has been updated to ver. 7, see
+     :ref:`test_environment_versioning`.
+
+   - **CSIT in AWS environment**: Added CSIT support for AWS c5n
+     instances environment. Test results will be added in sub-sequent
+     CSIT-2106 report.
+
+   - **CSIT PAPI support**: Due to issues with PAPI performance, VAT is
+     still used in CSIT for all VPP scale tests. See known issues
+     below.
+
+   - **General Code Housekeeping**: Ongoing code optimizations and bug
+     fixes. 
 
 #. PRESENTATION AND ANALYTICS LAYER
 

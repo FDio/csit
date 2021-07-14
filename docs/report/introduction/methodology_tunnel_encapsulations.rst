@@ -36,3 +36,8 @@ VPP is tested in the following IPv6 tunnel baseline configurations:
 
 In all cases listed above low number of IPv4, IPv6 flows (253 or 254 per
 direction) is routed by VPP.
+
+GTPU Tunnels
+~~~~~~~~~~~~
+
+*TODO Description to be added*
