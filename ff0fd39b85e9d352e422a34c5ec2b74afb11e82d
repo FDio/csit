@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "9bb29f54_976007de",
+        "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-14T12:34:28Z",
+      "side": 1,
+      "message": "Agree.",
+      "parentUuid": "a994a6f7_e7269e60",
+      "range": {
+        "startLine": 59,
+        "startChar": 52,
+        "endLine": 59,
+        "endChar": 63
+      },
+      "revId": "ff0fd39b85e9d352e422a34c5ec2b74afb11e82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31c6c52a_12dada82",
         "filename": "docs/report/introduction/methodology_per_thread_resources.rst",
         "patchSetId": 6
