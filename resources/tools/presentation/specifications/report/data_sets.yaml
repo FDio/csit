@@ -103,6 +103,7 @@
       - 3   # rls2106.rel NDRPDR COV env 7
       - 4   # rls2106.rel NDRPDR COV env 7
       - 6   # rls2106.rel NDRPDR COV env 7
+      - 7   # rls2106.rel NDRPDR COV env 7
       - 8   # rls2106.rel NDRPDR COV env 7
       - 9   # rls2106.rel NDRPDR COV env 7
       - 10  # rls2106.rel NDRPDR COV env 7
@@ -118,11 +119,16 @@
       - 20  # rls2106.rel NDRPDR COV env 7
       - 21  # rls2106.rel NDRPDR COV env 7
       - 22  # rls2106.rel NDRPDR COV env 7
+      - 23  # rls2106.rel NDRPDR COV env 7
       - 24  # rls2106.rel NDRPDR COV env 7
       - 25  # rls2106.rel NDRPDR COV env 7
       - 26  # rls2106.rel NDRPDR COV env 7
       - 27  # rls2106.rel NDRPDR COV env 7
+      - 28  # rls2106.rel NDRPDR COV env 7
       - 30  # rls2106.rel NDRPDR COV env 7
+      - 33  # rls2106.rel NDRPDR COV env 7
+      - 34  # rls2106.rel NDRPDR COV env 7
+      - 35  # rls2106.rel NDRPDR COV env 7
 
   dpdk-3n-skx-hist-iter:
     csit-dpdk-perf-report-iterative-2009-3n-skx:
@@ -481,6 +487,7 @@
       - 2   # rls2106.rel NDRPDR COV env 7
       - 4   # rls2106.rel NDRPDR COV env 7
       - 7   # rls2106.rel NDRPDR COV env 7
+      - 9   # rls2106.rel NDRPDR COV env 7
 
   dpdk-2n-zn2-hist-iter:
     csit-dpdk-perf-report-iterative-2101-2n-zn2:
@@ -857,10 +864,12 @@
     csit-vpp-perf-report-coverage-2106-3n-tsh:
       - 3   # rls2106.rel NDRPDR COV env 7
       - 4   # rls2106.rel NDRPDR COV env 7
+      - 5   # rls2106.rel NDRPDR COV env 7
       - 6   # rls2106.rel NDRPDR COV env 7
       - 7   # rls2106.rel NDRPDR COV env 7
       - 8   # rls2106.rel NDRPDR COV env 7
       - 11  # rls2106.rel NDRPDR COV env 7
+      - 14  # rls2106.rel NDRPDR COV env 7
 
   dpdk-3n-tsh-hist-iter:
     csit-dpdk-perf-report-iterative-2009-3n-tsh:
