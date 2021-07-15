@@ -44,13 +44,13 @@ nodes:
       port2:
         mac_address: "3c:fd:fe:a8:aa:c2"
         pci_address: "0000:18:00.2"
-        link: link10
+        link: link4
         driver: i40e
         model: Intel-X710
       port3:
         mac_address: "3c:fd:fe:a8:aa:c3"
         pci_address: "0000:18:00.3"
-        link: link11
+        link: link4
         driver: i40e
         model: Intel-X710
   DUT1:
