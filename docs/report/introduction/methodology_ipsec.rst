@@ -24,7 +24,7 @@ on VPP native crypto (`crypto_native` plugin):
 +-------------------+------------------+----------------+------------------+
 
 VPP IPsec with SW crypto are executed in both tunnel and policy modes,
-with tests running on 3-node testbeds: 3n-skx.
+with tests running on 3-node testbeds: 3n-skx, 3n-tsh.
 
 IPsec with Intel QAT HW
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -52,13 +52,36 @@ IPsec with Async Crypto Feature Workers
 
 *TODO Description to be added*
 
-IPsec Uni-Directional Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IPsec Uni-Directional Tests with VPP Native SW Crypto
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-*TODO Description to be added*
+Currently |csit-release| implements following IPsec uni-directional test cases
+relying on VPP native crypto (`crypto_native` plugin) in tunnel mode:
 
++-------------------+------------------+---------------+--------------------+
+| VPP Crypto Engine | ESP Encryption   | ESP Integrity | Scale Tested       |
++===================+==================+===============+====================+
+| crypto_native     | AES[128|256]-GCM | GCM           | 4, 1k, 10k tunnels |
++-------------------+------------------+---------------+--------------------+
+| crypto_native     | AES128-CBC       | SHA[512]      | 4, 1k, 10k tunnels |
++-------------------+------------------+---------------+--------------------+
 
-IPsec Deep SPD Policy Tests
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In policy mode:
++-------------------+----------------+---------------+-------------------+
+| VPP Crypto Engine | ESP Encryption | ESP Integrity | Scale Tested      |
++===================+================+===============+===================+
+| crypto_native     | AES[256]-GCM   | GCM           | 1, 40, 1k tunnels |
++-------------------+----------------+---------------+-------------------+
 
-*TODO Description to be added*
+The tests are running on 2-node testbeds: 2n-tx2. The uni-directional tests
+are partially addressing a weakness in 2-node testbed setups with T-Rex as
+the traffic generator. With just one DUT node, we can either encrypt or decrypt
+traffic in each direction.
+
+The testcases are only doing encryption - packets are encrypted on the DUT and
+then arrive at TG where no additional packet processing is needed (just
+counting packets).
+
+Decryption would require that the traffic generator generated encrypted packets
+which the DUT then would decrypt. However, T-Rex does not have the capability
+to encrypt packets.
