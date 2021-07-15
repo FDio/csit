@@ -249,7 +249,7 @@ class Constants:
 
     # Duration of one latency-specific trial in NDRPDR test.
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
-        u"PERF_TRIAL_LATENCY_DURATION", 5.0)
+        u"PERF_TRIAL_LATENCY_DURATION", 1.0)
 
     # For some testbeds TG takes longer than usual to start sending traffic.
     # This constant [s] allows longer wait, without affecting
