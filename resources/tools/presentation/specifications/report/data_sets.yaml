@@ -125,7 +125,9 @@
       - 26  # rls2106.rel NDRPDR COV env 7
       - 27  # rls2106.rel NDRPDR COV env 7
       - 28  # rls2106.rel NDRPDR COV env 7
+      - 29  # rls2106.rel NDRPDR COV env 7
       - 30  # rls2106.rel NDRPDR COV env 7
+      - 32  # rls2106.rel NDRPDR COV env 7
       - 33  # rls2106.rel NDRPDR COV env 7
       - 34  # rls2106.rel NDRPDR COV env 7
       - 35  # rls2106.rel NDRPDR COV env 7
@@ -869,6 +871,7 @@
       - 7   # rls2106.rel NDRPDR COV env 7
       - 8   # rls2106.rel NDRPDR COV env 7
       - 11  # rls2106.rel NDRPDR COV env 7
+      - 13  # rls2106.rel NDRPDR COV env 7
       - 14  # rls2106.rel NDRPDR COV env 7
 
   dpdk-3n-tsh-hist-iter:

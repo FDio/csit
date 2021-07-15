@@ -3797,11 +3797,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-3n-skx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-3n-skx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-3n-skx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -3809,8 +3809,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 3n-skx 4t2c pdr
 - type: "table"
@@ -3820,11 +3820,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2005"
+    - title: "20.08"
       data-set: "dpdk-3n-skx-hist-iter"
-    - title: "2009"
+    - title: "20.11"
       data-set: "dpdk-3n-skx-prev-iter"
-    - title: "2101"
+    - title: "21.02"
       data-set: "dpdk-3n-skx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -3832,8 +3832,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 3n-skx 2t1c ndr
 - type: "table"
@@ -3843,11 +3843,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-3n-skx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-3n-skx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-3n-skx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -3855,8 +3855,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 3n-skx 4t2c ndr
 - type: "table"
@@ -3866,11 +3866,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-3n-skx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-3n-skx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-3n-skx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -3878,8 +3878,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-skx 2t1c pdr
 - type: "table"
@@ -3889,11 +3889,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-skx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-skx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-skx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -3901,8 +3901,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-skx 4t2c pdr
 - type: "table"
@@ -3912,11 +3912,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-skx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-skx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-skx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -3924,8 +3924,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-skx 2t1c ndr
 - type: "table"
@@ -3935,11 +3935,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-skx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-skx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-skx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -3947,8 +3947,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-skx 4t2c ndr
 - type: "table"
@@ -3958,11 +3958,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-skx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-skx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-skx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -3970,8 +3970,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-clx 2t1c pdr
 - type: "table"
@@ -3981,11 +3981,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-clx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-clx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-clx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -3993,8 +3993,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-clx 4t2c pdr
 - type: "table"
@@ -4004,11 +4004,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-clx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-clx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-clx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4016,8 +4016,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-clx 2t1c ndr
 - type: "table"
@@ -4027,11 +4027,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-clx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-clx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-clx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4039,8 +4039,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-clx 4t2c ndr
 - type: "table"
@@ -4050,11 +4050,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-clx-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-clx-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-clx-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4062,8 +4062,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-zn2 2t1c pdr
 - type: "table"
@@ -4073,11 +4073,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-zn2-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-zn2-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-zn2-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4085,8 +4085,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-zn2 4t2c pdr
 - type: "table"
@@ -4096,11 +4096,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-zn2-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-zn2-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-zn2-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4108,8 +4108,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-zn2 2t1c ndr
 - type: "table"
@@ -4119,11 +4119,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-zn2-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-zn2-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-zn2-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4131,8 +4131,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 2n-zn2 4t2c ndr
 - type: "table"
@@ -4142,11 +4142,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-2n-zn2-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-2n-zn2-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-2n-zn2-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4154,8 +4154,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 ## DPDK Performance Changes 2n-dnv 1t1c pdr
 #- type: "table"
@@ -4349,11 +4349,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-3n-tsh-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-3n-tsh-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-3n-tsh-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4361,8 +4361,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 3n-tsh 2t2c pdr
 - type: "table"
@@ -4372,11 +4372,11 @@
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-3n-tsh-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-3n-tsh-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-3n-tsh-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4384,8 +4384,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 3n-tsh 1t1c ndr
 - type: "table"
@@ -4395,11 +4395,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-3n-tsh-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-3n-tsh-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-3n-tsh-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4407,8 +4407,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Performance Changes 3n-tsh 2t2c ndr
 - type: "table"
@@ -4418,11 +4418,11 @@
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
   columns:
-    - title: "2009"
+    - title: "20.08"
       data-set: "dpdk-3n-tsh-hist-iter"
-    - title: "2101"
+    - title: "20.11"
       data-set: "dpdk-3n-tsh-prev-iter"
-    - title: "2106"
+    - title: "21.02"
       data-set: "dpdk-3n-tsh-curr-iter"
   comparisons:
     - title: "Diff"
@@ -4430,8 +4430,8 @@
       compare: 3
   legend:
     - ""
-    - "2009, 2101, 2106 - DPDK versions tested."
-    - "Diff - difference between 2101 and 2106 DPDK version."
+    - "20.08, 20.11, 21.02 - DPDK versions tested."
+    - "Diff - difference between 20.11 and 21.02 DPDK version."
 
 # DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr
 - type: "table"
