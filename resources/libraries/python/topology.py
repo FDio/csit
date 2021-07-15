@@ -377,16 +377,18 @@ class Topology:
         return links
 
     @staticmethod
-    def _get_interface_by_key_value(node, key, value):
+    def _get_interface_by_key_value(node, key, value, second=False):
         """Return node interface key from topology file
         according to key and value.
 
         :param node: The node dictionary.
         :param key: Key by which to select the interface.
         :param value: Value that should be found using the key.
+        :param second: Use second interface of the link. Useful for back-to-back links.
         :type node: dict
         :type key: string
         :type value: string
+        :type second: bool
         :returns: Interface key from topology file
         :rtype: string
         """
@@ -394,10 +396,16 @@ class Topology:
         retval = None
         for if_key, if_val in interfaces.items():
             k_val = if_val.get(key)
+            logger.debug(f"gibkv key {key} if_key {if_key} val {k_val}")
             if k_val is not None:
                 if k_val == value:
-                    retval = if_key
-                    break
+                    if second:
+                        logger.debug(u"gibkv seconding")
+                        second = False
+                    else:
+                        logger.debug(u"gibkv selecting")
+                        retval = if_key
+                        break
         return retval
 
     @staticmethod
@@ -417,7 +425,7 @@ class Topology:
         return Topology._get_interface_by_key_value(node, u"name", iface_name)
 
     @staticmethod
-    def get_interface_by_link_name(node, link_name):
+    def get_interface_by_link_name(node, link_name, second=False):
         """Return interface key of link on node.
 
         This method returns the interface name associated with a given link
@@ -425,12 +433,14 @@ class Topology:
 
         :param node: The node topology dictionary.
         :param link_name: Name of the link that a interface is connected to.
+        :param second: Use second interface of the link. Useful for back-to-back links.
         :type node: dict
         :type link_name: string
+        :type second: bool
         :returns: Interface key of the interface connected to the given link.
         :rtype: str
         """
-        return Topology._get_interface_by_key_value(node, u"link", link_name)
+        return Topology._get_interface_by_key_value(node, u"link", link_name, second=second)
 
     def get_interfaces_by_link_names(self, node, link_names):
         """Return dictionary of dictionaries {"interfaceN", interface name}.
@@ -836,13 +846,15 @@ class Topology:
         return None
 
     @staticmethod
-    def _get_node_active_link_names(node, filter_list=None):
+    def _get_node_active_link_names(node, filter_list=None, b2b=False):
         """Return list of link names that are other than mgmt links.
 
         :param node: Node topology dictionary.
         :param filter_list: Link filter criteria.
+        :param b2b: Whether we require back-to-back links.
         :type node: dict
         :type filter_list: list of strings
+        :type b2b: bool
         :returns: List of link names occupied by the node.
         :rtype: None or list of string
         """
@@ -862,6 +874,17 @@ class Topology:
                     link_names.append(interface[u"link"])
         if not link_names:
             link_names = None
+        if b2b:
+            new_link_names = list()
+            for link_name in link_names:
+                count = 0
+                for interface in interfaces.values():
+                    link = interface.get(u"link", None)
+                    if link == link_name:
+                        count += 1
+                if count == 2:
+                    new_link_names.append(link_name)
+            link_names = new_link_names
         return link_names
 
     def get_active_connecting_links(
@@ -880,12 +903,19 @@ class Topology:
         :rtype: list
         """
 
-        node1_links = self._get_node_active_link_names(
-            node1, filter_list=filter_list_node1
-        )
-        node2_links = self._get_node_active_link_names(
-            node2, filter_list=filter_list_node2
-        )
+        if node1 != node2:
+            node1_links = self._get_node_active_link_names(
+                node1, filter_list=filter_list_node1
+            )
+            node2_links = self._get_node_active_link_names(
+                node2, filter_list=filter_list_node2
+            )
+        else:
+            # Looking for back-to-back links.
+            node1_links = self._get_node_active_link_names(
+                node1, filter_list=filter_list_node1, b2b=True
+            )
+            node2_links = node1_links
 
         connecting_links = None
         if node1_links is None:

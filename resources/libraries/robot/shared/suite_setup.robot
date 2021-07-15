@@ -208,8 +208,8 @@
 | | END
 | | Initialize traffic generator
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
-| | ... | ${dut1} | ${DUT1_${int}1}[0]
-| | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
+| | ... | ${tg} | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf1}[0]
 | | ... | ${osi_layer}
 
 | Additional Suite Setup Action For ipsechw
