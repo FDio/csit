@@ -459,6 +459,7 @@
       - 44  # rls2106.rel NDRPDR iter env 7
       - 45  # rls2106.rel NDRPDR iter env 7
       - 46  # rls2106.rel NDRPDR iter env 7
+      - 47  # rls2106.rel NDRPDR iter env 7
 
   vpp-2n-zn2-curr-iter-best:
     csit-vpp-perf-report-iterative-2106-2n-zn2:
@@ -489,6 +490,7 @@
       - 2   # rls2106.rel NDRPDR COV env 7
       - 4   # rls2106.rel NDRPDR COV env 7
       - 7   # rls2106.rel NDRPDR COV env 7
+      - 8   # rls2106.rel NDRPDR COV env 7
       - 9   # rls2106.rel NDRPDR COV env 7
 
   dpdk-2n-zn2-hist-iter:
@@ -871,6 +873,7 @@
       - 7   # rls2106.rel NDRPDR COV env 7
       - 8   # rls2106.rel NDRPDR COV env 7
       - 11  # rls2106.rel NDRPDR COV env 7
+      - 12  # rls2106.rel NDRPDR COV env 7
       - 13  # rls2106.rel NDRPDR COV env 7
       - 14  # rls2106.rel NDRPDR COV env 7
 
