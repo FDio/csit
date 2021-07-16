@@ -415,6 +415,7 @@
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | Append To List | ${results} | ${result.approximated_receive_rate}
+| | | ${trial_duration} = | Evaluate | ${trial_duration} + 1
 | | END
 | | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
