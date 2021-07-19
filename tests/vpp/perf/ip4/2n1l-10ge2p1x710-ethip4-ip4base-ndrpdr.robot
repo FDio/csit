@@ -20,9 +20,9 @@
 | ... | ethip4-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance
-| Suite Teardown | Tear down suite | performance
+#| Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance
+#| Test Teardown | Tear down test | performance
 |
 | Test Template | Local Template
 |
@@ -47,10 +47,10 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
+| @{plugins_to_enable}= | rdma_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | Intel-X710
-| ${nic_driver}= | vfio-pci
+| ${nic_name}= | Mellanox-CX556A
+| ${nic_driver}= | rdma-core
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
@@ -100,7 +100,7 @@
 | | frame_size=${64} | phy_cores=${4}
 
 | 1518B-1c-ethip4-ip4base-ndrpdr
-| | [Tags] | 1518B | 1C
+| | [Tags] | 1518B | 1C | THIS
 | | frame_size=${1518} | phy_cores=${1}
 
 | 1518B-2c-ethip4-ip4base-ndrpdr

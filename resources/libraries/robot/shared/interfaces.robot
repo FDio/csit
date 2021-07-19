@@ -182,6 +182,10 @@
 | | ... | Pre-initialize rdma-core driver.
 | |
 | | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${jumbo}
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | ELSE
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
 | | | Set PCI Parameter

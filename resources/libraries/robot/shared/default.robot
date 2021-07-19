@@ -208,6 +208,7 @@
 | | | Run Keyword | ${dut}.Add IP6 Hash Buckets | 2000000
 | | | Run Keyword | ${dut}.Add IP6 Heap Size | 4G
 | | | Run Keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
+| | | Run Keyword | ${dut}.Add Buffers Default Data Size | 16384
 | | END
 
 | Add worker threads to all DUTs
