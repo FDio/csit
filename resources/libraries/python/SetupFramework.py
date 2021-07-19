@@ -105,7 +105,7 @@ def extract_tarball_at_node(tarball, node):
         node, cmd,
         message=f"Failed to extract {tarball} at node {node[u'type']} "
         f"host {node[u'host']}, port {node[u'port']}",
-        timeout=120, include_reason=True
+        timeout=240, include_reason=True
     )
     logger.console(
         f"Extracting tarball to {con.REMOTE_FW_DIR} on {node[u'type']} "
