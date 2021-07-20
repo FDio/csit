@@ -45,7 +45,7 @@ DPDK MRR
     <center>
     Links to builds:
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-zn2" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-2n-zn2-mrr.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-dpdk-2n-zn2-mrr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -57,7 +57,7 @@ DPDK MRR
     <center>
     Links to builds:
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-3n-tsh-mrr.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-dpdk-3n-tsh-mrr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -69,6 +69,6 @@ DPDK MRR
     <center>
     Links to builds:
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-tx2" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-2n-tx2-mrr.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-dpdk-2n-tx2-mrr.html"></iframe>
     <p><br></p>
     </center>
