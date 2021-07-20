@@ -6,8 +6,10 @@ plugins:
 
 - `crypto_native`, used for software based crypto leveraging CPU
   platform optimizations e.g. Intel's AES-NI instruction set.
-- `crypto_ipsecmb`, used for hardware based crypto with Intel QAT PCIe
+- `dpdk_cryptodev`, used for hardware based crypto with Intel QAT PCIe
   cards.
+- `crypto_sw_scheduler`, used to scheduler crypto work to dedicated async
+  cores.
 
 IPsec with VPP Native SW Crypto
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -30,33 +32,41 @@ IPsec with Intel QAT HW
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Currently |csit-release| implements following IPsec test cases relying
-on ipsecmb library (`crypto_ipsecmb` plugin) and Intel QAT 8950 (50G HW
-crypto card):
-
-dpdk_cryptodev
+on dpdk_cryptodev and Intel QAT 8950 (50G HW crypto card):
 
 +-------------------+---------------------+------------------+----------------+------------------+
 | VPP Crypto Engine | VPP Crypto Workers  | ESP Encryption   | ESP Integrity  | Scale Tested     |
 +===================+=====================+==================+================+==================+
-| crypto_ipsecmb    | sync/all workers    | AES[128|256]-GCM | GCM            | 1, 1k tunnels    |
+| dpdk_cryptodev    | async/QAT HW        | AES[128|256]-GCM | GCM            | 1, 4, 1k tunnels |
 +-------------------+---------------------+------------------+----------------+------------------+
-| crypto_ipsecmb    | sync/all workers    | AES[128]-CBC     | SHA[256|512]   | 1, 1k tunnels    |
-+-------------------+---------------------+------------------+----------------+------------------+
-| crypto_ipsecmb    | async/crypto worker | AES[128|256]-GCM | GCM            | 1, 4, 1k tunnels |
-+-------------------+---------------------+------------------+----------------+------------------+
-| crypto_ipsecmb    | async/crypto worker | AES[128]-CBC     | SHA[256|512]   | 1, 4, 1k tunnels |
+| dpdk_cryptodev    | async/QAT HW        | AES[128]-CBC     | SHA[256|512]   | 1, 4, 1k tunnels |
 +-------------------+---------------------+------------------+----------------+------------------+
 
-IPsec with Async Crypto Feature Workers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+VPP IPsec with HW crypto are executed in both tunnel and policy modes,
+with tests running on 3-node Haswell testbeds (3n-hsw), as these are the
+only testbeds equipped with Intel QAT cards.
 
-*TODO Description to be added*
+IPsec with VPP Crypto SW Scheduler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Currently |csit-release| implements following IPsec test cases relying
+on VPP Crypto SW Scheduler (`crypto_sw_scheduler` plugin):
+
++---------------------+---------------------+------------------+----------------+--------------------+
+| VPP Crypto Engine   | VPP Crypto Workers  | ESP Encryption   | ESP Integrity  | Scale Tested       |
++=====================+=====================+==================+================+====================+
+| crypto_sw_scheduler | async/CPU cores     | AES[128|256]-GCM | GCM            | 1, 2, 4, 8 tunnels |
++---------------------+---------------------+------------------+----------------+--------------------+
+| crypto_sw_scheduler | async/CPU cores     | AES[128]-CBC     | SHA[256|512]   | 1, 2, 4, 8 tunnels |
++---------------------+---------------------+------------------+----------------+--------------------+
+
+VPP IPsec with Crypto SW Scheduler executed tunnel mode,
+with tests running on 3-node testbeds: 3n-skx.
 
 IPsec Uni-Directional Tests
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *TODO Description to be added*
-
 
 IPsec Deep SPD Policy Tests
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
