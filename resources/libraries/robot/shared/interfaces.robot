@@ -182,10 +182,13 @@
 | | ... | Pre-initialize rdma-core driver.
 | |
 | | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${jumbo}
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | ELSE
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
+| | FOR | ${dut} | IN | @{duts}
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
-| | | Set PCI Parameter
-| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | key="68.w" | value="3BCD"
 | | END
 
 | Pre-initialize layer mlx5_core on all DUTs
@@ -196,11 +199,9 @@
 | | | Run Keyword If | ${jumbo}
 | | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
 | | | ... | ELSE
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1500
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
-| | | Set PCI Parameter
-| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | key="68.w" | value="3BCD"
 | | END
 
 | Initialize layer driver
