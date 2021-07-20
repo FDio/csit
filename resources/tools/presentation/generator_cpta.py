@@ -393,7 +393,7 @@ def _generate_all_charts(spec, input_data):
 
         data = input_data.filter_tests_by_name(
             graph,
-            params=[u"type", u"result", u"throughput", u"tags"],
+            params=[u"type", u"result", u"throughput", u"latency", u"tags"],
             continue_on_error=True
         )
 
@@ -406,6 +406,8 @@ def _generate_all_charts(spec, input_data):
         for ttype in graph.get(u"test-type", (u"mrr", )):
             for core in graph.get(u"core", tuple()):
                 csv_tbl = list()
+                csv_tbl_lat_1 = list()
+                csv_tbl_lat_2 = list()
                 res = dict()
                 chart_data = dict()
                 chart_tags = dict()
@@ -421,6 +423,8 @@ def _generate_all_charts(spec, input_data):
                                 if chart_data.get(test_id, None) is None:
                                     chart_data[test_id] = OrderedDict()
                                 try:
+                                    lat_1 = u""
+                                    lat_2 = u""
                                     if ttype == u"mrr":
                                         rate = test[u"result"][u"receive-rate"]
                                         stdev = \
@@ -433,12 +437,23 @@ def _generate_all_charts(spec, input_data):
                                         rate = \
                                             test["throughput"][u"PDR"][u"LOWER"]
                                         stdev = float(u"nan")
+                                        lat_1 = test[u"latency"][u"PDR50"]\
+                                            [u"direction1"][u"avg"]
+                                        lat_2 = test[u"latency"][u"PDR50"]\
+                                            [u"direction2"][u"avg"]
                                     else:
                                         continue
                                     chart_data[test_id][int(index)] = {
                                         u"receive-rate": rate,
                                         u"receive-stdev": stdev
                                     }
+                                    if ttype == u"pdr":
+                                        chart_data[test_id][int(index)].update(
+                                            {
+                                                u"lat_1": lat_1,
+                                                u"lat_2": lat_2
+                                            }
+                                        )
                                     chart_tags[test_id] = \
                                         test.get(u"tags", None)
                                 except (KeyError, TypeError):
@@ -447,14 +462,26 @@ def _generate_all_charts(spec, input_data):
                 # Add items to the csv table:
                 for tst_name, tst_data in chart_data.items():
                     tst_lst = list()
+                    tst_lst_lat_1 = list()
+                    tst_lst_lat_2 = list()
                     for bld in builds_dict[job_name]:
                         itm = tst_data.get(int(bld), dict())
                         # CSIT-1180: Itm will be list, compute stats.
                         try:
                             tst_lst.append(str(itm.get(u"receive-rate", u"")))
+                            tst_lst_lat_1.append(str(itm.get(u"lat_1", u"")))
+                            tst_lst_lat_2.append(str(itm.get(u"lat_2", u"")))
                         except AttributeError:
                             tst_lst.append(u"")
+                            tst_lst_lat_1.append(u"")
+                            tst_lst_lat_2.append(u"")
                     csv_tbl.append(f"{tst_name}," + u",".join(tst_lst) + u'\n')
+                    csv_tbl_lat_1.append(
+                        f"{tst_name}," + u",".join(tst_lst_lat_1) + u"\n"
+                    )
+                    csv_tbl_lat_2.append(
+                        f"{tst_name}," + u",".join(tst_lst_lat_2) + u"\n"
+                    )
 
                 # Generate traces:
                 traces = list()
@@ -593,6 +620,8 @@ def _generate_all_charts(spec, input_data):
                     {
                         u"job_name": job_name,
                         u"csv_table": csv_tbl,
+                        u"csv_lat_1": csv_tbl_lat_1,
+                        u"csv_lat_2": csv_tbl_lat_2,
                         u"results": res
                     }
                 )
@@ -629,17 +658,34 @@ def _generate_all_charts(spec, input_data):
 
     # Create the table header:
     csv_tables = dict()
+    csv_tables_l1 = dict()
+    csv_tables_l2 = dict()
     for job_name in builds_dict:
         if csv_tables.get(job_name, None) is None:
             csv_tables[job_name] = list()
+        if csv_tables_l1.get(job_name, None) is None:
+            csv_tables_l1[job_name] = list()
+        if csv_tables_l2.get(job_name, None) is None:
+            csv_tables_l2[job_name] = list()
         header = f"Build Number:,{u','.join(builds_dict[job_name])}\n"
         csv_tables[job_name].append(header)
+        csv_tables_l1[job_name].append(header)
+        csv_tables_l2[job_name].append(header)
         build_dates = [x[0] for x in build_info[job_name].values()]
         header = f"Build Date:,{u','.join(build_dates)}\n"
         csv_tables[job_name].append(header)
+        csv_tables_l1[job_name].append(header)
+        csv_tables_l2[job_name].append(header)
         versions = [x[1] for x in build_info[job_name].values()]
         header = f"Version:,{u','.join(versions)}\n"
         csv_tables[job_name].append(header)
+        csv_tables_l1[job_name].append(header)
+        csv_tables_l2[job_name].append(header)
+        testbed = [x[2] for x in build_info[job_name].values()]
+        header = f"Test bed:,{u','.join(testbed)}\n"
+        csv_tables[job_name].append(header)
+        csv_tables_l1[job_name].append(header)
+        csv_tables_l2[job_name].append(header)
 
     for chart in spec.cpta[u"plots"]:
         results = _generate_chart(chart)
@@ -648,6 +694,8 @@ def _generate_all_charts(spec, input_data):
 
         for result in results:
             csv_tables[result[u"job_name"]].extend(result[u"csv_table"])
+            csv_tables_l1[result[u"job_name"]].extend(result[u"csv_lat_1"])
+            csv_tables_l2[result[u"job_name"]].extend(result[u"csv_lat_2"])
 
             if anomaly_classifications.get(result[u"job_name"], None) is None:
                 anomaly_classifications[result[u"job_name"]] = dict()
@@ -685,6 +733,15 @@ def _generate_all_charts(spec, input_data):
             txt_table.align[u"Build Number:"] = u"l"
         with open(f"{file_name}.txt", u"wt") as txt_file:
             txt_file.write(str(txt_table))
+
+    for job_name, csv_table in csv_tables_l1.items():
+        file_name = f"{spec.cpta[u'output-file']}/{job_name}-lat-P50-50-d1"
+        with open(f"{file_name}.csv", u"wt") as file_handler:
+            file_handler.writelines(csv_table)
+    for job_name, csv_table in csv_tables_l2.items():
+        file_name = f"{spec.cpta[u'output-file']}/{job_name}-lat-P50-50-d2"
+        with open(f"{file_name}.csv", u"wt") as file_handler:
+            file_handler.writelines(csv_table)
 
     # Evaluate result:
     if anomaly_classifications:
