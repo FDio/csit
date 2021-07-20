@@ -10,7 +10,7 @@
       size: 16
     autosize: True
     showlegend: True
-    width: 1100
+    width: 1050
     height: 800
     yaxis:
       showticklabels: True

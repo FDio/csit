@@ -69,7 +69,7 @@
 - type: "plot"
   title: "Statistics: DPDK 2n-clx mrr"
   algorithm: "plot_statistics"
-  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-2n-skx-mrr"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-2n-clx-mrr"
   data: "plot-performance-trending-dpdk-2n-clx"
   layout:
     layout: "plot-statistics"
