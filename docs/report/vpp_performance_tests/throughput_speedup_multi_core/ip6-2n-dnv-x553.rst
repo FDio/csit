@@ -28,21 +28,6 @@
 
     </script>
 
-..
-    ## 2n-dnv-x553
-    ### 78b-?t?c-ip6routing-base-scale-ixgbe
-    10ge2p1x520-dot1q-ip6base-ndrpdr
-    10ge2p1x520-ethip6-ip6base-ndrpdr
-    10ge2p1x520-ethip6-ip6scale20k-ndrpdr
-    10ge2p1x520-ethip6-ip6scale200k-ndrpdr
-    10ge2p1x520-ethip6-ip6scale2m-ndrpdr
-
-    Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Dot1Q-Ip6Base-Ndrpdr.78B-1t1c-dot1q-ip6base-ndrpdr
-    Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Base-Ndrpdr.78B-1t1c-ethip6-ip6base-ndrpdr
-    Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale20K-Ndrpdr.78B-1t1c-ethip6-ip6scale20k-ndrpdr
-    Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale200K-Ndrpdr.78B-1t1c-ethip6-ip6scale200k-ndrpdr
-    Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale2M-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-ndrpdr
-
 2n-dnv-x553
 ~~~~~~~~~~~
 
@@ -52,7 +37,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-78b-ip6routing-base-scale-[ixgbe,af_xdp]-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -61,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-ndr-tsa}
-            \label{fig:2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-78b-ip6routing-base-scale-[ixgbe,af_xdp]-ndr-tsa}
+            \label{fig:2n-dnv-x553-78b-ip6routing-base-scale-[ixgbe,af_xdp]-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -72,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-78b-ip6routing-base-scale-[ixgbe,af_xdp]-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -81,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-pdr-tsa}
-            \label{fig:2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-78b-ip6routing-base-scale-[ixgbe,af_xdp]-pdr-tsa}
+            \label{fig:2n-dnv-x553-78b-ip6routing-base-scale-[ixgbe,af_xdp]-pdr-tsa}
     \end{figure}
