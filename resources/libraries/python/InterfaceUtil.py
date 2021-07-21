@@ -1772,9 +1772,10 @@ class InterfaceUtil:
             )
         elif driver == u"af_xdp":
             if kernel_driver not in (
-                    u"ice", u"iavf", u"i40e", u"i40evf", u"mlx5_core"):
+                    u"ice", u"iavf", u"i40e", u"i40evf", u"mlx5_core",
+                    u"ixgbe"):
                 raise RuntimeError(
-                    f"AF_XDP needs ice or i40e or rdma compatible driver, not "
+                    f"AF_XDP needs ice/i40e/rdma/ixgbe compatible driver, not "
                     f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
                 )
             vf_keys = InterfaceUtil.init_generic_interface(
