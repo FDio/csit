@@ -75,7 +75,7 @@
     \clearpage
 
 64b-l2switching-base-scale-avf
--------------------------------
+------------------------------
 
 .. raw:: html
 
@@ -111,6 +111,49 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-zn2-xxv710-64b-l2switching-base-scale-avf-pdr-tsa}
             \label{fig:2n-zn2-xxv710-64b-l2switching-base-scale-avf-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-l2switching-base-scale-af-xdp
+---------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="121af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-zn2-xxv710-64b-l2switching-base-scale-af_xdp-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-zn2-xxv710-64b-l2switching-base-scale-af_xdp-ndr-tsa}
+            \label{fig:2n-zn2-xxv710-64b-l2switching-base-scale-af_xdp-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="122af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-zn2-xxv710-64b-l2switching-base-scale-af_xdp-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-zn2-xxv710-64b-l2switching-base-scale-af_xdp-pdr-tsa}
+            \label{fig:2n-zn2-xxv710-64b-l2switching-base-scale-af_xdp-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
