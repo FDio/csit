@@ -42,3 +42,4 @@ trex_url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 trex_version:
   # master // ubuntu 20.04
   - "2.88"
+  - "2.97"
