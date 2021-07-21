@@ -1,0 +1,84 @@
+---
+# file: roles/intel/tasks/ice.yaml
+
+- name: Inst - Get Network Adapter Driver
+  get_url:
+    url: "{{ intel_ice_driver_url }}"
+    dest: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}.tar.gz"
+    mode: 0644
+  tags:
+    - intel-inst
+
+- name: Inst - Extract Network Adapter Driver
+  unarchive:
+    remote_src: true
+    src: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}.tar.gz"
+    dest: "{{ intel_ice_driver_dir }}/"
+    creates: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}"
+  register: intel_driver_extracted
+  tags:
+    - intel-inst
+
+- name: Inst - Network Adapter Driver
+  command: "make install; modprobe -r ice; modprobe ice"
+  args:
+    chdir: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}/src"
+  failed_when: no
+  when:
+    - intel_driver_extracted
+  tags:
+    - intel-inst
+
+- name: Inst - Get Dynamic Device Personalization (DDP) Package
+  get_url:
+    url: "{{ intel_ddp_profile_url }}"
+    dest: "{{ intel_ddp_profile_dir }}/800-Series-Comms-Binary-Package-{{ intel_ddp_version }}.zip"
+    mode: 0644
+  tags:
+    - intel-inst
+
+- name: Inst - Extract Dynamic Device Personalization (DDP) Package
+  unarchive:
+    remote_src: true
+    src: "{{ intel_ddp_profile_dir }}/800-Series-Comms-Binary-Package-{{ intel_ddp_version }}.zip"
+    dest: "{{ intel_ddp_profile_dir }}/"
+    creates: "{{ intel_ddp_profile_dir }}/ice_comms-{{ intel_ddp_version }}.zip"
+  register: intel_driver_extracted
+  tags:
+    - intel-inst
+
+- name: Inst - Extract Dynamic Device Personalization (DDP) Package
+  unarchive:
+    remote_src: true
+    src: "{{ intel_ddp_profile_dir }}/ice_comms-{{ intel_ddp_version }}.zip"
+    dest: "{{ intel_ddp_profile_dir }}/"
+  register: intel_driver_extracted
+  tags:
+    - intel-inst
+
+- name: Inst - Copy Dynamic Device Personalization (DDP) Package
+  copy:
+    src: "{{ intel_ddp_profile_dir }}/ice_comms-{{ intel_ddp_version }}.pkg"
+    dest: "/lib/firmware/updates/intel/ice/ddp/ice-{{ intel_ddp_version }}.pkg"
+    remote_src: yes
+    follow: yes
+  tags:
+    - intel-inst
+
+- name: Inst - Link Dynamic Device Personalization (DDP) Package
+  file:
+    src: "ice-{{ intel_ddp_version }}.pkg"
+    dest: "/lib/firmware/updates/intel/ice/ddp/ice.pkg"
+    state: link
+  tags:
+    - intel-inst
+
+- name: Inst - Extract Dynamic Device Personalization (DDP) Package (cleanup)
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ intel_ddp_profile_dir }}/E810 DDP for Comms TechGuide_Rev2.3.pdf"
+    - "{{ intel_ddp_profile_dir }}/Intel_800_series_market_segment_DDP_license.txt"
+  tags:
+    - intel-inst

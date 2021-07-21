@@ -1,0 +1,30 @@
+---
+# file: roles/intel/tasks/i40e.yaml
+
+- name: Inst - Get Network Adapter Driver
+  get_url:
+    url: "{{ intel_i40e_driver_url }}"
+    dest: "{{ intel_i40e_driver_dir }}/i40e-{{ intel_i40e_version }}.tar.gz"
+    mode: 0644
+  tags:
+    - intel-inst
+
+- name: Inst - Extract Network Adapter Driver
+  unarchive:
+    remote_src: true
+    src: "{{ intel_i40e_driver_dir }}/i40e-{{ intel_i40e_version }}.tar.gz"
+    dest: "{{ intel_i40e_driver_dir }}/"
+    creates: "{{ intel_i40e_driver_dir }}/i40e-{{ intel_i40e_version }}"
+  register: intel_driver_extracted
+  tags:
+    - intel-inst
+
+- name: Inst - Network Adapter Driver
+  command: "make install; modprobe -r i40e; modprobe i40e"
+  args:
+    chdir: "{{ intel_i40e_driver_dir }}/i40e-{{ intel_i40e_version }}/src"
+  failed_when: no
+  when:
+    - intel_driver_extracted
+  tags:
+    - intel-inst

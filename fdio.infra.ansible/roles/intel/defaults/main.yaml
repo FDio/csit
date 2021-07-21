@@ -17,6 +17,11 @@ packages_by_arch:
     - []
 
 intel_download_url: "https://downloadmirror.intel.com"
+
+intel_i40e_version: "2.15.9"
+intel_i40e_driver_url: "{{ intel_download_url }}/24411/eng/i40e-{{ intel_i40e_version }}.tar.gz"
+intel_i40e_driver_dir: "/opt"
+
 intel_ice_version: "1.4.11"
 intel_ice_driver_url: "{{ intel_download_url }}/29746/eng/ice-{{ intel_ice_version }}.tar.gz"
 intel_ice_driver_dir: "/opt"
