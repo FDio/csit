@@ -31,13 +31,13 @@
 2n-dnv-x553
 ~~~~~~~~~~~
 
-78b-1t1c-ip6routing-base-scale-ixgbe
-------------------------------------
+78b-1t1c-ip6routing-base-scale-[ixgbe,af_xdp]
+---------------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-78b-1t1c-ip6routing-base-scale-[ixgbe,af_xdp]-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr}
-            \label{fig:2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-78b-1t1c-ip6routing-base-scale-[ixgbe,af_xdp]-ndr}
+            \label{fig:2n-dnv-x553-78b-1t1c-ip6routing-base-scale-[ixgbe,af_xdp]-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-78b-1t1c-ip6routing-base-scale-[ixgbe,af_xdp]-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr}
-            \label{fig:2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-78b-1t1c-ip6routing-base-scale-[ixgbe,af_xdp]-pdr}
+            \label{fig:2n-dnv-x553-78b-1t1c-ip6routing-base-scale-[ixgbe,af_xdp]-pdr}
     \end{figure}
