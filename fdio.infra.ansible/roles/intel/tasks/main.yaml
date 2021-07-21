@@ -1,13 +1,5 @@
 ---
-# file: roles/intel/tasks/main.yaml
-
-- name: Inst - Check Presence of Intel E810 Hardware
-  shell: "lspci -d 8086:1592"
-  register: intel_e810_pcis
-  failed_when: no
-  changed_when: no
-  tags:
-    - intel-inst
+# file: roles/performance_tuning/tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
   apt:
@@ -15,114 +7,50 @@
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
-    - intel_e810_pcis.stdout_lines | length > 0
   tags:
-    - intel-inst-prerequisites
+    - intel-inst-drivers
 
-- name: Inst - Prerequisites
+- name: Inst - Machine Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
-  when:
-    - intel_e810_pcis.stdout_lines | length > 0
   tags:
-    - intel-inst-prerequisites
+    - intel-inst-drivers
 
-- name: Inst - Get Network Adapter Driver
-  get_url:
-    url: "{{ intel_ice_driver_url }}"
-    dest: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}.tar.gz"
-    mode: 0644
-  when:
-    - intel_e810_pcis.stdout_lines | length > 0
-  tags:
-    - intel-inst
-
-- name: Inst - Extract Network Adapter Driver
-  unarchive:
-    remote_src: true
-    src: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}.tar.gz"
-    dest: "{{ intel_ice_driver_dir }}/"
-    creates: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}"
-  register: intel_driver_extracted
-  when:
-    - intel_e810_pcis.stdout_lines | length > 0
-  tags:
-    - intel-inst
-
-- name: Inst - Network Adapter Driver
-  command: "make install; modprobe -r ice; modprobe ice"
-  args:
-    chdir: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}/src"
+- name: Inst - Check Presence of Intel Ethernet 810 Series
+  shell: "lspci -d 8086:1592"
+  register: intel_e810_pcis
   failed_when: no
-  when:
-    - intel_e810_pcis.stdout_lines | length > 0
-    - intel_driver_extracted
+  changed_when: no
   tags:
-    - intel-inst
+    - intel-inst-drivers
 
-- name: Inst - Get Dynamic Device Personalization (DDP) Package
-  get_url:
-    url: "{{ intel_ddp_profile_url }}"
-    dest: "{{ intel_ddp_profile_dir }}/800-Series-Comms-Binary-Package-{{ intel_ddp_version }}.zip"
-    mode: 0644
-  when:
-    - intel_e810_pcis.stdout_lines | length > 0
+- name: Inst - Check Presence of Intel Ethernet 700 Series
+  shell: "lspci -d 8086:1572"
+  register: intel_700_pcis
+  failed_when: no
+  changed_when: no
   tags:
-    - intel-inst
+    - intel-inst-drivers
 
-- name: Inst - Extract Dynamic Device Personalization (DDP) Package
-  unarchive:
-    remote_src: true
-    src: "{{ intel_ddp_profile_dir }}/800-Series-Comms-Binary-Package-{{ intel_ddp_version }}.zip"
-    dest: "{{ intel_ddp_profile_dir }}/"
-    creates: "{{ intel_ddp_profile_dir }}/ice_comms-{{ intel_ddp_version }}.zip"
-  register: intel_driver_extracted
-  when:
-    - intel_e810_pcis.stdout_lines | length > 0
+- name: Inst - Check Presence of Intel Ethernet 700 Series
+  shell: "lspci -d 8086:1585"
+  register: intel_700_pcis
+  failed_when: no
+  changed_when: no
   tags:
-    - intel-inst
+    - intel-inst-drivers
 
-- name: Inst - Extract Dynamic Device Personalization (DDP) Package
-  unarchive:
-    remote_src: true
-    src: "{{ intel_ddp_profile_dir }}/ice_comms-{{ intel_ddp_version }}.zip"
-    dest: "{{ intel_ddp_profile_dir }}/"
-  register: intel_driver_extracted
+- name: Inst - Driver Intel Ethernet 810 Series
+  import_tasks: ice.yaml
   when:
     - intel_e810_pcis.stdout_lines | length > 0
   tags:
-    - intel-inst
+    - intel-inst-drivers
 
-- name: Inst - Copy Dynamic Device Personalization (DDP) Package
-  copy:
-    src: "{{ intel_ddp_profile_dir }}/ice_comms-{{ intel_ddp_version }}.pkg"
-    dest: "/lib/firmware/updates/intel/ice/ddp/ice-{{ intel_ddp_version }}.pkg"
-    remote_src: yes
-    follow: yes
+- name: Inst - Driver Intel Ethernet 700 Series
+  import_tasks: i40e.yaml
   when:
-    - intel_e810_pcis.stdout_lines | length > 0
+    - intel_700_pcis.stdout_lines | length > 0
   tags:
-    - intel-inst
-
-- name: Inst - Link Dynamic Device Personalization (DDP) Package
-  file:
-    src: "ice-{{ intel_ddp_version }}.pkg"
-    dest: "/lib/firmware/updates/intel/ice/ddp/ice.pkg"
-    state: link
-  when:
-    - intel_e810_pcis.stdout_lines | length > 0
-  tags:
-    - intel-inst
-
-- name: Inst - Extract Dynamic Device Personalization (DDP) Package (cleanup)
-  file:
-    path: "{{ item }}"
-    state: absent
-  with_items:
-    - "{{ intel_ddp_profile_dir }}/E810 DDP for Comms TechGuide_Rev2.3.pdf"
-    - "{{ intel_ddp_profile_dir }}/Intel_800_series_market_segment_DDP_license.txt"
-  when:
-    - intel_e810_pcis.stdout_lines | length > 0
-  tags:
-    - intel-inst
+    - intel-inst-drivers
