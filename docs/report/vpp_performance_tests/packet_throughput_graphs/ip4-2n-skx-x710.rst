@@ -31,13 +31,13 @@
 2n-skx-x710
 ~~~~~~~~~~~
 
-64b-2t1c-ip4routing-base-scale-[avf,dpdk]
------------------------------------------
+64b-2t1c-ip4routing-base-scale-[avf,dpdk,af_xdp]
+------------------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk]-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk,af_xdp]-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,7 +46,7 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk]-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk,af_xdp]-ndr}
             \label{fig:2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk]-ndr}
     \end{figure}
 
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk]-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk,af_xdp]-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk]-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk,af_xdp]-pdr}
             \label{fig:2n-skx-x710-64b-2t1c-ip4routing-base-scale-[avf,dpdk]-pdr}
     \end{figure}

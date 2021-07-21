@@ -74,6 +74,50 @@
 
     \clearpage
 
+..
+    64b-ip4routing-base-scale-af-xdp
+    --------------------------------
+
+    .. raw:: html
+
+        <center>
+        <iframe id="01af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-tx2-xl710-64b-ip4routing-base-scale-af_xdp-ndr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-tx2-xl710-64b-ip4routing-base-scale-af_xdp-ndr-tsa}
+                \label{fig:2n-tx2-xl710-64b-ip4routing-base-scale-af_xdp-ndr-tsa}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+    .. raw:: html
+
+        <center>
+        <iframe id="02af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-tx2-xl710-64b-ip4routing-base-scale-af_xdp-pdr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-tx2-xl710-64b-ip4routing-base-scale-af_xdp-pdr-tsa}
+                \label{fig:2n-tx2-xl710-64b-ip4routing-base-scale-af_xdp-pdr-tsa}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
 64b-features-ip4routing-base-dpdk
 ---------------------------------
 
