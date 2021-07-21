@@ -195,7 +195,7 @@ class Constants:
     DOCKER_SUT_IMAGE_UBUNTU_ARM = u"csit_sut-ubuntu2004:local"
 
     # TRex install directory
-    TREX_INSTALL_DIR = u"/opt/trex-core-2.88"
+    TREX_INSTALL_DIR = u"/opt/trex-core-2.97"
 
     # TRex pcap files directory
     TREX_PCAP_DIR = f"{TREX_INSTALL_DIR}/scripts/avl"
@@ -322,13 +322,7 @@ class Constants:
         u"Intel-XL710": 18750000,
         u"Intel-XXV710": 18750000,
         u"Intel-E810CQ": 58500000,
-        # 2n-clx testbeds show duration stretching on high rates,
-        # depending on encapsulation TRex has to generate.
-        # 40 Mpps is still too much for dot1q (~8% stretching).
-        # 36 Mpps is around the maximal VPP throughput (l2patch 4c8t).
-        # Vxlan traffic will still show stretching at 36 Mpps (>12%),
-        # but we do not care about those tests that much.
-        u"Mellanox-CX556A": 36000000, # 148809523,
+        u"Mellanox-CX556A": 148809523,
         u"Amazon-Nitro-50G": 1200000,
         u"virtual": 14880952,
     }
