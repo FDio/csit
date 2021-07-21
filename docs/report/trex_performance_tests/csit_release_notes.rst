@@ -14,7 +14,7 @@ Changes in |csit-release|
      loopback tests.
 
 #. TRex RELEASE VERSION
-   - **TRex version used: 2.88**
+   - **TRex version used: 2.97**
 
 
 .. _trex_known_issues:
