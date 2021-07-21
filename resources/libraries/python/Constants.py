@@ -331,8 +331,8 @@ class Constants:
 
     # Not each driver is supported by each NIC.
     NIC_NAME_TO_DRIVER = {
-        u"Intel-X520-DA2": [u"vfio-pci"],
-        u"Intel-X553": [u"vfio-pci"],
+        u"Intel-X520-DA2": [u"vfio-pci", u"af_xdp"],
+        u"Intel-X553": [u"vfio-pci", u"af_xdp"],
         u"Intel-X710": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Intel-XL710": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Intel-XXV710": [u"vfio-pci", u"avf", u"af_xdp"],
