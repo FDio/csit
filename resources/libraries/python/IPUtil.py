@@ -341,7 +341,9 @@ class IPUtil:
         for line in stdout.splitlines()[2:]:
             try:
                 if re.search(regex_intf_info, line).group(1) == pci_addr:
-                    return re.search(regex_intf_info, line).group(2)
+                    name = re.search(regex_intf_info, line).group(2)
+                    exec_cmd(node, f"ethtool -i {name}", sudo=True)
+                    return name
             except AttributeError:
                 continue
         return None
