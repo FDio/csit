@@ -1151,7 +1151,7 @@ function set_environment_variables () {
 
     case "${TEST_CODE}" in
         *"2n-aws"* | *"3n-aws"*)
-            # T-Rex 2.88 workaround for ENA NICs
+            # T-Rex 2.88+ workaround for ENA NICs
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
             export TREX_CORE_COUNT=6
