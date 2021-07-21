@@ -31,7 +31,6 @@
 2n-clx-xxv710
 ~~~~~~~~~~~~~
 
-
 78b-2t1c-ip6routing-base-scale-avf
 ----------------------------------
 
@@ -69,6 +68,49 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-avf-pdr}
             \label{fig:2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-avf-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+78b-2t1c-ip6routing-base-scale-af_xdp
+-------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="101af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-af_xdp-ndr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-af_xdp-ndr}
+            \label{fig:2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-af_xdp-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="102af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-af_xdp-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-af_xdp-pdr}
+            \label{fig:2n-clx-xxv710-78b-2t1c-ip6routing-base-scale-af_xdp-pdr}
     \end{figure}
 
 .. raw:: latex
