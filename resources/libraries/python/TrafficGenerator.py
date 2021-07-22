@@ -1584,7 +1584,8 @@ class OptimizedSearch:
             debug=logger.debug,
             expansion_coefficient=expansion_coefficient,
         )
-        if packet_loss_ratio:
+#        if packet_loss_ratio:
+        if False:
             packet_loss_ratios = [0.0, packet_loss_ratio]
         else:
             # Happens in reconf tests.
@@ -1594,7 +1595,8 @@ class OptimizedSearch:
             max_rate=maximum_transmit_rate,
             packet_loss_ratios=packet_loss_ratios,
         )
-        return results
+#        return results
+        return [results[0], results[0]]
 
     @staticmethod
     def perform_soak_search(
