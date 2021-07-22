@@ -165,33 +165,33 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Display result of NDRPDR search | ${result}
-| | Check NDRPDR interval validity | ${result[1]}
-| | ... | ${packet_loss_ratio}
-| | Check NDRPDR interval validity | ${result[0]}
-| | ${pdr} = | Set Variable | ${result[1].measured_low.target_tr}
-| | ${ndr} = | Set Variable | ${result[0].measured_low.target_tr}
-| | # We expect NDR and PDR to have different-looking stats.
-| | Send traffic at specified rate
-| | ... | rate=${pdr}
-| | ... | trial_duration=${1.0}
-| | ... | trial_multiplicity=${1}
-| | ... | use_latency=${use_latency}
-| | ... | duration_limit=${1.0}
-| | Run Keyword If | ${ndr} != ${pdr}
-| | ... | Send traffic at specified rate
-| | ... | rate=${ndr}
-| | ... | trial_duration=${1.0}
-| | ... | trial_multiplicity=${1}
-| | ... | use_latency=${use_latency}
-| | ... | duration_limit=${1.0}
-| | Return From Keyword If | ${disable_latency}
-| | ${rate} = | Evaluate | 0.9 * ${pdr}
-| | Measure and show latency at specified rate | Latency at 90% PDR: | ${rate}
-| | ${rate} = | Evaluate | 0.5 * ${pdr}
-| | Measure and show latency at specified rate | Latency at 50% PDR: | ${rate}
-| | ${rate} = | Evaluate | 0.1 * ${pdr}
-| | Measure and show latency at specified rate | Latency at 10% PDR: | ${rate}
-| | Measure and show latency at specified rate | Latency at 0% PDR: | ${0.0}
+#| | Check NDRPDR interval validity | ${result[1]}
+#| | ... | ${packet_loss_ratio}
+#| | Check NDRPDR interval validity | ${result[0]}
+#| | ${pdr} = | Set Variable | ${result[1].measured_low.target_tr}
+#| | ${ndr} = | Set Variable | ${result[0].measured_low.target_tr}
+#| | # We expect NDR and PDR to have different-looking stats.
+#| | Send traffic at specified rate
+#| | ... | rate=${pdr}
+#| | ... | trial_duration=${1.0}
+#| | ... | trial_multiplicity=${1}
+#| | ... | use_latency=${use_latency}
+#| | ... | duration_limit=${1.0}
+#| | Run Keyword If | ${ndr} != ${pdr}
+#| | ... | Send traffic at specified rate
+#| | ... | rate=${ndr}
+#| | ... | trial_duration=${1.0}
+#| | ... | trial_multiplicity=${1}
+#| | ... | use_latency=${use_latency}
+#| | ... | duration_limit=${1.0}
+#| | Return From Keyword If | ${disable_latency}
+#| | ${rate} = | Evaluate | 0.9 * ${pdr}
+#| | Measure and show latency at specified rate | Latency at 90% PDR: | ${rate}
+#| | ${rate} = | Evaluate | 0.5 * ${pdr}
+#| | Measure and show latency at specified rate | Latency at 50% PDR: | ${rate}
+#| | ${rate} = | Evaluate | 0.1 * ${pdr}
+#| | Measure and show latency at specified rate | Latency at 10% PDR: | ${rate}
+#| | Measure and show latency at specified rate | Latency at 0% PDR: | ${0.0}
 
 | Find Throughput Using MLRsearch
 | | [Documentation]
