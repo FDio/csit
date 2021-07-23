@@ -244,7 +244,12 @@ def _generate_trending_traces(in_data, job_name, build_info,
     for key, value in zip(xaxis, data_y_pps):
         data_pd[key] = value
 
-    anomaly_classification, avgs_pps, stdevs_pps = classify_anomalies(data_pd)
+    try:
+        anomaly_classification, avgs_pps, stdevs_pps = \
+            classify_anomalies(data_pd)
+    except ValueError as err:
+        logging.info(f"{err} Skipping")
+        return
     avgs_mpps = [avg_pps / 1e6 for avg_pps in avgs_pps]
     stdevs_mpps = [stdev_pps / 1e6 for stdev_pps in stdevs_pps]
 
