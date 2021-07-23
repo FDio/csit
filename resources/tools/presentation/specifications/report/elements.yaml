@@ -6156,7 +6156,7 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 2n-dnv-x553-64b-{core}-ip4routing-base-scale-[ixgbe,af_xdp]-{test_type}"
+  title: "Throughput: 2n-dnv-x553-64b-{core}-ip4routing-base-scale-ixgbe-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-{core}-ip4routing-base-scale-[ixgbe,af_xdp]-{test_type}"
   data: "vpp-2n-dnv-curr-iter"
@@ -6169,7 +6169,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Base-Ndrpdr.64B-{core}-af-xdp-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-{core}-af-xdp-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
-    title: "2n-dnv-x553-64b-{core}-ip4routing-base-scale-[ixgbe,af_xdp]-{test_type}"
+    title: "2n-dnv-x553-64b-{core}-ip4routing-base-scale-ixgbe-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -6368,7 +6368,7 @@
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-78b-{core}-ip6routing-base-scale-[ixgbe,af_xdp]-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-78b-{core}-ip6routing-base-scale-ixgbe-{test_type}"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-78b-{core}-ip6routing-base-scale-[ixgbe,af_xdp]-{test_type}"
   data: "vpp-2n-dnv-curr-iter"
   core: ["1t1c", ]
   include:
@@ -8116,7 +8116,7 @@
 #    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 2n-dnv-x553-64b-ip4routing-base-scale-[ixgbe,af_xdp]-{test_type}-tsa"
+  title: "Speedup: 2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-{test_type}-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-ip4routing-base-scale-[ixgbe,af_xdp]-{test_type}-tsa"
   data: "vpp-2n-dnv-curr-iter"
@@ -8128,7 +8128,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-af-xdp-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-.t.c-af-xdp-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
-    title: "2n-dnv-x553-64b-ip4routing-base-scale-[ixgbe,af_xdp]-{test_type}"
+    title: "2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
@@ -11395,34 +11395,12 @@
     layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
-  title: "Latency by percentile: 2n-skx"
-  algorithm: "plot_hdrh_lat_by_percentile_x_log"
-  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-skx"
-  output-file-links: "{DIR[LAT,VPP]}/2n_skx.rst"
-  target-links: "../../_static/vpp"
-  data: "vpp-2n-skx-curr-iter-af-xdp"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
-  layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
-
-- type: "plot"
   title: "Latency by percentile: 2n-zn2"
   algorithm: "plot_hdrh_lat_by_percentile_x_log"
   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-zn2"
   output-file-links: "{DIR[LAT,VPP]}/2n_zn2.rst"
   target-links: "../../_static/vpp"
   data: "vpp-2n-zn2-curr-iter-best"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
-  layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
-
-- type: "plot"
-  title: "Latency by percentile: 2n-zn2"
-  algorithm: "plot_hdrh_lat_by_percentile_x_log"
-  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-zn2"
-  output-file-links: "{DIR[LAT,VPP]}/2n_zn2.rst"
-  target-links: "../../_static/vpp"
-  data: "vpp-2n-zn2-curr-iter-af-xdp"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
@@ -11445,17 +11423,6 @@
   output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
   target-links: "../../_static/vpp"
   data: "vpp-2n-clx-curr-iter-best"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
-  layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
-
-- type: "plot"
-  title: "Latency by percentile: 2n-clx"
-  algorithm: "plot_hdrh_lat_by_percentile_x_log"
-  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-2n-clx"
-  output-file-links: "{DIR[LAT,VPP]}/2n_clx.rst"
-  target-links: "../../_static/vpp"
-  data: "vpp-2n-clx-curr-iter-af-xdp"
   filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
