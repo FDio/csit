@@ -175,6 +175,129 @@
 
     \clearpage
 
+64b-2t1c-l2switching-base-scale-af-xdp
+--------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2patch" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2patch.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2patch}
+            \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2patch}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2xcbase" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2xcbase.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2xcbase}
+            \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2xcbase}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdbasemaclrn" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdbasemaclrn.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdbasemaclrn}
+            \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdbasemaclrn}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale10kmaclrn" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale10kmaclrn.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale10kmaclrn}
+            \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale10kmaclrn}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale100kmaclrn" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale100kmaclrn.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale100kmaclrn}
+            \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale100kmaclrn}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale1mmaclrn" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale1mmaclrn.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale1mmaclrn}
+            \label{fig:hdrh-lat-percentile-2n-clx-25ge2p1xxv710-64b-2t1c-af-xdp-eth-l2bdscale1mmaclrn}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
 64b-2t1c-l2switching-base-scale-dpdk
 ------------------------------------
 
