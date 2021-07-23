@@ -26,7 +26,7 @@
     - intel-inst-drivers
 
 - name: Inst - Check Presence of Intel Ethernet 700 Series
-  shell: "lspci -d 8086:1585; lspci -d 8086:1572"
+  shell: "lspci -d 8086:1583; lspci -d 8086:1585; lspci -d 8086:1572"
   register: intel_700_pcis
   failed_when: no
   changed_when: no
@@ -44,5 +44,12 @@
 #  import_tasks: i40e.yaml
 #  when:
 #    - intel_700_pcis.stdout_lines | length > 0
+#  tags:
+#    - intel-inst-drivers
+
+#- name: Inst - VF Driver Intel
+#  import_tasks: iavf.yaml
+#  when:
+#    - intel_700_pcis.stdout_lines | length > 0 or intel_e810_pcis.stdout_lines | length > 0
 #  tags:
 #    - intel-inst-drivers

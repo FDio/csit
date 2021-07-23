@@ -1,7 +1,7 @@
 ---
 # file: roles/intel/tasks/ice.yaml
 
-- name: Inst - Get Network Adapter Driver
+- name: Inst - Get ice Network Adapter Driver
   get_url:
     url: "{{ intel_ice_driver_url }}"
     dest: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}.tar.gz"
@@ -9,7 +9,7 @@
   tags:
     - intel-inst
 
-- name: Inst - Extract Network Adapter Driver
+- name: Inst - Extract ice Network Adapter Driver
   unarchive:
     remote_src: true
     src: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}.tar.gz"
@@ -19,8 +19,8 @@
   tags:
     - intel-inst
 
-- name: Inst - Network Adapter Driver
-  command: "make install; modprobe -r ice; modprobe ice"
+- name: Inst - ice Network Adapter Driver
+  command: "make install && modprobe -r ice && modprobe ice"
   args:
     chdir: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}/src"
   failed_when: no

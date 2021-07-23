@@ -63,6 +63,7 @@ for pci_addr in ${PCI_WHITELIST[@]}; do
                     ip link set ${pf} vf $(( vf - 1 )) ${mac_str} ${vlan_str}
                     ip link set ${pf} vf $(( vf - 1 )) trust on
                     ip link set ${pf} vf $(( vf - 1 )) spoof off
+                    sleep .5
                 done
                 pci_idx=$(( pci_idx + 1 ))
                 ;;
