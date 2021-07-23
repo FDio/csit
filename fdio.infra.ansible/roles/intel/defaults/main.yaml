@@ -18,6 +18,10 @@ packages_by_arch:
 
 intel_download_url: "https://downloadmirror.intel.com"
 
+intel_iavf_version: "4.1.1"
+intel_iavf_driver_url: "{{ intel_download_url }}/24693/eng/iavf-{{ intel_iavf_version }}.tar.gz"
+intel_iavf_driver_dir: "/opt"
+
 intel_i40e_version: "2.15.9"
 intel_i40e_driver_url: "{{ intel_download_url }}/24411/eng/i40e-{{ intel_i40e_version }}.tar.gz"
 intel_i40e_driver_dir: "/opt"

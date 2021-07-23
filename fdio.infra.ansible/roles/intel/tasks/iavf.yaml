@@ -1,0 +1,30 @@
+---
+# file: roles/intel/tasks/iavf.yaml
+
+- name: Inst - Get iavf Network Adapter Driver
+  get_url:
+    url: "{{ intel_iavf_driver_url }}"
+    dest: "{{ intel_iavf_driver_dir }}/iavf-{{ intel_iavf_version }}.tar.gz"
+    mode: 0644
+  tags:
+    - intel-inst
+
+- name: Inst - Extract iavf Network Adapter Driver
+  unarchive:
+    remote_src: true
+    src: "{{ intel_iavf_driver_dir }}/iavf-{{ intel_iavf_version }}.tar.gz"
+    dest: "{{ intel_iavf_driver_dir }}/"
+    creates: "{{ intel_iavf_driver_dir }}/iavf-{{ intel_iavf_version }}"
+  register: intel_driver_extracted
+  tags:
+    - intel-inst
+
+- name: Inst - iavf Network Adapter Driver
+  command: "make install && modprobe -r iavf && modprobe iavf"
+  args:
+    chdir: "{{ intel_iavf_driver_dir }}/iavf-{{ intel_iavf_version }}/src"
+  failed_when: no
+  when:
+    - intel_driver_extracted
+  tags:
+    - intel-inst

@@ -18,6 +18,8 @@
       tags: baremetal
     - role: common
       tags: common
+    - role: intel
+      tags: intel
     - role: docker
       tags: docker
     - role: nomad
