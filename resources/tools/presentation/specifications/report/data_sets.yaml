@@ -251,10 +251,14 @@
       - 71  # rls2106.rel NDRPDR iter env 7
       - 89  # rls2106.rel NDRPDR AF-XDP iter env 7
       - 90  # rls2106.rel NDRPDR AF-XDP iter env 7
+      - 91  # rls2106.rel NDRPDR AF-XDP iter env 7
       - 92  # rls2106.rel NDRPDR AF-XDP iter env 7
       - 93  # rls2106.rel NDRPDR AF-XDP iter env 7
+      - 95  # rls2106.rel NDRPDR AF-XDP iter env 7
+      - 96  # rls2106.rel NDRPDR AF-XDP iter env 7
       - 97  # rls2106.rel NDRPDR AF-XDP iter env 7
       - 98  # rls2106.rel NDRPDR AF-XDP iter env 7
+      - 99  # rls2106.rel NDRPDR AF-XDP iter env 7
 
   vpp-2n-skx-curr-iter-best:
     csit-vpp-perf-report-iterative-2106-2n-skx:
@@ -472,6 +476,8 @@
       - 45  # rls2106.rel NDRPDR iter env 7
       - 46  # rls2106.rel NDRPDR iter env 7
       - 47  # rls2106.rel NDRPDR iter env 7
+      - 50  # rls2106.rel NDRPDR AF-XDP iter env 7
+      - 53  # rls2106.rel NDRPDR AF-XDP iter env 7
       - 55  # rls2106.rel NDRPDR AF-XDP iter env 7
 
   vpp-2n-zn2-curr-iter-best:
@@ -660,8 +666,11 @@
       - 124 # rls2106.rel NDRPDR AF-XDP iter env 7
       - 125 # rls2106.rel NDRPDR AF-XDP iter env 7
       - 126 # rls2106.rel NDRPDR AF-XDP iter env 7
+      - 127 # rls2106.rel NDRPDR AF-XDP iter env 7
+      - 128 # rls2106.rel NDRPDR AF-XDP iter env 7
       - 129 # rls2106.rel NDRPDR AF-XDP iter env 7
       - 130 # rls2106.rel NDRPDR AF-XDP iter env 7
+      - 131 # rls2106.rel NDRPDR AF-XDP iter env 7
       - 132 # rls2106.rel NDRPDR AF-XDP iter env 7
       - 133 # rls2106.rel NDRPDR AF-XDP iter env 7
 
