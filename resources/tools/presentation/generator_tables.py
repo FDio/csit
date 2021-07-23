@@ -1234,6 +1234,9 @@ def table_perf_trending_dash_html(table, input_data):
     try:
         with open(table[u"input-file"], u'rt') as csv_file:
             csv_lst = list(csv.reader(csv_file, delimiter=u',', quotechar=u'"'))
+    except FileNotFoundError as err:
+        logging.warning(f"{err}")
+        return
     except KeyError:
         logging.warning(u"The input file is not defined.")
         return
