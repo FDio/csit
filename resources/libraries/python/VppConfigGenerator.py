@@ -22,8 +22,7 @@ import re
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd_no_error
-from resources.libraries.python.topology import NodeType
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
 __all__ = [u"VppConfigGenerator"]

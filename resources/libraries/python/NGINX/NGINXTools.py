@@ -17,9 +17,9 @@
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.NginxUtil import NginxUtil
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import NodeType
-from resources.libraries.python.NginxUtil import NginxUtil
 
 
 class NGINXTools:

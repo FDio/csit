@@ -13,10 +13,10 @@
 
 """NGINX Utilities Library."""
 
+from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
-from resources.libraries.python.DUTSetup import DUTSetup
 
 
 class NginxUtil:

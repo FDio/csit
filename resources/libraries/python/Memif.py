@@ -18,8 +18,8 @@ from enum import IntEnum
 
 from robot.api import logger
 
-from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class MemifRole(IntEnum):

@@ -13,17 +13,17 @@
 
 """NAT utilities library."""
 
+from enum import IntEnum
 from math import log2, modf
 from pprint import pformat
-from enum import IntEnum
 
 from ipaddress import IPv4Address
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.topology import Topology
 from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.topology import Topology
 
 
 class NatConfigFlags(IntEnum):

@@ -13,8 +13,8 @@
 
 """Interface util library."""
 
-from time import sleep
 from enum import IntEnum
+from time import sleep
 
 from ipaddress import ip_address
 from robot.api import logger

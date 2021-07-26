@@ -21,11 +21,11 @@ from ipaddress import ip_address
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.Namespaces import Namespaces
 from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatTerminal
-from resources.libraries.python.Namespaces import Namespaces
 
 
 # from vpp/src/vnet/vnet/mpls/mpls_types.h
