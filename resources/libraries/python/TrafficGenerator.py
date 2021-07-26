@@ -28,9 +28,7 @@ from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
 from .ssh import exec_cmd_no_error, exec_cmd
-from .topology import NodeType
-from .topology import NodeSubTypeTG
-from .topology import Topology
+from .topology import NodeSubTypeTG, NodeType, Topology
 
 __all__ = [u"TGDropRateSearchImpl", u"TrafficGenerator", u"OptimizedSearch"]
 

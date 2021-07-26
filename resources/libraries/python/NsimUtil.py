@@ -13,8 +13,8 @@
 
 """VPP Network Simulator Plugin util library."""
 
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 
 
 class NsimUtil():

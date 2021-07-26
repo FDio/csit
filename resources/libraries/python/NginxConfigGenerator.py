@@ -14,9 +14,9 @@
 """Nginx Configuration File Generator library.
 """
 
+from resources.libraries.python.NginxUtil import NginxUtil
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
-from resources.libraries.python.NginxUtil import NginxUtil
 
 __all__ = [u"NginxConfigGenerator"]
 
