@@ -20,9 +20,13 @@
     - intel-inst
 
 - name: Inst - iavf Network Adapter Driver
-  command: "make install && modprobe -r iavf && modprobe iavf"
+  command: "{{ item }}"
   args:
     chdir: "{{ intel_iavf_driver_dir }}/iavf-{{ intel_iavf_version }}/src"
+  with_items:
+    - "make install"
+    - "modprobe -r iavf"
+    - "modprobe iavf"
   failed_when: no
   when:
     - intel_driver_extracted

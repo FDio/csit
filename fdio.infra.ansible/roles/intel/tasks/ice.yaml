@@ -20,9 +20,13 @@
     - intel-inst
 
 - name: Inst - ice Network Adapter Driver
-  command: "make install && modprobe -r ice && modprobe ice"
+  command: "{{ item }}"
   args:
     chdir: "{{ intel_ice_driver_dir }}/ice-{{ intel_ice_version }}/src"
+  with_items:
+    - "make install"
+    - "modprobe -r ice"
+    - "modprobe ice"
   failed_when: no
   when:
     - intel_driver_extracted
