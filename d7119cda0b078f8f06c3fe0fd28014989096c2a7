@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aaa9da20_5f3e1db5",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-26T13:25:15Z",
+      "side": 1,
+      "message": "Class variables are harder to follow when reading the code. I prefer self.error_msgs in __init__.",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c8d5a7a_5579fc78",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-26T13:25:15Z",
+      "side": 1,
+      "message": "This two lines are not needed, the subsequent \"for\" and \"if\" will add the first message when the list is empty.",
+      "range": {
+        "startLine": 281,
+        "startChar": 20,
+        "endLine": 281,
+        "endChar": 22
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "289d182a_91d22125",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-26T13:25:15Z",
+      "side": 1,
+      "message": "These two should already be strings.",
+      "range": {
+        "startLine": 284,
+        "startChar": 49,
+        "endLine": 284,
+        "endChar": 59
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fef5691a_932c6dcc",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-26T13:25:15Z",
+      "side": 1,
+      "message": "Not needed in this implementation, but see improvement below.",
+      "range": {
+        "startLine": 324,
+        "startChar": 19,
+        "endLine": 324,
+        "endChar": 34
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3300308d_9f4b4c96",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-26T13:25:15Z",
+      "side": 1,
+      "message": "It would be more useful to get only the list of errors that occurred for this alert (not just in previous alerts of the spec).\nStore that in a local variable, iterate over it in line 249, but compute the index with respect to self.error_msgs, so that all alerts within the spec use the same indices for the same symptoms.",
+      "range": {
+        "startLine": 397,
+        "startChar": 58,
+        "endLine": 397,
+        "endChar": 73
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5b8232b_081df26e",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-26T13:25:15Z",
+      "side": 1,
+      "message": "Not needed {} already converts using str().",
+      "range": {
+        "startLine": 491,
+        "startChar": 24,
+        "endLine": 491,
+        "endChar": 28
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
