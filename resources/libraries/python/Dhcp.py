@@ -14,7 +14,7 @@
 """DHCP utilities for VPP."""
 
 
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 
 
 class DhcpProxy:

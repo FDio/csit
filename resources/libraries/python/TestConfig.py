@@ -21,7 +21,7 @@ from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 
