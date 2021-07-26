@@ -123,6 +123,15 @@ List of known issues in |csit-release| for VPP performance tests:
 |  5 | `CSIT-1790                              | Broken TRex latency measurements with TRex v2.88, DPDK 21.02 and FVL FW 6.01.                             |
 |    | <https://jira.fd.io/browse/CSIT-1790>`_ | High latency O(5msec) for all VPP and testpmd/l3fwd test cases for FVL NICs with FW 6.01.                 |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  6 | `CSIT-1780                              | IPSEC SW async scheduler MRR tests failing with no traffic forwarded.                                     |
+|    | <https://jira.fd.io/browse/CSIT-1780>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  7 | `CSIT-1786                              | IP4 and IP6 scale tests failing with no traffic forwarded.                                                |
+|    | <https://jira.fd.io/browse/CSIT-1786>`_ | Issue reported to VPP devs.                                                                               |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  8 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
+|    | <https://jira.fd.io/browse/CSIT-1785>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Root Cause Analysis for Performance Changes
 -------------------------------------------
