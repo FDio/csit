@@ -20,9 +20,13 @@
     - intel-inst
 
 - name: Inst - i40e Network Adapter Driver
-  command: "make install && modprobe -r i40e && modprobe i40e"
+  command: "{{ item }}"
   args:
     chdir: "{{ intel_i40e_driver_dir }}/i40e-{{ intel_i40e_version }}/src"
+  with_items:
+    - "make install"
+    - "modprobe -r i40e"
+    - "modprobe i40e"
   failed_when: no
   when:
     - intel_driver_extracted
