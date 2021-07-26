@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 |
-| Library | resources.libraries.python.PapiExecutor.Disconnector
+| Library | resources.libraries.python.PapiSocketExecutor.Disconnector
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.CpuUtils
