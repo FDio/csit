@@ -29,7 +29,7 @@ from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil, IpDscp, \
     MPLS_LABEL_INVALID, NetworkIncrement
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology, NodeType
 from resources.libraries.python.VPPUtil import VPPUtil

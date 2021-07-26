@@ -13,7 +13,7 @@
 
 """Packet trace library."""
 
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType
 
 
