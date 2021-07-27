@@ -180,18 +180,25 @@ def _generate_trending_traces(in_data, job_name, build_info,
     :rtype: tuple(traces, result)
     """
 
-    if incl_tests not in (u"mrr", u"ndr", u"pdr"):
+    if incl_tests not in (u"mrr", u"ndr", u"pdr", u"pdr-lat"):
         return list(), None
 
     data_x = list(in_data.keys())
     data_y_pps = list()
     data_y_mpps = list()
     data_y_stdev = list()
-    for item in in_data.values():
-        data_y_pps.append(float(item[u"receive-rate"]))
-        data_y_stdev.append(float(item[u"receive-stdev"]) / 1e6)
-        data_y_mpps.append(float(item[u"receive-rate"]) / 1e6)
-
+    if incl_tests == u"pdr-lat":
+        for item in in_data.values():
+            data_y_pps.append(float(item.get(u"lat_1", u"nan")))
+            data_y_stdev.append(float(u"nan"))
+            data_y_mpps.append(float(item.get(u"lat_1", u"nan")))
+        multi = 1.0
+    else:
+        for item in in_data.values():
+            data_y_pps.append(float(item[u"receive-rate"]))
+            data_y_stdev.append(float(item[u"receive-stdev"]) / 1e6)
+            data_y_mpps.append(float(item[u"receive-rate"]) / 1e6)
+        multi = 1e6
     hover_text = list()
     xaxis = list()
     for index, key in enumerate(data_x):
@@ -233,6 +240,10 @@ def _generate_trending_traces(in_data, job_name, build_info,
                 period=u"daily" if incl_tests == u"mrr" else u"weekly",
                 build_nr=str_key,
                 testbed=build_info[job_name][str_key][2])
+            if incl_tests == u"pdr-lat":
+                hover_str = hover_str.replace(
+                    u"throughput [Mpps]", u"latency [us]"
+                )
             if u"-cps" in name:
                 hover_str = hover_str.replace(u"throughput", u"connection rate")
             hover_text.append(hover_str)
@@ -249,9 +260,9 @@ def _generate_trending_traces(in_data, job_name, build_info,
             classify_anomalies(data_pd)
     except ValueError as err:
         logging.info(f"{err} Skipping")
-        return
-    avgs_mpps = [avg_pps / 1e6 for avg_pps in avgs_pps]
-    stdevs_mpps = [stdev_pps / 1e6 for stdev_pps in stdevs_pps]
+        return list(), None
+    avgs_mpps = [avg_pps / multi for avg_pps in avgs_pps]
+    stdevs_mpps = [stdev_pps / multi for stdev_pps in stdevs_pps]
 
     anomalies = OrderedDict()
     anomalies_colors = list()
@@ -264,7 +275,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
     if anomaly_classification:
         for index, (key, value) in enumerate(data_pd.items()):
             if anomaly_classification[index] in (u"regression", u"progression"):
-                anomalies[key] = value / 1e6
+                anomalies[key] = value / multi
                 anomalies_colors.append(
                     anomaly_color[anomaly_classification[index]])
                 anomalies_avgs.append(avgs_mpps[index])
@@ -294,10 +305,15 @@ def _generate_trending_traces(in_data, job_name, build_info,
 
     trend_hover_text = list()
     for idx in range(len(data_x)):
-        trend_hover_str = (
-            f"trend [Mpps]: {avgs_mpps[idx]:.3f}<br>"
-            f"stdev [Mpps]: {stdevs_mpps[idx]:.3f}"
-        )
+        if incl_tests == u"pdr-lat":
+            trend_hover_str = (
+                f"trend [us]: {avgs_mpps[idx]:.3f}<br>"
+            )
+        else:
+            trend_hover_str = (
+                f"trend [Mpps]: {avgs_mpps[idx]:.3f}<br>"
+                f"stdev [Mpps]: {stdevs_mpps[idx]:.3f}"
+            )
         trend_hover_text.append(trend_hover_str)
 
     trace_trend = plgo.Scatter(
@@ -317,6 +333,26 @@ def _generate_trending_traces(in_data, job_name, build_info,
     )
     traces.append(trace_trend)
 
+    if incl_tests == u"pdr-lat":
+        colorscale = [
+            [0.00, u"green"],
+            [0.33, u"green"],
+            [0.33, u"white"],
+            [0.66, u"white"],
+            [0.66, u"red"],
+            [1.00, u"red"]
+        ]
+        ticktext = [u"Progression", u"Normal", u"Regression"]
+    else:
+        colorscale = [
+            [0.00, u"red"],
+            [0.33, u"red"],
+            [0.33, u"white"],
+            [0.66, u"white"],
+            [0.66, u"green"],
+            [1.00, u"green"]
+        ]
+        ticktext = [u"Regression", u"Normal", u"Progression"]
     trace_anomalies = plgo.Scatter(
         x=list(anomalies.keys()),
         y=anomalies_avgs,
@@ -329,14 +365,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
             u"size": 15,
             u"symbol": u"circle-open",
             u"color": anomalies_colors,
-            u"colorscale": [
-                [0.00, u"red"],
-                [0.33, u"red"],
-                [0.33, u"white"],
-                [0.66, u"white"],
-                [0.66, u"green"],
-                [1.00, u"green"]
-            ],
+            u"colorscale": colorscale,
             u"showscale": True,
             u"line": {
                 u"width": 2
@@ -351,7 +380,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
                 },
                 u"tickmode": u"array",
                 u"tickvals": [0.167, 0.500, 0.833],
-                u"ticktext": [u"Regression", u"Normal", u"Progression"],
+                u"ticktext": ticktext,
                 u"ticks": u"",
                 u"ticklen": 0,
                 u"tickangle": -90,
@@ -474,12 +503,18 @@ def _generate_all_charts(spec, input_data):
                         # CSIT-1180: Itm will be list, compute stats.
                         try:
                             tst_lst.append(str(itm.get(u"receive-rate", u"")))
-                            tst_lst_lat_1.append(str(itm.get(u"lat_1", u"")))
-                            tst_lst_lat_2.append(str(itm.get(u"lat_2", u"")))
+                            if ttype == u"pdr":
+                                tst_lst_lat_1.append(
+                                    str(itm.get(u"lat_1", u""))
+                                )
+                                tst_lst_lat_2.append(
+                                    str(itm.get(u"lat_2", u""))
+                                )
                         except AttributeError:
                             tst_lst.append(u"")
-                            tst_lst_lat_1.append(u"")
-                            tst_lst_lat_2.append(u"")
+                            if ttype == u"pdr":
+                                tst_lst_lat_1.append(u"")
+                                tst_lst_lat_2.append(u"")
                     csv_tbl.append(f"{tst_name}," + u",".join(tst_lst) + u'\n')
                     csv_tbl_lat_1.append(
                         f"{tst_name}," + u",".join(tst_lst_lat_1) + u"\n"
@@ -490,6 +525,7 @@ def _generate_all_charts(spec, input_data):
 
                 # Generate traces:
                 traces = list()
+                traces_lat = list()
                 index = 0
                 groups = graph.get(u"groups", None)
                 visibility = list()
@@ -544,6 +580,18 @@ def _generate_all_charts(spec, input_data):
                                 color=COLORS[index],
                                 incl_tests=ttype
                             )
+                            if ttype == u"pdr":
+                                trace_lat, _ = _generate_trending_traces(
+                                    test_data,
+                                    job_name=job_name,
+                                    build_info=build_info,
+                                    name=u'-'.join(
+                                        tst_name.split(u'.')[-1].split(
+                                            u'-')[2:-1]),
+                                    color=COLORS[index],
+                                    incl_tests=u"pdr-lat"
+                                )
+                                traces_lat.extend(trace_lat)
                         except IndexError:
                             logging.error(
                                 f"Out of colors: index: "
@@ -611,6 +659,32 @@ def _generate_all_charts(spec, input_data):
 
                     logging.info(f"    Writing the file {name_file}")
                     plpl = plgo.Figure(data=traces, layout=layout)
+                    try:
+                        ploff.plot(
+                            plpl,
+                            show_link=False,
+                            auto_open=False,
+                            filename=name_file
+                        )
+                    except plerr.PlotlyEmptyDataError:
+                        logging.warning(u"No data for the plot. Skipped.")
+
+                if traces_lat:
+                    try:
+                        layout = deepcopy(graph[u"layout"])
+                        layout[u"yaxis"][u"title"] = u"Latency [us]"
+                    except KeyError as err:
+                        logging.error(u"Finished with error: No layout defined")
+                        logging.error(repr(err))
+                        return dict()
+                    name_file = (
+                        f"{spec.cpta[u'output-file']}/"
+                        f"{graph[u'output-file-name']}-lat.html"
+                    )
+                    name_file = name_file.format(core=core, test_type=ttype)
+
+                    logging.info(f"    Writing the file {name_file}")
+                    plpl = plgo.Figure(data=traces_lat, layout=layout)
                     try:
                         ploff.plot(
                             plpl,
