@@ -1027,10 +1027,11 @@
       - 26  # rls2106.rel NDRPDR iter env 7
       - 27  # rls2106.rel NDRPDR iter env 7
       - 28  # rls2106.rel NDRPDR iter env 7
+      - 41  # rls2106.rel NDRPDR iter env 7
 
   vpp-2n-tx2-curr-iter-best:
     csit-vpp-perf-report-iterative-2106-2n-tx2:
-      - 19  # rls2106.rel NDRPDR iter env 7
+      - 41  # rls2106.rel NDRPDR iter env 7
 
   vpp-2n-tx2-hist-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2101-2n-tx2:
