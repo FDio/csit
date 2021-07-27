@@ -180,17 +180,23 @@ def _generate_trending_traces(in_data, job_name, build_info,
     :rtype: tuple(traces, result)
     """
 
-    if incl_tests not in (u"mrr", u"ndr", u"pdr"):
+    if incl_tests not in (u"mrr", u"ndr", u"pdr", u"pdr-lat"):
         return list(), None
 
     data_x = list(in_data.keys())
     data_y_pps = list()
     data_y_mpps = list()
     data_y_stdev = list()
-    for item in in_data.values():
-        data_y_pps.append(float(item[u"receive-rate"]))
-        data_y_stdev.append(float(item[u"receive-stdev"]) / 1e6)
-        data_y_mpps.append(float(item[u"receive-rate"]) / 1e6)
+    if incl_tests == u"pdr-lat":
+        for item in in_data.values():
+            data_y_pps.append(float(item.get(u"lat_1", u"nan")) * 1e6)
+            data_y_stdev.append(float(u"nan"))
+            data_y_mpps.append(float(item.get(u"lat_1", u"nan")))
+    else:
+        for item in in_data.values():
+            data_y_pps.append(float(item[u"receive-rate"]))
+            data_y_stdev.append(float(item[u"receive-stdev"]) / 1e6)
+            data_y_mpps.append(float(item[u"receive-rate"]) / 1e6)
 
     hover_text = list()
     xaxis = list()
@@ -235,6 +241,10 @@ def _generate_trending_traces(in_data, job_name, build_info,
                 testbed=build_info[job_name][str_key][2])
             if u"-cps" in name:
                 hover_str = hover_str.replace(u"throughput", u"connection rate")
+            elif incl_tests == u"pdr-lat":
+                hover_str = hover_str.replace(
+                    u"throughput [Mpps]", u"latency [us]"
+                )
             hover_text.append(hover_str)
 
         xaxis.append(datetime(int(date[0:4]), int(date[4:6]), int(date[6:8]),
@@ -490,6 +500,7 @@ def _generate_all_charts(spec, input_data):
 
                 # Generate traces:
                 traces = list()
+                traces_lat = list()
                 index = 0
                 groups = graph.get(u"groups", None)
                 visibility = list()
@@ -544,6 +555,18 @@ def _generate_all_charts(spec, input_data):
                                 color=COLORS[index],
                                 incl_tests=ttype
                             )
+                            if ttype == u"pdr":
+                                trace_lat, _ = _generate_trending_traces(
+                                    test_data,
+                                    job_name=job_name,
+                                    build_info=build_info,
+                                    name=u'-'.join(
+                                        tst_name.split(u'.')[-1].split(
+                                            u'-')[2:-1]),
+                                    color=COLORS[index],
+                                    incl_tests=u"pdr-lat"
+                                )
+                                traces_lat.extend(trace_lat)
                         except IndexError:
                             logging.error(
                                 f"Out of colors: index: "
@@ -606,6 +629,32 @@ def _generate_all_charts(spec, input_data):
                     name_file = (
                         f"{spec.cpta[u'output-file']}/"
                         f"{graph[u'output-file-name']}.html"
+                    )
+                    name_file = name_file.format(core=core, test_type=ttype)
+
+                    logging.info(f"    Writing the file {name_file}")
+                    plpl = plgo.Figure(data=traces, layout=layout)
+                    try:
+                        ploff.plot(
+                            plpl,
+                            show_link=False,
+                            auto_open=False,
+                            filename=name_file
+                        )
+                    except plerr.PlotlyEmptyDataError:
+                        logging.warning(u"No data for the plot. Skipped.")
+
+                if traces_lat:
+                    try:
+                        layout = deepcopy(graph[u"layout"])
+                        layout[u"yaxis"][u"title"] = u"Latency [us]"
+                    except KeyError as err:
+                        logging.error(u"Finished with error: No layout defined")
+                        logging.error(repr(err))
+                        return dict()
+                    name_file = (
+                        f"{spec.cpta[u'output-file']}/"
+                        f"{graph[u'output-file-name']}-lat.html"
                     )
                     name_file = name_file.format(core=core, test_type=ttype)
 
