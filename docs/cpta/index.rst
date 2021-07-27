@@ -56,6 +56,19 @@ analysis and anomaly detection methodology.
 
 .. toctree::
     :maxdepth: 2
+    :caption: NDRPDR Latency Trending
+
+    ndrpdr_latency_trending/l2
+    ndrpdr_latency_trending/ip4
+    ndrpdr_latency_trending/ip6
+    ndrpdr_latency_trending/srv6
+    ndrpdr_latency_trending/ip4_tunnels
+    ndrpdr_latency_trending/nat44
+    ndrpdr_latency_trending/vhost
+    ndrpdr_latency_trending/container_memif
+
+.. toctree::
+    :maxdepth: 2
     :caption: Statistics
 
     stats/vpp_mrr
