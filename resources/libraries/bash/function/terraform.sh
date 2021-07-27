@@ -87,10 +87,11 @@ function terraform_init () {
     plugin_url+="releases/download/v2.5.0/"
     plugin_url+="terraform-provisioner-ansible-linux-amd64_v2.5.0"
     plugin_dir="${HOME}/.terraform.d/plugins/"
-    plugin_path+="${plugin_dir}terraform-provisioner-ansible-linux-amd64_v2.5.0"
+    plugin_path+="${plugin_dir}terraform-provisioner-ansible_v2.5.0"
 
     mkdir -p "${plugin_dir}" || die "Failed to create dir!"
     wget -O "${plugin_path}" "${plugin_url}" || die "Failed to download plugin!"
+    chmod +x "${plugin_path}" || die "Failed to add execute rights!"
 
     popd || die "Popd failed!"
     popd || die "Popd failed!"
