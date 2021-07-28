@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8e84e7fe_3e3f1421",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-28T11:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaa9da20_5f3e1db5",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 14
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c8d5a7a_5579fc78",
         "filename": "resources/tools/presentation/generator_alerts.py",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b389b1c_1cea3156",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-28T11:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c8d5a7a_5579fc78",
+      "range": {
+        "startLine": 281,
+        "startChar": 20,
+        "endLine": 281,
+        "endChar": 22
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "407c9522_0a622786",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-28T11:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "289d182a_91d22125",
+      "range": {
+        "startLine": 284,
+        "startChar": 49,
+        "endLine": 284,
+        "endChar": 59
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fef5691a_932c6dcc",
         "filename": "resources/tools/presentation/generator_alerts.py",
         "patchSetId": 7
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "8d646d9c_e3584a4b",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-28T11:11:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fef5691a_932c6dcc",
+      "range": {
+        "startLine": 324,
+        "startChar": 19,
+        "endLine": 324,
+        "endChar": 34
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3300308d_9f4b4c96",
         "filename": "resources/tools/presentation/generator_alerts.py",
         "patchSetId": 7
@@ -114,6 +210,30 @@
       "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d00ee022_3a1384af",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-07-28T11:11:52Z",
+      "side": 1,
+      "message": "I realized that causes are detected only for one alter (failures, not gressions), so my improvement does not really make sense.",
+      "parentUuid": "3300308d_9f4b4c96",
+      "range": {
+        "startLine": 397,
+        "startChar": 58,
+        "endLine": 397,
+        "endChar": 73
+      },
+      "revId": "d7119cda0b078f8f06c3fe0fd28014989096c2a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
