@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25da663e_3e9c2c35",
+        "filename": "docs/report/introduction/methodology_ipsec.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-07-28T13:27:30Z",
+      "side": 1,
+      "message": "We have now decommissioned 3n-hsw testbeds. Waiting for the new 3n-icx Icelake testbeds that are expected to get equipped with the latest Intel QAT cards. Suggest to adjust text accordingly.",
+      "range": {
+        "startLine": 46,
+        "startChar": 5,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "412ed9b5a3bcbb94ffbb1ac480dd9842f16012d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
