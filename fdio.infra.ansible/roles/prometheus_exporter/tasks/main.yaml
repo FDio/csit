@@ -1,15 +1,72 @@
 ---
 # file: roles/prometheus_exporter/tasks/main.yaml
 
-- include_tasks: "{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml"
+- name: Inst - Update Package Cache (APT)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution|lower == 'ubuntu'
   tags:
     - prometheus-inst
 
-- name: Conf - Prometheus Blackbox Exporter
-  copy:
-   src: 'files/blackbox.yml'
-   dest: '/etc/prometheus/blackbox.yml'
-  notify:
-    - "Restart Prometheus Blackbox Exporter"
+- name: Inst - Prerequisites
+  package:
+    name: "{{ packages | flatten(levels=1) }}"
+    state: latest
+  tags:
+    - prometheus-inst
+
+- name: Inst - Start a NodeExporter container
+  docker_container:
+    name: "NodeExporter"
+    image: "{{ ne_image }}"
+    state: "started"
+    restart_policy: "unless-stopped"
+    detach: yes
+    ports:
+     - "9100:9100"
+    privileged: yes
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+  tags:
+    - prometheus-inst
+
+- name: Inst - Create a Config Directory
+  ansible.builtin.file:
+    path: "/etc/prometheus/"
+    state: "directory"
+    mode: "0755"
   tags:
     - prometheus-conf-blackbox-exporter
+
+- name: Conf - Prometheus Blackbox Exporter
+  copy:
+   src: "files/blackbox.yml"
+   dest: "/etc/prometheus/blackbox.yml"
+  tags:
+    - prometheus-conf-blackbox-exporter
+
+- name: Inst - Start a BlackBoxExporter container
+  docker_container:
+    name: "BlackBoxExporter"
+    image: "{{ be_image }}"
+    state: "started"
+    restart_policy: "unless-stopped"
+    detach: yes
+    ports:
+     - "9115:9115"
+    privileged: yes
+    command:
+      - "--config.file=/config/blackbox.yml"
+    volumes:
+      - "/etc/prometheus/blackbox.yml:/config/blackbox.yml:ro"
+  tags:
+    - prometheus-inst
