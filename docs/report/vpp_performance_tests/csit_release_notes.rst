@@ -110,6 +110,10 @@ List of known issues in |csit-release| for VPP performance tests:
 |    | `VPP-1763                               | commands in flight over socket), the VPP configuration for large scale tests (millions of messages) takes |
 |    | <https://jira.fd.io/browse/VPP-1763>`_  | too long.                                                                                                 |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  4 | `CSIT-1789                              | AVF driver does not perform RSS in a deterministic way.                                                   |
+|    | <https://jira.fd.io/browse/CSIT-1789>`_ | This increases standard deviation of tests with small number of flows (mainly ipsec).                     |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+
 
 Root Cause Analysis for Performance Changes
 -------------------------------------------
