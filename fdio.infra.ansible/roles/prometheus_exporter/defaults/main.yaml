@@ -2,16 +2,30 @@
 # file: roles/prometheus_exporter/defaults/main.yaml
 
 # Inst - Exporters.
-ne_packages: "{{ ne_packages_by_distro[ansible_distribution | lower][ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
 
-ne_packages_by_distro:
+packages_base:
+  - []
+
+packages_by_distro:
   ubuntu:
-    aarch64: "http://ports.ubuntu.com/pool/universe/p/prometheus-node-exporter/prometheus-node-exporter_1.0.1+ds-1_arm64.deb"
-    x86_64: "http://archive.ubuntu.com/ubuntu/pool/universe/p/prometheus-node-exporter/prometheus-node-exporter_1.0.1+ds-1_amd64.deb"
+    - "python3-docker"
+    - "python3-dockerpty"
 
-be_packages: "{{ be_packages_by_distro[ansible_distribution | lower][ansible_machine] }}"
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []
 
-be_packages_by_distro:
-  ubuntu:
-    aarch64: "http://ports.ubuntu.com/pool/universe/p/prometheus-blackbox-exporter/prometheus-blackbox-exporter_0.17.0+ds-1_arm64.deb"
-    x86_64: "http://archive.ubuntu.com/ubuntu/pool/universe/p/prometheus-blackbox-exporter/prometheus-blackbox-exporter_0.17.0+ds-1_amd64.deb"
+ne_image: "{{ ne_image_by_arch[ansible_machine] }}"
+
+ne_image_by_arch:
+  aarch64: "prom/node-exporter:v1.2.0"
+  x86_64: "prom/node-exporter:v1.2.0"
+
+be_image: "{{ be_image_by_arch[ansible_machine] }}"
+
+be_image_by_arch:
+  aarch64: "prom/blackbox-exporter:v0.19.0"
+  x86_64: "prom/blackbox-exporter:v0.19.0"

@@ -175,7 +175,7 @@ job "${job_name}" {
         args            = [
           "--config.file=secrets/prometheus.yml",
           "--storage.tsdb.path=${data_dir}prometheus/",
-          "--storage.tsdb.retention.time=15d"
+          "--storage.tsdb.retention.time=7d"
         ]
       }
 
@@ -265,14 +265,6 @@ groups:
     annotations:
       summary: "Prometheus target missing (instance {{ $labels.instance }})."
       description: "A Prometheus target has disappeared. An exporter might be crashed."
-  - alert: HostHighCpuLoad
-    expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 95
-    for: 0m
-    labels:
-      severity: warning
-    annotations:
-      summary: "Host high CPU load (instance {{ $labels.instance }})."
-      description: "CPU load is > 95%."
   - alert: HostOutOfMemory
     expr: node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10
     for: 2m
@@ -539,30 +531,6 @@ scrape_configs:
       - target_label: __address__
         replacement: localhost:9115
     metrics_path: /probe
-
-  - job_name: 'cAdvisor Exporter'
-    static_configs:
-      - targets: [ '10.30.51.28:8080' ]
-      - targets: [ '10.30.51.29:8080' ]
-      - targets: [ '10.30.51.30:8080' ]
-      #- targets: [ '10.30.51.32:8080' ]
-      - targets: [ '10.30.51.33:8080' ]
-      - targets: [ '10.30.51.34:8080' ]
-      - targets: [ '10.30.51.35:8080' ]
-      - targets: [ '10.30.51.39:8080' ]
-      - targets: [ '10.30.51.40:8080' ]
-      - targets: [ '10.30.51.50:8080' ]
-      - targets: [ '10.30.51.51:8080' ]
-      - targets: [ '10.30.51.65:8080' ]
-      - targets: [ '10.30.51.66:8080' ]
-      - targets: [ '10.30.51.67:8080' ]
-      - targets: [ '10.30.51.68:8080' ]
-      - targets: [ '10.30.51.70:8080' ]
-      - targets: [ '10.30.51.71:8080' ]
-      - targets: [ '10.32.8.14:8080' ]
-      - targets: [ '10.32.8.15:8080' ]
-      - targets: [ '10.32.8.16:8080' ]
-      - targets: [ '10.32.8.17:8080' ]
 
   - job_name: 'Jenkins Job Health Exporter'
     static_configs:

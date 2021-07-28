@@ -33,7 +33,7 @@ variable "prometheus_service_name" {
 variable "prometheus_version" {
   description = "Prometheus version"
   type        = string
-  default     = "v2.24.0"
+  default     = "v2.28.1"
 }
 
 variable "prometheus_use_canary" {

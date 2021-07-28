@@ -26,7 +26,5 @@
       tags: prometheus_exporter
     - role: jenkins_job_health_exporter
       tags: jenkins_job_health_exporter
-    - role: cadvisor
-      tags: cadvisor
     - role: cleanup
       tags: cleanup
