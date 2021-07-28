@@ -408,3 +408,33 @@ def export_telemetry(host, port, socket, message, text, timestamp=None):
         data=parse_telemetry_text(text),
     )
     info_data[u"log"].append(info_telemetry_record)
+
+
+def export_topology_update(reason, nodes, log_level, timestamp=None):
+    """Add a log item with new topology state and reasonf of update.
+
+    Only for debug log.
+
+    Reason is put as message, data is the new complete topology state.
+
+    Timestamp marks time when all metrics were done gathering.
+    Current time is used if timestamp is missing.
+
+    :param reason: Message explaining what update has been made.
+    :param nodes: The new topology state to export.
+    :param log_level: Importance of the update, expressed as log level.
+    :param timestamp: Local UTC time just before sending.
+    :type reason: str
+    :type nodes: NodesDict
+    :type log_level: str
+    :type timestamp: Optional[str]
+    """
+    debug_data, _ = get_export_data()
+    topology_record = dict(
+        msg_type=u"topology_update",
+        log_level=log_level,
+        timestamp=timestamp_or_now(timestamp),
+        msg=str(reason),
+        data=nodes,
+    )
+    debug_data[u"log"].append(topology_record)

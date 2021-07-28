@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.model.export_json
+| Library | resources.libraries.python.topology.Topology
 |
 | Suite Setup | Global Suite Setup
 | Suite Teardown | Global Suite Teardown
@@ -24,7 +25,7 @@
 | | ... | Currently only a minimal JSON export initialization.
 | |
 | | Start Suite Setup Export
-| | # Nothing explicit here, implicitly a place to find global start timestamp.
+| | Initialize Topology
 | | Finalize Suite Setup Export
 
 | Global Suite Teardown

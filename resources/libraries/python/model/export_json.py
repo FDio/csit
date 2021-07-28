@@ -33,7 +33,7 @@ from resources.libraries.python.time_measurement import timestamp_or_now
 
 
 def _pre_serialize_recursive(data):
-    """Recursively sort and convert to a more serializable form.
+    """Return a copy, recursively sorted and converted to a serializable form.
 
     VPP PAPI code can give data with its own MACAddres type,
     or various other enum and flag types.
@@ -45,9 +45,10 @@ def _pre_serialize_recursive(data):
     the json.JSONEncoder method (so it does not recurse).
     Dictization (see PapiExecutor) helps somewhat, but it turns namedtuple
     into a UserDict, which also confuses json.JSONEncoder.
-    Therefore, we recursively convert any Mapping into an ordinary dict.
+    Therefore, we recursively convert any Mapping (including ProtectedDict)
+    into an ordinary dict.
 
-    We also convert iterables to list,
+    We also convert iterables (including ProtectedList) to list,
     and prevent numbers from getting converted to strings.
 
     As we are doing such low level operations,
@@ -57,7 +58,7 @@ def _pre_serialize_recursive(data):
 
     :param data: Object to make serializable, dictized when applicable.
     :type data: object
-    :returns: Serializable equivalent of the argument.
+    :returns: Serializable equivalent copy of the argument.
     :rtype: object
     :raises ValueError: If the argument does not support string conversion.
     """
@@ -67,7 +68,8 @@ def _pre_serialize_recursive(data):
     if isinstance(data, bytes):
         return data.hex()
     # The regular ones are good to go.
-    if isinstance(data, (str, int, float, bool)):
+    # TODO: Will the list of types always be equal to ProtectedLeaf?
+    if isinstance(data, (str, int, float, bool, type(None))):
         return data
     # Recurse over, convert and sort mappings.
     if isinstance(data, Mapping):
