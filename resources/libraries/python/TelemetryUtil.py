@@ -113,8 +113,8 @@ class TelemetryUtil:
             node, u"cat /tmp/metric.prom", sudo=True, log_stdout_err=False
         )
         logger.info(
-            u"# TYPE target info\n"
             u"# HELP target Target metadata\n"
+            u"# TYPE target info\n"
             f"target_info{{hostname=\"{hostname}\",hook=\"{hook}\"}} 1\n"
             f"{stdout}"
         )
