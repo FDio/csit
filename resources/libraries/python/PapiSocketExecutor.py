@@ -374,7 +374,7 @@ class PapiSocketExecutor:
         if vpp_instance is not None:
             return self
         # No luck, create and connect a new instance.
-        time_enter = time.time()
+        time_enter = time.monotonic()
         node = self._node
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.ensure_vpp_instance()
@@ -433,14 +433,14 @@ class PapiSocketExecutor:
         if password:
             # Prepend sshpass command to set password.
             ssh_cmd[:0] = [u"sshpass", u"-p", password]
-        time_stop = time.time() + 10.0
+        time_stop = time.monotonic() + 10.0
         # subprocess.Popen seems to be the best way to run commands
         # on background. Other ways (shell=True with "&" and ssh with -f)
         # seem to be too dependent on shell behavior.
         # In particular, -f does NOT return values for run().
         subprocess.Popen(ssh_cmd)
         # Check socket presence on local side.
-        while time.time() < time_stop:
+        while time.monotonic() < time_stop:
             # It can take a moment for ssh to create the socket file.
             ret_code, _ = run(
                 [u"ls", u"-l", api_socket], check=False
@@ -467,9 +467,8 @@ class PapiSocketExecutor:
                 break
         else:
             raise RuntimeError(u"Failed to connect to VPP over a socket.")
-        logger.trace(
-            f"Establishing socket connection took {time.time()-time_enter}s"
-        )
+        elapsed = time.monotonic() - time_enter
+        logger.trace(f"Establishing socket connection took {elapsed}s")
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
