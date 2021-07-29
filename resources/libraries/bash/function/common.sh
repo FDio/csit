@@ -79,6 +79,8 @@ function activate_docker_topology () {
          die "Trap attempt failed, please cleanup manually. Aborting!"
     }
 
+    parse_env_variables || die "Parse of environment variables failed!"
+
     # Replace all variables in template with those in environment.
     source <(echo 'cat <<EOF >topo.yml'; cat ${TOPOLOGIES[0]}; echo EOF;) || {
         die "Topology file create failed!"
