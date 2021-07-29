@@ -30,11 +30,11 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # https://logs.fd.io/production/vex-yul-rot-jenkins-1
-# /vpp-merge-master-ubuntu2004-x86_64/1110/
-21.06-rc0~640-gc8983241b:
-    acl_add_replace: '0xee5c2f18'  # dev
+# /vpp-merge-master-ubuntu1804-x86_64/184/
+21.01-rc0~283:
+    acl_add_replace: '0x1cabdeab'  # dev
     acl_add_replace_reply: '0xac407b0c'  # dev
-    acl_details: '0x95babae0'  # perf teardown
+    acl_details: '0x7a97f21c'  # perf teardown
     acl_dump: '0xef34fea4'  # perf teardown
     acl_interface_list_details: '0xe695d256'  # perf teardown
     acl_interface_list_dump: '0xf9e6675e'  # perf teardown
@@ -71,9 +71,9 @@
     # classify_table_info / reply # honeycomb
     cli_inband: '0xf8377302'  # dev setup
     cli_inband_reply: '0x05879051'  # dev setup
-    create_loopback_instance: '0xd36a3ee2'  # dev
-    create_loopback_instance_reply: '0x5383d31f'  # dev
-    create_subif: '0x790ca755'  # perf
+    create_loopback: '0x42bb5d22'  # dev
+    create_loopback_reply: '0x5383d31f'  # dev
+    create_subif: '0xcb371063'  # perf
     create_subif_reply: '0x5383d31f'  # perf
     # ^^ tc01-64B-1c-dot1ad-l2xcbase-mrr
     # ^ 3n: dot1adANDl2xcfwd
@@ -98,7 +98,7 @@
     # dhcp_proxy_dump / details # honeycomb
     geneve_add_del_tunnel2: '0x8c2a9999'  # dev
     geneve_add_del_tunnel2_reply: '0x5383d31f'  # dev
-    geneve_tunnel_details: '0x6b16eb24'  # dev
+    geneve_tunnel_details: '0xe27e2748'  # dev
     geneve_tunnel_dump: '0xf9e6675e'  # dev
     gpe_enable_disable: '0xc264d7bf'  # dev
     gpe_enable_disable_reply: '0xe8d4e804'  # dev
@@ -109,22 +109,24 @@
     hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
     input_acl_set_interface: '0xde7ad708'  # dev
     input_acl_set_interface_reply: '0xe8d4e804'  # dev
-    ip_address_details: '0xee29b797'  # dev
+    ip_address_details: '0xb1199745'  # dev
     ip_address_dump: '0x2d033de4'  # dev
-    ip_neighbor_add_del: '0x0607c257'  # dev
+    ip_neighbor_add_del: '0x105518b6'  # dev
     ip_neighbor_add_del_reply: '0x1992deab'  # dev
     # ip_probe_neighbor / reply # unused L1 keyword vpp_ip_probe
-    ip_route_add_del: '0xb8ecfe0d'  # dev
+    ip_route_add_del: '0xc1ff832d'  # dev
     ip_route_add_del_reply: '0x1992deab'  # dev
     # ip_source_check_interface_add_del / reply # unused L1 keyword vpp_ip_source_check_setup
     ip_table_add_del: '0x0ffdaec0'  # dev
     ip_table_add_del_reply: '0xe8d4e804'  # dev
-    ipip_add_tunnel: '0x2ac399f5'  # dev
+    ipip_add_tunnel: '0xa9decfcd'  # dev
     ipip_add_tunnel_reply: '0x5383d31f'  # dev
     ipsec_interface_add_del_spd: '0x80f80cbb'  # dev
     ipsec_interface_add_del_spd_reply: '0xe8d4e804'  # dev
     ipsec_sa_v2_details: '0xe2130051'  # dev
     ipsec_sa_v2_dump: '0x2076c2f4'  # dev
+    ipsec_sad_entry_add_del: '0xb8def364'  # dev
+    ipsec_sad_entry_add_del_reply: '0x9ffac24b'  # dev
     ipsec_sad_entry_add_del_v2: '0xaca78b27'  # dev
     ipsec_sad_entry_add_del_v2_reply: '0x9ffac24b'  # dev
     ipsec_select_backend: '0x5bcfd3b7'  # perf
@@ -133,9 +135,9 @@
     # ^ nic_intel-xl710ANDipsechwANDipsecintANDtnl_1ANDaes_256_gcm
     ipsec_spd_add_del: '0x20e89a95'  # dev
     ipsec_spd_add_del_reply: '0xe8d4e804'  # dev
-    ipsec_spd_entry_add_del: '0x338b7411'  # dev
+    ipsec_spd_entry_add_del: '0x9f384b8d'  # dev
     ipsec_spd_entry_add_del_reply: '0x9ffac24b'  # dev
-    ipsec_tunnel_protect_update: '0x30d5f133'  # dev
+    ipsec_tunnel_protect_update: '0x143f155d'  # dev
     ipsec_tunnel_protect_update_reply: '0xe8d4e804'  # dev
     ipsec_set_async_mode: '0xa6465f7c'  #perf
     ipsec_set_async_mode_reply: '0xe8d4e804'  #perf
@@ -144,29 +146,29 @@
     # l2_fib_table_dump / details # honeycomb
     l2_interface_vlan_tag_rewrite: '0x62cc0bbc'  # dev
     l2_interface_vlan_tag_rewrite_reply: '0xe8d4e804'  # dev
-    l2_patch_add_del: '0xa1f6a6f3'  # dev
+    l2_patch_add_del: '0x522f3445'  # dev
     l2_patch_add_del_reply: '0xe8d4e804'  # dev
     # l2fib_add_del / reply # unused L1 keyword: vpp_add_l2fib_entry
-    lb_conf: '0x56cd3261'  # perf
+    lb_conf: '0x22ddb739'  # perf
     lb_conf_reply: '0xe8d4e804'  # perf
-    lb_add_del_vip: '0x6fa569c7'  # perf
+    lb_add_del_vip: '0xd15b7ddc'  # perf
     lb_add_del_vip_reply: '0xe8d4e804'  # perf
-    lb_add_del_as: '0x35d72500'  # perf
+    lb_add_del_as: '0x78628987'  # perf
     lb_add_del_as_reply: '0xe8d4e804'  # perf
     lb_add_del_intf_nat4: '0x47d6e753'  # perf
     lb_add_del_intf_nat4_reply: '0xe8d4e804'  # perf
     # 8x^ tc01-64B-1c-ethip4-loadbalancer-nat4
     # ^ 2n: loadbalancer_nat4
-    lisp_add_del_adjacency: '0x2ce0e6f6'  # dev
+    lisp_add_del_adjacency: '0xcf5edb61'  # dev
     lisp_add_del_adjacency_reply: '0xe8d4e804'  # dev
-    lisp_add_del_local_eid: '0x4e5a83a2'  # dev
+    lisp_add_del_local_eid: '0x21f573bd'  # dev
     lisp_add_del_local_eid_reply: '0xe8d4e804'  # dev
     lisp_add_del_locator: '0xaf4d8f13'  # dev
     lisp_add_del_locator_reply: '0xe8d4e804'  # dev
     lisp_add_del_locator_set: '0x6fcd6471'  # dev
     lisp_add_del_locator_set_reply: '0xb6666db4'  # dev
     # lisp_add_del_map_resolver / reply # unused L2 keyword: Configure LISP map resolver address
-    lisp_add_del_remote_mapping: '0x6d5c789e'  # dev
+    lisp_add_del_remote_mapping: '0xfae8ed77'  # dev
     lisp_add_del_remote_mapping_reply: '0xe8d4e804'  # dev
     lisp_eid_table_add_del_map: '0x9481416b'  # perf
     lisp_eid_table_add_del_map_reply: '0xe8d4e804'  # perf
@@ -175,9 +177,9 @@
     # lisp_eid_table_dump / details # unused L2 keyword: LISP eid address should be set correctly to eid table
     lisp_enable_disable: '0xc264d7bf'  # dev
     lisp_enable_disable_reply: '0xe8d4e804'  # dev
-    macip_acl_add: '0xce6fbad0'  # perf
+    macip_acl_add: '0xd648fd0a'  # perf
     macip_acl_add_reply: '0xac407b0c'  # perf
-    macip_acl_details: '0x27135b59'  # perf teardown
+    macip_acl_details: '0x57c7482f'  # perf teardown
     macip_acl_dump: '0xef34fea4'  # perf teardown
     macip_acl_interface_add_del: '0x4b8690b1'  # perf
     macip_acl_interface_add_del_reply: '0xe8d4e804'  # perf
@@ -187,17 +189,17 @@
     # ^ macipANDacl1AND100_flows
     memif_create: '0xb1b25061'  # dev
     memif_create_reply: '0x5383d31f'  # dev
-    memif_details: '0xda34feb9'  # dev
+    memif_details: '0xd0382c4c'  # dev
     memif_dump: '0x51077d14'  # dev
     memif_socket_filename_add_del: '0xa2ce1a10'  # dev
     memif_socket_filename_add_del_reply: '0xe8d4e804'  # dev
-    nat44_add_del_address_range: '0x6f2b8055'  # dev
+    nat44_add_del_address_range: '0xd4c7568c'  # dev
     nat44_add_del_address_range_reply: '0xe8d4e804'  # dev
-    nat44_address_details: '0x0d1beac1'  # dev teardown
+    nat44_address_details: '0x45410ac4'  # dev teardown
     nat44_address_dump: '0x51077d14'  # dev teardown
     nat44_interface_add_del_feature: '0xf3699b83'  # dev
     nat44_interface_add_del_feature_reply: '0xe8d4e804'  # dev
-    nat44_interface_addr_details: '0xe4aca9ca'  # dev teardown
+    nat44_interface_addr_details: '0x3e687514'  # dev teardown
     nat44_interface_addr_dump: '0x51077d14'  # dev teardown
     nat44_interface_details: '0x5d286289'  # dev teardown
     nat44_interface_dump: '0x51077d14'  # dev teardown
@@ -205,11 +207,11 @@
     nat44_plugin_enable_disable_reply: '0xe8d4e804'  # dev
     nat44_show_running_config: '0x51077d14'  # dev teardown
     nat44_show_running_config_reply: '0x93d8e267'  # dev teardown
-    nat44_static_mapping_details: '0x06cb40b2'  # dev teardown
+    nat44_static_mapping_details: '0x1a433ef7'  # dev teardown
     nat44_static_mapping_dump: '0x51077d14'  # dev teardown
     nat44_user_details: '0x355896c2'  # dev teardown
     nat44_user_dump: '0x51077d14'  # dev teardown
-    nat44_user_session_details: '0x2cf6e16d'  # dev teardown
+    nat44_user_session_details: '0x1965fd69'  # dev teardown
     nat44_user_session_dump: '0xe1899c98'  # dev teardown
     nat_worker_details: '0x84bf06fc'  # dev teardown
     nat_worker_dump: '0x51077d14'  # dev teardown
@@ -220,80 +222,80 @@
     nsim_output_feature_enable_disable_reply: '0xe8d4e804'  # perf
     # 4x^ tc01-9000B-1c-eth-ip4tcp-nsim-ldpreload-iperf3-bps
     # ^ 3n: nsimAND1stream
-    policer_add_del: '0x2b31dd38'  # dev
+    policer_add_del: '0xcb948f6e'  # dev
     policer_add_del_reply: '0xa177cef2'  # dev
     policer_classify_set_interface: '0xde7ad708'  # dev
     policer_classify_set_interface_reply: '0xe8d4e804'  # dev
     # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
-    rdma_create_v2: '0x5826a4f3'  # perf
-    rdma_create_v2_reply: '0x5383d31f'  # perf
+    rdma_create: '0x076fe418'  # perf
+    rdma_create_reply: '0x5383d31f'  # perf
     # 2x^ Any test with drv_rdma. Currently only available on 2n-clx.
     # - Not testable by devicetest (until we have environment with right NICs).
     show_threads: '0x51077d14'  # dev
     show_threads_reply: '0xefd78e83'  # dev
     show_version: '0x51077d14'  # dev setup
     show_version_reply: '0xc919bde1'  # dev setup
-    sr_localsid_add_del: '0x5a36c324'  # perf
+    sr_localsid_add_del: '0x26fa3309'  # perf
     sr_localsid_add_del_reply: '0xe8d4e804'  # perf
-    sr_localsids_details: '0x2e9221b9'  # perf teardown
+    sr_localsids_details: '0x6a6c0265'  # perf teardown
     sr_localsids_dump: '0x51077d14'  # perf teardown
-    sr_policies_details: '0xdb6ff2a1'  # perf teardown
+    sr_policies_details: '0x07ec2d93'  # perf teardown
     sr_policies_dump: '0x51077d14'  # perf teardown
-    sr_policy_add: '0x44ac92e8'  # perf
+    sr_policy_add: '0xec79ee6a'  # perf
     sr_policy_add_reply: '0xe8d4e804'  # perf
     sr_set_encap_source: '0xd3bad5e1'  # perf
     sr_set_encap_source_reply: '0xe8d4e804'  # perf
-    sr_steering_add_del: '0xe46b0a0f'  # perf
+    sr_steering_add_del: '0x3711dace'  # perf
     sr_steering_add_del_reply: '0xe8d4e804'  # perf
-    sr_steering_pol_details: '0xd41258c9'  # perf teardown
+    sr_steering_pol_details: '0x1c1ee786'  # perf teardown
     sr_steering_pol_dump: '0x51077d14'  # perf teardown
     # 14x^ tc01-78B-1c-ethip6ip6-ip6base-srv6enc1sid-mrr
     # ^ srv6_1sid
     sw_bond_interface_details: '0x9428a69c'  # perf
     sw_bond_interface_dump: '0xf9e6675e'  # perf
     # ^^ see bond_*
-    sw_interface_add_del_address: '0x5463d73b'  # dev
+    sw_interface_add_del_address: '0x5803d5c4'  # dev
     sw_interface_add_del_address_reply: '0xe8d4e804'  # dev
-    sw_interface_details: '0x6c221fc7'  # dev setup
+    sw_interface_details: '0x17b69fa2'  # dev setup
     sw_interface_dump: '0xaa610c27'  # dev setup
     # sw_interface_get_table / reply # honeycomb
     sw_interface_ip6nd_ra_config: '0x3eb00b1c'  # dev
     sw_interface_ip6nd_ra_config_reply: '0xe8d4e804'  # dev
-    sw_interface_rx_placement_details: '0x9e44a7ce'  # perf
+    sw_interface_rx_placement_details: '0xf6d7d024'  # perf
     sw_interface_rx_placement_dump: '0xf9e6675e'  # perf
     # ^^ tc01-64B-1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr
     # ^ dot1qANDl2bdmaclrnANDbaseANDmemif
-    sw_interface_set_flags: '0xf5aec1b8'  # dev
+    sw_interface_set_flags: '0x6a2b491a'  # dev
     sw_interface_set_flags_reply: '0xe8d4e804'  # dev
     sw_interface_set_geneve_bypass: '0x65247409'  # dev
     sw_interface_set_geneve_bypass_reply: '0xe8d4e804'  # dev
-    sw_interface_set_l2_bridge: '0xd0678b13'  # dev
+    sw_interface_set_l2_bridge: '0x2e483cd0'  # dev
     sw_interface_set_l2_bridge_reply: '0xe8d4e804'  # dev
-    sw_interface_set_l2_xconnect: '0x4fa28a85'  # dev
+    sw_interface_set_l2_xconnect: '0x1aaa2dbb'  # dev
     sw_interface_set_l2_xconnect_reply: '0xe8d4e804'  # dev
-    sw_interface_set_mac_address: '0xc536e7eb'  # perf
+    sw_interface_set_mac_address: '0x6aca746a'  # perf
     sw_interface_set_mac_address_reply: '0xe8d4e804'  # perf
     sw_interface_set_rx_placement: '0xdb65f3c9'  # perf
     sw_interface_set_rx_placement_reply: '0xe8d4e804'  # perf
     # ^^ see tc01-64B-1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr above
     sw_interface_set_table: '0xdf42a577'  # dev
     sw_interface_set_table_reply: '0xe8d4e804'  # dev
-    sw_interface_set_unnumbered: '0x154a6439'  # perf
+    sw_interface_set_unnumbered: '0x938ef33b'  # perf
     sw_interface_set_unnumbered_reply: '0xe8d4e804'  # perf
     # ^^ see ipsec_tunnel_if_add_del
     sw_interface_set_vxlan_bypass: '0x65247409'  # dev
     sw_interface_set_vxlan_bypass_reply: '0xe8d4e804'  # dev
     # sw_interface_span_dump / details # honeycomb
     sw_interface_tap_v2_dump: '0xf9e6675e'  # dev
-    sw_interface_tap_v2_details: '0x1e2b2a47'  # dev
-    sw_interface_vhost_user_details: '0x0cee1e53'  # dev
+    sw_interface_tap_v2_details: '0xe53c16de'  # dev
+    sw_interface_vhost_user_details: '0x98530df1'  # dev
     sw_interface_vhost_user_dump: '0xf9e6675e'  # dev
     sw_member_interface_details: '0x3c4a0e23'  # perf
     sw_member_interface_dump: '0xf9e6675e'  # perf
     # ^^ see bond_*
-    tap_create_v2: '0x2d0d6570'  # dev
+    tap_create_v2: '0x445835fd'  # dev
     tap_create_v2_reply: '0x5383d31f'  # dev
-    vxlan_add_del_tunnel: '0x0c09dc80'  # dev
+    vxlan_add_del_tunnel: '0xa35dc8f5'  # dev
     vxlan_add_del_tunnel_reply: '0x5383d31f'  # dev
     # vxlan_gpe_tunnel_dump / details # honeycomb
     # vxlan_tunnel_dump /details # unused L2 keyword: Get VXLAN dump
