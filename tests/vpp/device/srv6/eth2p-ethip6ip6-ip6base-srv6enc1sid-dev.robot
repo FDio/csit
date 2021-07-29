@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | IP6FWD | FEATURE | SRv6 | SRv6_1SID | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | SRv6 | SRv6_1SID | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6ip6-ip6base-srv6enc1sid
 |
@@ -43,7 +43,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | virtual
+| ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
