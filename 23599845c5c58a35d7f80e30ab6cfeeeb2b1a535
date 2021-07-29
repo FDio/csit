@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a2dec5ec_82ee0fcd",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-07-29T13:01:29Z",
+      "side": 1,
+      "message": "Right, this is a brain fart on my part. I\u0027ll fix it.",
+      "parentUuid": "371a79aa_1573ee8d",
+      "range": {
+        "startLine": 404,
+        "startChar": 8,
+        "endLine": 404,
+        "endChar": 23
+      },
+      "revId": "23599845c5c58a35d7f80e30ab6cfeeeb2b1a535",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c7e693dc_f8308f30",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "23599845c5c58a35d7f80e30ab6cfeeeb2b1a535",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00d25504_4b605422",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-07-29T13:01:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c7e693dc_f8308f30",
+      "range": {
+        "startLine": 414,
+        "startChar": 74,
+        "endLine": 414,
+        "endChar": 75
+      },
+      "revId": "23599845c5c58a35d7f80e30ab6cfeeeb2b1a535",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9777b3aa_dd6f293d",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-07-29T13:01:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "16f294ca_0a839bd1",
+      "range": {
+        "startLine": 418,
+        "startChar": 13,
+        "endLine": 418,
+        "endChar": 18
+      },
+      "revId": "23599845c5c58a35d7f80e30ab6cfeeeb2b1a535",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7eb04393_db995a85",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "23599845c5c58a35d7f80e30ab6cfeeeb2b1a535",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "843448b3_98158f73",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-07-29T13:01:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7eb04393_db995a85",
+      "range": {
+        "startLine": 580,
+        "startChar": 35,
+        "endLine": 580,
+        "endChar": 43
+      },
+      "revId": "23599845c5c58a35d7f80e30ab6cfeeeb2b1a535",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
