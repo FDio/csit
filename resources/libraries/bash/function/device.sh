@@ -245,10 +245,14 @@ function get_available_interfaces () {
     # - DUT1_PCIDEVS - List of PCI addresses allocated to DUT1 container.
     # - DUT1_NETMACS - List of MAC addresses allocated to DUT1 container.
     # - DUT1_DRIVERS - List of interface drivers to DUT1 container.
+    # - DUT1_VLANS - List of interface vlans to TG container.
+    # - DUT1_MODEL - List of interface models to TG container.
     # - TG_NETDEVS - List of network devices allocated to TG container.
     # - TG_PCIDEVS - List of PCI addresses allocated to TG container.
     # - TG_NETMACS - List of MAC addresses allocated to TG container.
     # - TG_DRIVERS - List of interface drivers to TG container.
+    # - TG_VLANS - List of interface vlans to TG container.
+    # - TG_MODEL - List of interface models to TG container.
 
     set -exuo pipefail
 
@@ -262,9 +266,10 @@ function get_available_interfaces () {
         "1n_skx")
             # Add Intel Corporation XL710/X710 Virtual Function to the
             # whitelist.
-            pci_id="0x154c"
-            tg_netdev=(ens1 enp24)
-            dut1_netdev=(ens5 enp59)
+            pci_id="0x154c\|0x1889"
+            tg_netdev=(ens1 enp134)
+            dut1_netdev=(ens5 enp175)
+            ports_per_nics=2
             ;;
        "1n_tx2")
             # Add Intel Corporation XL710/X710 Virtual Function to the
@@ -272,6 +277,7 @@ function get_available_interfaces () {
             pci_id="0x154c"
             tg_netdev=(enp5)
             dut1_netdev=(enp145)
+            ports_per_nics=2
             ;;
        "1n_vbox")
             # Add Intel Corporation 82545EM Gigabit Ethernet Controller to the
@@ -279,12 +285,11 @@ function get_available_interfaces () {
             pci_id="0x100f"
             tg_netdev=(enp0s8 enp0s9)
             dut1_netdev=(enp0s16 enp0s17)
+            ports_per_nics=1
             ;;
         *)
             die "Unknown specification: ${case_text}!"
     esac
-
-    device_count=2
 
     # TG side of connections.
     TG_NETDEVS=()
@@ -292,30 +297,35 @@ function get_available_interfaces () {
     TG_NETMACS=()
     TG_DRIVERS=()
     TG_VLANS=()
+    TG_MODEL=()
     # DUT1 side of connections.
     DUT1_NETDEVS=()
     DUT1_PCIDEVS=()
     DUT1_NETMACS=()
     DUT1_DRIVERS=()
     DUT1_VLANS=()
+    DUT1_MODEL=()
 
     # Find the first ${device_count} number of available TG Linux network
     # VF device names. Only allowed VF PCI IDs are filtered.
     for netdev in ${tg_netdev[@]}
     do
+        ports=0
         for netdev_path in $(grep -l "${pci_id}" \
                              /sys/class/net/${netdev}*/device/device \
                              2> /dev/null)
         do
-            if [[ ${#TG_NETDEVS[@]} -lt ${device_count} ]]; then
+            if [[ ${ports} -lt ${ports_per_nic} ]]; then
                 tg_netdev_name=$(dirname ${netdev_path})
                 tg_netdev_name=$(dirname ${tg_netdev_name})
                 TG_NETDEVS+=($(basename ${tg_netdev_name}))
+                ((ports++))
             else
                 break
             fi
         done
-        if [[ ${#TG_NETDEVS[@]} -eq ${device_count} ]]; then
+        ports_per_device=$((${ports_per_nic}*${#tg_netdev[@]}))
+        if [[ ${#TG_NETDEVS[@]} -eq ${ports_per_device} ]]; then
             break
         fi
     done
@@ -339,20 +349,24 @@ function get_available_interfaces () {
         get_mac_addr
         get_krn_driver
         get_vlan_filter
+        get_csit_model
         TG_PCIDEVS+=(${PCI_ADDR})
         TG_NETMACS+=(${MAC_ADDR})
         TG_DRIVERS+=(${KRN_DRIVER})
         TG_VLANS+=(${VLAN_ID})
+        TG_MODELS+=(${MODEL})
     done
     for NETDEV in "${DUT1_NETDEVS[@]}"; do
         get_pci_addr
         get_mac_addr
         get_krn_driver
         get_vlan_filter
+        get_csit_model
         DUT1_PCIDEVS+=(${PCI_ADDR})
         DUT1_NETMACS+=(${MAC_ADDR})
         DUT1_DRIVERS+=(${KRN_DRIVER})
         DUT1_VLANS+=(${VLAN_ID})
+        DUT1_MODELS+=(${MODEL})
     done
 
     # We need at least two interfaces for TG/DUT1 for building topology.
@@ -398,6 +412,35 @@ function get_mac_addr () {
         MAC_ADDR="$(</sys/class/net/${NETDEV}/address)" || {
             die "Failed to get MAC address of linux network interface!"
         }
+    fi
+}
+
+
+function get_csit_model () {
+
+    # Get CSIT model name from linux network device name.
+    #
+    # Variables read:
+    # - NETDEV - Linux network device name.
+    # Variables set:
+    # - MODEL - CSIT model name of network device.
+
+    set -exuo pipefail
+
+    if [ -d /sys/class/net/${NETDEV}/device ]; then
+        ID="$(</sys/class/net/${NETDEV}/device/device)" || {
+            die "Failed to get device id of linux network interface!"
+        }
+        case "${ID}" in
+            "0x1592"|"0x1889")
+                MODEL="Intel-E810CQ"
+                ;;
+            "0x1572"|"0x154c")
+                MODEL="Intel-X710"
+                ;;
+            "*")
+                MODEL="virtual"
+        esac
     fi
 }
 
