@@ -17,7 +17,7 @@
 | Variables | resources/test_data/lisp/lisp.py
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | IP4FWD | LISP | LISPGPE_IP6o4 | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | IP4FWD | LISP | LISPGPE_IP6o4 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4lispgpe-ip6base
 |
@@ -46,7 +46,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | lisp_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | virtual
+| ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0

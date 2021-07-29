@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | IP4FWD | IPSEC | IPSECSW | IPSECINT | IP4BASE
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECSW | IPSECINT | IP4BASE
 | ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec11tnlsw-ip4base-int-aes128cbc-hmac512sha
@@ -42,7 +42,7 @@
 | ... | crypto_native_plugin.so | crypto_ipsecmb_plugin.so
 | ... | crypto_openssl_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | virtual
+| ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
