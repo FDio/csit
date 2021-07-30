@@ -17,14 +17,6 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Check Presence of Intel Ethernet 810 Series
-  shell: "lspci -d 8086:1592"
-  register: intel_e810_pcis
-  failed_when: false
-  changed_when: false
-  tags:
-    - intel-inst-drivers
-
 - name: Inst - Check Presence of Intel Ethernet 700 Series
   shell: "lspci -d 8086:1583; lspci -d 8086:1585; lspci -d 8086:1572"
   register: intel_700_pcis
@@ -33,23 +25,57 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Driver Intel Ethernet 810 Series
-  import_tasks: ice.yaml
-  when:
-    - intel_e810_pcis.stdout_lines | length > 0
+- name: Inst - Check Presence of Intel Ethernet 800 Series
+  shell: "lspci -d 8086:1592"
+  register: intel_800_pcis
+  failed_when: false
+  changed_when: false
   tags:
     - intel-inst-drivers
 
-# - name: Inst - Driver Intel Ethernet 700 Series
-#   import_tasks: i40e.yaml
-#   when:
-#     - intel_700_pcis.stdout_lines | length > 0
-#   tags:
-#     - intel-inst-drivers
+- name: Inst - Get Intel Ethernet 700 Series driver versions
+  set_fact:
+    i40e: "{{ intel_700_compatibility_matrix[intel_700_matrix]['i40e'] }}"
+    iavf: "{{ intel_700_compatibility_matrix[intel_700_matrix]['iavf'] }}"
+    nvm: "{{ intel_700_compatibility_matrix[intel_700_matrix]['nvm'] }}"
+  when: >
+    intel_700_matrix is defined
+  tags:
+    - intel-inst-drivers
 
-# - name: Inst - VF Driver Intel
-#   import_tasks: iavf.yaml
-#   when:
-#     - intel_700_pcis.stdout_lines | length > 0 or intel_e810_pcis.stdout_lines | length > 0
-#   tags:
-#     - intel-inst-drivers
+- name: Inst - Get Intel Ethernet 800 Series driver versions
+  set_fact:
+    ice: "{{ intel_800_compatibility_matrix[intel_800_matrix]['ice'] }}"
+    ddp: "{{ intel_800_compatibility_matrix[intel_800_matrix]['ddp'] }}"
+    iavf: "{{ intel_800_compatibility_matrix[intel_800_matrix]['iavf'] }}"
+    nvm: "{{ intel_800_compatibility_matrix[intel_800_matrix]['nvm'] }}"
+  when: >
+    intel_800_matrix is defined
+  tags:
+    - intel-inst-drivers
+
+- name: Inst - Driver Intel Ethernet 700 Series
+  import_tasks: i40e.yaml
+  when: >
+    intel_700_pcis.stdout_lines | length > 0 and
+    intel_700_matrix is defined
+  tags:
+    - intel-inst-drivers
+
+- name: Inst - Driver Intel Ethernet 800 Series
+  import_tasks: ice.yaml
+  when: >
+    intel_800_pcis.stdout_lines | length > 0 and
+    intel_800_matrix is defined
+  tags:
+    - intel-inst-drivers
+
+- name: Inst - Driver Intel iAVF
+  import_tasks: iavf.yaml
+  when: >
+    intel_700_pcis.stdout_lines | length > 0 or
+    intel_800_pcis.stdout_lines | length > 0 and
+    intel_700_matrix is defined or
+    intel_800_matrix is defined
+  tags:
+    - intel-inst-drivers
