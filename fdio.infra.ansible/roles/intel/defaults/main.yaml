@@ -16,20 +16,48 @@ packages_by_arch:
   x86_64:
     - []
 
+intel_sourceforge_download_url: "https://sourceforge.net/projects/e1000/files"
 intel_download_url: "https://downloadmirror.intel.com"
+intel_extract_dir: "/opt"
 
-intel_iavf_version: "4.1.1"
-intel_iavf_driver_url: "{{ intel_download_url }}/24693/eng/iavf-{{ intel_iavf_version }}.tar.gz"
-intel_iavf_driver_dir: "/opt"
+intel_700_compatibility_matrix:
+  dpdk21.02:
+    # https://doc.dpdk.org/guides/rel_notes/release_21_02.html
+    i40e: "2.14.13"
+    iavf: "4.1.1"
+    nvm: "8.00"
+  dpdk21.05:
+    # https://doc.dpdk.org/guides/rel_notes/release_21_05.html
+    i40e: "2.15.9"
+    iavf: "4.1.1"
+    nvm: "8.30"
 
-intel_i40e_version: "2.15.9"
-intel_i40e_driver_url: "{{ intel_download_url }}/24411/eng/i40e-{{ intel_i40e_version }}.tar.gz"
-intel_i40e_driver_dir: "/opt"
+intel_800_compatibility_matrix:
+  dpdk21.02:
+    # https://doc.dpdk.org/guides/rel_notes/release_21_02.html
+    ice: "1.4.11"
+    ddp: "1.3.28.0"
+    iavf: "4.1.1"
+    nvm: "2.40"
+  dpdk21.05:
+    # https://doc.dpdk.org/guides/rel_notes/release_21_05.html
+    ice: "1.6.4"
+    ddp: "1.3.30.0"
+    iavf: "4.2.7"
+    nvm: "3.00"
 
-intel_ice_version: "1.4.11"
-intel_ice_driver_url: "{{ intel_download_url }}/29746/eng/ice-{{ intel_ice_version }}.tar.gz"
-intel_ice_driver_dir: "/opt"
+intel_i40e_url:
+  "2.14.13": "i40e%20stable/2.14.13/i40e-2.14.13.tar.gz/download"
+  "2.15.9": "i40e%20stable/2.15.9/i40e-2.15.9.tar.gz/download"
 
-intel_ddp_version: "1.3.28.0"
-intel_ddp_profile_url: "{{ intel_download_url }}/29889/eng/800%20Series%20Comms%20Binary%20Package%20{{ intel_ddp_version }}.zip"
-intel_ddp_profile_dir: "/opt"
+intel_ice_url:
+  "1.4.11": "ice%20stable/1.4.11/ice-1.4.11.tar.gz/download"
+  "1.6.4": "ice%20stable/1.6.4/ice-1.6.4.tar.gz/download"
+
+intel_iavf_url:
+  "4.1.1": "iavf%20stable/4.1.1/iavf-4.1.1.tar.gz/download"
+  "4.2.7": "iavf%20stable/4.2.7/iavf-4.2.7.tar.gz/download"
+
+intel_ddp_url:
+  "1.3.28.0": "29889/eng/800%20Series%20Comms%20Binary%20Package%201.3.28.0.zip"
+  "1.3.30.0": "30590/eng/800%20Series%20Comms%20Binary%20Package%201.3.30.0.zip"
