@@ -1572,9 +1572,63 @@ class InterfaceUtil:
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
+<<<<<<< HEAD   (e4dece Infra: vpp_device -> Ubuntu 20.04)
     def init_avf_interface(node, ifc_key, numvfs=1, osi_layer=u"L2"):
         """Init PCI device by creating VIFs and bind them to vfio-pci for AVF
         driver testing on DUT.
+=======
+    def init_interface(node, ifc_key, driver, numvfs=0, osi_layer=u"L2"):
+        """Init PCI device. Check driver compatibility and bind to proper
+        drivers. Optionally create NIC VFs.
+
+        :param node: DUT node.
+        :param ifc_key: Interface key from topology file.
+        :param driver: Base driver to use.
+        :param numvfs: Number of VIFs to initialize, 0 - disable the VIFs.
+        :param osi_layer: OSI Layer type to initialize TG with.
+            Default value "L2" sets linux interface spoof off.
+        :type node: dict
+        :type ifc_key: str
+        :type driver: str
+        :type numvfs: int
+        :type osi_layer: str
+        :returns: Virtual Function topology interface keys.
+        :rtype: list
+        :raises RuntimeError: If a reason preventing initialization is found.
+        """
+        kernel_driver = Topology.get_interface_driver(node, ifc_key)
+        vf_keys = []
+        if driver == u"avf":
+            if kernel_driver not in (
+                    u"ice", u"iavf", u"i40e", u"i40evf"):
+                raise RuntimeError(
+                    f"AVF needs ice or i40e compatible driver, not "
+                    f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
+                )
+            vf_keys = InterfaceUtil.init_generic_interface(
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+            )
+        elif driver == u"af_xdp":
+            if kernel_driver not in (
+                    u"ice", u"iavf", u"i40e", u"i40evf", u"mlx5_core",
+                    u"ixgbe"):
+                raise RuntimeError(
+                    f"AF_XDP needs ice/i40e/rdma/ixgbe compatible driver, not "
+                    f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
+                )
+            vf_keys = InterfaceUtil.init_generic_interface(
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+            )
+        elif driver == u"rdma-core":
+            vf_keys = InterfaceUtil.init_generic_interface(
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+            )
+        return vf_keys
+
+    @staticmethod
+    def init_generic_interface(node, ifc_key, numvfs=0, osi_layer=u"L2"):
+        """Init PCI device. Bind to proper drivers. Optionally create NIC VFs.
+>>>>>>> CHANGE (324f01 FIX: init interfaces for rdma-core driver)
 
         :param node: DUT node.
         :param ifc_key: Interface key from topology file.
