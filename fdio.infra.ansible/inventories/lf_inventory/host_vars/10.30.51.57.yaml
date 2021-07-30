@@ -25,5 +25,7 @@ sysctl:
     nr_hugepages: 8192
     max_map_count: 20000
 
-inventory_ipmi_hostname: '10.30.50.54'
+inventory_ipmi_hostname: "10.30.50.54"
 cpu_microarchitecture: "skylake"
+
+intel_700_matrix: "dpdk21.02"
