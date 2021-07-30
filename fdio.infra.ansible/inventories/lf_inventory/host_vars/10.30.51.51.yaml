@@ -70,3 +70,6 @@ docker_daemon:
   dns-opts: []
   dns-search: ["{{ ansible_hostname }}"]
   host: ["172.17.0.1:/var/run/docker.sock"]
+
+intel_700_matrix: "dpdk21.05"
+intel_800_matrix: "dpdk21.05"
