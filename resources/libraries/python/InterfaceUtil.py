@@ -1791,6 +1791,10 @@ class InterfaceUtil:
             vf_keys = InterfaceUtil.init_generic_interface(
                 node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
             )
+        elif driver == u"rdma-core":
+            vf_keys = InterfaceUtil.init_generic_interface(
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+            )
         return vf_keys
 
     @staticmethod
