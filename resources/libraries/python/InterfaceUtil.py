@@ -1769,7 +1769,6 @@ class InterfaceUtil:
         :raises RuntimeError: If a reason preventing initialization is found.
         """
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
-        vf_keys = []
         if driver == u"avf":
             if kernel_driver not in (
                     u"ice", u"iavf", u"i40e", u"i40evf"):
@@ -1777,9 +1776,6 @@ class InterfaceUtil:
                     f"AVF needs ice or i40e compatible driver, not "
                     f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
                 )
-            vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
-            )
         elif driver == u"af_xdp":
             if kernel_driver not in (
                     u"ice", u"iavf", u"i40e", u"i40evf", u"mlx5_core",
@@ -1788,9 +1784,9 @@ class InterfaceUtil:
                     f"AF_XDP needs ice/i40e/rdma/ixgbe compatible driver, not "
                     f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
                 )
-            vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
-            )
+        vf_keys = InterfaceUtil.init_generic_interface(
+            node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+        )
         return vf_keys
 
     @staticmethod
