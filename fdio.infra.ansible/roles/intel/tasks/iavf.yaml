@@ -2,19 +2,22 @@
 # file: roles/intel/tasks/iavf.yaml
 
 - name: Inst - Get iavf Network Adapter Driver
-  get_url:
-    url: "{{ intel_iavf_driver_url }}"
-    dest: "{{ intel_iavf_driver_dir }}/iavf-{{ intel_iavf_version }}.tar.gz"
-    mode: 0644
+  uri:
+    url: "{{ intel_sourceforge_download_url }}/{{ intel_iavf_url[iavf] }}"
+    follow_redirects: "all"
+    force: true
+    dest: "{{ intel_extract_dir }}/iavf-{{ iavf }}.tar.gz"
+    mode: "0644"
+  failed_when: false
   tags:
     - intel-inst
 
 - name: Inst - Extract iavf Network Adapter Driver
   unarchive:
     remote_src: true
-    src: "{{ intel_iavf_driver_dir }}/iavf-{{ intel_iavf_version }}.tar.gz"
-    dest: "{{ intel_iavf_driver_dir }}/"
-    creates: "{{ intel_iavf_driver_dir }}/iavf-{{ intel_iavf_version }}"
+    src: "{{ intel_extract_dir }}/iavf-{{ iavf }}.tar.gz"
+    dest: "{{ intel_extract_dir }}/"
+    creates: "{{ intel_extract_dir }}/iavf-{{ iavf }}"
   register: intel_driver_extracted
   tags:
     - intel-inst
@@ -22,12 +25,12 @@
 - name: Inst - iavf Network Adapter Driver
   command: "{{ item }}"
   args:
-    chdir: "{{ intel_iavf_driver_dir }}/iavf-{{ intel_iavf_version }}/src"
+    chdir: "{{ intel_extract_dir }}/iavf-{{ iavf }}/src"
+  become: true
   with_items:
     - "make install"
     - "modprobe -r iavf"
     - "modprobe iavf"
-  failed_when: true
   when:
     - intel_driver_extracted
   tags:
