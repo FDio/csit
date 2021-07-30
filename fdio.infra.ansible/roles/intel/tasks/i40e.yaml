@@ -3,18 +3,18 @@
 
 - name: Inst - Get i40e Network Adapter Driver
   get_url:
-    url: "{{ intel_i40e_driver_url }}"
-    dest: "{{ intel_i40e_driver_dir }}/i40e-{{ intel_i40e_version }}.tar.gz"
-    mode: 0644
+    url: "{{ intel_download_url }}/{{ intel_i40e_url[i40e] }}"
+    dest: "{{ intel_extract_dir }}/i40e-{{ i40e }}.tar.gz"
+    mode: "0644"
   tags:
     - intel-inst
 
 - name: Inst - Extract i40e Network Adapter Driver
   unarchive:
     remote_src: true
-    src: "{{ intel_i40e_driver_dir }}/i40e-{{ intel_i40e_version }}.tar.gz"
-    dest: "{{ intel_i40e_driver_dir }}/"
-    creates: "{{ intel_i40e_driver_dir }}/i40e-{{ intel_i40e_version }}"
+    src: "{{ intel_extract_dir }}/i40e-{{ i40e }}.tar.gz"
+    dest: "{{ intel_extract_dir }}/"
+    creates: "{{ intel_extract_dir }}/i40e-{{ i40e }}"
   register: intel_driver_extracted
   tags:
     - intel-inst
@@ -22,7 +22,7 @@
 - name: Inst - i40e Network Adapter Driver
   command: "{{ item }}"
   args:
-    chdir: "{{ intel_i40e_driver_dir }}/i40e-{{ intel_i40e_version }}/src"
+    chdir: "{{ intel_extract_dir }}/i40e-{{ i40e }}/src"
   with_items:
     - "make install"
     - "modprobe -r i40e"
