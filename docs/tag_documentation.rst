@@ -297,6 +297,10 @@ Test Type Tags
 
     Tests which use any kind of TCP traffic (STL or ASTF profile).
 
+.. topic:: TREX
+
+    Tests which test trex traffic without any software DUTs in the traffic path.
+
 ..
     TODO: Should we define tags STL and ASTF?
 
@@ -429,6 +433,11 @@ Forwarding Mode Tags
 .. topic:: LOADBALANCER_NAT4
 
     VPP Load balancer nat4 mode.
+
+.. topic:: N2N
+
+    Mode, where NICs from the same physical server are directly
+    connected with a cable.
 
 Underlay Tags
 -------------
@@ -637,6 +646,11 @@ Interface Tags
 
     All test cases which NIC Driver for DUT is set to {d}. Default is VFIO_PCI.
     {d}=(AVF, RDMA_CORE, VFIO_PCI, AF_XDP).
+
+.. topic:: TG_DRV_{d}
+
+    All test cases which NIC Driver for TG is set to {d}. Default is IGB_UIO.
+    {d}=(RDMA_CORE, IGB_UIO).
 
 .. topic:: RXQ_SIZE_{n}
 
