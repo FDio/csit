@@ -57,6 +57,10 @@ function gather_build () {
             DUT="dpdk"
             gather_dpdk || die "The function should have died on error."
             ;;
+        *"trex"*)
+            DUT="trex"
+            gather_trex || die "The function should have died on error."
+            ;;
         *)
             die "Unable to identify DUT type from: ${TEST_CODE}"
             ;;
@@ -110,6 +114,16 @@ function gather_dpdk () {
     fi
 }
 
+function gather_trex () {
+
+    # This function is required to bypass download dir check. 
+    # Currently it creates empty file in download dir.
+    # TODO: Add required packages 
+
+    set -exuo pipefail
+
+    touch trex-download-to-be-added.txt
+}
 
 function gather_vpp () {
 

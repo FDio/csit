@@ -195,6 +195,20 @@ def add_iperf3_testcases(testcase, file_out, tc_kwargs_list):
         file_out.write(testcase.generate(**kwargs))
 
 
+def add_trex_testcases(testcase, file_out, tc_kwargs_list):
+    """Add iperf3 testcases to file.
+
+    :param testcase: Testcase class.
+    :param file_out: File to write testcases to.
+    :param tc_kwargs_list: Key-value pairs used to construct testcases.
+    :type testcase: Testcase
+    :type file_out: file
+    :type tc_kwargs_list: dict
+    """
+    for kwargs in tc_kwargs_list:
+        file_out.write(testcase.generate(**kwargs))
+
+
 def write_default_files(in_filename, in_prolog, kwargs_list):
     """Using given filename and prolog, write all generated suites.
 
@@ -480,6 +494,35 @@ def write_iperf3_files(in_filename, in_prolog, kwargs_list):
         add_iperf3_testcases(testcase, file_out, kwargs_list)
 
 
+def write_trex_files(in_filename, in_prolog, kwargs_list):
+    """Using given filename and prolog, write all generated trex suites.
+
+    :param in_filename: Template filename to derive real filenames from.
+    :param in_prolog: Template content to derive real content from.
+    :param kwargs_list: List of kwargs for add_default_testcase.
+    :type in_filename: str
+    :type in_prolog: str
+    :type kwargs_list: list of dict
+    """
+    _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
+    testcase = Testcase.trex(suite_id)
+    for nic_name in Constants.NIC_NAME_TO_CODE:
+        out_filename = replace_defensively(
+            in_filename, u"10ge2p1x710",
+            Constants.NIC_NAME_TO_CODE[nic_name], 1,
+            u"File name should contain NIC code once.", in_filename
+        )
+        out_prolog = replace_defensively(
+            in_prolog, u"Intel-X710", nic_name, 2,
+            u"NIC name should appear twice (tag and variable).",
+            in_filename
+        )
+        check_suite_tag(suite_tag, out_prolog)
+        with open(out_filename, u"wt") as file_out:
+            file_out.write(out_prolog)
+            add_trex_testcases(testcase, file_out, kwargs_list)
+
+
 def write_device_files(in_filename, in_prolog, kwargs_list):
     """Using given filename and prolog, write all generated suites.
 
@@ -637,6 +680,13 @@ class Regenerator:
             {u"frame_size": min_frame_size, u"phy_cores": 0}
         ]
 
+        trex_kwargs_list = [
+            {u"frame_size": min_frame_size},
+            {u"frame_size": 1518},
+            {u"frame_size": 9000},
+            {u"frame_size": u"IMIX_v4_1"}
+        ]
+
         for in_filename in glob(pattern):
             if not self.quiet:
                 print(
@@ -656,6 +706,9 @@ class Regenerator:
                 in_prolog = u"".join(
                     file_in.read().partition(u"*** Test Cases ***")[:-1]
                 )
+            if "tg-l1xc" in in_filename:
+                write_trex_files(in_filename, in_prolog, trex_kwargs_list)
+                continue
             if in_filename.endswith(u"-ndrpdr.robot"):
                 if u"scheduler" in in_filename:
                     write_default_files(
