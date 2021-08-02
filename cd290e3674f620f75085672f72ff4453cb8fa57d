@@ -16,6 +16,24 @@
       "revId": "cd290e3674f620f75085672f72ff4453cb8fa57d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e10590be_4248df4e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-08-02T07:12:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cabbcf9_c403861c",
+      "revId": "cd290e3674f620f75085672f72ff4453cb8fa57d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
