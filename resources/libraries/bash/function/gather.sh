@@ -57,6 +57,9 @@ function gather_build () {
             DUT="dpdk"
             gather_dpdk || die "The function should have died on error."
             ;;
+	*"trex"*)
+            DUT="trex"
+            ;;
         *)
             die "Unable to identify DUT type from: ${TEST_CODE}"
             ;;

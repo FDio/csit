@@ -212,6 +212,17 @@
 | | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
 | | ... | ${osi_layer}
 
+| Additional Suite Setup Action For performance back2back
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement
+| | ... | for back to back tests
+| |
+| | Initialize traffic generator
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf1}[0]
+| | ... | ${osi_layer}
+
 | Additional Suite Setup Action For ipsechw
 | | [Documentation]
 | | ... | Additional Setup for suites which uses QAT HW.
