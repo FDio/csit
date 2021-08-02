@@ -33,16 +33,17 @@ class Testcase:
         """
         self.template = Template(template_string)
 
-    def generate(self, frame_size, phy_cores):
+    def generate(self, frame_size, phy_cores=None):
         """Return string of test case code with placeholders filled.
 
         Fail if there are placeholders left unfilled.
         It is not required for all placeholders to be present in template.
 
         :param frame_size: Imix string or numeric frame size. Example: 74.
-        :param phy_cores: Number of physical cores to use. Example: 2.
+        :param phy_cores: Number of physical cores to use. Example: 2. It can
+            be None in trex l1xc testcases
         :type frame_size: str or int
-        :type phy_cores: int or str
+        :type phy_cores: int, str or None
         :returns: Filled template, usable as test case code.
         :rtype: str
         """
@@ -57,6 +58,8 @@ class Testcase:
                 u"frame_num": str(frame_size),
                 u"frame_str": u"IMIX"
             }
+        if phy_cores is None:
+            return self.template.substitute(subst_dict)
         cores_str = str(phy_cores)
         cores_num = int(cores_str)
         subst_dict.update(
@@ -134,5 +137,23 @@ class Testcase:
 | 128KB-${{cores_str}}c-{suite_id}
 | | [Tags] | 128KB | ${{cores_str}}C
 | | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
+'''
+        return cls(template_string)
+
+    @classmethod
+    def trex(cls, suite_id):
+        """Factory method for creating "trex" testcase objects.
+
+        Testcase name will contain frame size, but not core count.
+
+        :param suite_id: Part of suite name to distinguish from other suites.
+        :type suite_id: str
+        :returns: Instance for generating testcase text of this type.
+        :rtype: Testcase
+        """
+        template_string = f'''
+| ${{frame_str}}-{suite_id}
+| | [Tags] | ${{frame_str}}
+| | frame_size=${{frame_num}}
 '''
         return cls(template_string)

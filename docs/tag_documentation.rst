@@ -742,6 +742,10 @@ Interface Tags
     All test cases which uses rdma-core device driver. It supports Mellanox
     NIC adapters.
 
+.. topic:: TG_DRV_IGB_UIO
+
+    All test cases on TG back-to-back. It uses igb_uio device driver.
+
 .. topic:: RXQ_SIZE_{n}
 
    All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
