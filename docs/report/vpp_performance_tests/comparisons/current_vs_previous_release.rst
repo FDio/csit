@@ -79,6 +79,21 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-mrr-csv.csv>`_
   - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-skx-8t4c-mrr-csv.csv>`_
 
+Latency Comparison
+``````````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 2t1c PDR50, direction1, average value comparison <performance-changes-2n-skx-xxv710-2t1c-pdr50-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, average value comparison <performance-changes-2n-skx-xxv710-2t1c-pdr90-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, max value comparison <performance-changes-2n-skx-xxv710-2t1c-pdr90-d1-max.html>`_
+  - `ASCII 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-skx-xxv710-2t1c-pdr50-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-skx-xxv710-2t1c-pdr90-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-skx-xxv710-2t1c-pdr90-d1-max.txt>`_
+  - `CSV 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-skx-xxv710-2t1c-pdr50-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-skx-xxv710-2t1c-pdr90-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-skx-xxv710-2t1c-pdr90-d1-max-csv.csv>`_
+
 3n-skx
 ~~~~~~
 
@@ -120,6 +135,21 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t1c MRR comparison <../../_static/vpp/performance-changes-3n-skx-2t1c-mrr-csv.csv>`_
   - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-mrr-csv.csv>`_
   - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-mrr-csv.csv>`_
+
+Latency Comparison
+``````````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 2t1c PDR50, direction1, average value comparison <performance-changes-3n-skx-xxv710-2t1c-pdr50-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, average value comparison <performance-changes-3n-skx-xxv710-2t1c-pdr90-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, max value comparison <performance-changes-3n-skx-xxv710-2t1c-pdr90-d1-max.html>`_
+  - `ASCII 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-3n-skx-xxv710-2t1c-pdr50-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-3n-skx-xxv710-2t1c-pdr90-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-3n-skx-xxv710-2t1c-pdr90-d1-max.txt>`_
+  - `CSV 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-3n-skx-xxv710-2t1c-pdr50-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-3n-skx-xxv710-2t1c-pdr90-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-3n-skx-xxv710-2t1c-pdr90-d1-max-csv.csv>`_
 
 2n-clx-xxv710
 ~~~~~~~~~~~~~
@@ -163,6 +193,21 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-clx-xxv710-4t2c-mrr-csv.csv>`_
   - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-clx-xxv710-8t4c-mrr-csv.csv>`_
 
+Latency Comparison
+``````````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 2t1c PDR50, direction1, average value comparison <performance-changes-2n-clx-xxv710-2t1c-pdr50-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, average value comparison <performance-changes-2n-clx-xxv710-2t1c-pdr90-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, max value comparison <performance-changes-2n-clx-xxv710-2t1c-pdr90-d1-max.html>`_
+  - `ASCII 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-clx-xxv710-2t1c-pdr50-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-clx-xxv710-2t1c-pdr90-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-clx-xxv710-2t1c-pdr90-d1-max.txt>`_
+  - `CSV 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-clx-xxv710-2t1c-pdr50-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-clx-xxv710-2t1c-pdr90-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-clx-xxv710-2t1c-pdr90-d1-max-csv.csv>`_
+
 2n-clx-cx556a
 ~~~~~~~~~~~~~
 
@@ -205,6 +250,21 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-clx-cx556a-4t2c-mrr-csv.csv>`_
   - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-clx-cx556a-8t4c-mrr-csv.csv>`_
 
+Latency Comparison
+``````````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 2t1c PDR50, direction1, average value comparison <performance-changes-2n-clx-cx556a-2t1c-pdr50-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, average value comparison <performance-changes-2n-clx-cx556a-2t1c-pdr90-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, max value comparison <performance-changes-2n-clx-cx556a-2t1c-pdr90-d1-max.html>`_
+  - `ASCII 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-clx-cx556a-2t1c-pdr50-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-clx-cx556a-2t1c-pdr90-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-clx-cx556a-2t1c-pdr90-d1-max.txt>`_
+  - `CSV 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-clx-cx556a-2t1c-pdr50-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-clx-cx556a-2t1c-pdr90-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-clx-cx556a-2t1c-pdr90-d1-max-csv.csv>`_
+
 2n-zn2-xxv710
 ~~~~~~~~~~~~~
 
@@ -246,6 +306,21 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t1c MRR comparison <../../_static/vpp/performance-changes-2n-zn2-xxv710-2t1c-mrr-csv.csv>`_
   - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-zn2-xxv710-4t2c-mrr-csv.csv>`_
   - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-zn2-xxv710-8t4c-mrr-csv.csv>`_
+
+Latency Comparison
+``````````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 2t1c PDR50, direction1, average value comparison <performance-changes-2n-zn2-xxv710-2t1c-pdr50-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, average value comparison <performance-changes-2n-zn2-xxv710-2t1c-pdr90-d1-avg.html>`_
+  - `HTML 2t1c PDR90, direction1, max value comparison <performance-changes-2n-zn2-xxv710-2t1c-pdr90-d1-max.html>`_
+  - `ASCII 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-zn2-xxv710-2t1c-pdr50-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-zn2-xxv710-2t1c-pdr90-d1-avg.txt>`_
+  - `ASCII 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-zn2-xxv710-2t1c-pdr90-d1-max.txt>`_
+  - `CSV 2t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-zn2-xxv710-2t1c-pdr50-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-zn2-xxv710-2t1c-pdr90-d1-avg-csv.csv>`_
+  - `CSV 2t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-zn2-xxv710-2t1c-pdr90-d1-max-csv.csv>`_
 
 2n-dnv
 ~~~~~~
@@ -373,6 +448,20 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t2c MRR comparison <../../_static/vpp/performance-changes-3n-tsh-2t2c-mrr-csv.csv>`_
   - `CSV 4t4c MRR comparison <../../_static/vpp/performance-changes-3n-tsh-4t4c-mrr-csv.csv>`_
 
+Latency Comparison
+``````````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 1t1c PDR50, direction1, average value comparison <performance-changes-2n-tsh-x520-1t1c-pdr50-d1-avg.html>`_
+  - `HTML 1t1c PDR90, direction1, average value comparison <performance-changes-2n-tsh-x520-1t1c-pdr90-d1-avg.html>`_
+  - `HTML 1t1c PDR90, direction1, max value comparison <performance-changes-2n-tsh-x520-1t1c-pdr90-d1-max.html>`_
+  - `ASCII 1t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-tsh-x520-1t1c-pdr50-d1-avg.txt>`_
+  - `ASCII 1t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-tsh-x520-1t1c-pdr90-d1-avg.txt>`_
+  - `ASCII 1t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-tsh-x520-1t1c-pdr90-d1-max.txt>`_
+  - `CSV 1t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-tsh-x520-1t1c-pdr50-d1-avg-csv.csv>`_
+  - `CSV 1t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-tsh-x520-1t1c-pdr90-d1-avg-csv.csv>`_
+  - `CSV 1t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-tsh-x520-1t1c-pdr90-d1-max-csv.csv>`_
 
 2n-tx2
 ~~~~~~
@@ -415,3 +504,18 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 1t1c MRR comparison <../../_static/vpp/performance-changes-2n-tx2-1t1c-mrr-csv.csv>`_
   - `CSV 2t2c MRR comparison <../../_static/vpp/performance-changes-2n-tx2-2t2c-mrr-csv.csv>`_
   - `CSV 4t4c MRR comparison <../../_static/vpp/performance-changes-2n-tx2-4t4c-mrr-csv.csv>`_
+
+Latency Comparison
+``````````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 1t1c PDR50, direction1, average value comparison <performance-changes-2n-tx2-xl710-1t1c-pdr50-d1-avg.html>`_
+  - `HTML 1t1c PDR90, direction1, average value comparison <performance-changes-2n-tx2-xl710-1t1c-pdr90-d1-avg.html>`_
+  - `HTML 1t1c PDR90, direction1, max value comparison <performance-changes-2n-tx2-xl710-1t1c-pdr90-d1-max.html>`_
+  - `ASCII 1t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-tx2-xl710-1t1c-pdr50-d1-avg.txt>`_
+  - `ASCII 1t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-tx2-xl710-1t1c-pdr90-d1-avg.txt>`_
+  - `ASCII 1t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-tx2-xl710-1t1c-pdr90-d1-max.txt>`_
+  - `CSV 1t1c PDR50, direction1, average value comparison <../../_static/vpp/performance-changes-2n-tx2-xl710-1t1c-pdr50-d1-avg-csv.csv>`_
+  - `CSV 1t1c PDR90, direction1, average value comparison <../../_static/vpp/performance-changes-2n-tx2-xl710-1t1c-pdr90-d1-avg-csv.csv>`_
+  - `CSV 1t1c PDR90, direction1, max value comparison <../../_static/vpp/performance-changes-2n-tx2-xl710-1t1c-pdr90-d1-max-csv.csv>`_

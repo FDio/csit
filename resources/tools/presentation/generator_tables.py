@@ -477,6 +477,13 @@ def _tpc_insert_data(target, src, include_tests):
             target[u"data"].append(src[u"throughput"][u"PDR"][u"LOWER"])
         elif include_tests == u"NDR":
             target[u"data"].append(src[u"throughput"][u"NDR"][u"LOWER"])
+        elif u"latency" in include_tests:
+            keys = include_tests.split(u"-")
+            if len(keys) == 4:
+                lat = src[keys[0]][keys[1]][keys[2]][keys[3]]
+                target[u"data"].append(
+                    float(u"nan") if lat == -1 else lat * 1e6
+                )
     except (KeyError, TypeError):
         pass
 
@@ -1623,7 +1630,14 @@ def table_comparison(table, input_data):
         tag = col.get(u"tag", None)
         data = input_data.filter_data(
             table,
-            params=[u"throughput", u"result", u"name", u"parent", u"tags"],
+            params=[
+                u"throughput",
+                u"result",
+                u"latency",
+                u"name",
+                u"parent",
+                u"tags"
+            ],
             data=col[u"data-set"],
             continue_on_error=True
         )
@@ -1695,7 +1709,8 @@ def table_comparison(table, input_data):
                             include_tests=table[u"include-tests"]
                         )
 
-        if table[u"include-tests"] in (u"NDR", u"PDR"):
+        if table[u"include-tests"] in (u"NDR", u"PDR") or \
+                u"latency" in table[u"include-tests"]:
             for tst_name, tst_data in col_data[u"data"].items():
                 if tst_data[u"data"]:
                     tst_data[u"mean"] = mean(tst_data[u"data"])
@@ -1780,10 +1795,13 @@ def table_comparison(table, input_data):
                         cmp_itm[u"mean"] is not None and \
                         ref_itm[u"stdev"] is not None and \
                         cmp_itm[u"stdev"] is not None:
-                    delta, d_stdev = relative_change_stdev(
-                        ref_itm[u"mean"], cmp_itm[u"mean"],
-                        ref_itm[u"stdev"], cmp_itm[u"stdev"]
-                    )
+                    try:
+                        delta, d_stdev = relative_change_stdev(
+                            ref_itm[u"mean"], cmp_itm[u"mean"],
+                            ref_itm[u"stdev"], cmp_itm[u"stdev"]
+                        )
+                    except ZeroDivisionError:
+                        break
                     if delta is None:
                         break
                     new_row.append({
