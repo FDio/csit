@@ -68,6 +68,7 @@
 | |
 | | Run Keyword If Test Failed
 | | ... | Vpp Log Plugin Acl Settings | ${dut1}
+| |
 | | Run Keyword If Test Failed
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 

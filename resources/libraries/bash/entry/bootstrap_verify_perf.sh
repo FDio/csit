@@ -50,6 +50,6 @@ select_tags || die
 compose_pybot_arguments || die
 set_environment_variables || die
 run_pybot || die
-untrap_and_unreserve_testbed || die
+#untrap_and_unreserve_testbed || die
 move_archives || die
 die_on_pybot_error || die
