@@ -133,6 +133,8 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
     for kwargs in tc_kwargs_list:
         # TODO: Is there a better way to disable some combinations?
         emit = True
+        if u"phy_cores" not in kwargs:
+            kwargs[u"phy_cores"] = None
         if kwargs[u"frame_size"] == 9000:
             if u"vic1227" in iface:
                 # Not supported in HW.
@@ -311,11 +313,12 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     Constants.NIC_DRIVER_TO_TAG[driver], 1,
                     u"Driver tag should appear once.", in_filename
                 )
-                out_prolog = replace_defensively(
-                    out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
-                    Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
-                    u"Driver plugin should appear once.", in_filename
-                )
+                if "tg-l1xc" not in out_prolog:
+                    out_prolog = replace_defensively(
+                        out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
+                        Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                        u"Driver plugin should appear once.", in_filename
+                    )
                 out_prolog = replace_defensively(
                     out_prolog, Constants.NIC_DRIVER_TO_VFS[u"vfio-pci"],
                     Constants.NIC_DRIVER_TO_VFS[driver], 1,
@@ -333,7 +336,10 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 )
                 check_suite_tag(suite_tag, out_prolog)
                 # TODO: Reorder loops so suite_id is finalized sooner.
-                testcase = Testcase.default(suite_id)
+                if "tg-l1xc" not in out_prolog:
+                    testcase = Testcase.default(suite_id)
+                else:
+                    testcase = Testcase.trex(suite_id)
                 with open(out_filename, u"wt") as file_out:
                     file_out.write(out_prolog)
                     add_default_testcases(
@@ -637,6 +643,13 @@ class Regenerator:
             {u"frame_size": min_frame_size, u"phy_cores": 0}
         ]
 
+        trex_kwargs_list = [
+            {u"frame_size": min_frame_size},
+            {u"frame_size": 1518},
+            {u"frame_size": 9000},
+            {u"frame_size": u"IMIX_v4_1"}
+        ]
+
         for in_filename in glob(pattern):
             if not self.quiet:
                 print(
@@ -656,6 +669,9 @@ class Regenerator:
                 in_prolog = u"".join(
                     file_in.read().partition(u"*** Test Cases ***")[:-1]
                 )
+            if "tg-l1xc" in in_filename:
+                write_default_files(in_filename, in_prolog, trex_kwargs_list)
+                continue
             if in_filename.endswith(u"-ndrpdr.robot"):
                 if u"scheduler" in in_filename:
                     write_default_files(

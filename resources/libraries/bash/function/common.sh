@@ -906,6 +906,10 @@ function select_tags () {
                 awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
             SELECTION_MODE="--test"
             ;;
+        *"trex-"* )
+            test_tag_array=("mrrAND${default_nic}AND64b")
+            SELECTION_MODE="--include"
+            ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
@@ -981,6 +985,9 @@ function select_tags () {
     prefix=""
 
     set +x
+    if [[ "${TEST_CODE}" == "csit-trex-"* ]]; then
+        prefix="${prefix}ethip4-tg-l1xcAND"
+    fi
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
         if [[ "${TEST_CODE}" != *"device"* ]]; then
             # Automatic prefixing for VPP perf jobs to limit the NIC used and
