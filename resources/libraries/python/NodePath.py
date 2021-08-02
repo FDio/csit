@@ -208,7 +208,8 @@ class NodePath:
         return self._path[-2]
 
     def compute_circular_topology(self, nodes, filter_list=None, nic_pfs=1,
-                                  always_same_link=False, topo_has_tg=True):
+                                  always_same_link=False, topo_has_tg=True,
+                                  topo_has_dut=True):
         """Return computed circular path.
 
         :param nodes: Nodes to append to the path.
