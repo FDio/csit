@@ -638,6 +638,11 @@ Interface Tags
     All test cases which NIC Driver for DUT is set to {d}. Default is VFIO_PCI.
     {d}=(AVF, RDMA_CORE, VFIO_PCI, AF_XDP).
 
+.. topic:: TG_DRV_{d}
+
+    All test cases which NIC Driver for TG is set to {d}. Default is IGB_UIO.
+    {d}=(RDMA_CORE, IGB_UIO).
+
 .. topic:: RXQ_SIZE_{n}
 
     All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
