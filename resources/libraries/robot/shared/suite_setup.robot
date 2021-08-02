@@ -111,6 +111,27 @@
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
 
+| Setup suite topology interfaces with no DUT
+| | [Documentation]
+| | ... | Common suite setup for single link tests with no device under test
+| | ... | node.
+| | ... |
+| | ... | Compute path for testing on given topology nodes in circular topology
+| | ... | based on interface model provided as an argument and set
+| | ... | corresponding suite variables.
+| |
+| | ... | *Arguments:*
+| | ... | - ${actions} - Additional setup action. Type: list
+| |
+| | [Arguments] | @{actions}
+| |
+| | ${nic_model_list}= | Create list | ${nic_name}
+| | &{info}= | Compute Circular Topology
+| | ... | ${nodes} | filter_list=${nic_model_list} | nic_pfs=${nic_pfs}
+| | ... | always_same_link=${True} | topo_has_tg=${True} | topo_has_dut=${False}
+| | Set suite variable | &{topology_info} | &{info}
+| | Create suite topology variables | @{actions}
+
 | Additional Suite Setup Action For scapy
 | | [Documentation]
 | | ... | Additional Setup for suites which uses scapy as Traffic generator.
@@ -210,6 +231,17 @@
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 | | ... | ${dut1} | ${DUT1_${int}1}[0]
 | | ... | ${dut${duts_count}} | ${DUT${duts_count}_${int}2}[0]
+| | ... | ${osi_layer}
+
+| Additional Suite Setup Action For performance_tg_nic
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement
+| | ... | for L1 cross connect tests
+| |
+| | Initialize traffic generator
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf1}[0]
 | | ... | ${osi_layer}
 
 | Additional Suite Setup Action For ipsechw
