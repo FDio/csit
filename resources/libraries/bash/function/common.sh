@@ -674,7 +674,7 @@ function reserve_and_cleanup_testbed () {
                 }
                 # Cleanup + calibration checks
                 set +e
-                ansible_playbook "cleanup, calibration"
+                # ansible_playbook "cleanup, calibration"
                 result="$?"
                 set -e
                 if [[ "${result}" == "0" ]]; then
@@ -899,6 +899,10 @@ function select_tags () {
                 ${tfd}/report_coverage/${NODENESS}-${FLAVOR}/${report_file} |
                 awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
             SELECTION_MODE="--test"
+	    ;;
+        *"trex-"* )
+            test_tag_array=("mrrAND${default_nic}AND1cAND64b")
+            SELECTION_MODE="--include"
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
@@ -971,6 +975,9 @@ function select_tags () {
     prefix=""
 
     set +x
+    if [[ "${TEST_CODE}" == "csit-trex-"* ]]; then
+        prefix="${prefix}eth-tg2tgAND"
+    fi
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
         # Automatic prefixing for VPP jobs to limit the NIC used and
         # traffic evaluation to MRR.

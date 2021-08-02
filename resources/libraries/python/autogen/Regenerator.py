@@ -311,11 +311,12 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     Constants.NIC_DRIVER_TO_TAG[driver], 1,
                     u"Driver tag should appear once.", in_filename
                 )
-                out_prolog = replace_defensively(
-                    out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
-                    Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
-                    u"Driver plugin should appear once.", in_filename
-                )
+                if "tg2tg" not in out_prolog:
+                    out_prolog = replace_defensively(
+                        out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
+                        Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                        u"Driver plugin should appear once.", in_filename
+                    )
                 out_prolog = replace_defensively(
                     out_prolog, Constants.NIC_DRIVER_TO_VFS[u"vfio-pci"],
                     Constants.NIC_DRIVER_TO_VFS[driver], 1,
@@ -564,6 +565,13 @@ class Regenerator:
             {u"frame_size": 2048, u"phy_cores": 2}
         ]
 
+        trex_kwargs_list = [
+            {u"frame_size": min_frame_size, u"phy_cores": 1},
+            {u"frame_size": 1518, u"phy_cores": 1},
+            {u"frame_size": 9000, u"phy_cores": 1},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 1}
+        ]
+
         for in_filename in glob(pattern):
             if not self.quiet:
                 print(
@@ -583,6 +591,9 @@ class Regenerator:
                 in_prolog = u"".join(
                     file_in.read().partition(u"*** Test Cases ***")[:-1]
                 )
+            if "tg2tg" in in_filename:
+                write_default_files(in_filename, in_prolog, trex_kwargs_list)
+                continue
             if in_filename.endswith(u"-ndrpdr.robot"):
                 if u"scheduler" in in_filename:
                     write_default_files(
