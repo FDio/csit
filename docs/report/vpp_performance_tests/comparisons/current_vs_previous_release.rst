@@ -453,15 +453,15 @@ Latency Comparison
 
 Comparison tables in HTML, ASCII and CSV formats:
 
-  - `HTML 1t1c PDR50, direction1, average value comparison <latency-changes-2n-tsh-x520-1t1c-pdr50-d1-avg.html>`_
-  - `HTML 1t1c PDR90, direction1, average value comparison <latency-changes-2n-tsh-x520-1t1c-pdr90-d1-avg.html>`_
-  - `HTML 1t1c PDR90, direction1, max value comparison <latency-changes-2n-tsh-x520-1t1c-pdr90-d1-max.html>`_
-  - `ASCII 1t1c PDR50, direction1, average value comparison <../../_static/vpp/latency-changes-2n-tsh-x520-1t1c-pdr50-d1-avg.txt>`_
-  - `ASCII 1t1c PDR90, direction1, average value comparison <../../_static/vpp/latency-changes-2n-tsh-x520-1t1c-pdr90-d1-avg.txt>`_
-  - `ASCII 1t1c PDR90, direction1, max value comparison <../../_static/vpp/latency-changes-2n-tsh-x520-1t1c-pdr90-d1-max.txt>`_
-  - `CSV 1t1c PDR50, direction1, average value comparison <../../_static/vpp/latency-changes-2n-tsh-x520-1t1c-pdr50-d1-avg-csv.csv>`_
-  - `CSV 1t1c PDR90, direction1, average value comparison <../../_static/vpp/latency-changes-2n-tsh-x520-1t1c-pdr90-d1-avg-csv.csv>`_
-  - `CSV 1t1c PDR90, direction1, max value comparison <../../_static/vpp/latency-changes-2n-tsh-x520-1t1c-pdr90-d1-max-csv.csv>`_
+  - `HTML 1t1c PDR50, direction1, average value comparison <latency-changes-3n-tsh-x520-1t1c-pdr50-d1-avg.html>`_
+  - `HTML 1t1c PDR90, direction1, average value comparison <latency-changes-3n-tsh-x520-1t1c-pdr90-d1-avg.html>`_
+  - `HTML 1t1c PDR90, direction1, max value comparison <latency-changes-3n-tsh-x520-1t1c-pdr90-d1-max.html>`_
+  - `ASCII 1t1c PDR50, direction1, average value comparison <../../_static/vpp/latency-changes-3n-tsh-x520-1t1c-pdr50-d1-avg.txt>`_
+  - `ASCII 1t1c PDR90, direction1, average value comparison <../../_static/vpp/latency-changes-3n-tsh-x520-1t1c-pdr90-d1-avg.txt>`_
+  - `ASCII 1t1c PDR90, direction1, max value comparison <../../_static/vpp/latency-changes-3n-tsh-x520-1t1c-pdr90-d1-max.txt>`_
+  - `CSV 1t1c PDR50, direction1, average value comparison <../../_static/vpp/latency-changes-3n-tsh-x520-1t1c-pdr50-d1-avg-csv.csv>`_
+  - `CSV 1t1c PDR90, direction1, average value comparison <../../_static/vpp/latency-changes-3n-tsh-x520-1t1c-pdr90-d1-avg-csv.csv>`_
+  - `CSV 1t1c PDR90, direction1, max value comparison <../../_static/vpp/latency-changes-3n-tsh-x520-1t1c-pdr90-d1-max-csv.csv>`_
 
 2n-tx2
 ~~~~~~
