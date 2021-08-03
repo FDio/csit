@@ -7,6 +7,7 @@ Test Methodology
 .. toctree::
 
     methodology_terminology
+    methodology_nic_drivers
     methodology_per_thread_resources
     methodology_vpp_forwarding_modes
     methodology_data_plane_throughput/index
