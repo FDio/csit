@@ -1675,7 +1675,14 @@ def table_comparison(table, input_data):
         if replacement:
             rpl_data = input_data.filter_data(
                 table,
-                params=[u"throughput", u"result", u"name", u"parent", u"tags"],
+                params=[
+                    u"throughput",
+                    u"result",
+                    u"latency",
+                    u"name",
+                    u"parent",
+                    u"tags"
+                ],
                 data=replacement,
                 continue_on_error=True
             )
@@ -1802,7 +1809,7 @@ def table_comparison(table, input_data):
                         )
                     except ZeroDivisionError:
                         break
-                    if delta is None:
+                    if delta in (None, float(u"nan"), u"nan", u"NaN"):
                         break
                     new_row.append({
                         u"mean": delta * 1e6,
