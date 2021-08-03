@@ -17,6 +17,7 @@
 
 import logging
 import csv
+import math
 import re
 
 from collections import OrderedDict
@@ -1809,7 +1810,7 @@ def table_comparison(table, input_data):
                         )
                     except ZeroDivisionError:
                         break
-                    if delta in (None, float(u"nan"), u"nan", u"NaN"):
+                    if delta is None or math.isnan(delta):
                         break
                     new_row.append({
                         u"mean": delta * 1e6,
