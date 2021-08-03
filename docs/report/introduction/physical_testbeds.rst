@@ -1,7 +1,7 @@
 .. _tested_physical_topologies:
 
-Physical Testbeds
-=================
+Performance Physical Testbeds
+=============================
 
 All :abbr:`FD.io (Fast Data Input/Ouput)` :abbr:`CSIT (Continuous System
 Integration and Testing)` performance test results included in this
@@ -27,7 +27,7 @@ Current FD.io production testbeds are built with SUT servers based on
 the following processor architectures:
 
 - Intel Xeon: Skylake Platinum 8180, Cascadelake 6252N, (Icelake 8358 
-  installation in progress).
+  to be added).
 - Intel Atom: Denverton C3858.
 - Arm: TaiShan 2280, hip07-d05.
 - AMD EPYC: Zen2 7532.
@@ -46,7 +46,37 @@ Complete technical specifications of compute servers used in CSIT
 physical testbeds are maintained in FD.io CSIT repository:
 https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md.
 
-Following is the description of existing production testbeds.
+Physical NICs and Drivers
+-------------------------
+
+SUT and TG servers are equipped with a number of different NIC models
+with some of them tested on SUT servers with multiple drivers.
+
+VPP is performance tested with the following NICs and drivers:
+
+#. 2p10GE: x520, x550, x553 Intel (codename Niantic)
+   - DPDK Poll Mode Driver (PMD).
+#. 4p10GE: x710-DA4 Intel (codename Fortville, FVL)
+   - DPDK PMD.
+   - AVF in PMD mode.
+   - AF_XDP in PMD mode.
+#. 2p25GE: xxv710-DA2 Intel (codename Fortville, FVL)
+   - DPDK PMD.
+   - AVF in PMD mode.
+   - AF_XDP in PMD mode.
+#. 2p100GE: cx556a-edat Mellanox ConnectX5
+   - RDMA_core in PMD mode.
+#. 2p100GE: E810-2CQDA2 Intel (codename Columbiaville, CVL)
+   - DPDK PMD.
+   - AVF in PMD mode.
+
+DPDK applications, testpmd and l3fwd, are tested exclusively with DPDK
+drivers for all NICs.
+
+TRex is using DPDK drivers for all NICs.
+
+For more information see :ref:`vpp_test_environment`
+and :ref:`dpdk_test_environment` 
 
 2-Node AMD EPYC Zen2 (2n-zn2)
 -----------------------------
