@@ -65,6 +65,13 @@ Changes in |csit-release|
      to Ubuntu 20.04.2 LTS. Upgrade included also baseline Docker
      containers used for spawning topology.
 
+   - **TRex upgrade v2.86 to v2.88**: Included move to DPDK 21.02 and
+     changed the way egress low latency queues are used in FVL NICs.
+     This broke latency measurements for majority of FVL NICs in
+     CSIT. Latency values look better after upgrading FVL FW on TRex
+     servers, but still somewhat higher than before the TRex upgrade.
+     Tracked by `CSIT-1790 <https://jira.fd.io/browse/CSIT-1790>`_.
+
    - **CSIT test environment** version has been updated to ver. 7, see
      :ref:`test_environment_versioning`.
 
@@ -113,7 +120,9 @@ List of known issues in |csit-release| for VPP performance tests:
 |  4 | `CSIT-1789                              | AVF driver does not perform RSS in a deterministic way.                                                   |
 |    | <https://jira.fd.io/browse/CSIT-1789>`_ | This increases standard deviation of tests with small number of flows (mainly ipsec).                     |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-
+|  5 | `CSIT-1790                              | Broken TRex latency measurements with TRex v2.88, DPDK 21.02 and FVL FW 6.01.                             |
+|    | <https://jira.fd.io/browse/CSIT-1790>`_ | High latency O(5msec) for all VPP and testpmd/l3fwd test cases for FVL NICs with FW 6.01.                 |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Root Cause Analysis for Performance Changes
 -------------------------------------------
