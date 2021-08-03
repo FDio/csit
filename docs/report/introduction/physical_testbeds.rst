@@ -1,7 +1,7 @@
 .. _tested_physical_topologies:
 
-Physical Testbeds
-=================
+Performance Physical Testbeds
+=============================
 
 All :abbr:`FD.io (Fast Data Input/Ouput)` :abbr:`CSIT (Continuous System
 Integration and Testing)` performance test results included in this
@@ -26,8 +26,8 @@ Two physical server topology types are used:
 Current FD.io production testbeds are built with SUT servers based on
 the following processor architectures:
 
-- Intel Xeon: Skylake Platinum 8180, Cascadelake 6252N, (Icelake 8358 
-  installation in progress).
+- Intel Xeon: Skylake Platinum 8180, Cascadelake 6252N, (Icelake 8358
+  to be added).
 - Intel Atom: Denverton C3858.
 - Arm: TaiShan 2280, hip07-d05.
 - AMD EPYC: Zen2 7532.
@@ -46,7 +46,40 @@ Complete technical specifications of compute servers used in CSIT
 physical testbeds are maintained in FD.io CSIT repository:
 https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md.
 
-Following is the description of existing production testbeds.
+Physical NICs and Drivers
+-------------------------
+
+SUT and TG servers are equipped with a number of different NIC models
+with some of them tested on SUT servers with multiple drivers.
+
+VPP is performance tested with the following NICs and drivers:
+
+#. 2p10GE: x520, x550, x553 Intel (codename Niantic)
+   - DPDK Poll Mode Driver (PMD).
+#. 4p10GE: x710-DA4 Intel (codename Fortville, FVL)
+   - DPDK PMD.
+   - AVF in PMD mode.
+   - AF_XDP in PMD mode.
+#. 2p25GE: xxv710-DA2 Intel (codename Fortville, FVL)
+   - DPDK PMD.
+   - AVF in PMD mode.
+   - AF_XDP in PMD mode.
+#. 2p100GE: cx556a-edat Mellanox ConnectX5
+   - RDMA_core in PMD mode.
+#. 2p100GE: E810-2CQDA2 Intel (codename Columbiaville, CVL)
+   - DPDK PMD.
+   - AVF in PMD mode.
+
+DPDK applications, testpmd and l3fwd, are tested exclusively with DPDK
+drivers for all NICs.
+
+TRex is using DPDK drivers for all NICs.
+
+VPP hoststack tests utilize ab (Apache HTTP server benchmarking tool)
+that is using Linux drivers for all NICs.
+
+For more information see :ref:`vpp_test_environment`
+and :ref:`dpdk_test_environment` 
 
 2-Node AMD EPYC Zen2 (2n-zn2)
 -----------------------------
@@ -73,14 +106,13 @@ GHz, 32 cores). 2n-zn2 physical topology is shown below.
         :alt: testbed-2n-zn2
         :align: center
 
-SUT server is populated with the following NIC models:
+SUT NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
 #. NIC-3: cx556a-edat ConnectX5 2p100GE Mellanox.
 
-TG server runs TRex application and is populated with the following
-NIC models:
+TG NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
@@ -115,7 +147,7 @@ Cache, 2.70 GHz, 28 cores). 2n-clx physical topology is shown below.
         :alt: testbed-2n-clx
         :align: center
 
-SUT servers are populated with the following NIC models:
+SUT NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
@@ -124,8 +156,7 @@ SUT servers are populated with the following NIC models:
 #. NIC-5: empty, future expansion.
 #. NIC-6: empty, future expansion.
 
-TG servers run T-Rex application and are populated with the following
-NIC models:
+TG NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
@@ -164,7 +195,7 @@ is shown below.
         :alt: testbed-2n-icx
         :align: center
 
-SUT and TG servers are populated with the following NIC models:
+SUT and TG NICs:
 
 #. NIC-1: E810-2CQDA2 2p100GbE Intel.
 
@@ -198,7 +229,7 @@ physical topology is shown below.
         :alt: testbed-3n-icx
         :align: center
 
-SUT and TG servers are populated with the following NIC models:
+SUT and TG NICs:
 
 #. NIC-1: E810-2CQDA2 2p100GbE Intel.
 
@@ -230,7 +261,7 @@ Cache, 2.50 GHz, 28 cores). 2n-skx physical topology is shown below.
         :alt: testbed-2n-skx
         :align: center
 
-SUT servers are populated with the following NIC models:
+SUT NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
@@ -239,8 +270,7 @@ SUT servers are populated with the following NIC models:
 #. NIC-5: empty, future expansion.
 #. NIC-6: empty, future expansion.
 
-TG servers run T-Rex application and are populated with the following
-NIC models:
+TG NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
@@ -278,7 +308,7 @@ Cache, 2.50 GHz, 28 cores). 3n-skx physical topology is shown below.
         :alt: testbed-3n-skx
         :align: center
 
-SUT1 and SUT2 servers are populated with the following NIC models:
+SUT1 and SUT2 NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
@@ -287,8 +317,7 @@ SUT1 and SUT2 servers are populated with the following NIC models:
 #. NIC-5: empty, future expansion.
 #. NIC-6: empty, future expansion.
 
-TG servers run T-Rex application and are populated with the following
-NIC models:
+TG NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
@@ -327,15 +356,14 @@ Cache, 2.00 GHz, 12 cores). 2n-dnv physical topology is shown below.
         :alt: testbed-2n-dnv
         :align: center
 
-SUT server have four internal 10G NIC port:
+SUT 10GE NIC ports:
 
 #. P-1: x553 copper port.
 #. P-2: x553 copper port.
 #. P-3: x553 fiber port.
 #. P-4: x553 fiber port.
 
-TG server run T-Rex software traffic generator and are populated with the
-following NIC models:
+TG NICs:
 
 #. NIC-1: x550-T2 2p10GE Intel.
 #. NIC-2: x550-T2 2p10GE Intel.
@@ -371,13 +399,12 @@ topology is shown below.
         :alt: testbed-3n-dnv
         :align: center
 
-SUT1 and SUT2 servers are populated with the following NIC models:
+SUT1 and SUT2 NICs:
 
 #. NIC-1: x553 2p10GE fiber Intel.
 #. NIC-2: x553 2p10GE copper Intel.
 
-TG servers run T-Rex application and are populated with the following
-NIC models:
+TG NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 
@@ -407,13 +434,12 @@ processor (64* ARM Cortex-A72). 3n-tsh physical topology is shown below.
         :alt: testbed-3n-tsh
         :align: center
 
-SUT1 and SUT2 servers are populated with the following NIC models:
+SUT1 and SUT2 NICs:
 
 #. NIC-1: connectx4 2p25GE Mellanox.
 #. NIC-2: x520 2p10GE Intel.
 
-TG server runs T-Rex application and is populated with the following
-NIC models:
+TG NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 #. NIC-2: xxv710-DA2 2p25GE Intel.
@@ -445,12 +471,11 @@ ThunderX2 ARMv8 CN9975 processors. 2n-tx2 physical topology is shown below.
         :alt: testbed-2n-tx2
         :align: center
 
-SUT server is populated with the following NIC models:
+SUT NICs:
 
 #. NIC-1: xl710-QDA2 2p40GE Intel (not connected).
 #. NIC-2: xl710-QDA2 2p40GE Intel.
 
-TG server run T-Rex application and is populated with the following
-NIC models:
+TG NICs:
 
 #. NIC-1: xl710-QDA2 2p40GE Intel.
