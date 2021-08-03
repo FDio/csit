@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78fddc31_087619ab",
+        "filename": "docs/report/introduction/methodology_ipsec.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-08-03T16:09:39Z",
+      "side": 1,
+      "message": "Suggestion: VPP IPsec with HW crypto are currently not executed due to no testbeds with Intel QAT cards. They will get executed once new 3-node Icelake testbeds (3n-icx) are commissioned, as they are expected to be equipped with Intel QAT cards.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "4137a09bcff39cbd0e23434431cba8d274fa4975",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
