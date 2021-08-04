@@ -193,9 +193,9 @@ def plot_statistics(plot, input_data):
 
     logging.info(f"    Writing the file {name_file}")
     plpl = plgo.Figure(data=traces, layout=plot[u"layout"])
-    tickvals = [min(data_y_duration), max(data_y_duration)]
-    step = (tickvals[1] - tickvals[0]) / 6
-    for i in range(6):
+    tickvals = [0, (max(data_y_duration) // 60) * 60]
+    step = tickvals[1] / 5
+    for i in range(5):
         tickvals.append(int(tickvals[0] + step * (i + 1)))
     plpl.update_layout(
         yaxis2=dict(
@@ -203,6 +203,7 @@ def plot_statistics(plot, input_data):
             anchor=u"x",
             overlaying=u"y",
             side=u"right",
+            rangemode="tozero",
             tickmode=u"array",
             tickvals=tickvals,
             ticktext=[f"{(val // 60):02d}:{(val % 60):02d}" for val in tickvals]
