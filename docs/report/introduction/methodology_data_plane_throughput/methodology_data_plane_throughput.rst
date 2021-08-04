@@ -52,8 +52,8 @@ Details
 ~~~~~~~
 
 See :ref:`mlrsearch_algorithm` section for more detail. MLRsearch is
-being standardized in IETF in `draft-vpolak-mkonstan-mlrsearch
-<https://tools.ietf.org/html/draft-vpolak-mkonstan-bmwg-mlrsearch>`_.
+being standardized in IETF in `draft-ietf-bmwg-mlrsearch
+<https://datatracker.ietf.org/doc/html/draft-ietf-bmwg-mlrsearch-01>`_.
 
 MRR Tests
 ^^^^^^^^^
