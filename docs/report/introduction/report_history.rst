@@ -29,7 +29,6 @@ below.
 |                | 3. Added iterative runs for Latency                        |
 |                |                                                            |
 |                |    - 2n-skx                                                |
-|                |    - 2n-clx                                                |
 |                |    - 2n-zn2                                                |
 |                |    - 2n-tsh                                                |
 |                |    - 2n-tx2                                                |
