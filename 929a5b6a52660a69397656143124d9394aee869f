@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81d3dede_bccad0dd",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-04T11:15:40Z",
+      "side": 1,
+      "message": "When editing this close, you can remove the trailing space.",
+      "range": {
+        "startLine": 29,
+        "startChar": 69,
+        "endLine": 29,
+        "endChar": 70
+      },
+      "revId": "929a5b6a52660a69397656143124d9394aee869f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f81fd6c4_63d2863f",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-04T11:15:40Z",
+      "side": 1,
+      "message": "We should also mention clients for hoststack testing (iperf3, ab).",
+      "range": {
+        "startLine": 73,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 17
+      },
+      "revId": "929a5b6a52660a69397656143124d9394aee869f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b12f91e8_ade05a92",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-04T11:15:40Z",
+      "side": 1,
+      "message": "Below, there are multiple sentences starting with \"TG servers run T-Rex application\". We can state that in a central place to avoid repetition.",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 4
+      },
+      "revId": "929a5b6a52660a69397656143124d9394aee869f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
