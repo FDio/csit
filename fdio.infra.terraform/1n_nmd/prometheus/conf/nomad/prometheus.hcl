@@ -476,13 +476,13 @@ scrape_configs:
 
   - job_name: 'Consul Cluster'
     static_configs:
+      - targets: [ '10.30.51.22:8500' ]
+      - targets: [ '10.30.51.24:8500' ]
+      - targets: [ '10.30.51.25:8500' ]
+      - targets: [ '10.30.51.26:8500' ]
       - targets: [ '10.30.51.28:8500' ]
       - targets: [ '10.30.51.29:8500' ]
       - targets: [ '10.30.51.30:8500' ]
-      - targets: [ '10.30.51.32:8500' ]
-      - targets: [ '10.30.51.33:8500' ]
-      - targets: [ '10.30.51.34:8500' ]
-      - targets: [ '10.30.51.35:8500' ]
       - targets: [ '10.30.51.39:8500' ]
       - targets: [ '10.30.51.40:8500' ]
       - targets: [ '10.30.51.50:8500' ]
@@ -505,7 +505,7 @@ scrape_configs:
     static_configs:
       - targets: [ 'gerrit.fd.io' ]
       - targets: [ 'jenkins.fd.io' ]
-      - targets: [ '10.30.51.32' ]
+      - targets: [ '10.32.8.17' ]
     params:
       module: [ 'icmp_v4' ]
     relabel_configs:
@@ -534,7 +534,7 @@ scrape_configs:
 
   - job_name: 'Jenkins Job Health Exporter'
     static_configs:
-      - targets: [ '10.30.51.32:9186' ]
+      - targets: [ '10.30.51.22:9186' ]
     metric_relabel_configs:
       - source_labels: [ __name__ ]
         regex: '^(vpp.*|csit.*)_(success|failure|total|unstable|reqtime_ms)$'
@@ -548,13 +548,13 @@ scrape_configs:
 
   - job_name: 'Node Exporter'
     static_configs:
+      - targets: [ '10.30.51.22:9100' ]
+      - targets: [ '10.30.51.24:9100' ]
+      - targets: [ '10.30.51.25:9100' ]
+      - targets: [ '10.30.51.26:9100' ]
       - targets: [ '10.30.51.28:9100' ]
       - targets: [ '10.30.51.29:9100' ]
       - targets: [ '10.30.51.30:9100' ]
-      - targets: [ '10.30.51.32:9100' ]
-      - targets: [ '10.30.51.33:9100' ]
-      - targets: [ '10.30.51.34:9100' ]
-      - targets: [ '10.30.51.35:9100' ]
       - targets: [ '10.30.51.39:9100' ]
       - targets: [ '10.30.51.40:9100' ]
       - targets: [ '10.30.51.50:9100' ]
