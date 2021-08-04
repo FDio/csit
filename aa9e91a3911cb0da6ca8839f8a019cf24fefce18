@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2385953_e9fe7863",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-04T12:14:23Z",
+      "side": 1,
+      "message": "Does ab count as testing a different driver on TG?",
+      "range": {
+        "startLine": 53,
+        "startChar": 28,
+        "endLine": 53,
+        "endChar": 31
+      },
+      "revId": "aa9e91a3911cb0da6ca8839f8a019cf24fefce18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29fa9b0f_017e52e6",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-04T12:14:23Z",
+      "side": 1,
+      "message": "The apps above always run on SUT, the apps below always run on TG.",
+      "range": {
+        "startLine": 74,
+        "startChar": 20,
+        "endLine": 74,
+        "endChar": 21
+      },
+      "revId": "aa9e91a3911cb0da6ca8839f8a019cf24fefce18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2a83733_cae94564",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-04T12:14:23Z",
+      "side": 1,
+      "message": "Trailing space I did not see earlier.",
+      "range": {
+        "startLine": 82,
+        "startChar": 32,
+        "endLine": 82,
+        "endChar": 33
+      },
+      "revId": "aa9e91a3911cb0da6ca8839f8a019cf24fefce18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
