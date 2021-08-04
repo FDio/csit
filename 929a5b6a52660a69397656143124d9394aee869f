@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fbfa4529_785ee02e",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-08-04T12:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81d3dede_bccad0dd",
+      "range": {
+        "startLine": 29,
+        "startChar": 69,
+        "endLine": 29,
+        "endChar": 70
+      },
+      "revId": "929a5b6a52660a69397656143124d9394aee869f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f81fd6c4_63d2863f",
         "filename": "docs/report/introduction/physical_testbeds.rst",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6f5c1915_e8d00349",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-08-04T12:03:48Z",
+      "side": 1,
+      "message": "iperf3 is not using physical NICs.\nab is using linux irq driver.",
+      "parentUuid": "f81fd6c4_63d2863f",
+      "range": {
+        "startLine": 73,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 17
+      },
+      "revId": "929a5b6a52660a69397656143124d9394aee869f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b12f91e8_ade05a92",
         "filename": "docs/report/introduction/physical_testbeds.rst",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "929a5b6a52660a69397656143124d9394aee869f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6667a68_eaff6e6f",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-08-04T12:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b12f91e8_ade05a92",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 4
+      },
+      "revId": "929a5b6a52660a69397656143124d9394aee869f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
