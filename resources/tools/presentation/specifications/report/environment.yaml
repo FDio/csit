@@ -199,7 +199,7 @@
       file-format: ".gz"
       enabled: False
 
-  archive-inputs: False
+  archive-inputs: True
 
   mapping-file: ""
 
@@ -270,5 +270,5 @@
   format:
     html:
     - full
-#     pdf:
-#     - minimal
+    pdf:
+    - minimal
