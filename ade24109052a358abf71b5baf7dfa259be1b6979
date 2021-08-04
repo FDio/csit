@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "951ef884_324c005a",
+        "filename": "docs/report/introduction/methodology_nic_drivers.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-08-04T11:04:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "187bc6c0_8d95d8ff",
+      "range": {
+        "startLine": 12,
+        "startChar": 43,
+        "endLine": 12,
+        "endChar": 51
+      },
+      "revId": "ade24109052a358abf71b5baf7dfa259be1b6979",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc55fc97_f64667f6",
         "filename": "docs/report/introduction/methodology_nic_drivers.rst",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "ade24109052a358abf71b5baf7dfa259be1b6979",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a8d333c_4cb96711",
+        "filename": "docs/report/introduction/methodology_nic_drivers.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-08-04T11:04:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc55fc97_f64667f6",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 8
+      },
+      "revId": "ade24109052a358abf71b5baf7dfa259be1b6979",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d004a5a5_8524b6f5",
+        "filename": "docs/report/introduction/methodology_nic_drivers.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-08-04T11:04:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86894870_b29b7c21",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "ade24109052a358abf71b5baf7dfa259be1b6979",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69f2ea65_8223ed41",
         "filename": "docs/report/introduction/methodology_nic_drivers.rst",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "e2ceecc6_a76784ed",
+        "filename": "docs/report/introduction/methodology_nic_drivers.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-08-04T11:04:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69f2ea65_8223ed41",
+      "range": {
+        "startLine": 27,
+        "startChar": 7,
+        "endLine": 27,
+        "endChar": 12
+      },
+      "revId": "ade24109052a358abf71b5baf7dfa259be1b6979",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa5f5d62_c9e2544b",
         "filename": "docs/report/introduction/methodology_nic_drivers.rst",
         "patchSetId": 1
@@ -114,6 +210,30 @@
       "revId": "ade24109052a358abf71b5baf7dfa259be1b6979",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c414693_c70dc5e5",
+        "filename": "docs/report/introduction/methodology_nic_drivers.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-08-04T11:04:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa5f5d62_c9e2544b",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 11
+      },
+      "revId": "ade24109052a358abf71b5baf7dfa259be1b6979",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
