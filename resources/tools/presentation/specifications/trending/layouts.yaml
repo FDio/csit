@@ -22,6 +22,7 @@
       tickcolor: "rgb(238, 238, 238)"
       linewidth: 1
       showgrid: True
+      rangemode: "tozero"
     xaxis:
       title: 'Date [MMDD]'
       type: "date"
