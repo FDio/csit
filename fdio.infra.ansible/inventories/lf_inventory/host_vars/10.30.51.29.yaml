@@ -35,10 +35,14 @@ nomad_options:
   docker.privileged.enabled: true
   docker.volumes.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
+nomad_retry_servers:
+  - "10.32.8.15"
+  - "10.32.8.16"
+  - "10.32.8.17"
 nomad_servers:
-  - "10.30.51.28:4647"
-  - "10.30.51.29:4647"
-  - "10.30.51.30:4647"
+  - "10.32.8.15:4647"
+  - "10.32.8.16:4647"
+  - "10.32.8.17:4647"
 
 # Consul settigs.
 consul_nomad_integration: true
