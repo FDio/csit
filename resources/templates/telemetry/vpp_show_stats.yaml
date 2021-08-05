@@ -152,3 +152,7 @@ programs:
             - thread_id
     code: |
       show node counters verbose
+  - name: bundle_vpp
+    # TODO: Parse output.
+    code: |
+      show hardware detail
