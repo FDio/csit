@@ -132,6 +132,9 @@ List of known issues in |csit-release| for VPP performance tests:
 |  8 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
 |    | <https://jira.fd.io/browse/CSIT-1785>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  9 | `CSIT-1791                              | Performance regression in RDMA tests, due to CSIT environment changes.                                    |
+|    | <https://jira.fd.io/browse/CSIT-1791>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Root Cause Analysis for Performance Changes
 -------------------------------------------
