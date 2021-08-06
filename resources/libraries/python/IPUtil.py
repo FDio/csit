@@ -696,7 +696,7 @@ class IPUtil:
             interface: Route interface. (str)
             vrf: VRF table ID. (int)
             count: number of IP addresses to add starting from network IP (int)
-            local: The route is local with same prefix (increment is 1).
+            local: The route is local with same prefix (increment is 1 network)                in).
                 If None, then is not used. (bool)
             lookup_vrf: VRF table ID for lookup. (int)
             multipath: Enable multipath routing. (bool)
@@ -708,27 +708,39 @@ class IPUtil:
         :type kwargs: dict
         """
         count = kwargs.get(u"count", 1)
+        net_iter = NetworkIncrement(ip_network(f"{network}/{prefix_len}"), 1)
 
         if count > 100:
-            gateway = kwargs.get(u"gateway", '')
-            interface = kwargs.get(u"interface", '')
+
+            gateway = kwargs.get(u"gateway", u"")
+            interface = kwargs.get(u"interface", u"")
             vrf = kwargs.get(u"vrf", None)
-            multipath = kwargs.get(u"multipath", False)
 
-            with VatTerminal(node, json_param=False) as vat:
+            trailers = list()
+            if vrf:
+                trailers.append(f"table {vrf}")
+            if gateway:
+                trailers.append(f"via {gateway}")
+                if interface:
+                    trailers.append(interfrace)
+            elif interface:
+                trailers.append(f"via {interface}")
+            trailer = u" ".join(trailers)
+            command_parts = [u"exec ip route add", u"networks go here"]
+            if trailer:
+                command_parts.append(trailer)
 
-                vat.vat_terminal_exec_cmd_from_template(
-                    u"vpp_route_add.vat",
-                    network=network,
-                    prefix_length=prefix_len,
-                    via=f"via {gateway}" if gateway else u"",
-                    sw_if_index=f"sw_if_index "
-                    f"{InterfaceUtil.get_interface_index(node, interface)}"
-                    if interface else u"",
-                    vrf=f"vrf {vrf}" if vrf else u"",
-                    count=f"count {count}" if count else u"",
-                    multipath=u"multipath" if multipath else u""
-                )
+            tmp_filename = u"/tmp/routes.config"
+            with open(tmp_filename, u"w") as tmp_file:
+                for _ in range(count):
+                    command_part[1] = net_iter.inc_fmt()
+                    tmp_file.write(u" ".join(command_parts))
+                    tmp_file.write(u"\n")
+            vat.execute_script(
+                tmp_filename, node, timeout=1800, json_out=False,
+                copy_on_execute=True, history=False
+            )
+            os.remove(tmp_filename)
             return
 
         net_addr = ip_address(network)
@@ -740,12 +752,14 @@ class IPUtil:
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
 
+        # Papi needs string address without /prefix.
+        net_iter._str_fmt = lambda self: f"{self._value.network_address}"
         with PapiSocketExecutor(node) as papi_exec:
-            for i in range(kwargs.get(u"count", 1)):
+            for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
-                    node, net_addr + i, prefix_len, **kwargs
+                    node, net_iterinc_fmt(), prefix_len, **kwargs
                 )
-                history = bool(not 1 < i < kwargs.get(u"count", 1))
+                history = bool(not 0 < i < count - 1)
                 papi_exec.add(cmd, history=history, **args)
             papi_exec.get_replies(err_msg)
 
