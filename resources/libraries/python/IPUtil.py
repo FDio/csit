@@ -13,7 +13,9 @@
 # limitations under the License.
 
 """Common IP utilities library."""
+
 import re
+import os
 
 from enum import IntEnum
 
@@ -26,7 +28,7 @@ from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.Namespaces import Namespaces
 
 
@@ -103,8 +105,7 @@ class NetworkIncrement(ObjIncrement):
         :param initial_value: The initial network.
         :param increment: The current network will be incremented by this
             amount in each iteration/var_str call.
-        :type initial_value:
-            Union[ipaddress.IPv4Network, ipaddress.IPv6Network].
+        :type initial_value: Union[ipaddress.IPv4Network, ipaddress.IPv6Network]
         :type increment: int
         """
         super().__init__(initial_value, increment)
@@ -131,6 +132,23 @@ class NetworkIncrement(ObjIncrement):
         """
         return f"{self._value.network_address} - " \
                f"{self._value.broadcast_address}"
+
+
+def address_increment(initial_address, prefix_length):
+    """Factory function creating ObjIncrement for IP addresses.
+
+    The alignment of the address with respect to prefix is not checked,
+    we have devicetests with non-aligned addresses.
+    Increment is computed from prefix length, to create
+    consecutive networks without gaps nor overlaps.
+
+    :param initial_address: The initial IP address.
+    :param prefix_length: Defines size of the network.
+    :type initial_address: Union[ipaddress.IPv4Address, ipaddress.IPv6Address]
+    :type prefix_length: Union[int, str]
+    """
+    increment = 1 << (initial_address.max_prefixlen - int(prefix_length))
+    return ObjIncrement(initial_value=initial_address, increment=increment)
 
 
 class IPUtil:
@@ -696,7 +714,7 @@ class IPUtil:
             interface: Route interface. (str)
             vrf: VRF table ID. (int)
             count: number of IP addresses to add starting from network IP (int)
-            local: The route is local with same prefix (increment is 1).
+            local: The route is local with same prefix (increment is 1 network)                in).
                 If None, then is not used. (bool)
             lookup_vrf: VRF table ID for lookup. (int)
             multipath: Enable multipath routing. (bool)
@@ -710,28 +728,41 @@ class IPUtil:
         count = kwargs.get(u"count", 1)
 
         if count > 100:
-            gateway = kwargs.get(u"gateway", '')
-            interface = kwargs.get(u"interface", '')
-            vrf = kwargs.get(u"vrf", None)
-            multipath = kwargs.get(u"multipath", False)
-
-            with VatTerminal(node, json_param=False) as vat:
-
-                vat.vat_terminal_exec_cmd_from_template(
-                    u"vpp_route_add.vat",
-                    network=network,
-                    prefix_length=prefix_len,
-                    via=f"via {gateway}" if gateway else u"",
-                    sw_if_index=f"sw_if_index "
-                    f"{InterfaceUtil.get_interface_index(node, interface)}"
-                    if interface else u"",
-                    vrf=f"vrf {vrf}" if vrf else u"",
-                    count=f"count {count}" if count else u"",
-                    multipath=u"multipath" if multipath else u""
+            gateway = kwargs.get(u"gateway", u"")
+            interface = kwargs.get(u"interface", u"")
+            if interface:
+                interface = InterfaceUtil.vpp_get_interface_name(
+                    node, InterfaceUtil.get_interface_index(
+                        node, interface
+                    )
                 )
+            vrf = kwargs.get(u"vrf", None)
+            trailers = list()
+            if vrf:
+                trailers.append(f"table {vrf}")
+            if gateway:
+                trailers.append(f"via {gateway}")
+                if interface:
+                    trailers.append(interface)
+            elif interface:
+                trailers.append(f"via {interface}")
+            trailer = u" ".join(trailers)
+            command_parts = [u"exec ip route add", u"network goes here"]
+            if trailer:
+                command_parts.append(trailer)
+            netiter = address_increment(ip_address(network), prefix_len)
+            tmp_filename = u"/tmp/routes.config"
+            with open(tmp_filename, u"w") as tmp_file:
+                for _ in range(count):
+                    command_parts[1] = f"{netiter.inc_fmt()}/{prefix_len}"
+                    print(u" ".join(command_parts), file=tmp_file)
+            VatExecutor().execute_script(
+                tmp_filename, node, timeout=1800, json_out=False,
+                copy_on_execute=True, history=False
+            )
+            os.remove(tmp_filename)
             return
 
-        net_addr = ip_address(network)
         cmd = u"ip_route_add_del"
         args = dict(
             is_add=True,
@@ -740,12 +771,13 @@ class IPUtil:
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
 
+        netiter = address_increment(ip_address(network), prefix_len)
         with PapiSocketExecutor(node) as papi_exec:
-            for i in range(kwargs.get(u"count", 1)):
+            for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
-                    node, net_addr + i, prefix_len, **kwargs
+                    node, netiter.inc_fmt(), prefix_len, **kwargs
                 )
-                history = bool(not 1 < i < kwargs.get(u"count", 1))
+                history = bool(not 0 < i < count - 1)
                 papi_exec.add(cmd, history=history, **args)
             papi_exec.get_replies(err_msg)
 
