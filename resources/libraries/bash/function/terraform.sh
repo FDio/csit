@@ -75,6 +75,8 @@ function terraform_init () {
     set -exuo pipefail
 
     if ! installed terraform; then
+        repo="deb [arch=amd64] https://apt.releases.hashicorp.com focal main"
+        echo "${repo}" >> "/etc/apt/sources.list" || die "Failed to add repo!"
         apt update -y
         apt install -y terraform
         #die "Please install terraform!"
