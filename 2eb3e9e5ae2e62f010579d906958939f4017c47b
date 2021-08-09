@@ -22,6 +22,29 @@
       "revId": "2eb3e9e5ae2e62f010579d906958939f4017c47b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3153a0e_288df491",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-08-09T14:28:33Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 717,
+        "startChar": 79,
+        "endLine": 717,
+        "endChar": 98
+      },
+      "revId": "2eb3e9e5ae2e62f010579d906958939f4017c47b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
