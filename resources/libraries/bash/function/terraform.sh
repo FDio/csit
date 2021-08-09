@@ -75,8 +75,10 @@ function terraform_init () {
     set -exuo pipefail
 
     if ! installed terraform; then
-        repo="deb [arch=amd64] https://apt.releases.hashicorp.com focal main"
-        echo "${repo}" >> "/etc/apt/sources.list" || die "Failed to add repo!"
+        curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+        os="$(lsb_release -cs)" || die "Failed to get OS release!"
+        repo="deb [arch=amd64] https://apt.releases.hashicorp.com ${os} main"
+        sudo apt-add-repository "${repo}" || die "Failed to add repo!"
         apt update -y
         apt install -y terraform
         #die "Please install terraform!"
