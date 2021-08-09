@@ -32,7 +32,7 @@ export PYTHONPATH=`pwd`:`pwd`/../../../
 python pal.py \
     --specification specifications/report \
     --release ${RELEASE} \
-    --week "31" \
+    --week "32" \
     --logging INFO \
     --force
 

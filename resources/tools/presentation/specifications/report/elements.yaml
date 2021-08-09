@@ -201,7 +201,7 @@
     - title: "2101.0-7"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2106.0-7"
-      data-set: "vpp-2n-clx-curr-iter"
+      data-set: "vpp-2n-clx-curr-iter-best"
   comparisons:
     - title: "2101.0-7 vs 2101.0-6"
       reference: 1
@@ -232,7 +232,7 @@
     - title: "2101.0-7"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2106.0-7"
-      data-set: "vpp-2n-clx-curr-iter"
+      data-set: "vpp-2n-clx-curr-iter-best"
   comparisons:
     - title: "2101.0-7 vs 2101.0-6"
       reference: 1
@@ -263,7 +263,7 @@
     - title: "2101.0-7"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2106.0-7"
-      data-set: "vpp-2n-clx-curr-iter"
+      data-set: "vpp-2n-clx-curr-iter-best"
   comparisons:
     - title: "2101.0-7 vs 2101.0-6"
       reference: 1
@@ -294,7 +294,7 @@
     - title: "2101.0-7"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2106.0-7"
-      data-set: "vpp-2n-clx-curr-iter"
+      data-set: "vpp-2n-clx-curr-iter-best"
   comparisons:
     - title: "2101.0-7 vs 2101.0-6"
       reference: 1
@@ -325,7 +325,7 @@
     - title: "2101.0-7"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2106.0-7"
-      data-set: "vpp-2n-clx-curr-iter"
+      data-set: "vpp-2n-clx-curr-iter-best"
   comparisons:
     - title: "2101.0-7 vs 2101.0-6"
       reference: 1
@@ -356,7 +356,7 @@
     - title: "2101.0-7"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2106.0-7"
-      data-set: "vpp-2n-clx-curr-iter"
+      data-set: "vpp-2n-clx-curr-iter-best"
   comparisons:
     - title: "2101.0-7 vs 2101.0-6"
       reference: 1
