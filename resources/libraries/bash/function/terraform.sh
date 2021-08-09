@@ -75,7 +75,9 @@ function terraform_init () {
     set -exuo pipefail
 
     if ! installed terraform; then
-        die "Please install terraform!"
+        apt update -y
+        apt install -y terraform
+        #die "Please install terraform!"
     fi
 
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
