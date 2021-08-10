@@ -1,11 +1,9 @@
-CSIT-2106
-=========
+CSIT-2101.1
+===========
 
 .. toctree::
     :numbered:
 
     introduction/index
     vpp_performance_tests/index
-    dpdk_performance_tests/index
-    vpp_device_tests/index
     csit_framework_documentation/index
