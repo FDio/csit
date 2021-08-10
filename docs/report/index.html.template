@@ -1,5 +1,5 @@
-CSIT-2106
-=========
+CSIT-2101.1
+===========
 
 .. toctree::
     :maxdepth: 2
@@ -20,11 +20,6 @@ CSIT-2106
     vpp_performance_tests/packet_throughput_graphs/index
     vpp_performance_tests/throughput_speedup_multi_core/index
     vpp_performance_tests/packet_latency/index
-    vpp_performance_tests/soak_tests/index
-    vpp_performance_tests/reconf_tests/index
-    vpp_performance_tests/nf_service_density/index
-    vpp_performance_tests/hoststack_testing/index
-    vpp_performance_tests/gso_testing/index
     vpp_performance_tests/comparisons/index
     vpp_performance_tests/throughput_trending
     vpp_performance_tests/test_environment
@@ -32,34 +27,10 @@ CSIT-2106
 
 .. toctree::
     :maxdepth: 2
-    :caption: DPDK Performance
-
-    dpdk_performance_tests/overview
-    dpdk_performance_tests/csit_release_notes
-    dpdk_performance_tests/packet_throughput_graphs/index
-    dpdk_performance_tests/packet_latency/index
-    dpdk_performance_tests/comparisons/index
-    dpdk_performance_tests/throughput_trending
-    dpdk_performance_tests/test_environment
-    dpdk_performance_tests/documentation
-
-.. toctree::
-    :maxdepth: 2
-    :caption: VPP Device
-
-    vpp_device_tests/overview
-    vpp_device_tests/csit_release_notes
-    vpp_device_tests/test_environment
-    vpp_device_tests/documentation
-
-.. toctree::
-    :maxdepth: 2
     :caption: Detailed Results
 
     detailed_test_results/vpp_performance_results/index
     detailed_test_results/vpp_mrr_results/index
-    detailed_test_results/dpdk_performance_results/index
-    detailed_test_results/vpp_device_results_ubuntu/index
 
 .. toctree::
     :maxdepth: 2
@@ -67,7 +38,6 @@ CSIT-2106
 
     test_configuration/vpp_performance_configuration/index
     test_configuration/vpp_mrr_configuration/index
-    test_configuration/vpp_device_configuration_ubuntu/index
 
 .. toctree::
     :maxdepth: 2
