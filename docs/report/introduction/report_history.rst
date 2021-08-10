@@ -7,37 +7,7 @@ below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-| .31            | 1. Added data:                                             |
-|                |                                                            |
-|                |    - VPP coverage data:                                    |
-|                |                                                            |
-|                |      - 3n-skx                                              |
-|                |      - 3n-tsh                                              |
-|                |      - 2n-zn2                                              |
-|                |                                                            |
-|                |    - VPP iterative data:                                   |
-|                |                                                            |
-|                |      - 3n-tsh                                              |
-|                |      - 2n-zn2                                              |
-|                |                                                            |
-|                | 2. Added AF_XDP tests:                                     |
-|                |                                                            |
-|                |    - 2n-skx                                                |
-|                |    - 2n-clx                                                |
-|                |    - 2n-zn2                                                |
-|                |                                                            |
-|                | 3. Added iterative runs for Latency                        |
-|                |                                                            |
-|                |    - 2n-skx                                                |
-|                |    - 2n-zn2                                                |
-|                |    - 2n-tsh                                                |
-|                |    - 2n-tx2                                                |
-|                |    - 3n-skx                                                |
-|                |                                                            |
-|                | 4. Added comparison tables for Latency                     |
-|                |                                                            |
-+----------------+------------------------------------------------------------+
-| .28            | Initial revision                                           |
+| .33            | Initial revision                                           |
 +----------------+------------------------------------------------------------+
 
 FD.io CSIT Reports follow CSIT-[yy][mm].[ww] numbering format, with version
