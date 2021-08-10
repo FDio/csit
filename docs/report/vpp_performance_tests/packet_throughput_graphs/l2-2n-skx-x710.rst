@@ -31,8 +31,8 @@
 2n-skx-x710
 ~~~~~~~~~~~
 
-64b-2t1c-l2switching-base-scale-[avf,dpdk,af_xdp]
--------------------------------------------------
+64b-2t1c-l2switching-base-scale-[avf,dpdk]
+------------------------------------------
 
 .. raw:: html
 
