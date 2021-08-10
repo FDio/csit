@@ -31,8 +31,8 @@
 2n-clx-x710
 ~~~~~~~~~~~
 
-64b-2t1c-l2switching-base-scale-[avf,af_xdp]
---------------------------------------------
+64b-2t1c-l2switching-base-scale-avf
+-----------------------------------
 
 .. raw:: html
 

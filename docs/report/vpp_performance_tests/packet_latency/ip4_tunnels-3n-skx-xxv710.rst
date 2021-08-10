@@ -70,25 +70,26 @@
             \label{fig:hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4vxlan-l2bdbasemaclrn}
     \end{figure}
 
-.. raw:: latex
+..
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-.. raw:: html
+    .. raw:: html
 
-    <center>
-    <iframe id="3n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4gtpusw-ip4base" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4gtpusw-ip4base.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="3n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4gtpusw-ip4base" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4gtpusw-ip4base.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4gtpusw-ip4base}
-            \label{fig:3n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4gtpusw-ip4base}
-    \end{figure}
+    .. raw:: latex
+    
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4gtpusw-ip4base}
+                \label{fig:3n-skx-25ge2p1xxv710-64b-2t1c-avf-ethip4gtpusw-ip4base}
+        \end{figure}
 
 .. raw:: latex
 
@@ -133,22 +134,23 @@
             \label{fig:hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-ethip4vxlan-l2bdbasemaclrn}
     \end{figure}
 
-.. raw:: latex
+..
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-.. raw:: html
+    .. raw:: html
 
-    <center>
-    <iframe id="3n-skx-25ge2p1xxv710-64b-2t1c-ethip4gtpusw-ip4base" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-ethip4gtpusw-ip4base.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="3n-skx-25ge2p1xxv710-64b-2t1c-ethip4gtpusw-ip4base" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-skx-25ge2p1xxv710-64b-2t1c-ethip4gtpusw-ip4base.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-25ge2p1xxv710-64b-2t1c-ethip4gtpusw-ip4base}
-            \label{fig:3n-skx-25ge2p1xxv710-64b-2t1c-ethip4gtpusw-ip4base}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-25ge2p1xxv710-64b-2t1c-ethip4gtpusw-ip4base}
+                \label{fig:3n-skx-25ge2p1xxv710-64b-2t1c-ethip4gtpusw-ip4base}
+        \end{figure}
