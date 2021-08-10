@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ce84f0bd_02b52537",
+        "filename": "resources/libraries/bash/function/docs.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-10T12:30:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6799a920_22b9eff4",
+      "range": {
+        "startLine": 108,
+        "startChar": 74,
+        "endLine": 108,
+        "endChar": 75
+      },
+      "revId": "9e8186d458ff81fe2906d05cbfdf180371f4e2fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba9ac6b2_476cd3d8",
         "filename": "resources/libraries/bash/function/docs.sh",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2021-08-10T11:17:24Z",
       "side": 1,
       "message": "Separate the \"sudo apt\" stuff so Dave can move it to docker image creation scripts.\nOr at least, document here this function messes with installed packages.",
+      "range": {
+        "startLine": 145,
+        "startChar": 40,
+        "endLine": 145,
+        "endChar": 41
+      },
+      "revId": "9e8186d458ff81fe2906d05cbfdf180371f4e2fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f27abae_653f2ee9",
+        "filename": "resources/libraries/bash/function/docs.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-10T12:30:57Z",
+      "side": 1,
+      "message": "Your comment does not make sense. Study first.",
+      "parentUuid": "ba9ac6b2_476cd3d8",
       "range": {
         "startLine": 145,
         "startChar": 40,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e5116f85_4ad72acb",
+        "filename": "resources/libraries/bash/function/docs.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-10T12:30:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f83ac16b_a3ee84dd",
+      "range": {
+        "startLine": 158,
+        "startChar": 16,
+        "endLine": 158,
+        "endChar": 36
+      },
+      "revId": "9e8186d458ff81fe2906d05cbfdf180371f4e2fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a36674d_29c1d123",
         "filename": "resources/libraries/bash/function/docs.sh",
         "patchSetId": 11
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "6fdc78c6_5e9b1fc6",
+        "filename": "resources/libraries/bash/function/docs.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-10T12:30:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a36674d_29c1d123",
+      "range": {
+        "startLine": 220,
+        "startChar": 25,
+        "endLine": 220,
+        "endChar": 26
+      },
+      "revId": "9e8186d458ff81fe2906d05cbfdf180371f4e2fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "477a5126_47094f6f",
         "filename": "resources/tools/presentation/run_report_local.sh",
         "patchSetId": 11
@@ -105,6 +201,24 @@
       "writtenOn": "2021-08-10T11:17:24Z",
       "side": 1,
       "message": "Mention in commit message if this is really not needed anymore.",
+      "revId": "9e8186d458ff81fe2906d05cbfdf180371f4e2fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef529f53_2190a3d3",
+        "filename": "resources/tools/presentation/run_report_local.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-10T12:30:57Z",
+      "side": 1,
+      "message": "Your comment does not make sense. Study first.",
+      "parentUuid": "477a5126_47094f6f",
       "revId": "9e8186d458ff81fe2906d05cbfdf180371f4e2fc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
