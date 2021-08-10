@@ -67,6 +67,21 @@ function download_ubuntu_artifacts () {
 
     set -exuo pipefail
 
+    case ${TARGET_ARCH} in
+        "aarch64")
+            apt_arch="arm64"
+            ;;
+        "x86_64")
+            apt_arch="amd64"
+            ;;
+        *)
+            die "Unknown arch ${TARGET_ARCH}."
+    esac
+
+    if [ $(uname -m) != ${TARGET_ARCH} ]; then
+        dpkg --add-architecture ${apt_arch}
+    fi
+
     curl -s "${REPO_URL}"/script.deb.sh | sudo -E bash || {
         die "Packagecloud FD.io repo fetch failed."
     }
@@ -88,15 +103,15 @@ function download_ubuntu_artifacts () {
 
     pkgs=$(apt-cache -o Dir::Etc::SourceList=${apt_fdio_repo_file} \
                -o Dir::Etc::SourceParts=${apt_fdio_repo_file} dumpavail \
-               | grep Package: | cut -d " " -f 2 | grep vpp) || {
+               | grep Package: | cut -d " " -f 2 | grep vpp | sort | uniq) || {
                    die "Retrieval of available VPP packages failed."
                }
     if [ -z "${VPP_VERSION-}" ]; then
         # If version is not specified, find out the most recent version
         VPP_VERSION=$(apt-cache -o Dir::Etc::SourceList=${apt_fdio_repo_file} \
                       -o Dir::Etc::SourceParts=${apt_fdio_repo_file} \
-                      --no-all-versions show vpp | grep Version: | \
-                      cut -d " " -f 2) || {
+                      --no-all-versions show vpp:${apt_arch} \
+                      | grep Version: | cut -d " " -f 2) || {
                           die "Retrieval of most recent VPP version failed."
                       }
     fi
@@ -104,7 +119,7 @@ function download_ubuntu_artifacts () {
     set +x
     for package in ${pkgs}; do
         # Filter packages with given version
-        pkg_info=$(apt-cache show -- ${package}) || {
+        pkg_info=$(apt-cache show -- ${package}:${apt_arch}) || {
             die "apt-cache show on ${package} failed."
         }
         ver=$(echo ${pkg_info} | grep -o "Version: ${VPP_VERSION-}[^ ]*" | \
@@ -112,7 +127,7 @@ function download_ubuntu_artifacts () {
         if [ -n "${ver-}" ]; then
             echo "Found '${VPP_VERSION-}' among '${package}' versions."
             ver=$(echo "$ver" | cut -d " " -f 2)
-            artifacts+=(${package[@]/%/=${ver-}})
+            artifacts+=(${package:${apt_arch}=${ver}})
         else
             echo "Didn't find '${VPP_VERSION-}' among '${package}' versions."
         fi
