@@ -141,6 +141,6 @@ List of RCAs in |csit-release| for VPP performance changes:
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  1 | `VPP-1972                               | One VPP change has decreased performance of NAT44ed processing, both slow path and fast path.             |
+|  1 | `VPP-1972                               | One VPP change has decreased performance of NAT44ed processing, mostly slow path.                         |
 |    | <https://jira.fd.io/browse/VPP-1972>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
