@@ -51,7 +51,7 @@ find ./${WORKING_DIR}/env -type f -name '*.rst' | xargs rm -f
 
 # Generate the documentation:
 DATE=$(date -u '+%d-%b-%Y')
-command="sphinx-build -v -c '${WORKING_DIR}' -a  -b html -E -D release='$1' -D"
+command="sphinx-build -v -c '${WORKING_DIR}' -a -b html -E -D release='$1' -D"
 command+=" version='$1 documentation - $DATE' '${WORKING_DIR}' '${BUILD_DIR}/'"
 ${command}
 

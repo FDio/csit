@@ -28,7 +28,7 @@ class ABTools:
 
     @staticmethod
     def get_cmd_options(**kwargs):
-        """Create  parameters options.
+        """Create parameters options.
 
         :param kwargs: Dict of cmd parameters.
         :type kwargs: dict

@@ -3,7 +3,7 @@ mkdir /dev/pts
 mkdir /dev/hugepages
 mount -t devpts -o "rw,noexec,nosuid,gid=5,mode=0620" devpts /dev/pts || true
 mount -t tmpfs -o "rw,noexec,nosuid,size=10%,mode=0755" tmpfs /run
-cp  /tmp/openvpp-testing/resources/tools/iperf/iperf_client.py /run
+cp /tmp/openvpp-testing/resources/tools/iperf/iperf_client.py /run
 mount -t tmpfs -o "rw,noexec,nosuid,size=10%,mode=0755" tmpfs /tmp
 mkdir -p /tmp/openvpp-testing/resources/tools/iperf/
 mv /run/iperf_client.py /tmp/openvpp-testing/resources/tools/iperf/
