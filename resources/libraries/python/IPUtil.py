@@ -665,7 +665,7 @@ class IPUtil:
         """
         count = kwargs.get(u"count", 1)
 
-        if count > 100:
+        if True:  # count > 100:
             gateway = kwargs.get(u"gateway", '')
             interface = kwargs.get(u"interface", '')
             vrf = kwargs.get(u"vrf", None)
