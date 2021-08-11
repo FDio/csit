@@ -29,6 +29,7 @@ from copy import deepcopy
 import plotly.graph_objects as go
 import plotly.offline as ploff
 import pandas as pd
+import prettytable
 
 from numpy import nan, isnan
 from yaml import load, FullLoader, YAMLError
@@ -59,7 +60,8 @@ def generate_tables(spec, data):
         u"table_failed_tests_html": table_failed_tests_html,
         u"table_oper_data_html": table_oper_data_html,
         u"table_comparison": table_comparison,
-        u"table_weekly_comparison": table_weekly_comparison
+        u"table_weekly_comparison": table_weekly_comparison,
+        u"table_job_spec_duration": table_job_spec_duration
     }
 
     logging.info(u"Generating the tables ...")
@@ -74,6 +76,96 @@ def generate_tables(spec, data):
                 f"{repr(err)}"
             )
     logging.info(u"Done.")
+
+
+def table_job_spec_duration(table, input_data):
+    """Generate the table(s) with algorithm: table_job_spec_duration
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    _ = input_data
+
+    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+
+    jb_type = table.get(u"jb-type", None)
+
+    tbl_lst = list()
+    if jb_type == u"iterative":
+        for line in table.get(u"lines", tuple()):
+            tbl_itm = {
+                u"name": line.get(u"job-spec", u""),
+                u"data": list()
+            }
+            for job, builds in line.get(u"data-set", dict()).items():
+                for build_nr in builds:
+                    try:
+                        minutes = input_data.metadata(
+                            job, str(build_nr)
+                        )[u"elapsedtime"] // 60000
+                    except (KeyError, IndexError, ValueError, AttributeError):
+                        continue
+                    tbl_itm[u"data"].append(minutes)
+            tbl_itm[u"mean"] = mean(tbl_itm[u"data"])
+            tbl_itm[u"stdev"] = stdev(tbl_itm[u"data"])
+            tbl_lst.append(tbl_itm)
+    elif jb_type == u"coverage":
+        job = table.get(u"data", None)
+        if not job:
+            return
+        for line in table.get(u"lines", tuple()):
+            try:
+                tbl_itm = {
+                    u"name": line.get(u"job-spec", u""),
+                    u"mean": input_data.metadata(
+                        list(job.keys())[0], str(line[u"build"])
+                    )[u"elapsedtime"] // 60000,
+                    u"stdev": float(u"nan")
+                }
+                tbl_itm[u"data"] = [tbl_itm[u"mean"], ]
+            except (KeyError, IndexError, ValueError, AttributeError):
+                continue
+            tbl_lst.append(tbl_itm)
+    else:
+        logging.warning(f"Wrong type of job-spec: {jb_type}. Skipping.")
+        return
+
+    for line in tbl_lst:
+        line[u"mean"] = \
+            f"{int(line[u'mean'] // 60):02d}:{int(line[u'mean'] % 60):02d}"
+        if math.isnan(line[u"stdev"]):
+            line[u"stdev"] = u""
+        else:
+            line[u"stdev"] = \
+                f"{int(line[u'stdev'] //60):02d}:{int(line[u'stdev'] % 60):02d}"
+
+    if not tbl_lst:
+        return
+
+    rows = list()
+    for itm in tbl_lst:
+        rows.append([
+            itm[u"name"],
+            f"{len(itm[u'data'])}",
+            f"{itm[u'mean']} +- {itm[u'stdev']}"
+                if itm[u"stdev"] != u"" else f"{itm[u'mean']}"
+        ])
+
+    txt_table = prettytable.PrettyTable(
+        [u"Job Specification", u"Nr of Runs", u"Duration [HH:MM]"]
+    )
+    for row in rows:
+        txt_table.add_row(row)
+    txt_table.align = u"r"
+    txt_table.align[u"Job Specification"] = u"l"
+
+    file_name = f"{table.get(u'output-file', u'')}.txt"
+    with open(file_name, u"wt", encoding='utf-8') as txt_file:
+        txt_file.write(str(txt_table))
 
 
 def table_oper_data_html(table, input_data):
