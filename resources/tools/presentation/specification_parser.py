@@ -666,6 +666,13 @@ class Specification:
                         table[u"columns"][i][u"data-replacement"] = \
                             self.data_sets[data_set]
 
+            if table.get(u"lines", None):
+                for i in range(len(table[u"lines"])):
+                    data_set = table[u"lines"][i].get(u"data-set", None)
+                    if isinstance(data_set, str):
+                        table[u"lines"][i][u"data-set"] = \
+                            self.data_sets[data_set]
+
         except KeyError:
             raise PresentationError(
                 f"Wrong data set used in {table.get(u'title', u'')}."
