@@ -34,7 +34,7 @@ function terraform_apply () {
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
     pushd "${NODENESS}_${FLAVOR}_c5n" || die "Pushd failed!"
     export TF_LOG=INFO
-    terraform apply -auto-approve  || die "Failed to run terraform apply!"
+    terraform apply -no-color -auto-approve  || die "Terraform apply failed!"
     popd || die "Popd failed!"
     popd || die "Popd failed!"
 }
@@ -57,7 +57,7 @@ function terraform_destroy () {
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
     pushd "${NODENESS}_${FLAVOR}_c5n" || die "Pushd failed!"
     export TF_LOG=INFO
-    terraform destroy -auto-approve || die "Failed to run terraform destroy!"
+    terraform destroy -auto-approve -no-color || die "Terraform destroy failed!"
     popd || die "Popd failed!"
     popd || die "Popd failed!"
 }
