@@ -83,3 +83,9 @@ CSIT-2106
     csit_framework_documentation/csit_test_naming
     csit_framework_documentation/pal_lld
     csit_framework_documentation/csit_tag_description
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Statistics
+
+    stats/durations
