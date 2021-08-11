@@ -17,6 +17,12 @@ variable "testbed_name" {
   type = string
 }
 
+variable "instance_initiated_shutdown_behavior" {
+  description = "Shutdown behavior for the instance"
+  type        = string
+  default     = "terminate"
+}
+
 variable "instance_type" {
   description = "AWS instance type"
   type = string
