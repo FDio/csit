@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "319942f1_d8a9a758",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-11T14:57:44Z",
+      "side": 1,
+      "message": "No \"local\" in 2106 VAT command: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu2004-x86_64-1n-skx/1810/log.html.gz#s1-s1-s1-s4-s1-t1-k2-k10\nThis patch would send \"exec ip route add 10.10.10.0/24 table 1 local\" (if not the condition to use API below 100 routes): https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu2004-x86_64-1n-skx/1817/console.log.gz\nPAPI works via \"type: 1\" using a dummy address: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu2004-x86_64-1n-skx/1811/log.html.gz#s1-s1-s1-s4-s1-t1-k3-k2",
+      "range": {
+        "startLine": 15,
+        "startChar": 22,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "b1c54b9e51a00f50af6610d7a0c445e96c1afddf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
