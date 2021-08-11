@@ -283,6 +283,11 @@
       - 52  # rls2106.rel MRR iter env 7
       - 88  # rls2106.rel MRR AF-XDP iter env 7
 
+  # TODO: Remove
+  vpp-2n-skx-curr-iter-mrr-single:
+    csit-vpp-perf-report-iterative-2106-2n-skx:
+      - 52  # rls2106.rel MRR iter env 7
+
   vpp-2n-skx-curr-soak:
     csit-vpp-perf-report-iterative-2106-2n-skx:
       - 58  # rls2106.rel soak env 7
@@ -511,6 +516,11 @@
       - 36  # rls2106.rel MRR iter env 7
       - 48  # rls2106.rel MRR AF-XDP iter env 7
 
+  # TODO: Remove
+  vpp-2n-zn2-curr-iter-mrr-single:
+    csit-vpp-perf-report-iterative-2106-2n-zn2:
+      - 36  # rls2106.rel MRR iter env 7
+
   vpp-2n-zn2-curr-cov:
     csit-vpp-perf-report-coverage-2106-2n-zn2:
       - 1   # rls2106.rel NDRPDR COV env 7
@@ -694,9 +704,14 @@
   vpp-2n-clx-prev-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2106-2n-clx:
       - 8   # rls2101.rel MRR iter env 7
-      - 123 # rls2101.rel MRR AF-XDP iter env 7
 
   vpp-2n-clx-curr-iter-mrr:
+    csit-vpp-perf-report-iterative-2106-2n-clx:
+      - 66  # rls2106.rel MRR iter env 7
+      - 123 # rls2101.rel MRR AF-XDP iter env 7
+
+  # TODO: Remove
+  vpp-2n-clx-curr-iter-mrr-single:
     csit-vpp-perf-report-iterative-2106-2n-clx:
       - 66  # rls2106.rel MRR iter env 7
 
@@ -1056,6 +1071,11 @@
     csit-vpp-perf-report-iterative-2106-2n-tx2:
       - 18  # rls2106.rel MRR iter env 7
       - 29  # rls2101.rel MRR AF-XDP iter env 7
+
+  # TODO: Remove
+  vpp-2n-tx2-curr-iter-mrr-single:
+    csit-vpp-perf-report-iterative-2106-2n-tx2:
+      - 18  # rls2106.rel MRR iter env 7
 
   vpp-2n-tx2-curr-cov:
     csit-vpp-perf-report-coverage-2106-2n-tx2:
