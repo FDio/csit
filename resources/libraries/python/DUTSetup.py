@@ -484,7 +484,7 @@ class DUTSetup:
             node, command, timeout=120, sudo=True, message=message
         )
 
-        command = f"sh -c \"echo  | " \
+        command = f"sh -c \"echo | " \
             f"tee /sys/bus/pci/devices/{pci}/driver_override\""
 
         exec_cmd_no_error(
@@ -547,7 +547,7 @@ class DUTSetup:
             node, command, timeout=120, sudo=True, message=message
         )
 
-        command = f"sh -c \"echo  | tee {vf_path}/driver_override\""
+        command = f"sh -c \"echo | tee {vf_path}/driver_override\""
 
         exec_cmd_no_error(
             node, command, timeout=120, sudo=True, message=message

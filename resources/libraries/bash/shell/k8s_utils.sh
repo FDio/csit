@@ -53,7 +53,7 @@ function k8s_utils.calico_deploy {
     k8s_calico=$1
 
     # Apply resources
-    kubectl apply -f ${k8s_calico}  || \
+    kubectl apply -f ${k8s_calico} || \
         { echo "Failed to apply ${k8s_calico}"; exit 1; }
 
     # Update the taints
@@ -103,7 +103,7 @@ function k8s_utils.apply {
     k8s_resource=$1
 
     # Apply resources
-    kubectl apply -f ${k8s_resource}  || \
+    kubectl apply -f ${k8s_resource} || \
         { echo "Failed to apply ${k8s_resource}"; exit 1; }
 }
 
@@ -112,7 +112,7 @@ function k8s_utils.resource_delete {
     k8s_resource=$1
 
     # Delete resources
-    kubectl delete -f ${k8s_resource}  || \
+    kubectl delete -f ${k8s_resource} || \
         { echo "Failed to delete ${k8s_resource}"; exit 1; }
 }
 

@@ -95,7 +95,7 @@ class Classify:
 
     @staticmethod
     def _build_mac_match(dst_mac=u"", src_mac=u"", ether_type=u""):
-        """Build MAC ACL match data in  bytes format.
+        """Build MAC ACL match data in bytes format.
 
         :param dst_mac: Source MAC address <x:x:x:x:x:x>.
         :param src_mac: Destination MAC address <x:x:x:x:x:x>.

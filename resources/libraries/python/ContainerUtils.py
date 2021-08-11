@@ -1113,7 +1113,7 @@ class Docker(ContainerEngine):
         command = str(self.container.command) if self.container.command else u""
 
         publish = u" ".join(
-            f"--publish  {var!s}" for var in self.container.publish
+            f"--publish {var!s}" for var in self.container.publish
         ) if self.container.publish else u""
 
         volume = u" ".join(

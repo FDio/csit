@@ -32,8 +32,8 @@
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node\
 | ... | circular topology with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-LISPGPE-IPv4-ICMPv4\
-| ... |  on DUT1-TG, Eth-IPv4-ICMPv4 on TG-DUTn for IPv4\
-| ... |  routing over LISPoIPv4 tunnel.
+| ... | on DUT1-TG, Eth-IPv4-ICMPv4 on TG-DUTn for IPv4\
+| ... | routing over LISPoIPv4 tunnel.
 | ... | *[Cfg] DUT configuration:* DUT1 and TG(if2) are configured\
 | ... | with IPv4 routing and static routes. LISPoIPv4 tunnel is\
 | ... | configured between DUT1 and TG.

@@ -78,7 +78,7 @@ function bind_interfaces_to_containers () {
         sudo ip link set ${NETDEV} netns ${DCR_CPIDS[dut1]} || {
             die "Moving interface to ${DCR_CPIDS[dut1]} namespace failed!"
         }
-        docker exec "${DCR_UUIDS[dut1]}" ${cmd} ||  {
+        docker exec "${DCR_UUIDS[dut1]}" ${cmd} || {
             die "Linking PCI address in container failed!"
         }
     done

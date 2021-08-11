@@ -91,17 +91,17 @@
 | |
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${tg_if1_ip4} | ${TG_pf1_mac}[0]
-| | Run Keyword If |  ${dut2_status}
+| | Run Keyword If | ${dut2_status}
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip4}
 | | ... | ${DUT2_${int}1_mac}[0]
 | | ... | ELSE | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${tg_if2_ip4} | ${TG_pf2_mac}[0]
-| | Run Keyword If |  ${dut2_status}
+| | Run Keyword If | ${dut2_status}
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_if1_ip4}
 | | ... | ${DUT1_${int}2_mac}[0]
-| | Run Keyword If |  ${dut2_status}
+| | Run Keyword If | ${dut2_status}
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut2} | ${DUT2_${int}2}[0] | ${tg_if2_ip4}| ${TG_pf2_mac}[0]
 | |

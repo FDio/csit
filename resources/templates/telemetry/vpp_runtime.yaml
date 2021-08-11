@@ -305,7 +305,7 @@ programs:
     metrics:
       gauge:
         - name: l1_hit
-          documentation:  Cache hits and misses (L1 hit)
+          documentation: Cache hits and misses (L1 hit)
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
@@ -313,7 +313,7 @@ programs:
             - thread_name
             - thread_id
         - name: l1_miss
-          documentation:  Cache hits and misses (L1 miss)
+          documentation: Cache hits and misses (L1 miss)
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
@@ -321,7 +321,7 @@ programs:
             - thread_name
             - thread_id
         - name: l2_hit
-          documentation:  Cache hits and misses (L2 hit)
+          documentation: Cache hits and misses (L2 hit)
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
@@ -329,7 +329,7 @@ programs:
             - thread_name
             - thread_id
         - name: l2_miss
-          documentation:  Cache hits and misses (L2 miss)
+          documentation: Cache hits and misses (L2 miss)
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
@@ -337,7 +337,7 @@ programs:
             - thread_name
             - thread_id
         - name: l3_hit
-          documentation:  Cache hits and misses (L3 hit)
+          documentation: Cache hits and misses (L3 hit)
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
@@ -345,7 +345,7 @@ programs:
             - thread_name
             - thread_id
         - name: l3_miss
-          documentation:  Cache hits and misses (L3 miss)
+          documentation: Cache hits and misses (L3 miss)
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
