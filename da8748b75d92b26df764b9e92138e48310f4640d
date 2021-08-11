@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a17bf94_97feba92",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-11T12:53:32Z",
+      "side": 1,
+      "message": "Here you are not detecting x86 testbeds, so even if the rest of the code supports testing x86 testbeds from aarch64 executors, it never happens.",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 10
+      },
+      "revId": "da8748b75d92b26df764b9e92138e48310f4640d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
