@@ -219,18 +219,19 @@ data "aws_network_interface" "tg_if2" {
 
 # Instances
 resource "aws_instance" "tg" {
-  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
-  ami                         = var.ami_image
-  availability_zone           = var.avail_zone
-  instance_type               = var.instance_type
-  key_name                    = aws_key_pair.CSITKP.key_name
-  associate_public_ip_address = true
-  subnet_id                   = aws_subnet.mgmt.id
-  private_ip                  = var.tg_mgmt_ip
-  vpc_security_group_ids      = [aws_security_group.CSITSG.id]
-  placement_group             = aws_placement_group.CSITPG.id
-  source_dest_check           = false
-  # host_id                   = "1"
+  depends_on                           = [aws_vpc.CSITVPC, aws_placement_group.CSITPG]
+  ami                                  = var.ami_image
+  availability_zone                    = var.avail_zone
+  instance_initiated_shutdown_behavior = var.instance_initiated_shutdown_behavior
+  instance_type                        = var.instance_type
+  key_name                             = aws_key_pair.CSITKP.key_name
+  associate_public_ip_address          = true
+  subnet_id                            = aws_subnet.mgmt.id
+  private_ip                           = var.tg_mgmt_ip
+  vpc_security_group_ids               = [aws_security_group.CSITSG.id]
+  placement_group                      = aws_placement_group.CSITPG.id
+  source_dest_check                    = false
+  # host_id                            = "1"
 
   root_block_device {
     volume_size = 50
@@ -243,18 +244,19 @@ resource "aws_instance" "tg" {
 }
 
 resource "aws_instance" "dut1" {
-  depends_on                  = [aws_vpc.CSITVPC, aws_placement_group.CSITPG, aws_instance.tg]
-  ami                         = var.ami_image
-  availability_zone           = var.avail_zone
-  instance_type               = var.instance_type
-  key_name                    = aws_key_pair.CSITKP.key_name
-  associate_public_ip_address = true
-  subnet_id                   = aws_subnet.mgmt.id
-  private_ip                  = var.dut1_mgmt_ip
-  vpc_security_group_ids      = [aws_security_group.CSITSG.id]
-  placement_group             = aws_placement_group.CSITPG.id
-  source_dest_check           = false
-  # host_id                   = "2"
+  depends_on                           = [aws_vpc.CSITVPC, aws_placement_group.CSITPG, aws_instance.tg]
+  ami                                  = var.ami_image
+  availability_zone                    = var.avail_zone
+  instance_initiated_shutdown_behavior = var.instance_initiated_shutdown_behavior
+  instance_type                        = var.instance_type
+  key_name                             = aws_key_pair.CSITKP.key_name
+  associate_public_ip_address          = true
+  subnet_id                            = aws_subnet.mgmt.id
+  private_ip                           = var.dut1_mgmt_ip
+  vpc_security_group_ids               = [aws_security_group.CSITSG.id]
+  placement_group                      = aws_placement_group.CSITPG.id
+  source_dest_check                    = false
+  # host_id                            = "2"
 
   root_block_device {
     volume_size = 50

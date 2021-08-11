@@ -18,6 +18,12 @@ variable "ami_image" {
   default = "ami-0a875db8a031a9efb"
 }
 
+variable "instance_initiated_shutdown_behavior" {
+  description = "Shutdown behavior for the instance"
+  type        = string
+  default     = "terminate"
+}
+
 variable "instance_type" {
   description = "AWS instance type"
   type = string

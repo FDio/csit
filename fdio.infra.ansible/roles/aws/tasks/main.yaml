@@ -82,7 +82,7 @@
   tags:
     - aws-reload-systemd-modules
 
-- name: Performance Tuning - Adjust nr_hugepages
+- name: Adjust nr_hugepages
   sysctl:
     name: "vm.nr_hugepages"
     value: "8192"
@@ -91,3 +91,8 @@
     reload: "yes"
   tags:
     - aws-set-hugepages
+
+- name: Shutdown host with delay
+  command: "/sbin/shutdown -P +720"
+  tags:
+    - aws-set-self-terminate
