@@ -59,7 +59,8 @@ def generate_tables(spec, data):
         u"table_failed_tests_html": table_failed_tests_html,
         u"table_oper_data_html": table_oper_data_html,
         u"table_comparison": table_comparison,
-        u"table_weekly_comparison": table_weekly_comparison
+        u"table_weekly_comparison": table_weekly_comparison,
+        u"table_job_spec_duration": table_job_spec_duration
     }
 
     logging.info(u"Generating the tables ...")
@@ -74,6 +75,21 @@ def generate_tables(spec, data):
                 f"{repr(err)}"
             )
     logging.info(u"Done.")
+
+
+def table_job_spec_duration(table, input_data):
+    """Generate the table(s) with algorithm: table_job_spec_duration
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+
+
 
 
 def table_oper_data_html(table, input_data):
