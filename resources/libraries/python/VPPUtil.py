@@ -13,11 +13,14 @@
 
 """VPP util library."""
 
+import tempfile
+
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.Vat2Executor import execute_vat2_script
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
@@ -210,8 +213,12 @@ class VPPUtil:
         :raises AssertionError: If PAPI retcode is nonzero.
         """
         cmd = u"show_version"
-        with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
-            reply = papi_exec.add(cmd).get_reply()
+        with tempfile.NamedTemporaryFile(mode=u"wt") as vat2_file:
+            print(f"vppctl vat2 {cmd} {{}}", file=vat2_file)
+            vat2_file.flush()
+            rc, stdout, stderr = execute_vat2_script(vat2_file.name, node)
+        logger.debug(f"RC {rc} stderr {stderr}")
+        logger.info(f"stdout {stdout}")
         if log:
             logger.info(f"VPP version: {reply[u'version']}\n")
         return f"{reply[u'version']}"
