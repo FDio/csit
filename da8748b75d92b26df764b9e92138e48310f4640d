@@ -46,6 +46,30 @@
       "revId": "da8748b75d92b26df764b9e92138e48310f4640d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eda95f52_249e7223",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-12T08:23:10Z",
+      "side": 1,
+      "message": "Maybe, but it is easier to keep the code as is and just update the commit message.",
+      "parentUuid": "3e0a6b27_d694ab25",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 10
+      },
+      "revId": "da8748b75d92b26df764b9e92138e48310f4640d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
