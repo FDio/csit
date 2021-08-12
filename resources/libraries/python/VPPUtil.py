@@ -13,11 +13,14 @@
 
 """VPP util library."""
 
+import tempfile
+
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.Vat2Executor import execute_vat2_script
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
@@ -209,12 +212,17 @@ class VPPUtil:
         :raises RuntimeError: If PAPI connection fails.
         :raises AssertionError: If PAPI retcode is nonzero.
         """
-        cmd = u"show_version"
-        with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
-            reply = papi_exec.add(cmd).get_reply()
-        if log:
-            logger.info(f"VPP version: {reply[u'version']}\n")
-        return f"{reply[u'version']}"
+        cmd = u"vat2 show_version {}"
+        exec_cmd(node, cmd)
+        exec_cmd(node, f"sudo {cmd}")
+        exec_cmd(node, f"vppctl {cmd}")
+        exec_cmd(node, f"sudo vppctl {cmd}")
+        cmd = u"vat2 show_version '{}'"
+        exec_cmd(node, cmd)
+        exec_cmd(node, f"sudo {cmd}")
+        exec_cmd(node, f"vppctl {cmd}")
+        exec_cmd(node, f"sudo vppctl {cmd}")
+        raise RuntimeError(u"End of show version")
 
     @staticmethod
     def show_vpp_version_on_all_duts(nodes):
