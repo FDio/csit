@@ -22,6 +22,30 @@
       "revId": "da8748b75d92b26df764b9e92138e48310f4640d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e0a6b27_d694ab25",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-08-12T07:00:55Z",
+      "side": 1,
+      "message": "Ah, right. Is there value in adding this support?",
+      "parentUuid": "4a17bf94_97feba92",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 10
+      },
+      "revId": "da8748b75d92b26df764b9e92138e48310f4640d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
