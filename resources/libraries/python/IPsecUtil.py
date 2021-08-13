@@ -2196,9 +2196,9 @@ class IPsecUtil:
                 crypto_key, integ_alg, integ_key, tunnel_ip1, tunnel_ip2
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
-                nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
-                action=PolicyAction.PROTECT, inbound=True,
-                sa_id=ObjIncrement(sa_id_1, 1),
+                nodes[u"DUT2"], n_tunnels, spd_id,
+                priority=ObjIncrement(p_lo, 0), action=PolicyAction.PROTECT,
+                inbound=True, sa_id=ObjIncrement(sa_id_1, 1),
                 raddr_range=NetworkIncrement(ip_network(raddr_ip2), 1)
             )
 
@@ -2207,9 +2207,9 @@ class IPsecUtil:
                 crypto_key, integ_alg, integ_key, tunnel_ip2, tunnel_ip1
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
-                nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
-                action=PolicyAction.PROTECT, inbound=False,
-                sa_id=ObjIncrement(sa_id_2, 1),
+                nodes[u"DUT2"], n_tunnels, spd_id,
+                priority=ObjIncrement(p_lo, 0), action=PolicyAction.PROTECT,
+                inbound=False, sa_id=ObjIncrement(sa_id_2, 1),
                 raddr_range=NetworkIncrement(ip_network(raddr_ip1), 1)
             )
 
