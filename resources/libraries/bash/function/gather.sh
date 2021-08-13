@@ -33,7 +33,7 @@ function gather_build () {
     # - ${DOWNLOAD_DIR} - Files needed by tests are gathered here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
-    # - gather_os - Parse os parameter for OS/distro name.
+    # - gather_target_arch - Parse target architecture.
     # - gather_dpdk, gather_vpp - See their definitions.
     # Multiple other side effects are possible,
     # see functions called from here for their current description.
@@ -42,6 +42,8 @@ function gather_build () {
     #   when the first one becomes relevant for per_patch.
 
     set -exuo pipefail
+
+    gather_target_arch || die "The function should have died on error."
 
     pushd "${DOWNLOAD_DIR}" || die "Pushd failed."
     case "${TEST_CODE}" in
@@ -108,6 +110,23 @@ function gather_dpdk () {
             die "Failed to get DPDK package from: ${dpdk_repo}"
         }
     fi
+}
+
+
+function gather_target_arch () {
+    # Variables read:
+    # - TEST_CODE - The test selection string from environment or argument.
+    # Variables set:
+    # - TARGET_ARCH - The architecture that's going to be tested.
+    case "${TEST_CODE}" in
+        *"aarch64"* | *"2n-tx2"* | *"3n-tsh"*)
+            TARGET_ARCH=aarch64
+            ;;
+        *)
+            # default to host arch
+            TARGET_ARCH=$(uname -m)
+            ;;
+    esac
 }
 
 
