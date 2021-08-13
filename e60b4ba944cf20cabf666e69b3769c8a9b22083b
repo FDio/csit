@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "62ff2d0c_419fe201",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-08-13T07:38:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf7ddecb_3b61bbc7",
+      "range": {
+        "startLine": 9,
+        "startChar": 44,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "e60b4ba944cf20cabf666e69b3769c8a9b22083b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6bc70308_ed8441af",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 1

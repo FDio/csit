@@ -70,6 +70,30 @@
       "revId": "da8748b75d92b26df764b9e92138e48310f4640d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcea4321_0c6c9c57",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-08-13T07:38:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eda95f52_249e7223",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 10
+      },
+      "revId": "da8748b75d92b26df764b9e92138e48310f4640d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
