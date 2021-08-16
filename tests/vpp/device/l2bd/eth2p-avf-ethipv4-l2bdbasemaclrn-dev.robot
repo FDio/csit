@@ -16,7 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | DRV_AVF
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | EXPECTED_FAILING
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | avf-ethipv4-l2bdbasemaclrn
 |
 | Suite Setup | Setup suite topology interfaces | scapy
