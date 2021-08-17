@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | ACL | ACL_STATEFUL
-| ... | IACL | ACL50 | 100K_FLOWS | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | 100K_FLOWS
+| ... | FEATURE | ACL | ACL_STATEFUL | IACL | ACL50
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4udp-ip4base-iacl50sf-100kflows
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -74,7 +74,7 @@
 | ${port_step}= | ${1}
 | ${trex_stream1_subnet}= | 10.10.10.0/24
 | ${trex_stream2_subnet}= | 20.20.20.0/24
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-stl-3n-ethip4udp-100u1000p-conc
 
 *** Keywords ***

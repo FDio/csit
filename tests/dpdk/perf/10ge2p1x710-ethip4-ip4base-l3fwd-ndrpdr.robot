@@ -18,8 +18,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | IP4FWD | BASE | ETH
-| ... | DRV_VFIO_PCI
-| ... | RXQ_SIZE_1024 | TXQ_SIZE_1024
+| ... | RXQ_SIZE_1024 | TXQ_SIZE_1024 | DRV_VFIO_PCI
 | ... | ethip4-ip4base-l3fwd
 |
 | Suite Setup | Setup suite topology interfaces | performance | dpdk

@@ -14,11 +14,11 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_400
-| ... | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | 8DCR
-| ... | DOCKER | 2R1C | NF_DENSITY | CHAIN | NF_VPPIP4 | 1DCR1T
-| ... | AES_256_GCM | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | DOCKER | IPSEC | IPSECSW | IPSECINT | SCALE | TNL_400
+| ... | NF_DENSITY | CHAIN | NF_VPPIP4 | 2R1C | 1DCR1T | 8DCR
+| ... | AES_256_GCM | AES
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec400tnlsw-l2bd-1ch-16mif-8dcr1c-vppip4-aes256gcm
 |
 | Suite Setup | Setup suite topology interfaces | performance
