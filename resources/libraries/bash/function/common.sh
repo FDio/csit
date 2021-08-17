@@ -864,6 +864,12 @@ function select_tags () {
     tfd="${JOB_SPECS_DIR}"
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
+        *"vpp-device"* )
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/vpp_device/${DUT}-${NODENESS}-${FLAVOR}.md |
+                awk {"$awk_nics_sub_cmd"} || echo "devicetest") || die
+            SELECTION_MODE="--test"
+            ;;
         *"ndrpdr-weekly"* )
             readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
@@ -922,6 +928,10 @@ function select_tags () {
     # Reasons for blacklisting:
     # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
     case "${TEST_CODE}" in
+        *"1n-vbox"*)
+            test_tag_array+=("!avf")
+            test_tag_array+=("!vhost")
+            ;;
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
             ;;
@@ -1081,67 +1091,6 @@ function select_topology () {
     if [[ -z "${TOPOLOGIES-}" ]]; then
         die "No applicable topology found!"
     fi
-}
-
-
-function select_vpp_device_tags () {
-
-    # Variables read:
-    # - TEST_CODE - String affecting test selection, usually jenkins job name.
-    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
-    #   Can be unset.
-    # Variables set:
-    # - TAGS - Array of processed tag boolean expressions.
-
-    set -exuo pipefail
-
-    case "${TEST_CODE}" in
-        # Select specific device tests based on jenkins job type variable.
-        * )
-            if [[ -z "${TEST_TAG_STRING-}" ]]; then
-                # If nothing is specified, we will run pre-selected tests by
-                # following tags. Items of array will be concatenated by OR
-                # in Robot Framework.
-                test_tag_array=()
-            else
-                # If trigger contains tags, split them into array.
-                test_tag_array=(${TEST_TAG_STRING//:/ })
-            fi
-            SELECTION_MODE="--include"
-            ;;
-    esac
-
-    # Blacklisting certain tags per topology.
-    #
-    # Reasons for blacklisting:
-    # - avf - AVF is not possible to run on enic driver of VirtualBox.
-    # - vhost - VirtualBox does not support nesting virtualization on Intel CPU.
-    case "${TEST_CODE}" in
-        *"1n-vbox"*)
-            test_tag_array+=("!avf")
-            test_tag_array+=("!vhost")
-            ;;
-        *)
-            ;;
-    esac
-
-    TAGS=()
-
-    # We will prefix with devicetest to prevent running other tests
-    # (e.g. Functional).
-    prefix="devicetestAND"
-    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
-        # Automatic prefixing for VPP jobs to limit testing.
-        prefix="${prefix}"
-    fi
-    for tag in "${test_tag_array[@]}"; do
-        if [[ ${tag} == "!"* ]]; then
-            # Exclude tags are not prefixed.
-            TAGS+=("${tag}")
-        else
-            TAGS+=("${prefix}${tag}")
-        fi
-    done
 }
 
 
