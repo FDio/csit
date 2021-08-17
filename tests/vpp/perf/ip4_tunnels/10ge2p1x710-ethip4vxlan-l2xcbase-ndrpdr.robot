@@ -16,8 +16,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2XCFWD | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4vxlan-l2xcbase
 |
 | Suite Setup | Setup suite topology interfaces | performance
