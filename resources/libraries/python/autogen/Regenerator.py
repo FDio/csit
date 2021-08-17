@@ -480,6 +480,75 @@ def write_iperf3_files(in_filename, in_prolog, kwargs_list):
         add_iperf3_testcases(testcase, file_out, kwargs_list)
 
 
+def write_device_files(in_filename, in_prolog, kwargs_list):
+    """Using given filename and prolog, write all generated suites.
+
+    :param in_filename: Template filename to derive real filenames from.
+    :param in_prolog: Template content to derive real content from.
+    :param kwargs_list: List of kwargs for add_default_testcase.
+    :type in_filename: str
+    :type in_prolog: str
+    :type kwargs_list: list of dict
+    """
+    for suite_type in Constants.DEVICE_TYPE_TO_KEYWORD:
+        tmp_filename = replace_defensively(
+            in_filename, u"dev", suite_type, 1,
+            u"File name should contain suite type once.", in_filename
+        )
+        _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
+        testcase = Testcase.default(suite_id)
+        for nic_name in Constants.NIC_NAME_TO_CODE:
+            tmp2_filename = replace_defensively(
+                tmp_filename, u"10ge2p1x710",
+                Constants.NIC_NAME_TO_CODE[nic_name], 1,
+                u"File name should contain NIC code once.", in_filename
+            )
+            tmp2_prolog = replace_defensively(
+                in_prolog, u"Intel-X710", nic_name, 2,
+                u"NIC name should appear twice (tag and variable).",
+                in_filename
+            )
+            iface, old_suite_id, _ = get_iface_and_suite_ids(
+                tmp2_filename
+            )
+            for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+                out_filename = replace_defensively(
+                    tmp2_filename, old_suite_id,
+                    Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
+                    1, u"Error adding driver prefix.", in_filename
+                )
+                out_prolog = replace_defensively(
+                    tmp2_prolog, u"vfio-pci", driver, 1,
+                    u"Driver name should appear once.", in_filename
+                )
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_DRIVER_TO_TAG[u"vfio-pci"],
+                    Constants.NIC_DRIVER_TO_TAG[driver], 1,
+                    u"Driver tag should appear once.", in_filename
+                )
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
+                    Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                    u"Driver plugin should appear once.", in_filename
+                )
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_DRIVER_TO_VFS[u"vfio-pci"],
+                    Constants.NIC_DRIVER_TO_VFS[driver], 1,
+                    u"NIC VFs argument should appear once.", in_filename
+                )
+                iface, suite_id, suite_tag = get_iface_and_suite_ids(
+                    out_filename
+                )
+                check_suite_tag(suite_tag, out_prolog)
+                # TODO: Reorder loops so suite_id is finalized sooner.
+                testcase = Testcase.default(suite_id)
+                with open(out_filename, u"wt") as file_out:
+                    file_out.write(out_prolog)
+                    add_default_testcases(
+                        testcase, iface, suite_id, file_out, kwargs_list
+                    )
+
+
 class Regenerator:
     """Class containing file generating methods."""
 
@@ -564,6 +633,10 @@ class Regenerator:
             {u"frame_size": 2048, u"phy_cores": 2}
         ]
 
+        device_kwargs_list = [
+            {u"frame_size": min_frame_size, u"phy_cores": 0}
+        ]
+
         for in_filename in glob(pattern):
             if not self.quiet:
                 print(
@@ -604,6 +677,8 @@ class Regenerator:
                 write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
             elif in_filename.endswith(u"-iperf3-mrr.robot"):
                 write_iperf3_files(in_filename, in_prolog, iperf3_kwargs_list)
+            elif in_filename.endswith(u"-scapy.robot"):
+                write_device_files(in_filename, in_prolog, device_kwargs_list)
             else:
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary suite type found."
