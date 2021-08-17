@@ -415,6 +415,10 @@ class Constants:
         u"Intel-XL710": u"HW_DH895xcc",
     }
 
+    DEVICE_TYPE_TO_KEYWORD = {
+        u"dev": None
+    }
+
     PERF_TYPE_TO_KEYWORD = {
         u"mrr": u"Traffic should pass with maximum rate",
         u"ndrpdr": u"Find NDR and PDR intervals using optimized search",
