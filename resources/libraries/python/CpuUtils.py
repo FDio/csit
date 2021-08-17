@@ -575,6 +575,7 @@ class CpuUtils:
 
         compute_resource_info = dict()
         compute_resource_info[u"buffers_numa"] = 215040 if smt_used else 107520
+        compute_resource_info[u"buffers_numa"] = 53760
         compute_resource_info[u"smt_used"] = smt_used
         compute_resource_info[u"cpu_main"] = cpu_main
         compute_resource_info[u"cpu_dp"] = cpu_dp
