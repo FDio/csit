@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | MEMIF | DOCKER | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP6FWD | BASE | MEMIF | DOCKER | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethipv4-ip4base-eth-2memif-1dcr
+| ... | ethipv6-ip6base-eth-2memif-1dcr
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
@@ -29,15 +29,16 @@
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
 | ... | single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing on both links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
-| ... | two static IPv4 /24 route entries. Container is connected to VPP via \
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing on \
+| ... | both links.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and \
+| ... | two static IPv6 /64 route entries. Container is connected to VPP via \
 | ... | Memif interface. Container is running same VPP version as running on \
 | ... | DUT.
-| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61 are \
-| ... | sent in one direction by TG on links to DUT1 and via container; on \
-| ... | receive TG verifies packets for correctness and their IPv4 src-addr, \
-| ... | dst-addr and MAC addresses.
+| ... | *[Ver] TG verification:* Test IPv6 packets are sent in one direction \
+| ... | by TG on links to DUT1 and via container; on receive TG verifies \
+| ... | packets for correctness and their IPv6 src-addr, dst-addr and \
+| ... | MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
 *** Variables ***
@@ -57,7 +58,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IPv4 packet in both directions between two\
+| | ... | [Ver] Make TG send IPv6 packets in both directions between two\
 | | ... | of its interfaces to be routed by DUT to and from docker; verify\
 | | ... | all packets are received.
 | |
@@ -77,13 +78,43 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Start containers for test | auto_scale=${False} | pinning=${False}
-| | And Initialize IPv4 routing with memif pairs
+| | And Set up memif interfaces on DUT node
+| | ... | ${dut1} | memif-DUT1_CNF | memif-DUT1_CNF
+| | ... | memif_if1=memif_if1 | memif_if2=memif_if2
+| | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
+| | # It takes some time for memifs to go up.
+| | And Set interfaces in path up
+| | And Add Fib Table | ${dut1} | 20 | ipv6=${True}
+| | And Assign Interface To Fib Table
+| | ... | ${dut1} | ${memif_if2} | 20 | ipv6=${True}
+| | And Assign Interface To Fib Table
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 20 | ipv6=${True}
+| | And VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:1::1 | 64
+| | And VPP Interface Set IP Address
+| | ... | ${dut1} | ${memif_if1} | 2001:2::1 | 64
+| | And VPP Interface Set IP Address
+| | ... | ${dut1} | ${memif_if2} | 2001:2::2 | 64
+| | And VPP Interface Set IP Address
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:3::1 | 64
+| | ${memif_if2_key}= | Get interface by sw index | ${nodes['DUT1']}
+| | ... | ${memif_if2}
+| | ${memif_if2_mac}= | Get interface MAC | ${nodes['DUT1']} | ${memif_if2_key}
+| | And Vpp Route Add
+| | ... | ${dut1} | 2001:3::0 | 64 | gateway=2001:2::2 | interface=${memif_if1}
+| | And Vpp Route Add
+| | ... | ${dut1} | 2001:1::0 | 64 | gateway=2001:2::2 | interface=${memif_if2}
+| | ... | vrf=20
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${memif_if1} | 2001:2::2 | ${memif_if2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | 2001:3::2 | ${TG_pf2_mac}[0]
 | | Then Send packet and verify headers
-| | ... | ${tg} | 10.10.10.1 | 20.20.20.1
+| | ... | ${tg} | 2001:1::1 | 2001:3::2
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
 | | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
 
 *** Test Cases ***
-| 64B-ethipv4-ip4base-eth-2memif-1dcr-dev
-| | [Tags] | 64B
-| | frame_size=${64} | phy_cores=${0}
+| 78B-0c-ethipv6-ip6base-eth-2memif-1dcr-dev
+| | [Tags] | 78B
+| | frame_size=${78} | phy_cores=${0}
