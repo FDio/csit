@@ -864,6 +864,12 @@ function select_tags () {
     tfd="${JOB_SPECS_DIR}"
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
+        *"vpp-device"* )
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/vpp_device/${DUT}-${NODENESS}-${FLAVOR}.md |
+                awk {"$awk_nics_sub_cmd"} || echo "devicetest") || die
+            SELECTION_MODE="--test"
+            ;;
         *"ndrpdr-weekly"* )
             readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
@@ -922,6 +928,10 @@ function select_tags () {
     # Reasons for blacklisting:
     # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
     case "${TEST_CODE}" in
+        *"1n-vbox"*)
+            test_tag_array+=("!avf")
+            test_tag_array+=("!vhost")
+            ;;
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
             ;;
