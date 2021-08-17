@@ -527,7 +527,7 @@ function parse_env_variables () {
             mac_address: "${TG_NETMACS[$((port-1))]}"
             pci_address: "${TG_PCIDEVS[$((port-1))]}"
             link: "link$((port-1))"
-            model: "${TG_MODELS[$((port-1))]}"
+            model: ${TG_MODELS[$((port-1))]}
             driver: "${TG_DRIVERS[$((port-1))]}"
             vlan: ${TG_VLANS[$((port-1))]}
 EOF
@@ -540,7 +540,7 @@ EOF
             mac_address: "${DUT1_NETMACS[$((port-1))]}"
             pci_address: "${DUT1_PCIDEVS[$((port-1))]}"
             link: "link$((port-1))"
-            model: "${DUT1_MODELS[$((port-1))]}"
+            model: ${DUT1_MODELS[$((port-1))]}
             driver: "${DUT1_DRIVERS[$((port-1))]}"
             vlan: ${DUT1_VLANS[$((port-1))]}
 EOF
