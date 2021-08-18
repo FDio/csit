@@ -183,7 +183,7 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If | ${jumbo}
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9000
 | | | ... | ELSE
 | | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
 | | FOR | ${dut} | IN | @{duts}
@@ -425,6 +425,9 @@
 | | ... | - dut - DUT node. Type: string
 | | ... | - pf - NIC physical function (physical port). Type: integer
 | |
+| | ... | *Test or higher scope variables read:*
+| | ... | - jumbo - Whether jumbo frames are used. Type: bool
+| |
 | | ... | *Example:*
 | |
 | | ... | \| Initialize layer rdma-core on node \| DUT1 \| 1 \|
@@ -435,6 +438,7 @@
 | | ... | ${nodes['${dut}']} | ${${dut}_vf${pf}}[0]
 | | ... | num_rx_queues=${rxq_count_int}
 | | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
+| | ... | jumbo=${jumbo}
 | | Set List Value | ${${dut}_vf${pf}} | 0 | ${_rdma}
 
 | Initialize layer mlx5_core on node

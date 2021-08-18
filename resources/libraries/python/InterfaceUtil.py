@@ -1334,7 +1334,7 @@ class InterfaceUtil:
     @staticmethod
     def vpp_create_rdma_interface(
             node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
-            mode=u"auto"):
+            mode=u"auto", jumbo=True):
         """Create RDMA interface on VPP node.
 
         :param node: DUT node from topology.
@@ -1344,12 +1344,14 @@ class InterfaceUtil:
         :param rxq_size: Size of RXQ (0 = Default API; 512 = Default VPP).
         :param txq_size: Size of TXQ (0 = Default API; 512 = Default VPP).
         :param mode: RDMA interface mode - auto/ibv/dv.
+        :param jumbo: Whether jumbo frames are used.
         :type node: dict
         :type if_key: str
         :type num_rx_queues: int
         :type rxq_size: int
         :type txq_size: int
         :type mode: str
+        :type jumbo: bool
         :returns: Interface key (name) in topology file.
         :rtype: str
         :raises RuntimeError: If it is not possible to create RDMA interface on
@@ -1368,8 +1370,7 @@ class InterfaceUtil:
             rxq_size=rxq_size,
             txq_size=txq_size,
             mode=getattr(RdmaMode, f"RDMA_API_MODE_{mode.upper()}").value,
-            # Note: Set True for non-jumbo packets.
-            no_multi_seg=False,
+            no_multi_seg=not jumbo,
             max_pktlen=0,
         )
         err_msg = f"Failed to create RDMA interface on host {node[u'host']}"
