@@ -3,7 +3,7 @@
 
 - hosts: vpp_device
   remote_user: localadmin
-  become: yes
+  become: true
   become_user: root
   gather_facts: false
   pre_tasks:

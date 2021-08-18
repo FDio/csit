@@ -11,10 +11,10 @@
 - name: Remove Package - {{ package }}
   apt:
     name: "{{ package }}"
-    force: yes
-    purge: yes
+    force: true
+    purge: true
     state: "absent"
-  failed_when: no
+  failed_when: false
   when:
     - ansible_distribution == 'Ubuntu'
   tags:

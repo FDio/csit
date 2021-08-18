@@ -106,17 +106,17 @@
   tags:
     - vault-conf
 
-#- name: Conf - Copy Certificates And Keys
-#  copy:
-#    content: "{{ item.src }}"
-#    dest: "{{ item.dest }}"
-#    owner: "{{ vault_user }}"
-#    group: "{{ vault_group }}"
-#    mode: 0600
-#  no_log: true
-#  loop: "{{ vault_certificates | flatten(levels=1) }}"
-#  tags:
-#    - vault-conf
+# - name: Conf - Copy Certificates And Keys
+#   copy:
+#     content: "{{ item.src }}"
+#     dest: "{{ item.dest }}"
+#     owner: "{{ vault_user }}"
+#     group: "{{ vault_group }}"
+#     mode: 0600
+#   no_log: true
+#   loop: "{{ vault_certificates | flatten(levels=1) }}"
+#   tags:
+#     - vault-conf
 
 - name: Conf - System.d Script
   template:

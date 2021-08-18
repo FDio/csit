@@ -6,7 +6,7 @@
     hostname: "{{ inventory_cimc_hostname }}"
     username: "{{ inventory_cimc_username }}"
     password: "{{ inventory_cimc_password }}"
-    validate_certs: no
+    validate_certs: false
     content: |
       <!-- Configure PXE boot -->
       <configConfMo><inConfig>
@@ -21,7 +21,7 @@
     hostname: "{{ inventory_cimc_hostname }}"
     username: "{{ inventory_cimc_username }}"
     password: "{{ inventory_cimc_password }}"
-    validate_certs: no
+    validate_certs: false
     content: |
       <configConfMo><inConfig>
         <lsbootStorage dn="sys/rack-unit-1/boot-policy/storage-read-write" access="read-write" order="1" type="storage"/>
@@ -35,7 +35,7 @@
     hostname: "{{ inventory_cimc_hostname }}"
     username: "{{ inventory_cimc_username }}"
     password: "{{ inventory_cimc_password }}"
-    validate_certs: no
+    validate_certs: false
     content: |
       <configConfMo><inConfig>
         <computeRackUnit dn="sys/rack-unit-1" adminPower="up"/>
@@ -49,7 +49,7 @@
     hostname: "{{ inventory_cimc_hostname }}"
     username: "{{ inventory_cimc_username }}"
     password: "{{ inventory_cimc_password }}"
-    validate_certs: no
+    validate_certs: false
     content: |
       <configConfMo><inConfig>
         <computeRackUnit dn="sys/rack-unit-1" adminPower="down"/>
@@ -63,7 +63,7 @@
     hostname: "{{ inventory_cimc_hostname }}"
     username: "{{ inventory_cimc_username }}"
     password: "{{ inventory_cimc_password }}"
-    validate_certs: no
+    validate_certs: false
     content: |
       <!-- Power cycle server -->
       <configConfMo><inConfig>

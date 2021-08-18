@@ -27,7 +27,7 @@
     - "make install"
     - "modprobe -r iavf"
     - "modprobe iavf"
-  failed_when: no
+  failed_when: true
   when:
     - intel_driver_extracted
   tags:

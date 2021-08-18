@@ -22,4 +22,4 @@ modules:
       query_name: "jenkins.fd.io"
       query_type: "A"
       valid_rcodes:
-      - NOERROR
+        - NOERROR

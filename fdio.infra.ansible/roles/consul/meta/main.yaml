@@ -6,7 +6,7 @@
 # conf: ?
 # info: 1.0 - added role
 
-dependencies: [ ]
+dependencies: []
 galaxy_info:
   role_name: consul
   author: fd.io

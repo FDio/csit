@@ -3,11 +3,11 @@
 
 - name: Conf - csit-initialize-docker-tg.sh
   copy:
-   src: "files/csit-initialize-docker-tg.sh"
-   dest: "/usr/local/bin/csit-initialize-docker-tg.sh"
-   owner: "root"
-   group: "root"
-   mode: 0744
+    src: "files/csit-initialize-docker-tg.sh"
+    dest: "/usr/local/bin/csit-initialize-docker-tg.sh"
+    owner: "root"
+    group: "root"
+    mode: 0744
   when:
     - docker_tg is defined
   tags:
@@ -15,11 +15,11 @@
 
 - name: Conf - Start csit-initialize-docker-tg.service
   copy:
-   src: "files/csit-initialize-docker-tg.service"
-   dest: "/etc/systemd/system/"
-   owner: "root"
-   group: "root"
-   mode: 0644
+    src: "files/csit-initialize-docker-tg.service"
+    dest: "/etc/systemd/system/"
+    owner: "root"
+    group: "root"
+    mode: 0644
   notify:
     - "Start csit-initialize-docker-tg.service"
   when:

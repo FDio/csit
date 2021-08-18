@@ -3,7 +3,7 @@
 
 - name: Inst - Update Package Cache (APT)
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
@@ -20,16 +20,16 @@
 - name: Inst - Check Presence of Intel Ethernet 810 Series
   shell: "lspci -d 8086:1592"
   register: intel_e810_pcis
-  failed_when: no
-  changed_when: no
+  failed_when: false
+  changed_when: false
   tags:
     - intel-inst-drivers
 
 - name: Inst - Check Presence of Intel Ethernet 700 Series
   shell: "lspci -d 8086:1583; lspci -d 8086:1585; lspci -d 8086:1572"
   register: intel_700_pcis
-  failed_when: no
-  changed_when: no
+  failed_when: false
+  changed_when: false
   tags:
     - intel-inst-drivers
 
@@ -40,16 +40,16 @@
   tags:
     - intel-inst-drivers
 
-#- name: Inst - Driver Intel Ethernet 700 Series
-#  import_tasks: i40e.yaml
-#  when:
-#    - intel_700_pcis.stdout_lines | length > 0
-#  tags:
-#    - intel-inst-drivers
+# - name: Inst - Driver Intel Ethernet 700 Series
+#   import_tasks: i40e.yaml
+#   when:
+#     - intel_700_pcis.stdout_lines | length > 0
+#   tags:
+#     - intel-inst-drivers
 
-#- name: Inst - VF Driver Intel
-#  import_tasks: iavf.yaml
-#  when:
-#    - intel_700_pcis.stdout_lines | length > 0 or intel_e810_pcis.stdout_lines | length > 0
-#  tags:
-#    - intel-inst-drivers
+# - name: Inst - VF Driver Intel
+#   import_tasks: iavf.yaml
+#   when:
+#     - intel_700_pcis.stdout_lines | length > 0 or intel_e810_pcis.stdout_lines | length > 0
+#   tags:
+#     - intel-inst-drivers

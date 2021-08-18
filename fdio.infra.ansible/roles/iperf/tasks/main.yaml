@@ -3,7 +3,7 @@
 
 - name: Inst - Update Package Cache (APT)
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
@@ -40,7 +40,7 @@
 - name: Compile Release I
   command: "./configure"
   args:
-      chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
+    chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
   loop: "{{ iperf_version }}"
   tags:
     - iperf-inst
@@ -48,7 +48,7 @@
 - name: Compile Release II
   command: "make"
   args:
-      chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
+    chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
   loop: "{{ iperf_version }}"
   tags:
     - iperf-inst
@@ -56,7 +56,7 @@
 - name: Compile Release III
   command: "make install"
   args:
-      chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
+    chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
   loop: "{{ iperf_version }}"
   tags:
     - iperf-inst

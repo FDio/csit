@@ -3,7 +3,7 @@
 
 - name: Inst - Update Package Cache (APT)
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
@@ -20,8 +20,8 @@
 - name: Inst - Check Presence of Mellanox Hardware
   shell: "lspci | grep Mellanox | awk '{print $1}'"
   register: mellanox_pcis
-  failed_when: no
-  changed_when: no
+  failed_when: false
+  changed_when: false
   tags:
     - mellanox-inst
 

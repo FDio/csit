@@ -10,7 +10,7 @@ grub:
   isolcpus: "1-15,17-31,33-47,49-63"
   nmi_watchdog: "0"
   nohz_full: "off"
-  nosoftlockup: True
+  nosoftlockup: true
   numa_balancing: "disable"
   processor.max_cstate: "0"
   rcu_nocbs: "1-15,17-31,33-47,49-63"

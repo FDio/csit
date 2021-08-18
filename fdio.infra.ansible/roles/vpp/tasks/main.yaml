@@ -3,7 +3,7 @@
 
 - name: Inst - Update Package Cache (APT)
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
@@ -22,6 +22,6 @@
     src: "/dev/null"
     dest: "/etc/sysctl.d/80-vpp.conf"
     state: "link"
-  become: yes
+  become: true
   tags:
     - vpp-conf-sysctl

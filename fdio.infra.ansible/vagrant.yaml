@@ -3,7 +3,7 @@
 
 - hosts: vagrant
   remote_user: vagrant
-  become: yes
+  become: true
   become_user: root
   gather_facts: false
   pre_tasks:

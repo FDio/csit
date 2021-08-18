@@ -13,7 +13,7 @@ grub:
   mce: "off"
   nmi_watchdog: "0"
   nohz_full: "1-5"
-  nosoftlockup: True
+  nosoftlockup: true
   numa_balancing: "disable"
   processor.max_cstate: "1"
   rcu_nocbs: "1-5"
@@ -25,5 +25,5 @@ sysctl:
     nr_hugepages: 8192
     max_map_count: 20000
 
-inventory_ipmi_hostname: '10.30.55.12'
+inventory_ipmi_hostname: "10.30.55.12"
 cpu_microarchitecture: "denverton"

@@ -27,7 +27,7 @@
     - "make install"
     - "modprobe -r ice"
     - "modprobe ice"
-  failed_when: no
+  failed_when: false
   when:
     - intel_driver_extracted
   tags:
@@ -64,8 +64,8 @@
   copy:
     src: "{{ intel_ddp_profile_dir }}/ice_comms-{{ intel_ddp_version }}.pkg"
     dest: "/lib/firmware/updates/intel/ice/ddp/ice-{{ intel_ddp_version }}.pkg"
-    remote_src: yes
-    follow: yes
+    remote_src: true
+    follow: true
   tags:
     - intel-inst
 

@@ -26,7 +26,7 @@
     name: "{{ inventory_ipmi_hostname }}"
     user: "{{ inventory_ipmi_username }}"
     password: "{{ inventory_ipmi_password }}"
-    state: on
+    state: true
   delegate_to: localhost
   tags:
     - power-up
@@ -36,7 +36,7 @@
     name: "{{ inventory_ipmi_hostname }}"
     user: "{{ inventory_ipmi_username }}"
     password: "{{ inventory_ipmi_password }}"
-    state: off
+    state: false
   delegate_to: localhost
   tags:
     - power-down

@@ -5,7 +5,7 @@
   get_url:
     url: "{{ trex_url }}/v{{ item }}.tar.gz"
     dest: "{{ trex_target_dir }}/trex-core-{{ item }}.tar.gz"
-    validate_certs: False
+    validate_certs: false
     mode: 0644
   register: trex_downloaded
 
@@ -33,23 +33,23 @@
 - name: Compile Release {{ item }} Part I
   command: "./b configure"
   args:
-      chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
+    chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
   when: trex_extracted.changed
 
 - name: Compile Release {{ item }} Part II
   command: "./b build"
   args:
-      chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
+    chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
   when: trex_extracted.changed
 
 - name: Compile Release {{ item }} Part III
   command: "make -j 16"
   args:
-      chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
+    chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
   when: trex_extracted.changed
 
 - name: Compile Release {{ item }} Part IV
   command: "make install"
   args:
-      chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
+    chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
   when: trex_extracted.changed

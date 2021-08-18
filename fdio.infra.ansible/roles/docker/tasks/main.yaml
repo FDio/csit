@@ -77,7 +77,7 @@
   user:
     name: "{{ ansible_user }}"
     groups: "docker"
-    append: True
+    append: true
   tags:
     - docker-conf-user
 

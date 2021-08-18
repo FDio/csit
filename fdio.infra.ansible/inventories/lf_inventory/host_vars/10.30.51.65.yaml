@@ -63,6 +63,6 @@ consul_package_version: "1.5.2+dfsg2-14"
 
 # Docker daemon settings.
 docker_daemon:
-  dns: [ "172.17.0.1" ]
+  dns: ["172.17.0.1"]
   dns-opts: []
-  dns-search: [ "{{ansible_hostname}}" ]
+  dns-search: ["{{ansible_hostname}}"]

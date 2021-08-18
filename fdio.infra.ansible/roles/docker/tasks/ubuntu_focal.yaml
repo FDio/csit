@@ -10,7 +10,7 @@
       - "software-properties-common"
     state: "present"
     cache_valid_time: 3600
-    install_recommends: False
+    install_recommends: false
   tags:
     - docker-inst-dependencies
 
@@ -25,6 +25,6 @@
   apt_repository:
     repo: "{{ docker_apt_repository }}"
     state: "{{ docker_apt_repository_state }}"
-    update_cache: yes
+    update_cache: true
   tags:
     - docker-conf-apt

@@ -24,13 +24,13 @@
     tags:
       - remove-docker-images-dangling
 
-  # TODO: Disabled until all images will be in registry
-  #- name: Clean Images - Prune Docker Images
-  #  cron:
-  #    name: "Prune docker images"
-  #    minute: "10"
-  #    hour: "6"
-  #    weekday: 7
-  #    job: "/usr/bin/docker image prune --all --force"
-  #  tags:
-  #    - prune-docker-images
+# TODO: Disabled until all images will be in registry
+# - name: Clean Images - Prune Docker Images
+#   cron:
+#     name: "Prune docker images"
+#     minute: "10"
+#     hour: "6"
+#     weekday: 7
+#     job: "/usr/bin/docker image prune --all --force"
+#   tags:
+#     - prune-docker-images

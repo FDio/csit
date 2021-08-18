@@ -3,7 +3,7 @@
 
 - hosts: tg
   remote_user: testuser
-  become: yes
+  become: true
   become_user: root
   gather_facts: false
   pre_tasks:
@@ -45,7 +45,7 @@
 
 - hosts: tg_aws
   remote_user: testuser
-  become: yes
+  become: true
   become_user: root
   gather_facts: false
   pre_tasks:
@@ -80,7 +80,7 @@
       tags: calibration
 
 - hosts: tg_azure
-  become: yes
+  become: true
   become_user: root
   gather_facts: false
   pre_tasks:

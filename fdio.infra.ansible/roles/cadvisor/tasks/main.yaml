@@ -3,7 +3,7 @@
 
 - name: Inst - Update Package Cache (APT)
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
@@ -23,12 +23,12 @@
     image: "{{ image }}"
     state: "started"
     restart_policy: "unless-stopped"
-    detach: yes
+    detach: true
     devices:
-     - "/dev/kmsg"
+      - "/dev/kmsg"
     ports:
-     - "8080:8080"
-    privileged: yes
+      - "8080:8080"
+    privileged: true
     volumes:
       - "/:/rootfs:ro"
       - "/var/run:/var/run:ro"

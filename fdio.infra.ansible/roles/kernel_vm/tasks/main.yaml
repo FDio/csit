@@ -5,8 +5,8 @@
   copy:
     src: "/etc/initramfs-tools/modules"
     dest: "/tmp/initramfs_modules.bkp"
-    remote_src: yes
-  ignore_errors: yes
+    remote_src: true
+  ignore_errors: true
   register: __initramfs_modules_backuped
   tags:
     - kernel-inst-image
@@ -15,8 +15,8 @@
   copy:
     src: "/etc/initramfs-tools/conf.d/resume"
     dest: "/tmp/initramfs-resume.bkp"
-    remote_src: yes
-  ignore_errors: yes
+    remote_src: true
+  ignore_errors: true
   register: __initramfs_resume_backuped
   tags:
     - kernel-inst-image
@@ -51,7 +51,7 @@
   copy:
     src: "/boot/vmlinuz-{{ ansible_kernel }}"
     dest: "/opt/boot/vmlinuz-{{ ansible_kernel }}"
-    remote_src: yes
+    remote_src: true
   tags:
     - kernel-inst-image
 
@@ -59,8 +59,8 @@
   copy:
     src: "/tmp/initramfs_modules.bkp"
     dest: "/etc/initramfs-tools/modules"
-    remote_src: yes
-  ignore_errors: yes
+    remote_src: true
+  ignore_errors: true
   when: __initramfs_modules_backuped
   tags:
     - kernel-inst-image
@@ -77,8 +77,8 @@
   copy:
     src: "/tmp/initramfs-resume.bkp"
     dest: "/etc/initramfs-tools/conf.d/resume"
-    remote_src: yes
-  ignore_errors: yes
+    remote_src: true
+  ignore_errors: true
   when: __initramfs_resume_backuped
   tags:
     - kernel-inst-image

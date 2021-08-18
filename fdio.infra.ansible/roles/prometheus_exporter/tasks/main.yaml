@@ -3,7 +3,7 @@
 
 - name: Inst - Update Package Cache (APT)
   apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
   when:
     - ansible_distribution|lower == 'ubuntu'
@@ -23,10 +23,10 @@
     image: "{{ ne_image }}"
     state: "started"
     restart_policy: "unless-stopped"
-    detach: yes
+    detach: true
     ports:
-     - "9100:9100"
-    privileged: yes
+      - "9100:9100"
+    privileged: true
     command:
       - "--path.procfs=/host/proc"
       - "--path.rootfs=/rootfs"
@@ -49,8 +49,8 @@
 
 - name: Conf - Prometheus Blackbox Exporter
   copy:
-   src: "files/blackbox.yml"
-   dest: "/etc/prometheus/blackbox.yml"
+    src: "files/blackbox.yml"
+    dest: "/etc/prometheus/blackbox.yml"
   tags:
     - prometheus-conf-blackbox-exporter
 
@@ -60,10 +60,10 @@
     image: "{{ be_image }}"
     state: "started"
     restart_policy: "unless-stopped"
-    detach: yes
+    detach: true
     ports:
-     - "9115:9115"
-    privileged: yes
+      - "9115:9115"
+    privileged: true
     command:
       - "--config.file=/config/blackbox.yml"
     volumes:

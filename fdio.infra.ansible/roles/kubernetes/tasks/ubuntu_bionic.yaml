@@ -9,7 +9,7 @@
       - 'software-properties-common'
     state: 'present'
     cache_valid_time: 3600
-    install_recommends: False
+    install_recommends: false
   tags: install-kubernetes
 
 - name: Kubernetes repository - Add an Apt signing key
@@ -22,7 +22,7 @@
   apt_repository:
     repo: '{{ kubernetes_apt_repository }}'
     state: '{{ kubernetes_apt_repository_state }}'
-    update_cache: yes
+    update_cache: true
   tags: install-kubernetes
 
 - name: Kubernetes - Install
@@ -33,5 +33,5 @@
       - 'kubectl={{ kubernetes_version }}'
       - 'kubelet={{ kubernetes_version }}'
     state: '{{ kubernetes_apt_package_state }}'
-    force: True
+    force: true
   tags: install-kubernetes

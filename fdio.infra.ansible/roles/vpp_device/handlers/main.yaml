@@ -3,7 +3,7 @@
 
 - name: Start csit-initialize-vfs.service
   systemd:
-    enabled: yes
+    enabled: true
     state: started
     name: csit-initialize-vfs.service
   tags:

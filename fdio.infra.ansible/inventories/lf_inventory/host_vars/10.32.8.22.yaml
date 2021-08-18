@@ -13,7 +13,7 @@ grub:
   mce: "off"
   nmi_watchdog: "0"
   nohz_full: "1-23,25-47,49-71,73-95"
-  nosoftlockup: True
+  nosoftlockup: true
   numa_balancing: "disable"
   processor.max_cstate: "1"
   rcu_nocbs: "1-23,25-47,49-71,73-95"
@@ -25,5 +25,5 @@ sysctl:
     nr_hugepages: 65536
     max_map_count: 20000
 
-inventory_ipmi_hostname: '10.30.55.22'
+inventory_ipmi_hostname: "10.30.55.22"
 cpu_microarchitecture: "cascadelake"
