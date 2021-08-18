@@ -22,6 +22,30 @@
       "revId": "e6720b113f5c59b3b56da128a9930209416f3711",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0595521_495a6acd",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-18T08:21:50Z",
+      "side": 1,
+      "message": "It says nothing about current FW. It just says that T-Rex with 2.88 and 6.01 is yielding wrong results. Which is always true",
+      "parentUuid": "adceb2b1_6f432015",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 100,
+        "endChar": 17
+      },
+      "revId": "e6720b113f5c59b3b56da128a9930209416f3711",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
