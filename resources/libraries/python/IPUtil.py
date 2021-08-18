@@ -709,28 +709,6 @@ class IPUtil:
         """
         count = kwargs.get(u"count", 1)
 
-        if count > 100:
-            gateway = kwargs.get(u"gateway", '')
-            interface = kwargs.get(u"interface", '')
-            vrf = kwargs.get(u"vrf", None)
-            multipath = kwargs.get(u"multipath", False)
-
-            with VatTerminal(node, json_param=False) as vat:
-
-                vat.vat_terminal_exec_cmd_from_template(
-                    u"vpp_route_add.vat",
-                    network=network,
-                    prefix_length=prefix_len,
-                    via=f"via {gateway}" if gateway else u"",
-                    sw_if_index=f"sw_if_index "
-                    f"{InterfaceUtil.get_interface_index(node, interface)}"
-                    if interface else u"",
-                    vrf=f"vrf {vrf}" if vrf else u"",
-                    count=f"count {count}" if count else u"",
-                    multipath=u"multipath" if multipath else u""
-                )
-            return
-
         net_addr = ip_address(network)
         cmd = u"ip_route_add_del"
         args = dict(
@@ -739,6 +717,20 @@ class IPUtil:
             route=None
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
+
+        if count > 100:
+            with tempfile.NamedTemporaryFile(mode=u"wt") as vat2_file:
+                for i in range(kwargs.get(u"count", 1)):
+                    args[u"route"] = IPUtil.compose_vpp_route_structure(
+                        node, net_addr + i, prefix_len, **kwargs
+                    )
+                    #history = bool(not 1 < i < kwargs.get(u"count", 1))
+                    print(json.dumps(args), file=vat2_file)
+                vat2_file.flush()
+                rc, stdout, stderr = execute_vat2_script(
+                    cmd, vat2_file.name, node
+                )
+            return
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(kwargs.get(u"count", 1)):
