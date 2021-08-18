@@ -22,6 +22,30 @@
       "revId": "4a3973e9a4eb9ef59e8dd43d83b949db75983e1a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f792758_d067d53d",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-18T10:55:54Z",
+      "side": 1,
+      "message": "Docstrings improved.",
+      "parentUuid": "8519850c_3fd8b88e",
+      "range": {
+        "startLine": 138,
+        "startChar": 7,
+        "endLine": 138,
+        "endChar": 62
+      },
+      "revId": "4a3973e9a4eb9ef59e8dd43d83b949db75983e1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
