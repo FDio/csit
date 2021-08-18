@@ -70,6 +70,30 @@
       "revId": "e6720b113f5c59b3b56da128a9930209416f3711",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74ee68ab_24c9504d",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-18T09:17:53Z",
+      "side": 1,
+      "message": "CSIT-1790 is still not closed. No point of discussion here",
+      "parentUuid": "18290859_6c8aae1b",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 100,
+        "endChar": 17
+      },
+      "revId": "e6720b113f5c59b3b56da128a9930209416f3711",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }

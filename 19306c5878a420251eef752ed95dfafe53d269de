@@ -70,6 +70,30 @@
       "revId": "19306c5878a420251eef752ed95dfafe53d269de",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82e43594_2b595506",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-18T09:17:53Z",
+      "side": 0,
+      "message": "Wrong link [3]. Also it is not clear if VPP 2101.1 has same issue (as there was not an huge refactor of avf code). If you will find that true, you can add that later.",
+      "parentUuid": "4f3c1957_e88b811d",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 17
+      },
+      "revId": "19306c5878a420251eef752ed95dfafe53d269de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
