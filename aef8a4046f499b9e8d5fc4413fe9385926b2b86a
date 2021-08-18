@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "840211e9_a610040f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 24
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-18T10:57:34Z",
+      "side": 1,
+      "message": "Example: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/3403/log.html.gz#s1-s1-s1-s2-s1-t1-k3-k2",
+      "range": {
+        "startLine": 19,
+        "startChar": 34,
+        "endLine": 19,
+        "endChar": 48
+      },
+      "revId": "aef8a4046f499b9e8d5fc4413fe9385926b2b86a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
