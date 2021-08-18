@@ -45,6 +45,30 @@
       "revId": "aef8a4046f499b9e8d5fc4413fe9385926b2b86a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "487a7e7e_401f55de",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-18T12:40:07Z",
+      "side": 1,
+      "message": "Not only formatted output, but also next() (this gives Ipv?Network, address_increment gives IPv?Address).\nAnyway, docstring improved again.",
+      "parentUuid": "83ab703d_3db36b90",
+      "range": {
+        "startLine": 104,
+        "startChar": 44,
+        "endLine": 105,
+        "endChar": 39
+      },
+      "revId": "aef8a4046f499b9e8d5fc4413fe9385926b2b86a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
