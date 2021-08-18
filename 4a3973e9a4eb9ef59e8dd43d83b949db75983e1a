@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8519850c_3fd8b88e",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-08-18T09:16:23Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of this? Is this for IP addresses of networks?\n\nFrom how it\u0027s used below, I\u0027d say this is for network addresses. If that\u0027s the case, let\u0027s align the docstring with that - let\u0027s make sure that we describe the difference between this and NetworkIncrement.",
+      "range": {
+        "startLine": 138,
+        "startChar": 7,
+        "endLine": 138,
+        "endChar": 62
+      },
+      "revId": "4a3973e9a4eb9ef59e8dd43d83b949db75983e1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
