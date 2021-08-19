@@ -122,7 +122,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 STLVmWrFlowVar(
                     fv_name=u"src",
                     pkt_offset=u"IP.src"
-              ),
+                ),
                 STLVmFixIpv4(
                     offset=u"IP"
                 )

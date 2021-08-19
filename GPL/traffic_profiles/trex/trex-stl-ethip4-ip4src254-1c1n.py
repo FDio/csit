@@ -36,8 +36,6 @@ Stream profile:
    - Destination IP address range: 10.10.10.1
 """
 
-from re import finditer
-
 from trex.stl.api import *
 from profile_trex_stateless_base_class import TrafficStreamsBaseClass
 
