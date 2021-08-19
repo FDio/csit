@@ -94,23 +94,31 @@ class IpDscp(IntEnum):
 class NetworkIncrement(ObjIncrement):
     """
     An iterator object which accepts an IPv4Network or IPv6Network and
-    returns a new network incremented by the increment each time it's
-    iterated or when inc_fmt is called. The increment may be positive,
-    negative or 0 (in which case the network is always the same).
+    returns a new network, its address part incremented by the increment
+    number of network sizes, each time it is iterated or when inc_fmt is called.
+    The increment may be positive, negative or 0
+    (in which case the network is always the same).
+
+    Both initial and subsequent IP address can have host bits set,
+    check the initial value before creating instance if needed.
+    String formatting is configurable via constructor argument.
     """
-    def __init__(self, initial_value, increment):
+    def __init__(self, initial_value, increment, format=u"dash"):
         """
-        :param initial_value: The initial network.
+        :param initial_value: The initial network. Can have host bits set.
         :param increment: The current network will be incremented by this
             amount in each iteration/var_str call.
+        :param format: Type of formatting to use, "dash" or "slash".
         :type initial_value:
             Union[ipaddress.IPv4Network, ipaddress.IPv6Network].
         :type increment: int
+        :type format: str
         """
         super().__init__(initial_value, increment)
         self._prefix_len = self._value.prefixlen
         host_len = self._value.max_prefixlen - self._prefix_len
         self._net_increment = self._increment * (1 << host_len)
+        self._format = str(format).lower()
 
     def _incr(self):
         """
@@ -120,17 +128,26 @@ class NetworkIncrement(ObjIncrement):
         """
         self._value = ip_network(
             f"{self._value.network_address + self._net_increment}"
-            f"/{self._prefix_len}"
+            f"/{self._prefix_len}", strict=False
         )
 
     def _str_fmt(self):
         """
-        The string representation of the network is
-        '<ip_address_start> - <ip_address_stop>' for the purposes of the
-        'ipsec policy add spd' cli.
+        The string representation of the network depend on format.
+        Dash format is '<ip_address_start> - <ip_address_stop>',
+        useful for 'ipsec policy add spd' cli.
+        Slash format is '<ip_address_start>/<prefix_length>'.
+
+        :returns: Current value converted to string according to format.
+        :rtype: str
+        :raises RuntimeError: If the format is not supported.
         """
-        return f"{self._value.network_address} - " \
-               f"{self._value.broadcast_address}"
+        if self._format == u"dash":
+            return f"{self._value.network_address} - " \
+                   f"{self._value.broadcast_address}"
+        # More formats will be added in subsequent changes.
+        else:
+            raise RuntimeError(f"Unsupported format {self._format}")
 
 
 class IPUtil:
