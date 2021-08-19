@@ -99,6 +99,7 @@ List of known issues in |csit-release| for VPP performance tests:
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  3 | `CSIT-1790                              | Broken TRex latency measurements with TRex v2.88, DPDK 21.02 and FVL FW 6.01.                             |
 |    | <https://jira.fd.io/browse/CSIT-1790>`_ | High latency O(5msec) for all VPP and testpmd/l3fwd test cases for FVL NICs with FW 6.01.                 |
+|    |                                         | This issue does not affect the reported results since we upgraded firmware version on TG NICs.            |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  4 | `CSIT-1789                              | AVF driver does not perform RSS in a deterministic way.                                                   |
 |    | <https://jira.fd.io/browse/CSIT-1789>`_ | This increases standard deviation of tests with small number of flows (mainly ipsec).                     |
