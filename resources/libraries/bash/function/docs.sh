@@ -106,14 +106,29 @@ function generate_report () {
     # Variable read:
     # - ${TOOLS_DIR} - Path to existing resources subdirectory "tools".
     # - ${GERRIT_BRANCH} - Gerrit branch used for release tagging.
+    # - ${CSIT_REPORT_FILENAME} - Source filename, optional.
+    # - ${CSIT_REPORT_DIRECTORYNAME} - Source directory, optional.
+    # - ${CSIT_REPORT_SPECIFICATION} - Specification to use, optional.
+    # - ${RELEASE} - Alternative to GERRIT_BRANCH for overriding release tag.
+    # - ${WEEK} - Optional override for week number.
     # Variables set:
     # - DOCS_EXIT_STATUS - Exit status of report generation.
+    # Variables exported:
+    # - PYTHONPATH - Added a dir, never removed here.
     # Functions called:
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
     pushd "${TOOLS_DIR}"/presentation || die "Pushd failed!"
+
+    filename="${CSIT_REPORT_FILENAME:-}"
+    directoryname="${CSIT_REPORT_DIRECTORYNAME:-}"
+    spec="${CSIT_REPORT_SPECIFICATION:-report}"
+    branch="${GERRIT_BRANCH:-master}"
+    release_tag="${RELEASE:-$branch}"
+    week_number=$(date "+%V")
+    week_number="${WEEK:-$week_number}"
 
     # Set default values in config array.
     typeset -A CFG
@@ -127,11 +142,17 @@ function generate_report () {
     export PYTHONPATH=`pwd`:`pwd`/../../../ || die "Export failed!"
 
     all_options=("pal.py")
-    all_options+=("--specification" "specifications/report")
-    all_options+=("--release" "${GERRIT_BRANCH:-master}")
-    all_options+=("--week" $(date "+%V"))
+    all_options+=("--specification" "specifications/${spec}")
+    all_options+=("--release" "${release_tag}")
+    all_options+=("--week" "${week_number}")
     all_options+=("--logging" "INFO")
     all_options+=("--force")
+    if [[ ${filename} != "" ]]; then
+        all_options+=("--input-file" "${filename}")
+    fi
+    if [[ ${directoryname} != "" ]]; then
+        all_options+=("--input-directory" "${directoryname}")
+    fi
 
     set +e
     python "${all_options[@]}"
@@ -142,33 +163,30 @@ function generate_report () {
 
 function generate_report_local () {
 
-    # Generate report from local content.
+    # Sudo-install apt dependencies, then generate report from local content.
+    #
+    # Also, patch the LaTeX installation to allow more memory.
     #
     # Variable read:
     # - ${TOOLS_DIR} - Path to existing resources subdirectory "tools".
-    # - ${CSIT_REPORT_FILENAME} - Source filename.
-    # - ${CSIT_REPORT_DIRECTORYNAME} - Source directory.
+    # - ${CSIT_REPORT_FILENAME} - Source filename, optional.
+    # - ${CSIT_REPORT_DIRECTORYNAME} - Source directory, optional.
     # - ${CSIT_REPORT_INSTALL_DEPENDENCIES} - Whether to install dependencies.
     # - ${CSIT_REPORT_INSTALL_LATEX} - Whether to install latex.
+    # - ${CSIT_REPORT_SPECIFICATION} - Specification to use, optional.
+    # - ${RELEASE} - Alternative to GERRIT_BRANCH for overriding release tag.
+    # - ${WEEK} - Optional override for week number.
     # Variables set:
     # - DOCS_EXIT_STATUS - Exit status of report generation.
+    # Variables exported:
+    # - PYTHONPATH - Added a dir, never removed here.
     # Functions called:
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
-    pushd "${TOOLS_DIR}"/presentation || die "Pushd failed!"
-
-    filename="${CSIT_REPORT_FILENAME-}"
-    directoryname="${CSIT_REPORT_DIRECTORYNAME-}"
     install_dependencies="${CSIT_REPORT_INSTALL_DEPENDENCIES:-1}"
     install_latex="${CSIT_REPORT_INSTALL_LATEX:-0}"
-
-    # Set default values in config array.
-    typeset -A CFG
-    typeset -A DIR
-
-    DIR[WORKING]="_tmp"
 
     # Install system dependencies.
     if [[ ${install_dependencies} -eq 1 ]] ;
@@ -190,29 +208,7 @@ function generate_report_local () {
         }
     fi
 
-    # Create working directories.
-    mkdir "${DIR[WORKING]}" || die "Mkdir failed!"
-
-    export PYTHONPATH=`pwd`:`pwd`/../../../ || die "Export failed!"
-
-    all_options=("pal.py")
-    all_options+=("--specification" "specifications/report_local")
-    all_options+=("--release" "${RELEASE:-master}")
-    all_options+=("--week" "${WEEK:-1}")
-    all_options+=("--logging" "INFO")
-    all_options+=("--force")
-    if [[ ${filename} != "" ]]; then
-        all_options+=("--input-file" "${filename}")
-    fi
-    if [[ ${directoryname} != "" ]]; then
-        all_options+=("--input-directory" "${directoryname}")
-    fi
-
-    set +e
-    python "${all_options[@]}"
-    DOCS_EXIT_STATUS="$?"
-    set -e
-
+    generate_report
 }
 
 function generate_trending () {
