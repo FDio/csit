@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "70ca7530_74ab929c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-08-19T07:06:42Z",
+      "side": 1,
+      "message": "After reading Peter\u0027s comment I think we should explain why we\u0027re using the new factory function and not using NetworkIncrement.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 45
+      },
+      "revId": "4d3fab55bff15698066f150527a7b4458c74ea33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "53f1d91b_c1d0be63",
         "filename": "resources/libraries/python/IPUtil.py",
         "patchSetId": 26
