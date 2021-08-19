@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "25cb5254_cd3ae74b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-19T11:38:41Z",
+      "side": 1,
+      "message": "The current NetworkIncrement lacks the formatting options, but I added a basic support in [0]. So from patch set 28 on this uses NetworkIncrement.\n\n[0] https://gerrit.fd.io/r/c/csit/+/33526",
+      "parentUuid": "2c1dd255_0c0c0b0e",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 45
+      },
+      "revId": "4d3fab55bff15698066f150527a7b4458c74ea33",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53f1d91b_c1d0be63",
         "filename": "resources/libraries/python/IPUtil.py",
         "patchSetId": 26
