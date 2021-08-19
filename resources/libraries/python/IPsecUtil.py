@@ -813,12 +813,12 @@ class IPsecUtil:
             # create a NetworkIncrement representation of the network,
             # then skip the matching network
             no_match_local_addr_range = NetworkIncrement(
-                ip_network(local_addr_range), 1
+                ip_network(local_addr_range)
             )
             next(no_match_local_addr_range)
 
             no_match_remote_addr_range = NetworkIncrement(
-                ip_network(remote_addr_range), 1
+                ip_network(remote_addr_range)
             )
             next(no_match_remote_addr_range)
 
@@ -834,12 +834,12 @@ class IPsecUtil:
                 # reset the networks so that we're using a unified config
                 # the address ranges are switched
                 no_match_remote_addr_range = NetworkIncrement(
-                    ip_network(local_addr_range), 1
+                    ip_network(local_addr_range)
                 )
                 next(no_match_remote_addr_range)
 
                 no_match_local_addr_range = NetworkIncrement(
-                    ip_network(remote_addr_range), 1
+                    ip_network(remote_addr_range)
                 )
                 next(no_match_local_addr_range)
                 # non-matching entries direction 2
@@ -2159,7 +2159,7 @@ class IPsecUtil:
             nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=False,
             sa_id=ObjIncrement(sa_id_1, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip2), 1)
+            raddr_range=NetworkIncrement(ip_network(raddr_ip2))
         )
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2170,7 +2170,7 @@ class IPsecUtil:
             nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=True,
             sa_id=ObjIncrement(sa_id_2, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip1), 1)
+            raddr_range=NetworkIncrement(ip_network(raddr_ip1))
         )
 
         if u"DUT2" in nodes.keys():
@@ -2199,7 +2199,7 @@ class IPsecUtil:
                 nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=True,
                 sa_id=ObjIncrement(sa_id_1, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip2), 1)
+                raddr_range=NetworkIncrement(ip_network(raddr_ip2))
             )
 
             IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2210,7 +2210,7 @@ class IPsecUtil:
                 nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=False,
                 sa_id=ObjIncrement(sa_id_2, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip1), 1)
+                raddr_range=NetworkIncrement(ip_network(raddr_ip1))
             )
 
     @staticmethod
