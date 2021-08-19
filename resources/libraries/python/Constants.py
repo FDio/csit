@@ -275,7 +275,7 @@ class Constants:
     SOCKSTAT_PATH = u"/run/vpp/stats.sock"
 
     # Global "kill switch" for CRC checking during runtime.
-    FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
+    FAIL_ON_CRC_MISMATCH = False  # get_pessimistic_bool_from_env(
         u"FAIL_ON_CRC_MISMATCH"
     )
 
