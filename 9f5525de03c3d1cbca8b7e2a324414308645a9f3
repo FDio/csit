@@ -45,6 +45,29 @@
       "revId": "9f5525de03c3d1cbca8b7e2a324414308645a9f3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96eb3a54_3caf12fc",
+        "filename": "tox.ini",
+        "patchSetId": 15
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-19T19:26:38Z",
+      "side": 1,
+      "message": "Not including \"### tests\" in device job specs makes the check fail (some bash error inside \"set +x\") before checking subsequent job specs.\nWhen I added that line (value 49 as reported by device test output), it failed with \"declared: 49 / present: 54\".",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 14
+      },
+      "revId": "9f5525de03c3d1cbca8b7e2a324414308645a9f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
