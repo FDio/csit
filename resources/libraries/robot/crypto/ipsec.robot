@@ -69,7 +69,7 @@
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${tg_if2_ip4} | ${TG_pf2_mac}[0]
 | | Vpp Route Add
 | | ... | ${dut1} | ${tg_host_ip4} | ${ip4_plen} | gateway=${tg_if1_ip4}
-| | ... | interface=${DUT1_${int}1}[0]
+| | ... | interface=${DUT1_${int}1}[0] | strict=${False}
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if1_ip4}
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if1_ip4}
 | | Set Test Variable | ${tg_src_ip} | ${tg_host_ip4}
