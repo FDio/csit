@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | DOT1Q | IP4BASE | DRV_AVF
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | DOT1Q | IP4BASE
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_AVF
 | ... | avf-dot1qip4-l2bdbasemaclrn
 |
 | Suite Setup | Setup suite topology interfaces | scapy
