@@ -13,7 +13,9 @@
 # limitations under the License.
 
 """Common IP utilities library."""
+
 import re
+import os
 
 from enum import IntEnum
 
@@ -26,7 +28,7 @@ from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.Namespaces import Namespaces
 
 
@@ -108,7 +110,7 @@ class NetworkIncrement(ObjIncrement):
         :param initial_value: The initial network. Can have host bits set.
         :param increment: The current network will be incremented by this
             amount in each iteration/var_str call.
-        :param format: Type of formatting to use, currently only "dash".
+        :param format: Type of formatting to use, "dash" or "slash" or "addr".
         :type initial_value: Union[ipaddress.IPv4Network, ipaddress.IPv6Network]
         :type increment: int
         :type format: str
@@ -144,7 +146,10 @@ class NetworkIncrement(ObjIncrement):
         if self._format == u"dash":
             return f"{self._value.network_address} - " \
                    f"{self._value.broadcast_address}"
-        # More formats will be added in subsequent changes.
+        elif self._format == u"slash":
+            return f"{self._value.network_address}/{self._prefix_len}"
+        elif self._format == u"addr":
+            return f"{self._value.network_address}"
         else:
             raise RuntimeError(f"Unsupported format {self._format}")
 
@@ -644,8 +649,8 @@ class IPUtil:
             local: The route is local with same prefix (increment is 1).
                 If None, then is not used. (bool)
             lookup_vrf: VRF table ID for lookup. (int)
-            multipath: Enable multipath routing. (bool)
             weight: Weight value for unequal cost multipath routing. (int)
+            (Multipath value enters at higher level.)
 
         :type node: dict
         :type network: str
@@ -701,7 +706,7 @@ class IPUtil:
 
     @staticmethod
     def vpp_route_add(node, network, prefix_len, **kwargs):
-        """Add route to the VPP node.
+        """Add route to the VPP node. Prefer multipath behavior.
 
         :param node: VPP node.
         :param network: Route destination network address.
@@ -712,56 +717,82 @@ class IPUtil:
             interface: Route interface. (str)
             vrf: VRF table ID. (int)
             count: number of IP addresses to add starting from network IP (int)
-            local: The route is local with same prefix (increment is 1).
+            local: The route is local with same prefix (increment is 1 network)
                 If None, then is not used. (bool)
             lookup_vrf: VRF table ID for lookup. (int)
-            multipath: Enable multipath routing. (bool)
+            multipath: Enable multipath routing. (bool) Default: True.
             weight: Weight value for unequal cost multipath routing. (int)
 
         :type node: dict
         :type network: str
         :type prefix_len: int
         :type kwargs: dict
+        :raises RuntimeError: If the argument combination is not supported.
         """
         count = kwargs.get(u"count", 1)
 
         if count > 100:
-            gateway = kwargs.get(u"gateway", '')
-            interface = kwargs.get(u"interface", '')
-            vrf = kwargs.get(u"vrf", None)
-            multipath = kwargs.get(u"multipath", False)
-
-            with VatTerminal(node, json_param=False) as vat:
-
-                vat.vat_terminal_exec_cmd_from_template(
-                    u"vpp_route_add.vat",
-                    network=network,
-                    prefix_length=prefix_len,
-                    via=f"via {gateway}" if gateway else u"",
-                    sw_if_index=f"sw_if_index "
-                    f"{InterfaceUtil.get_interface_index(node, interface)}"
-                    if interface else u"",
-                    vrf=f"vrf {vrf}" if vrf else u"",
-                    count=f"count {count}" if count else u"",
-                    multipath=u"multipath" if multipath else u""
+            if not kwargs.get(u"multipath", True):
+                raise RuntimeError(u"VAT exec supports only multipath behavior")
+            gateway = kwargs.get(u"gateway", u"")
+            interface = kwargs.get(u"interface", u"")
+            local = kwargs.get(u"local", u"")
+            if interface:
+                interface = InterfaceUtil.vpp_get_interface_name(
+                    node, InterfaceUtil.get_interface_index(
+                        node, interface
+                    )
                 )
+            vrf = kwargs.get(u"vrf", None)
+            trailers = list()
+            if vrf:
+                trailers.append(f"table {vrf}")
+            if gateway:
+                trailers.append(f"via {gateway}")
+                if interface:
+                    trailers.append(interface)
+            elif interface:
+                trailers.append(f"via {interface}")
+            if local:
+                if gateway or interface:
+                    raise RuntimeError(u"Unsupported combination with local.")
+                trailers.append(u"local")
+            trailer = u" ".join(trailers)
+            command_parts = [u"exec ip route add", u"network goes here"]
+            if trailer:
+                command_parts.append(trailer)
+            netiter = NetworkIncrement(
+                ip_network(f"{network}/{prefix_len}"), format=u"slash"
+            )
+            tmp_filename = u"/tmp/routes.config"
+            with open(tmp_filename, u"w") as tmp_file:
+                for _ in range(count):
+                    command_parts[1] = netiter.inc_fmt()
+                    print(u" ".join(command_parts), file=tmp_file)
+            VatExecutor().execute_script(
+                tmp_filename, node, timeout=1800, json_out=False,
+                copy_on_execute=True, history=False
+            )
+            os.remove(tmp_filename)
             return
 
-        net_addr = ip_address(network)
         cmd = u"ip_route_add_del"
         args = dict(
             is_add=True,
-            is_multipath=kwargs.get(u"multipath", False),
+            is_multipath=kwargs.get(u"multipath", True),
             route=None
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
 
+        netiter = NetworkIncrement(
+            ip_network(f"{network}/{prefix_len}"), format=u"addr"
+        )
         with PapiSocketExecutor(node) as papi_exec:
-            for i in range(kwargs.get(u"count", 1)):
+            for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
-                    node, net_addr + i, prefix_len, **kwargs
+                    node, netiter.inc_fmt(), prefix_len, **kwargs
                 )
-                history = bool(not 1 < i < kwargs.get(u"count", 1))
+                history = bool(not 0 < i < count - 1)
                 papi_exec.add(cmd, history=history, **args)
             papi_exec.get_replies(err_msg)
 
