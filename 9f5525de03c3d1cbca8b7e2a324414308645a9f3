@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "37a51d54_16ab18f5",
+        "filename": "docs/job_specs/vpp_device/vpp-1n-skx.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-19T19:19:19Z",
+      "side": 1,
+      "message": "Master also has AVF version of stats test.",
+      "range": {
+        "startLine": 142,
+        "startChar": 5,
+        "endLine": 142,
+        "endChar": 18
+      },
+      "revId": "9f5525de03c3d1cbca8b7e2a324414308645a9f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "453ab195_72bb832a",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 15
