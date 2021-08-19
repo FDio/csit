@@ -22,6 +22,30 @@
       "revId": "4ed12331636fb7c6e97393ab2a4794cff18497e6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0a123d0_7ec1c11f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 27
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-19T11:36:12Z",
+      "side": 1,
+      "message": "I found an optional argument to make it work.",
+      "parentUuid": "906e081f_d209cd81",
+      "range": {
+        "startLine": 18,
+        "startChar": 1,
+        "endLine": 18,
+        "endChar": 2
+      },
+      "revId": "4ed12331636fb7c6e97393ab2a4794cff18497e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
