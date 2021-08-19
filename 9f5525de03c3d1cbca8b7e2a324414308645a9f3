@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bdb5cb3b_54f468e6",
+        "filename": "docs/job_specs/vpp_device/vpp-1n-skx.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-19T20:02:24Z",
+      "side": 1,
+      "message": "why do you think from API pov it makes sense to have it twice?\nthe remaining stats test will be removed once i will get back to telemetry in 2110 as this dummy testcase makes no sense and is just burning time.",
+      "parentUuid": "37a51d54_16ab18f5",
+      "range": {
+        "startLine": 142,
+        "startChar": 5,
+        "endLine": 142,
+        "endChar": 18
+      },
+      "revId": "9f5525de03c3d1cbca8b7e2a324414308645a9f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "453ab195_72bb832a",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 15
@@ -36,6 +60,30 @@
       "writtenOn": "2021-08-19T19:13:03Z",
       "side": 1,
       "message": "Are we planning to add any other types generable from \"scapy\" type?\nIt is strange to prepare a dict with just a single key and no value.",
+      "range": {
+        "startLine": 493,
+        "startChar": 32,
+        "endLine": 493,
+        "endChar": 54
+      },
+      "revId": "9f5525de03c3d1cbca8b7e2a324414308645a9f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "498988b7_c1c80cef",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-19T20:02:24Z",
+      "side": 1,
+      "message": "The idea is to merge with PERF but in next sprints as it takes some work. Technically scapy is just measurement method.",
+      "parentUuid": "453ab195_72bb832a",
       "range": {
         "startLine": 493,
         "startChar": 32,
