@@ -28,7 +28,7 @@ from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil, IpDscp, \
-    MPLS_LABEL_INVALID, NetworkIncrement
+    MPLS_LABEL_INVALID, DashNetworkIncrement
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology, NodeType
@@ -810,15 +810,15 @@ class IPsecUtil:
         # non-matching entries
         no_match_entry_amount = entry_amount - 1
         if no_match_entry_amount > 0:
-            # create a NetworkIncrement representation of the network,
+            # create a DashNetworkIncrement representation of the network,
             # then skip the matching network
-            no_match_local_addr_range = NetworkIncrement(
-                ip_network(local_addr_range), 1
+            no_match_local_addr_range = DashNetworkIncrement(
+                ip_network(local_addr_range)
             )
             next(no_match_local_addr_range)
 
-            no_match_remote_addr_range = NetworkIncrement(
-                ip_network(remote_addr_range), 1
+            no_match_remote_addr_range = DashNetworkIncrement(
+                ip_network(remote_addr_range)
             )
             next(no_match_remote_addr_range)
 
@@ -833,13 +833,13 @@ class IPsecUtil:
             if bidirectional:
                 # reset the networks so that we're using a unified config
                 # the address ranges are switched
-                no_match_remote_addr_range = NetworkIncrement(
-                    ip_network(local_addr_range), 1
+                no_match_remote_addr_range = DashNetworkIncrement(
+                    ip_network(local_addr_range)
                 )
                 next(no_match_remote_addr_range)
 
-                no_match_local_addr_range = NetworkIncrement(
-                    ip_network(remote_addr_range), 1
+                no_match_local_addr_range = DashNetworkIncrement(
+                    ip_network(remote_addr_range)
                 )
                 next(no_match_local_addr_range)
                 # non-matching entries direction 2
@@ -976,19 +976,19 @@ class IPsecUtil:
         :type inbound: bool
         :type sa_id: IPsecUtil.ObjIncrement
         :type proto: int
-        :type laddr_range: IPsecUtil.NetworkIncrement
-        :type raddr_range: IPsecUtil.NetworkIncrement
+        :type laddr_range: IPsecUtil.DashNetworkIncrement
+        :type raddr_range: IPsecUtil.DashNetworkIncrement
         :type lport_range: string
         :type rport_range: string
         :type is_ipv6: bool
         """
         if laddr_range is None:
             laddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
-            laddr_range = NetworkIncrement(ip_network(laddr_range), 0)
+            laddr_range = DashNetworkIncrement(ip_network(laddr_range), 0)
 
         if raddr_range is None:
             raddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
-            raddr_range = NetworkIncrement(ip_network(raddr_range), 0)
+            raddr_range = DashNetworkIncrement(ip_network(raddr_range), 0)
 
         lport_range_start = 0
         lport_range_stop = 65535
@@ -2159,7 +2159,7 @@ class IPsecUtil:
             nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=False,
             sa_id=ObjIncrement(sa_id_1, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip2), 1)
+            raddr_range=DashNetworkIncrement(ip_network(raddr_ip2))
         )
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2170,7 +2170,7 @@ class IPsecUtil:
             nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=True,
             sa_id=ObjIncrement(sa_id_2, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip1), 1)
+            raddr_range=DashNetworkIncrement(ip_network(raddr_ip1))
         )
 
         if u"DUT2" in nodes.keys():
@@ -2199,7 +2199,7 @@ class IPsecUtil:
                 nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=True,
                 sa_id=ObjIncrement(sa_id_1, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip2), 1)
+                raddr_range=DashNetworkIncrement(ip_network(raddr_ip2))
             )
 
             IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2210,7 +2210,7 @@ class IPsecUtil:
                 nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=False,
                 sa_id=ObjIncrement(sa_id_2, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip1), 1)
+                raddr_range=DashNetworkIncrement(ip_network(raddr_ip1))
             )
 
     @staticmethod
