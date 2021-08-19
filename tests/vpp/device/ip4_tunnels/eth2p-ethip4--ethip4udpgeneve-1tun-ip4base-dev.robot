@@ -17,9 +17,9 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | ENCAP | GENEVE
-| ... | GENEVE_L3MODE | GENEVE4_1TUN | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP
+| ... | ENCAP | GENEVE | GENEVE_L3MODE | GENEVE4_1TUN
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4--ethip4udpgeneve-1tun-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | scapy
