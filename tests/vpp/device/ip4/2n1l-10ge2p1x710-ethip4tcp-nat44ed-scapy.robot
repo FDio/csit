@@ -20,7 +20,7 @@
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | NAT44_ENDPOINT_DEPENDENT
 | ... | BASE | TCP | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4tcp-nat44ed-scapy
+| ... | ethip4tcp-nat44ed
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
