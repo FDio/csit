@@ -51,52 +51,65 @@ function generate_docs () {
     BUILD_DIR="_build"
 
     # Create working directories
-    mkdir "${BUILD_DIR}"
-    mkdir --parents "${WORKING_DIR}"/resources/libraries/python/
-    mkdir --parents "${WORKING_DIR}"/resources/libraries/robot/
-    mkdir --parents "${WORKING_DIR}"/tests/
+    mkdir -p "${BUILD_DIR}" || die "Mkdir failed!"
+    mkdir -p "${WORKING_DIR}"/resources/libraries/python/ || die "Mkdir failed!"
+    mkdir -p "${WORKING_DIR}"/resources/libraries/robot/ || die "Mkdir failed!"
+    mkdir -p "${WORKING_DIR}"/tests/ || die "Mkdir failed!"
 
     # Copy the Sphinx source files:
-    cp -r src/* ${WORKING_DIR}/
+    cp -r src/* ${WORKING_DIR}/ || die "Copy the Sphinx source files failed!"
 
     # Copy the source files to be processed:
-    from_dir="../../../resources/libraries/python/"
+    from_dir="${RESOURCES_DIR}/libraries/python/"
     to_dir="${WORKING_DIR}/resources/libraries/python/"
-    command="rsync -a --include '*/'"
-    ${command} --include '*.py' --exclude '*' "${from_dir}" "${to_dir}"
-    cp ../../../resources/__init__.py ${WORKING_DIR}/resources/
-    cp ../../../resources/libraries/__init__.py ${WORKING_DIR}/resources/libraries/
-    from_dir="../../../resources/libraries/robot/"
-    to_dir="${WORKING_DIR}/resources/libraries/robot/"
-    ${command} --include '*.robot' --exclude '*' "${from_dir}" "${to_dir}"
-    from_dir="../../../tests/"
-    to_dir="${WORKING_DIR}/tests/"
-    ${command} --include '*.robot' --exclude '*' "${from_dir}" "${to_dir}"
+    dirs="${from_dir} ${to_dir}"
+    rsync -ar --include='*/' --include='*.py' --exclude='*' ${dirs} || {
+        die "rSync failed!"
+    }
 
-    python3 gen_rst.py
+    from_dir="${RESOURCES_DIR}/libraries/robot/"
+    to_dir="${WORKING_DIR}/resources/libraries/robot/"
+    dirs="${from_dir} ${to_dir}"
+    rsync -ar --include='*/' --include '*.robot' --exclude '*' ${dirs} || {
+        die "rSync failed!"
+    }
+    touch ${to_dir}/index.robot || {
+        die "Touch index.robot file failed!"
+    }
+
+    # TODO: there is some internal generation error with tests. To be debuged.
+    #from_dir="${CSIT_DIR}/tests/"
+    #to_dir="${WORKING_DIR}/tests/"
+    #dirs="${from_dir} ${to_dir}"
+    #rsync -ar --include='*/' --include '*.robot' --exclude '*' ${dirs} || {
+    #    die "rSync failed!"
+    #}
+
+    find ${WORKING_DIR}/ -type d -exec echo {} \; -exec touch {}/__init__.py \;
+
+    python3 gen_rst.py || die "Generate .rst files failed!"
+
     # Remove all rst files from ./${WORKING_DIR}/env directory - we do not need
     # them
-    find ./${WORKING_DIR}/env -type f -name '*.rst' | xargs rm -f
+    find ./${WORKING_DIR}/env -type f -name '*.rst' | xargs rm -f || {
+        die "Remove of unwanted .rst files failed!"
+    }
 
     # Generate the documentation:
-    DATE=$(date -u '+%d-%b-%Y')
+    DATE=$(date -u '+%d-%b-%Y') || die "Get date failed!"
 
     all_options=("-v")
     all_options+=("-c" "${WORKING_DIR}")
     all_options+=("-a")
     all_options+=("-b" "html")
     all_options+=("-E")
-    all_options+=("-D" "release=$1")
-    all_options+=("-D" "version='$1 documentation - $DATE'")
+    all_options+=("-D" "version="${GERRIT_BRANCH:-master}"")
     all_options+=("${WORKING_DIR}" "${BUILD_DIR}/")
 
     set +e
     sphinx-build "${all_options[@]}"
     DOCS_EXIT_STATUS="$?"
     set -e
-
-    find . -type d -name 'env' | xargs rm -rf
-
 }
 
 function generate_report () {

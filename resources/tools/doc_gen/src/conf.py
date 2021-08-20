@@ -42,20 +42,15 @@ templates_path = [u"_templates"]
 # The suffix(es) of source file names.
 # You can specify multiple suffix as a list of string:
 #
-# source_suffix = [u".rst", u".md"]
-source_suffix = u".rst"
-
-# The encoding of source files.
-#
-# source_encoding = 'utf-8-sig'
+source_suffix = [u".rst", u".md"]
 
 # The master toctree document.
 master_doc = u"index"
 
 # General information about the project.
-project = u"CSIT"
-copyright = u"2018, FD.io"
-author = u"CSIT"
+project = u"FD.io CSIT"
+copyright = u"2021, FD.io"
+author = u'FD.io CSIT'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -71,7 +66,7 @@ author = u"CSIT"
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = u'en'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -109,12 +104,6 @@ exclude_patterns = [u"_build", u"Thumbs.db", u".DS_Store"]
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = u"sphinx"
 
-# A list of ignored prefixes for module index sorting.
-# modindex_common_prefix = []
-
-# If true, keep warnings as "system message" paragraphs in the built documents.
-# keep_warnings = False
-
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
@@ -131,10 +120,23 @@ html_theme = u"sphinx_rtd_theme"
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    u'canonical_url': u'',
+    u'analytics_id': u'',
+    u'logo_only': False,
+    u'display_version': True,
+    u'prev_next_buttons_location': u'bottom',
+    u'style_external_links': False,
+    # Toc options
+    u'collapse_navigation': True,
+    u'sticky_navigation': True,
+    u'navigation_depth': 3,
+    u'includehidden': True,
+    u'titles_only': False
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = [u"env/lib/python2.7/site-packages/sphinx_rtd_theme"]
+html_theme_path = [u'env/lib/python3.8/site-packages/sphinx_rtd_theme']
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
@@ -144,11 +146,6 @@ html_title = u"CSIT Documentation"
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
 html_short_title = u"CSIT"
-
-# The name of an image file (relative to this directory) to place at the top
-# of the sidebar.
-#
-html_logo = u"fdio_logo.png"
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -190,55 +187,16 @@ html_static_path = [u"_static"]
 # html_additional_pages = {}
 
 # If false, no module index is generated.
-#
-# html_domain_indices = True
+html_domain_indices = True
 
 # If false, no index is generated.
-#
-# html_use_index = True
+html_use_index = True
 
 # If true, the index is split into individual pages for each letter.
-#
 html_split_index = False
 
 # If true, links to the reST sources are added to the pages.
-#
 html_show_sourcelink = True
-
-# If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
-#
-# html_show_sphinx = True
-
-# If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
-#
-# html_show_copyright = True
-
-# If true, an OpenSearch description file will be output, and all pages will
-# contain a <link> tag referring to it.  The value of this option must be the
-# base URL from which the finished HTML is served.
-#
-# html_use_opensearch = ''
-
-# This is the file name suffix for HTML files (e.g. ".xhtml").
-# html_file_suffix = None
-
-# Language to be used for generating the HTML full-text search index.
-# Sphinx supports the following languages:
-#   'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'ja'
-#   'nl', 'no', 'pt', 'ro', 'ru', 'sv', 'tr', 'zh'
-#
-# html_search_language = 'en'
-
-# A dictionary with options for the search language support, empty by default.
-# 'ja' uses this config value.
-# 'zh' user can custom change `jieba` dictionary path.
-#
-# html_search_options = {'type': 'default'}
-
-# The name of a javascript file (relative to the configuration directory) that
-# implements a search results scorer. If empty, the default will be used.
-#
-# html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = u"csitdoc"
