@@ -232,7 +232,7 @@ def generate_rf_rst_files(
     """
 
     for file_name in file_names:
-        path = join(WORKING_DIR, *file_name.split(u".")[:-1])
+        path = join(WORKING_DIR, *file_name.rsplit(u".", 1)[:-1])
         dirs, files = scan_dir(path)
 
         full_path = join(WORKING_DIR, file_name)
