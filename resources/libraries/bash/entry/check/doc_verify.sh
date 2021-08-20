@@ -27,29 +27,13 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
-
+source "${BASH_FUNCTION_DIR}/docs.sh" || die "Source failed."
 common_dirs || die
-log_file="$(pwd)/doc_verify.log" || die
+activate_virtualenv || die
+generate_docs || die
 
-# Pre-cleanup.
-rm -f "${log_file}" || die
-rm -f "${DOC_GEN_DIR}/csit.docs.tar.gz" || die
-rm -rf "${DOC_GEN_DIR}/_build" || die
-
-# Documentation generation.
-# Here we do store only stderr to file while stdout (inlcuding Xtrace) is
-# printed to console. This way we can track increased errors in future.
-# We do not need to do trap as the env will be closed after tox finished the
-# task.
-exec 3>&1 || die
-export BASH_XTRACEFD="3" || die
-
-pushd "${DOC_GEN_DIR}" || die
-source ./run_doc.sh ${GERRIT_BRANCH:-local} 2> ${log_file} || true
-popd || die
-
-if [[ ! -f "${log_file}" ]] || [[ -s "${log_file}" ]]; then
-    # Output file not exists or is non empty.
+if [[ "${DOCS_EXIT_STATUS}" != 0 ]]; then
+    # Failed to generate report.
     warn
     warn "Doc verify checker: FAIL"
     exit 1
