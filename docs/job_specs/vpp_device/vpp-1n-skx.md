@@ -1,4 +1,9 @@
 # 1n-skx
+### tests 54
+### job hrs est. 0.3
+### job hrs real 0.3
+### test mins est. 0.33
+### test mins real 0.33
 ## ./container_memif
 ### intel-x710
 #### dpdk-vfio-pci
