@@ -27,14 +27,9 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
-
+source "${BASH_FUNCTION_DIR}/docs.sh" || die "Source failed."
 common_dirs || die
-log_file="$(pwd)/doc_verify.log" || die
-
-# Pre-cleanup.
-rm -f "${log_file}" || die
-rm -f "${DOC_GEN_DIR}/csit.docs.tar.gz" || die
-rm -rf "${DOC_GEN_DIR}/_build" || die
+activate_virtualenv || die
 
 # Documentation generation.
 # Here we do store only stderr to file while stdout (inlcuding Xtrace) is
@@ -43,13 +38,12 @@ rm -rf "${DOC_GEN_DIR}/_build" || die
 # task.
 exec 3>&1 || die
 export BASH_XTRACEFD="3" || die
+log_file="$(pwd)/doc_verify.log" || die
 
-pushd "${DOC_GEN_DIR}" || die
-source ./run_doc.sh ${GERRIT_BRANCH:-local} 2> ${log_file} || true
-popd || die
+generate_docs 2> ${log_file} || die
 
-if [[ ! -f "${log_file}" ]] || [[ -s "${log_file}" ]]; then
-    # Output file not exists or is non empty.
+if [[ "${DOCS_EXIT_STATUS}" != 0 ]]; then
+    # Failed to generate report.
     warn
     warn "Doc verify checker: FAIL"
     exit 1
