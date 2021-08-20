@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9ea53bb7_fe2139e9",
+        "filename": "docs/job_specs/vpp_device/vpp-1n-skx.md",
+        "patchSetId": 15
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-20T10:32:25Z",
+      "side": 1,
+      "message": "\u003e makes sense to have it twice?\n\nI see I added and merged it myself quite quickly, stating [1] 31795 as the reason why. I do not remember the details, I guess Damjan asked abut AVF show hardware for unmerged changes or something like that.\n\n[1] https://gerrit.fd.io/r/c/csit/+/31828/5#message-c35146a2e732e8be891e1c53e0749e76548f0e0a",
+      "parentUuid": "bdb5cb3b_54f468e6",
+      "range": {
+        "startLine": 142,
+        "startChar": 5,
+        "endLine": 142,
+        "endChar": 18
+      },
+      "revId": "9f5525de03c3d1cbca8b7e2a324414308645a9f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "453ab195_72bb832a",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 15
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "8d7aa7f1_aff516b8",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-20T10:32:25Z",
+      "side": 1,
+      "message": "\u003e merge with PERF\n\nThat would mean adding \"scapy\" to Constants.PERF_TYPE_TO_KEYWORD instead, probably renaming it to TEST_TYPE_TO_KEYWORD (and deleting write_device_files function).\n\nI prefer adding a TODO comment (instead if introducing a half-implementation that would need rework in future anyway), but whatever.",
+      "parentUuid": "498988b7_c1c80cef",
+      "range": {
+        "startLine": 493,
+        "startChar": 32,
+        "endLine": 493,
+        "endChar": 54
+      },
+      "revId": "9f5525de03c3d1cbca8b7e2a324414308645a9f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96eb3a54_3caf12fc",
         "filename": "tox.ini",
         "patchSetId": 15
@@ -140,6 +188,30 @@
       "revId": "9f5525de03c3d1cbca8b7e2a324414308645a9f3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51402066_7ab24429",
+        "filename": "tox.ini",
+        "patchSetId": 15
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-20T10:32:25Z",
+      "side": 1,
+      "message": "\u003e PAL reporting detailed duration\n\nYou mean when Tibor adds tracking also for device jobs (at least the periodic ones)?\nStill, that looks only at merged changes, the tox checker looks at unmerged changes.\n\nTo verify job spec leads to correct number of tests executed, one needs to look at the number of tests executed (easily found in console output), look at the number of tests defined in the job spec (this part is tedious to do manually, that is why the checker is still useful for me) and compare the two numbers (easy).",
+      "parentUuid": "9257e705_3bb5d887",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 14
+      },
+      "revId": "9f5525de03c3d1cbca8b7e2a324414308645a9f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
