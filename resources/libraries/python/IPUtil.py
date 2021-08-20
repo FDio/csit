@@ -20,6 +20,7 @@ import os
 from enum import IntEnum
 
 from ipaddress import ip_address, ip_network
+from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.IncrementUtil import ObjIncrement
@@ -713,6 +714,8 @@ class IPUtil:
     def vpp_route_add(node, network, prefix_len, strict=True, **kwargs):
         """Add route to the VPP node. Prefer multipath behavior.
 
+        Afterwards, call vpp_dump_fib.
+
         :param node: VPP node.
         :param network: Route destination network address.
         :param prefix_len: Route destination network prefix length.
@@ -782,6 +785,7 @@ class IPUtil:
                 copy_on_execute=True, history=False
             )
             os.remove(tmp_filename)
+            IPUtil.vpp_dump_fib(node)
             return
 
         cmd = u"ip_route_add_del"
@@ -804,6 +808,33 @@ class IPUtil:
                 history = bool(not 0 < i < count - 1)
                 papi_exec.add(cmd, history=history, **args)
             papi_exec.get_replies(err_msg)
+        IPUtil.vpp_dump_fib(node)
+
+    @staticmethod
+    def vpp_dump_fib(node):
+        """Log first and last route in each table.
+
+        TODO: Support remote_vpp_socket?
+        TODO: Return last route, so caller can check it is valied?
+
+        :param node: VPP node to dump from.
+        :type node: dict
+        """
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(u"ip_table_dump")
+            table_details = papi_exec.get_details()
+            for table_detail in table_details:
+                table = table_detail[u"table"]
+                papi_exec.add(u"ip_route_v2_dump", dict(table=table))
+                route_details = papi_exec.get_details()
+                if route_details:
+                    logger.debug(
+                        f"ip route dump for table {table}\n"
+                        f"first route {route_details[0]}\n"
+                        f"last route {route_details[-1]}"
+                    )
+                else:
+                    logger.debug(f"table {table} is empty")
 
     @staticmethod
     def flush_ip_addresses(node, interface):
