@@ -289,6 +289,7 @@ function compose_pybot_arguments () {
     esac
 
     EXPANDED_TAGS=()
+    echo "TAGS ${TAGS[@]}"
     for tag in "${TAGS[@]}"; do
         if [[ ${tag} == "!"* ]]; then
             EXPANDED_TAGS+=("--exclude" "${tag#$"!"}")
@@ -866,6 +867,10 @@ function select_tags () {
         # Select specific performance tests based on jenkins job type variable.
         *"vpp-device"* )
             readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/vpp_device/${DUT}-${NODENESS}-${FLAVOR}.md \
+                || echo "devicetest") || die
+            echo "test_tag_array before awk ${test_tag_array[@]}"
+            readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/vpp_device/${DUT}-${NODENESS}-${FLAVOR}.md |
                 awk {"$awk_nics_sub_cmd"} || echo "devicetest") || die
             SELECTION_MODE="--test"
@@ -922,6 +927,7 @@ function select_tags () {
             SELECTION_MODE="--include"
             ;;
     esac
+    echo "test_tag_array ${test_tag_array[@]}"
 
     # Blacklisting certain tags per topology.
     #
@@ -980,7 +986,7 @@ function select_tags () {
     TAGS=()
     prefix=""
 
-    set +x
+    #set +x
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
         # Automatic prefixing for VPP jobs to limit the NIC used and
         # traffic evaluation to MRR.
@@ -1014,6 +1020,7 @@ function select_tags () {
         fi
     done
     set -x
+    echo "TAGS ${TAGS[@]}"
 }
 
 
