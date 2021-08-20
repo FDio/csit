@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff771d8c_1b475b43",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 35
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-20T13:08:47Z",
+      "side": 1,
+      "message": "See [1] for what multipath parameter does in API, see this [2] function for what the CLI (called by VAT exec) is capable of.\nLuckily, in CSIT we never need to drop previous paths when calling vpp_route_add, so multipath behavior is fine.\n\n[1] https://github.com/FDio/vpp/blob/2a1783fd6ae7e17c994010fca414c180eb48bc40/src/vnet/ip/ip.api#L163-L166\n[2] https://github.com/FDio/vpp/blob/2a1783fd6ae7e17c994010fca414c180eb48bc40/src/vnet/ip/lookup.c#L188",
+      "range": {
+        "startLine": 743,
+        "startChar": 60,
+        "endLine": 743,
+        "endChar": 78
+      },
+      "revId": "1b8cb0e5156dd282f05b3c990563e0503833a59d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
