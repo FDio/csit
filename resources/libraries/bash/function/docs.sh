@@ -51,7 +51,7 @@ function generate_docs () {
     BUILD_DIR="_build"
 
     # Create working directories
-    mkdir "${BUILD_DIR}"
+    mkdir --parents "${BUILD_DIR}"
     mkdir --parents "${WORKING_DIR}"/resources/libraries/python/
     mkdir --parents "${WORKING_DIR}"/resources/libraries/robot/
     mkdir --parents "${WORKING_DIR}"/tests/
@@ -60,16 +60,17 @@ function generate_docs () {
     cp -r src/* ${WORKING_DIR}/
 
     # Copy the source files to be processed:
-    from_dir="../../../resources/libraries/python/"
+    from_dir="${RESOURCES_DIR}/libraries/python/"
     to_dir="${WORKING_DIR}/resources/libraries/python/"
     command="rsync -a --include '*/'"
     ${command} --include '*.py' --exclude '*' "${from_dir}" "${to_dir}"
-    cp ../../../resources/__init__.py ${WORKING_DIR}/resources/
-    cp ../../../resources/libraries/__init__.py ${WORKING_DIR}/resources/libraries/
-    from_dir="../../../resources/libraries/robot/"
+    cp "${RESOURCES_DIR}/__init__.py" "${WORKING_DIR}/resources/"
+    to_dir="${WORKING_DIR}/resources/libraries/"
+    cp "${RESOURCES_DIR}/libraries/__init__.py" "${to_dir}"
+    from_dir="${RESOURCES_DIR}/libraries/robot/"
     to_dir="${WORKING_DIR}/resources/libraries/robot/"
     ${command} --include '*.robot' --exclude '*' "${from_dir}" "${to_dir}"
-    from_dir="../../../tests/"
+    from_dir="${CSIT_DIR}/tests/"
     to_dir="${WORKING_DIR}/tests/"
     ${command} --include '*.robot' --exclude '*' "${from_dir}" "${to_dir}"
 
@@ -86,17 +87,13 @@ function generate_docs () {
     all_options+=("-a")
     all_options+=("-b" "html")
     all_options+=("-E")
-    all_options+=("-D" "release=$1")
-    all_options+=("-D" "version='$1 documentation - $DATE'")
+    all_options+=("-D" "version="${GERRIT_BRANCH:-master}"")
     all_options+=("${WORKING_DIR}" "${BUILD_DIR}/")
 
     set +e
     sphinx-build "${all_options[@]}"
     DOCS_EXIT_STATUS="$?"
     set -e
-
-    find . -type d -name 'env' | xargs rm -rf
-
 }
 
 function generate_report () {
