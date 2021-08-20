@@ -15,12 +15,13 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
-|
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
-| ... | LISPGPE | IPSEC | IPSECHW | IPSECTRAN | ENCAP | IP4UNRLAY | IP4OVRLAY
-| ... | NIC_Intel-X710 | AES_128_CBC | HMAC_SHA_256 | HMAC | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+|
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECHW | IPSECTRAN
+| ... | ENCAP | IP4UNRLAY | IP4OVRLAY | LISPGPE
+| ... | AES_128_CBC | HMAC_SHA_256 | HMAC | AES
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha
 |
 | Suite Setup | Setup suite topology interfaces | performance

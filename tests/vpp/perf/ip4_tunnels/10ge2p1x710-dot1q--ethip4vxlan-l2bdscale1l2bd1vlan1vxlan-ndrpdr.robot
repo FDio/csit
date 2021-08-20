@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | L2BDMACLRN | SCALE | L2BD_1 | DOT1Q | VLAN_1
-| ... | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY | VXLAN_1 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | L2BDMACLRN | DOT1Q | VLAN_1 | BASE | L2BD_1
+| ... | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY | VXLAN_1
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan
 |
 | Suite Setup | Setup suite topology interfaces | performance
