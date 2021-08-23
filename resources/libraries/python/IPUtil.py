@@ -741,7 +741,7 @@ class IPUtil:
         """
         count = kwargs.get(u"count", 1)
 
-        if count > 100:
+        if count > 1e8:
             if not kwargs.get(u"multipath", True):
                 raise RuntimeError(u"VAT exec supports only multipath behavior")
             gateway = kwargs.get(u"gateway", u"")
