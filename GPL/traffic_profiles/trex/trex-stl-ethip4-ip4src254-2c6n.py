@@ -149,7 +149,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     max_value=self.p2_src_end_ip,
                     size=4,
                     op=u"inc"
-                  ),
+                ),
                 STLVmWrFlowVar(
                     fv_name=u"src",
                     pkt_offset=u"IP.src"
