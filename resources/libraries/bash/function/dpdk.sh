@@ -90,7 +90,8 @@ function dpdk_compile () {
     meson_options="-Dexamples=l3fwd "
 
     # i40e specific options
-    meson_options="${meson_options} -Dc_args=RTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
+    meson_options="${meson_options} \
+        -Dc_args=-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
 
     # Configure generic build - the same used by VPP
     meson_options="${meson_options} -Dplatform=generic"
