@@ -21,7 +21,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | vhost
+| Test Teardown | Tear down test | packet_trace | telemetry | vhost
 |
 | Test Template | Local Template
 |
@@ -55,6 +55,8 @@
 | ${nf_dtcr} | ${1}
 | ${tg_if1_ip}= | 10.10.10.2
 | ${tg_if2_ip}= | 20.20.20.2
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

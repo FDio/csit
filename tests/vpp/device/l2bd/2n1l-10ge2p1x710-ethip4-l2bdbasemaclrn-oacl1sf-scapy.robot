@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | acl | packet_trace
+| Test Teardown | Tear down test | packet_trace | telemetry | acl
 |
 | Test Template | Local Template
 |
@@ -62,6 +62,8 @@
 | ${port_step}= | ${1}
 | ${trex_stream1_subnet}= | 10.10.10.0/24
 | ${trex_stream2_subnet}= | 20.20.20.0/24
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

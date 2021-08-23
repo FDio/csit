@@ -24,7 +24,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | nat-ed
+| Test Teardown | Tear down test | packet_trace | telemetry | nat-ed
 |
 | Test Template | Local Template
 |
@@ -77,6 +77,8 @@
 | ${out_net}= | 68.142.68.0
 | ${out_net_end}= | 68.142.68.0
 | ${out_mask}= | ${32}
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

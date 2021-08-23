@@ -23,7 +23,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Tear down test | packet_trace | telemetry
 |
 | Test Template | Local Template
 |
@@ -54,6 +54,8 @@
 | ${overhead}= | ${54}
 | ${ot_mode}= | 4to6
 | ${is_gpe}= | ${1}
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

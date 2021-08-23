@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | ipsec_sa
+| Test Teardown | Tear down test | packet_trace | telemetry | ipsec_sa
 |
 | Test Template | Local Template
 |
@@ -57,6 +57,8 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${1}
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template
@@ -95,7 +97,6 @@
 | | ... | ${DUT1_${int}2_mac}[0] | ${encr_alg} | ${encr_keys}[0] | ${auth_alg}
 | | ... | ${auth_keys}[0] | ${dut_spi} | ${tg_spi} | ${laddr_ip4} | ${raddr_ip4}
 | | ... | ${tun_if1_ip4} | ${tun_if2_ip4}
-| | And Show Ipsec Security Association | ${dut1}
 
 *** Test Cases ***
 | 64B-0c-ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha-scapy

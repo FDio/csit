@@ -21,7 +21,8 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test | namespace
-| Test Teardown | Tear down test | packet_trace | namespace | linux_bridge
+| Test Teardown | Tear down test | packet_trace | telemetry | namespace
+| ... | linux_bridge
 |
 | Test Template | Local Template
 |
@@ -51,6 +52,8 @@
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${bid_TAP}= | tapBr
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

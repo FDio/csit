@@ -21,7 +21,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | vhost
+| Test Teardown | Tear down test | packet_trace | telemetry | vhost
 |
 | Test Template | Local Template
 |
@@ -54,6 +54,8 @@
 | ${nf_nodes}= | ${1}
 | ${nf_dtc} | ${1}
 | ${nf_dtcr} | ${1}
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

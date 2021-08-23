@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | macipacl | packet_trace
+| Test Teardown | Tear down test | packet_trace | telemetry | macipacl
 |
 | Test Template | Local Template
 |
@@ -63,6 +63,8 @@
 | ${tg_mac_mask}= | ff:ff:ff:ff:c0:00
 | ${tg_stream1_subnet}= | 10.0.0.0/18
 | ${tg_stream2_subnet}= | 20.0.0.0/18
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template
