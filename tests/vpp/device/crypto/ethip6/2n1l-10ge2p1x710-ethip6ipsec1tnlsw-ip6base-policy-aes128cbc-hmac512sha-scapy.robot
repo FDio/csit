@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | ipsec_sa
+| Test Teardown | Tear down test | packet_trace | telemetry | ipsec_sa
 |
 | Test Template | Local Template
 |

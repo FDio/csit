@@ -24,7 +24,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | det44
+| Test Teardown | Tear down test | packet_trace | telemetry | det44
 |
 | Test Template | Local Template
 |
