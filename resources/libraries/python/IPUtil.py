@@ -757,8 +757,10 @@ class IPUtil:
                 trailers.append(f"via {gateway}")
                 if interface:
                     trailers.append(interface)
+                trailers.append(u"preference 1")
             elif interface:
                 trailers.append(f"via {interface}")
+                trailers.append(u"preference 1")
             if local:
                 if gateway or interface:
                     raise RuntimeError(u"Unsupported combination with local.")
