@@ -21,7 +21,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test | namespace
-| Test Teardown | Tear down test | packet_trace | namespace
+| Test Teardown | Tear down test | packet_trace | telemetry | namespace
 |
 | Test Template | Local Template
 |

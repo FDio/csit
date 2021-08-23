@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | macipacl | packet_trace
+| Test Teardown | Tear down test | packet_trace | telemetry | macipacl
 |
 | Test Template | Local Template
 |
