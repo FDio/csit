@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | ipsec_sa
+| Test Teardown | Tear down test | packet_trace | telemetry | ipsec_sa
 |
 | Test Template | Local Template
 |
@@ -58,6 +58,8 @@
 | ${dut_if2_ip4}= | 192.168.4.3
 | ${tg_host_ip4}= | 192.168.3.3
 | ${ip4_plen}= | ${24}
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

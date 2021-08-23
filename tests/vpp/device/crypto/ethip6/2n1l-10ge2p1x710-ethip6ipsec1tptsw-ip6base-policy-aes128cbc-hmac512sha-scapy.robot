@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | ipsec_sa
+| Test Teardown | Tear down test | packet_trace | telemetry | ipsec_sa
 |
 | Test Template | Local Template
 |
@@ -59,6 +59,8 @@
 | ${tg_host_ip6}= | 3ffe:61::3
 | ${ip6_plen}= | ${64}
 | ${ip6_plen_rt}= | ${128}
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

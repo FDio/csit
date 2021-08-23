@@ -23,7 +23,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Tear down test | packet_trace | telemetry
 |
 | Test Template | Local Template
 |
@@ -53,6 +53,8 @@
 | ${nic_pfs}= | 2
 | ${nic_vfs}= | 0
 | ${overhead}= | ${54}
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

@@ -21,7 +21,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | classify
+| Test Teardown | Tear down test | packet_trace | telemetry | classify
 |
 | Test Template | Local Template
 |
@@ -50,6 +50,8 @@
 | ${cir}= | ${100}
 | ${eir}= | ${150}
 | ${dscp}= | AF22
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

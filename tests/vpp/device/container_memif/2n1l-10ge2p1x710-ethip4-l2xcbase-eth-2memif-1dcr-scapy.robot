@@ -21,7 +21,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | container
+| Test Teardown | Tear down test | packet_trace | telemetry | container
 |
 | Test Template | Local Template
 |
@@ -52,6 +52,8 @@
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_functional
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

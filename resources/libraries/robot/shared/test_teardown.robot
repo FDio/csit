@@ -170,12 +170,17 @@
 | |
 | | Show Packet Trace on All DUTs | ${nodes}
 
+| Additional Test Tear Down Action For telemetry
+| | [Documentation]
+| | ... | Additional teardown for tests which uses telemetry reads.
+| |
+| | Run Telemetry On All DUTs
+| | ... | ${nodes} | profile=${telemetry_profile}.yaml
+
 | Additional Test Tear Down Action For performance
 | | [Documentation]
 | | ... | Additional teardown for tests which uses performance measurement.
 | | ... | Optionally, call \${resetter} (if defined) to reset DUT state.
-| |
-| | ... | TODO: Document what test variables are required or optional.
 | |
 | | Run Keyword If Test Passed | Return From Keyword
 | | ${use_latency} = | Get Use Latency
