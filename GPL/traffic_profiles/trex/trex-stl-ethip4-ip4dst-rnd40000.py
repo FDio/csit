@@ -86,12 +86,14 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 0 --> 1
         vm1 = STLScVmRaw(
             [
-                STLVmFlowVar(
+                STLVmFlowVarRepeatableRandom(
                     name=u"dst",
                     min_value=self.p1_dst_start_ip,
                     max_value=self.p1_dst_end_ip,
                     size=4,
-                    op=u"inc"
+                    seed=1,
+                    # Cycle length. TRex does not allow any higher value.
+                    limit=(2**24 - 1)
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
@@ -102,15 +104,19 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 )
             ]
         )
+
         # Direction 1 --> 0
         vm2 = STLScVmRaw(
             [
-                STLVmFlowVar(
+                STLVmFlowVarRepeatableRandom(
                     name=u"dst",
                     min_value=self.p2_dst_start_ip,
                     max_value=self.p2_dst_end_ip,
                     size=4,
-                    op=u"inc"
+                    # Using a different seed to be extra sure
+                    # nothing useful gets cached.
+                    seed=2,
+                    limit=(2**24 - 1)
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
