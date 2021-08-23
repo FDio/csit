@@ -151,12 +151,11 @@ class NetworkIncrement(ObjIncrement):
         if self._format == u"dash":
             return f"{self._value.network_address} - " \
                    f"{self._value.broadcast_address}"
-        elif self._format == u"slash":
+        if self._format == u"slash":
             return f"{self._value.network_address}/{self._prefix_len}"
-        elif self._format == u"addr":
+        if self._format == u"addr":
             return f"{self._value.network_address}"
-        else:
-            raise RuntimeError(f"Unsupported format {self._format}")
+        raise RuntimeError(f"Unsupported format {self._format}")
 
 
 class IPUtil:
@@ -751,7 +750,7 @@ class IPUtil:
                     )
                 )
             vrf = kwargs.get(u"vrf", None)
-            trailers = list()
+            trailers = [u"preference 1"]
             if vrf:
                 trailers.append(f"table {vrf}")
             if gateway:
@@ -765,9 +764,7 @@ class IPUtil:
                     raise RuntimeError(u"Unsupported combination with local.")
                 trailers.append(u"local")
             trailer = u" ".join(trailers)
-            command_parts = [u"exec ip route add", u"network goes here"]
-            if trailer:
-                command_parts.append(trailer)
+            command_parts = [u"exec ip route add", u"network here", trailer]
             netiter = NetworkIncrement(
                 ip_network(f"{network}/{prefix_len}", strict=strict),
                 format=u"slash"
