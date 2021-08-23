@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Tear down test | packet_trace | telemetry
 |
 | Test Template | Local Template
 |
@@ -69,6 +69,8 @@
 | ${dut2_if1_ip6}= | 2001:3::2
 | ${dut2_if2_ip6}= | 2001:2::1
 | ${prefix}= | ${64}
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

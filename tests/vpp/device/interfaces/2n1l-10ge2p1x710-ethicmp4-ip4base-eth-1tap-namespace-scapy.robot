@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test | namespace
-| Test Teardown | Tear down test | packet_trace | namespace
+| Test Teardown | Tear down test | packet_trace | telemetry | namespace
 |
 | Test Template | Local Template
 |
@@ -57,6 +57,8 @@
 | ${tg_ip_address}= | 192.168.0.2
 | ${tg_ip_address_GW}= | 192.168.0.0
 | ${prefix}= | 24
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template

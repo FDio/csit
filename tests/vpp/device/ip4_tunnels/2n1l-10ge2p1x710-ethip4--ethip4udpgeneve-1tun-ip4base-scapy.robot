@@ -24,7 +24,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | geneve4
+| Test Teardown | Tear down test | packet_trace | telemetry | geneve4
 |
 | Test Template | Local Template
 |
@@ -68,6 +68,8 @@
 | &{gen_tunnel}=
 | ... | local=1.1.1.2 | remote=1.1.1.1 | vni=${1}
 | ... | src_ip=10.128.1.0 | dst_ip=10.0.1.0 | ip_mask=${24} | if_ip=11.0.1.2
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template
@@ -99,7 +101,6 @@
 | | ... | ${DUT1_vf1_mac}[0] | ${DUT1_vf2_mac}[0]
 | | ... | ${gen_tunnel}[local] | ${gen_tunnel}[remote] | ${gen_tunnel}[vni]
 | | ... | ${gen_tunnel}[src_ip] | ${gen_tunnel}[dst_ip]
-| | And Show Geneve Tunnel Data | ${nodes['DUT1']}
 
 *** Test Cases ***
 | 64B-0c-ethip4--ethip4udpgeneve-1tun-ip4base-scapy

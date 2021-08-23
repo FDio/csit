@@ -93,34 +93,6 @@
 | | # Parens are there to perform the call.
 | | Run Keyword If | $resetter | Evaluate | $resetter()
 
-| Verify statistic commands
-| | [Documentation]
-| | ... | Execute several commands related to stats.
-| | ... | To be used by "stats" device tests,
-| | ... | as other device tests do not interact with stats.
-| |
-| | ... | The commands should also cover frequently used
-| | ... | PAPI (non-stats) commands and CLI commands.
-| |
-| | ${results}= | Create List
-| | ${status} | ${value}= | Run Keyword And Ignore Error
-| | ... | VPP Show Runtime On All DUTs | ${nodes}
-| | Append To List | ${results} | ${status}
-| | ${status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Show Statistics On All DUTs | ${nodes}
-| | Append To List | ${results} | ${status}
-| | ${status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Show Event Logger On All DUTs | ${nodes}
-| | Append To List | ${results} | ${status}
-| | ${status} | ${value}= | Run Keyword And Ignore Error
-| | ... | VPP Clear Runtime On All DUTs | ${nodes}
-| | Append To List | ${results} | ${status}
-| | ${status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Clear Statistics On All DUTs | ${nodes}
-| | Append To List | ${results} | ${status}
-| | Should Not Contain Match | ${results} | FAIL
-| | ... | msg=At least one of statistic commands failed!
-
 | Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
 | | ... | initialized on all DUTs. If parameter force_init is set to True, then

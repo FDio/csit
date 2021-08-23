@@ -22,7 +22,7 @@
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | ipsec_sa
+| Test Teardown | Tear down test | packet_trace | telemetry | ipsec_sa
 |
 | Test Template | Local Template
 |
@@ -57,6 +57,8 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${11}
+# Telemetry
+| ${telemetry_profile}= | vpp_test_teardown
 
 *** Keywords ***
 | Local Template
