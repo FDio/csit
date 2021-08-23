@@ -682,7 +682,6 @@ class IPUtil:
             table_id=int(kwargs.get(u"lookup_vrf", 0)),
             rpf_id=Constants.BITWISE_NON_ZERO,
             weight=int(kwargs.get(u"weight", 1)),
-            preference=1,
             type=getattr(
                 FibPathType, u"FIB_PATH_TYPE_LOCAL"
                 if kwargs.get(u"local", False)
