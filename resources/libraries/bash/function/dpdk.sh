@@ -86,13 +86,14 @@ function dpdk_compile () {
 
     pushd "${DPDK_DIR}" || die "Pushd failed"
 
-    # Patch ARM.
-    sed_file="config/arm/meson.build"
-    sed_cmd="s/'RTE_MAX_LCORE', [0-9]*/'RTE_MAX_LCORE', $(nproc --all)/"
-    sed -i "${sed_cmd}" "${sed_file}" || die "RTE_MAX_LCORE Patch failed"
-    sed_cmd="s/'RTE_MAX_NUMA_NODES', [0-9]*/'RTE_MAX_NUMA_NODES', "
-    sed_cmd+="$(echo /sys/devices/system/node/node* | wc -w)/"
-    sed -i "${sed_cmd}" "${sed_file}" || die "RTE_MAX_NUMA_NODES Patch failed"
+    # enable l3fwd
+    meson_options="-Dexamples=l3fwd "
+
+    # i40e specific options
+    meson_options="${meson_options} -Dc_args=RTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
+
+    # Configure generic build - the same used by VPP
+    meson_options="${meson_options} -Dplatform=generic"
 
     # Patch L3FWD.
     sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128"
@@ -106,9 +107,7 @@ function dpdk_compile () {
     popd || die "Popd failed"
 
     # Compile using Meson and Ninja.
-    export CFLAGS=""
-    CFLAGS+="-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
-    meson -Dexamples=l3fwd build || {
+    meson ${meson_options} build || {
         die "Failed to compile DPDK!"
     }
     ninja -C build || die "Failed to compile DPDK!"
