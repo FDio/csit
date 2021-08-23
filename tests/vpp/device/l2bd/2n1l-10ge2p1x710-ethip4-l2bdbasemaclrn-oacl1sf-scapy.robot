@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | FEATURE | ACL | ACL_STATEFUL
-| ... | OACL | ACL1 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN
+| ... | FEATURE | ACL | ACL_STATEFUL | OACL | ACL1
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4-l2bdbasemaclrn-oacl1sf
 |
 | Suite Setup | Setup suite topology interfaces | scapy

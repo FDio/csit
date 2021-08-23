@@ -16,9 +16,9 @@
 | Resource | resources/libraries/robot/ip/geneve.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | ENCAP | GENEVE_L3MODE
-| ... | SCALE | GENEVE4_16TUN | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | SCALE | GENEVE4_16TUN
+| ... | UDP | ENCAP | GENEVE_L3MODE
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4--ethip4udpgeneve-16tun-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -74,7 +74,7 @@
 | &{gen_tunnel}=
 | ... | local=1.1.1.2 | remote=1.1.1.1 | vni=${1}
 | ... | src_ip=10.128.1.0 | dst_ip=10.0.1.0 | ip_mask=${24} | if_ip=11.0.1.2
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-ethip4-geneve-${n_tunnels}t
 
 *** Keywords ***
