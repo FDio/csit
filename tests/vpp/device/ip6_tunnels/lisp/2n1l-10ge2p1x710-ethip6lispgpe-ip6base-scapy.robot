@@ -17,8 +17,8 @@
 | Variables | resources/test_data/lisp/lisp.py
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Intel-X710 | IP6FWD | LISP | LISPGPE_IP6o6 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | IP6FWD | LISP | LISPGPE_IP6O6
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip6lispgpe-ip6base
 |
 | Suite Setup | Setup suite topology interfaces | scapy
