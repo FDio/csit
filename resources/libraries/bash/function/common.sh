@@ -864,7 +864,7 @@ function select_tags () {
     tfd="${JOB_SPECS_DIR}"
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
-        *"vpp-device"* )
+        *"device"* )
             readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/vpp_device/${DUT}-${NODENESS}-${FLAVOR}.md |
                 awk {"$awk_nics_sub_cmd"} || echo "devicetest") || die
@@ -982,12 +982,14 @@ function select_tags () {
 
     set +x
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
-        # Automatic prefixing for VPP jobs to limit the NIC used and
-        # traffic evaluation to MRR.
-        if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
-            prefix="${prefix}mrrAND"
-        else
-            prefix="${prefix}mrrAND${default_nic}AND"
+        if [[ "${TEST_CODE}" != *"device"* ]]; then
+            # Automatic prefixing for VPP perf jobs to limit the NIC used and
+            # traffic evaluation to MRR.
+            if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
+                prefix="${prefix}mrrAND"
+            else
+                prefix="${prefix}mrrAND${default_nic}AND"
+            fi
         fi
     fi
     for tag in "${test_tag_array[@]}"; do
