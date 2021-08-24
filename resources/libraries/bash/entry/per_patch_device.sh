@@ -45,15 +45,16 @@ initialize_csit_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 set_perpatch_dut || die
-select_topology || die
 select_arch_os || die
 select_build "build_current" || die
 check_download_dir || die
 activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
 archive_tests || die
+prepare_topology || die
+select_topology || die
 activate_docker_topology || die
-select_vpp_device_tags || die
+select_tags || die
 compose_pybot_arguments || die
 run_pybot || die
 move_archives || die
