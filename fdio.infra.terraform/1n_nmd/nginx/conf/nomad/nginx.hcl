@@ -154,7 +154,8 @@ job "${job_name}" {
           "/etc/ssl/certs/logs.nginx.service.consul.crt:/etc/ssl/certs/logs.nginx.service.consul.crt",
           "/etc/ssl/private/logs.nginx.service.consul.key:/etc/ssl/private/logs.nginx.service.consul.key",
           "custom/upstream.conf:/etc/nginx/conf.d/upstream.conf",
-          "custom/server_logs.conf:/etc/nginx/conf.d/server_logs.conf"
+          "custom/server_logs.conf:/etc/nginx/conf.d/server_logs.conf",
+          "custom/server_gerrit.conf:/etc/nginx/conf.d/server_gerrit.conf",
         ]
       }
 
@@ -173,6 +174,9 @@ job "${job_name}" {
             {{ range service "storage" }}
               server {{ .Address }}:{{ .Port }};
             {{ end }}
+          }
+          upstream gerrit {
+              server 52.10.107.188;
           }
         EOH
         destination = "custom/upstream.conf"
@@ -250,8 +254,100 @@ job "${job_name}" {
             }
         }
         EOH
-        destination = "custom/logs.conf"
+        destination = "custom/server_logs.conf"
       }
+
+      template {
+        data = <<EOH
+          proxy_cache_path  /tmp/nginx-cache  levels=2:2    keys_zone=STATIC:100m inactive=24h  max_size=50g use_temp_path=on;
+
+          client_max_body_size 200M;
+          client_body_buffer_size 200M;
+          client_body_in_single_buffer on;
+
+          server {
+            listen 80;
+            server_name gerrit.nginx.service.consul;
+
+            location / {
+              proxy_set_header Host $host;
+              proxy_set_header Referer "proxy-selector.local";
+              proxy_buffering on;
+              proxy_set_header Accept-Encoding "";
+              if ($request_method = GET ) {
+                proxy_pass http://127.0.0.2:8000;
+              }
+              if ($request_method = POST ) {
+                proxy_pass http://127.0.0.2:8001;
+              }
+            }
+          }
+          server {
+            listen 8081;
+            location / {
+              proxy_pass https://gerrit;
+              proxy_set_header Host $host;
+              proxy_set_header Referer "";
+              proxy_hide_header "Set-Cookie";
+              proxy_hide_header "Cache-Control";
+              proxy_ignore_headers Set-Cookie;
+              proxy_ignore_headers X-Accel-Expires;
+              proxy_ignore_headers Expires;
+              proxy_ignore_headers Cache-Control;
+            }
+          }
+          server {
+            listen 8000; # SHORT-lived proxy
+            location / {
+              proxy_pass http://127.10.0.1:8081;
+              proxy_set_header Host $host;
+              proxy_buffering on;
+              proxy_cache STATIC;
+              proxy_cache_methods GET POST;
+              proxy_ignore_headers Set-Cookie;
+              proxy_ignore_headers X-Accel-Expires;
+              proxy_ignore_headers Expires;
+              proxy_ignore_headers Cache-Control;
+              proxy_set_header Referer "short-proxy.local";
+              add_header Pragma "public";
+              add_header Cache-Control "public";
+              add_header X-Cache $upstream_cache_status;
+              proxy_cache_valid 200 1m;
+              proxy_cache_key "SHORT|$request_method|$request_uri|$request_body";
+              proxy_cache_lock on; # If multiple clients request at once, make only one request upstream
+              expires 2m;
+            }
+          }
+          server {
+            listen 8001; # LONG-lived proxy ( for content-cached POSTs )
+            location / {
+              proxy_pass http://127.10.0.1:8081;
+              proxy_set_header Host $host;
+              proxy_buffering on;
+              proxy_buffer_size 10M;
+              proxy_busy_buffers_size 20M;
+              proxy_buffers 64 20M;
+              proxy_cache STATIC;
+              proxy_cache_methods GET POST;
+              proxy_ignore_headers Set-Cookie;
+              proxy_ignore_headers X-Accel-Expires;
+              proxy_ignore_headers Expires;
+              proxy_ignore_headers Cache-Control;
+              proxy_set_header Referer "long-proxy.local";
+              add_header Pragma "public";
+              add_header Cache-Control "public";
+              add_header X-Cache $upstream_cache_status;
+              proxy_cache_valid 200 2d;
+              proxy_cache_valid any 30m;
+              proxy_cache_key "LONG|$request_method|$request_uri|$request_body";
+              proxy_cache_lock on; # If multiple clients request at once, make only one request upstream
+              expires 2d;
+            }
+          }
+        EOH
+        destination = "custom/server_gerrit.conf"
+      }
+
 
       # The service stanza instructs Nomad to register a service with Consul.
       #
@@ -263,7 +359,7 @@ job "${job_name}" {
       service {
         name       = "nginx"
         port       = "https"
-        tags       = [ "logs" ]
+        tags       = [ "logs", "gerrit" ]
       }
 
       # The "resources" stanza describes the requirements a task needs to
@@ -283,6 +379,9 @@ job "${job_name}" {
           mode     = "bridge"
           port "https" {
             static = 443
+          }
+          port "http" {
+            static = 80
           }
         }
       }
