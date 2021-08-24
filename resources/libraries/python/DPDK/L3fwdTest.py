@@ -21,6 +21,8 @@ from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import NodeType, Topology
 
 
+NB_PORTS = 2
+
 class L3fwdTest:
     """Test the DPDK l3fwd performance."""
 
@@ -54,16 +56,17 @@ class L3fwdTest:
                 nodes, node, if1, if2
             )
 
-            list_cores = [int(item) for item in lcores_list.split(u",")]
+            lcores = [int(item) for item in lcores_list.split(u",")]
 
             # prepare the port config param
             nb_cores = int(nb_cores)
             index = 0
             port_config = ''
-            for port in range(0, 2):
+            for port in range(0, NB_PORTS):
                 for queue in range(0, int(queue_nums)):
                     index = 0 if nb_cores == 1 else index
-                    port_config += f"({port}, {queue}, {list_cores[index]}),"
+                    port_config += \
+                        f"({port}, {queue}, {lcores[index % NB_PORTS]}),"
                     index += 1
 
             if jumbo_frames:

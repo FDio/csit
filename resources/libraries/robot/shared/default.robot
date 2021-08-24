@@ -232,7 +232,7 @@
 | | ... | ${txd}=${None}
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | &{compute_resource_info}= | Get Affinity VPP Vswitch
+| | | &{compute_resource_info}= | Get Affinity Vswitch
 | | | ... | ${nodes} | ${dut} | ${phy_cores} | rx_queues=${rx_queues}
 | | | ... | rxd=${rxd} | txd=${txd}
 | | | Set Test Variable | &{compute_resource_info}
