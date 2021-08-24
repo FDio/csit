@@ -500,9 +500,9 @@ class CpuUtils:
         return cpu_idle_list
 
     @staticmethod
-    def get_affinity_vpp_vswitch(
+    def get_affinity_vswitch(
             nodes, node, phy_cores, rx_queues=None, rxd=None, txd=None):
-        """Get affinity or VPP switch.
+        """Get affinity for vswitch.
 
         :param nodes: Topology nodes.
         :param node: Topology node string.
