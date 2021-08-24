@@ -864,7 +864,7 @@ function select_tags () {
     tfd="${JOB_SPECS_DIR}"
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
-        *"vpp-device"* )
+        *"device"* )
             readarray -t test_tag_array <<< $(grep -v "#" \
                 ${tfd}/vpp_device/${DUT}-${NODENESS}-${FLAVOR}.md |
                 awk {"$awk_nics_sub_cmd"} || echo "devicetest") || die
