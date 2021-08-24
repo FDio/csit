@@ -247,6 +247,102 @@ job "${job_name}" {
         destination = "custom/docs.conf"
       }
 
+      template {
+        data = <<EOH
+          server {
+            listen 80;
+            # This selects the proxy, depending on the request
+            location / {
+              proxy_set_header Host $host;
+              proxy_set_header Referer "proxy-selector.local";
+              proxy_buffering on;
+              proxy_set_header Accept-Encoding "";
+              if ($request_method = GET ) {
+                proxy_pass http://127.0.0.2:8000;
+              }
+              if ($request_method = POST ) {
+                proxy_pass http://127.0.0.2:8001;
+              }
+            }
+          }
+          server {
+            listen 8081;
+            location / {
+              proxy_pass https://52.10.107.188;
+              proxy_set_header Host $host;
+              proxy_set_header Referer "";
+              proxy_hide_header "Set-Cookie";
+              proxy_hide_header "Cache-Control";
+              proxy_ignore_headers Set-Cookie;
+              proxy_ignore_headers X-Accel-Expires;
+              proxy_ignore_headers Expires;
+              proxy_ignore_headers Cache-Control;
+            }
+          }
+          server {
+            listen 8000; # SHORT-lived proxy
+            # server_name localhost;
+            location / {
+              # proxy_pass https://52.10.107.188;
+              proxy_pass http://127.10.0.1:8081;
+              proxy_set_header Host $host;
+              proxy_buffering on;
+              proxy_cache STATIC;
+              proxy_cache_methods GET POST;
+              # access_log off;
+              # proxy_cache_use_stale  error timeout invalid_header updating http_500 http_502 http_503 http_504;
+              proxy_ignore_headers Set-Cookie;
+              proxy_ignore_headers X-Accel-Expires;
+              proxy_ignore_headers Expires;
+              proxy_ignore_headers Cache-Control;
+              # proxy_hide_header "Set-Cookie";
+              proxy_set_header Referer "short-proxy.local";
+              add_header Pragma "public";
+              add_header Cache-Control "public";
+              add_header X-Cache $upstream_cache_status;
+              proxy_cache_valid 200 1m;
+              proxy_cache_key "SHORT|$request_method|$request_uri|$request_body";
+              proxy_cache_lock on; # If multiple clients request at once, make only one request upstream
+              expires 2m;
+            }
+          }
+          server {
+            listen 8001; # LONG-lived proxy ( for content-cached POSTs )
+            # server_name localhost;
+            location / {
+              # error_log /var/log/nginx/proxy-error.log debug;
+              # proxy_pass https://52.10.107.188;
+              proxy_pass http://127.10.0.1:8081;
+              proxy_set_header Host $host;
+              proxy_buffering on;
+              proxy_buffer_size 10M;
+              proxy_busy_buffers_size 20M;
+              proxy_buffers 64 20M;
+              proxy_cache STATIC;
+              proxy_cache_methods GET POST;
+              # access_log off;
+              # proxy_cache_use_stale  error timeout invalid_header updating http_500 http_502 http_503 http_504;
+              proxy_ignore_headers Set-Cookie;
+              proxy_ignore_headers X-Accel-Expires;
+              proxy_ignore_headers Expires;
+              proxy_ignore_headers Cache-Control;
+              # proxy_hide_header "Set-Cookie";
+              proxy_set_header Referer "long-proxy.local";
+              add_header Pragma "public";
+              add_header Cache-Control "public";
+              add_header X-Cache $upstream_cache_status;
+              proxy_cache_valid 200 2d;
+              proxy_cache_valid any 30m;
+              proxy_cache_key "LONG|$request_method|$request_uri|$request_body";
+              proxy_cache_lock on; # If multiple clients request at once, make only one request upstream
+              expires 2d;
+            }
+          }
+        EOH
+        destination = "custom/gerrit_proxy.conf"
+      }
+
+
       # The service stanza instructs Nomad to register a service with Consul.
       #
       # For more information and examples on the "task" stanza, please see
