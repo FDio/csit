@@ -22,6 +22,30 @@
       "revId": "c76255446244e46b5375ff4ff307f06354837c36",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6aa7b86_92011c1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-24T20:17:47Z",
+      "side": 1,
+      "message": "Finally I see [1] robot starting correctly for patch set #3.\n\n[1] https://jenkins.fd.io/job/vpp-csit-verify-device-master-ubuntu2004-x86_64-1n-skx/2612/",
+      "parentUuid": "6ac26546_6a94a4f9",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "c76255446244e46b5375ff4ff307f06354837c36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
