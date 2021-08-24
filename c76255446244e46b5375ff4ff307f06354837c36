@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ac26546_6a94a4f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-24T19:26:42Z",
+      "side": 1,
+      "message": "Failure to fix is [0]:\n\n  /w/workspace/vpp-csit-verify-device-master-ubuntu2004-x86_64-1n-skx/csit/resources/libraries/bash/entry/per_patch_device.sh: line 56: select_vpp_device_tags: command not found\n\nTriggered #2609 to confirm this fixes the issue.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/vpp-csit-verify-device-master-ubuntu2004-x86_64-1n-skx/2608/console.log.gz",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "c76255446244e46b5375ff4ff307f06354837c36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
