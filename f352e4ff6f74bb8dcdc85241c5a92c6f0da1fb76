@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d159b6a8_def941c2",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-24T13:15:53Z",
+      "side": 1,
+      "message": "Are some tests going to use a different profile here soon?\nIf no, it is better to hardcode vpp_test_teardown here, instead of putting two lines into each scapy suite.",
+      "range": {
+        "startLine": 178,
+        "startChar": 29,
+        "endLine": 178,
+        "endChar": 49
+      },
+      "revId": "f352e4ff6f74bb8dcdc85241c5a92c6f0da1fb76",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
