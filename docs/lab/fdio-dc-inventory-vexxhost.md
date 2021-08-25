@@ -88,6 +88,9 @@ s52-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.65,10.30.50.
 s51-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.66,10.30.50.66,3016.11,u9-u10
 s49-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.67,10.30.50.67,3016.11,u9-u10
 s50-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.68,10.30.50.68,3016.11,u9-u10
+s62-t34-sut1,in-transit,t34,3n-alt,Ampere-TBD,TBD,10.30.51.72,10.30.50.72,3016.11,u7-8
+s63-t34-sut2,in-transit,t34,3n-alt,Ampere-TBD,TBD,10.30.51.73,10.30.50.73,3016.11,u5-6
+s64-t34-tg1,in-transit,t34,3n-alt,Intel-TBD,TBD,10.30.51.74,10.30.50.74,3016.11,u1-4
 
 #### Rack YUL1-12 (3016.12)
 
