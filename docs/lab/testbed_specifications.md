@@ -13,8 +13,8 @@
    1. [2-Node-Zen2 EPYC AMD (2n-zn2)](#2-node-zen2-epyc-amd-2n-zn)
    1. [2-Node-ThunderX2 Arm Marvell (2x-tx2)](#2-node-thunderx2-arm-marvell-2n-tx2)
    1. [3-Node-Skylake Xeon Intel (3n-skx)](#3-node-skylake-xeon-intel-3n-skx)
-   1. [3-Node-TaiShan Arm Huawei (3n-tsh)](#3-node-taishan-arm-huawei-3n-tsh)
    1. [3-Node-Rangeley Atom Testbeds](#3-node-rangeley-atom-testbeds)
+   1. [3-Node-TaiShan Arm Huawei (3n-tsh)](#3-node-taishan-arm-huawei-3n-tsh)
 1. [Server Management](#server-management)
    1. [Requirements](#requirements)
    1. [Addressing](#addressing)
@@ -71,13 +71,13 @@ hosted by LFN FD.io CSIT project.
  #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #clx #zn2
  1. 1-Node-Haswell     nomad  hsw   na    4    4    0    4    0    0    0    0    0    0    0    0
  2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0
- 3. 1-Node-ThunderX2   perf   tx2   na    1    1    .5   0    .5   0    0    0    1    0    0    0
- 4. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    0    2    0    0    0
- 5. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    1    0
- 6. 2-Node-Skylake     perf   skx   skx   4    4    4    0    8    0    0    0    0    0    0    0
- 7. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0    0
- 8. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0
- 9. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    6    0
+ 3. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    0    2    0    0    0
+ 4. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    1    0
+ 5. 2-Node-Skylake     perf   skx   skx   4    4    4    0    8    0    0    0    0    0    0    0
+ 6. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0    0
+ 7. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0
+ 8. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    6    0
+ 9. 2-Node-ThunderX2   perf   tx2   skx   1    1    .5   0    .5   0    0    0    1    0    0    0
 10. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0
 11. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0
 12. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    0    2    0    0
@@ -94,7 +94,7 @@ Used for FD.io VPP_Device functional driver tests.
 
 ### 1-Node-ThunderX2 Arm Marvell (1n-tx2)
 
-Each 1-Node-ThunderX2 testbed includes one SUT (Server-Type-B11) with NIC
+Each 1-Node-ThunderX2 testbed includes one SUT (Server-Type-E11) with NIC
 ports connected back-to-back ([Server Types](#server-types)).
 Used for FD.io VPP_Device functional driver tests.
 
@@ -142,8 +142,8 @@ Used for FD.io performance tests.
 
 ### 2-Node-ThunderX2 Arm Marvell (2x-tx2)
 
-Each 2-Node-ThunderX2 testbed includes one SUT (Server-Type-B9) and
-one TG (Server-Type-B12) connected in a 2-node circular topology
+Each 2-Node-ThunderX2 testbed includes one SUT (Server-Type-E22) and
+one TG (Server-Type-E31) connected in a 2-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
@@ -160,17 +160,17 @@ Each 3-Node-Skylake testbed includes two SUTs (Server-Type-B1) and one
 TG (Server-Type-B2) connected in a 3-node circular topology.
 Used for FD.io performance tests.
 
-### 3-Node-TaiShan Arm Huawei (3n-tsh)
-
-Each 3-Node-TaiShan testbed includes two SUTs (Server-Type-B3) and one
-TG (Server-Type-B12) connected in a 3-node circular topology
-([Server Types](#server-types)).
-Used for FD.io performance tests.
-
 ### 3-Node-Rangeley Atom Testbeds
 
 Each 3-Node-Rangeley testbed includes two SUTs (Server-Type-B5) and one
 TG (Server-Type-2) connected in a 3-node circular topology
+([Server Types](#server-types)).
+Used for FD.io performance tests.
+
+### 3-Node-TaiShan Arm Huawei (3n-tsh)
+
+Each 3-Node-TaiShan testbed includes two SUTs (Server-Type-E21) and one
+TG (Server-Type-E31) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
@@ -252,7 +252,7 @@ Name         | Comment
 10.30.50.43  | s11-t31-sut1
 10.30.50.44  | s12-t31-sut2
 10.30.50.45  | s13-t31-tg1
-10.30.50.46  | s19-t33t34-tg1
+10.30.50.46  | s19-t33t211-tg1
 10.30.50.47  | s1-t11-sut1
 10.30.50.48  | s2-t12-sut1
 10.30.50.49  | s5-t22-sut1
@@ -270,12 +270,10 @@ Name         | Comment
 10.30.50.66  | s51-nomad
 10.30.50.67  | s49-nomad
 10.30.50.68  | s50-nomad
-10.30.50.69  | s27-t34-sut1
-10.30.50.70  | s55-t36-sut1
-10.30.50.71  | s56-t37-sut1
+10.30.50.69  | s27-t211-sut1
+10.30.50.70  | s55-t13-sut1
+10.30.50.71  | s56-t14-sut1
 10.30.50.255 | Broadcast
-n/a          | s20-t34-sut1
-n/a          | s21-t34-sut2
 10.30.55.0   | network
 10.30.55.1   | Router
 10.30.55.10  | s28-t26t35-tg1
@@ -327,7 +325,7 @@ Name                      | Comment
 10.30.51.46               | s11-t31-sut1
 10.30.51.47               | s12-t31-sut2
 10.30.51.48               | s13-t31-tg1
-10.30.51.49               | s19-t33t34-tg1
+10.30.51.49               | s19-t33t211-tg1
 10.30.51.50               | s1-t11-sut1
 10.30.51.51               | s2-t12-sut1
 10.30.51.52               | s5-t22-sut1
@@ -345,9 +343,9 @@ Name                      | Comment
 10.30.51.66               | s51-nomad
 10.30.51.67               | s49-nomad
 10.30.51.68               | s50-nomad
-10.30.51.69               | s27-t34-sut1
-10.30.51.70               | s55-t36-sut1
-10.30.51.71               | s56-t37-sut1
+10.30.51.69               | s27-t211-sut1
+10.30.51.70               | s55-t13-sut1
+10.30.51.71               | s56-t14-sut1
 10.30.51.72-10.30.51.254  | FREE
 10.30.51.255              | Broadcast
 10.32.8.0                 | network
@@ -472,20 +470,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: x710-4p10GE Intel.
-6. Server-Type-B3: Purpose - TaiShan Arm Huawei SUT for FD.io performance testing.
-    - Quantity: 2
-    - Physical connectivity:
-        - IPMI(?) and host management ports.
-        - NIC ports connected into 3-node topology.
-    - Main HW configuration:
-        - Chassis: Huawei TaiShan 2280.
-        - Processors: 2* hip07-d05 ~ 32* Arm Cortex-A72
-        - RAM Memory: 8* 16GB DDR4-2400MT/s
-        - Disks: 1* 4TB SATA HDD
-    - NICs configuration:
-        - PCIe Slot4 e9:00.xx: connectx4-2p25GE Mellanox.
-        - PCIe Slot6 11:00.xx: x520-2p10GE Intel.
-7. Server-Type-B5: Purpose - Rangeley Atom SUT for FD.io performance testing.
+6. Server-Type-B5: Purpose - Rangeley Atom SUT for FD.io performance testing.
     - Quantity: TBD based on testbed allocation.
     - Physical connectivity:
         - Management: serial Port (usb) for console
@@ -498,7 +483,7 @@ FD.io CSIT lab contains following server types:
     - NICs configuration:
         - 2x 10Gb Intel 82599ES
         - 4x 1GB Intel I354
-8. Server-Type-B6: Purpose - Skylake Xeon SUT for FD.io VPP_Device functional tests.
+7. Server-Type-B6: Purpose - Skylake Xeon SUT for FD.io VPP_Device functional tests.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -518,7 +503,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-9. Server-Type-B7: Purpose - Ixia PerfectStorm One Appliance TG for FD.io TCP/IP performance tests.
+8. Server-Type-B7: Purpose - Ixia PerfectStorm One Appliance TG for FD.io TCP/IP performance tests.
     - Quantity: 1.
     - Physical connectivity:
         - Host management interface: 10/100/1000-BaseT.
@@ -537,7 +522,7 @@ FD.io CSIT lab contains following server types:
         - Port-2: 10GE SFP+.
         - Port-3: 10GE SFP+.
         - Port-4: 10GE SFP+.
-10. Server-Type-B8: Purpose - Skylake Xeon SUT for TCP/IP host stack tests.
+9. Server-Type-B8: Purpose - Skylake Xeon SUT for TCP/IP host stack tests.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -557,23 +542,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-11. Server-Type-B9: Purpose - ThunderX2 Arm Marvell SUT for FD.io performance testing.
-    - Quantity: 1
-    - Physical connectivity:
-        - IPMI and host management ports.
-        - NIC ports connected into 1-node topologies.
-    - Main HW configuration:
-        - Chassis: Gigabyte R181-T90 1U
-        - Motherboard: MT91-FS1
-        - Processors: 2* ThunderX2 ARMv8 CN9975 2.0 GHz
-        - RAM Memory: 4* 32GB RDIMM
-        - Disks: 1* 480GB SSD Micron, 1* 1000GB HDD Seagate_25
-    - NICs configuration:
-        - Numa0:
-            - PCIe Slot6 08:00.xx: XL710-QDA2-2p40GE Intel.
-        - Numa1:
-            - PCIe Slot18 91:00.xx: XL710-QDA2-2p40GE Intel.
-12. Server-Type-B10: Purpose - Denverton Atom SUT for FD.io performance testing.
+10. Server-Type-B10: Purpose - Denverton Atom SUT for FD.io performance testing.
     - Quantity: 4
     - Physical connectivity:
         - IPMI and host management ports.
@@ -587,46 +556,7 @@ FD.io CSIT lab contains following server types:
         - 2x 10Gb Intel x553 fiber ports
         - 2x 10Gb Intel x553 copper ports
         - 4x 1GB Intel I350 ports
-13. Server-Type-B11: Purpose - ThunderX2 Arm Marvell SUT for FD.io VPP_Device functional tests.
-    - Quantity: 2
-    - Physical connectivity:
-        - IPMI and host management ports.
-        - NIC ports connected into 1-node topologies.
-    - Main HW configuration:
-        - Chassis: GIGABYTE Rack Mount
-        - Motherboard: MT91-FS4-00
-        - Processors: 2 * ThunderX2 ARMv8 CN9980 2.20 GHz
-        - RAM Memory: 16 * 16GB DIMM
-        - Disks: 2 * 480GB 6G SATA SSD SAMSUNG MZ7LH480
-    - NICs configuration:
-        - Numa0:
-            - PCIe Slot4 05:00.xx: XL710-QDA2-2p40GE Intel.
-            - PCIe Slot8 0b:00.xx: ConnectX5-2p10/25GE Mellanox.
-        - Numa1:
-            - PCIe Slot14 91:00.xx: XL710-QDA2-2p40GE Intel.
-            - PCIe Slot26 9a:00.xx: ConnectX5-2p10/25GE Mellanox.
-14. Server-Type-B12: Purpose - Skylake Xeon TG for FD.io performance testing.
-    - Quantity: ---
-    - Physical connectivity:
-        - IPMI and host management ports.
-        - NIC ports connected into 2-node and 3-node topologies.
-    - Main HW configuration:
-        - Chassis: SuperMicro SYS-7049GP-TRT.
-        - Motherboard: SuperMicro X11DPG-QT.
-        - Processors: 2* Intel Platinum 8180 2.5 GHz.
-        - RAM Memory: 16* 16GB DDR4-2666MHz.
-        - Disks: 2* 1.6TB 6G SATA SSD.
-    - NICs configuration:
-        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
-            - PCIe Slot2 18:00.xx: x710-4p10GE Intel.
-            - PCIe Slot4 3b:00.xx: xxv710-DA2 2p25GE Intel.
-            - PCIe Slot9 5e:00.xx: empty.
-        - Numa1: (x16, x16, x16 PCIe3.0 lanes)
-            - PCIe Slot6 86:00.xx: empty.
-            - PCIe Slot8 af:00.xx: XL710-QDA2-2p40GE Intel.
-            - PCIe Slot10 d8:00.xx: x710-4p10GE Intel.
-
-15. Server-Type-C1: Purpose - Cascadelake Xeon SUT for FD.io VPP_Device functional tests.
+11. Server-Type-C1: Purpose - Cascadelake Xeon SUT for FD.io VPP_Device functional tests.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -646,7 +576,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-16. Server-Type-C2: Purpose - Cascadelake Xeon SUT for FD.io performance testing.
+12. Server-Type-C2: Purpose - Cascadelake Xeon SUT for FD.io performance testing.
     - Quantity: 3
     - Physical connectivity:
         - IPMI and host management ports.
@@ -666,7 +596,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-17. Server-Type-C3: Purpose - Cascadelake Xeon TG for FD.io performance testing.
+13. Server-Type-C3: Purpose - Cascadelake Xeon TG for FD.io performance testing.
     - Quantity: 3.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -686,7 +616,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-18. Server-Type-C4: Purpose - Cascadelake Xeon Backend hosts for FD.io builds and data processing.
+14. Server-Type-C4: Purpose - Cascadelake Xeon Backend hosts for FD.io builds and data processing.
     - Quantity: 3.
     - Physical connectivity:
         - CIMC and host management ports.
@@ -702,7 +632,7 @@ FD.io CSIT lab contains following server types:
             - no cards.
         - Numa1:
             - no cards.
-19. Server-Type-D1: Purpose - Zen2 EPYC SUT for FD.io performance testing.
+15. Server-Type-D1: Purpose - Zen2 EPYC SUT for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -717,7 +647,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot1 01:00.xx: x710-4p10GE Intel.
             - PCIe Slot2 41:00.xx: xxv710-DA2-2p25GE Intel.
             - PCIe Slot3 81:00.xx: mcx556a-edat ConnectX5-2p100GE Mellanox.
-20. Server-Type-D2: Purpose - Zen2 EPYC TG for FD.io performance testing.
+16. Server-Type-D2: Purpose - Zen2 EPYC TG for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -732,6 +662,73 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot1 01:00.xx: mcx556a-edat ConnectX5-2p100GE Mellanox.
             - PCIe Slot2 41:00.xx: x710-4p10GE Intel.
             - PCIe Slot3 81:00.xx: xxv710-DA2 2p25GE Intel.
+17.  Server-Type-E11: Purpose - ThunderX2 Arm Marvell SUT for FD.io VPP_Device functional tests.
+    - Quantity: 2
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 1-node topologies.
+    - Main HW configuration:
+        - Chassis: GIGABYTE Rack Mount
+        - Motherboard: MT91-FS4-00
+        - Processors: 2 * ThunderX2 ARMv8 CN9980 2.20 GHz
+        - RAM Memory: 16 * 16GB DIMM
+        - Disks: 2 * 480GB 6G SATA SSD SAMSUNG MZ7LH480
+    - NICs configuration:
+        - Numa0:
+            - PCIe Slot4 05:00.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slot8 0b:00.xx: ConnectX5-2p10/25GE Mellanox.
+        - Numa1:
+            - PCIe Slot14 91:00.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slot26 9a:00.xx: ConnectX5-2p10/25GE Mellanox.
+18.  Server-Type-E21: Purpose - TaiShan Arm Huawei SUT for FD.io performance testing.
+    - Quantity: 2
+    - Physical connectivity:
+        - IPMI(?) and host management ports.
+        - NIC ports connected into 3-node topology.
+    - Main HW configuration:
+        - Chassis: Huawei TaiShan 2280.
+        - Processors: 2* hip07-d05 ~ 32* Arm Cortex-A72
+        - RAM Memory: 8* 16GB DDR4-2400MT/s
+        - Disks: 1* 4TB SATA HDD
+    - NICs configuration:
+        - PCIe Slot4 e9:00.xx: connectx4-2p25GE Mellanox.
+        - PCIe Slot6 11:00.xx: x520-2p10GE Intel.
+19.  Server-Type-E22: Purpose - ThunderX2 Arm Marvell SUT for FD.io performance testing.
+    - Quantity: 1
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node topologies.
+    - Main HW configuration:
+        - Chassis: Gigabyte R181-T90 1U
+        - Motherboard: MT91-FS1
+        - Processors: 2* ThunderX2 ARMv8 CN9975 2.0 GHz
+        - RAM Memory: 4* 32GB RDIMM
+        - Disks: 1* 480GB SSD Micron, 1* 1000GB HDD Seagate_25
+    - NICs configuration:
+        - Numa0:
+            - PCIe Slot6 08:00.xx: XL710-QDA2-2p40GE Intel.
+        - Numa1:
+            - PCIe Slot18 91:00.xx: XL710-QDA2-2p40GE Intel.
+20.  Server-Type-E31: Purpose - Skylake Xeon TG for FD.io performance testing.
+    - Quantity: 1
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node and 3-node topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-7049GP-TRT.
+        - Motherboard: SuperMicro X11DPG-QT.
+        - Processors: 2* Intel Platinum 8180 2.5 GHz.
+        - RAM Memory: 16* 16GB DDR4-2666MHz.
+        - Disks: 2* 1.6TB 6G SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
+            - PCIe Slot2 18:00.xx: x710-4p10GE Intel.
+            - PCIe Slot4 3b:00.xx: xxv710-DA2 2p25GE Intel.
+            - PCIe Slot9 5e:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe3.0 lanes)
+            - PCIe Slot6 86:00.xx: empty.
+            - PCIe Slot8 af:00.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slot10 d8:00.xx: x710-4p10GE Intel.
 ```
 
 ### Naming Convention
@@ -795,34 +792,34 @@ connectivity and wiring across defined CSIT testbeds:
 #### 1-Node-ThunderX2 Servers (1n-tx2) PROD
 
 ```
-- SUT [Server-Type-B11]:
-    - testbedname: testbed36
-    - hostname: s55-t36-sut1
+- SUT [Server-Type-E11]:
+    - testbedname: testbed13
+    - hostname: s55-t13-sut1
     - IPMI IP: 10.30.50.70
     - Host IP: 10.30.51.70
     - portnames:
-        - s55-t36-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s55-t36-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s55-t36-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s55-t36-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s55-t36-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s55-t36-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s55-t36-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s55-t36-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
-- SUT [Server-Type-B11]:
-    - testbedname: testbed37
-    - hostname: s56-t37-sut1
+        - s55-t13-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s55-t13-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s55-t13-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s55-t13-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s55-t13-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s55-t13-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s55-t13-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s55-t13-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+- SUT [Server-Type-E11]:
+    - testbedname: testbed14
+    - hostname: s56-t14-sut1
     - IPMI IP: 10.30.50.71
     - Host IP: 10.30.51.71
     - portnames:
-        - s56-t37-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s56-t37-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s56-t37-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s56-t37-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
-        - s56-t37-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s56-t37-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
-        - s56-t37-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
-        - s56-t37-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s56-t14-sut1-c4/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s56-t14-sut1-c4/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s56-t14-sut1-c8/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s56-t14-sut1-c8/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
+        - s56-t14-sut1-c14/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s56-t14-sut1-c14/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s56-t14-sut1-c26/p1 - 40GE-port1 ConnectX5-2p10/25GE Mellanox.
+        - s56-t14-sut1-c26/p2 - 40GE-port2 ConnectX5-2p10/25GE Mellanox.
 ```
 
 #### 1-Node-Cascadelake Servers (1n-clx) PROD
@@ -1141,37 +1138,37 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
 
 #### 2-Node-ThunderX2 Servers (2x-tx2) PROD
 
-Note: Server19 (TG) is shared between testbed33 & testbed34
+Note: Server19 (TG) is shared between testbed33 & testbed211
 
 ```
-- SUT [Server-Type-B9]:
-    - testbedname: testbed34.
-    - hostname: s27-t34-sut1.
+- SUT [Server-Type-E22]:
+    - testbedname: testbed211.
+    - hostname: s27-t211-sut1.
     - IPMI IP: 10.30.50.69
     - Host IP: 10.30.51.69
     - portnames:
-        - s27-t34-sut1-c6/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s27-t34-sut1-c6/p2 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s27-t34-sut1-c18/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s27-t34-sut1-c18/p2 - 40GE-port1 XL710-QDA2-2p40GE.
-- TG [Server-Type-B12]:
-    - testbedname: testbed33 and testbed34.
-    - hostname: s19-t33t34-tg1.
+        - s27-t211-sut1-c6/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t211-sut1-c6/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s27-t211-sut1-c18/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t211-sut1-c18/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+- TG [Server-Type-E31]:
+    - testbedname: testbed33 and testbed211.
+    - hostname: s19-t33t211-tg1.
     - IPMI IP: 10.30.50.46
     - Host IP: 10.30.51.49
     - portnames:
-        - s19-t33t34-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s19-t33t34-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s19-t33t34-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s19-t33t34-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s19-t33t34-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s19-t33t34-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s19-t33t34-tg1-c8/p1 - 40GE-port1 xl710-QDA2-2p40GE.
-        - s19-t33t34-tg1-c8/p2 - 40GE-port1 xl710-QDA2-2p40GE.
-        - s19-t33t34-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
-        - s19-t33t34-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
-        - s19-t33t34-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
-        - s19-t33t34-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
+        - s19-t33t211-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
+        - s19-t33t211-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
+        - s19-t33t211-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
+        - s19-t33t211-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
+        - s19-t33t211-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s19-t33t211-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s19-t33t211-tg1-c8/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s19-t33t211-tg1-c8/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s19-t33t211-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s19-t33t211-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s19-t33t211-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s19-t33t211-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 ```
 
 #### 3-Node-Skylake Servers (3n-skx) PROD
@@ -1299,10 +1296,10 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
 
 #### 3-Node-Taishan Servers (3n-tsh) PROD
 
-Note: Server19 (TG) is shared between testbed33 & testbed34
+Note: Server19 (TG) is shared between testbed33 & testbed211
 
 ```
-- SUT [Server-Type-B3]:
+- SUT [Server-Type-E21]:
     - testbedname: testbed33.
     - hostname: s17-t33-sut1.
     - IPMI IP: 10.30.50.36
@@ -1312,7 +1309,7 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
         - s17-t33-sut1-c6/p2 - 10GE-port2 x520-2p10GE.
         - s17-t33-sut1-c4/p1 - 25GE-port1 cx4-2p25GE.
         - s17-t33-sut1-c4/p2 - 25GE-port2 cx4-2p25GE.
-- SUT [Server-Type-B3]:
+- SUT [Server-Type-E21]:
     - testbedname: testbed33.
     - hostname: s18-t33-sut2.
     - IPMI IP: 10.30.50.37
@@ -1322,24 +1319,24 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
         - s18-t33-sut2-c6/p2 - 10GE-port2 x520-2p10GE.
         - s18-t33-sut2-c4/p1 - 25GE-port1 cx4-2p25GE.
         - s18-t33-sut2-c4/p2 - 25GE-port2 cx4-2p25GE.
-- TG [Server-Type-B12]:
-    - testbedname: testbed33 and testbed34.
-    - hostname: s19-t33t34-tg1.
+- TG [Server-Type-E31]:
+    - testbedname: testbed33 and testbed211.
+    - hostname: s19-t33t211-tg1.
     - IPMI IP: 10.30.50.46
     - Host IP: 10.30.51.49
     - portnames:
-        - s19-t33t34-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s19-t33t34-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s19-t33t34-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s19-t33t34-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s19-t33t34-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s19-t33t34-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s19-t33t34-tg1-c8/p1 - 40GE-port1 xl710-QDA2-2p40GE.
-        - s19-t33t34-tg1-c8/p2 - 40GE-port1 xl710-QDA2-2p40GE.
-        - s19-t33t34-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
-        - s19-t33t34-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
-        - s19-t33t34-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
-        - s19-t33t34-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
+        - s19-t33t211-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
+        - s19-t33t211-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
+        - s19-t33t211-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
+        - s19-t33t211-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
+        - s19-t33t211-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s19-t33t211-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s19-t33t211-tg1-c8/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s19-t33t211-tg1-c8/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s19-t33t211-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s19-t33t211-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s19-t33t211-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s19-t33t211-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 ```
 
 #### 3-Node-Denverton Servers (3n-dnv) PROD
@@ -1403,25 +1400,25 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
 #### 1-Node-ThunderX2 Wiring (1n-tx2) PROD
 
 ```
-- testbed36:
+- testbed13:
     - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s55-t36-sut1-c4/p1 - s55-t36-sut1-c14/p1.
+        - s55-t13-sut1-c4/p1 - s55-t13-sut1-c14/p1.
     - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s55-t36-sut1-c4/p2 - s55-t36-sut1-c14/p2.
+        - s55-t13-sut1-c4/p2 - s55-t13-sut1-c14/p2.
     - ring3 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s55-t36-sut1-c8/p1 - s55-t36-sut1-c26/p1.
+        - s55-t13-sut1-c8/p1 - s55-t13-sut1-c26/p1.
     - ring4 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s55-t36-sut1-c8/p2 - s55-t36-sut1-c26/p2.
+        - s55-t13-sut1-c8/p2 - s55-t13-sut1-c26/p2.
 
-- testbed37:
+- testbed14:
     - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s56-t37-sut1-c4/p1 - s56-t37-sut1-c14/p1.
+        - s56-t14-sut1-c4/p1 - s56-t14-sut1-c14/p1.
     - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
-        - s56-t37-sut1-c4/p2 - s56-t37-sut1-c14/p2.
+        - s56-t14-sut1-c4/p2 - s56-t14-sut1-c14/p2.
     - ring3 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s55-t37-sut1-c8/p1 - s55-t37-sut1-c26/p1.
+        - s56-t14-sut1-c8/p1 - s56-t14-sut1-c26/p1.
     - ring4 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
-        - s55-t37-sut1-c8/p2 - s55-t37-sut1-c26/p2.
+        - s56-t14-sut1-c8/p2 - s56-t14-sut1-c26/p2.
 ```
 
 #### 1-Node-Cascadelake Wiring (1n-clx) PROD
@@ -1583,10 +1580,10 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
 #### 2-Node-ThunderX2 Wiring (2n-tx2) PROD
 
 ```
-- testbed34:
+- testbed211:
     - ring1 10GE-ports x520-2p10GE on SUTs:
-        - s27-t34-sut1-c18/p1 - s19-t33t34-tg1-c8/p1.
-        - s27-t34-sut1-c18/p2 - s19-t33t34-tg1-c8/p2.
+        - s27-t211-sut1-c18/p1 - s19-t33t211-tg1-c8/p1.
+        - s27-t211-sut1-c18/p2 - s19-t33t211-tg1-c8/p2.
 ```
 
 #### 3-Node-Skylake Wiring (3n-skx) PROD
@@ -1645,13 +1642,13 @@ To be completed.
 ```
 - testbed33:
     - ring1 10GE-ports x520-2p10GE on SUTs:
-        - s19-t33t34-tg1-c2/p2 - s17-t33-sut1-c6/p2.
+        - s19-t33t211-tg1-c2/p2 - s17-t33-sut1-c6/p2.
         - s17-t33-sut1-c6/p1 - s18-t33-sut2-c6/p2.
-        - s18-t33-sut2-c6/p1 - s19-t33t34-tg1-c2/p1.
+        - s18-t33-sut2-c6/p1 - s19-t33t211-tg1-c2/p1.
     - ring2 25GE-ports cx4-2p25GE on SUTs:
-        - s19-t33t34-tg1-c4/p2 - s17-t33-sut1-c4/p2.
+        - s19-t33t211-tg1-c4/p2 - s17-t33-sut1-c4/p2.
         - s17-t33-sut1-c4/p1 - s18-t33-sut2-c4/p2.
-        - s18-t33-sut2-c4/p1 - s19-t33t34-tg1-c4/p1.
+        - s18-t33-sut2-c4/p1 - s19-t33t211-tg1-c4/p1.
 ```
 
 #### 3-Node-Denverton Wiring (3n-dnv) PROD
@@ -1685,7 +1682,7 @@ To be completed.
         - Operating System: Native IxOS.
 ```
 
-### Arm Servers
+### Arm Servers
 
 ```
 1. Arm Cortex A-72 servers

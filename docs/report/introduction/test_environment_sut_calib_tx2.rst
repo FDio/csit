@@ -2,7 +2,7 @@ ThunderX2
 ~~~~~~~~~
 
 Following sections include sample calibration data measured on
-s27-t34-sut1 server running in one of the ThunderX2 testbeds.
+s27-t211-sut1 server running in one of the ThunderX2 testbeds.
 
 
 Linux cmdline

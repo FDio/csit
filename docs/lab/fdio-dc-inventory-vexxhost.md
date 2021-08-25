@@ -46,8 +46,8 @@ s14-t32-sut1,up,t31,3n-skx,SYS-7049GP-TRT,C7470KH06A20075,10.30.51.58,10.30.50.5
 s15-t32-sut2,up,t31,3n-skx,SYS-7049GP-TRT,C7470KH06A20010,10.30.51.59,10.30.50.56,3016.9,u26-u29
 s16-t32-tg1,up,t31,3n-skx,SYS-7049GP-TRT,C7470KH06A20047,10.30.51.60,10.30.50.57,3016.9,u22-u25
 s25-t25-sut1,down,t25,2n-p1,SYS-7049GP-TRT,C7470KH06A20022,10.30.51.61,10.30.50.58,3016.9,u18-u21
-s19-t33t34-tg1,up,t33t34,3n-tsh/2n-tx2,SYS-7049GP-TRT,C7470KH06A20056,10.30.51.49,10.30.50.46,3016.9,u14-u17
-s27-t211-sut1,up,t25,2n-tx2,ThunderX2-9975,K61186073100003,10.30.51.69,10.30.50.69,3016.9,u13
+s19-t33t211-tg1,up,t33t211,3n-tsh/2n-tx2,SYS-7049GP-TRT,C7470KH06A20056,10.30.51.49,10.30.50.46,3016.9,u14-u17
+s27-t211-sut1,up,t211,2n-tx2,ThunderX2-9975,K61186073100003,10.30.51.69,10.30.50.69,3016.9,u13
 s18-t33-sut2,up,t33,3n-tsh,HUAWEI-TAISHAN-2280,N/A,10.30.51.37,10.30.50.37,3016.9,u11-u12
 s17-t33-sut1,up,t33,3n-tsh,HUAWEI-TAISHAN-2280,N/A,10.30.51.36,10.30.50.36,3016.9,u9-u10
 
@@ -75,7 +75,7 @@ mtl1-6-7050QX-32,up,switch,uplink,?,?,?,?,3016.11,u46
 fdio-marvell-dev,up,N/A,dev,ThunderX-88XX,N/A,10.30.51.38,10.30.50.38,3016.11,u45
 s53-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.39,10.30.50.39,3016.11,u44
 s54-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.40,10.30.50.40,3016.11,u43
-s56-t37-sut1,up,t37,2n-tx2,ThunderX2-9980,N/A,10.30.51.71,10.30.50.71,3016.11,u41-u42
+s56-t14-sut1,up,t14,1n-tx2,ThunderX2-9980,N/A,10.30.51.71,10.30.50.71,3016.11,u41-u42
 s41-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FQ,10.30.51.28,10.30.50.28,3016.11,u39-u40
 s40-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH2013V0HZ,10.30.51.30,10.30.50.30,3016.11,u37-u38
 s39-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0J2,10.30.51.29,10.30.50.29,3016.11,u35-u36
@@ -83,7 +83,7 @@ s42-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH1950V1FN,10.30.51.22,
 s43-nomad,up,nomad-cluster1,nomad-server,UCSC-C240-M4SX,FCH1950V1H5,10.30.51.24,10.30.50.24,3016.11,u17-u18
 s44-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FS,10.30.51.25,10.30.50.25,3016.11,u15-u16
 s45-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FL,10.30.51.26,10.30.50.26,3016.11,u13-u14
-s55-t36-sut1,up,t36,1n-tx2,ThunderX2-9980,N/A,10.30.51.70,10.30.50.70,3016.11,u11-u12
+s55-t13-sut1,up,t13,1n-tx2,ThunderX2-9980,N/A,10.30.51.70,10.30.50.70,3016.11,u11-u12
 s52-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.65,10.30.50.65,3016.11,u9-u10
 s51-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.66,10.30.50.66,3016.11,u9-u10
 s49-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.67,10.30.50.67,3016.11,u9-u10
