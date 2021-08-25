@@ -135,6 +135,28 @@ function activate_virtualenv () {
 }
 
 
+function archive_generated_email_content () {
+
+    # Copy the generated alerting content to archives.
+    #
+    # This makes the content archived, and Jenkins job uses it to sent e-mails.
+    # If generation failed, this is not executed, and Jenkins
+    # will send e-mails based on create_backup_email_content function.
+    # We also copy other .txt files to archive them even if they are not emails.
+    #
+    # Variables read:
+    # - ARCHIVE_DIR - Target directory for copy.
+    # - TOOLS_DIR - Base for the build directory.
+    # Directories affected:
+    # - ARCHIVE_DIR - All text files from build directory are copied here.
+
+    set -exuo pipefail
+
+    build_dir="${TOOLS_DIR}/presentation/_build/_static/vpp"
+    cp -vf "${build_dir}/"*".txt" "${archive_dir}"
+}
+
+
 function archive_tests () {
 
     # Create .tar.xz of generated/tests for archiving.
@@ -304,6 +326,33 @@ function compose_pybot_arguments () {
     if [[ ${SELECTION_MODE} == "--test" ]]; then
         EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}")
     fi
+}
+
+
+function create_backup_email_content () {
+
+    # Prepare email content to use if trending script fails.
+    #
+    # The storage for e-mail content has to be outside trending script
+    # working directories, as they are wiped in the process.
+    # We use archive dir, so the content is also archived.
+    # Details of the Jenkins run are in the content,
+    # so people can easily investigate what went wrong.
+    #
+    # Variables read:
+    # - JOB_NAME - Name of jenkins job that call this.
+    # - BUILD_NUMBER - Number of the job run that call this.
+    # - BUILD_URL - URL for people to click on.
+    # Directories affected:
+    # - ARCHIVE_DIR - Three text files are created/overwritten.
+
+    set -exuo pipefail
+
+    email_body="ERROR: The build number ${BUILD_NUMBER:-} of the job "
+    email_body+="${JOB_NAME:-} failed. For more information see: ${BUILD_URL:-}"
+    echo "${email_body}" > "${ARCHIVE_DIR}/trending-failed-tests.txt"
+    echo "${email_body}" > "${ARCHIVE_DIR}/trending-regressions.txt"
+    echo "${email_body}" > "${ARCHIVE_DIR}/trending-progressions.txt"
 }
 
 

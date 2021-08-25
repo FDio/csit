@@ -27,6 +27,8 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/docs.sh" || die "Source failed."
 common_dirs || die
+create_backup_email_content || die
 activate_virtualenv || die
 generate_trending || die
 die_on_docs_error || die
+archive_generated_email_content || die
