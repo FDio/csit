@@ -325,6 +325,27 @@ yul1:
         serial_number: N/A
         mgmt_ip4: 10.30.51.68
         lom_ip4: 10.30.50.68
+      - unit: 7..8
+        name: s62-t34-sut1
+        oper_status: in-transit
+        device_type: Ampere-TBD
+        serial_number: TBD
+        mgmt_ip4: 10.30.51.72
+        lom_ip4: 10.30.50.72
+      - unit: 5..6
+        name: s63-t34-sut2
+        oper_status: in-transit
+        device_type: Ampere-TBD
+        serial_number: TBD
+        mgmt_ip4: 10.30.51.73
+        lom_ip4: 10.30.50.73
+      - unit: 1..4
+        name: s64-t34-tg1
+        oper_status: in-transit
+        device_type: Intel-TBD
+        serial_number: TBD
+        mgmt_ip4: 10.30.51.74
+        lom_ip4: 10.30.50.74
   rack:
     name: yul1-12
     facility_id: 3016.12

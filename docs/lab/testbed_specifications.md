@@ -15,6 +15,7 @@
    1. [3-Node-Skylake Xeon Intel (3n-skx)](#3-node-skylake-xeon-intel-3n-skx)
    1. [3-Node-Rangeley Atom Testbeds](#3-node-rangeley-atom-testbeds)
    1. [3-Node-TaiShan Arm Huawei (3n-tsh)](#3-node-taishan-arm-huawei-3n-tsh)
+   1. [3-Node-Altra Arm Ampere (3n-alt)](#3-node-altra-arm-armpere-3n-alt)
 1. [Server Management](#server-management)
    1. [Requirements](#requirements)
    1. [Addressing](#addressing)
@@ -37,6 +38,7 @@
       1. [3-Node-Skylake Servers (3n-skx) PROD](#3-node-skylake-servers-3n-skx-prod)
       1. [3-Node-Rangeley Servers (3n-rng) VERIFY](#3-node-rangeley-servers-3n-rng-verify)
       1. [3-Node-Taishan Servers (3n-tsh) PROD](#3-node-taishan-servers-3n-tsh-prod)
+      1. [3-Node-Altra Servers (3n-alt) TBD](#3-node-altra-servers-3n-alt-tbd)
    1. [Per Testbed Wiring](#per-testbed-wiring)
       1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
       1. [1-Node-ThunderX2 Wiring (1n-tx2) PROD](#1-node-thunderx2-wiring-1n-tx2-prod)
@@ -50,6 +52,7 @@
       1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
       1. [3-Node-Rangeley Wiring (3n-rng) TODO](#3-node-rangeley-wiring-3n-rng-todo)
       1. [3-Node-Taishan Wiring (3n-tsh) PROD](#3-node-taishan-wiring-3n-tsh-prod)
+      1. [3-Node-Altra Wiring (3n-alt) TBD](#3-node-altra-wiring-3n-alt-tbd)
 1. [Inventory](#inventory)
    1. [Appliances](#appliances)
    1. [Arm Servers](#arm-servers)
@@ -68,22 +71,23 @@ hosted by LFN FD.io CSIT project.
 ### Summary List
 
 ```
- #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #clx #zn2
- 1. 1-Node-Haswell     nomad  hsw   na    4    4    0    4    0    0    0    0    0    0    0    0
- 2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0
- 3. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    0    2    0    0    0
- 4. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    1    0
- 5. 2-Node-Skylake     perf   skx   skx   4    4    4    0    8    0    0    0    0    0    0    0
- 6. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0    0
- 7. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0
- 8. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    6    0
- 9. 2-Node-ThunderX2   perf   tx2   skx   1    1    .5   0    .5   0    0    0    1    0    0    0
-10. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0
-11. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0
-12. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    0    2    0    0
-13. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0
-14. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    2
-                                 Totals: 25   31   15    4   19    1    2    3    3    2    7    2
+ #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #alt #clx #zn2
+ 1. 1-Node-Haswell     nomad  hsw   na    4    4    0    4    0    0    0    0    0    0    0    0    0
+ 2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0    0
+ 3. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    0    2    0    0    0    0
+ 4. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    0    1    0
+ 5. 2-Node-Skylake     perf   skx   skx   4    4    4    0    8    0    0    0    0    0    0    0    0
+ 6. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0    0    0
+ 7. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0    0
+ 8. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    0    6    0
+ 9. 2-Node-ThunderX2   perf   tx2   skx   1    1    .5   0    .5   0    0    0    1    0    0    0    0
+10. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0    0
+11. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0    0
+12. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    0    2    0    0    0
+13. 3-Node-Altra       perf   alt   tbd   1    2    tbd  0    0    0    0    0    0    0    2    0    0
+14. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0    0
+15. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    0    2
+                                 Totals: 26   33   15    4   19    1    2    3    3    2    2    7    2
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -171,6 +175,13 @@ Used for FD.io performance tests.
 
 Each 3-Node-TaiShan testbed includes two SUTs (Server-Type-E21) and one
 TG (Server-Type-E31) connected in a 3-node circular topology
+([Server Types](#server-types)).
+Used for FD.io performance tests.
+
+### 3-Node-Altra Arm Ampere (3n-alt)
+
+Each 3-Node-Altra testbed includes two SUTs (Server-Type-E23) and one
+TG (TBD Server-Type-xxx) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
@@ -273,6 +284,9 @@ Name         | Comment
 10.30.50.69  | s27-t211-sut1
 10.30.50.70  | s55-t13-sut1
 10.30.50.71  | s56-t14-sut1
+10.30.50.72  | s62-t34-sut1
+10.30.50.73  | s63-t34-sut2
+10.30.50.74  | s64-t34-tg1
 10.30.50.255 | Broadcast
 10.30.55.0   | network
 10.30.55.1   | Router
@@ -346,7 +360,10 @@ Name                      | Comment
 10.30.51.69               | s27-t211-sut1
 10.30.51.70               | s55-t13-sut1
 10.30.51.71               | s56-t14-sut1
-10.30.51.72-10.30.51.254  | FREE
+10.30.51.72               | s62-t34-sut1
+10.30.51.73               | s63-t34-sut2
+10.30.51.74               | s64-t34-tg1
+10.30.51.75-10.30.51.254  | FREE
 10.30.51.255              | Broadcast
 10.32.8.0                 | network
 10.32.8.1                 | Router
@@ -709,7 +726,25 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 08:00.xx: XL710-QDA2-2p40GE Intel.
         - Numa1:
             - PCIe Slot18 91:00.xx: XL710-QDA2-2p40GE Intel.
-20.  Server-Type-E31: Purpose - Skylake Xeon TG for FD.io performance testing.
+20.  Server-Type-E23: Purpose - Altra Arm Ampere SUT for FD.io performance testing.
+    - Quantity: 1
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 3-node topologies.
+    - Main HW configuration:
+        - Chassis: TBD
+        - Motherboard: TBD
+        - Processors: n* TBD
+        - RAM Memory: n* TBD
+        - Disks: TBD
+    - NICs configuration:
+        - Numa0:
+            - PCIe Slotn xx:xx.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slotk xx:xx.xx: mcx556a-edat ConnectX5-2p100GE Mellanox.
+        - Numa1:
+            - PCIe Slotn xx:xx.xx: XL710-QDA2-2p40GE Intel.
+            - PCIe Slotk xx:xx.xx: mcx556a-edat ConnectX5-2p100GE Mellanox.
+21.  Server-Type-E31: Purpose - Skylake Xeon TG for FD.io performance testing.
     - Quantity: 1
     - Physical connectivity:
         - IPMI and host management ports.
@@ -1339,6 +1374,41 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s19-t33t211-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 ```
 
+#### 3-Node-Altra Servers (3n-alt) TBD
+
+```
+- SUT [Server-Type-E23]:
+    - testbedname: testbed34.
+    - hostname: s62-t34-sut1.
+    - IPMI IP: 10.30.50.72
+    - Host IP: 10.30.51.72
+    - portnames:
+        - s62-t34-sut1-cn/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s62-t34-sut1-cn/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s62-t34-sut1-ck/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s62-t34-sut1-ck/p2 - 100GE-port1 ConnectX5-2p100GE.
+- SUT [Server-Type-E23]:
+    - testbedname: testbed34.
+    - hostname: s63-t34-sut2.
+    - IPMI IP: 10.30.50.73
+    - Host IP: 10.30.51.73
+    - portnames:
+        - s63-t34-sut2-cn/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s63-t34-sut2-cn/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s63-t34-sut2-ck/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s63-t34-sut2-ck/p2 - 100GE-port1 ConnectX5-2p100GE.
+- TG [TBD Server-Type]:
+    - testbedname: testbed34.
+    - hostname: s64-t34-tg1.
+    - IPMI IP: 10.30.50.74
+    - Host IP: 10.30.51.74
+    - portnames:
+        - s64-t34-tg1-cn/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s64-t34-tg1-cn/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s64-t34-tg1-ck/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s64-t34-tg1-ck/p2 - 100GE-port1 ConnectX5-2p100GE.
+```
+
 #### 3-Node-Denverton Servers (3n-dnv) PROD
 
 ```
@@ -1651,6 +1721,20 @@ To be completed.
         - s18-t33-sut2-c4/p1 - s19-t33t211-tg1-c4/p1.
 ```
 
+#### 3-Node-Altra Wiring (3n-alt) TBD
+
+```
+- testbed34:
+    - ring1 40GE-ports xl710-QDA2-2p40GE on SUTs:
+        - s64-t34-tg1-cn/p2 - s62-t34-sut1-cn/p2.
+        - s62-t34-sut1-cn/p1 - s63-t34-sut2-cn/p2.
+        - s63-t34-sut2-cn/p1 - s64-t34-tg1-cn/p1.
+    - ring2 100GE-ports ConnectX5-2p100GE on SUTs:
+        - s64-t34-tg1-ck/p2 - s62-t34-sut1-ck/p2.
+        - s62-t34-sut1-ck/p1 - s63-t34-sut2-ckp2.
+        - s63-t34-sut2-ck/p1 - s64-t34-tg1-ck/p1.
+```
+
 #### 3-Node-Denverton Wiring (3n-dnv) PROD
 
 ```
@@ -1701,6 +1785,11 @@ To be completed.
         - Processors: 2* hip07-d05 ~ 32* Arm Cortex-A72.
         - RAM Memory: 8* 16GB DDR4-2400MT/s.
         - Disks: 1* 4TB SATA HDD.
+    - 2 * Ampere Altra
+        - Chassis: TBD
+        - Processors: TBD
+        - RAM Memory: TBD
+        - Disks: TBD
 ```
 
 ### Xeon and Atom Servers
