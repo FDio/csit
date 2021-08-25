@@ -69,7 +69,7 @@ yul1:
         mgmt_ip4: 10.30.51.61
         lom_ip4: 10.30.50.58
       - unit: 14..17
-        name: s19-t33t34-tg1
+        name: s19-t33t211-tg1
         oper_status: production
         device_type: SYS-7049GP-TRT
         serial_number: C7470KH06A20056
@@ -235,7 +235,7 @@ yul1:
         mgmt_ip4: 10.30.51.40
         lom_ip4: 10.30.50.40
       - unit: 41..42
-        name: s56-t37-sut1
+        name: s56-t14-sut1
         oper_status: production
         device_type: ThunderX2-9980
         serial_number: N/A
@@ -291,7 +291,7 @@ yul1:
         mgmt_ip4: 10.30.51.26
         lom_ip4: 10.30.50.26
       - unit: 11..12
-        name: s55-t36-sut1
+        name: s55-t13-sut1
         oper_status: production
         device_type: ThunderX2-9980
         serial_number: N/A
