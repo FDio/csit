@@ -7,7 +7,7 @@ vfs_data_file: "csit-initialize-vfs-tx2.sh"
 grub:
   hugepagesz: "2M"
   hugepages: 32768
-  iommu: "on"
+  iommu.passthrough: "1"
 cpu_microarchitecture: "thunderx2"
 
 # User management.
