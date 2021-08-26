@@ -868,6 +868,10 @@ connectivity and wiring across defined CSIT testbeds:
         - s4-t21-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s4-t21-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s4-t21-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s3-t21-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s3-t21-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s3-t21-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s3-t21-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 - SUT [Server-Type-B1]:
     - testbedname: testbed22.
     - hostname: s5-t22-sut1.
@@ -892,6 +896,10 @@ connectivity and wiring across defined CSIT testbeds:
         - s6-t22-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s6-t22-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s6-t22-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s6-t22-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s6-t22-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s6-t22-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s6-t22-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 - SUT [Server-Type-B1]:
     - testbedname: testbed23.
     - hostname: s7-t23-sut1.
@@ -916,6 +924,10 @@ connectivity and wiring across defined CSIT testbeds:
         - s8-t23-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s8-t23-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s8-t23-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s8-t23-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s8-t23-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s8-t23-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s8-t23-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 - SUT [Server-Type-B1]:
     - testbedname: testbed24.
     - hostname: s9-t24-sut1.
@@ -940,6 +952,10 @@ connectivity and wiring across defined CSIT testbeds:
         - s10-t24-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s10-t24-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s10-t24-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s10-t24-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s10-t24-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s10-t24-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s10-t24-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 ```
 
 #### 2-Node-Denverton Servers (2n-dnv) PROD
@@ -1216,6 +1232,10 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s13-t31-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
         - s13-t31-tg1-c9/p1 - FUTURE 100GE-port1 ConnectX5-2p100GE.
         - s13-t31-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
+        - s13-t31-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s13-t31-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s13-t31-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s13-t31-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 - ServerB14 [Server-Type-B1]:
     - testbedname: testbed32.
     - hostname: s14-t32-sut1.
@@ -1258,6 +1278,10 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s16-t32-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
         - s16-t32-tg1-c9/p1 - FUTURE 100GE-port1 ConnectX5-2p100GE.
         - s16-t32-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
+        - s16-t32-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s16-t32-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s16-t32-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s16-t32-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 ```
 
 #### 3-Node-Rangeley Servers (3n-rng) VERIFY
@@ -1421,20 +1445,6 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s56-t14-sut1-c8/p2 - s56-t14-sut1-c26/p2.
 ```
 
-#### 1-Node-Cascadelake Wiring (1n-clx) PROD
-
-```
-- testbed14:
-    - ring1 10GE-ports x710-4p10GE:
-        - s32-t14-sut1-c2/p1 to s32-t14-sut1-c4/p1.
-    - ring2 10GE-ports x710-4p10GE:
-        - s32-t14-sut1-c2/p2 to s32-t14-sut1-c4/p2.
-    - ring3 10GE-ports x710-4p10GE:
-        - s32-t14-sut1-c2/p3 to s32-t14-sut1-c4/p3.
-    - ring4 10GE-ports x710-4p10GE:
-        - s32-t14-sut1-c2/p3 to s32-t14-sut1-c4/p3.
-```
-
 #### 2-Node-Skylake Wiring (2n-skx) PROD
 
 ```
@@ -1448,6 +1458,9 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
     - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
         - s4-t21-tg1-c4/p1 to s3-t21-sut1-c4/p1.
         - s3-t21-sut1-c4/p2 to s4-t21-tg1-c4/p2.
+    - ring4 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
+        - s4-t21-tg1-c10/p1 to s4-t21-tg1-c10/p2.
+        - s4-t21-tg1-c10/p3 to s4-t21-tg1-c10/p4.
 - testbed22:
     - ring1 10GE-ports x710-4p10GE on SUT:
         - s6-t22-tg1-c2/p1 to s5-t22-sut1-c2/p1.
@@ -1458,6 +1471,9 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
     - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
         - s6-t22-tg1-c4/p1 to s5-t22-sut1-c4/p1.
         - s5-t22-sut1-c4/p2 to s6-t22-tg1-c4/p2.
+    - ring4 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
+        - s6-t22-tg1-c10/p1 to s6-t22-tg1-c10/p2.
+        - s6-t22-tg1-c10/p3 to s6-t22-tg1-c10/p4.
 - testbed23:
     - ring1 10GE-ports x710-4p10GE on SUT:
         - s8-t23-tg1-c2/p1 to s7-t23-sut1-c2/p1.
@@ -1468,6 +1484,9 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
     - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
         - s8-t23-tg1-c4/p1 to s7-t23-sut1-c4/p1.
         - s7-t23-sut1-c4/p2 to s8-t23-tg1-c4/p2.
+    - ring4 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
+        - s8-t23-tg1-c10/p1 to s8-t23-tg1-c10/p2.
+        - s8-t23-tg1-c10/p3 to s8-t23-tg1-c10/p4.
 - testbed24:
     - ring1 10GE-ports x710-4p10GE on SUT:
         - s10-t24-tg1-c2/p1 to s9-t24-sut1-c2/p1.
@@ -1478,6 +1497,9 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
     - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
         - s10-t24-tg1-c4/p1 to s9-t24-sut1-c4/p1.
         - s9-t24-sut1-c4/p2 to s10-t24-tg1-c4/p2.
+    - ring4 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
+        - s10-t24-tg1-c10/p1 to s10-t24-tg1-c10/p2.
+        - s10-t24-tg1-c10/p3 to s10-t24-tg1-c10/p4.
 ```
 
 #### 2-Node-Denverton Wiring (2n-dnv) PROD
