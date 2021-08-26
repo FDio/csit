@@ -195,7 +195,7 @@ def add_iperf3_testcases(testcase, file_out, tc_kwargs_list):
         file_out.write(testcase.generate(**kwargs))
 
 
-def add_trex_testcases(testcase, file_out, tc_kwargs_list):
+def add_trex_testcases(testcase, suite_id, file_out, tc_kwargs_list):
     """Add trex testcases to file.
 
     :param testcase: Testcase class.
@@ -206,7 +206,17 @@ def add_trex_testcases(testcase, file_out, tc_kwargs_list):
     :type tc_kwargs_list: dict
     """
     for kwargs in tc_kwargs_list:
-        file_out.write(testcase.generate(**kwargs))
+        # TODO: Is there a better way to disable some combinations?
+        emit = True
+        if (
+                u"-cps-" in suite_id
+                or u"-pps-" in suite_id
+                or u"-tput-" in suite_id
+        ):
+            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
+                emit = False
+        if emit:
+            file_out.write(testcase.generate(**kwargs))
 
 
 def write_default_files(in_filename, in_prolog, kwargs_list):
@@ -549,7 +559,7 @@ def write_trex_files(in_filename, in_prolog, kwargs_list):
             check_suite_tag(suite_tag, out_prolog)
             with open(out_filename, u"wt") as file_out:
                 file_out.write(out_prolog)
-                add_trex_testcases(testcase, file_out, kwargs_list)
+                add_trex_testcases(testcase, suite_id, file_out, kwargs_list)
 
 
 def write_device_files(in_filename, in_prolog, kwargs_list):
