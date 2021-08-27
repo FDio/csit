@@ -46,6 +46,30 @@
       "revId": "000ce799bfe473489bbe95e8b00a460270e1ff0b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a1c8fd6_8c504f6c",
+        "filename": "fdio.infra.ansible/roles/intel/defaults/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-08-27T08:49:52Z",
+      "side": 0,
+      "message": "Looks like a better solution.\n\nOne more thing came to my mind - do we want to add check whether the file exists before downloading? That may save some time.",
+      "parentUuid": "3755379f_76f033d2",
+      "range": {
+        "startLine": 26,
+        "startChar": 49,
+        "endLine": 26,
+        "endChar": 54
+      },
+      "revId": "000ce799bfe473489bbe95e8b00a460270e1ff0b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
