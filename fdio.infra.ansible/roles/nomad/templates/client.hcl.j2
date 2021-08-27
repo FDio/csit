@@ -1,14 +1,44 @@
 client {
     enabled = {{ nomad_node_client | bool | lower }}
-    no_host_uuid = {{ nomad_no_host_uuid | bool | lower }}
-    node_class = "{{ nomad_node_class }}"
 
+    node_class = "{{ nomad_node_class }}"
+    no_host_uuid = {{ nomad_no_host_uuid | bool | lower }}
+
+{% if nomad_use_consul == False %}
+    {% if nomad_servers -%}
+        servers = [ {% for ip_port in nomad_servers -%} "{{ ip_port }}" {% if not loop.last %},{% endif %}{%- endfor -%} ]
+    {% endif -%}
+{% endif %}
+
+    {% if nomad_network_interface is defined -%}
+    network_interface = "{{ nomad_network_interface }}"
+    {% endif -%}
+    {% if nomad_network_speed is defined -%}
+    network_speed = "{{ nomad_network_speed }}"
+    {% endif -%}
     {% if nomad_cpu_total_compute is defined -%}
     cpu_total_compute = {{ nomad_cpu_total_compute }}
     {% endif -%}
 
-    {% if nomad_servers -%}
-    servers = [ {% for ip_port in nomad_servers -%} "{{ ip_port }}" {% if not loop.last %},{% endif %}{%- endfor -%} ]
+    reserved {
+        cpu = {{ nomad_reserved['cpu'] }}
+        memory = {{ nomad_reserved['memory'] }}
+        disk = {{ nomad_reserved['disk'] }}
+    }
+
+    {% for nomad_host_volume in nomad_volumes -%}
+    host_volume "{{ nomad_host_volume.name }}" {
+        path = "{{ nomad_host_volume.path }}"
+        read_only = {{ nomad_host_volume.read_only | bool | lower }}
+    }
+    {% endfor %}
+
+    {% if nomad_chroot_env != False -%}
+    chroot_env = {
+    {% for key, value in nomad_chroot_env.items() %}
+    "{{ key }}" = "{{ value }}"
+    {% endfor -%}
+    }
     {% endif %}
 
     {% if nomad_options -%}
@@ -19,13 +49,12 @@ client {
     }
     {% endif %}
 
-    {% if nomad_volumes -%}
-    {% for volume in nomad_volumes -%}
-    host_volume "{{ volume.name }}" {
-        path = "{{ volume.path }}"
-        read_only = {{ volume.read_only | bool | lower }}
-    }
+    {% if nomad_meta -%}
+    meta = {
+    {% for key, value in nomad_meta.items() %}
+    "{{ key }}" = "{{ value }}"
     {% endfor -%}
+    }
     {% endif %}
 
 }

@@ -27,7 +27,7 @@ nomad_certificates:
   - src: "{{ file_nomad_client_key_pem }}"
     dest: "{{ nomad_key_file }}"
 nomad_datacenter: "yul1"
-nomad_name: "{{ hostname }}-{{ ansible_architecture }}"
+nomad_node_name: "{{ hostname }}-{{ ansible_architecture }}"
 nomad_node_role: "client"
 nomad_node_class: "builder"
 nomad_options:

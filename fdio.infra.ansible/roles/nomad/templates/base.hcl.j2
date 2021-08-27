@@ -1,11 +1,26 @@
-name = "{{ nomad_name }}"
+name = "{{ nomad_node_name }}"
 region = "{{ nomad_region }}"
 datacenter = "{{ nomad_datacenter }}"
 
-bind_addr = "{{ nomad_bind_addr }}"
-data_dir = "{{ nomad_data_dir }}"
-
-enable_syslog = {{ nomad_syslog_enable | bool | lower }}
 enable_debug = {{ nomad_enable_debug | bool | lower }}
 disable_update_check = {{ nomad_disable_update_check | bool | lower }}
+
+bind_addr = "{{ nomad_bind_address }}"
+advertise {
+    http = "{{ nomad_advertise_address }}:{{ nomad_ports.http }}"
+    rpc = "{{ nomad_advertise_address }}:{{ nomad_ports.rpc }}"
+    serf = "{{ nomad_advertise_address }}:{{ nomad_ports.serf }}"
+}
+ports {
+    http = {{ nomad_ports['http'] }}
+    rpc = {{ nomad_ports['rpc'] }}
+    serf = {{ nomad_ports['serf'] }}
+}
+
+data_dir = "{{ nomad_data_dir }}"
+
 log_level = "{{ nomad_log_level }}"
+enable_syslog = {{ nomad_syslog_enable | bool | lower }}
+
+leave_on_terminate = {{ nomad_leave_on_terminate | bool | lower }}
+leave_on_interrupt = {{ nomad_leave_on_interrupt | bool | lower }}

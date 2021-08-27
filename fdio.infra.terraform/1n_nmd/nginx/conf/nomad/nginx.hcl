@@ -250,7 +250,7 @@ job "${job_name}" {
             }
         }
         EOH
-        destination = "custom/logs.conf"
+        destination = "custom/server_logs.conf"
       }
 
       # The service stanza instructs Nomad to register a service with Consul.

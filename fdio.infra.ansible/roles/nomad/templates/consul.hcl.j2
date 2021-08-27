@@ -1,0 +1,18 @@
+{% if nomad_use_consul | bool == True %}
+consul {
+    # The address to the Consul agent.
+    address = "{{ nomad_consul_address }}"
+    token = "{{ nomad_consul_token }}"
+    # The service name to register the server and client with Consul.
+    server_service_name = "{{ nomad_consul_servers_service_name }}"
+    client_service_name = "{{ nomad_consul_clients_service_name }}"
+    tags = {{ nomad_consul_tags | to_json }}
+
+    # Enables automatically registering the services.
+    auto_advertise = true
+
+    # Enabling the server and client to bootstrap using Consul.
+    server_auto_join = true
+    client_auto_join = true
+}
+{% endif %}

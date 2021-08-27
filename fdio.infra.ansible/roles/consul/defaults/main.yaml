@@ -36,7 +36,6 @@ consul_inst_dir: "/opt"
 consul_lockfile: "/var/lock/subsys/consul"
 consul_run_dir: "/var/run/consul"
 consul_ssl_dir: "/etc/consul.d/ssl"
-nomad_config_dir: "/etc/nomad.d"
 
 # Conf - Service.
 consul_node_role: "both"
@@ -49,25 +48,6 @@ consul_group: "consul"
 consul_group_state: "present"
 consul_user: "consul"
 consul_user_state: "present"
-
-# Conf - nomad.d/consul.hcl
-consul_nomad_integration: true
-consul_certificates:
-  - src: "{{ file_consul_ca_pem }}"
-    dest: "{{ consul_ca_file }}"
-  - src: "{{ file_consul_server_0_pem }}"
-    dest: "{{ consul_cert_file }}"
-  - src: "{{ file_consul_server_0_key_pem }}"
-    dest: "{{ consul_key_file }}"
-
-consul_auto_advertise: true
-consul_checks_use_advertise: true
-consul_server_service_name: "nomad"
-consul_client_service_name: "nomad-client"
-consul_server_auto_join: false
-consul_client_auto_join: true
-consul_ACL_token_set: false
-consul_token: "consul_token_default"
 
 # Conf - base.hcl
 consul_bind_addr: "{{ ansible_default_ipv4.address }}"
@@ -89,6 +69,13 @@ consul_ui_config:
 consul_recursors:
   - 1.1.1.1
   - 8.8.8.8
+consul_certificates:
+  - src: "{{ file_consul_ca_pem }}"
+    dest: "{{ consul_ca_file }}"
+  - src: "{{ file_consul_server_0_pem }}"
+    dest: "{{ consul_cert_file }}"
+  - src: "{{ file_consul_server_0_key_pem }}"
+    dest: "{{ consul_key_file }}"
 
 # Conf - ports.hcl
 consul_port_dns: 53

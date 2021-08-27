@@ -5,7 +5,29 @@ server {
         bootstrap_expect = {{ nomad_bootstrap_expect }}
     {%- endif %}
 
-    encrypt = "{{ nomad_encrypt }}"
+    {% if nomad_authoritative_region is defined %}
+        authoritative_region = "{{ nomad_authoritative_region }}"
+    {% endif %}
+
+{% if nomad_use_consul == False %}
+    {% if nomad_retry_join | bool -%}
+        retry_join = [
+            {%- set comma = joiner(",") -%}
+            {% for server in nomad_servers -%}
+                {{ comma() }}"{{ hostvars[server]['nomad_advertise_address'] | ipwrap }}"
+            {%- endfor -%} ]
+        retry_max = {{ nomad_retry_max }}
+        retry_interval = "{{ nomad_retry_interval }}"
+    {% else -%}
+        start_join = [
+            {%- set comma = joiner(",") -%}
+            {% for server in nomad_servers -%}
+                {{ comma() }}"{{ hostvars[server]['nomad_advertise_address'] | ipwrap }}"
+            {%- endfor -%} ]
+    {%- endif %}
+{% endif %}
+
+    encrypt = "{{ nomad_encrypt | default('') }}"
 
     {% if nomad_node_gc_threshold -%}
         node_gc_threshold = "{{ nomad_node_gc_threshold }}"
@@ -25,12 +47,6 @@ server {
 
     {% if nomad_deployment_gc_threshold -%}
         deployment_gc_threshold = "{{ nomad_deployment_gc_threshold }}"
-    {%- endif %}
-
-    {% if nomad_retry_join | bool -%}
-    server_join {
-        retry_join = [ {% for ip_port in nomad_retry_servers -%} "{{ ip_port }}" {% if not loop.last %},{% endif %}{%- endfor -%} ]
-    }
     {%- endif %}
 
 }

@@ -150,15 +150,13 @@
   tags:
     - nomad-conf
 
-- name: Conf - Custom Configuration
+- name: Conf - Consul Configuration
   template:
-    src: custom.json.j2
-    dest: "{{ nomad_config_dir }}/custom.json"
+    src: consul.hcl.j2
+    dest: "{{ nomad_config_dir }}/consul.hcl"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0644
-  when:
-    - nomad_config_custom is defined
   tags:
     - nomad-conf
 

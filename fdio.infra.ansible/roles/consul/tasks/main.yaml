@@ -96,18 +96,6 @@
   tags:
     - consul-conf
 
-- name: Conf - Nomad integration Consul Configuration
-  template:
-    src: consul.hcl.j2
-    dest: "{{ nomad_config_dir }}/consul.hcl"
-    owner: "nomad"
-    group: "nomad"
-    mode: 0644
-  when:
-    - consul_nomad_integration | bool
-  tags:
-    - consul-conf
-
 - name: Conf - Base Configuration
   template:
     src: base.hcl.j2
