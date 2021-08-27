@@ -26,8 +26,6 @@ set -exuo pipefail
 # + The following directories (relative to VPP repo) are (re)created:
 # ++ csit_current, build_current, archives, csit/archives, csit_download_dir.
 
-# TODO: Implement some kind of VPP build caching.
-
 # "set -eu" handles failures from the following two lines.
 BASH_ENTRY_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
 BASH_FUNCTION_DIR="$(readlink -e "${BASH_ENTRY_DIR}/../function")"
@@ -37,25 +35,11 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 common_dirs || die
-check_prerequisites || die
+initialize_csit_dirs || die
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
-initialize_csit_dirs || die
-get_test_code "${1-}" || die
-get_test_tag_string || die
-set_perpatch_dut || die
-select_arch_os || die
 select_build "build_current" || die
-check_download_dir || die
-activate_virtualenv "${VPP_DIR}" || die
-generate_tests || die
-archive_tests || die
-prepare_topology || die
-select_topology || die
-activate_docker_topology || die
-select_tags || die
-compose_pybot_arguments || die
-run_pybot || die
-move_archives || die
-die_on_pybot_error || die
+set_perpatch_dut || die
+
+high_level_devicetest "${1-}" || die

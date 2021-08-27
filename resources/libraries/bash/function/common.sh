@@ -542,6 +542,55 @@ function get_test_tag_string () {
 }
 
 
+function high_level_devicetest () {
+
+    # A high level block of commands for running device tests.
+    #
+    # Previously it was in entry scripts,
+    # moved to a function to make the two (csit-vpp and vpp-csit)
+    # bootstraps more unified.
+    #
+    # At the start, it is assumed the VPP build to test
+    # has been already built or downloaded, and put into ${DOWNLOAD_DIR}.
+    # This function than performs all the reservation,
+    # compilation of robot arguments (includes parsing job spec files),
+    # running the test and moving results for archival.
+    # On test (or other) failures, this functions dies directly.
+    #
+    # Arguments:
+    # - ${1} - Optional, argument of entry script (or empty as unset).
+    #   Test code value to override job name from environment.
+    # Variables read:
+    # - GERRIT_EVENT_TYPE - Event type set by gerrit, can be unset.
+    # - GERRIT_EVENT_COMMENT_TEXT - Comment text, read for "comment-added" type.
+    # - Many variables set in common_dirs.
+    # Variables set: Many. We do not expect any subsequent functions
+    # to use them, so not documented here.
+    # Functions called: Many, the body is just bunch of calls.
+
+    set -exuo pipefail
+
+    check_download_dir || die
+    check_prerequisites || die
+    get_test_code "${1-}" || die
+    get_test_tag_string || die
+    select_arch_os || die
+    activate_virtualenv || die
+    generate_tests || die
+    archive_tests || die
+    prepare_topology || die
+    select_topology || die
+    reserve_and_cleanup_testbed || die
+    select_tags || die
+    compose_pybot_arguments || die
+    set_environment_variables || die
+    run_pybot || die
+    untrap_and_unreserve_testbed || die
+    move_archives || die
+    die_on_pybot_error || die
+}
+
+
 function installed () {
 
     # Check if the given utility is installed. Fail if not installed.
