@@ -36,11 +36,11 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
-common_dirs
+common_dirs || die
 work_dir="$(pwd)" || die
 trap "cd '${work_dir}'" EXIT || die
 
-generate_tests
+generate_tests || die "Autogen checker: FAIL"
 
 rm -rf "${GENERATED_DIR}/tests_tmp"
 cp -r "${GENERATED_DIR}/tests" "${GENERATED_DIR}/tests_tmp"

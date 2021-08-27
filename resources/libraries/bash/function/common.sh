@@ -381,11 +381,12 @@ function generate_tests () {
 
     # Populate ${GENERATED_DIR}/tests based on ${CSIT_DIR}/tests/.
     # Any previously existing content of ${GENERATED_DIR}/tests is wiped before.
-    # The generation is done by executing any *.py executable
-    # within any subdirectory after copying.
-
+    #
     # This is a separate function, because this code is called
     # both by autogen checker and entries calling run_pybot.
+    #
+    # During execution, working directory is changed.
+    # On unexpected failure, this dies without restoring the working directory.
 
     # Directories read:
     # - ${CSIT_DIR}/tests - Used as templates for the generated tests.
@@ -394,20 +395,12 @@ function generate_tests () {
 
     set -exuo pipefail
 
-    rm -rf "${GENERATED_DIR}/tests" || die
-    cp -r "${CSIT_DIR}/tests" "${GENERATED_DIR}/tests" || die
-    cmd_line=("find" "${GENERATED_DIR}/tests" "-type" "f")
-    cmd_line+=("-executable" "-name" "*.py")
-    # We sort the directories, so log output can be compared between runs.
-    file_list=$("${cmd_line[@]}" | sort) || die
-
-    for gen in ${file_list}; do
-        directory="$(dirname "${gen}")" || die
-        filename="$(basename "${gen}")" || die
-        pushd "${directory}" || die
-        ./"${filename}" || die
-        popd || die
-    done
+    gentest_dir="${GENERATED_DIR}/tests"
+    rm -rf "${gentest_dir}" || die
+    cp -r "${CSIT_DIR}/tests" "${gentest_dir}" || die
+    pushd "${gentest_dir}" || die
+    time ./"autogenerate.py" || die
+    popd || die
 }
 
 
