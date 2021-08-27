@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d229adb3_9122a9e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-08-27T14:47:24Z",
+      "side": 1,
+      "message": "Maybe even a design document, so people do not need to decipher the whole directory to be able to add new subtypes.",
+      "range": {
+        "startLine": 9,
+        "startChar": 18,
+        "endLine": 9,
+        "endChar": 32
+      },
+      "revId": "726e7879e9850a8f887fbede31221ac9bbcab45d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
