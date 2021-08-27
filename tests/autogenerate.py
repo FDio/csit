@@ -13,8 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from resources.libraries.python.autogen.Regenerator import Regenerator
+from resources.libraries.python.autogen.entry import generate_recursively
 
-# Do not match __init__.robot
-# Match -ndrpdr or future types.
-Regenerator().regenerate_glob(u"*r.robot")
+# Make sure the current working directory is at root of subtree to generate.
+generate_recursively()
