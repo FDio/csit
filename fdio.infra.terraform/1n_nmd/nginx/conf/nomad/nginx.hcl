@@ -85,14 +85,14 @@ job "${job_name}" {
     # The "count" parameter specifies the number of the task groups that should
     # be running under this group. This value must be non-negative and defaults
     # to 1.
-    count = 1
+    count             = 1
 
     # https://www.nomadproject.io/docs/job-specification/volume
     %{ if use_host_volume }
     volume "prod-volume1-nginx" {
-      type      = "host"
-      read_only = false
-      source    = "${host_volume}"
+      type            = "host"
+      read_only       = false
+      source          = "${host_volume}"
     }
     %{ endif }
 
@@ -102,10 +102,29 @@ job "${job_name}" {
     # https://www.nomadproject.io/docs/job-specification/restart
     #
     restart {
-      interval  = "30m"
-      attempts  = 40
-      delay     = "15s"
-      mode      = "delay"
+      interval        = "30m"
+      attempts        = 40
+      delay           = "15s"
+      mode            = "delay"
+    }
+
+    # The constraint allows restricting the set of eligible nodes. Constraints
+    # may filter on attributes or client metadata.
+    #
+    # For more information and examples on the "volume" stanza, please see
+    # the online documentation at:
+    #
+    #     https://www.nomadproject.io/docs/job-specification/constraint
+    #
+    constraint {
+      attribute       = "$${attr.cpu.arch}"
+      operator        = "!="
+      value           = "arm64"
+    }
+
+    constraint {
+      attribute      = "$${node.class}"
+      value          = "builder"
     }
 
     # The "task" stanza creates an individual unit of work, such as a Docker
@@ -119,26 +138,23 @@ job "${job_name}" {
     task "prod-task1-nginx" {
       # The "driver" parameter specifies the task driver that should be used to
       # run the task.
-      driver = "docker"
+      driver          = "docker"
 
       # The "config" stanza specifies the driver configuration, which is passed
       # directly to the driver to start the task. The details of configurations
       # are specific to each driver, so please see specific driver
       # documentation for more information.
       config {
-        image        = "nginx:stable"
+        image         = "nginx:stable"
         port_map {
-          https      = 443
+          https       = 443
         }
-        privileged   = false
-        volumes      = [
-          "/etc/ssl/certs/docs.nginx.service.consul.crt:/etc/ssl/certs/docs.nginx.service.consul.crt",
-          "/etc/ssl/private/docs.nginx.service.consul.key:/etc/ssl/private/docs.nginx.service.consul.key",
+        privileged    = false
+        volumes       = [
           "/etc/ssl/certs/logs.nginx.service.consul.crt:/etc/ssl/certs/logs.nginx.service.consul.crt",
           "/etc/ssl/private/logs.nginx.service.consul.key:/etc/ssl/private/logs.nginx.service.consul.key",
           "custom/upstream.conf:/etc/nginx/conf.d/upstream.conf",
-          "custom/logs.conf:/etc/nginx/conf.d/logs.conf",
-          "custom/docs.conf:/etc/nginx/conf.d/docs.conf"
+          "custom/server_logs.conf:/etc/nginx/conf.d/server_logs.conf"
         ]
       }
 
@@ -166,14 +182,30 @@ job "${job_name}" {
           server {
             listen 443 ssl default_server;
             server_name logs.nginx.service.consul;
-            keepalive_timeout 70;
-            ssl_session_cache shared:SSL:10m;
-            ssl_session_timeout 10m;
+
+            ssl_certificate /etc/ssl/certs/logs.nginx.service.consul.crt;
+            ssl_certificate_key /etc/ssl/private/logs.nginx.service.consul.key;
             ssl_protocols TLSv1.2;
             ssl_prefer_server_ciphers on;
             ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384";
-            ssl_certificate /etc/ssl/certs/logs.nginx.service.consul.crt;
-            ssl_certificate_key /etc/ssl/private/logs.nginx.service.consul.key;
+            ssl_session_timeout 10m;
+            ssl_session_cache shared:SSL:10m;
+            ssl_session_tickets off;
+            ssl_stapling on;
+            ssl_stapling_verify on;
+
+            fastcgi_hide_header X-Powered-By;
+
+            client_max_body_size 0;
+            client_header_timeout 60;
+            client_body_timeout 86400;
+            fastcgi_read_timeout 86400;
+            proxy_connect_timeout 60;
+            proxy_read_timeout 86400;
+            proxy_send_timeout 86400;
+            send_timeout 86400;
+
+            keepalive_timeout 70;
             location / {
               chunked_transfer_encoding off;
               proxy_connect_timeout 300;
@@ -220,32 +252,6 @@ job "${job_name}" {
         EOH
         destination = "custom/logs.conf"
       }
-      template {
-        data = <<EOH
-          server {
-            listen 443 ssl;
-            server_name docs.nginx.service.consul;
-            keepalive_timeout 70;
-            ssl_session_cache shared:SSL:10m;
-            ssl_session_timeout 10m;
-            ssl_protocols TLSv1.2;
-            ssl_prefer_server_ciphers on;
-            ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384";
-            ssl_certificate /etc/ssl/certs/docs.nginx.service.consul.crt;
-            ssl_certificate_key /etc/ssl/private/docs.nginx.service.consul.key;
-            location / {
-              chunked_transfer_encoding off;
-              proxy_connect_timeout 300;
-              proxy_http_version 1.1;
-              proxy_set_header Host $host:$server_port;
-              proxy_set_header Connection "";
-              proxy_pass http://storage/docs.fd.io/;
-              server_name_in_redirect off;
-            }
-          }
-        EOH
-        destination = "custom/docs.conf"
-      }
 
       # The service stanza instructs Nomad to register a service with Consul.
       #
@@ -257,7 +263,7 @@ job "${job_name}" {
       service {
         name       = "nginx"
         port       = "https"
-        tags       = [ "docs", "logs" ]
+        tags       = [ "logs" ]
       }
 
       # The "resources" stanza describes the requirements a task needs to

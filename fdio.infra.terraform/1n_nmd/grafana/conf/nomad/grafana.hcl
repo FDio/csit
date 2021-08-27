@@ -123,6 +123,11 @@ job "${job_name}" {
       value           = "arm64"
     }
 
+    constraint {
+      attribute      = "$${node.class}"
+      value          = "builder"
+    }
+
     # The "task" stanza creates an individual unit of work, such as a Docker
     # container, web application, or batch processing.
     #
@@ -148,7 +153,6 @@ job "${job_name}" {
           "secrets/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml",
           "secrets/grafana.ini:/etc/grafana/grafana.ini",
           "secrets/node_exporter.json:/etc/grafana/provisioning/dashboards/node_exporter.json",
-          "secrets/docker_cadvisor.json:/etc/grafana/provisioning/dashboards/docker_cadvisor.json",
           "secrets/nomad.json:/etc/grafana/provisioning/dashboards/nomad.json",
           "secrets/consul.json:/etc/grafana/provisioning/dashboards/consul.json",
           "secrets/prometheus.json:/etc/grafana/provisioning/dashboards/prometheus.json",
@@ -160,12 +164,6 @@ job "${job_name}" {
       artifact {
         # Prometheus Node Exporter
         source        = "https://raw.githubusercontent.com/pmikus/grafana-dashboards/main/node_exporter.json"
-        destination   = "secrets/"
-      }
-
-      artifact {
-        # Docker cAdvisor
-        source        = "https://raw.githubusercontent.com/pmikus/grafana-dashboards/main/docker_cadvisor.json"
         destination   = "secrets/"
       }
 

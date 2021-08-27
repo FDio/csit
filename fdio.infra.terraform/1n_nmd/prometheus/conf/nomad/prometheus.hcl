@@ -139,6 +139,11 @@ job "${job_name}" {
       value             = "arm64"
     }
 
+    constraint {
+      attribute      = "$${node.class}"
+      value          = "builder"
+    }
+
     # The "task" stanza creates an individual unit of work, such as a Docker
     # container, web application, or batch processing.
     #
