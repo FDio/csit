@@ -22,6 +22,30 @@
       "revId": "000ce799bfe473489bbe95e8b00a460270e1ff0b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3755379f_76f033d2",
+        "filename": "fdio.infra.ansible/roles/intel/defaults/main.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-08-27T08:44:01Z",
+      "side": 0,
+      "message": "hmm maybe migrate sourceforge",
+      "parentUuid": "506fbb9c_515dc95e",
+      "range": {
+        "startLine": 26,
+        "startChar": 49,
+        "endLine": 26,
+        "endChar": 54
+      },
+      "revId": "000ce799bfe473489bbe95e8b00a460270e1ff0b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
