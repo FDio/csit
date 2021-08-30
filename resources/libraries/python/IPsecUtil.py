@@ -437,7 +437,7 @@ class IPsecUtil:
             src_addr = u""
             dst_addr = u""
 
-        cmd = u"ipsec_sad_entry_add_del_v2"
+        cmd = u"ipsec_sad_entry_add_del_v3"
         err_msg = f"Failed to add Security Association Database entry " \
             f"on host {node[u'host']}"
         sad_entry = dict(
@@ -448,6 +448,7 @@ class IPsecUtil:
             integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
             integrity_key=ikey,
             flags=flags,
+            # FIXME: V3 tunnel.
             tunnel_src=str(src_addr),
             tunnel_dst=str(dst_addr),
             tunnel_flags=int(
@@ -551,7 +552,7 @@ class IPsecUtil:
                     IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL_V6
                 )
 
-        cmd = u"ipsec_sad_entry_add_del_v2"
+        cmd = u"ipsec_sad_entry_add_del_v3"
         err_msg = f"Failed to add Security Association Database entry " \
             f"on host {node[u'host']}"
 
@@ -563,6 +564,7 @@ class IPsecUtil:
             integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
             integrity_key=ikey,
             flags=flags,
+            # FIXME: V3 tunnel.
             tunnel_src=str(src_addr),
             tunnel_dst=str(dst_addr),
             tunnel_flags=int(
@@ -650,7 +652,7 @@ class IPsecUtil:
             del_all=False,
             prefix=None
         )
-        cmd2 = u"ip_route_add_del"
+        cmd2 = u"ip_route_add_del_v2"
         args2 = dict(
             is_add=1,
             is_multipath=0,
@@ -1439,7 +1441,7 @@ class IPsecUtil:
             # Configure IPSec SAD entries
             ckeys = [bytes()] * existing_tunnels
             ikeys = [bytes()] * existing_tunnels
-            cmd = u"ipsec_sad_entry_add_del_v2"
+            cmd = u"ipsec_sad_entry_add_del_v3"
             c_key = dict(
                 length=0,
                 data=None
@@ -1457,6 +1459,7 @@ class IPsecUtil:
                 integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
                 integrity_key=i_key,
                 flags=None,
+                # FIXME: V3 tunnel.
                 tunnel_src=0,
                 tunnel_dst=0,
                 tunnel_flags=int(
@@ -1567,7 +1570,7 @@ class IPsecUtil:
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
             # Configure IP routes
-            cmd = u"ip_route_add_del"
+            cmd = u"ip_route_add_del_v2"
             args = dict(
                 is_add=1,
                 is_multipath=0,
@@ -1679,7 +1682,7 @@ class IPsecUtil:
                 ]
             )
             # Configure IPSec SAD entries
-            cmd = u"ipsec_sad_entry_add_del_v2"
+            cmd = u"ipsec_sad_entry_add_del_v3"
             c_key = dict(
                 length=0,
                 data=None
@@ -1699,6 +1702,7 @@ class IPsecUtil:
                 integrity_key=i_key,
 
                 flags=None,
+                # FIXME: V3 tunnel.
                 tunnel_src=0,
                 tunnel_dst=0,
                 tunnel_flags=int(
@@ -1785,7 +1789,7 @@ class IPsecUtil:
 
             if not existing_tunnels:
                 # Configure IP route
-                cmd = u"ip_route_add_del"
+                cmd = u"ip_route_add_del_v2"
                 route = IPUtil.compose_vpp_route_structure(
                     nodes[u"DUT2"], tun_ips[u"ip1"].compressed,
                     prefix_len=32 if tun_ips[u"ip1"].version == 6 else 8,
@@ -1824,7 +1828,7 @@ class IPsecUtil:
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
             # Configure IP routes
-            cmd = u"ip_route_add_del"
+            cmd = u"ip_route_add_del_v2"
             args = dict(
                 is_add=1,
                 is_multipath=0,
@@ -2230,6 +2234,6 @@ class IPsecUtil:
         :type node: dict
         """
         cmds = [
-            u"ipsec_sa_v2_dump"
+            u"ipsec_sa_v3_dump"
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)

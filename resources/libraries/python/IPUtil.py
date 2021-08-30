@@ -640,7 +640,7 @@ class IPUtil:
 
     @staticmethod
     def compose_vpp_route_structure(node, network, prefix_len, **kwargs):
-        """Create route object for ip_route_add_del api call.
+        """Create route object for ip_route_add_del_v2 api call.
 
         :param node: VPP node.
         :param network: Route destination network address.
@@ -705,7 +705,8 @@ class IPUtil:
             table_id=int(kwargs.get(u"vrf", 0)),
             prefix=prefix,
             n_paths=len(paths),
-            paths=paths
+            # VPP will replace the default src==0 with FIB_SOURCE_API.
+            paths=paths,
         )
         return route
 
@@ -784,7 +785,7 @@ class IPUtil:
             os.remove(tmp_filename)
             return
 
-        cmd = u"ip_route_add_del"
+        cmd = u"ip_route_add_del_v2"
         args = dict(
             is_add=True,
             is_multipath=kwargs.get(u"multipath", True),

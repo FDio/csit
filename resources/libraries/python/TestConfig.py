@@ -156,7 +156,7 @@ class TestConfig:
             del_all=False,
             prefix=None
         )
-        cmd2 = u"vxlan_add_del_tunnel"
+        cmd2 = u"vxlan_add_del_tunnel_v3"
         args2 = dict(
             is_add=True,
             instance=Constants.BITWISE_NON_ZERO,
@@ -392,7 +392,7 @@ class TestConfig:
             is_add=1,
             neighbor=neighbor
         )
-        cmd2 = u"ip_route_add_del"
+        cmd2 = u"ip_route_add_del_v2"
         kwargs = dict(
             interface=node_vxlan_if,
             gateway=str(dst_ip_start)
