@@ -28,7 +28,12 @@ for pci_addr in ${PCI_WHITELIST[@]}; do
         # SR-IOV initialization
         case "${1:-start}" in
             "start" )
-                sriov_totalvfs=$(< "${pci_path}"/sriov_totalvfs)
+                if [ $(< "${pci_path}"/sriov_totalvfs) -gt 128 ]
+                then
+                    sriov_totalvfs=128
+                else
+                    sriov_totalvfs=$(< "${pci_path}"/sriov_totalvfs)
+                fi
                 ;;
             "stop" )
                 sriov_totalvfs=0
