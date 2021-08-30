@@ -705,7 +705,7 @@ class IPUtil:
             table_id=int(kwargs.get(u"vrf", 0)),
             prefix=prefix,
             n_paths=len(paths),
-            paths=paths
+            paths=paths,
         )
         return route
 
