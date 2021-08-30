@@ -266,9 +266,11 @@ function get_available_interfaces () {
         "1n_skx")
             # Add Intel Corporation XL710/X710 Virtual Function to the
             # whitelist.
+            # Add Intel Corporation E810 Virtual Function to the
+            # whitelist.
             pci_id="0x154c\|0x1889"
-            tg_netdev=(ens1 enp134)
-            dut1_netdev=(ens5 enp175)
+            tg_netdev=(ens1 enp94 enp134)
+            dut1_netdev=(ens5 enp175 enp175)
             ports_per_nic=2
             ;;
        "1n_tx2")
