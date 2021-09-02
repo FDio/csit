@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a9f141b_db4cfaf1",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-02T16:38:16Z",
+      "side": 1,
+      "message": "This is covered by device test: https://s3-logs.fd.io/logs/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu2004-x86_64-1n-skx/2034/log.html.gz#s1-s1-s1-s5-s3-t1-k2-k8-k1-k1-k1-k1-k1-k1-k2-k1-k3",
+      "range": {
+        "startLine": 296,
+        "startChar": 4,
+        "endLine": 296,
+        "endChar": 27
+      },
+      "revId": "9ad6183985c0dad31a9ab9568501c69b857606db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
