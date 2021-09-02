@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "07826f20_5610eee3",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-02T10:32:17Z",
+      "side": 1,
+      "message": "avoid hardcoding this as we might add more testcases where the rule is not always true.\ninstead do new function and new category of tests (write_trex_file) and do only what you want.",
+      "range": {
+        "startLine": 316,
+        "startChar": 20,
+        "endLine": 316,
+        "endChar": 27
+      },
+      "revId": "5800f8849a783cd91821649b5f22e01d2ba083d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2dc52671_52a23ca9",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-02T10:32:17Z",
+      "side": 1,
+      "message": "i would create category as below (e.g write_iperf3_files -\u003e write_trex_files",
+      "range": {
+        "startLine": 672,
+        "startChar": 0,
+        "endLine": 674,
+        "endChar": 24
+      },
+      "revId": "5800f8849a783cd91821649b5f22e01d2ba083d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b60520f5_8af6bd0c",
+        "filename": "resources/libraries/robot/shared/test_setup.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-02T10:32:17Z",
+      "side": 1,
+      "message": "after implementing change in comment below you can restore changes in this file",
+      "revId": "5800f8849a783cd91821649b5f22e01d2ba083d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8173a7f9_1cdf279c",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-02T10:32:17Z",
+      "side": 1,
+      "message": "this file can be restored to original",
+      "revId": "5800f8849a783cd91821649b5f22e01d2ba083d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e05ba61_11713961",
+        "filename": "tests/trex/perf/tg_nic/2n1l-10ge2p1x710-ethip4-tg-l1xc-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-02T10:32:17Z",
+      "side": 1,
+      "message": "this can be removed",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 39
+      },
+      "revId": "5800f8849a783cd91821649b5f22e01d2ba083d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
