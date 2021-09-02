@@ -71,25 +71,23 @@
 | | FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
 | | | ${src_ip_int} = | Evaluate | ${src_ip_int} + ${ip_step}
 | | | ${src_mac_int} = | Evaluate | ${src_mac_int} + ${src_mac_step}
-| | | ${ipv4_limit_reached}= | Set Variable If
-| | | ... | ${src_ip_int} > ${ip_limit_int} | ${TRUE}
-| | | ${mac_limit_reached}= | Set Variable If
-| | | ... | ${src_mac_int} > ${mac_limit_int} | ${TRUE}
-| | | Run Keyword If | '${ipv4_limit_reached}' == '${TRUE}' | Log
+| | | ${ipv4_limit_reached}= | Evaluate | ${src_ip_int} > ${ip_limit_int}
+| | | ${mac_limit_reached}= | Evaluate | ${src_mac_int} > ${mac_limit_int}
+| | | Run Keyword If | ${ipv4_limit_reached} | Log
 | | | ... | Can't do more iterations - IPv4 address limit has been reached.
 | | | ... | WARN
-| | | Run Keyword If | '${mac_limit_reached}' == '${TRUE}' | Log
+| | | Run Keyword If | ${mac_limit_reached} | Log
 | | | ... | Can't do more iterations - MAC address limit has been reached.
 | | | ... | WARN
-| | | ${src_ip} = | Run Keyword If | '${ipv4_limit_reached}' == '${TRUE}'
+| | | ${src_ip} = | Run Keyword If | ${ipv4_limit_reached}
 | | | ... | Set Variable | ${ip_limit}
 | | | ... | ELSE | Int To IP | ${src_ip_int}
-| | | ${src_mac}= | Run Keyword If | '${mac_limit_reached}' == '${TRUE}'
+| | | ${src_mac}= | Run Keyword If | ${mac_limit_reached}
 | | | ... | Set Variable | ${mac_limit}
 | | | ... | ELSE | Int To Mac | ${src_mac_int}
 | | | ${acl}= | Catenate | ${acl} | ip ${src_ip}/32
 | | | ... | mac ${src_mac} | mask ${src_mac_mask},
-| | | Exit For Loop If | '${ipv4_limit_reached}' == '${TRUE}' or '${mac_limit_reached}' == '${TRUE}'
+| | | Exit For Loop If | ${ipv4_limit_reached} or ${mac_limit_reached}
 | | END
 | | ${acl0}= | Catenate | ${acl}
 | | ... | ipv4 ${acl_action} ip ${tg_stream1_subnet} mac ${tg_stream1_mac}
