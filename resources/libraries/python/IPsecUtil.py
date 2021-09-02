@@ -437,7 +437,7 @@ class IPsecUtil:
             src_addr = u""
             dst_addr = u""
 
-        cmd = u"ipsec_sad_entry_add_del_v2"
+        cmd = u"ipsec_sad_entry_add_del_v3"
         err_msg = f"Failed to add Security Association Database entry " \
             f"on host {node[u'host']}"
         sad_entry = dict(
@@ -448,12 +448,15 @@ class IPsecUtil:
             integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
             integrity_key=ikey,
             flags=flags,
-            tunnel_src=str(src_addr),
-            tunnel_dst=str(dst_addr),
-            tunnel_flags=int(
-                TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+            tunnel=dict(
+                src=str(src_addr),
+                dst=str(dst_addr),
+                table_id=0,
+                encap_decap_flags=int(
+                    TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+                ),
+                dscp=int(IpDscp.IP_API_DSCP_CS0),
             ),
-            dscp=int(IpDscp.IP_API_DSCP_CS0),
             protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
             udp_src_port=4500,  # default value in api
             udp_dst_port=4500  # default value in api
@@ -551,7 +554,7 @@ class IPsecUtil:
                     IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL_V6
                 )
 
-        cmd = u"ipsec_sad_entry_add_del_v2"
+        cmd = u"ipsec_sad_entry_add_del_v3"
         err_msg = f"Failed to add Security Association Database entry " \
             f"on host {node[u'host']}"
 
@@ -563,12 +566,15 @@ class IPsecUtil:
             integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
             integrity_key=ikey,
             flags=flags,
-            tunnel_src=str(src_addr),
-            tunnel_dst=str(dst_addr),
-            tunnel_flags=int(
-                TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+            tunnel=dict(
+                src=str(src_addr),
+                dst=str(dst_addr),
+                table_id=0,
+                encap_decap_flags=int(
+                    TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+                ),
+                dscp=int(IpDscp.IP_API_DSCP_CS0),
             ),
-            dscp=int(IpDscp.IP_API_DSCP_CS0),
             protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
             udp_src_port=4500,  # default value in api
             udp_dst_port=4500  # default value in api
@@ -581,10 +587,14 @@ class IPsecUtil:
             for i in range(n_entries):
                 args[u"entry"][u"sad_id"] = int(sad_id) + i
                 args[u"entry"][u"spi"] = int(spi) + i
-                args[u"entry"][u"tunnel_src"] = str(src_addr + i * addr_incr) \
+                args[u"entry"][u"tunnel"][u"src"] = (
+                    str(src_addr + i * addr_incr)
                     if tunnel_src and tunnel_dst else src_addr
-                args[u"entry"][u"tunnel_dst"] = str(dst_addr + i * addr_incr) \
+                )
+                args[u"entry"][u"tunnel"][u"dst"] = (
+                    str(dst_addr + i * addr_incr)
                     if tunnel_src and tunnel_dst else dst_addr
+                )
                 history = bool(not 1 < i < n_entries - 2)
                 papi_exec.add(cmd, history=history, **args)
             papi_exec.get_replies(err_msg)
@@ -1439,7 +1449,7 @@ class IPsecUtil:
             # Configure IPSec SAD entries
             ckeys = [bytes()] * existing_tunnels
             ikeys = [bytes()] * existing_tunnels
-            cmd = u"ipsec_sad_entry_add_del_v2"
+            cmd = u"ipsec_sad_entry_add_del_v3"
             c_key = dict(
                 length=0,
                 data=None
@@ -1457,16 +1467,18 @@ class IPsecUtil:
                 integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
                 integrity_key=i_key,
                 flags=None,
-                tunnel_src=0,
-                tunnel_dst=0,
-                tunnel_flags=int(
-                    TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+                tunnel=dict(
+                    src=0,
+                    dst=0,
+                    table_id=0,
+                    encap_decap_flags=int(
+                        TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+                    ),
+                    dscp=int(IpDscp.IP_API_DSCP_CS0),
                 ),
-                dscp=int(IpDscp.IP_API_DSCP_CS0),
-                table_id=0,
                 salt=0,
                 udp_src_port=IPSEC_UDP_PORT_NONE,
-                udp_dst_port=IPSEC_UDP_PORT_NONE
+                udp_dst_port=IPSEC_UDP_PORT_NONE,
             )
             args = dict(
                 is_add=True,
@@ -1679,7 +1691,7 @@ class IPsecUtil:
                 ]
             )
             # Configure IPSec SAD entries
-            cmd = u"ipsec_sad_entry_add_del_v2"
+            cmd = u"ipsec_sad_entry_add_del_v3"
             c_key = dict(
                 length=0,
                 data=None
@@ -1692,23 +1704,23 @@ class IPsecUtil:
                 sad_id=None,
                 spi=None,
                 protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
-
                 crypto_algorithm=crypto_alg.alg_int_repr,
                 crypto_key=c_key,
                 integrity_algorithm=integ_alg.alg_int_repr if integ_alg else 0,
                 integrity_key=i_key,
-
                 flags=None,
-                tunnel_src=0,
-                tunnel_dst=0,
-                tunnel_flags=int(
-                    TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+                tunnel=dict(
+                    src=0,
+                    dst=0,
+                    table_id=0,
+                    encap_decap_flags=int(
+                        TunnelEncpaDecapFlags.TUNNEL_API_ENCAP_DECAP_FLAG_NONE
+                    ),
+                    dscp=int(IpDscp.IP_API_DSCP_CS0),
                 ),
-                dscp=int(IpDscp.IP_API_DSCP_CS0),
-                table_id=0,
                 salt=0,
                 udp_src_port=IPSEC_UDP_PORT_NONE,
-                udp_dst_port=IPSEC_UDP_PORT_NONE
+                udp_dst_port=IPSEC_UDP_PORT_NONE,
             )
             args = dict(
                 is_add=True,
@@ -2230,6 +2242,6 @@ class IPsecUtil:
         :type node: dict
         """
         cmds = [
-            u"ipsec_sa_v2_dump"
+            u"ipsec_sa_v3_dump"
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)

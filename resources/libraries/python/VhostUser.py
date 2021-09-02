@@ -62,7 +62,7 @@ class VhostUser:
         :returns: SW interface index.
         :rtype: int
         """
-        cmd = u"create_vhost_user_if"
+        cmd = u"create_vhost_user_if_v2"
         err_msg = f"Failed to create Vhost-user interface " \
             f"on host {node[u'host']}"
         if virtio_feature_mask is None:
