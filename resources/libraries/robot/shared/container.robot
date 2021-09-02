@@ -90,13 +90,14 @@
 | | ... | ELSE | Set Variable | ${EMPTY}
 | | ${node_arch}= | Get Node Arch | ${nodes['${dut}']}
 | | ${name}= | Set Variable | ${dut}_${container_group}${nf_id}${DUT1_UUID}
+| | ${short_dir}= | Set Variable | ${node_arch}-linux-gnu/
 | | ${mnt}= | Create List
 | | ... | ${root}/tmp/:/mnt/host/
 | | ... | ${root}/tmp/vpp_sockets/${name}/:/run/vpp/
 | | ... | ${root}/dev/vfio/:/dev/vfio/
 | | ... | ${root}/usr/bin/vpp:/usr/bin/vpp
 | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
-| | ... | ${root}/usr/lib/${node_arch}-linux-gnu/:/usr/lib/${node_arch}-linux-gnu/
+| | ... | ${root}/usr/lib/${short_dir}:/usr/lib/${short_dir}
 | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
 | | ${nf_cpus}= | Set Variable | ${None}
 | | ${nf_cpus}= | Run Keyword If | ${pinning}
