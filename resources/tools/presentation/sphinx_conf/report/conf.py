@@ -46,7 +46,7 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
-report_week = u'33'
+report_week = u'35'
 project = u'FD.io CSIT-2101.1.{week}'.format(week=report_week)
 copyright = u'2021, FD.io'
 author = u'FD.io CSIT'
@@ -71,13 +71,13 @@ rst_epilog = u"""
 .. |dpdk-release-1| replace:: DPDK-{dpdk_prev_release}
 .. |trex-release| replace:: TRex {trex_version}
 
-.. _pdf version of this report: https://docs.fd.io/csit/{release}/report/_static/archive/csit_{release}.{report_week}.pdf
+.. _pdf version of this report: https://s3-docs.fd.io/csit/{release}/report/_static/archive/csit_{release}.{report_week}.pdf
 .. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h={release}
 .. _TRex driver: https://git.fd.io/csit/tree/GPL/tools/trex/trex_stl_profile.py?h={release}
-.. _CSIT DPDK Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.dpdk.perf.html
-.. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.html
-.. _CSIT VPP Device Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.device.html
-.. _VPP test framework documentation: https://docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
+.. _CSIT DPDK Performance Tests Documentation: https://s3-docs.fd.io/csit/{release}/doc/tests.dpdk.perf.html
+.. _CSIT VPP Performance Tests Documentation: https://s3-docs.fd.io/csit/{release}/doc/tests.vpp.perf.html
+.. _CSIT VPP Device Tests Documentation: https://s3-docs.fd.io/csit/{release}/doc/tests.vpp.device.html
+.. _VPP test framework documentation: https://s3-docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
 .. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Cascade Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_clx_hw_bios_cfg.md?h={release}
 .. _Ansible inventory - hosts: https://git.fd.io/csit/tree/fdio.infra.ansible/inventories/lf_inventory/host_vars?h={release}
