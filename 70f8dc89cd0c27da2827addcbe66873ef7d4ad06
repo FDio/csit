@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "693ba124_2deb79f4",
+        "filename": "docs/cpta/methodology/testbed_hw_configuration.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-03T10:26:47Z",
+      "side": 1,
+      "message": "Can we rename the wiki page? We no longer have Haswells nor VIRL machines.",
+      "range": {
+        "startLine": 5,
+        "startChar": 87,
+        "endLine": 5,
+        "endChar": 95
+      },
+      "revId": "70f8dc89cd0c27da2827addcbe66873ef7d4ad06",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
