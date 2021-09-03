@@ -26,6 +26,102 @@
 0c AND 78b AND scapy AND x710 AND drv_vfio_pci AND ethip6ipsec1tnlsw-ip6base-policy-aes128cbc-hmac512sha
 ##### ethip6ipsec1tptsw-ip6base-policy-aes128cbc-hmac512sha
 0c AND 78b AND scapy AND x710 AND drv_vfio_pci AND ethip6ipsec1tptsw-ip6base-policy-aes128cbc-hmac512sha
+## ./flow
+### intel-e810cq
+#### avf
+##### ethip4-flow-ip4-ipsec-ah
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ipsec-ah
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ipsec-ah
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ipsec-ah
+##### ethip4-flow-ip4-ipsec-esp
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ipsec-esp
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ipsec-esp
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ipsec-esp
+##### ethip4-flow-ip4-l2tpv3oip
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-l2tpv3oip
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-l2tpv3oip
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-l2tpv3oip
+##### ethip4-flow-ip4-ntuple-tcp
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ntuple-tcp
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ntuple-tcp
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ntuple-tcp
+##### ethip4-flow-ip4-ntuple-udp
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ntuple-udp
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ntuple-udp
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ntuple-udp
+##### ethip4-flow-ip4-tcp
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-tcp
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-tcp
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-tcp
+##### ethip4-flow-ip4-udp
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-udp
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-udp
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-udp
+##### ethip6-flow-ip6-ntuple-tcp
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-ntuple-tcp
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-ntuple-tcp
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-ntuple-tcp
+##### ethip6-flow-ip6-ntuple-udp
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-ntuple-udp
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-ntuple-udp
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-ntuple-udp
+##### ethip6-flow-ip6-tcp
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-tcp
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-tcp
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-tcp
+##### ethip6-flow-ip6-udp
+action AND redirect AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-udp
+action AND drop AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-udp
+action AND mark AND scapy AND e810cq AND drv_avf AND ethip6-flow-ip6-udp
+#### dpdk-vfio-pci
+##### ethip4-flow-ip4-gtpu
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-gtpu
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-gtpu
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-gtpu
+##### ethip4-flow-ip4-ipsec-ah
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ipsec-ah
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ipsec-ah
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ipsec-ah
+##### ethip4-flow-ip4-ipsec-esp
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ipsec-esp
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ipsec-esp
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ipsec-esp
+##### ethip4-flow-ip4-l2tpv3oip
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-l2tpv3oip
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-l2tpv3oip
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-l2tpv3oip
+##### ethip4-flow-ip4-ntuple-tcp
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ntuple-tcp
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ntuple-tcp
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ntuple-tcp
+##### ethip4-flow-ip4-ntuple-udp
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ntuple-udp
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ntuple-udp
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ntuple-udp
+##### ethip4-flow-ip4-tcp
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-tcp
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-tcp
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-tcp
+##### ethip4-flow-ip4-udp
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-udp
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-udp
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-udp
+##### ethip6-flow-ip6-ntuple-tcp
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-ntuple-tcp
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-ntuple-tcp
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-ntuple-tcp
+##### ethip6-flow-ip6-ntuple-udp
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-ntuple-udp
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-ntuple-udp
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-ntuple-udp
+##### ethip6-flow-ip6-tcp
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-tcp
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-tcp
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-tcp
+##### ethip6-flow-ip6-udp
+action AND redirect AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-udp
+action AND drop AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-udp
+action AND mark AND scapy AND e810cq AND drv_vfio_pci AND ethip6-flow-ip6-udp
 ## ./interfaces
 ### intel-x710
 #### dpdk-vfio-pci
