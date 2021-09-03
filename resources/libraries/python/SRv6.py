@@ -19,7 +19,7 @@ from ipaddress import ip_address, IPv6Address
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.ip_types import Address, AddressWithPrefix
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
@@ -176,9 +176,7 @@ class SRv6:
             args[u"sw_if_index"] = InterfaceUtil.get_interface_index(
                 node, interface
             )
-            args[u"nh_addr"] = IPAddress.create_ip_address_object(
-                ip_address(next_hop)
-            )
+            args[u"nh_addr"] = Address.from_str_address(next_hop)
         elif beh == getattr(SRv6Behavior, u"END_DX2").name:
             if interface is None:
                 raise ValueError(
@@ -289,8 +287,9 @@ class SRv6:
                     f"mask:{prefix}"
                 )
             sw_if_index = Constants.BITWISE_NON_ZERO
-            ip_addr = ip_address(ip_addr)
-            prefix = IPUtil.create_prefix_object(ip_addr, int(prefix))
+            prefix = AddressWithPrefix.from_str_address_and_plen(
+                ip_addr, prefix
+            )
             traffic_type = getattr(
                 SRv6PolicySteeringTypes, u"SR_STEER_IPV4"
             ).value if ip_addr.version == 4 else getattr(
