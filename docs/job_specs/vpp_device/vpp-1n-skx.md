@@ -26,6 +26,11 @@
 0c AND 78b AND scapy AND x710 AND drv_vfio_pci AND ethip6ipsec1tnlsw-ip6base-policy-aes128cbc-hmac512sha
 ##### ethip6ipsec1tptsw-ip6base-policy-aes128cbc-hmac512sha
 0c AND 78b AND scapy AND x710 AND drv_vfio_pci AND ethip6ipsec1tptsw-ip6base-policy-aes128cbc-hmac512sha
+## ./flow
+### intel-e810cq
+#### dpdk-vfio-pci
+##### ethip4-flow-ip4-gtpu
+0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-gtpu
 ## ./interfaces
 ### intel-x710
 #### dpdk-vfio-pci
