@@ -936,6 +936,10 @@ function select_tags () {
         *"1n-vbox"*)
             test_tag_array+=("!avf")
             test_tag_array+=("!vhost")
+            test_tag_array+=("!flow")
+            ;;
+        *"1n_tx2"*)
+            test_tag_array+=("!flow")
             ;;
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
