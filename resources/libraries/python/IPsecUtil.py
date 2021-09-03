@@ -859,6 +859,8 @@ class IPsecUtil:
             rport_range=None, is_ipv6=False):
         """Create Security Policy Database entry on the VPP node.
 
+        Various types are accepted for laddr_range and raddr_range.
+
         :param node: VPP node to add SPD entry on.
         :param spd_id: SPD ID to add entry on.
         :param priority: SPD entry priority, higher number = higher priority.
@@ -898,8 +900,8 @@ class IPsecUtil:
         if raddr_range is None:
             raddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
 
-        local_net = ip_network(laddr_range, strict=False)
-        remote_net = ip_network(raddr_range, strict=False)
+        local_net = convert_to_ip_network(laddr_range, strict=False)
+        remote_net = convert_to_ip_network(raddr_range, strict=False)
 
         cmd = u"ipsec_spd_entry_add_del"
         err_msg = f"Failed to add entry to Security Policy Database " \
@@ -976,19 +978,23 @@ class IPsecUtil:
         :type inbound: bool
         :type sa_id: IPsecUtil.ObjIncrement
         :type proto: int
-        :type laddr_range: IPsecUtil.NetworkIncrement
-        :type raddr_range: IPsecUtil.NetworkIncrement
+        :type laddr_range: ObjIncrement for AddressWithPrefix
+        :type raddr_range: ObjIncrement for AddressWithPrefix
         :type lport_range: string
         :type rport_range: string
         :type is_ipv6: bool
         """
         if laddr_range is None:
             laddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
-            laddr_range = NetworkIncrement(ip_network(laddr_range), 0)
+            laddr_range = ObjIncrement(
+                AddressWithPrefix.from_str_network(laddr_range), increment=0,
+            )
 
         if raddr_range is None:
             raddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
-            raddr_range = NetworkIncrement(ip_network(raddr_range), 0)
+            raddr_range = ObjIncrement(
+                AddressWithPrefix.from_str_network(raddr_range), increment=0,
+            )
 
         lport_range_start = 0
         lport_range_stop = 65535
@@ -1018,8 +1024,8 @@ class IPsecUtil:
                     spd_cfg = f"exec ipsec policy add spd {spd_id} " \
                         f"priority {priority.inc_fmt()} {direction}" \
                         f"{protocol} action {action}{sa} " \
-                        f"local-ip-range {laddr_range.inc_fmt()} " \
-                        f"remote-ip-range {raddr_range.inc_fmt()}" \
+                        f"local-ip-range {next(laddr_range).str_range()} " \
+                        f"remote-ip-range {next(raddr_range).str_range()}" \
                         f"{local_port_range}{remote_port_range}\n"
 
                     tmp_file.write(spd_cfg)
@@ -2124,6 +2130,12 @@ class IPsecUtil:
         sa_id_2 = 200000
         spi_1 = 300000
         spi_2 = 400000
+        network_1 = AddressWithPrefix.from_str_address_and_plen(
+            raddr_ip1, raddr_range
+        )
+        network_2 = AddressWithPrefix.from_str_address_and_plen(
+            raddr_ip1, raddr_range
+        )
 
         crypto_key = gen_key(
             IPsecUtil.get_crypto_alg_key_len(crypto_alg)
@@ -2159,7 +2171,7 @@ class IPsecUtil:
             nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=False,
             sa_id=ObjIncrement(sa_id_1, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip2))
+            raddr_range=ObjIncrement(network_2))
         )
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2170,7 +2182,7 @@ class IPsecUtil:
             nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=True,
             sa_id=ObjIncrement(sa_id_2, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip1))
+            raddr_range=ObjIncrement(network_1))
         )
 
         if u"DUT2" in nodes.keys():
@@ -2199,7 +2211,7 @@ class IPsecUtil:
                 nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=True,
                 sa_id=ObjIncrement(sa_id_1, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip2))
+                raddr_range=ObjIncrement(network_2)
             )
 
             IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2210,7 +2222,7 @@ class IPsecUtil:
                 nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=False,
                 sa_id=ObjIncrement(sa_id_2, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip1))
+                raddr_range=ObjIncrement(network_1)
             )
 
     @staticmethod

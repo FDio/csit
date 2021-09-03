@@ -147,6 +147,9 @@ class AddressWithPrefix(dict):
     """In VPP .api the fields of this type are vl_api_prefix_t,
     or vl_api_address_with_prefix_t.
 
+    As the ability to add int to ip_network is really convenient,
+    we override __add__ and also add some properties to access results.
+
     Main definition:
     https://github.com/FDio/vpp/blob/v21.06/src/vnet/ip/ip_types.api#L101-L104
     For PAPI, this is a dict with keys "address" and "len",
@@ -179,6 +182,21 @@ class AddressWithPrefix(dict):
             address=Address.from_ip_address(network.network_address),
             len=network.prefixlen,
         )
+
+    @classmethod
+    def from_str_network(cls, network, strict=False):
+        """Factory to convert from string network.
+
+        The address part alignment is checked when strict is True.
+
+        :param address: Network in {address}/{plen} format.
+        :param strict: If true, fail on misaligned start address.
+        :type address: str
+        :type strict: bool
+        :returns: New instance storing the address.
+        :rtype: cls
+        """
+        return cls.from_ip_network(ip_network(network, strict))
 
     @classmethod
     def from_ip_address_and_plen(cls, address, plen):
@@ -217,3 +235,78 @@ class AddressWithPrefix(dict):
         """
         address = address if address else u"0.0.0.0"
         return cls.from_ip_address_and_plen(ip_address(address), plen)
+
+    @property
+    def address(self):
+        """Return the address part.
+
+        :returns: The address part of the network, can be unaligned.
+        :rtype: Union[IPv4Address, IPv6Address]
+        """
+        return self[u"address"]
+
+    @property
+    def plen(self):
+        """Return the prefix length part.
+
+        :returns: The prefix length part of the network.
+        :rtype: int
+        """
+        return self[u"len"]
+
+    def __add__(self, increment):
+        """Increase address by the "increment" network sizes.
+
+        This makes it easy to use ObjIncrement to iterate over
+        adjacent networks.
+
+        Decimal string is also accepted as increment value.
+
+        :param increment: How many networks sizes to add, can be negative.
+        :type increment: Union[int, str]
+        :returns: New instance with increased address.
+        :rtype: self.__class__
+        """
+        host_len = self.address.max_prefixlen - self.plen
+        new_address = self.address + increment * (1 << host_len)
+        return self.__class__.from_ip_address_and_plen(new_address, self.plen)
+
+%%%% HERE %%%%
+# IPsecUtil.vpp_ipsec_add_spd_entry wants start and end address,
+# Duck type AddressWithPrefix to offer network_address and broadcast_address
+# and unify with range_str. Then delete convert_to_ip_network.
+    
+    def range_str(self):
+        """Return string representation some VAT commands need.
+
+        The implementation uses broadcast address, so the output is correct
+        only if the start address was properly aligned.
+
+        :returns: Start address, dash, end address.
+        :rtype: str
+        """
+        return f"{self.address.network_address} - " \
+               f"{self.address.broadcast_address}"
+
+
+def convert_to_ip_network(obj, strict=True):
+    """Convert to ip_network from multiple argument types.
+
+    Sometimes we have IP network as human readable string,
+    sometimes as ip_network, sometimes as AddressWithPrefix.
+    This converts anything known to ip_network.
+    Checking for alignment happens only when strict
+    and only when obj is not ip_network already.
+
+    :param obj: Value to convert from.
+    :param strict: If true, fail on misaligned start address.
+    :type obj: Union[str, IPv4Network, IPv6Network, AddressWithPrefix]
+    :type strict: bool
+    :returns: New instance, or obj if already ip_network.
+    :rtype: Union[IPv4Network, IPv6Network]
+    """
+    if isinstance(obj, (IPv4Network, IPv6Network)):
+        return obj
+    if isinstance(obj, AddressWithPrefix):
+        return ip_network((obj.address, obj.plen), strict=strict)
+    return ip_network(obj, strict=strict)
