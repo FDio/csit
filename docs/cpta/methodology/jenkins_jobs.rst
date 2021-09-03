@@ -57,6 +57,6 @@ PA is defined as follows:
    b) Generate a new set of trend summary dashboard, list of failed
       tests and graphs.
    c) Publish trend dashboard and graphs in html format on
-      https://docs.fd.io/.
+      `S3 Docs <https://s3-docs.fd.io/>`_.
    d) Generate an alerting email. This email is sent by Jenkins to
-      csit-report@lists.fd.io
+      `CSIT Report distribution list <csit-report@lists.fd.io>`_.

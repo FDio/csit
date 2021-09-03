@@ -14,13 +14,14 @@ VPP is the only project currently using such jobs.
 They are not started automatically, must be triggered on demand.
 They allow full tag expressions, but some tags are enforced (such as MRR).
 
-Only the three types of tesbed based on Xeon processors have jobs created.
+Only the three types of testbed based on Xeon processors have jobs created.
 Their Gerrit triggers words are "perftest-3n-skx"
 and "perftest-2n-skx".
 
 If additional arguments are added to the Gerrit trigger, they are treated
 as Robot tag expressions to select tests to run. For more details
-on existing tags, see `tag documentation rst file`_.
+on existing tags, see
+`CSIT Tags <https://github.com/FDio/csit/blob/master/docs/tag_documentation.rst>`_.
 
 Basic operation
 ```````````````
