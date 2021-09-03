@@ -26,6 +26,31 @@
 0c AND 78b AND scapy AND x710 AND drv_vfio_pci AND ethip6ipsec1tnlsw-ip6base-policy-aes128cbc-hmac512sha
 ##### ethip6ipsec1tptsw-ip6base-policy-aes128cbc-hmac512sha
 0c AND 78b AND scapy AND x710 AND drv_vfio_pci AND ethip6ipsec1tptsw-ip6base-policy-aes128cbc-hmac512sha
+## ./flow
+### intel-x710
+#### avf
+##### ethip4-flow-ip4-tcp
+0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-flow-ip4-tcp
+##### ethip4-flow-ip4-ntuple-udp
+0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-flow-ip4-ntuple-udp
+#### dpdk-vfio-pci
+##### ethip4-flow-ip4-tcp
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-flow-ip4-tcp
+##### ethip4-flow-ip4-ntuple-udp
+0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-flow-ip4-ntuple-udp
+### intel-e810cq
+#### avf
+##### ethip4-flow-ip4-tcp
+0c AND 64b AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-tcp
+##### ethip4-flow-ip4-ntuple-udp
+0c AND 64b AND scapy AND e810cq AND drv_avf AND ethip4-flow-ip4-ntuple-udp
+#### dpdk-vfio-pci
+##### ethip4-flow-ip4-gtpu
+0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-gtpu
+##### ethip4-flow-ip4-tcp
+0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-tcp
+##### ethip4-flow-ip4-ntuple-udp
+0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-flow-ip4-ntuple-udp
 ## ./interfaces
 ### intel-x710
 #### dpdk-vfio-pci
