@@ -37,12 +37,21 @@ class Trace:
 
     @staticmethod
     def clear_packet_trace_on_all_duts(nodes):
-        """Clear VPP packet trace.
+        """Clear VPP packet trace on all duts.
 
         :param nodes: Nodes where the packet trace will be cleared.
         :type nodes: dict
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-                    node, u"clear trace")
+                Trace.clear_packet_trace_on_dut(node)
+
+    @staticmethod
+    def clear_packet_trace_on_dut(node):
+        """Clear VPP packet trace on dut.
+
+        :param node: Node where the packet trace will be cleared.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"clear trace")
