@@ -1,32 +1,20 @@
-Terraform CI Infra
-==================
+# Terraform CI Infra
+
 This folder contains configuration for terraform based deployments.
 
+## Nomad
 
-Nomad:
-----------------------
 Application orchestration - Nomad
 - ./1n_nmd/
 
+## AWS
 
-AWS:
-----------------------
 Testbed deployment - Amazon AWS
 - ./2n_aws_c5n/
 - ./3n_aws_c5n/
 
-Prerequisities:
-~~~~~~~~~~~~~~~
-aws-cli >= 2.1.21
-  - Configured with personal "AWS Access Key ID" and "AWS Secret Access Key"
-  - See: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
+### Getting Started
 
-terraform-provisioner-ansible >= v2.5.0
-  - Terraform's Ansible provisioner requires manual installation
-  - See: https://github.com/radekg/terraform-provisioner-ansible
-
-Getting started:
-~~~~~~~~~~~~~~~~
 Tested setup:
 - Install and configure prerequisities as specified.
 
@@ -50,7 +38,7 @@ Tested setup:
     terraform init
     terraform apply
 
-  This will deploy envirnoment with default values, you can check the defaults
+  This will deploy environment with default values, you can check the defaults
   in ./2n_aws_c5n/main.tf and ./2n_aws_c5n/variables.tf files
 
   If you would like to change some of these values, you can:
@@ -78,8 +66,7 @@ Tested setup:
 - To clean up the AWS environment and remove all used resources, run:
     terraform destroy
 
+## Azure
 
-Azure:
-----------------------
 Testbed deployment - Microsoft Azure
 - ./3n_azure_fsv2/
