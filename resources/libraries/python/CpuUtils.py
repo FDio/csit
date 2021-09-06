@@ -13,9 +13,8 @@
 
 """CPU utilities library."""
 
-from robot.libraries.BuiltIn import BuiltIn
-
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.robot_interaction import get_variable
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import Topology
 
@@ -374,8 +373,8 @@ class CpuUtils:
         skip_cnt = Constants.CPU_CNT_SYSTEM + Constants.CPU_CNT_MAIN + vs_dtc
 
         interface_list = list()
-        interface_list.append(BuiltIn().get_variable_value(f"${{{node}_if1}}"))
-        interface_list.append(BuiltIn().get_variable_value(f"${{{node}_if2}}"))
+        interface_list.append(get_variable(f"\\${{{node}_if1}}"))
+        interface_list.append(get_variable(f"\\${{{node}_if2}}"))
 
         cpu_node = Topology.get_interfaces_numa_node(
             nodes[node], *interface_list)
@@ -520,24 +519,18 @@ class CpuUtils:
         :rtype: dict
         """
         # Number of Data Plane physical cores.
-        dp_cores_count = BuiltIn().get_variable_value(
-            f"${{dp_cores_count}}", phy_cores
-        )
+        dp_cores_count = get_variable(u"\\${dp_cores_count}", phy_cores)
         # Number of Feature Plane physical cores.
-        fp_cores_count = BuiltIn().get_variable_value(
-            f"${{fp_cores_count}}", phy_cores - dp_cores_count
+        fp_cores_count = get_variable(
+            u"\\${fp_cores_count}", phy_cores - dp_cores_count
         )
         # Ratio between RX queues and data plane threads.
-        rxq_ratio = BuiltIn().get_variable_value(
-            f"${{rxq_ratio}}", 1
-        )
+        rxq_ratio = get_variable(u"\\${rxq_ratio}", 1)
 
-        dut_pf_keys = BuiltIn().get_variable_value(
-            f"${{{node}_pf_keys}}"
-        )
+        dut_pf_keys = get_variable(f"\\${{{node}_pf_keys}}")
         # SMT override in case of non standard test cases.
-        smt_used = BuiltIn().get_variable_value(
-            f"${{smt_used}}", CpuUtils.is_smt_enabled(nodes[node][u"cpuinfo"])
+        smt_used = get_variable(
+            u"\\${smt_used}", CpuUtils.is_smt_enabled(nodes[node][u"cpuinfo"])
         )
 
         cpu_node = Topology.get_interfaces_numa_node(nodes[node], *dut_pf_keys)
