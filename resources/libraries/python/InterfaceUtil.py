@@ -849,7 +849,7 @@ class InterfaceUtil:
         :raises RuntimeError: if it is unable to create VxLAN interface on the
             node.
         """
-        cmd = u"vxlan_add_del_tunnel"
+        cmd = u"vxlan_add_del_tunnel_v3"
         args = dict(
             is_add=True,
             instance=Constants.BITWISE_NON_ZERO,
@@ -1359,7 +1359,7 @@ class InterfaceUtil:
             node, u"set logging class rdma level debug"
         )
 
-        cmd = u"rdma_create_v2"
+        cmd = u"rdma_create_v3"
         pci_addr = Topology.get_interface_pci_addr(node, if_key)
         args = dict(
             name=InterfaceUtil.pci_to_eth(node, pci_addr),
@@ -1371,6 +1371,7 @@ class InterfaceUtil:
             # Note: Set True for non-jumbo packets.
             no_multi_seg=False,
             max_pktlen=0,
+            # TODO: Apply desired RSS flags.
         )
         err_msg = f"Failed to create RDMA interface on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:

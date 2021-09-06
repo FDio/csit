@@ -156,7 +156,7 @@ class TestConfig:
             del_all=False,
             prefix=None
         )
-        cmd2 = u"vxlan_add_del_tunnel"
+        cmd2 = u"vxlan_add_del_tunnel_v3"
         args2 = dict(
             is_add=True,
             instance=Constants.BITWISE_NON_ZERO,
