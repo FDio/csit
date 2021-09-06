@@ -17,7 +17,6 @@ import math
 import time
 
 from robot.api import logger
-from robot.libraries.BuiltIn import BuiltIn
 
 from .Constants import Constants
 from .CpuUtils import CpuUtils
@@ -27,6 +26,7 @@ from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
+from .robot_interaction import get_library_instance
 from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
@@ -89,7 +89,7 @@ class TGDropRateSearchImpl(DropRateSearch):
         """
         # we need instance of TrafficGenerator instantiated by Robot Framework
         # to be able to use trex_stl-*()
-        tg_instance = BuiltIn().get_library_instance(
+        tg_instance = get_library_instance(
             u"resources.libraries.python.TrafficGenerator"
         )
         subtype = check_subtype(tg_instance.node)
@@ -114,7 +114,7 @@ class TGDropRateSearchImpl(DropRateSearch):
         :returns: Latency stats.
         :rtype: list
         """
-        tg_instance = BuiltIn().get_library_instance(
+        tg_instance = get_library_instance(
             u"resources.libraries.python.TrafficGenerator"
         )
         return tg_instance.get_latency_int()
@@ -1548,7 +1548,7 @@ class OptimizedSearch:
         """
         # we need instance of TrafficGenerator instantiated by Robot Framework
         # to be able to use trex_stl-*()
-        tg_instance = BuiltIn().get_library_instance(
+        tg_instance = get_library_instance(
             u"resources.libraries.python.TrafficGenerator"
         )
         # Overrides for fixed transaction amount.
@@ -1677,7 +1677,7 @@ class OptimizedSearch:
         :returns: Average and stdev of estimated aggregate rate giving PLR.
         :rtype: 2-tuple of float
         """
-        tg_instance = BuiltIn().get_library_instance(
+        tg_instance = get_library_instance(
             u"resources.libraries.python.TrafficGenerator"
         )
         # Overrides for fixed transaction amount.
