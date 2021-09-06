@@ -75,7 +75,7 @@
 # NAT settings
 | ${nat_mode}= | endpoint-dependent
 | ${in_net}= | 192.168.0.0
-| ${in_mask}= | ${8}
+| ${in_mask}= | ${14}
 | ${out_net}= | 68.142.68.0
 | ${out_net_end}= | 68.142.68.255
 | ${out_mask}= | ${24}
