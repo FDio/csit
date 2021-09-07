@@ -606,6 +606,7 @@ function prepare_topology () {
     # Prepare virtual testbed topology if needed based on flavor.
 
     # Variables read:
+    # - TEST_CODE - String affecting test selection, usually jenkins job name.
     # - NODENESS - Node multiplicity of testbed, either "2n" or "3n".
     # - FLAVOR - Node flavor string, e.g. "clx" or "skx".
     # Functions called:
@@ -618,10 +619,12 @@ function prepare_topology () {
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
         "2n_aws")
+            export TF_VAR_testbed_name="${TEST_CODE}"
             terraform_init || die "Failed to call terraform init."
             terraform_apply || die "Failed to call terraform apply."
             ;;
         "3n_aws")
+            export TF_VAR_testbed_name="${TEST_CODE}"
             terraform_init || die "Failed to call terraform init."
             terraform_apply || die "Failed to call terraform apply."
             ;;
