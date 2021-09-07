@@ -35,3 +35,21 @@ variable "testbed_name" {
   type        = string
   default     = "testbed1"
 }
+
+variable "topology_name" {
+  description = "Topology name"
+  type        = string
+  default     = "3n_aws_c5n"
+}
+
+variable "environment_name" {
+  description = "Environment name"
+  type        = string
+  default     = "CSIT-AWS"
+}
+
+variable "resources_name_prefix" {
+  description = "Resources name prefix"
+  type        = string
+  default     = "CSIT_3n_aws_c5n"
+}
