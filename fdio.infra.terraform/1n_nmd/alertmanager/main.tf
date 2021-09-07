@@ -1,5 +1,5 @@
 locals {
-  datacenters      = join(",", var.nomad_datacenters)
+  datacenters = join(",", var.nomad_datacenters)
 
   alertmanager_url = join("",
     [
@@ -12,8 +12,8 @@ locals {
 }
 
 data "template_file" "nomad_job_alertmanager" {
-  template         = file("${path.module}/conf/nomad/alertmanager.hcl")
-  vars             = {
+  template = file("${path.module}/conf/nomad/alertmanager.hcl")
+  vars = {
     datacenters            = local.datacenters
     url                    = local.alertmanager_url
     job_name               = var.alertmanager_job_name
@@ -35,6 +35,6 @@ data "template_file" "nomad_job_alertmanager" {
 }
 
 resource "nomad_job" "nomad_job_alertmanager" {
-  jobspec          = data.template_file.nomad_job_alertmanager.rendered
-  detach           = false
+  jobspec = data.template_file.nomad_job_alertmanager.rendered
+  detach  = false
 }

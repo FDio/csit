@@ -1,15 +1,15 @@
 locals {
-  datacenters              = join(",", var.nomad_datacenters)
-  minio_env_vars           = join("\n",
+  datacenters = join(",", var.nomad_datacenters)
+  minio_env_vars = join("\n",
     concat([
     ], var.minio_envs)
   )
-  mc_env_vars              = join("\n",
+  mc_env_vars = join("\n",
     concat([
     ], var.mc_envs)
   )
   mc_formatted_bucket_list = formatlist("LOCALMINIO/%s", var.minio_buckets)
-  mc_add_config_command    = concat(
+  mc_add_config_command = concat(
     [
       "mc",
       "config",
@@ -25,8 +25,8 @@ locals {
 }
 
 data "template_file" "nomad_job_minio" {
-  template    = file("${path.module}/conf/nomad/minio.hcl")
-  vars        = {
+  template = file("${path.module}/conf/nomad/minio.hcl")
+  vars = {
     job_name           = var.minio_job_name
     datacenters        = local.datacenters
     use_canary         = var.minio_use_canary
@@ -51,8 +51,8 @@ data "template_file" "nomad_job_minio" {
 }
 
 data "template_file" "nomad_job_mc" {
-  template    = file("${path.module}/conf/nomad/mc.hcl")
-  vars        = {
+  template = file("${path.module}/conf/nomad/mc.hcl")
+  vars = {
     job_name           = var.mc_job_name
     service_name       = var.mc_service_name
     datacenters        = local.datacenters
@@ -68,8 +68,8 @@ data "template_file" "nomad_job_mc" {
 }
 
 resource "nomad_job" "nomad_job_minio" {
-  jobspec     = data.template_file.nomad_job_minio.rendered
-  detach      = false
+  jobspec = data.template_file.nomad_job_minio.rendered
+  detach  = false
 }
 
 #resource "nomad_job" "nomad_job_mc" {

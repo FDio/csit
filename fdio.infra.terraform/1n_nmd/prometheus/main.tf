@@ -1,5 +1,5 @@
 locals {
-  datacenters    = join(",", var.nomad_datacenters)
+  datacenters = join(",", var.nomad_datacenters)
 
   prometheus_url = join("",
     [
@@ -12,8 +12,8 @@ locals {
 }
 
 data "template_file" "nomad_job_prometheus" {
-  template       = file("${path.module}/conf/nomad/prometheus.hcl")
-  vars           = {
+  template = file("${path.module}/conf/nomad/prometheus.hcl")
+  vars = {
     datacenters        = local.datacenters
     url                = local.prometheus_url
     job_name           = var.prometheus_job_name
@@ -32,6 +32,6 @@ data "template_file" "nomad_job_prometheus" {
 }
 
 resource "nomad_job" "nomad_job_prometheus" {
-  jobspec        = data.template_file.nomad_job_prometheus.rendered
-  detach         = false
+  jobspec = data.template_file.nomad_job_prometheus.rendered
+  detach  = false
 }

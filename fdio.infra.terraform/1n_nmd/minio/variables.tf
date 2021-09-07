@@ -2,7 +2,7 @@
 variable "nomad_datacenters" {
   description = "Nomad data centers"
   type        = list(string)
-  default     = [ "dc1" ]
+  default     = ["dc1"]
 }
 
 variable "nomad_host_volume" {
@@ -98,7 +98,7 @@ variable "minio_use_canary" {
 
 variable "minio_vault_secret" {
   description = "Set of properties to be able to fetch secret from vault"
-  type        = object({
+  type = object({
     use_vault_provider        = bool,
     vault_kv_policy_name      = string,
     vault_kv_path             = string,
@@ -109,13 +109,13 @@ variable "minio_vault_secret" {
 
 variable "minio_resource_proxy" {
   description = "Minio proxy resources"
-  type        = object({
-    cpu       = number,
-    memory    = number
+  type = object({
+    cpu    = number,
+    memory = number
   })
-  default     = {
-    cpu       = 200,
-    memory    = 128
+  default = {
+    cpu    = 200,
+    memory = 128
   }
   validation {
     condition     = var.minio_resource_proxy.cpu >= 200 && var.minio_resource_proxy.memory >= 128
@@ -156,11 +156,11 @@ variable "minio_buckets" {
 
 variable "minio_upstreams" {
   description = "List of upstream services (list of object with service_name, port)"
-  type        = list(object({
+  type = list(object({
     service_name = string,
     port         = number,
   }))
-  default     = []
+  default = []
 }
 
 variable "mc_extra_commands" {

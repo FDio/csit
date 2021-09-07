@@ -2,7 +2,7 @@
 variable "nomad_datacenters" {
   description = "Nomad data centers"
   type        = list(string)
-  default     = [ "dc1" ]
+  default     = ["dc1"]
 }
 
 variable "nomad_host_volume" {
@@ -44,7 +44,7 @@ variable "prometheus_use_canary" {
 
 variable "prometheus_vault_secret" {
   description = "Set of properties to be able to fetch secret from vault"
-  type        = object({
+  type = object({
     use_vault_provider        = bool,
     vault_kv_policy_name      = string,
     vault_kv_path             = string,

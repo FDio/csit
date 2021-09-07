@@ -3,8 +3,8 @@ locals {
 }
 
 data "template_file" "nomad_job_csit_shim" {
-  template    = file("${path.module}/conf/nomad/csit_shim.hcl")
-  vars        = {
+  template = file("${path.module}/conf/nomad/csit_shim.hcl")
+  vars = {
     datacenters   = local.datacenters
     job_name      = var.csit_shim_job_name
     group_count   = var.csit_shim_group_count
@@ -16,6 +16,6 @@ data "template_file" "nomad_job_csit_shim" {
 }
 
 resource "nomad_job" "nomad_job_csit_shim" {
-  jobspec     = data.template_file.nomad_job_csit_shim.rendered
-  detach      = false
+  jobspec = data.template_file.nomad_job_csit_shim.rendered
+  detach  = false
 }

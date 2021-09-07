@@ -3,8 +3,8 @@ locals {
 }
 
 data "template_file" "nomad_job_grafana" {
-  template    = file("${path.module}/conf/nomad/grafana.hcl")
-  vars        = {
+  template = file("${path.module}/conf/nomad/grafana.hcl")
+  vars = {
     datacenters        = local.datacenters
     job_name           = var.grafana_job_name
     use_canary         = var.grafana_use_canary
@@ -19,6 +19,6 @@ data "template_file" "nomad_job_grafana" {
 }
 
 resource "nomad_job" "nomad_job_grafana" {
-  jobspec     = data.template_file.nomad_job_grafana.rendered
-  detach      = false
+  jobspec = data.template_file.nomad_job_grafana.rendered
+  detach  = false
 }

@@ -3,8 +3,8 @@ locals {
 }
 
 data "template_file" "nomad_job_nginx" {
-  template    = file("${path.module}/conf/nomad/nginx.hcl")
-  vars        = {
+  template = file("${path.module}/conf/nomad/nginx.hcl")
+  vars = {
     job_name        = var.nginx_job_name
     datacenters     = local.datacenters
     use_host_volume = var.nginx_use_host_volume
@@ -13,6 +13,6 @@ data "template_file" "nomad_job_nginx" {
 }
 
 resource "nomad_job" "nomad_job_nginx" {
-  jobspec     = data.template_file.nomad_job_nginx.rendered
-  detach      = false
+  jobspec = data.template_file.nomad_job_nginx.rendered
+  detach  = false
 }
