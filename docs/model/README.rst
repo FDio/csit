@@ -42,7 +42,12 @@ UTI stands for Unified Test Interface.
 It mainly focuses on exporting information gathered during test run
 into JSON output files.
 
-Files
------
+Documentation structure
+-----------------------
 
-No files are exported yet in this version.
+UTI documentation is following a tree structure.
+Each node of the tree is one .rst file. If the node has children nodes,
+they are placed in a subdirectory corresponding to their parent's name.
+The node can be describing an output file, a JSON entry (of a mapping),
+a JSON element (of a list), each of those can have scalar,
+list or mapping value.
