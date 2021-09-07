@@ -24,7 +24,9 @@ from ipaddress import ip_address, ip_network
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.ip_types import (
+    AddressUnion, Address, AddressWithPrefix
+)
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
@@ -67,6 +69,23 @@ class FibPathNhProto(IntEnum):
     FIB_PATH_NH_PROTO_ETHERNET = 3
     FIB_PATH_NH_PROTO_BIER = 4
 
+    @classmethod
+    def for_version(cls, version):
+        """Return instance suitable for given IP version.
+
+        If version is neither 4 nor 6, return FIB_PATH_NH_PROTO_ETHERNET.
+
+        :param version: IP version, 4 or 6 or anything other for ethernet.
+        :type version: int
+        :returns: Appropriate enum instance.
+        :rtype: cls
+        """
+        if version == 4:
+            return cls.FIB_PATH_NH_PROTO_IP4
+        if version == 6:
+            return cls.FIB_PATH_NH_PROTO_IP6
+        return cls.FIB_PATH_NH_PROTO_ETHERNET
+
 
 class IpDscp(IntEnum):
     """DSCP code points."""
@@ -104,6 +123,8 @@ class NetworkIncrement(ObjIncrement):
     Both initial and subsequent IP address can have host bits set,
     check the initial value before creating instance if needed.
     String formatting is configurable via constructor argument.
+
+    TODO: Unify with ip_types.py (or get rid of VAT and its dash formatting).
     """
     def __init__(self, initial_value, increment=1, format=u"dash"):
         """
@@ -553,17 +574,15 @@ class IPUtil:
         :type address: str
         :type prefix_length: int
         """
-        ip_addr = ip_address(address)
-
         cmd = u"sw_interface_add_del_address"
+        address = Address(address)
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
             is_add=True,
             del_all=False,
-            prefix=IPUtil.create_prefix_object(
-                ip_addr,
-                prefix_length if prefix_length else 128
-                if ip_addr.version == 6 else 32
+            prefix=AddressWithPrefix(
+                address, prefix_length if prefix_length else 128
+                if address.version == 6 else 32
             )
         )
         err_msg = f"Failed to add IP address on interface {interface}"
@@ -621,24 +640,6 @@ class IPUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def create_prefix_object(ip_addr, addr_len):
-        """Create prefix object.
-
-        :param ip_addr: IPv4 or IPv6 address.
-        :param addr_len: Length of IP address.
-        :type ip_addr: IPv4Address or IPv6Address
-        :type addr_len: int
-        :returns: Prefix object.
-        :rtype: dict
-        """
-        addr = IPAddress.create_ip_address_object(ip_addr)
-
-        return dict(
-            len=int(addr_len),
-            address=addr
-        )
-
-    @staticmethod
     def compose_vpp_route_structure(node, network, prefix_len, **kwargs):
         """Create route object for ip_route_add_del api call.
 
@@ -666,14 +667,11 @@ class IPUtil:
         """
         interface = kwargs.get(u"interface", u"")
         gateway = kwargs.get(u"gateway", u"")
-
-        net_addr = ip_address(network)
-
-        prefix = IPUtil.create_prefix_object(net_addr, prefix_len)
+        network_and_plen = AddressWithPrefix(network, prefix_len)
 
         paths = list()
         n_hop = dict(
-            address=IPAddress.union_addr(ip_address(gateway)) if gateway else 0,
+            address=AddressUnion(gateway),
             via_label=MPLS_LABEL_INVALID,
             obj_id=Constants.BITWISE_NON_ZERO
         )
@@ -684,26 +682,18 @@ class IPUtil:
             rpf_id=Constants.BITWISE_NON_ZERO,
             weight=int(kwargs.get(u"weight", 1)),
             preference=1,
-            type=getattr(
-                FibPathType, u"FIB_PATH_TYPE_LOCAL"
-                if kwargs.get(u"local", False)
-                else u"FIB_PATH_TYPE_NORMAL"
-            ).value,
-            flags=getattr(FibPathFlags, u"FIB_PATH_FLAG_NONE").value,
-            proto=getattr(
-                FibPathNhProto, u"FIB_PATH_NH_PROTO_IP6"
-                if net_addr.version == 6
-                else u"FIB_PATH_NH_PROTO_IP4"
-            ).value,
+            type=FibPathType(kwargs.get(u"local", False)),
+            flags=FibPathFlags.FIB_PATH_FLAG_NONE,
+            proto=FibPathNhProto.for_version(network_and_plen.version),
             nh=n_hop,
             n_labels=0,
-            label_stack=list(0 for _ in range(16))
+            label_stack=[0] * 16,
         )
         paths.append(path)
 
         route = dict(
             table_id=int(kwargs.get(u"vrf", 0)),
-            prefix=prefix,
+            prefix=network_and_plen,
             n_paths=len(paths),
             paths=paths
         )
