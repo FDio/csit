@@ -89,7 +89,6 @@ A brief bottom-up description is provided here:
 .
 └── tests
     ├── dpdk
-    │   ├── dpdk_scripts            # DPDK helper scripts
     │   └── perf                    # DPDK performance tests
     └── vpp
         ├── device                  # VPP device tests
@@ -116,6 +115,7 @@ resources
 ```
 .
 ├── docs                            # Main documentaion
+│── csit.infra.vagrant              # VPP device vagrant environment
 |── fdio.infra.ansible              # Infrastructure provisioning
 |── fdio.infra.pxe                  # Preboot eXecution Environment
 |── fdio.infra.terraform            # Virtual infrastructure deployment
@@ -131,14 +131,12 @@ resources
 │   ├── templates                   # Templates (vpp_api_test, kubernetes, ...)
 │   ├── test_data                   # Robot Test configuration
 │   ├── tools
-│   │   ├── disk-image-builder      # Utilities for building (DCR, VM) images
 │   │   ├── doc_gen                 # Code documentation generator
 │   │   ├── papi                    # PAPI driver
 │   │   ├── presentation            # Report generator
 │   │   ├── scripts                 # Various tools
 │   │   ├── topology                # Helper scripts for topology manipulation
 │   │   ├── trex                    # TRex driver
-│   │   └── vagrant                 # VPP device vagrant environment
 │   ├── topology_schemas
 └── topologies                      # Linux Foundation topology files
     ├── available
@@ -154,15 +152,15 @@ describing local VPP Device functional testing.
 
 ## Report
 
-[CSIT Report](https://docs.fd.io/csit/master/report/).
+[CSIT Report](https://s3-docs.fd.io/csit/master/report/).
 
 ## Trending
 
-[CSIT Trending](https://docs.fd.io/csit/master/trending/).
+[CSIT Trending](https://s3-docs.fd.io/csit/master/trending/).
 
 ## Code Documentation
 
-[CSIT Code Documentation](https://docs.fd.io/csit/master/doc/).
+[CSIT Code Documentation](https://s3-docs.fd.io/csit/master/docs/).
 
 ## Coding Guidelines
 
