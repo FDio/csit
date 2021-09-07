@@ -14,6 +14,7 @@
 
 """IPsec utilities library."""
 
+import itertools
 import os
 
 from enum import Enum, IntEnum
@@ -23,12 +24,10 @@ from random import choice
 from string import ascii_letters
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
 from resources.libraries.python.ip_types import Address, AddressWithPrefix
-from resources.libraries.python.IPUtil import IPUtil, IpDscp, \
-    MPLS_LABEL_INVALID, NetworkIncrement
+from resources.libraries.python.IPUtil import IPUtil, IpDscp, MPLS_LABEL_INVALID
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology, NodeType
@@ -756,10 +755,10 @@ class IPsecUtil:
         :param entry_amount: The number of SPD entries to configure. If
             entry_amount == 1, no non-matching entries will be configured.
         :param local_addr_range: Matching local address range in direction 1
-            in format IP/prefix or IP/mask. If no mask is provided, it's
+            in format IP/prefix. If no mask is provided, it's
             considered to be /32.
         :param remote_addr_range: Matching remote address range in
-            direction 1 in format IP/prefix or IP/mask. If no mask is
+            direction 1 in format IP/prefix. If no mask is
             provided, it's considered to be /32.
         :param action: Policy action.
         :param inbound: If True policy is for inbound traffic, otherwise
@@ -810,22 +809,22 @@ class IPsecUtil:
         # non-matching entries
         no_match_entry_amount = entry_amount - 1
         if no_match_entry_amount > 0:
-            # create a NetworkIncrement representation of the network,
+            # create an iterutils.count iterator over networks,
             # then skip the matching network
-            no_match_local_addr_range = NetworkIncrement(
-                ip_network(local_addr_range)
+            no_match_local_addr_range = iterutils.count(
+                AddressWithPrefix(local_addr_range)
             )
             next(no_match_local_addr_range)
 
-            no_match_remote_addr_range = NetworkIncrement(
-                ip_network(remote_addr_range)
+            no_match_remote_addr_range = iterutils.count(
+                AddressWithPrefix(remote_addr_range)
             )
             next(no_match_remote_addr_range)
 
             # non-matching entries direction 1
             IPsecUtil.vpp_ipsec_add_spd_entries(
                 node, no_match_entry_amount, spd_id_dir1,
-                ObjIncrement(matching_priority + 1, 1), action,
+                itertools.count(matching_priority + 1), action,
                 inbound=inbound, laddr_range=no_match_local_addr_range,
                 raddr_range=no_match_remote_addr_range
             )
@@ -833,19 +832,19 @@ class IPsecUtil:
             if bidirectional:
                 # reset the networks so that we're using a unified config
                 # the address ranges are switched
-                no_match_remote_addr_range = NetworkIncrement(
-                    ip_network(local_addr_range)
+                no_match_remote_addr_range = iterutils.count(
+                    AddressWithPrefix(local_addr_range)
                 )
                 next(no_match_remote_addr_range)
 
-                no_match_local_addr_range = NetworkIncrement(
-                    ip_network(remote_addr_range)
+                no_match_local_addr_range = iterutils.count(
+                    AddressWithPrefix(remote_addr_range)
                 )
                 next(no_match_local_addr_range)
                 # non-matching entries direction 2
                 IPsecUtil.vpp_ipsec_add_spd_entries(
                     node, no_match_entry_amount, spd_id_dir2,
-                    ObjIncrement(matching_priority + 1, 1), action,
+                    itertools.count(matching_priority + 1), action,
                     inbound=inbound, laddr_range=no_match_local_addr_range,
                     raddr_range=no_match_remote_addr_range
                 )
@@ -858,6 +857,8 @@ class IPsecUtil:
             proto=None, laddr_range=None, raddr_range=None, lport_range=None,
             rport_range=None, is_ipv6=False):
         """Create Security Policy Database entry on the VPP node.
+
+        Various types are accepted for laddr_range and raddr_range.
 
         :param node: VPP node to add SPD entry on.
         :param spd_id: SPD ID to add entry on.
@@ -898,8 +899,8 @@ class IPsecUtil:
         if raddr_range is None:
             raddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
 
-        local_net = ip_network(laddr_range, strict=False)
-        remote_net = ip_network(raddr_range, strict=False)
+        local_net = convert_to_ip_network(laddr_range, strict=False)
+        remote_net = convert_to_ip_network(raddr_range, strict=False)
 
         cmd = u"ipsec_spd_entry_add_del"
         err_msg = f"Failed to add entry to Security Policy Database " \
@@ -963,24 +964,24 @@ class IPsecUtil:
         :type node: dict
         :type n_entries: int
         :type spd_id: int
-        :type priority: IPsecUtil.ObjIncrement
+        :type priority: Iterator[int]
         :type action: IPsecUtil.PolicyAction
         :type inbound: bool
-        :type sa_id: IPsecUtil.ObjIncrement
+        :type sa_id: Iterator[int]
         :type proto: int
-        :type laddr_range: IPsecUtil.NetworkIncrement
-        :type raddr_range: IPsecUtil.NetworkIncrement
+        :type laddr_range: Iterator[AddressWithPrefix]
+        :type raddr_range: Iterator[AddressWithPrefix]
         :type lport_range: string
         :type rport_range: string
         :type is_ipv6: bool
         """
         if laddr_range is None:
             laddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
-            laddr_range = NetworkIncrement(ip_network(laddr_range), 0)
+            laddr_range = itertools.count(AddressWithPrefix(laddr_range), 0)
 
         if raddr_range is None:
             raddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
-            raddr_range = NetworkIncrement(ip_network(raddr_range), 0)
+            raddr_range = itertools.count(AddressWithPrefix(raddr_range), 0)
 
         lport_range_start = 0
         lport_range_stop = 65535
@@ -996,9 +997,9 @@ class IPsecUtil:
             tmp_filename = f"/tmp/ipsec_spd_{spd_id}_add_del_entry.script"
 
             with open(tmp_filename, 'w') as tmp_file:
-                for i in range(n_entries):
+                for _ in range(n_entries):
                     direction = u'inbound' if inbound else u'outbound'
-                    sa = f' sa {sa_id.inc_fmt()}' if sa_id is not None else ''
+                    sa = f' sa {next(sa_id)}' if sa_id is not None else ''
                     protocol = f' protocol {protocol}' if proto else ''
                     local_port_range = f' local-port-range ' \
                         f'{lport_range_start} - {lport_range_stop}' \
@@ -1008,10 +1009,10 @@ class IPsecUtil:
                         if rport_range else ''
 
                     spd_cfg = f"exec ipsec policy add spd {spd_id} " \
-                        f"priority {priority.inc_fmt()} {direction}" \
+                        f"priority {next(priority)} {direction}" \
                         f"{protocol} action {action}{sa} " \
-                        f"local-ip-range {laddr_range.inc_fmt()} " \
-                        f"remote-ip-range {raddr_range.inc_fmt()}" \
+                        f"local-ip-range {next(laddr_range).str_range()} " \
+                        f"remote-ip-range {next(raddr_range).str_range()}" \
                         f"{local_port_range}{remote_port_range}\n"
 
                     tmp_file.write(spd_cfg)
@@ -2114,6 +2115,8 @@ class IPsecUtil:
         sa_id_2 = 200000
         spi_1 = 300000
         spi_2 = 400000
+        network_1 = AddressWithPrefix(raddr_ip1, raddr_range)
+        network_2 = AddressWithPrefix(raddr_ip2, raddr_range)
 
         crypto_key = gen_key(
             IPsecUtil.get_crypto_alg_key_len(crypto_alg)
@@ -2146,10 +2149,10 @@ class IPsecUtil:
         )
 
         IPsecUtil.vpp_ipsec_add_spd_entries(
-            nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+            nodes[u"DUT1"], n_tunnels, spd_id, priority=itertools.count(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=False,
-            sa_id=ObjIncrement(sa_id_1, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip2))
+            sa_id=itertools.count(sa_id_1),
+            raddr_range=itertools.count(network_2)
         )
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2157,10 +2160,10 @@ class IPsecUtil:
             integ_alg, integ_key, tunnel_ip2, tunnel_ip1
         )
         IPsecUtil.vpp_ipsec_add_spd_entries(
-            nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+            nodes[u"DUT1"], n_tunnels, spd_id, priority=itertools.count(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=True,
-            sa_id=ObjIncrement(sa_id_2, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip1))
+            sa_id=itertools.count(sa_id_2),
+            raddr_range=itertools.count(network_1)
         )
 
         if u"DUT2" in nodes.keys():
@@ -2186,10 +2189,10 @@ class IPsecUtil:
                 crypto_key, integ_alg, integ_key, tunnel_ip1, tunnel_ip2
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
-                nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+                nodes[u"DUT2"], n_tunnels, spd_id, priority=itertools.count(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=True,
-                sa_id=ObjIncrement(sa_id_1, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip2))
+                sa_id=itertools.count(sa_id_1),
+                raddr_range=itertools.count(network_2)
             )
 
             IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2197,10 +2200,10 @@ class IPsecUtil:
                 crypto_key, integ_alg, integ_key, tunnel_ip2, tunnel_ip1
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
-                nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+                nodes[u"DUT2"], n_tunnels, spd_id, priority=itertools.count(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=False,
-                sa_id=ObjIncrement(sa_id_2, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip1))
+                sa_id=itertools.count(sa_id_2),
+                raddr_range=itertools.count(network_1)
             )
 
     @staticmethod
