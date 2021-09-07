@@ -21,7 +21,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.ip_types import AddressWithPrefix
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
@@ -651,17 +651,13 @@ class Classify:
 
             groups = re.search(reg_ex_src_ip, rule)
             if groups:
-                grp = groups.group(1).split(u" ")[1].split(u"/")
-                acl_rule[u"src_prefix"] = IPUtil.create_prefix_object(
-                    ip_address(grp[0]), int(grp[1])
-                )
+                grp = groups.group(1).split(u" ")[1]
+                acl_rule[u"src_prefix"] = AddressWithPrefix(grp)
 
             groups = re.search(reg_ex_dst_ip, rule)
             if groups:
-                grp = groups.group(1).split(u" ")[1].split(u"/")
-                acl_rule[u"dst_prefix"] = IPUtil.create_prefix_object(
-                    ip_address(grp[0]), int(grp[1])
-                )
+                grp = groups.group(1).split(u" ")[1]
+                acl_rule[u"dst_prefix"] = AddressWithPrefix(grp)
 
             groups = re.search(reg_ex_sport, rule)
             if groups:
@@ -721,10 +717,8 @@ class Classify:
 
             groups = re.search(reg_ex_ip, rule)
             if groups:
-                grp = groups.group(1).split(u" ")[1].split(u"/")
-                acl_rule[u"src_prefix"] = IPUtil.create_prefix_object(
-                    ip_address((grp[0])), int(grp[1])
-                )
+                grp = groups.group(1).split(u" ")[1]
+                acl_rule[u"src_prefix"] = AddressWithPrefix(grp)
 
             acl_rules.append(acl_rule)
 
