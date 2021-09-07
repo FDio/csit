@@ -26,7 +26,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
-from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.ip_types import Address, AddressWithPrefix
 from resources.libraries.python.IPUtil import IPUtil, IpDscp, \
     MPLS_LABEL_INVALID, NetworkIncrement
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
@@ -674,7 +674,7 @@ class IPsecUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(n_tunnels):
-                args1[u"prefix"] = IPUtil.create_prefix_object(
+                args1[u"prefix"] = AddressWithPrefix.of(
                     tunnel_src + i * addr_incr, raddr_range
                 )
                 args2[u"route"] = IPUtil.compose_vpp_route_structure(
@@ -912,18 +912,10 @@ class IPsecUtil:
             sa_id=int(sa_id) if sa_id else 0,
             policy=int(action),
             protocol=int(proto) if proto else 0,
-            remote_address_start=IPAddress.create_ip_address_object(
-                remote_net.network_address
-            ),
-            remote_address_stop=IPAddress.create_ip_address_object(
-                remote_net.broadcast_address
-            ),
-            local_address_start=IPAddress.create_ip_address_object(
-                local_net.network_address
-            ),
-            local_address_stop=IPAddress.create_ip_address_object(
-                local_net.broadcast_address
-            ),
+            remote_address_start=Address.of(remote_net.network_address),
+            remote_address_stop=Address.of(remote_net.broadcast_address),
+            local_address_start=Address.of(local_net.network_address),
+            local_address_stop=Address.of(local_net.broadcast_address),
             remote_port_start=int(rport_range.split(u"-")[0]) if rport_range
             else 0,
             remote_port_stop=int(rport_range.split(u"-")[1]) if rport_range
@@ -1306,9 +1298,9 @@ class IPsecUtil:
                 ),
                 is_add=True,
                 del_all=False,
-                prefix=IPUtil.create_prefix_object(
-                    tun_ips[u"ip2"] - 1, 96 if tun_ips[u"ip2"].version == 6
-                    else 24
+                prefix=AdressWithPrefix.of(
+                    tun_ips[u"ip2"] - 1,
+                    96 if tun_ips[u"ip2"].version == 6 else 24,
                 )
             )
             err_msg = f"Failed to set IP address on interface {if1_key} " \
@@ -1393,9 +1385,9 @@ class IPsecUtil:
                 prefix=None
             )
             for i in range(existing_tunnels, n_tunnels):
-                args[u"prefix"] = IPUtil.create_prefix_object(
+                args[u"prefix"] = AddressWithPrefix.of(
                     tun_ips[u"ip1"] + i * addr_incr,
-                    128 if tun_ips[u"ip1"].version == 6 else 32
+                    128 if tun_ips[u"ip1"].version == 6 else 32,
                 )
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
@@ -1418,12 +1410,10 @@ class IPsecUtil:
             )
             ipip_tunnels = [None] * existing_tunnels
             for i in range(existing_tunnels, n_tunnels):
-                args[u"tunnel"][u"src"] = IPAddress.create_ip_address_object(
+                args[u"tunnel"][u"src"] = Address.of(
                     tun_ips[u"ip1"] + i * addr_incr
                 )
-                args[u"tunnel"][u"dst"] = IPAddress.create_ip_address_object(
-                    tun_ips[u"ip2"]
-                )
+                args[u"tunnel"][u"dst"] = Address.of(tun_ips[u"ip2"])
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
@@ -1634,9 +1624,9 @@ class IPsecUtil:
                     ),
                     is_add=True,
                     del_all=False,
-                    prefix=IPUtil.create_prefix_object(
-                        tun_ips[u"ip2"], 96 if tun_ips[u"ip2"].version == 6
-                        else 24
+                    prefix=AddressWithPrefix.of(
+                        tun_ips[u"ip2"],
+                        96 if tun_ips[u"ip2"].version == 6 else 24,
                     )
                 )
                 err_msg = f"Failed to set IP address on interface {if2_key} " \
@@ -1660,10 +1650,10 @@ class IPsecUtil:
             )
             ipip_tunnels = [None] * existing_tunnels
             for i in range(existing_tunnels, n_tunnels):
-                args[u"tunnel"][u"src"] = IPAddress.create_ip_address_object(
+                args[u"tunnel"][u"src"] = Address.of(
                     tun_ips[u"ip2"]
                 )
-                args[u"tunnel"][u"dst"] = IPAddress.create_ip_address_object(
+                args[u"tunnel"][u"dst"] = Address.of(
                     tun_ips[u"ip1"] + i * addr_incr
                 )
                 papi_exec.add(
