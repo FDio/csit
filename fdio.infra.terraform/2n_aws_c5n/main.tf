@@ -1,12 +1,13 @@
 module "deploy" {
   source = "./deploy"
 
-  # Parameters starting with var. can be set using "TF_VAR_*" environment variables
-  # or -var parameter when running "terraform apply", for default values see ./variables.tf
+  # Parameters starting with var. can be set using "TF_VAR_*" environment
+  # variables or -var parameter when running "terraform apply", for default 
+  # values see ./variables.tf
   testbed_name          = var.testbed_name
-  topology_name         = "2n_aws_c5n"
-  environment_name      = "CSIT-AWS"
-  resources_name_prefix = "CSIT_2n_aws_c5n"
+  topology_name         = var.topology_name
+  environment_name      = var.environment_name
+  resources_name_prefix = var.resources_name_prefix
 
   # AWS general
   region        = var.region
