@@ -17,7 +17,7 @@ from ipaddress import ip_address
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.ip_types import Address
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
@@ -57,12 +57,8 @@ class GeneveUtil:
         cmd = u"geneve_add_del_tunnel2"
         args = dict(
             is_add=True,
-            local_address=IPAddress.create_ip_address_object(
-                ip_address(local_address)
-            ),
-            remote_address=IPAddress.create_ip_address_object(
-                ip_address(remote_address)
-            ),
+            local_address=Address(local_address),
+            remote_address=Address(remote_address),
             mcast_sw_if_index=Topology.get_interface_sw_index(
                 node, multicast_if
             ) if multicast_if else Constants.BITWISE_NON_ZERO,
