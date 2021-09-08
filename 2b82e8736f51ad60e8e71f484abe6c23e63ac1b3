@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ef3388c_8a4da393",
+        "filename": "docs/job_specs/oper.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2021-09-08T16:46:56Z",
+      "side": 1,
+      "message": "There is a bit of history missing here.\n\nThe original purpose for having separate main \u0026 oper CSIT branches was to ensure VPP patches were tested using a CSIT branch that had been verified to pass all tests using a known good VPP git commit id [0].  This mechanism is meant to isolate CSIT changes from VPP changes such that root cause analysis can be focused on either VPP or CSIT as appropriate.  Also, it was originally conceived with the understanding that a majority (ideally all) of CSIT tests would be run prior to pulling a new oper branch and that the results would be the same as with the previous CSIT oper branch used to test [0].\n\nIt is not clear to me how this safe-guard is to be achieved without oper branches.\n\n[0] https://github.com/FDio/csit/blob/master/VPP_STABLE_VER_UBUNTU_FOCAL",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "2b82e8736f51ad60e8e71f484abe6c23e63ac1b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
