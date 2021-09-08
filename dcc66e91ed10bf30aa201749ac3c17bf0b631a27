@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef29a9d7_6ef2c1b7",
+        "filename": "tests/trex/perf/ip4/1n1l-10ge2p1x710-ethip4-ip4base-l1xc-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-08T09:48:32Z",
+      "side": 1,
+      "message": "ValueError: Suite tag found 0 times for ethip4-ip4base-l1xc",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "dcc66e91ed10bf30aa201749ac3c17bf0b631a27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0005ba5_4e8e9936",
+        "filename": "tests/trex/perf/ip4/1n1l-10ge2p1x710-ethip4-ip4base-l1xc-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-08T09:48:32Z",
+      "side": 1,
+      "message": "From nic_* variables, only two are used (found in output.xml): nic_name for max_rate computation, and nic_pfs for calculations in NodePath. The rest only applies to DUT (not TG) so should be removed (together with corresponding tags).",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 8
+      },
+      "revId": "dcc66e91ed10bf30aa201749ac3c17bf0b631a27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
