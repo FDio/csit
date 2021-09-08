@@ -1,0 +1,37 @@
++------------------------------+--------+--------+---------+
+| jobs                         | CSIT   | VPP    | trigger |
++------------------------------+--------+--------+---------+
+| csit-dpdk-perf-report-*      | gerrit | no     | manual  |
+| csit-dpdk-perf-verify-*      | gerrit | no     | manual  |
+| csit-trex-perf-verify-*      | gerrit | no     | manual  |
+| csit-verify-tox-*            | gerrit | no     | vote    |
+| csit-vpp-device-*            | gerrit | stable | vote    |
+| csit-vpp-perf-report-*       | gerrit | stable | manual  |
+| csit-vpp-perf-verify-*       | gerrit | stable | manual  |
+| csit-report-merge-*          | head   | no     | manual  |
+| csit-docs-merge-*            | head   | no     | timed   |
+| csit-trending-merge-*        | head   | no     | timed   |
+| csit-vpp-device-*-weekly     | head   | stable | timed   |
+| csit-dpdk-perf-mrr-*         | oper   | no     | timed   |
+| csit-vpp-device-*-semiweekly | oper   | latest | timed   |
+| csit-vpp-perf-mrr-*          | oper   | latest | timed   |
+| csit-vpp-perf-ndrpdr-*       | oper   | latest | timed   |
+| vpp-csit-verify-api-crc-*    | oper   | gerrit | vote    |
+| vpp-csit-verify-device-*     | oper   | gerrit | vote    |
+| vpp-csit-verify-perf-*       | oper   | gerrit | manual  |
++------------------------------+--------+--------+---------+
+
++ CSIT values describe CSIT codebase used.
+ + Gerrit means CSIT code that is not merged yet.
+ + Head means HEAD of the corresponding (master or release) branch.
+ + Oper means HEAD of latest oper branch corresponding to master or release.
++ VPP values describe VPP codebase used.
+ + No means this job does not interact with VPP code in any way.
+ + Gerrit means unmerged code (has to be build in the job).
+ + Latest means the latest VPP build for the branch available in Packagecloud.
+ + Stable means the build marked as STABLE in CSIT code used.
++ Trigger values describe how the job is started.
+ + Manual means it has to be triggered by human (e.g. via a Gerrit comment).
+ + Timed means it starts periodically (daily, weekly, ...).
+ + Vote means it starts whenever there is a new Gerrit patch uploaded
+   (or re-checked). Not all jobs of this type do vote (e.g. ARM device jobs).
