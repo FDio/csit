@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30aeea61_7bd8ef31",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 15
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-09-08T11:24:59Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 747,
+        "startChar": 4,
+        "endLine": 747,
+        "endChar": 38
+      },
+      "revId": "655cd5afd193eabe6d95fb6d10ed3e86d4c5e68b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
