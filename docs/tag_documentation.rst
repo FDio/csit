@@ -154,29 +154,10 @@ Scaling Tags
 
     IPSec in tunnel mode - {t} tunnels.
 
-.. topic:: SRC_USER_1
+.. topic:: SRC_USER_{u}
 
-    Traffic flow with 1 unique IP (users) in one direction.
-
-.. topic:: SRC_USER_10
-
-    Traffic flow with 10 unique IPs (users) in one direction.
-
-.. topic:: SRC_USER_100
-
-    Traffic flow with 100 unique IPs (users) in one direction.
-
-.. topic:: SRC_USER_1000
-
-    Traffic flow with 1000 unique IPs (users) in one direction.
-
-.. topic:: SRC_USER_2000
-
-    Traffic flow with 2000 unique IPs (users) in one direction.
-
-.. topic:: SRC_USER_4000
-
-    Traffic flow with 4000 unique IPs (users) in one direction.
+    Traffic flow with {u} unique IPs (users) in one direction.
+    {u}=(1,10,100,1000,2000,4000).
 
 .. topic:: 100_FLOWS
 
@@ -193,70 +174,34 @@ Scaling Tags
     Traffic stream with 100 000 unique flows (100 IPs/users x 1000 UDP ports) in
     one direction.
 
-.. topic:: HOSTS_1024
+.. topic:: HOSTS_{h}
 
-    Stateless or stateful traffic stream with 1024 client source IP4 addresses,
+    Stateless or stateful traffic stream with {h} client source IP4 addresses,
     usually with 63 flow differing in source port number. Could be UDP or TCP.
     If NAT is used, the clients are inside. Outside IP range can differ.
+    {h}=(1024,4096,16384,65536,262144).
 
-.. topic:: HOSTS_4096
+.. topic:: GENEVE4_{t}TUN
 
-    Stateless or stateful traffic stream with 4096 client source IP4 addresses,
-    usually with 63 flow differing in source port number. Could be UDP or TCP.
-    If NAT is used, the clients are inside. Outside IP range can differ.
-
-.. topic:: HOSTS_16384
-
-    Stateless or stateful traffic stream with 16384 client source IP4 addresses,
-    usually with 63 flow differing in source port number. Could be UDP or TCP.
-    If NAT is used, the clients are inside. Outside IP range can differ.
-
-.. topic:: HOSTS_65536
-
-    Stateless or stateful traffic stream with 65536 client source IP4 addresses,
-    usually with 63 flow differing in source port number. Could be UDP or TCP.
-    If NAT is used, the clients are inside. Outside IP range can differ.
-
-.. topic:: HOSTS_262144
-
-    Stateless or stateful traffic stream with 262144 client source IP4 addresses
-    usually with 63 flow differing in source port number. Could be UDP or TCP.
-    If NAT is used, the clients are inside. Outside IP range can differ.
-
-.. topic:: GENEVE4_1TUN
-
-    Test with 1 GENEVE IPv4 tunnel.
-
-.. topic:: GENEVE4_4TUN
-
-    Test with 4 GENEVE IPv4 tunnels.
-
-.. topic:: GENEVE4_16TUN
-
-    Test with 16 GENEVE IPv4 tunnels.
-
-.. topic:: GENEVE4_64TUN
-
-    Test with 64 GENEVE IPv4 tunnels.
-
-.. topic:: GENEVE4_256TUN
-
-    Test with 256 GENEVE IPv4 tunnels.
-
-.. topic:: GENEVE4_1024TUN
-
-    Test with 1024 GENEVE IPv4 tunnels.
+    Test with {t} GENEVE IPv4 tunnel. {t}=(1,4,16,64,256,1024)
 
 Test Category Tags
 ------------------
 
-.. topic:: FUNCTEST
+.. topic:: DEVICETEST
 
-    All functional test cases.
+    All vpp_device functional test cases.
 
 .. topic:: PERFTEST
 
     All performance test cases.
+
+VPP Device Type Tags
+--------------------
+
+.. topic:: SCAPY
+
+    All test cases that uses Scapy for packet generation and validation.
 
 Performance Type Tags
 ---------------------
@@ -290,45 +235,13 @@ These are describing the traffic offered by Traffic Generator,
 "primary" traffic in case of asymmetric load.
 For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
-.. topic:: 64B
+.. topic:: {b}B
 
-    64B frames used for test. Generic ethernet or IPv4.
-
-.. topic:: 78B
-
-    78B frames used for test. Ipv6.
-
-.. topic:: 114B
-
-    114B frames used for test. IPv4+vxlan.
-
-.. topic:: 118B
-
-    118B frames used for test. Dot1q+IPv4+vxlan.
+    {b} Bytes frames used for test.
 
 .. topic:: IMIX
 
     IMIX frame sequence (28x 64B, 16x 570B, 4x 1518B) used for test.
-
-.. topic:: 1460B
-
-    1460B frames used for test.
-
-.. topic:: 1480B
-
-    1480B frames used for test.
-
-.. topic:: 1514B
-
-    1514B frames used for test.
-
-.. topic:: 1518B
-
-    1518B frames used for test.
-
-.. topic:: 9000B
-
-    9000B frames used for test.
 
 Test Type Tags
 --------------
@@ -716,41 +629,24 @@ Interface Tags
 
     All test cases which uses link bonding with load-balance mode l34.
 
-.. topic:: LBOND_1L
+.. topic:: LBOND_{n}L
 
-    All test cases which uses one link for link bonding.
+    All test cases which use {n} link(s) for link bonding.
 
-.. topic:: LBOND_2L
+.. topic:: DRV_{d}
 
-    All test cases which uses two links for link bonding.
-
-.. topic:: DRV_AVF
-
-    All test cases which uses Intel Adaptive Virtual Function (AVF) device
-    plugin for VPP. This plugins provides native device support for Intel AVF.
-    AVF is driver specification for current and future Intel Virtual Function
-    devices. In essence, today this driver can be used only with Intel
-    XL710 / X710 / XXV710 adapters.
-
-.. topic:: DRV_VFIO_PCI
-
-    All test cases which uses vfio-pci device driver. It supports variety of NIC
-    adapters.
-
-.. topic:: DRV_RDMA_CORE
-
-    All test cases which uses rdma-core device driver. It supports Mellanox
-    NIC adapters.
+    All test cases which NIC Driver for DUT is set to {d}. Default is VFIO_PCI.
+    {d}=(AVF, RDMA_CORE, VFIO_PCI, AF_XDP).
 
 .. topic:: RXQ_SIZE_{n}
 
-   All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
-   which means VPP (API) default.
+    All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
+    which means VPP (API) default.
 
 .. topic:: TXQ_SIZE_{n}
 
-   All test cases which TXQ size (TX descriptors) are set to {n}. Default is 0,
-   which means VPP (API) default.
+    All test cases which TXQ size (TX descriptors) are set to {n}. Default is 0,
+    which means VPP (API) default.
 
 Feature Tags
 ------------
@@ -900,21 +796,15 @@ Client-Workload Tags
 Container Orchestration Tags
 ----------------------------
 
-.. topic:: 1VSWITCH
+.. topic:: {n}VSWITCH
 
-    VPP running in Docker container acting as VSWITCH.
+    {n} VPP running in {n} Docker container(s) acting as a VSWITCH.
+    {n}=(1).
 
-.. topic:: 1VNF
+.. topic:: {n}VNF
 
-    1 VPP running in Docker container acting as VNF work load.
-
-.. topic:: 2VNF
-
-    2 VPP running in 2 Docker containers acting as VNF work load.
-
-.. topic:: 4VNF
-
-    4 VPP running in 4 Docker containers acting as VNF work load.
+    {n} VPP running in {n} Docker container(s) acting as a VNF work load.
+    {n}=(1).
 
 Multi-Threading Tags
 --------------------
@@ -929,66 +819,20 @@ Multi-Threading Tags
    *Dynamic tag*.
     All test cases using more then one poll mode driver thread.
 
-.. topic:: 1NUMA
+.. topic:: {n}NUMA
 
-    All test cases with packet processing on single socket.
+    All test cases with packet processing on {n} socket(s). {n}=(1,2).
 
-.. topic:: 2NUMA
+.. topic:: {c}C
 
-    All test cases with packet processing on two sockets.
+    {c} worker thread pinned to {c} dedicated physical core; or if
+    HyperThreading is enabled, {c}*2 worker threads each pinned to a separate
+    logical core within 1 dedicated physical core. Main thread pinned to core 1.
+    {t}=(1,2,4).
 
-.. topic:: 1C
-
-    1 worker thread pinned to 1 dedicated physical core; or if HyperThreading is
-    enabled, 2 worker threads each pinned to a separate logical core within 1
-    dedicated physical core. Main thread pinned to core 1.
-
-.. topic:: 2C
-
-    2 worker threads pinned to 2 dedicated physical cores; or if HyperThreading
-    is enabled, 4 worker threads each pinned to a separate logical core within 2
-    dedicated physical cores. Main thread pinned to core 1.
-
-.. topic:: 4C
-
-    4 worker threads pinned to 4 dedicated physical cores; or if HyperThreading
-    is enabled, 8 worker threads each pinned to a separate logical core within 4
-    dedicated physical cores. Main thread pinned to core 1.
-
-.. topic:: 1T1C
+.. topic:: {t}T{c}C
 
    *Dynamic tag*.
-    1 worker thread pinned to 1 dedicated physical core. 1 receive queue per
-    interface. Main thread pinned to core 1.
-
-.. topic:: 2T2C
-
-   *Dynamic tag*.
-    2 worker threads pinned to 2 dedicated physical cores. 1 receive queue per
-    interface. Main thread pinned to core 1.
-
-.. topic:: 4T4C
-
-   *Dynamic tag*.
-    4 worker threads pinned to 4 dedicated physical cores. 2 receive queues per
-    interface. Main thread pinned to core 1.
-
-.. topic:: 2T1C
-
-   *Dynamic tag*.
-    2 worker threads each pinned to a separate logical core within 1 dedicated
-    physical core. 1 receive queue per interface. Main thread pinned to core 1.
-
-.. topic:: 4T2C
-
-   *Dynamic tag*.
-    4 worker threads each pinned to a separate logical core within 2 dedicated
-    physical cores. 2 receive queues per interface. Main thread pinned to core
-    1.
-
-.. topic:: 8T4C
-
-   *Dynamic tag*.
-    8 worker threads each pinned to a separate logical core within 4 dedicated
-    physical cores. 4 receive queues per interface. Main thread pinned to core
-    1.
+    {t} worker threads pinned to {c} dedicated physical cores. Main thread
+    pinned to core 1. By default CSIT is configuring same amount of receive
+    queues per interface as worker threads. {t}=(1,2,4,8), {t}=(1,2,4).
