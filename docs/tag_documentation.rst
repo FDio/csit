@@ -250,13 +250,20 @@ Scaling Tags
 Test Category Tags
 ------------------
 
-.. topic:: FUNCTEST
+.. topic:: DEVICETEST
 
-    All functional test cases.
+    All vpp_device functional test cases.
 
 .. topic:: PERFTEST
 
     All performance test cases.
+
+VPP Device Type Tags
+--------------------
+
+.. topic:: SCAPY
+
+    All test cases that uses Scapy for packet generation and validation.
 
 Performance Type Tags
 ---------------------
@@ -724,33 +731,20 @@ Interface Tags
 
     All test cases which uses two links for link bonding.
 
-.. topic:: DRV_AVF
+.. topic:: DRV_{d}
 
-    All test cases which uses Intel Adaptive Virtual Function (AVF) device
-    plugin for VPP. This plugins provides native device support for Intel AVF.
-    AVF is driver specification for current and future Intel Virtual Function
-    devices. In essence, today this driver can be used only with Intel
-    XL710 / X710 / XXV710 adapters.
-
-.. topic:: DRV_VFIO_PCI
-
-    All test cases which uses vfio-pci device driver. It supports variety of NIC
-    adapters.
-
-.. topic:: DRV_RDMA_CORE
-
-    All test cases which uses rdma-core device driver. It supports Mellanox
-    NIC adapters.
+    All test cases which NIC Driver for DUT is set to {d}. Default is VFIO_PCI.
+    {d}=(AVF, RDMA_CORE, VFIO_PCI, AF_XDP).
 
 .. topic:: RXQ_SIZE_{n}
 
-   All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
-   which means VPP (API) default.
+    All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
+    which means VPP (API) default.
 
 .. topic:: TXQ_SIZE_{n}
 
-   All test cases which TXQ size (TX descriptors) are set to {n}. Default is 0,
-   which means VPP (API) default.
+    All test cases which TXQ size (TX descriptors) are set to {n}. Default is 0,
+    which means VPP (API) default.
 
 Feature Tags
 ------------
@@ -904,17 +898,9 @@ Container Orchestration Tags
 
     VPP running in Docker container acting as VSWITCH.
 
-.. topic:: 1VNF
+.. topic:: {n}VNF
 
-    1 VPP running in Docker container acting as VNF work load.
-
-.. topic:: 2VNF
-
-    2 VPP running in 2 Docker containers acting as VNF work load.
-
-.. topic:: 4VNF
-
-    4 VPP running in 4 Docker containers acting as VNF work load.
+    {n} VPP running in {n} Docker container acting as VNF work load.
 
 Multi-Threading Tags
 --------------------
@@ -937,58 +923,15 @@ Multi-Threading Tags
 
     All test cases with packet processing on two sockets.
 
-.. topic:: 1C
+.. topic:: {c}C
 
-    1 worker thread pinned to 1 dedicated physical core; or if HyperThreading is
-    enabled, 2 worker threads each pinned to a separate logical core within 1
-    dedicated physical core. Main thread pinned to core 1.
+    {c} worker thread pinned to {c} dedicated physical core; or if
+    HyperThreading is enabled, {c}*2 worker threads each pinned to a separate
+    logical core within 1 dedicated physical core. Main thread pinned to core 1.
 
-.. topic:: 2C
-
-    2 worker threads pinned to 2 dedicated physical cores; or if HyperThreading
-    is enabled, 4 worker threads each pinned to a separate logical core within 2
-    dedicated physical cores. Main thread pinned to core 1.
-
-.. topic:: 4C
-
-    4 worker threads pinned to 4 dedicated physical cores; or if HyperThreading
-    is enabled, 8 worker threads each pinned to a separate logical core within 4
-    dedicated physical cores. Main thread pinned to core 1.
-
-.. topic:: 1T1C
+.. topic:: {t}T{c}C
 
    *Dynamic tag*.
-    1 worker thread pinned to 1 dedicated physical core. 1 receive queue per
-    interface. Main thread pinned to core 1.
-
-.. topic:: 2T2C
-
-   *Dynamic tag*.
-    2 worker threads pinned to 2 dedicated physical cores. 1 receive queue per
-    interface. Main thread pinned to core 1.
-
-.. topic:: 4T4C
-
-   *Dynamic tag*.
-    4 worker threads pinned to 4 dedicated physical cores. 2 receive queues per
-    interface. Main thread pinned to core 1.
-
-.. topic:: 2T1C
-
-   *Dynamic tag*.
-    2 worker threads each pinned to a separate logical core within 1 dedicated
-    physical core. 1 receive queue per interface. Main thread pinned to core 1.
-
-.. topic:: 4T2C
-
-   *Dynamic tag*.
-    4 worker threads each pinned to a separate logical core within 2 dedicated
-    physical cores. 2 receive queues per interface. Main thread pinned to core
-    1.
-
-.. topic:: 8T4C
-
-   *Dynamic tag*.
-    8 worker threads each pinned to a separate logical core within 4 dedicated
-    physical cores. 4 receive queues per interface. Main thread pinned to core
-    1.
+    {t} worker threads pinned to {c} dedicated physical cores. Main thread
+    pinned to core 1. By default CSIT is configuring same amount of receive
+    queues per interface as worker threads.
