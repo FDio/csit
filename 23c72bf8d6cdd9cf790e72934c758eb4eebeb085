@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fa122b3_46efeed6",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-08T07:32:24Z",
+      "side": 1,
+      "message": "remove blank endings",
+      "range": {
+        "startLine": 119,
+        "startChar": 61,
+        "endLine": 119,
+        "endChar": 62
+      },
+      "revId": "23c72bf8d6cdd9cf790e72934c758eb4eebeb085",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86e1aad9_c957304e",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-08T07:32:24Z",
+      "side": 1,
+      "message": "```\n            interface2 \u003d topo.get_interface_by_link_name(node2, link, bool(topo_has_dut))\n```",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 73
+      },
+      "revId": "23c72bf8d6cdd9cf790e72934c758eb4eebeb085",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e905d03_9581a5b3",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-08T07:32:24Z",
+      "side": 1,
+      "message": "use new line here so \n```\ndef .... (\n  params,.....\n):\n```",
+      "range": {
+        "startLine": 221,
+        "startChar": 34,
+        "endLine": 221,
+        "endChar": 38
+      },
+      "revId": "23c72bf8d6cdd9cf790e72934c758eb4eebeb085",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef8ef043_5d4eaabd",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-08T07:32:24Z",
+      "side": 1,
+      "message": "no need for else",
+      "range": {
+        "startLine": 63,
+        "startChar": 8,
+        "endLine": 63,
+        "endChar": 13
+      },
+      "revId": "23c72bf8d6cdd9cf790e72934c758eb4eebeb085",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7d977fb_885d298d",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-08T07:32:24Z",
+      "side": 1,
+      "message": "back-to-back?",
+      "range": {
+        "startLine": 388,
+        "startChar": 12,
+        "endLine": 388,
+        "endChar": 19
+      },
+      "revId": "23c72bf8d6cdd9cf790e72934c758eb4eebeb085",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b8edd77_97caf245",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-08T07:32:24Z",
+      "side": 1,
+      "message": "subsequent? (similar to called function)",
+      "range": {
+        "startLine": 426,
+        "startChar": 52,
+        "endLine": 426,
+        "endChar": 58
+      },
+      "revId": "23c72bf8d6cdd9cf790e72934c758eb4eebeb085",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2de1d0b2_db9572e0",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-08T07:32:24Z",
+      "side": 1,
+      "message": ". Default: False",
+      "range": {
+        "startLine": 435,
+        "startChar": 13,
+        "endLine": 435,
+        "endChar": 14
+      },
+      "revId": "23c72bf8d6cdd9cf790e72934c758eb4eebeb085",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "819033aa_7cb15414",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-08T07:32:24Z",
+      "side": 1,
+      "message": "we agreed to use this style of wrapping:\n\n```\nreturn Topology._get_interface_by_key_value(\n    node, u\"link\", link_name, subsequent\u003dsubsequent\n)\n```",
+      "range": {
+        "startLine": 442,
+        "startChar": 0,
+        "endLine": 443,
+        "endChar": 58
+      },
+      "revId": "23c72bf8d6cdd9cf790e72934c758eb4eebeb085",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da590cc9_6c5ef240",
+        "filename": "tests/trex/perf/__init__.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-08T07:32:24Z",
+      "side": 1,
+      "message": "new line at the end",
+      "revId": "23c72bf8d6cdd9cf790e72934c758eb4eebeb085",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
