@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7241163_1ae1d6c3",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-09T11:22:37Z",
+      "side": 1,
+      "message": "For other tags, we list also the currently used values.",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 7
+      },
+      "revId": "9cceefae3248e9a1e9e5586391c9263cf114a753",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17978af9_6196c4af",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-09T11:22:37Z",
+      "side": 1,
+      "message": "One more for DPDK test: MLX5_CORE.\n\nhttps://github.com/FDio/csit/blob/9cceefae3248e9a1e9e5586391c9263cf114a753/resources/libraries/python/Constants.py#L391",
+      "range": {
+        "startLine": 639,
+        "startChar": 41,
+        "endLine": 639,
+        "endChar": 42
+      },
+      "revId": "9cceefae3248e9a1e9e5586391c9263cf114a753",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
