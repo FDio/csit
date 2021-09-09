@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b912013_0e755bfa",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-09-09T10:09:34Z",
+      "side": 1,
+      "message": "Full stop at the end.",
+      "range": {
+        "startLine": 103,
+        "startChar": 75,
+        "endLine": 103,
+        "endChar": 77
+      },
+      "revId": "1a6c66bf6a5d0e5bf8e84d5ca3e53cb16b658b21",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d0e568b_b6639b2d",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-09-09T10:09:34Z",
+      "side": 1,
+      "message": "Keep the original formatting.",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 6
+      },
+      "revId": "1a6c66bf6a5d0e5bf8e84d5ca3e53cb16b658b21",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01e0bce1_a547390b",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-09-09T10:09:34Z",
+      "side": 1,
+      "message": "Full stop at the end.",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "1a6c66bf6a5d0e5bf8e84d5ca3e53cb16b658b21",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
