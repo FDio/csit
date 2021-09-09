@@ -44,6 +44,9 @@
 0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-ip4base-adlblklistbase
 ##### ethip4-ip4base
 0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-ip4base
+0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-ip4base
+0c AND 64b AND scapy AND e810cq AND drv_vfio_pci AND ethip4-ip4base
+0c AND 64b AND scapy AND e810cq AND drv_avf AND ethip4-ip4base
 ##### ethip4-ip4base-iacldstbase
 0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-ip4base-iacldstbase
 ##### ethip4-ip4base-ipolicemarkbase
