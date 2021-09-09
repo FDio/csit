@@ -22,6 +22,30 @@
       "revId": "2b82e8736f51ad60e8e71f484abe6c23e63ac1b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db3a5b9b_9683b562",
+        "filename": "docs/job_specs/oper.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-09T07:23:38Z",
+      "side": 1,
+      "message": "I fully agree with Dawe comments. \n\nWithout oper- we would not be able to validate and verify stability of CSIT code changes to protect trending and \nVPP voting.\n\nTox is not even close to sufficient validation mechanism. It is acting only as linter to check namely job_spec, copyright_year, gpl_license, line_length, doc, pylint, autogen (some of them are not voting). And CRC checking\nis not meant to protect VPP rather opposite.\n\nIt is also not true that vppdevice was created afterwards as we had from day 0 the VIRL voting functional tests.\n\nIn this patch there is misleading summary of a history, as per Dawe\u0027s comments, but also wrongly captured\npurpose of Stable VPP Version, protection of the trending and more (e.g to easily revert to previous CSIT \"version\"\nby removing affected oper-branch). This misunderstanding then creates an impression that oper-branches are not\nneeded, while there is a lack of proposal how to create safe-guard onwards.\n\nThis leaves me no option other then -1.",
+      "parentUuid": "3ef3388c_8a4da393",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "2b82e8736f51ad60e8e71f484abe6c23e63ac1b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
