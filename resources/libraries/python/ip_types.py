@@ -71,7 +71,8 @@ class AddressUnion(dict):
         None, empty string and other falses are understood as 0.0.0.0.
 
         Currently supported imput types:
-        IPv4Address, IPv6Address, str, AddressUnion, Address, AddressWithPrefix.
+        IPv4Address, IPv6Address, str, int,
+        AddressUnion, Address, AddressWithPrefix.
         The returned value can come from argument internals,
         so modify it on your own risk.
 
@@ -102,6 +103,14 @@ class AddressUnion(dict):
         """
         return str(self.ip_address)
 
+    def __int__(self):
+        """Return binary form of address packed as int.
+
+        :returns: Integer form of the address.
+        :rtype: str
+        """
+        return int(self.ip_address)
+
     @property
     def version(self):
         """Return IP version of the address.
@@ -112,6 +121,15 @@ class AddressUnion(dict):
         :rtype: int
         """
         return 6 if u"ip6" in self else 4
+
+    @property
+    def max_prefixlen(self):
+        """Return the maximal prefix length for addresses of this version.
+
+        :returns: Maximal prefix length.
+        :rtype: int
+        """
+        return self.ip_address.max_prefixlen
 
     @property
     def ip_address(self):
@@ -140,7 +158,8 @@ class Address(dict):
         None, empty string and other falses are understood as 0.0.0.0.
 
         Currently supported imput types:
-        IPv4Address, IPv6Address, str, AddressUnion, Address, AddressWithPrefix.
+        IPv4Address, IPv6Address, str, int,
+        AddressUnion, Address, AddressWithPrefix.
         The returned value can come from argument internals,
         so modify it on your own risk.
 
@@ -168,6 +187,14 @@ class Address(dict):
         for address in self[u"un"].values():
             return str(address)
 
+    def __int__(self):
+        """Return binary form of address packed as int.
+
+        :returns: Integer form of the address.
+        :rtype: str
+        """
+        return int(self.ip_address)
+
     @property
     def version(self):
         """Return IP version of the address.
@@ -178,6 +205,15 @@ class Address(dict):
         :rtype: int
         """
         return self[u"un"].version
+
+    @property
+    def max_prefixlen(self):
+        """Return the maximal prefix length for addresses of this version.
+
+        :returns: Maximal prefix length.
+        :rtype: int
+        """
+        return self.ip_address.max_prefixlen
 
     @property
     def ip_address(self):
@@ -205,6 +241,9 @@ class AddressWithPrefix(dict):
     """In VPP .api the fields of this type are vl_api_prefix_t,
     or vl_api_address_with_prefix_t.
 
+    As the ability to add int to ip_network is really convenient,
+    we override __add__ and also add some properties to access results.
+
     Main definition:
     https://github.com/FDio/vpp/blob/v21.06/src/vnet/ip/ip_types.api#L101-L104
     For PAPI, this is a dict with keys "address" and "len",
@@ -218,6 +257,7 @@ class AddressWithPrefix(dict):
 
         The address part does not have to be aligned.
         None, empty string and other falses are understood as 0.0.0.0.
+        If plen is None, maximal prefix length is used.
 
         If the first argument is ip_network, AddressWithPrefix or
         string in slash format, second argument is ignored.
@@ -232,10 +272,13 @@ class AddressWithPrefix(dict):
             super().__init__(address)
             return
         if isinstance(address, str) and u"/" in address:
-            address = ip_network(address)
+            address = ip_network(address, strict=True)
         if isinstance(address, (IPv4Network, IPv6Network)):
-            plen = address.prefixlen
             address = address.network_address
+            plen = address.prefixlen
+        address=Address(address)
+        if plen is None:
+            plen = address.max_prefixlen
         super().__init__(address=Address(address), len=int(plen))
 
     def __str__(self):
@@ -259,6 +302,15 @@ class AddressWithPrefix(dict):
         return self[u"address"][u"un"].version
 
     @property
+    def prefixlen(self):
+        """Return the prefix length of this network.
+
+        :returns: Prefix length.
+        :rtype: int
+        """
+        return self[u"len"]
+
+    @property
     def network_address(self):
         """Return the address part, converted as in ip_address.
 
@@ -268,13 +320,13 @@ class AddressWithPrefix(dict):
         return self[u"address"].ip_address
 
     @property
-    def prefixlen(self):
-        """Return the prefix length of this network.
+    def broadcast_address(self):
+        """Return broadcast (end) address of this network.
 
-        :returns: Prefix length.
-        :rtype: int
+        :returns: Broadcast address.
+        :rtype: Union[IPv4Address, IPv6Address]
         """
-        return self[u"len"]
+        return ip_network(self.network_address, self[u"len"]).broadcast_address
 
     def __add__(self, increment):
         """Return new address increased by "increment" network sizes.
@@ -287,7 +339,17 @@ class AddressWithPrefix(dict):
         :returns: New incremented network.
         :rtype: self.__class__
         """
-        plen = self.prefixlen
-        network_size = 1 << (self.network_address.max_prefixlen - plen)
-        new_address = self.network_address + increment * network_size
-        return self.__class__(new_address, plen)
+        addr = self.network_address
+        new_addr = addr + 1 << (addr.max_prefixlen - self.prefixlen) * increment
+        return self.__class__(new_addr, self.prefixlen)
+
+    def range_str(self):
+        """Return string representation some VAT/CLI commands need.
+
+        The implementation uses broadcast address, so the output is correct
+        only if the start address was properly aligned.
+
+        :returns: Start address, dash, end address.
+        :rtype: str
+        """
+        return f"{self.network_address} - {self.broadcast_address}"
