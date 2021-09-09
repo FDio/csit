@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c9f176d_821f2c1e",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 22
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-09T12:42:11Z",
+      "side": 1,
+      "message": "without any software DUTs in the traffic path",
+      "range": {
+        "startLine": 302,
+        "startChar": 26,
+        "endLine": 302,
+        "endChar": 33
+      },
+      "revId": "f374526690e0af14ea4e20d2d28dcca95b77aa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
