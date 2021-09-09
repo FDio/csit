@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee7b2c6b_526afcb8",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 18
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-09T07:41:09Z",
+      "side": 1,
+      "message": "mode, where NICs from the same physical server are directly connected with a cable.",
+      "range": {
+        "startLine": 439,
+        "startChar": 25,
+        "endLine": 439,
+        "endChar": 30
+      },
+      "revId": "5de905fcd70fb3b2cf648b48f0be9fdaf37bf61e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
