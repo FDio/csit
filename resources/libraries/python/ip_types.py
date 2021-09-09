@@ -23,7 +23,6 @@ ip_address and ip_network.
 Also, several factory methods are added to simplify call sites.
 False address arguments are converted to 0.0.0.0 (all zero bytes for PAPI).
 
-TODO: Add (optional) checking of dict-like constructor kwargs.
 TODO: Investigate speed in scale tests, add special quick functions if needed.
 """
 
@@ -71,7 +70,8 @@ class AddressUnion(dict):
         None, empty string and other falses are understood as 0.0.0.0.
 
         Currently supported imput types:
-        IPv4Address, IPv6Address, str, AddressUnion, Address, AddressWithPrefix.
+        IPv4Address, IPv6Address, str, int,
+        AddressUnion, Address, AddressWithPrefix.
         The returned value can come from argument internals,
         so modify it on your own risk.
 
@@ -102,6 +102,14 @@ class AddressUnion(dict):
         """
         return str(self.ip_address)
 
+    def __int__(self):
+        """Return binary form of address packed as int.
+
+        :returns: Integer form of the address.
+        :rtype: str
+        """
+        return int(self.ip_address)
+
     @property
     def version(self):
         """Return IP version of the address.
@@ -114,6 +122,15 @@ class AddressUnion(dict):
         return 6 if u"ip6" in self else 4
 
     @property
+    def max_prefixlen(self):
+        """Return the maximal prefix length for addresses of this version.
+
+        :returns: Maximal prefix length.
+        :rtype: int
+        """
+        return self.ip_address.max_prefixlen
+
+    @property
     def ip_address(self):
         """Return the address converted as in ip_address.
 
@@ -122,6 +139,18 @@ class AddressUnion(dict):
         """
         for address in self.values():
             return address
+
+    def __add__(self, increment):
+        """Return new address increased by "increment" addresses.
+
+        This makes it possible to use AddressUnion instances in ObjIncrement.
+
+        :param increment: How many addresses to add. Can be zero or negative.
+        :type increment: int
+        :returns: New incremented address.
+        :rtype: self.__class__
+        """
+        return self.__class__(self.ip_address + increment)
 
 
 class Address(dict):
@@ -140,7 +169,8 @@ class Address(dict):
         None, empty string and other falses are understood as 0.0.0.0.
 
         Currently supported imput types:
-        IPv4Address, IPv6Address, str, AddressUnion, Address, AddressWithPrefix.
+        IPv4Address, IPv6Address, str, int,
+        AddressUnion, Address, AddressWithPrefix.
         The returned value can come from argument internals,
         so modify it on your own risk.
 
@@ -168,6 +198,14 @@ class Address(dict):
         for address in self[u"un"].values():
             return str(address)
 
+    def __int__(self):
+        """Return binary form of address packed as int.
+
+        :returns: Integer form of the address.
+        :rtype: str
+        """
+        return int(self.ip_address)
+
     @property
     def version(self):
         """Return IP version of the address.
@@ -178,6 +216,15 @@ class Address(dict):
         :rtype: int
         """
         return self[u"un"].version
+
+    @property
+    def max_prefixlen(self):
+        """Return the maximal prefix length for addresses of this version.
+
+        :returns: Maximal prefix length.
+        :rtype: int
+        """
+        return self.ip_address.max_prefixlen
 
     @property
     def ip_address(self):
@@ -218,6 +265,7 @@ class AddressWithPrefix(dict):
 
         The address part does not have to be aligned.
         None, empty string and other falses are understood as 0.0.0.0.
+        If plen is None, maximal prefix length is used.
 
         If the first argument is ip_network, AddressWithPrefix or
         string in slash format, second argument is ignored.
@@ -228,14 +276,18 @@ class AddressWithPrefix(dict):
         :type address: object
         :type plen: Union[int, str]
         """
-        if isinstance(address, AddressWithPrefix):
-            super().__init__(address)
+        network = address
+        if isinstance(network, AddressWithPrefix):
+            super().__init__(network)
             return
-        if isinstance(address, str) and u"/" in address:
-            address = ip_network(address)
-        if isinstance(address, (IPv4Network, IPv6Network)):
-            plen = address.prefixlen
-            address = address.network_address
+        if isinstance(network, str) and u"/" in network:
+            network = ip_network(network, strict=True)
+        if isinstance(network, (IPv4Network, IPv6Network)):
+            address = network.network_address
+            plen = network.prefixlen
+        address=Address(address)
+        if plen is None:
+            plen = address.max_prefixlen
         super().__init__(address=Address(address), len=int(plen))
 
     def __str__(self):
@@ -259,6 +311,15 @@ class AddressWithPrefix(dict):
         return self[u"address"][u"un"].version
 
     @property
+    def prefixlen(self):
+        """Return the prefix length of this network.
+
+        :returns: Prefix length.
+        :rtype: int
+        """
+        return self[u"len"]
+
+    @property
     def network_address(self):
         """Return the address part, converted as in ip_address.
 
@@ -268,13 +329,13 @@ class AddressWithPrefix(dict):
         return self[u"address"].ip_address
 
     @property
-    def prefixlen(self):
-        """Return the prefix length of this network.
+    def broadcast_address(self):
+        """Return broadcast (end) address of this network.
 
-        :returns: Prefix length.
-        :rtype: int
+        :returns: Broadcast address.
+        :rtype: Union[IPv4Address, IPv6Address]
         """
-        return self[u"len"]
+        return ip_network(self.network_address, self[u"len"]).broadcast_address
 
     def __add__(self, increment):
         """Return new address increased by "increment" network sizes.
@@ -287,7 +348,17 @@ class AddressWithPrefix(dict):
         :returns: New incremented network.
         :rtype: self.__class__
         """
-        plen = self.prefixlen
-        network_size = 1 << (self.network_address.max_prefixlen - plen)
-        new_address = self.network_address + increment * network_size
-        return self.__class__(new_address, plen)
+        addr = self.network_address
+        new_addr = addr + 1 << (addr.max_prefixlen - self.prefixlen) * increment
+        return self.__class__(new_addr, self.prefixlen)
+
+    def range_str(self):
+        """Return string representation some VAT/CLI commands need.
+
+        The implementation uses broadcast address, so the output is correct
+        only if the start address was properly aligned.
+
+        :returns: Start address, dash, end address.
+        :rtype: str
+        """
+        return f"{self.network_address} - {self.broadcast_address}"
