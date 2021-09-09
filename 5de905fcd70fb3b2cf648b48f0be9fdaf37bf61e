@@ -22,6 +22,75 @@
       "revId": "5de905fcd70fb3b2cf648b48f0be9fdaf37bf61e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1aae7c8f_d4683b14",
+        "filename": "resources/libraries/python/NodePath.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-09-09T08:09:01Z",
+      "side": 1,
+      "message": "Is it necessary?",
+      "range": {
+        "startLine": 151,
+        "startChar": 57,
+        "endLine": 151,
+        "endChar": 61
+      },
+      "revId": "5de905fcd70fb3b2cf648b48f0be9fdaf37bf61e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5e3c72c_373e90a7",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-09-09T08:09:01Z",
+      "side": 1,
+      "message": "If there is no info baout cores, the file name should look like: framesize--therest.robot",
+      "range": {
+        "startLine": 147,
+        "startChar": 47,
+        "endLine": 147,
+        "endChar": 65
+      },
+      "revId": "5de905fcd70fb3b2cf648b48f0be9fdaf37bf61e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9602f465_4beef47e",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-09-09T08:09:01Z",
+      "side": 1,
+      "message": "without?",
+      "range": {
+        "startLine": 114,
+        "startChar": 34,
+        "endLine": 114,
+        "endChar": 41
+      },
+      "revId": "5de905fcd70fb3b2cf648b48f0be9fdaf37bf61e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
