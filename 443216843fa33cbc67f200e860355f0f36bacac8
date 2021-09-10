@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3ee99e4_51e7f1d7",
+        "filename": "docs/model/design/design.md",
+        "patchSetId": 71
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-10T08:26:08Z",
+      "side": 1,
+      "message": "Conflicts with the currently implemented version. I think design document does not need version, as there is no fully compatible implementation producing data to parse.",
+      "range": {
+        "startLine": 4,
+        "startChar": 8,
+        "endLine": 4,
+        "endChar": 13
+      },
+      "revId": "443216843fa33cbc67f200e860355f0f36bacac8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
