@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "f15a89fe_9d23646e",
+        "filename": "docs/job_specs/oper.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-09-10T11:50:01Z",
+      "side": 1,
+      "message": "How frequently are we doing rollbacks from 2-3 weeks old oper branches? When would we do a rollback from old oper branches? When there\u0027s a failure that\u0027s gone unnoticed for prolonged periods of time?",
+      "parentUuid": "dc86458e_46e67152",
+      "range": {
+        "startLine": 132,
+        "startChar": 28,
+        "endLine": 134,
+        "endChar": 21
+      },
+      "revId": "2b82e8736f51ad60e8e71f484abe6c23e63ac1b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "356dfdb6_eae40b98",
         "filename": "docs/job_specs/oper.txt",
         "patchSetId": 3
