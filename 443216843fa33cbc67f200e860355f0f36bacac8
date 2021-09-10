@@ -22,6 +22,29 @@
       "revId": "443216843fa33cbc67f200e860355f0f36bacac8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2952cc93_8d08e27e",
+        "filename": "docs/model/design/design.md",
+        "patchSetId": 71
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-10T12:14:21Z",
+      "side": 1,
+      "message": "It also includes some post-processing, like computing avg and stdev for MRR results and converting Openmetrics formatted telemetry to structured JSON.",
+      "range": {
+        "startLine": 753,
+        "startChar": 71,
+        "endLine": 753,
+        "endChar": 72
+      },
+      "revId": "443216843fa33cbc67f200e860355f0f36bacac8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
