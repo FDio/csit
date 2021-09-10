@@ -27,6 +27,7 @@ from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
+from .model.ExportLog import export_mlrsearch_debug
 from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
@@ -1456,27 +1457,27 @@ class OptimizedSearch:
 
     @staticmethod
     def perform_optimized_ndrpdr_search(
-            frame_size,
-            traffic_profile,
-            minimum_transmit_rate,
-            maximum_transmit_rate,
-            packet_loss_ratio=0.005,
-            final_relative_width=0.005,
-            final_trial_duration=30.0,
-            initial_trial_duration=1.0,
-            number_of_intermediate_phases=2,
-            timeout=720.0,
-            ppta=1,
-            resetter=None,
-            traffic_directions=2,
-            transaction_duration=0.0,
-            transaction_scale=0,
-            transaction_type=u"packet",
-            use_latency=False,
-            ramp_up_rate=None,
-            ramp_up_duration=None,
-            state_timeout=300.0,
-            expansion_coefficient=4.0,
+        frame_size,
+        traffic_profile,
+        minimum_transmit_rate,
+        maximum_transmit_rate,
+        packet_loss_ratio=0.005,
+        final_relative_width=0.005,
+        final_trial_duration=30.0,
+        initial_trial_duration=1.0,
+        number_of_intermediate_phases=2,
+        timeout=720.0,
+        ppta=1,
+        resetter=None,
+        traffic_directions=2,
+        transaction_duration=0.0,
+        transaction_scale=0,
+        transaction_type=u"packet",
+        use_latency=False,
+        ramp_up_rate=None,
+        ramp_up_duration=None,
+        state_timeout=300.0,
+        expansion_coefficient=4.0,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
@@ -1581,7 +1582,7 @@ class OptimizedSearch:
             number_of_intermediate_phases=number_of_intermediate_phases,
             initial_trial_duration=initial_trial_duration,
             timeout=timeout,
-            debug=logger.debug,
+            debug=export_mlrsearch_debug,
             expansion_coefficient=expansion_coefficient,
         )
         if packet_loss_ratio:
