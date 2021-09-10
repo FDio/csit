@@ -27,7 +27,7 @@ from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
-from .model.ExportLog import export_mlrsearch_debug
+from .model.ExportLog import export_mlrsearch_debug, export_plrsearch_by_level
 from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
@@ -1704,13 +1704,18 @@ class OptimizedSearch:
             ramp_up_duration=ramp_up_duration,
             state_timeout=state_timeout,
         )
+        logger_trace = lambda msg: export_plrsearch_by_level(u"TRACE", msg)
+        logger_trace = logger_trace if trace_enabled else None
         algorithm = PLRsearch(
             measurer=tg_instance,
             trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
             trial_number_offset=initial_count,
             timeout=timeout,
-            trace_enabled=trace_enabled,
+            logger_error=lambda msg: export_plrsearch_by_level(u"ERROR", msg),
+            logger_info=lambda msg: export_plrsearch_by_level(u"INFO", msg),
+            logger_debug=lambda msg: export_plrsearch_by_level(u"DEBUG", msg),
+            logger_trace=logger_trace,
         )
         result = algorithm.search(
             min_rate=minimum_transmit_rate,
