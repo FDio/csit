@@ -125,15 +125,17 @@ class TelemetryUtil:
         return prefaced
 
     @staticmethod
-    def run_telemetry_on_all_duts(nodes, profile):
+    def run_telemetry_on_all_duts(nodes, profile, context=u"unknown"):
         """Get and export telemetry from all DUTs.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
+        :param context: Additional identifier to distinguish multiple
+            telemetries within the same test case, e.g. "teardown".
         :param hooks: Dict of Process IDs or socket paths (optional).
         :type nodes: dict
         :type profile: str
-        :type hooks: dict
+        :type context: str
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
@@ -148,7 +150,7 @@ class TelemetryUtil:
                             host=node[u"host"],
                             port=node[u"port"],
                             socket=hook,
-                            message=u"TODO",
+                            message=context,
                             text=stdout
                         )
                 except IndexError:
