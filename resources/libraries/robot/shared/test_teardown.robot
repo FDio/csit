@@ -14,7 +14,7 @@
 """Keywords used in test teardowns."""
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/container.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.topology.Topology
 | Variables | resources/libraries/python/Constants.py
@@ -45,6 +45,7 @@
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
+| | Finalize Test Export
 
 | Tear down test raw
 | | [Documentation]
@@ -60,6 +61,7 @@
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
+| | Finalize Test Export
 
 # Additional Test Tear Down Actions in alphabetical order
 | Additional Test Tear Down Action For acl
@@ -193,6 +195,7 @@
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
+| | ... | trial_type=teardown
 
 | Additional Test Tear Down Action For srv6
 | | [Documentation]

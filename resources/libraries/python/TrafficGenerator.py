@@ -27,6 +27,7 @@ from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
+from .model.ExportLog import export_mlrsearch_debug, export_plrsearch_by_level
 from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
@@ -1456,27 +1457,27 @@ class OptimizedSearch:
 
     @staticmethod
     def perform_optimized_ndrpdr_search(
-            frame_size,
-            traffic_profile,
-            minimum_transmit_rate,
-            maximum_transmit_rate,
-            packet_loss_ratio=0.005,
-            final_relative_width=0.005,
-            final_trial_duration=30.0,
-            initial_trial_duration=1.0,
-            number_of_intermediate_phases=2,
-            timeout=720.0,
-            ppta=1,
-            resetter=None,
-            traffic_directions=2,
-            transaction_duration=0.0,
-            transaction_scale=0,
-            transaction_type=u"packet",
-            use_latency=False,
-            ramp_up_rate=None,
-            ramp_up_duration=None,
-            state_timeout=300.0,
-            expansion_coefficient=4.0,
+        frame_size,
+        traffic_profile,
+        minimum_transmit_rate,
+        maximum_transmit_rate,
+        packet_loss_ratio=0.005,
+        final_relative_width=0.005,
+        final_trial_duration=30.0,
+        initial_trial_duration=1.0,
+        number_of_intermediate_phases=2,
+        timeout=720.0,
+        ppta=1,
+        resetter=None,
+        traffic_directions=2,
+        transaction_duration=0.0,
+        transaction_scale=0,
+        transaction_type=u"packet",
+        use_latency=False,
+        ramp_up_rate=None,
+        ramp_up_duration=None,
+        state_timeout=300.0,
+        expansion_coefficient=4.0,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
@@ -1581,7 +1582,7 @@ class OptimizedSearch:
             number_of_intermediate_phases=number_of_intermediate_phases,
             initial_trial_duration=initial_trial_duration,
             timeout=timeout,
-            debug=logger.debug,
+            debug=export_mlrsearch_debug,
             expansion_coefficient=expansion_coefficient,
         )
         if packet_loss_ratio:
@@ -1703,13 +1704,18 @@ class OptimizedSearch:
             ramp_up_duration=ramp_up_duration,
             state_timeout=state_timeout,
         )
+        logger_trace = lambda msg: export_plrsearch_by_level(u"TRACE", msg)
+        logger_trace = logger_trace if trace_enabled else None
         algorithm = PLRsearch(
             measurer=tg_instance,
             trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
             trial_number_offset=initial_count,
             timeout=timeout,
-            trace_enabled=trace_enabled,
+            logger_error=lambda msg: export_plrsearch_by_level(u"ERROR", msg),
+            logger_info=lambda msg: export_plrsearch_by_level(u"INFO", msg),
+            logger_debug=lambda msg: export_plrsearch_by_level(u"DEBUG", msg),
+            logger_trace=logger_trace,
         )
         result = algorithm.search(
             min_rate=minimum_transmit_rate,
