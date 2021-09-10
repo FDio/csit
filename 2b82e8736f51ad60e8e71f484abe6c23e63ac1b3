@@ -46,6 +46,52 @@
       "revId": "2b82e8736f51ad60e8e71f484abe6c23e63ac1b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57e6aba2_02545720",
+        "filename": "docs/job_specs/oper.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-09-10T09:34:12Z",
+      "side": 1,
+      "message": "Do we need more than one oper branch? If not, we don\u0027t need to create a new one all the time and instead just merge/rebase onto master.",
+      "range": {
+        "startLine": 132,
+        "startChar": 28,
+        "endLine": 134,
+        "endChar": 21
+      },
+      "revId": "2b82e8736f51ad60e8e71f484abe6c23e63ac1b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "356dfdb6_eae40b98",
+        "filename": "docs/job_specs/oper.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-09-10T09:34:12Z",
+      "side": 1,
+      "message": "missing space, but it should be the fact that VPP improvements",
+      "range": {
+        "startLine": 148,
+        "startChar": 30,
+        "endLine": 148,
+        "endChar": 37
+      },
+      "revId": "2b82e8736f51ad60e8e71f484abe6c23e63ac1b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
