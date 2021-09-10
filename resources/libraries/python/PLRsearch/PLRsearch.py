@@ -13,7 +13,6 @@
 
 """Module holding PLRsearch class."""
 
-import logging
 import math
 import multiprocessing
 import time
@@ -53,11 +52,23 @@ class PLRsearch:
     log_xerfcx_10 = math.log(xerfcx_limit - math.exp(10) * erfcx(math.exp(10)))
 
     def __init__(
-            self, measurer, trial_duration_per_trial, packet_loss_ratio_target,
-            trial_number_offset=0, timeout=7200.0, trace_enabled=False):
+            self,
+            measurer,
+            trial_duration_per_trial,
+            packet_loss_ratio_target,
+            trial_number_offset=0,
+            timeout=7200.0,
+            logger_error=None,
+            logger_info=None,
+            logger_debug=None,
+            logger_trace=None,
+        ):
         """Store rate measurer and additional parameters.
 
         The measurer must never report negative loss count.
+
+        TODO: Is it more convenient for calles to specify 4 logger callables,
+        or single object with 4 callable attributes?
 
         TODO: Copy AbstractMeasurer from MLRsearch.
 
@@ -71,18 +82,51 @@ class PLRsearch:
             Use this to ensure first iterations have enough time to compute
             reasonable estimates for later trials to use.
         :param timeout: The search ends if it lasts more than this many seconds.
+        :param logger_error: Function to call to log at error level.
+            None means no logging is done at error level.
+            Info level contains message of an incoming exception.
+        :param logger_info: Function to call to log at info level.
+            None means no logging is done at info level.
+            Info level contains information most users would be interested at.
+        :param logger_debug: Function to call to log at debug level.
+            None means no logging is done at debug level.
+            Debug level contains information some users would be interested at.
+            Due to multiprocessing, most events come late, in a batch.
+        :param logger_trace: Function to call to log at trace level.
+            None means no logging is done at trace level.
+            Trace level information is usually only useful for debugging.
         :type measurer: MLRsearch.AbstractMeasurer
         :type trial_duration_per_trial: float
         :type packet_loss_ratio_target: float
         :type trial_number_offset: int
         :type timeout: float
+        :type logger_error: Optional[Callable[[str], None]]
+        :type logger_info: Optional[Callable[[str], None]]
+        :type logger_debug: Optional[Callable[[str], None]]
+        :type logger_trace: Optional[Callable[[str], None]]
         """
         self.measurer = measurer
         self.trial_duration_per_trial = float(trial_duration_per_trial)
         self.packet_loss_ratio_target = float(packet_loss_ratio_target)
         self.trial_number_offset = int(trial_number_offset)
         self.timeout = float(timeout)
-        self.trace_enabled = bool(trace_enabled)
+        self.trace_enabled = logger_trace is not None
+        nolog = lambda arg: None
+        nolog_if_none = lambda logger: nolog if logger is None else logger
+        self.logger_error = nolog_if_none(logger_error)
+        self.logger_info = nolog_if_none(logger_info)
+        self.logger_debug = nolog_if_none(logger_debug)
+        self.logger_trace = nolog_if_none(logger_trace)
+
+    def log_and_raise(self, message):
+        """Log the message at error level and raise runtime error.
+
+        :param message: Message to log and use in runtime error.
+        :type message: str
+        :raises RuntimeError: With the message, after logging it.
+        """
+        self.logger_error(message)
+        raise RuntimeError(message)
 
     def search(self, min_rate, max_rate):
         """Perform the search, return average and stdev for throughput estimate.
@@ -172,7 +216,7 @@ class PLRsearch:
         stop_time = time.time() + self.timeout
         min_rate = float(min_rate)
         max_rate = float(max_rate)
-        logging.info(
+        self.logger_info(
             f"Started search with min_rate {min_rate!r}, "
             f"max_rate {max_rate!r}"
         )
@@ -184,7 +228,7 @@ class PLRsearch:
         zeros = 0  # How many consecutive zero loss results are happening.
         while 1:
             trial_number += 1
-            logging.info(f"Trial {trial_number!r}")
+            self.logger_info(f"Trial {trial_number!r}")
             results = self.measure_and_compute(
                 self.trial_duration_per_trial * trial_number, transmit_rate,
                 trial_result_list, min_rate, max_rate, focus_trackers
@@ -219,7 +263,7 @@ class PLRsearch:
                     # in order to get to usable loses at higher loads.
                     if len(lossy_loads) > 3:
                         lossy_loads = lossy_loads[3:]
-                logging.debug(
+                self.logger_debug(
                     f"Zeros {zeros!r} orig {(avg1 + avg2) / 2.0!r} "
                     f"next {next_load!r} loads {lossy_loads!r}"
                 )
@@ -524,7 +568,7 @@ class PLRsearch:
         :returns: Measurement and computation results.
         :rtype: _ComputeResult
         """
-        logging.debug(
+        self.logger_debug(
             f"measure_and_compute started with self {self!r}, trial_duration "
             f"{trial_duration!r}, transmit_rate {transmit_rate!r}, "
             f"trial_result_list {trial_result_list!r}, max_rate {max_rate!r}, "
@@ -648,23 +692,23 @@ class PLRsearch:
             except BrokenPipeError:
                 pass
             if not pipe.poll(10.0):
-                raise RuntimeError(f"Worker {name} did not finish!")
+                self.log_and_raise(f"Worker {name} did not finish!")
             result_or_traceback = pipe.recv()
             try:
                 value_tracker, focus_tracker, debug_list, trace_list, sampls = (
                     result_or_traceback
                 )
             except ValueError:
-                raise RuntimeError(
+                self.log_and_raise(
                     f"Worker {name} failed with the following traceback:\n"
                     f"{result_or_traceback}"
                 )
-            logging.info(f"Logs from worker {name!r}:")
+            self.logger_debug(f"Logs from worker {name!r}:")
             for message in debug_list:
-                logging.info(message)
+                self.logger_debug(message)
             for message in trace_list:
-                logging.debug(message)
-            logging.debug(
+                self.logger_trace(message)
+            self.logger_debug(
                 f"trackers: value {value_tracker!r} focus {focus_tracker!r}"
             )
             return _PartialResult(value_tracker, focus_tracker, sampls)
@@ -672,7 +716,7 @@ class PLRsearch:
         stretch_result = stop_computing(u"stretch", stretch_pipe)
         erf_result = stop_computing(u"erf", erf_pipe)
         result = PLRsearch._get_result(measurement, stretch_result, erf_result)
-        logging.info(
+        self.logger_info(
             f"measure_and_compute finished with trial result "
             f"{result.measurement!r} avg {result.avg!r} stdev {result.stdev!r} "
             f"stretch {result.stretch_exp_avg!r} erf {result.erf_exp_avg!r} "
