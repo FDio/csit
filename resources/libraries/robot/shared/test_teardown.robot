@@ -195,6 +195,7 @@
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
+| | ... | trial_type=teardown
 
 | Additional Test Tear Down Action For srv6
 | | [Documentation]

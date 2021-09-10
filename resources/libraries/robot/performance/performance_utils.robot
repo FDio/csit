@@ -178,6 +178,7 @@
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
+| | ... | trial_type=PDR
 | | Run Keyword If | ${ndr} != ${pdr}
 | | ... | Send traffic at specified rate
 | | ... | rate=${ndr}
@@ -185,6 +186,7 @@
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
+| | ... | trial_type=NDR
 | | Return From Keyword If | ${disable_latency}
 | | ${rate} = | Evaluate | 0.9 * ${pdr}
 | | Measure and show latency at specified rate | Latency at 90% PDR: | ${rate}
@@ -373,16 +375,16 @@
 | | ... | Type: boolean
 | | ... | - duration_limit - Hard limit for trial duration, overriding duration
 | | ... | computed from transaction_scale. Default 0.0 means no limit.
-| | ... | - export_mrr - If true, call exporting function for MRR values.
+| | ... | - trial_type - Context, affects export of results and telemetry.
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Send traffic at specified rate \| \${1.0} \| ${4000000.0} \
-| | ... | \| \${10} \| ${False} \| ${1.0} \| \${True} \|
+| | ... | \| \${10} \| ${False} \| ${1.0} \| MRR \|
 | |
 | | [Arguments] | ${trial_duration} | ${rate} | ${trial_multiplicity}
 | | ... | ${use_latency}=${False} | ${duration_limit}=${0.0}
-| | ... | ${export_mrr}=${False}
+| | ... | ${trial_type}=unknown
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${ramp_up_duration} = | Get Ramp Up Duration
@@ -393,6 +395,7 @@
 | | ${transaction_type} = | Get Transaction Type
 | | Set Test Variable | \${rate_for_teardown} | ${rate}
 | | Set Test Variable | \${runtime_rate} | ${rate}
+| | Set Test Variable | \${trial_type}
 | | FOR | ${action} | IN | @{stat_runtime}
 | | | Run Keyword | Additional Statistics Action For ${action}
 | | END
@@ -420,7 +423,7 @@
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | ${value} = | Set Variable | ${result.approximated_receive_rate}
-| | | Run Keyword If | ${export_mrr} | Append Mrr Value | ${value}
+| | | Run Keyword If | "${trial_type}" == "MRR" | Append Mrr Value | ${value}
 | | | Append To List | ${results} | ${value}
 | | END
 | | FOR | ${action} | IN | @{stat_post_trial}
@@ -650,7 +653,7 @@
 | | ... | trial_multiplicity=${trial_multiplicity}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${0.0}
-| | ... | export_mrr=${True}
+| | ... | trial_type=MRR
 | | ${unit} = | Set Variable If | """_cps""" in """${transaction_type}"""
 | | ... | cps | pps
 | | Export Mrr Unit | ${unit}
