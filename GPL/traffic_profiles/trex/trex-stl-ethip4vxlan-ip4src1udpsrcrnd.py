@@ -58,7 +58,7 @@ _VXLAN_FLAGS = list(u"R"*24 + u"RRRIRRRRR")
 
 
 class VXLAN(Packet):
-    name=u"VXLAN"
+    name = u"VXLAN"
     fields_desc = [
         FlagsField(u"flags", 0x08000000, 32, _VXLAN_FLAGS),
         ThreeBytesField(u"vni", 0),
@@ -268,4 +268,3 @@ def register():
     :rtype: Object
     """
     return TrafficStreams()
-

@@ -120,7 +120,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     pkt_offset=u"Dot1Q.vlan"
                 ),
                 STLVmFlowVar(
-                  name=u"ip_src",
+                    name=u"ip_src",
                     min_value=self.p1_src_start_ip,
                     max_value=self.p1_src_end_ip,
                     size=4,
@@ -171,7 +171,8 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     fv_name=u"ip_src",
                     pkt_offset=u"IP.src"
                 ),
-                STLVmFlowVar(name=u"ip_dst",
+                STLVmFlowVar(
+                    name=u"ip_dst",
                     min_value=self.p2_dst_start_ip,
                     max_value=self.p2_dst_end_ip,
                     size=4,

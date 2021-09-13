@@ -74,9 +74,9 @@ class TrafficStreams(TrafficStreamsBaseClass):
                 dst=self.p1_dst_start_mac
             ) /
             IP(
-              src=self.p1_src_start_ip,
-              dst=self.p1_dst_start_ip,
-              proto=61
+                src=self.p1_src_start_ip,
+                dst=self.p1_dst_start_ip,
+                proto=61
             )
         )
         # Direction 1 --> 0

@@ -105,7 +105,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 1 --> 0
         vm2 = STLScVmRaw(
             [
-                  STLVmFlowVar(
+                STLVmFlowVar(
                     name=u"dst",
                     min_value=self.p2_dst_start_ip,
                     max_value=self.p2_dst_end_ip,
