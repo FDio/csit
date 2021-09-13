@@ -81,7 +81,7 @@
 | ${n_tunnels}= | ${8}
 | ${dp_cores_count}= | ${1}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
+| ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template

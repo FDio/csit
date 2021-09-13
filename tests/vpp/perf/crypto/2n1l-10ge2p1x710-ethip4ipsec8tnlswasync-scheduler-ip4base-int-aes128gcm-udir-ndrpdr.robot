@@ -77,7 +77,7 @@
 | ${n_tunnels}= | ${8}
 | ${dp_cores_count}= | ${1}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-2n-ethip4-ip4dst${n_tunnels}-udir
+| ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}-udir
 | ${traffic_directions}= | ${1}
 
 *** Keywords ***

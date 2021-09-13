@@ -27,13 +27,13 @@ Stream profile:
  - Two streams sent in directions 0 --> 1 and 1 --> 0 at the same time.
  - Packet: ETH / DOT1Q / IP /
  - Direction 0 --> 1:
-   - VLAN range:                    100
-   - Source IP address range:       10.10.10.1 - 10.10.10.254
-   - Destination IP address range:  20.20.20.1 - 20.20.20.254
+   - VLAN range:                    1
+   - Source IP address range:       10.0.0.1 - 10.0.0.254
+   - Destination IP address range:  20.0.0.1 - 20.0.0.254
  - Direction 1 --> 0:
-   - VLAN range:                    200
-   - Source IP address range:       20.20.20.1 - 20.20.20.254
-   - Destination IP address range:  10.10.10.1 - 10.10.10.254
+   - VLAN range:                    1
+   - Source IP address range:       20.0.0.1 - 20.0.0.254
+   - Destination IP address range:  10.0.0.1 - 10.0.0.254
 """
 
 from trex.stl.api import *
@@ -49,21 +49,23 @@ class TrafficStreams(TrafficStreamsBaseClass):
         super(TrafficStreamsBaseClass, self).__init__()
 
         # VLAN IDs
-        self.p1_vlan_start = 100
-        self.p2_vlan_start = 200
+        self.p1_vlan_start = 1
+
+        self.p2_vlan_start = 1
+
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"10.10.10.1"
-        self.p1_src_end_ip = u"10.10.10.254"
+        self.p1_src_start_ip = u"10.0.0.1"
+        self.p1_src_end_ip = u"10.0.0.254"
 
-        self.p1_dst_start_ip = u"20.20.20.1"
-        self.p1_dst_end_ip = u"20.20.20.254"
+        self.p1_dst_start_ip = u"20.0.0.1"
+        self.p1_dst_end_ip = u"20.0.0.254"
 
-        self.p2_src_start_ip = u"20.20.20.1"
-        self.p2_src_end_ip = u"20.20.20.254"
+        self.p2_src_start_ip = u"20.0.0.1"
+        self.p2_src_end_ip = u"20.0.0.254"
 
-        self.p2_dst_start_ip = u"10.10.10.1"
-        self.p2_dst_end_ip = u"10.10.10.254"
+        self.p2_dst_start_ip = u"10.0.0.1"
+        self.p2_dst_end_ip = u"10.0.0.254"
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
@@ -78,12 +80,12 @@ class TrafficStreams(TrafficStreamsBaseClass):
         base_pkt_a = (
             Ether() /
             Dot1Q(
-                vlan=self.p1_vlan_start
+              vlan=self.p1_vlan_start
             ) /
             IP(
-                src=self.p1_src_start_ip,
-                dst=self.p1_dst_start_ip,
-                proto=61
+              src=self.p1_src_start_ip,
+              dst=self.p1_dst_start_ip,
+              proto=61
             )
         )
         # Direction 1 --> 0
@@ -132,7 +134,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 1 --> 0
         vm2 = STLScVmRaw(
             [
-              STLVmFlowVar(
+                STLVmFlowVar(
                     name=u"ip_src",
                     min_value=self.p2_src_start_ip,
                     max_value=self.p2_src_end_ip,

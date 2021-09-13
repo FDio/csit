@@ -68,7 +68,7 @@
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-stl-ethip4-ip4src254
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain
