@@ -58,9 +58,9 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
-| ${rts_per_flow}= | ${10000}
+| ${rts_perflow}= | ${10000}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-ethip6-ip6dst${rts_per_flow}-rnd
+| ${traffic_profile}= | trex-stl-ethip6-ip6dst${rts_perflow}-rnd
 
 *** Keywords ***
 | Local Template
@@ -86,7 +86,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv6 forwarding with scaling in circular topology
-| | ... | ${rts_per_flow}
+| | ... | ${rts_perflow}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
