@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1110078_85cf99f6",
+        "filename": "docs/job_specs/report_iterative/2n-aws/vpp-mrr-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-13T05:44:59Z",
+      "side": 1,
+      "message": "no way.",
+      "range": {
+        "startLine": 18,
+        "startChar": 23,
+        "endLine": 18,
+        "endChar": 28
+      },
+      "revId": "0316d7b1035bed58797b96a837e0dd424172e046",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
