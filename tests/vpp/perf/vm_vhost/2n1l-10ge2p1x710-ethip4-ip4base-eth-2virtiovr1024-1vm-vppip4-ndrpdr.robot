@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | VIRTIO | 1VM | VIRTIO_1024
-| ... | NF_VPPIP4_VIRTIO | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | VIRTIO | 1VM | VIRTIO_1024
+| ... | NF_VPPIP4_VIRTIO
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4-ip4base-eth-2virtiovr1024-1vm-vppip4
 |
 | Suite Setup | Setup suite topology interfaces | performance

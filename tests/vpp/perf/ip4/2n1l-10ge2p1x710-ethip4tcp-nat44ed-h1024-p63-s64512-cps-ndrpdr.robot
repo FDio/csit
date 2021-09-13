@@ -17,9 +17,9 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | TCP | TCP_CPS
-| ... | NAT44_ENDPOINT_DEPENDENT | SCALE | HOSTS_1024 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | HOSTS_1024
+| ... | FEATURE | NAT44 | NAT44_ENDPOINT_DEPENDENT | TCP | TCP_CPS
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4tcp-nat44ed-h1024-p63-s64512-cps
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -87,7 +87,7 @@
 | ${transaction_scale}= | ${n_sessions}
 | ${packets_per_transaction_and_direction}= | ${4}
 | ${packets_per_transaction_aggregated}= | ${7}
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h
 | ${transaction_type}= | tcp_cps
 | ${disable_latency}= | ${True}

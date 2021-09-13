@@ -17,9 +17,9 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | HOSTSTACK
+| ... | NIC_Intel-X710 | TCP | HOSTSTACK
 | ... | LDPRELOAD | IPERF3 | 1CLIENT | 1STREAM | 1460B
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-ip4tcpbase-ldpreload-iperf3
 |
 | Suite Setup | Setup suite topology interfaces with no TG

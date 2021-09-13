@@ -15,8 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | TCP | TCP_CPS | DRV_VFIO_PCI
-| ... | SCALE | HOSTS_4096 | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | SCALE | HOSTS_4096
+| ... | TCP | TCP_CPS
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4tcp-ip4base-h4096-p63-s258048-cps
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -63,7 +64,7 @@
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
 | ${packets_per_transaction_and_direction}= | ${4}
 | ${packets_per_transaction_aggregated}= | ${7}
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h
 | ${transaction_type}= | tcp_cps
 | ${disable_latency}= | ${True}

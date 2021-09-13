@@ -19,8 +19,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
-| ... | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip6lispip4-ip6base
 |
 | Suite Setup | Setup suite topology interfaces | performance

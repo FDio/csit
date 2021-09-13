@@ -16,8 +16,8 @@
 | Resource | resources/libraries/robot/overlay/gtpu.robot
 
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | IP4FWD | IP4BASE | ENCAP | GTPU | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | IP4FWD | IP4BASE | ENCAP | GTPU
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4gtpusw-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance

@@ -15,8 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | TCP | TCP_PPS | DRV_VFIO_PCI
-| ... | SCALE | HOSTS_1024 | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | SCALE | HOSTS_1024
+| ... | TCP | TCP_PPS
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4tcp-ip4base-h1024-p63-s64512-pps
 |
 | Suite Setup | Setup suite topology interfaces | performance

@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 2R6C | 12VM2T
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | VHOST | VM | VHOST_1024
+| ... | NF_DENSITY | NF_VPPIP4 | CHAIN | 2R6C | 12VM2T
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-l2bd-2ch-24vh-12vm2t-vppip4
 |
 | Suite Setup | Setup suite topology interfaces | performance

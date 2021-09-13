@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | FEATURE | ACL | ACL_STATEFUL
-| ... | IACL | ACL1 | 100K_FLOWS | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | SCALE | 100K_FLOWS
+| ... | FEATURE | ACL | ACL_STATEFUL | IACL | ACL1
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-l2bdbasemaclrn-iacl1sf-100kflows
 |
 | Suite Setup | Setup suite topology interfaces | performance
