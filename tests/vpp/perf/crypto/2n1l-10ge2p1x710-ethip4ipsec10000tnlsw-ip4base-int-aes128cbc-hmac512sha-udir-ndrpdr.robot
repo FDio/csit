@@ -73,7 +73,7 @@
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${10000}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-2n-ethip4-ip4dst${n_tunnels}-udir
+| ${traffic_profile}= | trex-stl-ethip4-ip4dst${n_tunnels}-udir
 | ${traffic_directions}= | ${1}
 
 *** Keywords ***

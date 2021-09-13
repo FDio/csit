@@ -79,7 +79,7 @@
 | ${dut2_if2_ip6}= | 2001:2::1
 | ${prefix}= | ${64}
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-3n-ethip6-ip6src253
+| ${traffic_profile}= | trex-stl-ethip6-ip6src253
 
 *** Keywords ***
 | Local Template
