@@ -28,10 +28,12 @@ Stream profile:
  - Packet: ETH / IP /
  - Direction 0 --> 1:
    - Source IP address range:      10.0.0.1
-   - Destination IP address range: 20.0.0.0 - 20.0.0.1
+   - Destination IP address range: 20.0.0.0 - 20.0.156.63
  - Direction 1 --> 0:
    - Source IP address range:      20.0.0.1
-   - Destination IP address range: 10.0.0.0 - 10.0.0.1
+   - Destination IP address range: 10.0.0.0 - 10.0.156.63
+
+The addresses are incremented by 4.
 """
 
 from trex.stl.api import *
@@ -49,11 +51,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # IPs used in packet headers.
         self.p1_src_start_ip = u"10.0.0.1"
         self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.0.1"
+        self.p1_dst_end_ip = u"20.0.156.63"
 
         self.p2_src_start_ip = u"20.0.0.1"
         self.p2_dst_start_ip = u"10.0.0.0"
-        self.p2_dst_end_ip = u"10.0.0.1"
+        self.p2_dst_end_ip = u"10.0.156.63"
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
@@ -91,7 +93,8 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p1_dst_start_ip,
                     max_value=self.p1_dst_end_ip,
                     size=4,
-                    op=u"inc"
+                    op=u"inc",
+                    step=4
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
@@ -110,7 +113,8 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     min_value=self.p2_dst_start_ip,
                     max_value=self.p2_dst_end_ip,
                     size=4,
-                    op=u"inc"
+                    op=u"inc",
+                    step=4
                 ),
                 STLVmWrFlowVar(
                     fv_name=u"dst",
