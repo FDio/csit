@@ -25,15 +25,18 @@
 
 Stream profile:
  - Two streams sent in directions 0 --> 1 and 1 --> 0 at the same time.
- - Packet: | ETH | IP |
+ - Packet: ETH / DOT1Q / IP /
  - Direction 0 --> 1:
-   - Source MAC address range:     ca:fe:00:00:00:00 - ca:fe:00:00:27:0f
-   - Source IP address range:      10.0.0.2 - 10.0.39.17
-   - Destination IP address range: 20.0.0.1
+   - VLAN range:                    100
+   - Source IP address range:       10.10.10.1 - 10.10.10.254
+   - Destination IP address range:  20.20.20.1 - 20.20.20.254
  - Direction 1 --> 0:
-   - Source MAC address range:     fa:ce:00:00:00:00 - fa:ce:00:00:27:0f
-   - Source IP address range:      20.0.0.2 - 20.0.39.17
-   - Destination IP address range: 10.0.0.1
+   - VLAN range:                    200
+   - Source IP address range:       20.20.20.1 - 20.20.20.254
+   - Destination IP address range:  10.10.10.1 - 10.10.10.254
+
+TODO: Unify with trex-stl-dot1qip4-vlan1ip4src254ip4dst254.py,
+currently both the VLAN values and IP ranges are different.
 """
 
 from trex.stl.api import *
@@ -48,26 +51,27 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         super(TrafficStreamsBaseClass, self).__init__()
 
-        self.clients = 10000
-
-        # MACs used in packet headers.
-        self.p1_src_start_mac = u"ca:fe:00:00:00:00"  # mask: 00:00:FF:FF:FF:FF
-
-        self.p2_src_start_mac = u"fa:ce:00:00:00:00"  # mask: 00:00:FF:FF:FF:FF
+        # VLAN IDs
+        self.p1_vlan_start = 100
+        self.p2_vlan_start = 200
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"10.0.0.2"
-        self.p1_src_end_ip = u"10.0.39.17"
-        self.p1_dst_start_ip = u"20.0.0.1"
+        self.p1_src_start_ip = u"10.10.10.1"
+        self.p1_src_end_ip = u"10.10.10.254"
 
-        self.p2_src_start_ip = u"20.0.0.2"
-        self.p2_src_end_ip = u"20.0.39.17"
-        self.p2_dst_start_ip = u"10.0.0.1"
+        self.p1_dst_start_ip = u"20.20.20.1"
+        self.p1_dst_end_ip = u"20.20.20.254"
+
+        self.p2_src_start_ip = u"20.20.20.1"
+        self.p2_src_end_ip = u"20.20.20.254"
+
+        self.p2_dst_start_ip = u"10.10.10.1"
+        self.p2_dst_end_ip = u"10.10.10.254"
 
     def define_packets(self):
         """Defines the packets to be sent from the traffic generator.
 
-        Packet definition: | ETH | IP |
+        Packet definition: | ETH | DOT1Q | IP |
 
         :returns: Packets to be sent from the traffic generator.
         :rtype: tuple
@@ -75,8 +79,9 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         # Direction 0 --> 1
         base_pkt_a = (
-            Ether(
-                src=self.p1_src_start_mac
+            Ether() /
+            Dot1Q(
+                vlan=self.p1_vlan_start
             ) /
             IP(
                 src=self.p1_src_start_ip,
@@ -86,8 +91,9 @@ class TrafficStreams(TrafficStreamsBaseClass):
         )
         # Direction 1 --> 0
         base_pkt_b = (
-            Ether(
-                src=self.p2_src_start_mac
+            Ether() /
+            Dot1Q(
+                vlan=self.p2_vlan_start
             ) /
             IP(
                 src=self.p2_src_start_ip,
@@ -100,26 +106,26 @@ class TrafficStreams(TrafficStreamsBaseClass):
         vm1 = STLScVmRaw(
             [
                 STLVmFlowVar(
-                    name=u"mac_src",
-                    min_value=0,
-                    max_value=self.clients-1,
-                    size=4,
-                    op=u"inc"
-                ),
-                STLVmWrFlowVar(
-                    fv_name=u"mac_src",
-                    pkt_offset=8
-                ),
-                STLVmFlowVar(
-                    name=u"src",
+                    name=u"ip_src",
                     min_value=self.p1_src_start_ip,
                     max_value=self.p1_src_end_ip,
                     size=4,
-                    op=u"inc"
+                    op=u"random"
                 ),
                 STLVmWrFlowVar(
-                    fv_name=u"src",
+                    fv_name=u"ip_src",
                     pkt_offset=u"IP.src"
+                ),
+                STLVmFlowVar(
+                    name=u"ip_dst",
+                    min_value=self.p1_dst_start_ip,
+                    max_value=self.p1_dst_end_ip,
+                    size=4,
+                    op=u"random"
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"ip_dst",
+                    pkt_offset=u"IP.dst"
                 ),
                 STLVmFixIpv4(
                     offset=u"IP"
@@ -129,27 +135,27 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 1 --> 0
         vm2 = STLScVmRaw(
             [
-                STLVmFlowVar(
-                    name=u"mac_src",
-                    min_value=0,
-                    max_value=self.clients-1,
-                    size=4,
-                    op=u"inc"
-                ),
-                STLVmWrFlowVar(
-                    fv_name=u"mac_src",
-                    pkt_offset=8
-                ),
-                STLVmFlowVar(
-                    name=u"src",
+              STLVmFlowVar(
+                    name=u"ip_src",
                     min_value=self.p2_src_start_ip,
                     max_value=self.p2_src_end_ip,
                     size=4,
-                    op=u"inc"
+                    op=u"random"
                 ),
                 STLVmWrFlowVar(
-                    fv_name=u"src",
+                    fv_name=u"ip_src",
                     pkt_offset=u"IP.src"
+                ),
+                STLVmFlowVar(
+                    name=u"ip_dst",
+                    min_value=self.p2_dst_start_ip,
+                    max_value=self.p2_dst_end_ip,
+                    size=4,
+                    op=u"random"
+                ),
+                STLVmWrFlowVar(
+                    fv_name=u"ip_dst",
+                    pkt_offset=u"IP.dst"
                 ),
                 STLVmFixIpv4(
                     offset=u"IP"

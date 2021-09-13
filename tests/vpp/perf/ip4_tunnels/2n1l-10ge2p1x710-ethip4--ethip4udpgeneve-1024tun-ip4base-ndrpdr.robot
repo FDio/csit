@@ -75,7 +75,7 @@
 | ... | local=1.1.1.2 | remote=1.1.1.1 | vni=${1}
 | ... | src_ip=10.128.1.0 | dst_ip=10.0.1.0 | ip_mask=${24} | if_ip=11.0.1.2
 # Traffic profile:
-| ${traffic_profile}= | trex-stl-2n-ethip4-geneve-${n_tunnels}t
+| ${traffic_profile}= | trex-stl-ethip4-geneve-${n_tunnels}t
 
 *** Keywords ***
 | Local Template
