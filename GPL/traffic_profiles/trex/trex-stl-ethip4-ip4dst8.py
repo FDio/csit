@@ -12,7 +12,8 @@
 #
 # Note: If this file is linked with Scapy, which is GPLv2+, your use of it
 # must be under GPLv2+.  If at any point in the future it is no longer linked
-# with Scapy (or other GPLv2+ licensed software), you are free to choose Apache 2.
+# with Scapy (or other GPLv2+ licensed software), you are free to choose
+# Apache 2.
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
