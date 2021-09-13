@@ -1,9 +1,4 @@
 # 2n-aws
-### tests 12
-### job hrs est. [No data available]
-### job hrs real [No data available]
-### test mins est. [No data available]
-### test mins real [No data available]
 ## ./container_memif
 ## ./crypto
 ## ./ip4
@@ -15,10 +10,10 @@
 1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4base
 2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4base
 ##### ethip4-ip4scale2m
-1c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m
-2c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m
-1c AND 1518b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m
-2c AND 1518b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m
+1c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale2m
 ## ./ip4_tunnels
 ## ./ip6
 ## ./ip6_tunnels
