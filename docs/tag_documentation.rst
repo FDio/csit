@@ -645,22 +645,29 @@ Interface Tags
 .. topic:: DRV_{d}
 
     All test cases which NIC Driver for DUT is set to {d}. Default is VFIO_PCI.
-    {d}=(AVF, RDMA_CORE, VFIO_PCI, AF_XDP).
+    For VPP: {d}=(VFIO_PCI, AVF, RDMA_CORE, AF_XDP).
+    For DPDK: {d}=(VFIO_PCI, MLX5_CORE).
+    Currently, tests do not set the NIC driver explicitly,
+    relying on app (DPDK) autodetection instead,
+    but autogen edits the correct value we know will be chosen.
 
 .. topic:: TG_DRV_{d}
 
-    All test cases which NIC Driver for TG is set to {d}. Default is IGB_UIO.
-    {d}=(RDMA_CORE, IGB_UIO).
+    All TG only (without DUT) test cases which use {d} NIC Driver for TG.
+    Default is IGB_UIO. {d}=(IGB_UIO, RDMA_CORE).
+    Currently, autogen is not editing the value depending on NIC for RDMA_CORE,
+    and tests do not set the NIC driver explicitly either,
+    relying on TRex (DPDK) autodetection instead.
 
 .. topic:: RXQ_SIZE_{n}
 
-    All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
-    which means VPP (API) default.
+    All test cases which RXQ size (RX descriptors on DUT) are set to {n}.
+    Default is 0 for VPP, which means VPP (API) default, and 1024 for DPDK.
 
 .. topic:: TXQ_SIZE_{n}
 
-    All test cases which TXQ size (TX descriptors) are set to {n}. Default is 0,
-    which means VPP (API) default.
+    All test cases which TXQ size (TX descriptors on DUT) are set to {n}.
+    Default is 0 for VPP, which means VPP (API) default, and 1024 for DPDK.
 
 Feature Tags
 ------------
