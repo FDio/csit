@@ -82,12 +82,12 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 1 --> 0
         base_pkt_b = (
             Ether(
-                  dst=self.p2_dst_start_mac
+                dst=self.p2_dst_start_mac
             ) /
             IP(
-                  src=self.p2_src_start_ip,
-                  dst=self.p2_dst_start_ip,
-                  proto=61
+                src=self.p2_src_start_ip,
+                dst=self.p2_dst_start_ip,
+                proto=61
             )
         )
 

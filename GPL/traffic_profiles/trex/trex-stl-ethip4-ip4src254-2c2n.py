@@ -124,7 +124,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
                     pkt_offset=u"IP.src"
                 ),
                 STLVmFixIpv4(
-                      offset=u"IP"
+                    offset=u"IP"
                 )
             ]
         )

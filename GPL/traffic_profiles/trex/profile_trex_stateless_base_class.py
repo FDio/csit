@@ -53,7 +53,7 @@ class TrafficStreamsBaseClass:
         # Default value of frame size, it will be overwritten by the value of
         # "framesize" parameter of "get_streams" method.
         self.framesize = 64
-
+        self.rate = None
         # If needed, add your own parameters.
 
     def _gen_payload(self, length):
@@ -121,6 +121,7 @@ class TrafficStreamsBaseClass:
 
         :returns: Traffic streams.
         :rtype: list
+        :raises RuntimeError: If framesize is not recognized.
         """
         base_pkt_a, base_pkt_b, vm1, vm2 = self.define_packets()
 
@@ -181,7 +182,7 @@ class TrafficStreamsBaseClass:
             return [stream1, stream2, lat_stream1, lat_stream2]
 
         # Frame size is defined as a string, e.g.IMIX_v4_1:
-        elif isinstance(self.framesize, str):
+        if isinstance(self.framesize, str):
 
             stream1 = list()
             stream2 = list()
@@ -203,18 +204,20 @@ class TrafficStreamsBaseClass:
                 stream1.append(STLStream(
                     packet=pkt_a,
                     isg=stream[u"isg"],
-                    mode=STLTXCont(pps=stream[u"pps"]))
-                )
+                    mode=STLTXCont(pps=stream[u"pps"])
+                ))
                 stream2.append(STLStream(
                     packet=pkt_b,
                     isg=stream[u"isg"],
-                    mode=STLTXCont(pps=stream[u"pps"]))
-                )
+                    mode=STLTXCont(pps=stream[u"pps"])
+                ))
             streams = list()
             streams.extend(stream1)
             streams.extend(stream2)
 
             return streams
+
+        raise RuntimeError(f"Unrecognized framesize {self.framesize}")
 
     def get_streams(self, **kwargs):
         """Get traffic streams created by "create_streams" method.
