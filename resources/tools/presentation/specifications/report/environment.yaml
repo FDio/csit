@@ -122,7 +122,8 @@
       url: "http://storage.service.consul:9000"
       profile-name: "nomad-s3"
       bucket: "docs"
-      file-format: "json.gz"
+      # file-format: "info.json"  # For now
+      file-format: "info.json.gz"  # In production
       enabled: True
     # XML
     - type: "xml"
