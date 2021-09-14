@@ -249,6 +249,7 @@ def _download_json(source, job, build, w_dir, arch):
             prefix=join(job, str(build[u'build'])),
             suffix=source[u"file-format"]
         )
+        build[u"suffix"] = source[u"file-format"]
     except ValueError as err:
         logging.error(
             f"The specified url {source[u'url']} does not exist\n{err!r}"
