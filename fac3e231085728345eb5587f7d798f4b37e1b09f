@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9805d392_24610822",
+        "filename": "tests/trex/perf/ip4/1n1l-10ge2p1x710-ethip4-ip4base-tg-ndrpdr.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-14T10:51:16Z",
+      "side": 1,
+      "message": "\"for cross connected NICs with IPv4 traffic profile.\"\n\notherwise it looks weird then you have ipv6 and l1xc",
+      "range": {
+        "startLine": 27,
+        "startChar": 43,
+        "endLine": 27,
+        "endChar": 75
+      },
+      "revId": "fac3e231085728345eb5587f7d798f4b37e1b09f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
