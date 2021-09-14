@@ -27,10 +27,11 @@ import logging
 from collections import OrderedDict
 from os import remove, walk, listdir
 from os.path import isfile, isdir, join
+from shutil import rmtree
 from datetime import datetime as dt
 from datetime import timedelta
-from json import loads
-from json.decoder import JSONDecodeError
+from json import load, loads, JSONDecodeError
+# from json.decoder import JSONDecodeError
 
 import hdrh.histogram
 import hdrh.codec
@@ -43,6 +44,7 @@ from robot import errors
 from resources.libraries.python import jumpavg
 from input_data_files import download_and_unzip_data_file
 from pal_errors import PresentationError
+from pal_utils import get_files
 
 
 # Separator used in file names
@@ -350,9 +352,9 @@ class ExecutionChecker(ResultVisitor):
 
         # The main data structure
         self._data = {
-            u"metadata": OrderedDict(),
-            u"suites": OrderedDict(),
-            u"tests": OrderedDict()
+            u"metadata": dict(),
+            u"suites": dict(),
+            u"tests": dict()
         }
 
         # Save the provided metadata
@@ -1498,7 +1500,7 @@ class InputData:
         """
         return self.data[job][build][u"tests"]
 
-    def _parse_tests_xml(self, job, build):
+    def _parse_xml(self, job, build):
         """Process data from robot output.xml file and return JSON structured
         data.
 
@@ -1539,10 +1541,112 @@ class InputData:
 
         return checker.data
 
+    def _parse_json_setup(self, j_file):
+        """Parse JSON file with suite setup.
+
+        :param j_file: The full path to the JSON file to be parsed.
+        :type j_file: str
+        :returns: Tuple with suite ID, data and calculated duration of the
+            setup phase.
+        :rtype: tuple(str, dict, datetime.timedelta)
+        """
+
+        # Not added (but present in xml):
+        # - name - last part of suite_id
+        # - parent - part of suite_id
+        # - level - easily calculated from suite_id if needed
+        duration = timedelta(0)
+        s_id = u""
+        data = dict()
+
+        try:
+            with open(j_file) as fp:
+                data = load(fp)
+            if self._for_output == u"trending":
+                try:
+                    del (data[u"log"])
+                except KeyError:
+                    pass
+            data[u"start_time"] = \
+                dt.fromisoformat(data.get(u"start_time", None))
+            data[u"end_time"] = dt.fromisoformat(data.get(u"end_time", None))
+            duration = data[u"end_time"] - data[u"start_time"]
+            s_id = data.get(u"suite_id", u"").lower()
+        except IOError as err:
+            logging.warning(f"Cannot read the file {j_file}\n{err!r}")
+        except JSONDecodeError as err:
+            logging.warning(f"Cannot parse the JSON file {j_file}\n{err!r}")
+        except (ValueError, TypeError) as err:
+            logging.warning(f"The file {j_file} is damaged\n{err!r}")
+        finally:
+            return s_id, data, duration
+
     @staticmethod
-    def _parse_tests_json(job, build):
-        """Process data from json files and return JSON structured
-        data.
+    def _parse_json_teardown(j_file):
+        """Parse JSON file with teardown setup.
+
+        No data part in this version.
+
+        :param j_file: The full path to the JSON file to be parsed.
+        :type j_file: str
+        :returns: Duration of the teardown phase.
+        :rtype: datetime.timedelta
+        """
+        duration = timedelta(0)
+
+        try:
+            with open(j_file) as fp:
+                data = load(fp)
+            duration = dt.fromisoformat(data.get(u"end_time", None)) - \
+                dt.fromisoformat(data.get(u"start_time", None))
+        except IOError as err:
+            logging.warning(f"Cannot read the file {j_file}\n{err!r}")
+        except JSONDecodeError as err:
+            logging.warning(f"Cannot parse the JSON file {j_file}\n{err!r}")
+        except (ValueError, TypeError) as err:
+            logging.warning(f"The file {j_file} is damaged\n{err!r}")
+        finally:
+            return duration
+
+    def _parse_json_test(self, j_file):
+        """Parse JSON file with test data.
+
+        :param j_file: The full path to the JSON file to be parsed.
+        :type j_file: str
+        :returns: Tuple with test status, test ID, data and calculated
+            duration of the test.
+        :rtype: tuple(bool, str, dict, datetime.timedelta)
+        """
+        duration = timedelta(0)
+        status = True
+        t_id = u""
+        data = dict()
+
+        try:
+            with open(j_file) as fp:
+                data = load(fp)
+            data[u"start_time"] = \
+                dt.fromisoformat(data.get(u"start_time", None))
+            data[u"end_time"] = dt.fromisoformat(data.get(u"end_time", None))
+            duration = data[u"end_time"] - data[u"start_time"]
+            t_id = data.get(u"suite_test_id_lower", u"")
+            status = True if data.get(u"status", u"") == u"PASS" else False
+            if self._for_output == u"trending":
+                try:
+                    del(data[u"log"])
+                except KeyError:
+                    pass
+        except IOError as err:
+            logging.warning(f"Cannot read the file {j_file}\n{err!r}")
+        except JSONDecodeError as err:
+            logging.warning(f"Cannot parse the JSON file {j_file}\n{err!r}")
+        except (ValueError, TypeError) as err:
+            logging.warning(f"The file {j_file} is damaged\n{err!r}")
+        finally:
+            return status, t_id, data, duration
+
+    def _parse_json(self, job, build):
+        """Process data from JSON files and return JSON structured data.
 
         :param job: The name of job which build output data will be processed.
         :param build: The build which output data will be processed.
@@ -1552,7 +1656,57 @@ class InputData:
         :rtype: dict
         """
 
-        raise NotImplementedError("To be implemented in the following patch.")
+        metadata = {
+            u"job": job,  # TODO: Check, if needed
+            u"build": build,  # TODO: Check, if needed
+            u"tests_total": 0,
+            u"tests_passed": 0,
+            u"tests_failed": 0,
+            u"elapsedtime": timedelta(0),  # sum of all intervals [ms]
+            u"generated": u""
+        }
+
+        # The main data structure
+        data = {
+            u"metadata": metadata,
+            u"suites": dict(),
+            u"tests": dict()
+        }
+
+        for file_name in get_files(build[u"file-name"], build[u"suffix"]):
+            if u"setup" in file_name:
+                uid, s_data, duration = self._parse_json_setup(file_name)
+                if not uid:
+                    continue
+                if uid == u"tests":
+                    # The format is changed for backward compatibility with xml.
+                    # TODO: Change functions which use it.
+                    metadata[u"generated"] = \
+                        s_data[u"start_time"].strftime(u"%Y%m%d %H:%M")
+                data[u"suites"][uid] = s_data
+            elif u"teardown" in file_name:
+                duration = self._parse_json_teardown(file_name)
+            else:  # test
+                status, uid, t_data, duration = self._parse_json_test(file_name)
+                if not uid:
+                    continue
+                data[u"tests"][uid] = t_data
+                metadata[u"tests_total"] += 1
+                metadata[u"tests_passed"] += int(status)
+            metadata[u"elapsedtime"] += duration
+        metadata[u"tests_failed"] = \
+            metadata[u"tests_total"] - metadata[u"tests_passed"]
+        metadata[u"elapsedtime"] = int(
+            metadata[u"elapsedtime"].total_seconds() * 1e3  # milliseconds
+        )
+
+        try:
+            # Clean:
+            rmtree(build[u"file-name"])
+        except FileNotFoundError:
+            pass  # It does not exist
+
+        return data
 
     def _download_and_parse_build(self, job, build, repeat, pid=10000):
         """Download and parse the input data file.
@@ -1590,7 +1744,7 @@ class InputData:
         if success:
             logging.info(f"  Processing data from build {build[u'build']}")
             if build[u"source"] == u"xml":
-                data = self._parse_tests_xml(job, build)
+                data = self._parse_xml(job, build)
                 try:
                     remove(build[u"file-name"])
                 except OSError as err:
@@ -1599,7 +1753,7 @@ class InputData:
                         f"{build[u'file-name']}: {repr(err)}"
                     )
             elif build[u"source"] == u"json":
-                data = self._parse_tests_json(job, build)
+                data = self._parse_json(job, build)
             else:
                 raise NotImplementedError(
                     f"The source type {build[u'source']} is not implemented."
@@ -1661,19 +1815,18 @@ class InputData:
                 build_nr = result[u"build"][u"build"]
 
                 if result[u"data"]:
-                    data = result[u"data"]
                     build_data = pd.Series({
                         u"metadata": pd.Series(
-                            list(data[u"metadata"].values()),
-                            index=list(data[u"metadata"].keys())
+                            list(result[u"data"][u"metadata"].values()),
+                            index=list(result[u"data"][u"metadata"].keys())
                         ),
                         u"suites": pd.Series(
-                            list(data[u"suites"].values()),
-                            index=list(data[u"suites"].keys())
+                            list(result[u"data"][u"suites"].values()),
+                            index=list(result[u"data"][u"suites"].keys())
                         ),
                         u"tests": pd.Series(
-                            list(data[u"tests"].values()),
-                            index=list(data[u"tests"].keys())
+                            list(result[u"data"][u"tests"].values()),
+                            index=list(result[u"data"][u"tests"].keys())
                         )
                     })
 
@@ -1744,9 +1897,9 @@ class InputData:
 
         logging.info(f"Processing {job}: {build_nr:2d}: {local_file}")
         if build[u"source"] == u"xml":
-            data = self._parse_tests_xml(job, build)
+            data = self._parse_xml(job, build)
         elif build[u"source"] == u"json":
-            data = self._parse_tests_json(job, build)
+            data = self._parse_json(job, build)
         else:
             raise NotImplementedError(
                 f"The source type {build[u'source']} is not implemented."
