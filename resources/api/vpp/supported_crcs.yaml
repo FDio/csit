@@ -119,6 +119,7 @@
     # ip_source_check_interface_add_del / reply # unused L1 keyword vpp_ip_source_check_setup
     ip_table_add_del: '0x0ffdaec0'  # dev
     ip_table_add_del_reply: '0xe8d4e804'  # dev
+    ip_table_dump: '0x51077d14'  # perf
     ipip_add_tunnel: '0x2ac399f5'  # dev
     ipip_add_tunnel_reply: '0x5383d31f'  # dev
     ipsec_interface_add_del_spd: '0x80f80cbb'  # dev
