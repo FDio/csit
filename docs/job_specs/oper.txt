@@ -1,0 +1,304 @@
+
+Dicussion on CSIT oper branches
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO: Currently a mix of two edits. De-duplicate and clean up.
+
+Properties of jobs
+~~~~~~~~~~~~~~~~~~
+
+We have many types of jobs, here is a table:
+
++------------------------------+--------+--------+---------+
+| jobs                         | CSIT   | VPP    | trigger |
++------------------------------+--------+--------+---------+
+| csit-dpdk-perf-report-*      | gerrit | no     | manual  |
+| csit-dpdk-perf-verify-*      | gerrit | no     | manual  |
+| csit-trex-perf-verify-*      | gerrit | no     | manual  |
+| csit-verify-tox-*            | gerrit | no     | vote    |
+| csit-vpp-device-*            | gerrit | stable | vote    |
+| csit-vpp-perf-report-*       | gerrit | stable | manual  |
+| csit-vpp-perf-verify-*       | gerrit | stable | manual  |
+| csit-report-merge-*          | head   | no     | manual  |
+| csit-docs-merge-*            | head   | no     | timed   |
+| csit-trending-merge-*        | head   | no     | timed   |
+| csit-vpp-device-*-weekly     | head   | stable | timed   |
+| csit-vpp-device-*-semiweekly | oper   | latest | timed   |
+| csit-vpp-perf-mrr-*          | oper   | latest | timed   |
+| csit-vpp-perf-ndrpdr-*       | oper   | latest | timed   |
+| csit-dpdk-perf-mrr-*         | oper   | no     | timed   |
+| vpp-csit-verify-api-crc-*    | oper   | gerrit | vote    |
+| vpp-csit-verify-device-*     | oper   | gerrit | vote    |
+| vpp-csit-verify-perf-*       | oper   | gerrit | manual  |
++------------------------------+--------+--------+---------+
+
+Legend:
++ CSIT values describe CSIT codebase used.
+ + Gerrit means CSIT code that is not merged yet.
+ + Head means HEAD of the corresponding (master or release) branch.
+ + Oper means HEAD of latest oper branch corresponding to master or release.
++ VPP values describe VPP codebase used.
+ + No means this job does not interact with VPP code in any way.
+ + Gerrit means unmerged code (has to be build in the job).
+ + Latest means the latest VPP build for the branch available in Packagecloud.
+ + Stable means the build marked as STABLE in CSIT code used.
++ Trigger values describe how the job is started.
+ + Manual means it has to be triggered by human (e.g. via a Gerrit comment).
+ + Timed means it starts periodically (daily, weekly, ...).
+ + Vote means it starts whenever there is a new Gerrit patch uploaded
+   (or re-checked). Not all jobs of this type do vote (e.g. ARM device jobs).
+
+Current relations
+~~~~~~~~~~~~~~~~~
+
+Surprises
+---------
+
+Most of the time a job or a test fail because it detects error
+in VPP or CSIT code (and passes otherwise).
+If that is not true, it is called a surprise.
+Here are few known surprise types.
+
+Infra surprise
+..............
+
+Failure to checkout the required git commit, ClosedChannelException,
+Device creation fails...
+The symptoms can be numerous, but quite distinctive.
+
+Sometimes re-checking helps. Other times jobs are blocked until the infra issue
+is identified and fixed.
+
+Merge surprise
+..............
+
+In the current Gerrit submit mode
+(automatic rebase when Submit button is pressed)
+there is a possibility of an error that is not detectable by current verify jobs.
+Imagine there are two changes waiting for review, A and B.
+The change A adds a new functionality using existing functions.
+The change B refactors and renames some of the functions.
+Both changes pass review, both are merged concurrently
+and Gerrit does not complain about merge conflicts.
+But the final code does not work, as the new functionality from change A
+expects function names that are no longer present since change B.
+
+Currently, this kind of error may happen, both in CSIT and in VPP.
+The error can be fixed by reverting B, but that may take a while
+if unaware committers keep merging subsequent changes based on A or earlier.
+
+Anyway, which error is usually easily detected (changes based on new HEAD
+start failing verify jobs with a common symptom unrelated to the change),
+and does not need a specific verify job. Still, it can cause
+different behavior in otherwise identically behaving jobs.
+
+Usual relations
+---------------
+
+When there are no surprises, there are following relations between jobs.
+
+csit-vpp-device-*-semiweekly tests the same combination previously tested by
+vpp-csit-verify-device-* job. As the latter is voting, the former
+can only fail on some surprise.
+
+csit-vpp-device-*-weekly tests the same combination previously tested by
+csit-vpp-device-* job. As the latter is voting, the former
+can only fail on some surprise.
+
+csit-vpp-perf-mrr-* and csit-vpp-perf-ndrpdr-* jobs can still fail,
+even though the same combination is tested by vpp-csit-verify-perf-*,
+because the latter is manually triggered, and the former take too long
+(so it is not feasible to run that many tests on each VPP patch).
+There is some overlap in coverage of the former and vpp-csit-verify-device-*
+(and vpp-csit-verify-api-crc-*), which prevents some failures, but not all.
+
+History
+~~~~~~~
+
+Functional tests
+................
+
+From the very early days, there have been functional test in CSIT,
+that got executed on every CSIT patch. The initial implementation was using
+VIRL system to create test topology using VMs.
+
+The initial focus was to verify basic functionality of VPP.
+Over the time, most of basic functionality testing become covered
+by "make test" run in VPP verify jobs, so failure in functional jobs
+was either due to wrong assumptions (or bugs and typos) in CSIT code,
+or it was caused by a functionality not suitably testable in "make test",
+such as testing with real NICs and drivers.
+
+In CSIT, we introduced device tests, as a way to run more verify
+jobs in parallel while using hardware NICs (at least their virtual functions).
+The selection of tests run in devicetest jobs was focused on testing
+NIC drivers (and associated input graph nodes), later expanded also to
+increase coverage of binary API messages used by CSIT.
+The number of selected tests was otherwise kept small,
+so the runs do not take long to finish.
+When stable enough, VIRL jobs were deleted, and even later
+the device test results become stable enough to become voting in VPP.
+
+Around that time, VPP introduced API stability process,
+which prevents "production" VPP API messages from changing their argument
+(structure, field names, types), while other ways to configure VPP
+(CLI, VAT) do not enjoy this level of stability.
+
+Before CRC checks and device tests became voting in VPP,
+there was no automated way to gate VPP changes that can break CSIT tests.
+
+Performance tests
+.................
+
+From the very early days, there were periodic (weekly or daily) performance jobs
+testing the most recent VPP version. Performance tests take longer to finish
+(compared to functional tests), there is a larger number of them,
+and they require access to physical testbeds, of which we have multiple types
+but small number of copies per type.
+
+That means not even CSIT changes have automated verify job with
+performance tests. There is a manual trigger available, but that relies on
+CSIT committers knowing which performance tests are likely to be broken
+by a CSIT patch under review, so there is always a risk of unintended breakage.
+
+The ideal solution would be to have a periodic job which runs a selection
+of performance tests (stable VPP version with HEAD CSIT code),
+and mark CSIT commits which pass such verification as "stable", "verified"
+or otherwise better tested than ordinary commits.
+
+This is what "oper branch" should be pointing at.
+Unfortunatelly, the only periodic job which runs
+stable VPP version with HEAD CSIT code is csit-vpp-device-*-weekly,
+and as the name says, it runs only device tests, no performance tests.
+
+Stable and oper
+~~~~~~~~~~~~~~~
+
+The decision back then was to treat some commits in a privileged way,
+the idea is to pick one commit, test it more thoroughly, and then use it
+for a period of time.
+
+This got implemented in two ways. For VPP builds, CSIT code started tracking
+Stable VPP Version, that was to be used when testing new CSIT changes.
+For CSIT commits, we created "oper" branches, to be used to test new VPP builds.
+
+Both ways to mark privileged code is in hands of CSIT committers,
+as they usually track test failures more closely.
+As fixes in CSIT tend to be smaller and delivered faster,
+it is common to cherry-pick any such fix from CSIT master
+to its current oper branch. New CSIT oper branch is created each week,
+as it is easier to fork from master than to cherry-pick the other
+not-fix CSIT changes.
+VPP stable version is also updated once a week, unless something
+(critical fix, API change) is worth attention.
+
+TODO: When was the last time CSIT rolled back by deleting oper branch?
+
+While CSIT master branch is covered by voting jobs (tox and device
+are running on each patch, performance test only when deemed affected),
+there are no verify jobs for oper branches,
+increasing the risk of merge surprise.
+
+Daily performance results are one of more interesting outputs,
+they come from a job using latest VPP but only oper CSIT,
+so CSIT improvements tend to arrive late (unless considered an important fix).
+
+Results coming from jobs pairing latest CSIT with stable VPP
+are comparatively more stable, so the fact VPP improvements are lagging
+is rarely noticed.
+
+There are currently no jobs that would test latest VPP with latest CSIT
+(it is possible to use vpp-csit-verify-perf-* to get this combination
+on demand, if the human triggering it has committer rights).
+
+Oper branches are removed from Gerrit periodically, to avoid spam.
+This makes it hard to investigate older results from periodic jobs,
+as it is harder to fins what was in the CSIT commit used.
+The github mirror does not remove the old oper branches,
+so the old commits can be found there,
+but also the "branches" list is big.
+
+Since then, we have CRC checking job and voting devicetest jobs
+on both VPP and CSIT side. Breakages in performance results are less frequent,
+as big refactors are less frequent and CSIT committers have more experience
+in selecting which perf tests to run to verify nothing important get broken.
+
+Oper pros
+.........
+
+Priority fixes can be cherry-picked into oper branch.
+
+Big rollback can be done simply by deleting latest oper branch.
+
+If a breakage / regression happens just after creation of new oper branch,
+the cause was probably CSIT.
+
+Oper cons
+.........
+
+Cherry-picks to oper branch do not have even tox verification.
+
+Cherry-picks to oper branch do not have devicetest verification.
+
+Thus CSIT merge surprise is more likely than usual (but not very likely).
+
+Currently no perf verification when creating new oper branch.
+
+No perf verification for cherry-picks either.
+
+Oper branch creation, deletion and cherry-picks is an overhead
+for CSIT developers.
+
+Proposals
+~~~~~~~~~
+
+Remove
+......
+
+Stop creating oper branches, switch all jobs currently using oper branch
+to use HEAD (also for older release branches).
+
+In future, we may also remove Stable VPP version marker,
+but there is less risk and overhead in that, so lower priority.
+
+Verify
+......
+
+Add jobs that run a seletion of perf tests for stable VPP and HEAD CSIT, weekly.
+
+At least two jobs are needed (one 2-node, one 3-node). Not too many jobs,
+as there is a possibility of CSIT merge happening between two jobs start,
+and we only want a single weekly commit to get tested.
+
+Alternative: Start such jobs manually, thus guaranteeing the CSIT commit
+used is the same for all jobs.
+
+Only create new oper branch if the new results are not worse than old results.
+
+Open questions
+______________
+
+How to detect CSIT-caused regressions? Trending usually needs
+few runs to detect regression, unless it is a really big one.
+
+How to verify cherry-picks?
+
+High level
+~~~~~~~~~~
+
+Stable VPP version is marked so that CSIT does not attempt to follow
+rapidly moving VPP target.
+
+CSIT oper branch is maintained so that VPP verify and trending jobs
+do not attempt to follow rapidly moving CSIT target.
+
+I argue CSIT target is no longer moving that rapidly, and "batching"
+CSIT changes to come once a week does not give enough stability benefits,
+compared to CSIT developer overhead and delayed CSIT features.
+
+TODOs
+~~~~~
+
+Explain why Stable VPP is less risk and overhead.
+
+Convert to .rst or .md so the table and its structured legend render correctly.
