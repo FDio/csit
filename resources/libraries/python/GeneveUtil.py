@@ -13,8 +13,6 @@
 
 """VPP GENEVE Plugin utilities library."""
 
-from ipaddress import ip_address
-
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.ip_types import Address
@@ -148,14 +146,14 @@ class GeneveUtil:
         :type next_idx: int
         """
 
-        src_ip_int = IPUtil.ip_to_int(gen_tunnel[u"src_ip"])
-        dst_ip_int = IPUtil.ip_to_int(gen_tunnel[u"dst_ip"])
-        if_ip_int = IPUtil.ip_to_int(gen_tunnel[u"if_ip"])
+        src_ip_start = Address(gen_tunnel[u"src_ip"])
+        dst_ip_start = Address(gen_tunnel[u"dst_ip"])
+        if_ip_start = Address(gen_tunnel[u"if_ip"])
 
         for idx in range(n_tunnels):
-            src_ip = IPUtil.int_to_ip(src_ip_int + idx * 256)
-            dst_ip = IPUtil.int_to_ip(dst_ip_int + idx * 256)
-            if_ip = IPUtil.int_to_ip(if_ip_int + idx * 256)
+            src_ip = src_ip_start + idx * 256
+            dst_ip = dst_ip_start + idx * 256
+            if_ip = if_ip_start + idx * 256
 
             IPUtil.vpp_route_add(
                 node, src_ip, gen_tunnel[u"ip_mask"],
