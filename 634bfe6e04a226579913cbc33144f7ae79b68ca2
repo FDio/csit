@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e44b06e_006a0d3b",
+        "filename": "tests/trex/perf/ip6/regenerate_testcases.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-17T17:38:41Z",
+      "side": 1,
+      "message": "this is why it slips reviews - as missing protocol detection leaves it to user input and error.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 58
+      },
+      "revId": "634bfe6e04a226579913cbc33144f7ae79b68ca2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
