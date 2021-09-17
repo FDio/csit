@@ -15,6 +15,8 @@
 
 from string import Template
 
+from resources.libraries.python.Constants import Constants
+
 
 class Testcase:
     """Class containing a template string and a substitution method."""
@@ -70,6 +72,8 @@ class Testcase:
         )
         return self.template.substitute(subst_dict)
 
+
+
     @classmethod
     def default(cls, suite_id):
         """Factory method for creating "default" testcase objects.
@@ -103,7 +107,7 @@ class Testcase:
         # TODO: Choose a better frame size identifier for streamed protocols
         # (TCP, QUIC, SCTP, ...) where DUT (not TG) decides frame size.
         if u"tcphttp" in suite_id:
-            if u"rps" or u"cps" in suite_id:
+            if u"rps" in suite_id or u"cps" in suite_id:
                 template_string = f'''
 | ${{frame_str}}-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{frame_str}} | ${{cores_str}}C
@@ -157,3 +161,79 @@ class Testcase:
 | | frame_size=${{frame_num}}
 '''
         return cls(template_string)
+
+def add_testcases_to_file(testcase, suite_id, file_out, tc_kwargs_list):
+    """Generate text according to kwargs and append it to a file.
+
+    Here we add a bunch of last minute conditions on when to skip a testcase.
+    When they get too complicated, add a more specialized suite subtype instead.
+
+    :param testcase: Testcase instance to use for generating.
+    :param suite_id: Suite ID.
+    :param file_out: File to write testcases to, assumed open for writing.
+    :param tc_kwargs_list: Key-value pairs used to construct testcases.
+    :type testcase: Testcase
+    :type suite_id: str
+    :type file_out: file
+    :type tc_kwargs_list: dict
+    """
+    for kwargs in tc_kwargs_list:
+        # TODO: Is there a better way to disable some combinations?
+        emit = True
+        if u"-16vm2t-" in suite_id or u"-16dcr2t-" in suite_id:
+            if kwargs[u"phy_cores"] > 3:
+                # CSIT lab only has 28 (physical) core processors,
+                # so these test would fail when attempting to assign cores.
+                emit = False
+        if u"-24vm1t-" in suite_id or u"-24dcr1t-" in suite_id:
+            if kwargs[u"phy_cores"] > 3:
+                # CSIT lab only has 28 (physical) core processors,
+                # so these test would fail when attempting to assign cores.
+                emit = False
+        if u"soak" in suite_id:
+            # Soak test take too long, do not risk other than tc01.
+            if kwargs[u"phy_cores"] != 1:
+                emit = False
+            if kwargs[u"frame_size"] not in Constants.MIN_FRAME_SIZE_VALUES:
+                emit = False
+        if kwargs[u"frame_size"] not in Constants.MIN_FRAME_SIZE_VALUES:
+            if (
+                u"-cps-" in suite_id
+                or u"-pps-" in suite_id
+                or u"-tput-" in suite_id
+            ):
+                emit = False
+        if emit:
+            file_out.write(testcase.generate(**kwargs))
+
+
+def write_test_cases(state, file_out):
+    """Based on edit state, generate testcase blocks and append them to file.
+
+    This is where the protocol is detected
+    and testcase instance and kwargs list is created.
+
+    The file is assumed to be open for write with prolog already written there.
+
+    :param state: Edited suite state.
+    :param file_out: Text file open for writing, to append test cases to.
+    :type state: EditState
+    :type file_out: file
+    """
+    _, suite_id, _ = state.get_iface_and_suite_ids(state.filename)
+    # TODO: Set min frame size directly, without mentioning protocol.
+    protocol = u"ip4"
+    if u"ethip6" in suite_id or u"ip6base" in suite_id:
+        if u"ethip4" not in suite_id:
+            # We may need more complicated logic if both IP4oIP6 and IP6oIP4
+            # sncap/decap tests become common.
+            protocol = u"ip6"
+    if u"ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase" in suite_id:
+        # We only want to match VTS tests. Vhost encapsulates
+        # only on DUT-DUT link, and we do not touch scapy tests.
+        protocol = u"ethip4vxlan"
+    if u"dot1qip4vxlan" in suite_id:
+        protocol = u"dot1qip4vxlan"
+    tc_kwargs_list = state.subtype.value.kwargs_function(protocol)
+    testcase = state.subtype.value.testcase_factory(suite_id)
+    add_testcases_to_file(testcase, suite_id, file_out, tc_kwargs_list)

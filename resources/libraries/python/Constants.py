@@ -285,6 +285,17 @@ class Constants:
     # Maximum number of interfaces in a data path
     DATAPATH_INTERFACES_MAX = 100
 
+    # Mapping used by autogen to determine smallest frame size.
+    PROTOCOL_TO_MIN_FRAME_SIZE = {
+        u"ip4": 64,
+        u"ip6": 78,
+        u"ethip4vxlan": 114,  # What is the real minimum for latency stream?
+        u"dot1qip4vxlan": 118
+    }
+
+    # Shorthand to simplify checking if a value is a minimal frame size.
+    MIN_FRAME_SIZE_VALUES = list(PROTOCOL_TO_MIN_FRAME_SIZE.values())
+
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
         u"Intel-X520-DA2": 10000000000,
@@ -342,7 +353,7 @@ class Constants:
     }
 
     # Each driver needs different prugin to work.
-    NIC_DRIVER_TO_PLUGINS = {
+    NIC_DRIVER_TO_VPP_PLUGIN = {
         u"vfio-pci": u"dpdk_plugin.so",
         u"avf": u"avf_plugin.so",
         u"rdma-core": u"rdma_plugin.so",
@@ -350,19 +361,23 @@ class Constants:
     }
 
     # Tags to differentiate tests for different NIC driver.
+    # Common for DPDK and VPP tests.
     NIC_DRIVER_TO_TAG = {
         u"vfio-pci": u"DRV_VFIO_PCI",
         u"avf": u"DRV_AVF",
         u"rdma-core": u"DRV_RDMA_CORE",
         u"af_xdp": u"DRV_AF_XDP",
+        u"mlx5_core": u"DRV_MLX5_CORE",
     }
 
     # Suite names have to be different, add prefix.
+    # Common for DPDK and VPP tests.
     NIC_DRIVER_TO_SUITE_PREFIX = {
         u"vfio-pci": u"",
         u"avf": u"avf-",
         u"rdma-core": u"rdma-",
         u"af_xdp": u"af-xdp-",
+        u"mlx5_core": u"mlx5-",
     }
 
     # Number of virtual functions of physical nic.
@@ -385,18 +400,6 @@ class Constants:
         u"Mellanox-CX556A": [u"mlx5_core"],
     }
 
-    # Tags to differentiate tests for different NIC driver.
-    DPDK_NIC_DRIVER_TO_TAG = {
-        u"vfio-pci": u"DRV_VFIO_PCI",
-        u"mlx5_core": u"DRV_MLX5_CORE",
-    }
-
-    # Suite names have to be different, add prefix.
-    DPDK_NIC_DRIVER_TO_SUITE_PREFIX = {
-        u"vfio-pci": u"",
-        u"mlx5_core": u"mlx5-",
-    }
-
     # Some identifiers constructed from suite names
     # have to be independent of NIC driver used.
     # In order to remove or reject the NIC driver part,
@@ -404,19 +407,12 @@ class Constants:
     FORBIDDEN_SUITE_PREFIX_LIST = [
         prefix for prefix in NIC_DRIVER_TO_SUITE_PREFIX.values() if prefix
     ]
-    FORBIDDEN_SUITE_PREFIX_LIST += [
-        prefix for prefix in DPDK_NIC_DRIVER_TO_SUITE_PREFIX.values() if prefix
-    ]
 
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.
     NIC_NAME_TO_CRYPTO_HW = {
         u"Intel-X553": u"HW_C3xxx",
         u"Intel-X710": u"HW_DH895xcc",
         u"Intel-XL710": u"HW_DH895xcc",
-    }
-
-    DEVICE_TYPE_TO_KEYWORD = {
-        u"scapy": None
     }
 
     PERF_TYPE_TO_KEYWORD = {
