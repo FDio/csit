@@ -211,14 +211,8 @@ class NATUtil:
         cmd = u"nat44_show_running_config"
         err_msg = f"Failed to get NAT44 configuration on host {node[u'host']}"
 
-        try:
-            with PapiSocketExecutor(node) as papi_exec:
-                reply = papi_exec.add(cmd).get_reply(err_msg)
-        except AssertionError:
-            # Perhaps VPP is an older version
-            old_cmd = u"nat_show_config"
-            with PapiSocketExecutor(node) as papi_exec:
-                reply = papi_exec.add(old_cmd).get_reply(err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd).get_reply(err_msg)
 
         logger.debug(f"NAT44 Configuration:\n{pformat(reply)}")
 
