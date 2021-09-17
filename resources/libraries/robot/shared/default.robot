@@ -170,6 +170,8 @@
 | | | Run Keyword | ${dut}.Add Unix Nodaemon
 | | | Run Keyword | ${dut}.Add Unix Coredump
 | | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
+| | | # Api segment is just for VAT2, remove if no longer needed.
+| | | Run Keyword | ${dut}.Add Api Segment Gid
 | | | Run Keyword | ${dut}.Add Main Heap Size | ${${heap_size_mult}*${2}}G
 | | | Run Keyword | ${dut}.Add Main Heap Page Size | 2M
 | | | Run Keyword | ${dut}.Add Statseg Size | 2G
