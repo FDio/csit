@@ -17,6 +17,7 @@
 from copy import deepcopy
 
 from resources.libraries.python.model.util import get_export_data, descend
+from resources.libraries.python.model.telemetry import parse_telemetry_text
 from resources.libraries.python.time_measurement import timestamp_or_now
 
 
@@ -89,7 +90,8 @@ def export_papi_command_context(host, port, socket, context, timestamp=None):
     Current time is used if timestamp is missing.
     Log level is always DEBUG.
 
-    The host is NOT added to the info set of hosts.
+    The host is NOT added to the info set of hosts, as each context
+    comes after a command.
 
     :param host: Node "host" attribute, usually its IPv4 address.
     :param port: SSH port number to use when connecting to the host.
@@ -135,7 +137,8 @@ def export_papi_replies(
     Replies are deep-copied to make sure the values logged here
     are not affected by any further processing in the caller.
 
-    The host is NOT added to the info set of hosts.
+    The host is NOT added to the info set of hosts, as each reply
+    comes after a command.
 
     :param host: Node "host" attribute, usually its IPv4 address.
     :param port: SSH port number to use when connecting to the host.
@@ -223,7 +226,8 @@ def export_ssh_result(
     Current time is used if timestamp is missing.
     Log level is always DEBUG.
 
-    The host is NOT added to the info set of hosts.
+    The host is NOT added to the info set of hosts, as each result
+    comes after a command.
 
     :param host: Node "host" attribute, usually its IPv4 address.
     :param port: SSH port number to use when connecting to the host.
@@ -275,7 +279,8 @@ def export_ssh_timeout(
     Current time is used if timestamp is missing.
     Log level is always DEBUG.
 
-    The host is NOT added to the info set of hosts.
+    The host is NOT added to the info set of hosts, as each timeout
+    comes after a command.
 
     :param host: Node "host" attribute, usually its IPv4 address.
     :param port: SSH port number to use when connecting to the host.
@@ -371,3 +376,51 @@ def export_plrsearch_by_level(level, message, timestamp=None):
         data=str(message),
     )
     debug_data[u"log"].append(mlrsearch_record)
+
+
+def export_telemetry(host, port, socket, message, text, timestamp=None):
+    """Add a log item with collection of metrics.
+
+    Message is put as message, data is an empty string.
+
+    Timestamp marks time when all metrics were done gathering.
+    Current time is used if timestamp is missing.
+    Log level is always DEBUG.
+
+    Argument "message" can be used to distinguish metric when
+    they are gathered multiple times within a test case, e.g. "teardown".
+
+    For debug, single multiline string is logged.
+    For info, the string is parsed into a structured object.
+
+    The host is NOT added to the info set of hosts, as each telemetry
+    comes after a SSH command.
+
+    :param host: Node "host" attribute, usually its IPv4 address.
+    :param port: SSH port number to use when connecting to the host.
+    :param socket: Socket path, VPPs in container will differ by this.
+    :param message: Additional info on circumstances of the metric.
+    :param text: Textual form of the metric data to export.
+    :param timestamp: Local UTC time just before sending.
+    :type host: str
+    :type port: int
+    :type socket: str
+    :type message: str
+    :type text: str
+    :type timestamp: Optional[str]
+    """
+    msg = str(message)
+    debug_data, info_data = get_export_data()
+    debug_telemetry_record = dict(
+        source_type=u"host,port,socket",
+        source_id=dict(host=host, port=port, socket=socket),
+        msg_type=u"metric",
+        log_level=u"INFO",
+        timestamp=timestamp_or_now(timestamp),
+        msg=msg,
+        data=text,
+    )
+    debug_data[u"log"].append(debug_telemetry_record)
+    info_telemetry_record = deepcopy(debug_telemetry_record)
+    info_telemetry_record[u"data"] = parse_telemetry_text(text)
+    info_data[u"log"].append(info_telemetry_record)
