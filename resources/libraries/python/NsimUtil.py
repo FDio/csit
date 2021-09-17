@@ -51,15 +51,8 @@ class NsimUtil():
             packets_per_reorder=vpp_nsim_attr.get(u"packets_per_reorder", 0)
         )
         err_msg = f"Failed to configure NSIM on host {host}"
-        try:
-            with PapiSocketExecutor(node) as papi_exec:
-                papi_exec.add(cmd, **args).get_reply(err_msg)
-        except AssertionError:
-            # Perhaps VPP is an older version
-            old_cmd = u"nsim_configure"
-            args.pop(u"packets_per_reorder")
-            with PapiSocketExecutor(node) as papi_exec:
-                papi_exec.add(old_cmd, **args).get_reply(err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
         if vpp_nsim_attr[u"output_nsim_enable"]:
             cmd = u"nsim_output_feature_enable_disable"
