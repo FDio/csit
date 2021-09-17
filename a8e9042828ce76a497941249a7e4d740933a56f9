@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd6fec1e_2719f78c",
+        "filename": "tests/trex/perf/ip6/1n1l-10ge2p1x710-ethip6-ip6base-tg-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-17T14:15:46Z",
+      "side": 1,
+      "message": "78\n\nhttps://gerrit.fd.io/r/c/csit/+/33745",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 4
+      },
+      "revId": "a8e9042828ce76a497941249a7e4d740933a56f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
