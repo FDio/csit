@@ -300,21 +300,21 @@ class Constants:
 
     # Mapping from NIC name to its pps limit.
     NIC_NAME_TO_PPS_LIMIT = {
-        u"Intel-X520-DA2": 14880952,
-        u"Intel-X553": 14880952,
-        u"Intel-X710": 14880952,
-        u"Intel-XL710": 18750000,
-        u"Intel-XXV710": 18750000,
-        u"Intel-E810CQ": 58500000,
+        u"Intel-X520-DA2": 9002,
+        u"Intel-X553": 9002,
+        u"Intel-X710": 9002,
+        u"Intel-XL710": 9002,
+        u"Intel-XXV710": 9002,
+        u"Intel-E810CQ": 9002,
         # 2n-clx testbeds show duration stretching on high rates,
         # depending on encapsulation TRex has to generate.
         # 40 Mpps is still too much for dot1q (~8% stretching).
         # 36 Mpps is around the maximal VPP throughput (l2patch 4c8t).
         # Vxlan traffic will still show stretching at 36 Mpps (>12%),
         # but we do not care about those tests that much.
-        u"Mellanox-CX556A": 36000000, # 148809523,
-        u"Amazon-Nitro-50G": 1200000,
-        u"virtual": 14880952,
+        u"Mellanox-CX556A": 9002, # 148809523,
+        u"Amazon-Nitro-50G": 9002,
+        u"virtual": 9002,
     }
 
     # Suite file names use codes for NICs.
