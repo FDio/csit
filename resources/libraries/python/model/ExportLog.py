@@ -163,3 +163,149 @@ def export_papi_replies(
         data=[deepcopy(item) for item in replies],
     )
     debug_data[u"log"].append(papi_record)
+
+
+def export_ssh_command(
+        host, port, command, timestamp=None
+    ):
+    """Add a log item about SSH command execution staring.
+
+    Only for debug log.
+    Result arrives in a separate log item.
+
+    Timestamp marks time just before sending starts.
+    Current time is used if timestamp is missing.
+    Log level is always DEBUG.
+    Command is converted to string to make sure the value logged here
+    are not affected by any further manipulation from the caller.
+
+    The command is stored as "data" (not "msg") as in some cases
+    the command can be too long to act as a message.
+
+    The host is added to the info set of hosts.
+
+    :param host: Node "host" attribute, usually its IPv4 address.
+    :param port: SSH port number to use when connecting to the host.
+    :param command: Serialized bash command to execute.
+    :param timestamp: Local UTC time just before sending.
+    :type host: str
+    :type port: int
+    :type command: str
+    :type timestamp: Optional[str]
+    """
+    debug_data, info_data = get_export_data()
+    ssh_record = dict(
+        source_type=u"host,port",
+        source_id=dict(host=host, port=port),
+        msg_type=u"ssh_command",
+        log_level=u"DEBUG",
+        timestamp=timestamp_or_now(timestamp),
+        msg="",
+        data=str(command),
+    )
+    debug_data[u"log"].append(ssh_record)
+    hosts_node = descend(info_data, u"hosts", set())
+    hosts_node.add(host)
+
+
+def export_ssh_result(
+        host, port, code, stdout, stderr, duration, timestamp=None
+    ):
+    """Add a log item about ssh execution result.
+
+    Only for debug log.
+
+    There is no easy way to pair with the corresponding command,
+    but usually there is only one SSH session for given host and port.
+    The duration value may give a hint if that is not the case.
+
+    Message is empty, data has fields "rc", "stdout", "stderr" and "duration".
+
+    Timestamp marks time just after command execution finished.
+    Current time is used if timestamp is missing.
+    Log level is always DEBUG.
+
+    The host is NOT added to the info set of hosts, as each result
+    comes after a command.
+
+    :param host: Node "host" attribute, usually its IPv4 address.
+    :param port: SSH port number to use when connecting to the host.
+    :param code: Bash return code, e.g. 0 for success.
+    :param stdout: Captured standard output of the command execution.
+    :param stderr: Captured error output of the command execution.
+    :param duration: How long has the command been executing, in seconds.
+    :param timestamp: Local UTC time just after command returned.
+    :type host: str
+    :type port: int
+    :type code: int
+    :type stdout: str
+    :type stderr: str
+    :type duration: float
+    :type timestamp: Optional[str]
+    """
+    debug_data, _ = get_export_data()
+    papi_record = dict(
+        source_type=u"host,port",
+        source_id=dict(host=host, port=port),
+        msg_type=u"ssh_result",
+        log_level=u"DEBUG",
+        timestamp=timestamp_or_now(timestamp),
+        msg=u"",
+        data=dict(
+            rc=int(code),
+            stdout=str(stdout),
+            stderr=str(stderr),
+            duration=float(duration),
+        ),
+    )
+    debug_data[u"log"].append(papi_record)
+
+
+def export_ssh_timeout(
+        host, port, stdout, stderr, duration, timestamp=None
+    ):
+    """Add a log item about ssh execution timing out.
+
+    Only for debug log.
+
+    There is no easy way to pair with the corresponding command,
+    but usually there is only one SSH session for given host and port.
+
+    Message is empty, data has fields "stdout", "stderr" and "duration".
+    The duration value may give a hint if that is not the case.
+
+    Timestamp marks time just after command execution overstepped its timeout.
+    Current time is used if timestamp is missing.
+    Log level is always DEBUG.
+
+    The host is NOT added to the info set of hosts, as each timeout
+    comes after a command.
+
+    :param host: Node "host" attribute, usually its IPv4 address.
+    :param port: SSH port number to use when connecting to the host.
+    :param stdout: Captured standard output of the command execution so far.
+    :param stderr: Captured error output of the command execution so far.
+    :param duration: How long has the command been executing, in seconds.
+    :param timestamp: Local UTC time just before sending.
+    :type host: str
+    :type port: int
+    :type stdout: str
+    :type stderr: str
+    :type duration: float
+    :type timestamp: Optional[str]
+    """
+    debug_data, _ = get_export_data()
+    papi_record = dict(
+        source_type=u"host,port",
+        source_id=dict(host=host, port=port),
+        msg_type=u"ssh_timeout",
+        log_level=u"DEBUG",
+        timestamp=timestamp_or_now(timestamp),
+        msg=u"",
+        data=dict(
+            stdout=str(stdout),
+            stderr=str(stderr),
+            duration=float(duration),
+        ),
+    )
+    debug_data[u"log"].append(papi_record)
