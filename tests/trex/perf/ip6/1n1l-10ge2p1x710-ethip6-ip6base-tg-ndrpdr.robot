@@ -69,9 +69,9 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B--ethip6-ip6base-tg-ndrpdr
-| | [Tags] | 64B
-| | frame_size=${64}
+| 78B--ethip6-ip6base-tg-ndrpdr
+| | [Tags] | 78B
+| | frame_size=${78}
 
 | 1518B--ethip6-ip6base-tg-ndrpdr
 | | [Tags] | 1518B

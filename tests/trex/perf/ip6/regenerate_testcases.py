@@ -15,4 +15,4 @@
 
 from resources.libraries.python.autogen.Regenerator import Regenerator
 
-Regenerator().regenerate_glob(u"*.robot")
+Regenerator().regenerate_glob(u"*.robot", protocol=u"ip6")
