@@ -14,20 +14,25 @@
 
 """Common IP utilities library."""
 
+import json
 import re
-import os
+import tempfile
 
 from enum import IntEnum
 
+from robot.api import logger
+
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.export_json import pre_serialize_recursive
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.ip_types import (
     incrementator, AddressUnion, Address, AddressWithPrefix
 )
+from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.Vat2Executor import execute_vat2_script
 from resources.libraries.python.Namespaces import Namespaces
 
 
@@ -638,48 +643,6 @@ class IPUtil:
         count = kwargs.get(u"count", 1)
         netiter = incrementator(AddressWithPrefix(network, prefix_len))
 
-        if count > 100:
-            if not kwargs.get(u"multipath", True):
-                raise RuntimeError(u"VAT exec supports only multipath behavior")
-            gateway = kwargs.get(u"gateway", u"")
-            interface = kwargs.get(u"interface", u"")
-            local = kwargs.get(u"local", u"")
-            if interface:
-                interface = InterfaceUtil.vpp_get_interface_name(
-                    node, InterfaceUtil.get_interface_index(
-                        node, interface
-                    )
-                )
-            vrf = kwargs.get(u"vrf", None)
-            trailers = list()
-            if vrf:
-                trailers.append(f"table {vrf}")
-            if gateway:
-                trailers.append(f"via {gateway}")
-                if interface:
-                    trailers.append(interface)
-            elif interface:
-                trailers.append(f"via {interface}")
-            if local:
-                if gateway or interface:
-                    raise RuntimeError(u"Unsupported combination with local.")
-                trailers.append(u"local")
-            trailer = u" ".join(trailers)
-            command_parts = [u"exec ip route add", u"network goes here"]
-            if trailer:
-                command_parts.append(trailer)
-            tmp_filename = u"/tmp/routes.config"
-            with open(tmp_filename, u"w") as tmp_file:
-                for _ in range(count):
-                    command_parts[1] = str(next(netiter))
-                    print(u" ".join(command_parts), file=tmp_file)
-            VatExecutor().execute_script(
-                tmp_filename, node, timeout=1800, json_out=False,
-                copy_on_execute=True, history=False
-            )
-            os.remove(tmp_filename)
-            return
-
         cmd = u"ip_route_add_del"
         args = dict(
             is_add=True,
@@ -687,6 +650,47 @@ class IPUtil:
             route=None
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
+
+        if count > 100:
+            with PapiSocketExecutor(node) as papi_exec:
+                logger.info(u"Before adding routes.")
+                papi_exec.add(u"ip_table_dump")
+                replies = papi_exec.get_details()
+                logger.debug(f"ip table dump {replies}")
+                for reply in replies:
+                    table = reply[u"table"]
+                    papi_exec.add(u"ip_route_v2_dump", dict(table=table))
+                    details = papi_exec.get_details()
+                    logger.debug(f"ip route dump for table {table}\n{details}")
+                    break
+            with tempfile.NamedTemporaryFile(mode=u"wt") as vat2_file:
+                for i in range(kwargs.get(u"count", 1)):
+                    args[u"route"] = IPUtil.compose_vpp_route_structure(
+                        node, next(netiter).network_address, prefix_len,
+                        **kwargs
+                    )
+                    args[u"_msgname"] = cmd
+                    #history = bool(not 1 < i < kwargs.get(u"count", 1))
+#                    logger.trace(f"args repr {args!r}")
+                    pre_args = pre_serialize_recursive(args)
+#                    logger.trace(f"pre_args repr {pre_args!r}")
+                    print(json.dumps(pre_args), file=vat2_file)
+                vat2_file.flush()
+                _, output = run([u"tail", vat2_file.name])
+                logger.debug(f"tail:\n{output}")
+                execute_vat2_script(cmd, vat2_file.name, node)
+            with PapiSocketExecutor(node) as papi_exec:
+                logger.info(u"After adding routes.")
+                papi_exec.add(u"ip_table_dump")
+                replies = papi_exec.get_details()
+                logger.debug(f"ip table dump {replies}")
+                for reply in replies:
+                    table = reply[u"table"]
+                    papi_exec.add(u"ip_route_v2_dump", dict(table=table))
+                    details = papi_exec.get_details()
+                    logger.debug(f"ip route dump for table {table}\n{details}")
+                    break
+            return
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(count):
