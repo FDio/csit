@@ -1068,6 +1068,10 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
+        test_result = {
+            
+        }
+
         self._sh_run_counter = 0
         self._telemetry_kw_counter = 0
         self._telemetry_msg_counter = 0
