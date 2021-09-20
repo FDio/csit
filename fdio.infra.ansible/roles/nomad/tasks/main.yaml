@@ -1,21 +1,16 @@
 ---
 # file: roles/nomad/tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
+- name: Install Dependencies
   apt:
-    update_cache: true
+    name: "{{ packages | flatten(levels=1) }}"
+    state: "present"
     cache_valid_time: 3600
+    install_recommends: false
   when:
     - ansible_distribution|lower == 'ubuntu'
   tags:
-    - nomad-inst-prerequisites
-
-- name: Inst - Prerequisites
-  package:
-    name: "{{ packages | flatten(levels=1) }}"
-    state: latest
-  tags:
-    - nomad-inst-prerequisites
+    - nomad-inst-dependencies
 
 - name: Conf - Add Nomad Group
   group:
@@ -33,13 +28,6 @@
   tags:
     - nomad-conf-user
 
-- name: Inst - Clean Nomad
-  file:
-    path: "{{ nomad_inst_dir }}/nomad"
-    state: "absent"
-  tags:
-    - nomad-inst-package
-
 - name: Inst - Download Nomad
   get_url:
     url: "{{ nomad_zip_url }}"
@@ -47,11 +35,19 @@
   tags:
     - nomad-inst-package
 
+- name: Inst - Clean Nomad
+  file:
+    path: "{{ nomad_inst_dir }}/nomad"
+    state: "absent"
+  when:
+    - nomad_force_update | bool
+  tags:
+    - nomad-inst-package
+
 - name: Inst - Unarchive Nomad
   unarchive:
     src: "{{ nomad_inst_dir }}/{{ nomad_pkg }}"
     dest: "{{ nomad_inst_dir }}/"
-    creates: "{{ nomad_inst_dir }}/nomad"
     remote_src: true
   tags:
     - nomad-inst-package
@@ -169,6 +165,8 @@
     mode: 0600
   no_log: true
   loop: "{{ nomad_certificates | flatten(levels=1) }}"
+  when:
+    - nomad_certificates
   tags:
     - nomad-conf
 
@@ -181,6 +179,8 @@
     mode: 0644
   notify:
     - "Restart Nomad"
+  when:
+    - nomad_service_mgr == "systemd"
   tags:
     - nomad-conf
 

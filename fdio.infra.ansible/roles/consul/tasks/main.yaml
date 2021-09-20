@@ -1,21 +1,16 @@
 ---
 # file: roles/consul/tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
+- name: Install Dependencies
   apt:
-    update_cache: true
+    name: "{{ packages | flatten(levels=1) }}"
+    state: "present"
     cache_valid_time: 3600
+    install_recommends: false
   when:
     - ansible_distribution|lower == 'ubuntu'
   tags:
-    - consul-inst-prerequisites
-
-- name: Inst - Prerequisites
-  package:
-    name: "{{ packages | flatten(levels=1) }}"
-    state: latest
-  tags:
-    - consul-inst-prerequisites
+    - consul-inst-dependencies
 
 - name: Conf - Add Consul Group
   group:
@@ -33,13 +28,6 @@
   tags:
     - consul-conf-user
 
-- name: Inst - Clean Consul
-  file:
-    path: "{{ consul_inst_dir }}/consul"
-    state: "absent"
-  tags:
-    - consul-inst-package
-
 - name: Inst - Download Consul
   get_url:
     url: "{{ consul_zip_url }}"
@@ -47,11 +35,19 @@
   tags:
     - consul-inst-package
 
+- name: Inst - Clean Consul
+  file:
+    path: "{{ consul_inst_dir }}/consul"
+    state: "absent"
+  when:
+    - consul_force_update | bool
+  tags:
+    - consul-inst-package
+
 - name: Inst - Unarchive Consul
   unarchive:
     src: "{{ consul_inst_dir }}/{{ consul_pkg }}"
     dest: "{{ consul_inst_dir }}/"
-    creates: "{{ consul_inst_dir }}/consul"
     remote_src: true
   tags:
     - consul-inst-package
@@ -147,6 +143,8 @@
     mode: 0600
   no_log: true
   loop: "{{ consul_certificates | flatten(levels=1) }}"
+  when:
+    - consul_certificates is defined
   tags:
     - consul-conf
 
@@ -156,6 +154,8 @@
     enabled: false
     name: "systemd-resolved"
     state: "{{ systemd_resolved_state }}"
+  when:
+    - nomad_service_mgr == "systemd"
   tags:
     - consul-conf
 
@@ -169,6 +169,8 @@
   notify:
     - "Restart Consul"
     - "Restart Nomad"
+  when:
+    - nomad_service_mgr == "systemd"
   tags:
     - consul-conf
 
