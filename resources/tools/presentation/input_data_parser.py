@@ -1023,21 +1023,11 @@ class ExecutionChecker(ResultVisitor):
         :type suite: Suite
         :returns: Nothing.
         """
-
-        try:
-            parent_name = suite.parent.name
-        except AttributeError:
-            return
-
-        self._data[u"suites"][suite.longname.lower().
-                              replace(u'"', u"'").
-                              replace(u" ", u"_")] = {
-                                  u"name": suite.name.lower(),
-                                  u"doc": suite.doc,
-                                  u"parent": parent_name,
-                                  u"level": len(suite.longname.split(u"."))
-                              }
-
+        suite_id = suite.longname.lower().replace(u" ", u"_")
+        self._data[u"suites"][suite_id] = {
+            u"suite_documentation": suite.doc,
+            u"suite_name": suite_id,
+        }
         suite.keywords.visit(self)
 
     def end_suite(self, suite):
@@ -1067,6 +1057,21 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
+        data = {
+            u"message": test.message,
+            u"results": dict(),
+            u"status": True if test.status == u"PASS" else False,
+            u"sut_type": u"",
+            u"sut_version": u"",
+            u"start_time": dt.fromisoformat(test.starttime),
+            u"end_time": dt.fromisoformat(test.endtime),
+            u"tags": [str(tag) for tag in test.tags],
+            u"test_documentation": test.doc,
+            u"test_id": u"",
+            u"test_name": u"",
+            u"test_type": u"",
+        }
+
         self._sh_run_counter = 0
         self._telemetry_kw_counter = 0
         self._telemetry_msg_counter = 0
@@ -1076,9 +1081,6 @@ class ExecutionChecker(ResultVisitor):
         # Check the ignore list
         if longname_orig in self._ignore:
             return
-
-        tags = [str(tag) for tag in test.tags]
-        test_result = dict()
 
         # Change the TC long name and name if defined in the mapping table
         longname = self._mapping.get(longname_orig, None)
@@ -1094,37 +1096,11 @@ class ExecutionChecker(ResultVisitor):
 
         # Remove TC number from the TC long name (backward compatibility):
         self._test_id = re.sub(self.REGEX_TC_NUMBER, u"", longname)
+        data[u"test_id"] = self._test_id
         # Remove TC number from the TC name (not needed):
-        test_result[u"name"] = re.sub(self.REGEX_TC_NUMBER, "", name)
+        data[u"test_name"] = re.sub(self.REGEX_TC_NUMBER, "", name)
 
-        test_result[u"parent"] = test.parent.name.lower()
-        test_result[u"tags"] = tags
-        test_result["doc"] = test.doc
-        test_result[u"type"] = u""
-        test_result[u"status"] = test.status
-        test_result[u"starttime"] = test.starttime
-        test_result[u"endtime"] = test.endtime
-
-        if test.status == u"PASS":
-            if u"NDRPDR" in tags:
-                if u"TCP_PPS" in tags or u"UDP_PPS" in tags:
-                    test_result[u"msg"] = self._get_data_from_pps_test_msg(
-                        test.message)
-                elif u"TCP_CPS" in tags or u"UDP_CPS" in tags:
-                    test_result[u"msg"] = self._get_data_from_cps_test_msg(
-                        test.message)
-                else:
-                    test_result[u"msg"] = self._get_data_from_perf_test_msg(
-                        test.message)
-            elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
-                test_result[u"msg"] = self._get_data_from_mrr_test_msg(
-                    test.message)
-            else:
-                test_result[u"msg"] = test.message
-        else:
-            test_result[u"msg"] = test.message
-
-        if u"PERFTEST" in tags:
+        if u"PERFTEST" in data[u"tags"]:
             # Replace info about cores (e.g. -1c-) with the info about threads
             # and cores (e.g. -1t1c-) in the long test case names and in the
             # test case names if necessary.
@@ -1132,7 +1108,7 @@ class ExecutionChecker(ResultVisitor):
             if not groups:
                 tag_count = 0
                 tag_tc = str()
-                for tag in test_result[u"tags"]:
+                for tag in data[u"tags"]:
                     groups = re.search(self.REGEX_TC_TAG, tag)
                     if groups:
                         tag_count += 1
@@ -1143,39 +1119,39 @@ class ExecutionChecker(ResultVisitor):
                         self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
                         self._test_id, count=1
                     )
-                    test_result[u"name"] = re.sub(
+                    data[u"test_name"] = re.sub(
                         self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
-                        test_result["name"], count=1
+                        data[u"test_name"], count=1
                     )
                 else:
-                    test_result[u"status"] = u"FAIL"
-                    self._data[u"tests"][self._test_id] = test_result
+                    data[u"status"] = False
+                    self._data[u"tests"][self._test_id] = data
                     logging.debug(
                         f"The test {self._test_id} has no or more than one "
                         f"multi-threading tags.\n"
-                        f"Tags: {test_result[u'tags']}"
+                        f"Tags: {data[u'tags']}"
                     )
                     return
 
-        if u"DEVICETEST" in tags:
-            test_result[u"type"] = u"DEVICETEST"
-        elif u"NDRPDR" in tags:
-            if u"TCP_CPS" in tags or u"UDP_CPS" in tags:
-                test_result[u"type"] = u"CPS"
+        if u"DEVICETEST" in data[u"tags"]:
+            data[u"test_type"] = u"DEVICETEST"
+        elif u"NDRPDR" in data[u"tags"]:
+            if u"TCP_CPS" in data[u"tags"] or u"UDP_CPS" in data[u"tags"]:
+                data[u"test_type"] = u"CPS"
             else:
-                test_result[u"type"] = u"NDRPDR"
+                data[u"test_type"] = u"NDRPDR"
             if test.status == u"PASS":
-                test_result[u"throughput"], test_result[u"status"] = \
+                test_result[u"throughput"], data[u"status"] = \
                     self._get_ndrpdr_throughput(test.message)
-                test_result[u"gbps"], test_result[u"status"] = \
+                test_result[u"gbps"], data[u"status"] = \
                     self._get_ndrpdr_throughput_gbps(test.message)
-                test_result[u"latency"], test_result[u"status"] = \
+                test_result[u"latency"], data[u"status"] = \
                     self._get_ndrpdr_latency(test.message)
-        elif u"MRR" in tags or u"FRMOBL" in tags or u"BMRR" in tags:
-            if u"MRR" in tags:
-                test_result[u"type"] = u"MRR"
+        elif u"MRR" in data[u"tags"] or u"FRMOBL" in data[u"tags"] or u"BMRR" in data[u"tags"]:
+            if u"MRR" in data[u"tags"]:
+                data[u"test_type"] = u"MRR"
             else:
-                test_result[u"type"] = u"BMRR"
+                data[u"test_type"] = u"BMRR"
             if test.status == u"PASS":
                 test_result[u"result"] = dict()
                 groups = re.search(self.REGEX_BMRR, test.message)
@@ -1194,27 +1170,22 @@ class ExecutionChecker(ResultVisitor):
                     groups = re.search(self.REGEX_MRR, test.message)
                     test_result[u"result"][u"receive-rate"] = \
                         float(groups.group(3)) / float(groups.group(1))
-        elif u"SOAK" in tags:
-            test_result[u"type"] = u"SOAK"
+        elif u"SOAK" in data[u"tags"]:
+            data[u"test_type"] = u"SOAK"
             if test.status == u"PASS":
-                test_result[u"throughput"], test_result[u"status"] = \
+                test_result[u"throughput"], data[u"status"] = \
                     self._get_plr_throughput(test.message)
-        elif u"HOSTSTACK" in tags:
-            test_result[u"type"] = u"HOSTSTACK"
+        elif u"HOSTSTACK" in data[u"tags"]:
+            data[u"test_type"] = u"HOSTSTACK"
             if test.status == u"PASS":
-                test_result[u"result"], test_result[u"status"] = \
-                    self._get_hoststack_data(test.message, tags)
-        elif u"LDP_NGINX" in tags:
-            test_result[u"type"] = u"LDP_NGINX"
-            test_result[u"result"], test_result[u"status"] = \
-                self._get_vsap_data(test.message, tags)
-        # elif u"TCP" in tags:  # This might be not used
-        #     test_result[u"type"] = u"TCP"
-        #     if test.status == u"PASS":
-        #         groups = re.search(self.REGEX_TCP, test.message)
-        #         test_result[u"result"] = int(groups.group(2))
-        elif u"RECONF" in tags:
-            test_result[u"type"] = u"RECONF"
+                test_result[u"result"], data[u"status"] = \
+                    self._get_hoststack_data(test.message, data[u"tags"])
+        elif u"LDP_NGINX" in data[u"tags"]:
+            data[u"test_type"] = u"LDP_NGINX"
+            test_result[u"result"], data[u"status"] = \
+                self._get_vsap_data(test.message, data[u"tags"])
+        elif u"RECONF" in data[u"tags"]:
+            data[u"test_type"] = u"RECONF"
             if test.status == u"PASS":
                 test_result[u"result"] = None
                 try:
@@ -1225,11 +1196,11 @@ class ExecutionChecker(ResultVisitor):
                         u"time": float(grps_time.group(1))
                     }
                 except (AttributeError, IndexError, ValueError, TypeError):
-                    test_result[u"status"] = u"FAIL"
+                    data[u"status"] = False
         else:
-            test_result[u"status"] = u"FAIL"
+            data[u"status"] = False
 
-        self._data[u"tests"][self._test_id] = test_result
+        self._data[u"tests"][self._test_id] = data
 
     def end_test(self, test):
         """Called when test ends.
