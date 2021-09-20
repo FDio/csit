@@ -27,6 +27,7 @@ consul_architecture: "{{ consul_architecture_map[ansible_architecture] }}"
 consul_version: "1.9.5"
 consul_pkg: "consul_{{ consul_version }}_linux_{{ consul_architecture }}.zip"
 consul_zip_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_pkg }}"
+consul_force_update: false
 
 # Inst - System paths.
 consul_bin_dir: "/usr/local/bin"
@@ -42,6 +43,7 @@ consul_node_role: "both"
 consul_restart_handler_state: "restarted"
 nomad_restart_handler_state: "restarted"
 systemd_resolved_state: "stopped"
+consul_service_mgr: ""
 
 # Conf - User and group.
 consul_group: "consul"

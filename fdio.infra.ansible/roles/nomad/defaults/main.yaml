@@ -5,7 +5,6 @@
 packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
 packages_base:
   - "curl"
-  - "git"
   - "unzip"
 packages_by_distro:
   ubuntu:
@@ -35,6 +34,7 @@ nomad_podman_pkg: "nomad-driver-podman_{{ nomad_podman_version }}_linux_{{nomad_
 nomad_podman_url: "https://releases.hashicorp.com/nomad-driver-podman/{{ nomad_podman_version }}"
 nomad_podman_zip_url: "{{ nomad_podman_url }}/{{ nomad_podman_pkg }}"
 nomad_podman_checksum_file_url: "{{ nomad_podman_url }}/nomad-driver-podman_{{ nomad_podman_version }}_SHA256SUMS"
+nomad_force_update: false
 
 # Paths
 nomad_inst_dir: "/opt"
@@ -48,6 +48,7 @@ nomad_ssl_dir: "/etc/nomad.d/ssl"
 
 # Initialization and startup script templates
 nomad_restart_handler_state: "restarted"
+nomad_service_mgr: ""
 
 # System user and group
 nomad_group: "nomad"
@@ -91,14 +92,7 @@ nomad_encrypt_enable: "{{ lookup('env','NOMAD_ENCRYPT_ENABLE') | default('false'
 nomad_raft_protocol: 2
 
 # Client settings
-nomad_certificates:
-  - src: "{{ file_nomad_ca_pem }}"
-    dest: "{{ nomad_ca_file }}"
-  - src: "{{ file_nomad_client_pem }}"
-    dest: "{{ nomad_cert_file }}"
-  - src: "{{ file_nomad_client_key_pem }}"
-    dest: "{{ nomad_key_file }}"
-nomad_node_class: ""
+nomad_node_class: "compute"
 nomad_no_host_uuid: true
 nomad_max_kill_timeout: "30s"
 nomad_gc_interval: "1m"
