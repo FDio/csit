@@ -1067,6 +1067,10 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
+        test_result = {
+            
+        }
+
         self._sh_run_counter = 0
         self._telemetry_kw_counter = 0
         self._telemetry_msg_counter = 0
@@ -1644,7 +1648,6 @@ class InputData:
             return status, t_id, data, duration
 
     def _parse_json(self, job, build):
-        """Process data from JSON files and return JSON structured data.
         """Process data from JSON files and return JSON structured data.
 
         :param job: The name of job which build output data will be processed.
