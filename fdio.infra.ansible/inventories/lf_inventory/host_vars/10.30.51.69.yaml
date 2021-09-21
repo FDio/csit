@@ -4,6 +4,7 @@
 hostname: "s27-t211-sut1"
 grub:
   audit: "0"
+  default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
   iommu.passthrough: "1"
   isolcpus: "1-10,29-38"
   nmi_watchdog: "0"
@@ -15,7 +16,7 @@ sysctl:
   kernel:
     watchdog_cpumask: "0,11-28,39-55"
   vm:
-    nr_hugepages: 57344
+    nr_hugepages: 32768
     max_map_count: 20000
 
 inventory_ipmi_hostname: "10.30.50.69"

@@ -4,6 +4,7 @@
 hostname: "s18-t33-sut2"
 grub:
   audit: "0"
+  default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
   iommu.passthrough: "1"
   isolcpus: "1-10,17-26,33-42,49-58"
   nmi_watchdog: "0"
