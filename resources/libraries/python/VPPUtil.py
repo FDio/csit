@@ -18,6 +18,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.model.ExportResult import export_vpp_version
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
@@ -197,6 +198,7 @@ class VPPUtil:
         """Run "show_version" PAPI command.
 
         Socket is configurable, so VPP inside container can be accessed.
+        The result is exported to JSON UTI output as "dut-version".
 
         :param node: Node to run command on.
         :param remote_vpp_socket: Path to remote socket to target VPP.
@@ -214,7 +216,9 @@ class VPPUtil:
             reply = papi_exec.add(cmd).get_reply()
         if log:
             logger.info(f"VPP version: {reply[u'version']}\n")
-        return f"{reply[u'version']}"
+        version = f"{reply[u'version']}"
+        export_vpp_version(version)
+        return version
 
     @staticmethod
     def show_vpp_version_on_all_duts(nodes):
