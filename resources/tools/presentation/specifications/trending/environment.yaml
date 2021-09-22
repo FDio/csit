@@ -137,7 +137,7 @@
   # Number of days from now to the past. Only files generated in this
   # time period are used.
   # Only for trending
-  time-period: 180
+  time-period: 2
 
   mapping-file: ""
 
