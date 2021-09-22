@@ -1,0 +1,21 @@
+optimized search, 30s final duration, single loss measurer
+mean:
+time      2.519689e+02
+ndr_lo    1.384013e+07
+ndr_hi    1.390842e+07
+pdr_lo    3.700000e+07
+pdr_hi    3.700000e+07
+ndr_rw    3.517022e-03
+pdr_rw    0.000000e+00
+meas      2.115300e+01
+dtype: float64
+standard deviation:
+time      1.426361e+02
+ndr_lo    1.488975e+07
+ndr_hi    1.496270e+07
+pdr_lo    0.000000e+00
+pdr_hi    0.000000e+00
+ndr_rw    2.169018e-03
+pdr_rw    0.000000e+00
+meas      7.432558e+00
+dtype: float64

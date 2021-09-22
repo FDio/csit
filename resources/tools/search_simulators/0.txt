@@ -1,0 +1,42 @@
+basic binary search, width 20000, 10s final duration, single loss measurer
+mean:
+time      2.520000e+02
+ndr_lo    9.200141e+06
+ndr_hi    9.218197e+06
+pdr_lo    3.698194e+07
+pdr_hi    3.700000e+07
+ndr_rw    4.184450e-02
+pdr_rw    4.880173e-04
+meas      2.400000e+01
+dtype: float64
+standard deviation:
+time      0.000000e+00
+ndr_lo    9.246655e+06
+ndr_hi    9.246655e+06
+pdr_lo    0.000000e+00
+pdr_hi    0.000000e+00
+ndr_rw    1.058789e-01
+pdr_rw    5.421282e-20
+meas      0.000000e+00
+dtype: float64
+optimized search, 30s final duration, single loss measurer
+mean:
+time      2.902343e+02
+ndr_lo    2.037352e+07
+ndr_hi    2.049172e+07
+pdr_lo    3.681545e+07
+pdr_hi    3.700000e+07
+ndr_rw    8.558498e-02
+pdr_rw    4.987950e-03
+meas      2.212330e+01
+dtype: float64
+standard deviation:
+time      1.508001e+02
+ndr_lo    1.420550e+07
+ndr_hi    1.425414e+07
+pdr_lo    9.052372e+03
+pdr_hi    0.000000e+00
+ndr_rw    2.534088e-01
+pdr_rw    2.446587e-04
+meas      8.210958e+00
+dtype: float64
