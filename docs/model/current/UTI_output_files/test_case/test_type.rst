@@ -20,7 +20,7 @@ This entry has a string value, set individually by tests.
 Some tests may not set this, the entry is not present in that case
 (test type is unknown, probably not one of the known types).
 
-Typical values are "MRR", "NDRPDR" and so on.
+Currently supported values are "MRR", "NDRPDR", "SOAK" and "RECONF".
 
 Presence of some othe fields (especially in results) usually depend
 on the test type.
@@ -29,4 +29,4 @@ Version
 ~~~~~~~
 
 This scalar entry is present since version 0.2.0,
-last patch update in version 0.2.0.
+last patch update in version 0.3.0.

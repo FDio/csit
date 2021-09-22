@@ -13,14 +13,18 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Packet rate
+^^^^^^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
+Present here for RECONF test type.
+
+Value of this entry is a float specifying an aggregate packet rate
+at which the measurement was performed.
+The reate was discovered as an NDR lower bound, and is expressed
+in packets per second.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.3.0,
 last patch update in version 0.3.0.
