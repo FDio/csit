@@ -1,5 +1,5 @@
 # 2n-zn2
-### tests 396
+### tests 378
 ### job hrs est. 31.4
 ### job hrs real ??.?
 ### test mins est. 4.76
@@ -273,14 +273,6 @@
 1c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6base
 2c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6base
 4c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6base
-##### ethip6-ip6scale2m
-1c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
-2c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
-4c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m
-##### ethip6-ip6scale2m-rnd
-1c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m-rnd
-2c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m-rnd
-4c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6scale2m-rnd
 #### dpdk-vfio-pci
 ##### ethip6-ip6base
 1c AND 78b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip6-ip6base
@@ -308,14 +300,6 @@
 1c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k-rnd
 2c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k-rnd
 4c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k-rnd
-##### ethip6-ip6scale2m
-1c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m
-2c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m
-4c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m
-##### ethip6-ip6scale2m-rnd
-1c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m-rnd
-2c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m-rnd
-4c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m-rnd
 #### avf
 ##### ethip6-ip6base
 1c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6base
@@ -396,14 +380,6 @@
 1c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k-rnd
 2c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k-rnd
 4c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k-rnd
-##### ethip6-ip6scale2m
-1c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale2m
-2c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale2m
-4c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale2m
-##### ethip6-ip6scale2m-rnd
-1c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale2m-rnd
-2c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale2m-rnd
-4c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale2m-rnd
 ## ./ip6_tunnels
 ## ./l2
 ### intel-x710

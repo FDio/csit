@@ -1,5 +1,5 @@
 # 2n-skx
-### tests 393
+### tests 381
 ### job hrs est. 6.0
 ### job hrs real ?.??
 ### test mins est. 0.89
@@ -309,14 +309,6 @@
 1c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6base
 2c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6base
 4c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6base
-##### ethip6-ip6scale2m
-1c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m
-2c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m
-4c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m
-##### ethip6-ip6scale2m-rnd
-1c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m-rnd
-2c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m-rnd
-4c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m-rnd
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 78b AND mrr AND x710 AND drv_vfio_pci AND ethip6-ip6base
@@ -344,14 +336,6 @@
 1c AND 78b AND mrr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k-rnd
 2c AND 78b AND mrr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k-rnd
 4c AND 78b AND mrr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k-rnd
-##### ethip6-ip6scale2m
-1c AND 78b AND mrr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m
-2c AND 78b AND mrr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m
-4c AND 78b AND mrr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m
-##### ethip6-ip6scale2m-rnd
-1c AND 78b AND mrr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m-rnd
-2c AND 78b AND mrr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m-rnd
-4c AND 78b AND mrr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale2m-rnd
 #### avf
 ##### ethip6-ip6base
 1c AND 78b AND mrr AND xxv710 AND drv_avf AND ethip6-ip6base
