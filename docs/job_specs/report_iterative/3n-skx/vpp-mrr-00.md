@@ -1,5 +1,5 @@
 # 3n-skx
-### tests 264
+### tests 261
 ### job hrs est. 5.69
 ### job hrs real ?.??
 ### test mins est. 1.27
@@ -203,10 +203,6 @@
 1c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6base
 2c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6base
 4c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6base
-##### ethip6-ip6scale2m
-1c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m
-2c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m
-4c AND 78b AND mrr AND x710 AND drv_avf AND ethip6-ip6scale2m
 #### dpdk-vfio-pci
 ### intel-xxv710
 #### avf
