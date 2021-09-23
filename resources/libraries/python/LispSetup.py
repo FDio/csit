@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2020 Cisco and/or its affiliates.
+# Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,7 +17,7 @@ from enum import IntEnum
 
 from ipaddress import ip_address
 
-from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.ip_types import AddressWithPrefix
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
@@ -41,7 +41,7 @@ class LispEid:
         :type prefix_len: int
         """
         eid_addr = dict(
-            prefix=IPUtil.create_prefix_object(ip_address(eid), prefix_len)
+            prefix=AddressWithPrefix(eid, prefix_len)
         ) if prefix_len else dict(mac=str(eid))
 
         return dict(
