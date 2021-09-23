@@ -19,7 +19,9 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
-from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.ip_types import (
+    AddressUnion, Address, AddressWithPrefix
+)
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
@@ -133,7 +135,7 @@ class TestConfig:
                 commands.append(
                     f"sw_interface_add_del_address sw_if_index "
                     f"{Topology.get_interface_sw_index(node, node_vxlan_if)} "
-                    f"{src_ip}/{128 if src_ip.version == 6 else 32}\n"
+                    f"{src_ip}/{src_ip.max_prefixlen}\n"
                 )
                 commands.append(
                     f"vxlan_add_del_tunnel src {src_ip} dst {dst_ip} "
@@ -186,15 +188,11 @@ class TestConfig:
                     )
                     vxlan_count = i
                     break
-                args1[u"prefix"] = IPUtil.create_prefix_object(
-                    src_ip, 128 if src_ip_start.version == 6 else 32
+                args1[u"prefix"] = AddressWithPrefix(
+                    src_ip, src_ip_start.max_prefixlen
                 )
-                args2[u"src_address"] = IPAddress.create_ip_address_object(
-                    src_ip
-                )
-                args2[u"dst_address"] = IPAddress.create_ip_address_object(
-                    dst_ip
-                )
+                args2[u"src_address"] = Address(src_ip)
+                args2[u"dst_address"] = Address(dst_ip)
                 args2[u"vni"] = int(vni_start) + i
                 args3[u"vlan_id"] = i + 1
                 history = bool(not 1 < i < vxlan_count - 1)
@@ -358,7 +356,7 @@ class TestConfig:
                 )
                 commands.append(
                     f"ip_route_add_del "
-                    f"{dst_ip}/{128 if dst_ip.version == 6 else 32} count 1 "
+                    f"{dst_ip}/{dst_ip.max_prefixlen} count 1 "
                     f"via {dst_ip} sw_if_index {idx_vxlan_if}\n"
                 )
                 sw_idx_vxlan = Topology.get_interface_sw_index(
@@ -398,8 +396,7 @@ class TestConfig:
             gateway=str(dst_ip_start)
         )
         route = IPUtil.compose_vpp_route_structure(
-            node, str(dst_ip_start),
-            128 if dst_ip_start.version == 6 else 32, **kwargs
+            node, str(dst_ip_start), dst_ip_start.max_prefixlen, **kwargs
         )
         args2 = dict(
             is_add=1,
@@ -427,9 +424,9 @@ class TestConfig:
                 args1[u"neighbor"][u"ip_address"] = \
                     str(dst_ip_start + i * ip_step)
                 args2[u"route"][u"prefix"][u"address"][u"un"] = \
-                    IPAddress.union_addr(dst_ip_start + i * ip_step)
+                    AddressUnion(dst_ip_start + i * ip_step)
                 args2[u"route"][u"paths"][0][u"nh"][u"address"] = \
-                    IPAddress.union_addr(dst_ip_start + i * ip_step)
+                    AddressUnion(dst_ip_start + i * ip_step)
                 args3[u"rx_sw_if_index"] = Topology.get_interface_sw_index(
                     node, f"vxlan_tunnel{i+1}"
                 )
