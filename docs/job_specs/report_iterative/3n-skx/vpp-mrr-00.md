@@ -1,5 +1,5 @@
 # 3n-skx
-### tests 267
+### tests 364
 ### job hrs est. 5.69
 ### job hrs real ?.??
 ### test mins est. 1.27
@@ -149,10 +149,6 @@
 1c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4base
 2c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4base
 4c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4base
-##### ethip4-ip4scale2m
-1c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m
-2c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m
-4c AND 64b AND mrr AND x710 AND drv_avf AND ethip4-ip4scale2m
 ### intel-xxv710
 #### avf
 ##### ethip4-ip4base
