@@ -1,5 +1,5 @@
 # 2n-tx2
-### tests 189
+### tests 186
 ### job hrs est. 4.2
 ### job hrs real ?.?
 ### test mins est. 1.31
@@ -165,10 +165,6 @@
 1c AND 78b AND mrr AND xl710 AND drv_af_xdp AND ethip6-ip6scale200k
 2c AND 78b AND mrr AND xl710 AND drv_af_xdp AND ethip6-ip6scale200k
 4c AND 78b AND mrr AND xl710 AND drv_af_xdp AND ethip6-ip6scale200k
-##### ethip6-ip6scale2m
-1c AND 78b AND mrr AND xl710 AND drv_af_xdp AND ethip6-ip6scale2m
-2c AND 78b AND mrr AND xl710 AND drv_af_xdp AND ethip6-ip6scale2m
-4c AND 78b AND mrr AND xl710 AND drv_af_xdp AND ethip6-ip6scale2m
 #### dpdk-vfio-pci
 ##### ethip6-ip6base
 1c AND 78b AND mrr AND xl710 AND drv_vfio_pci AND ethip6-ip6base
