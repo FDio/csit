@@ -112,10 +112,6 @@
 1c AND 64b AND mrr AND xl710 AND drv_af_xdp AND ethip4-ip4scale200k
 2c AND 64b AND mrr AND xl710 AND drv_af_xdp AND ethip4-ip4scale200k
 4c AND 64b AND mrr AND xl710 AND drv_af_xdp AND ethip4-ip4scale200k
-##### ethip4-ip4scale2m
-1c AND 64b AND mrr AND xl710 AND drv_af_xdp AND ethip4-ip4scale2m
-2c AND 64b AND mrr AND xl710 AND drv_af_xdp AND ethip4-ip4scale2m
-4c AND 64b AND mrr AND xl710 AND drv_af_xdp AND ethip4-ip4scale2m
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 64b AND mrr AND xl710 AND drv_vfio_pci AND ethip4-ip4base
