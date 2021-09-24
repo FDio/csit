@@ -17,6 +17,7 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -455,6 +456,26 @@ class DUTSetup:
         for pci_addr in pci_addrs:
             DUTSetup.pci_driver_unbind(node, pci_addr)
 
+            pci = pci_addr.replace(u":", r"\:")
+            kernel_driver = None
+            for ifc_key in node[u"interfaces"]:
+                if node[u"interfaces"][ifc_key][u"pci_address"] == pci_addr:
+                    kernel_driver = Topology.get_interface_driver(node, ifc_key)
+                    break
+            if kernel_driver is None:
+                raise RuntimeError("Missing kernel driver for {pci_addr}")
+            logger.debug(f"kernel_driver {kernel_driver}")
+            current_driver = DUTSetup.get_pci_dev_driver(node, pci)
+            if current_driver:
+                raise RuntimeError(f"{pci} has {current_driver}")
+            # Bind to kernel driver.
+            DUTSetup.pci_driver_bind(node, pci_addr, kernel_driver)
+            eth = InterfaceUtil.pci_to_eth(node, pci_addr)
+            exec_cmd(node, f"ethtool --driver '{eth}'", sudo=1)
+
+            DUTSetup.pci_driver_unbind(node, pci_addr)
+
+
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
         """Bind PCI device to driver on node.
@@ -490,6 +511,9 @@ class DUTSetup:
         exec_cmd_no_error(
             node, command, timeout=120, sudo=True, message=message
         )
+        eth = InterfaceUtil.pci_to_eth(node, pci_addr)
+        exec_cmd(node, f"ethtool --driver '{eth}'", sudo=1)
+
 
     @staticmethod
     def pci_vf_driver_unbind(node, pf_pci_addr, vf_id):
