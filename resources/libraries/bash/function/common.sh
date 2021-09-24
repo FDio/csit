@@ -735,6 +735,14 @@ function run_pybot () {
     PYBOT_EXIT_STATUS="$?"
     set -e
 
+    # Compress json outputs, if any.
+    pushd "${ARCHIVE_DIR}" || die
+    if [ -d "Tests" ]; then
+        time tar cf "UTI.tar" "Tests" || die
+        time xz -9e "UTI.tar" || die
+    fi
+    popd || die
+
     # Generate INFO level output_info.xml for post-processing.
     all_options=("--loglevel" "INFO")
     all_options+=("--log" "none")
