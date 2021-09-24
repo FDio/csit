@@ -1244,6 +1244,14 @@ class InterfaceUtil:
         :raises RuntimeError: If it is not possible to create AVF interface on
             the node.
         """
+        cmd = u"ifconfig -a"
+        reply = PapiSocketExecutor.run_cli_cmd(node, cmd)
+        logger.info(reply)
+
+        cmd = u"ethtool -i enp175"
+        reply = PapiSocketExecutor.run_cli_cmd(node, cmd)
+        logger.info(reply)
+
         PapiSocketExecutor.run_cli_cmd(
             node, u"set logging class avf level debug"
         )
