@@ -644,6 +644,10 @@ class InterfaceUtil:
         :type node: dict
         """
         interface_list = InterfaceUtil.vpp_get_interface_data(node)
+        for interface in interface_list:
+            exec_cmd(node, f"ethtool --help {interface[u'interface_name']}", sudo=1)
+            raise RuntimeError("Speed up.")
+
         interface_dict = dict()
         for ifc in interface_list:
             interface_dict[ifc[u"l2_address"]] = ifc
@@ -741,6 +745,10 @@ class InterfaceUtil:
             if name is None:
                 continue
             interface[u"name"] = name
+        for interface in interfaces.values():
+            exec_cmd(node, f"ethtool --help {interface}", sudo=1)
+            raise RuntimeError("Speed up.")
+
 
     @staticmethod
     def iface_update_numa_node(node):
