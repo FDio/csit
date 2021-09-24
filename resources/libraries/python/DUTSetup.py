@@ -17,6 +17,7 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -454,6 +455,33 @@ class DUTSetup:
         """
         for pci_addr in pci_addrs:
             DUTSetup.pci_driver_unbind(node, pci_addr)
+
+            pci = pci_addr.replace(u":", r"\:")
+            kernel_driver = None
+            for ifc_key in node[u"interfaces"]:
+                if node[u"interfaces"][ifc_key][u"pci_address"] == pci_addr:
+                    kernel_driver = Topology.get_interface_driver(node, ifc_key)
+                    break
+            if kernel_driver is None:
+                raise RuntimeError("Missing kernel driver for {pci_addr}")
+            current_driver = DUTSetup.get_pci_dev_driver(node, pci)
+            if current_driver != kernel_driver:
+                if current_driver:
+                    DUTSetup.pci_driver_unbind(node, pci_addr)
+                # Bind to kernel driver.
+                DUTSetup.pci_driver_bind(node, pci_addr, kernel_driver)
+
+            ssh = SSH()
+            ssh.connect(node)
+            cmd = u'for dev in `ls /sys/class/net/`; do echo "\\"`cat ' \
+                  u'/sys/class/net/$dev/address`\\": \\"$dev\\""; done;'
+            ret_code, stdout, _ = ssh.exec_command(cmd)
+            if int(ret_code) != 0:
+                raise RuntimeError(u"Get interface name and MAC failed")
+            tmp = u"{" + stdout.rstrip().replace(u"\n", u",") + u"}"
+            interfaces = JsonParser().parse_data(tmp)
+            linux_name = interfaces.get(pci_addr, u"not_found")
+            exec_cmd(node, f"ethtool --driver {linux_name}", sudo=1)
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
