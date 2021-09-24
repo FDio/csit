@@ -435,6 +435,33 @@ class DUTSetup:
         :raises RuntimeError: If PCI device unbind failed.
         """
         pci = pci_addr.replace(u":", r"\:")
+
+        kernel_driver = None
+        for ifc_key in node[u"interfaces"]:
+            if node[u"interfaces"][ifc_key][u"pci_address"] == pci_addr:
+                kernel_driver = Topology.get_interface_driver(node, ifc_key)
+                break
+        if kernel_driver is None:
+            raise RuntimeError("Missing kernel driver for {pci_addr}")
+        current_driver = DUTSetup.get_pci_dev_driver(node, pci)
+        if current_driver != kernel_driver:
+            if current_driver:
+                DUTSetup.pci_driver_unbind(node, pci_addr)
+            # Bind to kernel driver.
+            DUTSetup.pci_driver_bind(node, pci_addr, kernel_driver)
+
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = u'for dev in `ls /sys/class/net/`; do echo "\\"`cat ' \
+              u'/sys/class/net/$dev/address`\\": \\"$dev\\""; done;'
+        ret_code, stdout, _ = ssh.exec_command(cmd)
+        if int(ret_code) != 0:
+            raise RuntimeError(u"Get interface name and MAC failed")
+        tmp = u"{" + stdout.rstrip().replace(u"\n", u",") + u"}"
+        interfaces = JsonParser().parse_data(tmp)
+        linux_name = interfaces[pci_addr]
+        exec_cmd(node, f"ethtool --driver {linux_name}", sudo=1)
+
         command = f"sh -c \"echo {pci_addr} | " \
             f"tee /sys/bus/pci/devices/{pci}/driver/unbind\""
         message = f"Failed to unbind PCI device {pci_addr} on {node[u'host']}"
