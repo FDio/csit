@@ -861,7 +861,9 @@ function select_tags () {
     awk_nics_sub_cmd+='else if ($9 =="drv_rdma_core") drv ="rdma-";'
     awk_nics_sub_cmd+='else if ($9 =="drv_af_xdp") drv ="af-xdp-";'
     awk_nics_sub_cmd+='else drv="";'
-    awk_nics_sub_cmd+='print "*"$7"-" drv $11"-"$5"."$3"-"$1"-" drv $11"-"$5'
+    awk_nics_sub_cmd+='if ($1 =="-") cores="";'
+    awk_nics_sub_cmd+='else cores=$1;'
+    awk_nics_sub_cmd+='print "*"$7"-" drv $11"-"$5"."$3"-" cores "-" drv $11"-"$5'
 
     # Tag file directory shorthand.
     tfd="${JOB_SPECS_DIR}"
