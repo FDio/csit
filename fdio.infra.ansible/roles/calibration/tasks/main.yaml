@@ -36,7 +36,7 @@
 - name: Check Kernel Parameters
   assert:
     that:
-      - item in ansible_cmdline and grub[item] == ansible_cmdline[item]
+      - item in ansible_cmdline
     fail_msg: "Kernel parameters!"
     success_msg: "Kernel parameters match."
   loop: "{{ grub.keys()|sort }}"
