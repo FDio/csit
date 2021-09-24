@@ -272,6 +272,8 @@ function get_available_interfaces () {
             tg_netdev=(ens1 enp134)
             dut1_netdev=(ens5 enp175)
             ports_per_nic=2
+	    INFO=$(ethtool -i enp175) || true
+	    echo ${INFO}
             ;;
        "1n_tx2")
             # Add Intel Corporation XL710/X710 Virtual Function to the
