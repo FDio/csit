@@ -665,6 +665,22 @@ class InterfaceUtil:
                 )
                 if_data[u"vpp_sw_index"] = None
 
+        # DEBUG.
+        # Get interface names
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = u'for dev in `ls /sys/class/net/`; do echo "\\"`cat ' \
+              u'/sys/class/net/$dev/address`\\": \\"$dev\\""; done;'
+        ret_code, stdout, _ = ssh.exec_command(cmd)
+        if int(ret_code) != 0:
+            raise RuntimeError(u"Get interface name and MAC failed")
+        tmp = u"{" + stdout.rstrip().replace(u"\n", u",") + u"}"
+        interfaces = JsonParser().parse_data(tmp)
+        logger.debug(f"parsed interfaces: {interfaces}")
+        for interface in interfaces.values():
+            exec_cmd(node, f"ethtool --driver {interface}", sudo=1)
+
+
     @staticmethod
     def update_nic_interface_names(node):
         """Update interface names based on nic type and PCI address.
@@ -741,6 +757,8 @@ class InterfaceUtil:
             if name is None:
                 continue
             interface[u"name"] = name
+            exec_cmd(node, f"ethtool --driver {name}", sudo=1)
+
 
     @staticmethod
     def iface_update_numa_node(node):
@@ -1825,7 +1843,7 @@ class InterfaceUtil:
         pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
 
         VPPUtil.stop_vpp_service(node)
-        if current_driver != kernel_driver:
+        if 1:  # current_driver != kernel_driver:
             # PCI device must be re-bound to kernel driver before creating VFs.
             DUTSetup.verify_kernel_module(node, kernel_driver, force_load=True)
             # Stop VPP to prevent deadlock.
