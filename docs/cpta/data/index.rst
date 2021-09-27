@@ -38,6 +38,14 @@ in the CSV formats:
 
         - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-2n-dnv-trending.csv>`_
 
+    - 3n-aws
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-3n-aws-trending.csv>`_
+
+    - 2n-aws
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-2n-aws-trending.csv>`_
+
 **VPP NDRPDR**
 
     - 3n-skx
