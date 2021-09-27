@@ -96,3 +96,27 @@ VPP MRR
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-3n-dnv-mrr.html"></iframe>
     <p><br></p>
     </center>
+
+2n-aws
+------
+
+.. raw:: html
+
+    <center>
+    Links to builds:
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-2n-aws" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-2n-aws-mrr.html"></iframe>
+    <p><br></p>
+    </center>
+
+3n-aws
+------
+
+.. raw:: html
+
+    <center>
+    Links to builds:
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-3n-aws" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-3n-aws-mrr.html"></iframe>
+    <p><br></p>
+    </center>

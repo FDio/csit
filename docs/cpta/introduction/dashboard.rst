@@ -141,6 +141,32 @@ VPP worker on 8t4c
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-2n-clx.rst
 
+2n-aws
+------
+
+VPP worker on 2t1c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-2n-aws.rst
+
+VPP worker on 4t2c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t2c-2n-aws.rst
+
+3n-aws
+------
+
+VPP worker on 2t1c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-3n-aws.rst
+
+VPP worker on 4t2c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t2c-3n-aws.rst
+
 NDR Weekly VPP worker on 2t1c
 `````````````````````````````
 
