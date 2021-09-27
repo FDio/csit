@@ -17,12 +17,34 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
 class DUTSetup:
     """Contains methods for setting up DUTs."""
+
+    @staticmethod
+    def _pci_to_eth(node, pci_str):
+        """Convert PCI address on DUT to Linux ethernet name.
+
+        Copy from InterfaceUtil, to avoid cyclic imports.
+
+        :param node: DUT node
+        :param pci_str: PCI address.
+        :type node: dict
+        :type pci_str: str
+        :returns: Ethernet name.
+        :rtype: str
+        """
+        cmd = f"basename /sys/bus/pci/devices/{pci_str}/net/*"
+        try:
+            stdout, _ = exec_cmd_no_error(node, cmd)
+        except RuntimeError:
+            raise RuntimeError(f"Cannot convert {pci_str} to ethernet name!")
+
+        return stdout.strip()
 
     @staticmethod
     def get_service_logs(node, service):
@@ -434,6 +456,9 @@ class DUTSetup:
         :type pci_addr: str
         :raises RuntimeError: If PCI device unbind failed.
         """
+        eth = DUTSetup._pci_to_eth(node, pci_addr)
+        exec_cmd(node, f"ethtool --driver '{eth}'", sudo=1)
+
         pci = pci_addr.replace(u":", r"\:")
         command = f"sh -c \"echo {pci_addr} | " \
             f"tee /sys/bus/pci/devices/{pci}/driver/unbind\""
@@ -442,6 +467,9 @@ class DUTSetup:
         exec_cmd_no_error(
             node, command, timeout=120, sudo=True, message=message
         )
+
+        eth = DUTSetup._pci_to_eth(node, pci_addr)
+        exec_cmd(node, f"ethtool --driver '{eth}'", sudo=1)
 
     @staticmethod
     def pci_driver_unbind_list(node, *pci_addrs):
@@ -455,6 +483,7 @@ class DUTSetup:
         for pci_addr in pci_addrs:
             DUTSetup.pci_driver_unbind(node, pci_addr)
 
+
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
         """Bind PCI device to driver on node.
@@ -467,6 +496,9 @@ class DUTSetup:
         :type driver: str
         :raises RuntimeError: If PCI device bind failed.
         """
+        eth = DUTSetup._pci_to_eth(node, pci_addr)
+        exec_cmd(node, f"ethtool --driver '{eth}'", sudo=1)
+
         message = f"Failed to bind PCI device {pci_addr} to {driver} " \
             f"on host {node[u'host']}"
         pci = pci_addr.replace(u":", r"\:")
@@ -491,6 +523,10 @@ class DUTSetup:
             node, command, timeout=120, sudo=True, message=message
         )
 
+        eth = DUTSetup._pci_to_eth(node, pci_addr)
+        exec_cmd(node, f"ethtool --driver '{eth}'", sudo=1)
+
+
     @staticmethod
     def pci_vf_driver_unbind(node, pf_pci_addr, vf_id):
         """Unbind Virtual Function from driver on node.
@@ -504,6 +540,12 @@ class DUTSetup:
         :raises RuntimeError: If Virtual Function unbind failed.
         """
         vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
+
+        eth = DUTSetup._pci_to_eth(node, pf_pci_addr)
+        exec_cmd(node, f"ethtool --driver {eth}", sudo=1)
+        eth = DUTSetup._pci_to_eth(node, vf_pci_addr)
+        exec_cmd(node, f"ethtool --driver {eth}", sudo=1)
+
         pf_pci = pf_pci_addr.replace(u":", r"\:")
         vf_path = f"/sys/bus/pci/devices/{pf_pci}/virtfn{vf_id}"
 
@@ -513,6 +555,11 @@ class DUTSetup:
         exec_cmd_no_error(
             node, command, timeout=120, sudo=True, message=message
         )
+
+        eth = DUTSetup._pci_to_eth(node, pf_pci_addr)
+        exec_cmd(node, f"ethtool --driver {eth}", sudo=1)
+        eth = DUTSetup._pci_to_eth(node, vf_pci_addr)
+        exec_cmd(node, f"ethtool --driver {eth}", sudo=1)
 
     @staticmethod
     def pci_vf_driver_bind(node, pf_pci_addr, vf_id, driver):
@@ -529,6 +576,12 @@ class DUTSetup:
         :raises RuntimeError: If PCI device bind failed.
         """
         vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
+
+        eth = DUTSetup._pci_to_eth(node, pf_pci_addr)
+        exec_cmd(node, f"ethtool --driver {eth}", sudo=1)
+        eth = DUTSetup._pci_to_eth(node, vf_pci_addr)
+        exec_cmd(node, f"ethtool --driver {eth}", sudo=1)
+
         pf_pci = pf_pci_addr.replace(u":", r'\:')
         vf_path = f"/sys/bus/pci/devices/{pf_pci}/virtfn{vf_id}"
 
@@ -552,6 +605,12 @@ class DUTSetup:
         exec_cmd_no_error(
             node, command, timeout=120, sudo=True, message=message
         )
+
+        eth = DUTSetup._pci_to_eth(node, pf_pci_addr)
+        exec_cmd(node, f"ethtool --driver {eth}", sudo=1)
+        eth = DUTSetup._pci_to_eth(node, vf_pci_addr)
+        exec_cmd(node, f"ethtool --driver {eth}", sudo=1)
+
 
     @staticmethod
     def get_pci_dev_driver(node, pci_addr):
