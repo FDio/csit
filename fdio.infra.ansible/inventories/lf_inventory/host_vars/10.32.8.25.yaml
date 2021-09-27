@@ -25,3 +25,6 @@ sysctl:
 
 inventory_ipmi_hostname: "10.30.55.25"
 cpu_microarchitecture: "epyc"
+
+intel_700_matrix: "dpdk21.02"
+intel_800_matrix: "dpdk21.08"
