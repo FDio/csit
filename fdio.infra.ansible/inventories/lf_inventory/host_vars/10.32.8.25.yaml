@@ -5,7 +5,9 @@ hostname: "s61-t210-tg1"
 grub:
   amd_iommu: "on"
   audit: "0"
-  default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=8192"
+  default_hugepagesz: "2M"
+  hugepagesz: "1G"
+  hugepages: "32"
   hpet: "disable"
   iommu: "pt"
   isolcpus: "1-15,17-31,33-47,49-63"
@@ -16,6 +18,9 @@ grub:
   processor.max_cstate: "0"
   rcu_nocbs: "1-15,17-31,33-47,49-63"
   tsc: "reliable"
+grub_ext:
+  hugepagesz: "2M"
+  hugepages: "8192"
 sysctl:
   kernel:
     watchdog_cpumask: "0,16,32,48"
