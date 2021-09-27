@@ -19,8 +19,9 @@ from ipaddress import ip_address, IPv6Address
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.IPAddress import IPAddress
-from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.ip_types import (
+    Address, AddressWithPrefix, Ip6Address
+)
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
@@ -54,6 +55,23 @@ class SRv6PolicySteeringTypes(IntEnum):
     SR_STEER_IPV4 = 4
     SR_STEER_IPV6 = 6
 
+    @classmethod
+    def for_version(cls, version):
+        """Return instance according to IP version.
+
+        If version is neither 4 nor 6, SR_STEER_L2 is returned.
+
+        :param version: IP version number, 4 or 6 or anything else for L2.
+        :type version: int
+        :returns: Corresponding steering type.
+        :rtype: cls
+        """
+        if version == 4:
+            return cls.SR_STEER_IPV4
+        if version == 6:
+            return cls.SR_STEER_IPV6
+        return cls.SR_STEER_L2
+
 
 class SRv6:
     """SRv6 class."""
@@ -67,12 +85,12 @@ class SRv6:
         :returns: SRv6 SID list object.
         :rtype: dict
         """
-        sid_list = [IPv6Address(sid).packed for sid in sids]
+        sid_list = [Ip6Address(sid) for sid in sids]
 
         return dict(
             num_sids=len(sid_list),
             weight=1,
-            sids=sid_list + (16 - len(sid_list)) * [IPv6Address(0).packed]
+            sids=sid_list + (16 - len(sid_list)) * [Ip6Address()]
         )
 
     @staticmethod
@@ -154,7 +172,7 @@ class SRv6:
         cmd = u"sr_localsid_add_del"
         args = dict(
             is_del=False,
-            localsid=IPv6Address(local_sid).packed,
+            localsid=Ip6Address(local_sid),
             end_psp=False,
             behavior=getattr(SRv6Behavior, beh).value,
             sw_if_index=Constants.BITWISE_NON_ZERO,
@@ -176,9 +194,7 @@ class SRv6:
             args[u"sw_if_index"] = InterfaceUtil.get_interface_index(
                 node, interface
             )
-            args[u"nh_addr"] = IPAddress.create_ip_address_object(
-                ip_address(next_hop)
-            )
+            args[u"nh_addr"] = Address(next_hop)
         elif beh == getattr(SRv6Behavior, u"END_DX2").name:
             if interface is None:
                 raise ValueError(
@@ -224,7 +240,7 @@ class SRv6:
         """
         cmd = u"sr_policy_add"
         args = dict(
-            bsid_addr=IPv6Address(bsid).packed,
+            bsid_addr=Ip6Address(bsid),
             weight=1,
             is_encap=bool(mode == u"encap"),
             is_spray=False,
@@ -278,9 +294,7 @@ class SRv6:
                 )
             sw_if_index = InterfaceUtil.get_interface_index(node, interface)
             prefix = 0
-            traffic_type = getattr(
-                SRv6PolicySteeringTypes, u"SR_STEER_L2"
-            ).value
+            traffic_type = SRv6PolicySteeringTypes.SR_STEER_L2
         elif mode.lower() == u"l3":
             if ip_addr is None or prefix is None:
                 raise ValueError(
@@ -288,18 +302,13 @@ class SRv6:
                     f"IP address:{ip_addr}\n"
                     f"mask:{prefix}"
                 )
+            network = AddressWithPrefix(ip_addr, prefix)
             sw_if_index = Constants.BITWISE_NON_ZERO
-            ip_addr = ip_address(ip_addr)
-            prefix = IPUtil.create_prefix_object(ip_addr, int(prefix))
-            traffic_type = getattr(
-                SRv6PolicySteeringTypes, u"SR_STEER_IPV4"
-            ).value if ip_addr.version == 4 else getattr(
-                SRv6PolicySteeringTypes, u"SR_STEER_IPV6"
-            ).value
+            traffic_type = SRv6PolicySteeringTypes.for_version(network.version)
         else:
             raise ValueError(f"Unsupported mode: {mode}")
 
-        return sw_if_index, prefix, traffic_type
+        return sw_if_index, network, traffic_type
 
     # TODO: Bring L1 names, arguments and defaults closer to PAPI ones.
     @staticmethod
@@ -332,7 +341,7 @@ class SRv6:
         cmd = u"sr_steering_add_del"
         args = dict(
             is_del=False,
-            bsid_addr=IPv6Address(str(bsid)).packed,
+            bsid_addr=Ip6Address(bsid),
             sr_policy_index=0,
             table_id=0,
             prefix=prefix,
@@ -366,7 +375,7 @@ class SRv6:
         """
         cmd = u"sr_set_encap_source"
         args = dict(
-            encaps_source=IPv6Address(ip6_addr).packed
+            encaps_source=Ip6Address(ip6_addr)
         )
         err_msg = f"Failed to set SRv6 encapsulation source address " \
             f"{ip6_addr} on host {node[u'host']}"
