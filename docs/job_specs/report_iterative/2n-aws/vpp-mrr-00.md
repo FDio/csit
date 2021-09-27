@@ -20,11 +20,11 @@
 ## ./l2
 ### Amazon-Nitro-50G
 #### dpdk-vfio-pci
-##### eth-l2xcbase
-1c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2xcbase
-2c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2xcbase
-1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2xcbase
-2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2xcbase
+##### eth-l2bdbasemaclrn
+1c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2bdbasemaclrn
+2c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2bdbasemaclrn
+1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2bdbasemaclrn
+2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2bdbasemaclrn
 ## ./lb
 ## ./nfv_density/dcr_memif/chain
 ## ./nfv_density/dcr_memif/chain_ipsec
