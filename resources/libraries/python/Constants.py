@@ -212,27 +212,31 @@ class Constants:
     # Trex force start regardless ports state
     TREX_SEND_FORCE = get_pessimistic_bool_from_env(u"TREX_SEND_FORCE")
 
-    # TRex extra commandline arguments
+    # TRex extra commandline arguments.
     TREX_EXTRA_CMDLINE = get_str_from_env(
-        u"TREX_EXTRA_CMDLINE", u"--mbuf-factor 32")
+        u"TREX_EXTRA_CMDLINE", u"--mbuf-factor 32"
+    )
 
-    # graph node variant value
-    GRAPH_NODE_VARIANT = get_str_from_env(
-        u"GRAPH_NODE_VARIANT", u"")
+    # graph node variant value.
+    GRAPH_NODE_VARIANT = get_str_from_env(u"GRAPH_NODE_VARIANT", u"")
 
-    # Sysctl kernel.core_pattern
+    # Default Hugepage size in case multiple configured in system.
+    DEFAULT_HUGEPAGE_SIZE = get_str_from_env(u"DEFAULT_HUGEPAGE_SIZE", u"1G")
+
+    # Sysctl kernel.core_pattern.
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
 
-    # Core dump directory
+    # Core dump directory.
     CORE_DUMP_DIR = u"/tmp"
 
     # Perf stat events (comma separated).
     PERF_STAT_EVENTS = get_str_from_env(
         u"PERF_STAT_EVENTS",
         u"cpu-clock,context-switches,cpu-migrations,page-faults,"
-        u"cycles,instructions,branches,branch-misses,L1-icache-load-misses")
+        u"cycles,instructions,branches,branch-misses,L1-icache-load-misses"
+    )
 
-    # Equivalent to ~0 used in vpp code
+    # Equivalent to ~0 used in vpp code.
     BITWISE_NON_ZERO = 0xffffffff
 
     # Default path to VPP API socket.
@@ -249,7 +253,8 @@ class Constants:
 
     # Duration of one latency-specific trial in NDRPDR test.
     PERF_TRIAL_LATENCY_DURATION = get_float_from_env(
-        u"PERF_TRIAL_LATENCY_DURATION", 5.0)
+        u"PERF_TRIAL_LATENCY_DURATION", 5.0
+    )
 
     # For some testbeds TG takes longer than usual to start sending traffic.
     # This constant [s] allows longer wait, without affecting
