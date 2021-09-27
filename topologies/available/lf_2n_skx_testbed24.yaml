@@ -16,38 +16,6 @@ nodes:
     username: testuser
     password: Csit1234
     interfaces:
-      port1:
-        # s10-t24-tg1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:b1:88"
-        pci_address: "0000:18:00.0"
-        ip4_address: "172.16.10.2"
-        driver: i40e
-        link: link1
-        model: Intel-X710
-      port2:
-        # s10-t24-tg1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:b1:89"
-        pci_address: "0000:18:00.1"
-        ip4_address: "172.16.20.2"
-        driver: i40e
-        link: link2
-        model: Intel-X710
-      port3:
-        # s10-t24-tg1-c2/p3 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:b1:8a"
-        pci_address: "0000:18:00.2"
-        ip4_address: "172.16.30.2"
-        driver: i40e
-        link: link3
-        model: Intel-X710
-      port4:
-        # s10-t24-tg1-c2/p4 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:b1:8b"
-        pci_address: "0000:18:00.3"
-        ip4_address: "172.16.40.2"
-        driver: i40e
-        link: link4
-        model: Intel-X710
       port5:
         # s10-t24-tg1-c4/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:70"
@@ -110,38 +78,6 @@ nodes:
       port: 8183
       netconf_port: 2831
     interfaces:
-      port1:
-        # s9-t24-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:ad:80"
-        pci_address: "0000:18:00.0"
-        ip4_address: "172.16.10.1"
-        driver: i40e
-        link: link1
-        model: Intel-X710
-      port2:
-        # s9-t24-sut1-c2/p2 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:ad:81"
-        pci_address: "0000:18:00.1"
-        ip4_address: "172.16.20.1"
-        driver: i40e
-        link: link2
-        model: Intel-X710
-      port3:
-        # s9-t24-sut1-c2/p3 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:ad:82"
-        pci_address: "0000:18:00.2"
-        ip4_address: "172.16.30.1"
-        driver: i40e
-        link: link3
-        model: Intel-X710
-      port4:
-        # s9-t24-sut1-c2/p4 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:a8:ad:83"
-        pci_address: "0000:18:00.3"
-        ip4_address: "172.16.40.1"
-        driver: i40e
-        link: link4
-        model: Intel-X710
       port5:
         # s9-t24-sut1-c4/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:5c"

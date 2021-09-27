@@ -84,7 +84,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
-| | Then Find NDR and PDR intervals using optimized search
+| | Then Traffic should pass with maximum rate
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-ndrpdr

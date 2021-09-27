@@ -106,7 +106,7 @@
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | &{cont_args}= | Create Dictionary
 | | ... | name=${name} | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
-| | ... | root=${root}
+| | ... | root=${root} | page_size=${page_size}
 | | Run Keyword If | ${pinning}
 | | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
 | | Run Keyword | ${container_group}.Construct container | &{cont_args}
