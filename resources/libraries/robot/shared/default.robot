@@ -74,6 +74,7 @@
 
 *** Variables ***
 | ${cpu_alloc_str}= | ${0}
+| ${page_size}= | ${DEFAULT_HUGEPAGE_SIZE}
 
 *** Keywords ***
 | Call Resetter
@@ -172,9 +173,10 @@
 | | | Run Keyword | ${dut}.Add Unix Coredump
 | | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
 | | | Run Keyword | ${dut}.Add Main Heap Size | ${${heap_size_mult}*${2}}G
-| | | Run Keyword | ${dut}.Add Main Heap Page Size | 2M
+| | | Run Keyword | ${dut}.Add Main Heap Page Size | ${page_size}
+| | | Run Keyword | ${dut}.Add Default Hugepage Size | ${page_size}
 | | | Run Keyword | ${dut}.Add Statseg Size | 2G
-| | | Run Keyword | ${dut}.Add Statseg Page Size | 2M
+| | | Run Keyword | ${dut}.Add Statseg Page Size | ${page_size}
 | | | Run Keyword | ${dut}.Add Statseg Per Node Counters | on
 | | | Run Keyword | ${dut}.Add Plugin | disable | default
 | | | Run Keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
