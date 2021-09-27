@@ -22,6 +22,30 @@
       "revId": "dbae8e3645749607573d7ca2cad45f00c7a2670e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4e3446f_a55d9d21",
+        "filename": "docs/job_specs/mlr_weekly/trex-2n-skx.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2021-09-27T09:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bedbd9ae_5473a120",
+      "range": {
+        "startLine": 35,
+        "startChar": 51,
+        "endLine": 35,
+        "endChar": 52
+      },
+      "revId": "dbae8e3645749607573d7ca2cad45f00c7a2670e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
