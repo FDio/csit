@@ -11,12 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""VPP Configuration File Generator library.
-
-TODO: Support initialization with default values,
-so that we do not need to have block of 6 "Add Unix" commands
-in 7 various places of CSIT code.
-"""
+"""VPP Configuration File Generator library."""
 
 import re
 
@@ -85,22 +80,6 @@ class VppConfigGenerator:
             )
         self._node = node
         self._node_key = node_key
-
-    def set_vpp_logfile(self, logfile):
-        """Set VPP logfile location.
-
-        :param logfile: VPP logfile location.
-        :type logfile: str
-        """
-        self._vpp_logfile = logfile
-
-    def set_vpp_startup_conf_backup(self, backup=u"/etc/vpp/startup.backup"):
-        """Set VPP startup configuration backup.
-
-        :param backup: VPP logfile location.
-        :type backup: str
-        """
-        self._vpp_startup_conf_backup = backup
 
     def get_config_str(self):
         """Get dumped startup configuration in VPP config format.
@@ -431,6 +410,15 @@ class VppConfigGenerator:
         :type value: str
         """
         path = [u"memory", u"main-heap-page-size"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_default_hugepage_size(self, value=Constant.DEFAULT_HUGEPAGE_SIZE):
+        """Add Default Hugepage Size configuration.
+
+        :param value: Hugepage size.
+        :type value: str
+        """
+        path = [u"memory", u"default-hugepage-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_api_trace(self):
