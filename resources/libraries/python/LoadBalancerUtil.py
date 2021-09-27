@@ -16,8 +16,9 @@
 from ipaddress import ip_address
 from socket import htonl
 
-from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.ip_types import Address, AddressWithPrefix
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class LoadBalancerUtil:
@@ -113,12 +114,8 @@ class LoadBalancerUtil:
             cmd = u"lb_add_del_vip"
             err_msg = f"Failed to add vip on host {node[u'host']}"
 
-            vip_addr = ip_address(vip_addr).packed
             args = dict(
-                pfx={
-                    u"len": 128,
-                    u"address": {u"un": {u"ip4": vip_addr}, u"af": 0}
-                },
+                pfx=AddressWithPrefix(vip_addr, 128),
                 protocol=protocol,
                 port=port,
                 encap=htonl(encap),
@@ -168,17 +165,11 @@ class LoadBalancerUtil:
             is_del = kwargs.pop(u"is_del", 0)
             is_flush = kwargs.pop(u"is_flush", 0)
 
-            vip_addr = ip_address(vip_addr).packed
-            as_addr = ip_address(as_addr).packed
-
             args = dict(
-                pfx={
-                    u"len": 128,
-                    u"address": {u"un": {u"ip4": vip_addr}, u"af": 0}
-                },
+                pfx=AddressWithPrefix(vip_addr, 128),
                 protocol=protocol,
                 port=port,
-                as_address={u"un": {u"ip4": as_addr}, u"af": 0},
+                as_address=Address(as_addr),
                 is_del=is_del,
                 is_flush=is_flush
             )
