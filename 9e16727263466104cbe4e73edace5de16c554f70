@@ -22,6 +22,29 @@
       "revId": "9e16727263466104cbe4e73edace5de16c554f70",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f2034d5_8791cf48",
+        "filename": "tests/vpp/device/flow/2n1l-10ge2p1x710-ethip4-flow-ip4-ntuple-udp-scapy.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-27T11:12:33Z",
+      "side": 1,
+      "message": "Would be nice to have some more granular TAGS for eg. FLOW | NTUPLE | UDP\nto have ability to select testcase.",
+      "range": {
+        "startLine": 18,
+        "startChar": 31,
+        "endLine": 18,
+        "endChar": 36
+      },
+      "revId": "9e16727263466104cbe4e73edace5de16c554f70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
