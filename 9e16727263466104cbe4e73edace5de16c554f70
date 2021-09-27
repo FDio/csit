@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2f73b18_bf5c811d",
+        "filename": "docs/job_specs/vpp_device/vpp-1n-skx.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-27T11:10:59Z",
+      "side": 1,
+      "message": "Do we need all the duplicate combination on both drivers (AVF and DPDK)? Does it make sense to have only subset?",
+      "range": {
+        "startLine": 31,
+        "startChar": 5,
+        "endLine": 31,
+        "endChar": 8
+      },
+      "revId": "9e16727263466104cbe4e73edace5de16c554f70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
