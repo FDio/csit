@@ -42,7 +42,7 @@ class QemuUtils:
 
     def __init__(
             self, node, qemu_id=1, smp=1, mem=512, vnf=None,
-            img=Constants.QEMU_VM_IMAGE):
+            img=Constants.QEMU_VM_IMAGE, page_size=u""):
         """Initialize QemuUtil class.
 
         :param node: Node to run QEMU on.
@@ -51,12 +51,14 @@ class QemuUtils:
         :param mem: Amount of memory.
         :param vnf: Network function workload.
         :param img: QEMU disk image or kernel image path.
+        :param page_size: Hugepage Size.
         :type node: dict
         :type qemu_id: int
         :type smp: int
         :type mem: int
         :type vnf: str
         :type img: str
+        :type page_size: str
         """
         self._nic_id = 0
         self._node = node
@@ -91,6 +93,8 @@ class QemuUtils:
         self._opt[u"smp"] = int(smp)
         self._opt[u"img"] = img
         self._opt[u"vnf"] = vnf
+        self._opt[u"page_size"] = page_size
+
         # Temporary files.
         self._temp = dict()
         self._temp[u"log"] = f"/tmp/serial_{qemu_id}.log"
@@ -115,6 +119,9 @@ class QemuUtils:
 
     def add_default_params(self):
         """Set default QEMU command line parameters."""
+        mem_path = f"/dev/hugepages1G" \
+            if self._opt[u"page_size"] == u"1G" else u"/dev/hugepages"
+
         self._params.add(u"daemonize")
         self._params.add(u"nodefaults")
         self._params.add_with_value(
@@ -133,7 +140,8 @@ class QemuUtils:
         )
         self._params.add_with_value(
             u"object", f"memory-backend-file,id=mem,"
-            f"size={self._opt.get(u'mem')}M,mem-path=/dev/hugepages,share=on"
+            f"size={self._opt.get(u'mem')}M,"
+            f"mem-path={mem_path},share=on"
         )
         self._params.add_with_value(u"m", f"{self._opt.get(u'mem')}M")
         self._params.add_with_value(u"numa", u"node,memdev=mem")
@@ -202,6 +210,8 @@ class QemuUtils:
 
     def add_kernelvm_params(self):
         """Set KernelVM QEMU parameters."""
+        hugepages = 3 if self._opt[u"page_size"] == u"1G" else 512
+
         self._params.add_with_value(
             u"serial", f"file:{self._temp.get(u'log')}"
         )
@@ -220,7 +230,8 @@ class QemuUtils:
         self._params.add_with_value(
             u"append", f"'ro rootfstype=9p rootflags=trans=virtio "
             f"root=virtioroot console={self._opt.get(u'console')} "
-            f"tsc=reliable hugepages=512 "
+            f"tsc=reliable hugepages={self._opt.get(u'hugepages')} "
+            f"hugepagesz={self._opt.get(u'page_size')} "
             f"init={self._temp.get(u'ini')} fastboot'"
         )
 
@@ -313,9 +324,10 @@ class QemuUtils:
         vpp_config.add_unix_exec(running)
         vpp_config.add_socksvr()
         vpp_config.add_main_heap_size(u"512M")
-        vpp_config.add_main_heap_page_size(u"2M")
+        vpp_config.add_main_heap_page_size(self._opt[u"page_size"])
+        vpp_config.add_default_hugepage_size(self._opt[u"page_size"])
         vpp_config.add_statseg_size(u"512M")
-        vpp_config.add_statseg_page_size(u"2M")
+        vpp_config.add_statseg_page_size(self._opt[u"page_size"])
         vpp_config.add_statseg_per_node_counters(u"on")
         vpp_config.add_buffers_per_numa(107520)
         vpp_config.add_cpu_main_core(u"0")
@@ -720,7 +732,9 @@ class QemuUtils:
         message = f"QEMU: Start failed on {self._node[u'host']}!"
         try:
             DUTSetup.check_huge_page(
-                self._node, u"/dev/hugepages", int(self._opt.get(u"mem")))
+                self._node, self._opt.get(u"mem-path"),
+                int(self._opt.get(u"mem"))
+            )
 
             exec_cmd_no_error(
                 self._node, cmd_opts, timeout=300, sudo=True, message=message
