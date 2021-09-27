@@ -28,3 +28,5 @@ sysctl:
 
 inventory_ipmi_hostname: "10.30.55.19"
 cpu_microarchitecture: "cascadelake"
+
+intel_700_matrix: "dpdk21.02"
