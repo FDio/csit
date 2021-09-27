@@ -154,7 +154,8 @@ class QemuManager:
             smp=len(self.machines_affinity[name]),
             mem=4096,
             vnf=kwargs[u"vnf"],
-            img=Constants.QEMU_VM_KERNEL
+            img=Constants.QEMU_VM_KERNEL,
+            page_size=kwargs[u"page_size"]
         )
         self.machines[name].add_default_params()
         self.machines[name].add_kernelvm_params()
