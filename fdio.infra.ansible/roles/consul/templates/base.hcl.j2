@@ -14,22 +14,22 @@ server = {{ consul_node_server | bool | lower }}
 encrypt = "{{ consul_encrypt }}"
 {% if consul_node_server | bool == True %}
 bootstrap_expect = {{ consul_bootstrap_expect }}
-verify_incoming = false
-verify_outgoing = false
-verify_server_hostname = false
+verify_incoming = {{ consul_verify_incoming | bool | lower }}
+verify_outgoing = {{ consul_verify_outgoing | bool | lower }}
+verify_server_hostname = {{ consul_vefify_server_hostname | bool | lower }}
 ca_file = "{{ consul_ca_file }}"
 cert_file = "{{ consul_cert_file }}"
 key_file = "{{ consul_key_file }}"
 auto_encrypt {
-  allow_tls = false
+  allow_tls = {{ consul_allow_tls | bool | lower }}
 }
 {% else %}
-verify_incoming = false
-verify_outgoing = false
-verify_server_hostname = false
+verify_incoming = {{ consul_verify_incoming | bool | lower }}
+verify_outgoing = {{ consul_verify_outgoing | bool | lower }}
+verify_server_hostname = {{ consul_vefify_server_hostname | bool | lower }}
 ca_file = "{{ consul_ca_file }}"
 auto_encrypt {
-  tls = false
+  tls = {{ consul_allow_tls | bool | lower }}
 }
 {% endif %}
 {% if consul_retry_join | bool -%}
