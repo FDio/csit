@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f992ed2_8b5045ac",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-27T08:34:53Z",
+      "side": 1,
+      "message": "-ndrpdr",
+      "range": {
+        "startLine": 75,
+        "startChar": 31,
+        "endLine": 75,
+        "endChar": 38
+      },
+      "revId": "a776ace38c629a0864edf41a4de3597fe298c387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29e3ca52_7bffb0e2",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-27T08:34:53Z",
+      "side": 1,
+      "message": "Delete 177-178 as 175-176 are no longer perf.",
+      "range": {
+        "startLine": 177,
+        "startChar": 4,
+        "endLine": 177,
+        "endChar": 8
+      },
+      "revId": "a776ace38c629a0864edf41a4de3597fe298c387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f8bf17e_d397d4cc",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-27T08:34:53Z",
+      "side": 1,
+      "message": "Also delete.",
+      "range": {
+        "startLine": 190,
+        "startChar": 4,
+        "endLine": 190,
+        "endChar": 9
+      },
+      "revId": "a776ace38c629a0864edf41a4de3597fe298c387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97eb9fa9_fe328ba5",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-09-27T08:34:53Z",
+      "side": 1,
+      "message": "We do not have a device testbed with RDMA-cappable NIC, so this is not \"dev\" yet.",
+      "range": {
+        "startLine": 233,
+        "startChar": 34,
+        "endLine": 233,
+        "endChar": 39
+      },
+      "revId": "a776ace38c629a0864edf41a4de3597fe298c387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
