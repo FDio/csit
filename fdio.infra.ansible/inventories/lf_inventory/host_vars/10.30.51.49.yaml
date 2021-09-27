@@ -29,3 +29,5 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.46"
 cpu_microarchitecture: "skylake"
 docker_tg: true
+
+intel_700_matrix: "dpdk21.02"
