@@ -703,6 +703,7 @@ class ContainerEngine:
         vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
         vpp_config.add_main_heap_size(u"2G")
         vpp_config.add_main_heap_page_size(u"2M")
+        vpp_config.add_default_hugepage_size(u"1G")
         vpp_config.add_statseg_size(u"2G")
         vpp_config.add_statseg_page_size(u"2M")
         vpp_config.add_statseg_per_node_counters(u"on")
