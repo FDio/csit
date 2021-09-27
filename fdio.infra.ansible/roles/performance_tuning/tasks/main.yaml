@@ -154,7 +154,7 @@
     path: "/etc/default/grub"
     state: "present"
     regexp: "^GRUB_CMDLINE_LINUX="
-    line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value is sameas true %}{{key}} {% else %}{{key}}={{value}} {% endif %}{% endfor %}\""
+    line: "GRUB_CMDLINE_LINUX=\"{% for key, value in grub.items() %}{% if value is sameas true %}{{key}} {% else %}{{key}}={{value}} {% endif %}{% endfor %}{% for key, value in grub_ext.items() %}{% if value is sameas true %}{{key}} {% else %}{{key}}={{value}} {% endif %}{% endfor %}\""
   notify:
     - "Update GRUB"
   tags:
