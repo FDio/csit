@@ -11,12 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""VPP Configuration File Generator library.
-
-TODO: Support initialization with default values,
-so that we do not need to have block of 6 "Add Unix" commands
-in 7 various places of CSIT code.
-"""
+"""VPP Configuration File Generator library."""
 
 import re
 
@@ -67,8 +62,6 @@ class VppConfigGenerator:
         self._vpp_logfile = u"/tmp/vpe.log"
         # VPP Startup config location
         self._vpp_startup_conf = u"/etc/vpp/startup.conf"
-        # VPP Startup config backup location
-        self._vpp_startup_conf_backup = None
 
     def set_node(self, node, node_key=None):
         """Set DUT node.
@@ -85,22 +78,6 @@ class VppConfigGenerator:
             )
         self._node = node
         self._node_key = node_key
-
-    def set_vpp_logfile(self, logfile):
-        """Set VPP logfile location.
-
-        :param logfile: VPP logfile location.
-        :type logfile: str
-        """
-        self._vpp_logfile = logfile
-
-    def set_vpp_startup_conf_backup(self, backup=u"/etc/vpp/startup.backup"):
-        """Set VPP startup configuration backup.
-
-        :param backup: VPP logfile location.
-        :type backup: str
-        """
-        self._vpp_startup_conf_backup = backup
 
     def get_config_str(self):
         """Get dumped startup configuration in VPP config format.
@@ -433,6 +410,15 @@ class VppConfigGenerator:
         path = [u"memory", u"main-heap-page-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_default_hugepage_size(self, value=Constants.DEFAULT_HUGEPAGE_SIZE):
+        """Add Default Hugepage Size configuration.
+
+        :param value: Hugepage size.
+        :type value: str
+        """
+        path = [u"memory", u"default-hugepage-size"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_api_trace(self):
         """Add API trace configuration."""
         path = [u"api-trace", u"on"]
@@ -665,12 +651,6 @@ class VppConfigGenerator:
         if filename is None:
             filename = self._vpp_startup_conf
 
-        if self._vpp_startup_conf_backup is not None:
-            cmd = f"cp {self._vpp_startup_conf} {self._vpp_startup_conf_backup}"
-            exec_cmd_no_error(
-                self._node, cmd, sudo=True, message=u"Copy config file failed!"
-            )
-
         cmd = f"echo \"{self._vpp_config}\" | sudo tee {filename}"
         exec_cmd_no_error(
             self._node, cmd, message=u"Writing config file failed!"
@@ -692,10 +672,3 @@ class VppConfigGenerator:
         VPPUtil.restart_vpp_service(self._node, self._node_key)
         if verify_vpp:
             VPPUtil.verify_vpp(self._node)
-
-    def restore_config(self):
-        """Restore VPP startup.conf from backup."""
-        cmd = f"cp {self._vpp_startup_conf_backup} {self._vpp_startup_conf}"
-        exec_cmd_no_error(
-            self._node, cmd, sudo=True, message=u"Copy config file failed!"
-        )
