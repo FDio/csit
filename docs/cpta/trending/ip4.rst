@@ -18,3 +18,5 @@ IPv4 Routing
     ip4-2n-zn2-xxv710
     ip4-2n-zn2-x710
     ip4-2n-zn2-cx556a
+    ip4-2n-aws-nitro50g
+    ip4-3n-aws-nitro50g

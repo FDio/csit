@@ -138,6 +138,22 @@
   layout:
     layout: "plot-statistics"
 
+- type: "plot"
+  title: "Statistics: 3n-aws mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-3n-aws-mrr"
+  data: "plot-performance-trending-vpp-3n-aws"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 2n-aws mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-aws-mrr"
+  data: "plot-performance-trending-vpp-2n-aws"
+  layout:
+    layout: "plot-statistics"
+
 ################################################################################
 ###                               T A B L E S                                ###
 ################################################################################
@@ -329,6 +345,32 @@
   output-file-ext: ".txt"
   output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-dnv-mrr"
   data: "table-last-failed-tests-2n-dnv"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+    - "msg"
+
+- type: "table"
+  title: "Last failed tests (last builds) VPP 3n-aws"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-aws-mrr"
+  data: "table-last-failed-tests-3n-aws"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+    - "msg"
+
+- type: "table"
+  title: "Last failed tests (last builds) VPP 2n-aws"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-aws-mrr"
+  data: "table-last-failed-tests-2n-aws"
   filter: "'MRR'"
   parameters:
     - "name"
@@ -1341,6 +1383,137 @@
   output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-dnv.rst"
   testbed: "2n-dnv"
 
+
+################################################################################
+# 3n-aws
+- type: "table"
+  title: "Performance trending dashboard 2t1c-3n-aws"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-aws"
+  data: "plot-performance-trending-vpp-3n-aws"
+  filter: "'MRR' and '2T1C'"
+  parameters:
+    - "name"
+    - "parent"
+    - "result"
+  window: 5
+  long-trend-window: 26
+
+- type: "table"
+  title: "Performance trending dashboard 4t2c-3n-aws"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-3n-aws"
+  data: "plot-performance-trending-vpp-3n-aws"
+  filter: "'MRR' and '4T2C'"
+  parameters:
+    - "name"
+    - "parent"
+    - "result"
+  window: 5
+  long-trend-window: 26
+
+- type: "table"
+  title: "HTML performance trending dashboard 2t1c-3n-aws"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-aws.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-3n-aws.rst"
+  testbed: "3n-aws"
+
+- type: "table"
+  title: "HTML performance trending dashboard 4t2c-3n-aws"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-3n-aws.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-3n-aws.rst"
+  testbed: "3n-aws"
+
+- type: "table"
+  title: "Failed MRR tests 3n-aws"
+  algorithm: "table_failed_tests"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-aws"
+  data: "plot-performance-trending-vpp-3n-aws"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+    - "msg"
+  window: 7  # days
+
+- type: "table"
+  title: "HTML Failed MRR tests 3n-aws"
+  algorithm: "table_failed_tests_html"
+  input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-aws.csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-aws.rst"
+  testbed: "3n-aws"
+
+################################################################################
+# 2n-aws
+- type: "table"
+  title: "Performance trending dashboard 2t1c-2n-aws"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-aws"
+  data: "plot-performance-trending-vpp-2n-aws"
+  filter: "'MRR' and '2T1C'"
+  parameters:
+    - "name"
+    - "parent"
+    - "result"
+  window: 5
+  long-trend-window: 26
+
+- type: "table"
+  title: "Performance trending dashboard 4t2c-2n-aws"
+  algorithm: "table_perf_trending_dash"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-aws"
+  data: "plot-performance-trending-vpp-2n-aws"
+  filter: "'MRR' and '4T2C'"
+  parameters:
+    - "name"
+    - "parent"
+    - "result"
+  window: 5
+  long-trend-window: 26
+
+- type: "table"
+  title: "HTML performance trending dashboard 2t1c-2n-aws"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-aws.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t1c-2n-aws.rst"
+  testbed: "2n-aws"
+
+- type: "table"
+  title: "HTML performance trending dashboard 4t2c-2n-aws"
+  algorithm: "table_perf_trending_dash_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-aws.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t2c-2n-aws.rst"
+  testbed: "2n-aws"
+
+- type: "table"
+  title: "Failed MRR tests 2n-aws"
+  algorithm: "table_failed_tests"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-aws"
+  data: "plot-performance-trending-vpp-2n-aws"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+    - "msg"
+  window: 7  # days
+
+- type: "table"
+  title: "HTML Failed MRR tests 2n-aws"
+  algorithm: "table_failed_tests_html"
+  input-file: "{DIR[STATIC,VPP]}/failed-tests-2n-aws.csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-aws.rst"
+  testbed: "2n-aws"
+
 ################################################################################
 ###                                 C P T A                                  ###
 ################################################################################
@@ -1871,13 +2044,31 @@
     - title: "2n-dnv-x553-64b-{core}-ip4routing-base-scale-ixgbe"
       output-file-name: "2n-dnv-x553-64b-{core}-ip4-ixgbe"
       data: "plot-performance-trending-vpp-2n-dnv"
-      core: ["2t1c", "4t2c", "8t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-mrr.64B-{core}-ethip4-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-mrr.64B-{core}-ethip4-ip4scale20k-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale200K-mrr.64B-{core}-ethip4-ip4scale200k-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-mrr.64B-{core}-ethip4-ip4scale2m-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-mrr.64B-{core}-ethip4-ip4scale20k-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena"
+      output-file-name: "2n-aws-nitro50g-64b-{core}-ip4-ena"
+      data: "plot-performance-trending-vpp-2n-aws"
+      core: ["2t1c", "4t2c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-mrr.64B-1c-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-mrr.64B-1c-ethip4-ip4scale2m-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena"
+      output-file-name: "2n-aws-nitro50g-1518b-{core}-ip4-ena"
+      data: "plot-performance-trending-vpp-2n-aws"
+      core: ["2t1c", "4t2c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-mrr.1518B-1c-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-mrr.1518B-1c-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-x710-64b-{core}-ip4routing-base-scale-avf-dpdk"
@@ -2103,6 +2294,24 @@
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale200K-mrr.64B-{core}-ethip4-ip4scale200k-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale2M-mrr.64B-{core}-ethip4-ip4scale2m-mrr"
         - "Tests.Vpp.Perf.Ip4.10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-mrr.64B-{core}-ethip4-ip4scale20k-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena"
+      output-file-name: "3n-aws-nitro50g-64b-{core}-ip4-ena"
+      data: "plot-performance-trending-vpp-3n-aws"
+      core: ["2t1c", "4t2c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-mrr.64B-1c-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-mrr.64B-1c-ethip4-ip4scale2m-mrr"
+      layout: "plot-cpta"
+
+    - title: "3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena"
+      output-file-name: "3n-aws-nitro50g-1518b-{core}-ip4-ena"
+      data: "plot-performance-trending-vpp-3n-aws"
+      core: ["2t1c", "4t2c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-mrr.1518B-1c-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-mrr.1518B-1c-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "3n-skx-x710-64b-{core}-ip4routing-base-scale-avf"
