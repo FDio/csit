@@ -216,9 +216,11 @@ class Constants:
     TREX_EXTRA_CMDLINE = get_str_from_env(
         u"TREX_EXTRA_CMDLINE", u"--mbuf-factor 32")
 
-    # graph node variant value
-    GRAPH_NODE_VARIANT = get_str_from_env(
-        u"GRAPH_NODE_VARIANT", u"")
+    # Graph node variant value
+    GRAPH_NODE_VARIANT = get_str_from_env(u"GRAPH_NODE_VARIANT", u"")
+
+    # Default memory page size in case multiple configured in system
+    DEFAULT_HUGEPAGE_SIZE = get_str_from_env(u"DEFAULT_HUGEPAGE_SIZE", u"2M")
 
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = u"/tmp/%p-%u-%g-%s-%t-%h-%e.core"
