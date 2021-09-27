@@ -164,7 +164,8 @@ class QemuManager:
             vif1_mac=kwargs[u"vif1_mac"],
             vif2_mac=kwargs[u"vif2_mac"],
             queues=kwargs[u"queues"],
-            jumbo_frames=kwargs[u"jumbo"]
+            jumbo_frames=kwargs[u"jumbo"],
+            page_size=kwargs[u"page_size"]
         )
         self.machines[name].add_vhost_user_if(
             f"/run/vpp/sock-{qemu_id}-1",
