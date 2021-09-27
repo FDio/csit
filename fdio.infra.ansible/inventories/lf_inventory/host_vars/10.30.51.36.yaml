@@ -4,7 +4,9 @@
 hostname: "s17-t33-sut1"
 grub:
   audit: "0"
-  default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
+  default_hugepagesz: "2M"
+  hugepagesz: "2M"
+  hugepages: "32768"
   iommu.passthrough: "1"
   isolcpus: "1-10,17-26,33-42,49-58"
   nmi_watchdog: "0"
@@ -12,6 +14,9 @@ grub:
   nosoftlockup: true
   processor.max_cstate: "1"
   rcu_nocbs: "1-10,17-26,33-42,49-58"
+grub_ext:
+  hugepagesz: "1G"
+  hugepages: "32"
 sysctl:
   kernel:
     watchdog_cpumask: "0,11-16,27-32,43-48,59-63"

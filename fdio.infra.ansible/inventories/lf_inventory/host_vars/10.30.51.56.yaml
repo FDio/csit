@@ -4,7 +4,9 @@
 hostname: "s9-t24-sut1"
 grub:
   audit: "0"
-  default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
+  default_hugepagesz: "2M"
+  hugepagesz: "2M"
+  hugepages: "32768"
   hpet: "disable"
   intel_idle.max_cstate: "1"
   intel_iommu: "on"
@@ -19,6 +21,9 @@ grub:
   processor.max_cstate: "1"
   rcu_nocbs: "1-27,29-55,57-83,85-111"
   tsc: "reliable"
+grub_ext:
+  hugepagesz: "1G"
+  hugepages: "32"
 sysctl:
   kernel:
     watchdog_cpumask: "0,28,56,84"
