@@ -21,7 +21,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.ip_types import Address
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
@@ -853,12 +853,8 @@ class InterfaceUtil:
         args = dict(
             is_add=True,
             instance=Constants.BITWISE_NON_ZERO,
-            src_address=IPAddress.create_ip_address_object(
-                ip_address(source_ip)
-            ),
-            dst_address=IPAddress.create_ip_address_object(
-                ip_address(destination_ip)
-            ),
+            src_address=Address(source_ip),
+            dst_address=Address(destination_ip),
             mcast_sw_if_index=Constants.BITWISE_NON_ZERO,
             encap_vrf_id=0,
             decap_next_index=Constants.BITWISE_NON_ZERO,
@@ -1080,12 +1076,8 @@ class InterfaceUtil:
         cmd = u"gtpu_add_del_tunnel"
         args = dict(
             is_add=True,
-            src_address=IPAddress.create_ip_address_object(
-                ip_address(source_ip)
-            ),
-            dst_address=IPAddress.create_ip_address_object(
-                ip_address(destination_ip)
-            ),
+            src_address=Address(source_ip),
+            dst_address=Address(destination_ip),
             mcast_sw_if_index=Constants.BITWISE_NON_ZERO,
             encap_vrf_id=0,
             decap_next_index=2,

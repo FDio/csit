@@ -20,6 +20,9 @@
 | | ... | Configure MACIP ACL with required number of not-hitting permit ACEs
 | | ... | plus two hitting ACEs for both traffic directions.
 | |
+| | ... | TODO: Convert to Python, so ip_types can be used,
+| | ... | and keywords such as "Int To IP" and "IP To Int" are not needed.
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node. Type: dictionary
 | | ... | - dut_if1 - DUT node interface1 name (Optional). Type: string

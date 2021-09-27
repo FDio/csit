@@ -18,13 +18,13 @@ import re
 import os
 
 from enum import IntEnum
-
-from ipaddress import ip_address, ip_network
+from ipaddress import ip_address
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.IPAddress import IPAddress
+from resources.libraries.python.ip_types import (
+    incrementator, AddressUnion, Address, AddressWithPrefix
+)
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
@@ -67,6 +67,23 @@ class FibPathNhProto(IntEnum):
     FIB_PATH_NH_PROTO_ETHERNET = 3
     FIB_PATH_NH_PROTO_BIER = 4
 
+    @classmethod
+    def for_version(cls, version):
+        """Return instance suitable for given IP version.
+
+        If version is neither 4 nor 6, return FIB_PATH_NH_PROTO_ETHERNET.
+
+        :param version: IP version, 4 or 6 or anything other for ethernet.
+        :type version: int
+        :returns: Appropriate enum instance.
+        :rtype: cls
+        """
+        if version == 4:
+            return cls.FIB_PATH_NH_PROTO_IP4
+        if version == 6:
+            return cls.FIB_PATH_NH_PROTO_IP6
+        return cls.FIB_PATH_NH_PROTO_ETHERNET
+
 
 class IpDscp(IntEnum):
     """DSCP code points."""
@@ -91,72 +108,6 @@ class IpDscp(IntEnum):
     IP_API_DSCP_EF = 46
     IP_API_DSCP_CS6 = 48
     IP_API_DSCP_CS7 = 50
-
-
-class NetworkIncrement(ObjIncrement):
-    """
-    An iterator object which accepts an IPv4Network or IPv6Network and
-    returns a new network, its address part incremented by the increment
-    number of network sizes, each time it is iterated or when inc_fmt is called.
-    The increment may be positive, negative or 0
-    (in which case the network is always the same).
-
-    Both initial and subsequent IP address can have host bits set,
-    check the initial value before creating instance if needed.
-    String formatting is configurable via constructor argument.
-    """
-    def __init__(self, initial_value, increment=1, format=u"dash"):
-        """
-        :param initial_value: The initial network. Can have host bits set.
-        :param increment: The current network will be incremented by this
-            amount of network sizes in each iteration/var_str call.
-        :param format: Type of formatting to use, "dash" or "slash" or "addr".
-        :type initial_value: Union[ipaddress.IPv4Network, ipaddress.IPv6Network]
-        :type increment: int
-        :type format: str
-        """
-        super().__init__(initial_value, increment)
-        self._prefix_len = self._value.prefixlen
-        host_len = self._value.max_prefixlen - self._prefix_len
-        self._net_increment = self._increment * (1 << host_len)
-        self._format = str(format).lower()
-
-    def _incr(self):
-        """
-        Increment the network, e.g.:
-        '30.0.0.0/24' incremented by 1 (the next network) is '30.0.1.0/24'.
-        '30.0.0.0/24' incremented by 2 is '30.0.2.0/24'.
-        """
-        self._value = ip_network(
-            f"{self._value.network_address + self._net_increment}"
-            f"/{self._prefix_len}", strict=False
-        )
-
-    def _str_fmt(self):
-        """
-        The string representation of the network depends on format.
-
-        Dash format is '<ip_address_start> - <ip_address_stop>',
-        useful for 'ipsec policy add spd' CLI.
-
-        Slash format is '<ip_address_start>/<prefix_length>',
-        useful for other CLI.
-
-        Addr format is '<ip_address_start>', useful for PAPI.
-
-        :returns: Current value converted to string according to format.
-        :rtype: str
-        :raises RuntimeError: If the format is not supported.
-        """
-        if self._format == u"dash":
-            return f"{self._value.network_address} - " \
-                   f"{self._value.broadcast_address}"
-        elif self._format == u"slash":
-            return f"{self._value.network_address}/{self._prefix_len}"
-        elif self._format == u"addr":
-            return f"{self._value.network_address}"
-        else:
-            raise RuntimeError(f"Unsupported format {self._format}")
 
 
 class IPUtil:
@@ -257,7 +208,7 @@ class IPUtil:
         :type node: dict
         :type address: str
         """
-        addr = ip_address(address)
+        addr = Address(address)
         ip_ver = u"ip6" if addr.version == 6 else u"ip"
 
         PapiSocketExecutor.run_cli_cmd(
@@ -340,8 +291,8 @@ class IPUtil:
         :type ip1: str
         :type ip2: str
         """
-        addr1 = ip_address(ip1)
-        addr2 = ip_address(ip2)
+        addr1 = Address(ip1)
+        addr2 = Address(ip2)
 
         if addr1 != addr2:
             raise AssertionError(f"IP addresses are not equal: {ip1} != {ip2}")
@@ -540,31 +491,27 @@ class IPUtil:
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_interface_set_ip_address(
-            node, interface, address, prefix_length=None):
+    def vpp_interface_set_ip_address(node, interface, address, plen=None):
         """Set IP address to VPP interface.
 
         :param node: VPP node.
         :param interface: Interface name.
         :param address: IP address.
-        :param prefix_length: Prefix length.
+        :param plen: Prefix length.
         :type node: dict
         :type interface: str
         :type address: str
-        :type prefix_length: int
+        :type plen: int
         """
-        ip_addr = ip_address(address)
-
         cmd = u"sw_interface_add_del_address"
+        address = Address(address)
+        plen = address.max_prefixlen if plen is None else plen
+        prefix = AddressWithPrefix(address, plen)
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
             is_add=True,
             del_all=False,
-            prefix=IPUtil.create_prefix_object(
-                ip_addr,
-                prefix_length if prefix_length else 128
-                if ip_addr.version == 6 else 32
-            )
+            prefix=prefix,
         )
         err_msg = f"Failed to add IP address on interface {interface}"
 
@@ -572,22 +519,22 @@ class IPUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_interface_set_ip_addresses(node, interface, ip_addr_list,
-                                       prefix_length=None):
+    def vpp_interface_set_ip_addresses(
+        node, interface, ip_addr_list, plen=None
+    ):
         """Set IP addresses to VPP interface.
 
         :param node: VPP node.
         :param interface: Interface name.
         :param ip_addr_list: IP addresses.
-        :param prefix_length: Prefix length.
+        :param plen: Prefix length.
         :type node: dict
         :type interface: str
         :type ip_addr_list: list
-        :type prefix_length: int
+        :type plen: int
         """
         for ip_addr in ip_addr_list:
-            IPUtil.vpp_interface_set_ip_address(node, interface, ip_addr,
-                                                prefix_length)
+            IPUtil.vpp_interface_set_ip_address(node, interface, ip_addr, plen)
 
     @staticmethod
     def vpp_add_ip_neighbor(node, iface_key, ip_addr, mac_address):
@@ -602,7 +549,7 @@ class IPUtil:
         :type ip_addr: str
         :type mac_address: str
         """
-        dst_ip = ip_address(ip_addr)
+        dst_ip = Address(ip_addr)
 
         neighbor = dict(
             sw_if_index=Topology.get_interface_sw_index(node, iface_key),
@@ -621,26 +568,11 @@ class IPUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def create_prefix_object(ip_addr, addr_len):
-        """Create prefix object.
-
-        :param ip_addr: IPv4 or IPv6 address.
-        :param addr_len: Length of IP address.
-        :type ip_addr: IPv4Address or IPv6Address
-        :type addr_len: int
-        :returns: Prefix object.
-        :rtype: dict
-        """
-        addr = IPAddress.create_ip_address_object(ip_addr)
-
-        return dict(
-            len=int(addr_len),
-            address=addr
-        )
-
-    @staticmethod
     def compose_vpp_route_structure(node, network, prefix_len, **kwargs):
         """Create route object for ip_route_add_del api call.
+
+        The network argument is also accepted as ip_address,
+        or a type from ip_types.
 
         :param node: VPP node.
         :param network: Route destination network address.
@@ -666,14 +598,11 @@ class IPUtil:
         """
         interface = kwargs.get(u"interface", u"")
         gateway = kwargs.get(u"gateway", u"")
-
-        net_addr = ip_address(network)
-
-        prefix = IPUtil.create_prefix_object(net_addr, prefix_len)
+        network_and_plen = AddressWithPrefix(network, prefix_len)
 
         paths = list()
         n_hop = dict(
-            address=IPAddress.union_addr(ip_address(gateway)) if gateway else 0,
+            address=AddressUnion(gateway),
             via_label=MPLS_LABEL_INVALID,
             obj_id=Constants.BITWISE_NON_ZERO
         )
@@ -684,39 +613,33 @@ class IPUtil:
             rpf_id=Constants.BITWISE_NON_ZERO,
             weight=int(kwargs.get(u"weight", 1)),
             preference=1,
-            type=getattr(
-                FibPathType, u"FIB_PATH_TYPE_LOCAL"
-                if kwargs.get(u"local", False)
-                else u"FIB_PATH_TYPE_NORMAL"
-            ).value,
-            flags=getattr(FibPathFlags, u"FIB_PATH_FLAG_NONE").value,
-            proto=getattr(
-                FibPathNhProto, u"FIB_PATH_NH_PROTO_IP6"
-                if net_addr.version == 6
-                else u"FIB_PATH_NH_PROTO_IP4"
-            ).value,
+            type=FibPathType(kwargs.get(u"local", False)),
+            flags=FibPathFlags.FIB_PATH_FLAG_NONE,
+            proto=FibPathNhProto.for_version(network_and_plen.version),
             nh=n_hop,
             n_labels=0,
-            label_stack=list(0 for _ in range(16))
+            label_stack=[0] * 16,
         )
         paths.append(path)
 
         route = dict(
             table_id=int(kwargs.get(u"vrf", 0)),
-            prefix=prefix,
+            prefix=network_and_plen,
             n_paths=len(paths),
             paths=paths
         )
         return route
 
     @staticmethod
-    def vpp_route_add(node, network, prefix_len, strict=True, **kwargs):
+    def vpp_route_add(node, network, prefix_len, **kwargs):
         """Add route to the VPP node. Prefer multipath behavior.
+
+        The network argument is also accepted as ip_address,
+        or a type from ip_types.
 
         :param node: VPP node.
         :param network: Route destination network address.
         :param prefix_len: Route destination network prefix length.
-        :param strict: If true, fail if address has host bits set.
         :param kwargs: Optional key-value arguments:
 
             gateway: Route gateway address. (str)
@@ -732,11 +655,11 @@ class IPUtil:
         :type node: dict
         :type network: str
         :type prefix_len: int
-        :type strict: bool
         :type kwargs: dict
         :raises RuntimeError: If the argument combination is not supported.
         """
         count = kwargs.get(u"count", 1)
+        netiter = incrementator(AddressWithPrefix(network, prefix_len))
 
         if count > 100:
             if not kwargs.get(u"multipath", True):
@@ -768,14 +691,10 @@ class IPUtil:
             command_parts = [u"exec ip route add", u"network goes here"]
             if trailer:
                 command_parts.append(trailer)
-            netiter = NetworkIncrement(
-                ip_network(f"{network}/{prefix_len}", strict=strict),
-                format=u"slash"
-            )
             tmp_filename = u"/tmp/routes.config"
             with open(tmp_filename, u"w") as tmp_file:
                 for _ in range(count):
-                    command_parts[1] = netiter.inc_fmt()
+                    command_parts[1] = str(next(netiter))
                     print(u" ".join(command_parts), file=tmp_file)
             VatExecutor().execute_script(
                 tmp_filename, node, timeout=1800, json_out=False,
@@ -792,14 +711,10 @@ class IPUtil:
         )
         err_msg = f"Failed to add route(s) on host {node[u'host']}"
 
-        netiter = NetworkIncrement(
-            ip_network(f"{network}/{prefix_len}", strict=strict),
-            format=u"addr"
-        )
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
-                    node, netiter.inc_fmt(), prefix_len, **kwargs
+                    node, next(netiter).network_address, prefix_len, **kwargs
                 )
                 history = bool(not 0 < i < count - 1)
                 papi_exec.add(cmd, history=history, **args)

@@ -14,21 +14,22 @@
 
 """IPsec utilities library."""
 
+# TODO: Replace addr_incr with network arithmetics.
+
 import os
 
 from enum import Enum, IntEnum
 from io import open
-from ipaddress import ip_network, ip_address
 from random import choice
 from string import ascii_letters
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
-from resources.libraries.python.IPAddress import IPAddress
-from resources.libraries.python.IPUtil import IPUtil, IpDscp, \
-    MPLS_LABEL_INVALID, NetworkIncrement
+from resources.libraries.python.ip_types import (
+    incrementator, Address, AddressWithPrefix
+)
+from resources.libraries.python.IPUtil import IPUtil, IpDscp, MPLS_LABEL_INVALID
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology, NodeType
@@ -375,7 +376,7 @@ class IPsecUtil:
                 thread_data = VPPUtil.vpp_show_threads(node)
                 worker_cnt = len(thread_data) - 1
                 if not worker_cnt:
-                    return None
+                    return
                 worker_ids = list()
                 for item in thread_data:
                     if str(item.cpu_id) in workers.split(u","):
@@ -427,9 +428,9 @@ class IPsecUtil:
 
         flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE)
         if tunnel_src and tunnel_dst:
-            flags = flags | int(IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL)
-            src_addr = ip_address(tunnel_src)
-            dst_addr = ip_address(tunnel_dst)
+            flags |= int(IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL)
+            src_addr = Address(tunnel_src)
+            dst_addr = Address(tunnel_dst)
             if src_addr.version == 6:
                 flags = \
                     flags | int(IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL_V6)
@@ -504,8 +505,8 @@ class IPsecUtil:
         if isinstance(integ_key, str):
             integ_key = integ_key.encode(encoding=u"utf-8")
         if tunnel_src and tunnel_dst:
-            src_addr = ip_address(tunnel_src)
-            dst_addr = ip_address(tunnel_dst)
+            src_addr = Address(tunnel_src)
+            dst_addr = Address(tunnel_dst)
         else:
             src_addr = u""
             dst_addr = u""
@@ -548,11 +549,9 @@ class IPsecUtil:
 
         flags = int(IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE)
         if tunnel_src and tunnel_dst:
-            flags = flags | int(IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL)
+            flags |= int(IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL)
             if src_addr.version == 6:
-                flags = flags | int(
-                    IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL_V6
-                )
+                flags |= int(IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL_V6)
 
         cmd = u"ipsec_sad_entry_add_del_v3"
         err_msg = f"Failed to add Security Association Database entry " \
@@ -624,11 +623,10 @@ class IPsecUtil:
         :type raddr_range: int
         :type dst_mac: str
         """
-        tunnel_src = ip_address(tunnel_src)
-        tunnel_dst = ip_address(tunnel_dst)
-        traffic_addr = ip_address(traffic_addr)
-        addr_incr = 1 << (128 - raddr_range) if tunnel_src.version == 6 \
-            else 1 << (32 - raddr_range)
+        tunnel_src = Address(tunnel_src)
+        tunnel_dst = Address(tunnel_dst)
+        traffic_addr = Address(traffic_addr)
+        addr_incr = 1 << (tunnel_src.max_prefixlen - raddr_range)
 
         if int(n_tunnels) > 10:
             tmp_filename = u"/tmp/ipsec_set_ip.script"
@@ -639,7 +637,7 @@ class IPsecUtil:
                     conf = f"exec set interface ip address {if_name} " \
                         f"{tunnel_src + i * addr_incr}/{raddr_range}\n" \
                         f"exec ip route add {traffic_addr + i}/" \
-                        f"{128 if traffic_addr.version == 6 else 32} " \
+                        f"{traffic_addr.max_prefixlen} " \
                         f"via {tunnel_dst + i * addr_incr} {if_name}\n"
                     if dst_mac:
                         conf = f"{conf}exec set ip neighbor {if_name} " \
@@ -684,19 +682,19 @@ class IPsecUtil:
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(n_tunnels):
-                args1[u"prefix"] = IPUtil.create_prefix_object(
+                args1[u"prefix"] = AddressWithPrefix(
                     tunnel_src + i * addr_incr, raddr_range
                 )
                 args2[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, traffic_addr + i,
-                    prefix_len=128 if traffic_addr.version == 6 else 32,
+                    prefix_len=traffic_addr.max_prefixlen,
                     interface=interface, gateway=tunnel_dst + i * addr_incr
                 )
                 history = bool(not 1 < i < n_tunnels - 2)
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2)
                 if dst_mac:
-                    args3[u"neighbor"][u"ip_address"] = ip_address(
+                    args3[u"neighbor"][u"ip_address"] = Address(
                         tunnel_dst + i * addr_incr
                     )
                     papi_exec.add(cmd3, history=history, **args3)
@@ -766,10 +764,10 @@ class IPsecUtil:
         :param entry_amount: The number of SPD entries to configure. If
             entry_amount == 1, no non-matching entries will be configured.
         :param local_addr_range: Matching local address range in direction 1
-            in format IP/prefix or IP/mask. If no mask is provided, it's
+            in format IP/prefix. If no mask is provided, it's
             considered to be /32.
         :param remote_addr_range: Matching remote address range in
-            direction 1 in format IP/prefix or IP/mask. If no mask is
+            direction 1 in format IP/prefix. If no mask is
             provided, it's considered to be /32.
         :param action: Policy action.
         :param inbound: If True policy is for inbound traffic, otherwise
@@ -791,7 +789,7 @@ class IPsecUtil:
         """
 
         if action == PolicyAction.PROTECT:
-            raise NotImplemented('Policy action PROTECT is not supported.')
+            raise NotImplementedError(u"Policy action PROTECT is not supported")
 
         spd_id_dir1 = 1
         spd_id_dir2 = 2
@@ -820,22 +818,22 @@ class IPsecUtil:
         # non-matching entries
         no_match_entry_amount = entry_amount - 1
         if no_match_entry_amount > 0:
-            # create a NetworkIncrement representation of the network,
+            # create an incrementing iterator over networks,
             # then skip the matching network
-            no_match_local_addr_range = NetworkIncrement(
-                ip_network(local_addr_range)
+            no_match_local_addr_range = incrementator(
+                AddressWithPrefix(local_addr_range)
             )
             next(no_match_local_addr_range)
 
-            no_match_remote_addr_range = NetworkIncrement(
-                ip_network(remote_addr_range)
+            no_match_remote_addr_range = incrementator(
+                AddressWithPrefix(remote_addr_range)
             )
             next(no_match_remote_addr_range)
 
             # non-matching entries direction 1
             IPsecUtil.vpp_ipsec_add_spd_entries(
                 node, no_match_entry_amount, spd_id_dir1,
-                ObjIncrement(matching_priority + 1, 1), action,
+                incrementator(matching_priority + 1), action,
                 inbound=inbound, laddr_range=no_match_local_addr_range,
                 raddr_range=no_match_remote_addr_range
             )
@@ -843,19 +841,19 @@ class IPsecUtil:
             if bidirectional:
                 # reset the networks so that we're using a unified config
                 # the address ranges are switched
-                no_match_remote_addr_range = NetworkIncrement(
-                    ip_network(local_addr_range)
+                no_match_remote_addr_range = incrementator(
+                    AddressWithPrefix(local_addr_range)
                 )
                 next(no_match_remote_addr_range)
 
-                no_match_local_addr_range = NetworkIncrement(
-                    ip_network(remote_addr_range)
+                no_match_local_addr_range = incrementator(
+                    AddressWithPrefix(remote_addr_range)
                 )
                 next(no_match_local_addr_range)
                 # non-matching entries direction 2
                 IPsecUtil.vpp_ipsec_add_spd_entries(
                     node, no_match_entry_amount, spd_id_dir2,
-                    ObjIncrement(matching_priority + 1, 1), action,
+                    incrementator(matching_priority + 1), action,
                     inbound=inbound, laddr_range=no_match_local_addr_range,
                     raddr_range=no_match_remote_addr_range
                 )
@@ -868,6 +866,8 @@ class IPsecUtil:
             proto=None, laddr_range=None, raddr_range=None, lport_range=None,
             rport_range=None, is_ipv6=False):
         """Create Security Policy Database entry on the VPP node.
+
+        Various types are accepted for laddr_range and raddr_range.
 
         :param node: VPP node to add SPD entry on.
         :param spd_id: SPD ID to add entry on.
@@ -908,8 +908,8 @@ class IPsecUtil:
         if raddr_range is None:
             raddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
 
-        local_net = ip_network(laddr_range, strict=False)
-        remote_net = ip_network(raddr_range, strict=False)
+        local_net = AddressWithPrefix(laddr_range)
+        remote_net = AddressWithPrefix(raddr_range)
 
         cmd = u"ipsec_spd_entry_add_del"
         err_msg = f"Failed to add entry to Security Policy Database " \
@@ -922,18 +922,10 @@ class IPsecUtil:
             sa_id=int(sa_id) if sa_id else 0,
             policy=int(action),
             protocol=int(proto) if proto else 0,
-            remote_address_start=IPAddress.create_ip_address_object(
-                remote_net.network_address
-            ),
-            remote_address_stop=IPAddress.create_ip_address_object(
-                remote_net.broadcast_address
-            ),
-            local_address_start=IPAddress.create_ip_address_object(
-                local_net.network_address
-            ),
-            local_address_stop=IPAddress.create_ip_address_object(
-                local_net.broadcast_address
-            ),
+            remote_address_start=Address(remote_net.network_address),
+            remote_address_stop=Address(remote_net.broadcast_address),
+            local_address_start=Address(local_net.network_address),
+            local_address_stop=Address(local_net.broadcast_address),
             remote_port_start=int(rport_range.split(u"-")[0]) if rport_range
             else 0,
             remote_port_stop=int(rport_range.split(u"-")[1]) if rport_range
@@ -981,24 +973,24 @@ class IPsecUtil:
         :type node: dict
         :type n_entries: int
         :type spd_id: int
-        :type priority: IPsecUtil.ObjIncrement
+        :type priority: Iterator[int]
         :type action: IPsecUtil.PolicyAction
         :type inbound: bool
-        :type sa_id: IPsecUtil.ObjIncrement
+        :type sa_id: Iterator[int]
         :type proto: int
-        :type laddr_range: IPsecUtil.NetworkIncrement
-        :type raddr_range: IPsecUtil.NetworkIncrement
+        :type laddr_range: Iterator[AddressWithPrefix]
+        :type raddr_range: Iterator[AddressWithPrefix]
         :type lport_range: string
         :type rport_range: string
         :type is_ipv6: bool
         """
         if laddr_range is None:
             laddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
-            laddr_range = NetworkIncrement(ip_network(laddr_range), 0)
+            laddr_range = incrementator(AddressWithPrefix(laddr_range), 0)
 
         if raddr_range is None:
             raddr_range = u"::/0" if is_ipv6 else u"0.0.0.0/0"
-            raddr_range = NetworkIncrement(ip_network(raddr_range), 0)
+            raddr_range = incrementator(AddressWithPrefix(raddr_range), 0)
 
         lport_range_start = 0
         lport_range_stop = 65535
@@ -1014,9 +1006,9 @@ class IPsecUtil:
             tmp_filename = f"/tmp/ipsec_spd_{spd_id}_add_del_entry.script"
 
             with open(tmp_filename, 'w') as tmp_file:
-                for i in range(n_entries):
+                for _ in range(n_entries):
                     direction = u'inbound' if inbound else u'outbound'
-                    sa = f' sa {sa_id.inc_fmt()}' if sa_id is not None else ''
+                    sa = f' sa {next(sa_id)}' if sa_id is not None else ''
                     protocol = f' protocol {protocol}' if proto else ''
                     local_port_range = f' local-port-range ' \
                         f'{lport_range_start} - {lport_range_stop}' \
@@ -1026,10 +1018,10 @@ class IPsecUtil:
                         if rport_range else ''
 
                     spd_cfg = f"exec ipsec policy add spd {spd_id} " \
-                        f"priority {priority.inc_fmt()} {direction}" \
+                        f"priority {next(priority)} {direction}" \
                         f"{protocol} action {action}{sa} " \
-                        f"local-ip-range {laddr_range.inc_fmt()} " \
-                        f"remote-ip-range {raddr_range.inc_fmt()}" \
+                        f"local-ip-range {next(laddr_range).str_range()} " \
+                        f"remote-ip-range {next(raddr_range).str_range()}" \
                         f"{local_port_range}{remote_port_range}\n"
 
                     tmp_file.write(spd_cfg)
@@ -1041,7 +1033,7 @@ class IPsecUtil:
             os.remove(tmp_filename)
             return
 
-        for i in range(n_entries):
+        for _ in range(n_entries):
             IPsecUtil.vpp_ipsec_add_spd_entry(
                 node, spd_id, next(priority), action, inbound,
                 next(sa_id) if sa_id is not None else sa_id,
@@ -1104,7 +1096,7 @@ class IPsecUtil:
                     f"exec set interface state loop0 up\n"
                     f"exec set interface ip address {if1_n} "
                     f"{tun_ips[u'ip2'] - 1}/"
-                    f"{len(tun_ips[u'ip2'].packed)*8*3//4}\n"
+                    f"{tun_ips[u'ip2'].max_prefixlen*3//4}\n"
                     f"exec set ip neighbor {if1_n} {tun_ips[u'ip2']} {rmac} "
                     f"static\n"
                 )
@@ -1157,7 +1149,7 @@ class IPsecUtil:
                     f"exec set interface unnumbered ipip{i} use {if1_n}\n"
                     f"exec set interface state ipip{i} up\n"
                     f"exec ip route add "
-                    f"{raddr_ip2 + i}/{len(raddr_ip2.packed)*8} "
+                    f"{raddr_ip2 + i}/{raddr_ip2.max_prefixlen} "
                     f"via ipip{i}\n"
                 )
         vat.execute_script(
@@ -1213,7 +1205,7 @@ class IPsecUtil:
             if not existing_tunnels:
                 tmp_f2.write(
                     f"exec set interface ip address {if2_n}"
-                    f" {tun_ips[u'ip2']}/{len(tun_ips[u'ip2'].packed)*8*3/4}\n"
+                    f" {tun_ips[u'ip2']}/{tun_ips[u'ip2'].max_prefixlen*3/4}\n"
                 )
             for i in range(existing_tunnels, n_tunnels):
                 if integ_alg:
@@ -1261,7 +1253,7 @@ class IPsecUtil:
                     f"exec set interface unnumbered ipip{i} use {if2_n}\n"
                     f"exec set interface state ipip{i} up\n"
                     f"exec ip route add "
-                    f"{raddr_ip1 + i}/{len(raddr_ip1.packed)*8} "
+                    f"{raddr_ip1 + i}/{raddr_ip1.max_prefixlen} "
                     f"via ipip{i}\n"
                 )
         vat.execute_script(
@@ -1316,9 +1308,9 @@ class IPsecUtil:
                 ),
                 is_add=True,
                 del_all=False,
-                prefix=IPUtil.create_prefix_object(
-                    tun_ips[u"ip2"] - 1, 96 if tun_ips[u"ip2"].version == 6
-                    else 24
+                prefix=AddressWithPrefix(
+                    tun_ips[u"ip2"] - 1,
+                    96 if tun_ips[u"ip2"].version == 6 else 24,
                 )
             )
             err_msg = f"Failed to set IP address on interface {if1_key} " \
@@ -1339,7 +1331,7 @@ class IPsecUtil:
                             nodes[u"TG"], if2_key
                         )
                     ),
-                    ip_address=tun_ips[u"ip2"].compressed
+                    ip_address=tun_ips[u"ip2"]
                 )
             )
             err_msg = f"Failed to add IP neighbor on interface {if1_key}"
@@ -1403,9 +1395,9 @@ class IPsecUtil:
                 prefix=None
             )
             for i in range(existing_tunnels, n_tunnels):
-                args[u"prefix"] = IPUtil.create_prefix_object(
+                args[u"prefix"] = AddressWithPrefix(
                     tun_ips[u"ip1"] + i * addr_incr,
-                    128 if tun_ips[u"ip1"].version == 6 else 32
+                    tun_ips[u"ip1"].max_prefixlen,
                 )
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
@@ -1428,12 +1420,10 @@ class IPsecUtil:
             )
             ipip_tunnels = [None] * existing_tunnels
             for i in range(existing_tunnels, n_tunnels):
-                args[u"tunnel"][u"src"] = IPAddress.create_ip_address_object(
+                args[u"tunnel"][u"src"] = Address(
                     tun_ips[u"ip1"] + i * addr_incr
                 )
-                args[u"tunnel"][u"dst"] = IPAddress.create_ip_address_object(
-                    tun_ips[u"ip2"]
-                )
+                args[u"tunnel"][u"dst"] = Address(tun_ips[u"ip2"])
                 papi_exec.add(
                     cmd, history=bool(not 1 < i < n_tunnels - 2), **args
                 )
@@ -1587,8 +1577,8 @@ class IPsecUtil:
             )
             for i in range(existing_tunnels, n_tunnels):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
-                    nodes[u"DUT1"], (raddr_ip2 + i).compressed,
-                    prefix_len=128 if raddr_ip2.version == 6 else 32,
+                    nodes[u"DUT1"], (raddr_ip2 + i),
+                    prefix_len=raddr_ip2.max_prefixlen,
                     interface=ipip_tunnels[i]
                 )
                 papi_exec.add(
@@ -1646,9 +1636,9 @@ class IPsecUtil:
                     ),
                     is_add=True,
                     del_all=False,
-                    prefix=IPUtil.create_prefix_object(
-                        tun_ips[u"ip2"], 96 if tun_ips[u"ip2"].version == 6
-                        else 24
+                    prefix=AddressWithPrefix(
+                        tun_ips[u"ip2"],
+                        96 if tun_ips[u"ip2"].version == 6 else 24,
                     )
                 )
                 err_msg = f"Failed to set IP address on interface {if2_key} " \
@@ -1672,10 +1662,10 @@ class IPsecUtil:
             )
             ipip_tunnels = [None] * existing_tunnels
             for i in range(existing_tunnels, n_tunnels):
-                args[u"tunnel"][u"src"] = IPAddress.create_ip_address_object(
+                args[u"tunnel"][u"src"] = Address(
                     tun_ips[u"ip2"]
                 )
-                args[u"tunnel"][u"dst"] = IPAddress.create_ip_address_object(
+                args[u"tunnel"][u"dst"] = Address(
                     tun_ips[u"ip1"] + i * addr_incr
                 )
                 papi_exec.add(
@@ -1799,10 +1789,10 @@ class IPsecUtil:
                 # Configure IP route
                 cmd = u"ip_route_add_del"
                 route = IPUtil.compose_vpp_route_structure(
-                    nodes[u"DUT2"], tun_ips[u"ip1"].compressed,
+                    nodes[u"DUT2"], tun_ips[u"ip1"],
                     prefix_len=32 if tun_ips[u"ip1"].version == 6 else 8,
                     interface=if2_key,
-                    gateway=(tun_ips[u"ip2"] - 1).compressed
+                    gateway=(tun_ips[u"ip2"] - 1)
                 )
                 args = dict(
                     is_add=1,
@@ -1844,8 +1834,8 @@ class IPsecUtil:
             )
             for i in range(existing_tunnels, n_tunnels):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
-                    nodes[u"DUT1"], (raddr_ip1 + i).compressed,
-                    prefix_len=128 if raddr_ip1.version == 6 else 32,
+                    nodes[u"DUT1"], (raddr_ip1 + i),
+                    prefix_len=raddr_ip1.max_prefixlen,
                     interface=ipip_tunnels[i]
                 )
                 papi_exec.add(
@@ -1910,13 +1900,12 @@ class IPsecUtil:
             spi_2=200000
         )
         tun_ips = dict(
-            ip1=ip_address(tun_if1_ip_addr),
-            ip2=ip_address(tun_if2_ip_addr)
+            ip1=Address(tun_if1_ip_addr),
+            ip2=Address(tun_if2_ip_addr)
         )
-        raddr_ip1 = ip_address(raddr_ip1)
-        raddr_ip2 = ip_address(raddr_ip2)
-        addr_incr = 1 << (128 - raddr_range) if tun_ips[u"ip1"].version == 6 \
-            else 1 << (32 - raddr_range)
+        raddr_ip1 = Address(raddr_ip1)
+        raddr_ip2 = Address(raddr_ip2)
+        addr_incr = 1 << (tun_ips[u"ip1"].max_prefixlen - raddr_range)
 
         if n_tunnels - existing_tunnels > 10:
             ckeys, ikeys = IPsecUtil._ipsec_create_tunnel_interfaces_dut1_vat(
@@ -2032,7 +2021,7 @@ class IPsecUtil:
             )
             dut2_scripts[cnf].write(
                 f"ip route add {if1_ip_addr}/8 via "
-                f"{ip_address(if2_ip_addr) + cnf + 100} memif1/{cnf + 1}\n\n"
+                f"{Address(if2_ip_addr) + cnf + 100} memif1/{cnf + 1}\n\n"
             )
 
         for tnl in range(0, n_tunnels):
@@ -2053,11 +2042,11 @@ class IPsecUtil:
             # Configure tunnel end point(s) on left side
             dut1_scripts[cnf].write(
                 u"set interface ip address loop0 "
-                f"{ip_address(if1_ip_addr) + tnl * addr_incr}/32\n"
+                f"{Address(if1_ip_addr) + tnl * addr_incr}/32\n"
                 f"create ipsec tunnel "
-                f"local-ip {ip_address(if1_ip_addr) + tnl * addr_incr} "
+                f"local-ip {Address(if1_ip_addr) + tnl * addr_incr} "
                 f"local-spi {spi_1 + tnl} "
-                f"remote-ip {ip_address(if2_ip_addr) + cnf} "
+                f"remote-ip {Address(if2_ip_addr) + cnf} "
                 f"remote-spi {spi_2 + tnl} "
                 f"crypto-alg {crypto_alg.alg_name} "
                 f"local-crypto-key {ckey} "
@@ -2067,17 +2056,17 @@ class IPsecUtil:
                 f"{integ} \n"
                 f"set interface unnumbered ipip{tnl // n_instances} use loop0\n"
                 f"set interface state ipip{tnl // n_instances} up\n"
-                f"ip route add {ip_address(raddr_ip2)+tnl}/32 "
+                f"ip route add {Address(raddr_ip2)+tnl}/32 "
                 f"via ipip{tnl // n_instances}\n\n"
             )
             # Configure tunnel end point(s) on right side
             dut2_scripts[cnf].write(
                 f"set ip neighbor memif1/{cnf + 1} "
-                f"{ip_address(if1_ip_addr) + tnl * addr_incr} "
+                f"{Address(if1_ip_addr) + tnl * addr_incr} "
                 f"02:02:00:00:{17:02X}:{cnf:02X} static\n"
-                f"create ipsec tunnel local-ip {ip_address(if2_ip_addr) + cnf} "
+                f"create ipsec tunnel local-ip {Address(if2_ip_addr) + cnf} "
                 f"local-spi {spi_2 + tnl} "
-                f"remote-ip {ip_address(if1_ip_addr) + tnl * addr_incr} "
+                f"remote-ip {Address(if1_ip_addr) + tnl * addr_incr} "
                 f"remote-spi {spi_1 + tnl} "
                 f"crypto-alg {crypto_alg.alg_name} "
                 f"local-crypto-key {ckey} "
@@ -2088,7 +2077,7 @@ class IPsecUtil:
                 f"set interface unnumbered ipip{tnl // n_instances} "
                 f"use memif1/{cnf + 1}\n"
                 f"set interface state ipip{tnl // n_instances} up\n"
-                f"ip route add {ip_address(raddr_ip1) + tnl}/32 "
+                f"ip route add {Address(raddr_ip1) + tnl}/32 "
                 f"via ipip{tnl // n_instances}\n\n"
             )
 
@@ -2136,6 +2125,8 @@ class IPsecUtil:
         sa_id_2 = 200000
         spi_1 = 300000
         spi_2 = 400000
+        network_1 = AddressWithPrefix(raddr_ip1, raddr_range)
+        network_2 = AddressWithPrefix(raddr_ip2, raddr_range)
 
         crypto_key = gen_key(
             IPsecUtil.get_crypto_alg_key_len(crypto_alg)
@@ -2168,10 +2159,10 @@ class IPsecUtil:
         )
 
         IPsecUtil.vpp_ipsec_add_spd_entries(
-            nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+            nodes[u"DUT1"], n_tunnels, spd_id, priority=incrementator(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=False,
-            sa_id=ObjIncrement(sa_id_1, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip2))
+            sa_id=incrementator(sa_id_1),
+            raddr_range=incrementator(network_2)
         )
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2179,10 +2170,10 @@ class IPsecUtil:
             integ_alg, integ_key, tunnel_ip2, tunnel_ip1
         )
         IPsecUtil.vpp_ipsec_add_spd_entries(
-            nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+            nodes[u"DUT1"], n_tunnels, spd_id, priority=incrementator(p_lo, 0),
             action=PolicyAction.PROTECT, inbound=True,
-            sa_id=ObjIncrement(sa_id_2, 1),
-            raddr_range=NetworkIncrement(ip_network(raddr_ip1))
+            sa_id=incrementator(sa_id_2),
+            raddr_range=incrementator(network_1)
         )
 
         if u"DUT2" in nodes.keys():
@@ -2208,10 +2199,10 @@ class IPsecUtil:
                 crypto_key, integ_alg, integ_key, tunnel_ip1, tunnel_ip2
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
-                nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+                nodes[u"DUT2"], n_tunnels, spd_id, priority=incrementator(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=True,
-                sa_id=ObjIncrement(sa_id_1, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip2))
+                sa_id=incrementator(sa_id_1),
+                raddr_range=incrementator(network_2)
             )
 
             IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2219,10 +2210,10 @@ class IPsecUtil:
                 crypto_key, integ_alg, integ_key, tunnel_ip2, tunnel_ip1
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
-                nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+                nodes[u"DUT2"], n_tunnels, spd_id, priority=incrementator(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=False,
-                sa_id=ObjIncrement(sa_id_2, 1),
-                raddr_range=NetworkIncrement(ip_network(raddr_ip1))
+                sa_id=incrementator(sa_id_2),
+                raddr_range=incrementator(network_1)
             )
 
     @staticmethod

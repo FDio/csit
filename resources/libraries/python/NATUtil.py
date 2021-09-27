@@ -17,11 +17,11 @@ from math import log2, modf
 from pprint import pformat
 from enum import IntEnum
 
-from ipaddress import IPv4Address
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.ip_types import Ip4Address
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
@@ -180,8 +180,8 @@ class NATUtil:
         err_msg = f"Failed to set NAT44 address range on host {node[u'host']}"
         args_in = dict(
             is_add=True,
-            first_ip_address=IPv4Address(str(start_ip)).packed,
-            last_ip_address=IPv4Address(str(end_ip)).packed,
+            first_ip_address=Ip4Address(start_ip),
+            last_ip_address=Ip4Address(end_ip),
             vrf_id=vrf_id,
             flags=getattr(NatConfigFlags, flag).value
         )
@@ -382,9 +382,9 @@ class NATUtil:
         err_msg = f"Failed to set DET44 mapping on the host {node[u'host']}!"
         args_in = dict(
             is_add=True,
-            in_addr=IPv4Address(str(ip_in)).packed,
+            in_addr=Ip4Address(ip_in),
             in_plen=int(subnet_in),
-            out_addr=IPv4Address(str(ip_out)).packed,
+            out_addr=Ip4Address(ip_out),
             out_plen=int(subnet_out)
         )
 
