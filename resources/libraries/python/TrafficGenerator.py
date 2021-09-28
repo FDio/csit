@@ -1465,7 +1465,7 @@ class OptimizedSearch:
             final_trial_duration=30.0,
             initial_trial_duration=1.0,
             number_of_intermediate_phases=2,
-            timeout=720.0,
+            timeout=1200.0,
             ppta=1,
             resetter=None,
             traffic_directions=2,
