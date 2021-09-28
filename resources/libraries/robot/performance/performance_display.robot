@@ -67,6 +67,7 @@
 | | ${time_loss} = | Evaluate | ${packet_loss} / ${packet_rate}
 | | Set Test Message | Packets lost due to reconfig: ${packet_loss}
 | | Set Test Message | ${\n}Implied time lost: ${time_loss} | append=yes
+| | Export Reconf Result | ${packet_rate} | ${packet_loss} | ${time_loss}
 
 | Display result of NDRPDR search
 | | [Documentation]
