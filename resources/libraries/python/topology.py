@@ -37,7 +37,7 @@ def load_topo_from_yaml():
     try:
         topo_path = BuiltIn().get_variable_value(u"${TOPOLOGY_PATH}")
     except RobotNotRunningError:
-        return ''
+        return dict()
 
     with open(topo_path) as work_file:
         return safe_load(work_file.read())[u"nodes"]
