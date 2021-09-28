@@ -86,12 +86,17 @@ function generate_docs () {
     # is generating dots scheme. The solution is to rename suites as
     # having dots is misleading with robot framework naming conventions.
 
-    #from_dir="${CSIT_DIR}/tests/"
-    #to_dir="${WORKING_DIR}/tests/"
-    #dirs="${from_dir} ${to_dir}"
-    #rsync -ar --include='*/' --include '*.robot' --exclude '*' ${dirs} || {
-    #    die "rSync failed!"
-    #}
+    from_dir="${CSIT_DIR}/tests/"
+    to_dir="${WORKING_DIR}/tests/"
+    dirs="${from_dir} ${to_dir}"
+    rsync -ar --include='*/' --include '*.robot' --exclude '*' ${dirs} || {
+        die "rSync failed!"
+    }
+
+    rename 's/\.(?=[^.]*\.)/_/g' ${WORKING_DIR}/tests/vpp/perf/hoststack/* ||
+    {
+      die "rename failed"
+    }
 
     find ${WORKING_DIR}/ -type d -exec echo {} \; -exec touch {}/__init__.py \;
 
