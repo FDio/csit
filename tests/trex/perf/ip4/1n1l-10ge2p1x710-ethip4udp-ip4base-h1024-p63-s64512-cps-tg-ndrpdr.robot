@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 |TREX | ETH | IP4FWD | N2N | SCALE | IP4BASE
+| ... | NIC_Intel-X710 | TREX | ETH | IP4FWD | N2N | SCALE | IP4BASE
 | ... | TG_DRV_IGB_UIO | UDP | UDP_CPS | HOSTS_1024
 | ... | ethip4udp-ip4base-h1024-p63-s64512-cps-tg
 |
