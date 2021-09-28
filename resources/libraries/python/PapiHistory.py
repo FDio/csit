@@ -120,4 +120,9 @@ class PapiHistory:
                 PapiHistory.show_papi_history(node)
 
 
-PapiHistory.reset_papi_history_on_all_duts(DICT__nodes)
+# This module can be imported outside usual Robot test context,
+# e.g. in pylint or by tools generating docs from docstrings.
+# For the tools to work, we need to avoid processing
+# when DICT__nodes value is not usable.
+if DICT__nodes:
+    PapiHistory.reset_papi_history_on_all_duts(DICT__nodes)
