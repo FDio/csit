@@ -2058,8 +2058,8 @@
       data: "plot-performance-trending-vpp-2n-aws"
       core: ["2t1c", "4t2c"]
       include:
-        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-mrr.64B-1c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-mrr.64B-1c-ethip4-ip4scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-mrr.64B-{core}-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-mrr.64B-{core}-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "2n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena"
@@ -2067,8 +2067,8 @@
       data: "plot-performance-trending-vpp-2n-aws"
       core: ["2t1c", "4t2c"]
       include:
-        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-mrr.1518B-1c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-mrr.1518B-1c-ethip4-ip4scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-mrr.1518B-{core}-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-mrr.1518B-{core}-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "2n-skx-x710-64b-{core}-ip4routing-base-scale-avf-dpdk"
@@ -2301,8 +2301,8 @@
       data: "plot-performance-trending-vpp-3n-aws"
       core: ["2t1c", "4t2c"]
       include:
-        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-mrr.64B-1c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-mrr.64B-1c-ethip4-ip4scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-mrr.64B-{core}-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-mrr.64B-{core}-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena"
@@ -2310,8 +2310,8 @@
       data: "plot-performance-trending-vpp-3n-aws"
       core: ["2t1c", "4t2c"]
       include:
-        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-mrr.1518B-1c-ethip4-ip4base-mrr"
-        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-mrr.1518B-1c-ethip4-ip4scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-mrr.1518B-{core}-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-mrr.1518B-{core}-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "3n-skx-x710-64b-{core}-ip4routing-base-scale-avf"
