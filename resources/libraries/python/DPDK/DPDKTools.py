@@ -91,7 +91,7 @@ class DPDKTools:
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}" \
             f"/entry/install_dpdk.sh"
         message = u"Install the DPDK failed!"
-        exec_cmd_no_error(node, command, timeout=600, message=message)
+        exec_cmd_no_error(node, command, timeout=3600, message=message)
 
         command = f"cat {Constants.REMOTE_FW_DIR}/dpdk*/VERSION"
         message = u"Get DPDK version failed!"
