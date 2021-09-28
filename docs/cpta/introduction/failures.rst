@@ -67,3 +67,13 @@ Legend to the tables:
 ----------
 
 .. include:: ../../../_build/_static/vpp/failed-tests-2n-zn2.rst
+
+2n-aws-mrr
+----------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-aws.rst
+
+3n-aws-mrr
+----------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-3n-aws.rst
