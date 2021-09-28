@@ -22,7 +22,7 @@ especially the export side (UTI), not import side (PAL).
 Version
 ~~~~~~~
 
-This document tree is valid for CSIT model version 0.2.0.
+This document tree is valid for CSIT model version 0.3.0.
 
 It is recommended to use semantic versioning: https://semver.org/
 That means, if the new model misses a field present in the old model,
