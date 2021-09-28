@@ -12,7 +12,7 @@
 # limitations under the License.
 
 
-from os import walk, listdir
+from os import walk, listdir, scandir
 from os.path import isfile, isdir, join, getsize
 
 # Temporary working directory. It is created and deleted by run_doc.sh
@@ -83,7 +83,7 @@ def get_files(path, extension):
     for root, dirs, files in walk(path):
         for filename in files:
             if extension:
-                if filename.endswith(extension):
+                if filename.endswith(extension) and u"__init__" not in filename:
                     file_list.append(join(root, filename))
             else:
                 file_list.append(join(root, filename))
@@ -124,6 +124,23 @@ def create_rst_file_names_set(files, start):
     for file in files:
         file_names.add(create_file_name(file, start))
     return file_names
+
+
+def add_nested_folders_in_rst_set(file_names, path):
+    """Add RST files from folders where are only folders without tests.
+
+    :param file_names: List of all files to be documented with path beginning
+    in the working directory.
+    :param path: Path where it starts adding missing RST files.
+    :type file_names: list
+    :type path: str
+    """
+    for dir in fast_scandir(path):
+        if len(dir.split("/")) > 3:
+            dir_list = dir.split(u"/")
+            dir_rst = u".".join(dir_list[1:]) + u".rst"
+            if dir_rst not in file_names and u"__pycache__" not in dir_rst:
+                file_names.add(dir_rst)
 
 
 def scan_dir(path):
@@ -274,10 +291,18 @@ def generate_tests_rst_files():
 
     tests = get_files(PATH_TESTS, RF_EXT)
     file_names = create_rst_file_names_set(tests, TESTS_DIR)
+    add_nested_folders_in_rst_set(file_names, PATH_TESTS)
 
     generate_rf_rst_files(
         file_names, incl_suite_setup=True, incl_variables=True
     )
+
+
+def fast_scandir(dirname):
+    subfolders= [f.path for f in scandir(dirname) if f.is_dir()]
+    for dirname in list(subfolders):
+        subfolders.extend(fast_scandir(dirname))
+    return subfolders
 
 
 if __name__ == u"__main__":
