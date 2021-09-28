@@ -211,6 +211,11 @@ class InterfaceUtil:
         else:
             raise ValueError(f"Unknown if_type: {if_type}")
 
+        if sw_if_index is None:
+            raise ValueError(
+                f"Interface index for {interface} not assigned by VPP."
+            )
+
         if node[u"type"] == NodeType.DUT:
             if state == u"up":
                 flags = InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
