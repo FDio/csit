@@ -47,12 +47,13 @@ function generate_docs () {
 
     pushd "${TOOLS_DIR}"/doc_gen || die "Pushd failed!"
 
-    WORKING_DIR="tmp"
     BUILD_DIR="_build"
 
     # Remove the old build:
     rm -rf ${BUILD_DIR} || true
-    rm -rf ${WORKING_DIR} || true
+    rm -rf /tmp/tmp-csit* || true
+
+    export WORKING_DIR=$(mktemp -d /tmp/tmp-csitXXX) || die "export failed"
 
     # Create working directories
     mkdir -p "${BUILD_DIR}" || die "Mkdir failed!"
@@ -81,17 +82,12 @@ function generate_docs () {
         die "Touch index.robot file failed!"
     }
 
-    # Due to hoststack tests having dots in the name of suite, tests will become
-    # disabled as spihnxdoc cannot properly work with the path. gen_rst
-    # is generating dots scheme. The solution is to rename suites as
-    # having dots is misleading with robot framework naming conventions.
-
-    #from_dir="${CSIT_DIR}/tests/"
-    #to_dir="${WORKING_DIR}/tests/"
-    #dirs="${from_dir} ${to_dir}"
-    #rsync -ar --include='*/' --include '*.robot' --exclude '*' ${dirs} || {
-    #    die "rSync failed!"
-    #}
+    from_dir="${CSIT_DIR}/tests/"
+    to_dir="${WORKING_DIR}/tests/"
+    dirs="${from_dir} ${to_dir}"
+    rsync -ar --include='*/' --include '*.robot' --exclude '*' ${dirs} || {
+        die "rSync failed!"
+    }
 
     find ${WORKING_DIR}/ -type d -exec echo {} \; -exec touch {}/__init__.py \;
 
