@@ -110,11 +110,16 @@ git reset --hard "${GIT_BISECT_FROM}"
 
 # This is the place for custom code manipulating local git history.
 
-#git checkout -b "alter"
-#...
-#git checkout "latest"
-#git rebase "alter" || git rebase --skip
-#git branch -D "alter"
+git checkout -b "alter"
+# Move AVF RSS determinism fix earlier.
+# https://stackoverflow.com/a/24455872
+git reset --hard 3295ddf6b6e06f43ebf1e081a09b7b785dd217ea
+git cherry-pick 895def45c82ea5d901987bc3049c8d1cc1c1da66
+git reset --soft 3295ddf6b6e06f43ebf1e081a09b7b785dd217ea
+git commit --amend --no-edit
+git checkout "latest"
+git rebase "alter" || git rebase --skip
+git branch -D "alter"
 
 git bisect start || die
 # TODO: Can we add a trap for "git bisect reset" or even "deactivate",
