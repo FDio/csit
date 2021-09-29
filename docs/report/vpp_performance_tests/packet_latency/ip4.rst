@@ -7,7 +7,7 @@ IPv4 Routing
 ============
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip4?h=rls2106>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip4?h=rls2110>`_.
 
 .. toctree::
 
@@ -21,4 +21,3 @@ CSIT source code for the test cases used for plots can be found in
     ip4-2n-icx-e810cq
     ip4-2n-aws-nitro50g
     ip4-3n-aws-nitro50g
-
