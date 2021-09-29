@@ -79,12 +79,12 @@ Following is the list of CSIT versions to date:
 
   - The main change is TRex version upgrade:
     `increase from 2.82 to 2.86 <https://gerrit.fd.io/r/c/csit/+/29980>`_.
-- Ver. 7 associated with CSIT rls2106 branch (`HW
-  <https://git.fd.io/csit/tree/docs/lab?h=rls2106>`_, `Linux
-  <https://docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+- Ver. 7 associated with CSIT rls2110 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2110>`_, `Linux
+  <https://docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
   `TRex
-  <https://docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
-  `CSIT <https://git.fd.io/csit/tree/?h=rls2106>`_).
+  <https://docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2110>`_).
 
   - TRex version upgrade:
     `increase from 2.86 to 2.88 <https://gerrit.fd.io/r/c/csit/+/31652>`_.
