@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8dbefaec_d104ef67",
+        "filename": "docs/job_specs/vpp_device/vpp-1n-skx.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-09-29T05:21:32Z",
+      "side": 1,
+      "message": "I am asking about drivers why we need both AVF and DPDK",
+      "parentUuid": "46d2a87b_9cf526a9",
+      "range": {
+        "startLine": 31,
+        "startChar": 5,
+        "endLine": 31,
+        "endChar": 8
+      },
+      "revId": "9e16727263466104cbe4e73edace5de16c554f70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2f2034d5_8791cf48",
         "filename": "tests/vpp/device/flow/2n1l-10ge2p1x710-ethip4-flow-ip4-ntuple-udp-scapy.robot",
         "patchSetId": 13
