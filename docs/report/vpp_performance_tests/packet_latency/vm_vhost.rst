@@ -9,7 +9,7 @@ KVM VMs vhost-user
 ==================
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls2106>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vm_vhost?h=rls2110>`_.
 
 .. toctree::
 
