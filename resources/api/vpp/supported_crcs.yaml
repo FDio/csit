@@ -118,9 +118,13 @@
     # ip_probe_neighbor / reply # unused L1 keyword vpp_ip_probe
     ip_route_add_del: '0xb8ecfe0d'  # dev
     ip_route_add_del_reply: '0x1992deab'  # dev
+    ip_route_v2_details: '0xb09aa6c0'  # perf
+    ip_route_v2_dump: '0xd16f72e6'  # perf
     # ip_source_check_interface_add_del / reply # unused L1 keyword vpp_ip_source_check_setup
     ip_table_add_del: '0x0ffdaec0'  # dev
     ip_table_add_del_reply: '0xe8d4e804'  # dev
+    ip_table_details: '0xc79fca0f'  # perf
+    ip_table_dump: '0x51077d14'  # perf
     ipip_add_tunnel: '0x2ac399f5'  # dev
     ipip_add_tunnel_reply: '0x5383d31f'  # dev
     ipsec_interface_add_del_spd: '0x80f80cbb'  # dev
