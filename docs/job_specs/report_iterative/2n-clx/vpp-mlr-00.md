@@ -1,5 +1,5 @@
 # 2n-clx
-### tests 352
+### tests 480
 ### job hrs est. 41.6
 ### job hrs real ??.?
 ### test mins est. 5.01
@@ -91,14 +91,6 @@
 1c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4base
 2c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4base
 4c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4base
-##### ethip4-ip4scale2m
-1c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4scale2m
-2c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4scale2m
-4c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4scale2m
-##### ethip4-ip4scale2m-rnd
-1c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4scale2m-rnd
-2c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4scale2m-rnd
-4c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4scale2m-rnd
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND ethip4-ip4base
@@ -126,14 +118,6 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale200k-rnd
 2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale200k-rnd
 4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale200k-rnd
-##### ethip4-ip4scale2m
-1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale2m
-2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale2m
-4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale2m
-##### ethip4-ip4scale2m-rnd
-1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale2m-rnd
-2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale2m-rnd
-4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale2m-rnd
 #### avf
 ##### ethip4-ip4base
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4-ip4base
@@ -358,14 +342,6 @@
 1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale200k-rnd
 2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale200k-rnd
 4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale200k-rnd
-##### ethip4-ip4scale2m
-1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale2m
-2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale2m
-4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale2m
-##### ethip4-ip4scale2m-rnd
-1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale2m-rnd
-2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale2m-rnd
-4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale2m-rnd
 ##### ethip4udp-ip4base-iacl50sf-10kflows
 1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4base-iacl50sf-10kflows
 2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4base-iacl50sf-10kflows
