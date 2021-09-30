@@ -27,7 +27,7 @@ logging:
     level: INFO
     handlers: [console]
 scheduler:
-  duration: 1
+  duration: 100
 programs:
   - name: bundle_vpp
     metrics:
