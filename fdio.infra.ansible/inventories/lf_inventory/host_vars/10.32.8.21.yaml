@@ -30,4 +30,4 @@ inventory_ipmi_hostname: "10.30.55.21"
 cpu_microarchitecture: "cascadelake"
 
 intel_700_matrix: "dpdk21.02"
-intel_800_matrix: "dpdk21.08"
+intel_800_matrix: "dpdk21.02"
