@@ -138,7 +138,9 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Stop VPP Service | ${nodes['${dut}']}
 | | | PCI Driver Unbind List | ${nodes['${dut}']} | @{${dut}_pf_pci}
-| | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
+| | | ${devices}= | Copy List | ${${dut}_pf_pci}
+| | | Run Keyword If | "2" in "${dut} | Reverse List | ${devices}
+| | | Run keyword | ${dut}.Add DPDK Dev | @{devices}
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | | ... | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run Keyword | ${dut}.Add DPDK Log Level | debug
