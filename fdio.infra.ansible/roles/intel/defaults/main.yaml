@@ -27,7 +27,7 @@ intel_700_compatibility_matrix:
     iavf: "4.1.1"
     nvm: "8.00"
   dpdk21.08:
-    # https://doc.dpdk.org/guides/rel_notes/release_21_05.html
+    # https://doc.dpdk.org/guides/rel_notes/release_21_08.html
     i40e: "2.15.9"
     iavf: "4.1.1"
     nvm: "8.30"
@@ -40,7 +40,7 @@ intel_800_compatibility_matrix:
     iavf: "4.1.1"
     nvm: "2.40"
   dpdk21.08:
-    # https://doc.dpdk.org/guides/rel_notes/release_21_05.html
+    # https://doc.dpdk.org/guides/rel_notes/release_21_08.html
     ice: "1.6.4"
     ddp: "1.3.30.0"
     iavf: "4.2.7"
