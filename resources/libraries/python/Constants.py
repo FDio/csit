@@ -239,10 +239,10 @@ class Constants:
     SOCKSVR_PATH = u"/run/vpp/api.sock"
 
     # Number of trials to execute in MRR test.
-    PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
+    PERF_TRIAL_MULTIPLICITY = 1  # get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
 
     # Duration [s] of one trial in MRR test.
-    PERF_TRIAL_DURATION = get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
+    PERF_TRIAL_DURATION = 100.0  # get_float_from_env(u"PERF_TRIAL_DURATION", 1.0)
 
     # Whether to use latency streams in main search trials.
     PERF_USE_LATENCY = get_pessimistic_bool_from_env(u"PERF_USE_LATENCY")
