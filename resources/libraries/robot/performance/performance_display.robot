@@ -36,7 +36,7 @@
 | | ${lower_bound} = | Set Variable | ${interval.measured_low}
 | | ${lower_bound_lr} = | Set Variable | ${lower_bound.loss_ratio}
 | | Return From Keyword If | ${lower_bound_lr} <= ${packet_loss_ratio}
-| | Set Test Variable | \${rate_for_teardown} | ${lower_bound_lr}
+| | Set Test Variable | \${rate_for_teardown} | ${lower_bound.target_tr}
 | | ${message}= | Catenate | SEPARATOR=${SPACE}
 | | ... | Minimal rate loss ratio ${lower_bound_lr}
 | | ... | does not reach target ${packet_loss_ratio}.
