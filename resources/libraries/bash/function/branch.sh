@@ -33,6 +33,10 @@ function checkout_csit_for_vpp () {
     # This is mainly useful for identifying trending anomalies
     # caused by changes in CSIT code.
     #
+    # GIT_URL environment variable is used to override URL for "git fetch",
+    # useful for avoiding certificate issues with the default HTTPS URL.
+    # It should not contain the /csit part.
+    #
     # On failure, working directory could remain changed to ${CSIT_DIR}.
     # TODO: It could be possible to use ERR trap to force popd,
     #   but with "set -x" the noise is not worth it,
@@ -49,6 +53,7 @@ function checkout_csit_for_vpp () {
     #   The repository could be cloned with "--depth 1",
     #   but it is required to be cloned with "--no-single-branch",
     #   as otherwise the "git checkout" this function performs probably fails.
+    # - GIT_URL - For git fetch, optional. Default: https://gerrit.fd.io/r
     # Directoried updated:
     # - ${CSIT_DIR} - Probably "git checkout"ed into new refspec.
     # Functions called:
@@ -85,8 +90,9 @@ function checkout_csit_for_vpp () {
     # Remove 'origin/' from the branch name.
     csit_branch="${csit_branch#origin/}" || die
     override_ref="${CSIT_REF-}"
+    giturl="${GIT_URL:-https://gerrit.fd.io/r}"
     if [[ -n "${override_ref}" ]]; then
-        git fetch --depth=1 https://gerrit.fd.io/r/csit "${override_ref}" || die
+        git fetch --depth=1 "${giturl}/csit" "${override_ref}" || die
         git checkout FETCH_HEAD || die
     else
         git checkout "${csit_branch}" || die
