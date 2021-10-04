@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e494e712_87b28a7e",
+        "filename": "fdio.infra.ansible/roles/common/defaults/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-04T14:50:55Z",
+      "side": 1,
+      "message": "duplicated",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "eb1bb637489dad5b9bd7cd2a2cc647d3cdf5215b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
