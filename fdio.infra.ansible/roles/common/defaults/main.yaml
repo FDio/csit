@@ -5,6 +5,8 @@ packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ans
 
 packages_base:
   - "autoconf"
+  - "ca-certificates"
+  - "cgroup-tools"
   - "cgroup-tools"
   - "dkms"
   - "iperf3"
