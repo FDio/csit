@@ -90,7 +90,7 @@
 | | Set Test Variable | \${frame_size}
 | |
 | | Given Set Jumbo
-| | And Add worker threads for GSO tests to all DUTs | ${phy_cores} | ${rxq}
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver} | validate=${False}
