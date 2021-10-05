@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "641b9cfd_1e735207",
+        "filename": "docs/job_specs/oper.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-05T10:13:16Z",
+      "side": 1,
+      "message": "Is it possible to have one job that will get the current HEAD sha and then it\u0027ll start the other jobs with this sha?",
+      "revId": "f764d86033eaf4c0f3be4d68b106dc3dcb946aa7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
