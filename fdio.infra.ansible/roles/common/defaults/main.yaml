@@ -7,7 +7,6 @@ packages_base:
   - "autoconf"
   - "ca-certificates"
   - "cgroup-tools"
-  - "cgroup-tools"
   - "dkms"
   - "iperf3"
   - "linux-tools-common"
