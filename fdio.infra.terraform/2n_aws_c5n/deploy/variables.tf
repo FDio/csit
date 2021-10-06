@@ -7,8 +7,13 @@ variable "vault-name" {
   default = "dynamic-aws-creds-vault-admin"
 }
 
-variable "ami_image" {
-  description = "AWS AMI image name"
+variable "ami_image_tg" {
+  description = "AWS AMI image name for TG"
+  type        = string
+}
+
+variable "ami_image_sut" {
+  description = "AWS AMI image name for SUT"
   type        = string
 }
 

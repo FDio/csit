@@ -13,7 +13,8 @@ module "deploy" {
   region        = var.region
   avail_zone    = var.avail_zone
   instance_type = var.instance_type
-  ami_image     = var.ami_image
+  ami_image_tg  = var.ami_image_tg
+  ami_image_sut = var.ami_image_sut
 
   # AWS Network
   vpc_cidr_mgmt = "192.168.0.0/24"

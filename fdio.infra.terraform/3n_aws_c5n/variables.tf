@@ -4,18 +4,30 @@ variable "region" {
   default     = "eu-central-1"
 }
 
+variable "vault-name" {
+  default = "dynamic-aws-creds-vault-admin"
+}
+
 variable "avail_zone" {
   description = "AWS availability zone"
   type        = string
   default     = "eu-central-1a"
 }
 
-variable "ami_image" {
+variable "ami_image_tg" {
   # eu-central-1/focal-20.04-amd64-hvm-ssd-20210119.1
   # kernel 5.4.0-1035-aws (~5.4.0-65)
   description = "AWS AMI image ID"
   type        = string
-  default     = "ami-0a875db8a031a9efb"
+  default     = "ami-0d6bc0344dc036b9d"
+}
+
+variable "ami_image_sut" {
+  # eu-central-1/focal-20.04-amd64-hvm-ssd-20210119.1
+  # kernel 5.4.0-1035-aws (~5.4.0-65)
+  description = "AWS AMI image ID"
+  type        = string
+  default     = "ami-012c9c631964367be"
 }
 
 variable "instance_initiated_shutdown_behavior" {
