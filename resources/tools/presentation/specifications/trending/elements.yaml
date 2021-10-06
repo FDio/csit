@@ -51,6 +51,14 @@
     layout: "plot-statistics"
 
 - type: "plot"
+  title: "Statistics: TRex 2n-skx ndrpdr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-trex-2n-skx-ndrpdr"
+  data: "plot-ndrpdr-trending-trex-2n-skx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
   title: "Statistics: 2n-clx mrr"
   algorithm: "plot_statistics"
   output-file: "{DIR[STATIC,VPP]}/stats-2n-clx-mrr"
@@ -5001,4 +5009,59 @@
         - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
         - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-{core}-avf-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr"
         - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+      layout: "plot-cpta"
+
+# TRex 2n-skx
+
+    - title: "2n-skx-x710-64b--ip4-base-scale-{test_type}"
+      output-file-name: "2n-skx-x710-64b--ip4-base-scale-{test_type}"
+      data: "plot-ndrpdr-trending-trex-2n-skx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4-Ip4Base-Tg-Ndrpdr.64B--ethip4-ip4base-tg-ndrpdr"
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4-Ip4Scale2M-Tg-Ndrpdr.64B--ethip4-ip4scale2m-tg-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-x710-64b--ip4routing-stf-cps-{test_type}"
+      output-file-name: "2n-skx-x710-64b--ip4routing-stf-cps-{test_type}"
+      data: "plot-ndrpdr-trending-trex-2n-skx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Cps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr"
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-Cps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg-ndrpdr"
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H1024-P63-S64512-Cps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr"
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H262144-P63-S16515072-Cps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h262144-p63-s16515072-cps-tg-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
+      output-file-name: "2n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
+      data: "plot-ndrpdr-trending-trex-2n-skx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
+        - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-x710-78b--ip6-base-scale-{test_type}"
+      output-file-name: "2n-skx-x710-78b--ip6-base-scale-{test_type}"
+      data: "plot-ndrpdr-trending-trex-2n-skx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Trex.Perf.Ip6.1N1L-10Ge2P1X710-Ethip6-Ip6Base-Tg-Ndrpdr.78B--ethip6-ip6base-tg-ndrpdr"
+        - "Tests.Trex.Perf.Ip6.1N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Tg-Ndrpdr.78B--ethip6-ip6scale2m-tg-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-x710-64b--l2-scale-{test_type}"
+      output-file-name: "2n-skx-x710-64b--l2-scale-{test_type}"
+      data: "plot-ndrpdr-trending-trex-2n-skx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Trex.Perf.L2.1N1L-10Ge2P1X710-Eth-L2Bdscale1Mmaclrn-Tg-Ndrpdr.64B--eth-l2bdscale1mmaclrn-tg-ndrpdr"
       layout: "plot-cpta"
