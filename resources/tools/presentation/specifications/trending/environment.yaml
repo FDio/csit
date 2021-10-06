@@ -176,6 +176,8 @@
           - "last-failed-tests-vpp-2n-skx-ndrpdr"
           - "last-failed-tests-vpp-3n-skx-ndrpdr"
           - "last-failed-tests-vpp-2n-clx-ndrpdr"
+          - "last-failed-tests-trex-2n-skx-mrr"
+          - "last-failed-tests-trex-3n-skx-mrr"
         urls:
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-skx"
@@ -195,6 +197,8 @@
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-3n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-ndrpdr-weekly-master-2n-clx"
+          - "https://jenkins.fd.io/view/csit/job/csit-trex-perf-ndrpdr-weekly-master-2n-skx"
+          - "https://jenkins.fd.io/view/csit/job/csit-trex-perf-ndrpdr-weekly-master-3n-skx"
         url-details: "https://s3-docs.fd.io/csit/master/trending/introduction/failures.html"
 
     configurations:
