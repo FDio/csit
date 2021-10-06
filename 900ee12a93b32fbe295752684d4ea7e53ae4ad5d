@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7bd23457_dd7f5f0b",
+        "filename": "resources/libraries/bash/function/docs.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-06T09:49:06Z",
+      "side": 1,
+      "message": "\u003e The solution is to rename suites as having dots is misleading with robot framework naming conventions.\n\nI mean it, not fake it ;)",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 5
+      },
+      "revId": "900ee12a93b32fbe295752684d4ea7e53ae4ad5d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
