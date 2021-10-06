@@ -263,7 +263,7 @@ data "aws_network_interface" "tg_if2" {
 
 # Instances
 resource "aws_instance" "tg" {
-  ami                                  = var.ami_image
+  ami                                  = var.ami_image_tg
   availability_zone                    = var.avail_zone
   instance_initiated_shutdown_behavior = var.instance_initiated_shutdown_behavior
   instance_type                        = var.instance_type
@@ -292,7 +292,7 @@ resource "aws_instance" "tg" {
 }
 
 resource "aws_instance" "dut1" {
-  ami                                  = var.ami_image
+  ami                                  = var.ami_image_sut
   availability_zone                    = var.avail_zone
   instance_initiated_shutdown_behavior = var.instance_initiated_shutdown_behavior
   instance_type                        = var.instance_type
@@ -322,17 +322,18 @@ resource "aws_instance" "dut1" {
 }
 
 resource "aws_instance" "dut2" {
-  ami                         = var.ami_image
-  availability_zone           = var.avail_zone
-  instance_type               = var.instance_type
-  key_name                    = aws_key_pair.CSITKP.key_name
-  associate_public_ip_address = true
-  subnet_id                   = aws_subnet.mgmt.id
-  private_ip                  = var.dut2_mgmt_ip
-  vpc_security_group_ids      = [aws_security_group.CSITSG.id]
-  placement_group             = aws_placement_group.CSITPG.id
-  source_dest_check           = false
-  # host_id                   = "3"
+  ami                                  = var.ami_image_sut
+  availability_zone                    = var.avail_zone
+  instance_initiated_shutdown_behavior = var.instance_initiated_shutdown_behavior
+  instance_type                        = var.instance_type
+  key_name                             = aws_key_pair.CSITKP.key_name
+  associate_public_ip_address          = true
+  subnet_id                            = aws_subnet.mgmt.id
+  private_ip                           = var.dut2_mgmt_ip
+  vpc_security_group_ids               = [aws_security_group.CSITSG.id]
+  placement_group                      = aws_placement_group.CSITPG.id
+  source_dest_check                    = false
+  # host_id                            = "3"
 
   depends_on = [
     aws_vpc.CSITVPC,
@@ -435,29 +436,29 @@ resource "null_resource" "deploy_dut1" {
     private_key = tls_private_key.CSITTLS.private_key_pem
   }
 
-  provisioner "remote-exec" {
-    inline = var.first_run_commands
-  }
-
-  provisioner "ansible" {
-    plays {
-      playbook {
-        file_path      = var.ansible_file_path
-        force_handlers = true
-      }
-      hosts = ["sut_aws"]
-      extra_vars = {
-        ansible_ssh_pass           = var.ansible_provision_pwd
-        ansible_python_interpreter = var.ansible_python_executable
-        aws                        = true
-      }
-    }
-  }
-
-  provisioner "remote-exec" {
-    on_failure = continue
-    inline     = ["sudo reboot"]
-  }
+#  provisioner "remote-exec" {
+#    inline = var.first_run_commands
+#  }
+#
+#  provisioner "ansible" {
+#    plays {
+#      playbook {
+#        file_path      = var.ansible_file_path
+#        force_handlers = true
+#      }
+#      hosts = ["sut_aws"]
+#      extra_vars = {
+#        ansible_ssh_pass           = var.ansible_provision_pwd
+#        ansible_python_interpreter = var.ansible_python_executable
+#        aws                        = true
+#      }
+#    }
+#  }
+#
+#  provisioner "remote-exec" {
+#    on_failure = continue
+#    inline     = ["sudo reboot"]
+#  }
 }
 
 resource "null_resource" "deploy_dut2" {
@@ -479,29 +480,29 @@ resource "null_resource" "deploy_dut2" {
     private_key = tls_private_key.CSITTLS.private_key_pem
   }
 
-  provisioner "remote-exec" {
-    inline = var.first_run_commands
-  }
-
-  provisioner "ansible" {
-    plays {
-      playbook {
-        file_path      = var.ansible_file_path
-        force_handlers = true
-      }
-      hosts = ["sut_aws"]
-      extra_vars = {
-        ansible_ssh_pass           = var.ansible_provision_pwd
-        ansible_python_interpreter = var.ansible_python_executable
-        aws                        = true
-      }
-    }
-  }
-
-  provisioner "remote-exec" {
-    on_failure = continue
-    inline     = ["sudo reboot"]
-  }
+#  provisioner "remote-exec" {
+#    inline = var.first_run_commands
+#  }
+#
+#  provisioner "ansible" {
+#    plays {
+#      playbook {
+#        file_path      = var.ansible_file_path
+#        force_handlers = true
+#      }
+#      hosts = ["sut_aws"]
+#      extra_vars = {
+#        ansible_ssh_pass           = var.ansible_provision_pwd
+#        ansible_python_interpreter = var.ansible_python_executable
+#        aws                        = true
+#      }
+#    }
+#  }
+#
+#  provisioner "remote-exec" {
+#    on_failure = continue
+#    inline     = ["sudo reboot"]
+#  }
 }
 
 resource "null_resource" "deploy_topology" {
