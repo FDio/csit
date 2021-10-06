@@ -22,7 +22,7 @@ class ObjIncrement(object):
     Subclasses should override:
         _incr: when a simple '+' binary operation isn't sufficient.
         _str_fmt: when a simple str representation of the incremented object
-            isn't the proper format.
+        isn't the proper format.
     """
     def __init__(self, initial_value, increment):
         """

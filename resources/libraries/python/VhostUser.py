@@ -203,7 +203,7 @@ class VirtioFeatureMask:
     @staticmethod
     def is_feature_enabled(virtio_feature_mask, virtio_feature_flag):
         """Checks if concrete virtio feature is enabled within
-         virtio_feature_mask
+        virtio_feature_mask
         :param virtio_feature_mask: Mask of enabled virtio features
         :param virtio_feature_flag: Checked virtio feature
         :type virtio_feature_mask: int

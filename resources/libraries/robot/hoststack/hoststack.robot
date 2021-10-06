@@ -23,7 +23,7 @@
 | Resource | resources/libraries/robot/nsim/nsim.robot
 | Resource | resources/libraries/robot/nginx/default.robot
 |
-| Documentation | L2 keywords to set up VPP to test hoststack.
+| Documentation | *L2 keywords to set up VPP to test hoststack.*
 
 *** Variables ***
 | ${quic_crypto_engine}= | nocrypto

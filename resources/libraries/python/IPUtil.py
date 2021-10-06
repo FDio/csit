@@ -500,7 +500,7 @@ class IPUtil:
         :type ip_addr: str
         :type prefix_length: int
         :type namespace: str
-        :rtype boolean
+        :rtype: boolean
         :raises RuntimeError: Request fails.
         """
         ip_addr_with_prefix = f"{ip_addr}/{prefix_length}"
@@ -652,7 +652,7 @@ class IPUtil:
             vrf: VRF table ID. (int)
             count: number of IP addresses to add starting from network IP (int)
             local: The route is local with same prefix (increment is 1).
-                If None, then is not used. (bool)
+            If None, then is not used. (bool)
             lookup_vrf: VRF table ID for lookup. (int)
             weight: Weight value for unequal cost multipath routing. (int)
             (Multipath value enters at higher level.)
@@ -724,7 +724,7 @@ class IPUtil:
             vrf: VRF table ID. (int)
             count: number of IP addresses to add starting from network IP (int)
             local: The route is local with same prefix (increment is 1 network)
-                If None, then is not used. (bool)
+            If None, then is not used. (bool)
             lookup_vrf: VRF table ID for lookup. (int)
             multipath: Enable multipath routing. (bool) Default: True.
             weight: Weight value for unequal cost multipath routing. (int)

@@ -84,13 +84,13 @@ class LoadBalancerUtil:
             protocol: tcp or udp. (int)
             port: destination port. (int)
             encap: encap is ip4 GRE(0) or ip6 (1GRE) or L3DSR(2) or NAT4(3) or
-                   NAT6(4). (int)
+            NAT6(4). (int)
             dscp: dscp bit corresponding to VIP
             type: service type
             target_port: Pod's port corresponding to specific service
             node_port: Node's port
             new_len: Size of the new connections flow table used
-                     for this VIP
+            for this VIP
             is_del: 1 if the VIP should be removed otherwise 0.
 
         :type node: dict
@@ -150,7 +150,7 @@ class LoadBalancerUtil:
             as_addr: The application server address. (str)
             is_del: 1 if the VIP should be removed otherwise 0. (int)
             is_flush: 1 if the sessions related to this AS should be flushed
-                      otherwise 0. (int)
+            otherwise 0. (int)
 
         :type node: dict
         :type kwargs: dict
