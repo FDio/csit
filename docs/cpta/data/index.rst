@@ -87,3 +87,9 @@ in the CSV formats:
     - 2n-tx2
 
         - `CSV format <../_static/vpp/csit-dpdk-perf-mrr-weekly-master-2n-tx2-trending.csv>`_
+
+**TRex NDRPDR**
+
+    - 2n-skx
+
+        - `CSV format <../_static/vpp/csit-trex-perf-ndrpdr-weekly-master-2n-skx-trending.csv>`_
