@@ -210,7 +210,7 @@ class TapFeatureMask:
     @staticmethod
     def is_feature_enabled(tap_feature_mask, tap_feature_flag):
         """Checks if concrete tap feature is enabled within
-         tap_feature_mask
+        tap_feature_mask
         :param tap_feature_mask: Mask of enabled tap features
         :param tap_feature_flag: Checked tap feature
         :type tap_feature_mask: int

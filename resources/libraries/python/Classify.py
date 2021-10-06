@@ -258,15 +258,15 @@ class Classify:
         :param advance: For add, advance value for session. (Default value = 0)
         :param action: 0: No action (by default) metadata is not used.
             1: Classified IP packets will be looked up from the specified ipv4
-               fib table (configured by metadata as VRF id).
-               Only valid for L3 input ACL node
+            fib table (configured by metadata as VRF id).
+            Only valid for L3 input ACL node
             2: Classified IP packets will be looked up from the specified ipv6
-               fib table (configured by metadata as VRF id).
-               Only valid for L3 input ACL node
+            fib table (configured by metadata as VRF id).
+            Only valid for L3 input ACL node
             3: Classified packet will be steered to source routing policy of
-               given index (in metadata).
-               This is only valid for IPv6 packets redirected to a source
-               routing node.
+            given index (in metadata).
+            This is only valid for IPv6 packets redirected to a source
+            routing node.
         :param metadata: Valid only if action != 0. VRF id if action is 1 or 2.
             SR policy index if action is 3. (Default value = 0)
         :type node: dict
@@ -453,15 +453,15 @@ class Classify:
         :param opaque_index: opaque_index of new session. (Default value = ~0)
         :param action: 0: No action (by default) metadata is not used.
             1: Classified IP packets will be looked up from the specified ipv4
-               fib table (configured by metadata as VRF id).
-               Only valid for L3 input ACL node
+            fib table (configured by metadata as VRF id).
+            Only valid for L3 input ACL node
             2: Classified IP packets will be looked up from the specified ipv6
-               fib table (configured by metadata as VRF id).
-               Only valid for L3 input ACL node
+            fib table (configured by metadata as VRF id).
+            Only valid for L3 input ACL node
             3: Classified packet will be steered to source routing policy of
-               given index (in metadata).
-               This is only valid for IPv6 packets redirected to a source
-               routing node.
+            given index (in metadata).
+            This is only valid for IPv6 packets redirected to a source
+            routing node.
         :param metadata: Valid only if action != 0. VRF id if action is 1 or 2.
             SR policy index if action is 3. (Default value = 0)
         :type node: dict

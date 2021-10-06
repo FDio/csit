@@ -27,7 +27,7 @@
 |
 | Test Template | Local Template
 |
-| Documentation | **RFC2544: Pkt throughput L2BD test cases with 4 memif 2
+| Documentation | *RFC2544: Pkt throughput L2BD test cases with 4 memif 2
 | ... | pipelines 20 docker containers*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with

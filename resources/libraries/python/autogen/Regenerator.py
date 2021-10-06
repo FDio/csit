@@ -654,7 +654,7 @@ class Regenerator:
 
         Log-like prints are emitted to sys.stderr.
 
-        :param pattern: Glob pattern to select files. Example: *-ndrpdr.robot
+        :param pattern: Glob pattern to select files. Example: \*-ndrpdr.robot
         :param protocol: String determining minimal frame size. Default: "ip4"
         :type pattern: str
         :type protocol: str

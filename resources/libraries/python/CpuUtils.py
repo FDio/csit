@@ -268,7 +268,7 @@ class CpuUtils:
         :returns: List of CPUs allocated to NF.
         :rtype: list
         :raises RuntimeError: If we require more cpus than available or if
-        placement is not possible due to wrong parameters.
+            placement is not possible due to wrong parameters.
         """
         if not 1 <= nf_chain <= nf_chains:
             raise RuntimeError(u"ChainID is out of range!")

@@ -29,7 +29,7 @@
 |
 | Test Template | Local template
 |
-| Documentation | *Iperf3 client -> Iperf3 server goodput.
+| Documentation | *Iperf3 client -> Iperf3 server goodput.*
 |
 | ... | *[Top] Network Topologies:* DUT-DUT 2-node topology
 | ... | with single link between nodes.

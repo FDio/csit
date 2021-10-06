@@ -322,7 +322,7 @@ class SSH:
         :param chan: SSH channel with opened terminal.
         :param cmd: Command to be executed.
         :param prompt: Command prompt, sequence of characters used to
-        indicate readiness to accept commands.
+            indicate readiness to accept commands.
         :returns: Command output.
 
         .. warning:: Interruptingcow is used here, and it uses
@@ -370,9 +370,9 @@ class SSH:
         connect() method has to be called first!
 
         :param local_path: Path to local file that should be uploaded; or
-        path where to save remote file.
+            path where to save remote file.
         :param remote_path: Remote path where to place uploaded file; or
-        path to remote file which should be downloaded.
+            path to remote file which should be downloaded.
         :param get: scp operation to perform. Default is put.
         :param timeout: Timeout value in seconds.
         :param wildcard: If path has wildcard characters. Default is false.
