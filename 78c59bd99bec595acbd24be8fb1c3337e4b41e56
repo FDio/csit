@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "129aab57_abf46d4d",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-06T12:07:03Z",
+      "side": 1,
+      "message": "Would this lead to double dash (for trex suites)?",
+      "range": {
+        "startLine": 866,
+        "startChar": 55,
+        "endLine": 866,
+        "endChar": 68
+      },
+      "revId": "78c59bd99bec595acbd24be8fb1c3337e4b41e56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
