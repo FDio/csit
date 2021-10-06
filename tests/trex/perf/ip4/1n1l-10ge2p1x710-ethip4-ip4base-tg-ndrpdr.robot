@@ -14,8 +14,9 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | TREX | ETH | N2N | BASE | TG_DRV_IGB_UIO
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
+| ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | N2N | BASE
+| ... | TG_DRV_IGB_UIO
 | ... | ethip4-ip4base-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic

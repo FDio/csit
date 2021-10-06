@@ -14,9 +14,9 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | TREX | ETH | IP4FWD | N2N | SCALE | IP4BASE
-| ... | TG_DRV_IGB_UIO | UDP | UDP_CPS | HOSTS_1024
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
+| ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | IP4FWD
+| ... | N2N | SCALE | IP4BASE | TG_DRV_IGB_UIO | UDP | UDP_CPS | HOSTS_1024
 | ... | ethip4udp-ip4base-h1024-p63-s64512-cps-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
