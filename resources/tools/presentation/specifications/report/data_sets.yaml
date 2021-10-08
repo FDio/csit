@@ -72,6 +72,16 @@
     csit-vpp-perf-report-iterative-2106-3n-skx:
       - 39  # rls2106.rel NDRPDR iter env 7
 
+  trex-3n-skx-curr-iter:
+    csit-trex-perf-report-iterative-2110-3n-skx:
+      - 1   # rls2110.rc1 NDRPDR iter env 8 - REMOVE
+#       - 2   # rls2110.rc1 NDRPDR iter env 8
+
+  trex-3n-skx-curr-iter-best:
+    csit-trex-perf-report-iterative-2110-3n-skx:
+      - 1   # rls2110.rc1 NDRPDR iter env 8 - REMOVE
+#       - 2   # rls2110.rc1 NDRPDR iter env 8
+
   vpp-3n-skx-curr-cov:
     # csit-vpp-perf-report-coverage-2110-3n-skx:
     csit-vpp-perf-report-iterative-2110-3n-skx:
@@ -202,6 +212,14 @@
   vpp-2n-skx-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2110-2n-skx:
       - 15  # rls2110.rc1 MRR iter env 8
+
+  trex-2n-skx-curr-iter:
+    csit-trex-perf-report-iterative-2110-2n-skx:
+      - 2   # rls2110.rc1 NDRPDR iter env 8
+
+  trex-2n-skx-curr-iter-best:
+    csit-trex-perf-report-iterative-2110-2n-skx:
+      - 2   # rls2110.rc1 NDRPDR iter env 8
 
   vpp-2n-skx-curr-soak:
     # csit-vpp-perf-report-iterative-2110-2n-skx:
