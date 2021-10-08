@@ -1413,7 +1413,7 @@ measurement data. PA is defined as follows:
             #. Drill-down graphs to include MM, TMA and TMSD.
 
         #. Publish trend analysis graphs in html format on
-           https://docs.fd.io/csit/master/trending/.
+           https://s3-docs.fd.io/csit/master/trending/.
 
 
 Parameters to specify:

@@ -92,9 +92,9 @@ configuration.
 
 FD.io CSIT performance dashboard includes complete description of
 `daily performance trending tests
-<https://docs.fd.io/csit/master/trending/methodology/performance_tests.html>`_
+<https://s3-docs.fd.io/csit/master/trending/methodology/performance_tests.html>`_
 and `VPP per patch tests
-<https://docs.fd.io/csit/master/trending/methodology/perpatch_performance_tests.html>`_.
+<https://s3-docs.fd.io/csit/master/trending/methodology/perpatch_performance_tests.html>`_.
 
 PLRsearch Tests
 ^^^^^^^^^^^^^^^

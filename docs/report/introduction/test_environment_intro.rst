@@ -32,12 +32,12 @@ included in the CSIT environment versioning include:
   <https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md#n556>`_.
 - **Linux** Server Linux OS version and configuration, tracked in CSIT
   Reports in `SUT Settings
-  <https://docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_
+  <https://s3-docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_
   and `Pre-Test Server Calibration
-  <https://docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#pre-test-server-calibration>`_.
+  <https://s3-docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#id21>`_.
 - **TRex** TRex Traffic Generator version, drivers and configuration
   tracked in `TG Settings
-  <https://docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_.
+  <https://s3-docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_.
 - **CSIT** CSIT framework code tracked in CSIT release branches.
 
 Following is the list of CSIT versions to date:
@@ -81,9 +81,9 @@ Following is the list of CSIT versions to date:
     `increase from 2.82 to 2.86 <https://gerrit.fd.io/r/c/csit/+/29980>`_.
 - Ver. 7 associated with CSIT rls2106 branch (`HW
   <https://git.fd.io/csit/tree/docs/lab?h=rls2106>`_, `Linux
-  <https://docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  <https://s3-docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
   `TRex
-  <https://docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  <https://s3-docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
   `CSIT <https://git.fd.io/csit/tree/?h=rls2106>`_).
 
   - TRex version upgrade:

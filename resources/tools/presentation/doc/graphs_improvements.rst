@@ -6,8 +6,8 @@ Introduction
 ------------
 
 This document describes possible improvements in data presentation provided by
-PAL for the `Report <https://docs.fd.io/csit/master/report/>`_ and the
-`Trending <https://docs.fd.io/csit/master/trending/>`_
+PAL for the `Report <https://s3-docs.fd.io/csit/master/report/>`_ and the
+`Trending <https://s3-docs.fd.io/csit/master/trending/>`_
 
 You can generate a standalone html version of this document using e.g.
 rst2html5 tool:
