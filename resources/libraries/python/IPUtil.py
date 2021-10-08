@@ -155,8 +155,8 @@ class NetworkIncrement(ObjIncrement):
             return f"{self._value.network_address}/{self._prefix_len}"
         elif self._format == u"addr":
             return f"{self._value.network_address}"
-        else:
-            raise RuntimeError(f"Unsupported format {self._format}")
+
+        raise RuntimeError(f"Unsupported format {self._format}")
 
 
 class IPUtil:

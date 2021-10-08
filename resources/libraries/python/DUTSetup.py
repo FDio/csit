@@ -408,11 +408,11 @@ class DUTSetup:
                 # sriov is not supported and we want 0 VFs
                 # no need to do anything
                 return
-            else:
-                raise RuntimeError(
-                    f"Can't configure {numvfs} VFs on {pf_pci_addr} device "
-                    f"on {node[u'host']} since it doesn't support SR-IOV."
-                )
+
+            raise RuntimeError(
+                f"Can't configure {numvfs} VFs on {pf_pci_addr} device "
+                f"on {node[u'host']} since it doesn't support SR-IOV."
+            )
 
         pci = pf_pci_addr.replace(u":", r"\:")
         command = f"sh -c \"echo {numvfs} | " \
@@ -572,10 +572,9 @@ class DUTSetup:
             # the directory doesn't exist which means the device is not bound
             # to any driver
             return None
-        else:
-            cmd = f"basename $(readlink -f {driver_path})"
-            ret_val, _ = exec_cmd_no_error(node, cmd)
-            return ret_val.strip()
+        cmd = f"basename $(readlink -f {driver_path})"
+        ret_val, _ = exec_cmd_no_error(node, cmd)
+        return ret_val.strip()
 
     @staticmethod
     def verify_kernel_module(node, module, force_load=False):
