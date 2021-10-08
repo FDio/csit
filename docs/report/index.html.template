@@ -45,6 +45,17 @@ CSIT-2110
 
 .. toctree::
     :maxdepth: 2
+    :caption: TRex Performance
+
+    trex_performance_tests/overview
+    trex_performance_tests/csit_release_notes
+    trex_performance_tests/packet_throughput_graphs/index
+    trex_performance_tests/packet_latency/index
+    trex_performance_tests/throughput_trending
+    trex_performance_tests/test_environment
+
+.. toctree::
+    :maxdepth: 2
     :caption: VPP Device
 
     vpp_device_tests/overview
