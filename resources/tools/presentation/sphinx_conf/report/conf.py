@@ -81,6 +81,8 @@ rst_epilog = u"""
 .. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Cascade Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_clx_hw_bios_cfg.md?h={release}
 .. _Ansible inventory - hosts: https://git.fd.io/csit/tree/fdio.infra.ansible/inventories/lf_inventory/host_vars?h={release}
+.. _build logs from FD.io trex performance job 3n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-trex-perf-report-iterative-{srelease}-3n-skx
+.. _build logs from FD.io trex performance job 2n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-trex-perf-report-iterative-{srelease}-2n-skx
 .. _build logs from FD.io dpdk performance job 3n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-3n-skx
 .. _build logs from FD.io dpdk performance job 2n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-skx
 .. _build logs from FD.io dpdk performance job 2n-clx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-clx
@@ -101,6 +103,8 @@ rst_epilog = u"""
 .. _build logs from FD.io vpp performance job 2n-zn2: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-zn2
 .. _build logs from FD.io vpp performance job 3n-aws: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-aws
 .. _build logs from FD.io vpp performance job 2n-aws: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-aws
+.. _build logs from FD.io trex coverage job 3n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-trex-perf-report-coverage-{srelease}-3n-skx
+.. _build logs from FD.io trex coverage job 2n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-trex-perf-report-coverage-{srelease}-2n-skx
 .. _build logs from FD.io dpdk coverage job 3n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-coverage-{srelease}-3n-skx
 .. _build logs from FD.io dpdk coverage job 2n-skx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-coverage-{srelease}-2n-skx
 .. _build logs from FD.io dpdk coverage job 2n-clx: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-coverage-{srelease}-2n-clx
