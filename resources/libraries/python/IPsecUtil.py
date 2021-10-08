@@ -787,11 +787,11 @@ class IPsecUtil:
         :type action: IPsecUtil.PolicyAction
         :type inbound: bool
         :type bidirectional: bool
-        :raises NotImplemented: When the action is PolicyAction.PROTECT.
+        :raises NotImplementedError: When the action is PolicyAction.PROTECT.
         """
 
         if action == PolicyAction.PROTECT:
-            raise NotImplemented('Policy action PROTECT is not supported.')
+            raise NotImplementedError('Policy action PROTECT is not supported.')
 
         spd_id_dir1 = 1
         spd_id_dir2 = 2
@@ -1014,7 +1014,7 @@ class IPsecUtil:
             tmp_filename = f"/tmp/ipsec_spd_{spd_id}_add_del_entry.script"
 
             with open(tmp_filename, 'w') as tmp_file:
-                for i in range(n_entries):
+                for _ in range(n_entries):
                     direction = u'inbound' if inbound else u'outbound'
                     sa = f' sa {sa_id.inc_fmt()}' if sa_id is not None else ''
                     protocol = f' protocol {protocol}' if proto else ''
@@ -2208,7 +2208,8 @@ class IPsecUtil:
                 crypto_key, integ_alg, integ_key, tunnel_ip1, tunnel_ip2
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
-                nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+                nodes[u"DUT2"], n_tunnels, spd_id,
+                priority=ObjIncrement(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=True,
                 sa_id=ObjIncrement(sa_id_1, 1),
                 raddr_range=NetworkIncrement(ip_network(raddr_ip2))
@@ -2219,7 +2220,8 @@ class IPsecUtil:
                 crypto_key, integ_alg, integ_key, tunnel_ip2, tunnel_ip1
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
-                nodes[u"DUT2"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
+                nodes[u"DUT2"], n_tunnels, spd_id,
+                priority=ObjIncrement(p_lo, 0),
                 action=PolicyAction.PROTECT, inbound=False,
                 sa_id=ObjIncrement(sa_id_2, 1),
                 raddr_range=NetworkIncrement(ip_network(raddr_ip1))

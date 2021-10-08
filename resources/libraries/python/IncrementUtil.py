@@ -14,7 +14,7 @@
 """Increment utilities library."""
 
 
-class ObjIncrement(object):
+class ObjIncrement():
     """
     An iterator class used to generate incremented values in each iteration
     or when inc_fmt is called.
