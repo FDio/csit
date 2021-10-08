@@ -156,7 +156,7 @@ def main():
         if not isinstance(ip, IPv6):
             raise RuntimeError(f"Not an IP packet received {ip!r}")
     elif not isinstance(ip, ip_format):
-            raise RuntimeError(f"Not an IP packet received {ip!r}")
+        raise RuntimeError(f"Not an IP packet received {ip!r}")
 
     lisp = ether.getlayer(lisp_layer)
     if not lisp:
