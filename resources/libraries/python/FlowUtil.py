@@ -19,6 +19,8 @@ from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
+from vpp_papi import VppEnum
+
 class FlowUtil:
     """Utilities for flow configuration."""
 
@@ -48,8 +50,6 @@ class FlowUtil:
         :returns: flow_index.
         :rtype: int
         """
-        from vpp_papi import VppEnum
-
         flow = u"ip4_n_tuple"
         flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP4_N_TUPLE
 
@@ -99,8 +99,6 @@ class FlowUtil:
         :returns: flow_index.
         :rtype: int
         """
-        from vpp_papi import VppEnum
-
         flow = u"ip6_n_tuple"
         flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP6_N_TUPLE
 
@@ -147,8 +145,6 @@ class FlowUtil:
         :returns: flow_index.
         :rtype: int
         """
-        from vpp_papi import VppEnum
-
         flow = u"ip4"
         flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP4
 
@@ -191,8 +187,6 @@ class FlowUtil:
         :returns: flow_index.
         :rtype: int
         """
-        from vpp_papi import VppEnum
-
         flow = u"ip6"
         flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP6
 
@@ -237,8 +231,6 @@ class FlowUtil:
         :returns: flow_index.
         :rtype: int
         """
-        from vpp_papi import VppEnum
-
         flow = u"ip4_gtpu"
         flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP4_GTPU
         flow_proto = VppEnum.vl_api_ip_proto_t.IP_API_PROTO_UDP
@@ -273,8 +265,6 @@ class FlowUtil:
         :returns: flow_index.
         :rtype: int
         """
-        from vpp_papi import VppEnum
-
         if proto == u"ESP":
             flow = u"ip4_ipsec_esp"
             flow_proto = VppEnum.vl_api_ip_proto_t.IP_API_PROTO_ESP
@@ -312,8 +302,6 @@ class FlowUtil:
         :returns: flow_index.
         :rtype: int
         """
-        from vpp_papi import VppEnum
-
         flow = u"ip4_l2tpv3oip"
         flow_proto = 115    # IP_API_PROTO_L2TP
         flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP4_L2TPV3OIP
@@ -347,8 +335,6 @@ class FlowUtil:
         :type value: int
         :returns: flow_index.
         """
-        from vpp_papi import VppEnum
-
         flow = u"ip4_vxlan"
         flow_type = VppEnum.vl_api_flow_type_t.FLOW_TYPE_IP4_VXLAN
         flow_proto = VppEnum.vl_api_ip_proto_t.IP_API_PROTO_UDP
@@ -387,8 +373,6 @@ class FlowUtil:
         :rtype: int
         :raises ValueError: If action type is not supported.
         """
-        from vpp_papi import VppEnum
-
         cmd = u"flow_add"
 
         if action == u"redirect-to-queue":
