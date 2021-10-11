@@ -70,8 +70,8 @@ Additional information about graph data:
     2n-zn2-xxv710
     2n-zn2-x710
     3n-tsh-x520
+    2n-tx2-xl710
 
 ..
-    2n-tx2-xl710
     2n-dnv-x553
     3n-dnv-x553
