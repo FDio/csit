@@ -52,6 +52,4 @@ Additional information about graph data:
     2n-clx-xxv710
     2n-zn2-xxv710
     3n-tsh-x520
-
-..
     2n-tx2-xl710
