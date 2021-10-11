@@ -8,7 +8,7 @@ Packet Latency
 
 TRex latency results are generated based on the test
 data obtained from |csit-release| NDR-PDR throughput tests executed
-across physical testbeds hosted in LF FD.io labs: 3n-skx, 2n-skx.
+across physical testbeds hosted in LF FD.io labs: 2n-skx.
 
 Latency by percentile distribution plots are used to show packet latency
 percentiles at different packet rate load levels: i) No-Load latency
@@ -34,13 +34,9 @@ Additional information about graph data:
 .. note::
 
     Test results are stored in
-    `build logs from FD.io trex performance job 2n-skx`_ and
-    `build logs from FD.io trex performance job 3n-skx`_.
+    `build logs from FD.io trex performance job 2n-skx`_.
 
 .. toctree::
     :maxdepth: 3
 
     2n-skx-x710
-
-..
-    3n-skx-x710

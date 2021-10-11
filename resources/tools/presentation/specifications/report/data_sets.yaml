@@ -55,7 +55,7 @@
 
   vpp-3n-skx-curr-iter-best:
     csit-vpp-perf-report-iterative-2110-3n-skx:
-      - 3   # rls2110.rc1 NDRPDR iter env 8
+      - 22  # rls2110.rc1 NDRPDR iter env 8
 
   vpp-3n-skx-hist-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2101-3n-skx:
@@ -76,14 +76,6 @@
   vpp-3n-skx-curr-iter-hoststack:
     csit-vpp-perf-report-iterative-2110-3n-skx:
       - 23  # rls2110.rel NDRPDR iter env 8
-
-  trex-3n-skx-curr-iter:
-    csit-trex-perf-report-iterative-2110-3n-skx:
-      - 1   # rls2110.rc1 NDRPDR iter env 8 - REMOVE
-
-  trex-3n-skx-curr-iter-best:
-    csit-trex-perf-report-iterative-2110-3n-skx:
-      - 1   # rls2110.rc1 NDRPDR iter env 8 - REMOVE
 
   vpp-3n-skx-curr-cov:
     # csit-vpp-perf-report-coverage-2110-3n-skx:
@@ -365,6 +357,7 @@
       - 20  # rls2106.rel NDRPDR iter env 8
       - 21  # rls2106.rel NDRPDR iter env 8
       - 22  # rls2106.rel NDRPDR iter env 8
+      - 28  # rls2106.rel NDRPDR iter env 8
 
   vpp-2n-zn2-curr-iter:
     csit-vpp-perf-report-iterative-2110-2n-zn2:
@@ -375,9 +368,8 @@
       - 26  # rls2110.rc1 NDRPDR iter env 8
 
   vpp-2n-zn2-curr-iter-gso:
-    # csit-vpp-perf-report-iterative-2110-2n-zn2:
-    csit-vpp-perf-report-iterative-2106-2n-zn2:
-      - 37  # rls2106.rel MRR GSO iter env 7
+    csit-vpp-perf-report-iterative-2110-2n-zn2:
+      - 29  # rls2110.rc1 MRR GSO iter env 8
 
   vpp-2n-zn2-hist-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2101-2n-zn2:
@@ -759,6 +751,7 @@
       - 19  # rls2106.rel NDRPDR iter env 8
       - 24  # rls2106.rel NDRPDR iter env 8
       - 25  # rls2106.rel NDRPDR iter env 8
+      - 27  # rls2106.rel NDRPDR iter env 8
 
   vpp-2n-tx2-curr-iter:
     csit-vpp-perf-report-iterative-2110-2n-tx2:
