@@ -363,8 +363,6 @@
       data-set: "vpp-3n-skx-curr-iter-hoststack"
     - job-spec: "dpdk-mlr-00"
       data-set: "dpdk-3n-skx-curr-iter"
-#     - job-spec: "trex-mlr-00"
-#       data-set: "trex-3n-skx-curr-iter"
 
 # - type: "table"
 #   title: "Job Specification Duration: 3n-skx-coverage"
@@ -5836,24 +5834,6 @@
   - "parent"
   - "msg"
 
-# # Detailed Test Results - TRex Performance Results 3n-skx
-# - type: "table"
-#   title: "Detailed Test Results - TRex Performance Results 3n-skx"
-#   algorithm: "table_merged_details"
-#   output-file: "{DIR[DTR,PERF,TREX,3N,SKX]}/trex_performance_results_3n_skx"
-#   columns:
-#     - title: " |prein| Test Name |preout| "
-#       data: "data name"
-#     - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
-#       data: "data msg"
-#   data: "trex-3n-skx-curr-iter-best"
-#   filter: "all"
-#   remove-ndr: False
-#   parameters:
-#   - "name"
-#   - "parent"
-#   - "msg"
-
 # Detailed Test Results - TRex Performance Results 2n-skx
 - type: "table"
   title: "Detailed Test Results - TRex Performance Results 2n-skx"
@@ -6340,16 +6320,6 @@
   data: "dpdk-2n-tx2-curr-iter-best"
   filter: "all"
   data-start-level: 4
-
-# # TRex Performance Results 3n-skx
-# - type: "file"
-#   title: "TRex Performance Results 3n-skx"
-#   algorithm: "file_test_results"
-#   output-file: "{DIR[DTR,PERF,TREX,3N,SKX]}"
-#   dir-tables: "{DIR[DTR,PERF,TREX,3N,SKX]}"
-#   data: "trex-3n-skx-curr-iter-best"
-#   filter: "all"
-#   data-start-level: 4
 
 # TRex Performance Results 2n-skx
 - type: "file"
@@ -12750,17 +12720,6 @@
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
-# - type: "plot"
-#   title: "Latency by percentile: TRex 3n-skx"
-#   algorithm: "plot_hdrh_lat_by_percentile_x_log"
-#   output-file: "{DIR[STATIC,TREX]}/hdrh-lat-percentile-3n-skx"
-#   output-file-links: "{DIR[LAT,TREX]}/3n_skx.rst"
-#   target-links: "../../_static/trex"
-#   data: "trex-3n-skx-curr-iter-best"
-#   filter: "'NIC_Intel-X710'"
-#   layout:
-#     layout: "plot-hdrh-latency-percentile-x-log"
-
 - type: "plot"
   title: "Latency by percentile: 2n-clx"
   algorithm: "plot_hdrh_lat_by_percentile_x_log"
@@ -12965,76 +12924,6 @@
     layout: "plot-throughput-gbps"
 
 ###############################################################################
-
-# TRex 3n-skx
-
-# - type: "plot"
-#   title: "Throughput: 3n-skx-x710-64b--ip4-base-scale-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/3n-skx-x710-64b--ip4-base-scale-{test_type}"
-#   data: "trex-3n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4-Ip4Base-Tg-Ndrpdr.64B--ethip4-ip4base-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4-Ip4Scale2M-Tg-Ndrpdr.64B--ethip4-ip4scale2m-tg-ndrpdr"
-#   layout:
-#     title: "3n-skx-x710-64b--ip4-base-scale-{test_type}"
-#     layout: "plot-throughput"
-#
-# - type: "plot"
-#   title: "Throughput: 3n-skx-x710-64b--ip4routing-stf-cps-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/3n-skx-x710-64b--ip4routing-stf-cps-{test_type}"
-#   data: "trex-3n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Cps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-Cps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H1024-P63-S64512-Cps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H262144-P63-S16515072-Cps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h262144-p63-s16515072-cps-tg-ndrpdr"
-#   layout:
-#     title: "3n-skx-x710-64b--ip4routing-stf-cps-{test_type}"
-#     layout: "plot-throughput"
-#
-# - type: "plot"
-#   title: "Throughput: 3n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/3n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
-#   data: "trex-3n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
-#   layout:
-#     title: "3n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
-#     layout: "plot-throughput"
-#
-# - type: "plot"
-#   title: "Throughput: 3n-skx-x710-78b--ip6-base-scale-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/3n-skx-x710-78b--ip6-base-scale-{test_type}"
-#   data: "trex-3n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.Ip6.1N1L-10Ge2P1X710-Ethip6-Ip6Base-Tg-Ndrpdr.78B--ethip6-ip6base-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip6.1N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Tg-Ndrpdr.78B--ethip6-ip6scale2m-tg-ndrpdr"
-#   layout:
-#     title: "3n-skx-x710-78b--ip6-base-scale-{test_type}"
-#     layout: "plot-throughput"
-#
-# - type: "plot"
-#   title: "Throughput: 3n-skx-x710-64b--l2-scale-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/3n-skx-x710-64b--l2-scale-{test_type}"
-#   data: "trex-3n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.L2.1N1L-10Ge2P1X710-Eth-L2Bdscale1Mmaclrn-Tg-Ndrpdr.64B--eth-l2bdscale1mmaclrn-tg-ndrpdr"
-#   layout:
-#     title: "3n-skx-x710-64b--l2-scale-{test_type}"
-#     layout: "plot-throughput"
 
 # TRex 2n-skx
 
