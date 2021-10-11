@@ -375,8 +375,9 @@
       - 26  # rls2110.rc1 NDRPDR iter env 8
 
   vpp-2n-zn2-curr-iter-gso:
-    csit-vpp-perf-report-iterative-2110-2n-zn2:
-      - 32  # rls2110.rc1 MRR GSO iter env 8
+    # csit-vpp-perf-report-iterative-2110-2n-zn2:
+    csit-vpp-perf-report-iterative-2106-2n-zn2:
+      - 37  # rls2106.rel MRR GSO iter env 7
 
   vpp-2n-zn2-hist-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2101-2n-zn2:
@@ -388,12 +389,14 @@
       - 48  # rls2106.rel MRR AF-XDP iter env 7
 
   vpp-2n-zn2-prev-iter-mrr-new-env:
+    # csit-vpp-perf-report-iterative-2110-2n-zn2:
     csit-vpp-perf-report-iterative-2106-2n-zn2:
       - 2   # rls2101.rel MRR iter env 7
 
   vpp-2n-zn2-curr-iter-mrr:
-    csit-vpp-perf-report-iterative-2110-2n-zn2:
-      - 1   # rls2110.rc1 MRR iter env 8
+    #  csit-vpp-perf-report-iterative-2110-2n-zn2:
+    csit-vpp-perf-report-iterative-2106-2n-zn2:
+      - 2   # rls2101.rel MRR iter env 7
 
   vpp-2n-zn2-curr-cov:
     # csit-vpp-perf-report-coverage-2110-2n-zn2:
