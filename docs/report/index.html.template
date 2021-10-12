@@ -70,6 +70,7 @@ CSIT-2110
     detailed_test_results/vpp_performance_results/index
     detailed_test_results/vpp_mrr_results/index
     detailed_test_results/dpdk_performance_results/index
+    detailed_test_results/trex_performance_results/index
     detailed_test_results/vpp_device_results_ubuntu/index
 
 .. toctree::
