@@ -137,7 +137,11 @@
 | | Run Keyword If | ${index} >= 0 | Return From Keyword
 | | FOR | ${dut} | IN | @{duts}
 | | | Stop VPP Service | ${nodes['${dut}']}
-| | | PCI Driver Unbind List | ${nodes['${dut}']} | @{${dut}_pf_pci}
+| | | FOR | ${pci_addr} | IN | @{${dut}_pf_pci}
+| | | | ${curr_driver}= | Get PCI dev driver | ${dut} | ${pci_addr}
+| | | | Run keyword if |
+| | | | ... | '${curr_driver}' is not None and '${curr_driver}' != 'vfio-pci'
+| | | | ... | PCI Driver Unbind | ${dut} | ${pci_addr}
 | | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | | ... | ${dut}.Add DPDK No Tx Checksum Offload
