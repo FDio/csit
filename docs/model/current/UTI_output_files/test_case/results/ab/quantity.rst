@@ -13,16 +13,21 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Quantity
+^^^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
+Value of this entry is a string specifying the main quantity of interest.
+Currently supported values are "cps" or "rps".
 
-Usually, only one of its entries is present, according to the test type.
+Cps tests execute one request per established TCP connection,
+rps tests are reusing the connections (one connection per client worker),
+thus getting more requests per second.
+
+CSIT uses permissive parsing for AB tool output,
+so this entry may be missing if the corresponding line is not found.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.
