@@ -30,11 +30,35 @@ function activate_wrapper () {
 
     enter_mutex || die
     get_available_interfaces "${1}" "${2}" || die
+    bind_dut_interfaces_to_vpp_driver || die
     start_topology_containers "${3}" || die
     bind_interfaces_to_containers || die
     set_env_variables || die
     print_env_variables || die
     exit_mutex || die
+}
+
+
+function bind_dut_interfaces_to_vpp_driver () {
+
+    # Bind DUT network interfaces to the driver that vpp will use
+    #
+    # Variables read:
+    # - DUT1_NETDEVS - List of network devices allocated to DUT1 container.
+    # Variables set:
+    # - NETDEV - Linux network interface.
+    # - DRIVER - Kernel driver to bind the interface to.
+    # - KRN_DRIVER - The original kernel driver of the network interface.
+
+    for NETDEV in "${DUT1_NETDEVS[@]}"; do
+        get_pci_addr || die
+        get_krn_driver || die
+        if [[ ${KRN_DRIVER} == "iavf" ]]; then
+            DRIVER="vfio-pci"
+            ADDR=${PCI_ADDR}
+            bind_interfaces_to_driver || die
+        fi
+    done
 }
 
 
@@ -51,36 +75,42 @@ function bind_interfaces_to_containers () {
     # - TG_NETDEVS - List of network devices allocated to TG container.
     # Variables set:
     # - NETDEV - Linux network interface.
+    # - KRN_DRIVER - Kernel driver of network device.
 
     set -exuo pipefail
 
-    for NETDEV in "${TG_NETDEVS[@]}"; do
-        get_pci_addr || die
+    for PCI_ADDR in "${TG_PCIDEVS[@]}"; do
+        get_netdev_name || die
         link_target=$(readlink -f /sys/bus/pci/devices/"${PCI_ADDR}") || {
             die "Reading symlink for PCI address failed!"
         }
         cmd="ln -s ${link_target} /sys/bus/pci/devices/${PCI_ADDR}"
+
+        docker exec "${DCR_UUIDS[tg]}" ${cmd} || {
+            die "Linking PCI address in container failed!"
+        }
 
         sudo ip link set ${NETDEV} netns ${DCR_CPIDS[tg]} || {
             die "Moving interface to ${DCR_CPIDS[tg]} namespace failed!"
         }
-        docker exec "${DCR_UUIDS[tg]}" ${cmd} || {
-            die "Linking PCI address in container failed!"
-        }
     done
-    for NETDEV in "${DUT1_NETDEVS[@]}"; do
-        get_pci_addr || die
-        link_target=$(readlink -f /sys/bus/pci/devices/"${PCI_ADDR}") || {
-            die "Reading symlink for PCI address failed!"
-        }
-        cmd="ln -s ${link_target} /sys/bus/pci/devices/${PCI_ADDR}"
+    for PCI_ADDR in "${DUT1_PCIDEVS[@]}"; do
+            link_target=$(readlink -f /sys/bus/pci/devices/"${PCI_ADDR}") || {
+                die "Reading symlink for PCI address failed!"
+            }
+            cmd="ln -s ${link_target} /sys/bus/pci/devices/${PCI_ADDR}"
 
-        sudo ip link set ${NETDEV} netns ${DCR_CPIDS[dut1]} || {
-            die "Moving interface to ${DCR_CPIDS[dut1]} namespace failed!"
-        }
-        docker exec "${DCR_UUIDS[dut1]}" ${cmd} || {
-            die "Linking PCI address in container failed!"
-        }
+            docker exec "${DCR_UUIDS[dut1]}" ${cmd} || {
+                die "Linking PCI address in container failed!"
+
+            get_krn_driver
+            if [[ ${KRN_DRIVER} != "vfio-pci" ]]; then
+                get_netdev_name || die
+                sudo ip link set ${NETDEV} netns ${DCR_CPIDS[dut1]} || {
+                    die "Moving interface to ${DCR_CPIDS[dut1]} namespace failed!"
+                }
+            fi
+        fi
     done
 }
 
@@ -103,8 +133,17 @@ function bind_interfaces_to_driver () {
             die "Failed to unbind interface ${ADDR}!"
         }
     fi
+
+    echo ${DRIVER} | sudo tee /sys/bus/pci/devices/${ADDR}/driver_override || {
+        die "Failed to override driver to ${DRIVER} for ${ADDR}!"
+    }
+
     echo ${ADDR} | sudo tee ${drv_path}/bind || {
         die "Failed to bind interface ${ADDR}!"
+    }
+
+    echo | sudo tee /sys/bus/pci/devices/${ADDR}/driver_override || {
+        die "Failed to reset driver override for ${ADDR}!"
     }
 }
 
@@ -415,6 +454,25 @@ function get_mac_addr () {
 }
 
 
+function get_netdev_name () {
+
+    # Get Linux network device name.
+    #
+    # Variables read:
+    # - PCI_ADDR - PCI address of the device.
+    # Variables set:
+    # - NETDEV - Linux network device name.
+
+    set -exuo pipefail
+
+    if [ -d /sys/bus/pci/devices/${PCI_ADDR}/net ]; then
+        NETDEV="$(basename /sys/class/net/${PCI_ADDR}/net/*)" || {
+            die "Failed to get Linux interface name of ${PCI_ADDR}"
+        }
+    fi
+}
+
+
 function get_csit_model () {
 
     # Get CSIT model name from linux network device name.
@@ -466,6 +524,24 @@ function get_pci_addr () {
     fi
 }
 
+
+function get_vfio_group () {
+
+    # Get the VFIO group of a pci device.
+    #
+    # Variables read:
+    # - PCI_ADDR - PCI address of a device.
+    # Variables set:
+    # - VFIO_GROUP - The VFIO group of the PCI device.
+
+    if [[ -d /sys/bus/pci/devices/${PCI_ADDR}/iommu_group ]]; then
+        VFIO_GROUP="$(basename\
+            $(readlink /sys/bus/pci/devices/${PCI_ADDR}/iommu_group)\
+        )" || {
+            die "PCI device ${PCI_ADDR} does not have an iommu group!"
+        }
+    fi
+}
 
 function get_vlan_filter () {
 
@@ -683,9 +759,6 @@ function start_topology_containers () {
     # Override access to PCI bus by attaching a filesystem mount to the
     # container.
     dcr_stc_params+="--mount type=tmpfs,destination=/sys/bus/pci/devices "
-    # Mount vfio to be able to bind to see bound interfaces. We cannot use
-    # --device=/dev/vfio as this does not see newly bound interfaces.
-    dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
     # Disable manipulation with hugepages by VPP.
     dcr_stc_params+="--volume /dev/null:/etc/sysctl.d/80-vpp.conf "
     # Mount docker.sock to be able to use docker deamon of the host.
@@ -710,6 +783,14 @@ function start_topology_containers () {
     DCR_UUIDS+=([tg]=$(docker run "${params[@]}")) || {
         die "Failed to start TG docker container!"
     }
+    # Mount vfio devices to be able to use VFs inside the container.
+    for PCI_ADDR in ${DUT1_PCIDEVS[@]}; do
+        get_krn_driver
+        if [[ ${KRN_DRIVER} == "vfio-pci" ]]; then
+            get_vfio_group
+            dcr_stc_params+="--device /dev/vfio/${VFIO_GROUP} "
+        fi
+    done
     params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${dcr_image})
     DCR_UUIDS+=([dut1]=$(docker run "${params[@]}")) || {
         die "Failed to start DUT1 docker container!"
