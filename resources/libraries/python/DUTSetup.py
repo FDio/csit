@@ -676,7 +676,7 @@ class DUTSetup:
                     )
                     # workaround to avoid installation of vpp-api-python
                     exec_cmd_no_error(
-                        node, u"rm -f {vpp_pkg_dir}vpp-api-python.deb",
+                        node, f"rm -f {vpp_pkg_dir}vpp-api-python.deb",
                         timeout=120, sudo=True
                     )
                     exec_cmd_no_error(
@@ -693,7 +693,7 @@ class DUTSetup:
                     )
                     # workaround to avoid installation of vpp-api-python
                     exec_cmd_no_error(
-                        node, u"rm -f {vpp_pkg_dir}vpp-api-python.rpm",
+                        node, f"rm -f {vpp_pkg_dir}vpp-api-python.rpm",
                         timeout=120, sudo=True
                     )
                     exec_cmd_no_error(
