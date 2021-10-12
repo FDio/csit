@@ -436,7 +436,7 @@ class DUTSetup:
         """
         pci = pci_addr.replace(u":", r"\:")
         command = f"sh -c \"echo {pci_addr} | " \
-            f"tee /sys/bus/pci/devices/{pci}/driver/unbind\""
+                  f"tee /sys/bus/pci/devices/{pci}/driver/unbind\""
         message = f"Failed to unbind PCI device {pci_addr} on {node[u'host']}"
 
         exec_cmd_no_error(
@@ -444,16 +444,21 @@ class DUTSetup:
         )
 
     @staticmethod
-    def pci_driver_unbind_list(node, *pci_addrs):
-        """Unbind PCI devices from current driver on node.
+    def unbind_pci_devices_from_other_driver(node, driver, *pci_addrs):
+        """Unbind PCI devices from driver other than input driver on node.
 
         :param node: DUT node.
+        :param driver: Driver to not unbind from. If None or empty string,
+            will attempt to unbind from the current driver.
         :param pci_addrs: PCI device addresses.
         :type node: dict
+        :type driver: str
         :type pci_addrs: list
         """
         for pci_addr in pci_addrs:
-            DUTSetup.pci_driver_unbind(node, pci_addr)
+            if not driver or \
+                    DUTSetup.get_pci_dev_driver(node, pci_addr) != driver:
+                DUTSetup.pci_driver_unbind(node, pci_addr)
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
