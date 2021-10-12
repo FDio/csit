@@ -13,16 +13,21 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Ab
+^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
+Value of this entry is a mapping, holding results for "ab" test output type.
+See ab subdirectory for its entries.
 
-Usually, only one of its entries is present, according to the test type.
+The only current test using this output type is VSAP,
+but the results come only from the client side, and the AB test tool
+does not care about the server tool used,
+which means we can have different servers tested in the future
+(not only NGINX, not only based on VPP)
+and this result type will still work.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.

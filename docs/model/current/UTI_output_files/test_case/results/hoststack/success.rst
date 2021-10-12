@@ -13,16 +13,14 @@
    limitations under the License.
 
 
-Results
+Success
 ^^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
-
-Usually, only one of its entries is present, according to the test type.
+Value of this entry is a boolean specifying the status of this program.
+It is possible to see client fail while server passes and vice versa.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.
