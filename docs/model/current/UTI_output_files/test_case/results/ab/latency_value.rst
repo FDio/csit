@@ -13,16 +13,14 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Latency value
+^^^^^^^^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
-
-Usually, only one of its entries is present, according to the test type.
+Value of this entry is a float specifying the numeric value measured
+for the latency (see "latency_unit").
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.

@@ -13,16 +13,16 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Transfer unit
+^^^^^^^^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
-
-Usually, only one of its entries is present, according to the test type.
+Value of this entry is a string specifying the unit for latency measurement.
+It is probably an average latency per request,
+so it is higher in cps tests than in rps tests.
+The value is selected by the tool, but is typically "ms".
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.
