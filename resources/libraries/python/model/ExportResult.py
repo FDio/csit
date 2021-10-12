@@ -13,6 +13,8 @@
 
 """Module with keywords that publish parts of result structure."""
 
+import json
+
 from resources.libraries.python.jumpavg.AvgStdevStats import AvgStdevStats
 from resources.libraries.python.model.util import descend, get_export_data
 
@@ -212,3 +214,111 @@ def export_reconf_result(packet_rate, packet_loss, time_loss):
     info_reconf_node[u"packet_rate"] = packet_rate
     info_reconf_node[u"packet_loss"] = packet_loss
     info_reconf_node[u"time_loss"] = time_loss
+
+
+def export_hoststack_success_result(output):
+    """Add hoststack result item for successful program.
+
+    The output is deserialized, mosly without checking of the entries present.
+    This is intentional, as we support multiple client and server programs,
+    with slightly different entries in their output.
+    The only requirement is at least one of entry keys has to contain
+    "bits_per_second", as that is what PAL looks for.
+
+    The result item is added to the list of results,
+    as client program can have results independent of server program.
+
+    Also, test type is set to HOSTSTACK.
+
+    TODO: Split into several hoststack subtypes if PAL looks at
+    different entries based on the subtype.
+    (Currently hard to do, as nsim tests are failing for some time.)
+
+    TODO: Turn into fail result if a required key is missing?
+
+    :param output: JSON-serializable output, otherwise arbitrary.
+    :type output: str
+    :raises ValueError: If no key contains "bits_per_second".
+    """
+    debug_data, info_data = get_export_data()
+    parsed_output = json.loads(output)
+    _check_hoststack_output(parsed_output)
+    item = dict(success=True, output=parsed_output)
+    debug_results_node = debug_data[u"results"]
+    debug_hoststack_node = descend(debug_results_node, u"hoststack", list)
+    debug_hoststack_node.append(item)
+    info_data[u"test_type"] = u"hoststack"
+    info_results_node = info_data[u"results"]
+    info_hoststack_node = descend(info_results_node, u"hoststack", list)
+    info_hoststack_node.append(item)
+
+
+def _check_hoststack_output(parsed_output):
+    """Raise if incompatibility with model documentation is detected.
+
+    :param parsed_output: Deserialized output from any tool used.
+    :raises ValueError: If the output fails some check.
+    """
+    key = u"bits_per_second"
+    if key in parsed_output:
+        # Iperf3.
+        if type(parsed_output[key]) != float:
+            raise ValueError(f"{key} not float: {parsed_output}")
+        return
+    key1, key2 = u"tx_bits_per_second", u"rx_bits_per_second"
+    if key1 in parsed_output and key2 in parsed_output:
+        # Vpp_echo.
+        if type(parsed_output[key1]) != float:
+            raise ValueError(f"{key1} not float: {parsed_output}")
+        if type(parsed_output[key2]) != float:
+            raise ValueError(f"{key2} not float: {parsed_output}")
+        return
+    raise ValueError(f"Unknown or bad hoststach output: {parsed_output}")
+
+
+def export_hoststack_fail_result(output):
+    """Add hoststack result item for failed program.
+
+    Contrary to successful case, the output is not deserialized,
+    as there is no guarantee it is a valid JSON.
+    For info, the first line is extracted as failure reason,
+    the full output is still included.
+    The result item is added to the list of results,
+    as client program can have results independent of server program.
+
+    Also, test type is set to HOSTSTACK.
+
+    TODO: Add checks for known failure reasons.
+
+    :param output: Arbitrary output, first line is assumed to be the reason.
+    :type output: str
+    """
+    debug_data, info_data = get_export_data()
+    debug_results_node = debug_data[u"results"]
+    debug_hoststack_node = descend(debug_results_node, u"hoststack", list)
+    debug_item = dict(success=False, output_text=output)
+    debug_hoststack_node.append(debug_item)
+    info_data[u"test_type"] = u"hoststack"
+    info_results_node = info_data[u"results"]
+    info_hoststack_node = descend(info_results_node, u"hoststack", list)
+    info_item = debug_item.copy()
+    info_item[u"reason"] = output.split(u"\n", 1)[0]
+    info_hoststack_node.append(info_item)
+
+
+def export_ab_result(result):
+    """Add test result coming from AB test tool.
+
+    Also, test type is set to AB.
+
+    TODO: Do we need more checks for the exported values (as ABTools passed)?
+
+    :param result: Resulting values as parsed by ABTools.
+    :type result: Mapping[str, Union[str, float, int]]
+    """
+    debug_data, info_data = get_export_data()
+    info_data[u"test_type"] = u"ab"
+    debug_results_node = debug_data[u"results"]
+    info_results_node = info_data[u"results"]
+    debug_results_node[u"ab"] = result
+    info_results_node[u"ab"] = result

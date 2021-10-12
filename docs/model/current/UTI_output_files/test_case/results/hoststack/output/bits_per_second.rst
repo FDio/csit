@@ -13,16 +13,15 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Bits per second
+^^^^^^^^^^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
-
-Usually, only one of its entries is present, according to the test type.
+Value of this entry is a float, as reported by iperf3.
+May be not present if other client programs (e.g. vpp_echo) are used.
+The value should ne positive for passing tests.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar or structured entry is present since version 0.4.0,
 last patch update in version 0.4.0.

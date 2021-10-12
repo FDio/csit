@@ -27,4 +27,4 @@ Version
 ~~~~~~~
 
 Thest case files are present since version 0.2.0,
-last patch update in version 0.3.0.
+last patch update in version 0.4.0.

@@ -13,16 +13,16 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Output text
+^^^^^^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
+Value of this entry is a string for failed programs,
+holding the tool outpt with any additional info added while parsing.
 
-Usually, only one of its entries is present, according to the test type.
+This entry is not present for passed programs.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.

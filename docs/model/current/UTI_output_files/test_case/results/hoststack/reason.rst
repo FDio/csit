@@ -13,16 +13,17 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Reason
+^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
+Value of this entry is a string shortly describing the failure reason.
+The description does not need to be complete,
+this version is implemented to just copy the first line of the output.
 
-Usually, only one of its entries is present, according to the test type.
+As this is a derivative quantity, it is only present in info UTI output.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.
