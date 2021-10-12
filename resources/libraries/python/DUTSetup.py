@@ -444,7 +444,7 @@ class DUTSetup:
         )
 
     @staticmethod
-    def pci_driver_unbind_list(node, *pci_addrs):
+    def pci_driver_unbind_list(node, force=True, *pci_addrs):
         """Unbind PCI devices from current driver on node.
 
         :param node: DUT node.
@@ -453,7 +453,9 @@ class DUTSetup:
         :type pci_addrs: list
         """
         for pci_addr in pci_addrs:
-            DUTSetup.pci_driver_unbind(node, pci_addr)
+            if DUTSetup.get_pci_dev_driver(node, pci_addr) != 'vfio-pci' \
+                    or force:
+                DUTSetup.pci_driver_unbind(node, pci_addr)
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
