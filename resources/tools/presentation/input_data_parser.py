@@ -287,8 +287,6 @@ class ExecutionChecker(ResultVisitor):
     )
     REGEX_TC_TAG = re.compile(r'\d+[tT]\d+[cC]')
 
-    REGEX_TC_NAME_OLD = re.compile(r'-\d+[tT]\d+[cC]-')
-
     REGEX_TC_NAME_NEW = re.compile(r'-\d+[cC]-')
 
     REGEX_TC_NUMBER = re.compile(r'tc\d{2}-')
@@ -1123,38 +1121,36 @@ class ExecutionChecker(ResultVisitor):
         else:
             test_result[u"msg"] = test.message
 
-        if u"PERFTEST" in tags:
+        if u"PERFTEST" in tags and u"TREX" not in tags:
             # Replace info about cores (e.g. -1c-) with the info about threads
             # and cores (e.g. -1t1c-) in the long test case names and in the
             # test case names if necessary.
-            groups = re.search(self.REGEX_TC_NAME_OLD, self._test_id)
-            if not groups:
-                tag_count = 0
-                tag_tc = str()
-                for tag in test_result[u"tags"]:
-                    groups = re.search(self.REGEX_TC_TAG, tag)
-                    if groups:
-                        tag_count += 1
-                        tag_tc = tag
+            tag_count = 0
+            tag_tc = str()
+            for tag in test_result[u"tags"]:
+                groups = re.search(self.REGEX_TC_TAG, tag)
+                if groups:
+                    tag_count += 1
+                    tag_tc = tag
 
-                if tag_count == 1:
-                    self._test_id = re.sub(
-                        self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
-                        self._test_id, count=1
-                    )
-                    test_result[u"name"] = re.sub(
-                        self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
-                        test_result["name"], count=1
-                    )
-                else:
-                    test_result[u"status"] = u"FAIL"
-                    self._data[u"tests"][self._test_id] = test_result
-                    logging.debug(
-                        f"The test {self._test_id} has no or more than one "
-                        f"multi-threading tags.\n"
-                        f"Tags: {test_result[u'tags']}"
-                    )
-                    return
+            if tag_count == 1:
+                self._test_id = re.sub(
+                    self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
+                    self._test_id, count=1
+                )
+                test_result[u"name"] = re.sub(
+                    self.REGEX_TC_NAME_NEW, f"-{tag_tc.lower()}-",
+                    test_result["name"], count=1
+                )
+            else:
+                test_result[u"status"] = u"FAIL"
+                self._data[u"tests"][self._test_id] = test_result
+                logging.debug(
+                    f"The test {self._test_id} has no or more than one "
+                    f"multi-threading tags.\n"
+                    f"Tags: {test_result[u'tags']}"
+                )
+                return
 
         if u"DEVICETEST" in tags:
             test_result[u"type"] = u"DEVICETEST"
