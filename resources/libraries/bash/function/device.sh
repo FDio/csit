@@ -30,11 +30,34 @@ function activate_wrapper () {
 
     enter_mutex || die
     get_available_interfaces "${1}" "${2}" || die
+    bind_dut_interfaces_to_vpp_driver || die
     start_topology_containers "${3}" || die
     bind_interfaces_to_containers || die
     set_env_variables || die
     print_env_variables || die
     exit_mutex || die
+}
+
+
+function bind_dut_interfaces_to_vpp_driver () {
+
+    # Bind DUT network interfaces to the driver that vpp will use
+    #
+    # Variables read:
+    # - DUT1_NETDEVS - List of network devices allocated to DUT1 container.
+    # Variables set:
+    # - NETDEV - Linux network interface.
+    # - DRIVER - Kernel driver to bind the interface to.
+    # - KRN_DRIVER - The original kernel driver of the network interface.
+
+    for NETDEV in "${DUT1_NETDEVS[@]}"; do
+        get_pci_addr || die
+        get_krn_driver || die
+        if [[ ${KRN_DRIVER} == "i40e" || ${KRN_DRIVER} == "ice" ]]; then
+            DRIVER="vfio-pci"
+            bind_interfaces_to_driver || die
+        fi
+    done
 }
 
 
@@ -51,6 +74,7 @@ function bind_interfaces_to_containers () {
     # - TG_NETDEVS - List of network devices allocated to TG container.
     # Variables set:
     # - NETDEV - Linux network interface.
+    # - KRN_DRIVER - Kernel driver of network device.
 
     set -exuo pipefail
 
@@ -70,17 +94,20 @@ function bind_interfaces_to_containers () {
     done
     for NETDEV in "${DUT1_NETDEVS[@]}"; do
         get_pci_addr || die
-        link_target=$(readlink -f /sys/bus/pci/devices/"${PCI_ADDR}") || {
-            die "Reading symlink for PCI address failed!"
-        }
-        cmd="ln -s ${link_target} /sys/bus/pci/devices/${PCI_ADDR}"
+        get_krn_driver || die
+        if [[ ${KRN_DRIVER} != "i40e" and ${KRN_DRIVER} != "ice" ]]; then
+            link_target=$(readlink -f /sys/bus/pci/devices/"${PCI_ADDR}") || {
+                die "Reading symlink for PCI address failed!"
+            }
+            cmd="ln -s ${link_target} /sys/bus/pci/devices/${PCI_ADDR}"
 
-        sudo ip link set ${NETDEV} netns ${DCR_CPIDS[dut1]} || {
-            die "Moving interface to ${DCR_CPIDS[dut1]} namespace failed!"
-        }
-        docker exec "${DCR_UUIDS[dut1]}" ${cmd} || {
-            die "Linking PCI address in container failed!"
-        }
+            sudo ip link set ${NETDEV} netns ${DCR_CPIDS[dut1]} || {
+                die "Moving interface to ${DCR_CPIDS[dut1]} namespace failed!"
+            }
+            docker exec "${DCR_UUIDS[dut1]}" ${cmd} || {
+                die "Linking PCI address in container failed!"
+            }
+        fi
     done
 }
 
@@ -683,9 +710,6 @@ function start_topology_containers () {
     # Override access to PCI bus by attaching a filesystem mount to the
     # container.
     dcr_stc_params+="--mount type=tmpfs,destination=/sys/bus/pci/devices "
-    # Mount vfio to be able to bind to see bound interfaces. We cannot use
-    # --device=/dev/vfio as this does not see newly bound interfaces.
-    dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
     # Disable manipulation with hugepages by VPP.
     dcr_stc_params+="--volume /dev/null:/etc/sysctl.d/80-vpp.conf "
     # Mount docker.sock to be able to use docker deamon of the host.
@@ -710,6 +734,9 @@ function start_topology_containers () {
     DCR_UUIDS+=([tg]=$(docker run "${params[@]}")) || {
         die "Failed to start TG docker container!"
     }
+    # Mount vfio to be able to bind to see bound interfaces. We cannot use
+    # --device=/dev/vfio as this does not see newly bound interfaces.
+    dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
     params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${dcr_image})
     DCR_UUIDS+=([dut1]=$(docker run "${params[@]}")) || {
         die "Failed to start DUT1 docker container!"
