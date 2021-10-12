@@ -6073,7 +6073,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
-      - "aws"
+      - "nitro50g"
 
 # VPP MRR Results
 - type: "file"
