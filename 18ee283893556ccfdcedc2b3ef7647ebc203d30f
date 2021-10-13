@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b15fd6db_387af367",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 98
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T14:28:44Z",
+      "side": 1,
+      "message": "I want to see clear plan how do you want to fetch the objects from storage. One clear, uniformed, streamlined way. Without plan in pocket you do not know how to design backend.\n\nI want single solution. Not 3,4,5 variants of data. What is the backend processing for this tar? How do you want to achieve querying?",
+      "parentUuid": "60b48839_ec7b7c89",
+      "range": {
+        "startLine": 738,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 15
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50dfe0fe_69c1a1f1",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 98
@@ -166,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "77ccbdd4_c41dc37e",
+        "filename": "resources/libraries/python/model/ExportResult.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T14:28:44Z",
+      "side": 1,
+      "message": "I do not see any agreement to keep two code structures. We agreed to keep debug/info OUTPUT separated not the code.",
+      "parentUuid": "a063c8ba_e7f01f4c",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "134cd61f_e02a4aa9",
         "filename": "resources/libraries/python/model/ExportResult.py",
         "patchSetId": 98
@@ -213,6 +261,30 @@
     },
     {
       "key": {
+        "uuid": "3fefece5_708c84c7",
+        "filename": "resources/libraries/python/model/ExportResult.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T14:28:44Z",
+      "side": 1,
+      "message": "Makes no sense. The code for validation is very easy and it validates against json schemas",
+      "parentUuid": "b80fa4d3_7ed51969",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 42
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b072299f_ec35aa7e",
         "filename": "resources/libraries/python/model/util.py",
         "patchSetId": 98
@@ -248,6 +320,30 @@
       "side": 1,
       "message": "That would require wrapping a long line, resulting in 3 lines instead of the current two. But I can do that if you find the 3 lines more readable.\n\n  instance \u003d BuiltIn().get_library_instance(\n    u\"resources.libraries.python.model.export_json\"\n  )",
       "parentUuid": "b072299f_ec35aa7e",
+      "range": {
+        "startLine": 59,
+        "startChar": 46,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bd5f2e7_f99b1844",
+        "filename": "resources/libraries/python/model/util.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T14:28:44Z",
+      "side": 1,
+      "message": "that is more readable",
+      "parentUuid": "cf399f8e_eaf0c578",
       "range": {
         "startLine": 59,
         "startChar": 46,
