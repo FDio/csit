@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5507dfc_48d4b6b6",
+        "filename": "docs/model/current/UTI_output_files/test_case/version.rst",
+        "patchSetId": 98
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T07:15:20Z",
+      "side": 1,
+      "message": "remove from everywhere, this reduce readability and we are not using it for docs. this makes too much clutter.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 33
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a88ce89_082702e9",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 98
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T07:15:20Z",
+      "side": 1,
+      "message": "remove, we should no duplicate data on storage (not on paid one)",
+      "range": {
+        "startLine": 738,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 15
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50dfe0fe_69c1a1f1",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T07:15:20Z",
+      "side": 1,
+      "message": "Why is it there if we want to always export JSON. If it for different purpose it has wrong name.",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 62
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bed78aed_8cf1de1a",
+        "filename": "resources/libraries/python/model/ExportResult.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T07:15:20Z",
+      "side": 1,
+      "message": "why we need two structures. Make it a one. Either do track only additional data then merge the dicts or make a level to each entry.\n\nhow the code would look like in case of WARN, INFO, DEBUG, ERROR, NOTE...levels?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "134cd61f_e02a4aa9",
+        "filename": "resources/libraries/python/model/ExportResult.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T07:15:20Z",
+      "side": 1,
+      "message": "where is the verification/validation for any kind of data put into data store, that this is indeed per model specs?\n\nthe original task for UTI requires to validate structure as of insert.",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 42
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b072299f_ec35aa7e",
+        "filename": "resources/libraries/python/model/util.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T07:15:20Z",
+      "side": 1,
+      "message": "put resources.libraries.python.model.export_json there not variable",
+      "range": {
+        "startLine": 59,
+        "startChar": 46,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81cd86fc_8acff90b",
+        "filename": "resources/libraries/python/time_measurement.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T07:15:20Z",
+      "side": 1,
+      "message": "useless function",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 75
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5846a9fc_f847fa10",
+        "filename": "resources/libraries/python/time_measurement.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T07:15:20Z",
+      "side": 1,
+      "message": "useless function no2, remove file",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 69
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df35a3b9_2d265740",
+        "filename": "resources/libraries/robot/shared/output.robot",
+        "patchSetId": 98
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-13T07:15:20Z",
+      "side": 1,
+      "message": "Where is this used?",
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
