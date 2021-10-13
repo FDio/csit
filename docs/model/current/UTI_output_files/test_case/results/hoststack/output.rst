@@ -13,16 +13,18 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Output
+^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
+Value of this entry is a mapping, it is only present for passed programs.
 
-Usually, only one of its entries is present, according to the test type.
+See output subdirectory for some known entries of that mapping.
+Note that there may be other fields present,
+and known fields may be missing, both depending
+on client or server program used.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar or structured entry is present since version 0.4.0,
 last patch update in version 0.4.0.
