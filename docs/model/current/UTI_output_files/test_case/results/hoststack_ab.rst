@@ -13,21 +13,21 @@
    limitations under the License.
 
 
-Test type
-^^^^^^^^^
+Hoststack ab
+^^^^^^^^^^^^
 
-This entry has a string value, set individually by tests.
-Some tests may not set this, the entry is not present in that case
-(test type is unknown, probably not one of the known types).
+Value of this entry is a mapping, holding results for hoststack_ab
+test output type. See hoststack_ab subdirectory for its entries.
 
-Currently implemented values are "mrr", "ndrpdr", "reconf", "soak",
-"hoststack_ab", "hoststack_iperf3" and "hoststack_vpp_echo".
-
-As the result mapping contains a sub-mapping named after the test type,
-this information is derived, so this entry appears only in info output.
+The only current test using this output type is VSAP,
+but the results come only from the client side, and the AB test tool
+does not care about the server tool used,
+which means we can have different servers tested in the future
+(not only NGINX, not only based on VPP),
+and this result type will still work.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This structured entry is present since version 0.4.0,
 last patch update in version 0.4.0.

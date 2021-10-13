@@ -13,21 +13,18 @@
    limitations under the License.
 
 
-Test type
-^^^^^^^^^
+Bytes
+^^^^^
 
-This entry has a string value, set individually by tests.
-Some tests may not set this, the entry is not present in that case
-(test type is unknown, probably not one of the known types).
+Value of this entry is an int, as reported by iperf3.
+It is the amount of data transferred during the test.
 
-Currently implemented values are "mrr", "ndrpdr", "reconf", "soak",
-"hoststack_ab", "hoststack_iperf3" and "hoststack_vpp_echo".
-
-As the result mapping contains a sub-mapping named after the test type,
-this information is derived, so this entry appears only in info output.
+TODO: Is this upload, download, or sum of both?
+TODO: Which layer is used when computing this,
+e.g. do retransmits or TCP/UDP/IP/Ethernet headers count?
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.

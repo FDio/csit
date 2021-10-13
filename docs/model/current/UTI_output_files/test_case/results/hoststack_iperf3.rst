@@ -13,21 +13,17 @@
    limitations under the License.
 
 
-Test type
-^^^^^^^^^
+Hoststack iperf3
+^^^^^^^^^^^^^^^^
 
-This entry has a string value, set individually by tests.
-Some tests may not set this, the entry is not present in that case
-(test type is unknown, probably not one of the known types).
+Value of this entry is a mapping, holding result for hoststack_iperf3 test type.
+See hoststack_iperf3 subdirectory for its entries.
 
-Currently implemented values are "mrr", "ndrpdr", "reconf", "soak",
-"hoststack_ab", "hoststack_iperf3" and "hoststack_vpp_echo".
-
-As the result mapping contains a sub-mapping named after the test type,
-this information is derived, so this entry appears only in info output.
+CSIT uses hoststack iperf3 test type for both TCP and UDP testing,
+some entries appear only when their corresponding mode was used.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This structured entry is present since version 0.4.0,
 last patch update in version 0.4.0.
