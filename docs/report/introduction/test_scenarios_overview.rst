@@ -42,6 +42,11 @@ Brief overview of test scenarios covered in this report:
    applications run in host user-mode. TRex is used as a traffic
    generator.
 
+#. **T-Rex Performance**: T-Rex perfomance tests are executed in physical
+   FD.io testbeds, focusing on T-Rex data plane performance in NIC-to-NIC
+   loopback topologies. Tested across Intel Skylake servers, range of NICs
+   (10GE) and selected traffic profiles. TRex is used as a traffic generator.
+
 #. **VPP Functional**: VPP functional tests are executed in virtual
    FD.io testbeds, focusing on VPP packet processing functionality,
    including both network data plane and in-line control plane. Tests

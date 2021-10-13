@@ -6,10 +6,9 @@ Changes in |csit-release|
 
 #. TEST FRAMEWORK
 
-   - **Upgrade to Ubuntu 20.04 LTS**: Reinstall base operating system to Ubuntu
-     20.04.2 LTS. Upgrade includes also baseline Docker containers used for
-     spawning topology. In latest LTS version we are using iavf driver instead
-     of i40evf.
+   - **Flow based tests**: Added functional flow based tests (
+     IPv4 GTPU, IPv4 IPSEC, IPv4 L2TPV3OIP, IPv4 NTUPLE TCP/UDP, IPv4 TCP/UDP,
+     IPv6 NTUPLE TCP/UDP, IPv6 TCP/UDP).
 
 Known Issues
 ------------

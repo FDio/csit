@@ -18,32 +18,13 @@ Specifically:
 
       $ ethtool -A $netdev rx off tx off
 
-- Change PCI MaxReadReq to 1024B for each port of each NIC:
-  ::
-
-      $ setpci -s $PORT_PCI_ADDRESS 68.w=3BCD
-
 - Set CQE COMPRESSION to "AGGRESSIVE":
   ::
 
       $ mlxconfig -d $PORT_PCI_ADDRESS set CQE_COMPRESSION=1
 
-Mellanox :abbr:`OFED (OpenFabrics Enterprise Distribution)` driver of version
-4.6-1.0.1.1 is installed and used to manage the NIC settings.
-
-::
-
-    $ sudo ethtool -i enp94s0f0
-    driver: mlx5_core
-    version: 4.6-1.0.1
-    firmware-version: 16.25.1020 (MT_0000000009)
-    expansion-rom-version:
-    bus-info: 0000:5e:00.0
-    supports-statistics: yes
-    supports-test: yes
-    supports-eeprom-access: no
-    supports-register-dump: no
-    supports-priv-flags: yes
+Mellanox :abbr:`OFED (OpenFabrics Enterprise Distribution)` driver is installed
+and used to manage the NIC settings.
 
 ::
 
