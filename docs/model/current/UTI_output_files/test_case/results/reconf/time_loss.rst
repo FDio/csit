@@ -13,20 +13,19 @@
    limitations under the License.
 
 
-Test type
+Time loss
 ^^^^^^^^^
 
-This entry has a string value, set individually by tests.
-Some tests may not set this, the entry is not present in that case
-(test type is unknown, probably not one of the known types).
+This is a derived value, thus only present in info output.
 
-Currently implemented values are "mrr", "ndrpdr", "reconf" and "soak".
+Value of this entry is a float specifying the time for which
+traffic would have to stop to cause the observed number of packets lost.
 
-As the result mapping contains a sub-mapping named after the test type,
-this information is derived, so this entry appears only in info output.
+The real time of VPP not processing packets was probably higher,
+as at NDR traffic there usually is some space in NIC RX buffers.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.3.0,
 last patch update in version 0.3.0.
