@@ -713,6 +713,8 @@ function run_pybot () {
 
     # Run pybot with options based on input variables. Create output_info.xml
     #
+    # Also, .info.json files are moved into an archive to speed up PAL.
+    #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # - ARCHIVE_DIR - Path to store robot result files in.
@@ -738,8 +740,13 @@ function run_pybot () {
     # Compress json outputs, if any.
     pushd "${ARCHIVE_DIR}" || die
     if [ -d "Tests" ]; then
-        time tar cf "UTI.tar" "Tests" || die
-        time xz -9e "UTI.tar" || die
+        set +e
+        # Tar attempts to also delete directories, which are not empty.
+        time tar cf "UTI.tar" --remove-files --exclude='*.debug.json' "Tests"
+        # If compression fails, it leaves uncompressed .tar,
+        # we still want to archive that to investigate why compression failed.
+        time xz -9e "UTI.tar"
+        set -e
     fi
     popd || die
 
