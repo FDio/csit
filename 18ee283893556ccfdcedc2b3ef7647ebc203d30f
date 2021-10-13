@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "86c97d37_bf9cbcf7",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-13T13:39:14Z",
+      "side": 1,
+      "message": "Tibor asked for an off-switch, for cases we merge enough logic to be useful in verify jobs, but not enough to switch PAL processing (from XML to JSON) of periodic jobs.",
+      "parentUuid": "50dfe0fe_69c1a1f1",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 62
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bed78aed_8cf1de1a",
         "filename": "resources/libraries/python/model/ExportResult.py",
         "patchSetId": 98
@@ -117,6 +141,30 @@
     },
     {
       "key": {
+        "uuid": "b80fa4d3_7ed51969",
+        "filename": "resources/libraries/python/model/ExportResult.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-13T13:39:14Z",
+      "side": 1,
+      "message": "The main validation code should be independent from exporting code, otherwise it is easy to make a breaking change.\n\nI mean, I can add an internal validation code here, but in CSIT practice we rarely do that (we do not validate test messages, other than PAL not choking on them).\n\nThe topic of internal validation is for a longer discussion, and can be implemented in a subsequent Change.\nFor this specific Change, I know all the call sites, so I trust the argument value.",
+      "parentUuid": "134cd61f_e02a4aa9",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 42
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b072299f_ec35aa7e",
         "filename": "resources/libraries/python/model/util.py",
         "patchSetId": 98
@@ -128,6 +176,30 @@
       "writtenOn": "2021-10-13T07:15:20Z",
       "side": 1,
       "message": "put resources.libraries.python.model.export_json there not variable",
+      "range": {
+        "startLine": 59,
+        "startChar": 46,
+        "endLine": 59,
+        "endChar": 50
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf399f8e_eaf0c578",
+        "filename": "resources/libraries/python/model/util.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-13T13:39:14Z",
+      "side": 1,
+      "message": "That would require wrapping a long line, resulting in 3 lines instead of the current two. But I can do that if you find the 3 lines more readable.\n\n  instance \u003d BuiltIn().get_library_instance(\n    u\"resources.libraries.python.model.export_json\"\n  )",
+      "parentUuid": "b072299f_ec35aa7e",
       "range": {
         "startLine": 59,
         "startChar": 46,
@@ -200,6 +272,24 @@
       "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce513cf7_f8fb093d",
+        "filename": "resources/libraries/robot/shared/output.robot",
+        "patchSetId": 98
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-13T13:39:14Z",
+      "side": 1,
+      "message": "Ouch, garbage from previous patch sets. Deleted in #103.",
+      "parentUuid": "df35a3b9_2d265740",
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
