@@ -90,6 +90,15 @@ Following is the list of CSIT versions to date:
     `increase from 2.86 to 2.88 <https://gerrit.fd.io/r/c/csit/+/31652>`_.
   - Ubuntu upgrade:
     `upgrade from 18.04 LTS to 20.04.2 LTS <https://gerrit.fd.io/r/c/csit/+/31290>`_.
+- Ver. 8 associated with CSIT rls2110 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2110>`_, `Linux
+  <https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  `TRex
+  <https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2110>`_).
+
+  - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
+    matrix: `depends on testbed type <https://gerrit.fd.io/r/c/csit/+/33311>`_.
 
 To identify performance changes due to VPP code development between previous
 and current VPP release version, both have been tested in CSIT environment of
