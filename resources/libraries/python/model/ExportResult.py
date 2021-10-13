@@ -13,6 +13,8 @@
 
 """Module with keywords that publish parts of result structure."""
 
+import json
+
 from resources.libraries.python.jumpavg.AvgStdevStats import AvgStdevStats
 from resources.libraries.python.model.util import descend, get_export_data
 
@@ -204,3 +206,230 @@ def export_reconf_result(packet_rate, packet_loss, time_loss):
     info_reconf_node[u"packet_rate"] = packet_rate
     info_reconf_node[u"packet_loss"] = packet_loss
     info_reconf_node[u"time_loss"] = time_loss
+
+
+def export_hoststack_ab_result(result):
+    """Add test result coming from AB test tool.
+
+    Test type is set to HOSTSTACK_AB.
+
+    TODO: Do we need more checks for the exported values (as ABTools passed)?
+
+    :param result: Resulting values as parsed by ABTools.
+    :type result: Mapping[str, Union[str, float, int]]
+    """
+    debug_data, info_data = get_export_data()
+    info_data[u"test_type"] = u"hoststack_ab"
+    debug_data[u"results"][u"hoststack_ab"] = result
+    info_data[u"results"][u"hoststack_ab"] = result
+
+
+def export_hoststack_iperf3_fail_result(output):
+    """Add hoststack_iperf3 result mapping for failed program.
+
+    Contrary to successful case, the output is not deserialized,
+    as there is no guarantee it is a valid JSON.
+    For info, the first line is extracted as failure reason,
+    the full output is still included.
+
+    Test type is set to a hoststack_iperf3.
+
+    TODO: Add checks for known failure reasons?
+
+    :param output: Arbitrary output, first line is assumed to be the reason.
+    :type output: str
+    """
+    debug_data, info_data = get_export_data()
+    test_type = u"hoststack_iperf3"
+    info_data[u"test_type"] = test_type
+    debug_item = dict(success=False, output_text=output)
+    debug_data[u"results"][test_type] = debug_item
+    info_item = debug_item.copy()
+    info_item[u"reason"] = output.split(u"\n", 1)[0]
+    info_data[u"results"][test_type] = info_item
+
+
+def export_hoststack_vpp_echo_fail_result(output):
+    """Add hoststack_vpp_echo result item for failed program.
+
+    Contrary to successful case, the output is not deserialized,
+    as there is no guarantee it is a valid JSON.
+    For info, the first line is extracted as failure reason,
+    the full output is still included.
+    The result item is added to the list of results,
+    as client program can have results independent of server program.
+
+    Test type is set to a hoststack_vpp_echo.
+
+    TODO: Add checks for known failure reasons?
+
+    :param output: Arbitrary output, first line is assumed to be the reason.
+    :type output: str
+    """
+    debug_data, info_data = get_export_data()
+    test_type = u"hoststack_vpp_echo"
+    info_data[u"test_type"] = test_type
+    debug_item = dict(success=False, output_text=output)
+    debug_hoststack_list = descend(debug_data[u"results"], test_type, list)
+    debug_hoststack_list.append(debug_item)
+    info_item = debug_item.copy()
+    info_item[u"reason"] = output.split(u"\n", 1)[0]
+    info_hoststack_list = descend(info_data[u"results"], test_type, list)
+    info_hoststack_list.append(info_item)
+
+
+def _check_key_type(mapping, key, type_, do_raise=True):
+    """If the key is missing, or value type is wrong, produce an error.
+
+    Produce means either raise or return, controlled by do_raise argument.
+    Numeric values additionally cannot be negative.
+    If all is good, return None.
+
+    This is heavily used for checking deserialized JSON data
+    from hoststack client or server programs.
+    Intended for string keys, but the implementation works also for other.
+
+    Not raising is useful when the constraint is for one of two keys to work.
+
+    :param mapping: Mapping to check.
+    :param key: The key of the entry to check.
+    :param type_: Type or list of types the value has to belong to.
+    :param do_raise: Whether to raise or return whena check fails.
+    :type mapping: Mapping[str, object]
+    :type key: str
+    :type type_: Union[type, Iterable[type]]
+    :type do_raise: bool
+    :returns: None or (if do_raise is false) exception to raise.
+    :rtype: Optional[Union[KeyError, TypeError]]
+    :raises KeyError: If key is missing and do_raise is true.
+    :raises TypeError: If value is wrong type and do_raise is true.
+    :raises ValueError: If a numeric value is negative.
+    """
+    if key not in mapping:
+        error = KeyError(f"Key {key} missing in {mapping}")
+        if do_raise:
+            raise error
+        return error
+    value = mapping[key]
+    if not isinstance(value, type_):
+        error = TypeError("Value {value} not type {type_} in {mapping}")
+        if do_raise:
+            raise error
+        return error
+    if isinstance(value, (int, float)) and value < 0:
+        error = ValueError("Value {value} negative in {mapping}")
+        if do_raise:
+            raise error
+        return error
+    return None
+
+
+def _check_hoststack_iperf3_output(output):
+    """Raise if incompatibility with model documentation is detected.
+
+    :param output: Output from iperf3 tool, deserialized.
+    :type output: Mapping[str, object]
+    :raises KeyError: If the output is missing a required key.
+    :raises TypeError: If a value is not of (one of) the expected type(s).
+    :raises ValueError: If a numeric value is negative.
+    """
+    _check_key_type(output, u"start", (int, float))
+    _check_key_type(output, u"end", float)
+    _check_key_type(output, u"seconds", float)
+    _check_key_type(output, u"bytes", int)
+    _check_key_type(output, u"bits_per_second", float)
+    _check_key_type(output, u"omitted", bool)
+    _check_key_type(output, u"sender", bool)
+    tcp_error = _check_key_type(output, u"retransmits", int, do_raise=False)
+    udp_error = _check_key_type(output, u"packets", int, do_raise=False)
+    if tcp_error is not None and udp_error is not None:
+        # Assume it was TCP.
+        raise tcp_error
+
+
+def _check_hoststack_vpp_echo_output(output):
+    """Raise if incompatibility with model documentation is detected.
+
+    As callers do not convert some values from string, it is done here,
+    which means the output is modified in-place.
+
+    :param output: Output from vpp_echo tool, deserialized.
+    :type output: MutableMapping[str, object]
+    :raises KeyError: If the output is missing a required key.
+    :raises TypeError: If a value is not of (one of) the expected type(s).
+    :raises ValueError: If a numeric value is negative.
+    """
+    _check_key_type(output, u"role", str)
+    _check_key_type(output, u"time", (str, float))
+    output[u"time"] = float(output[u"time"])
+    _check_key_type(output, u"time", float)
+    _check_key_type(output, u"start_evt", str)
+    _check_key_type(output, u"start_evt_missing", (str, bool))
+    output[u"start_evt_missing"] = bool(output[u"start_evt_missing"])
+    _check_key_type(output, u"end_evt", str)
+    _check_key_type(output, u"end_evt_missing", (str, bool))
+    output[u"end_evt_missing"] = bool(output[u"end_evt_missing"])
+    _check_key_type(output, u"rx_data", int)
+    _check_key_type(output, u"tx_data", int)
+    _check_key_type(output, u"rx_bits_per_second", float)
+    _check_key_type(output, u"tx_bits_per_second", float)
+    # TODO: Add checks for string and bool values.
+
+
+def export_hoststack_iperf3_pass_result(output):
+    """Add hoststack_iperf3 result for successful program.
+
+    The output is deserialized and checked.
+
+    Test type is set to a hoststack_iperf3.
+
+    TODO: Check nsim tests also work (they already fail on master).
+
+    :param output: JSON-serializable output, as processed by HoststackUtil.
+    :type output: str
+    :raises ValueError: If the parse output does not conform to UTI model.
+    """
+    debug_data, info_data = get_export_data()
+    test_type = f"hoststack_iperf3"
+    info_data[u"test_type"] = test_type
+    parsed_output = json.loads(output)
+    _check_hoststack_iperf3_output(parsed_output)
+    item = dict(success=True, output=parsed_output)
+    debug_data[u"results"][test_type] = item
+    info_data[u"results"][test_type] = item
+
+
+def export_hoststack_vpp_echo_pass_result(output):
+    """Add hoststack_vpp_echo result item for successful program.
+
+    The output is deserialized, mosly without checking of the entries present.
+    This is intentional, as we support multiple client and server programs,
+    with slightly different entries in their output.
+    The only requirement is at least one of entry keys has to contain
+    "bits_per_second", as that is what PAL looks for.
+
+    The result item is added to the list of results,
+    as client program can have results independent of server program.
+
+    Test type is set to a hoststack subtype depending on program name.
+
+    TODO: Split into several hoststack subtypes if PAL looks at
+    different entries based on the subtype.
+    (Currently hard to do, as nsim tests are failing for some time.)
+
+    TODO: Turn into fail result if a required key is missing?
+
+    :param output: JSON-serializable output, otherwise arbitrary.
+    :type output: str
+    :raises ValueError: If no key contains "bits_per_second".
+    """
+    debug_data, info_data = get_export_data()
+    test_type = u"hoststack_vpp_echo"
+    info_data[u"test_type"] = test_type
+    parsed_output = json.loads(output)
+    _check_hoststack_vpp_echo_output(parsed_output)
+    item = dict(success=True, output=parsed_output)
+    debug_hoststack_list = descend(debug_data[u"results"], test_type, list)
+    debug_hoststack_list.append(item)
+    info_hoststack_list = descend(info_data[u"results"], test_type, list)
+    info_hoststack_list.append(item)

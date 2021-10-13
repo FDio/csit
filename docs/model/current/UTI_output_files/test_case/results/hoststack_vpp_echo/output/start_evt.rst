@@ -13,21 +13,16 @@
    limitations under the License.
 
 
-Test type
+Start evt
 ^^^^^^^^^
 
-This entry has a string value, set individually by tests.
-Some tests may not set this, the entry is not present in that case
-(test type is unknown, probably not one of the known types).
-
-Currently implemented values are "mrr", "ndrpdr", "reconf", "soak",
-"hoststack_ab", "hoststack_iperf3" and "hoststack_vpp_echo".
-
-As the result mapping contains a sub-mapping named after the test type,
-this information is derived, so this entry appears only in info output.
+Value of this entry is a string, as reported by vpp_echo.
+It is the name of the event which starts the program timer.
+In the current udpquic tests, both server and client programs
+have "sconnect" as the value.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.

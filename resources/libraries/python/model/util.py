@@ -13,7 +13,6 @@
 
 """Module hosting few functions useful when dealing with modelled data."""
 
-
 from robot.libraries.BuiltIn import BuiltIn
 
 

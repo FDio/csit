@@ -14,10 +14,13 @@
 """ab implementation into CSIT framework."""
 
 from robot.api import logger
-from resources.libraries.python.topology import NodeType
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.model.ExportResult import (
+    export_hoststack_ab_result
+)
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.topology import NodeType
 
 
 class ABTools:
@@ -130,8 +133,9 @@ class ABTools:
         )
         stdout, _ = exec_cmd_no_error(tg_node, cmd, timeout=180, sudo=True,
                                       message=u"ab runtime error!")
-        log_msg = ABTools._parse_ab_output(stdout, rps_cps, tls_tcp)
+        log_msg, result = ABTools._parse_ab_output(stdout, rps_cps, tls_tcp)
 
+        export_hoststack_ab_result(result)
         logger.info(log_msg)
 
         return log_msg
@@ -140,14 +144,16 @@ class ABTools:
     def _parse_ab_output(msg, rps_cps, tls_tcp):
         """Parse the ab stdout with the results.
 
+        Return both string for test message and dict for UTI export.
+
         :param msg: Ab Stdout.
         :param rps_cps: RPS or CPS.
         :param tls_tcp: TLS or TCP.
         :type msg: str
         :type rps_cps: str
         :type tls_tcp: str
-        :return: Message with measured data.
-        :rtype: str
+        :return: Message with measured data and UTI result item.
+        :rtype: str, dict
         """
 
         msg_lst = msg.splitlines(keepends=False)
@@ -159,28 +165,49 @@ class ABTools:
         failed_req = u""
         total_bytes = u""
         rate = u""
+        result = dict()
+
+        # Example output to explain the splitting below:
+        #
+        # Transfer Rate: 212969.77 [Kbytes/sec]
+        # Latency: 95.73 ms
+        # Connection cps rate:185600.93 per sec
+        # Total data transferred: 1175000000 bytes
+        # Completed requests: 1000000
+        # Failed requests: 0
 
         if tls_tcp == u"tls":
             log_msg = u"\nMeasured HTTPS values:\n"
+            result[u"protocol"] = u"HTTPS"
         else:
             log_msg = u"\nMeasured HTTP values:\n"
+            result[u"protocol"] = u"HTTP"
 
         for line in msg_lst:
             if f"Connection {rps_cps} rate:" in line:
                 # rps (cps)
                 total_cps = line + u"\n"
+                result[u"quantity"] = rps_cps
+                result[u"rate"] = float(line.split(u":")[1].split(u" ")[0])
             elif u"Transfer Rate:" in line:
                 # Rate
                 rate = line + u"\n"
+                result[u"transfer_unit"] = line.split(u"[")[1].split(u"]")[0]
+                result[u"transfer_rate"] = float(line.split(u" ")[2])
             elif u"Latency:" in line:
                 # Latency
                 latency = line + u"\n"
+                result[u"latency_unit"] = line.split(u" ")[2]
+                result[u"latency_value"] = float(line.split(u" ")[1])
             elif u"Total data transferred" in line:
                 total_bytes = line + u"\n"
+                result[u"total_bytes"] = int(line.split(u" ")[3])
             elif u"Completed requests" in line:
                 complete_req = line + u"\n"
+                result[u"completed_requests"] = int(line.split(u" ")[2])
             elif u"Failed requests" in line:
                 failed_req = line + u"\n"
+                result[u"failed_requests"] = int(line.split(u" ")[2])
 
         log_msg += rate
         log_msg += latency
@@ -190,4 +217,4 @@ class ABTools:
         log_msg += total_bytes
         log_msg += total_cps
 
-        return log_msg
+        return log_msg, result

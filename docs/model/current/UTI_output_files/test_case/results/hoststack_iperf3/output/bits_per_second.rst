@@ -13,21 +13,17 @@
    limitations under the License.
 
 
-Test type
-^^^^^^^^^
+Bits per second
+^^^^^^^^^^^^^^^
 
-This entry has a string value, set individually by tests.
-Some tests may not set this, the entry is not present in that case
-(test type is unknown, probably not one of the known types).
+Value of this entry is a float, as reported by iperf3.
+This is the performance measured by the test.
 
-Currently implemented values are "mrr", "ndrpdr", "reconf", "soak",
-"hoststack_ab", "hoststack_iperf3" and "hoststack_vpp_echo".
-
-As the result mapping contains a sub-mapping named after the test type,
-this information is derived, so this entry appears only in info output.
+TODO: Is this goodput or bandwidth?
+TODO: Is this upload, download, or combination of both?
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.4.0,
 last patch update in version 0.4.0.
