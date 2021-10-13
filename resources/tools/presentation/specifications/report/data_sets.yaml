@@ -83,7 +83,7 @@
   vpp-3n-skx-curr-cov:
     # csit-vpp-perf-report-coverage-2110-3n-skx:
     csit-vpp-perf-report-iterative-2110-3n-skx:
-      - 3   # rls2110.rc1 NDRPDR iter env 8
+      - 22  # rls2110.rc1 NDRPDR iter env 8
 
   dpdk-3n-skx-hist-iter:
     csit-dpdk-perf-report-iterative-2101-3n-skx:
@@ -685,7 +685,7 @@
   vpp-3n-tsh-curr-cov:
     # csit-vpp-perf-report-coverage-2110-3n-tsh:
     csit-vpp-perf-report-iterative-2110-3n-tsh:
-      - 2   # rls2110.rc1 NDRPDR iter env 8
+      - 17  # rls2110.rc1 NDRPDR iter env 8
 
   dpdk-3n-tsh-hist-iter:
     csit-dpdk-perf-report-iterative-2101-3n-tsh:
