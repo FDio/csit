@@ -180,3 +180,27 @@ def export_ndrpdr_latency(text, latency):
         return
     if _add_latency(debug_ndrpdr_node, percent, u"reverse", latency[1]):
         _add_latency(info_ndrpdr_node, percent, u"reverse", latency[1])
+
+
+def export_reconf_result(packet_rate, packet_loss, time_loss):
+    """Export the results from a reconf packet test.
+
+    Also, test type is set to RECONF.
+
+    :param packet_rate: Aggregate rate sent in packets per second.
+    :param packet_loss: How many of the packets were dropped or unsent.
+    :param time_loss: Time in seconds (loss divided by rate).
+    :type packet_rate: float
+    :type packet_loss: int
+    :type time_loss: float
+    """
+    debug_data, info_data = get_export_data()
+    info_data[u"test_type"] = u"reconf"
+    debug_reconf_node = descend(debug_data[u"results"], u"reconf")
+    debug_reconf_node[u"packet_rate"] = packet_rate
+    debug_reconf_node[u"packet_loss"] = packet_loss
+    # Time loss is derived, so not needed in debug.
+    info_reconf_node = descend(info_data[u"results"], u"reconf")
+    info_reconf_node[u"packet_rate"] = packet_rate
+    info_reconf_node[u"packet_loss"] = packet_loss
+    info_reconf_node[u"time_loss"] = time_loss
