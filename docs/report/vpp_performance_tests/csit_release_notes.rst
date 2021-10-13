@@ -8,11 +8,6 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **AF_XDP**: Added af_xdp driver support for all test cases. Test
-     results will be added in sub-sequent CSIT-2106 report.
-
-   - **GTPU tunnel**: Added GTPU HW Offload IPv4 routing tests.
-
    - **Intel Xeon Ice Lake**: Added initial test data for these
      platforms. Current CSIT-2106 report data for Intel Xeon Ice Lake
      comes from an external source (Intel labs running CSIT code on
@@ -57,34 +52,18 @@ Changes in |csit-release|
 
 #. TEST FRAMEWORK
 
-   - **Telemetry retouch**: Refactored telemetry retrieval from DUTs and
-     SUTs. Included VPP perfmon plugin telemetry with all perfmon
-     bundles available in VPP release.
-
-   - **Upgrade to Ubuntu 20.04 LTS**: Re-installed base operating system
-     to Ubuntu 20.04.2 LTS. Upgrade included also baseline Docker
-     containers used for spawning topology.
-
-   - **TRex upgrade v2.86 to v2.88**: Included move to DPDK 21.02 and
-     changed the way egress low latency queues are used in FVL NICs.
-     This broke latency measurements for majority of FVL NICs in
-     CSIT. Latency values look better after upgrading FVL FW on TRex
-     servers, but still somewhat higher than before the TRex upgrade.
-     Tracked by `CSIT-1790 <https://jira.fd.io/browse/CSIT-1790>`_.
-
-   - **CSIT test environment** version has been updated to ver. 7, see
+   - **CSIT test environment** version has been updated to ver. 8, see
      :ref:`test_environment_versioning`.
 
    - **CSIT in AWS environment**: Added CSIT support for AWS c5n
-     instances environment. Test results will be added in sub-sequent
-     CSIT-2106 report.
+     instances environment.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, VAT is
      still used in CSIT for all VPP scale tests. See known issues
      below.
 
    - **General Code Housekeeping**: Ongoing code optimizations and bug
-     fixes. 
+     fixes.
 
 #. PRESENTATION AND ANALYTICS LAYER
 
