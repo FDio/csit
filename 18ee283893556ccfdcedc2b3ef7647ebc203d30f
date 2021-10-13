@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "60b48839_ec7b7c89",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 98
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-13T13:50:18Z",
+      "side": 1,
+      "message": "Separate .json files are more convenient for humans, single archive is more convenient for PAL.\nPerhaps a good compromise would be to move .info.json into archive abut keep .debug.json as separate files.\n\nI prefer to finalize archiving in a separate change after the main changes are reviewed (so people do not need to compare .info and .debug anymore).",
+      "parentUuid": "6a88ce89_082702e9",
+      "range": {
+        "startLine": 738,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 15
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50dfe0fe_69c1a1f1",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 98
@@ -115,6 +139,30 @@
       "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a063c8ba_e7f01f4c",
+        "filename": "resources/libraries/python/model/ExportResult.py",
+        "patchSetId": 98
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-13T13:50:18Z",
+      "side": 1,
+      "message": "\u003e Make it a one.\n\nNo, the two structures were agreed in meetings.\n\n\u003e merge the dicts\n\nNot easy. Some items are only in .debug, some only in .info, and telemetry will be in both but in different formats.\n\n\u003e case of WARN\n\nOnly INFO and above in .info, everything in debug.",
+      "parentUuid": "bed78aed_8cf1de1a",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 0
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
