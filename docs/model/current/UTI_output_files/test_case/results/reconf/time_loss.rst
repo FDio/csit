@@ -13,16 +13,19 @@
    limitations under the License.
 
 
-Results
-^^^^^^^
+Time loss
+^^^^^^^^^
 
-Value of this entry is a mapping with various test case outputs.
-See results subdirectory for documentation of its entries.
+This is a derived value, thus only present in info output.
 
-Usually, only one of its entries is present, according to the test type.
+Value of this entry is a float specifying the time for which
+traffic would have to stop to cause the observed number of packets lost.
+
+The real time of VPP not processing packets was probably higher,
+as at NDR traffic there usually is some space in NIC RX buffers.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This scalar entry is present since version 0.3.0,
 last patch update in version 0.3.0.

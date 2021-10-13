@@ -20,7 +20,7 @@ This entry has a string value, set individually by tests.
 Some tests may not set this, the entry is not present in that case
 (test type is unknown, probably not one of the known types).
 
-Currently implemented values are "mrr", "ndrpdr" and "soak".
+Currently implemented values are "mrr", "ndrpdr", "reconf" and "soak".
 
 As the result mapping contains sub-mappings named after the test type,
 this information is derived, so this entry appears only in info output.
@@ -29,4 +29,4 @@ Version
 ~~~~~~~
 
 This scalar entry is present since version 0.2.0,
-last patch update in version 0.2.0.
+last patch update in version 0.3.0.
