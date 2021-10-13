@@ -13,20 +13,14 @@
    limitations under the License.
 
 
-Test type
-^^^^^^^^^
+Reconf
+^^^^^^
 
-This entry has a string value, set individually by tests.
-Some tests may not set this, the entry is not present in that case
-(test type is unknown, probably not one of the known types).
-
-Currently implemented values are "mrr", "ndrpdr", "reconf" and "soak".
-
-As the result mapping contains a sub-mapping named after the test type,
-this information is derived, so this entry appears only in info output.
+Value of this entry is a mapping, holding results for "reconf" test type.
+See reconf subdirectory for its entries.
 
 Version
 ~~~~~~~
 
-This scalar entry is present since version 0.2.0,
+This structured entry is present since version 0.3.0,
 last patch update in version 0.3.0.

@@ -25,4 +25,4 @@ Version
 ~~~~~~~
 
 This structured entry is present since version 0.2.0,
-last patch update in version 0.2.0.
+last patch update in version 0.3.0.
