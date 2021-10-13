@@ -19,7 +19,7 @@ from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
-from vpp_papi import VppEnum
+#from vpp_papi import VppEnum
 
 class FlowUtil:
     """Utilities for flow configuration."""
