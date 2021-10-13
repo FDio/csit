@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | Collections
+| Library | resources.libraries.python.model.ExportResult
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.InterfaceUtil
@@ -301,6 +302,7 @@
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | ${latency} = | Get Latency Int
 | | Set Test Message | ${\n}${message_prefix} ${latency} | append=${True}
+| | Export Ndrpdr Latency | ${message_prefix} | ${latency}
 
 | Send ramp-up traffic
 | | [Documentation]
@@ -371,14 +373,16 @@
 | | ... | Type: boolean
 | | ... | - duration_limit - Hard limit for trial duration, overriding duration
 | | ... | computed from transaction_scale. Default 0.0 means no limit.
+| | ... | - export_mrr - If true, call exporting function for MRR values.
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Send traffic at specified rate \| \${1.0} \| ${4000000.0} \
-| | ... | \| \${10} \| ${False} \| ${1.0} \|
+| | ... | \| \${10} \| ${False} \| ${1.0} \| \${True} \|
 | |
 | | [Arguments] | ${trial_duration} | ${rate} | ${trial_multiplicity}
 | | ... | ${use_latency}=${False} | ${duration_limit}=${0.0}
+| | ... | ${export_mrr}=${False}
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${ramp_up_duration} = | Get Ramp Up Duration
@@ -415,7 +419,9 @@
 | | | ... | ramp_up_rate=${ramp_up_rate}
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
-| | | Append To List | ${results} | ${result.approximated_receive_rate}
+| | | ${value} = | Set Variable | ${result.approximated_receive_rate}
+| | | Run Keyword If | ${export_mrr} | Append Mrr Value | ${value}
+| | | Append To List | ${results} | ${value}
 | | END
 | | FOR | ${action} | IN | @{stat_post_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
@@ -644,9 +650,13 @@
 | | ... | trial_multiplicity=${trial_multiplicity}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${0.0}
+| | ... | export_mrr=${True}
 | | ${unit} = | Set Variable If | """_cps""" in """${transaction_type}"""
+| | ... | cps | pps
+| | Export Mrr Unit | ${unit}
+| | ${unit_text} = | Set Variable If | """_cps""" in """${transaction_type}"""
 | | ... | estimated connections per second | packets per second
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
-| | Set Test Message | in ${unit}: ${results}
+| | Set Test Message | in ${unit_text}: ${results}
 | | ... | append=yes
 | | Fail if no traffic forwarded
