@@ -5927,7 +5927,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
-      - "nitro50g"
+      - "ena"
 
 # VPP Performance Configuration
 - type: "file"
@@ -6000,7 +6000,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
-      - "nitro50g"
+      - "ena"
 
 # VPP Performance Operational
 - type: "file"
@@ -6073,7 +6073,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
-      - "nitro50g"
+      - "ena"
 
 # VPP MRR Results
 - type: "file"
@@ -6146,7 +6146,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
-      - "nitro50g"
+      - "ena"
 
 # VPP MRR Configuration
 - type: "file"
@@ -6219,7 +6219,7 @@
       - "cx556a"
       - "vic1227"
       - "vic1385"
-      - "nitro50g"
+      - "ena"
 
 # VPP Device Results - Ubuntu
 - type: "file"

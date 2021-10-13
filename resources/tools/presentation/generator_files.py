@@ -197,7 +197,7 @@ def file_details_split(file_spec, input_data, frmt=u"rst"):
                 if chapters[chapter_l1][chapter_l2].get(nic, None) is None:
                     chapters[chapter_l1][chapter_l2][nic] = dict(
                         rst_file=f"{join(table_set, chapter_l1)}_{nic}.rst".
-                        replace(u"2n1l-", u""),
+                        replace(u"2n1l-", u"").replace(u"1n1l-", u""),
                         tables=list()
                     )
                 for idx, tbl_file in enumerate(table_lst):
