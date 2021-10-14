@@ -140,24 +140,24 @@ Containers
 
 It was agreed on :abbr:`TWS (Technical Work Stream)` call to continue with
 Ubuntu 18.04 LTS as a baseline system with OPTIONAL extend to Centos 7 and
-SuSE per demand [:ref:`TWSLink`].
+SuSE per demand [#TWSLink]_.
 
 All :abbr:`DCR (Docker container)` images are REQUIRED to be hosted on Docker
 registry available from LF network, publicly available and trackable. For
 backup, tracking and contributing purposes all Dockerfiles (including files
 needed for building container) MUST be available and stored in
-[:ref:`fdiocsitgerrit`] repository under appropriate folders. This allows the
+[#fdiocsitgerrit]_ repository under appropriate folders. This allows the
 peer review process to be done for every change of infrastructure related to
 scope of this document.
 Currently only **csit-shim-dcr** and **csit-sut-dcr** containers will be stored
 and maintained under CSIT repository by CSIT contributors.
 
 At the time of designing solution described in this document the
-interconnection between [:ref:`dockerhub`] and [:ref:`fdiocsitgerrit`] for
+interconnection between [#dockerhub]_ and [#fdiocsitgerrit]_ for
 automated build purposes and image hosting cannot be established with the trust
 and respectful to security of FD.io project. Unless adressed, :abbr:`DCR
 (Docker container)` images will be placed in custom registry service
-[:ref:`fdioregistry`].
+[#fdioregistry]_.
 Automated Jenkins jobs will be created in align of long term solution for
 container lifecycle and ability to build new version of docker images.
 
@@ -168,7 +168,7 @@ Versioning
 ~~~~~~~~~~
 
 As of initial version of vpp-device, we do have only single latest version of
-Docker image hosted on [:ref:`dockerhub`]. This will be addressed as further
+Docker image hosted on [#dockerhub]_. This will be addressed as further
 improvement with proper semantic versioning.
 
 jenkins-slave-dcr
@@ -188,8 +188,7 @@ All software dependencies including VPP/DPDK that are not present in
 
 - *Container Image Location*: Docker image at snergster/vpp-ubuntu18.
 
-- *Container Definition*: Docker file specified at
-  [:ref:`JenkinsSlaveDcrFile`].
+- *Container Definition*: Docker file specified at [#JenkinsSlaveDcrFile]_.
 
 - *Initializing*: Container is initialized from within *Consul by HashiCorp*
   and *Nomad by HashiCorp*.
@@ -207,7 +206,7 @@ that only Y number of simulations are spawned on any given HW node.
 
 - *Container Image Location*: Docker image at snergster/csit-shim.
 
-- *Container Definition*: Docker file specified at [:ref:`CsitShimDcrFile`].
+- *Container Definition*: Docker file specified at [#CsitShimDcrFile]_.
 
 - *Initializing*: Container is initialized from within *Consul by HashiCorp*
   and *Nomad by HashiCorp*. Required docker parameters, to be able to run
@@ -239,7 +238,7 @@ including those required by DUT/TG.
 
 - *Container Image Location*: Docker image at snergster/csit-sut.
 
-- *Container Definition*: Docker file specified at [:ref:`CsitSutDcrFile`].
+- *Container Definition*: Docker file specified at [#CsitSutDcrFile]_.
 
 - *Initializing*:
   ::
@@ -293,8 +292,8 @@ Environment initialization
 --------------------------
 
 All 1-node servers are to be managed and provisioned via the
-[:ref:`ansiblelink`] set of playbooks with *vpp-device* role. Full playbooks
-can be found under [:ref:`fdiocsitansible`] directory. This way we are able to
+[#ansiblelink]_ set of playbooks with *vpp-device* role. Full playbooks
+can be found under [#fdiocsitansible]_ directory. This way we are able to
 track all configuration changes of physical servers in gerrit (in structured
 yaml format) as well as we are able to extend *vpp-device* to additional
 servers with less effort or re-stage servers in case of failure.
@@ -372,7 +371,7 @@ devices in system:
     done
 
 Where ``${pci_id}`` is ID of white-listed VF PCI ID. For more information please
-see [:ref:`pciids`]. This act as security constraint to prevent taking other
+see [#pciids]_. This act as security constraint to prevent taking other
 unwanted interfaces.
 The output list of all VF network devices is split into two lists for TG and
 SUT side of connection. First two items from each TG or SUT network devices
@@ -404,11 +403,11 @@ generated layer two frames, like IEEE 802.3x (link flow control), IEEE 802.1Qbb
 can throttle traffic between the host and the virtual switch, reducing
 performance. To resolve this issue, configure all SR-IOV enabled ports for
 VLAN tagging. This configuration allows unexpected, and potentially malicious,
-frames to be dropped. [:ref:`inteli40e`]
+frames to be dropped. [#inteli40e]_
 
 To configure VLAN tagging for the ports on an SR-IOV enabled adapter,
 use the following command. The VLAN configuration SHOULD be done
-before the VF driver is loaded or the VM is booted. [:ref:`inteli40e`]
+before the VF driver is loaded or the VM is booted. [#inteli40e]_
 
 ::
 
@@ -424,7 +423,7 @@ the first VF on VLAN 10.
 VLAN Tag Packet Steering allows to send all packets with a specific VLAN tag to
 a particular SR-IOV virtual function (VF). Further, this feature allows to
 designate a particular VF as trusted, and allows that trusted VF to request
-selective promiscuous mode on the Physical Function (PF). [:ref:`inteli40e`]
+selective promiscuous mode on the Physical Function (PF). [#inteli40e]_
 
 To set a VF as trusted or untrusted, enter the following command in the
 Hypervisor:
@@ -434,7 +433,7 @@ Hypervisor:
   $ ip link set dev eth0 vf 1 trust [on|off]
 
 Once the VF is designated as trusted, use the following commands in the VM
-to set the VF to promiscuous mode. [:ref:`inteli40e`]
+to set the VF to promiscuous mode. [#inteli40e]_
 
 - For promiscuous all:
   ::
@@ -460,7 +459,7 @@ to set the VF to promiscuous mode. [:ref:`inteli40e`]
     However,the vf-true-promisc-support priv-flag is only exposed to the first
     PF of the device. The PF remains in limited promiscuous mode (unless it
     is in MFP mode) regardless of the vf-true-promisc-support setting.
-    [:ref:`inteli40e`]
+    [#inteli40e]_
 
 Service described earlier *csit-initialize-vfs.service* is responsible for
 assigning 802.1Q vlan tagging to each virtual function via physical function
@@ -569,46 +568,14 @@ Stability
 Links
 -----
 
-.. _TWSLink:
-
-[TWSLink] `TWS <https://wiki.fd.io/view/CSIT/TWS>`_
-
-.. _dockerhub:
-
-[dockerhub] `Docker hub <https://hub.docker.com/>`_
-
-.. _fdiocsitgerrit:
-
-[fdiocsitgerrit] `FD.io/CSIT gerrit <https://gerrit.fd.io/r/CSIT>`_
-
-.. _fdioregistry:
-
-[fdioregistry] `FD.io registy <registry.fdiopoc.net>`_
-
-.. _JenkinsSlaveDcrFile:
-
-[JenkinsSlaveDcrFile] `jenkins-slave-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/ubuntu18/Dockerfile>`_
-
-.. _CsitShimDcrFile:
-
-[CsitShimDcrFile] `csit-shim-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-shim/Dockerfile>`_
-
-.. _CsitSutDcrFile:
-
-[CsitSutDcrFile] `csit-sut-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-sut/Dockerfile>`_
-
-.. _ansiblelink:
-
-[ansiblelink] `ansible <https://www.ansible.com/>`_
-
-.. _fdiocsitansible:
-
-[fdiocsitansible] `Fd.io/CSIT ansible <https://git.fd.io/csit/tree/fdio.infra.ansible>`_
-
-.. _inteli40e:
-
-[inteli40e] `Intel i40e <https://downloadmirror.intel.com/26370/eng/readme.txt>`_
-
-.. _pciids:
-
-[pciids] `pci ids <http://pci-ids.ucw.cz/v2.2/pci.ids>`_
+.. [#TWSLink] `TWS <https://wiki.fd.io/view/CSIT/TWS>`_
+.. [#dockerhub] `Docker hub <https://hub.docker.com/>`_
+.. [#fdiocsitgerrit] `FD.io/CSIT gerrit <https://gerrit.fd.io/r/CSIT>`_
+.. [#fdioregistry] `FD.io registy <registry.fdiopoc.net>`_
+.. [#JenkinsSlaveDcrFile] `jenkins-slave-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/ubuntu18/Dockerfile>`_
+.. [#CsitShimDcrFile] `csit-shim-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-shim/Dockerfile>`_
+.. [#CsitSutDcrFile] `csit-sut-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-sut/Dockerfile>`_
+.. [#ansiblelink] `ansible <https://www.ansible.com/>`_
+.. [#fdiocsitansible] `Fd.io/CSIT ansible <https://git.fd.io/csit/tree/fdio.infra.ansible>`_
+.. [#inteli40e] `Intel i40e <https://downloadmirror.intel.com/26370/eng/readme.txt>`_
+.. [#pciids] `pci ids <http://pci-ids.ucw.cz/v2.2/pci.ids>`_
