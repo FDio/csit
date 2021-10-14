@@ -6,7 +6,7 @@
 
   vpp-device-results-ubuntu:
     csit-vpp-device-2110-ubuntu2004-x86_64-1n-skx:
-      - 6   # rls2110.rc1 VPP DEV env 8
+      - 157 # rls2110.rc2 VPP DEV env 8
 
 ################################################################################
 
@@ -657,6 +657,7 @@
       - 18  # rls2106.rel NDRPDR iter env 8
       - 19  # rls2106.rel NDRPDR iter env 8
       - 21  # rls2106.rel NDRPDR iter env 8
+      - 22  # rls2106.rel NDRPDR iter env 8
 
   vpp-3n-tsh-curr-iter:
     csit-vpp-perf-report-iterative-2110-3n-tsh:
@@ -716,6 +717,7 @@
   dpdk-3n-tsh-curr-iter:
     csit-dpdk-perf-report-iterative-2110-3n-tsh:
       - 12  # rls2110 NDRPDR iter env 8
+      - 13  # rls2110 NDRPDR iter env 8
       - 14  # rls2110 NDRPDR iter env 8
       - 15  # rls2110 NDRPDR iter env 8
       - 17  # rls2110 NDRPDR iter env 8
@@ -759,6 +761,7 @@
       - 18  # rls2106.rel NDRPDR iter env 8
       - 19  # rls2106.rel NDRPDR iter env 8
       - 20  # rls2106.rel NDRPDR iter env 8
+      - 21  # rls2106.rel NDRPDR iter env 8
       - 24  # rls2106.rel NDRPDR iter env 8
       - 25  # rls2106.rel NDRPDR iter env 8
       - 27  # rls2106.rel NDRPDR iter env 8
@@ -796,6 +799,7 @@
   dpdk-2n-tx2-curr-iter:
     csit-dpdk-perf-report-iterative-2110-2n-tx2:
       - 14  # rls2110 NDRPDR iter env 8
+      - 15  # rls2110 NDRPDR iter env 8
       - 16  # rls2110 NDRPDR iter env 8
       - 18  # rls2110 NDRPDR iter env 8
       - 19  # rls2110 NDRPDR iter env 8
@@ -976,7 +980,7 @@
 
   vpp-2n-dnv-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2110-2n-dnv:
-      - 2   # rls2110.rc1 MRR iter env 8
+      - 15  # rls2110.rc2 MRR iter env 8
 
   vpp-2n-dnv-curr-cov:
     # csit-vpp-perf-report-coverage-2110-2n-dnv:
