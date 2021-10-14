@@ -28,6 +28,7 @@
 | |
 | | [Arguments] | @{actions}
 | |
+| | Start Test Export
 | | Reset PAPI History On All DUTs | ${nodes}
 | | ${int} = | Set Variable If | ${nic_vfs} > 0 | prevf | pf
 | | Create base startup configuration of VPP on all DUTs
