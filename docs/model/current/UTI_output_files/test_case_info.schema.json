@@ -1,0 +1,297 @@
+{
+    "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/0.1.0",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Schema for info output of test case.",
+    "type": "object",
+    "required": [
+        "duration",
+        "end_time",
+        "log",
+        "message",
+        "results",
+        "start_time",
+        "status",
+        "sut_type",
+        "sut_version",
+        "tags",
+        "test_documentation",
+        "test_id",
+        "test_name",
+        "test_type",
+        "version"
+    ],
+    "properties": {
+        "duration": {
+            "$ref": "#/$defs/types/nonnegative_number"
+        },
+        "end_time": {
+            "$ref": "#/$defs/types/date_time"
+        },
+        "log": {
+            "$ref": "#/$defs/types/empty_array"
+        },
+        "message": {
+            "type": "string"
+        },
+        "results": {
+            "oneOf": [
+                {
+                    "mrr_case": {
+                        "type": "object",
+                        "required": [
+                            "mrr"
+                        ],
+                        "properties": {
+                            "$ref": "#/$defs/results/mrr"
+                        }
+                    }
+                },
+                {
+                    "ndrpdr_case": {
+                        "type": "object",
+                        "required": [
+                            "ndrpdr"
+                        ],
+                        "properties": {
+                            "$ref": "#/$defs/results/ndrpdr"
+                        }
+                    }
+                },
+                {
+                    "soak_case": {
+                        "type": "object",
+                        "required": [
+                            "soak"
+                        ],
+                        "properties": {
+                            "$ref": "#/$defs/results/soak"
+                        }
+                    }
+                }
+            ]
+        },
+        "start_time": {
+            "$ref": "#/$defs/types/date_time"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "PASS",
+                "FAIL"
+            ]
+        },
+        "sut_type": {
+            "type": "string",
+            "enum": [
+                "VPP",
+                "DPDK"
+            ]
+        },
+        "sut_version": {
+            "type": "string"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "test_documentation": {
+            "type": "string"
+        },
+        "test_id": {
+            "type": "string"
+        },
+        "test_name": {
+            "type": "string"
+        },
+        "test_type": {
+            "type": "string",
+            "enum": [
+                "mrr",
+                "ndrpdr",
+                "soak"
+            ]
+        },
+        "version": {
+            "type": "string",
+            "constant": "0.2.0"
+        }
+    },
+    "$defs": {
+        "types": {
+            "nonnegative_number": {
+                "type": "number",
+                "minimum": 0
+            },
+            "date_time": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "empty_array": {
+                "type": "array",
+                "maxItems": 0
+            },
+            "rate_unit": {
+                "type": "string",
+                "enum": [
+                    "pps",
+                    "cps"
+                ]
+            }
+        },
+        "macros": {
+            "ndr_or_pdr": {
+                "type": "object",
+                "required": [
+                    "lower",
+                    "upper"
+                ],
+                "properties": {
+                    "lower_rate": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    },
+                    "upper_rate": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    },
+                    "lower_bandwidth": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    },
+                    "upper_bandwidth": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    }
+                }
+            },
+            "latency_numbers": {
+                "type": "object",
+                "required": [
+                    "avg",
+                    "hdrh",
+                    "max",
+                    "min"
+                ],
+                "properties": {
+                    "min": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    },
+                    "max": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    },
+                    "avg": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    },
+                    "hdrh": {
+                        "type": "string"
+                    }
+                }
+            },
+            "latency_for_loads": {
+                "type": "object",
+                "required": [
+                    "pdr0",
+                    "pdr10",
+                    "pdr50",
+                    "pdr90"
+                ],
+                "properties": {
+                    "pdr0": {
+                        "$ref": "#/$defs/macros/latency_numbers"
+                    },
+                    "pdr10": {
+                        "$ref": "#/$defs/macros/latency_numbers"
+                    },
+                    "pdr50": {
+                        "$ref": "#/$defs/macros/latency_numbers"
+                    },
+                    "pdr90": {
+                        "$ref": "#/$defs/macros/latency_numbers"
+                    }
+                }
+            }
+        },
+        "results": {
+            "mrr": {
+                "type": "object",
+                "required": [
+                    "samples",
+                    "rate_unit",
+                    "avg",
+                    "stdev"
+                ],
+                "properties": {
+                    "samples": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/$defs/types/nonnegative_number"
+                        }
+                    },
+                    "rate_unit": {
+                        "$ref": "#/$defs/types/rate_unit"
+                    },
+                    "avg": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    },
+                    "stdev": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    }
+                }
+            },
+            "ndrpdr": {
+                "type": "object",
+                "required": [
+                    "ndr",
+                    "pdr",
+                    "rate_unit"
+                ],
+                "properties": {
+                    "ndr": {
+                        "$ref": "#/$defs/macros/ndr_or_pdr"
+                    },
+                    "pdr": {
+                        "$ref": "#/$defs/macros/npdr"
+                    },
+                    "rate_unit": {
+                        "$ref": "#/$defs/types/rate_unit"
+                    },
+                    "bandwidth_unit": {
+                        "type": "string",
+                        "enum": [
+                            "Gbps"
+                        ]
+                    },
+                    "latency_forward": {
+                        "$ref": "#/$defs/macros/latency_for_loads"
+                    },
+                    "latency_reverse": {
+                        "$ref": "#/$defs/macros/latency_for_loads"
+                    },
+                    "latency_unit": {
+                        "type": "string",
+                        "enum": [
+                            "us"
+                        ]
+                    }
+                }
+            },
+            "soak": {
+                "type": "object",
+                "required": [
+                    "lower",
+                    "upper",
+                    "rate_unit"
+                ],
+                "properties": {
+                    "lower": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    },
+                    "upper": {
+                        "$ref": "#/$defs/types/nonnegative_number"
+                    },
+                    "rate_unit": {
+                        "$ref": "#/$defs/types/rate_unit"
+                    }
+                }
+            }
+        }
+    }
+}
