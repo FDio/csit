@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71274f7c_f0793cc1",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "fix it",
+      "range": {
+        "startLine": 2,
+        "startChar": 26,
+        "endLine": 2,
+        "endChar": 31
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e768eb3_7e497353",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "btw we have also tg_type",
+      "range": {
+        "startLine": 14,
+        "startChar": 9,
+        "endLine": 14,
+        "endChar": 17
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd93e07a_3c4078a2",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "tg version?",
+      "range": {
+        "startLine": 15,
+        "startChar": 9,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "495b482b_2972647b",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "too many mrrs",
+      "range": {
+        "startLine": 35,
+        "startChar": 35,
+        "endLine": 35,
+        "endChar": 38
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc0b63f5_0adc71a3",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "cannot find enum https://json-schema.org/draft/2020-12/json-schema-core.html ?\nalso what type is array of strings?",
+      "range": {
+        "startLine": 53,
+        "startChar": 13,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "742b2d3b_2866fff3",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "they are tg-type: enum[TREX], sut type: none",
+      "range": {
+        "startLine": 58,
+        "startChar": 50,
+        "endLine": 58,
+        "endChar": 55
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41be5a22_5571371c",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "reconf, .........",
+      "range": {
+        "startLine": 70,
+        "startChar": 40,
+        "endLine": 70,
+        "endChar": 44
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56d2c312_eab1c4bc",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "measured_unit?",
+      "range": {
+        "startLine": 87,
+        "startChar": 13,
+        "endLine": 87,
+        "endChar": 21
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99590728_361e60cf",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "quotes",
+      "range": {
+        "startLine": 138,
+        "startChar": 37,
+        "endLine": 138,
+        "endChar": 40
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5ad705d_0157daeb",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-15T10:14:18Z",
+      "side": 1,
+      "message": "unit is here as pps and tps, but in \"npdr\" you have both pps and gbps\nit is not clear if unit belongs to latency or ndr/pdr. so to me better is to define unit on nested level block.\nbe also aware that trex sometimes print negative numbers (which i am not sure how to thread when more packets arrived).",
+      "range": {
+        "startLine": 144,
+        "startChar": 21,
+        "endLine": 144,
+        "endChar": 25
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
