@@ -233,6 +233,30 @@
     },
     {
       "key": {
+        "uuid": "31db0fe4_002fdd3f",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T18:13:50Z",
+      "side": 1,
+      "message": "The R at the end of MRR, NDR and PDR is Rate, so I went with rate_unit, the other units are bandwidth_unit and latency_unit.",
+      "parentUuid": "6ebb91b6_afa09099",
+      "range": {
+        "startLine": 87,
+        "startChar": 12,
+        "endLine": 87,
+        "endChar": 22
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c1db4b4_d5faef82",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
@@ -253,6 +277,30 @@
       "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2930ff2_49c56fd9",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T18:13:50Z",
+      "side": 1,
+      "message": "We may have later model versions, when we know what the additional values are and how to describe them.",
+      "parentUuid": "6c1db4b4_d5faef82",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 38
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -279,6 +327,30 @@
     },
     {
       "key": {
+        "uuid": "8712e348_6a38823b",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T18:13:50Z",
+      "side": 1,
+      "message": "Went with ndr_or_pdr.",
+      "parentUuid": "aa9ba16a_bf9db612",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 18
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0b663a4_428ea35d",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
@@ -299,6 +371,30 @@
       "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9d51b85_ddf3d3ab",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T18:13:50Z",
+      "side": 1,
+      "message": "Went with lower_rate to match with rate_unit above.",
+      "parentUuid": "f0b663a4_428ea35d",
+      "range": {
+        "startLine": 97,
+        "startChar": 20,
+        "endLine": 97,
+        "endChar": 27
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -325,6 +421,30 @@
     },
     {
       "key": {
+        "uuid": "7a1f035e_1305eade",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T18:13:50Z",
+      "side": 1,
+      "message": "Went with lower_rate to match with rate_unit above.",
+      "parentUuid": "004a01cf_ab400585",
+      "range": {
+        "startLine": 98,
+        "startChar": 20,
+        "endLine": 98,
+        "endChar": 27
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2e57f82e_76359573",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
@@ -336,6 +456,30 @@
       "writtenOn": "2021-10-15T12:03:35Z",
       "side": 1,
       "message": "\"lower_gbps\" and \"upper_gbps\" are calculated values directly relating to measured lower_bound[pps] and upper_bound[pps]. Wouldn\u0027t it be better to have them modelled as such, that is have a lower_bound with pps and bps values with their respective units, and the same for upper_bound?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 85
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33d8f6dc_ecbbea82",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T18:13:50Z",
+      "side": 1,
+      "message": "I do not like too many nested levels nor repeated units, but I will let Tibor decide.",
+      "parentUuid": "2e57f82e_76359573",
       "range": {
         "startLine": 99,
         "startChar": 0,
@@ -371,6 +515,30 @@
     },
     {
       "key": {
+        "uuid": "39bf223f_5f01ae4e",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T18:13:50Z",
+      "side": 1,
+      "message": "Went with latency_numbers, as properties (except hdrh) are numeric.",
+      "parentUuid": "3e955a73_f30e3308",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c3a1afa_8338cc80",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
@@ -394,6 +562,30 @@
     },
     {
       "key": {
+        "uuid": "657d067c_4ceb8167",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T18:13:50Z",
+      "side": 1,
+      "message": "Added latency_unit one level above.",
+      "parentUuid": "8c3a1afa_8338cc80",
+      "range": {
+        "startLine": 115,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 66
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99590728_361e60cf",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
@@ -414,6 +606,30 @@
       "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b252f0c5_ec27b295",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T18:13:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99590728_361e60cf",
+      "range": {
+        "startLine": 138,
+        "startChar": 37,
+        "endLine": 138,
+        "endChar": 40
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
