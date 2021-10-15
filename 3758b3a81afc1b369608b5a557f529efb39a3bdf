@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "b77c039a_c846279c",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-15T15:03:00Z",
+      "side": 1,
+      "message": "A schema describes JSON documents. A schema can be also expressed as a JSON document, so there is a second schema (called meta-schema) to describe the first schema. Luckily, the meta-schema is self-descriptive.\nThe meta-schema is divided into multiple files; to find enum, two clicks are needed:\nhttps://github.com/json-schema-org/json-schema-spec/blob/2020-12/schema.json#L20\nhttps://github.com/json-schema-org/json-schema-spec/blob/2020-12/meta/validation.json#L24-L27\n\nDescription for enum is not there, but here: https://datatracker.ietf.org/doc/html/draft-bhutton-json-schema-validation-00#section-6.1.2",
+      "parentUuid": "cc0b63f5_0adc71a3",
+      "range": {
+        "startLine": 53,
+        "startChar": 13,
+        "endLine": 53,
+        "endChar": 17
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "742b2d3b_2866fff3",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
