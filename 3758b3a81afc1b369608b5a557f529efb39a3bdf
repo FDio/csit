@@ -186,6 +186,190 @@
     },
     {
       "key": {
+        "uuid": "6ebb91b6_afa09099",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-10-15T12:03:35Z",
+      "side": 1,
+      "message": "\"throughput_unit\" ?",
+      "range": {
+        "startLine": 87,
+        "startChar": 12,
+        "endLine": 87,
+        "endChar": 22
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c1db4b4_d5faef82",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-10-15T12:03:35Z",
+      "side": 1,
+      "message": "We may have \"tps\" transactions per second when executing pcap based transactions.",
+      "range": {
+        "startLine": 89,
+        "startChar": 26,
+        "endLine": 89,
+        "endChar": 38
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa9ba16a_bf9db612",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-10-15T12:03:35Z",
+      "side": 1,
+      "message": "\"ndrpdr_metrics\" ?",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 18
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0b663a4_428ea35d",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-10-15T12:03:35Z",
+      "side": 1,
+      "message": "\"lower_bound\" ?",
+      "range": {
+        "startLine": 97,
+        "startChar": 20,
+        "endLine": 97,
+        "endChar": 27
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "004a01cf_ab400585",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-10-15T12:03:35Z",
+      "side": 1,
+      "message": "\"upper_bound\" ?",
+      "range": {
+        "startLine": 98,
+        "startChar": 20,
+        "endLine": 98,
+        "endChar": 27
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2e57f82e_76359573",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-10-15T12:03:35Z",
+      "side": 1,
+      "message": "\"lower_gbps\" and \"upper_gbps\" are calculated values directly relating to measured lower_bound[pps] and upper_bound[pps]. Wouldn\u0027t it be better to have them modelled as such, that is have a lower_bound with pps and bps values with their respective units, and the same for upper_bound?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 85
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e955a73_f30e3308",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-10-15T12:03:35Z",
+      "side": 1,
+      "message": "\"latency_metrics\" ?",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c3a1afa_8338cc80",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-10-15T12:03:35Z",
+      "side": 1,
+      "message": "add \"unit\" ?",
+      "range": {
+        "startLine": 115,
+        "startChar": 16,
+        "endLine": 115,
+        "endChar": 66
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "99590728_361e60cf",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
