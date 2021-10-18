@@ -11,7 +11,7 @@ variable "vault-name" {
 variable "avail_zone" {
   description = "AWS availability zone"
   type        = string
-  default     = "eu-central-1a"
+  default     = "eu-central-1b"
 }
 
 variable "ami_image_tg" {
