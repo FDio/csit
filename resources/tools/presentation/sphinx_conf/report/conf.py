@@ -46,7 +46,7 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
-report_week = u'41'
+report_week = u'42'
 project = u'FD.io CSIT-2110.{week}'.format(week=report_week)
 copyright = u'2021, FD.io'
 author = u'FD.io CSIT'
