@@ -128,17 +128,6 @@ resource "aws_subnet" "c" {
 }
 
 resource "aws_subnet" "d" {
-  vpc_id            = aws_vpc.CSITVPC.id
-  cidr_block        = var.vpc_cidr_d
-  availability_zone = var.avail_zone
-  depends_on        = [aws_vpc.CSITVPC, aws_vpc_ipv4_cidr_block_association.d]
-
-  tags = {
-    "Environment" = var.environment_name
-  }
-}
-
-resource "aws_subnet" "d" {
   availability_zone               = var.avail_zone
   assign_ipv6_address_on_creation = false
   cidr_block                      = var.vpc_cidr_d
@@ -148,6 +137,17 @@ resource "aws_subnet" "d" {
   ]
   map_public_ip_on_launch         = false
   vpc_id                          = aws_vpc.CSITVPC.id
+
+  tags = {
+    "Environment" = var.environment_name
+  }
+}
+
+resource "aws_internet_gateway" "CSITGW" {
+  depends_on = [
+    aws_vpc.CSITVPC
+  ]
+  vpc_id     = aws_vpc.CSITVPC.id
 
   tags = {
     "Environment" = var.environment_name
