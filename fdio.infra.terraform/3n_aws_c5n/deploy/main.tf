@@ -223,15 +223,15 @@ resource "aws_network_interface" "dut2_if1" {
     aws_subnet.c,
     aws_instance.dut2
   ]
-  private_ip        = var.dut2_if2_ip
-  private_ips       = [var.dut2_if2_ip]
+  private_ip        = var.dut2_if1_ip
+  private_ips       = [var.dut2_if1_ip]
   security_groups   = [aws_security_group.CSITSG.id]
   source_dest_check = false
   subnet_id         = aws_subnet.c.id
 
   attachment {
     instance     = aws_instance.dut2.id
-    device_index = 2
+    device_index = 1
   }
 
   tags = {
