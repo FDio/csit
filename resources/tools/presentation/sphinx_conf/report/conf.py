@@ -74,9 +74,7 @@ rst_epilog = u"""
 .. _pdf version of this report: https://s3-docs.fd.io/csit/{release}/report/_static/archive/csit_{release}.{report_week}.pdf
 .. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h={release}
 .. _TRex driver: https://git.fd.io/csit/tree/GPL/tools/trex/trex_stl_profile.py?h={release}
-.. _CSIT DPDK Performance Tests Documentation: https://s3-docs.fd.io/csit/{release}/doc/tests.dpdk.perf.html
-.. _CSIT VPP Performance Tests Documentation: https://s3-docs.fd.io/csit/{release}/doc/tests.vpp.perf.html
-.. _CSIT VPP Device Tests Documentation: https://s3-docs.fd.io/csit/{release}/doc/tests.vpp.device.html
+.. _CSIT Performance Tests Documentation: https://s3-docs.fd.io/csit/{release}/doc/index.html
 .. _VPP test framework documentation: https://docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
 .. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Cascade Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_clx_hw_bios_cfg.md?h={release}
