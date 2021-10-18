@@ -34,6 +34,9 @@ function terraform_apply () {
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
     pushd "${NODENESS}_${FLAVOR}_c5n" || die "Pushd failed!"
     export TF_LOG=INFO
+    trap 'terraform_destroy' ERR || {
+         die "Trap attempt failed, please cleanup manually. Aborting!"
+    }
     terraform apply -no-color -auto-approve  || die "Terraform apply failed!"
     popd || die "Popd failed!"
     popd || die "Popd failed!"

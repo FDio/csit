@@ -1122,6 +1122,7 @@ function set_environment_variables () {
             # T-Rex 2.88 workaround for ENA NICs
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
+            export TREX_CORE_COUNT=6
             # Settings to prevent duration stretching
             export PERF_TRIAL_STL_DELAY=0.1
             ;;
