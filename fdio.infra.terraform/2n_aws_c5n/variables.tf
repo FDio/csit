@@ -39,7 +39,7 @@ variable "instance_initiated_shutdown_behavior" {
 variable "instance_type" {
   description = "AWS instance type"
   type        = string
-  default     = "c5n.9xlarge"
+  default     = "c5n.4xlarge"
 }
 
 variable "testbed_name" {
