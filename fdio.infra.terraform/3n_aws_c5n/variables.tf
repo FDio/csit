@@ -11,7 +11,7 @@ variable "vault-name" {
 variable "avail_zone" {
   description = "AWS availability zone"
   type        = string
-  default     = "eu-central-1a"
+  default     = "eu-central-1c"
 }
 
 variable "ami_image_tg" {
@@ -39,7 +39,7 @@ variable "instance_initiated_shutdown_behavior" {
 variable "instance_type" {
   description = "AWS instance type"
   type        = string
-  default     = "c5n.9xlarge"
+  default     = "c5n.4xlarge"
 }
 
 variable "testbed_name" {
