@@ -37,7 +37,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ENA-64b-2t1c-ethip4-ip4base.html"></iframe>
+    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ena-64b-2t1c-ethip4-ip4base.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ENA-64b-2t1c-ethip4-ip4base}
-            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ENA-64b-2t1c-ethip4-ip4base}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ena-64b-2t1c-ethip4-ip4base}
+            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ena-64b-2t1c-ethip4-ip4base}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ENA-64b-2t1c-ethip4-ip4scale2m.html"></iframe>
+    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ena-64b-2t1c-ethip4-ip4scale2m.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ENA-64b-2t1c-ethip4-ip4scale2m}
-            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ENA-64b-2t1c-ethip4-ip4scale2m}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ena-64b-2t1c-ethip4-ip4scale2m}
+            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ena-64b-2t1c-ethip4-ip4scale2m}
     \end{figure}
