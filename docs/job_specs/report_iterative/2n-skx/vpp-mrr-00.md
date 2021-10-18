@@ -1,6 +1,6 @@
 # 2n-skx
-### tests 381
-### job hrs est. 6.0
+### tests 372
+### job hrs est. 5.5
 ### job hrs real ?.??
 ### test mins est. 0.89
 ### test mins real 0.89
@@ -209,10 +209,6 @@
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
-##### ethip4tcp-nat44ed-h262144-p63-s16515072-cps
-1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-cps
-2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-cps
-4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-cps
 ##### ethip4tcp-nat44ed-h1024-p63-s64512-tput
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
@@ -225,10 +221,6 @@
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
-##### ethip4tcp-nat44ed-h262144-p63-s16515072-tput
-1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-tput
-2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-tput
-4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-tput
 ##### ethip4tcp-ip4base-h1024-p63-s64512-cps
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h1024-p63-s64512-cps
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h1024-p63-s64512-cps
@@ -241,10 +233,6 @@
 1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
 2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
 4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
-##### ethip4tcp-ip4base-h262144-p63-s16515072-cps
-1c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h262144-p63-s16515072-cps
-2c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h262144-p63-s16515072-cps
-4c AND 64b AND mrr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h262144-p63-s16515072-cps
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base
