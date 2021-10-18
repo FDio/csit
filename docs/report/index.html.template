@@ -10,6 +10,7 @@ CSIT-2110
     introduction/test_scenarios_overview
     introduction/physical_testbeds
     introduction/methodology
+    introduction/documentation/index
 
 .. toctree::
     :maxdepth: 2
@@ -28,7 +29,6 @@ CSIT-2110
     vpp_performance_tests/comparisons/index
     vpp_performance_tests/throughput_trending
     vpp_performance_tests/test_environment
-    vpp_performance_tests/documentation/index
 
 .. toctree::
     :maxdepth: 2
@@ -41,7 +41,6 @@ CSIT-2110
     dpdk_performance_tests/comparisons/index
     dpdk_performance_tests/throughput_trending
     dpdk_performance_tests/test_environment
-    dpdk_performance_tests/documentation
 
 .. toctree::
     :maxdepth: 2
@@ -61,7 +60,6 @@ CSIT-2110
     vpp_device_tests/overview
     vpp_device_tests/csit_release_notes
     vpp_device_tests/test_environment
-    vpp_device_tests/documentation
 
 .. toctree::
     :maxdepth: 2
