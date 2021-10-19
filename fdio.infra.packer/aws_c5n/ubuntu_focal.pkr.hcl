@@ -8,10 +8,18 @@ packer {
 }
 
 variable "first_run_commands" {
-  description = "Commands to run after deployment via remote-exec"
+  description = "Commands to run before deployment via remote-exec"
   type        = list(string)
   default     = [
     ""
+  ]
+}
+
+variable "last_run_commands" {
+  description = "Commands to run after deployment via remote-exec"
+  type        = list(string)
+  default     = [
+    "sudo sed -i 's/Unattended-Upgrade \"1\"/Unattended-Upgrade \"0\"/g' /etc/apt/apt.conf.d/20auto-upgrades"
   ]
 }
 
@@ -43,7 +51,7 @@ source "amazon-ebs" "csit_c5n_ubuntu_focal_sut" {
   ami_name         = "csit_c5n_ubuntu_focal_sut"
   ami_description  = "CSIT SUT image based on Ubuntu Focal"
   ena_support      = true
-  instance_type    = "c5n.9xlarge"
+  instance_type    = "c5n.4xlarge"
   launch_block_device_mappings {
     device_name = "/dev/sda1"
     volume_size = 40
@@ -60,7 +68,7 @@ source "amazon-ebs" "csit_c5n_ubuntu_focal_tg" {
   ami_name         = "csit_c5n_ubuntu_focal_tg"
   ami_description  = "CSIT TG image based on Ubuntu Focal"
   ena_support      = true
-  instance_type    = "c5n.9xlarge"
+  instance_type    = "c5n.4xlarge"
   launch_block_device_mappings {
     device_name = "/dev/sda1"
     volume_size = 40
@@ -91,6 +99,9 @@ build {
       "--extra-vars", "aws=true"
     ]
   }
+  provisioner "shell" {
+    inline = var.last_run_commands
+  }
 }
 
 build {
@@ -110,5 +121,8 @@ build {
       "--extra-vars", "ansible_python_interpreter=${var.ansible_python_executable}",
       "--extra-vars", "aws=true"
     ]
+  }
+  provisioner "shell" {
+    inline = var.last_run_commands
   }
 }
