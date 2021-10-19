@@ -19,7 +19,7 @@ variable "ami_image_tg" {
   # kernel 5.4.0-1035-aws (~5.4.0-65)
   description = "AWS AMI image ID"
   type        = string
-  default     = "ami-0d6bc0344dc036b9d"
+  default     = "ami-038ede035b200bf55"
 }
 
 variable "ami_image_sut" {
@@ -27,7 +27,7 @@ variable "ami_image_sut" {
   # kernel 5.4.0-1035-aws (~5.4.0-65)
   description = "AWS AMI image ID"
   type        = string
-  default     = "ami-012c9c631964367be"
+  default     = "ami-08675923394f0c300"
 }
 
 variable "instance_initiated_shutdown_behavior" {
