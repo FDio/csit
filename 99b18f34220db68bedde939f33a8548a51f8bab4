@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fdb7c9d4_7a0c300a",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-19T10:26:07Z",
+      "side": 1,
+      "message": "The binding did not work without using driver_override. I probably hit some corner case where this is necessary. I was inspired by the dpdk bind script which always does this, so I think it\u0027s better to have this than not.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b353d201_bb5552c6",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-19T10:26:07Z",
+      "side": 1,
+      "message": "A note on redirection here: tee emits to the standard output, so when calling this function before calling print_env_variables (like I added in this patch), the output gets polluted by all of the tee output, hence the redirection.",
+      "range": {
+        "startLine": 142,
+        "startChar": 45,
+        "endLine": 142,
+        "endChar": 56
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ac326df_8200c2cc",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-19T10:26:07Z",
+      "side": 1,
+      "message": "I needed the function to not unbind vfio-pci if already bound, but I couldn\u0027t do a separate check since RF doesn\u0027t allow nested FOR cycles, so I reworked the function. It\u0027s not used anywhere else, so I think that\u0027s the best solution.",
+      "range": {
+        "startLine": 140,
+        "startChar": 6,
+        "endLine": 140,
+        "endChar": 42
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
