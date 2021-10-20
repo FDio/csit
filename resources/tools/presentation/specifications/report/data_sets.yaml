@@ -89,9 +89,13 @@
       - 39  # rls2110.rc2 NDRPDR iter env 8
 
   vpp-3n-skx-curr-cov:
-    # csit-vpp-perf-report-coverage-2110-3n-skx:
-    csit-vpp-perf-report-iterative-2110-3n-skx:
-      - 33  # rls2110.rc2 NDRPDR iter env 8
+    csit-vpp-perf-report-coverage-2110-3n-skx:
+      - 1   # rls2110.rc2 NDRPDR cov env 8
+      - 2   # rls2110.rc2 NDRPDR cov env 8
+      - 3   # rls2110.rc2 NDRPDR cov env 8
+      - 7   # rls2110.rc2 NDRPDR cov env 8
+      - 8   # rls2110.rc2 NDRPDR cov env 8
+      - 10  # rls2110.rc2 NDRPDR cov env 8
 
   dpdk-3n-skx-hist-iter:
     csit-dpdk-perf-report-iterative-2101-3n-skx:
@@ -264,6 +268,7 @@
       - 61  # rls2110.rc2 NDRPDR nf-density iter env 8
       - 66  # rls2110.rc2 NDRPDR nf-density iter env 8
       - 67  # rls2110.rc2 NDRPDR nf-density iter env 8
+      - 70  # rls2110.rc2 NDRPDR nf-density iter env 8
 
   vpp-2n-skx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2110-2n-skx:
@@ -282,9 +287,17 @@
       - 60  # rls2110.rc2 MRR GSO iter env 8
 
   vpp-2n-skx-curr-cov:
-    # csit-vpp-perf-report-coverage-2110-2n-skx:
-    csit-vpp-perf-report-iterative-2110-2n-skx:
-      - 55  # rls2110.rc2 NDRPDR iter env 8
+    csit-vpp-perf-report-coverage-2110-2n-skx:
+      - 1   # rls2110.rc2 NDRPDR cov env 8
+      - 2   # rls2110.rc2 NDRPDR cov env 8
+      - 3   # rls2110.rc2 NDRPDR cov env 8
+      - 4   # rls2110.rc2 NDRPDR cov env 8
+      - 5   # rls2110.rc2 NDRPDR cov env 8
+      - 6   # rls2110.rc2 NDRPDR cov env 8
+      - 7   # rls2110.rc2 NDRPDR cov env 8
+      - 8   # rls2110.rc2 NDRPDR cov env 8
+      - 9   # rls2110.rc2 NDRPDR cov env 8
+      - 10  # rls2110.rc2 NDRPDR cov env 8
 
   dpdk-2n-skx-hist-iter:
     csit-dpdk-perf-report-iterative-2101-2n-skx:
@@ -401,6 +414,7 @@
 
   vpp-2n-zn2-curr-iter:
     csit-vpp-perf-report-iterative-2110-2n-zn2:
+      - 35  # rls2110.rc2 NDRPDR iter env 8
       - 37  # rls2110.rc2 NDRPDR iter env 8
       - 38  # rls2110.rc2 NDRPDR iter env 8
 
@@ -465,6 +479,7 @@
       - 24  # rls2110 NDRPDR iter env 8
       - 25  # rls2110 NDRPDR iter env 8
       - 26  # rls2110 NDRPDR iter env 8
+      - 27  # rls2110 NDRPDR iter env 8
       - 29  # rls2110 NDRPDR iter env 8
       - 30  # rls2110 NDRPDR iter env 8
       - 31  # rls2110 NDRPDR iter env 8
@@ -561,6 +576,7 @@
       - 38  # rls2110.rc2 NDRPDR iter env 8
       - 39  # rls2110.rc2 NDRPDR iter env 8
       - 40  # rls2110.rc2 NDRPDR iter env 8
+      - 41  # rls2110.rc2 NDRPDR iter env 8
 
   vpp-2n-clx-curr-iter-best:
     csit-vpp-perf-report-iterative-2110-2n-clx:
@@ -632,9 +648,14 @@
       - 54  # rls2110.rc2 soak env 8
 
   vpp-2n-clx-curr-cov:
-    #  csit-vpp-perf-report-coverage-2110-2n-clx:
-    csit-vpp-perf-report-iterative-2110-2n-clx:
-      - 40  # rls2110.rc2 NDRPDR iter env 8
+    csit-vpp-perf-report-coverage-2110-2n-clx:
+      - 4   # rls2110.rc2 NDRPDR cov env 8
+      - 5   # rls2110.rc2 NDRPDR cov env 8
+      - 6   # rls2110.rc2 NDRPDR cov env 8
+      - 7   # rls2110.rc2 NDRPDR cov env 8
+      - 8   # rls2110.rc2 NDRPDR cov env 8
+      - 9   # rls2110.rc2 NDRPDR cov env 8
+      - 10  # rls2110.rc2 NDRPDR cov env 8
 
   dpdk-2n-clx-hist-iter:
     csit-dpdk-perf-report-iterative-2101-2n-clx:
@@ -719,6 +740,7 @@
     csit-vpp-perf-report-iterative-2110-3n-tsh:
       - 25  # rls2110.rc2 NDRPDR iter env 8
       - 27  # rls2110.rc2 NDRPDR iter env 8
+      - 28  # rls2110.rc2 NDRPDR iter env 8
 
   vpp-3n-tsh-curr-iter-best:
     csit-vpp-perf-report-iterative-2110-3n-tsh:
@@ -779,6 +801,7 @@
       - 15  # rls2110 NDRPDR iter env 8
       - 17  # rls2110 NDRPDR iter env 8
       - 18  # rls2110 NDRPDR iter env 8
+      - 20  # rls2110 NDRPDR iter env 8
       - 21  # rls2110 NDRPDR iter env 8
 
   dpdk-3n-tsh-curr-iter-best:
@@ -831,6 +854,7 @@
       - 30  # rls2110.rc2 NDRPDR iter env 8
       - 31  # rls2110.rc2 NDRPDR iter env 8
       - 32  # rls2110.rc2 NDRPDR iter env 8
+      - 34  # rls2110.rc2 NDRPDR iter env 8
 
   vpp-2n-tx2-curr-iter-best:
     csit-vpp-perf-report-iterative-2110-2n-tx2:
@@ -951,9 +975,12 @@
       - 27  # rls2110.rc2 MRR iter env 8
 
   vpp-3n-dnv-curr-cov:
-    # csit-vpp-perf-report-coverage-2110-3n-dnv:
-    csit-vpp-perf-report-iterative-2110-3n-dnv:
-      - 28  # rls2110.rc2 NDRPDR iter env 8
+    csit-vpp-perf-report-coverage-2110-3n-dnv:
+      - 5   # rls2110.rc2 NDRPDR cov env 8
+      - 6   # rls2110.rc2 NDRPDR cov env 8
+      - 9   # rls2110.rc2 NDRPDR cov env 8
+      - 10  # rls2110.rc2 NDRPDR cov env 8
+      - 11  # rls2110.rc2 NDRPDR cov env 8
 
 #  dpdk-performance-changes-3n-dnv-h1:
 #    csit-dpdk-perf-verify-2101-3n-dnv:
@@ -1057,9 +1084,13 @@
       - 15  # rls2110.rc2 MRR iter env 8
 
   vpp-2n-dnv-curr-cov:
-    # csit-vpp-perf-report-coverage-2110-2n-dnv:
-    csit-vpp-perf-report-iterative-2110-2n-dnv:
-      - 16  # rls2110.rc2 NDRPDR iter env 8
+    csit-vpp-perf-report-coverage-2110-2n-dnv:
+      - 1   # rls2110.rc2 NDRPDR cov env 8
+      - 2   # rls2110.rc2 NDRPDR cov env 8
+      - 3   # rls2110.rc2 NDRPDR cov env 8
+      - 4   # rls2110.rc2 NDRPDR cov env 8
+      - 5   # rls2110.rc2 NDRPDR cov env 8
+      - 6   # rls2110.rc2 NDRPDR cov env 8
 
 #  dpdk-performance-changes-2n-dnv-h1:
 #    csit-dpdk-perf-verify-2101-2n-dnv:
