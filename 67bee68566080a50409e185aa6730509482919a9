@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8f7e142_4aee962d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-10-20T10:48:20Z",
+      "side": 1,
+      "message": "The duration argument applies also to udp tests, even if 4c test does not fail, it still takes one hour: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master-2n-clx/927/log.html.gz#s1-s1-s1-s2-s56-t3",
+      "range": {
+        "startLine": 7,
+        "startChar": 26,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "67bee68566080a50409e185aa6730509482919a9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
