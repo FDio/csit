@@ -145,24 +145,32 @@ def plot_statistics(plot, input_data):
                 d_y_fail = meta[u"tests_failed"]
                 minutes = meta[u"elapsedtime"] // 60000
                 duration = f"{(minutes // 60):02d}:{(minutes % 60):02d}"
-                version = meta[u"version"]
+                version = meta.get(u"version", u"")
             except (KeyError, IndexError, ValueError, AttributeError):
                 continue
             data_x.append(date)
             data_y_pass.append(d_y_pass)
             data_y_fail.append(d_y_fail)
             data_y_duration.append(minutes)
+            if u"vpp" in job:
+                sut = u"vpp"
+            elif u"dpdk" in job:
+                sut = u"dpdk"
+            elif u"trex" in job:
+                sut = u"trex"
+            else:
+                sut = u""
             hover_text.append(hover_str.format(
                 date=date,
                 passed=d_y_pass,
                 failed=d_y_fail,
                 duration=duration,
-                sut=u"vpp" if u"vpp" in job else u"dpdk",
+                sut=sut,
                 build=version,
                 test=u"mrr" if u"mrr" in job else u"ndrpdr",
                 period=u"daily" if u"daily" in job else u"weekly",
                 build_nr=build_nr,
-                testbed=meta[u"testbed"]
+                testbed=meta.get(u"testbed", u"")
             ))
 
     traces = [
