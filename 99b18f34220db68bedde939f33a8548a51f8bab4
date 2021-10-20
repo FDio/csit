@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "e7fa3a28_c6fa6d28",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-20T17:21:24Z",
+      "side": 1,
+      "message": "I not even 1% convinced this patch is the right thing. Device or resource busy indicates some issue on FS side. \n\nTo me i would like to see how switch from volume/mount/dev on Docker side looks like and then changing overlayfs in docker. If the issue is slow init on ARM due to slow CPU, then this patch is not solving anything just delaying problem. as it might not be ready anyway.\n\nSo is this timing related of fs related?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 67
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b332bebc_093f0f67",
         "filename": "/COMMIT_MSG",
         "patchSetId": 12
@@ -48,6 +71,53 @@
     },
     {
       "key": {
+        "uuid": "5dd34d51_3f8305ce",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-20T17:21:24Z",
+      "side": 1,
+      "message": "It is unclear what is \"vpp driver\". uio_pci_generic, igb_uio, rdma, vfio-pci, enic, or any other from hundreds on dpdk.org",
+      "parentUuid": "9f71f9e8_452297f3",
+      "range": {
+        "startLine": 44,
+        "startChar": 64,
+        "endLine": 44,
+        "endChar": 65
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f7e7221_a7c34214",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-20T17:21:24Z",
+      "side": 1,
+      "message": "and if not? RDMA?",
+      "range": {
+        "startLine": 56,
+        "startChar": 32,
+        "endLine": 56,
+        "endChar": 36
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fdb7c9d4_7a0c300a",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 12
@@ -87,6 +157,29 @@
         "startChar": 45,
         "endLine": 142,
         "endChar": 56
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0acd81e9_0badd82f",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-20T17:21:24Z",
+      "side": 1,
+      "message": "move above in same place as before",
+      "range": {
+        "startLine": 786,
+        "startChar": 0,
+        "endLine": 793,
+        "endChar": 8
       },
       "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -152,6 +245,30 @@
       "side": 1,
       "message": "\u003e RF doesn\u0027t allow nested FOR cycles\n\nThe usual workaround is to put the inner FOR into a keyword called from the outer FOR.\nYour solution of doing the inner for in Python is even better.",
       "parentUuid": "8ac326df_8200c2cc",
+      "range": {
+        "startLine": 140,
+        "startChar": 6,
+        "endLine": 140,
+        "endChar": 42
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5238f206_8b875761",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-20T17:21:24Z",
+      "side": 1,
+      "message": "I prefer hard unbind. I think it is there for a reason. No exceptions",
+      "parentUuid": "7ca46678_4e2ffd83",
       "range": {
         "startLine": 140,
         "startChar": 6,
