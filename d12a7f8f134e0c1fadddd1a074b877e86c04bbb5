@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e4bb7dc_7adbce5c",
+        "filename": "resources/libraries/bash/function/docs.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-10-20T08:08:41Z",
+      "side": 1,
+      "message": "as per discussion. rm should be before mktempd\nit is not clear why your mktempd was not deleted",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 33
+      },
+      "revId": "d12a7f8f134e0c1fadddd1a074b877e86c04bbb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
