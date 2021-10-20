@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7917fe7e_47788a0a",
+        "filename": "resources/libraries/bash/function/docs.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2021-10-20T07:42:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "914c219d_032c2114",
+      "range": {
+        "startLine": 50,
+        "startChar": 17,
+        "endLine": 50,
+        "endChar": 20
+      },
+      "revId": "e184a291fc9578f94a52c9ff92875daab9cb218b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3f88074_0a987ba4",
         "filename": "resources/tools/doc_gen/gen_rst.py",
         "patchSetId": 6
