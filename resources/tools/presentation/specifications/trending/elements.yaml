@@ -3856,10 +3856,10 @@
       data: "plot-performance-trending-vpp-2n-tx2"
       core: ["1t1c", "2t2c", "4t4c"]
       include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-40Ge2P1Xl710-af-xdp-Ethip4-Ip4Base-mrr.64B-{core}-af-xdp-ethip4-ip4base-mrr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-40Ge2P1Xl710-af-xdp-Ethip4-Ip4Scale20K-mrr.64B-{core}-af-xdp-ethip4-ip4scale20k-mrr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-40Ge2P1Xl710-af-xdp-Ethip4-Ip4Scale200K-mrr.64B-{core}-af-xdp-ethip4-ip4scale200k-mrr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-40Ge2P1Xl710-af-xdp-Ethip4-Ip4Scale2M-mrr.64B-{core}-af-xdp-ethip4-ip4scale2m-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-40Ge2P1Xl710-af-xdp-Ethip4-Ip4Base-mrr.64B-{core}-af-xdp-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-40Ge2P1Xl710-af-xdp-Ethip4-Ip4Scale20K-mrr.64B-{core}-af-xdp-ethip4-ip4scale20k-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-40Ge2P1Xl710-af-xdp-Ethip4-Ip4Scale200K-mrr.64B-{core}-af-xdp-ethip4-ip4scale200k-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-40Ge2P1Xl710-af-xdp-Ethip4-Ip4Scale2M-mrr.64B-{core}-af-xdp-ethip4-ip4scale2m-mrr"
       layout: "plot-cpta"
 
     - title: "2n-tx2-xl710-64b-{core}-features-ip4routing-base-scale-dpdk"
