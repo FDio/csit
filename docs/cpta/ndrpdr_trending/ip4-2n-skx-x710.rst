@@ -1,8 +1,8 @@
 2n-skx-x710
 -----------
 
-64b-ip4routing-base-scale-avf-dpdk
-``````````````````````````````````
+64b-ip4routing-base-scale-[avf,dpdk,af_xdp]
+```````````````````````````````````````````
 
 2t1c-ndr
 ::::::::
@@ -11,8 +11,10 @@
 
     <a name="64b-2t1c-base-avf-ndr"></a>
     <a name="64b-2t1c-base-dpdk-ndr"></a>
+    <a name="64b-2t1c-base-avf-ndr"></a>
     <a name="64b-2t1c-scale-avf-ndr"></a>
     <a name="64b-2t1c-scale-dpdk-ndr"></a>
+    <a name="64b-2t1c-scale-avf-ndr"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -28,8 +30,10 @@
 
     <a name="64b-2t1c-base-avf-pdr"></a>
     <a name="64b-2t1c-base-dpdk-pdr"></a>
+    <a name="64b-2t1c-base-avf-pdr"></a>
     <a name="64b-2t1c-scale-avf-pdr"></a>
     <a name="64b-2t1c-scale-dpdk-pdr"></a>
+    <a name="64b-2t1c-scale-avf-pdr"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
