@@ -1,8 +1,8 @@
 2n-skx-x710
 -----------
 
-78b-ip6routing-base-scale-avf-dpdk
-``````````````````````````````````
+78b-ip6routing-base-scale-[avf,dpdk,af_xdp]
+```````````````````````````````````````````
 
 2t1c
 ::::
@@ -13,6 +13,8 @@
     <a name="78b-2t1c-scale-dpdk"></a>
     <a name="78b-2t1c-base-avf"></a>
     <a name="78b-2t1c-scale-avf"></a>
+    <a name="78b-2t1c-base-af_xdp"></a>
+    <a name="78b-2t1c-scale-af_xdp"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -30,6 +32,8 @@
     <a name="78b-4t2c-scale-dpdk"></a>
     <a name="78b-4t2c-base-avf"></a>
     <a name="78b-4t2c-scale-avf"></a>
+    <a name="78b-4t2c-base-af_xdp"></a>
+    <a name="78b-4t2c-scale-af_xdp"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -47,6 +51,8 @@
     <a name="78b-8t4c-scale-dpdk"></a>
     <a name="78b-8t4c-base-avf"></a>
     <a name="78b-8t4c-scale-avf"></a>
+    <a name="78b-8t4c-base-af_xdp"></a>
+    <a name="78b-8t4c-scale-af_xdp"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,

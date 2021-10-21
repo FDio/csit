@@ -70,46 +70,45 @@
             \label{fig:2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-dpdk-pdr}
     \end{figure}
 
-..
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    78b-1t1c-ip6routing-base-scale-af-xdp
-    -------------------------------------
+78b-1t1c-ip6routing-base-scale-af-xdp
+-------------------------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="01af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="01af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-ndr}
-                \label{fig:2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-ndr}
+            \label{fig:2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="02af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-pdr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="02af" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-pdr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-pdr}
-                \label{fig:2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-pdr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-pdr}
+            \label{fig:2n-tx2-xl710-78b-1t1c-ip6routing-base-scale-af_xdp-pdr}
+    \end{figure}
