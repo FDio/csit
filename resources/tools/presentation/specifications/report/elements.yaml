@@ -7406,9 +7406,6 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Dot1Q-Ip4Base-Ndrpdr.64B-{core}-dot1q-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-{core}-ethip4-ip4scale20k-rnd-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Dot1Q-Ip4Base-Ndrpdr.64B-{core}-af-xdp-dot1q-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Base-Ndrpdr.64B-{core}-af-xdp-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-{core}-af-xdp-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "2n-dnv-x553-64b-{core}-ip4routing-base-scale-ixgbe-{test_type}"
     layout: "plot-throughput"
@@ -7667,9 +7664,6 @@
   include:
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Base-Ndrpdr.78B-{core}-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale20K-Ndrpdr.78B-{core}-ethip6-ip6scale20k-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-af-xdp-Ethip6-Ip6Base-Ndrpdr.78B-{core}-af-xdp-ethip6-ip6base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-af-xdp-Ethip6-Ip6Scale20K-Ndrpdr.78B-{core}-af-xdp-ethip6-ip6scale20k-ndrpdr"
-    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-af-xdp-Ethip6-Ip6Scale20K-rnd-Ndrpdr.78B-{core}-af-xdp-ethip6-ip6scale20k-rnd-ndrpdr"
   layout:
     title: "2n-dnv-x553-78b-{core}-ip6routing-base-scale-ixgbe-{test_type}"
     layout: "plot-throughput"
@@ -8049,21 +8043,6 @@
     - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-{core}-eth-l2bdscale10kmaclrn-ndrpdr"
   layout:
     title: "2n-dnv-x553-64b-{core}-l2switching-base-scale-ixgbe-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 2n-dnv-x553-64b-{core}-l2switching-base-scale-af_xdp-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-{core}-l2switching-base-scale-af_xdp-{test_type}"
-  data: "vpp-2n-dnv-curr-iter"
-  core: ["1t1c", ]
-  include:
-    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-af-xdp-Eth-L2Patch-Ndrpdr.64B-{core}-af-xdp-eth-l2patch-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-af-xdp-Eth-L2Xcbase-Ndrpdr.64B-{core}-af-xdp-eth-l2xcbase-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-af-xdp-Eth-L2Bdbasemaclrn-Ndrpdr.64B-{core}-af-xdp-eth-l2bdbasemaclrn-ndrpdr"
-    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-af-xdp-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-{core}-af-xdp-eth-l2bdscale10kmaclrn-ndrpdr"
-  layout:
-    title: "2n-dnv-x553-64b-{core}-l2switching-base-scale-af_xdp-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
