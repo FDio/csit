@@ -223,7 +223,18 @@ def _generate_trending_traces(in_data, job_name, build_info,
         if u"-cps" in name:
             hover_str = hover_str.replace(u"[Mpps]", u"[Mcps]").\
                 replace(u"throughput", u"connection rate")
-        if u"dpdk" in job_name:
+        if u"vpp" in job_name:
+            hover_str = hover_str.format(
+                date=date,
+                property=u"average" if incl_tests == u"mrr" else u"throughput",
+                value=data_y_mpps[index],
+                sut=u"vpp",
+                build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
+                test=incl_tests,
+                period=u"daily" if incl_tests == u"mrr" else u"weekly",
+                build_nr=str_key,
+                testbed=build_info[job_name][str_key][2])
+        elif u"dpdk" in job_name:
             hover_str = hover_str.format(
                 date=date,
                 property=u"average" if incl_tests == u"mrr" else u"throughput",
@@ -234,13 +245,13 @@ def _generate_trending_traces(in_data, job_name, build_info,
                 period=u"weekly",
                 build_nr=str_key,
                 testbed=build_info[job_name][str_key][2])
-        elif u"vpp" in job_name:
+        elif u"trex" in job_name:
             hover_str = hover_str.format(
                 date=date,
                 property=u"average" if incl_tests == u"mrr" else u"throughput",
                 value=data_y_mpps[index],
-                sut=u"vpp",
-                build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
+                sut=u"trex",
+                build=u"",
                 test=incl_tests,
                 period=u"daily" if incl_tests == u"mrr" else u"weekly",
                 build_nr=str_key,
