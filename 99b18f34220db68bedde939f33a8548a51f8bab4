@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f6409878_e2d61052",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-21T09:43:15Z",
+      "side": 1,
+      "message": "From the document, section 4.3.1.:\n\nMounting the whole /sys/ or /dev/ directory in the container will overwrite the\nnetwork device descriptor inside the container which causes \u0027device not found\u0027 or \u0027no such file or directory\u0027 error.\n\nThis doesn\u0027t happen when using only /dev/vfio/\u003cn\u003e.\n\nMore in https://jira.fd.io/browse/CSIT-1794.\n\nWhat would a change to overlayfs in docker look like?",
+      "parentUuid": "e7fa3a28_c6fa6d28",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 67
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b332bebc_093f0f67",
         "filename": "/COMMIT_MSG",
         "patchSetId": 12
@@ -45,6 +69,30 @@
       "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5bd65d6_d9b4deab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-21T09:43:15Z",
+      "side": 1,
+      "message": "Section 4.3.1. Will add to the commit msg.",
+      "parentUuid": "b332bebc_093f0f67",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 3
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "7573fcea_c2b15f3d",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-21T09:43:15Z",
+      "side": 1,
+      "message": "This is not a workaround, but a solution. We can\u0027t mount the whole /dev/vfio, so that needs to be changed a this function is necessary for this solution. There could be other solutions, of course.\n\nAnd vpp driver is \"the driver that vpp will use\". If kernel driver is what vpp will use, then we don\u0027t need to do anything in this function. For iavf, we need to bind to vfio-pci, since that\u0027s what VPP will use. There could be a problem with this approach if we used different vpp drivers with the same kernel driver (e.g. uio_pci_generic or vfio-pci with iavf), but I don\u0027t think that\u0027s the case.",
+      "parentUuid": "5dd34d51_3f8305ce",
+      "range": {
+        "startLine": 44,
+        "startChar": 64,
+        "endLine": 44,
+        "endChar": 65
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f7e7221_a7c34214",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 12
@@ -106,6 +178,30 @@
       "writtenOn": "2021-10-20T17:21:24Z",
       "side": 1,
       "message": "and if not? RDMA?",
+      "range": {
+        "startLine": 56,
+        "startChar": 32,
+        "endLine": 56,
+        "endChar": 36
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6225096e_c848841d",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-21T09:43:15Z",
+      "side": 1,
+      "message": "As far as I know, we\u0027re only using iavf in vpp device, hence only support for that. Is there a need to add rdma?\n\nBut in general, if the driver is not iavf, the old system should be used - i.e. mount the whole /dev/vfio. This fallback is actually missing, so I\u0027ll add it.",
+      "parentUuid": "0f7e7221_a7c34214",
       "range": {
         "startLine": 56,
         "startChar": 32,
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "0f4c45f5_be959444",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-21T09:43:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdb7c9d4_7a0c300a",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 5
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b353d201_bb5552c6",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 12
@@ -161,6 +281,30 @@
       "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "189f0f0b_78b30390",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-21T09:43:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b353d201_bb5552c6",
+      "range": {
+        "startLine": 142,
+        "startChar": 45,
+        "endLine": 142,
+        "endChar": 56
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "b8374ac0_c2499cb9",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-21T09:43:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0acd81e9_0badd82f",
+      "range": {
+        "startLine": 786,
+        "startChar": 0,
+        "endLine": 793,
+        "endChar": 8
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0536a297_60da07d0",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 12
@@ -207,6 +375,30 @@
       "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b08ceb88_118a6358",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-21T09:43:15Z",
+      "side": 1,
+      "message": "It\u0027s not a workaround and it is also not a driver issue. We\u0027ve been framing is as a driver issue, since that\u0027s what it looked like at the beginning, but my understanding has moved quite a bit. More in: https://jira.fd.io/browse/CSIT-1794. I\u0027ll add this reference to the commit message.",
+      "parentUuid": "0536a297_60da07d0",
+      "range": {
+        "startLine": 448,
+        "startChar": 73,
+        "endLine": 448,
+        "endChar": 74
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -269,6 +461,30 @@
       "side": 1,
       "message": "I prefer hard unbind. I think it is there for a reason. No exceptions",
       "parentUuid": "7ca46678_4e2ffd83",
+      "range": {
+        "startLine": 140,
+        "startChar": 6,
+        "endLine": 140,
+        "endChar": 42
+      },
+      "revId": "99b18f34220db68bedde939f33a8548a51f8bab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3ea93a1_10a8f5d8",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-10-21T09:43:15Z",
+      "side": 1,
+      "message": "What is the reason?\n\nWith this solution, we can\u0027t unbind the vfio-pci driver because the VF will be no longer be visible in the container.",
+      "parentUuid": "5238f206_8b875761",
       "range": {
         "startLine": 140,
         "startChar": 6,
