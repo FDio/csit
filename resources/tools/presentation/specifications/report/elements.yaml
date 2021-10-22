@@ -5844,7 +5844,7 @@
       data: "data name"
     - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
       data: "data msg"
-  data: "trex-2n-skx-curr-iter-best"
+  data: "trex-2n-skx-curr-cov"
   filter: "all"
   remove-ndr: False
   parameters:
@@ -6327,7 +6327,7 @@
   algorithm: "file_test_results"
   output-file: "{DIR[DTR,PERF,TREX,2N,SKX]}"
   dir-tables: "{DIR[DTR,PERF,TREX,2N,SKX]}"
-  data: "trex-2n-skx-curr-iter-best"
+  data: "trex-2n-skx-curr-cov"
   filter: "all"
   data-start-level: 4
 
