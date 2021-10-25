@@ -4,7 +4,7 @@ data "vault_aws_access_credentials" "creds" {
 }
 
 resource "aws_vpc" "CSITVPC" {
-  assign_generated_ipv6_cidr_block = false
+  assign_generated_ipv6_cidr_block = true
   enable_dns_hostnames             = false
   enable_dns_support               = true
   cidr_block                       = var.vpc_cidr_mgmt
@@ -30,7 +30,13 @@ resource "aws_security_group" "CSITSG" {
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = []
+  }
+
+  ingress {
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
   }
 
   ingress {
@@ -38,7 +44,7 @@ resource "aws_security_group" "CSITSG" {
     to_port          = 0
     protocol         = -1
     self             = true
-    ipv6_cidr_blocks = []
+    ipv6_cidr_blocks = ["::/0"]
   }
 
   egress {
@@ -46,7 +52,13 @@ resource "aws_security_group" "CSITSG" {
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = []
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    ipv6_cidr_blocks = ["::/0"]
   }
 
   tags = {
@@ -87,6 +99,7 @@ resource "aws_subnet" "mgmt" {
   depends_on                      = [
     aws_vpc.CSITVPC
   ]
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.CSITVPC.ipv6_cidr_block, 8, 1)
   map_public_ip_on_launch         = false
   vpc_id                          = aws_vpc.CSITVPC.id
 
@@ -97,12 +110,13 @@ resource "aws_subnet" "mgmt" {
 
 resource "aws_subnet" "b" {
   availability_zone               = var.avail_zone
-  assign_ipv6_address_on_creation = false
+  assign_ipv6_address_on_creation = true
   cidr_block                      = var.vpc_cidr_b
   depends_on                      = [
     aws_vpc.CSITVPC,
     aws_vpc_ipv4_cidr_block_association.b
   ]
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.CSITVPC.ipv6_cidr_block, 8, 2)
   map_public_ip_on_launch         = false
   vpc_id                          = aws_vpc.CSITVPC.id
 
@@ -113,12 +127,13 @@ resource "aws_subnet" "b" {
 
 resource "aws_subnet" "c" {
   availability_zone               = var.avail_zone
-  assign_ipv6_address_on_creation = false
+  assign_ipv6_address_on_creation = true
   cidr_block                      = var.vpc_cidr_c
   depends_on                      = [
     aws_vpc.CSITVPC,
     aws_vpc_ipv4_cidr_block_association.c
   ]
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.CSITVPC.ipv6_cidr_block, 8, 3)
   map_public_ip_on_launch         = false
   vpc_id                          = aws_vpc.CSITVPC.id
 
@@ -129,12 +144,13 @@ resource "aws_subnet" "c" {
 
 resource "aws_subnet" "d" {
   availability_zone               = var.avail_zone
-  assign_ipv6_address_on_creation = false
+  assign_ipv6_address_on_creation = true
   cidr_block                      = var.vpc_cidr_d
   depends_on                      = [
     aws_vpc.CSITVPC,
     aws_vpc_ipv4_cidr_block_association.d
   ]
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.CSITVPC.ipv6_cidr_block, 8, 4)
   map_public_ip_on_launch         = false
   vpc_id                          = aws_vpc.CSITVPC.id
 
@@ -343,9 +359,10 @@ resource "aws_route" "CSIT-igw" {
     aws_vpc.CSITVPC,
     aws_internet_gateway.CSITGW
   ]
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.CSITGW.id
-  route_table_id         = aws_vpc.CSITVPC.main_route_table_id
+  destination_cidr_block      = "0.0.0.0/0"
+  destination_ipv6_cidr_block = "::/0"
+  gateway_id                  = aws_internet_gateway.CSITGW.id
+  route_table_id              = aws_vpc.CSITVPC.main_route_table_id
 }
 
 resource "aws_route" "dummy-trex-port-0" {
