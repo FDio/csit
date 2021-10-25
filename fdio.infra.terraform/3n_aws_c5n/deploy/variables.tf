@@ -92,16 +92,19 @@ variable "vpc_cidr_mgmt" {
   type        = string
   default     = "192.168.0.0/24"
 }
+
 variable "vpc_cidr_b" {
   description = "CIDR block B"
   type        = string
   default     = "192.168.10.0/24"
 }
+
 variable "vpc_cidr_c" {
   description = "CIDR block C"
   type        = string
   default     = "200.0.0.0/24"
 }
+
 variable "vpc_cidr_d" {
   description = "CIDR block D"
   type        = string
@@ -114,6 +117,7 @@ variable "trex_dummy_cidr_port_0" {
   type        = string
   default     = "10.0.0.0/24"
 }
+
 variable "trex_dummy_cidr_port_1" {
   description = "TREX dummy CIDR"
   type        = string
@@ -126,41 +130,49 @@ variable "tg_if1_ip" {
   type        = string
   default     = "192.168.10.254"
 }
+
 variable "tg_if2_ip" {
   description = "TG IP on interface 2"
   type        = string
   default     = "192.168.20.254"
 }
+
 variable "dut1_if1_ip" {
   description = "DUT IP on interface 1"
   type        = string
   default     = "192.168.10.11"
 }
+
 variable "dut1_if2_ip" {
   description = "DUT IP on interface 2"
   type        = string
   default     = "200.0.0.101"
 }
+
 variable "dut2_if1_ip" {
   description = "DUT2 IP on interface 1"
   type        = string
   default     = "200.0.0.102"
 }
+
 variable "dut2_if2_ip" {
   description = "DUT2 IP on interface 2"
   type        = string
   default     = "192.168.20.11"
 }
+
 variable "tg_mgmt_ip" {
   description = "TG management interface IP"
   type        = string
   default     = "192.168.0.10"
 }
+
 variable "dut1_mgmt_ip" {
   description = "DUT1 management interface IP"
   type        = string
   default     = "192.168.0.11"
 }
+
 variable "dut2_mgmt_ip" {
   description = "DUT2 management interface IP"
   type        = string
