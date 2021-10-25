@@ -30,8 +30,8 @@ module "deploy" {
   dut1_if1_ip = "192.168.10.11"
   dut1_if2_ip = "192.168.20.11"
 
-  trex_dummy_cidr_port_0 = "10.0.0.0/24"
-  trex_dummy_cidr_port_1 = "20.0.0.0/24"
+  trex_dummy_cidr_port_0 = "10.0.0.0/16"
+  trex_dummy_cidr_port_1 = "20.0.0.0/16"
 
   # Ansible
   ansible_python_executable = "/usr/bin/python3"
