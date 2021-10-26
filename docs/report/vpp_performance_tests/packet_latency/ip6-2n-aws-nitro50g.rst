@@ -28,16 +28,16 @@
 
     </script>
 
-3n-aws-nitro50g
+2n-aws-nitro50g
 ~~~~~~~~~~~~~~~
 
-64b-2t1c-ip4routing-base-scale-ena
+1518b-2t1c-ip6routing-base-scale-ena
 ----------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4base.html"></iframe>
+    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6base.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4base}
-            \label{fig:hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4base}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6base}
+            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6base}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4scale20k.html"></iframe>
+    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6scale20k.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4scale20k}
-            \label{fig:hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4scale20k}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6scale20k}
+            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6scale20k}
     \end{figure}
