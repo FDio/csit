@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16a04dc3_4212bd70",
+        "filename": "docs/report/introduction/test_environment_intro_tg.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-10-26T06:15:27Z",
+      "side": 1,
+      "message": "trex - see docs/report/trex_performance_tests/csit_release_notes.rst",
+      "range": {
+        "startLine": 106,
+        "startChar": 44,
+        "endLine": 106,
+        "endChar": 47
+      },
+      "revId": "11f86e1ceb9ba3fb991163221281d918f0ba6c88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "103c6702_57c1ee39",
+        "filename": "docs/report/introduction/test_environment_intro_tg.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-10-26T06:15:27Z",
+      "side": 1,
+      "message": "trex - but we do not have comparisons now. To be added in 2202.",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 9
+      },
+      "revId": "11f86e1ceb9ba3fb991163221281d918f0ba6c88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04a2554d_b77535a7",
+        "filename": "docs/report/introduction/test_environment_intro_tg.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-10-26T06:15:27Z",
+      "side": 1,
+      "message": "alignment - add 2 white spaces",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 20
+      },
+      "revId": "11f86e1ceb9ba3fb991163221281d918f0ba6c88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff483ef8_b124560c",
+        "filename": "docs/report/trex_performance_tests/logical-TRex-nic2nic.svg",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-10-26T06:15:27Z",
+      "side": 1,
+      "message": "Is the title \"1-Node Topology: Container Service Switching\" OK?",
+      "range": {
+        "startLine": 1,
+        "startChar": 6,
+        "endLine": 1,
+        "endChar": 139
+      },
+      "revId": "11f86e1ceb9ba3fb991163221281d918f0ba6c88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdf7b504_a1cca18c",
+        "filename": "docs/report/trex_performance_tests/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-10-26T06:15:27Z",
+      "side": 1,
+      "message": "must be unique, the same is e.g. in docs/report/vpp_performance_tests/overview.rst",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 30
+      },
+      "revId": "11f86e1ceb9ba3fb991163221281d918f0ba6c88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "827fde8b_b6fa9f6a",
+        "filename": "docs/report/trex_performance_tests/overview.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-10-26T06:15:27Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 11,
+        "startChar": 16,
+        "endLine": 11,
+        "endChar": 18
+      },
+      "revId": "11f86e1ceb9ba3fb991163221281d918f0ba6c88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c69c028e_77e91391",
+        "filename": "docs/report/trex_performance_tests/test_environment.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-10-26T06:15:27Z",
+      "side": 1,
+      "message": "Add a new line before and after this line",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 52
+      },
+      "revId": "11f86e1ceb9ba3fb991163221281d918f0ba6c88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
