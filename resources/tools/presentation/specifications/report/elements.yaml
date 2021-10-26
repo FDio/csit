@@ -7435,7 +7435,7 @@
   core: ["2t1c", ]
   include:
     - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.64B-{core}-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale20k-ndrpdr.64B-{core}-ethip4-ip4scale20k-ndrpdr"
   layout:
     title: "2n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
     layout: "plot-throughput"
@@ -7448,9 +7448,22 @@
   core: ["2t1c", ]
   include:
     - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4base-ndrpdr.1518b-{core}-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.1518b-{core}-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2n1l-50ge1p1ENA-ethip4-ip4scale20k-ndrpdr.1518b-{core}-ethip4-ip4scale20k-ndrpdr"
   layout:
     title: "2n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-aws-nitro50g-1518b-{core}-ip6routing-base-scale-ena-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-aws-nitro50g-1518b-{core}-ip6routing-base-scale-{test_type}"
+  data: "vpp-2n-aws-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip6.2n1l-50ge1p1ENA-ethip6-ip6base-ndrpdr.1518B-{core}-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2n1l-50ge1p1ENA-ethip6-ip6scale20k-ndrpdr.1518B-{core}-ethip6-ip6scale20k-ndrpdr"
+  layout:
+    title: "2n-aws-nitro50g-1518b-{core}-ip6routing-base-scale-ena-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -7461,7 +7474,7 @@
   core: ["2t1c", ]
   include:
     - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.64B-{core}-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-ndrpdr.64B-{core}-ethip4-ip4scale20k-ndrpdr"
   layout:
     title: "3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
     layout: "plot-throughput"
@@ -7474,9 +7487,33 @@
   core: ["2t1c", ]
   include:
     - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.1518b-{core}-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale2m-ndrpdr.1518b-{core}-ethip4-ip4scale2m-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-ndrpdr.1518b-{core}-ethip4-ip4scale20k-ndrpdr"
   layout:
     title: "3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-aws-nitro50g-1518b-{core}-ipsec-ip4routing-scale-ena-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-1518b-{core}-ipsec-ip4routing-scale-{test_type}"
+  data: "vpp-3n-aws-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Crypto.50ge1p1ENA-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr.1518B-{core}-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-aws-nitro50g-1518b-{core}-ipsec-ip4routing-scale-ena-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-aws-nitro50g-imix-{core}-ipsec-ip4routing-scale-ena-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-imix-{core}-ipsec-ip4routing-scale-{test_type}"
+  data: "vpp-3n-aws-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Crypto.50ge1p1ENA-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr.imix-{core}-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-aws-nitro50g-imix-{core}-ipsec-ip4routing-scale-ena-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"

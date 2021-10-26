@@ -31,6 +31,7 @@ CSIT source code for the test cases used for plots can be found in
     ip6-2n-tx2-xl710
     ip6-2n-dnv-x553
     ip6-3n-dnv-x553
+    ip6-2n-aws-nitro50g
 
 ..
     ip6-2n-icx-e810cq

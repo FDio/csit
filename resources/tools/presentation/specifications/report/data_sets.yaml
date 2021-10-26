@@ -479,7 +479,7 @@
 
   vpp-2n-zn2-prev-iter-mrr-new-env:
     csit-vpp-perf-report-iterative-2110-2n-zn2:
-      - 33  # rls2110.rc2 MRR iter env 8 - REPLACE by 2106.rel
+      - 19  # rls2106.rel MRR iter env 8
 
   vpp-2n-zn2-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2110-2n-zn2:
