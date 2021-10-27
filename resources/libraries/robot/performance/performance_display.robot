@@ -46,6 +46,27 @@
 | | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
 | | Fail | ${message}
 
+| Compute bandwidth
+| | [Documentation]
+| | ... | Compute bandwidth in Gbps from given transaction rate.
+| | ...
+| | ... | This keyword reads "ppta" and "avg_frame_size" computed elsewhere.
+| | ... | The implementation should work for both pps and cps rates.
+| | ... |
+| | ... | *Arguments:*
+| | ... | - tps - Transaction rate [tps]. Type: float
+| |
+| | ... | *Example:*
+| |
+| | ... | |\ ${bandwidth}= \| Compute Bandwidth \| \${12345.67} \|
+| |
+| | [Arguments] | ${tps}
+| |
+| | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${pps} = | Evaluate | ${tps} * ${ppta}
+| | ${bandwidth} = | Evaluate | ${pps} * (${avg_frame_size}+20)*8 / 1e9
+| | Return From Keyword | ${bandwidth}
+
 | Display Reconfig Test Message
 | | [Documentation]
 | | ... | Display the number of packets lost (bidirectionally)
@@ -198,6 +219,8 @@
 | | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
 | | Set Test Message | ${\n}${text}: ${tps} CPS | append=yes
+| | ${bandwidth} = | Compute Bandwidth | ${tps}
+| | Export Search Bound | ${text} | ${tps} | cps | ${bandwidth}
 | | Return From Keyword If | not """${latency}"""
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
@@ -230,11 +253,10 @@
 | |
 | | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
-| | ${ppta} = | Get Packets Per Transaction Aggregated
-| | ${pps} = | Evaluate | ${tps} * ${ppta}
-| | ${bandwidth} = | Evaluate | ${pps} * (${avg_frame_size}+20)*8 / 1e9
+| | ${bandwidth} = | Compute Bandwidth | ${tps}
 | | Set Test Message | ${\n}${text}: ${pps} pps, | append=yes
 | | Set Test Message | ${bandwidth} Gbps (initial) | append=yes
+| | Export Search Bound | ${text} | ${pps} | pps | ${bandwidth}
 | | Return From Keyword If | not """${latency}"""
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
