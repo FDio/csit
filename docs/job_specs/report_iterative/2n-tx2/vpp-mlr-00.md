@@ -1,9 +1,5 @@
 # 2n-tx2
-### tests 189
-### job hrs est. 18.2
-### job hrs real ??.?
-### test mins est. 5.68
-### test mins real 5.68
+### tests 192
 ## ./container_memif
 ### intel-xl710
 #### dpdk-vfio-pci
@@ -97,6 +93,30 @@
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
 4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
+##### ethip4ipsec1spe-ip4base-policy-outbound-nocrypto
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1spe-ip4base-policy-outbound-nocrypto
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1spe-ip4base-policy-outbound-nocrypto
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1spe-ip4base-policy-outbound-nocrypto
+##### ethip4ipsec100spe-ip4base-policy-outbound-nocrypto
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec100spe-ip4base-policy-outbound-nocrypto
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec100spe-ip4base-policy-outbound-nocrypto
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec100spe-ip4base-policy-outbound-nocrypto
+##### ethip4ipsec1000spe-ip4base-policy-outbound-nocrypto
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000spe-ip4base-policy-outbound-nocrypto
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000spe-ip4base-policy-outbound-nocrypto
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000spe-ip4base-policy-outbound-nocrypto
+##### ethip4ipsec1spe-cache-ip4base-policy-outbound-nocrypto
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1spe-cache-ip4base-policy-outbound-nocrypto
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1spe-cache-ip4base-policy-outbound-nocrypto
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1spe-cache-ip4base-policy-outbound-nocrypto
+##### ethip4ipsec100spe-cache-ip4base-policy-outbound-nocrypto
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec100spe-cache-ip4base-policy-outbound-nocrypto
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec100spe-cache-ip4base-policy-outbound-nocrypto
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec100spe-cache-ip4base-policy-outbound-nocrypto
+##### ethip4ipsec1000spe-cache-ip4base-policy-outbound-nocrypto
+1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000spe-cache-ip4base-policy-outbound-nocrypto
+2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000spe-cache-ip4base-policy-outbound-nocrypto
+4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4ipsec1000spe-cache-ip4base-policy-outbound-nocrypto
 ## ./ip4
 ### intel-xl710
 #### af_xdp
@@ -125,10 +145,6 @@
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
 4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale200k
-##### ethip4-ip4scale2m
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4scale2m
 ##### ethip4-ip4base-iacldstbase
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-iacldstbase
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip4-ip4base-iacldstbase
@@ -178,10 +194,6 @@
 1c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale200k
 2c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale200k
 4c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale200k
-##### ethip6-ip6scale2m
-1c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m
-2c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m
-4c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6scale2m
 ##### ethip6-ip6base-iacldstbase
 1c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
 2c AND 78b AND ndrpdr AND xl710 AND drv_vfio_pci AND ethip6-ip6base-iacldstbase
@@ -202,10 +214,6 @@
 1c AND 64b AND ndrpdr AND xl710 AND drv_af_xdp AND eth-l2bdscale100kmaclrn
 2c AND 64b AND ndrpdr AND xl710 AND drv_af_xdp AND eth-l2bdscale100kmaclrn
 4c AND 64b AND ndrpdr AND xl710 AND drv_af_xdp AND eth-l2bdscale100kmaclrn
-##### eth-l2bdscale1mmaclrn
-1c AND 64b AND ndrpdr AND xl710 AND drv_af_xdp AND eth-l2bdscale1mmaclrn
-2c AND 64b AND ndrpdr AND xl710 AND drv_af_xdp AND eth-l2bdscale1mmaclrn
-4c AND 64b AND ndrpdr AND xl710 AND drv_af_xdp AND eth-l2bdscale1mmaclrn
 ##### eth-l2xcbase
 1c AND 64b AND ndrpdr AND xl710 AND drv_af_xdp AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND xl710 AND drv_af_xdp AND eth-l2xcbase
@@ -227,10 +235,6 @@
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdscale100kmaclrn
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdscale100kmaclrn
 4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdscale100kmaclrn
-##### eth-l2bdscale1mmaclrn
-1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
-2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
-4c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 ##### dot1q-l2bdbasemaclrn
 1c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
 2c AND 64b AND ndrpdr AND xl710 AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
