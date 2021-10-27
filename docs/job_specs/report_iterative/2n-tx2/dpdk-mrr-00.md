@@ -1,9 +1,5 @@
 # 2n-tx2
 ### tests 6
-### job hrs est. 0.2
-### job hrs real [No data available]
-### test mins est. 1.6
-### test mins real [No data available]
 ### intel-xl710
 #### dpdk-vfio-pci
 ##### eth-l2xcbase-testpmd
