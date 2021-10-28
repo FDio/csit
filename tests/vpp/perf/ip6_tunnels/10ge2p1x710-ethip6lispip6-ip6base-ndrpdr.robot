@@ -30,21 +30,28 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC6830: Pkt throughput Lisp test cases*
+| Documentation | **RFC6830: Pkt throughput Lisp test cases**
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
-| ... | with single links between nodes.\
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6-LISP-IPv6 on DUT1-DUT2,\
-| ... | Eth-IPv6 on TG-DUTn for IPv6 routing over LISPoIPv6 tunnel.\
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
-| ... | routing and static routes. LISPoIPv6 tunnel is configured between\
-| ... | DUT1 and DUT2. DUT1 and DUT2 tested with ${nic_name}.\
-| ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
-| ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
-| ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
-| ... | of packets transmitted. NDR and PDR are discovered for different\
-| ... | Ethernet L2 frame sizes using MLRsearch library.\
-| ... | *[Ref] Applicable standard specifications:* RFC6830.
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-DUT2-TG 3-node circular \
+| ... | topology with single links between nodes. \
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv6-LISP-IPv6 on DUT1-DUT2, \
+| ... | Eth-IPv6 on TG-DUTn for IPv6 routing over LISPoIPv6 tunnel. \
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with IPv6 \
+| ... | routing and static routes. LISPoIPv6 tunnel is configured between \
+| ... | DUT1 and DUT2. DUT1 and DUT2 tested with ${nic_name}.
+| ... |
+| ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
+| ... | Drop Rate) with 0 packet loss tolerance and throughput PDR (Partial \
+| ... | Drop Rate) with non-zero packet loss tolerance (LT) expressed in \
+| ... | percentage of packets transmitted. NDR and PDR are discovered for \
+| ... | different Ethernet L2 frame sizes using MLRsearch library. \
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC6830.
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | lisp_plugin.so
@@ -63,10 +70,10 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv6 LISP remote static mappings and whitelist\
-| | ... | filters config.\
-| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.\
-| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
+| | ... | [Cfg] DUT runs IPv6 LISP remote static mappings and whitelist \
+| | ... | filters config. \
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads. \
+| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm. \
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Frame size in Bytes as integer or string (IMIX_v4_1).
