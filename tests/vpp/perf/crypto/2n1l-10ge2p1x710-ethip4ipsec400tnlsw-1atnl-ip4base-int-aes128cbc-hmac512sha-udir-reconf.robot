@@ -16,9 +16,9 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | UDIR | PERFTEST | HW_ENV | RECONF
-| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE | TNL_400
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | 1_ADDED_TUNNEL | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECSW | IPSECINT | SCALE | TNL_400
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | 1_ADDED_TUNNEL
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec400tnlsw-1atnl-ip4base-int-aes128cbc-hmac512sha-udir
 |
 | Suite Setup | Setup suite topology interfaces | performance

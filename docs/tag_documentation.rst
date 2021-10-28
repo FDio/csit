@@ -164,12 +164,12 @@ Scaling Tags
     Traffic stream with 100 unique flows (10 IPs/users x 10 UDP ports) in one
     direction.
 
-.. topic:: 10k_FLOWS
+.. topic:: 10K_FLOWS
 
     Traffic stream with 10 000 unique flows (10 IPs/users x 1000 UDP ports) in
     one direction.
 
-.. topic:: 100k_FLOWS
+.. topic:: 100K_FLOWS
 
     Traffic stream with 100 000 unique flows (100 IPs/users x 1000 UDP ports) in
     one direction.
@@ -389,7 +389,7 @@ NF Service Density Tags
     Service density {n}VM{t}T, {n}Number of NF Qemu VMs, {t}Number of threads
     per NF.
 
-.. topic:: {n}DCRt}T
+.. topic:: {n}DCR{t}T
 
     Service density {n}DCR{t}T, {n}Number of NF Docker containers, {t}Number of
     threads per NF.
@@ -495,23 +495,23 @@ Encapsulation Tags
 
     All test cases with LISP-GPE.
 
-.. topic:: LISP_IP4o4
+.. topic:: LISP_IP4O4
 
     All test cases with LISP_IP4o4.
 
-.. topic:: LISPGPE_IP4o4
+.. topic:: LISPGPE_IP4O4
 
     All test cases with LISPGPE_IP4o4.
 
-.. topic:: LISPGPE_IP6o4
+.. topic:: LISPGPE_IP6O4
 
     All test cases with LISPGPE_IP6o4.
 
-.. topic:: LISPGPE_IP4o6
+.. topic:: LISPGPE_IP4O6
 
     All test cases with LISPGPE_IP4o6.
 
-.. topic:: LISPGPE_IP6o6
+.. topic:: LISPGPE_IP6O6
 
     All test cases with LISPGPE_IP6o6.
 
@@ -535,19 +535,19 @@ Encapsulation Tags
 
     All test cases with IPSEC.
 
-.. topic:: SRv6
+.. topic:: SRV6
 
     All test cases with Segment routing over IPv6 dataplane.
 
-.. topic:: SRv6_1SID
+.. topic:: SRV6_1SID
 
     All SRv6 test cases with single SID.
 
-.. topic:: SRv6_2SID_DECAP
+.. topic:: SRV6_2SID_DECAP
 
     All SRv6 test cases with two SIDs and with decapsulation.
 
-.. topic:: SRv6_2SID_NODECAP
+.. topic:: SRV6_2SID_NODECAP
 
     All SRv6 test cases with two SIDs and without decapsulation.
 
@@ -725,19 +725,19 @@ Feature Tags
 
     ACL plugin configured and tested with 50 not-hitting ACEs.
 
-.. topic:: SRv6_PROXY
+.. topic:: SRV6_PROXY
 
     SRv6 endpoint to SR-unaware appliance via proxy.
 
-.. topic:: SRv6_PROXY_STAT
+.. topic:: SRV6_PROXY_STAT
 
     SRv6 endpoint to SR-unaware appliance via static proxy.
 
-.. topic:: SRv6_PROXY_DYN
+.. topic:: SRV6_PROXY_DYN
 
     SRv6 endpoint to SR-unaware appliance via dynamic proxy.
 
-.. topic:: SRv6_PROXY_MASQ
+.. topic:: SRV6_PROXY_MASQ
 
     SRv6 endpoint to SR-unaware appliance via masquerading proxy.
 

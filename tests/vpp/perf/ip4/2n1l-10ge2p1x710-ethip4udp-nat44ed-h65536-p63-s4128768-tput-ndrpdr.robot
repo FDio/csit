@@ -15,8 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | NAT44 | UDP | UDP_TPUT | DRV_VFIO_PCI
-| ... | SCALE | HOSTS_65536 | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | HOSTS_65536
+| ... | FEATURE | NAT44 | NAT44_ENDPOINT_DEPENDENT | UDP | UDP_TPUT
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4udp-nat44ed-h65536-p63-s4128768-tput
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -85,7 +86,7 @@
 | ${heap_size_mult}= | ${2}
 # Ramp-up settings
 | ${ramp_up_rate}= | ${36000}
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
 | ${transaction_type}= | udp_pps
 | ${disable_latency}= | ${True}

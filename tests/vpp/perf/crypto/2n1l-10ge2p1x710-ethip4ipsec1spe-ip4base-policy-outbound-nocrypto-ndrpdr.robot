@@ -15,9 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
-| ... | BASE | IPSEC | IPSECSW | IPSECSPD | SPD_OUTBOUND | SPE_1 | NOCRYPTO
-| ... | NIC_Intel-X710 | DRV_VFIO_PCI | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECSW | IPSECSPD | BASE | SPE_1
+| ... | SPD_OUTBOUND | NOCRYPTO
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec1spe-ip4base-policy-outbound-nocrypto
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -65,7 +66,7 @@
 | ${remote_addr_range_ip4}= | 20.20.20.0/24
 | ${local_addr_range_ip4}= | 10.10.10.0/24
 | ${rule_amount}= | ${1}
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src253
 
 *** Keywords ***

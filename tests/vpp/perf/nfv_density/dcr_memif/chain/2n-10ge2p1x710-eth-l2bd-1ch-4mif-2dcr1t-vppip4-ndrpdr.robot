@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | 1R2C
-| ... | NF_DENSITY | CHAIN | NF_VPPIP4 | 2DCR1T | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | MEMIF | DOCKER
+| ... | NF_DENSITY | 1R2C | CHAIN | NF_VPPIP4 | 2DCR1T
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-l2bd-1ch-4mif-2dcr1t-vppip4
 |
 | Suite Setup | Setup suite topology interfaces | performance

@@ -17,9 +17,9 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | NAT44_DETERMINISTIC
-| ... | BASE | UDP | UDP_BIDIR | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE
+| ... | FEATURE | NAT44 | NAT44_DETERMINISTIC | UDP | UDP_BIDIR
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4udp-nat44det-h1-p1-s1
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -85,7 +85,7 @@
 # Ramp-up settings
 | ${ramp_up_rate}= | ${500000}
 | ${ramp_up_duration}= | ${1}
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-ethip4udp-${n_hosts}u${n_ports}p
 
 *** Keywords ***

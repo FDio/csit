@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | DOT1Q | IP4BASE | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | DOT1Q | IP4BASE
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | dot1q-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -64,7 +64,7 @@
 # TG subnets used by T-Rex
 | ${tg_if1_net}= | 10.10.10.0
 | ${tg_if2_net}= | 20.20.20.0
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-dot1qip4asym-ip4src254
 
 *** Keywords ***

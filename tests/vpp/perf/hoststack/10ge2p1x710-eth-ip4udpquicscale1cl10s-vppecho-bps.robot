@@ -17,9 +17,9 @@
 | Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VPPECHO
+| ... | NIC_Intel-X710 | UDP | QUIC | VPPECHO
 | ... | HOSTSTACK | 1CLIENT | 10STREAM | 1280B
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | eth-ip4udpquicscale1cl10s-vppecho
 |
 | Suite Setup | Setup suite topology interfaces with no TG

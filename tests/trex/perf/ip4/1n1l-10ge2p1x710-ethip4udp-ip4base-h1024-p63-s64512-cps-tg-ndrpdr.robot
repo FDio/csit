@@ -15,8 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
-| ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | IP4FWD
-| ... | N2N | SCALE | IP4BASE | TG_DRV_IGB_UIO | UDP | UDP_CPS | HOSTS_1024
+| ... | PERFTEST | HW_ENV | TREX | N2N | TG_DRV_IGB_UIO | NDRPDR
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | UDP_CPS
+| ... | SCALE | HOSTS_1024
 | ... | ethip4udp-ip4base-h1024-p63-s64512-cps-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
@@ -51,7 +52,7 @@
 | ${n_hosts}= | ${1024}
 | ${n_ports}= | ${63}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h
 | ${transaction_type}= | udp_cps
 | ${disable_latency}= | ${True}

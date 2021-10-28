@@ -15,9 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | SRv6 | SRv6_2SID_NODECAP
-| ... | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | SRV6 | SRV6_2SID_NODECAP
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip6srhip6-ip6base-srv6enc2sids-nodecaps
 |
 | Suite Setup | Setup suite topology interfaces | scapy

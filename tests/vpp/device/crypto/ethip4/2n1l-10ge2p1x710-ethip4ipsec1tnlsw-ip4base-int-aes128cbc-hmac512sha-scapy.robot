@@ -16,8 +16,8 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECSW | IPSECINT | IP4BASE
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec1tnlsw-ip4base-int-aes128cbc-hmac512sha
 |
 | Suite Setup | Setup suite topology interfaces | scapy

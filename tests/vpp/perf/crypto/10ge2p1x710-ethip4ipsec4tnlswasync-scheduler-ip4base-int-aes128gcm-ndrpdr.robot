@@ -16,10 +16,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_4
-| ... | IP4FWD | IPSEC | IPSECSW | ASYNC | IPSECINT | NIC_Intel-X710 | SCALE
-| ... | SCHEDULER | AES_128_GCM | AES | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | IP4FWD | IPSEC | IPSECSW | IPSECINT | SCALE | TNL_4
+| ... | ASYNC | SCHEDULER | AES_128_GCM | AES
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4ipsec4tnlswasync-scheduler-ip4base-int-aes128gcm
 |
 | Suite Setup | Setup suite topology interfaces | performance

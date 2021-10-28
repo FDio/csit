@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
-| ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | L2BDMACLRN
-| ... | N2N | SCALE | L2BDSCALE | FIB_1M | TG_DRV_IGB_UIO
+| ... | PERFTEST | HW_ENV | TREX | N2N | TG_DRV_IGB_UIO | NDRPDR
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | L2BDSCALE | SCALE | FIB_1M
 | ... | eth-l2bdscale1mmaclrn-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic

@@ -16,8 +16,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | MEMIF | DOCKER
-| ... | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | dot1q-l2bdbasemaclrn-eth-2memif-1dcr
 |
 | Suite Setup | Setup suite topology interfaces | performance
