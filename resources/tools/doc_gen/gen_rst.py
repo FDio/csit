@@ -305,7 +305,24 @@ def generate_tests_rst_files():
     generate_rf_rst_files(
         file_names, incl_suite_setup=True, incl_variables=True
     )
-
+    for test in tests:
+        with open(test, 'r') as f:
+            newlines = []
+            write = False
+            for line in f.readlines():
+                if u"| Documentation" in line and not write:
+                    write = True
+                elif u"***" in line and write:
+                    write = False
+                    newlines.append(u'\n\n')
+                if write:
+                    newlines.append(line.replace(u'*[', u'\n| ... | - *[')
+                                    .replace(u"*", u"**"))
+                else:
+                    newlines.append(line)
+        with open(test, 'w') as f:
+            for line in newlines:
+                f.write(line)
 
 def fast_scandir(dirname):
     subfolders = [f.path for f in scandir(dirname) if f.is_dir()]
