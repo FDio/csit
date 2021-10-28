@@ -51,7 +51,7 @@ if ! grep -q '^\+    MODEL_VERSION = ' "${const_log}"; then
 fi
 doc_log="docs_edits.log"
 git diff -U0 HEAD~ -- "docs/model/current/top.rst" > "${doc_log}"
-if ! grep -q '^\+This document tree is valid for CSIT model' "${doc_log}"; then
+if ! grep -q '^\+This document is valid for CSIT model' "${doc_log}"; then
     warn "Model implementation edits without documentation update detected!"
     warn "See ${impl_log}, ${const_log} and ${doc_log} for what was detected."
     warn
