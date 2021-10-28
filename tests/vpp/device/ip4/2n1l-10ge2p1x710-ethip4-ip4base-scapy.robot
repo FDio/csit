@@ -25,18 +25,25 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv4 routing test cases*
+| Documentation | **IPv4 routing test cases**
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
+| ... | 
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing on both \
+| ... | 
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for IPv4 routing on both \
 | ... | links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
+| ... | 
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing and \
 | ... | two static IPv4 /24 route entries.
-| ... | *[Ver] TG verification:* Test IPv4 packet with IP protocol=61 is sent \
+| ... | 
+| ... | - **[Ver] TG verification:** Test IPv4 packet with IP protocol=61 is sent \
 | ... | in one direction by TG on links to DUT1; on receive TG verifies packet \
 | ... | for correctness and their IPv4 src-addr, dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
+| ... | 
+| ... | - **[Ref] Applicable standard specifications:** RFC791, RFC826, RFC792
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -54,7 +61,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IPv4 packet routed over DUT1 interfaces.\
+| | ... | [Ver] Make TG send IPv4 packet routed over DUT1 interfaces. \
 | | ... | Make TG verify IPv4 packet is correct.
 | |
 | | ... | *Arguments:*

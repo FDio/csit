@@ -28,13 +28,19 @@
 |
 | Test Template | Local template
 |
-| Documentation | *QUIC Unidirectional Echo Client -> Echo Server goodput.
+| Documentation | **QUIC Unidirectional Echo Client -> Echo Server goodput.
 |
-| ... | *[Top] Network Topologies:* DUT-DUT 2-node topology
+| ... | 
+| ... | - **[Top] Network Topologies:** DUT-DUT 2-node topology \
 | ... | with single link between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP-QUIC
-| ... | *[Cfg] DUT configuration:*
-| ... | *[Ref] Applicable standard specifications:*
+| ... | 
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-UDP-QUIC
+| ... | 
+| ... | - **[Cfg] DUT configuration:**
+| ... | 
+| ... | - **[Ref] Applicable standard specifications:**
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | quic_plugin.so

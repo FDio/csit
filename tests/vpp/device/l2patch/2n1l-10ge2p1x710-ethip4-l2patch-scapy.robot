@@ -25,18 +25,25 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *L2 cross-connect test cases*
+| Documentation | **L2 cross-connect test cases**
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
+| ... | 
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of \
+| ... | 
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for L2 switching of \
 | ... | IPv4. Both apply to all links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 patch switching.
-| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61 \
-| ... | are sent in both directions by TG on links to DUT1; on receive TG \
+| ... | 
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with L2 patch switching.
+| ... | 
+| ... | - **[Ver] TG verification:** Test IPv4 packets with IP protocol=61 \
+| ... | are sent in both directions by TG on links to DUT1; on receive TG. \
 | ... | verifies packets for correctness and their IPv4 src-addr, \
 | ... | dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC792
+| ... | 
+| ... | - **[Ref] Applicable standard specifications:** RFC792
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -54,8 +61,8 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IPv4 packets in both directions between two\
-| | ... | of its interfaces to be switched by DUT to and from docker; verify\
+| | ... | [Ver] Make TG send IPv4 packets in both directions between two \
+| | ... | of its interfaces to be switched by DUT to and from docker; verify \
 | | ... | all packets are received.
 | |
 | | ... | *Arguments:*

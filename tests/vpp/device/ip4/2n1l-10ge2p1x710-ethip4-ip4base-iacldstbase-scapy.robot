@@ -25,18 +25,25 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv4 iAcl whitelist test cases*
+| Documentation | **IPv4 iAcl whitelist test cases**
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
+| ... | 
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 on all links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
+| ... | 
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 on all links.
+| ... | 
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing and \
 | ... | static routes. IPv4 iAcl security whitelist is applied on DUT1 ingress \
 | ... | interface from TG.
-| ... | *[Ver] TG verification:* Test IPv4 packets are sent in one direction \
+| ... | 
+| ... | - **[Ver] TG verification:** Test IPv4 packets are sent in one direction. \
 | ... | by TG on link to DUT1; on receive TG verifies packets for correctness \
 | ... | and drops as applicable.
-| ... | *[Ref] Applicable standard specifications:*
+| ... | 
+| ... | - **[Ref] Applicable standard specifications:**
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so

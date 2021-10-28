@@ -26,16 +26,22 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv4 IPsec tunnel mode test suite.*
+| Documentation | **IPv4 IPsec tunnel mode test suite.**
 |
-| ... | *[Top] Network topologies:* TG-DUT1 2-node topology with one link\
+| ... | 
+| ... | - **[Top] Network topologies:** TG-DUT1 2-node topology with one link \
 | ... | between nodes.
-| ... | *[Cfg] DUT configuration:* On DUT1 create loopback interface, configure\
-| ... | loopback an physical interface IPv4 addresses, static ARP record, route\
+| ... | 
+| ... | - **[Cfg] DUT configuration:** On DUT1 create loopback interface, configure \
+| ... | loopback an physical interface IPv4 addresses, static ARP record, route \
 | ... | and IPsec manual keyed connection in tunnel mode.
-| ... | *[Ver] TG verification:* ETH-IP4 packet is sent from TG to DUT1. Packet\
+| ... | 
+| ... | - **[Ver] TG verification:** ETH-IP4 packet is sent from TG to DUT1. Packet \
 | ... | is received on TG from DUT1.
-| ... | *[Ref] Applicable standard specifications:* RFC4303.
+| ... | 
+| ... | - **[Ref] Applicable standard specifications:** RFC4303.
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -63,8 +69,8 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] On DUT1 configure IPsec tunnel interfaces with encryption\
-| | ... | algorithm AES_128_CBC and integrity algorithm HMAC_SHA_512 in tunnel\
+| | ... | [Cfg] On DUT1 configure IPsec tunnel interfaces with encryption \
+| | ... | algorithm AES_128_CBC and integrity algorithm HMAC_SHA_512 in tunnel. \
 | | ... | mode.
 | |
 | | ... | *Arguments:*

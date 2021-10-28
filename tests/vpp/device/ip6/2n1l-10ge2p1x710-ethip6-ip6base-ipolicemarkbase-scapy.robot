@@ -25,17 +25,24 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv4 policer test cases*
+| Documentation | **IPv4 policer test cases**
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
+| ... | 
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6 on all links.
-| ... | *[Cfg] DUT configuration:* On DUT1 configure interfaces IPv6 adresses, \
+| ... | 
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv6 on all links.
+| ... | 
+| ... | - **[Cfg] DUT configuration:** On DUT1 configure interfaces IPv6 adresses, \
 | ... | and static ARP record on the second interface. On DUT1 configure 2R3C \
 | ... | color-aware policer on the first interface.
-| ... | *[Ver] TG verification:* Test packet is sent from TG on the first link \
+| ... | 
+| ... | - **[Ver] TG verification:** Test packet is sent from TG on the first link \
 | ... | to DUT1. Packet is received on TG on the second link from DUT1.
-| ... | *[Ref] Applicable standard specifications:* RFC2474, RFC2697, RFC2698.
+| ... | 
+| ... | - **[Ref] Applicable standard specifications:** RFC2474, RFC2697, RFC2698.
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
