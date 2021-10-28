@@ -34,7 +34,7 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing. IEEE 802.1Q\
 | ... | tagging is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv4\
-| ... | routing and two static IPv4 /30 route entries. DUT1 and DUT2 tested\
+| ... | routing and two static IPv4 /30 route entries. DUT1 and DUT2 are tested\
 | ... | with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\

@@ -27,12 +27,12 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput L2BD with vhost abd IEEE 802.1Q test
-| ... | cases*
+| Documentation | *RFC2544: Pkt throughput L2BD with vhost abd IEEE 802.1Q \
+| ... | test cases*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
+| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4. IEEE\
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4. IEEE \
 | ... | 802.1Q tagging is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-\
 | ... | domain and MAC learning enabled. Qemu VNFs are \
