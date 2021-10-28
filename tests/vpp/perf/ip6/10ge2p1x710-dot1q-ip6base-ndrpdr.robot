@@ -26,7 +26,7 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput IPv6 routing with IEEE 802.1Q test
+| Documentation | *RFC2544: Pkt throughput IPv6 routing with IEEE 802.1Q test \
 | ... | cases*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -35,7 +35,7 @@
 | ... | tagging is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
 | ... | routing and two static IPv6 /64 route entries. DUT1 and DUT2 are tested\
-| ... | with ${nic_name}.\
+| ... | with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\

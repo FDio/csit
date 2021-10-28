@@ -27,7 +27,7 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput L2BD with memif and IEEE 802.1Q test
+| Documentation | *RFC2544: Pkt throughput L2BD with memif and IEEE 802.1Q test\
 | ... | cases*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with\
@@ -39,7 +39,7 @@
 | ... | Memif interface. Container is running same VPP version as running\
 | ... | on DUT. Container is limited via cgroup to use 3 cores allocated from\
 | ... | pool of isolated CPUs. There are no memory constraints. DUT1 is tested\
-| ... | with ${nic_name}.\
+| ... | with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\

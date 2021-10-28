@@ -37,7 +37,7 @@
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
 | ... | routing and static route, SR policy and steering policy for one\
 | ... | direction and one SR behaviour (function) - End.AD - for other\
-| ... | direction. DUT1 and DUT2 are tested with ${nic_name}.\
+| ... | direction. DUT1 and DUT2 are tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
