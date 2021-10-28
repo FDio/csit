@@ -26,14 +26,18 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *TCP requests per seconds.*
-|
-| ... | *[Top] Network Topologies:* TG-DUT-TG 2-node topology\
+| Documentation | **TCP requests per seconds.**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT-TG 2-node topology \
 | ... | with single link between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP-HTTP for TCP
-| ... | *[Cfg] DUT configuration:*
-| ... | *[Ver] TG verification:*
-| ... | *[Ref] Applicable standard specifications:*
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-TCP-HTTP for TCP
+| ... |
+| ... | - **[Cfg] DUT configuration:**
+| ... |
+| ... | - **[Ver] TG verification:**
+| ... |
+| ... | - **[Ref] Applicable standard specifications:**
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -70,11 +74,11 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | FOR | ${dut} | IN | @{duts}
-| | | Import Library | resources.libraries.python.VppConfigGenerator
-| | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Add Session Event Queues Memfd Segment
-| | | Run keyword | ${dut}.Add tcp congestion control algorithm
-| | | Run keyword | ${dut}.Add session enable
+| ... | Import Library | resources.libraries.python.VppConfigGenerator
+| ... | ... | WITH NAME | ${dut}
+| ... | Run keyword | ${dut}.Add Session Event Queues Memfd Segment
+| ... | Run keyword | ${dut}.Add tcp congestion control algorithm
+| ... | Run keyword | ${dut}.Add session enable
 | | END
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
