@@ -26,19 +26,26 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *L2BD with VXLANoIPv4 test cases*
+| Documentation | **L2BD with VXLANoIPv4 test cases**
 |
-| ... | *[Top] Network topologies:* TG-DUT1-TG 2-node circular topology\
+| ... |
+| ... | - **[Top] Network topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet encapsulations:* Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 on\
+| ... |
+| ... | - **[Enc] Packet encapsulations:** Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 on \
 | ... | TG-DUT.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-domain\
-| ... | switching combined with MAC learning enable.\
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with L2 \
+| ... | cross-connect switching.combined with MAC learning enable. \
 | ... | VXLAN tunnels are configured on links betwen TG and DUT.
-| ... | *[Ver] TG verification:* Test Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 packet is\
-| ... | sent by TG on link to DUT1; on receive TG verifies packets for\
-| ... | correctness and their IPv4 src-addr, dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC7348.
+| ... |
+| ... | - **[Ver] TG verification:** Test Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 \
+| ... | packet is sent by TG on link to DUT1; on receive TG verifies packets \
+| ... | for correctness and their IPv4 src-addr, dst-addr and MAC addresses.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC7348.
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -56,7 +63,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send VXLAN encapsulated Ethernet frame; verify\
+| | ... | [Ver] Make TG send VXLAN encapsulated Ethernet frame; verify \
 | | ... | all packets are received.
 | |
 | | ... | *Arguments:*

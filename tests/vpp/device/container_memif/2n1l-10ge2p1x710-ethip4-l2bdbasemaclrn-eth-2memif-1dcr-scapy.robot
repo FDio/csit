@@ -25,20 +25,27 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *L2 bridge-domain test cases with memif interface*
+| Documentation | **L2 bridge-domain test cases with memif interface**
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.\
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for L2 switching of IPv4. \
 | ... | Both apply to all links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-domain \
-| ... | switching. Container is connected to VPP via Memif interface. \
-| ... | Container is running same VPP version as running on DUT.
-| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61\
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with L2 \
+| ... | bridge-domain switching. Container is connected to VPP via Memif \
+| ... | interface. Container is running same VPP version as running on DUT.
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv4 packets with IP protocol=61 \
 | ... | are sent in both directions by TG on links to DUT1 and via container; \
-| ... | on receive TG verifies packets for correctness and their IPv4 \
+| ... | on receive TG verifies packets for correctness and their IPv4. \
 | ... | src-addr, dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC792
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC792
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | memif_plugin.so
@@ -59,8 +66,8 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IPv4 packets in both directions between two\
-| | ... | of its interfaces to be switched by DUT to and from docker; verify\
+| | ... | [Ver] Make TG send IPv4 packets in both directions between two \
+| | ... | of its interfaces to be switched by DUT to and from docker; verify \
 | | ... | all packets are received.
 | |
 | | ... | *Arguments:*

@@ -426,23 +426,24 @@ class Constants:
     }
 
     PERF_TYPE_TO_SUITE_DOC_VER = {
-        u"mrr": u'''fication:* In MaxReceivedRate tests TG sends traffic\\
-| ... | at line rate and reports total received packets over trial period.\\''',
-        u"ndrpdr": u'''ication:* TG finds and reports throughput NDR (Non Drop\\
-| ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\\
-| ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\\
-| ... | of packets transmitted. NDR and PDR are discovered for different\\
-| ... | Ethernet L2 frame sizes using MLRsearch library.\\''',
-        u"soak": u'''fication:* TG sends traffic at dynamically computed\\
-| ... | rate as PLRsearch algorithm gathers data and improves its estimate\\
-| ... | of a rate at which a prescribed small fraction of packets\\
-| ... | would be lost. After set time, the serarch stops\\
-| ... | and the algorithm reports its current estimate.\\''',
+        u"mrr": u'''fication:** In MaxReceivedRate tests TG sends traffic \\
+| ... | at line rate and reports total received packets over trial period. \\
+''',
+        u"ndrpdr": u'''ication:** TG finds and reports throughput NDR (Non \\
+| ... | Drop Rate) with 0 packet loss tolerance and throughput PDR (Partial \\
+| ... | Drop Rate) with non-zero packet loss tolerance (LT) expressed in \\
+| ... | percentage of packets transmitted. NDR and PDR are discovered for \\
+| ... | different Ethernet L2 frame sizes using MLRsearch library. \\''',
+        u"soak": u'''fication:** TG sends traffic at dynamically computed \\
+| ... | rate as PLRsearch algorithm gathers data and improves its estimate \\
+| ... | of a rate at which a prescribed small fraction of packets \\
+| ... | would be lost. After set time, the serarch stops \\
+| ... | and the algorithm reports its current estimate. \\''',
     }
 
     PERF_TYPE_TO_TEMPLATE_DOC_VER = {
-        u"mrr": u'''Measure MaxReceivedRate for ${frame_size}B frames\\
-| | ... | using burst trials throughput test.\\''',
-        u"ndrpdr": u"Measure NDR and PDR values using MLRsearch algorithm.\\",
-        u"soak": u"Estimate critical rate using PLRsearch algorithm.\\",
+        u"mrr": u'''Measure MaxReceivedRate for ${frame_size}B frames \\
+| | ... | using burst trials throughput test. \\''',
+        u"ndrpdr": u"Measure NDR and PDR values using MLRsearch algorithm. \\",
+        u"soak": u"Estimate critical rate using PLRsearch algorithm. \\",
     }
