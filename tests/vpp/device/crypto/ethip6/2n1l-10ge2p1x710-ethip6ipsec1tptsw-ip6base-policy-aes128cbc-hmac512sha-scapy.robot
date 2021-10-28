@@ -30,10 +30,10 @@
 |
 | ... | *[Top] Network topologies:* TG-DUT1 2-node topology with one link\
 | ... | between nodes.
-| ... | *[Cfg] DUT configuration:* On DUT1 create loopback interface, configure
-| ... | loopback an physical interface IPv6 addresses, static ARP record, route
+| ... | *[Cfg] DUT configuration:* On DUT1 create loopback interface, configure\
+| ... | loopback an physical interface IPv6 addresses, static ARP record, route\
 | ... | and IPsec manual keyed connection in transport mode.
-| ... | *[Ver] TG verification:* ESP packet is sent from TG to DUT1. ESP packet
+| ... | *[Ver] TG verification:* ESP packet is sent from TG to DUT1. ESP packet\
 | ... | is received on TG from DUT1.
 | ... | *[Ref] Applicable standard specifications:* RFC4303.
 

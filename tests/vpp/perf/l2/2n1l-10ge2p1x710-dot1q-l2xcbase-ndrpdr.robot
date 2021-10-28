@@ -34,7 +34,7 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect. IEEE\
 | ... | 802.1Q tagging is applied on link between DUT1-if2 and TG-if2.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross- connect.\
-| ... | DUT1 is tested with ${nic_name}.\
+| ... | DUT1 is tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\

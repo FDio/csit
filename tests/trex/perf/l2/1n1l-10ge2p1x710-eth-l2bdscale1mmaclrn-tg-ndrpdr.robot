@@ -25,7 +25,7 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput for cross connected NICs with IPv4
+| Documentation | *RFC2544: Pkt throughput for cross connected NICs with IPv4\
 | ... | traffic profile.
 |
 | ... | *[Top] Network Topologies:* TG-TG 1-node circular topology\

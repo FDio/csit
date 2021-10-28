@@ -28,11 +28,11 @@
 |
 | Documentation | *RFC2544: Pkt throughput L2patch test cases*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 patch.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 patch\
-| ... | DUT1 tested with ${nic_name}.\
+| ... | DUT1 is tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\

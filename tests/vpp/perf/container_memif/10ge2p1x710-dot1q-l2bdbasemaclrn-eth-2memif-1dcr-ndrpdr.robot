@@ -39,7 +39,7 @@
 | ... | via Memif interface. Container is running same VPP version as running\
 | ... | on DUT. Container is limited via cgroup to use 3 cores allocated from\
 | ... | pool of isolated CPUs. There are no memory constraints. DUT1 and DUT2\
-| ... | tested with ${nic_name}.\
+| ... | tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -51,7 +51,7 @@
 | ... | all packets containing Ethernet header, IPv4 header with IP\
 | ... | protocol=61 and static payload. MAC addresses are matching MAC\
 | ... | addresses of the TG node interfaces.
-| ... | *[Ref] Applicable standard specifications:* RFC2544.
+| ... | *[Ref] Applicable standasrd specifications:* RFC2544.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | memif_plugin.so
