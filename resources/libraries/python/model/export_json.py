@@ -336,7 +336,7 @@ class export_json():
             u"\\${TEST_MESSAGE}"
         )
         self.info_data[u"tags"] = self.debug_data[u"tags"]
-        self.info_data[u"end_time"] = self.debug_data[u"end_time"]
+        self.info_data[u"end_time"] = u"foobar"  # self.debug_data[u"end_time"]
         self.info_data[u"status"] = self.debug_data[u"status"]
         self.info_data[u"message"] = self.debug_data[u"message"]
         start_time_float = posix_from_iso(self.info_data[u"start_time"])

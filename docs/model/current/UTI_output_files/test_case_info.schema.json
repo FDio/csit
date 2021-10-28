@@ -1,5 +1,5 @@
 {
-    "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/0.2.0",
+    "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/0.2.2",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Schema for info output of test case.",
     "type": "object",
@@ -198,7 +198,7 @@
         },
         "version": {
             "type": "string",
-            "constant": "0.2.0",
+            "constant": "0.2.2",
             "description": "CSIT model version (semver format) the exporting code adhered to."
         }
     },
