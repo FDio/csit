@@ -17,9 +17,9 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | NAT44_ENDPOINT_DEPENDENT
-| ... | BASE | UDP | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | UDP
+| ... | FEATURE | NAT44 | NAT44_ENDPOINT_DEPENDENT
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4udp-nat44ed
 |
 | Suite Setup | Setup suite topology interfaces | scapy

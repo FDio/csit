@@ -67,7 +67,7 @@
 | ${remote_addr_range_ip4}= | 20.20.20.0/24
 | ${local_addr_range_ip4}= | 10.10.10.0/24
 | ${rule_amount}= | ${1}
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src253
 
 *** Keywords ***

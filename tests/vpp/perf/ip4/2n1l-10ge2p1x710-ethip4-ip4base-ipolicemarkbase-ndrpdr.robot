@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | IP4FWD | FEATURE | POLICE_MARK | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | IP4FWD | FEATURE | POLICE_MARK
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | ethip4-ip4base-ipolicemarkbase
 |
 | Suite Setup | Setup suite topology interfaces | performance
@@ -60,7 +60,7 @@
 | ${cir}= | ${100}
 | ${eir}= | ${150}
 | ${dscp}= | AF22
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src253
 
 *** Keywords ***

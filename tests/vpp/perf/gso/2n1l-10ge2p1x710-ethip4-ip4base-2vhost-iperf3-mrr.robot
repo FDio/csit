@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-X710 | IP4FWD | BASE | IP4BASE | DRV_VHOST
-| ... | RXQ_SIZE_1024 | TXQ_SIZE_1024 | GSO_TRUE
+| ... | NIC_Intel-X710 | IP4FWD | BASE | IP4BASE | GSO_TRUE
+| ... | RXQ_SIZE_1024 | TXQ_SIZE_1024 | DRV_VHOST
 | ... | ethip4-ip4base-2vhost-iperf3
 |
 | Suite Setup | Setup suite topology interfaces

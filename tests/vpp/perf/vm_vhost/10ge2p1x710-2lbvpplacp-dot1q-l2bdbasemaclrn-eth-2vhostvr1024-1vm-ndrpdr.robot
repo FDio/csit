@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
-| ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
-| ... | LBOND_2L | VM_TESTPMD | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | VHOST | 1VM | VHOST_1024
+| ... | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34 | LBOND_2L
+| ... | VM_TESTPMD
+| ... | RXQ_SIZE_0 | TXQ_SIZE_0 | DRV_VFIO_PCI
 | ... | 2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm
 |
 | Suite Setup | Setup suite topology interfaces | performance

@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
-| ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | IP4SCALE2M
-| ... | N2N | SCALE | TG_DRV_IGB_UIO
+| ... | PERFTEST | HW_ENV | TREX | N2N | TG_DRV_IGB_UIO | NDRPDR
+| ... | NIC_Intel-X710 | ETH | SCALE | IP4SCALE2M
 | ... | ethip4-ip4scale2m-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
@@ -49,7 +49,7 @@
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${1000000}
-# Traffic profile
+# Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4dst${rts_per_flow}
 
 *** Keywords ***
