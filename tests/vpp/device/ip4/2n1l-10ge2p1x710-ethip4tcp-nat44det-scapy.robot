@@ -28,20 +28,24 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *NAT44 deterministic mode test cases*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
+| Documentation | **NAT44 deterministic mode test cases**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP for IPv4 routing.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and
-| ... | one static IPv4 /${dest_mask} route entries.
-| ... | DUT1 is tested with ${nic_name}.\
-| ... | *[Ver] TG verification:* Eth-IPv4-TCP packet is sent from TG to DUT1 in\
-| ... | one direction. Packet is received and verified for correctness on TG.\
-| ... | Then Eth-IPv4-TCP packet is sent from TG in opposite direction. Packet\
-| ... | is received and verified for correctness on TG.
-| ... | *[Ref] Applicable standard specifications:* RFC791, RFC793, RFC3022,
-| ... | RFC4787.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-TCP for IPv4 routing.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing \
+| ... | and one static IPv4 /${dest_mask} route entries. \
+| ... | DUT1 is tested with ${nic_name}.
+| ... |
+| ... | - **[Ver] TG verification:** Eth-IPv4-TCP packet is sent from TG to \
+| ... | DUT1 in one direction. Packet is received and verified for correctness \
+| ... | on TG. Then Eth-IPv4-TCP packet is sent from TG in opposite direction. \
+| ... | Packet is received and verified for correctness on TG.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC791, RFC793, \
+| ... | RFC3022 and RFC4787.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | det44_plugin.so
@@ -81,8 +85,8 @@
 | Local Template
 | |
 | | [Documentation]
-| | ... | [Cfg] DUT runs NAT44 ${nat_mode} configuration.
-| | ... | [Ver] Make TG send IPv4 packet routed over DUT1 interfaces.\
+| | ... | - **[Cfg]** DUT runs NAT44 ${nat_mode} configuration.
+| | ... | - **[Ver]** Make TG send IPv4 packet routed over DUT1 interfaces. \
 | | ... | Make TG verify IPv4 packet is correct.
 | |
 | | ... | *Arguments:*

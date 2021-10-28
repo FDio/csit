@@ -26,18 +26,22 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *L2BD test cases with ACL*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
+| Documentation | **L2BD test cases with ACL**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 on all links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge domain\
-| ... | and MAC learning enabled.Required ACL rules are applied to input\
-| ... | paths of both DUT1 intefaces.\
-| ... | *[Ver] TG verification:* Test IPv4 packets are sent in one direction \
-| ... | by TG on link to DUT1; on receive TG verifies packets for correctness \
-| ... | and drops as applicable.
-| ... | *[Ref] Applicable standard specifications:*
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 on all links.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with L2 bridge \
+| ... | domain and MAC learning enabled.Required ACL rules are applied to \
+| ... | input paths of both DUT1 intefaces.
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv4 packets are sent in one \
+| ... | direction by TG on link to DUT1; on receive TG verifies packets for \
+| ... | correctness and drops as applicable.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:**
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | acl_plugin.so
@@ -68,9 +72,9 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD config with ACLs.
-| | ... | [Ver] Make TG send IPv4 packet in one direction between two\
-| | ... | of its interfaces to be switched by DUT to and from docker.\
+| | ... | - **[Cfg]** DUT runs L2BD config with ACLs.
+| | ... | - **[Ver]** Make TG send IPv4 packet in one direction between two \
+| | ... | of its interfaces to be switched by DUT to and from docker. \
 | | ... | Make TG verify IPv4 packet is correct.
 | |
 | | ... | *Arguments:*

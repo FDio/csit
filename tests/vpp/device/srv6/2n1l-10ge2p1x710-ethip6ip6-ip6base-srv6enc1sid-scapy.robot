@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | SRv6 | SRv6_1SID | DRV_VFIO_PCI
-| ... | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | SRv6 | SRv6_1SID
+| ... | DRV_VFIO_PCI | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6ip6-ip6base-srv6enc1sid
 |
 | Suite Setup | Setup suite topology interfaces | scapy
@@ -25,20 +25,23 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *Segment routing over IPv6 dataplane with one SID\
-| ... | (SRH not inserted) test suite.*
-|
-| ... | *[Top] Network topologies:* TG-DUT1 2-node topology with one link\
+| Documentation | **Segment routing over IPv6 dataplane with one SID \
+| ... | (SRH not inserted) test suite.**
+| ... |
+| ... | - **[Top] Network topologies:** TG-DUT1 2-node topology with one link \
 | ... | between nodes.
-| ... | *[Cfg] DUT configuration:* On DUT1 configure physical interface IPv6\
-| ... | addresses, static ARP record, route and IPv6 forwarding over SRv6\
+| ... |
+| ... | - **[Cfg] DUT configuration:** On DUT1 configure physical interface \
+| ... | IPv6 addresses, static ARP record, route and IPv6 forwarding over SRv6 \
 | ... | with one SID - Segment Routing Header not inserted.
-| ... | *[Ver] TG verification:* ETH-IP6 packet is sent from TG to DUT1 in one\
-| ... | direction. Packet is received and verified for correctness on TG. Then\
-| ... | ETH-IP6-IP6 packet is sent from TG in opposite direction. Packet is\
-| ... | received and verified for correctness on TG.
-| ... | *[Ref] Applicable standard specifications:* SRv6 Network Programming -\
-| ... | draft 3.
+| ... |
+| ... | - **[Ver] TG verification:** ETH-IP6 packet is sent from TG to DUT1 in \
+| ... | one direction. Packet is received and verified for correctness on TG. \
+| ... | Then ETH-IP6-IP6 packet is sent from TG in opposite direction. Packet \
+| ... | is received and verified for correctness on TG.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** SRv6 Network \
+| ... | Programming - draft 3.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -72,10 +75,10 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT1 is configured with IPv6 routing and static route,\
-| | ... | SR policy and steering policy for one direction and one SR\
+| | ... | - **[Cfg]** DUT1 is configured with IPv6 routing and static route, \
+| | ... | SR policy and steering policy for one direction and one SR \
 | | ... | behaviour (function) - End.DX6 - for other direction.
-| | ... | [Ver] Make TG send IPv6 packets routed over DUT1 interfaces.\
+| | ... | - **[Ver]** Make TG send IPv6 packets routed over DUT1 interfaces. \
 | | ... | Make TG verify IPv6 packets are correct.
 | |
 | | ... | *Arguments:*

@@ -25,13 +25,17 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IP4_GTPU flow test cases*
+| Documentation | **IP4_GTPU flow test cases**
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1 2-node topology with one link\
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1 2-node topology with one link \
 | ... | between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IP4-GTPU.
-| ... | *[Cfg] DUT configuration:* DUT is configured with IP4_GTPU flow.
-| ... | *[Ver] TG verification:* Verify if the flow action is correct.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IP4-GTPU.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT is configured with IP4_GTPU flow.
+| ... |
+| ... | - **[Ver] TG verification:** Verify if the flow action is correct.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -53,8 +57,8 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IP4-GTPU packet routed over DUT1 interfaces.\
-| | ... | Make VPP verify flow packet is correct.
+| | ... | - **[Ver]** Make TG send IP4-GTPU packet routed over DUT1 \
+| | ... | interfaces. Make VPP verify flow packet is correct.
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
