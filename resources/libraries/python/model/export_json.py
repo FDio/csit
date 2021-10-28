@@ -27,6 +27,8 @@ from enum import IntFlag
 import json
 import os
 
+import jsonschema
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -133,6 +135,8 @@ class export_json():
         self.debug_file_path = None
         self.info_data = None
         self.debug_data = None
+        logger.info(u"Initialization of export_json library.")
+        self.info_test_schema_validator = None
 
     def export_pending_data(self):
         """Write the accumulated data to disk.
@@ -151,15 +155,44 @@ class export_json():
             return
         os.makedirs(os.path.dirname(self.debug_file_path), exist_ok=True)
         debug_data = _pre_serialize_root(self.debug_data)
-        with open(self.debug_file_path, u"w") as file_out:
+        with open(self.debug_file_path, u"wt") as file_out:
             json.dump(debug_data, file_out, indent=1)
         self.debug_data = None
         self.debug_file_path = None
         info_data = _pre_serialize_root(self.info_data)
-        with open(self.info_file_path, u"w") as file_out:
+        with open(self.info_file_path, u"wt") as file_out:
             json.dump(info_data, file_out, indent=1)
-            # TODO: Validate against schema here, for test case output.
         self.info_data = None
+        if u"results" in info_data:
+            logger.info(u"Results present, exporting info json.")
+            # Dump did some conversions, read from file to delete old types.
+            with open(self.info_file_path, u"rt") as fin:
+                instance = json.load(fin)
+            if self.info_test_schema_validator is None:
+                logger.info(u"Validator not prepared yet, preparing now.")
+                # Robot is always started when CWD is CSIT_DIR.
+                schema_path = os.getcwd()
+                logger.info(f"CSIT_DIR {schema_path}")
+                schema_path += u"/docs/model/current/UTI_file_outputs/test_case_info.schema.json"
+                with open(schema_path, u"rt") as fin:
+                    schema = json.load(fin)
+                # Validation logic copied from
+                # https://python-jsonschema.readthedocs.io/en/stable/_modules/jsonschema/validators/#validate
+                # when 4.1.2 was the stable version of jsonschema.
+                cls = jsonschema.validator_for(schema)
+                cls.check_schema(schema)
+                self.info_test_schema_validator = cls(schema)
+                logger.info(u"Validator is ready now.")
+            logger.info(u"Validation starts.")
+            error = jsonschema.exceptions.best_match(
+                self.info_test_schema_validator.iter_errors(instance)
+            )
+            if error is not None:
+                logger.info(u"Validation failed.")
+                raise error
+            logger.info(u"Validation passed.")
+        else:
+            logger.info(u"Not exporting, results not present.")
         self.info_file_path = None
 
     def start_suite_setup_export(self):
