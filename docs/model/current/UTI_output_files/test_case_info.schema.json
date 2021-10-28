@@ -1,0 +1,375 @@
+{
+    "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/0.2.0",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "Schema for info output of test case.",
+    "type": "object",
+    "properties": {
+        "duration": {
+            "$ref": "#/$defs/types/nonnegative_number",
+            "description": "A derived quantity, present only in info output files. Difference between start_time and end_time, in seconds."
+        },
+        "end_time": {
+            "$ref": "#/$defs/types/date_time",
+            "description": "UTC date and time in ISO format, specifying calendar time just before test case ended (at the end of test case teardown)."
+        },
+        "log": {
+            "$ref": "#/$defs/types/empty_array",
+            "description": "No log items are implemented in the current version, but the (empty) list is present to simplify logic in multi-version importers."
+        },
+        "message": {
+            "type": "string",
+            "description": "Value taken directly from TEST_MESSAGE Robot variable, read at the end of test case (teardown). If status is PASS, it contains output as set by test case code (current format depends on test type and may change any time). If status is FAIL, it contains information from the exception that caused the failure, probably with additional exceptions from teardown keywords."
+        },
+        "results": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "$ref": "#/$defs/results/mrr"
+                    },
+                    "required": [
+                        "mrr"
+                    ],
+                    "comment": "TODO: Add link to methodology document for MRR test type."
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "$ref": "#/$defs/results/ndrpdr"
+                    },
+                    "required": [
+                        "ndrpdr"
+                    ],
+                    "comment": "TODO: Add link to methodology document for NDRPDR test type."
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "$ref": "#/$defs/results/soak"
+                    },
+                    "required": [
+                        "soak"
+                    ],
+                    "comment": "TODO: Add link to methodology document for SOAK test type."
+                },
+                {
+                    "properties": {},
+                    "description": "This case represents a test with no specific resut (outside message), e.g. device test; or a test with result not parsed into this version of model yet, e.g. GSO test."
+                }
+            ]
+        },
+        "start_time": {
+            "$ref": "#/$defs/types/date_time",
+            "description": "UTC date and time in ISO format, specifying calendar time just after test case started (at the start of test setup)."
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "PASS",
+                "FAIL"
+            ],
+            "description": "Value taken directly from TEST_STATUS Robot variable. It is PASS or FAIL, read at the end of test case (teardown)."
+        },
+        "sut_type": {
+            "type": "string",
+            "enum": [
+                "VPP",
+                "DPDK"
+            ],
+            "description": "Identifier for System Under Test. Some tests may not set this, the property is not present in that case. For example, TRex tests use only Traffic Generator, there is no SUT."
+        },
+        "sut_version": {
+            "type": "string",
+            "description": "Some tests may not set this (this property is not present then). The value should correspond to sut_type. For VPP type, the value is taken from version field of reply to show_version API call."
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "The list of strings comes directly from Robot variable TEST_TAGS. The content should include both static and dynamic tags at the end of test case (teardown)."
+        },
+        "test_documentation": {
+            "type": "string",
+            "description": "Value taken directly from TEST_DOCUMENTATION Robot variable.\nThe content is what you see in suite file at test case definition, which is usually empty as CSIT uses data driven test cases."
+        },
+        "test_id": {
+            "type": "string",
+            "description": "A derived quantity, present only in info output files. This property has a value, composed from suite name and test name, by converting to lowercase and connected with dot. Also, any space is replaced by underscore.",
+            "comment": "TODO: Test with underscores and spaces, both in suite and test."
+        },
+        "test_name": {
+            "type": "string",
+            "description": "Value taken directly from TEST_NAME Robot variable. It consists of CameCase name of this test case."
+        },
+        "test_type": {
+            "type": "string",
+            "enum": [
+                "mrr",
+                "ndrpdr",
+                "soak"
+            ],
+            "description": "Some tests may not set this (this property is not present then) See the case when results object is empty. As the result object contains a property named after the test type, this information is derived, so this appears only in info output."
+        },
+        "version": {
+            "type": "string",
+            "constant": "0.2.0",
+            "desctiption": "CSIT model version (semver format) the exporting code adhered to."
+        }
+    },
+    "required": [
+        "duration",
+        "end_time",
+        "log",
+        "message",
+        "results",
+        "start_time",
+        "status",
+        "tags",
+        "test_documentation",
+        "test_id",
+        "test_name",
+        "version"
+    ],
+    "$defs": {
+        "types": {
+            "nonnegative_number": {
+                "type": "number",
+                "minimum": 0
+            },
+            "nonnegative_integer": {
+                "type": "integer",
+                "minimum": 0
+            },
+            "positive_integer": {
+                "type": "integer",
+                "minimum": 1
+            },
+            "date_time": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "empty_array": {
+                "type": "array",
+                "maxItems": 0
+            },
+            "rate_unit": {
+                "type": "string",
+                "enum": [
+                    "pps",
+                    "cps"
+                ]
+            },
+            "rate_without_bandwidth": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "$ref": "#/$defs/types/nonnegative_number",
+                        "description": "Unless specified otherwise, this is the aggregated rate (sum of both traffic directions). Depending on the usage, the value can express intended load, offered load, receive rate, and various approximations or estimated bounds thereof."
+                    },
+                    "unit": {
+                        "$ref": "#/$defs/types/rate_unit",
+                        "description": "A transaction rate unit the value is expressed in. The value is pps (packets per second), or cps (connections per second)."
+                    }
+                },
+                "required": [
+                    "rate",
+                    "unit"
+                ],
+                "description": "Reusable composite type, value together with its unit of measurement."
+            },
+            "bandwidth": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "$ref": "#/$defs/types/nonnegative_number",
+                        "description": "Bandwidth value computed from the corresponding rate.",
+                        "comment": "TODO: Add link explaining our L1 bandwidth calculation."
+                    },
+                    "unit": {
+                        "type": "string",
+                        "enum": [
+                            "Gbps"
+                        ],
+                        "description": "Unit of measurement for bandwidth values. Currently a constant, but later versions of model may allow more units."
+                    }
+                },
+                "description": "This is a derived entity, thus it only appears in info output, and only when rate unit is pps."
+            },
+            "rate_with_bandwidth": {
+                "type": "object",
+                "properties": {
+                    "rate": {
+                        "$ref": "#/$defs/types/rate_without_bandwidth"
+                    },
+                    "bandwidth": {
+                        "$ref": "#/$defs/types/bandwidth"
+                    }
+                },
+                "required": [
+                    "rate"
+                ],
+                "description": "Reusable composite type, joining primary rate with optional derived bandwidth. Not all test types currently compute bandwidth, even if rate unit is pps."
+            }
+        },
+        "macros": {
+            "ndr_or_pdr": {
+                "type": "object",
+                "properties": {
+                    "lower": {
+                        "$ref": "#/$defs/types/rate_with_bandwidth",
+                        "description": "The lower bound (or min_rate) for the estimate of the particular searched rate (NDR or PDR)."
+                    },
+                    "upper": {
+                        "$ref": "#/$defs/types/rate_with_bandwidth",
+                        "description": "The upper bound (or max_rate) for the estimate of the particular searched rate (NDR or PDR)."
+                    }
+                },
+                "required": [
+                    "lower",
+                    "upper"
+                ]
+            },
+            "latency_numbers": {
+                "type": "object",
+                "properties": {
+                    "min": {
+                        "$ref": "#/$defs/types/nonnegative_integer",
+                        "description": "Rounded minimal latency time measured in this trial. See latency_unit property for the unit of measurement."
+                    },
+                    "max": {
+                        "$ref": "#/$defs/types/nonnegative_integer",
+                        "description": "Rounded minimal latency time measured in this trial. See latency_unit property for the unit of measurement."
+                    },
+                    "avg": {
+                        "$ref": "#/$defs/types/nonnegative_integer",
+                        "description": "Rounded average latency time measured in this trial. See latency_unit property for the unit of measurement."
+                    },
+                    "hdrh": {
+                        "type": "string",
+                        "description": "Base64-encoded compressed representation of HDRHistogram of all latency sample times encountered in this latency trial. See latency_unit property for the unit of measurement.",
+                        "comment": "TODO: Add a link to URL explaining how to decode the data?"
+                    }
+                },
+                "required": [
+                    "avg",
+                    "hdrh",
+                    "max",
+                    "min"
+                ]
+            },
+            "latency_for_loads": {
+                "type": "object",
+                "properties": {
+                    "pdr_0": {
+                        "$ref": "#/$defs/macros/latency_numbers",
+                        "description": "Object related to latency measurement performed at minimal rate (currently 9000 pps per direction)."
+                    },
+                    "pdr_10": {
+                        "$ref": "#/$defs/macros/latency_numbers",
+                        "description": "Object related to latency measurement performed at 10% of PDR lower bound, if needed rounded up to minimal rate (currently 9000 pps per direction)."
+                    },
+                    "pdr_50": {
+                        "$ref": "#/$defs/macros/latency_numbers",
+                        "description": "Object related to latency measurement performed at 50% of PDR lower bound, if needed rounded up to minimal rate (currently 9000 pps per direction)."
+                    },
+                    "pdr_90": {
+                        "$ref": "#/$defs/macros/latency_numbers",
+                        "description": "Object related to latency measurement performed at 90% of PDR lower bound, if needed rounded up to minimal rate (currently 9000 pps per direction)."
+                    }
+                },
+                "required": [
+                    "pdr_0",
+                    "pdr_10",
+                    "pdr_50",
+                    "pdr_90"
+                ]
+            }
+        },
+        "results": {
+            "mrr": {
+                "type": "object",
+                "properties": {
+                    "samples": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/$defs/types/rate_with_bandwidth",
+                            "description": "Receive rate for one MRR trial. For PPS, this is aggregate (bidirectional) rate. Currently, the tests are exporting approximated receive rate. That means the actual trial duration is measured (as opposed to trusting traffic generator to honor its target duration), so the resulting values contain noise from time measurement, and can be lower than the real performance (due to various time overheads)."
+                        }
+                    },
+                    "avg": {
+                        "$ref": "#/$defs/types/nonnegative_number",
+                        "descrption": "A derived quantity, present only in info output files. It is the arithmetic average of the (rate value part of) samples list."
+                    },
+                    "stdev": {
+                        "$ref": "#/$defs/types/nonnegative_number",
+                        "description": "A derived quantity, present only in info output files. It's the standard deviation for the (rate value part of) samples list, as computed by jumpavg library."
+                    }
+                },
+                "required": [
+                    "samples",
+                    "avg",
+                    "stdev"
+                ],
+                "comment": "TODO: Add multiplicity field, so PAL can detect incomplete samples."
+            },
+            "ndrpdr": {
+                "type": "object",
+                "properties": {
+                    "ndr": {
+                        "$ref": "#/$defs/macros/ndr_or_pdr",
+                        "description": "The results refer to search for NDR (Non Drop Rate). For PPS, this is aggregate (bidirectional) rate. The accepted loss ratio for NDR is exact zero. Note that packets the Traffic Generator did not send are also counted as lost packets."
+                    },
+                    "pdr": {
+                        "$ref": "#/$defs/macros/ndr_or_pdr",
+                        "description": "The results refer to search for PDR (Partial Drop Rate). For PPS, this is aggregate (bidirectional) rate. The accepted loss ratio for PDR is half a percent. Note that packets the Traffic Generator did not send are also counted as lost packets."
+                    },
+                    "latency_forward": {
+                        "$ref": "#/$defs/macros/latency_for_loads",
+                        "description": "Object with results related to latency part of NDRPDR test, for forward traffic direction. It is the direction used in unidirectional traffic profiles. ASTF profiles and IMIX STL profiles do not support latency information, so for those tests this object is missing. It is also missing if Traffic Generator fails to return valid latency results for any other reasons, e.g. latency rate is too high for CPU/NIC used."
+                    },
+                    "latency_reverse": {
+                        "$ref": "#/$defs/macros/latency_for_loads",
+                        "description": "Object with results related to latency part of NDRPDR test, for reverse traffic diration. This object is not present when unidirectional traffic profiles are used. ASTF profiles and IMIX STL profiles do not support latency information, so for those tests this object is missing. It is also missing if Traffic Generator fails to return valid latency results for any other reasons, e.g. latency rate is too high for CPU/NIC used."
+                    },
+                    "latency_unit": {
+                        "type": "string",
+                        "enum": [
+                            "us"
+                        ],
+                        "description": "Unit of measurement for latency time. Currently a constant, but later versions of model may allow more values."
+                    }
+                },
+                "required": [
+                    "ndr",
+                    "pdr"
+                ],
+                "dependencies": {
+                    "latency_forward": [
+                        "latency_unit"
+                    ],
+                    "latency_reverse": [
+                        "latency_unit"
+                    ]
+                }
+            },
+            "soak": {
+                "type": "object",
+                "properties": {
+                    "lower": {
+                        "$ref": "#/$defs/types/rate_with_bandwidth",
+                        "description": "The lower bound for the estimate of the critical rate. For PPS, this is aggregate (bidirectional) rate."
+                    },
+                    "upper": {
+                        "$ref": "#/$defs/types/rate_with_bandwidth",
+                        "description": "The upper bound for the estimate of the critical rate. For PPS, this is aggregate (bidirectional) rate."
+                    }
+                },
+                "required": [
+                    "lower",
+                    "upper"
+                ]
+            }
+        }
+    }
+}
