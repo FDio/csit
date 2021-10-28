@@ -26,14 +26,18 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *TCP requests per seconds.*
-|
-| ... | *[Top] Network Topologies:* TG-DUT-TG 2-node topology\
+| Documentation | **TCP requests per seconds.**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT-TG 2-node topology \
 | ... | with single link between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP-HTTP for TCP
-| ... | *[Cfg] DUT configuration:*
-| ... | *[Ver] TG verification:*
-| ... | *[Ref] Applicable standard specifications:*
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-TCP-HTTP for TCP
+| ... |
+| ... | - **[Cfg] DUT configuration:**
+| ... |
+| ... | - **[Ver] TG verification:**
+| ... |
+| ... | - **[Ref] Applicable standard specifications:**
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so

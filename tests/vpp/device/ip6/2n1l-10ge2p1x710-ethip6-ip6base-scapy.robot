@@ -25,18 +25,23 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv6 routing test cases*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
+| Documentation | **IPv6 routing test cases**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing on \
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv6 for IPv6 routing on \
 | ... | both links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and \
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv6 routing \
 | ... | two static IPv6 /64 route entries.
-| ... | *[Ver] TG verification:* Test IPv6 packet is sent in one direction \
-| ... | by TG on links to DUT1; on receive TG verifies packet for correctness \
-| ... | and their IPv6 src-addr, dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC2460, RFC4443, RFC4861
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv6 packet is sent in one \
+| ... | direction by TG on links to DUT1; on receive TG verifies packet for \
+| ... | correctness and their IPv6 src-addr, dst-addr and MAC addresses.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC2460, RFC4443, \
+| ... |  RFC4861.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -54,7 +59,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IPv6 packet routed over DUT1 interfaces;\
+| | ... | - **[Ver]** Make TG send IPv6 packet routed over DUT1 interfaces. \
 | | ... | Make TG verify IPv6 packet is correct.
 | |
 | | ... | *Arguments:*
