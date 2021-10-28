@@ -27,21 +27,25 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *ip4-lispgpe-ip6 encapsulation test cases*
-|
-| ... | *[Top] Network Topologies:* TG(if1)-DUT1-TG(if2) 2-node\
-| ... | circular topology with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-LISPGPE-IPv6-ICMPv6\
-| ... | on DUT1-TG(if2),Eth-IPv6-ICMPv6 on TG-DUTn for IPv6\
+| Documentation | **ip4-lispgpe-ip6 encapsulation test cases**
+| ... |
+| ... | - **[Top] Network Topologies:** TG(if1)-DUT1-TG(if2) 2-node \
+| ... | circular with single links between nodes.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-LISPGPE-IPv6-ICMPv6 \
+| ... | on DUT1-TG(if2),Eth-IPv6-ICMPv6 on TG-DUTn for IPv6 \
 | ... | routing over LISPoIPv4 tunnel.
-| ... | *[Cfg] DUT configuration:* DUT1 and TG(if2) are configured\
-| ... | with IPv6 routing and static routes. LISPoIPv4 tunnel is\
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 and TG(if2) are configured \
+| ... | with IPv6 routing and static routes. LISPoIPv4 tunnel is \
 | ... | configured between DUT1 and TG(if2).
-| ... | *[Ver] TG verification:* Test ICMPv6 Echo Request packets\
-| ... | are sent in if1 by TG on links to DUT1; on receive\
-| ... | TG verifies packets for correctness and their IPv6 src-addr,\
+| ... |
+| ... | - **[Ver] TG verification:** Test ICMPv6 Echo Request packets \
+| ... | are sent in if1 by TG on links to DUT1; on receive \
+| ... | TG verifies packets for correctness and their IPv6 src-addr, \
 | ... | dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC6830.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC6830.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | lisp_plugin.so
@@ -61,7 +65,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] On DUT1 configure LISPGPE\
+| | ... | - **[Cfg]** On DUT1 configure LISPGPE \
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer

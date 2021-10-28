@@ -25,18 +25,22 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv6 iAcl whitelist test cases*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
+| Documentation | **IPv6 iAcl whitelist test cases**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6 on all links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and \
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv6 on all links.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv6 routing \
 | ... | static routes. IPv6 iAcl security whitelist is applied on DUT1 ingress \
 | ... | interface from TG.
-| ... | *[Ver] TG verification:* Test IPv6 packets are sent in one direction \
-| ... | by TG on link to DUT1; on receive TG verifies packets for correctness \
-| ... | and drops as applicable.
-| ... | *[Ref] Applicable standard specifications:*
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv6 packets are sent in one \
+| ... | direction by TG on link to DUT1; on receive TG verifies packets for \
+| ... | correctness and drops as applicable.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:**
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -54,7 +58,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IPv6 on its interface to DUT1; \
+| | ... | - **[Ver]** Make TG send IPv6 on its interface to DUT1; \
 | | ... | verify received IPv6 pkts are correct.
 | |
 | | ... | *Arguments:*

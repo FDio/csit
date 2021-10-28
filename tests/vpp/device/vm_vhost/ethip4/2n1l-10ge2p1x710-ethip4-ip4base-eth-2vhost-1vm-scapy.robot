@@ -25,19 +25,25 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv4 routing test cases with vhost user interface*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
-| ... | VM and single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing on both links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
-| ... | two static IPv4 /24 route entries. Qemu Guest is connected to VPP via \
-| ... | vhost-user interfaces. Guest is running VPP ip4 interconnecting \
+| Documentation | **IPv4 routing test cases with vhost user interface**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
+| ... | with VM and single links between nodes.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for IPv4 routing on both \
+| ... | links.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing \
+| ... | and two static IPv4 /24 route entries. Qemu Guest is connected to VPP \
+| ... | via vhost-user interfaces. Guest is running VPP ip4 interconnecting \
 | ... | vhost-user interfaces.
-| ... | *[Ver] TG verification:* Test IPv4 packet with IP protocol=61 is sent \
-| ... | in one direction by TG on links to DUT1; on receive TG verifies packet \
-| ... | for correctness and their IPv4 src-addr, dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv4 packet with IP protocol=61 is \
+| ... | sent in one direction by TG on links to DUT1; on receive TG verifies \
+| ... | packet for correctness and their IPv4 src-addr, dst-addr and MAC \
+| ... | addresses.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC791, RFC826, RFC792
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so

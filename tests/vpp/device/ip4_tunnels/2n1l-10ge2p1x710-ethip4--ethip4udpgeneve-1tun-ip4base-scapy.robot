@@ -28,24 +28,28 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *L2BD with GENEVE L3 mode test cases*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
+| Documentation | **L2BD with GENEVE L3 mode test cases**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 between TG-if1 and DUT1-if1 and\
-| ... | Eth-IPv4-UDP-GENEVE-Eth-IPv4 between DUT1-if2 and TG-if2 for IPv4\
-| ... | routing over GENEVE tunnel.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing over\
-| ... | GENEVE tunnel and 4 static IPv4 /24 route entries.\
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 between TG-if1 and \
+| ... | DUT1-if1 and Eth-IPv4-UDP-GENEVE-Eth-IPv4 between DUT1-if2 and TG-if2 \
+| ... | for IPv4 routing over GENEVE tunnel.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing \
+| ... | over GENEVE tunnel and 4 static IPv4 /24 route entries. \
 | ... | DUT1 is tested with ${nic_name}.
-| ... | *[Ver] TG verification:* Test Eth-IPv4 packet is sent by TG-if1 on link\
-| ... | to DUT1-if1; on receive by TG-if2 the encapsulated packet is verified\
-| ... | for correctness and its outer and inner IPv4 and MAC addresses, UDP\
-| ... | ports and GENEVE vni and protocol number. Then test\
-| ... | Eth-IPv4-UDP-GENEVE-Eth-IPv4 packet is sent by TG-if2 on link to\
-| ... | DUT1-if2; on receive by TG-if1 decapsulated packet is verified for\
+| ... |
+| ... | - **[Ver] TG verification:** Test Eth-IPv4 packet is sent by TG-if1 on \
+| ... | link to DUT1-if1; on receive by TG-if2 the encapsulated packet is \
+| ... | verified for correctness and its outer and inner IPv4 and MAC \
+| ... | addresses, UDP ports and GENEVE vni and protocol number. Then test. \
+| ... | Eth-IPv4-UDP-GENEVE-Eth-IPv4 packet is sent by TG-if2 on link to \
+| ... | DUT1-if2; on receive by TG-if1 decapsulated packet is verified for \
 | ... | correctness and its IPv4 and MAC addresses
-| ... | *[Ref] Applicable standard specifications:* RFC791, RFC768, RFC8926.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC791, RFC768, RFC8926.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | geneve_plugin.so
@@ -75,9 +79,9 @@
 | Local Template
 | |
 | | [Documentation]
-| | ... | [Cfg] DUT runs GENEVE ${gen_mode} mode configuration.
+| | ... | - **[Cfg]** DUT runs GENEVE ${gen_mode} mode configuration.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
-| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
+| | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm. \
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
