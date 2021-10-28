@@ -33,7 +33,7 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and\
 | ... | two IPv4 ARP entries and policer with 2R3C color-aware configuration.\
-| ... | Policer is applied on links TG - DUT1. DUT1 is tested with ${nic_name}.\
+| ... | Policer is applied on links TG - DUT1. DUT1 is tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\

@@ -34,8 +34,8 @@
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP for IPv4 routing.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and
-| ... | one static IPv4 /18 route entries.\
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
+| ... | one static IPv4 /18 route entries. \
 | ... | DUT1 is tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
