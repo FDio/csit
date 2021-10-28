@@ -25,20 +25,27 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv4 routing test cases with memif interface*
+| Documentation | **IPv4 routing test cases with memif interface**
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology with \
 | ... | single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing on both links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for IPv4 routing on both links.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing and \
 | ... | two static IPv4 /24 route entries. Container is connected to VPP via \
 | ... | Memif interface. Container is running same VPP version as running on \
 | ... | DUT.
-| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61 are \
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv4 packets with IP protocol=61 are \
 | ... | sent in one direction by TG on links to DUT1 and via container; on \
 | ... | receive TG verifies packets for correctness and their IPv4 src-addr, \
 | ... | dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC791, RFC826, RFC792
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | memif_plugin.so
@@ -59,8 +66,8 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IPv4 packet in both directions between two\
-| | ... | of its interfaces to be routed by DUT to and from docker; verify\
+| | ... | [Ver] Make TG send IPv4 packet in both directions between two \
+| | ... | of its interfaces to be routed by DUT to and from docker; verify \
 | | ... | all packets are received.
 | |
 | | ... | *Arguments:*
