@@ -48,7 +48,7 @@ def append_mrr_value(mrr_value, unit):
     debug_data, info_data = get_export_data()
     debug_mrr_node = descend(debug_data[u"results"], u"mrr")
     debug_samples_list = descend(debug_mrr_node, u"samples", list)
-    rate_item = dict(rate=dict(value=float(mrr_value), unit=unit))
+    rate_item = dict(rate=dict(value=float(mrr_value), unit=unit, foo=u"bar"))
     # TODO: Fill in the bandwidth part for pps.
     debug_samples_list.append(rate_item)
     info_mrr_node = descend(info_data[u"results"], u"mrr")
@@ -96,7 +96,7 @@ def export_search_bound(text, value, unit, bandwidth=None):
     info_type_node = descend(info_data[u"results"], test_type)
     rate_item = dict(rate=dict(value=value, unit=unit))
     if bandwidth:
-        rate_item[u"bandwidth"] = dict(value=float(bandwidth), unit=u"Gbps")
+        rate_item[u"bandwidth"] = dict(value=float(bandwidth), unit=u"bps")
     if test_type == u"soak":
         debug_type_node[upper_or_lower] = rate_item
         info_type_node[upper_or_lower] = rate_item
