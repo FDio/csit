@@ -25,13 +25,19 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IP4_IPSEC flow test cases*
+| Documentation | **IP4_IPSEC flow test cases**
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1 2-node topology with one link\
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1 2-node topology with one link \
 | ... | between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IP4-ESP.
-| ... | *[Cfg] DUT configuration:* DUT is configured with IP4_IPSEC flow.
-| ... | *[Ver] TG verification:* Verify if the flow action is correct.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IP4-ESP.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT is configured with IP4_IPSEC flow.
+| ... |
+| ... | - **[Ver] TG verification:** Verify if the flow action is correct.
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -53,7 +59,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IP4-IPSEC packet routed over DUT1 interfaces.\
+| | ... | [Ver] Make TG send IP4-IPSEC packet routed over DUT1 interfaces. \
 | | ... | Make VPP verify flow packet is correct.
 | |
 | | ... | *Arguments:*
