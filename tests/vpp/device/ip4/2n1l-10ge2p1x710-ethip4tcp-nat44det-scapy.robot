@@ -30,17 +30,17 @@
 |
 | Documentation | *NAT44 deterministic mode test cases*
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP for IPv4 routing.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and
-| ... | one static IPv4 /${dest_mask} route entries.
-| ... | DUT1 is tested with ${nic_name}.\
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and\
+| ... | one static IPv4 /${dest_mask} route entries.\
+| ... | DUT1 is tested with ${nic_name}.
 | ... | *[Ver] TG verification:* Eth-IPv4-TCP packet is sent from TG to DUT1 in\
 | ... | one direction. Packet is received and verified for correctness on TG.\
 | ... | Then Eth-IPv4-TCP packet is sent from TG in opposite direction. Packet\
 | ... | is received and verified for correctness on TG.
-| ... | *[Ref] Applicable standard specifications:* RFC791, RFC793, RFC3022,
+| ... | *[Ref] Applicable standard specifications:* RFC791, RFC793, RFC3022,\
 | ... | RFC4787.
 
 *** Variables ***

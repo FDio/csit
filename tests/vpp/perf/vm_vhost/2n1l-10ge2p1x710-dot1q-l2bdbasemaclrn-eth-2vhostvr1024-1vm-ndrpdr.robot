@@ -27,7 +27,7 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput L2BD with vhost and IEEE 802.1Q test
+| Documentation | *RFC2544: Pkt throughput L2BD with vhost and IEEE 802.1Q test\
 | ... | cases*
 |
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with\

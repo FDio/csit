@@ -25,10 +25,10 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput for cross connected NICs with IPv6
+| Documentation | *RFC2544: Pkt throughput for cross connected NICs with IPv6\
 | ... | traffic profile.
 |
-| ... | *[Top] Network Topologies:* TG-TG 1-node circular topology
+| ... | *[Top] Network Topologies:* TG-TG 1-node circular topology\
 | ... | with single link between.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for L1 cross connect patch.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\

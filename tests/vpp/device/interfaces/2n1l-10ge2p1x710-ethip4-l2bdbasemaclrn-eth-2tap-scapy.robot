@@ -28,16 +28,16 @@
 |
 | Documentation | *Tap Interface Traffic Tests*
 |
-| ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
+| ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links\
 | ... | between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of\
 | ... | IPv4.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2
-| ... | bridge-domain (L2BD) MAC learning enabled; Split Horizon Groups (SHG)
-| ... | are set depending on test case; Namespaces (NM)
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2\
+| ... | bridge-domain (L2BD) MAC learning enabled; Split Horizon Groups (SHG)\
+| ... | are set depending on test case; Namespaces (NM)\
 | ... | are set on DUT1 with attached linux-TAP.
-| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61
-| ... | are sent by TG on link to DUT1; On receipt TG verifies packets
+| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61\
+| ... | are sent by TG on link to DUT1; On receipt TG verifies packets\
 | ... | for correctness and their IPv4 src-addr, dst-addr, and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:*
 

@@ -32,8 +32,8 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv4\
-| ... | routing and 2x1M static IPv4 /32 route entries. DUT1 and DUT2 tested\
-| ... | with ${nic_name}.
+| ... | routing and 2x1M static IPv4 /32 route entries. DUT1 and DUT2 are \
+| ... | tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\

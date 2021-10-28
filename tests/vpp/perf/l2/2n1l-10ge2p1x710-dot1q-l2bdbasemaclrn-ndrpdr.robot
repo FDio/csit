@@ -35,7 +35,7 @@
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with:\
 | ... | 2 VLAN subinterfaces (VID 100 and 200),\
 | ... | 1 L2 BD with the 2 VLAN subinterfaces,\
-| ... | DUT1 tested with ${nic_name} with VF enabled.
+| ... | DUT1 is tested with ${nic_name} with VF enabled.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
