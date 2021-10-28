@@ -25,18 +25,25 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *ADL Security IPv6 allowlist test cases*
+| Documentation | **ADL Security IPv6 allowlist test cases**
 |
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6 on all links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and \
-| ... | static routes. ADL security allowlists are applied on DUT1 ingress \
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv6 on all links.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv6 routing \
+| ... | and static routes. ADL security allowlists are applied on DUT1 ingress \
 | ... | interface from TG.
-| ... | *[Ver] TG verification:* Test IPv6 packets are sent in one direction \
-| ... | by TG on link to DUT1; on receive TG verifies packets for correctness \
-| ... | and drops as applicable.
-| ... | *[Ref] Applicable standard specifications:*
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv6 packets are sent in one \
+| ... | direction by TG on link to DUT1; on receive TG verifies packets for \
+| ... | correctness and drops as applicable.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:**
+
+
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | adl_plugin.so
@@ -73,7 +80,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv6 forwarding in circular topology
-| | And Add Fib Table | ${dut1} | 1 | ipv6=${TRUE}
+| | And Add Fib Table | ${dut1} | ... | ipv6=${TRUE}
 | | And Vpp Route Add | ${dut1} | 2001:1:: | 64 | vrf=1 | local=${TRUE}
 | | And ADL Add allowlist Entry | ${dut1} | ${DUT1_${int}1}[0] | ip6 | 1
 | | And ADL interface enable or disable | ${dut1} | ${DUT1_${int}1}[0] | enable
