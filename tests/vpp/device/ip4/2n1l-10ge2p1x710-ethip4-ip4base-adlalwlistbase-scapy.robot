@@ -25,18 +25,22 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *ADL Security IPv4 allowlist test cases*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
+| Documentation | **ADL Security IPv4 allowlist test cases**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 on all links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
-| ... | static routes. ADL security allowlist are applied on DUT1 ingress \
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 on all links.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing \
+| ... | and static routes. ADL security allowlist are applied on DUT1 ingress \
 | ... | interface from TG.
-| ... | *[Ver] TG verification:* Test IPv4 packets are sent in one direction \
-| ... | by TG on link to DUT1; on receive TG verifies packets for correctness \
-| ... | and drops as applicable.
-| ... | *[Ref] Applicable standard specifications:*
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv4 packets are sent in one \
+| ... | direction by TG on link to DUT1; on receive TG verifies packets for \
+| ... | correctness and drops as applicable.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:**
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | adl_plugin.so
@@ -54,7 +58,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IPv4 on its interface to DUT1; \
+| | ... | - **[Ver]** Make TG send IPv4 on its interface to DUT1; \
 | | ... | verify received IPv4 pkts are correct.
 | |
 | | ... | *Arguments:*

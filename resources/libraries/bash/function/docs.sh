@@ -89,6 +89,9 @@ function generate_docs () {
         die "rSync failed!"
     }
 
+    # to remove GPL licence section
+    find "${WORKING_DIR}/tests/" -type f -exec sed -i '/\*\*\*/,$!d' {} \;
+
     find ${WORKING_DIR}/ -type d -exec echo {} \; -exec touch {}/__init__.py \;
 
     python3 gen_rst.py || die "Generate .rst files failed!"
