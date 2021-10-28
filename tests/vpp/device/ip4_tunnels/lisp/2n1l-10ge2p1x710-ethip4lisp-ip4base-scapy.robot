@@ -27,21 +27,25 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *ip4-lisp-ip4 encapsulation test cases*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node\
-| ... | circular topology with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-LISP-IPv4-ICMPv4\
-| ... | on DUT1-TG, Eth-IPv4-ICMPv4 on TG-DUTn for IPv4 routing\
+| Documentation | **ip4-lisp-ip4 encapsulation test cases**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node \
+| ... | circular with single links between nodes.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-LISP-IPv4-ICMPv4 \
+| ... | on DUT1-TG, Eth-IPv4-ICMPv4 on TG-DUTn for IPv4 routing \
 | ... | over LISPoIPv4 tunnel.
-| ... | *[Cfg] DUT configuration:* DUT is configured with IPv4\
-| ... | routing and static routes. LISPoIPv4 tunnel is\
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT is configured with IPv4. \
+| ... | routing and static routes. LISPoIPv4 tunnel is \
 | ... | configured between DUT1 and TG2.
-| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets\
-| ... | are sent by TG on if1 link to DUT1; on receive TG verifies\
-| ... | packets for correctness and their IPv4 src-addr, dst-addr\
+| ... |
+| ... | - **[Ver] TG verification:** Test ICMPv4 Echo Request packets \
+| ... | are sent by TG on if1 link to DUT1; on receive TG verifies \
+| ... | packets for correctness and their IPv4 src-addr, dst-addr \
 | ... | and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC6830.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC6830.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | lisp_plugin.so
@@ -59,7 +63,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] On DUT1 configure LISP.\
+| | ... | - **[Cfg]** On DUT1 configure LISP.
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
