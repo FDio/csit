@@ -26,21 +26,25 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *L2 bridge-domain test cases with vhost user interface*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
-| ... | VM and single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with two L2 \
+| Documentation | **L2 bridge-domain test cases with vhost user interface**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
+| ... | with VM and single links between nodes.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for L2 switching of IPv4.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with two L2 \
 | ... | bridge-domains (L2BD) switching combined with MAC learning enabled. \
 | ... | Qemu Guest is connected to VPP via vhost-user interfaces. Guest is \
 | ... | configured with VPP l2 cross-connect interconnecting vhost-user \
 | ... | interfaces.
-| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61 are \
-| ... | sent in both directions by TG on links to DUT1 via VM; on receive TG \
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv4 packets with IP protocol=61 are \
+| ... | sent in both directions by TG on links to DUT1 via VM; on receive TG. \
 | ... | verifies packets for correctness and their IPv4 src-addr, dst-addr \
 | ... | and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC792
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC792
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -62,10 +66,13 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv4. [Cfg] On DUT1 configure \
+| | ... | - **[Top]** TG=DUT=VM. 
+| | ... | - **[Enc]** Eth-IPv4.
+| | ... | - **[Cfg]** On DUT1 configure \
 | | ... | two L2BDs with MAC learning, each with vhost-user i/f to local \
 | | ... | VM and i/f to TG; configure VPP in VM to loop pkts back betwen its \
-| | ... | two virtio i/fs. [Ver] Make TG verify IPv4 packets are switched \
+| | ... | two virtio i/fs. 
+| | ... | - **[Ver]** Make TG verify IPv4 packets are switched \
 | | ... | thru DUT1 and VM in both directions and are correct on receive.
 | |
 | | ... | *Arguments:*
