@@ -1,9 +1,4 @@
 # 2n-clx
-### tests 24
-### job hrs est. ?
-### job hrs real ?
-### test mins est. ?
-### test mins real ?
 ## ./container_memif
 ## ./crypto
 ## ./ip4
@@ -19,35 +14,15 @@
 ## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
 ## ./srv6
 ## ./hoststack
-### intel-e810cq
-#### dpdk-vfio-pci
-##### eth-ip4tcphttp-ldpreload-nginx-1_14_2
-1c AND 0b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_14_2
-1c AND 64b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_14_2
-1c AND 1024b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_14_2
-1c AND 2048b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_14_2
-1c AND 0b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_14_2
-1c AND 64b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_14_2
-1c AND 1024b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_14_2
-1c AND 2048b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_14_2
-##### eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 0b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 64b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 1024b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 2048b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 0b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 64b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 1024b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 2048b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
 ### mellanox-cx556a
 #### dpdk-vfio-pci
 ##### eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 0b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 64b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 1024b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 2048b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 0b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 64b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 1024b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
-1c AND 2048b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
+1c AND 0b AND cps AND cx556a AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
+1c AND 64b AND cps AND cx556a AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
+1c AND 1024b AND cps AND cx556a AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
+1c AND 2048b AND cps AND cx556a AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
+1c AND 0b AND rps AND cx556a AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
+1c AND 64b AND rps AND cx556a AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
+1c AND 1024b AND rps AND cx556a AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
+1c AND 2048b AND rps AND cx556a AND drv_rdma_core AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
 ## ./vm_vhost

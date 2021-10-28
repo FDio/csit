@@ -449,8 +449,6 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
 def write_tcp_files(in_filename, in_prolog, kwargs_list):
     """Using given filename and prolog, write all generated tcp suites.
 
-    TODO: Suport drivers.
-
     :param in_filename: Template filename to derive real filenames from.
     :param in_prolog: Template content to derive real content from.
     :param kwargs_list: List of kwargs for add_default_testcase.
@@ -462,20 +460,53 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.tcp(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
-        out_filename = replace_defensively(
+        tmp_filename = replace_defensively(
             in_filename, u"10ge2p1x710",
             Constants.NIC_NAME_TO_CODE[nic_name], 1,
             u"File name should contain NIC code once.", in_filename
         )
-        out_prolog = replace_defensively(
+        tmp_prolog = replace_defensively(
             in_prolog, u"Intel-X710", nic_name, 2,
             u"NIC name should appear twice (tag and variable).",
             in_filename
         )
-        check_suite_tag(suite_tag, out_prolog)
-        with open(out_filename, u"wt") as file_out:
-            file_out.write(out_prolog)
-            add_tcp_testcases(testcase, file_out, kwargs_list)
+        iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
+            tmp_filename
+        )
+        for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+            out_filename = replace_defensively(
+                tmp_filename, old_suite_id,
+                Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
+                1, u"Error adding driver prefix.", in_filename
+            )
+            out_prolog = replace_defensively(
+                tmp_prolog, u"vfio-pci", driver, 1,
+                u"Driver name should appear once.", in_filename
+            )
+            out_prolog = replace_defensively(
+                out_prolog, Constants.NIC_DRIVER_TO_TAG[u"vfio-pci"],
+                Constants.NIC_DRIVER_TO_TAG[driver], 1,
+                u"Driver tag should appear once.", in_filename
+            )
+            out_prolog = replace_defensively(
+                out_prolog, Constants.NIC_DRIVER_TO_PLUGINS[u"vfio-pci"],
+                Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                u"Driver plugin should appear once.", in_filename
+            )
+            out_prolog = replace_defensively(
+                out_prolog, Constants.NIC_DRIVER_TO_VFS[u"vfio-pci"],
+                Constants.NIC_DRIVER_TO_VFS[driver], 1,
+                u"NIC VFs argument should appear once.", in_filename
+            )
+            iface, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
+            out_prolog = replace_defensively(
+                out_prolog, old_suite_tag, suite_tag, 1,
+                u"Perf suite tag should appear once.", in_filename
+            )
+            check_suite_tag(suite_tag, out_prolog)
+            with open(out_filename, u"wt") as file_out:
+                file_out.write(out_prolog)
+                add_tcp_testcases(testcase, file_out, kwargs_list)
 
 
 def write_iperf3_files(in_filename, in_prolog, kwargs_list):
