@@ -26,14 +26,19 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *RFC2544: Pkt throughput IPv4 routing test cases with VHOST*
-|
-| ... | *[Top] Network Topologies:* DUT1 1-node topology without physical links.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing.
-| ... | *[Ver] TG verification:* iPerf3 client/server is used for Packet\
+| Documentation | **RFC2544: Pkt throughput IPv4 routing test cases with VHOST**
+| ... |
+| ... | - **[Top] Network Topologies:** DUT1 1-node topology without physical \
+| ... | links.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-TCP.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing.
+| ... |
+| ... | - **[Ver] TG verification:** iPerf3 client/server is used for Packet \
 | ... | generation and verification.
-| ... | *[Ref] Applicable standard specifications:* RFC2544.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC2544.
 
 *** Variables ***
 | @{plugins_to_enable}= | ping_plugin.so | perfmon_plugin.so
@@ -77,8 +82,8 @@
 | Local Template
 | | [Documentation]
 | | ... | [Cfg] DUT configuration: DUT1 is configured with IPv4 routing.
-| | ... | [Ver] Measure MaxReceivedRate for ${frame_size}B frames\
-| | ... | using burst trials throughput test.\
+| | ... | [Ver] Measure MaxReceivedRate for ${frame_size}B frames \
+| | ... | using burst trials throughput test. \
 | |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer, string

@@ -29,13 +29,16 @@
 |
 | Test Template | Local template
 |
-| Documentation | *Iperf3 client -> Iperf3 server goodput.
-|
-| ... | *[Top] Network Topologies:* DUT-DUT 2-node topology
+| Documentation | **Iperf3 client -> Iperf3 server goodput.**
+| ... |
+| ... | - **[Top] Network Topologies:** DUT-DUT 2-node topology \
 | ... | with single link between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP
-| ... | *[Cfg] DUT configuration:*
-| ... | *[Ref] Applicable standard specifications:*
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv4-UDP
+| ... |
+| ... | - **[Cfg] DUT configuration:**
+| ... |
+| ... | - **[Ref] Applicable standard specifications:**
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so

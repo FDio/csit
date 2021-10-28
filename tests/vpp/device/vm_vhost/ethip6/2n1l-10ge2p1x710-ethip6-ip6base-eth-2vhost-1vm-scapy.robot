@@ -25,19 +25,25 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IPv4 routing test cases with vhost user interface*
-|
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
-| ... | VM and single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing on both links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and \
+| Documentation | **IPv4 routing test cases with vhost user interface**
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
+| ... | with VM and single links between nodes.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IPv6 for IPv6 routing on both \
+| ... | links.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv6 routing \
 | ... | two static IPv6 /64 route entries. Qemu Guest is connected to VPP via \
 | ... | vhost-user interfaces. Guest is running VPP ip6 interconnecting \
 | ... | vhost-user interfaces.
-| ... | *[Ver] TG verification:* Test IPv6 packets are sent in one direction \
-| ... | by TG on links to DUT1; on receive TG verifies packets for correctness \
-| ... | and their IPv6 src-addr, dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC2460, RFC4443, RFC4861
+| ... |
+| ... | - **[Ver] TG verification:** Test IPv6 packets are sent in one \
+| ... | direction by TG on links to DUT1; on receive TG verifies packets for \
+| ... | correctness and their IPv6 src-addr, dst-addr and MAC addresses.
+| ... |
+| ... | - **[Ref] Applicable standard specifications:** RFC2460, RFC4443, \
+| ... | RFC4861.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -90,7 +96,6 @@
 | | ... | ${tg} | ${tg_if1_ip} | ${tg_if2_ip}
 | | ... | ${TG_pf1}[0] | ${TG_pf1_mac}[0] | ${DUT1_vf1_mac}[0]
 | | ... | ${TG_pf2}[0] | ${DUT1_vf2_mac}[0] | ${TG_pf2_mac}[0]
-
 
 *** Test Cases ***
 | 78B-0c-ethip6-ip6base-eth-2vhost-1vm-scapy
