@@ -25,13 +25,17 @@
 |
 | Test Template | Local Template
 |
-| Documentation | *IP6_N_TUPLE flow test cases*
+| Documentation | **IP6_N_TUPLE flow test cases**
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1 2-node topology with one link\
+| ... |
+| ... | - **[Top] Network Topologies:** TG-DUT1 2-node topology with one link \
 | ... | between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IP6-UDP.
-| ... | *[Cfg] DUT configuration:* DUT is configured with IP6_N_TUPLE flow.
-| ... | *[Ver] TG verification:* Verify if the flow action is correct.
+| ... |
+| ... | - **[Enc] Packet Encapsulations:** Eth-IP6-UDP.
+| ... |
+| ... | - **[Cfg] DUT configuration:** DUT is configured with IP6_N_TUPLE flow.
+| ... |
+| ... | - **[Ver] TG verification:** Verify if the flow action is correct.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
@@ -54,7 +58,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send IP6 packet routed over DUT1 interfaces.\
+| | ... | - **[Ver]** Make TG send IP6 packet routed over DUT1 interfaces. \
 | | ... | Make VPP verify flow packet is correct.
 | |
 | | ... | *Arguments:*
