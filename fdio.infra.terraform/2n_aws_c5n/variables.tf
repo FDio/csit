@@ -5,7 +5,7 @@ variable "region" {
 }
 
 variable "vault-name" {
-  default = "dynamic-aws-creds-vault-admin"
+  default = "dynamic-aws-creds-vault-fdio"
 }
 
 variable "avail_zone" {
