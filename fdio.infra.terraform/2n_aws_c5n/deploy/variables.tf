@@ -4,7 +4,7 @@ variable "region" {
 }
 
 variable "vault-name" {
-  default = "dynamic-aws-creds-vault-admin"
+  default = "dynamic-aws-creds-vault-fdio"
 }
 
 variable "ami_image_tg" {
