@@ -1,8 +1,8 @@
 ---
 title: Multiple Loss Ratio Search for Packet Throughput (MLRsearch)
-# abbrev: MLRsearch
-docname: draft-ietf-bmwg-mlrsearch-01
-date: 2021-07-12
+abbrev: Multiple Loss Ratio Search
+docname: draft-ietf-bmwg-mlrsearch-02
+date: 2021-11-02
 
 ipr: trust200902
 area: ops
@@ -12,9 +12,6 @@ cat: info
 
 coding: us-ascii
 pi:    # can use array (if all yes) or hash here
-#  - toc
-#  - sortrefs
-#  - symrefs
   toc: yes
   sortrefs:   # defaults to yes
   symrefs: yes
@@ -30,7 +27,6 @@ author:
         ins: V. Polak
         name: Vratko Polak
         org: Cisco Systems
-        role: editor
         email: vrpolak@cisco.com
 
 normative:
@@ -111,10 +107,10 @@ can be done to describe the replicability.
   chosen to avoid difficulties if SUT exhibits decreasing loss
   with increasing load. Maximum of packet loss ratios measured at the same
   duration on all loads smaller than (and including) the current one.
-* Target loss ratio: A packet loss ratio value acting as an imput for search.
+* Target loss ratio: A packet loss ratio value acting as an input for search.
   The search is finding tight enough lower and upper bound in intended load,
   so that the lower bound has smaller or equal loss ratio, and upper bound
-  has strictly larger loss ratio. For the tighterst upper bound,
+  has strictly larger loss ratio. For the tightest upper bound,
   the effective loss ratio is the same as packet loss ratio.
   For the tightest lower bound, the effective loss ratio can be higher
   than the packet loss ratio, but still not larger than the target loss ratio.
@@ -132,13 +128,13 @@ can be done to describe the replicability.
   octets) and inter-frame gap (12 octets). For bi-directional tests,
   bandwidth throughput rate should be reported as aggregate for both
   directions. Expressed in bits-per-second (bps).
-* Non Drop Rate (NDR): maximum packet/bandwith throughput rate sustained
+* Non Drop Rate (NDR): maximum packet/bandwidth throughput rate sustained
   by DUT/SUT at PLR equal zero (zero packet loss) specific to tested
   frame size(s). MUST be quoted with specific packet size as received by
   DUT/SUT during the measurement. Packet NDR measured in
   packets-per-second (or fps), bandwidth NDR expressed in
   bits-per-second (bps).
-* Partial Drop Rate (PDR): maximum packet/bandwith throughput rate
+* Partial Drop Rate (PDR): maximum packet/bandwidth throughput rate
   sustained by DUT/SUT at PLR greater than zero (non-zero packet loss)
   specific to tested frame size(s). MUST be quoted with specific packet
   size as received by DUT/SUT during the measurement. Packet PDR
@@ -173,7 +169,7 @@ results in the shorter overall search execution time when compared to a
 traditional binary search, while guaranteeing the same results for
 deterministic systems.
 
-In practice two rates with distinct PLRs are commonly used for packet
+In practice, two rates with distinct PLRs are commonly used for packet
 throughput measurements of NFV systems: Non Drop Rate (NDR) with PLR=0
 and Partial Drop Rate (PDR) with PLR>0. The rest of this document
 describes MLRsearch with NDR and PDR pair as an example.
@@ -281,7 +277,7 @@ The main properties of MLRsearch:
 
 The main benefits of MLRsearch vs. binary search include:
 
-* In general MLRsearch is likely to execute more trials overall, but
+* In general, MLRsearch is likely to execute more trials overall, but
   likely less trials at a set final trial duration.
 * In well behaving cases, e.g. when results do not depend on trial
   duration, it greatly reduces (>50%) the overall duration compared to a
@@ -422,7 +418,7 @@ which is a simplified version of the existing implementation.
                with current duration.
             3. Each re-measurement can trigger an external search.
             4. Such surprising external searches are the main hurdle
-               in achieving low overal search durations.
+               in achieving low overall search durations.
             5. Even without 1.1, there is at most one external search
                per phase and target loss ratio.
             6. But without 1.1 there can be two re-measurements,
@@ -521,8 +517,9 @@ their mutual interaction.
      * Also multiplied by a coefficient, if loss ratio is calculated
        from a different metric.
        * Example: If a successful transaction uses 10 packets,
-         load is given in transactions per second, byt loss ratio is calculated
-         from packets, the coefficient to get intended count of packets is 10.
+         load is given in transactions per second, but loss ratio is calculated
+         from packets, so the coefficient to get intended count of packets
+         is 10.
    * But in practice that does not work.
      * It could result in a fractional number of packets,
      * so it has to be rounded in a way traffic generator chooses,
@@ -530,7 +527,7 @@ their mutual interaction.
        and traffic generator worker threads.
 4. Attempted count. As the real number of intended packets is not known exactly,
    the computation uses the number of packets traffic generator reports as sent.
-   Unless overriden by the next point.
+   Unless overridden by the next point.
 5. Duration stretching.
    * In some cases, traffic generator may get overloaded,
      causing it to take significantly longer (than duration) to send all packets.
@@ -550,7 +547,7 @@ their mutual interaction.
      also as a failure, this is once again visible as a mismatch between
      the intended count and the attempted count.
    * The CSIT implementation simply looks at absolute value of the difference,
-     so it offes the same small tolerance before it start marking a "loss".
+     so it offers the same small tolerance before it starts marking a "loss".
 7. For result processing, we use lower bounds and ignore upper bounds.
 
 ### FD.io CSIT Input Parameters
@@ -567,7 +564,7 @@ their mutual interaction.
    The value has been chosen based on limited experimentation to date.
    More experimentation needed to arrive to clearer guidelines.
 8. **timeout** - Limit for the overall search duration (for one search).
-   If MLRsearch oversteps this limit, it immediatelly declares the test failed,
+   If MLRsearch oversteps this limit, it immediately declares the test failed,
    to avoid wasting even more time on a misbehaving SUT.
    Value: 600.0 (seconds).
 9. **expansion_coefficient** - Width multiplier for external search.
@@ -673,7 +670,7 @@ Further, benchmarking is performed on a "black-box" basis, relying
 solely on measurements observable external to the DUT/SUT.
 
 Special capabilities SHOULD NOT exist in the DUT/SUT specifically for
-benchmarking purposes.Any implications for network security arising
+benchmarking purposes. Any implications for network security arising
 from the DUT/SUT SHOULD be identical in the lab and in production
 networks.
 
