@@ -13,6 +13,7 @@
 
 """Flow Utilities Library."""
 
+from robot.api import logger
 from ipaddress import ip_address
 
 from resources.libraries.python.topology import Topology
@@ -517,6 +518,26 @@ class FlowUtil:
             node, cmd, sudo=False, message=err_msg, retries=120
             )
 
+        return stdout.strip()
+
+    @staticmethod
+    def vpp_show_flow_interface(node):
+        """Show flow interface.
+
+        :param node: DUT node.
+
+        :type node: dict
+        :returns: info.
+        :rtype: str
+        """
+
+        cmd = u"vppctl show interface"
+
+        err_msg = u"Failed to show flow on host {node[u'host']}"
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=120
+            )
+        logger.info(stdout)
         return stdout.strip()
 
     @staticmethod
