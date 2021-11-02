@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7cf0dbfc_1afcf51e",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 116
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-11-02T14:37:38Z",
+      "side": 1,
+      "message": "What is it used for?",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 6,
+        "endChar": 33
+      },
+      "revId": "b5baa00c071e33faf0567ad46733a589122546d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4acaa7e2_1af8e15d",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 116
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-11-02T14:37:38Z",
+      "side": 1,
+      "message": "This looks identical to the \"ndr_or_pdr\" macro lower down.",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 22
+      },
+      "revId": "b5baa00c071e33faf0567ad46733a589122546d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
