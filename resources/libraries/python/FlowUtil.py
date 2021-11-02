@@ -13,10 +13,11 @@
 
 """Flow Utilities Library."""
 
+from robot.api import logger
 from ipaddress import ip_address
 
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 class FlowUtil:
@@ -437,18 +438,26 @@ class FlowUtil:
         :type flow_index: int
         :returns: Nothing.
         """
-        from vpp_papi import VppEnum
+        #from vpp_papi import VppEnum
 
-        cmd = u"flow_enable"
-        sw_if_index = Topology.get_interface_sw_index(node, interface)
-        args = dict(
-            flow_index=int(flow_index),
-            hw_if_index=int(sw_if_index)
-        )
+        #cmd = u"flow_enable"
+        #sw_if_index = Topology.get_interface_sw_index(node, interface)
+        ifname = Topology.get_interface_name(node, interface)
+        #args = dict(
+        #    flow_index=int(flow_index),
+        #    hw_if_index=int(sw_if_index)
+        #)
 
-        err_msg = u"Failed to enable flow on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_reply(err_msg)
+        #err_msg = u"Failed to enable flow on host {node[u'host']}"
+        #with PapiSocketExecutor(node) as papi_exec:
+        #    papi_exec.add(cmd, **args).get_reply(err_msg)
+
+        cmd = f"vppctl test flow enable index {flow_index} {ifname}"
+
+        err_msg = u"Failed to show flow on host {node[u'host']}"
+
+        ret, _, _ = exec_cmd(node, cmd, sudo=True)
+        return ret
 
     @staticmethod
     def vpp_flow_disable(node, interface, flow_index=0):
