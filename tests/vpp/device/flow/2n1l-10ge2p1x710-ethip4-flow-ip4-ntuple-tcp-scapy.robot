@@ -75,31 +75,21 @@
 | |
 | | Clear Packet Trace On Dut | ${dut1}
 | | Vpp Enable Traces On Dut | ${dut1}
-| | ${flow_index} = | And Vpp Create Ip4 N Tuple Flow | ${dut1}
-| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
-| | ... | proto=TCP | action=redirect-to-queue | value=${${rxq}-1}
-| | And Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
-| | Then Send flow packet and verify action
-| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
-| | ... | flow_type=IP4 | proto=TCP
-| | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
-| | ... | src_port=${src_port} | dst_port=${dst_port}
-| | ... | action=redirect-to-queue | action_value=${${rxq}-1}
-| | And Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
-| | And Vpp Flow Del | ${dut1} | ${flow_index}
-| |
-| | Clear Packet Trace On Dut | ${dut1}
-| | Vpp Enable Traces On Dut | ${dut1}
+| | Vpp Show Flow Interface | ${dut1}
 | | ${flow_index} = | And Vpp Create Ip4 N Tuple Flow | ${dut1}
 | | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
 | | ... | proto=TCP | action=drop
+| | Vpp Show Flow entry | ${dut1}
+| | Vpp Show Flow Interface | ${dut1}
 | | And Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
+| | Vpp Show Flow entry | ${dut1}
 | | Then Send flow packet and verify action
 | | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
 | | ... | flow_type=IP4 | proto=TCP
 | | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
 | | ... | src_port=${src_port} | dst_port=${dst_port}
 | | ... | action=drop
+| | Vpp Show Flow Interface | ${dut1}
 | | And Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
 | | And Vpp Flow Del | ${dut1} | ${flow_index}
 | |
@@ -115,6 +105,21 @@
 | | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
 | | ... | src_port=${src_port} | dst_port=${dst_port}
 | | ... | action=mark
+| | And Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
+| | And Vpp Flow Del | ${dut1} | ${flow_index}
+| |
+| | Clear Packet Trace On Dut | ${dut1}
+| | Vpp Enable Traces On Dut | ${dut1}
+| | ${flow_index} = | And Vpp Create Ip4 N Tuple Flow | ${dut1}
+| | ... | ${src_ip} | ${dst_ip} | ${src_port} | ${dst_port}
+| | ... | proto=TCP | action=redirect-to-queue | value=${${rxq}-1}
+| | And Vpp Flow Enable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
+| | Then Send flow packet and verify action
+| | ... | ${tg} | ${TG_pf1}[0] | ${DUT1_${int}1_mac}[0]
+| | ... | flow_type=IP4 | proto=TCP
+| | ... | src_ip=${src_ip} | dst_ip=${dst_ip}
+| | ... | src_port=${src_port} | dst_port=${dst_port}
+| | ... | action=redirect-to-queue | action_value=${${rxq}-1}
 | | And Vpp Flow Disable | ${dut1} | ${DUT1_${int}1}[0] | ${flow_index}
 | | And Vpp Flow Del | ${dut1} | ${flow_index}
 
