@@ -1,0 +1,11 @@
+
+# TODO: Add a copyright&license header.
+
+Commands to convert RFC text from .md (so I do not need to search next time).
+
+Initial:
+$ kdrfc --version
+$ sudo gem install kramdown-rfc2629
+
+Main:
+$ kdrfc draft-ietf-bmwg-mlrsearch-02.md
