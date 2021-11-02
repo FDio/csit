@@ -504,6 +504,7 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
                 u"Perf suite tag should appear once.", in_filename
             )
             check_suite_tag(suite_tag, out_prolog)
+            testcase = Testcase.tcp(suite_id)
             with open(out_filename, u"wt") as file_out:
                 file_out.write(out_prolog)
                 add_tcp_testcases(testcase, file_out, kwargs_list)
