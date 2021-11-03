@@ -1,5 +1,5 @@
-AWS Instances
--------------
+Instances
+---------
 
 CSIT is using C5n instances for high compute applications that can take
 advantage of improved network throughput and packet rate performance. C5n
@@ -50,9 +50,6 @@ CPU utilization when compared to traditional virtualized network interfaces
 [aws_ena]_.
 
 Current advertised limits are captured in [aws_limits]_.
-
-Reference
----------
 
 .. [aws_it] `Instance types <https://aws.amazon.com/ec2/instance-types/>`_
 .. [aws_ena] `Elastic Network Adapter <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking-ena.html>`_

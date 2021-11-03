@@ -8,6 +8,5 @@ Documentation
 
 .. toctree::
 
-    containers
     documentation
 
