@@ -20,16 +20,20 @@
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.CpuUtils
 |
-| Suite Setup | Run Keywords | Setup Global Variables
+| Suite Setup | Run Keywords | Start Suite Setup Export
+| ... | AND | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
 | ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
 | ... | AND | Verify Vpp on All Duts | ${nodes}
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
+| ... | AND | Finalize Suite Setup Export
 |
-| Suite Teardown | Run Keywords | Disconnect All Papi Connections
+| Suite Teardown | Run Keywords | Start Suite Teardown Export
+| ... | AND | Disconnect All Papi Connections
 | ... | AND | Cleanup Framework | ${nodes}
+| ... | AND | Finalize Suite Teardown Export
 
 *** Keywords ***
 | Setup Global Variables
