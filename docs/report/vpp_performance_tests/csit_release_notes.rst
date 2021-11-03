@@ -8,13 +8,11 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Intel Xeon Ice Lake**: Added initial test data for these
-     platforms. Current CSIT-2106 report data for Intel Xeon Ice Lake
-     comes from an external source (Intel labs running CSIT code on
-     "8360Y D Stepping" and "6338N" processors). For details about the
-     physical setup see :ref:`tested_physical_topologies`. Tested
-     VPP and CSIT versions are pre-release, VPP
-     21.06-rc0~779-gd640ae52f.
+   - **Intel Xeon Ice Lake**: Added test data for these platforms. Current
+     CSIT-2110 report data for Intel Xeon Ice Lake comes from an external source
+     (Intel labs running CSIT code on "8360Y D Stepping" and "6338N"
+     processors). For details about the physical setup see
+     :ref:`tested_physical_topologies`.
 
    - **MLRsearch improvements**: Added support for multiple packet
      throughput rates in a single search, each rate is associated
@@ -84,7 +82,7 @@ List of known issues in |csit-release| for VPP performance tests:
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | #  | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
+|  1 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface. The issue persists after FVL FW upgrade. |
 |    | <https://jira.fd.io/browse/CSIT-1782>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  2 | `CSIT-1763                              | Adapt ramp-up phase of nat44 tests for different frame sizes.                                             |
@@ -99,19 +97,16 @@ List of known issues in |csit-release| for VPP performance tests:
 |  4 | `CSIT-1789                              | AVF driver does not perform RSS in a deterministic way.                                                   |
 |    | <https://jira.fd.io/browse/CSIT-1789>`_ | This increases standard deviation of tests with small number of flows (mainly ipsec).                     |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1790                              | Broken TRex latency measurements with TRex v2.88, DPDK 21.02 and FVL FW 6.01.                             |
-|    | <https://jira.fd.io/browse/CSIT-1790>`_ | High latency O(5msec) for all VPP and testpmd/l3fwd test cases for FVL NICs with FW 6.01.                 |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1780                              | IPSEC SW async scheduler MRR tests failing with no traffic forwarded.                                     |
+|  5 | `CSIT-1780                              | IPSEC SW async scheduler MRR tests failing with no traffic forwarded.                                     |
 |    | <https://jira.fd.io/browse/CSIT-1780>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1786                              | IP4 and IP6 scale tests failing with no traffic forwarded.                                                |
+|  6 | `CSIT-1786                              | IP4 and IP6 scale tests failing with no traffic forwarded.                                                |
 |    | <https://jira.fd.io/browse/CSIT-1786>`_ | Issue reported to VPP devs.                                                                               |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  8 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
+|  7 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
 |    | <https://jira.fd.io/browse/CSIT-1785>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  9 | `CSIT-1791                              | Performance regression in RDMA tests, due to CSIT environment changes.                                    |
+|  8 | `CSIT-1791                              | Performance regression in RDMA tests, due to CSIT environment changes.                                    |
 |    | <https://jira.fd.io/browse/CSIT-1791>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 

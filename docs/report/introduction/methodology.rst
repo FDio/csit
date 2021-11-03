@@ -24,6 +24,7 @@ Test Methodology
     methodology_reconf
     methodology_vpp_startup_settings
     methodology_kvm_vms_vhost_user
+    methodology_containers
     methodology_lxc_drc_container_memif
     methodology_nfv_service_density
     methodology_vpp_device_functional

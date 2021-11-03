@@ -1,14 +1,15 @@
-AWS Amazon Machine Images
--------------------------
+Amazon Machine Images
+---------------------
 
-An Amazon Machine Image (AMI) provides the information required to launch an
-instance. CSIT is using Amazon EBS where the root device for an instance
-launched from the AMI is an Amazon Elastic Block Store (Amazon EBS) volume
-created from an Amazon EBS snapshot.
+An :abbr:`AMI (Amazon Machine Image)` provides the information required to
+launch an instance. CSIT is using Amazon :abbr:`EBS (Elastic Block Store)` where
+the root device for an instance launched from the AMI is a volume created from
+an Amazon EBS snapshot.
 
 A the TG and SUT instances have slightly different software requirements,
 we are defining two AMIs for TG and SUT separately. AMI details examples:
 
+TG:
 - AMI Name: csit_c5n_ubuntu_focal_tg
 - Platform details: Linux/UNIX
 - Architecture: x86_64
@@ -19,6 +20,7 @@ we are defining two AMIs for TG and SUT separately. AMI details examples:
 - Root Device Name: /dev/sda1
 - Root Device Type: ebs
 
+SUT:
 - AMI Name: csit_c5n_ubuntu_focal_sut
 - Platform details: Linux/UNIX
 - Architecture: x86_64
@@ -39,8 +41,5 @@ part of automated scripts. To create CSIT AMIs:
   packer build
 
 Building AMIs requires Hashicorp Packer with Amazon plugin installed.
-
-Reference
----------
 
 .. [aws_ami] `Amazon Machine Images <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html>`_
