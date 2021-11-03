@@ -2,6 +2,30 @@
   "comments": [
     {
       "key": {
+        "uuid": "8cd449c0_2f80239a",
+        "filename": "docs/model/current/UTI_output_files/test_case.info.schema.json",
+        "patchSetId": 116
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-03T13:13:49Z",
+      "side": 1,
+      "message": "Done in #119, not sure how wordy the soak description should be.",
+      "parentUuid": "446df5ef_da7f7628",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 22
+      },
+      "revId": "b5baa00c071e33faf0567ad46733a589122546d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7cf0dbfc_1afcf51e",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 116
