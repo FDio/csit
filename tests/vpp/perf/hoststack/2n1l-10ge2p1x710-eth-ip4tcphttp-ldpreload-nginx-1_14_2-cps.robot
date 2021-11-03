@@ -72,8 +72,6 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${dp_count_int}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXD | ${512}
 | | | Run keyword | ${dut}.Add Session Event Queues Memfd Segment
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | Run keyword | ${dut}.Add session enable
