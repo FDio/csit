@@ -22,7 +22,7 @@ especially the export side (UTI), not import side (PAL).
 Version
 ~~~~~~~
 
-This document is valid for CSIT model version 0.1.0.
+This document is valid for CSIT model version 0.2.0.
 
 It is recommended to use semantic versioning: https://semver.org/
 That means, if the new model misses a field present in the old model,
@@ -42,7 +42,34 @@ UTI stands for Unified Test Interface.
 It mainly focuses on exporting information gathered during test run
 into JSON output files.
 
-Files
------
+Output Structure
+-----------------
 
-No files are exported yet in this version.
+UTI outputs come in filesystem tree structure (two trees), where directories
+correspond to suites and files correspond to suite setup, suite teardown
+or any test case at this level of suite.
+The directory name comes from SUITE_NAME Robot variable (the last part
+as the previous parts are higher level suites), it is in CamelCase.
+If the suite name contains spaces (Robot converts underscores to spaces),
+they are replaced with underscores.
+
+The two filesystem trees are rooted under output_raw and output_info.
+The "raw" variant is suitable for debugging (can contain lower level logging),
+while the "info" variant is suitable for processing by PAL
+(can contain derivative values so PAL does not need to compute them
+on every download).
+Their structure and content is mostly identical, model definition mentions
+if a particular subschema is not identical in the two variants.
+
+JSON schema
+-----------
+
+CSIT model is formally defined as a collection of JSON schema documents,
+one for each output file type.
+
+The current version specifies only one output file type:
+Info output for test case.
+
+The authoritative JSON schema documents are in JSON format.
+Git repository also contain YAML formatted document and conversion utilities,
+which help with creating the JSON document (but are not authoritative).
