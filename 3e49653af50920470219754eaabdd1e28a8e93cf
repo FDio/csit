@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8939cbbe_b478c4c2",
+        "filename": "docs/job_specs/report_iterative/3n-skx/vpp-mlr-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2021-11-03T05:09:26Z",
+      "side": 1,
+      "message": "ndrpdr",
+      "range": {
+        "startLine": 15,
+        "startChar": 17,
+        "endLine": 15,
+        "endChar": 21
+      },
+      "revId": "3e49653af50920470219754eaabdd1e28a8e93cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
