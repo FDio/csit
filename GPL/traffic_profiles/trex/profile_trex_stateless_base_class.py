@@ -154,12 +154,12 @@ class TrafficStreamsBaseClass:
             # Create the streams:
             # Direction 0 --> 1
             stream1 = STLStream(
-                packet=pkt_a, mode=STLTXCont(pps=9000)
+                packet=pkt_a, mode=STLTXCont(pps=200)
             )
             # Direction 1 --> 0
             # second traffic stream with a phase of 10ns (inter-stream gap)
             stream2 = STLStream(
-                packet=pkt_b, isg=10.0, mode=STLTXCont(pps=9000)
+                packet=pkt_b, isg=10.0, mode=STLTXCont(pps=200)
             )
 
             # Streams for latency measurement:
@@ -167,7 +167,7 @@ class TrafficStreamsBaseClass:
             lat_stream1 = STLStream(
                 packet=pkt_lat_a,
                 flow_stats=STLFlowLatencyStats(pg_id=0),
-                mode=STLTXCont(pps=9000)
+                mode=STLTXCont(pps=200)
             )
             # Direction 1 --> 0
             # second traffic stream with a phase of 10ns (inter-stream gap)
@@ -175,7 +175,7 @@ class TrafficStreamsBaseClass:
                 packet=pkt_lat_b,
                 isg=10.0,
                 flow_stats=STLFlowLatencyStats(pg_id=1),
-                mode=STLTXCont(pps=9000)
+                mode=STLTXCont(pps=200)
             )
 
             return [stream1, stream2, lat_stream1, lat_stream2]
