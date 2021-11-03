@@ -5735,7 +5735,7 @@
 - type: "table"
   title: "Detailed Test Results - DPDK Performance Results 2n-zn2"
   algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,PERF,DPDK,2N,SKX]}/dpdk_performance_results_2n_zn2"
+  output-file: "{DIR[DTR,PERF,DPDK,2N,ZN2]}/dpdk_performance_results_2n_zn2"
   columns:
     - title: " |prein| Test Name |preout| "
       data: "data name"
