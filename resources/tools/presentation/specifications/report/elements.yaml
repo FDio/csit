@@ -6343,7 +6343,7 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
   data: "vpp-2n-clx-curr-iter-vsap"
   include:
-    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Cps.0B-1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Cps.0B-2t1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps"
   layout:
     title: "2n-clx-cx556a-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
     layout: "plot-hoststack"
@@ -6354,7 +6354,7 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
   data: "vpp-2n-clx-curr-iter-vsap"
   include:
-    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Cps.64B-1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Cps.64B-2t1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps"
   layout:
     title: "2n-clx-cx556a-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
     layout: "plot-hoststack"
@@ -6365,7 +6365,7 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
   data: "vpp-2n-clx-curr-iter-vsap"
   include:
-    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Cps.1024B-1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Cps.1024B-2t1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps"
   layout:
     title: "2n-clx-cx556a-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
     layout: "plot-hoststack"
@@ -6376,7 +6376,7 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-cps"
   data: "vpp-2n-clx-curr-iter-vsap"
   include:
-    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Cps.2048B-1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Cps.2048B-2t1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps"
   layout:
     title: "2n-clx-cx556a-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
     layout: "plot-hoststack"
@@ -6387,7 +6387,7 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
   data: "vpp-2n-clx-curr-iter-vsap"
   include:
-    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Rps.0B-1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-rps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Rps.0B-2t1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-rps"
   layout:
     title: "2n-clx-cx556a-0b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
     layout: "plot-hoststack"
@@ -6398,7 +6398,7 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
   data: "vpp-2n-clx-curr-iter-vsap"
   include:
-    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Rps.64B-1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-rps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Rps.64B-2t1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-rps"
   layout:
     title: "2n-clx-cx556a-64b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
     layout: "plot-hoststack"
@@ -6409,7 +6409,7 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
   data: "vpp-2n-clx-curr-iter-vsap"
   include:
-    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Rps.1024B-1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-rps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Rps.1024B-2t1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-rps"
   layout:
     title: "2n-clx-cx556a-1024b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
     layout: "plot-hoststack"
@@ -6420,7 +6420,7 @@
   output-file: "{DIR[STATIC,VPP]}/2n-clx-cx556a-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx-rps"
   data: "vpp-2n-clx-curr-iter-vsap"
   include:
-    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Rps.2048B-1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-rps"
+    - "Tests.Vpp.Perf.Hoststack.2N1L-100Ge2P1Cx556A-Rdma-Eth-Ip4Tcphttp-Ldpreload-Nginx-1 15 0-Rps.2048B-2t1c-rdma-eth-ip4tcphttp-ldpreload-nginx-1_15_0-rps"
   layout:
     title: "2n-clx-cx556a-2048b-2t1c-eth-ip4tcphttp-ldpreload-nginx"
     layout: "plot-hoststack"
