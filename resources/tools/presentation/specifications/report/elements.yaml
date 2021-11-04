@@ -17,8 +17,8 @@
       data-set: "vpp-2n-clx-curr-iter-gso"
     - job-spec: "soak-00"
       data-set: "vpp-2n-clx-curr-soak"
-#     - job-spec: "vsap-00"
-#       data-set: "vpp-2n-clx-curr-iter-vsap"
+    - job-spec: "vsap-00"
+      data-set: "vpp-2n-clx-curr-iter-vsap"
     - job-spec: "nfv-density-mrr-00"
       data-set: "vpp-2n-clx-curr-nfv-mrr"
     - job-spec: "nfv-density-mlr-00"
@@ -81,25 +81,25 @@
     - job-spec: "vpp-mlr-00"
       data-set: "vpp-2n-dnv-curr-iter"
 
-# - type: "table"
-#   title: "Job Specification Duration: 2n-dnv-coverage"
-#   algorithm: "table_job_spec_duration"
-#   output-file: "{DIR[STATIC,VPP]}/job-spec-duration-2n-dnv-cov"
-#   jb-type: "coverage"
-#   data: "vpp-2n-dnv-curr-cov"
-#   lines:
-#     - job-spec: "ip4-00"
-#       build: "7"
-#     - job-spec: "ip4-01"
-#       build: "8"
-#     - job-spec: "ip6-00"
-#       build: "9"
-#     - job-spec: "ip6-01"
-#       build: "10"
-#     - job-spec: "l2-00"
-#       build: "11"
-#     - job-spec: "l2-01"
-#       build: "13"
+- type: "table"
+  title: "Job Specification Duration: 2n-dnv-coverage"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-2n-dnv-cov"
+  jb-type: "coverage"
+  data: "vpp-2n-dnv-curr-cov"
+  lines:
+    - job-spec: "ip4-00"
+      build: "7"
+    - job-spec: "ip4-01"
+      build: "8"
+    - job-spec: "ip6-00"
+      build: "9"
+    - job-spec: "ip6-01"
+      build: "10"
+    - job-spec: "l2-00"
+      build: "11"
+    - job-spec: "l2-01"
+      build: "12"
 
 - type: "table"
   title: "Job Specification Duration: 2n-aws-iterative"
@@ -112,15 +112,15 @@
     - job-spec: "vpp-mlr-00"
       data-set: "vpp-2n-aws-curr-iter"
 
-# - type: "table"
-#   title: "Job Specification Duration: 2n-aws-coverage"
-#   algorithm: "table_job_spec_duration"
-#   output-file: "{DIR[STATIC,VPP]}/job-spec-duration-2n-aws-cov"
-#   jb-type: "coverage"
-#   data: "vpp-2n-aws-curr-cov"
-#   lines:
-#     - job-spec: "vpp-00"
-#       build: "1"
+- type: "table"
+  title: "Job Specification Duration: 2n-aws-coverage"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-2n-aws-cov"
+  jb-type: "coverage"
+  data: "vpp-2n-aws-curr-cov"
+  lines:
+    - job-spec: "vpp-00"
+      build: "26"
 
 - type: "table"
   title: "Job Specification Duration: 3n-aws-iterative"
@@ -133,15 +133,15 @@
     - job-spec: "vpp-mlr-00"
       data-set: "vpp-3n-aws-curr-iter"
 
-# - type: "table"
-#   title: "Job Specification Duration: 3n-aws-coverage"
-#   algorithm: "table_job_spec_duration"
-#   output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-aws-cov"
-#   jb-type: "coverage"
-#   data: "vpp-3n-aws-curr-cov"
-#   lines:
-#     - job-spec: "vpp-00"
-#       build: "1"
+- type: "table"
+  title: "Job Specification Duration: 3n-aws-coverage"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-aws-cov"
+  jb-type: "coverage"
+  data: "vpp-3n-aws-curr-cov"
+  lines:
+    - job-spec: "vpp-00"
+      build: "34"
 
 - type: "table"
   title: "Job Specification Duration: 2n-skx-iterative"
@@ -168,47 +168,47 @@
     - job-spec: "trex-mlr-00"
       data-set: "trex-2n-skx-curr-iter"
 
-# - type: "table"
-#   title: "Job Specification Duration: 2n-skx-coverage"
-#   algorithm: "table_job_spec_duration"
-#   output-file: "{DIR[STATIC,VPP]}/job-spec-duration-2n-skx-cov"
-#   jb-type: "coverage"
-#   data: "vpp-2n-skx-curr-cov"
-#   lines:
-#     - job-spec: "gso-00"
-#       build: "1"
-#     - job-spec: "ip4-00"
-#       build: "2"
-#     - job-spec: "ip4-01"
-#       build: "3"
-#     - job-spec: "ip4-02"
-#       build: "4"
-#     - job-spec: "ip4-03"
-#       build: "5"
-#     - job-spec: "ip4-04"
-#       build: "6"
-#     - job-spec: "ip4-05"
-#       build: "7"
-#     - job-spec: "ip4-06"
-#       build: "8"
-#     - job-spec: "ip4-07"
-#       build: "9"
-#     - job-spec: "ip4tun-00"
-#       build: "10"
-#     - job-spec: "ip6-00"
-#       build: "11"
-#     - job-spec: "ip6-01"
-#       build: "12"
-#     - job-spec: "l2-00"
-#       build: "13"
-#     - job-spec: "l2-01"
-#       build: "14"
-#     - job-spec: "lb-00"
-#       build: "15"
-#     - job-spec: "memif-00"
-#       build: "16"
-#     - job-spec: "vhost-00"
-#       build: "17"
+- type: "table"
+  title: "Job Specification Duration: 2n-skx-coverage"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-2n-skx-cov"
+  jb-type: "coverage"
+  data: "vpp-2n-skx-curr-cov"
+  lines:
+    - job-spec: "gso-00"
+      build: "18"
+    - job-spec: "ip4-00"
+      build: "19"
+    - job-spec: "ip4-01"
+      build: "20"
+    - job-spec: "ip4-02"
+      build: "21"
+    - job-spec: "ip4-03"
+      build: "22"
+    - job-spec: "ip4-04"
+      build: "23"
+    - job-spec: "ip4-05"
+      build: "24"
+    - job-spec: "ip4-06"
+      build: "25"
+    - job-spec: "ip4-07"
+      build: "26"
+    - job-spec: "ip4tun-00"
+      build: "27"
+    - job-spec: "ip6-00"
+      build: "28"
+    - job-spec: "ip6-01"
+      build: "29"
+    - job-spec: "l2-00"
+      build: "30"
+    - job-spec: "l2-01"
+      build: "31"
+    - job-spec: "lb-00"
+      build: "32"
+    - job-spec: "memif-00"
+      build: "33"
+    - job-spec: "vhost-00"
+      build: "34"
 
 - type: "table"
   title: "Job Specification Duration: 2n-tx2-iterative"
@@ -321,33 +321,33 @@
     - job-spec: "vpp-mlr-00"
       data-set: "vpp-3n-dnv-curr-iter"
 
-# - type: "table"
-#   title: "Job Specification Duration: 3n-dnv-coverage"
-#   algorithm: "table_job_spec_duration"
-#   output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-dnv-cov"
-#   jb-type: "coverage"
-#   data: "vpp-3n-dnv-curr-cov"
-#   lines:
-#     - job-spec: "crypto-00"
-#       build: "11"
-#     - job-spec: "crypto-01"
-#       build: "12"
-#     - job-spec: "crypto-02"
-#       build: "13"
-#     - job-spec: "ip4-00"
-#       build: "14"
-#     - job-spec: "ip4-01"
-#       build: "15"
-#     - job-spec: "ip4tun-00"
-#       build: "16"
-#     - job-spec: "ip6-00"
-#       build: "17"
-#     - job-spec: "ip6-01"
-#       build: "10"
-#     - job-spec: "l2-00"
-#       build: "20"
-#     - job-spec: "l2-01"
-#       build: "21"
+- type: "table"
+  title: "Job Specification Duration: 3n-dnv-coverage"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-dnv-cov"
+  jb-type: "coverage"
+  data: "vpp-3n-dnv-curr-cov"
+  lines:
+    - job-spec: "crypto-00"
+      build: "12"
+    - job-spec: "crypto-01"
+      build: "13"
+    - job-spec: "crypto-02"
+      build: "14"
+    - job-spec: "ip4-00"
+      build: "15"
+    - job-spec: "ip4-01"
+      build: "16"
+    - job-spec: "ip4tun-00"
+      build: "17"
+    - job-spec: "ip6-00"
+      build: "18"
+    - job-spec: "ip6-01"
+      build: "19"
+    - job-spec: "l2-00"
+      build: "20"
+    - job-spec: "l2-01"
+      build: "21"
 
 - type: "table"
   title: "Job Specification Duration: 3n-skx-iterative"
@@ -510,7 +510,7 @@
     - title: "2106.0-8"
       data-set: "vpp-3n-skx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-3n-skx-curr-iter-best"
+      data-set: "vpp-3n-skx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -541,7 +541,7 @@
     - title: "2106.0-8"
       data-set: "vpp-3n-skx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-3n-skx-curr-iter-best"
+      data-set: "vpp-3n-skx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -572,7 +572,7 @@
     - title: "2106.0-8"
       data-set: "vpp-3n-skx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-3n-skx-curr-iter-best"
+      data-set: "vpp-3n-skx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -603,7 +603,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-skx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-skx-curr-iter-best"
+      data-set: "vpp-2n-skx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -634,7 +634,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-skx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-skx-curr-iter-best"
+      data-set: "vpp-2n-skx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -665,7 +665,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-skx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-skx-curr-iter-best"
+      data-set: "vpp-2n-skx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -696,7 +696,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-clx-curr-iter-best"
+      data-set: "vpp-2n-clx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -727,7 +727,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-clx-curr-iter-best"
+      data-set: "vpp-2n-clx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -758,7 +758,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-clx-curr-iter-best"
+      data-set: "vpp-2n-clx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -789,7 +789,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-clx-curr-iter-best"
+      data-set: "vpp-2n-clx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -820,7 +820,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-clx-curr-iter-best"
+      data-set: "vpp-2n-clx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -851,7 +851,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-clx-curr-iter-best"
+      data-set: "vpp-2n-clx-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -882,7 +882,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-zn2-curr-iter-best"
+      data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -913,7 +913,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-zn2-curr-iter-best"
+      data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -944,7 +944,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-zn2-curr-iter-best"
+      data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -975,7 +975,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-tx2-curr-iter-best"
+      data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -1006,7 +1006,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-tx2-curr-iter-best"
+      data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -1037,7 +1037,7 @@
     - title: "2106.0-8"
       data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-2n-tx2-curr-iter-best"
+      data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -1068,7 +1068,7 @@
     - title: "2106.0-8"
       data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-3n-tsh-curr-iter-best"
+      data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -1099,7 +1099,7 @@
     - title: "2106.0-8"
       data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-3n-tsh-curr-iter-best"
+      data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
@@ -1130,7 +1130,7 @@
     - title: "2106.0-8"
       data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2110.0-8"
-      data-set: "vpp-3n-tsh-curr-iter-best"
+      data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
     - title: "2106.0-8 vs 2106.0-7"
       reference: 2
