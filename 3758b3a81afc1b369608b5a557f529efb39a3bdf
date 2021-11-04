@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "bb89a7a1_6739c9ff",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-04T16:42:32Z",
+      "side": 1,
+      "message": "No. Some suites have TG_DRV_IGB_UIO tag (not used for anything, visible in \"tags\" property), but that is all.\nSuites are tg_type agnostic and keywords usually hardcode their TG. No easy way to detect tg_type unless all keywords (related to traffic) start exporting it (scapy for device tests, iperf3 for hoststack and GSO, AB for VSAP, TRex for the rest of performance tests).\n\nCan be added later when PAL wants it.",
+      "parentUuid": "3e768eb3_7e497353",
+      "range": {
+        "startLine": 14,
+        "startChar": 9,
+        "endLine": 14,
+        "endChar": 17
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd93e07a_3c4078a2",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "64165323_6fead16c",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-04T16:42:32Z",
+      "side": 1,
+      "message": "See tg_type.",
+      "parentUuid": "fd93e07a_3c4078a2",
+      "range": {
+        "startLine": 15,
+        "startChar": 9,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "495b482b_2972647b",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
@@ -91,6 +139,30 @@
       "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ec7955c_817880f0",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-04T16:42:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "495b482b_2972647b",
+      "range": {
+        "startLine": 35,
+        "startChar": 35,
+        "endLine": 35,
+        "endChar": 38
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -164,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "f99b1a27_42225b0a",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-04T16:42:32Z",
+      "side": 1,
+      "message": "sut_type is now optional, so TRex suites simply do not set it.",
+      "parentUuid": "742b2d3b_2866fff3",
+      "range": {
+        "startLine": 58,
+        "startChar": 50,
+        "endLine": 58,
+        "endChar": 55
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41be5a22_5571371c",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
@@ -184,6 +280,30 @@
       "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76e95c7e_64d40bc9",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-04T16:42:32Z",
+      "side": 1,
+      "message": "Will be added in the later changes. It will need CSIT model version bump anyway, as result structure is different.",
+      "parentUuid": "41be5a22_5571371c",
+      "range": {
+        "startLine": 70,
+        "startChar": 40,
+        "endLine": 70,
+        "endChar": 44
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -250,6 +370,30 @@
         "startChar": 12,
         "endLine": 87,
         "endChar": 22
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "284e800d_b72c7037",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-04T16:42:32Z",
+      "side": 1,
+      "message": "Done, later called rate_unit to distinguish from bandwidth (or latency).",
+      "parentUuid": "56d2c312_eab1c4bc",
+      "range": {
+        "startLine": 87,
+        "startChar": 13,
+        "endLine": 87,
+        "endChar": 21
       },
       "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -492,6 +636,30 @@
     },
     {
       "key": {
+        "uuid": "2d110cec_da475c6f",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-04T16:42:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33d8f6dc_ecbbea82",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 85
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e955a73_f30e3308",
         "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
         "patchSetId": 1
@@ -653,6 +821,30 @@
       "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e983b96_2fd698ce",
+        "filename": "docs/model/current/UTI_output_files/test_case_info.schema.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-04T16:42:32Z",
+      "side": 1,
+      "message": "Done, latency_unit and nonnegative/positive integer types for latency numbers.",
+      "parentUuid": "b5ad705d_0157daeb",
+      "range": {
+        "startLine": 144,
+        "startChar": 21,
+        "endLine": 144,
+        "endChar": 25
+      },
+      "revId": "3758b3a81afc1b369608b5a557f529efb39a3bdf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
