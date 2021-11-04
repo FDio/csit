@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5fdd994a_5f611b62",
+        "filename": "docs/model/current/UTI_output_files/test_case/version.rst",
+        "patchSetId": 98
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-04T15:45:22Z",
+      "side": 1,
+      "message": "Most .rst files are gone now.",
+      "parentUuid": "c5507dfc_48d4b6b6",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 33
+      },
+      "revId": "18ee283893556ccfdcedc2b3ef7647ebc203d30f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a88ce89_082702e9",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 98
