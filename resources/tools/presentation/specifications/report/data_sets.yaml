@@ -111,6 +111,7 @@
       - 44  # rls2110.rel NDRPDR cov env 8
       - 46  # rls2110.rel NDRPDR cov env 8
       - 48  # rls2110.rel NDRPDR cov env 8
+      - 51  # rls2110.rel NDRPDR cov env 8
 
   dpdk-3n-skx-hist-iter:
     csit-dpdk-perf-report-iterative-2101-3n-skx:
@@ -476,6 +477,7 @@
       - 44  # rls2110.rel NDRPDR iter env 8
       - 45  # rls2110.rel NDRPDR iter env 8
       - 46  # rls2110.rel NDRPDR iter env 8
+      - 47  # rls2110.rel NDRPDR iter env 8
       - 48  # rls2110.rel NDRPDR iter env 8
       - 49  # rls2110.rel NDRPDR iter env 8
 
