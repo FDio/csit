@@ -28,6 +28,7 @@ import json
 import os
 
 import jsonschema
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -129,6 +130,7 @@ class export_json():
 
     def __init__(self):
         """Declare required fields, cache output dir."""
+        logger.info(u"Initialization of export_json library.")
         self.output_dir = BuiltIn().get_variable_value(u"\\${OUTPUT_DIR}", ".")
         self.info_file_path = None
         self.raw_file_path = None
@@ -142,9 +144,11 @@ class export_json():
             schema = json.load(fin)
         validator_class = jsonschema.validators.validator_for(schema)
         validator_class.check_schema(schema)
+        logger.info(u"Schema validated against metaschema.")
         fmt_checker = jsonschema.FormatChecker()
         validator = validator_class(schema, format_checker=fmt_checker)
         self.info_test_schema_validator = validator
+        logger.info(u"Compiled validator is ready.")
 
     def export_pending_data(self):
         """Write the accumulated data to disk.
@@ -177,11 +181,14 @@ class export_json():
         if u"results" in info_data:
             with open(self.info_file_path, u"rt") as fin:
                 instance = json.load(fin)
+            logger.info(u"Validation starts for {self.info_file_path}")
             error = jsonschema.exceptions.best_match(
                 self.info_test_schema_validator.iter_errors(instance)
             )
             if error is not None:
+                logger.info(u"Validation failed.")
                 raise error
+            logger.info(u"Validation passed.")
         self.info_file_path = None
 
     def start_suite_setup_export(self):
