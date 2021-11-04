@@ -27,6 +27,8 @@ from enum import IntFlag
 import json
 import os
 
+import jsonschema
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -133,6 +135,8 @@ class export_json():
         self.raw_file_path = None
         self.info_data = None
         self.raw_data = None
+        logger.info(u"Initialization of export_json library.")
+        self.info_test_schema_validator = None
 
     def export_pending_data(self):
         """Write the accumulated data to disk.
@@ -159,8 +163,45 @@ class export_json():
         info_data = _pre_serialize_root(self.info_data)
         with open(self.info_file_path, u"wt") as file_out:
             json.dump(info_data, file_out, indent=1)
-            # TODO: Validate against schema here, for test case output.
         self.info_data = None
+        if u"results" in info_data:
+            # Dump did some conversions, read from file to delete old types.
+            with open(self.info_file_path, u"rt") as fin:
+                instance = json.load(fin)
+            if self.info_test_schema_validator is None:
+                # Robot is always started when CWD is CSIT_DIR.
+                schema_path = os.getcwd()
+                schema_path += u"/docs/model/current/UTI_output_files/"
+                schema_path += u"test_case.info.schema.json"
+                with open(schema_path, u"rt") as fin:
+                    schema = json.load(fin)
+                # Validation logic copied from
+                # https://python-jsonschema.readthedocs.io/en/stable
+                #  /_modules/jsonschema/validators/#validate
+                # when 4.1.2 was the stable version of jsonschema.
+                validator_class = jsonschema.validators.validator_for(schema)
+                validator_class.check_schema(schema)
+                # I wish I found a better documentation on format checkers.
+                # The checkers we want are added upon import:
+                # https://github.com/Julian/jsonschema/blob
+                #  /af78d65ccf3164f37083eaf023db5704d004bbc6
+                #  /jsonschema/_format.py#L326
+                # so here we just need to instantiate.
+                fmt_checker = jsonschema.FormatChecker()
+                # The following is based on a single line in source code:
+                # https://github.com/Julian/jsonschema/blob
+                #  /af78d65ccf3164f37083eaf023db5704d004bbc6
+                #  /jsonschema/validators.py#L171
+                validator = validator_class(schema, format_checker=fmt_checker)
+                self.info_test_schema_validator = validator
+            logger.info(u"Validation starts for {self.info_file_path}")
+            error = jsonschema.exceptions.best_match(
+                self.info_test_schema_validator.iter_errors(instance)
+            )
+            if error is not None:
+                logger.info(u"Validation failed.")
+                raise error
+            logger.info(u"Validation passed.")
         self.info_file_path = None
 
     def start_suite_setup_export(self):
