@@ -64,6 +64,7 @@
       - 58  # rls2110.rel NDRPDR iter env 8
       - 59  # rls2110.rel NDRPDR iter env 8
       - 60  # rls2110.rel NDRPDR iter env 8
+      - 61  # rls2110.rel NDRPDR iter env 8 ipsec
 
   vpp-3n-skx-curr-iter-best:
     csit-vpp-perf-report-iterative-2110-3n-skx:
@@ -111,6 +112,8 @@
       - 44  # rls2110.rel NDRPDR cov env 8
       - 46  # rls2110.rel NDRPDR cov env 8
       - 48  # rls2110.rel NDRPDR cov env 8
+      - 50  # rls2110.rel NDRPDR cov env 8
+      - 51  # rls2110.rel NDRPDR cov env 8
 
   dpdk-3n-skx-hist-iter:
     csit-dpdk-perf-report-iterative-2101-3n-skx:
@@ -476,6 +479,7 @@
       - 44  # rls2110.rel NDRPDR iter env 8
       - 45  # rls2110.rel NDRPDR iter env 8
       - 46  # rls2110.rel NDRPDR iter env 8
+      - 47  # rls2110.rel NDRPDR iter env 8
       - 48  # rls2110.rel NDRPDR iter env 8
       - 49  # rls2110.rel NDRPDR iter env 8
 
@@ -692,6 +696,8 @@
       - 87  # rls2110.rel NDRPDR nf-density iter env 8
       - 91  # rls2110.rel NDRPDR nf-density iter env 8
       - 100 # rls2110.rel NDRPDR nf-density iter env 8
+      - 102 # rls2110.rel NDRPDR nf-density iter env 8
+      - 103 # rls2110.rel NDRPDR nf-density iter env 8
 
   vpp-2n-clx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2110-2n-clx:
