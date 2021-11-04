@@ -28,7 +28,7 @@ properties:
     end_time:
         $ref: "#/$defs/types/date_time"
         description: >-
-            UTC date and time in ISO format, specifying calendar time
+            UTC date and time in RFC 3339 format, specifying calendar time
             just before test case ended (at the end of test case teardown).
     log:
         $ref: "#/$defs/types/empty_array"
@@ -199,7 +199,7 @@ properties:
     start_time:
         $ref: "#/$defs/types/date_time"
         description: >-
-            UTC date and time in ISO format, specifying calendar time
+            UTC date and time in RFC 3339 format, specifying calendar time
             just after test case started (at the start of test setup).
     status:
         type: string

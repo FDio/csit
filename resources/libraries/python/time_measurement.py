@@ -43,7 +43,7 @@ def timestamp_or_now(timestamp=None):
 def posix_from_iso(iso_formatted):
     """Convert from ISO formatted string to POSIX timestamp.
 
-    The ISO 8601 permits wider array of formats tha RFC 3339.
+    The ISO 8601 permits wider array of formats than RFC 3339.
     Calling posix_from_iso(timestamp_or_now()) should get the same value
     as calling time.time(), except rounding to microseconds.
 
@@ -54,4 +54,9 @@ def posix_from_iso(iso_formatted):
     :returns: POSIX (epoch) timestamp.
     :rtype: float
     """
+    if iso_formatted[-1].lower() == u"z":
+        # Unfortunatelly, datetime does not tolerate 'Z' as UTC zone.
+        # The following is a workaround, so we do not need
+        # yet another library, such as dateutil.
+        iso_formatted = iso_formatted[:-1] + u"+00:00"
     return datetime.datetime.fromisoformat(iso_formatted).timestamp()
