@@ -30,7 +30,6 @@ Graphs are split into sections as follows:
    - **KVM VMs vhost-user**: KVM VMs connected over virtio and vhost-user interfaces
    - **LXC/DRC Container Memif**: Linux containers and Docker containers connected over Memif interfaces
    - **IPsec IPv4 Routing**: IPsec encryption/decryption with IPv4 routing
-   - **Virtual Topology System**: VXLAN configurations with L2 bridge-domains
 
 #. **Header 2**: testbeds and NIC models
 
@@ -45,8 +44,13 @@ Graphs are split into sections as follows:
      - 2n-clx: 2-node Xeon Cascade Lake
      - 3n-tsh: 3-node Arm TaiShan
      - 2n-tx2: 2-node Arm ThunderX2
+     - 2n zn2: 2-node AMD Zen2
      - 2n-dnv: 2-node Atom Denverton
      - 3n-dnv: 3-node Atom Denverton
+     - 2n-aws: 2-node AWS
+     - 3n-aws: 3-node AWS
+     - 2n-icx: 2-node Xeon Icelake
+     - 3n-icx: 3-node Xeon Icelake
 
    - **nic_model**:
 
@@ -55,6 +59,8 @@ Graphs are split into sections as follows:
      - xl710: xl710 2p40GE Intel (Fortville)
      - x520: x520 2p10GE Intel (Niantic)
      - x553: x553 2p10GE Intel (Niantic)
+     - cx556a: cx556a-edat 2p100GE Mellanox ConnectX5
+     - e810cq: E810-2CQDA2 2p100GE Intel Columbiaville
 
 #. **Header 3**: test group names
 
