@@ -31,13 +31,13 @@
 3n-tsh-x520
 ~~~~~~~~~~~
 
-64b-ip4routing-base-scale-ixgbe
--------------------------------
+64b-ip4routing-base-ixgbe
+-------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-ip4routing-base-scale-ixgbe-ndr-tsa.html"></iframe>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-ip4routing-base-ixgbe-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-ip4routing-base-scale-ixgbe-ndr-tsa}
-            \label{fig:3n-tsh-x520-64b-ip4routing-base-scale-ixgbe-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-ip4routing-base-ixgbe-ndr-tsa}
+            \label{fig:3n-tsh-x520-64b-ip4routing-base-ixgbe-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-ip4routing-base-scale-ixgbe-pdr-tsa.html"></iframe>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-ip4routing-base-ixgbe-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,8 +66,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-ip4routing-base-scale-ixgbe-pdr-tsa}
-            \label{fig:3n-tsh-x520-64b-ip4routing-base-scale-ixgbe-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-ip4routing-base-ixgbe-pdr-tsa}
+            \label{fig:3n-tsh-x520-64b-ip4routing-base-ixgbe-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
