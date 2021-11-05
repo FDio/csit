@@ -679,7 +679,7 @@ def _tpc_generate_html_table(header, data, out_file_name, legend=u"",
             visible[idx] = True
             buttons.append(
                 dict(
-                    label=hdr.replace(u" [Mpps]", u""),
+                    label=hdr.replace(u" [kpps]", u""),
                     method=u"update",
                     args=[{u"visible": visible}],
                 )
@@ -802,16 +802,16 @@ def table_soak_vs_ndr(table, input_data):
         legend = (
             u"\nLegend:\n"
             f"Avg({table[u'reference'][u'title']}): "
-            f"Mean value of {table[u'reference'][u'title']} [Mpps] computed "
+            f"Mean value of {table[u'reference'][u'title']} [kpps] computed "
             f"from a series of runs of the listed tests.\n"
             f"Stdev({table[u'reference'][u'title']}): "
             f"Standard deviation value of {table[u'reference'][u'title']} "
-            f"[Mpps] computed from a series of runs of the listed tests.\n"
+            f"[kpps] computed from a series of runs of the listed tests.\n"
             f"Avg({table[u'compare'][u'title']}): "
-            f"Mean value of {table[u'compare'][u'title']} [Mpps] computed from "
+            f"Mean value of {table[u'compare'][u'title']} [kpps] computed from "
             f"a series of runs of the listed tests.\n"
             f"Stdev({table[u'compare'][u'title']}): "
-            f"Standard deviation value of {table[u'compare'][u'title']} [Mpps] "
+            f"Standard deviation value of {table[u'compare'][u'title']} [kpps] "
             f"computed from a series of runs of the listed tests.\n"
             f"Diff({table[u'reference'][u'title']},"
             f"{table[u'compare'][u'title']}): "
@@ -889,8 +889,8 @@ def table_soak_vs_ndr(table, input_data):
             else:
                 data_r_mean = mean(data_r)
                 data_r_stdev = stdev(data_r)
-            item.append(round(data_r_mean / 1e6, 1))
-            item.append(round(data_r_stdev / 1e6, 1))
+            item.append(round(data_r_mean / 1e3, 1))
+            item.append(round(data_r_stdev / 1e3, 1))
         else:
             data_r_mean = None
             data_r_stdev = None
@@ -903,8 +903,8 @@ def table_soak_vs_ndr(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 1))
-            item.append(round(data_c_stdev / 1e6, 1))
+            item.append(round(data_c_mean / 1e3, 1))
+            item.append(round(data_c_stdev / 1e3, 1))
         else:
             data_c_mean = None
             data_c_stdev = None
@@ -971,7 +971,7 @@ def table_perf_trending_dash(table, input_data):
     # Prepare the header of the tables
     header = [
         u"Test Case",
-        u"Trend [Mpps]",
+        u"Trend [kpps]",
         u"Short-Term Change [%]",
         u"Long-Term Change [%]",
         u"Regressions [#]",
@@ -1054,7 +1054,7 @@ def table_perf_trending_dash(table, input_data):
                 continue
             tbl_lst.append(
                 [tbl_dict[tst_name][u"name"],
-                 round(last_avg / 1e6, 2),
+                 round(last_avg / 1e3, 2),
                  rel_change_last,
                  rel_change_long,
                  classification_lst[-win_size+1:].count(u"regression"),
@@ -1917,8 +1917,8 @@ def table_comparison(table, input_data):
                     if delta is None or math.isnan(delta):
                         break
                     new_row.append({
-                        u"mean": delta * 1e6,
-                        u"stdev": d_stdev * 1e6
+                        u"mean": delta * 1e3,
+                        u"stdev": d_stdev * 1e3
                     })
                 else:
                     break
@@ -1941,8 +1941,8 @@ def table_comparison(table, input_data):
                 row.append(u"NT")
                 row.append(u"NT")
             else:
-                row.append(round(float(itm[u'mean']) / 1e6, 3))
-                row.append(round(float(itm[u'stdev']) / 1e6, 3))
+                row.append(round(float(itm[u'mean']) / 1e3, 3))
+                row.append(round(float(itm[u'stdev']) / 1e3, 3))
         for rca in rcas:
             if rca is None:
                 continue
@@ -2006,14 +2006,14 @@ def table_comparison(table, input_data):
             else:
                 if idx < len(cols):
                     new_itm = (
-                        f"{round(float(itm[u'mean']) / 1e6, 1)} "
-                        f"\u00B1{round(float(itm[u'stdev']) / 1e6, 1)}".
+                        f"{round(float(itm[u'mean']) / 1e3, 1)} "
+                        f"\u00B1{round(float(itm[u'stdev']) / 1e3, 1)}".
                         replace(u"nan", u"NaN")
                     )
                 else:
                     new_itm = (
-                        f"{round(float(itm[u'mean']) / 1e6, 1):+} "
-                        f"\u00B1{round(float(itm[u'stdev']) / 1e6, 1)}".
+                        f"{round(float(itm[u'mean']) / 1e3, 1):+} "
+                        f"\u00B1{round(float(itm[u'stdev']) / 1e3, 1)}".
                         replace(u"nan", u"NaN")
                     )
             if len(new_itm.rsplit(u" ", 1)[-1]) > max_lens[idx]:
@@ -2203,7 +2203,7 @@ def table_weekly_comparison(table, in_data):
             if item is None:
                 itm_lst.insert(1, None)
             else:
-                itm_lst.insert(1, round(item / 1e6, 1))
+                itm_lst.insert(1, round(item / 1e3, 1))
         itm_lst.extend(
             [
                 None if itm is None else round(itm, 1)
