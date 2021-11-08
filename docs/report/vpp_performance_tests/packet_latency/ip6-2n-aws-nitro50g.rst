@@ -32,12 +32,12 @@
 ~~~~~~~~~~~~~~~
 
 1518b-2t1c-ip6routing-base-scale-ena
-----------------------------------
+------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6base.html"></iframe>
+    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-78b-2t1c-ethip6-ip6base.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6base}
-            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6base}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-78b-2t1c-ethip6-ip6base}
+            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-78b-2t1c-ethip6-ip6base}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6scale20k.html"></iframe>
+    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-78b-2t1c-ethip6-ip6scale20k.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,26 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6scale20k}
-            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-1518b-2t1c-ethip6-ip6scale20k}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-78b-2t1c-ethip6-ip6scale20k}
+            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-78b-2t1c-ethip6-ip6scale20k}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="3" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-78b-2t1c-ethip6-ip6scale20k-rnd.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-78b-2t1c-ethip6-ip6scale20k-rnd}
+            \label{fig:hdrh-lat-percentile-2n-aws-50ge1p1ena-ethip6-78b-2t1c-ethip6-ip6scale20k-rnd}
     \end{figure}

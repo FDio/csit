@@ -69,3 +69,23 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4scale20k}
             \label{fig:hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4scale20k}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="3" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4scale20k-rnd.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4scale20k-rnd}
+            \label{fig:hdrh-lat-percentile-3n-aws-50ge1p1ena-ethip4-64b-2t1c-ethip4-ip4scale20k-rnd}
+    \end{figure}
