@@ -2006,14 +2006,14 @@ def table_comparison(table, input_data):
             else:
                 if idx < len(cols):
                     new_itm = (
-                        f"{round(float(itm[u'mean']) / 1e6, 1)} "
-                        f"\u00B1{round(float(itm[u'stdev']) / 1e6, 1)}".
+                        f"{round(float(itm[u'mean']) / 1e6, 2)} "
+                        f"\u00B1{round(float(itm[u'stdev']) / 1e6, 2)}".
                         replace(u"nan", u"NaN")
                     )
                 else:
                     new_itm = (
-                        f"{round(float(itm[u'mean']) / 1e6, 1):+} "
-                        f"\u00B1{round(float(itm[u'stdev']) / 1e6, 1)}".
+                        f"{round(float(itm[u'mean']) / 1e6, 2):+} "
+                        f"\u00B1{round(float(itm[u'stdev']) / 1e6, 2)}".
                         replace(u"nan", u"NaN")
                     )
             if len(new_itm.rsplit(u" ", 1)[-1]) > max_lens[idx]:
