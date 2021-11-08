@@ -1,5 +1,5 @@
-Amazon Web Services
-===================
+Testing in AWS EC2
+==================
 
 .. toctree::
 

@@ -1,11 +1,12 @@
-Terraform-aws-csit modules
---------------------------
+AWS Deployments
+---------------
 
-Terraform-aws-csit module is IaaC - infrastructure as a code. Module uses the
-Amazon Web Services (AWS) provider to interact with resources provided by AWS
-to orchestrate virtual environment for running CSIT tests.
-
-- `aws <https://registry.terraform.io/providers/hashicorp/aws/latest/>`_.
+CSIT performance testbed deployments in AWS rely on
+Infrastructure-as-a-C (IaaC) Terraform AWS providers. Terraform
+providers specified in CSIT interact with resources provided by AWS to
+orchestrate virtual environment for running CSIT performance tests. For
+more information, see 
+`Terraform Registry aws <https://registry.terraform.io/providers/hashicorp/aws/latest/>`_.
 
 Compatibility
 ~~~~~~~~~~~~~
@@ -21,72 +22,72 @@ Compatibility
 Requirements
 ~~~~~~~~~~~~
 
-Required modules and provider
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- Required Modules and Providers
 
-- `aws <https://registry.terraform.io/providers/hashicorp/aws/latest>`_.
-- `null <https://registry.terraform.io/providers/hashicorp/null/latest>`_.
-- `tls <https://registry.terraform.io/providers/hashicorp/tls>`_.
-- `vault <https://registry.terraform.io/providers/hashicorp/vault>`_.
+  - `Terraform Registry aws <https://registry.terraform.io/providers/hashicorp/aws/latest>`_.
+  - `Terraform Registry null <https://registry.terraform.io/providers/hashicorp/null/latest>`_.
+  - `Terraform Registry tls <https://registry.terraform.io/providers/hashicorp/tls>`_.
+  - `Terraform Registry vault <https://registry.terraform.io/providers/hashicorp/vault>`_.
 
-Required software
-^^^^^^^^^^^^^^^^^
+- Required software
 
-- `Vault <https://releases.hashicorp.com/vault/>`_ service available on
-  specified ip/port.
+  - `Vault <https://releases.hashicorp.com/vault/>`_ service available
+    on specified ip/port.
 
 Usage
 ~~~~~
 
 - OPTIONAL: Enable logging
-  Terraform does not have logging enabled by default, to enable logging
-  to stderr, set up TF_LOG variable with specified loglevel:
-  Available loglevels: TRACE, DEBUG, INFO, WARN, ERROR
 
-  ::
+  - Terraform does not have logging enabled by default, to enable logging
+    to stderr, set up TF_LOG variable with specified loglevel.
+  - Available loglevels: TRACE, DEBUG, INFO, WARN, ERROR:
 
-    export TF_LOG="LOGLEVEL"
+    ::
 
-  It is also possible to store logged output to a file by setting up
-  TF_LOG_PATH variable:
+      export TF_LOG="LOGLEVEL"
 
-  ::
+  - It is also possible to store logged output to a file by setting up
+    TF_LOG_PATH variable:
 
-    export TF_LOG_PATH="path/to/logfile"
+    ::
+
+      export TF_LOG_PATH="path/to/logfile"
 
 - Run Terraform in a given root module folder depending on chosen testbed
-  topology. Terraform will deploy and configure instances and other resources,
-  all of these resources can be later identified on AWS via Environment tag.
-  By default, Environment tag "CSIT-AWS" is used.
-  Example:
+  topology.
 
-  ::
+  - Terraform will deploy and configure instances and other resources,
+    all of these resources can be later identified on AWS via
+    Environment tag.
+  - By default, Environment tag "CSIT-AWS" is used. Example:
 
-    cd fdio.infra.terraform/2n_aws_c5n/
-    terraform init
-    terraform plan
-    terraform apply
+    ::
 
-  This will deploy environment with default values, you can check the defaults
-  in ./2n_aws_c5n/main.tf and ./2n_aws_c5n/variables.tf files
+      cd fdio.infra.terraform/2n_aws_c5n/
+      terraform init
+      terraform plan
+      terraform apply
 
-  If you would like to change some of these values, you can:
+  - This will deploy environment with default values, you can check the
+    defaults in `./2n_aws_c5n/main.tf` and `./2n_aws_c5n/variables.tf` 
+    files.
+  - If you would like to change some of these values, you can:
 
-  1. Set up TF_VAR_* environment variables prior to running 'terraform apply':
+    - Set up TF_VAR_* environment variables prior to running 'terraform apply':
 
-     ::
+      ::
 
-       export TF_VAR_testbed_name="testbed1"
+        export TF_VAR_testbed_name="testbed1"
 
-  2. Use '-var=varname=value' flag when running 'terraform apply':
+    - Use '-var=varname=value' flag when running 'terraform apply':
 
-     ::
+      ::
 
-       terraform apply -var=testbed_name=testbed1
+        terraform apply -var=testbed_name=testbed1
 
-  Note:
-  Only variables defined in variables.tf file of the root module can be
-  changed using these methods.
+    - Note: Only variables defined in `variables.tf` file of the root
+      module can be changed using these methods.
 
 - To clean up the AWS environment and remove all used resources, run:
 
@@ -97,9 +98,9 @@ Usage
 Example usage
 ~~~~~~~~~~~~~
 
-These are the default values for the AWS modules. The following example is
-2n topology (3n topology variant is very similar). Few variables are defined in
-a `variable.tf` file.
+Following shows an example of CSIT 2-Node topology (3-Node topology
+variant is very similar) with the default values set for the AWS
+modules. Number of variables are defined in a `variable.tf` file.
 
 ::
 
@@ -163,9 +164,10 @@ Secrets & Credentials
 Set credentials manually
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-To set the credentials manually you first need to tell the module to not fetch
-credentials from Vault. To do that, set `provider "aws"` `access_key` and
-`secret_key` to custom value or use credentials file as a source.
+To set the credentials manually you first need to tell the module to not
+fetch credentials from Vault. To do that, set `provider "aws"`
+`access_key` and `secret_key` to custom value or use credentials file
+as a source.
 
 ::
 
