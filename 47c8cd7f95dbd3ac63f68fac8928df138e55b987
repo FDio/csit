@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80aa7220_554caac2",
+        "filename": "tests/dpdk/perf/2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-08T12:53:14Z",
+      "side": 1,
+      "message": "Autogen is trying to replace this, so you need to update also this [0] part of constants.\n\n[0] https://github.com/FDio/csit/blob/3cba9eaf8dce261928939aa112fae4354b51e229/resources/libraries/python/Constants.py#L428-L448",
+      "range": {
+        "startLine": 40,
+        "startChar": 10,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "47c8cd7f95dbd3ac63f68fac8928df138e55b987",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
