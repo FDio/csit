@@ -39,9 +39,9 @@ def main():
     args = parser.parse_args()
 
     json_iterator = Storage(
-        endpoint_url=u"http://storage.service.consul:9000",
-        bucket=u"docs",
-        profile_name=u"nomad-s3"
+        endpoint_url=u"http://10.32.8.14:9001",
+        bucket=u"fdio-logs-s3-cloudfront-index",
+        profile_name=u"default"
     ).s3_file_processing(
         prefix=u"", expression=args.expression
     )

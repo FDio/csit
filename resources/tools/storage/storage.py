@@ -215,7 +215,7 @@ class Storage:
         )
 
     def s3_file_processing(
-            self, prefix=u"", suffix=u"json.gz",
+            self, prefix=u"vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-dnv/237/output_info/Tests/Vpp/Perf/L2/2N1L-10Ge2P1X553-Eth-L2Patch-Ndrpdr/", suffix=u"json.gz",
             expression=u"select * from s3object s"):
         """Batch S3 key processing. Function retrieves list of files and use
         S3 Select API to query content.
