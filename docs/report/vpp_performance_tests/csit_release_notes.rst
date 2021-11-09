@@ -8,57 +8,30 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Intel Xeon Ice Lake**: Added test data for these platforms. Current
-     CSIT-2110 report data for Intel Xeon Ice Lake comes from an external source
-     (Intel labs running CSIT code on "8360Y D Stepping" and "6338N"
-     processors). For details about the physical setup see
-     :ref:`tested_physical_topologies`.
+   - **Intel Xeon Ice Lake**: Performance test data for these platforms
+     continues to be provided by external Intel benchmarking labs
+     executing |csit-release| tests. For details about the physical
+     setup see :ref:`tested_physical_topologies`.
 
-   - **MLRsearch improvements**: Added support for multiple packet
-     throughput rates in a single search, each rate is associated
-     with a distinct Packet Loss Ratio (PLR) criterion. Previously
-     only Non Drop Rate (NDR) (PLR=0) and single Partial Drop Rate
-     (PDR) (PLR<0.5%) were supported. Implemented number of
-     optimizations improving rate discovery efficiency.
+   - **AWS EC2 c5n**: Performance test data for AWS c5n instances has
+     been added to report for ip4, ip6 and ipsec tests.
 
-   - **Reduction of tests**: Removed obsolete VPP use cases and
-     superfluous test combinations from continuous and report test
-     executions, including:
-
-     - All vts tests, obsolete use cases.
-     - dot1q tests apart from dot1q-l2bd, superfluous combinations.
-     - -100flows, -100kflows in all acl tests.
-     - nat44 tests
-
-       - -pps tests, replaced by -tput tests.
-       - h1-p1-s1 single session tests, unessential combination.
-       - h4096-p63-s258048 tests, unessential scale combination.
-
-     - ipsec tests
-
-       - ethip4ipsectptlispgpe.
-       - policy-aes128gcm.
-       - policy-aes128cbc-hmac256sha.
-       - policy-aes128cbc-hmac512sha.
-       - int-aes128cbc-hmac256sha.
-       - scale of
-
-         - 400tnlsw.
-         - 5000tnlsw.
-         - 20000tnlsw.
-         - 60000tnlsw.
+   - **Reduction of tests**: Removed certain test variations executed
+     iteratively for the report (as well as in daily and weekly
+     trending) due to physical testbeds overload.
 
 #. TEST FRAMEWORK
 
    - **CSIT test environment** version has been updated to ver. 8, see
      :ref:`test_environment_versioning`.
 
-   - **CSIT in AWS environment**: Added CSIT support for AWS c5n
-     instances environment.
+   - **CSIT in AWS environment**: Completed CSIT automation support for
+     AWS c5n instances environment, including weekly performance 
+     trending tests execution.
 
-   - **CSIT PAPI support**: Due to issues with PAPI performance, VAT is
-     still used in CSIT for all VPP scale tests. See known issues
-     below.
+   - **CSIT PAPI support**: Due to issues with PAPI performance, and
+     deprecation of VAT, CLI is used in CSIT for many VPP scale tests.
+     See known issues below.
 
    - **General Code Housekeeping**: Ongoing code optimizations and bug
      fixes.
