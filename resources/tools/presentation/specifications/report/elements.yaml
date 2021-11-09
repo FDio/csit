@@ -10476,33 +10476,33 @@
 
 # 2n-icx
 
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-memif-base-avf-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-memif-base-avf-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-memif-base-avf-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-memif-base-dpdk-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-memif-base-dpdk-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-memif-base-dpdk-{test_type}"
-    layout: "plot-throughput"
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-memif-base-avf-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-memif-base-avf-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-memif-base-avf-{test_type}"
+#     layout: "plot-throughput"
+#
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-memif-base-dpdk-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-memif-base-dpdk-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-{core}-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-memif-base-dpdk-{test_type}"
+#     layout: "plot-throughput"
 
 - type: "plot"
   title: "Throughput: 2n-icx-e810cq-64b-{core}-ip4routing-base-scale-avf-{test_type}"
@@ -10555,93 +10555,93 @@
     title: "2n-icx-e810cq-64b-{core}-features-ip4routing-base-avf-{test_type}"
     layout: "plot-throughput"
 
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44det-ip4routing-stl-bidir-avf-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44det-ip4routing-stl-bidir-avf-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H1024-P63-S64512-Ndrpdr.64B-{core}-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H16384-P63-S1032192-Ndrpdr.64B-{core}-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H65536-P63-S4128758-Ndrpdr.64B-{core}-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-nat44det-ip4routing-stl-bidir-avf-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Udir-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H1024-P63-S64512-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H16384-P63-S1032192-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H65536-P63-S4128768-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H16384-P63-S1032192-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H65536-P63-S4128768-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
-    layout: "plot-throughput"
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44det-ip4routing-stl-bidir-avf-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44det-ip4routing-stl-bidir-avf-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H1024-P63-S64512-Ndrpdr.64B-{core}-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H16384-P63-S1032192-Ndrpdr.64B-{core}-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H65536-P63-S4128758-Ndrpdr.64B-{core}-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-nat44det-ip4routing-stl-bidir-avf-{test_type}"
+#     layout: "plot-throughput"
+#
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Udir-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
+#     layout: "plot-throughput"
+#
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H1024-P63-S64512-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H16384-P63-S1032192-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H65536-P63-S4128768-Cps-Ndrpdr.64B-{core}-avf-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
+#     layout: "plot-throughput"
+#
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H16384-P63-S1032192-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H65536-P63-S4128768-Cps-Ndrpdr.64B-{core}-avf-ethip4tcp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
+#     layout: "plot-throughput"
+#
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+#     layout: "plot-throughput"
+#
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+#     layout: "plot-throughput"
 
 - type: "plot"
   title: "Throughput: 2n-icx-e810cq-64b-{core}-ethip4--ethip4udpgeneve-avf-{test_type}"
@@ -10730,59 +10730,59 @@
     title: "2n-icx-e810cq-64b-{core}-l2switching-base-scale-dpdk-{test_type}"
     layout: "plot-throughput"
 
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-vhost-base-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-vhost-base-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-vhost-base-{test_type}"
-    layout: "plot-throughput"
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-vhost-base-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-vhost-base-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-vhost-base-{test_type}"
+#     layout: "plot-throughput"
+#
+# - type: "plot"
+#   title: "Throughput: 2n-icx-e810cq-64b-{core}-vhost-base-vpp-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-vhost-base-vpp-{test_type}"
+#   data: "vpp-2n-icx-curr-iter"
+#   core: ["2t1c", ]
+#   include:
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-{core}-vhost-base-vpp-{test_type}"
+#     layout: "plot-throughput"
 
-- type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b-{core}-vhost-base-vpp-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-{core}-vhost-base-vpp-{test_type}"
-  data: "vpp-2n-icx-curr-iter"
-  core: ["2t1c", ]
-  include:
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-{core}-vhost-base-vpp-{test_type}"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-memif-base-avf-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-memif-base-avf-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-memif-base-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-memif-base-dpdk-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-memif-base-dpdk-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
-    - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-memif-base-dpdk-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-memif-base-avf-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-memif-base-avf-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-memif-base-avf-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
+#
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-memif-base-dpdk-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-memif-base-dpdk-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+#     - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-.t.c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-memif-base-dpdk-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-icx-e810cq-64b-ip4routing-base-scale-avf-{test_type}-tsa"
@@ -10832,87 +10832,87 @@
     title: "2n-icx-e810cq-64b-ip4routing-base-scale-dpdk-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-nat44det-ip4routing-stl-bidir-avf-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44det-ip4routing-stl-bidir-avf-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H1024-P63-S64512-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H16384-P63-S1032192-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H65536-P63-S4128758-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-nat44det-ip4routing-stl-bidir-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-stl-unidir-avf-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-stl-unidir-avf-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Udir-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H1024-P63-S64512-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H16384-P63-S1032192-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H65536-P63-S4128768-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H16384-P63-S1032192-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H65536-P63-S4128768-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-udp-tput-avf-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-udp-tput-avf-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-nat44ed-ip4routing-udp-tput-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-tput-avf-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-tput-avf-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-nat44ed-ip4routing-udp-tput-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-nat44det-ip4routing-stl-bidir-avf-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44det-ip4routing-stl-bidir-avf-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H1024-P63-S64512-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H16384-P63-S1032192-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Det-H65536-P63-S4128758-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-nat44det-ip4routing-stl-bidir-avf-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
+#
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-stl-unidir-avf-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-stl-unidir-avf-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Udir-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
+#
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H1024-P63-S64512-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H16384-P63-S1032192-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-H65536-P63-S4128768-Cps-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
+#
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H16384-P63-S1032192-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Ip4Base-H65536-P63-S4128768-Cps-Ndrpdr.64B-.t.c-avf-ethip4tcp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
+#
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-udp-tput-avf-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-udp-tput-avf-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
+#
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-tput-avf-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-nat44ed-ip4routing-tcp-tput-avf-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-icx-e810cq-64b-ethip4--ethip4udpgeneve-avf-{test_type}-tsa"
@@ -10996,31 +10996,31 @@
     title: "2n-icx-e810cq-64b-l2switching-base-scale-dpdk-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-vhost-base-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-vhost-base-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-vhost-base-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-vhost-base-vpp-{test_type}-tsa"
-  algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-vhost-base-vpp-{test_type}-tsa"
-  data: "vpp-2n-icx-curr-iter"
-  include:
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-    - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
-  layout:
-    title: "2n-icx-e810cq-64b-vhost-base-vpp-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-vhost-base-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-vhost-base-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-vhost-base-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
+#
+# - type: "plot"
+#   title: "Speedup: 2n-icx-e810cq-64b-vhost-base-vpp-{test_type}-tsa"
+#   algorithm: "plot_tsa_name"
+#   output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-vhost-base-vpp-{test_type}-tsa"
+#   data: "vpp-2n-icx-curr-iter"
+#   include:
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+#     - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+#   layout:
+#     title: "2n-icx-e810cq-64b-vhost-base-vpp-{test_type}"
+#     layout: "plot-throughput-speedup-analysis"
 
 # Packet Throughput - DPDK
 
