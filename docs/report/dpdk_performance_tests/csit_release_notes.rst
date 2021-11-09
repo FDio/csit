@@ -6,7 +6,11 @@ Changes in |csit-release|
 
 #. TEST FRAMEWORK
 
-   - **CSIT test environment** version has been updated to ver. 8, see
+   - **Upgrade to Ubuntu 20.04 LTS**: Re-installed base operating system
+     to Ubuntu 20.04.2 LTS. Upgrade included also baseline Docker
+     containers used for spawning topology.
+
+   - **CSIT test environment** version has been updated to ver. 7, see
      :ref:`test_environment_versioning`.
 
 #. DPDK RELEASE VERSION CHANGE

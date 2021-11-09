@@ -16,3 +16,4 @@ VPP Performance
     comparisons/index
     throughput_trending
     test_environment
+    documentation/index

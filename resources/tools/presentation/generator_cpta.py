@@ -217,25 +217,17 @@ def _generate_trending_traces(in_data, job_name, build_info,
         else:
             hover_str = hover_str.replace(u"<stdev>", u"")
         if incl_tests == u"pdr-lat":
+            hover_str = hover_str.replace(
+                u"throughput [Mpps]", u"latency [s]"
+            )
             hover_str = hover_str.replace(u"<val>", u"{value:.1e}")
         else:
             hover_str = hover_str.replace(u"<val>", u"{value:.3f}")
         if u"-cps" in name:
             hover_str = hover_str.replace(u"[Mpps]", u"[Mcps]").\
                 replace(u"throughput", u"connection rate")
-        if u"vpp" in job_name:
-            hover_str = hover_str.format(
-                date=date,
-                property=u"average" if incl_tests == u"mrr" else u"throughput",
-                value=data_y_mpps[index],
-                sut=u"vpp",
-                build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
-                test=incl_tests,
-                period=u"daily" if incl_tests == u"mrr" else u"weekly",
-                build_nr=str_key,
-                testbed=build_info[job_name][str_key][2])
-        elif u"dpdk" in job_name:
-            hover_str = hover_str.format(
+        if u"dpdk" in job_name:
+            hover_text.append(hover_str.format(
                 date=date,
                 property=u"average" if incl_tests == u"mrr" else u"throughput",
                 value=data_y_mpps[index],
@@ -244,23 +236,19 @@ def _generate_trending_traces(in_data, job_name, build_info,
                 test=incl_tests,
                 period=u"weekly",
                 build_nr=str_key,
-                testbed=build_info[job_name][str_key][2])
-        elif u"trex" in job_name:
-            hover_str = hover_str.format(
+                testbed=build_info[job_name][str_key][2]))
+        elif u"vpp" in job_name:
+            hover_text.append(hover_str.format(
                 date=date,
                 property=u"average" if incl_tests == u"mrr" else u"throughput",
                 value=data_y_mpps[index],
-                sut=u"trex",
-                build=u"",
+                sut=u"vpp",
+                build=build_info[job_name][str_key][1].rsplit(u'~', 1)[0],
                 test=incl_tests,
                 period=u"daily" if incl_tests == u"mrr" else u"weekly",
                 build_nr=str_key,
-                testbed=build_info[job_name][str_key][2])
-        if incl_tests == u"pdr-lat":
-            hover_str = hover_str.replace(
-                u"throughput [Mpps]", u"latency [s]"
-            )
-        hover_text.append(hover_str)
+                testbed=build_info[job_name][str_key][2]))
+
         xaxis.append(datetime(int(date[0:4]), int(date[4:6]), int(date[6:8]),
                               int(date[9:11]), int(date[12:])))
 

@@ -31,13 +31,13 @@
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-ip4routing-base-[avf,dpdk]
-------------------------------
+64b-ip4routing-base-scale-avf
+-----------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-scale-avf-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-ndr-tsa}
-            \label{fig:3n-skx-xxv710-64b-ip4routing-base-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-scale-avf-ndr-tsa}
+            \label{fig:3n-skx-xxv710-64b-ip4routing-base-scale-avf-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-scale-avf-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,136 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-pdr-tsa}
-            \label{fig:3n-skx-xxv710-64b-ip4routing-base-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-scale-avf-pdr-tsa}
+            \label{fig:3n-skx-xxv710-64b-ip4routing-base-scale-avf-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-ip4routing-base-scale-dpdk
+------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-ndr-tsa}
+            \label{fig:3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa}
+            \label{fig:3n-skx-xxv710-64b-ip4routing-base-scale-dpdk-pdr-tsa}
+    \end{figure}
+
+..
+    .. raw:: latex
+
+        \clearpage
+
+    64b-features-ip4routing-base-avf
+    --------------------------------
+
+    .. raw:: html
+
+        <center>
+        <iframe id="221" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr-tsa}
+                \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-avf-ndr-tsa}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+    .. raw:: html
+
+        <center>
+        <iframe id="222" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr-tsa}
+                \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-avf-pdr-tsa}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+    64b-features-ip4routing-base-dpdk
+    ---------------------------------
+
+    .. raw:: html
+
+        <center>
+        <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-dpdk-ndr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-dpdk-ndr-tsa}
+                \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-dpdk-ndr-tsa}
+        \end{figure}
+
+    .. raw:: latex
+
+        \clearpage
+
+    .. raw:: html
+
+        <center>
+        <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-dpdk-pdr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-dpdk-pdr-tsa}
+                \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-dpdk-pdr-tsa}
+        \end{figure}

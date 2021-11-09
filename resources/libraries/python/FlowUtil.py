@@ -437,8 +437,6 @@ class FlowUtil:
         :type flow_index: int
         :returns: Nothing.
         """
-        from vpp_papi import VppEnum
-
         cmd = u"flow_enable"
         sw_if_index = Topology.get_interface_sw_index(node, interface)
         args = dict(
@@ -463,8 +461,6 @@ class FlowUtil:
         :type flow_index: int
         :returns: Nothing.
         """
-        from vpp_papi import VppEnum
-
         cmd = u"flow_disable"
         sw_if_index = Topology.get_interface_sw_index(node, interface)
         args = dict(
@@ -487,8 +483,6 @@ class FlowUtil:
         :type flow_index: int
         :returns: Nothing.
         """
-        from vpp_papi import VppEnum
-
         cmd = u"flow_del"
         args = dict(
             flow_index=int(flow_index)
@@ -508,8 +502,6 @@ class FlowUtil:
         :returns: flow entry.
         :rtype: str
         """
-        from vpp_papi import VppEnum
-
         cmd = u"vppctl show flow entry"
 
         err_msg = u"Failed to show flow on host {node[u'host']}"
@@ -545,8 +537,6 @@ class FlowUtil:
         :raises RuntimeError: If the verification of flow action fails.
         :raises ValueError: If action type is not supported.
         """
-        from vpp_papi import VppEnum
-
         err_msg = f"Failed to show trace on host {node[u'host']}"
         cmd = u"vppctl show trace"
         stdout, _ = exec_cmd_no_error(

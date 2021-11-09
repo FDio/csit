@@ -61,8 +61,8 @@ Following section describe existing production 1n-skx testbed.
 1-Node Xeon Skylake (1n-skx)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1n-skx testbed is based on single SuperMicro SYS-7049GP-TRT server equipped
-with two Intel Xeon Skylake Platinum 8180 2.5 GHz 28 core processors. Physical
+1n-skx testbed is based on single SuperMicro SYS-7049GP-TRT server equipped with
+two Intel Xeon Skylake Platinum 8180 2.5 GHz 28 core processors. Physical
 testbed topology is depicted in a figure below.
 
 .. only:: latex
@@ -140,26 +140,24 @@ Containers
 
 It was agreed on :abbr:`TWS (Technical Work Stream)` call to continue with
 Ubuntu 18.04 LTS as a baseline system with OPTIONAL extend to Centos 7 and
-SuSE per demand [#TWSLink]_.
+SuSE per demand [TWSLink]_.
 
 All :abbr:`DCR (Docker container)` images are REQUIRED to be hosted on Docker
 registry available from LF network, publicly available and trackable. For
 backup, tracking and contributing purposes all Dockerfiles (including files
-needed for building container) MUST be available and stored in
-[#fdiocsitgerrit]_ repository under appropriate folders. This allows the
-peer review process to be done for every change of infrastructure related to
-scope of this document.
+needed for building container) MUST be available and stored in [fdiocsitgerrit]_
+repository under appropriate folders. This allows the peer review process to be
+done for every change of infrastructure related to scope of this document.
 Currently only **csit-shim-dcr** and **csit-sut-dcr** containers will be stored
 and maintained under CSIT repository by CSIT contributors.
 
-At the time of designing solution described in this document the
-interconnection between [#dockerhub]_ and [#fdiocsitgerrit]_ for
-automated build purposes and image hosting cannot be established with the trust
-and respectful to security of FD.io project. Unless adressed, :abbr:`DCR
-(Docker container)` images will be placed in custom registry service
-[#fdioregistry]_.
-Automated Jenkins jobs will be created in align of long term solution for
-container lifecycle and ability to build new version of docker images.
+At the time of designing solution described in this document the interconnection
+between [dockerhub]_ and  [fdiocsitgerrit]_ for automated build purposes and
+image hosting cannot be established with the trust and respectful to
+security of FD.io project. Unless adressed, :abbr:`DCR` images will be placed in
+custom registry service [fdioregistry]_. Automated Jenkins jobs will be created
+in align of long term solution for container lifecycle and ability to build
+new version of docker images.
 
 In parallel, the effort is started to find the outsourced Docker registry
 service.
@@ -168,19 +166,17 @@ Versioning
 ~~~~~~~~~~
 
 As of initial version of vpp-device, we do have only single latest version of
-Docker image hosted on [#dockerhub]_. This will be addressed as further
+Docker image hosted on [dockerhub]_. This will be addressed as further
 improvement with proper semantic versioning.
 
 jenkins-slave-dcr
 ~~~~~~~~~~~~~~~~~
 
-This :abbr:`DCR (Docker container)` acts as the Jenkins slave (known also as
-jenkins minion). It can connect over SSH protocol to TCP port 6022 of
-**csit-shim-dcr** and executes non-interactive reservation script. Nomad is
-responsible for scheduling this container execution onto specific
-**1-Node VPP_Device** testbed. It executes
-:abbr:`CSIT (Continuous System Integration and Testing)` environment including
-:abbr:`CSIT (Continuous System Integration and Testing)` framework.
+This :abbr:`DCR` acts as the Jenkins slave (known also as jenkins minion). It
+can connect over SSH protocol to TCP port 6022 of **csit-shim-dcr** and executes
+non-interactive reservation script. Nomad is responsible for scheduling this
+container execution onto specific **1-Node VPP_Device** testbed. It executes
+:abbr:`CSIT` environment including :abbr:`CSIT` framework.
 
 All software dependencies including VPP/DPDK that are not present in
 **csit-sut-dcr** container image and/or needs to be compiled prior running on
@@ -188,7 +184,7 @@ All software dependencies including VPP/DPDK that are not present in
 
 - *Container Image Location*: Docker image at snergster/vpp-ubuntu18.
 
-- *Container Definition*: Docker file specified at [#JenkinsSlaveDcrFile]_.
+- *Container Definition*: Docker file specified at [JenkinsSlaveDcrFile]_.
 
 - *Initializing*: Container is initialized from within *Consul by HashiCorp*
   and *Nomad by HashiCorp*.
@@ -196,17 +192,16 @@ All software dependencies including VPP/DPDK that are not present in
 csit-shim-dcr
 ~~~~~~~~~~~~~
 
-This :abbr:`DCR (Docker container)` acts as an intermediate layer running
-script responsible for orchestrating topologies under test and reservation.
-Responsible for managing VF resources and allocation to
-:abbr:`DUT (Device Under Test)`, :abbr:`TG (Traffic Generator)` containers.
-This MUST to be done on **csit-shim-dcr**.
+This :abbr:`DCR` acts as an intermediate layer running script responsible for
+orchestrating topologies under test and reservation. Responsible for managing VF
+resources and allocation to :abbr:`DUT (Device Under Test)`, :abbr:`TG
+(Traffic Generator)` containers. This MUST to be done on **csit-shim-dcr**.
 This image also acts as the generic reservation mechanics arbiter to make sure
 that only Y number of simulations are spawned on any given HW node.
 
 - *Container Image Location*: Docker image at snergster/csit-shim.
 
-- *Container Definition*: Docker file specified at [#CsitShimDcrFile]_.
+- *Container Definition*: Docker file specified at [CsitShimDcrFile]_.
 
 - *Initializing*: Container is initialized from within *Consul by HashiCorp*
   and *Nomad by HashiCorp*. Required docker parameters, to be able to run
@@ -225,11 +220,10 @@ that only Y number of simulations are spawned on any given HW node.
 csit-sut-dcr
 ~~~~~~~~~~~~
 
-This :abbr:`DCR (Docker container)` acts as an :abbr:`SUT (System Under Test)`.
-Any :abbr:`DUT (Device Under Test)` or :abbr:`TG (Traffic Generator)`
-application is installed there. It is RECOMMENDED to install DUT and
-all DUT dependencies via commands ``rpm -ihv`` on RedHat based OS or
-``dpkg -i`` on Debian based OS.
+This :abbr:`DCR` acts as an :abbr:`SUT (System Under Test)`. Any :abbr:`DUT` or
+:abbr:`TG` application is installed there. It is RECOMMENDED to install DUT and
+all DUT dependencies via commands ``rpm -ihv`` on RedHat based OS or ``dpkg -i``
+on Debian based OS.
 
 Container is designed to be a very lightweight Docker image that only installs
 packages and execute binaries (previously built or downloaded on
@@ -238,7 +232,7 @@ including those required by DUT/TG.
 
 - *Container Image Location*: Docker image at snergster/csit-sut.
 
-- *Container Definition*: Docker file specified at [#CsitSutDcrFile]_.
+- *Container Definition*: Docker file specified at [CsitSutDcrFile]_.
 
 - *Initializing*:
   ::
@@ -291,12 +285,12 @@ way it is not colliding with other containers. To make vfio work, access to
 Environment initialization
 --------------------------
 
-All 1-node servers are to be managed and provisioned via the
-[#ansiblelink]_ set of playbooks with *vpp-device* role. Full playbooks
-can be found under [#fdiocsitansible]_ directory. This way we are able to
-track all configuration changes of physical servers in gerrit (in structured
-yaml format) as well as we are able to extend *vpp-device* to additional
-servers with less effort or re-stage servers in case of failure.
+All 1-node servers are to be managed and provisioned via the [ansiblelink]_ set
+of playbooks with *vpp-device* role. Full playbooks can be found under
+[fdiocsitansible]_ directory. This way we are able to track all configuration
+changes of physical servers in gerrit (in structured yaml format) as well as we
+are able to extend *vpp-device* to additional servers with less effort or
+re-stage servers in case of failure.
 
 SR-IOV VF initialization is done via ``systemd`` service during host system boot
 up. Service with name *csit-initialize-vfs.service* is created under systemd
@@ -305,11 +299,10 @@ system context (``/etc/systemd/system/``). By default service is calling
 
 - **start**: Creates maximum number of :abbr:`virtual functions (VFs)` (detected
   from ``sriov_totalvfs``) for each whitelisted PCI device.
-- **stop**: Removes all :abbr:`VFs (Virtual Functions)` for all whitelisted PCI
-  device.
+- **stop**: Removes all :abbr:`VFs` for all whitelisted PCI device.
 
 Service is considered active even when all of its processes exited successfully.
-Stopping service will automatically remove :abbr:`VFs (Virtual Functions)`.
+Stopping service will automatically remove :abbr:`VFs`.
 
 ::
 
@@ -330,11 +323,10 @@ Script is driven by two array variables ``pci_blacklist``/``pci_whitelist``.
 They MUST store all PCI addresses in **<domain>:<bus>:<device>.<func>** format,
 where:
 
-- **pci_blacklist**: PCI addresses to be skipped from
-  :abbr:`VFs (Virtual Functions)` initialization (useful for e.g. excluding
-  management network interfaces).
-- **pci_whitelist**: PCI addresses to be included for
-  :abbr:`VFs (Virtual Functions)` initialization.
+- **pci_blacklist**: PCI addresses to be skipped from :abbr:`VFs`
+  initialization (usefull for e.g. excluding management network interfaces).
+- **pci_whitelist**: PCI addresses to be included for :abbr:`VFs`
+  initialization.
 
 VF reservation
 --------------
@@ -371,8 +363,8 @@ devices in system:
     done
 
 Where ``${pci_id}`` is ID of white-listed VF PCI ID. For more information please
-see [#pciids]_. This act as security constraint to prevent taking other
-unwanted interfaces.
+see [pciids]_. This act as security constraint to prevent taking other unwanted
+interfaces.
 The output list of all VF network devices is split into two lists for TG and
 SUT side of connection. First two items from each TG or SUT network devices
 list are taken to expose directly to namespace of container. This can be done
@@ -385,8 +377,8 @@ via commands:
 
 In this stage also symbolic links to PCI devices under sysfs bus directory tree
 are created in running containers. Once VF devices are assigned to container
-namespace and PCI devices are linked to running containers and mutex is exited.
-Selected VF network device automatically disappear from parent container
+namespace and PCI deivces are linked to running containers and mutex is exited.
+Selected VF network device automatically dissapear from parent container
 namespace, so another instance of script will not find device under that
 namespace.
 
@@ -403,11 +395,11 @@ generated layer two frames, like IEEE 802.3x (link flow control), IEEE 802.1Qbb
 can throttle traffic between the host and the virtual switch, reducing
 performance. To resolve this issue, configure all SR-IOV enabled ports for
 VLAN tagging. This configuration allows unexpected, and potentially malicious,
-frames to be dropped. [#inteli40e]_
+frames to be dropped. [inteli40e]_
 
 To configure VLAN tagging for the ports on an SR-IOV enabled adapter,
 use the following command. The VLAN configuration SHOULD be done
-before the VF driver is loaded or the VM is booted. [#inteli40e]_
+before the VF driver is loaded or the VM is booted. [inteli40e]_
 
 ::
 
@@ -423,7 +415,7 @@ the first VF on VLAN 10.
 VLAN Tag Packet Steering allows to send all packets with a specific VLAN tag to
 a particular SR-IOV virtual function (VF). Further, this feature allows to
 designate a particular VF as trusted, and allows that trusted VF to request
-selective promiscuous mode on the Physical Function (PF). [#inteli40e]_
+selective promiscuous mode on the Physical Function (PF). [inteli40e]_
 
 To set a VF as trusted or untrusted, enter the following command in the
 Hypervisor:
@@ -433,7 +425,7 @@ Hypervisor:
   $ ip link set dev eth0 vf 1 trust [on|off]
 
 Once the VF is designated as trusted, use the following commands in the VM
-to set the VF to promiscuous mode. [#inteli40e]_
+to set the VF to promiscuous mode. [inteli40e]_
 
 - For promiscuous all:
   ::
@@ -459,10 +451,10 @@ to set the VF to promiscuous mode. [#inteli40e]_
     However,the vf-true-promisc-support priv-flag is only exposed to the first
     PF of the device. The PF remains in limited promiscuous mode (unless it
     is in MFP mode) regardless of the vf-true-promisc-support setting.
-    [#inteli40e]_
+    [inteli40e]_
 
 Service described earlier *csit-initialize-vfs.service* is responsible for
-assigning 802.1Q vlan tagging to each virtual function via physical function
+assigning 802.1Q vlan tagging to each vitual function via physical function
 from list of white-listed PCI addresses by following (simplified) code.
 
 ::
@@ -542,14 +534,14 @@ Security
 
 .. note::
 
-    Switch to testuser account instead of root.
+    Switch to testuser account intead of root.
 
 Maintainability
 ~~~~~~~~~~~~~~~
 
 .. note::
 
-    Docker image distribution: Create jenkins jobs with full pipeline of
+    Docker image distribution: Create jenkins jobs with full pipiline of
     CI/CD for CSIT Docker images.
 
 Stability
@@ -568,14 +560,14 @@ Stability
 Links
 -----
 
-.. [#TWSLink] `TWS <https://wiki.fd.io/view/CSIT/TWS>`_
-.. [#dockerhub] `Docker hub <https://hub.docker.com/>`_
-.. [#fdiocsitgerrit] `FD.io/CSIT gerrit <https://gerrit.fd.io/r/CSIT>`_
-.. [#fdioregistry] `FD.io registy <registry.fdiopoc.net>`_
-.. [#JenkinsSlaveDcrFile] `jenkins-slave-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/ubuntu18/Dockerfile>`_
-.. [#CsitShimDcrFile] `csit-shim-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-shim/Dockerfile>`_
-.. [#CsitSutDcrFile] `csit-sut-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-sut/Dockerfile>`_
-.. [#ansiblelink] `ansible <https://www.ansible.com/>`_
-.. [#fdiocsitansible] `Fd.io/CSIT ansible <https://git.fd.io/csit/tree/fdio.infra.ansible>`_
-.. [#inteli40e] `Intel i40e <https://downloadmirror.intel.com/26370/eng/readme.txt>`_
-.. [#pciids] `pci ids <http://pci-ids.ucw.cz/v2.2/pci.ids>`_
+.. [TWSLink] `TWS <https://wiki.fd.io/view/CSIT/TWS>`_
+.. [dockerhub] `Docker hub <https://hub.docker.com/>`_
+.. [fdiocsitgerrit] `FD.io/CSIT gerrit <https://gerrit.fd.io/r/CSIT>`_
+.. [fdioregistry] `FD.io registy <registry.fdiopoc.net>`_
+.. [JenkinsSlaveDcrFile] `jenkins-slave-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/ubuntu18/Dockerfile>`_
+.. [CsitShimDcrFile] `csit-shim-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-shim/Dockerfile>`_
+.. [CsitSutDcrFile] `csit-sut-dcr-file <https://github.com/snergfdio/multivppcache/blob/master/csit-sut/Dockerfile>`_
+.. [ansiblelink] `ansible <https://www.ansible.com/>`_
+.. [fdiocsitansible] `Fd.io/CSIT ansible <https://git.fd.io/csit/tree/fdio.infra.ansible>`_
+.. [inteli40e] `Intel i40e <https://downloadmirror.intel.com/26370/eng/readme.txt>`_
+.. [pciids] `pci ids <http://pci-ids.ucw.cz/v2.2/pci.ids>`_

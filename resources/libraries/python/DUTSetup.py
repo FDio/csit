@@ -408,11 +408,11 @@ class DUTSetup:
                 # sriov is not supported and we want 0 VFs
                 # no need to do anything
                 return
-
-            raise RuntimeError(
-                f"Can't configure {numvfs} VFs on {pf_pci_addr} device "
-                f"on {node[u'host']} since it doesn't support SR-IOV."
-            )
+            else:
+                raise RuntimeError(
+                    f"Can't configure {numvfs} VFs on {pf_pci_addr} device "
+                    f"on {node[u'host']} since it doesn't support SR-IOV."
+                )
 
         pci = pf_pci_addr.replace(u":", r"\:")
         command = f"sh -c \"echo {numvfs} | " \
@@ -444,21 +444,16 @@ class DUTSetup:
         )
 
     @staticmethod
-    def unbind_pci_devices_from_other_driver(node, driver, *pci_addrs):
-        """Unbind PCI devices from driver other than input driver on node.
+    def pci_driver_unbind_list(node, *pci_addrs):
+        """Unbind PCI devices from current driver on node.
 
         :param node: DUT node.
-        :param driver: Driver to not unbind from. If None or empty string,
-            will attempt to unbind from the current driver.
         :param pci_addrs: PCI device addresses.
         :type node: dict
-        :type driver: str
         :type pci_addrs: list
         """
         for pci_addr in pci_addrs:
-            if not driver or \
-                    DUTSetup.get_pci_dev_driver(node, pci_addr) != driver:
-                DUTSetup.pci_driver_unbind(node, pci_addr)
+            DUTSetup.pci_driver_unbind(node, pci_addr)
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
@@ -577,9 +572,10 @@ class DUTSetup:
             # the directory doesn't exist which means the device is not bound
             # to any driver
             return None
-        cmd = f"basename $(readlink -f {driver_path})"
-        ret_val, _ = exec_cmd_no_error(node, cmd)
-        return ret_val.strip()
+        else:
+            cmd = f"basename $(readlink -f {driver_path})"
+            ret_val, _ = exec_cmd_no_error(node, cmd)
+            return ret_val.strip()
 
     @staticmethod
     def verify_kernel_module(node, module, force_load=False):
@@ -681,7 +677,7 @@ class DUTSetup:
                     )
                     # workaround to avoid installation of vpp-api-python
                     exec_cmd_no_error(
-                        node, f"rm -f {vpp_pkg_dir}vpp-api-python.deb",
+                        node, u"rm -f {vpp_pkg_dir}vpp-api-python.deb",
                         timeout=120, sudo=True
                     )
                     exec_cmd_no_error(
@@ -698,7 +694,7 @@ class DUTSetup:
                     )
                     # workaround to avoid installation of vpp-api-python
                     exec_cmd_no_error(
-                        node, f"rm -f {vpp_pkg_dir}vpp-api-python.rpm",
+                        node, u"rm -f {vpp_pkg_dir}vpp-api-python.rpm",
                         timeout=120, sudo=True
                     )
                     exec_cmd_no_error(

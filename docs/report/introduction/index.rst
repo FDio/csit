@@ -8,4 +8,3 @@ Introduction
     test_scenarios_overview
     physical_testbeds
     methodology
-    documentation/index

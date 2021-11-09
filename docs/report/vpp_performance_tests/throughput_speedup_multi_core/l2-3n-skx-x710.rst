@@ -31,8 +31,8 @@
 3n-skx-x710
 ~~~~~~~~~~~
 
-64b-l2switching-base-avf
-------------------------
+64b-l2switching-base-scale-avf
+------------------------------
 
 .. raw:: html
 
