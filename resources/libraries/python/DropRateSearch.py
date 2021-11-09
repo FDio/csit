@@ -426,8 +426,10 @@ class DropRateSearch(metaclass=ABCMeta):
                     self._search_result = SearchResults.SUCCESS
                     self._search_result_rate = rate
                     return
-                raise RuntimeError(u"Unknown search result")
-            raise Exception(u"Unknown search direction")
+                else:
+                    raise RuntimeError(u"Unknown search result")
+            else:
+                raise Exception(u"Unknown search direction")
 
     def verify_search_result(self):
         """Fail if search was not successful.

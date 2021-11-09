@@ -1,8 +1,8 @@
 2n-clx-x710
 -----------
 
-64b-l2switching-base-scale-[avf,dpdk,af_xdp]
-````````````````````````````````````````````
+64b-l2switching-base-scale-avf-dpdk
+```````````````````````````````````
 
 2t1c
 ::::
@@ -13,8 +13,6 @@
     <a name="64b-2t1c-scale-avf"></a>
     <a name="64b-2t1c-base-dpdk"></a>
     <a name="64b-2t1c-scale-dpdk"></a>
-    <a name="64b-2t1c-base-af_xdp"></a>
-    <a name="64b-2t1c-scale-af_xdp"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -32,8 +30,6 @@
     <a name="64b-4t2c-scale-avf"></a>
     <a name="64b-4t2c-base-dpdk"></a>
     <a name="64b-4t2c-scale-dpdk"></a>
-    <a name="64b-2t1c-base-af_xdp"></a>
-    <a name="64b-2t1c-scale-af_xdp"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -51,8 +47,6 @@
     <a name="64b-8t4c-scale-avf"></a>
     <a name="64b-8t4c-base-dpdk"></a>
     <a name="64b-8t4c-scale-dpdk"></a>
-    <a name="64b-2t1c-base-af_xdp"></a>
-    <a name="64b-2t1c-scale-af_xdp"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,

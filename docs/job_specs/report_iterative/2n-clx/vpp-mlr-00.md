@@ -1,6 +1,6 @@
 # 2n-clx
-### tests 375
-### job hrs est. 31.3
+### tests 480
+### job hrs est. 41.6
 ### job hrs real ??.?
 ### test mins est. 5.01
 ### test mins real 5.01
@@ -48,6 +48,37 @@
 4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4base-eth-2memif-1dcr
 ## ./crypto
 ## ./hoststack
+### intel-e810cq
+#### dpdk-vfio-pci
+##### eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 0b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 64b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 1024b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 2048b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 0b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 64b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 1024b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+1c AND 2048b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.14.2
+##### eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 0b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 64b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 1024b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 2048b AND cps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 0b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 64b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 1024b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 2048b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+### mellanox-cx556a
+#### dpdk-vfio-pci
+##### eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 0b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 64b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 1024b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 2048b AND cps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 0b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 64b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 1024b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
+1c AND 2048b AND rps AND cx556a AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1.15.0
 ## ./ip4
 ### intel-x710
 #### af_xdp
@@ -79,6 +110,14 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale20k-rnd
 2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale20k-rnd
 4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale20k-rnd
+##### ethip4-ip4scale200k
+1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale200k
+2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale200k
+4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale200k
+##### ethip4-ip4scale200k-rnd
+1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale200k-rnd
+2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale200k-rnd
+4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip4-ip4scale200k-rnd
 #### avf
 ##### ethip4-ip4base
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4-ip4base
@@ -136,10 +175,26 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h65536-p63-s4128758
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h65536-p63-s4128758
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h65536-p63-s4128758
+##### ethip4udp-nat44det-h262144-p63-s16515072
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h262144-p63-s16515072
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h262144-p63-s16515072
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44det-h262144-p63-s16515072
 ##### ethip4udp-nat44ed-h1024-p63-s64512-udir
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-udir
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-udir
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-udir
+##### ethip4udp-nat44ed-h16384-p63-s1032192-udir
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h16384-p63-s1032192-udir
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h16384-p63-s1032192-udir
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h16384-p63-s1032192-udir
+##### ethip4udp-nat44ed-h65536-p63-s4128768-udir
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-udir
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-udir
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-udir
+##### ethip4udp-nat44ed-h262144-p63-s16515072-udir
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h262144-p63-s16515072-udir
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h262144-p63-s16515072-udir
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h262144-p63-s16515072-udir
 ##### ethip4udp-nat44ed-h1024-p63-s64512-cps
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-cps
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-cps
@@ -152,6 +207,10 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
+##### ethip4udp-nat44ed-h262144-p63-s16515072-cps
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h262144-p63-s16515072-cps
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h262144-p63-s16515072-cps
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h262144-p63-s16515072-cps
 ##### ethip4udp-nat44ed-h1024-p63-s64512-tput
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-tput
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-tput
@@ -164,6 +223,10 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
+##### ethip4udp-nat44ed-h262144-p63-s16515072-tput
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h262144-p63-s16515072-tput
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h262144-p63-s16515072-tput
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-nat44ed-h262144-p63-s16515072-tput
 ##### ethip4udp-ip4base-h1024-p63-s64512-cps
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-h1024-p63-s64512-cps
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-h1024-p63-s64512-cps
@@ -176,6 +239,10 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-cps
+##### ethip4udp-ip4base-h262144-p63-s16515072-cps
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-h262144-p63-s16515072-cps
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-h262144-p63-s16515072-cps
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4udp-ip4base-h262144-p63-s16515072-cps
 ##### ethip4tcp-nat44ed-h1024-p63-s64512-cps
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
@@ -188,6 +255,10 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+##### ethip4tcp-nat44ed-h262144-p63-s16515072-cps
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-cps
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-cps
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-cps
 ##### ethip4tcp-nat44ed-h1024-p63-s64512-tput
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
@@ -200,6 +271,10 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+##### ethip4tcp-nat44ed-h262144-p63-s16515072-tput
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-tput
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-tput
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-nat44ed-h262144-p63-s16515072-tput
 ##### ethip4tcp-ip4base-h1024-p63-s64512-cps
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h1024-p63-s64512-cps
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h1024-p63-s64512-cps
@@ -212,6 +287,10 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
 2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
+##### ethip4tcp-ip4base-h262144-p63-s16515072-cps
+1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h262144-p63-s16515072-cps
+2c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h262144-p63-s16515072-cps
+4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4tcp-ip4base-h262144-p63-s16515072-cps
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base
@@ -333,6 +412,14 @@
 1c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale20k-rnd
 2c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale20k-rnd
 4c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale20k-rnd
+##### ethip6-ip6scale200k
+1c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k
+2c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k
+4c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k
+##### ethip6-ip6scale200k-rnd
+1c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k-rnd
+2c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k-rnd
+4c AND 78b AND ndrpdr AND xxv710 AND drv_af_xdp AND ethip6-ip6scale200k-rnd
 #### avf
 ##### ethip6-ip6base
 1c AND 78b AND ndrpdr AND xxv710 AND drv_avf AND ethip6-ip6base
@@ -416,6 +503,11 @@
 ## ./ip6_tunnels
 ## ./l2
 ### intel-x710
+#### af_xdp
+##### eth-l2bdbasemaclrn
+1c AND 64b AND ndrpdr AND x710 AND drv_af_xdp AND eth-l2bdbasemaclrn
+2c AND 64b AND ndrpdr AND x710 AND drv_af_xdp AND eth-l2bdbasemaclrn
+4c AND 64b AND ndrpdr AND x710 AND drv_af_xdp AND eth-l2bdbasemaclrn
 #### avf
 ##### eth-l2bdbasemaclrn
 1c AND 64b AND ndrpdr AND x710 AND drv_avf AND eth-l2bdbasemaclrn
@@ -431,6 +523,31 @@
 2c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND eth-l2bdbasemaclrn
 4c AND 64b AND ndrpdr AND x710 AND drv_vfio_pci AND eth-l2bdbasemaclrn
 ### intel-xxv710
+#### af_xdp
+##### eth-l2bdbasemaclrn
+1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdbasemaclrn
+2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdbasemaclrn
+4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdbasemaclrn
+##### eth-l2bdscale10kmaclrn
+1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdscale10kmaclrn
+2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdscale10kmaclrn
+4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdscale10kmaclrn
+##### eth-l2bdscale100kmaclrn
+1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdscale100kmaclrn
+2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdscale100kmaclrn
+4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdscale100kmaclrn
+##### eth-l2bdscale1mmaclrn
+1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdscale1mmaclrn
+2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdscale1mmaclrn
+4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2bdscale1mmaclrn
+##### eth-l2xcbase
+1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2xcbase
+2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2xcbase
+4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2xcbase
+##### eth-l2patch
+1c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2patch
+2c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2patch
+4c AND 64b AND ndrpdr AND xxv710 AND drv_af_xdp AND eth-l2patch
 #### avf
 ##### eth-l2bdbasemaclrn
 1c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND eth-l2bdbasemaclrn

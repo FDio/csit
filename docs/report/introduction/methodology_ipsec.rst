@@ -67,7 +67,6 @@ relying on VPP native crypto (`crypto_native` plugin) in tunnel mode:
 +-------------------+------------------+---------------+--------------------+
 
 In policy mode:
-
 +-------------------+----------------+---------------+-------------------+
 | VPP Crypto Engine | ESP Encryption | ESP Integrity | Scale Tested      |
 +===================+================+===============+===================+

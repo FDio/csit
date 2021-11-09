@@ -1,2 +1,0 @@
-TREX Performance Tests
-======================
