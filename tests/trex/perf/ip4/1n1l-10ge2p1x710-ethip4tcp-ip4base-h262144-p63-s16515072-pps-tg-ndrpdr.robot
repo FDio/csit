@@ -77,5 +77,5 @@
 
 *** Test Cases ***
 | 64B--ethip4tcp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
-| | [Tags] | 64B
+| | [Tags] | ... | 64B
 | | frame_size=${64}
