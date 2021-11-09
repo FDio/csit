@@ -5,7 +5,7 @@ variable "region" {
 }
 
 variable "vault-name" {
-  default = "dynamic-aws-creds-vault-fdio"
+  default = "dynamic-aws-creds-vault-admin"
 }
 
 variable "avail_zone" {
@@ -19,7 +19,7 @@ variable "ami_image_tg" {
   # kernel 5.4.0-1035-aws (~5.4.0-65)
   description = "AWS AMI image ID"
   type        = string
-  default     = "ami-0c2d02d48236a23dd"
+  default     = "ami-0d6bc0344dc036b9d"
 }
 
 variable "ami_image_sut" {
@@ -27,7 +27,7 @@ variable "ami_image_sut" {
   # kernel 5.4.0-1035-aws (~5.4.0-65)
   description = "AWS AMI image ID"
   type        = string
-  default     = "ami-05ea90e57d2df4368"
+  default     = "ami-012c9c631964367be"
 }
 
 variable "instance_initiated_shutdown_behavior" {
@@ -39,7 +39,7 @@ variable "instance_initiated_shutdown_behavior" {
 variable "instance_type" {
   description = "AWS instance type"
   type        = string
-  default     = "c5n.4xlarge"
+  default     = "c5n.9xlarge"
 }
 
 variable "testbed_name" {

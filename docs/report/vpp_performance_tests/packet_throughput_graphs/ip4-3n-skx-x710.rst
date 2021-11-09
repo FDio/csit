@@ -31,8 +31,8 @@
 3n-skx-x710
 ~~~~~~~~~~~
 
-64b-2t1c-ip4routing-base-avf
-----------------------------
+64b-2t1c-ip4routing-base-scale-avf
+----------------------------------
 
 .. raw:: html
 

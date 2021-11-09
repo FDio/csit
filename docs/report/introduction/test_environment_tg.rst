@@ -11,7 +11,7 @@ TG Version
 DPDK Version
 ~~~~~~~~~~~~
 
-DPDK v21.02
+DPDK v19.05
 
 TG Installation
 ~~~~~~~~~~~~~~~

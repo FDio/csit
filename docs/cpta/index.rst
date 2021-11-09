@@ -35,6 +35,7 @@ analysis and anomaly detection methodology.
     trending/vhost
     trending/container_memif
     trending/ipsec
+    trending/vts
     trending/nf_service_density
     trending/dpdk
 
@@ -51,7 +52,7 @@ analysis and anomaly detection methodology.
     ndrpdr_trending/vhost
     ndrpdr_trending/container_memif
     ndrpdr_trending/ipsec
-    ndrpdr_trending/trex
+    ndrpdr_trending/vts
 
 .. toctree::
     :maxdepth: 2
@@ -65,7 +66,6 @@ analysis and anomaly detection methodology.
     ndrpdr_latency_trending/nat44
     ndrpdr_latency_trending/vhost
     ndrpdr_latency_trending/container_memif
-    ndrpdr_latency_trending/trex
 
 .. toctree::
     :maxdepth: 2
@@ -74,7 +74,6 @@ analysis and anomaly detection methodology.
     stats/vpp_mrr
     stats/vpp_ndrpdr
     stats/dpdk_mrr
-    stats/trex_ndrpdr
 
 .. toctree::
     :maxdepth: 2

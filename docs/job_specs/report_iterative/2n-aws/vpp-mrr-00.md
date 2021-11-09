@@ -9,37 +9,22 @@
 2c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4base
 1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4base
 2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4base
-##### ethip4-ip4scale20k
-1c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k
-2c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k
-1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k
-2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k
-##### ethip4-ip4scale20k-rnd
-1c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
-2c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
-1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
-2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
+##### ethip4-ip4scale2m
+1c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale2m
+1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale2m
+2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip4-ip4scale2m
 ## ./ip4_tunnels
 ## ./ip6
-### Amazon-Nitro-50G
-#### dpdk-vfio-pci
-##### ethip6-ip6base
-1c AND 78b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6base
-2c AND 78b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6base
-1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6base
-2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6base
-##### ethip6-ip6scale20k
-1c AND 78b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k
-2c AND 78b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k
-1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k
-2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k
-##### ethip6-ip6scale20k-rnd
-1c AND 78b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
-2c AND 78b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
-1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
-2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 ## ./ip6_tunnels
 ## ./l2
+### Amazon-Nitro-50G
+#### dpdk-vfio-pci
+##### eth-l2bdbasemaclrn
+1c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2bdbasemaclrn
+2c AND 64b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2bdbasemaclrn
+1c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2bdbasemaclrn
+2c AND 1518b AND mrr AND nitro-50g AND drv_vfio_pci AND eth-l2bdbasemaclrn
 ## ./lb
 ## ./nfv_density/dcr_memif/chain
 ## ./nfv_density/dcr_memif/chain_ipsec
