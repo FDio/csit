@@ -10,3 +10,6 @@ ED TCP TPUT
 
     nat44-ed-tcp-tput-2n-clx
     nat44-ed-tcp-tput-2n-skx
+
+..
+    nat44-ed-tcp-tput-2n-icx

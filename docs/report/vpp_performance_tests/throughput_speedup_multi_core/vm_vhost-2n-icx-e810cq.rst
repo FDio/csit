@@ -31,13 +31,13 @@
 2n-icx-e810cq
 ~~~~~~~~~~~~~
 
-64b-2t1c-l2switching-base-scale-avf
------------------------------------
+64b-vhost-base-testpmd
+----------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="121" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-ndr.html"></iframe>
+    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-vhost-base-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-ndr}
-            \label{fig:2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-vhost-base-ndr-tsa}
+            \label{fig:2n-icx-e810cq-64b-vhost-base-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="122" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-pdr.html"></iframe>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-vhost-base-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,21 +66,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-pdr}
-            \label{fig:2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-vhost-base-pdr-tsa}
+            \label{fig:2n-icx-e810cq-64b-vhost-base-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-2t1c-l2switching-base-scale-dpdk
-------------------------------------
+64b-vhost-base-vpp
+------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-ndr.html"></iframe>
+    <iframe id="111" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-vhost-base-vpp-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -89,8 +89,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-ndr}
-            \label{fig:2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-vhost-base-vpp-ndr-tsa}
+            \label{fig:2n-icx-e810cq-64b-vhost-base-vpp-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -100,7 +100,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-pdr.html"></iframe>
+    <iframe id="112" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-vhost-base-vpp-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -109,6 +109,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-pdr}
-            \label{fig:2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-vhost-base-vpp-pdr-tsa}
+            \label{fig:2n-icx-e810cq-64b-vhost-base-vpp-pdr-tsa}
     \end{figure}
