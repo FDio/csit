@@ -22,6 +22,30 @@
       "revId": "c454caf32e4b350984c32741c2b7057e0cd5826e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "923ee202_3519d168",
+        "filename": "docs/report/introduction/methodology_aws/aws_instances.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-11-09T09:53:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d226caf_39237da5",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 16
+      },
+      "revId": "c454caf32e4b350984c32741c2b7057e0cd5826e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
