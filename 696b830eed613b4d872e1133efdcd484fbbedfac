@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a1ed9f9_3ded95b9",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-11-09T12:38:41Z",
+      "side": 1,
+      "message": "typo: correctly",
+      "range": {
+        "startLine": 88,
+        "startChar": 74,
+        "endLine": 88,
+        "endChar": 82
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7cd50627_819e6b2a",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-11-09T12:38:41Z",
+      "side": 1,
+      "message": "typo: crypto",
+      "range": {
+        "startLine": 88,
+        "startChar": 88,
+        "endLine": 88,
+        "endChar": 93
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67986831_3d8a7680",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-11-09T12:38:41Z",
+      "side": 1,
+      "message": "if VPP is not working correctly, what is the VPP ticket tracking the fix for this incorrect behaviour?",
+      "range": {
+        "startLine": 88,
+        "startChar": 49,
+        "endLine": 88,
+        "endChar": 82
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eedf1faa_1e219050",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-11-09T12:38:41Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this read: \"NAT44ED tests failing to establish all TCP sessions in allotted time due to worse cps performance than previously measured and calibrated for.",
+      "range": {
+        "startLine": 90,
+        "startChar": 49,
+        "endLine": 90,
+        "endChar": 101
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61534b31_cd54a843",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-11-09T12:38:41Z",
+      "side": 1,
+      "message": "Is there a separate ticket to track VPP NAT44ed CPS performance that can be referred to here?\nIs it VPP-1972 listed in RCA list below?",
+      "range": {
+        "startLine": 90,
+        "startChar": 49,
+        "endLine": 90,
+        "endChar": 84
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "621be701_b779ea8a",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-11-09T12:38:41Z",
+      "side": 1,
+      "message": "Is this DUT / VPP performance cap, or TG / TRex performance cap? Or both?\nWhat are the results for DUT / testpmd with MLX NIC?",
+      "range": {
+        "startLine": 94,
+        "startChar": 103,
+        "endLine": 94,
+        "endChar": 145
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
