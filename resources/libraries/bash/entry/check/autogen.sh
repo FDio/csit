@@ -50,8 +50,8 @@ cp -rf "${CSIT_DIR}/tests"/* "${GENERATED_DIR}/tests_tmp"/
 # I think archiving the diff is enough.
 
 diff_cmd=("diff" "-dur" "${GENERATED_DIR}/tests_tmp" "${GENERATED_DIR}/tests")
-# Diff returns RC=1 if output is nonzero, so we do not die on the next line.
-lines="$("${diff_cmd[@]}" | tee "autogen.log" | wc -l)"
+# Diff returns RC=1 if output is nonzero.
+lines="$("${diff_cmd[@]}" | tee "autogen.log" | wc -l || true)"
 if [ "${lines}" != "0" ]; then
     # TODO: Decide which text goes to stdout and which to stderr.
     warn "Autogen conflict, diff sees nonzero lines: ${lines}"
