@@ -80,7 +80,7 @@ imix-2t1c-ipsec-ip4routing-base-scale-avf
 .. raw:: html
 
     <center>
-    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-1518b-2t1c-ipsec-ip4routing-base-scale-avf-ndr.html"></iframe>
+    <iframe id="101a" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-1518b-2t1c-ipsec-ip4routing-base-scale-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -100,7 +100,7 @@ imix-2t1c-ipsec-ip4routing-base-scale-avf
 .. raw:: html
 
     <center>
-    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-1518b-2t1c-ipsec-ip4routing-base-scale-avf-pdr.html"></iframe>
+    <iframe id="102a" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-1518b-2t1c-ipsec-ip4routing-base-scale-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 

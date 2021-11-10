@@ -544,10 +544,12 @@
     csit-vpp-perf-report-coverage-2110-2n-zn2:
       - 1   # rls2110.rel NDRPDR cov env 8
       - 2   # rls2110.rel NDRPDR cov env 8
+      - 3   # rls2110.rel NDRPDR cov env 8
       - 5   # rls2110.rel NDRPDR cov env 8
       - 9   # rls2110.rel NDRPDR cov env 8
       - 10  # rls2110.rel NDRPDR cov env 8
       - 11  # rls2110.rel NDRPDR cov env 8
+      - 13  # rls2110.rel NDRPDR cov env 8
 
   dpdk-2n-zn2-hist-iter:
     csit-dpdk-perf-report-iterative-2101-2n-zn2:
@@ -925,11 +927,12 @@
       - 1   # rls2110.rel NDRPDR cov env 8
       - 2   # rls2110.rel NDRPDR cov env 8
       - 3   # rls2110.rel NDRPDR cov env 8
-#      - 4   # rls2110.rel NDRPDR cov env 8
+      - 4   # rls2110.rel NDRPDR cov env 8
       - 5   # rls2110.rel NDRPDR cov env 8
       - 6   # rls2110.rel NDRPDR cov env 8
       - 7   # rls2110.rel NDRPDR cov env 8
       - 8   # rls2110.rel NDRPDR cov env 8
+      - 9   # rls2110.rel NDRPDR cov env 8
       - 10  # rls2110.rel NDRPDR cov env 8
       - 11  # rls2110.rel NDRPDR cov env 8
       - 12  # rls2110.rel NDRPDR cov env 8
@@ -1064,6 +1067,7 @@
       - 3   # rls2110.rel NDRPDR cov env 8
       - 4   # rls2110.rel NDRPDR cov env 8
       - 5   # rls2110.rel NDRPDR cov env 8
+      - 6   # rls2110.rel NDRPDR cov env 8
       - 7   # rls2110.rel NDRPDR cov env 8
       - 8   # rls2110.rel NDRPDR cov env 8
       - 9   # rls2110.rel NDRPDR cov env 8

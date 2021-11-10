@@ -44,7 +44,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-64b--ethip4-ip4base-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1xxv710-64b--ethip4-ip4base-tg.html"></iframe>
+    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-64b--ethip4-ip4base-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1x710-64b--ethip4-ip4base-tg.html"></iframe>
     <p><br></p>
     </center>
 
@@ -64,7 +64,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-64b--ethip4-ip4scale2m-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1xxv710-64b--ethip4-ip4scale2m-tg.html"></iframe>
+    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-64b--ethip4-ip4scale2m-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1x710-64b--ethip4-ip4scale2m-tg.html"></iframe>
     <p><br></p>
     </center>
 
@@ -87,7 +87,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-78b--ethip6-ip6base-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1xxv710-78b--ethip6-ip6base-tg.html"></iframe>
+    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-78b--ethip6-ip6base-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1x710-78b--ethip6-ip6base-tg.html"></iframe>
     <p><br></p>
     </center>
 
@@ -107,7 +107,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-78b--ethip6-ip6scale2m-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1xxv710-78b--ethip6-ip6scale2m-tg.html"></iframe>
+    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-78b--ethip6-ip6scale2m-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1x710-78b--ethip6-ip6scale2m-tg.html"></iframe>
     <p><br></p>
     </center>
 
@@ -130,7 +130,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-64b--eth-l2bdscale1mmaclrn-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1xxv710-64b--eth-l2bdscale1mmaclrn-tg.html"></iframe>
+    <iframe id="hdrh-lat-percentile-2n-skx-10ge2p1x710-64b--eth-l2bdscale1mmaclrn-tg" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/hdrh-lat-percentile-2n-skx-10ge2p1x710-64b--eth-l2bdscale1mmaclrn-tg.html"></iframe>
     <p><br></p>
     </center>
 
