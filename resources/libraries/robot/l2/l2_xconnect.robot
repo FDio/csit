@@ -313,7 +313,7 @@
 | | | ${prev_index}= | Evaluate | ${number}-1
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
-| | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
+| | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int+1}
 | | | ${xconnect_if1}= | Set Variable If | ${number}==1
 | | | ... | ${${dut}_${int}1}[0] | ${${dut}-memif-${prev_index}-if2}
 | | | Configure L2XC | ${nodes['${dut}']} | ${xconnect_if1}
