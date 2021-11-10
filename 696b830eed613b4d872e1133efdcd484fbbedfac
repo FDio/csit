@@ -71,6 +71,78 @@
     },
     {
       "key": {
+        "uuid": "a3ea2ac8_2e5010e3",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-10T11:56:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a1ed9f9_3ded95b9",
+      "range": {
+        "startLine": 88,
+        "startChar": 74,
+        "endLine": 88,
+        "endChar": 82
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea92e3e6_5459c0df",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-10T11:56:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cd50627_819e6b2a",
+      "range": {
+        "startLine": 88,
+        "startChar": 88,
+        "endLine": 88,
+        "endChar": 93
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ed9a0f3_b3458aab",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-10T11:56:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67986831_3d8a7680",
+      "range": {
+        "startLine": 88,
+        "startChar": 49,
+        "endLine": 88,
+        "endChar": 82
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eedf1faa_1e219050",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 1
@@ -117,6 +189,54 @@
     },
     {
       "key": {
+        "uuid": "b36cf952_0cb24592",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-10T11:56:02Z",
+      "side": 1,
+      "message": "\u003e CPS performance\n\nI call it \"slowpath performance\" in next patch set, because CPS may also refer to traffic profile (no data payload). The current TPUT suites are using \"pps\" traffic profile both for measurement and ramp-up.\n\n\u003e VPP-1972 \n\nIt contributes, but not sure nothing else contributes too. The tests have high standard deviation, trending can detect anomalies which are hard to bisect for (and generally under 5%).",
+      "parentUuid": "61534b31_cd54a843",
+      "range": {
+        "startLine": 90,
+        "startChar": 49,
+        "endLine": 90,
+        "endChar": 84
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa0bfb70_2198a413",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-10T11:56:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eedf1faa_1e219050",
+      "range": {
+        "startLine": 90,
+        "startChar": 49,
+        "endLine": 90,
+        "endChar": 101
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "621be701_b779ea8a",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 1
@@ -137,6 +257,30 @@
       "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c0b1ef8_919f299d",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-10T11:56:02Z",
+      "side": 1,
+      "message": "DUT/VPP and probably not TG/TRex (Trex claims so send all packets, no duration stretching).\nNot sure about DPDK yet, we are not running it (for MLX) in periodic jobs.\nUpdate: Started few runs, DPDK is also capped. But not sure what was the performance before. There were runs done for [1], but logs are long gone.\n\n[1] https://gerrit.fd.io/r/c/csit/+/26568",
+      "parentUuid": "621be701_b779ea8a",
+      "range": {
+        "startLine": 94,
+        "startChar": 103,
+        "endLine": 94,
+        "endChar": 145
+      },
+      "revId": "696b830eed613b4d872e1133efdcd484fbbedfac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
