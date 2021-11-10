@@ -57,26 +57,6 @@
 .. raw:: html
 
     <center>
-    <iframe id="03p2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-nat44ed-ip4routing-udp-tput2-avf-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-nat44ed-ip4routing-udp-tput2-avf-ndr-tsa}
-            \label{fig:2n-skx-xxv710-64b-nat44ed-ip4routing-udp-tput2-avf-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
     <iframe id="03n" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-nat44ed-ip4routing-udp-tput-avf-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
@@ -88,24 +68,4 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-nat44ed-ip4routing-udp-tput-avf-pdr-tsa}
             \label{fig:2n-skx-xxv710-64b-nat44ed-ip4routing-udp-tput-avf-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="03n2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-nat44ed-ip4routing-udp-tput2-avf-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-nat44ed-ip4routing-udp-tput2-avf-pdr-tsa}
-            \label{fig:2n-skx-xxv710-64b-nat44ed-ip4routing-udp-tput2-avf-pdr-tsa}
     \end{figure}

@@ -115,65 +115,66 @@
 
         \clearpage
 
-.. raw:: html
+..
+    .. raw:: html
 
-    <center>
-    <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale10kmaclrn.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale10kmaclrn.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale10kmaclrn.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale10kmaclrn.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale10kmaclrn}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale10kmaclrn}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale10kmaclrn}
+                \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale10kmaclrn}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-.. raw:: html
+    .. raw:: html
 
-    <center>
-    <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale100kmaclrn.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale100kmaclrn.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale100kmaclrn.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale100kmaclrn.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale100kmaclrn}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale100kmaclrn}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale100kmaclrn}
+                \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale100kmaclrn}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-.. raw:: html
+    .. raw:: html
 
-    <center>
-    <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale1mmaclrn.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale1mmaclrn.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale1mmaclrn.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale1mmaclrn.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale1mmaclrn}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale1mmaclrn}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale1mmaclrn}
+                \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-64b-1t1c-eth-l2bdscale1mmaclrn}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
 64b-1t1c-features-l2switching-base-ixgbe
 ----------------------------------------
