@@ -632,6 +632,7 @@
 | |
 | | ... | \| Traffic should pass with maximum rate \|
 | |
+| | Show Statistics On All Duts | ${nodes}
 | | ${max_rate} = | Get Max Rate
 | | ${transaction_type} = | Get Transaction Type
 | | ${trial_duration} = | Get Mrr Trial Duration
