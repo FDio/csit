@@ -8623,6 +8623,24 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 3n-skx-xxv710-1518b-ipsec-ip4routing-base-scale-avf-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1518b-ipsec-ip4routing-base-scale-avf-{test_type}-tsa"
+  data: "vpp-3n-skx-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518b-.t.c-avf-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518b-.t.c-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec40Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518b-.t.c-avf-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec40Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518b-.t.c-avf-ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518b-.t.c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518b-.t.c-avf-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518b-.t.c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518b-.t.c-avf-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-1518b-ipsec-ip4routing-base-scale-avf-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
   title: "Speedup: 3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-dpdk-{test_type}-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-imix-ipsec-ip4routing-base-scale-dpdk-{test_type}-tsa"
@@ -9813,7 +9831,7 @@
 - type: "plot"
   title: "Throughput: 2n-clx-x710-64b-{core}-l2switching-base-avf-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-clx-x710-64b-{core}-l2switching-base-avf]-{test_type}"
+  output-file: "{DIR[STATIC,VPP]}/2n-clx-x710-64b-{core}-l2switching-base-avf-{test_type}"
   data: "vpp-2n-clx-curr-iter"
   core: ["2t1c", ]
   include:
@@ -10802,9 +10820,9 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 2n-icx-e810cq-64b-features-ip4routing-base-scale-avf-{test_type}-tsa"
+  title: "Speedup: 2n-icx-e810cq-64b-features-ip4routing-base-avf-{test_type}-tsa"
   algorithm: "plot_tsa_name"
-  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-features-ip4routing-base-scale-avf-{test_type}-tsa"
+  output-file: "{DIR[STATIC,VPP]}/2n-icx-e810cq-64b-features-ip4routing-base-avf-{test_type}-tsa"
   data: "vpp-2n-icx-curr-iter"
   include:
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
@@ -10812,7 +10830,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
   layout:
-    title: "2n-icx-e810cq-64b-features-ip4routing-base-scale-avf-{test_type}"
+    title: "2n-icx-e810cq-64b-features-ip4routing-base-avf-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
