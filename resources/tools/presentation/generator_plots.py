@@ -1522,8 +1522,6 @@ def plot_nf_heatmap(plot, input_data):
     regex_test_name = re.compile(r'^.*-(\d+ch|\d+pl)-'
                                  r'(\d+mif|\d+vh)-'
                                  r'(\d+vm\d+t|\d+dcr\d+t|\d+dcr\d+c).*$')
-    vals = dict()
-
     # Transform the data
     logging.info(
         f"    Creating the data set for the {plot.get(u'type', u'')} "
@@ -1540,6 +1538,7 @@ def plot_nf_heatmap(plot, input_data):
 
     for ttype in plot.get(u"test-type", (u"ndr", u"pdr")):
         for core in plot.get(u"core", tuple()):
+            vals = dict()
             for item in plot.get(u"include", tuple()):
                 reg_ex = re.compile(str(item.format(core=core)).lower())
                 for job in in_data:
