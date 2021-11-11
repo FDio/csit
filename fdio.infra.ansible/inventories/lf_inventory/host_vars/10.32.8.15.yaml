@@ -37,6 +37,7 @@ nomad_options:
   docker.volumes.enabled: true
   driver.whitelist: "docker,raw_exec,exec"
   fingerprint.network.disallow_link_local: true
+nomad_service_mgr: "systemd"
 nomad_retry_servers:
   - "10.32.8.14"
   - "10.32.8.16"
@@ -67,6 +68,7 @@ consul_retry_servers:
   - "10.32.8.14"
   - "10.32.8.16"
   - "10.32.8.17"
+consul_service_mgr: "systemd"
 
 # Docker daemon settings.
 docker_daemon:
