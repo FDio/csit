@@ -144,13 +144,13 @@ variable "resource_proxy" {
 variable "service_name" {
   description = "Specifies the name this service will be advertised in Consul"
   type        = string
-  default     = "AKIAVWHHCAXZJUHH7QFN"
+  default     = "minio"
 }
 
 variable "secret_key" {
   description = "Minio secret key"
   type        = string
-  default     = "SUSnhzMhoZTqteGJeGM7ry8cmL95fhksRloeL55j"
+  default     = "minio"
 }
 
 variable "upstreams" {
