@@ -75,7 +75,7 @@
     \clearpage
 
 64b-ip4routing-features
-----------------------------
+-----------------------
 
 .. raw:: html
 

@@ -9359,6 +9359,30 @@
     title: "2n-skx-x710-64b-{core}-base-{test_type}"
     layout: "plot-throughput"
 
+- type: "plot"
+  title: "Speedup: 2n-skx-xxv710-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-xxv710-64b-base-{test_type}-tsa"
+  data: "dpdk-2n-skx-curr-iter"
+  include:
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-xxv710-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-skx-x710-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-skx-x710-64b-base-{test_type}-tsa"
+  data: "dpdk-2n-skx-curr-iter"
+  include:
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-skx-x710-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
 # 3n-skx
 
 - type: "plot"
@@ -9386,6 +9410,30 @@
   layout:
     title: "3n-skx-x710-64b-{core}-base-{test_type}"
     layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-xxv710-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/3n-skx-xxv710-64b-base-{test_type}-tsa"
+  data: "dpdk-3n-skx-curr-iter"
+  include:
+    - "tests.dpdk.perf.25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "3n-skx-xxv710-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-skx-x710-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/3n-skx-x710-64b-base-{test_type}-tsa"
+  data: "dpdk-3n-skx-curr-iter"
+  include:
+    - "tests.dpdk.perf.10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "3n-skx-x710-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
 
 ## 2n-dnv-x553
 #
@@ -9434,6 +9482,18 @@
     title: "3n-tsh-x520-64b-{core}-base-{test_type}"
     layout: "plot-throughput"
 
+- type: "plot"
+  title: "Speedup: 3n-tsh-x520-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/3n-tsh-x520-64b-base-{test_type}-tsa"
+  data: "dpdk-3n-tsh-curr-iter"
+  include:
+    - "tests.dpdk.perf.10ge2p1x520-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "3n-tsh-x520-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
 # 2n-tx2-xl710
 
 - type: "plot"
@@ -9448,6 +9508,18 @@
   layout:
     title: "2n-tx2-xl710-64b-{core}-base-{test_type}"
     layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-tx2-xl710-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-tx2-xl710-64b-base-{test_type}-tsa"
+  data: "dpdk-2n-tx2-curr-iter"
+  include:
+    - "tests.dpdk.perf.2N1L-40ge2p1xl710-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2N1L-40ge2p1xl710-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-tx2-xl710-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
 ###   2n-clx                                                                 ###
@@ -11089,6 +11161,30 @@
     title: "2n-clx-x710-64b-{core}-base-{test_type}"
     layout: "plot-throughput"
 
+- type: "plot"
+  title: "Speedup: 2n-clx-xxv710-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-clx-xxv710-64b-base-{test_type}-tsa"
+  data: "dpdk-2n-clx-curr-iter"
+  include:
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-clx-xxv710-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-clx-x710-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-clx-x710-64b-base-{test_type}-tsa"
+  data: "dpdk-2n-clx-curr-iter"
+  include:
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-clx-x710-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
 ###############################################################################
 
 # 2n-zn2
@@ -12119,6 +12215,30 @@
   layout:
     title: "2n-zn2-x710-64b-{core}-base-{test_type}"
     layout: "plot-throughput"
+
+- type: "plot"
+  title: "Speedup: 2n-zn2-xxv710-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-zn2-xxv710-64b-base-{test_type}-tsa"
+  data: "dpdk-2n-zn2-curr-iter"
+  include:
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-zn2-xxv710-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-zn2-x710-64b-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,DPDK]}/2n-zn2-x710-64b-base-{test_type}-tsa"
+  data: "dpdk-2n-zn2-curr-iter"
+  include:
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-.t.c-eth-l2xcbase-testpmd-ndrpdr"
+    - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-.t.c-ethip4-ip4base-l3fwd-ndrpdr"
+  layout:
+    title: "2n-zn2-x710-64b-base-{test_type}-tsa"
+    layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
 
