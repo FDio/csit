@@ -518,9 +518,11 @@ function get_pci_addr () {
         PCI_ADDR=$(basename $(readlink /sys/class/net/${NETDEV}/device)) || {
             die "Failed to get PCI address of linux network interface!"
         }
-    fi
-    if [ ! -d /sys/bus/pci/devices/${PCI_ADDR} ]; then
-        die "PCI device ${NETDEV} doesn't exist!"
+        if [ ! -d /sys/bus/pci/devices/${PCI_ADDR} ]; then
+            die "PCI device ${PCI_ADDR} doesn't exist!"
+        fi
+    else
+        die "Can't get device info of interface ${NETDEV}!"
     fi
 }
 
