@@ -1,4 +1,5 @@
 # Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2022 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -308,37 +309,30 @@ function get_available_interfaces () {
             # Add Intel Corporation E810 Virtual Function to the
             # whitelist.
             pci_id="0x154c\|0x1889"
-            tg_netdev=(ens1 enp134)
             dut1_netdev=(ens5 enp175)
+            tg_netdev=(ens1 enp134)
             ports_per_nic=2
             ;;
        "1n_tx2")
             # Add Intel Corporation XL710/X710 Virtual Function to the
             # whitelist.
             pci_id="0x154c"
-            tg_netdev=(enp5)
             dut1_netdev=(enp145)
+            tg_netdev=(enp5)
             ports_per_nic=2
             ;;
        "1n_vbox")
             # Add Intel Corporation 82545EM Gigabit Ethernet Controller to the
             # whitelist.
             pci_id="0x100f"
-            tg_netdev=(enp0s8 enp0s9)
             dut1_netdev=(enp0s16 enp0s17)
+            tg_netdev=(enp0s8 enp0s9)
             ports_per_nic=1
             ;;
         *)
             die "Unknown specification: ${case_text}!"
     esac
 
-    # TG side of connections.
-    TG_NETDEVS=()
-    TG_PCIDEVS=()
-    TG_NETMACS=()
-    TG_DRIVERS=()
-    TG_VLANS=()
-    TG_MODEL=()
     # DUT1 side of connections.
     DUT1_NETDEVS=()
     DUT1_PCIDEVS=()
@@ -346,10 +340,18 @@ function get_available_interfaces () {
     DUT1_DRIVERS=()
     DUT1_VLANS=()
     DUT1_MODEL=()
+    # TG side of connections.
+    TG_NETDEVS=()
+    TG_PCIDEVS=()
+    TG_NETMACS=()
+    TG_DRIVERS=()
+    TG_VLANS=()
+    TG_MODEL=()
 
-    # Find the first ${device_count} number of available TG Linux network
+    # Find the first ${device_count} number of available DUT Linux network
     # VF device names. Only allowed VF PCI IDs are filtered.
-    for netdev in ${tg_netdev[@]}
+
+    for netdev in ${dut1_netdev[@]}
     do
         ports=0
         for netdev_path in $(grep -l "${pci_id}" \
@@ -357,31 +359,31 @@ function get_available_interfaces () {
                              2> /dev/null)
         do
             if [[ ${ports} -lt ${ports_per_nic} ]]; then
-                tg_netdev_name=$(dirname ${netdev_path})
-                tg_netdev_name=$(dirname ${tg_netdev_name})
-                TG_NETDEVS+=($(basename ${tg_netdev_name}))
+                dut1_netdev_name=$(dirname ${netdev_path})
+                dut1_netdev_name=$(dirname ${dut1_netdev_name})
+                DUT1_NETDEVS+=($(basename ${dut1_netdev_name}))
                 ((ports++))
             else
                 break
             fi
         done
-        ports_per_device=$((${ports_per_nic}*${#tg_netdev[@]}))
-        if [[ ${#TG_NETDEVS[@]} -eq ${ports_per_device} ]]; then
+        ports_per_device=$((${ports_per_nic}*${#dut1_netdev[@]}))
+        if [[ ${#DUT1_NETDEVS[@]} -eq ${ports_per_device} ]]; then
             break
         fi
     done
 
     i=0
-    for netdev in "${TG_NETDEVS[@]}"; do
-        # Find the index of selected tg netdev among tg_netdevs
-        # e.g. enp8s5f7 is a vf of netdev enp8s5 with index 11
-        # and the corresponding dut1 netdev is enp133s13.
-        while [[ "${netdev}" != "${tg_netdev[$i]}"* ]]; do
+    for netdev in "${DUT1_NETDEVS[@]}"; do
+        # Find the index of selected dut1 netdev among dut1_netdevs
+        # e.g. enp175s0v10 is a vf of netdev enp175s0 with index 1
+        # and the corresponding tg netdev is enp134s0v10.
+        while [[ "${netdev}" != "${dut1_netdev[$i]}"* ]]; do
             ((i++))
         done
-        # Rename tg netdev to dut1 netdev
-        # e.g. enp8s5f7 -> enp133s13f7
-        DUT1_NETDEVS+=(${netdev/${tg_netdev[$i]}/${dut1_netdev[$i]}})
+        # Rename dut1 netdev to tg netdev
+        # e.g. enp175s0v10 -> enp134s0v10
+        TG_NETDEVS+=(${netdev/${dut1_netdev[$i]}/${tg_netdev[$i]}})
         # Don't need to reset i, all netdevs are sorted.
     done
 
