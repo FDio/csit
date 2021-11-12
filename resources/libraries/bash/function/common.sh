@@ -118,7 +118,7 @@ function activate_virtualenv () {
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
-    pip3 install virtualenv==20.0.20 || {
+    pip3 install virtualenv==20.10.0 || {
         die "Virtualenv package install failed."
     }
     virtualenv --no-download --python=$(which python3) "${env_dir}" || {
@@ -760,7 +760,7 @@ function select_arch_os () {
     source /etc/os-release || die "Get OS release failed."
 
     case "${ID}" in
-        "ubuntu"*)
+        "ubuntu"* | "pop"*)
             case "${VERSION}" in
                 *"LTS (Focal Fossa)"*)
                     IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
@@ -768,7 +768,9 @@ function select_arch_os () {
                     PKG_SUFFIX="deb"
                     ;;
                 *)
-                    die "Unsupported Ubuntu version!"
+                    IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
+                    VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_FOCAL"
+                    PKG_SUFFIX="deb"
                     ;;
             esac
             ;;
@@ -1125,6 +1127,10 @@ function set_environment_variables () {
             export TREX_CORE_COUNT=6
             # Settings to prevent duration stretching
             export PERF_TRIAL_STL_DELAY=0.1
+            export PERF_TRIAL_MULTIPLICITY=30
+            export PERF_TRIAL_DURATION=120
+            export GERRIT_EVENT_TYPE="comment-added"
+            export GERRIT_EVENT_COMMENT_TEXT="csit-vpp-report-iter-2n-aws-perftest vpp-mrr-00"
             ;;
     esac
 }
