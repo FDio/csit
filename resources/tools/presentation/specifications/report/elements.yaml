@@ -4094,7 +4094,7 @@
       data: "data msg"
   data: "vpp-2n-icx-curr-iter-best"
   filter: "'NDRPDR'"
-  remove-ndr: True
+#   remove-ndr: True
   parameters:
   - "name"
   - "parent"
@@ -4112,7 +4112,7 @@
 #       data: "data msg"
 #   data: "vpp-3n-icx-curr-iter-best"
 #   filter: "'NDRPDR'"
-#   remove-ndr: True
+#   # remove-ndr: True
 #   parameters:
 #   - "name"
 #   - "parent"
@@ -4194,7 +4194,7 @@
   columns:
     - title: " |prein| Test Name |preout| "
       data: "data name"
-    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  min  avg  max       min  avg  max (10% PDR) |br| 4.  min  avg  max       min  avg  max (50% PDR) |br| 5.  min  avg  max       min  avg  max (90% PDR) |preout| "
       data: "data msg"
   data: "vpp-2n-aws-curr-cov"
   filter: "all"
@@ -4211,7 +4211,7 @@
   columns:
     - title: " |prein| Test Name |preout| "
       data: "data name"
-    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  min  avg  max       min  avg  max (10% PDR) |br| 4.  min  avg  max       min  avg  max (50% PDR) |br| 5.  min  avg  max       min  avg  max (90% PDR) |preout| "
       data: "data msg"
   data: "vpp-3n-aws-curr-cov"
   filter: "all"
@@ -4300,7 +4300,7 @@
       data: "data conf-history"
   data: "vpp-2n-icx-curr-iter-best"
   filter: "'NDRPDR'"
-  remove-ndr: True
+#   remove-ndr: True
   parameters:
   - "parent"
   - "name"
@@ -4318,7 +4318,7 @@
 #       data: "data conf-history"
 #   data: "vpp-3n-icx-curr-iter-best"
 #   filter: "'NDRPDR'"
-#   remove-ndr: True
+#   # remove-ndr: True
 #   parameters:
 #   - "parent"
 #   - "name"
