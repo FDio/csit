@@ -477,7 +477,8 @@ class ExecutionChecker(ResultVisitor):
             return u"Test Failed."
 
         def _process_lat(in_str_1, in_str_2):
-            """Extract min, avg, max values from latency string.
+            """Extract P50, P90 and P99 latencies or min, avg, max values from
+            latency string.
 
             :param in_str_1: Latency string for one direction produced by robot
                 framework.
@@ -498,13 +499,13 @@ class ExecutionChecker(ResultVisitor):
             try:
                 hdr_lat_1 = hdrh.histogram.HdrHistogram.decode(in_list_1[3])
             except hdrh.codec.HdrLengthException:
-                return None
+                hdr_lat_1 = None
 
             in_list_2[3] += u"=" * (len(in_list_2[3]) % 4)
             try:
                 hdr_lat_2 = hdrh.histogram.HdrHistogram.decode(in_list_2[3])
             except hdrh.codec.HdrLengthException:
-                return None
+                hdr_lat_2 = None
 
             if hdr_lat_1 and hdr_lat_2:
                 hdr_lat = (
@@ -515,9 +516,17 @@ class ExecutionChecker(ResultVisitor):
                     hdr_lat_2.get_value_at_percentile(90.0),
                     hdr_lat_2.get_value_at_percentile(99.0)
                 )
-
                 if all(hdr_lat):
                     return hdr_lat
+            else:
+                hdr_lat = (
+                    in_list_1[0], in_list_1[1], in_list_1[2],
+                    in_list_2[0], in_list_2[1], in_list_2[2]
+                )
+                for item in hdr_lat:
+                    if item in (u"-1", u"4294967295", u"0"):
+                        return None
+                return hdr_lat
 
             return None
 
