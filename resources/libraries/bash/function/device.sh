@@ -381,7 +381,13 @@ function get_available_interfaces () {
         done
         # Rename tg netdev to dut1 netdev
         # e.g. enp8s5f7 -> enp133s13f7
-        DUT1_NETDEVS+=(${netdev/${tg_netdev[$i]}/${dut1_netdev[$i]}})
+        dut_netdev=${netdev/${tg_netdev[$i]}/${dut1_netdev[$i]}}
+        if [ ! -d /sys/class/net/${dut_netdev} ]; then
+            msg="TG interface ${netdev} exists,"
+            msg+=" but the corresponding DUT interface ${dut_netdev} doesn't!"
+            die "${msg}"
+        fi
+        DUT1_NETDEVS+=(${dut_netdev})
         # Don't need to reset i, all netdevs are sorted.
     done
 
