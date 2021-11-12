@@ -4173,7 +4173,7 @@
 - type: "table"
   title: "Detailed Test Results - VPP Performance Results 2n-dnv"
   algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}/vpp_performance_results_2n_dnv"
+  output-file: "{DIR[DTR,PERF,VPP,2N,DNV]}/"
   columns:
     - title: " |prein| Test Name |preout| "
       data: "data name"
@@ -4190,7 +4190,7 @@
 - type: "table"
   title: "Detailed Test Results - VPP Performance Results 2n-aws"
   algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,PERF,VPP,2N,AWS]}/vpp_performance_results_2n_aws"
+  output-file: "{DIR[DTR,PERF,VPP,2N,AWS]}/"
   columns:
     - title: " |prein| Test Name |preout| "
       data: "data name"
@@ -4207,7 +4207,7 @@
 - type: "table"
   title: "Detailed Test Results - VPP Performance Results 3n-aws"
   algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,PERF,VPP,3N,AWS]}/vpp_performance_results_3n_aws"
+  output-file: "{DIR[DTR,PERF,VPP,3N,AWS]}/"
   columns:
     - title: " |prein| Test Name |preout| "
       data: "data name"
