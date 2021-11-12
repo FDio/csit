@@ -73,9 +73,9 @@
 - name: Inst - Driver Intel iAVF
   import_tasks: iavf.yaml
   when: >
-    intel_700_pcis.stdout_lines | length > 0 or
-    intel_800_pcis.stdout_lines | length > 0 and
-    intel_700_matrix is defined or
-    intel_800_matrix is defined
+    (intel_700_pcis.stdout_lines | length > 0 and
+    intel_700_matrix is defined ) or
+    (intel_800_pcis.stdout_lines | length > 0 and
+    intel_800_matrix is defined)
   tags:
     - intel-inst-drivers
