@@ -22,11 +22,27 @@
   tags:
     - kernel-inst
 
+- name: Enable kernel packages installation
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: install
+  loop: "{{ kernel_packages }}"
+  tags:
+    - kernel-inst
+
 - name: Ensure Packages Versions
   apt:
     name: "{{ apt_kernel_list | deb_kernel_pkg(
               kernel_version, ansible_kernel, ansible_distribution,
               ansible_architecture, item) }}"
+  loop: "{{ kernel_packages }}"
+  tags:
+    - kernel-inst
+
+- name: Prevent kernel packages from being upgraded
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
   loop: "{{ kernel_packages }}"
   tags:
     - kernel-inst
