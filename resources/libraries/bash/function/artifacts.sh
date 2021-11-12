@@ -43,16 +43,6 @@ function download_artifacts () {
     else
         REPO_URL="https://packagecloud.io/install/repositories/fdio/master"
     fi
-
-    if [ "${os_id}" == "ubuntu" ]; then
-        download_ubuntu_artifacts || die
-    elif [ "${os_id}" == "centos" ]; then
-        download_centos_artifacts || die
-    elif [ "${os_id}" == "opensuse" ]; then
-        download_opensuse_artifacts || die
-    else
-        die "${os_id} is not yet supported."
-    fi
 }
 
 function download_ubuntu_artifacts () {
