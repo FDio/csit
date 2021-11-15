@@ -377,7 +377,7 @@
       build: "36"
     - job-spec: "crypto-02"
       build: "37"
-#     - job-spec: "crypto-03"
+#     - job-spec: "crypto-03"  # Completly failed
 #       build: "38"
     - job-spec: "crypto-04"
       build: "39"

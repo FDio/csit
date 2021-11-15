@@ -501,6 +501,8 @@
       - 28  # rls2106.rel NDRPDR iter env 8
       - 31  # rls2106.rel NDRPDR iter env 8
       - 32  # rls2106.rel NDRPDR iter env 8
+      # - 54  # rls2106.rel NDRPDR iter env 8
+      - 55  # rls2106.rel NDRPDR iter env 8
 
   vpp-2n-zn2-curr-iter:
     csit-vpp-perf-report-iterative-2110-2n-zn2:
