@@ -520,11 +520,11 @@ class ExecutionChecker(ResultVisitor):
                     return hdr_lat
 
             hdr_lat = (
-                in_list_1[0], in_list_1[1], in_list_1[2],
-                in_list_2[0], in_list_2[1], in_list_2[2]
+                int(in_list_1[0]), int(in_list_1[1]), int(in_list_1[2]),
+                int(in_list_2[0]), int(in_list_2[1]), int(in_list_2[2])
             )
             for item in hdr_lat:
-                if item in (u"-1", u"4294967295", u"0"):
+                if item in (-1, 4294967295, 0):
                     return None
             return hdr_lat
 
