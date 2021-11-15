@@ -899,20 +899,23 @@ def plot_ndrpdr_box_name(plot, input_data):
                     REGEX_NIC, u'', key.lower().replace(u'-ndrpdr', u'').
                     replace(u'2n1l-', u'')
                 )
-                traces.append(
-                    plgo.Box(
-                        x=[data_x[idx], ] * len(data_x),
-                        y=[y / 1e6 if y else None for y in vals],
-                        name=(
-                            f"{idx+1}."
-                            f"({len(vals):02d} "
-                            f"run"
-                            f"{u's' if len(vals) > 1 else u''}) "
-                            f"{name}"
-                        ),
-                        hoverinfo=u"y+name"
-                    )
+                kwargs = dict(
+                    x=[data_x[idx], ] * len(data_x),
+                    y=[y / 1e6 if y else None for y in vals],
+                    name=(
+                        f"{idx + 1}."
+                        f"({len(vals):02d} "
+                        f"run"
+                        f"{u's' if len(vals) > 1 else u''}) "
+                        f"{name}"
+                    ),
+                    hoverinfo=u"y+name"
                 )
+                box_points = plot.get(u"boxpoints", None)
+                if box_points and box_points in \
+                        (u"all", u"outliers", u"suspectedoutliers", False):
+                    kwargs[u"boxpoints"] = box_points
+                traces.append(plgo.Box(**kwargs))
                 try:
                     data_y_max.append(max(vals))
                 except ValueError as err:
