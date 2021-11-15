@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "76f29c13_192ffc76",
+        "filename": "fdio.infra.ansible/roles/kernel/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-15T15:44:38Z",
+      "side": 1,
+      "message": "that was failing some ansible-lint\nthat is why i started to convert to true",
+      "parentUuid": "460e740e_9616c948",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 17
+      },
+      "revId": "48cb5302b8167d13baf98601752be499226cf3a9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d9993bd_2b7d439f",
         "filename": "fdio.infra.ansible/roles/kernel/tasks/ubuntu_focal.yaml",
         "patchSetId": 2
