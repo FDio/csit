@@ -45,8 +45,6 @@ def main():
     ).s3_file_processing(
         prefix=u"vex-yul-rot-jenkins-1/csit-vpp-perf", expression=args.expression
     )
-    for item in json_iterator:
-        print(dumps(item, indent=4, sort_keys=False))
 
 
 if __name__ == u"__main__":

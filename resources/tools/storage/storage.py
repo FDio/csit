@@ -15,10 +15,11 @@
 
 """Storage Backend Class."""
 
-from json import loads
+from json import loads, dumps
 from struct import unpack
 from gzip import GzipFile
 
+import awswrangler as wr
 from boto3 import Session
 from botocore import exceptions
 
@@ -46,10 +47,13 @@ class Storage:
         self.profile_name = profile_name
 
         self.session = Session(profile_name=self.profile_name)
-        self.client = self.session.client(
+        self.client_minio = self.session.client(
             service_name=u"s3", endpoint_url=self.endpoint_url
         )
-        self.resource = self.session.resource(
+        self.client = self.session.client(
+            service_name=u"s3"
+        )
+        self.resource_minio = self.session.resource(
             service_name=u"s3", endpoint_url=self.endpoint_url
         )
 
@@ -78,33 +82,15 @@ class Storage:
         :type suffix: str
         :raises RuntimeError: If connection to storage fails.
         """
-        kwargs = {
-            u"Bucket": bucket
-        }
-
-        prefixes = (prefix, ) if isinstance(prefix, str) else prefix
-
-        for key_prefix in prefixes:
-            kwargs[u"Prefix"] = key_prefix
-            try:
-                paginator = self.client.get_paginator(u"list_objects_v2")
-                for page in paginator.paginate(**kwargs):
-                    try:
-                        contents = page[u"Contents"]
-                    except KeyError:
-                        break
-
-                    for obj in contents:
-                        key = obj[u"Key"]
-                        if key.endswith(suffix):
-                            yield obj
-            except exceptions.EndpointConnectionError:
-                raise RuntimeError(
-                    u"Connection Error!"
-                )
+        return wr.s3.list_objects(
+            path=f"s3://{bucket}/{prefix}",
+            suffix=suffix,
+            ignore_empty=True,
+            boto3_session=self.session
+        )
 
     def _get_matching_s3_content(
-            self, key, expression):
+            self, path, expression):
         """This function filters the contents of an S3 object based on a simple
         structured query language (SQL) statement. In the request, along with
         the SQL expression, we are specifying JSON serialization of the object.
@@ -112,46 +98,24 @@ class Storage:
         records that match the specified SQL expression. Data serialization
         format for the response is set to JSON.
 
-        :param key: S3 Key (file path).
+        :param key: S3 path (file path).
         :param expression: S3 compatible SQL query.
-        :type key: str
+        :type path: str
         :type expression: str
-        :returns: JSON content of interest.
-        :rtype: str
-        :raises RuntimeError: If connection to storage fails.
-        :raises ValueError: If JSON reading fails.
+        :returns: Pandas Dataframe.
+        :rtype: DataFrame
         """
-        try:
-            content = self.client.select_object_content(
-                Bucket=self.bucket,
-                Key=key,
-                ExpressionType=u"SQL",
-                Expression=expression,
-                InputSerialization={
-                    u"JSON": {
-                        u"Type": u"Document"
-                    },
-                    u"CompressionType": u"GZIP"
-                },
-                OutputSerialization={
-                    u"JSON": {
-                        u"RecordDelimiter": u""
-                    }
-                }
-            )
-            records = u""
-            for event in content[u"Payload"]:
-                if u"Records" in event:
-                    records = event[u"Records"][u"Payload"].decode(u"utf-8")
-            return records
-        except exceptions.EndpointConnectionError:
-            raise RuntimeError(
-                u"Connection Error!"
-            )
-        except exceptions.EventStreamError:
-            raise ValueError(
-                u"Malformed JSON content!"
-            )
+        return wr.s3.select_query(
+            sql=expression,
+            path=path,
+            input_serialization=u"JSON",
+            input_serialization_params={
+                u"Type": u"Document",
+            },
+            boto3_session=self.session,
+            compression=u"gzip",
+            use_threads=True
+        )
 
     def _get_matching_s3_object(
             self, key):
@@ -215,7 +179,7 @@ class Storage:
         )
 
     def s3_file_processing(
-            self, prefix=u"", suffix=u"json.gz",
+            self, prefix=u"", suffix=u"info.json.gz",
             expression=u"select * from s3object s"):
         """Batch S3 key processing. Function retrieves list of files and use
         S3 Select API to query content.
@@ -227,19 +191,20 @@ class Storage:
         :type suffix: str
         :type expression: str
         """
-        key_iterator = self._get_matching_s3_keys(
+        path_list = self._get_matching_s3_keys(
             bucket=self.bucket,
             prefix=prefix,
             suffix=suffix
         )
 
-        for key in key_iterator:
+        for path in path_list:
             try:
-                yield key[u"Key"], loads(
-                    self._get_matching_s3_content(
-                        key=key[u"Key"], expression=expression
-                    )
-                )
+                pd = self._get_matching_s3_content(path=path, expression=expression)
+                if not pd.empty:
+                    print(pd)
+                #yield key, self._get_matching_s3_content(
+                #    path=path, expression=expression
+                #)
             except ValueError:
                 return
 
