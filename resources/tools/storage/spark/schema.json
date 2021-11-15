@@ -1,0 +1,252 @@
+{
+    "version": "0.7.2",
+    "duration": 1837.388659954071,
+    "end_time": "2021-09-22 08:20:58.818971",
+    "hosts": [
+     "10.32.8.21",
+     "10.32.8.20"
+    ],
+    "message": "\nPLRsearch lower bound: 15651378.880567394 pps, 10.51772660774129 Gbps (initial) \nPLRsearch upper bound: 16549957.54002672 pps, 11.121571466897956 Gbps (initial)",
+    "results": {
+     "critical_rate": {
+      "lower": 15651378.880567394,
+      "unit": "pps",
+      "upper": 16549957.54002672
+     }
+    },
+    "start_time": "2021-09-22 07:50:21.430311",
+    "status": "PASS",
+    "sut_type": "VPP",
+    "sut_version": "21.10-rc0~329-gcba87100f~b1610",
+    "tags": [
+     "1C",
+     "2_NODE_SINGLE_LINK_TOPO",
+     "2T1C",
+     "64B",
+     "BASE",
+     "DRV_VFIO_PCI",
+     "ETH",
+     "eth-l2xcbase",
+     "HW_ENV",
+     "L2XCBASE",
+     "L2XCFWD",
+     "MTHREAD",
+     "NIC_Intel-XXV710",
+     "PERFTEST",
+     "RXQ_SIZE_0",
+     "SOAK",
+     "TXQ_SIZE_0"
+    ],
+    "test_documentation": "",
+    "test_id": "tests.vpp.perf.l2.2n1l-25ge2p1xxv710-eth-l2xcbase-soak.64b-1c-eth-l2xcbase-soak",
+    "test_name": "64B-1c-eth-l2xcbase-soak",
+    "test_type": "SOAK",
+    "log": [
+     {
+      "log_level": "INFO",
+      "msg": "cli_inband",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:32.471877",
+      "data": {
+       "cmd": "show logging"
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "show_version",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:32.478167",
+      "data": {}
+     },
+     {
+      "log_level": "INFO",
+      "msg": "sw_interface_dump",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:35.192862",
+      "data": {
+       "name_filter": "",
+       "name_filter_valid": false
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "sw_interface_set_flags",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:36.308952",
+      "data": {
+       "flags": 1,
+       "sw_if_index": 1
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "hw_interface_set_mtu",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:36.322333",
+      "data": {
+       "mtu": 9200,
+       "sw_if_index": 1
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "sw_interface_set_flags",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:36.406842",
+      "data": {
+       "flags": 1,
+       "sw_if_index": 2
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "hw_interface_set_mtu",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:36.418552",
+      "data": {
+       "mtu": 9200,
+       "sw_if_index": 2
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "sw_interface_dump",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:36.499062",
+      "data": {
+       "name_filter": "",
+       "name_filter_valid": false
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "sw_interface_dump",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:37.504484",
+      "data": {
+       "name_filter": "",
+       "name_filter_valid": false
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "sw_interface_dump",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:38.510767",
+      "data": {
+       "name_filter": "",
+       "name_filter_valid": false
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "sw_interface_dump",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:39.518179",
+      "data": {
+       "name_filter": "",
+       "name_filter_valid": false
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "sw_interface_set_l2_xconnect",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:39.547263",
+      "data": {
+       "enable": true,
+       "rx_sw_if_index": 1,
+       "tx_sw_if_index": 2
+      }
+     },
+     {
+      "log_level": "INFO",
+      "msg": "sw_interface_set_l2_xconnect",
+      "msg_type": "papi_command",
+      "source_id": {
+       "host": "10.32.8.20",
+       "port": 22,
+       "socket": "/run/vpp/api.sock"
+      },
+      "source_type": "host,port,socket",
+      "timestamp": "2021-09-22 07:50:39.556980",
+      "data": {
+       "enable": true,
+       "rx_sw_if_index": 2,
+       "tx_sw_if_index": 1
+      }
+     }
+    ]
+   }
