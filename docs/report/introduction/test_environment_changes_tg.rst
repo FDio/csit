@@ -1,5 +1,5 @@
 To identify performance changes due to TRex code development between previous
-and current TRex  version, both have been tested in CSIT environment of latest
+and current TRex version, both have been tested in CSIT environment of latest
 version and compared against each other. All substantial progressions and
 regressions have been marked up with RCA analysis. See :ref:`trex_known_issues`.
 
