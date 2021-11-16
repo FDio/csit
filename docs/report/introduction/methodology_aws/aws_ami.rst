@@ -8,7 +8,7 @@ launch an instance. CSIT is using Amazon Elastic Block Store (EBS) where
 the root device for an instance launched from the AMI is a volume
 created from an Amazon EBS snapshot.
 
-A the TG and SUT instances have slightly different software
+As the TG and SUT instances have slightly different software
 requirements, we are defining two AMIs for TG and SUT separately. AMI
 details examples:
 
