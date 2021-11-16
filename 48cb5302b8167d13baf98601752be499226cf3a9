@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "a430a995_a4787c70",
+        "filename": "fdio.infra.ansible/roles/kernel/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-11-16T09:44:12Z",
+      "side": 1,
+      "message": "In the future, please try to explain your thoughts so that they\u0027re actually comprehensible.\n\nI looked into this a bit further and now I know why you want to change this, despite your best efforts to thwart my attempts.\n\nSo what did I find? The yaml spec [0] allows a lot of accepted values, all of which are strings:\n y|Y|yes|Yes|YES|n|N|no|No|NO\n|true|True|TRUE|false|False|FALSE\n|on|On|ON|off|Off|OFF\n\nThat\u0027s why the ansible linter doesn\u0027t mind. There may be problems with other linters, as ansible docs [1] mention:\nUse lowercase ‘true’ or ‘false’ for boolean values in dictionaries if you want to be compatible with default yamllint options.\n\nThese two, taken together, provide a basis for the policy you\u0027re starting to implement. The policy is applicable to all boolean values, not just those use in lineinfile.\n\nThe review process is here to explain thoughs and policies so that we know why we\u0027re doing what we\u0027re doing or potentially identify flaws in them. The policy above is sensible and thus a good policy, but the explanation was completely absent.\n\n[0] https://yaml.org/type/bool.html\n[1] https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html",
+      "parentUuid": "8770c003_5e3fd236",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 17
+      },
+      "revId": "48cb5302b8167d13baf98601752be499226cf3a9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d9993bd_2b7d439f",
         "filename": "fdio.infra.ansible/roles/kernel/tasks/ubuntu_focal.yaml",
         "patchSetId": 2
