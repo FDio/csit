@@ -20,7 +20,7 @@
       showline: True
       showticklabels: True
       tickcolor: "rgb(220, 220, 220)"
-      tickmode: "linear"
+      tickmode: "array"
       tickfont:
         size: 14
       zeroline: False
@@ -106,7 +106,7 @@
       showline: True
       showticklabels: True
       tickcolor: "rgb(220, 220, 220)"
-      tickmode: "linear"
+      tickmode: "array"
       tickfont:
         size: 14
       zeroline: False
@@ -161,7 +161,7 @@
       showline: True
       showticklabels: True
       tickcolor: "rgb(220, 220, 220)"
-      tickmode: "linear"
+      tickmode: "array"
       tickfont:
         size: 14
       zeroline: False
@@ -216,7 +216,7 @@
       showline: True
       showticklabels: True
       tickcolor: "rgb(220, 220, 220)"
-      tickmode: "linear"
+      tickmode: "array"
       tickfont:
         size: 14
       zeroline: False
@@ -271,7 +271,7 @@
       showline: True
       showticklabels: True
       tickcolor: "rgb(220, 220, 220)"
-      tickmode: "linear"
+      tickmode: "array"
       tickfont:
         size: 14
       zeroline: False
