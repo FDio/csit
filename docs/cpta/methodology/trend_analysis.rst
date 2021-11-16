@@ -90,8 +90,10 @@ Trend compliance metrics are targeted to provide an indication of trend
 changes over a short-term (i.e. weekly) and a long-term (i.e.
 quarterly), comparing the last group average AVG[last], to the one from week
 ago, AVG[last - 1week] and to the maximum of trend values over last
-quarter except last week, max(AVG[last - 3mths]..ANV[last - 1week]),
-respectively. This results in following trend compliance calculations:
+quarter except last week, max(AVG[last - 3mths]..AVG[last - 1week]),
+respectively. Here, AVG[date] means the currently computed group average
+for the group which contains the result from the date.
+This results in following trend compliance calculations:
 
 +-------------------------+---------------------------------+-----------+-------------------------------------------+
 | Trend Compliance Metric | Trend Change Formula            | Value     | Reference                                 |
