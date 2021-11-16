@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "399b5611_6ca84911",
+        "filename": "fdio.infra.ansible/roles/kernel/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2021-11-16T08:59:23Z",
+      "side": 1,
+      "message": "I tried running https://github.com/ansible-community/ansible-lint and there are various issues, but none of them look like what you refer to.\n\nThe only errors (in my changes) I got were these:\nrisky-file-permissions: File permissions unset or incorrect\nroles/kernel/tasks/ubuntu_bionic.yaml:25 Task/Handler: Disable APT auto upgrade\n\nrisky-file-permissions: File permissions unset or incorrect\nroles/kernel/tasks/ubuntu_focal.yaml:25 Task/Handler: Disable APT auto upgrade",
+      "parentUuid": "76f29c13_192ffc76",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 17
+      },
+      "revId": "48cb5302b8167d13baf98601752be499226cf3a9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d9993bd_2b7d439f",
         "filename": "fdio.infra.ansible/roles/kernel/tasks/ubuntu_focal.yaml",
         "patchSetId": 2
