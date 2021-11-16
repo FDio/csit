@@ -1923,17 +1923,24 @@ class InterfaceUtil:
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(
-            node, sw_if_index, queue_id, worker_id):
+            node, sw_if_index, queue_id, worker_idx, wrk_tx=0):
         """Set interface RX placement to worker on node.
+
+        Optionally, also TX queues are placed in the same manner as RX queues.
+        VPP code to test this with currently does not offer
+        sw_interface_tx_placement_dump.
 
         :param node: Node to run command on.
         :param sw_if_index: VPP SW interface index.
         :param queue_id: VPP interface queue ID.
-        :param worker_id: VPP worker ID (indexing from 0).
+        :param worker_idx: VPP worker index (one less than its thread ID).
+        :param wrk_tx: 0 if no TX placement is desired,
+            number of workers otherwise.
         :type node: dict
         :type sw_if_index: int
         :type queue_id: int
-        :type worker_id: int
+        :type worker_idx: int
+        :type wrk_tx: int
         :raises RuntimeError: If failed to run command on host or if no API
             reply received.
         """
@@ -1943,11 +1950,26 @@ class InterfaceUtil:
         args = dict(
             sw_if_index=sw_if_index,
             queue_id=queue_id,
-            worker_id=worker_id,
+            worker_id=worker_idx,
             is_main=False
         )
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
+        if not wrk_tx:
+            return
+        cmd = u"sw_interface_set_tx_placement"
+        err_msg = f"Failed to set interface TX placement to worker " \
+            f"on host {node[u'host']}!"
+        id_max = wrk_tx + 1  # Number of all threads, including main
+        args = dict(
+            sw_if_index=sw_if_index,
+            queue_id=queue_id,
+            array_size=id_max,
+            mask=[1 if idn == worker_idx + 1 else 0 for idn in range(id_max)]
+        )
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+        # FIXME: Handle failure for old VPP builds.
 
     @staticmethod
     def vpp_round_robin_rx_placement(
@@ -1983,13 +2005,18 @@ class InterfaceUtil:
                     worker_ids.append(item.id)
 
         worker_idx = 0
+        len_workers = len(worker_ids)
         for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
             for interface in node[u"interfaces"].values():
                 if placement[u"sw_if_index"] == interface[u"vpp_sw_index"] \
                     and prefix in interface[u"name"]:
+                    logger.debug(f"worker_idx {worker_idx}")
                     InterfaceUtil.vpp_sw_interface_set_rx_placement(
-                        node, placement[u"sw_if_index"], placement[u"queue_id"],
-                        worker_ids[worker_idx % len(worker_ids)] - 1
+                        node=node,
+                        sw_if_index=placement[u"sw_if_index"],
+                        queue_id=placement[u"queue_id"],
+                        worker_idx=worker_ids[worker_idx % len_workers] - 1,
+                        wrk_tx=len_workers,
                     )
                     worker_idx += 1
 
