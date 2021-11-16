@@ -1,14 +1,14 @@
 Overview
 ========
 
-TREX performance test results are reported for a range of processors.
-For description of physical testbeds used for TREX performance tests
+TRex performance test results are reported for a range of processors.
+For description of physical testbeds used for TRex performance tests
 please refer to :ref:`tested_physical_topologies`.
 
 Logical Topology
 ----------------
 
-CSIT TREX performance tests are executed on physical testbeds described
+CSIT TRex performance tests are executed on physical testbeds described
 in :ref:`tested_physical_topologies`. Logical topology use 1 nic that has
 loopback connected ports. See figure below.
 
@@ -52,11 +52,12 @@ topologies and configurations:
   - 10% of discovered PDR throughput.
   - Minimal offered load.
 
-|csit-release| includes following TRex data plane functionality
+|csit-release| includes tests using the following TRex traffic profiles
+(corresponding to data plane functionality when DUT is used)
 performance tested across a range of NIC drivers and NIC models:
 
 +-----------------------+----------------------------------------------+
-| Functionality         |  Description                                 |
+| Traffic profile       | Corresponding dataplane functionality        |
 +=======================+==============================================+
 | IPv4 Base             | IPv4 routing.                                |
 +-----------------------+----------------------------------------------+
