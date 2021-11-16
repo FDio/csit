@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "8770c003_5e3fd236",
+        "filename": "fdio.infra.ansible/roles/kernel/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-16T09:01:53Z",
+      "side": 1,
+      "message": "Because you are not doing bool, but string for something that should be bool",
+      "parentUuid": "399b5611_6ca84911",
+      "range": {
+        "startLine": 31,
+        "startChar": 12,
+        "endLine": 31,
+        "endChar": 17
+      },
+      "revId": "48cb5302b8167d13baf98601752be499226cf3a9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d9993bd_2b7d439f",
         "filename": "fdio.infra.ansible/roles/kernel/tasks/ubuntu_focal.yaml",
         "patchSetId": 2
