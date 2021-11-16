@@ -10,9 +10,12 @@ CSIT test environment versioning has been introduced to track
 modifications of the test environment.
 
 Any benchmark anomalies (progressions, regressions) between releases of
-a DUT application (e.g. VPP, DPDK, TRex), are determined by testing it in the
+a DUT application (e.g. VPP, DPDK), are determined by testing it in the
 same test environment, to avoid test environment changes clouding the
 picture.
+To beter distinguish impact of test environment changes,
+we also execute tests without any SUT (just with TRex TG sending packets
+over a link looping back to TG).
 
 A mirror approach is introduced to determine benchmarking anomalies due
 to the test environment change. This is achieved by testing the same DUT
