@@ -777,7 +777,6 @@ def plot_perf_box_name(plot, input_data):
         else:
             data_y = [y / 1e6 if y else None for y in df_y[col]]
         kwargs = dict(
-            x=[str(i + 1) + u'.'] * len(df_y[col]),
             y=data_y,
             name=(
                 f"{i + 1}. "
@@ -803,6 +802,8 @@ def plot_perf_box_name(plot, input_data):
     try:
         # Create plot
         layout = deepcopy(plot[u"layout"])
+        layout[u"xaxis"][u"tickvals"] = [i for i in range(len(y_vals))]
+        layout[u"xaxis"][u"ticktext"] = [str(i + 1) for i in range(len(y_vals))]
         if layout.get(u"title", None):
             if test_type in (u"HOSTSTACK", ):
                 layout[u"title"] = f"<b>Bandwidth:</b> {layout[u'title']}"
@@ -900,7 +901,6 @@ def plot_ndrpdr_box_name(plot, input_data):
                     replace(u'2n1l-', u'')
                 )
                 kwargs = dict(
-                    x=[data_x[idx], ] * len(data_x),
                     y=[y / 1e6 if y else None for y in vals],
                     name=(
                         f"{idx + 1}."
@@ -915,6 +915,7 @@ def plot_ndrpdr_box_name(plot, input_data):
                 if box_points and box_points in \
                         (u"all", u"outliers", u"suspectedoutliers", False):
                     kwargs[u"boxpoints"] = box_points
+                    kwargs["jitter"] = 0.3
                 traces.append(plgo.Box(**kwargs))
                 try:
                     data_y_max.append(max(vals))
@@ -923,6 +924,9 @@ def plot_ndrpdr_box_name(plot, input_data):
             try:
                 # Create plot
                 layout = deepcopy(plot[u"layout"])
+                layout[u"xaxis"][u"tickvals"] = [i for i in range(len(data_y))]
+                layout[u"xaxis"][u"ticktext"] = \
+                    [str(i + 1) for i in range(len(data_y))]
                 if layout.get(u"title", None):
                     layout[u"title"] = \
                         layout[u'title'].format(core=core, test_type=ttype)
@@ -1013,7 +1017,6 @@ def plot_mrr_box_name(plot, input_data):
         for idx, x_item in enumerate(data_x):
             traces.append(
                 plgo.Box(
-                    x=[x_item, ] * len(data_y[idx]),
                     y=data_y[idx],
                     name=data_names[idx],
                     hoverinfo=u"y+name"
@@ -1023,6 +1026,9 @@ def plot_mrr_box_name(plot, input_data):
         try:
             # Create plot
             layout = deepcopy(plot[u"layout"])
+            layout[u"xaxis"][u"tickvals"] = [i for i in range(len(data_y))]
+            layout[u"xaxis"][u"ticktext"] = \
+                [str(i + 1) for i in range(len(data_y))]
             if layout.get(u"title", None):
                 layout[u"title"] = (
                     f"<b>Tput:</b> {layout[u'title'].format(core=core)}"
