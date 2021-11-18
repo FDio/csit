@@ -26,7 +26,7 @@ from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
-from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.topology import NodeType, SocketType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
 
@@ -1891,21 +1891,28 @@ class InterfaceUtil:
         return vf_ifc_keys
 
     @staticmethod
-    def vpp_sw_interface_rx_placement_dump(node):
+    def vpp_sw_interface_rx_placement_dump(node, socket):
         """Dump VPP interface RX placement on node.
 
         :param node: Node to run command on.
+        :param remote_vpp_socket: Path to remote socket to tunnel to.
         :type node: dict
+        :type socket: str
         :returns: Thread mapping information as a list of dictionaries.
         :rtype: list
         """
         cmd = u"sw_interface_rx_placement_dump"
         err_msg = f"Failed to run '{cmd}' PAPI command on host {node[u'host']}!"
-        with PapiSocketExecutor(node) as papi_exec:
-            for ifc in node[u"interfaces"].values():
-                if ifc[u"vpp_sw_index"] is not None:
-                    papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
-            details = papi_exec.get_details(err_msg)
+        with PapiSocketExecutor(node, remote_vpp_socket=socket) as papi_exec:
+            if socket == u"/run/vpp/api.sock":
+                for ifc in node[u"interfaces"].values():
+                    if ifc[u"vpp_sw_index"] is not None:
+                        papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
+                details = papi_exec.get_details(err_msg)
+            else:  # VPP in container always has 2 interfaces.
+                papi_exec.add(cmd, sw_if_index=1)
+                papi_exec.add(cmd, sw_if_index=2)
+                details = papi_exec.get_details(err_msg)
         return sorted(details, key=lambda k: k[u"sw_if_index"])
 
     @staticmethod
@@ -1919,21 +1926,37 @@ class InterfaceUtil:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
+                sockets = Topology.get_node_sockets(
+                    node, socket_type=SocketType.PAPI
+                )
+                if sockets:
+                    for socket in sockets.values():
+                        InterfaceUtil.vpp_sw_interface_rx_placement_dump(
+                            node, socket
+                        )
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(
-            node, sw_if_index, queue_id, worker_id):
+            node, socket, sw_if_index, queue_id, worker_idx, wrk_tx=0):
         """Set interface RX placement to worker on node.
 
+        Optionally, also TX queues are placed in the same manner as RX queues.
+        VPP code to test this with currently does not offer
+        sw_interface_tx_placement_dump.
+
         :param node: Node to run command on.
+        :param socket: Path to remote socket to tunnel to.
         :param sw_if_index: VPP SW interface index.
         :param queue_id: VPP interface queue ID.
-        :param worker_id: VPP worker ID (indexing from 0).
+        :param worker_idx: VPP worker index (one less than its thread ID).
+        :param wrk_tx: 0 if no TX placement is desired,
+            number of workers otherwise.
         :type node: dict
+        :type socket: str
         :type sw_if_index: int
         :type queue_id: int
-        :type worker_id: int
+        :type worker_idx: int
+        :type wrk_tx: int
         :raises RuntimeError: If failed to run command on host or if no API
             reply received.
         """
@@ -1943,15 +1966,32 @@ class InterfaceUtil:
         args = dict(
             sw_if_index=sw_if_index,
             queue_id=queue_id,
-            worker_id=worker_id,
+            worker_id=worker_idx,
             is_main=False
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, remote_vpp_socket=socket) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
+        if not wrk_tx:
+            return
+        cmd = u"sw_interface_set_tx_placement"
+        err_msg = f"Failed to set interface TX placement to worker " \
+            f"on host {node[u'host']}!"
+        id_max = wrk_tx + 1  # Number of all threads, including main
+        mask_len = (id_max.bit_length() + 7) // 8
+        mask_int = 1 << (worker_idx + 1)
+        args = dict(
+            sw_if_index=sw_if_index,
+            queue_id=queue_id,
+            array_size=mask_len,
+            mask=mask_int.to_bytes(mask_len, byteorder=u"little")
+        )
+        with PapiSocketExecutor(node, remote_vpp_socket=socket) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+        # FIXME: Handle failure for old VPP builds.
 
     @staticmethod
     def vpp_round_robin_rx_placement(
-            node, prefix, workers=None):
+            node, socket, prefix, workers=None):
         """Set Round Robin interface RX placement on all worker threads
         on node.
 
@@ -1961,17 +2001,19 @@ class InterfaceUtil:
         None means all workers are used for data plane work.
 
         :param node: Topology nodes.
+        :param socket: Path to remote socket to tunnel to.
         :param prefix: Interface name prefix.
         :param workers: Comma separated worker index numbers intended for
             dataplane work.
         :type node: dict
+        :type socket: str
         :type prefix: str
         :type workers: str
         """
-        thread_data = VPPUtil.vpp_show_threads(node)
+        thread_data = VPPUtil.vpp_show_threads(node, socket=socket)
         worker_cnt = len(thread_data) - 1
         if not worker_cnt:
-            return None
+            return
         worker_ids = list()
         if workers:
             for item in thread_data:
@@ -1983,15 +2025,38 @@ class InterfaceUtil:
                     worker_ids.append(item.id)
 
         worker_idx = 0
-        for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
-            for interface in node[u"interfaces"].values():
-                if placement[u"sw_if_index"] == interface[u"vpp_sw_index"] \
-                    and prefix in interface[u"name"]:
-                    InterfaceUtil.vpp_sw_interface_set_rx_placement(
-                        node, placement[u"sw_if_index"], placement[u"queue_id"],
-                        worker_ids[worker_idx % len(worker_ids)] - 1
-                    )
+        len_workers = len(worker_ids)
+        placements = InterfaceUtil.vpp_sw_interface_rx_placement_dump(node, socket)
+        for placement in placements:
+            if socket == u"/run/vpp/api.sock":
+                for interface in node[u"interfaces"].values():
+                    if placement[u"sw_if_index"] == interface[u"vpp_sw_index"] \
+                        and prefix in interface[u"name"]:
+                        logger.debug(f"Vswitch worker_idx {worker_idx}")
+                        InterfaceUtil.vpp_sw_interface_set_rx_placement(
+                            node=node,
+                            socket=socket,
+                            sw_if_index=placement[u"sw_if_index"],
+                            queue_id=placement[u"queue_id"],
+                            worker_idx=worker_ids[worker_idx % len_workers] - 1,
+                            wrk_tx=len_workers,
+                        )
                     worker_idx += 1
+            else:
+                # Two interfaces for VPP inside container, no prefix filtering.
+                # Placements still iterate over queues.
+                for sw_if_index in (1, 2):
+                    if placement[u"sw_if_index"] == sw_if_index:
+                        logger.debug(f"Conained worker_idx {worker_idx}")
+                        InterfaceUtil.vpp_sw_interface_set_rx_placement(
+                            node=node,
+                            socket=socket,
+                            sw_if_index=sw_if_index,
+                            queue_id=placement[u"queue_id"],
+                            worker_idx=worker_ids[worker_idx % len_workers] - 1,
+                            wrk_tx=len_workers,
+                        )
+                        worker_idx += 1
 
     @staticmethod
     def vpp_round_robin_rx_placement_on_all_duts(
@@ -2014,6 +2079,11 @@ class InterfaceUtil:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                InterfaceUtil.vpp_round_robin_rx_placement(
-                    node, prefix, workers
+                sockets = Topology.get_node_sockets(
+                    node, socket_type=SocketType.PAPI
                 )
+                if sockets:
+                    for socket in sockets.values():
+                        InterfaceUtil.vpp_round_robin_rx_placement(
+                            node, socket, prefix, workers
+                        )

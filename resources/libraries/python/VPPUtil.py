@@ -363,16 +363,18 @@ class VPPUtil:
                 VPPUtil.show_log(node)
 
     @staticmethod
-    def vpp_show_threads(node):
+    def vpp_show_threads(node, socket=u"/run/vpp/api.sock"):
         """Show VPP threads on node.
 
         :param node: Node to run command on.
+        :param socket: Path to remote socket to tunnel to.
         :type node: dict
+        :type socket: str
         :returns: VPP thread data.
         :rtype: list
         """
         cmd = u"show_threads"
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, remote_vpp_socket=socket) as papi_exec:
             reply = papi_exec.add(cmd).get_reply()
 
         threads_data = reply[u"thread_data"]
