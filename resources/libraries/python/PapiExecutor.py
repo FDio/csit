@@ -174,15 +174,18 @@ class PapiSocketExecutor:
     conn_cache = dict()
     """Mapping from node key to connected client instance."""
 
-    def __init__(self, node, remote_vpp_socket=Constants.SOCKSVR_PATH):
+    def __init__(self, node, remote_vpp_socket=None):
         """Store the given arguments, declare managed variables.
 
         :param node: Node to connect to and forward unix domain socket from.
         :param remote_vpp_socket: Path to remote socket to tunnel to.
+            None means the default is used.
         :type node: dict
-        :type remote_vpp_socket: str
+        :type remote_vpp_socket: Optional[str]
         """
         self._node = node
+        if remote_vpp_socket is None:
+            remote_vpp_socket = Constants.VPP_DEFAULT_API_SOCKET_PATH
         self._remote_vpp_socket = remote_vpp_socket
         # The list of PAPI commands to be executed on the node.
         self._api_command_list = list()
@@ -519,7 +522,7 @@ class PapiSocketExecutor:
 
     @classmethod
     def disconnect_by_node_and_socket(
-            cls, node, remote_socket=Constants.SOCKSVR_PATH
+            cls, node, remote_socket=Constants.VPP_DEFAULT_API_SOCKET_PATH
         ):
         """Disconnect a connected client instance, noop it not connected.
 
@@ -529,6 +532,11 @@ class PapiSocketExecutor:
         as their values will get overwritten on next connect.
 
         Call this method just before killing/restarting remote VPP instance.
+
+        :param node: Node hosting the connected unix domain socket.
+        :param remote_socket: Path to the connected remote socket.
+        :type node: dict
+        :type remote_socket: str
         """
         key = cls.key_for_node_and_socket(node, remote_socket)
         return cls.disconnect_by_key(key)
@@ -604,7 +612,7 @@ class PapiSocketExecutor:
         self.crc_checker.report_initial_conflicts()
         if history:
             PapiHistory.add_to_papi_history(
-                self._node, csit_papi_command, **kwargs
+                self._node, self._remote_vpp_socket, csit_papi_command, **kwargs
             )
         self.crc_checker.check_api_name(csit_papi_command)
         self._api_command_list.append(
@@ -684,8 +692,7 @@ class PapiSocketExecutor:
         return self._execute(err_msg)
 
     @staticmethod
-    def run_cli_cmd(
-            node, cli_cmd, log=True, remote_vpp_socket=Constants.SOCKSVR_PATH):
+    def run_cli_cmd(node, cli_cmd, log=True, remote_vpp_socket=None):
         """Run a CLI command as cli_inband, return the "reply" field of reply.
 
         Optionally, log the field value.
@@ -693,9 +700,10 @@ class PapiSocketExecutor:
         :param node: Node to run command on.
         :param cli_cmd: The CLI command to be run on the node.
         :param remote_vpp_socket: Path to remote socket to tunnel to.
+            None means the default path is used.
         :param log: If True, the response is logged.
         :type node: dict
-        :type remote_vpp_socket: str
+        :type remote_vpp_socket: Optional[str]
         :type cli_cmd: str
         :type log: bool
         :returns: CLI output.
@@ -708,6 +716,8 @@ class PapiSocketExecutor:
         err_msg = f"Failed to run 'cli_inband {cli_cmd}' PAPI command " \
             f"on host {node[u'host']}"
 
+        if remote_vpp_socket is None:
+            remote_vpp_socket = Constants.VPP_DEFAULT_API_SOCKET_PATH
         with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)["reply"]
         if log:
