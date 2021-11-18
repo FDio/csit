@@ -668,10 +668,10 @@ class ContainerEngine:
             except (RuntimeError, AssertionError):
                 sleep(retry_wait)
         else:
-            self.execute(u"cat /tmp/vppd.log")
             raise RuntimeError(
                 f"VPP PAPI fails in container: {self.container.name}"
             )
+        self.execute(u"cat /tmp/vppd.log")
 
     def create_base_vpp_startup_config(self, cpuset_cpus=None):
         """Create base startup configuration of VPP on container.
