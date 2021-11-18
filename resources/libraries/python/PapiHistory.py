@@ -15,7 +15,9 @@
 
 from robot.api import logger
 
-from resources.libraries.python.topology import NodeType, DICT__nodes
+from resources.libraries.python.topology import (
+    DICT__nodes, NodeType, SocketType, Topology
+)
 
 __all__ = [u"DICT__DUTS_PAPI_HISTORY", u"PapiHistory"]
 
@@ -34,7 +36,7 @@ class PapiHistory:
         :param node: DUT node to reset PAPI command history for.
         :type node: dict
         """
-        DICT__DUTS_PAPI_HISTORY[node[u"host"]] = list()
+        DICT__DUTS_PAPI_HISTORY[node[u"host"]] = dict()
 
     @staticmethod
     def reset_papi_history_on_all_duts(nodes):
@@ -48,7 +50,7 @@ class PapiHistory:
                 PapiHistory.reset_papi_history(node)
 
     @staticmethod
-    def add_to_papi_history(node, csit_papi_command, papi=True, **kwargs):
+    def add_to_papi_history(node, sock, csit_papi_command, papi=True, **kwargs):
         """Add command to PAPI command history on DUT node.
 
         Repr strings are used for argument values.
@@ -74,11 +76,13 @@ class PapiHistory:
             sw_interface_set_flags sw_if_index 3 admin-up link-up
 
         :param node: DUT node to add command to PAPI command history for.
+        :param sock: Filesystem path to remote Unix Domain Socket.
         :param csit_papi_command: Command to be added to PAPI command history.
         :param papi: Says if the command to store is PAPi or VAT. Remove when
             VAT executor is completely removed.
         :param kwargs: Optional key-value arguments.
         :type node: dict
+        :type sock: str
         :type csit_papi_command: str
         :type papi: bool
         :type kwargs: dict
@@ -93,32 +97,43 @@ class PapiHistory:
             # VAT history is not used.
             # TODO: Remove when VatExecutor is completely removed.
             item = f"{csit_papi_command}"
-        DICT__DUTS_PAPI_HISTORY[node[u"host"]].append(item)
+        dict_of_socks = DICT__DUTS_PAPI_HISTORY[node[u"host"]]
+        list_for_sock = dict_of_socks.get(sock, list())
+        list_for_sock.append(item)
+        DICT__DUTS_PAPI_HISTORY[node[u"host"]][sock] = list_for_sock
 
     @staticmethod
-    def show_papi_history(node):
+    def show_papi_history(node, socket):
         """Show PAPI command history for DUT node.
 
         :param node: DUT node to show PAPI command history for.
+        :param socket: Remote Unix Domain Socket path the PAPI used.
         :type node: dict
+        :type socket: str
         """
-        history_list = DICT__DUTS_PAPI_HISTORY[node[u"host"]]
+        history_list = DICT__DUTS_PAPI_HISTORY[node[u"host"]].get(socket)
         if not history_list:
             history_list = (u"No PAPI command executed", )
         history = u'\n'.join(history_list)
-        logger.info(f"{node[u'host']} PAPI command history:\n{history}\n")
+        logger.info(f"{node[u'host']} {socket} PAPI history:\n{history}\n")
 
     @staticmethod
     def show_papi_history_on_all_duts(nodes):
         """Show PAPI command history for all DUT nodes.
+
+        This also iterates over all sockets used on the DUT node.
 
         :param nodes: Nodes to show PAPI command history for.
         :type nodes: dict
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                PapiHistory.show_papi_history(node)
-
+                sockets = Topology.get_node_sockets(
+                    node, socket_type=SocketType.PAPI
+                )
+                if sockets:
+                    for socket in sockets.values():
+                        PapiHistory.show_papi_history(node, socket)
 
 # This module can be imported outside usual Robot test context,
 # e.g. in pylint or by tools generating docs from docstrings.

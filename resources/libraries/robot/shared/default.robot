@@ -170,7 +170,7 @@
 | | | Run Keyword | ${dut}.Add Unix CLI Listen
 | | | Run Keyword | ${dut}.Add Unix Nodaemon
 | | | Run Keyword | ${dut}.Add Unix Coredump
-| | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
+| | | Run Keyword | ${dut}.Add Socksvr | ${VPP_DEFAULT_API_SOCKET_PATH}
 | | | Run Keyword | ${dut}.Add Main Heap Size | ${${heap_size_mult}*${2}}G
 | | | Run Keyword | ${dut}.Add Main Heap Page Size | 2M
 | | | Run Keyword | ${dut}.Add Statseg Size | 2G

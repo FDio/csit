@@ -690,7 +690,7 @@ class ContainerEngine:
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec(u"/tmp/running.exec")
-        vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
+        vpp_config.add_socksvr(socket=Constants.VPP_DEFAULT_API_SOCKET_PATH)
         if cpuset_cpus:
             # We will pop the first core from the list to be a main core
             vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))

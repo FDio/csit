@@ -200,7 +200,7 @@ class VppConfigGenerator:
         path = [u"unix", u"exec"]
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_socksvr(self, socket=Constants.SOCKSVR_PATH):
+    def add_socksvr(self, socket=Constants.VPP_DEFAULT_API_SOCKET_PATH):
         """Add socksvr configuration."""
         path = [u"socksvr", u"socket-name"]
         self.add_config_item(self._nodeconfig, socket, path)
