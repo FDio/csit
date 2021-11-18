@@ -282,6 +282,8 @@
     sw_interface_set_rx_placement_reply: '0xe8d4e804'  # dev
     sw_interface_set_table: '0xdf42a577'  # dev
     sw_interface_set_table_reply: '0xe8d4e804'  # dev
+    sw_interface_set_tx_placement: '0x4f4a743b'  # FIXME
+    sw_interface_set_tx_placement_reply: '0xe8d4e804'  # FIXME
     sw_interface_set_unnumbered: '0x154a6439'  # dev
     sw_interface_set_unnumbered_reply: '0xe8d4e804'  # dev
     sw_interface_set_vxlan_bypass: '0x65247409'  # dev
