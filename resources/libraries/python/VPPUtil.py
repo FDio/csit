@@ -70,9 +70,12 @@ class VPPUtil:
         DUTSetup.restart_service(node, Constants.VPP_UNIT)
         if node_key:
             Topology.add_new_socket(
-                node, SocketType.PAPI, node_key, Constants.SOCKSVR_PATH)
+                node, SocketType.PAPI, node_key,
+                Constants.VPP_DEFAULT_API_SOCKET_PATH
+            )
             Topology.add_new_socket(
-                node, SocketType.STATS, node_key, Constants.SOCKSTAT_PATH)
+                node, SocketType.STATS, node_key, Constants.SOCKSTAT_PATH
+            )
 
     @staticmethod
     def restart_vpp_service_on_all_duts(nodes):
@@ -192,17 +195,17 @@ class VPPUtil:
                 VPPUtil.verify_vpp(node)
 
     @staticmethod
-    def vpp_show_version(
-            node, remote_vpp_socket=Constants.SOCKSVR_PATH, log=True):
+    def vpp_show_version(node, remote_vpp_socket=None, log=True):
         """Run "show_version" PAPI command.
 
         Socket is configurable, so VPP inside container can be accessed.
 
         :param node: Node to run command on.
         :param remote_vpp_socket: Path to remote socket to target VPP.
+            None means use the default.
         :param log: If true, show the result in Robot log.
         :type node: dict
-        :type remote_vpp_socket: str
+        :type remote_vpp_socket: Optional[str]
         :type log: bool
         :returns: VPP version.
         :rtype: str

@@ -235,8 +235,9 @@ class Constants:
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
 
-    # Default path to VPP API socket.
-    SOCKSVR_PATH = u"/run/vpp/api.sock"
+    # Default path to VPP API socket. If multiple VPPs are used,
+    # this is the VPP acting as global vswitch for the host.
+    VPP_DEFAULT_API_SOCKET_PATH = u"/run/vpp/api.sock"
 
     # Number of trials to execute in MRR test.
     PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
