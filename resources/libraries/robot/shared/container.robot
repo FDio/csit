@@ -299,6 +299,7 @@
 | | Start VPP in all '${container_group}' containers
 | | Append To List | ${container_groups} | ${container_group}
 | | Save VPP PIDs
+| | Show Statistics On All Duts
 
 # TODO: Remove the vswitch startup.conf and read the host configuration instead.
 | Start vswitch in container on DUT
