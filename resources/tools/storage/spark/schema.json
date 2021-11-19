@@ -1,0 +1,82 @@
+{
+    "version": "0.2.0",
+    "duration": 313.8006920814514,
+    "end_time": "2021-11-04T15:15:10.041089Z",
+    "message": "\nNDR_LOWER: 12401954.329869466 pps, 8.334113309672281 Gbps (initial) \nLATENCY [min/avg/max/hdrh] per stream: ['-1/-1/-1/', '-1/-1/-1/'] \nNDR_UPPER: 12464275.64593382 pps, 8.375993234067527 Gbps (initial) \nPDR_LOWER: 12464275.64593382 pps, 8.375993234067527 Gbps (initial) \nLATENCY [min/avg/max/hdrh] per stream: ['-1/-1/-1/', '-1/-1/-1/'] \nPDR_UPPER: 12526910.008543557 pps, 8.41808352574127 Gbps (initial) \nLatency at 90% PDR: ['4294967295/0/0/HISTFAAAAB54nJNpmSzMwMDAyAABzFAawp8xrcH+A1QAAE9IBCo=', '4294967295/0/0/HISTFAAAAB54nJNpmSzMwMDAyAABzFAawp8xrcH+A1QAAE9IBCo='] \nLatency at 50% PDR: ['4294967295/0/0/HISTFAAAAB54nJNpmSzMwMDAyAABzFAawp8xrcH+A1QAAE9IBCo=', '4294967295/0/0/HISTFAAAAB54nJNpmSzMwMDAyAABzFAawp8xrcH+A1QAAE9IBCo='] \nLatency at 10% PDR: ['4294967295/0/0/HISTFAAAAB54nJNpmSzMwMDAyAABzFAawp8xrcH+A1QAAE9IBCo=', '4294967295/0/0/HISTFAAAAB54nJNpmSzMwMDAyAABzFAawp8xrcH+A1QAAE9IBCo='] \nLatency at 0% PDR: ['4294967295/0/0/HISTFAAAAB54nJNpmSzMwMDAyAABzFAawp8xrcH+A1QAAE9IBCo=', '4294967295/0/0/HISTFAAAAB54nJNpmSzMwMDAyAABzFAawp8xrcH+A1QAAE9IBCo=']",
+    "results": {
+     "ndrpdr": {
+      "latency_unit": "us",
+      "ndr": {
+       "lower": {
+        "bandwidth": {
+         "unit": "Gbps",
+         "value": 8.334113309672281
+        },
+        "rate": {
+         "unit": "pps",
+         "value": 12401954.329869466
+        }
+       },
+       "upper": {
+        "bandwidth": {
+         "unit": "Gbps",
+         "value": 8.375993234067527
+        },
+        "rate": {
+         "unit": "pps",
+         "value": 12464275.64593382
+        }
+       }
+      },
+      "pdr": {
+       "lower": {
+        "bandwidth": {
+         "unit": "Gbps",
+         "value": 8.375993234067527
+        },
+        "rate": {
+         "unit": "pps",
+         "value": 12464275.64593382
+        }
+       },
+       "upper": {
+        "bandwidth": {
+         "unit": "Gbps",
+         "value": 8.41808352574127
+        },
+        "rate": {
+         "unit": "pps",
+         "value": 12526910.008543557
+        }
+       }
+      }
+     }
+    },
+    "start_time": "2021-11-04T15:09:56.240397Z",
+    "status": "PASS",
+    "sut_type": "VPP",
+    "sut_version": "22.02-rc0~179-gd0b266006~b1837",
+    "tags": [
+     "1C",
+     "1T1C",
+     "2_NODE_SINGLE_LINK_TOPO",
+     "64B",
+     "BASE",
+     "DRV_VFIO_PCI",
+     "ETH",
+     "eth-l2patch",
+     "HW_ENV",
+     "L2PATCH",
+     "NDRPDR",
+     "NIC_Intel-X553",
+     "PERFTEST",
+     "RXQ_SIZE_0",
+     "STHREAD",
+     "TXQ_SIZE_0"
+    ],
+    "test_documentation": "",
+    "test_id": "tests.vpp.perf.l2.2n1l-10ge2p1x553-eth-l2patch-ndrpdr.64b-1c-eth-l2patch-ndrpdr",
+    "test_name": "64B-1c-eth-l2patch-ndrpdr",
+    "test_type": "ndrpdr",
+    "log": []
+   }
