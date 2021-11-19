@@ -63,6 +63,7 @@
 | |
 | | [Arguments] | ${frame_size}
 | |
+| | Start Test Export
 | | Set Test Variable | \${frame_size}
 | |
 | | Given Set Max Rate And Jumbo
