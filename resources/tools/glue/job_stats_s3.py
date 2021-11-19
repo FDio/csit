@@ -1,0 +1,154 @@
+#!/usr/bin/env python3
+
+# Copyright (c) 2021 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""ETL script running on top of the s3://"""
+
+from datetime import datetime, timedelta
+from json import load
+from pytz import utc
+
+import awswrangler as wr
+from awsglue.context import GlueContext
+from pyspark.context import SparkContext
+from pyspark.sql.functions import lit
+from pyspark.sql.types import StructType
+
+APP_NAME = "trending_s3"
+MASTER = "local[*]"
+S3_BUCKET="fdio-logs-s3-cloudfront-index"
+S3_SILO="vex-yul-rot-jenkins-1"
+PATH=f"s3://{S3_BUCKET}/{S3_SILO}/csit-vpp-perf"
+SUFFIX="suite.info.json.gz"
+IGNORE_SUFFIX=[]
+LAST_MODIFIED_BEGIN=utc.localize(datetime.strptime("2021-11-29", "%Y-%m-%d"))
+LAST_MODIFIED_END=LAST_MODIFIED_BEGIN + timedelta(20)
+
+
+def schema_load(option):
+    """Loads Spark DataFrame schema from JSON file.
+
+    :param option: File name suffix for the DataFrame schema.
+    :type option: string
+    :returns: DataFrame schema.
+    :rtype: StructType
+    """
+    path = f"schema_{option}.json"
+    with open(path, "r", encoding="UTF-8") as f_schema:
+        return StructType.fromJson(load(f_schema))
+
+
+def s3_path_get_job(path):
+    """Parse S3 path and returns Jenkins job id.
+
+    :param path: S3 path.
+    :type path: string
+    :returns: Jenkins job id.
+    :rtype: string
+    """
+    return path.split("/")[4]
+
+
+def s3_path_get_build(path):
+    """Parse S3 path and returns Jenkins build id.
+
+    :param path: S3 path.
+    :type path: string
+    :returns: Jenkins build id.
+    :rtype: integer
+    """
+    return int(path.split("/")[5])
+
+
+def s3_path_get_root_suite_file(path):
+    """Parse S3 path and returns Root Suite JSON.
+
+    :param path: S3 path.
+    :type path: string
+    :returns: Root Suite JSON.
+    :rtype: string
+    """
+    return "/".join(path.split("/")[:7]) + "/suite.info.json.gz"
+
+
+def process_json_to_dataframe(schema_name, paths):
+    """Processes JSON to Spark DataFrame.
+
+    :param schema_name: Schema name.
+    :type schema_name: string
+    :param paths: S3 paths to process.
+    :type paths: list
+    :returns: Spark DataFrame.
+    :rtype: DataFrame
+    """
+    drop_subset = [
+        "duration",
+        "version"
+    ]
+
+    # load schemas
+    schema = schema_load(schema_name)
+
+    # create empty DF out of schemas
+    sdf = spark.createDataFrame([], schema)
+
+    # filter list
+    filtered = paths
+
+    # select
+    for path in filtered:
+        print(path)
+        sdf_loaded = spark \
+            .read \
+            .option("multiline", "true") \
+            .schema(schema) \
+            .json(path) \
+            .withColumn("job", lit(s3_path_get_job(path))) \
+            .withColumn("build", lit(s3_path_get_build(path)))
+        sdf = sdf.unionByName(sdf_loaded, allowMissingColumns=True)
+
+    # drop rows with all nulls and drop rows with null in critical frames
+    sdf = sdf.na.drop(how="all")
+    sdf = sdf.na.drop(how="any", thresh=None, subset=drop_subset)
+
+    return sdf
+
+
+# create SparkContext and GlueContext
+spark_context = SparkContext(master=MASTER, appName=APP_NAME).getOrCreate()
+spark_context.setLogLevel("WARN")
+glue_context = GlueContext(spark_context)
+spark = glue_context.spark_session
+
+# files of interest
+path_list = wr.s3.list_objects(
+    path=PATH,
+    suffix=SUFFIX,
+    last_modified_begin=LAST_MODIFIED_BEGIN,
+    last_modified_end=LAST_MODIFIED_END,
+    ignore_suffix=IGNORE_SUFFIX,
+    ignore_empty=True
+)
+
+out_sdf = process_json_to_dataframe(result_type, path_list)
+out_sdf.show(truncate=False)
+out_sdf \
+    .withColumn("Year", lit(datetime.now().year)) \
+    .withColumn("Month", lit(datetime.now().month)) \
+    .withColumn("Day", lit(datetime.now().day)) \
+    .repartition(1) \
+    .write \
+    .partitionBy("Year", "Month", "Day") \
+    .mode("overwrite") \
+    .parquet(f"{result_type}.parquet")
