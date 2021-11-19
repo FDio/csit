@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb37a5ff_7963d9e7",
+        "filename": "docs/model/current/UTI_output_files/test_case.info.schema.json",
+        "patchSetId": 128
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-19T14:03:31Z",
+      "side": 1,
+      "message": "Message field must be sanitized before output. To remove results from it and latency which makes it large and redundant.",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "9f310e9a6eb5161b8698a2a1595bee9a475e2c8d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
