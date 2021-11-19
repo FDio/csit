@@ -1,0 +1,16 @@
+services:
+  etl:
+    build: "."
+    command: "/bin/sh -c \"/glue/livy/bin/livy-server start && jupyter notebook --allow-root --NotebookApp.token='' --NotebookApp.password='' --no-browser --ip=0.0.0.0\""
+    environment:
+      AWS_ACCESS_KEY_ID: "AKIAQ2AH7YPPWT6CWXXI"
+      AWS_SECRET_ACCESS_KEY: "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"
+    ports:
+      - "4040:4040"
+      - "8888:8888"
+    volumes:
+      - ".:/app"
+      - "parquet:/var/parquet"
+    working_dir: "/app"
+volumes:
+  parquet: {}
