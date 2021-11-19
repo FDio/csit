@@ -48,13 +48,13 @@ def descend(parent_node, key, default_factory=None):
 
 
 def get_export_data():
-    """Return data members of export_json library instance.
+    """Return raw_data member of export_json library instance.
 
     This assumes the data has been initialized already.
     Return None if Robot is not running.
 
     :returns: Current library instance's raw data and info data members.
-    :rtype: Optional[Tuple[dict, dict]]
+    :rtype: Optional[dict]
     :raises AttributeError: If library is not imported yet.
     """
     instance = BuiltIn().get_library_instance(
@@ -62,4 +62,4 @@ def get_export_data():
     )
     if instance is None:
         return None
-    return instance.raw_data, instance.info_data
+    return instance.raw_data

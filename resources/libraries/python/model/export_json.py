@@ -13,16 +13,20 @@
 
 """Module tracking json in-memory data and saving it to files.
 
-The current implementation tracks data for two files.
+The current implementation tracks data for raw output,
+and info output is created from raw output on disk (see raw2info module).
 Raw file contains all log items but no derived quantities,
 info file contains only important log items but also derived quantities.
 The overlap between two files is big.
 
 Each test case, suite setup (hierarchical) and teardown has its own file pair.
+
+Validation is performed for output files with available JSON schema.
+Validation is performed in data deserialized from disk,
+as serialization might have introduced subtle errors.
 """
 
 from collections.abc import Mapping, Iterable
-from copy import deepcopy
 from enum import IntFlag
 import json
 import os
@@ -31,9 +35,8 @@ import jsonschema
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.time_measurement import (
-    timestamp_or_now, posix_from_iso
-)
+from resources.libraries.python.time_measurement import timestamp_or_now
+from resources.libraries.python.model.raw2info import process_content_to_info
 
 
 def _pre_serialize_recursive(data):
@@ -122,29 +125,43 @@ def _pre_serialize_root(data):
     return new_data
 
 
+def _get_validator(schema_path):
+    """Contruct validator with format checking enabled.
+
+    Load json schema from disk.
+    Perform validation against meta-schema before returning.
+
+    :param schema_path: Local filesystem path to .json file storing the schema.
+    :type schema_path: str
+    :returns: Instantiated validator class instance.
+    :rtype: jsonschema.validators.Validator
+    """
+    with open(schema_path, u"rt") as file_in:
+        schema = json.load(file_in)
+    validator_class = jsonschema.validators.validator_for(schema)
+    validator_class.check_schema(schema)
+    fmt_checker = jsonschema.FormatChecker()
+    validator = validator_class(schema, format_checker=fmt_checker)
+    return validator
+
+
 class export_json():
     """Class handling the json data setting and export."""
 
     ROBOT_LIBRARY_SCOPE = u"GLOBAL"
 
     def __init__(self):
-        """Declare required fields, cache output dir."""
+        """Declare required fields, cache output dir.
+
+        Also memorize schema validator instances.
+        """
         self.output_dir = BuiltIn().get_variable_value(u"\\${OUTPUT_DIR}", ".")
-        self.info_file_path = None
         self.raw_file_path = None
-        self.info_data = None
         self.raw_data = None
         # Robot is always started when CWD is CSIT_DIR.
-        schema_path = os.getcwd()
-        schema_path += u"/docs/model/current/UTI_output_files/"
-        schema_path += u"test_case.info.schema.json"
-        with open(schema_path, u"rt") as fin:
-            schema = json.load(fin)
-        validator_class = jsonschema.validators.validator_for(schema)
-        validator_class.check_schema(schema)
-        fmt_checker = jsonschema.FormatChecker()
-        validator = validator_class(schema, format_checker=fmt_checker)
-        self.info_test_schema_validator = validator
+        schema_dir = os.getcwd() + u"/docs/model/current/UTI_output_files/"
+        schema_path = schema_dir + u"test_case.info.schema.json"
+        self.info_test_schema_validator = _get_validator(schema_path)
 
     def export_pending_data(self):
         """Write the accumulated data to disk.
@@ -161,28 +178,25 @@ class export_json():
         """
         if not Constants.EXPORT_JSON or not self.raw_file_path:
             return
-        os.makedirs(os.path.dirname(self.raw_file_path), exist_ok=True)
         raw_data = _pre_serialize_root(self.raw_data)
+        os.makedirs(os.path.dirname(self.raw_file_path), exist_ok=True)
         with open(self.raw_file_path, u"wt") as file_out:
             json.dump(raw_data, file_out, indent=1)
         self.raw_data = None
+        # Validation for raw outpt goes here when ready.
+        info_file_path = process_content_to_info(self.raw_file_path)
         self.raw_file_path = None
-        os.makedirs(os.path.dirname(self.info_file_path), exist_ok=True)
-        info_data = _pre_serialize_root(self.info_data)
-        with open(self.info_file_path, u"wt") as file_out:
-            json.dump(info_data, file_out, indent=1)
-        self.info_data = None
-        # We only check test case info,
-        # using the fact suite setup/teardown does not have results.
-        if u"results" in info_data:
-            with open(self.info_file_path, u"rt") as fin:
-                instance = json.load(fin)
-            error = jsonschema.exceptions.best_match(
-                self.info_test_schema_validator.iter_errors(instance)
-            )
-            if error is not None:
-                raise error
-        self.info_file_path = None
+        # TODO: Move validation code into a separate function?
+        if u"results" not in raw_data:
+            # Suite setups and teardown currently do not have schema.
+            return
+        with open(info_file_path, u"rt") as file_in:
+            instance = json.load(file_in)
+        error = jsonschema.exceptions.best_match(
+            self.info_test_schema_validator.iter_errors(instance)
+        )
+        if error is not None:
+            raise error
 
     def start_suite_setup_export(self):
         """Set new file path, initialize data for the suite setup.
@@ -204,9 +218,6 @@ class export_json():
         self.raw_file_path = os.path.join(
             output_dir, u"output_raw", suite_path_part, u"setup.raw.json"
         )
-        self.info_file_path = os.path.join(
-            output_dir, u"output_info", suite_path_part, u"setup.info.json"
-        )
         data = dict()
         data[u"version"] = Constants.MODEL_VERSION
         # TODO: Add example to model document.
@@ -218,8 +229,6 @@ class export_json():
         # "end_time" and "duration" is added on flush.
         data[u"log"] = list()
         self.raw_data = data
-        self.info_data = deepcopy(data)
-        self.info_data[u"suite_id"] = suite_id.lower()
 
     def start_test_export(self):
         """Set new file path, initialize data to minimal tree for the test case.
@@ -241,10 +250,6 @@ class export_json():
         self.raw_file_path = os.path.join(
             self.output_dir, u"output_raw", suite_path_part,
             test_name + u".raw.json"
-        )
-        self.info_file_path = os.path.join(
-            self.output_dir, u"output_info", suite_path_part,
-            test_name + u".info.json"
         )
         data = dict()
         data[u"version"] = Constants.MODEL_VERSION
@@ -268,10 +273,6 @@ class export_json():
         # TODO: "network"
         data[u"log"] = list()
         self.raw_data = data
-        self.info_data = deepcopy(data)
-        # Convenience for PAL: Lowercase ID including suite.
-        self.info_data[u"suite_id"] = suite_id.lower()
-        self.info_data[u"test_id"] = u".".join((suite_id, test_name)).lower()
 
     def start_suite_teardown_export(self):
         """Set new file path, initialize data for the suite teardown.
@@ -293,19 +294,13 @@ class export_json():
             self.output_dir, u"output_raw", suite_path_part,
             u"teardown.raw.json"
         )
-        self.info_file_path = os.path.join(
-            self.output_dir, u"output_info", suite_path_part,
-            u"teardown.info.json"
-        )
         data = dict()
         data[u"version"] = Constants.MODEL_VERSION
         data[u"start_time"] = start_time
         # "end_time" and "duration" is added on flush.
         data[u"log"] = list()
-        data[u"suite_id"] = suite_id.lower()
         data[u"suite_name"] = suite_name
         self.raw_data = data
-        self.info_data = deepcopy(data)
 
     def finalize_suite_setup_export(self):
         """Add the missing fields to data. Do not write yet.
@@ -315,10 +310,6 @@ class export_json():
         """
         end_time = timestamp_or_now()
         self.raw_data[u"end_time"] = end_time
-        self.info_data[u"end_time"] = end_time
-        start_time_float = posix_from_iso(self.info_data[u"start_time"])
-        duration = posix_from_iso(end_time) - start_time_float
-        self.info_data[u"duration"] = duration
 
     def finalize_test_export(self):
         """Add the missing fields to data. Do not write yet.
@@ -338,13 +329,6 @@ class export_json():
         self.raw_data[u"message"] = BuiltIn().get_variable_value(
             u"\\${TEST_MESSAGE}"
         )
-        self.info_data[u"tags"] = self.raw_data[u"tags"]
-        self.info_data[u"end_time"] = self.raw_data[u"end_time"]
-        self.info_data[u"status"] = self.raw_data[u"status"]
-        self.info_data[u"message"] = self.raw_data[u"message"]
-        start_time_float = posix_from_iso(self.info_data[u"start_time"])
-        duration = posix_from_iso(end_time) - start_time_float
-        self.info_data[u"duration"] = duration
 
     def finalize_suite_teardown_export(self):
         """Add the missing fields to data. Do not write yet.
@@ -355,7 +339,3 @@ class export_json():
         """
         end_time = timestamp_or_now()
         self.raw_data[u"end_time"] = end_time
-        self.info_data[u"end_time"] = end_time
-        start_time_float = posix_from_iso(self.info_data[u"start_time"])
-        duration = posix_from_iso(end_time) - start_time_float
-        self.info_data[u"duration"] = duration
