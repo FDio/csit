@@ -912,8 +912,8 @@ def plot_ndrpdr_box_name(plot, input_data):
                     ),
                     hoverinfo=u"y+name"
                 )
-                box_points = plot.get(u"boxpoints", None)
-                if box_points and box_points in \
+                box_points = plot.get(u"boxpoints", u"all")
+                if box_points in \
                         (u"all", u"outliers", u"suspectedoutliers", False):
                     kwargs[u"boxpoints"] = box_points
                     kwargs[u"jitter"] = 0.3
@@ -1021,9 +1021,8 @@ def plot_mrr_box_name(plot, input_data):
                 name=data_names[idx],
                 hoverinfo=u"y+name"
             )
-            box_points = plot.get(u"boxpoints", None)
-            if box_points and box_points in \
-                (u"all", u"outliers", u"suspectedoutliers", False):
+            box_points = plot.get(u"boxpoints", u"all")
+            if box_points in (u"all", u"outliers", u"suspectedoutliers", False):
                 kwargs[u"boxpoints"] = box_points
                 kwargs["jitter"] = 0.3
             traces.append(plgo.Box(**kwargs))
