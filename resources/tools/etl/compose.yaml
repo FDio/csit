@@ -1,0 +1,13 @@
+services:
+  etl:
+    build: "."
+    command: "gluesparksubmit job_trending_s3.py"
+    environment:
+      AWS_ACCESS_KEY_ID: ""
+      AWS_SECRET_ACCESS_KEY: ""
+    volumes:
+      - ".:/app"
+      - "parquet:/var/parquet"
+    working_dir: "/app"
+volumes:
+  parquet: {}
