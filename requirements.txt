@@ -20,7 +20,7 @@
 ecdsa==0.13.3
 paramiko==2.6.0
 pycrypto==2.6.1
-pypcap==1.2.3
+#pypcap
 PyYAML==5.1.1
 requests==2.25.1
 robotframework==3.1.2

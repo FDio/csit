@@ -1,0 +1,58 @@
+FROM centos:centos8
+
+ENV MAVEN=https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-common/apache-maven-3.6.0-bin.tar.gz
+ENV SPARK=https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-3.0/spark-3.1.1-amzn-0-bin-3.2.1-amzn-3.tgz
+ENV SPARK=https://aws-glue-etl-artifacts.s3.amazonaws.com/glue-2.0/spark-2.4.3-bin-hadoop2.8.tgz
+ENV GLUE=https://github.com/awslabs/aws-glue-libs.git
+
+RUN mkdir glue
+
+# get prerequisities
+RUN yum install -y \
+    python38 \
+    python38-pip \
+    python38-devel \
+    java-1.8.0-openjdk \
+    java-1.8.0-openjdk-devel \
+    git \
+    tar \
+    wget \
+    zip \
+ && yum groupinstall -y 'Development Tools' \
+ && yum clean all \
+ && rm -rf /var/cache/yum
+
+# symlink python
+RUN ln -sfn /usr/bin/python3.8 /usr/bin/python3 & \
+    ln -sfn /usr/bin/python3 /usr/bin/python & \
+    ln -sfn /usr/bin/pip3.8 /usr/bin/pip3 & \
+    ln -sfn /usr/bin/pip3 /usr/bin/pip
+
+RUN python -m pip install --user --upgrade pip \
+ && python -m pip install --user cython pynt awswrangler
+
+# prepare glue
+WORKDIR ./glue
+RUN git clone -b glue-2.0 $GLUE
+
+RUN wget $SPARK \
+ && tar zxfv spark-2.4.3-bin-hadoop2.8.tgz \
+ && rm spark-2.4.3-bin-hadoop2.8.tgz
+
+RUN wget $MAVEN \
+ && tar zxfv apache-maven-3.6.0-bin.tar.gz \
+ && rm spark-2.4.3-bin-hadoop2.8.tgz
+
+RUN mv $(rpm -q -l java-1.8.0-openjdk-devel | grep "/bin$" | rev | cut -d"/" -f2- |rev) /usr/lib/jvm/jdk
+
+ENV SPARK_HOME /glue/spark-2.4.3-bin-spark-2.4.3-bin-hadoop2.8
+ENV MAVEN_HOME /glue/apache-maven-3.6.0
+ENV JAVA_HOME /usr/lib/jvm/jdk
+ENV GLUE_HOME /glue/aws-glue-libs
+ENV PATH $PATH:$MAVEN_HOME/bin:$SPARK_HOME/bin:$JAVA_HOME/bin:$GLUE_HOME/bin
+
+RUN sh /glue/aws-glue-libs/bin/glue-setup.sh
+RUN sed -i '/mvn -f/a rm /glue/aws-glue-libs/jarsv1/netty-*' /glue/aws-glue-libs/bin/glue-setup.sh
+RUN sed -i '/mvn -f/a rm /glue/aws-glue-libs/jarsv1/javax.servlet-3.*' /glue/aws-glue-libs/bin/glue-setup.sh
+
+CMD ["bash"]
