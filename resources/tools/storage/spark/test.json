@@ -1,0 +1,102 @@
+{
+    "version": "0.2.0",
+    "duration": 71.69071197509766,
+    "end_time": "2021-11-19T16:28:56.378123Z",
+    "message": "\nMaximum Receive Rate trial results in packets per second: [12245515.001817115, 12011591.136627218, 12049390.81566396, 11981736.424823655, 12167834.531300278, 11978789.07734762, 12206977.111932827, 12070540.278905556, 12075721.525617145, 12056407.861144539]",
+    "results": {
+     "mrr": {
+      "avg": 12084450.376517992,
+      "samples": [
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 12245515.001817115
+        }
+       },
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 12011591.136627218
+        }
+       },
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 12049390.81566396
+        }
+       },
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 11981736.424823655
+        }
+       },
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 12167834.531300278
+        }
+       },
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 11978789.07734762
+        }
+       },
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 12206977.111932827
+        }
+       },
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 12070540.278905556
+        }
+       },
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 12075721.525617145
+        }
+       },
+       {
+        "rate": {
+         "unit": "pps",
+         "value": 12056407.861144539
+        }
+       }
+      ],
+      "stdev": 87872.46762485041
+     }
+    },
+    "start_time": "2021-11-19T16:27:44.687411Z",
+    "status": "PASS",
+    "suite_id": "tests.vpp.perf.l2.2n1l-10ge2p1x553-eth-l2patch-mrr",
+    "suite_name": "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Patch-Mrr",
+    "sut_type": "VPP",
+    "sut_version": "22.02-rc0~262-g3ef8bf366~b1920",
+    "tags": [
+     "1C",
+     "1T1C",
+     "2_NODE_SINGLE_LINK_TOPO",
+     "64B",
+     "BASE",
+     "DRV_VFIO_PCI",
+     "ETH",
+     "eth-l2patch",
+     "HW_ENV",
+     "L2PATCH",
+     "MRR",
+     "NIC_Intel-X553",
+     "PERFTEST",
+     "RXQ_SIZE_0",
+     "STHREAD",
+     "TXQ_SIZE_0"
+    ],
+    "test_documentation": "",
+    "test_id": "tests.vpp.perf.l2.2n1l-10ge2p1x553-eth-l2patch-mrr.64b-1c-eth-l2patch-mrr",
+    "test_name": "64B-1c-eth-l2patch-mrr",
+    "log": []
+}
