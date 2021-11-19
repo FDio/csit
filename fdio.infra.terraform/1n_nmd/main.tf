@@ -4,6 +4,14 @@
 # and downstream modules can simply declare resources for that provider
 # and have them automatically associated with the root provider
 # configurations.
+data "vault_generic_secret" "minio_creds" {
+  path = "kv/secret/data/minio"
+}
+
+data "vault_generic_secret" "etl_creds" {
+  path = "kv/secret/data/etl"
+}
+
 module "alertmanager" {
   source = "./alertmanager"
   providers = {
@@ -32,6 +40,26 @@ module "alertmanager" {
   alertmanager_slack_jenkins_channel = "fdio-jobs-monitoring"
   alertmanager_slack_default_api_key = "TE07RD1V1/B01UUK23B6C/hZTcCu42FUv8d6rtirHtcYIi"
   alertmanager_slack_default_channel = "fdio-infra-monitoring"
+}
+
+module "etl" {
+  source = "./etl"
+  providers = {
+    nomad = nomad.yul1
+  }
+
+  # nomad
+  datacenters   = ["yul1"]
+
+  # minio
+  job_name           = "etl"
+  group_count        = 1
+  image              = "pmikus/aws_glue:3.0.0"
+  access_key         = data.vault_generic_secret.etl_creds.data["access_key"]
+  secret_key         = data.vault_generic_secret.etl_creds.data["secret_key"]
+  use_host_volume    = false
+  use_canary         = true
+  envs = []
 }
 
 module "grafana" {
@@ -91,10 +119,6 @@ module "grafana" {
 #
 #  minio_buckets = ["logs.fd.io"]
 #}
-
-data "vault_generic_secret" "minio_creds" {
-  path = "kv/secret/data/minio"
-}
 
 module "minio_s3_gateway" {
   source = "./minio_s3_gateway"
