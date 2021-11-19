@@ -1,0 +1,64 @@
+{
+ "version": "1.0.0",
+ "duration": 1813.986387014389,
+ "start_time": "2021-12-13T19:09:44.278835Z",
+ "end_time": "2021-12-13T19:39:58.265222Z",
+ "dut_type": "DPDK",
+ "dut_version": "21.08.0",
+ "hosts": [
+  "10.30.51.56",
+  "10.30.51.57"
+ ],
+ "message": "",
+ "result": {
+  "type": "soak",
+  "critical_rate": {
+   "lower": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 24375198557.03335
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 36272616.90034725
+    }
+   },
+   "upper": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 24377254707.967056
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 36275676.6487605
+    }
+   }
+  }
+ },
+ "tags": [
+  "1C",
+  "1NUMA",
+  "2_NODE_SINGLE_LINK_TOPO",
+  "2T1C",
+  "64B",
+  "BASE",
+  "DPDK",
+  "DRV_VFIO_PCI",
+  "ETH",
+  "ethip4-ip4base-l3fwd",
+  "HW_ENV",
+  "IP4FWD",
+  "MTHREAD",
+  "NIC_Intel-XXV710",
+  "PERFTEST",
+  "RXQ_SIZE_1024",
+  "SOAK",
+  "TXQ_SIZE_1024"
+ ],
+ "test_documentation": "",
+ "log": [],
+ "passed": true,
+ "test_type": "soak",
+ "test_name_short": "ethip4-ip4base-l3fwd",
+ "test_name_long": "xxv710-64b-2t1c-ethip4-ip4base-l3fwd"
+}

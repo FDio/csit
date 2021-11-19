@@ -1,0 +1,146 @@
+{
+ "version": "1.0.0",
+ "duration": 346.7464711666107,
+ "start_time": "2021-12-13T19:03:23.727887Z",
+ "end_time": "2021-12-13T19:09:10.474358Z",
+ "dut_type": "DPDK",
+ "dut_version": "21.08.0",
+ "hosts": [
+  "10.30.51.56",
+  "10.30.51.57"
+ ],
+ "message": "",
+ "result": {
+  "type": "ndrpdr",
+  "latency_forward": {
+   "pdr_0": {
+    "avg": 59,
+    "hdrh": "HISTFAAAAM14nC2OPWvCYBSFo/KeZ5au/hf/mpQgDhIKikgpIiLSQSR0kOAQJJNIKaU4SnEIJThIECcJobfaO9zLOZyP2/B7D57nvXv3qf3fym0PB61mfifqA3dQqoQNmY5qMyXipIuL6XDUjGdmlAp44oWt67MlJNUjS2J26tIy/lUXLVnj86E//9V8uVtT6GrKxBSFdXxaQ6rMnVmxl8/YlCPeVGrBRonOypjwo28N2ZMrV9fSShWGQ/sms6yJ4YMlRwSE1hna7RBrzlel+gvUKlMk",
+    "max": 110,
+    "min": 9,
+    "unit": "us"
+   },
+   "pdr_10": {
+    "avg": 34,
+    "hdrh": "HISTFAAAAL14nJNpmSzMwMAwjQECmKE0I5icMa3B/gNEQNCiSeSYwAWJKRL7hA4J7eH7JvCBdwHvLN5t3Ge4v3Et4V7E80aoR+6IcAP/Pt4lfK94rvG/4L3C+4H7Ce877j/cs7hbeBYI7uLu4nzGton9BFsfewfbA9YzrHtYT7CsY93Huox1HfcjjnOsq1hOsXxhvsfyifkC6x/mayxNLNNYzrCuY13Cdon5FuMGxl2M2xjXMLYwliQ4WGkJ8LAAAIWuPXo=",
+    "max": 87,
+    "min": 9,
+    "unit": "us"
+   },
+   "pdr_50": {
+    "avg": 15,
+    "hdrh": "HISTFAAAAEt4nJNpmSzMwMCgxQABzFCaEUzOmNZg/wEiIMh0jLNDdk0L46lVjNPKD7is0XonvUpsnXCfyCPhTTw32HYx2fCxMrEysTMBAF2yEkA=",
+    "max": 26,
+    "min": 9,
+    "unit": "us"
+   },
+   "pdr_90": {
+    "avg": 15,
+    "hdrh": "HISTFAAAAEJ4nJNpmSzMwMCgxAABzFCaEUzOmNZg/wEiIMz0gKlB/JP/hH7GJ4sY31Sv8Vul2SRygHsOexfrI6YFjBJsANIsESo=",
+    "max": 26,
+    "min": 10,
+    "unit": "us"
+   }
+  },
+  "latency_reverse": {
+   "pdr_0": {
+    "avg": 59,
+    "hdrh": "HISTFAAAAM94nC2OPWvCABCG04S8zyxd+1/61zKIiIiDShGRIiIODg7iIEE6BZHSOogUkRKklCAi4iCSIZSeHzfcy937cfeUrz06jvPp3Mq748O1N16C5+NtkQu8b0Us+NVWDb5ostFGmc5aKVVIlz8dVDVssvYntMmM7zHirJPqNs+182eE1PmwhNB0S3PvVWKgNhEdy05VYXjFqhJic74yNmapAjOKvPkBB1PMFeudKRdvizyJfuz2gjKpZQ5MkWjv7ziqzMm+axkTq29Zmeu6//8AVKA=",
+    "max": 111,
+    "min": 9,
+    "unit": "us"
+   },
+   "pdr_10": {
+    "avg": 36,
+    "hdrh": "HISTFAAAAMN4nJNpmSzMwMCwiAECmKE0I5icMa3B/gNEQJDlFectnl0CZ4R2CW0RWie8TmiJUJfQLsEzAjf4zvH+4+vhe8G7gPcY7x2eCzxveF7xzOA5wvWM6wjXFK5JnP84NnDe4Wjg/MI+h2MTxw+OIxwtnLs4PnFe43rCuYCziWsD5ymOTUC8h+MFew8QX2OfwP6H7RDbHLZNbEtY17C+Y7nD/IupjamH6RTjGsYtjEUBHloqImJMTKxMLEwsbGwgxMwEAG3kPQw=",
+    "max": 100,
+    "min": 9,
+    "unit": "us"
+   },
+   "pdr_50": {
+    "avg": 16,
+    "hdrh": "HISTFAAAAEZ4nJNpmSzMwMCgygABzFCaEUzOmNZg/wEiIHyE6YLwPIslYTuy5pVdiJph90X7ktwGsWtip8SW8KxjmcCYI1bNBAAo+xOi",
+    "max": 26,
+    "min": 10,
+    "unit": "us"
+   },
+   "pdr_90": {
+    "avg": 16,
+    "hdrh": "HISTFAAAAFJ4nJNpmSzMwMBgzAABzFCaEUzOmNZg/wEiIMy0iPEJ/xabIwXX2hk/tTCeS73lsEO1R6SL+wzrKaYqBT4mJlEmTiZFJnYgLc/EyMTMBAAPzBI1",
+    "max": 27,
+    "min": 10,
+    "unit": "us"
+   }
+  },
+  "ndr": {
+   "lower": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 24358238668.143723
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 36247378.970451966
+    }
+   },
+   "upper": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 24480641754.821133
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 36429526.42086478
+    }
+   }
+  },
+  "pdr": {
+   "lower": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 24727295546.213448
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 36796570.75329382
+    }
+   },
+   "upper": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 24851553188.207882
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 36981477.958642684
+    }
+   }
+  }
+ },
+ "tags": [
+  "1C",
+  "1NUMA",
+  "2_NODE_SINGLE_LINK_TOPO",
+  "2T1C",
+  "64B",
+  "BASE",
+  "DPDK",
+  "DRV_VFIO_PCI",
+  "ETH",
+  "ethip4-ip4base-l3fwd",
+  "HW_ENV",
+  "IP4FWD",
+  "MTHREAD",
+  "NDRPDR",
+  "NIC_Intel-XXV710",
+  "PERFTEST",
+  "RXQ_SIZE_1024",
+  "TXQ_SIZE_1024"
+ ],
+ "test_documentation": "",
+ "log": [],
+ "passed": true,
+ "test_type": "ndrpdr",
+ "test_name_short": "ethip4-ip4base-l3fwd",
+ "test_name_long": "xxv710-64b-2t1c-ethip4-ip4base-l3fwd"
+}
