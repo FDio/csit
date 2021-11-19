@@ -1,0 +1,61 @@
+{
+ "version": "1.0.0",
+ "duration": 26.296201944351196,
+ "start_time": "2021-12-13T19:02:23.642831Z",
+ "end_time": "2021-12-13T19:02:49.939033Z",
+ "dut_type": "DPDK",
+ "dut_version": "21.08.0",
+ "hosts": [
+  "10.30.51.56",
+  "10.30.51.57"
+ ],
+ "message": "",
+ "result": {
+  "type": "mrr",
+  "receive_rate": {
+   "rate": {
+    "unit": "pps",
+    "values": [
+     36543607.982500754,
+     36298808.02353986,
+     36391968.113443755,
+     36423375.912410624,
+     36440153.81316532,
+     36358948.11182815,
+     36500575.311027825,
+     36473049.67968785,
+     36401169.65896313,
+     36345757.12065309
+    ],
+    "avg": 36417741.37272204,
+    "stdev": 70724.35460777982
+   }
+  }
+ },
+ "tags": [
+  "1C",
+  "1NUMA",
+  "2_NODE_SINGLE_LINK_TOPO",
+  "2T1C",
+  "64B",
+  "BASE",
+  "DPDK",
+  "DRV_VFIO_PCI",
+  "ETH",
+  "ethip4-ip4base-l3fwd",
+  "HW_ENV",
+  "IP4FWD",
+  "MRR",
+  "MTHREAD",
+  "NIC_Intel-XXV710",
+  "PERFTEST",
+  "RXQ_SIZE_1024",
+  "TXQ_SIZE_1024"
+ ],
+ "test_documentation": "",
+ "log": [],
+ "passed": true,
+ "test_type": "mrr",
+ "test_name_short": "ethip4-ip4base-l3fwd",
+ "test_name_long": "xxv710-64b-2t1c-ethip4-ip4base-l3fwd"
+}
