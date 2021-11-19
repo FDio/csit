@@ -1,0 +1,13 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<div class="card">
+  <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo" />
+  <h1 class="site-title">{{ title }}</h1>
+  <p class="subtitle">Demo for embedding Plotly Dash within Flask Apps.</p>
+  <a href="/trending/" class="dash-link">
+    <span>trending</span>
+    <i class="fas fa-arrow-right"></i>
+  </a>
+</div>
+{% endblock %}

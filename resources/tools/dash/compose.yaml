@@ -1,0 +1,18 @@
+services:
+  dash:
+    build: "."
+    command: "flask run --host 0.0.0.0 --port 80"
+    environment:
+      AWS_ACCESS_KEY_ID: ""
+      AWS_SECRET_ACCESS_KEY: ""
+      FLASK_APP: "wsgi.py"
+      FLASK_ENV: "production"
+      LESS_BIN: "/usr/local/bin/lessc"
+      ASSETS_DEBUG: "False"
+      LESS_RUN_IN_DEBUG: "False"
+      COMPRESSOR_DEBUG: "True"
+    ports:
+      - "80:80"
+    volumes:
+      - "./app/:/app"
+    working_dir: "/app"
