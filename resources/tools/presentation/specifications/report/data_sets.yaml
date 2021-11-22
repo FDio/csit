@@ -1393,11 +1393,10 @@
   vpp-2n-icx-curr-iter:
     intel-csit-vpp-perf-report-iterative-2110-2n-icx:
       - 1  # rls2110.rel NDRPDR MRR iter env 8
-#      - 3  # rls2110.rel NDRPDR iter env 8
 
   vpp-2n-icx-curr-iter-best:
     intel-csit-vpp-perf-report-iterative-2110-2n-icx:
-      - 1  # rls2110.rel NDRPDR iter env 8
+      - 1  # rls2110.rel NDRPDR MRR iter env 8
 
   vpp-2n-icx-curr-iter-mrr:
     intel-csit-vpp-perf-report-iterative-2110-2n-icx:
