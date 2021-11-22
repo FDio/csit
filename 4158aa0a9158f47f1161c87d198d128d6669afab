@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e173cfd9_0dcedee7",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-22T09:28:18Z",
+      "side": 1,
+      "message": "On second read, \"zero\" would look way better here, especially since we have \"non-zero\" in the next line.",
+      "range": {
+        "startLine": 432,
+        "startChar": 24,
+        "endLine": 432,
+        "endChar": 25
+      },
+      "revId": "4158aa0a9158f47f1161c87d198d128d6669afab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "938c0f41_8b7cce99",
+        "filename": "tests/dpdk/perf/10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-22T09:28:18Z",
+      "side": 1,
+      "message": "Unify number of empty lines just before Variables. I think 1 empty line is enough.",
+      "revId": "4158aa0a9158f47f1161c87d198d128d6669afab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e9a9588_bc84573c",
+        "filename": "tests/trex/perf/ip4/1n1l-10ge2p1x710-ethip4tcp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-22T09:28:18Z",
+      "side": 1,
+      "message": "Can you remove lines like this in next patch set? Line 31 is enough.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 1
+      },
+      "revId": "4158aa0a9158f47f1161c87d198d128d6669afab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85964906_32ced615",
+        "filename": "tests/vpp/device/ip6/2n1l-10ge2p1x710-ethip6-ip6base-adlalwlistbase-scapy.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-22T09:28:18Z",
+      "side": 1,
+      "message": "1",
+      "range": {
+        "startLine": 83,
+        "startChar": 34,
+        "endLine": 83,
+        "endChar": 37
+      },
+      "revId": "4158aa0a9158f47f1161c87d198d128d6669afab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95ec9c8a_dc42d53b",
+        "filename": "tests/vpp/device/ip6/2n1l-10ge2p1x710-ethip6-ip6base-adlblklistbase-scapy.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-22T09:28:18Z",
+      "side": 1,
+      "message": "1",
+      "range": {
+        "startLine": 83,
+        "startChar": 34,
+        "endLine": 83,
+        "endChar": 37
+      },
+      "revId": "4158aa0a9158f47f1161c87d198d128d6669afab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fa69eb5_9337eb90",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec1000spe-cache-ip4base-policy-outbound-nocrypto-ndrpdr.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-22T09:28:18Z",
+      "side": 1,
+      "message": "Add backslashes also to suites merged recently, as this one.",
+      "range": {
+        "startLine": 39,
+        "startChar": 79,
+        "endLine": 39,
+        "endChar": 80
+      },
+      "revId": "4158aa0a9158f47f1161c87d198d128d6669afab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
