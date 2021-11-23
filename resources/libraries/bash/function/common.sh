@@ -735,7 +735,20 @@ function run_pybot () {
     PYBOT_EXIT_STATUS="$?"
     set -e
 
+    # Compress raw json outputs, if any.
+    pushd "${ARCHIVE_DIR}" || die
+    dir_name="output_raw"
+    if [ -d "${dir_name}" ]; then
+        # If move fails, we still want to compress partial result.
+        time tar cf "${dir_name}.tar" --remove-files "${dir_name}" || true
+        # If compression fails, it leaves an uncompressed .tar,
+        # we still want to archive that to investigate why compression failed.
+        time xz -9e "${dir_name}.tar" || true
+    fi
+    popd || die
+
     # Generate INFO level output_info.xml for post-processing.
+    # This comes last, as it is slowest, and sometimes users abort here.
     all_options=("--loglevel" "INFO")
     all_options+=("--log" "none")
     all_options+=("--report" "none")
