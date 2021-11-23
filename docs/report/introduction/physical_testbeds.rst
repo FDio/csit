@@ -121,7 +121,7 @@ All AMD EPYC Zen2 7532 servers run with AMD SMT enabled, doubling the
 number of logical cores exposed to Linux.
 
 2-Node Xeon Cascadelake (2n-clx)
----------------------------------
+--------------------------------
 
 Three 2n-clx testbeds are in operation in FD.io labs. Each 2n-clx testbed
 is built with two SuperMicro SYS-7049GP-TRT servers, SUTs are equipped with two
@@ -445,7 +445,7 @@ TG NICs:
 #. NIC-3: xl710-QDA2 2p40GE Intel.
 
 2-Node ARM ThunderX2 (2n-tx2)
----------------------------
+-----------------------------
 
 One 2n-tx2 testbed is built with: i) one SuperMicro SYS-7049GP-TRT
 server acting as TG and equipped with two Intel Xeon Skylake Platinum

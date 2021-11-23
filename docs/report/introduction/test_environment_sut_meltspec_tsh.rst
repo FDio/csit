@@ -315,7 +315,7 @@ made public in 2018. Script is available on `Spectre & Meltdown Checker Github
 
   Need more detailed information about mitigation options? Use --explain
   A false sense of security is worse than no security at all, see --disclaimer
-ok: [10.30.51.37] =>
+  ok: [10.30.51.37] =>
   spectre_meltdown_poll_results.stdout_lines:
   Spectre and Meltdown mitigation detection tool v0.44+
 
