@@ -794,16 +794,17 @@ class PapiSocketExecutor:
             if not isinstance(reply, list):
                 reply = [reply]
             for item in reply:
-                self.crc_checker.check_api_name(item.__class__.__name__)
+                message_name = item.__class__.__name__
+                self.crc_checker.check_api_name(message_name)
                 dict_item = dictize(item)
                 if u"retval" in dict_item.keys():
                     # *_details messages do not contain retval.
                     retval = dict_item[u"retval"]
                     if retval != exp_rv:
-                        # TODO: What exactly to log and raise here?
                         raise AssertionError(
                             f"Retval {retval!r} does not match expected "
-                            f"retval {exp_rv!r}"
+                            f"retval {exp_rv!r} in message {message_name} "
+                            f"for command {command}."
                         )
                 replies.append(dict_item)
         return replies
