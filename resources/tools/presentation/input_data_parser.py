@@ -297,7 +297,7 @@ class ExecutionChecker(ResultVisitor):
         r'hostname=\"(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3})\",hook=\"(.*)\"'
     )
 
-    def __init__(self, metadata, mapping, ignore, for_output):
+    def __init__(self, metadata, mapping, ignore, process_oper):
         """Initialisation.
 
         :param metadata: Key-value pairs to be included in "metadata" part of
@@ -305,11 +305,12 @@ class ExecutionChecker(ResultVisitor):
         :param mapping: Mapping of the old names of test cases to the new
             (actual) one.
         :param ignore: List of TCs to be ignored.
-        :param for_output: Output to be generated from downloaded data.
+        :param process_oper: If True, operational data (show run, telemetry) is
+            processed.
         :type metadata: dict
         :type mapping: dict
         :type ignore: list
-        :type for_output: str
+        :type process_oper: bool
         """
 
         # Type of message to parse out from the test messages
@@ -330,7 +331,7 @@ class ExecutionChecker(ResultVisitor):
         # Ignore list
         self._ignore = ignore
 
-        self._for_output = for_output
+        self._process_oper = process_oper
 
         # Number of PAPI History messages found:
         # 0 - no message
@@ -1297,7 +1298,7 @@ class ExecutionChecker(ResultVisitor):
         :type test_kw: Keyword
         :returns: Nothing.
         """
-        if self._for_output == u"trending":
+        if not self._process_oper:
             return
 
         if test_kw.name.count(u"Run Telemetry On All Duts"):
@@ -1526,8 +1527,17 @@ class InputData:
                     f"Error occurred while parsing output.xml: {repr(err)}"
                 )
                 return None
+
+        process_oper = False
+        if u"-vpp-perf-report-coverage-" in job:
+            process_oper = True
+        elif u"-vpp-perf-report-iterative-" in job:
+            # Exceptions for TBs where we do not have coverage data:
+            for item in (u"-2n-icx", u"-3n-icx", u"-2n-aws", u"-3n-aws"):
+                if item in job:
+                    process_oper = True
         checker = ExecutionChecker(
-            metadata, self._cfg.mapping, self._cfg.ignore, self._for_output
+            metadata, self._cfg.mapping, self._cfg.ignore, process_oper
         )
         result.visit(checker)
 
