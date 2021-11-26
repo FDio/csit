@@ -1,5 +1,5 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2022 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,7 +25,7 @@
 | Suite Setup | Setup suite topology interfaces | performance | ipsechw
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance | ipsec_sa
+| Test Teardown | Tear down test | performance | ipsec_all
 |
 | Test Template | Local Template
 |
