@@ -130,6 +130,16 @@
 | | | ... | Show Ipsec Security Association | ${nodes['${dut}']}
 | | END
 
+| Additional Test Tear Down Action For ipsec_all
+| | [Documentation]
+| | ... | Additional teardown for tests which use varied IPSec configuration.
+| | ... | Databases.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If Test Failed
+| | | ... | Vpp Ipsec Show All | ${nodes['${dut}']}
+| | END
+
 | Additional Test Tear Down Action For linux_bridge
 | | [Documentation]
 | | ... | Additional teardown for tests which uses linux_bridge.
