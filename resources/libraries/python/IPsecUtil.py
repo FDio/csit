@@ -22,6 +22,8 @@ from ipaddress import ip_network, ip_address
 from random import choice
 from string import ascii_letters
 
+from robot.api import logger
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
@@ -627,6 +629,7 @@ class IPsecUtil:
         tunnel_src = ip_address(tunnel_src)
         tunnel_dst = ip_address(tunnel_dst)
         traffic_addr = ip_address(traffic_addr)
+        tunnel_dst_prefix = 128 if traffic_addr.version == 6 else 32
         addr_incr = 1 << (128 - raddr_range) if tunnel_src.version == 6 \
             else 1 << (32 - raddr_range)
 
@@ -636,15 +639,21 @@ class IPsecUtil:
             with open(tmp_filename, 'w') as tmp_file:
                 if_name = Topology.get_interface_name(node, interface)
                 for i in range(n_tunnels):
+                    tunnel_dst_addr = tunnel_dst + i * addr_incr
                     conf = f"exec set interface ip address {if_name} " \
                         f"{tunnel_src + i * addr_incr}/{raddr_range}\n" \
                         f"exec ip route add {traffic_addr + i}/" \
-                        f"{128 if traffic_addr.version == 6 else 32} " \
-                        f"via {tunnel_dst + i * addr_incr} {if_name}\n"
+                        f"{tunnel_dst_prefix} " \
+                        f"via {tunnel_dst_addr} {if_name}\n" \
+                        f"exec ip route add {tunnel_dst_addr}/" \
+                        f"{tunnel_dst_prefix} " \
+                        f"via {tunnel_dst_addr} {if_name}\n"
                     if dst_mac:
                         conf = f"{conf}exec set ip neighbor {if_name} " \
                                f"{tunnel_dst + i * addr_incr} {dst_mac}\n"
                     tmp_file.write(conf)
+                    if i < 5:
+                        logger.debug(conf)
 
             VatExecutor().execute_script(
                 tmp_filename, node, timeout=300, json_out=False,
@@ -2136,6 +2145,9 @@ class IPsecUtil:
         sa_id_2 = 200000
         spi_1 = 300000
         spi_2 = 400000
+        dut1_local_outbound_range = ip_network(f"{raddr_ip1}/8").with_prefixlen
+        dut1_remote_outbound_range = ip_network(f"{raddr_ip2}/8")\
+            .with_prefixlen
 
         crypto_key = gen_key(
             IPsecUtil.get_crypto_alg_key_len(crypto_alg)
@@ -2155,11 +2167,13 @@ class IPsecUtil:
         IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT1"], spd_id, interface1)
         IPsecUtil.vpp_ipsec_add_spd_entry(
             nodes[u"DUT1"], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
-            proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
+            proto=50, laddr_range=dut1_local_outbound_range,
+            raddr_range=dut1_remote_outbound_range
         )
         IPsecUtil.vpp_ipsec_add_spd_entry(
             nodes[u"DUT1"], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
-            proto=50, laddr_range=u"100.0.0.0/8", raddr_range=u"100.0.0.0/8"
+            proto=50, laddr_range=dut1_remote_outbound_range,
+            raddr_range=dut1_local_outbound_range
         )
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2194,13 +2208,13 @@ class IPsecUtil:
             IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT2"], spd_id, interface2)
             IPsecUtil.vpp_ipsec_add_spd_entry(
                 nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS,
-                inbound=False, proto=50, laddr_range=u"100.0.0.0/8",
-                raddr_range=u"100.0.0.0/8"
+                inbound=False, proto=50, laddr_range=dut1_remote_outbound_range,
+                raddr_range=dut1_local_outbound_range
             )
             IPsecUtil.vpp_ipsec_add_spd_entry(
                 nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS,
-                inbound=True, proto=50, laddr_range=u"100.0.0.0/8",
-                raddr_range=u"100.0.0.0/8"
+                inbound=True, proto=50, laddr_range=dut1_local_outbound_range,
+                raddr_range=dut1_remote_outbound_range
             )
 
             IPsecUtil.vpp_ipsec_add_sad_entries(
@@ -2235,6 +2249,15 @@ class IPsecUtil:
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd(node, u"show ipsec all")
+
+    @staticmethod
+    def vpp_ipsec_show_spd(node):
+        """Run "show ipsec spd" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd(node, u"show ipsec spd")
 
     @staticmethod
     def show_ipsec_security_association(node):
