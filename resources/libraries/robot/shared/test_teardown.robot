@@ -128,6 +128,16 @@
 | | | ... | Show Ipsec Security Association | ${nodes['${dut}']}
 | | END
 
+| Additional Test Tear Down Action For ipsec_spd
+| | [Documentation]
+| | ... | Additional teardown for tests which use IPSec Security Policy
+| | ... | Databases.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If Test Failed
+| | | ... | Show Ipsec Security Policy Databases | ${nodes['${dut}']}
+| | END
+
 | Additional Test Tear Down Action For linux_bridge
 | | [Documentation]
 | | ... | Additional teardown for tests which uses linux_bridge.
