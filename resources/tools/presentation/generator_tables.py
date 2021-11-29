@@ -1279,6 +1279,8 @@ def _generate_url(testbed, test_name):
             bsf += u"-sw"
         elif u"hw" in test_name:
             bsf += u"-hw"
+        elif u"spe" in test_name:
+            bsf += u"-spe"
     elif u"ethip4vxlan" in test_name:
         domain = u"ip4_tunnels"
     elif u"ethip4udpgeneve" in test_name:
