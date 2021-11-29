@@ -1,0 +1,42 @@
+{
+ "version": "1.0.0",
+ "duration": 15.244191884994507,
+ "start_time": "2021-11-29T15:35:50.052366Z",
+ "end_time": "2021-11-29T15:36:05.296558Z",
+ "dut_type": "VPP",
+ "dut_version": "22.02-rc0~338-gc6eb7da39~b1996",
+ "message": "",
+ "result": {
+  "type": "unknown"
+ },
+ "status": "PASS",
+ "suite_name": "Tests.Vpp.Device.L2Bd.2N1L-10Ge2P1X710-Ethip4-L2Bdbasemaclrn-Oacl1Sf-Scapy",
+ "tags": [
+  "0C",
+  "0T0C",
+  "2_NODE_SINGLE_LINK_TOPO",
+  "64B",
+  "ACL",
+  "ACL1",
+  "ACL_STATEFUL",
+  "DCR_ENV",
+  "DEVICETEST",
+  "DRV_VFIO_PCI",
+  "ETH",
+  "ethip4-l2bdbasemaclrn-oacl1sf",
+  "FEATURE",
+  "HW_ENV",
+  "L2BDMACLRN",
+  "NIC_Intel-X710",
+  "OACL",
+  "RXQ_SIZE_0",
+  "SCAPY",
+  "STHREAD",
+  "TXQ_SIZE_0"
+ ],
+ "test_documentation": "",
+ "test_name": "64B-0c-ethip4-l2bdbasemaclrn-oacl1sf-scapy",
+ "log": [],
+ "suite_id": "tests.vpp.device.l2bd.2n1l-10ge2p1x710-ethip4-l2bdbasemaclrn-oacl1sf-scapy",
+ "test_id": "tests.vpp.device.l2bd.2n1l-10ge2p1x710-ethip4-l2bdbasemaclrn-oacl1sf-scapy.64b-0c-ethip4-l2bdbasemaclrn-oacl1sf-scapy"
+}

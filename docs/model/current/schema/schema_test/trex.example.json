@@ -1,0 +1,141 @@
+{
+ "version": "1.0.0",
+ "duration": 64.15043187141418,
+ "start_time": "2021-11-29T15:48:11.357098Z",
+ "end_time": "2021-11-29T15:49:15.507530Z",
+ "dut_type": "unknown",
+ "dut_version": "",
+ "message": "",
+ "result": {
+  "type": "ndrpdr",
+  "latency_forward": {
+   "pdr_0": {
+    "avg": 4,
+    "hdrh": "HISTFAAAACR4nJNpmSzMwMDAygABzFCaEUzOmNZg/wEiwN6zn5UNAGUjBYo=",
+    "max": 4,
+    "min": 4,
+    "unit": "us"
+   },
+   "pdr_10": {
+    "avg": 4,
+    "hdrh": "HISTFAAAADB4nJNpmSzMwMAgyAABzFCaEUzOmNZg/wEiwP5vCess9gaObUwtLCuYUzR4AMwsCZM=",
+    "max": 12,
+    "min": 4,
+    "unit": "us"
+   },
+   "pdr_50": {
+    "avg": 5,
+    "hdrh": "HISTFAAAADR4nJNpmSzMwMAgwgABzFCaEUzOmNZg/wEiwP7tANOvXsZDrYyv7DfIfWB7xOKjAQAGkQ0S",
+    "max": 12,
+    "min": 4,
+    "unit": "us"
+   },
+   "pdr_90": {
+    "avg": 7,
+    "hdrh": "HISTFAAAAEB4nJNpmSzMwMCgwAABzFCaEUzOmNZg/wEiwP4p5EnukymMxyYyPkk4YfJM7ozgEo59LF8YuxhVNJhYmADWWhEa",
+    "max": 19,
+    "min": 4,
+    "unit": "us"
+   }
+  },
+  "latency_reverse": {
+   "pdr_0": {
+    "avg": 4,
+    "hdrh": "HISTFAAAACV4nJNpmSzMwMDAxgABzFCaEUzOmNZg/wEiwLqB8cFeVgBsiAaG",
+    "max": 4,
+    "min": 3,
+    "unit": "us"
+   },
+   "pdr_10": {
+    "avg": 4,
+    "hdrh": "HISTFAAAADB4nJNpmSzMwMAgwAABzFCaEUzOmNZg/wEiwPpFYd11ljvqt8TOsa5h0hADAM1pCow=",
+    "max": 10,
+    "min": 3,
+    "unit": "us"
+   },
+   "pdr_50": {
+    "avg": 4,
+    "hdrh": "HISTFAAAADR4nJNpmSzMwMAgwgABzFCaEUzOmNZg/wEiwLpN7Mg85mslH8Kb1OYInGNZw6TFBwD9EwwP",
+    "max": 12,
+    "min": 3,
+    "unit": "us"
+   },
+   "pdr_90": {
+    "avg": 6,
+    "hdrh": "HISTFAAAAD54nJNpmSzMwMAgxwABzFCaEUzOmNZg/wEiwLqBdV1lU82VKYxfyt/4rdI5I9MgsIRjDssHxionCSYAoVMQlA==",
+    "max": 18,
+    "min": 3,
+    "unit": "us"
+   }
+  },
+  "ndr": {
+   "lower": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 19999999488.0
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 29761904.0
+    }
+   },
+   "upper": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 19999999488.0
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 29761904.0
+    }
+   }
+  },
+  "pdr": {
+   "lower": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 19999999488.0
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 29761904.0
+    }
+   },
+   "upper": {
+    "bandwidth": {
+     "unit": "bps",
+     "value": 19999999488.0
+    },
+    "rate": {
+     "unit": "pps",
+     "value": 29761904.0
+    }
+   }
+  }
+ },
+ "status": "PASS",
+ "suite_name": "Tests.Trex.Perf.L2.1N1L-10Ge2P1X710-Eth-L2Bdscale1Mmaclrn-Tg-Ndrpdr",
+ "tags": [
+  "2_NODE_SINGLE_LINK_TOPO",
+  "3_NODE_SINGLE_LINK_TOPO",
+  "64B",
+  "ETH",
+  "eth-l2bdscale1mmaclrn-tg",
+  "FIB_1M",
+  "HW_ENV",
+  "L2BDMACLRN",
+  "L2BDSCALE",
+  "N2N",
+  "NDRPDR",
+  "NIC_Intel-X710",
+  "PERFTEST",
+  "SCALE",
+  "TG_DRV_IGB_UIO",
+  "TREX"
+ ],
+ "test_documentation": "",
+ "test_name": "64B--eth-l2bdscale1mmaclrn-tg-ndrpdr",
+ "log": [],
+ "suite_id": "tests.trex.perf.l2.1n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-tg-ndrpdr",
+ "test_id": "tests.trex.perf.l2.1n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-tg-ndrpdr.64b--eth-l2bdscale1mmaclrn-tg-ndrpdr"
+}
