@@ -119,6 +119,9 @@ def get_optimistic_bool_from_env(env_var_names):
 class Constants:
     """Constants used in CSIT."""
 
+    # Version for CSIT data model. See docs/model/.
+    MODEL_VERSION = u"0.1.0"
+
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = u"/tmp/openvpp-testing"
 
