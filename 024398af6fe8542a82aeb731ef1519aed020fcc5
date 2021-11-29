@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a1c7df30_0a9523f9",
+        "filename": "docs/model/current/top.rst",
+        "patchSetId": 44
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-29T13:42:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36aa42cf_89eee2e5",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 64
+      },
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "69c8b2e6_6a487d14",
         "filename": "requirements.txt",
         "patchSetId": 44
@@ -45,6 +69,30 @@
       "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c09a525b_b157d0da",
+        "filename": "requirements.txt",
+        "patchSetId": 44
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-29T13:42:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69c8b2e6_6a487d14",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 17
+      },
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "474522b3_b6661e01",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 44
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-29T13:42:11Z",
+      "side": 1,
+      "message": "Those are suite files, and tests.tar.xz is too similar to tests_raw.tar.xz (line 754).",
+      "parentUuid": "b0edf52f_86e6f394",
+      "range": {
+        "startLine": 150,
+        "startChar": 61,
+        "endLine": 150,
+        "endChar": 67
+      },
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54cc0dc5_4ad0af7b",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 44
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "dbde89c3_184237e5",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 44
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-29T13:42:11Z",
+      "side": 1,
+      "message": "No, same reason as with the rebot block. We will never run robot without hiding .raw files.\nI can separate robot, tar and rebot into three internal functions if this one is too long, but all entry scripts will call this function.",
+      "parentUuid": "54cc0dc5_4ad0af7b",
+      "range": {
+        "startLine": 716,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 5
+      },
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f44a90fc_87c94b90",
         "filename": "resources/libraries/python/model/ExportResult.py",
         "patchSetId": 44
@@ -108,6 +204,24 @@
       "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76757e15_37490192",
+        "filename": "resources/libraries/python/model/ExportResult.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-29T13:42:11Z",
+      "side": 1,
+      "message": "The original intent was to have CapCase for files with keywords callable from Robot and lower_case for internal functions callable only from Python (like L2 and L1), but as time went on it deteriorated.\nI agree we should unify, probably in a way that pleases pylint (meaning lower_case for module file names, but CapCase for classes inside them), but that is a separate work as it affects libraries not related to model.\nShould I open a Jira ticket?",
+      "parentUuid": "f44a90fc_87c94b90",
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -128,6 +242,24 @@
     },
     {
       "key": {
+        "uuid": "d8ffd690_d9969cb0",
+        "filename": "resources/libraries/python/model/json_io.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-29T13:42:11Z",
+      "side": 1,
+      "message": "Utilities moved further down into https://gerrit.fd.io/r/c/csit/+/34608",
+      "parentUuid": "709a32d7_5c6c7a8d",
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9aa8d0b9_5b3fd849",
         "filename": "resources/libraries/python/time_measurement.py",
         "patchSetId": 44
@@ -145,6 +277,24 @@
     },
     {
       "key": {
+        "uuid": "ee4dd5ed_0b181c56",
+        "filename": "resources/libraries/python/time_measurement.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-29T13:42:11Z",
+      "side": 1,
+      "message": "Utilities moved further down into https://gerrit.fd.io/r/c/csit/+/34608",
+      "parentUuid": "9aa8d0b9_5b3fd849",
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8a15267_a7a5a520",
         "filename": "tests/trex/perf/ip4/regenerate_testcases.py",
         "patchSetId": 44
@@ -159,6 +309,24 @@
       "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d66df475_505b989d",
+        "filename": "tests/trex/perf/ip4/regenerate_testcases.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-11-29T13:42:11Z",
+      "side": 1,
+      "message": "Moved to another change.",
+      "parentUuid": "c8a15267_a7a5a520",
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
