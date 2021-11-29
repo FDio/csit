@@ -1,0 +1,164 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36aa42cf_89eee2e5",
+        "filename": "docs/model/current/top.rst",
+        "patchSetId": 44
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-29T11:15:36Z",
+      "side": 1,
+      "message": "Remove the whole paragraph, this is not part of CSIT and it is incorrectly stated.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 64
+      },
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69c8b2e6_6a487d14",
+        "filename": "requirements.txt",
+        "patchSetId": 44
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-29T11:15:36Z",
+      "side": 1,
+      "message": "merge with others as e.g. python-dateutil\u003d\u003d2.8.2 is used by others.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 17
+      },
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0edf52f_86e6f394",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 44
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-29T11:15:36Z",
+      "side": 1,
+      "message": "tests.tar.xz",
+      "range": {
+        "startLine": 150,
+        "startChar": 61,
+        "endLine": 150,
+        "endChar": 67
+      },
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54cc0dc5_4ad0af7b",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 44
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-29T11:15:36Z",
+      "side": 1,
+      "message": "remove into separate function and call from entry script not \"run_pybot\"",
+      "range": {
+        "startLine": 716,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 5
+      },
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f44a90fc_87c94b90",
+        "filename": "resources/libraries/python/model/ExportResult.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-29T11:15:36Z",
+      "side": 1,
+      "message": "It is unclear why some libraries have Snake Naming convetion and some CapWords, unify!",
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "709a32d7_5c6c7a8d",
+        "filename": "resources/libraries/python/model/json_io.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-29T11:15:36Z",
+      "side": 1,
+      "message": "Remove entirely and make the calls directly",
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9aa8d0b9_5b3fd849",
+        "filename": "resources/libraries/python/time_measurement.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-29T11:15:36Z",
+      "side": 1,
+      "message": "remove library and make direct calls, why wee need function for one liners?",
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8a15267_a7a5a520",
+        "filename": "tests/trex/perf/ip4/regenerate_testcases.py",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-11-29T11:15:36Z",
+      "side": 1,
+      "message": "remove files that are unrelated to the change itself",
+      "revId": "024398af6fe8542a82aeb731ef1519aed020fcc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
