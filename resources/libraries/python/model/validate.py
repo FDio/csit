@@ -17,8 +17,9 @@ Short module currently, as we validate only testcase info outputs.
 Structure will probably change when we start validation mode file types.
 """
 
-import json
 import jsonschema
+
+from resources.libraries.python.model.json_io import load_from
 
 
 def _get_validator(schema_path):
@@ -33,8 +34,7 @@ def _get_validator(schema_path):
     :rtype: jsonschema.validators.Validator
     :raises RuntimeError: If the schema is not valid according its meta-schema.
     """
-    with open(schema_path, u"rt", encoding="utf-8") as file_in:
-        schema = json.load(file_in)
+    schema = load_from(schema_path)
     validator_class = jsonschema.validators.validator_for(schema)
     validator_class.check_schema(schema)
     fmt_checker = jsonschema.FormatChecker()
@@ -66,8 +66,7 @@ def validate(file_path, validator):
     :type validator: jsonschema.validators.Validator
     :raises RuntimeError: If schema validation fails.
     """
-    with open(file_path, u"rt", encoding="utf-8") as file_in:
-        instance = json.load(file_in)
+    instance = load_from(file_path)
     error = jsonschema.exceptions.best_match(validator.iter_errors(instance))
     if error is not None:
         raise error

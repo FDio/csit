@@ -26,7 +26,6 @@ Validation is performed in data deserialized from disk,
 as serialization might have introduced subtle errors.
 """
 
-import datetime
 import os.path
 
 from robot.api import logger
@@ -35,7 +34,9 @@ from robot.libraries.BuiltIn import BuiltIn
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.model.mem2raw import write_raw_output
 from resources.libraries.python.model.raw2info import convert_content_to_info
+from resources.libraries.python.model.util import normalize
 from resources.libraries.python.model.validate import (get_validators, validate)
+from resources.libraries.python.time_measurement import timestamp_or_now
 
 
 class export_json():
@@ -99,12 +100,9 @@ class export_json():
         File path is set based on suite.
         """
         self.warn_on_bad_export()
-        start_time = datetime.datetime.utcnow().strftime(
-            u"%Y-%m-%dT%H:%M:%S.%fZ"
-        )
+        start_time = timestamp_or_now()
         suite_name = BuiltIn().get_variable_value(u"\\${SUITE_NAME}")
-        suite_id = suite_name.lower().replace(u" ", u"_")
-        suite_path_part = os.path.join(*suite_id.split(u"."))
+        suite_path_part = os.path.join(*normalize(suite_name).split(u"."))
         output_dir = self.output_dir
         self.raw_file_path = os.path.join(
             output_dir, suite_path_part, u"setup.raw.json"
@@ -133,16 +131,13 @@ class export_json():
         File path is set based on suite and test.
         """
         self.warn_on_bad_export()
-        start_time = datetime.datetime.utcnow().strftime(
-            u"%Y-%m-%dT%H:%M:%S.%fZ"
-        )
+        start_time = timestamp_or_now()
         suite_name = BuiltIn().get_variable_value(u"\\${SUITE_NAME}")
-        suite_id = suite_name.lower().replace(u" ", u"_")
-        suite_path_part = os.path.join(*suite_id.split(u"."))
+        suite_path_part = os.path.join(*normalize(suite_name).split(u"."))
         test_name = BuiltIn().get_variable_value(u"\\${TEST_NAME}")
         self.raw_file_path = os.path.join(
             self.output_dir, suite_path_part,
-            test_name.lower().replace(u" ", u"_") + u".raw.json"
+            normalize(test_name) + u".raw.json"
         )
         data = dict()
         data[u"version"] = Constants.MODEL_VERSION
@@ -178,12 +173,9 @@ class export_json():
         File path is set based on suite.
         """
         self.warn_on_bad_export()
-        start_time = datetime.datetime.utcnow().strftime(
-            u"%Y-%m-%dT%H:%M:%S.%fZ"
-        )
+        start_time = timestamp_or_now()
         suite_name = BuiltIn().get_variable_value(u"\\${SUITE_NAME}")
-        suite_id = suite_name.lower().replace(u" ", u"_")
-        suite_path_part = os.path.join(*suite_id.split(u"."))
+        suite_path_part = os.path.join(*normalize(suite_name).split(u"."))
         self.raw_file_path = os.path.join(
             self.output_dir, suite_path_part, u"teardown.raw.json"
         )
@@ -201,7 +193,7 @@ class export_json():
         Should be run at the end of suite setup.
         The write is done at next start (or at the end of global teardown).
         """
-        end_time = datetime.datetime.utcnow().strftime(u"%Y-%m-%dT%H:%M:%S.%fZ")
+        end_time = timestamp_or_now()
         self.raw_data[u"end_time"] = end_time
         self.export_pending_data()
 
@@ -213,7 +205,7 @@ class export_json():
 
         The write is done at next start (or at the end of global teardown).
         """
-        end_time = datetime.datetime.utcnow().strftime(u"%Y-%m-%dT%H:%M:%S.%fZ")
+        end_time = timestamp_or_now()
         message = BuiltIn().get_variable_value(u"\\${TEST_MESSAGE}")
         status = BuiltIn().get_variable_value(u"\\${TEST_STATUS}")
         test_tags = BuiltIn().get_variable_value(u"\\${TEST_TAGS}")
@@ -230,6 +222,6 @@ class export_json():
         (but before the explicit write in the global suite teardown).
         The write is done at next start (or explicitly for global teardown).
         """
-        end_time = datetime.datetime.utcnow().strftime(u"%Y-%m-%dT%H:%M:%S.%fZ")
+        end_time = timestamp_or_now()
         self.raw_data[u"end_time"] = end_time
         self.export_pending_data()

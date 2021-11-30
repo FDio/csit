@@ -259,7 +259,7 @@ allOf:
                 CSIT model version (semver format)
                 the exporting code adhered to.
             type: string
-            const: 1.0.0
+            const: 1.0.1
     required:
     -   duration
     -   dut_type
