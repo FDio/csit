@@ -67,3 +67,19 @@ def get_export_data():
     if instance is None:
         return None
     return instance.raw_data
+
+
+def normalize(text):
+    """Return copy with all lowercase and underscores instead of spaces
+
+    This acts as a name normalization, called from multiple places.
+    It is just a one-liner, but frequently the explicit form
+    does not fit into a single line at a call site.
+    Also, we may add more processing in the future, e.g. replace dashes.
+
+    :param text: Input text to normalize.
+    :type str:
+    :returns: Normalized text.
+    :rtype: str
+    """
+    return text.lower().replace(u" ", u"_")
