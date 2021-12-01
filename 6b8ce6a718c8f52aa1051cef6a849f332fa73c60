@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9602cded_d5e375b6",
+        "filename": "docs/cpta/introduction/dashboard.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-01T12:47:42Z",
+      "side": 1,
+      "message": "Need to figure out how do links to sections work again.",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 8
+      },
+      "revId": "6b8ce6a718c8f52aa1051cef6a849f332fa73c60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba3f596b_c188b496",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-01T12:47:42Z",
+      "side": 1,
+      "message": "Need to check.",
+      "range": {
+        "startLine": 49,
+        "startChar": 26,
+        "endLine": 49,
+        "endChar": 30
+      },
+      "revId": "6b8ce6a718c8f52aa1051cef6a849f332fa73c60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fa2cf90_5ac70a04",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-01T12:47:42Z",
+      "side": 1,
+      "message": "Need to check.",
+      "range": {
+        "startLine": 50,
+        "startChar": 30,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "6b8ce6a718c8f52aa1051cef6a849f332fa73c60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
