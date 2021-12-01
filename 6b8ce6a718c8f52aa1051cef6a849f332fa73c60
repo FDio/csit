@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "febc8421_53be78f1",
+        "filename": "docs/cpta/introduction/dashboard.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-01T13:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e81f2af_c4eae6e4",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 8
+      },
+      "revId": "6b8ce6a718c8f52aa1051cef6a849f332fa73c60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba3f596b_c188b496",
         "filename": "docs/cpta/methodology/trend_analysis.rst",
         "patchSetId": 2
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "ba1a826e_6510dcfa",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-01T13:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0af230e1_e5e23427",
+      "range": {
+        "startLine": 49,
+        "startChar": 26,
+        "endLine": 49,
+        "endChar": 30
+      },
+      "revId": "6b8ce6a718c8f52aa1051cef6a849f332fa73c60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4fa2cf90_5ac70a04",
         "filename": "docs/cpta/methodology/trend_analysis.rst",
         "patchSetId": 2
@@ -140,6 +188,30 @@
       "revId": "6b8ce6a718c8f52aa1051cef6a849f332fa73c60",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a7e1cea_df61ec52",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-01T13:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05a81075_a33862b3",
+      "range": {
+        "startLine": 50,
+        "startChar": 30,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "6b8ce6a718c8f52aa1051cef6a849f332fa73c60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
