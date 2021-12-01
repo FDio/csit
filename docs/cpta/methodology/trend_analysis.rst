@@ -1,25 +1,87 @@
 Trend Analysis
---------------
+^^^^^^^^^^^^^^
 
-All measured performance trend data is treated as time-series data that
-can be modelled as concatenation of groups, each group modelled
-using normal distribution. While sometimes the samples within a group
-are far from being distributed normally, currently we do not have a
-better tractable model.
+All measured performance trend data is treated as time-series data
+that is modelled as a concatenation of groups,
+within each group the samples come (independently) from
+the same normal distribution (with some center and standard deviation).
+
+Center of the normal distribution for the group (equal to population average)
+is called a trend for the group.
+All the analysis is based on finding the right partition into groups
+and comparing their trends.
+
+Trend Compliance
+~~~~~~~~~~~~~~~~
+
+.. _Trend_Compliance:
+
+In the text below, "trend at time <t>", shorthand "Trend[t]"
+means "the group average of the group the sample at time <t> belongs to".
+Here, time is usually given as "last" or last with an offset,
+e.g. "last - 1week".
+
+Trend compliance metrics are targeted to provide an indication of trend
+changes over a short-term (i.e. weekly) and a long-term (i.e.
+quarterly), comparing the last group average Trend[last], to the one from week
+ago, Trend[last - 1week] and to the maximum of trend values over last
+quarter except last week, max(Trend[last - 3mths]..Trend[last - 1week]),
+respectively.
+
+This results in following trend compliance calculations:
+
++-------------------------+---------------------------------+-------------+-----------------------------------------------+
+| Trend Compliance Metric | Trend Change Formula            | Value       | Reference                                     |
++=========================+=================================+=============+===============================================+
+| Short-Term Change       | (Value - Reference) / Reference | Trend[last] | Trend[last - 1week]                           |
++-------------------------+---------------------------------+-------------+-----------------------------------------------+
+| Long-Term Change        | (Value - Reference) / Reference | Trend[last] | max(Trend[last - 3mths]..Trend[last - 1week]) |
++-------------------------+---------------------------------+-------------+-----------------------------------------------+
+
+These metrics are displayed in the Dashboard table.
+
+Caveats
+-------
+
+Obviously, is result history is too short, the true Trend[t] value
+may not by available, we use the earliest Trend available instead.
+
+The current implementaton does not track time of the samples,
+it counts runs instead.
+For "- 1week" we use "10 runs ago, 5 runs for topo-arch with 1 TB",
+for "- 3mths" we use "180 days or 180 runs ago, whatever comes first".
+
+Anomalies in graphs
+~~~~~~~~~~~~~~~~~~~
+
+In graphs, the start of the following group is marked
+as a regression (red circle) or progression (green circle),
+if the new trend is lower (or higher respectively)
+then the previous group's.
+
+Implementation details
+~~~~~~~~~~~~~~~~~~~~~~
+
+Partitioning into groups
+------------------------
+
+While sometimes the samples within a group are far from being
+distributed normally, currently we do not have a better tractable model.
 
 Here, "sample" should be the result of single trial measurement,
 with group boundaries set only at test run granularity.
 But in order to avoid detecting causes unrelated to VPP performance,
-the default presentation (without /new/ in URL)
-takes average of all trials within the run as the sample.
+the current presentation takes average of all trials
+within the run as the sample.
 Effectively, this acts as a single trial with aggregate duration.
 
-Performance graphs always show the run average (not all trial results).
+Performance graphs show the run average as a dot
+(not all individual trial results).
 
 The group boundaries are selected based on `Minimum Description Length`_.
 
 Minimum Description Length
-``````````````````````````
+--------------------------
 
 `Minimum Description Length`_ (MDL) is a particular formalization
 of `Occam's razor`_ principle.
@@ -72,34 +134,6 @@ The resulting group distribution looks good
 if samples are distributed normally enough within a group.
 But for obviously different distributions (for example `bimodal distribution`_)
 the groups tend to focus on less relevant factors (such as "outlier" density).
-
-Anomaly Detection
-`````````````````
-
-Once the trend data is divided into groups, each group has its population average.
-The start of the following group is marked as a regression (or progression)
-if the new group's average is lower (higher) then the previous group's.
-
-In the text below, "average at time <t>", shorthand "AVG[t]"
-means "the group average of the group the sample at time <t> belongs to".
-
-Trend Compliance
-````````````````
-
-Trend compliance metrics are targeted to provide an indication of trend
-changes over a short-term (i.e. weekly) and a long-term (i.e.
-quarterly), comparing the last group average AVG[last], to the one from week
-ago, AVG[last - 1week] and to the maximum of trend values over last
-quarter except last week, max(AVG[last - 3mths]..ANV[last - 1week]),
-respectively. This results in following trend compliance calculations:
-
-+-------------------------+---------------------------------+-----------+-------------------------------------------+
-| Trend Compliance Metric | Trend Change Formula            | Value     | Reference                                 |
-+=========================+=================================+===========+===========================================+
-| Short-Term Change       | (Value - Reference) / Reference | AVG[last] | AVG[last - 1week]                         |
-+-------------------------+---------------------------------+-----------+-------------------------------------------+
-| Long-Term Change        | (Value - Reference) / Reference | AVG[last] | max(AVG[last - 3mths]..AVG[last - 1week]) |
-+-------------------------+---------------------------------+-----------+-------------------------------------------+
 
 .. _Minimum Description Length: https://en.wikipedia.org/wiki/Minimum_description_length
 .. _Occam's razor: https://en.wikipedia.org/wiki/Occam%27s_razor
