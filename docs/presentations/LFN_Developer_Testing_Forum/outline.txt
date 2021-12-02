@@ -1,0 +1,119 @@
+
+* Who is this for:
+ + Test people interested in performance testing.
+ + Data people interested in various form of data presentation.
+ + General people wanting to know what fd.io is about.
+
+* Project structure:
+ + LF: Linux Foundation.
+  + LFN: Linux Foundation Networking.
+   + fd.io: Fast Data.
+    + VPP: Vector Packet Processor.
+    + TRex: Network traffic generator.
+    + CSIT: Continuous System Integration Testing.
+     + PAL: Presentation and Analytics Layer.
+      + Jumpavg: Anomaly detction library.
+
+* VPP overview:
+ + Dataplane packet processing.
+  + Networking in userspace (mainly poll mode).
+   + Physical NICs (native or DPDK drivers, offloads, SR-IOV, ...).
+   + Virtual networking (virtio, vhost-user, memif, ...).
+  + Network intermediate point (routing, tunnels, encryption, NAT, ...).
+  + Network stack endpoint (UDP, TCP, QUIC, TLS, …).
+
+* CSIT overview:
+ + Test results mainly for VPP.
+  + Some other DUTs for comparisons, e.g. DPDK example apps.
+ + Focusing mainly on performance testing.
+  + TODO Why - because networking is about throughput and latency performance.
+  + Some functional testing.
+   + Aimed at driver testing and API coverage.
+ + Focusing mainly on bump in the wire testing with TRex and stateless traffic profiles.
+  + Also some testing for network stack (hoststack in VPP lingo):
+   + Synthetic traffic endpoints.
+    + Simple "echo" applications.
+    + Nsim plugin to introduce drops/delays on VPP side.
+   + More real traffic:
+    + Real webserver (NGINX).
+    + Standard clients for performance testing (iperf3, AB).
+    + Still simple payloads to avoid endpoint CPU bottlenecks.
+  + TODO Add here - why stateless first, why stateful is harder.
+ + Different performance modes and metrics.
+  + MRR, NDR, PDR, SOAK measuring packets per second.
+  + Packet latency histogram at various loads.
+  + Various telemetry examining resource usage efficiency.
+ + High number of test cases available.
+  + We have to be selective in which tests to run periodically.
+  + Daily, weekly, iterative (10 runs at release), coverage (1 run at release).
+  + Defined using Robot Framework, lower level logic in Python.
+
+* PAL overview:
+ + Trending.
+  + Graphs, Dashboard, e-mail alerts for failures and regressions.
+ + Release report.
+  + Direct data:
+   + Box and whiskers for iterative results.
+   + Histograms for latency.
+   + Tabular data for coverage results.
+   + Heat-map for service density.
+  + Derivative data:
+   + Comparison tables between different:
+    + VPP releases on the same CSIT/lab environment.
+    + CSIT/lab environments for the same VPP release.
+    + CPU architectures.
+    + NIC models, drivers, ...
+   + CPU scaling (speedup) graphs.
+
+* Anomaly detection for trending:
+ + For each tracked test case, we have sequence of floats (samples).
+  + Measurements for VPP builds (daily or weekly) from master branch.
+  + CSIT code and lab environment can also change.
+  + Results are noisy, distribution is not normal.
+   + This is true even after we minimized most sources of noisiness.
+    + E.g. decreased CPU jitter via carefully choosing bios options and avoiding kernel context switches.
+ + Problem: Determine a point where the underlying true performance (VPP) changes.
+ + Restrictions for the solution algorithm:
+  + No global state (no user labels, no learning).
+  + Should be based on serious probability theory.
+  + Should agree with human evaluation in most cases.
+  + Occam's razor: No tweaks unless required by human evaluation.
+ + Solution: jumpavg.
+  + Home-grown Python library.
+  + Available at https://pypi.org/project/jumpavg/
+  + Main ideas:
+   + Partition samples into subsequent groups.
+    + Model samples within a group as coming from a normal distribution.
+    + This gives us information content of the samples (in bits).
+    + Average and standard deviation of the distribution can also be encoded in bits.
+    + Choose partition with least overall bit length (Minimal Description Length).
+   + Average of the group is the trend.
+   + Regression is when subsequent group has smaller trend.
+ + Common patterns, a.k.a. how to interpret recently detected anomalies.
+  + Single regression.
+   + Big regression.
+    + Detected on first sample, trend difference remains stable.
+   + Small regression.
+    + Needs multiple samples to be detected (late detection).
+  + Reverted regression.
+   + Reverted big regression.
+    + One sample to detect regression.
+    + Next sample to detect progression.
+    + Trend comes back close to the previous value.
+   + Reverted medium regression.
+    + One sample to detect regression.
+    + Next few samples (true performance is back) are probably averaged, resulting in decreasingly big regressions.
+    + Only after enough samples the detection algorithm recognizes the progression.
+   + Reverted small regression.
+    + Maybe never detected (looks like an outlier not far from background noise).
+    + Maybe visible as temporary regression (as with reverted medium regression),
+      but after enough samples the algorithm decides it is all just one group (anomaly vanishes).
+  + Summary:
+   + When an anomaly is newly detected, look at difference of trends.
+   + Smaller differences need more samples in the group to become stable.
+   + When in doubt, alert a human to take a look at the graph.
+
+* Epilog:
+ + Links (report, trending, csit-dev mailing list).
+ + Tell us how your project searches for the needle of performance regression
+   is a haystack of performance results.

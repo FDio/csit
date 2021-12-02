@@ -1,0 +1,14 @@
+
+Title: FD.io CSIT Performance Benchmarking, Anomaly Detection, Results Tracking.
+
+In this talk we introduce FD.io CSIT core sub-project and give an overview of
+the ways its Presentation-Analytics-Layer (PAL) component presents test
+results. We will focus on performance results and anomaly detection, as a way
+to distinguish (probably) real performance changes from the noisy data. And
+provide a sneak peak into the way test results data is processed.
+
+Will use performance data from CI/CD automated tests executed on Intel Xeon
+(skx, clx, icx), Atom, Arm servers running in labs hosted by LFN FD.io.
+
+If you are interested in network performance testing in general, or FD.io
+project specifically, this talk is for you.
