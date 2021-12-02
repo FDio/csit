@@ -584,7 +584,7 @@ class TrafficGenerator(AbstractMeasurer):
         return limited_duration, (limited_duration == computed_duration)
 
     def trex_astf_start_remote_exec(
-            self, duration, multiplier, async_call=False):
+            self, duration, multiplier, async_call=False, delay=None):
         """Execute T-Rex ASTF script on remote node over ssh to start running
         traffic.
 
@@ -653,7 +653,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"latency", self.use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
         command_line.add_with_value(
-            u"delay", Constants.PERF_TRIAL_ASTF_DELAY
+            u"delay", Constants.PERF_TRIAL_ASTF_DELAY if delay is None else delay
         )
 
         self._start_time = time.monotonic()
@@ -714,7 +714,7 @@ class TrafficGenerator(AbstractMeasurer):
             self._duration = computed_duration
             self._parse_traffic_results(stdout)
 
-    def trex_stl_start_remote_exec(self, duration, rate, async_call=False):
+    def trex_stl_start_remote_exec(self, duration, rate, async_call=False, delay=None):
         """Execute T-Rex STL script on remote node over ssh to start running
         traffic.
 
@@ -762,7 +762,7 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"async_start", async_call)
         command_line.add_if(u"latency", self.use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
-        command_line.add_with_value(u"delay", Constants.PERF_TRIAL_STL_DELAY)
+        command_line.add_with_value(u"delay", Constants.PERF_TRIAL_STL_DELAY if delay is None else delay)
 
         # TODO: This is ugly. Handle parsing better.
         self._start_time = time.monotonic()
@@ -903,7 +903,7 @@ class TrafficGenerator(AbstractMeasurer):
         )
 
     def _send_traffic_on_tg_internal(
-            self, duration, rate, async_call=False):
+            self, duration, rate, async_call=False, delay=None):
         """Send traffic from all configured interfaces on TG.
 
         This is an internal function, it assumes set_rate_provider_defaults
@@ -932,13 +932,13 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             if u"trex-astf" in self.traffic_profile:
                 self.trex_astf_start_remote_exec(
-                    duration, float(rate), async_call
+                    duration, float(rate), async_call, delay
                 )
             elif u"trex-stl" in self.traffic_profile:
                 unit_rate_str = str(rate) + u"pps"
                 # TODO: Suport transaction_scale et al?
                 self.trex_stl_start_remote_exec(
-                    duration, unit_rate_str, async_call
+                    duration, unit_rate_str, async_call, delay
                 )
             else:
                 raise ValueError(u"Unsupported T-Rex traffic profile!")
@@ -946,7 +946,7 @@ class TrafficGenerator(AbstractMeasurer):
         return None if async_call else self._get_measurement_result()
 
     def _send_traffic_on_tg_with_ramp_up(
-            self, duration, rate, async_call=False, ramp_up_only=False):
+            self, duration, rate, async_call=False, ramp_up_only=False, delay=None):
         """Send traffic from all interfaces on TG, maybe after ramp-up.
 
         This is an internal function, it assumes set_rate_provider_defaults
@@ -1029,6 +1029,7 @@ class TrafficGenerator(AbstractMeasurer):
             duration=duration,
             rate=rate,
             async_call=async_call,
+            delay=delay,
         )
         trial_end = time.monotonic()
         if self.ramp_up_rate:
@@ -1323,7 +1324,7 @@ class TrafficGenerator(AbstractMeasurer):
         measurement.latency = self.get_latency_int()
         return measurement
 
-    def measure(self, duration, transmit_rate):
+    def measure(self, duration, transmit_rate, delay=None):
         """Run trial measurement, parse and return results.
 
         The input rate is for transactions. Stateles bidirectional traffic
@@ -1353,8 +1354,9 @@ class TrafficGenerator(AbstractMeasurer):
             self.resetter()
         result = self._send_traffic_on_tg_with_ramp_up(
             duration=duration,
-            rate=transmit_rate,
+            rate=14763779.5,
             async_call=False,
+            delay=1.0 - 2.0 * (transmit_rate / 18750000.0),
         )
         logger.debug(f"trial measurement result: {result!r}")
         # In PLRsearch, computation needs the specified time to complete.
