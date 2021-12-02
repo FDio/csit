@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c89d52fa_e5e247c7",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-02T12:47:34Z",
+      "side": 1,
+      "message": "At more letters if line length permits, partial strings are harder to debug when something goes wrong.",
+      "range": {
+        "startLine": 439,
+        "startChar": 20,
+        "endLine": 439,
+        "endChar": 22
+      },
+      "revId": "750c320d581f9ccf3aaccf52a24d30e8f0be2d09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
