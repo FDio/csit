@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "176d2734_495f067f",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2021-12-03T19:39:17Z",
+      "side": 1,
+      "message": "Why do we need F4 with different NIC placement across two NUMAs, instead of F3?",
+      "range": {
+        "startLine": 880,
+        "startChar": 0,
+        "endLine": 899,
+        "endChar": 42
+      },
+      "revId": "a54667b2b32707a7c132c84149a12698a3282099",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
