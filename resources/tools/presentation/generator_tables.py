@@ -972,8 +972,8 @@ def table_perf_trending_dash(table, input_data):
     header = [
         u"Test Case",
         u"Trend [Mpps]",
-        u"Short-Term Change [%]",
-        u"Long-Term Change [%]",
+        u"Number of runs [#]",
+        u"Trend Change [%]",
         u"Regressions [#]",
         u"Progressions [#]"
     ]
@@ -1034,6 +1034,13 @@ def table_perf_trending_dash(table, input_data):
         last_avg = avgs[-1]
         avg_week_ago = avgs[max(-win_size, -len(avgs))]
 
+        nr_of_last_avgs = 0;
+        for x in reversed(avgs):
+            if x == last_avg:
+                nr_of_last_avgs += 1
+            else:
+                break
+
         if isnan(last_avg) or isnan(avg_week_ago) or avg_week_ago == 0.0:
             rel_change_last = nan
         else:
@@ -1055,28 +1062,23 @@ def table_perf_trending_dash(table, input_data):
             tbl_lst.append(
                 [tbl_dict[tst_name][u"name"],
                  round(last_avg / 1e6, 2),
-                 rel_change_last,
+                 nr_of_last_avgs,
                  rel_change_long,
                  classification_lst[-win_size+1:].count(u"regression"),
                  classification_lst[-win_size+1:].count(u"progression")])
 
     tbl_lst.sort(key=lambda rel: rel[0])
-    tbl_lst.sort(key=lambda rel: rel[3])
     tbl_lst.sort(key=lambda rel: rel[2])
-
-    tbl_sorted = list()
-    for nrr in range(table[u"window"], -1, -1):
-        tbl_reg = [item for item in tbl_lst if item[4] == nrr]
-        for nrp in range(table[u"window"], -1, -1):
-            tbl_out = [item for item in tbl_reg if item[5] == nrp]
-            tbl_sorted.extend(tbl_out)
+    tbl_lst.sort(key=lambda rel: rel[3])
+    tbl_lst.sort(key=lambda rel: rel[5], reverse=True)
+    tbl_lst.sort(key=lambda rel: rel[4], reverse=True)
 
     file_name = f"{table[u'output-file']}{table[u'output-file-ext']}"
 
     logging.info(f"    Writing file: {file_name}")
     with open(file_name, u"wt") as file_handler:
         file_handler.write(header_str)
-        for test in tbl_sorted:
+        for test in tbl_lst:
             file_handler.write(u",".join([str(item) for item in test]) + u'\n')
 
     logging.info(f"    Writing file: {table[u'output-file']}.txt")
