@@ -3,7 +3,8 @@
 - [FD.io DC Vexxhost Inventory](#fdio-dc-vexxhost-inventory)
   - [Missing Equipment Inventory](#missing-equipment-inventory)
   - [YUL1 Inventory](#yul1-inventory)
-    - [Rack YUL1-9 (3016.9)](#rack-yul1-10-3016.9)
+    - [Rack YUL1-8 (3016.8)](#rack-yul1-8-3016.8)
+    - [Rack YUL1-9 (3016.9)](#rack-yul1-9-3016.9)
     - [Rack YUL1-10 (3016.10)](#rack-yul1-10-3016.10)
     - [Rack YUL1-11 (3016.11)](#rack-yul1-11-3016.11)
     - [Rack YUL1-12 (3016.12)](#rack-yul1-12-3016.12)
@@ -36,6 +37,20 @@
 
 ### YUL1 Inventory
 
+#### Rack YUL1-8 (3016.8)
+name,oper-status,testbed-id,role,model,s/n,mgmt-ip4,ipmi-ip4,rackid,rackunit
+s65-t37-sut1,up,t37,3n-icx,SYS-740GP-TNRT,???,10.30.51.75,10.30.50.75,3016.8,u42-u45
+s66-t37-sut2,up,t37,3n-icx,SYS-740GP-TNRT,???,10.30.51.76,10.30.50.76,3016.8,u38-u41
+s67-t37-tg1,up,t37,3n-icx,SYS-740GP-TNRT,???,10.30.51.77,10.30.50.77,3016.8,u34-u37
+s71-t212-sut1,up,t212,2n-icx,SYS-740GP-TNRT,???,10.30.51.81,10.30.50.81,3016.8,u30-u33
+s72-t212-tg1,up,t212,2n-icx,SYS-740GP-TNRT,???,10.30.51.82,10.30.50.82,3016.8,u26-u29
+s73-t213-sut1,up,t213,2n-icx,SYS-740GP-TNRT,???,10.30.51.83,10.30.50.83,3016.8,u22-u25
+s74-t213-tg1,up,t213,2n-icx,SYS-740GP-TNRT,???,10.30.51.84,10.30.50.84,3016.8,u18-u21
+s75-t214-sut1,up,t214,2n-icx,SYS-740GP-TNRT,???,10.30.51.85,10.30.50.85,3016.8,u14-u17
+s76-t214-tg1,up,t214,2n-icx,SYS-740GP-TNRT,???,10.30.51.86,10.30.50.86,3016.8,u10-u13
+s77-t215-sut1,up,t215,2n-icx,SYS-740GP-TNRT,???,10.30.51.87,10.30.50.87,3016.8,u6-u9
+s78-t215-tg1,up,t215,2n-icx,SYS-740GP-TNRT,???,10.30.51.88,10.30.50.88,3016.8,u2-u5
+
 #### Rack YUL1-9 (3016.9)
 name,oper-status,testbed-id,role,model,s/n,mgmt-ip4,ipmi-ip4,rackid,rackunit
 mtl1-5-lb4m,up,switch,uplink,?,?,?,?,3016.9,u47,?,?
@@ -50,6 +65,7 @@ s19-t33t211-tg1,up,t33t211,3n-tsh/2n-tx2,SYS-7049GP-TRT,C7470KH06A20056,10.30.51
 s27-t211-sut1,up,t211,2n-tx2,ThunderX2-9975,K61186073100003,10.30.51.69,10.30.50.69,3016.9,u13
 s18-t33-sut2,up,t33,3n-tsh,HUAWEI-TAISHAN-2280,N/A,10.30.51.37,10.30.50.37,3016.9,u11-u12
 s17-t33-sut1,up,t33,3n-tsh,HUAWEI-TAISHAN-2280,N/A,10.30.51.36,10.30.50.36,3016.9,u9-u10
+s79-t39t310-tg1,up,t39t310,tbd,SYS-740GP-TNRT,???,10.30.51.89,10.30.50.89,3016.9,u5-u8
 
 #### Rack YUL1-10 (3016.10)
 
@@ -65,6 +81,7 @@ s7-t23-sut1,up,t23,2n-skx,SYS-7049GP-TRT,N/A,10.30.51.54,10.30.50.51,3016.10,u18
 s8-t23-tg1,up,t23,2n-skx,SYS-7049GP-TRT,C7470KH06A20035,10.30.51.55,10.30.50.52,3016.10,u14-u17
 s9-t24-sut1,up,t24,2n-skx,SYS-7049GP-TRT,C7470KH06A20055,10.30.51.56,10.30.50.53,3016.10,u10-u13
 s10-t24-tg1,up,t24,2n-skx,SYS-7049GP-TRT,C7470KH06A20196,10.30.51.57,10.30.50.54,3016.10,u6-u9
+s80-t311t312-tg1,up,t311t312,tbd,SYS-740GP-TNRT,???,10.30.51.90,10.30.50.90,3016.10,u2-u5
 
 #### Rack YUL1-11 (3016.11)
 
@@ -79,18 +96,21 @@ s56-t14-sut1,up,t14,1n-tx2,ThunderX2-9980,N/A,10.30.51.71,10.30.50.71,3016.11,u4
 s41-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FQ,10.30.51.28,10.30.50.28,3016.11,u39-u40
 s40-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0HZ,10.30.51.30,10.30.50.30,3016.11,u37-u38
 s39-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0J2,10.30.51.29,10.30.50.29,3016.11,u35-u36
+s68-t38-sut1,up,t38,3n-icx,SYS-740GP-TNRT,???,10.30.51.78,10.30.50.78,3016.8,u31-u34
+s69-t38-sut2,up,t38,3n-icx,SYS-740GP-TNRT,???,10.30.51.79,10.30.50.79,3016.8,u27-u30
+s70-t38-tg1,up,t38,3n-icx,SYS-740GP-TNRT,???,10.30.51.80,10.30.50.80,3016.8,u23-u26
+s52-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.65,10.30.50.65,3016.11,u21-u22
+s51-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.66,10.30.50.66,3016.11,u21-u22
+s49-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.67,10.30.50.67,3016.11,u21-u22
+s50-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.68,10.30.50.68,3016.11,u21-u22
 s42-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FN,10.30.51.22,10.30.50.22,3016.11,u19-u20
 s43-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1H5,10.30.51.24,10.30.50.24,3016.11,u17-u18
 s44-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FS,10.30.51.25,10.30.50.25,3016.11,u15-u16
 s45-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FL,10.30.51.26,10.30.50.26,3016.11,u13-u14
 s55-t13-sut1,up,t13,1n-tx2,ThunderX2-9980,N/A,10.30.51.70,10.30.50.70,3016.11,u11-u12
-s52-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.65,10.30.50.65,3016.11,u9-u10
-s51-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.66,10.30.50.66,3016.11,u9-u10
-s49-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.67,10.30.50.67,3016.11,u9-u10
-s50-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.68,10.30.50.68,3016.11,u9-u10
-s62-t34-sut1,in-transit,t34,3n-alt,Ampere-TBD,TBD,10.30.51.72,10.30.50.72,3016.11,u7-8
-s63-t34-sut2,in-transit,t34,3n-alt,Ampere-TBD,TBD,10.30.51.73,10.30.50.73,3016.11,u5-6
-s64-t34-tg1,in-transit,t34,3n-alt,Intel-TBD,TBD,10.30.51.74,10.30.50.74,3016.11,u1-4
+s62-t34-sut1,in-transit,t34,3n-alt,Ampere-TBD,TBD,10.30.51.72,10.30.50.72,3016.11,u9-u10
+s63-t34-sut2,in-transit,t34,3n-alt,Ampere-TBD,TBD,10.30.51.73,10.30.50.73,3016.11,u7-u8
+s64-t34-tg1,in-transit,t34,3n-alt,Intel-TBD,TBD,10.30.51.74,10.30.50.74,3016.11,u3-u6
 
 #### Rack YUL1-12 (3016.12)
 
