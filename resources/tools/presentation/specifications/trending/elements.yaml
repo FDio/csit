@@ -1807,10 +1807,10 @@
         - "Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-mrr.64B-{core}-ethip4-ip4base-eth-2memif-1dcr-mrr"
       layout: "plot-cpta"
 
-    - title: "3n-tsh-xxv710-64b-{core}-memif-base-dpdk"
-      output-file-name: "3n-tsh-xxv710-64b-{core}-memif-base-dpdk"
+    - title: "3n-tsh-x520-64b-{core}-memif-base-dpdk"
+      output-file-name: "3n-tsh-x520-64b-{core}-memif-base-dpdk"
       data: "plot-performance-trending-vpp-3n-tsh"
-      core: ["2t1c", "4t2c", "8t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.Container Memif.10ge2p1x520-Eth-L2Xcbase-Eth-2Memif-1Dcr-mrr.64B-{core}-eth-l2xcbase-eth-2memif-1dcr-mrr"
         - "Tests.Vpp.Perf.Container Memif.10ge2p1x520-Eth-L2Xcbase-Eth-2Memif-1Lxc-mrr.64B-{core}-eth-l2xcbase-eth-2memif-1lxc-mrr"
