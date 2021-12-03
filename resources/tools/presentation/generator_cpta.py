@@ -13,7 +13,6 @@
 
 """Generation of Continuous Performance Trending and Analysis.
 """
-
 import re
 import logging
 import csv
@@ -21,6 +20,7 @@ import csv
 from collections import OrderedDict
 from datetime import datetime
 from copy import deepcopy
+from os import listdir
 
 import prettytable
 import plotly.offline as ploff
@@ -840,20 +840,61 @@ def _generate_all_charts(spec, input_data):
     if anomaly_classifications:
         result = u"PASS"
         for job_name, job_data in anomaly_classifications.items():
+            data = []
+            tb = job_name.split(u"-")[-2:]
+            tb = u"-".join(tb)
+            for file in listdir(f"{spec.cpta[u'output-file']}"):
+                if tb in file and u"performance-trending-dashboard" in \
+                        file and u"txt" in file:
+                    file_to_read = f"{spec.cpta[u'output-file']}/{file}"
+                    with open(f"{file_to_read}", u"rt") as input:
+                        data = data + input.readlines()
             file_name = \
                 f"{spec.cpta[u'output-file']}/regressions-{job_name}.txt"
             with open(file_name, u'w') as txt_file:
                 for test_name, classification in job_data.items():
                     if classification == u"regression":
-                        txt_file.write(test_name + u'\n')
+                        tst = test_name.split(" ")[1].split(".")[1:]
+                        nic = tst[0].split("-")[0]
+                        tst_name = f"{nic}-{tst[1]}"
+
+                        for line in data:
+                            if tst_name in line:
+                                line = line.replace(" ", "")
+                                trend = line.split("|")[2]
+                                number = line.split("|")[3]
+                                ltc = line.split("|")[4]
+                                txt_file.write(f"{tst_name} [ {trend}M | "
+                                               f"#{number} | {ltc}% ]\n")
+
                     if classification in (u"regression", u"outlier"):
                         result = u"FAIL"
+
+                txt_file.write(f"Legend:\n"
+                               f"[ throughput in Mpps | number of runs for last"
+                               f" trend | regression in percentage ]")
+
             file_name = \
                 f"{spec.cpta[u'output-file']}/progressions-{job_name}.txt"
             with open(file_name, u'w') as txt_file:
                 for test_name, classification in job_data.items():
                     if classification == u"progression":
-                        txt_file.write(test_name + u'\n')
+                        tst = test_name.split(" ")[1].split(".")[1:]
+                        nic = tst[0].split("-")[0]
+                        tst_name = f"{nic}-{tst[1]}"
+
+                        for line in data:
+                            if tst_name in line:
+                                line = line.replace(" ", "")
+                                trend = line.split("|")[2]
+                                number = line.split("|")[3]
+                                ltc = line.split("|")[4]
+                                txt_file.write(f"{tst_name} [ {trend}M | "
+                                               f"#{number} | {ltc}% ]\n")
+
+                txt_file.write(f"Legend:\n"
+                               f"[ throughput in Mpps | number of runs for last"
+                               f" trend | regression in percentage ]")
     else:
         result = u"FAIL"
 
