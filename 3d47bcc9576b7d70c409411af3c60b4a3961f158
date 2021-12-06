@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91e65d08_2a32313e",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-06T12:26:02Z",
+      "side": 1,
+      "message": "u\"\nApplies to each starting \".",
+      "range": {
+        "startLine": 844,
+        "startChar": 32,
+        "endLine": 844,
+        "endChar": 33
+      },
+      "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "909e5fc7_1d9ce1d5",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-06T12:26:02Z",
+      "side": 1,
+      "message": "u\"\nApplies to each starting u\u0027, unless inside f\"{}\".",
+      "range": {
+        "startLine": 845,
+        "startChar": 17,
+        "endLine": 845,
+        "endChar": 19
+      },
+      "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "199ea426_a661834a",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-06T12:26:02Z",
+      "side": 1,
+      "message": "Consider u\"rt\".",
+      "range": {
+        "startLine": 850,
+        "startChar": 44,
+        "endLine": 850,
+        "endChar": 45
+      },
+      "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "833d9917_1a49d6e1",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-06T12:26:02Z",
+      "side": 1,
+      "message": "U think f\"\" would look better.",
+      "range": {
+        "startLine": 867,
+        "startChar": 56,
+        "endLine": 867,
+        "endChar": 57
+      },
+      "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
