@@ -62,6 +62,10 @@ def replace_defensively(
     """
     found = whole.count(to_replace)
     if found != how_many:
+        print(f"to replace:")
+        print(to_replace)
+        print(f"whole:")
+        print(whole)
         raise ValueError(f"{in_filename}: {msg}")
     return whole.replace(to_replace, replace_with)
 
