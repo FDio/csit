@@ -426,12 +426,20 @@ class PLRsearch:
         Integrator assumes uniform distribution, but over different parameters.
         Weight and likelihood are used interchangeably here anyway.
 
-        Each trial has an offered load, a duration and a loss count.
-        Fitting function is used to compute the average loss per second.
-        Poisson distribution (with average loss per trial) is used
+        Each trial has an intended load, a sent count and a loss count
+        (probably counting unsent packets as loss, as they signal
+        the load is too high for the traffic generator).
+        Fitting function is used to compute the average loss rate.
+        Geometric distribution (with average loss per trial) is used
         to get likelihood of one trial result, the overal likelihood
         is a product of all trial likelihoods.
         As likelihoods can be extremely small, logarithms are tracked instead.
+
+        The current implementation does not use direct loss rate
+        from the fitting function, as the input and output units may not match
+        (e.g. intended load in TCP transactions, loss in packets).
+        Instead, the expected average loss is scaled from the number
+        of packets actually sent.
 
         TODO: Copy ReceiveRateMeasurement from MLRsearch.
 
