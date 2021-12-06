@@ -268,7 +268,7 @@ class Constants:
     # For some testbeds TG takes longer than usual to start sending traffic.
     # This constant [s] allows longer wait, without affecting
     # the approximate duration. For example, use 0.098 for AWS.
-    PERF_TRIAL_STL_DELAY = get_float_from_env(u"PERF_TRIAL_STL_DELAY", 0.0)
+    PERF_TRIAL_STL_DELAY = get_float_from_env(u"PERF_TRIAL_STL_DELAY", 0.06)
 
     # ASTF usually needs a different value for the delay.
     PERF_TRIAL_ASTF_DELAY = get_float_from_env(
