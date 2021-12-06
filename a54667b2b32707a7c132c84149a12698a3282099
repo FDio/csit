@@ -22,6 +22,30 @@
       "revId": "a54667b2b32707a7c132c84149a12698a3282099",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4817071a_4fa94e7c",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-12-06T06:42:32Z",
+      "side": 1,
+      "message": "It is shared TG, most probably we will be tuning NIC allocations per need basis. I will rename F4 to shared TG.\nFor shared we need to balance NUMA as we need to run TG on both numas",
+      "parentUuid": "176d2734_495f067f",
+      "range": {
+        "startLine": 880,
+        "startChar": 0,
+        "endLine": 899,
+        "endChar": 42
+      },
+      "revId": "a54667b2b32707a7c132c84149a12698a3282099",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
