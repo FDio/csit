@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6e9f43ff_2cb772b4",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2021-12-07T09:19:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91e65d08_2a32313e",
+      "range": {
+        "startLine": 844,
+        "startChar": 32,
+        "endLine": 844,
+        "endChar": 33
+      },
+      "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "909e5fc7_1d9ce1d5",
         "filename": "resources/tools/presentation/generator_cpta.py",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db041c48_fe7c7270",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2021-12-07T09:19:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "909e5fc7_1d9ce1d5",
+      "range": {
+        "startLine": 845,
+        "startChar": 17,
+        "endLine": 845,
+        "endChar": 19
+      },
+      "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "d0853c77_65a31427",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2021-12-07T09:19:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "199ea426_a661834a",
+      "range": {
+        "startLine": 850,
+        "startChar": 44,
+        "endLine": 850,
+        "endChar": 45
+      },
+      "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "833d9917_1a49d6e1",
         "filename": "resources/tools/presentation/generator_cpta.py",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cde4cdae_569f5fbe",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2021-12-07T09:19:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "833d9917_1a49d6e1",
+      "range": {
+        "startLine": 867,
+        "startChar": 56,
+        "endLine": 867,
+        "endChar": 57
+      },
+      "revId": "3d47bcc9576b7d70c409411af3c60b4a3961f158",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
