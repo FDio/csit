@@ -209,7 +209,7 @@ class PLRsearch:
                     1.0 - self.packet_loss_ratio_target))
             else:
                 next_load = (avg1 + avg2) / 2.0
-                if zeros > 0:
+                if False:  # zeros > 0:
                     if lossy_loads[0] > next_load:
                         diminisher = math.pow(2.0, 1 - zeros)
                         next_load = lossy_loads[0] + diminisher * next_load

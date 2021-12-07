@@ -77,12 +77,12 @@
 | | ... | traffic_profile=${traffic_profile}
 | | ... | minimum_transmit_rate=${min_rate_soft}
 | | ... | maximum_transmit_rate=${max_rate}
-| | ... | plr_target=${1e-7}
-| | ... | tdpt=${0.1}
-| | ... | initial_count=${50}
+| | ... | plr_target=${1e-12}
+| | ... | tdpt=${0.0625}
+| | ... | initial_count=${64}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
-| | ... | timeout=${1800.0}
+| | ... | timeout=${7200.0}
 | | ... | trace_enabled=${False}
 | | ... | traffic_directions=${traffic_directions}
 | | ... | transaction_scale=${transaction_scale}
