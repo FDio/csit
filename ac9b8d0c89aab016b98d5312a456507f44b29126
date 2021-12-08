@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73ea2ad6_6ebcf05f",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-08T10:29:54Z",
+      "side": 1,
+      "message": "Lines 844 and 845 can be done in a single line.",
+      "range": {
+        "startLine": 844,
+        "startChar": 15,
+        "endLine": 844,
+        "endChar": 16
+      },
+      "revId": "ac9b8d0c89aab016b98d5312a456507f44b29126",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11310271_0a917790",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-08T10:29:54Z",
+      "side": 1,
+      "message": "\"current trend\" or \"last trend\". Calling MRR result a throughput is confusing for people used to RFC 2544.\n\nAlso, some tests use Mcps as their unit.",
+      "range": {
+        "startLine": 874,
+        "startChar": 35,
+        "endLine": 874,
+        "endChar": 45
+      },
+      "revId": "ac9b8d0c89aab016b98d5312a456507f44b29126",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a585e41_34715d94",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 882,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-08T10:29:54Z",
+      "side": 1,
+      "message": "Some code duplicaton, but not sure if it is worth moving to a function.",
+      "range": {
+        "startLine": 882,
+        "startChar": 24,
+        "endLine": 882,
+        "endChar": 25
+      },
+      "revId": "ac9b8d0c89aab016b98d5312a456507f44b29126",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08a5a8fe_d7866e6f",
+        "filename": "resources/tools/presentation/generator_cpta.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-08T10:29:54Z",
+      "side": 1,
+      "message": "But this string can definitely be defined just once and reused here.",
+      "range": {
+        "startLine": 895,
+        "startChar": 32,
+        "endLine": 895,
+        "endChar": 33
+      },
+      "revId": "ac9b8d0c89aab016b98d5312a456507f44b29126",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
