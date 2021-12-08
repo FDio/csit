@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69648dc3_2725e7ad",
+        "filename": "docs/model/current/schema/test_case.info.schema.json",
+        "patchSetId": 57
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-12-08T15:42:35Z",
+      "side": 1,
+      "message": "remove you personal notes from this document",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 85
+      },
+      "revId": "db5ed28b316b7212582f97d2d99bf6ff5f44c165",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
