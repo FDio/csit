@@ -1412,10 +1412,10 @@
 
   # 3n-icx
 
-#   vpp-3n-icx-curr-iter:
-#     intel-csit-vpp-perf-report-iterative-2101-3n-icx:
-#       - 10  # rls2106.rel NDRPDR iter env 7
-#
-#   vpp-3n-icx-curr-iter-best:
-#     intel-csit-vpp-perf-report-iterative-2101-3n-icx:
-#       - 10  # rls2106.rel NDRPDR iter env 7
+  vpp-3n-icx-curr-iter:
+    intel-csit-vpp-perf-report-iterative-2110-3n-icx:
+      - 1   # rls2110.rel NDRPDR iter env 8
+
+  vpp-3n-icx-curr-iter-best:
+    intel-csit-vpp-perf-report-iterative-2101-3n-icx:
+      - 1   # rls2110.rel NDRPDR iter env 8
