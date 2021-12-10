@@ -22,6 +22,29 @@
       "revId": "db5ed28b316b7212582f97d2d99bf6ff5f44c165",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f0af7d9_a8d8c2c4",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 57
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2021-12-10T14:18:13Z",
+      "side": 1,
+      "message": "this must be separate entry.sh function not in \"run_pybot\"",
+      "range": {
+        "startLine": 740,
+        "startChar": 0,
+        "endLine": 761,
+        "endChar": 15
+      },
+      "revId": "db5ed28b316b7212582f97d2d99bf6ff5f44c165",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
