@@ -37,7 +37,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4vxlan-l2xcbase.html"></iframe>
+    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4gtpusw-ip4base.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4vxlan-l2xcbase}
-            \label{fig:hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4vxlan-l2xcbase}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4gtpusw-ip4base}
+            \label{fig:hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4gtpusw-ip4base}
     \end{figure}
 
 .. raw:: latex
@@ -68,4 +68,47 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4vxlan-l2bdbasemaclrn}
             \label{fig:hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4vxlan-l2bdbasemaclrn}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="3" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4vxlan-l2xcbase.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4vxlan-l2xcbase}
+            \label{fig:hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-avf-ethip4vxlan-l2xcbase}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t1c-ip4tunnel-base-dpdk
+----------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="4" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-ethip4vxlan-l2bdbasemaclrn.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-ethip4vxlan-l2bdbasemaclrn}
+            \label{fig:hdrh-lat-percentile-3n-icx-100ge2p1e810cq-64b-2t1c-ethip4vxlan-l2bdbasemaclrn}
     \end{figure}
