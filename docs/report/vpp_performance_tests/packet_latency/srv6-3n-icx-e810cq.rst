@@ -70,22 +70,23 @@
             \label{fig:hdrh-lat-percentile-3n-icx-100ge2p1e810cq-78b-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids}
     \end{figure}
 
-.. raw:: latex
+..
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-.. raw:: html
+    .. raw:: html
 
-    <center>
-    <iframe id="3" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-100ge2p1e810cq-78b-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="3" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-100ge2p1e810cq-78b-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-100ge2p1e810cq-78b-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps}
-            \label{fig:hdrh-lat-percentile-3n-icx-100ge2p1e810cq-78b-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-100ge2p1e810cq-78b-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps}
+                \label{fig:hdrh-lat-percentile-3n-icx-100ge2p1e810cq-78b-2t1c-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps}
+        \end{figure}
