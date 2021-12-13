@@ -59,7 +59,7 @@ generate_tests || die
 archive_tests || die
 reserve_and_cleanup_testbed || die
 select_tags || die
-compose_pybot_arguments || die
+compose_robot_arguments || die
 # Support for interleaved measurements is kept for future.
 iterations=1 # 8
 for ((iter=0; iter<iterations; iter++)); do
@@ -71,16 +71,16 @@ for ((iter=0; iter<iterations; iter++)); do
     # Testing current first. Good for early failures or for API changes.
     select_build "build_current" || die
     check_download_dir || die
-    run_pybot || die
+    run_robot || die
     archive_parse_test_results "csit_current/${iter}" || die
-    die_on_pybot_error || die
+    die_on_robot_error || die
     # TODO: Use less heavy way to avoid apt remove failures.
     ansible_playbook "cleanup" || die
     select_build "build_parent" || die
     check_download_dir || die
-    run_pybot || die
+    run_robot || die
     archive_parse_test_results "csit_parent/${iter}" || die
-    die_on_pybot_error || die
+    die_on_robot_error || die
 done
 untrap_and_unreserve_testbed || die
 compare_test_results  # The error code becomes this script's error code.
