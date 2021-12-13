@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8a69ed54_a5a312eb",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 59
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-13T18:41:24Z",
+      "side": 1,
+      "message": "I thought it was the same principle as dropping the da2 part from Intel-X520-DA2.",
+      "parentUuid": "317c97cf_36c35b44",
+      "range": {
+        "startLine": 347,
+        "startChar": 29,
+        "endLine": 347,
+        "endChar": 33
+      },
+      "revId": "00846ab3da4b2b04f22c9493de8750496b54b89b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "92c2e6da_7ca1a698",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 59
