@@ -73,8 +73,8 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [CFG] Each DUT runs L2BD switching config and uses ${phy_cores} \
-| | ... | physical core(s) for worker threads.
+| | ... | - **[Cfg]** Each DUT runs L2BD switching config and uses \
+| | ... | ${phy_cores} physical core(s) for worker threads.
 | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
 | |
 | | ... | *Arguments:*

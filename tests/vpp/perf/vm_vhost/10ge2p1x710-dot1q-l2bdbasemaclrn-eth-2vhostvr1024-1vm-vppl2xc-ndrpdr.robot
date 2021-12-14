@@ -36,7 +36,7 @@
 | ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for L2 switching of IPv4. \
 | ... | IEEE 802.1Q tagging is applied on link between DUT1 and DUT2.
 | ... |
-| ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with L2 
+| ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with L2 \
 | ... | bridge-\
 | ... | domain and MAC learning enabled. Qemu VNFs are \
 | ... | connected to VPP via vhost-user interfaces. Guest is running VPP l2xc \
