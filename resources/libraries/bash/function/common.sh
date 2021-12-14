@@ -147,7 +147,8 @@ function archive_tests () {
 
     set -exuo pipefail
 
-    tar c "${GENERATED_DIR}/tests" | xz -3 > "${ARCHIVE_DIR}/tests.tar.xz" || {
+    filename="generated_robot_files.tar.xz"
+    tar c "${GENERATED_DIR}/tests" | xz -3 > "${ARCHIVE_DIR}/${filename}" || {
         die "Error creating archive of generated tests."
     }
 }
@@ -713,6 +714,8 @@ function run_pybot () {
 
     # Run pybot with options based on input variables. Create output_info.xml
     #
+    # Also, .info.json files are moved into an archive to speed up PAL.
+    #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # - ARCHIVE_DIR - Path to store robot result files in.
@@ -735,7 +738,31 @@ function run_pybot () {
     PYBOT_EXIT_STATUS="$?"
     set -e
 
+    # Compress raw json outputs, if any.
+    pushd "${ARCHIVE_DIR}" || die
+    if [ -d "tests" ]; then
+        # Use deterministic order.
+        options+=("--sort=name")
+        # We are keeping info outputs where they are.
+        # Assuming we want to move anything but info files (and dirs).
+        options+=("--exclude=*.info.json")
+        # There may be other unforeseen errors,
+        # we still want to execute subsequent commands, so disable set -e.
+        set +e
+        tar cvf "tests_output_raw.tar" "${options[@]}" "tests"
+        # If compression fails, it leaves an uncompressed .tar,
+        # we still want to archive that to investigate why compression failed.
+        time xz -9e "tests_output_raw.tar"
+        # Tar can remove when archiving, but chokes (not deterministically)
+        # on attempting to remove dirs (not empty as info files are there).
+        # So we need to delete the raw files manually.
+        find "tests" -type f -name "*.raw.json" -delete
+        set -e
+    fi
+    popd || die
+
     # Generate INFO level output_info.xml for post-processing.
+    # This comes last, as it is slowest, and sometimes users abort here.
     all_options=("--loglevel" "INFO")
     all_options+=("--log" "none")
     all_options+=("--report" "none")

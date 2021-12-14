@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Copyright (c) 2021 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,6 +11,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from resources.libraries.python.autogen.Regenerator import Regenerator
+"""Utility to convert from .schema.yaml to .schema.json.
 
-Regenerator().regenerate_glob(u"*.robot")
+TODO: Read the input file name from command line argument.
+"""
+
+import glob
+import json
+import yaml
+
+
+for filename in glob.glob(u"*.schema.yaml"):
+    name = filename[:-5]
+    with open(f"{name}.yaml", u"rt") as fin:
+        data = yaml.load(fin.read())
+    with open(f"{name}.json", u"wt") as fout:
+        json.dump(data, fout, indent=2)
