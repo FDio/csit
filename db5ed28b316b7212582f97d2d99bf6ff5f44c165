@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "786b4b61_91e4b5b3",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 57
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-14T09:15:53Z",
+      "side": 1,
+      "message": "I will use a longer name.",
+      "parentUuid": "274126aa_0813d1b2",
+      "range": {
+        "startLine": 754,
+        "startChar": 21,
+        "endLine": 754,
+        "endChar": 30
+      },
+      "revId": "db5ed28b316b7212582f97d2d99bf6ff5f44c165",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0f0af7d9_a8d8c2c4",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 57
@@ -107,6 +131,30 @@
       "side": 1,
       "message": "I do not understand what it makes so hard to move it to function. ARCHIVE is global variable,, others are local variables. there is no dependency",
       "parentUuid": "5cdf1f3f_b9516c20",
+      "range": {
+        "startLine": 740,
+        "startChar": 0,
+        "endLine": 761,
+        "endChar": 15
+      },
+      "revId": "db5ed28b316b7212582f97d2d99bf6ff5f44c165",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "80e1cb2d_d4f4547e",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 57
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2021-12-14T09:15:53Z",
+      "side": 1,
+      "message": "Rebot (lines 763-770) makes it hard.\nRebot is not even needed for every job (e.g. for csit-verify), but hiding raw outputs is needed for every job.\nIf rebot block stays here, tar should also stay here. If rebot block moves, tar block can move with it.\n[0] attempts to move rebot.",
+      "parentUuid": "b88c11a7_52814ba3",
       "range": {
         "startLine": 740,
         "startChar": 0,
