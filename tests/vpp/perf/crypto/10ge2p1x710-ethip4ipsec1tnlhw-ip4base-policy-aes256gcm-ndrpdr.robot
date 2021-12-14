@@ -40,7 +40,6 @@
 | ... | multiple IPsec tunnels between them. DUTs get IPv4 traffic from TG, \
 | ... | encrypt it and send to another DUT, where packets are decrypted and \
 | ... | sent back to TG.
-| ... | sent back to TG.
 | ... |
 | ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
 | ... | Drop Rate) with zero packet loss tolerance and throughput PDR \
