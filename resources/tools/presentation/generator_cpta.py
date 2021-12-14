@@ -855,9 +855,16 @@ def _generate_all_charts(spec, input_data):
             with open(file_name, u'w') as txt_file:
                 for test_name, classification in job_data.items():
                     if classification == u"regression":
-                        tst = test_name.split(" ")[1].split(".")[1:]
-                        nic = tst[0].split("-")[0]
-                        tst_name = f"{nic}-{tst[1]}"
+                        if u"2n" in test_name:
+                            test_name = test_name.split("-", 2)
+                            tst = test_name[2].split(".")[-1]
+                            nic = test_name[1]
+                            tst_name = f"{nic}-{tst}"
+                        else:
+                            test_name = test_name.split("-", 1)
+                            tst = test_name[1].split(".")[-1]
+                            nic = test_name[0].split(".")[-1]
+                            tst_name = f"{nic}-{tst}"
 
                         for line in data:
                             if tst_name in line:
@@ -878,9 +885,16 @@ def _generate_all_charts(spec, input_data):
             with open(file_name, u'w') as txt_file:
                 for test_name, classification in job_data.items():
                     if classification == u"progression":
-                        tst = test_name.split(" ")[1].split(".")[1:]
-                        nic = tst[0].split("-")[0]
-                        tst_name = f"{nic}-{tst[1]}"
+                        if u"2n" in test_name:
+                            test_name = test_name.split("-", 2)
+                            tst = test_name[2].split(".")[-1]
+                            nic = test_name[1]
+                            tst_name = f"{nic}-{tst}"
+                        else:
+                            test_name = test_name.split("-", 1)
+                            tst = test_name[1].split(".")[-1]
+                            nic = test_name[0].split(".")[-1]
+                            tst_name = f"{nic}-{tst}"
 
                         for line in data:
                             if tst_name in line:
