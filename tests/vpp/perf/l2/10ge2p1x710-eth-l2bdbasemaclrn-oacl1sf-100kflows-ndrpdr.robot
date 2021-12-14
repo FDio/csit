@@ -86,7 +86,7 @@
 
 *** Keywords ***
 | Local Template
-| | [Documentation] | FIXME.
+| | [Documentation]
 | | ... | - **[Cfg]** DUT runs IPv4 routing config. \
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
