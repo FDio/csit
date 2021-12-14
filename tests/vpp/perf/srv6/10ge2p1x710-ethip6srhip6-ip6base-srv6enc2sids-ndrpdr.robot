@@ -96,8 +96,8 @@
 | | [Documentation]
 | | ... | - **[Cfg]** DUT1 and DUT2 are configured with IPv6 \
 | | ... | routing and static route, SR policy and steering policy for one \
-| | ... | direction and two SR behaviours (functions) - End and End.DX6 - for \
-| | ... | other direction.
+| | ... | direction and two SR behaviours (functions) - End and End. DX6 - for \
+| | ... | other direction. \
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
 | |

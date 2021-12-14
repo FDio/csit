@@ -34,7 +34,7 @@
 | ... |
 | ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for L2 switching of IPv4.
 | ... |
-| ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with L2 
+| ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with L2 \
 | ... | bridge-domain and MAC learning enabled. Qemu VNFs are \
 | ... | connected to VPP via vhost-user interfaces. Guest is running VPP l2xc \
 | ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
