@@ -878,7 +878,7 @@ def _generate_all_charts(spec, input_data):
                     if classification in (u"regression", u"outlier"):
                         result = u"FAIL"
 
-                txt_file.write(f"{legend_str}regression in percentage ]")
+            txt_file.write(f"\n{legend_str}regression in percentage ]")
 
             file_name = \
                 f"{spec.cpta[u'output-file']}/progressions-{job_name}.txt"
@@ -905,7 +905,7 @@ def _generate_all_charts(spec, input_data):
                                 txt_file.write(f"{tst_name} [ {trend}M | "
                                                f"#{number} | {ltc}% ]\n")
 
-                txt_file.write(f"{legend_str}progression in percentage ]")
+            txt_file.write(f"\n{legend_str}progression in percentage ]")
     else:
         result = u"FAIL"
 
