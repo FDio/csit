@@ -135,7 +135,7 @@ RUN pip3 install \
         Pygments==2.4.2 \
         PyNaCl==1.3.0 \
         pyparsing==2.4.4 \
-        python-dateutil==2.8.1 \
+        python-dateutil==2.8.2 \
         pytz==2019.3 \
         retrying==1.3.3 \
         six==1.13.0 \
