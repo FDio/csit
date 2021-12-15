@@ -258,8 +258,16 @@ function common_dirs () {
 }
 
 
-function compose_robot_arguments () {
+function compose_robot_options () {
 
+    # Prepare robot arguments before each call of robot.
+    #
+    # Most of the values are constant, but some entry scripts
+    # perform repeated reservations, so topology file path may be changing.
+    #
+    # Entry scripts do not need to call this directly,
+    # they can rely on run_robot_safely.
+    #
     # Variables read:
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - DUT - CSIT test/ subdirectory, set while processing tags.
@@ -268,8 +276,9 @@ function compose_robot_arguments () {
     # - TEST_CODE - The test selection string from environment or argument.
     # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
     # Variables set:
-    # - ROBOT_ARGS - String holding part of all arguments for robot.
     # - EXPANDED_TAGS - Array of strings robot arguments compiled from tags.
+    # - ROBOT_ARGS - String holding part of all arguments for robot.
+    # - ROBOT_OPTIONS - All of robot options, not counting tests dir argument.
 
     set -exuo pipefail
 
@@ -304,6 +313,10 @@ function compose_robot_arguments () {
     if [[ ${SELECTION_MODE} == "--test" ]]; then
         EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}")
     fi
+
+    ROBOT_OPTIONS=("--outputdir" "${ARCHIVE_DIR}" "${ROBOT_ARGS[@]}")
+    ROBOT_OPTIONS+=("--noncritical" "EXPECTED_FAILING")
+    ROBOT_OPTIONS+=("${EXPANDED_TAGS[@]}")
 }
 
 
@@ -385,7 +398,7 @@ function generate_tests () {
     # within any subdirectory after copying.
 
     # This is a separate function, because this code is called
-    # both by autogen checker and entries calling run_robot.
+    # both by autogen checker and entries calling run_robot_safely.
 
     # Directories read:
     # - ${CSIT_DIR}/tests - Used as templates for the generated tests.
@@ -632,6 +645,26 @@ function prepare_topology () {
 }
 
 
+function process_robot_outputs () {
+
+    # Generate INFO level output_info.xml suitable for PAL.
+    #
+    # It is assumed that the cwd is set to CSIT_DIR already.
+    #
+    # Variables read:
+    # - ARCHIVE_DIR - Both input and output files for processing are there.
+
+    all_options=("--loglevel" "INFO")
+    all_options+=("--log" "none")
+    all_options+=("--report" "none")
+    all_options+=("--output" "${ARCHIVE_DIR}/output_info.xml")
+    all_options+=("${ARCHIVE_DIR}/output.xml")
+
+    # Continue even if rebot fails.
+    rebot "${all_options[@]}" || true
+}
+
+
 function reserve_and_cleanup_testbed () {
 
     # Reserve physical testbed, perform cleanup, register trap to unreserve.
@@ -709,40 +742,61 @@ function reserve_and_cleanup_testbed () {
 }
 
 
-function run_robot () {
+function run_robot_only () {
 
-    # Run robot with options based on input variables. Create output_info.xml
+    # Run robot with options based on input variables.
+    #
+    # Callers should not call this directly, as required steps may be missed.
+    # Call run_robot_safely instead.
+    #
+    # It is assumed that the cwd is set to CSIT_DIR already.
+    #
+    # Variables read:
+    # - ROBOT_OPTIONS - As set by compose_robot_arguments function.
+    # - GENERATED_DIR - Tests are assumed to be generated under there.
+    # Variables set:
+    # - ROBOT_EXIT_STATUS - Exit status of most recent robot invocation.
+    # Directories updated:
+    # - ${ARCHIVE_DIR} - Primary robot output files are (re)written there.
+
+    set -exuo pipefail
+
+    # Prevent entry script from failing before postprocessing is attempted.
+    set +e
+    robot "${ROBOT_OPTIONS[@]}" "${GENERATED_DIR}/tests/"
+    ROBOT_EXIT_STATUS="$?"
+    set -e
+}
+
+
+function run_robot_safely () {
+
+    # Run pybot with options based on input variables. Create output_info.xml
+    #
+    # This is a medium level keyword, combining lower level keywords
+    # we do not trust entry scripts to always call correctly.
     #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # - ARCHIVE_DIR - Path to store robot result files in.
-    # - ROBOT_ARGS, EXPANDED_TAGS - See compose_robot_arguments function.
+    # - PYBOT_ARGS, EXPANDED_TAGS - See compose_pybot_arguments.sh
     # - GENERATED_DIR - Tests are assumed to be generated under there.
     # Variables set:
-    # - ROBOT_EXIT_STATUS - Exit status of most recent robot invocation.
+    # - PYBOT_EXIT_STATUS - Exit status of most recent pybot invocation.
+    # Variables set temporarily (not visible unless bad failure happens):
+    # - ROBOT_OPTIONS - Full list of options for robot invocation.
     # Functions called:
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
-    all_options=("--outputdir" "${ARCHIVE_DIR}" "${ROBOT_ARGS[@]}")
-    all_options+=("--noncritical" "EXPECTED_FAILING")
-    all_options+=("${EXPANDED_TAGS[@]}")
-
+    compose_robot_options || die
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
-    set +e
-    robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
-    ROBOT_EXIT_STATUS="$?"
-    set -e
-
-    # Generate INFO level output_info.xml for post-processing.
-    all_options=("--loglevel" "INFO")
-    all_options+=("--log" "none")
-    all_options+=("--report" "none")
-    all_options+=("--output" "${ARCHIVE_DIR}/output_info.xml")
-    all_options+=("${ARCHIVE_DIR}/output.xml")
-    rebot "${all_options[@]}" || true
-    popd || die "Change directory operation failed."
+    # Always attempt to process outputs, and continue even if that fails.
+    run_robot_only || true
+    unset ROBOT_OPTIONS || true
+    process_robot_outputs || true
+    popd || die "Popd failed."
 }
 
 

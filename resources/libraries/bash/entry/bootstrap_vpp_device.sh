@@ -45,8 +45,7 @@ prepare_topology || die
 select_topology || die
 activate_docker_topology || die
 select_tags || die
-compose_robot_arguments || die
 set_environment_variables || die
-run_robot || die
+run_robot_safely || die
 move_archives || die
 die_on_robot_error || die
