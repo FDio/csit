@@ -159,7 +159,7 @@ function check_download_dir () {
     # Fail if there are no files visible in ${DOWNLOAD_DIR}.
     #
     # Variables read:
-    # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
+    # - DOWNLOAD_DIR - Path to directory robot takes the build to test from.
     # Directories read:
     # - ${DOWNLOAD_DIR} - Has to be non-empty to proceed.
     # Functions called:
@@ -259,7 +259,7 @@ function common_dirs () {
 }
 
 
-function compose_pybot_arguments () {
+function compose_robot_arguments () {
 
     # Variables read:
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
@@ -269,21 +269,21 @@ function compose_pybot_arguments () {
     # - TEST_CODE - The test selection string from environment or argument.
     # - SELECTION_MODE - Selection criteria [test, suite, include, exclude].
     # Variables set:
-    # - PYBOT_ARGS - String holding part of all arguments for pybot.
-    # - EXPANDED_TAGS - Array of strings pybot arguments compiled from tags.
+    # - ROBOT_ARGS - String holding part of all arguments for robot.
+    # - EXPANDED_TAGS - Array of strings robot arguments compiled from tags.
 
     set -exuo pipefail
 
     # No explicit check needed with "set -u".
-    PYBOT_ARGS=("--loglevel" "TRACE")
-    PYBOT_ARGS+=("--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
+    ROBOT_ARGS=("--loglevel" "TRACE")
+    ROBOT_ARGS+=("--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
 
     case "${TEST_CODE}" in
         *"device"*)
-            PYBOT_ARGS+=("--suite" "tests.${DUT}.device")
+            ROBOT_ARGS+=("--suite" "tests.${DUT}.device")
             ;;
         *"perf"*)
-            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
+            ROBOT_ARGS+=("--suite" "tests.${DUT}.perf")
             ;;
         *)
             die "Unknown specification: ${TEST_CODE}"
@@ -361,19 +361,19 @@ function die () {
 }
 
 
-function die_on_pybot_error () {
+function die_on_robot_error () {
 
     # Source this fragment if you want to abort on any failed test case.
     #
     # Variables read:
-    # - PYBOT_EXIT_STATUS - Set by a pybot running fragment.
+    # - ROBOT_EXIT_STATUS - Set by a robot running fragment.
     # Functions called:
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
-    if [[ "${PYBOT_EXIT_STATUS}" != "0" ]]; then
-        die "Test failures are present!" "${PYBOT_EXIT_STATUS}"
+    if [[ "${ROBOT_EXIT_STATUS}" != "0" ]]; then
+        die "Test failures are present!" "${ROBOT_EXIT_STATUS}"
     fi
 }
 
@@ -386,7 +386,7 @@ function generate_tests () {
     # within any subdirectory after copying.
 
     # This is a separate function, because this code is called
-    # both by autogen checker and entries calling run_pybot.
+    # both by autogen checker and entries calling run_robot.
 
     # Directories read:
     # - ${CSIT_DIR}/tests - Used as templates for the generated tests.
@@ -710,32 +710,32 @@ function reserve_and_cleanup_testbed () {
 }
 
 
-function run_pybot () {
+function run_robot () {
 
-    # Run pybot with options based on input variables. Create output_info.xml
+    # Run robot with options based on input variables. Create output_info.xml
     #
     # Also, .info.json files are moved into an archive to speed up PAL.
     #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # - ARCHIVE_DIR - Path to store robot result files in.
-    # - PYBOT_ARGS, EXPANDED_TAGS - See compose_pybot_arguments.sh
+    # - ROBOT_ARGS, EXPANDED_TAGS - See compose_robot_arguments function.
     # - GENERATED_DIR - Tests are assumed to be generated under there.
     # Variables set:
-    # - PYBOT_EXIT_STATUS - Exit status of most recent pybot invocation.
+    # - ROBOT_EXIT_STATUS - Exit status of most recent robot invocation.
     # Functions called:
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
 
-    all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
+    all_options=("--outputdir" "${ARCHIVE_DIR}" "${ROBOT_ARGS[@]}")
     all_options+=("--noncritical" "EXPECTED_FAILING")
     all_options+=("${EXPANDED_TAGS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
     robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
-    PYBOT_EXIT_STATUS="$?"
+    ROBOT_EXIT_STATUS="$?"
     set -e
 
     # Compress raw json outputs, if any.

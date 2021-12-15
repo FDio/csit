@@ -55,7 +55,7 @@ prepare_topology || die
 select_topology || die
 activate_docker_topology || die
 select_tags || die
-compose_pybot_arguments || die
-run_pybot || die
+compose_robot_arguments || die
+run_robot || die
 move_archives || die
-die_on_pybot_error || die
+die_on_robot_error || die

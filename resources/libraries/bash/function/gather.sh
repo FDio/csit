@@ -26,7 +26,7 @@ function gather_build () {
 
     # Variables read:
     # - TEST_CODE - String affecting test selection, usually jenkins job name.
-    # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
+    # - DOWNLOAD_DIR - Path to directory robot takes the build to test from.
     # Variables set:
     # - DUT - CSIT test/ subdirectory containing suites to execute.
     # Directories updated:
@@ -130,7 +130,7 @@ function gather_vpp () {
     # Variables read:
     # - BASH_FUNCTION_DIR - Bash directory with functions.
     # - TEST_CODE - The test selection string from environment or argument.
-    # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
+    # - DOWNLOAD_DIR - Path to directory robot takes the build to test from.
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # Variables set:
     # - VPP_VERSION - VPP stable version under test.
