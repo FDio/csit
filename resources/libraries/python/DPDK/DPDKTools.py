@@ -80,6 +80,25 @@ class DPDKTools:
             exec_cmd_no_error(node, command, timeout=1200, message=message)
 
     @staticmethod
+    def get_dpdk_version(node):
+        """Log and return the installed DPDK version.
+
+        The logged string ends with newline, the returned one is stripped.
+
+        :param node: Node from topology file.
+        :type node: dict
+        :returns: Stripped DPDK version string.
+        :rtype: str
+        :raises RuntimeError: If command returns nonzero return code.
+        """
+        command = f"cat {Constants.REMOTE_FW_DIR}/dpdk*/VERSION"
+        message = u"Get DPDK version failed!"
+        stdout, _ = exec_cmd_no_error(node, command, message=message)
+        # TODO: PAL should already tolerate stripped value in the log.
+        logger.info(f"DPDK Version: {stdout}")
+        return stdout.strip()
+
+    @staticmethod
     def install_dpdk_framework(node):
         """
         Prepare the DPDK framework on the DUT node.
@@ -92,12 +111,7 @@ class DPDKTools:
             f"/entry/install_dpdk.sh"
         message = u"Install the DPDK failed!"
         exec_cmd_no_error(node, command, timeout=3600, message=message)
-
-        command = f"cat {Constants.REMOTE_FW_DIR}/dpdk*/VERSION"
-        message = u"Get DPDK version failed!"
-        stdout, _ = exec_cmd_no_error(node, command, message=message)
-
-        logger.info(f"DPDK Version: {stdout}")
+        DPDKTools.get_dpdk_version(node)
 
     @staticmethod
     def install_dpdk_framework_on_all_duts(nodes):

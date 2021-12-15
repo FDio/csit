@@ -120,7 +120,10 @@ class Constants:
     """Constants used in CSIT."""
 
     # Version for CSIT data model. See docs/model/.
-    MODEL_VERSION = u"0.1.0"
+    MODEL_VERSION = u"1.0.0"
+
+    # Global off-switch in case JSON export is large or slow.
+    EXPORT_JSON = get_optimistic_bool_from_env(u"EXPORT_JSON")
 
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = u"/tmp/openvpp-testing"
@@ -332,6 +335,18 @@ class Constants:
         u"Intel-E810CQ": u"100ge2p1e810cq",
         u"Amazon-Nitro-50G": u"50ge1p1ENA",
         u"Mellanox-CX556A": u"100ge2p1cx556a",
+    }
+
+    # Shortened lowercase NIC model name, useful for presentation.
+    NIC_CODE_TO_SHORT_NAME = {
+        u"10ge2p1x520": u"x520",
+        u"10ge2p1x553": u"x553",
+        u"10ge2p1x710": u"x710",
+        u"40ge2p1xl710": u"xl710",
+        u"25ge2p1xxv710": u"xxv710",
+        u"100ge2p1e810cq": u"e810cq",
+        u"50ge1p1ENA": u"ena",
+        u"100ge2p1cx556a": u"cx556a",
     }
 
     # Not each driver is supported by each NIC.
