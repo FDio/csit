@@ -21,6 +21,7 @@
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
+| Test Setup | Start Test Export
 | Test Teardown | Tear down test raw | performance
 |
 | Test Template | Local Template

@@ -21,13 +21,14 @@
 *** Keywords ***
 | Setup test
 | | [Documentation]
-| | ... | Common test setup for tests.
+| | ... | Common test setup for VPP tests.
 | |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional setup action. Type: list
 | |
 | | [Arguments] | @{actions}
 | |
+| | Start Test Export
 | | Reset PAPI History On All DUTs | ${nodes}
 | | ${int} = | Set Variable If | ${nic_vfs} > 0 | prevf | pf
 | | Create base startup configuration of VPP on all DUTs
