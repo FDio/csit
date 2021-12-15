@@ -37,10 +37,10 @@ class DpdkUtil:
         )
         # Add a PCI device in white list.
         options.add_with_value_from_dict(
-            u"w", u"eal_pci_whitelist0", kwargs
+            u"a", u"eal_pci_whitelist0", kwargs
         )
         options.add_with_value_from_dict(
-            u"w", u"eal_pci_whitelist1", kwargs
+            u"a", u"eal_pci_whitelist1", kwargs
         )
         # Load an external driver. Multiple -d options are allowed.
         options.add_with_value_if_from_dict(
