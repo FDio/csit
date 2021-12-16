@@ -207,6 +207,37 @@ allOf:
                     required:
                     -   type
                     -   critical_rate
+                -   description: >-
+                        Result type RECONF case.
+                    additionalProperties: false
+                    properties:
+                        type:
+                            const: reconf
+                        packet_rate:
+                            description: >-
+                                Load used when reconfiguring,
+                                found as NDR lower bound.
+                                This is aggregate (bidirectional) rate.
+                                Note that packets the Traffic Generator
+                                did not send are also counted as lost packets.
+                            $ref: "#/$defs/macros/rate_with_bandwidth"
+                        packet_loss:
+                            description: >-
+                                Number of packets lost during reconfiguration.
+                            $ref: "#/$defs/macros/nonnegative_integer"
+                        time_loss:
+                            description: >-
+                                A derived quantity, present only in info files.
+                                Packet loss divided by packet rate.
+                                If the DUT keeps dropping packets for this long
+                                (while forwarding with no losses otherwise),
+                                it results in the same number of packets lost.
+                            $ref: "#/$defs/macros/nonnegative_number"
+                    required:
+                    -   type
+                    -   packet_loss
+                    -   packet_rate
+                    -   time_loss
         start_time:
             description: >-
                 UTC date and time in RFC 3339 format, specifying calendar time
