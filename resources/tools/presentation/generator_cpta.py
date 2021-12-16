@@ -838,9 +838,11 @@ def _generate_all_charts(spec, input_data):
 
     # Evaluate result:
     if anomaly_classifications:
-        legend_str = (f"Legend:\n[ Last trend in Mpps/Mcps | number of runs for"
+        legend_str = (f"Legend:\n[ Last trend in Mpps | number of runs for"
                       f" last trend | ")
         result = u"PASS"
+        write_legend_reg = True
+        write_legend_prog = True
         for job_name, job_data in anomaly_classifications.items():
             data = []
             tb = u"-".join(job_name.split(u"-")[-2:])
@@ -853,6 +855,9 @@ def _generate_all_charts(spec, input_data):
             file_name = \
                 f"{spec.cpta[u'output-file']}/regressions-{job_name}.txt"
             with open(file_name, u'w') as txt_file:
+                if write_legend_reg:
+                    txt_file.write(f"{legend_str}regression ]\n\n")
+                    write_legend_reg = False
                 for test_name, classification in job_data.items():
                     if classification == u"regression":
                         if u"2n" in test_name:
@@ -878,11 +883,12 @@ def _generate_all_charts(spec, input_data):
                     if classification in (u"regression", u"outlier"):
                         result = u"FAIL"
 
-            txt_file.write(f"\n{legend_str}regression in percentage ]")
-
             file_name = \
                 f"{spec.cpta[u'output-file']}/progressions-{job_name}.txt"
             with open(file_name, u'w') as txt_file:
+                if write_legend_prog:
+                    txt_file.write(f"{legend_str}progression ]\n\n")
+                    write_legend_prog = False
                 for test_name, classification in job_data.items():
                     if classification == u"progression":
                         if u"2n" in test_name:
@@ -902,10 +908,9 @@ def _generate_all_charts(spec, input_data):
                                 trend = line.split("|")[2]
                                 number = line.split("|")[3]
                                 ltc = line.split("|")[4]
-                                txt_file.write(f"{tst_name} [ {trend}M | "
+                                txt_file.write(f"{tst_name} [ {trend} | "
                                                f"#{number} | {ltc}% ]\n")
 
-            txt_file.write(f"\n{legend_str}progression in percentage ]")
     else:
         result = u"FAIL"
 
