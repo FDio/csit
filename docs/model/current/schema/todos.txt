@@ -1,7 +1,10 @@
 
+Add a tox checker that runs yaml2json and fails if json schema file changes.
+(Sometimes I forget to convert from yaml, this would detect that.)
+
 Export also tg_type and tg_version properties.
 
-Add description with link to methodology for MRR, NDRPDR and SOAK.
+Add description with link to methodology for MRR, NDRPDR, SOAK and RECONF.
 
 Add multiplicity field to MRR result, so PAL can detect incomplete samples.
 
