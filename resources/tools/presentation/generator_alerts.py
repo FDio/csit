@@ -341,6 +341,9 @@ class Alerting:
         if re_pro not in (u"regressions", u"progressions"):
             return
 
+        header = (f"Legend:\n[ Last trend in Mpps | number of runs for "
+                  f"last trend | {re_pro} ]{header}")
+
         in_file = (
             f"{self.configs[alert[u'way']][u'output-dir']}/"
             f"{re_pro}-{alert[u'urls'][idx].split(u'/')[-1]}.txt"
