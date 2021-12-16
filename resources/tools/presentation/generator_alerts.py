@@ -375,6 +375,30 @@ class Alerting:
             )
 
         text = u""
+
+        legend = (f"Legend:\n[ Last trend in Mpps | number of runs for "
+                  f"last trend |")
+
+        out_file = (
+            f"{self.configs[alert[u'way']][u'output-dir']}/"
+            f"trending-regressions.txt"
+        )
+        try:
+            with open(out_file, u'w') as reg_file:
+                reg_file.write(f"{legend} regressions ]")
+        except IOError:
+            logging.error(f"Not possible to write the file {out_file}.txt.")
+
+        out_file = (
+            f"{self.configs[alert[u'way']][u'output-dir']}/"
+            f"trending-progressions.txt"
+        )
+        try:
+            with open(out_file, u'w') as reg_file:
+                reg_file.write(f"{legend} progressions ]")
+        except IOError:
+            logging.error(f"Not possible to write the file {out_file}.txt.")
+
         for idx, test_set in enumerate(alert.get(u"include", list())):
             test_set_short = u""
             device = u""
