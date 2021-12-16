@@ -838,8 +838,6 @@ def _generate_all_charts(spec, input_data):
 
     # Evaluate result:
     if anomaly_classifications:
-        legend_str = (f"Legend:\n[ Last trend in Mpps/Mcps | number of runs for"
-                      f" last trend | ")
         result = u"PASS"
         for job_name, job_data in anomaly_classifications.items():
             data = []
@@ -877,9 +875,6 @@ def _generate_all_charts(spec, input_data):
 
                     if classification in (u"regression", u"outlier"):
                         result = u"FAIL"
-
-            txt_file.write(f"\n{legend_str}regression in percentage ]")
-
             file_name = \
                 f"{spec.cpta[u'output-file']}/progressions-{job_name}.txt"
             with open(file_name, u'w') as txt_file:
@@ -904,8 +899,6 @@ def _generate_all_charts(spec, input_data):
                                 ltc = line.split("|")[4]
                                 txt_file.write(f"{tst_name} [ {trend}M | "
                                                f"#{number} | {ltc}% ]\n")
-
-            txt_file.write(f"\n{legend_str}progression in percentage ]")
     else:
         result = u"FAIL"
 
