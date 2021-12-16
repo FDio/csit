@@ -74,9 +74,9 @@ def append_mrr_value(mrr_value, unit):
     """
     if not unit:
         return
-    data = get_export_data()
-    data[u"result"][u"type"] = u"mrr"
-    rate_node = descend(descend(data[u"result"], u"receive_rate"), "rate")
+    result_node = get_export_data()[u"result"]
+    result_node[u"type"] = u"mrr"
+    rate_node = descend(descend(result_node, u"receive_rate"), "rate")
     rate_node[u"unit"] = str(unit)
     values_list = descend(rate_node, u"values", list)
     values_list.append(float(mrr_value))
@@ -110,8 +110,7 @@ def export_search_bound(text, value, unit, bandwidth=None):
     upper_or_lower = u"upper" if u"upper" in text else u"lower"
     ndr_or_pdr = u"ndr" if u"ndr" in text else u"pdr"
 
-    data = get_export_data()
-    result_node = data[u"result"]
+    result_node = get_export_data()[u"result"]
     result_node[u"type"] = result_type
     rate_item = dict(rate=dict(value=value, unit=unit))
     if bandwidth:
@@ -163,8 +162,7 @@ def export_ndrpdr_latency(text, latency):
     :type text: str
     :type latency: 1-tuple or 2-tuple of str
     """
-    data = get_export_data()
-    result_node = data[u"result"]
+    result_node = get_export_data()[u"result"]
     percent = 0
     if u"90" in text:
         percent = 90
@@ -177,3 +175,20 @@ def export_ndrpdr_latency(text, latency):
     if len(latency) < 2:
         return
     _add_latency(result_node, percent, u"reverse", latency[1])
+
+
+def export_reconf_result(packet_rate, packet_loss):
+    """Export the results from a reconf test.
+
+    Also, result type is set to RECONF.
+
+    :param packet_rate: Aggregate rate sent in packets per second.
+    :param packet_loss: How many of the packets were dropped or unsent.
+    :type packet_rate: float
+    :type packet_loss: int
+    """
+    result_node = get_export_data()[u"result"]
+    result_node[u"type"] = u"reconf"
+    rate_item = dict(rate=dict(value=float(packet_rate), unit=u"pps"))
+    result_node[u"packet_rate"] = rate_item
+    result_node[u"packet_loss"] = int(packet_loss)
