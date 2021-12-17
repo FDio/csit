@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -376,8 +376,8 @@ class Alerting:
 
         text = u""
 
-        legend = (f"Legend:\n[ Last trend in Mpps | number of runs for "
-                  f"last trend |")
+        legend = (f"Legend: Test-name  Nic  Frame-size  Trend Mpps  Runs#  "
+                  f"Long-Term change%")
 
         out_file = (
             f"{self.configs[alert[u'way']][u'output-dir']}/"
@@ -385,7 +385,7 @@ class Alerting:
         )
         try:
             with open(out_file, u'w') as reg_file:
-                reg_file.write(f"{legend} regressions ]")
+                reg_file.write(f"{legend}")
         except IOError:
             logging.error(f"Not possible to write the file {out_file}.txt.")
 
@@ -395,7 +395,7 @@ class Alerting:
         )
         try:
             with open(out_file, u'w') as reg_file:
-                reg_file.write(f"{legend} progressions ]")
+                reg_file.write(f"{legend}")
         except IOError:
             logging.error(f"Not possible to write the file {out_file}.txt.")
 
