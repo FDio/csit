@@ -376,8 +376,7 @@ class Alerting:
 
         text = u""
 
-        legend = (f"Legend:\n[ Last trend in Mpps | number of runs for "
-                  f"last trend |")
+        legend = (f"Legend: Test-name  Nic  Frame-size  Runs#  Trend Mpps  ")
 
         out_file = (
             f"{self.configs[alert[u'way']][u'output-dir']}/"
@@ -385,7 +384,7 @@ class Alerting:
         )
         try:
             with open(out_file, u'w') as reg_file:
-                reg_file.write(f"{legend} regressions ]")
+                reg_file.write(f"{legend}Regressions")
         except IOError:
             logging.error(f"Not possible to write the file {out_file}.txt.")
 
@@ -395,7 +394,7 @@ class Alerting:
         )
         try:
             with open(out_file, u'w') as reg_file:
-                reg_file.write(f"{legend} progressions ]")
+                reg_file.write(f"{legend}Progressions")
         except IOError:
             logging.error(f"Not possible to write the file {out_file}.txt.")
 
