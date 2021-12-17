@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -973,7 +973,7 @@ def table_perf_trending_dash(table, input_data):
         u"Test Case",
         u"Trend [Mpps]",
         u"Number of runs [#]",
-        u"Trend Change [%]",
+        u"Long-Term Change [%]",
         u"Regressions [#]",
         u"Progressions [#]"
     ]
