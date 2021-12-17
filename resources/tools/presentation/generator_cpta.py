@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -838,7 +838,44 @@ def _generate_all_charts(spec, input_data):
 
     # Evaluate result:
     if anomaly_classifications:
+        test_reg_lst = []
+        nic_reg_lst = []
+        frmsize_reg_lst = []
+        trend_reg_lst = []
+        number_reg_lst = []
+        ltc_reg_lst = []
+        test_prog_lst = []
+        nic_prog_lst = []
+        frmsize_prog_lst = []
+        trend_prog_lst = []
+        number_prog_lst = []
+        ltc_prog_lst = []
         result = u"PASS"
+
+        class MaxLens():
+            """Class to store the max lengths of strings displayed in
+            regressions and progressions.
+            """
+
+            def __init__(self, tst, nic, frmsize, trend, run, ltc):
+                """Initialisation.
+
+                :param tst: Name of the test.
+                :param nic: NIC used in the test.
+                :param frmsize: Frame size used in the test.
+                :param trend: Trend Change.
+                :param run: Number of runs for last trend.
+                :param ltc: Regression or Progression
+                """
+                self.tst = tst
+                self.nic = nic
+                self.frmsize = frmsize
+                self.trend = trend
+                self.run = run
+                self.ltc = ltc
+
+        max_len = MaxLens(0, 0, 0, 0, 0, 0)
+
         for job_name, job_data in anomaly_classifications.items():
             data = []
             tb = u"-".join(job_name.split(u"-")[-2:])
@@ -848,57 +885,111 @@ def _generate_all_charts(spec, input_data):
                     file_to_read = f"{spec.cpta[u'output-file']}/{file}"
                     with open(f"{file_to_read}", u"rt") as input:
                         data = data + input.readlines()
-            file_name = \
-                f"{spec.cpta[u'output-file']}/regressions-{job_name}.txt"
-            with open(file_name, u'w') as txt_file:
-                for test_name, classification in job_data.items():
-                    if classification == u"regression":
-                        if u"2n" in test_name:
-                            test_name = test_name.split("-", 2)
-                            tst = test_name[2].split(".")[-1]
-                            nic = test_name[1]
-                            tst_name = f"{nic}-{tst}"
-                        else:
-                            test_name = test_name.split("-", 1)
-                            tst = test_name[1].split(".")[-1]
-                            nic = test_name[0].split(".")[-1]
-                            tst_name = f"{nic}-{tst}"
 
-                        for line in data:
-                            if tst_name in line:
-                                line = line.replace(" ", "")
-                                trend = line.split("|")[2]
-                                number = line.split("|")[3]
-                                ltc = line.split("|")[4]
-                                txt_file.write(f"{tst_name} [ {trend}M | "
-                                               f"#{number} | {ltc}% ]\n")
+            for test_name, classification in job_data.items():
+                if classification != u"normal":
+                    if u"2n" in test_name:
+                        test_name = test_name.split("-", 2)
+                        tst = test_name[2].split(".")[-1]
+                        nic = test_name[1]
+                    else:
+                        test_name = test_name.split("-", 1)
+                        tst = test_name[1].split(".")[-1]
+                        nic = test_name[0].split(".")[-1]
+                    frmsize = tst.split("-")[0].upper()
+                    tst = u"-".join(tst.split("-")[1:])
+                    tst_name = f"{nic}-{frmsize}-{tst}"
+                    if len(tst) > max_len.tst:
+                        max_len.tst = len(tst)
+                    if len(nic) > max_len.nic:
+                        max_len.nic = len(nic)
+                    if len(frmsize) > max_len.frmsize:
+                        max_len.frmsize = len(frmsize)
+
+                    for line in data:
+                        if tst_name in line:
+                            line = line.replace(" ", "")
+                            trend = line.split("|")[2]
+                            if len(str(trend)) > max_len.trend:
+                                max_len.trend = len(str(trend))
+                            number = line.split("|")[3]
+                            if len(str(number)) > max_len.run:
+                                max_len.run = len(str(number))
+                            ltc = line.split("|")[4]
+                            if len(str(ltc)) > max_len.ltc:
+                                max_len.ltc = len(str(ltc))
+                            if classification == u'regression':
+                                test_reg_lst.append(tst)
+                                nic_reg_lst.append(nic)
+                                frmsize_reg_lst.append(frmsize)
+                                trend_reg_lst.append(trend)
+                                number_reg_lst.append(number)
+                                ltc_reg_lst.append(ltc)
+                            elif classification == u'progression':
+                                test_prog_lst.append(tst)
+                                nic_prog_lst.append(nic)
+                                frmsize_prog_lst.append(frmsize)
+                                trend_prog_lst.append(trend)
+                                number_prog_lst.append(number)
+                                ltc_prog_lst.append(ltc)
 
                     if classification in (u"regression", u"outlier"):
                         result = u"FAIL"
+
+            text = u""
+            for idx in range(len(test_reg_lst)):
+                text += (
+                    f"{test_reg_lst[idx]}"
+                    f"{u' ' * (max_len.tst - len(test_reg_lst[idx]))}  "
+                    f"{nic_reg_lst[idx]}"
+                    f"{u' ' * (max_len.nic - len(nic_reg_lst[idx]))}  "
+                    f"{frmsize_reg_lst[idx]}"
+                    f"{u' ' * (max_len.frmsize - len(frmsize_reg_lst[idx]))}  "
+                    f"{trend_reg_lst[idx]}"
+                    f"{u' ' * (max_len.trend - len(str(trend_reg_lst[idx])))}  "
+                    f"{number_reg_lst[idx]}"
+                    f"{u' ' * (max_len.run - len(str(number_reg_lst[idx])))}  "
+                    f"{ltc_reg_lst[idx]}"
+                    f"{u' ' * (max_len.ltc - len(str(ltc_reg_lst[idx])))}  "
+                    f"\n"
+                )
+
+            file_name = \
+                f"{spec.cpta[u'output-file']}/regressions-{job_name}.txt"
+
+            try:
+                with open(f"{file_name}", u'w') as txt_file:
+                    txt_file.write(text)
+            except IOError:
+                logging.error(
+                    f"Not possible to write the file {file_name}.")
+
+            text = u""
+            for idx in range(len(test_prog_lst)):
+                text += (
+                    f"{test_prog_lst[idx]}"
+                    f"{u' ' * (max_len.tst - len(test_prog_lst[idx]))}  "
+                    f"{nic_prog_lst[idx]}"
+                    f"{u' ' * (max_len.nic - len(nic_prog_lst[idx]))}  "
+                    f"{frmsize_prog_lst[idx]}"
+                    f"{u' ' * (max_len.frmsize - len(frmsize_prog_lst[idx]))}  "
+                    f"{trend_prog_lst[idx]}"
+                    f"{u' ' * (max_len.trend -len(str(trend_prog_lst[idx])))}  "
+                    f"{number_prog_lst[idx]}"
+                    f"{u' ' * (max_len.run - len(str(number_prog_lst[idx])))}  "
+                    f"{ltc_prog_lst[idx]}"
+                    f"{u' ' * (max_len.ltc - len(str(ltc_prog_lst[idx])))}  "
+                    f"\n"
+                )
+
             file_name = \
                 f"{spec.cpta[u'output-file']}/progressions-{job_name}.txt"
-            with open(file_name, u'w') as txt_file:
-                for test_name, classification in job_data.items():
-                    if classification == u"progression":
-                        if u"2n" in test_name:
-                            test_name = test_name.split("-", 2)
-                            tst = test_name[2].split(".")[-1]
-                            nic = test_name[1]
-                            tst_name = f"{nic}-{tst}"
-                        else:
-                            test_name = test_name.split("-", 1)
-                            tst = test_name[1].split(".")[-1]
-                            nic = test_name[0].split(".")[-1]
-                            tst_name = f"{nic}-{tst}"
+            try:
+                with open(f"{file_name}", u'w') as txt_file:
+                    txt_file.write(text)
+            except IOError:
+                logging.error(f"Not possible to write the file {file_name}.")
 
-                        for line in data:
-                            if tst_name in line:
-                                line = line.replace(" ", "")
-                                trend = line.split("|")[2]
-                                number = line.split("|")[3]
-                                ltc = line.split("|")[4]
-                                txt_file.write(f"{tst_name} [ {trend}M | "
-                                               f"#{number} | {ltc}% ]\n")
     else:
         result = u"FAIL"
 

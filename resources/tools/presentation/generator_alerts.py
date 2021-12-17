@@ -363,7 +363,7 @@ class Alerting:
         :param idx: Index of the test set as it is specified in the
             specification file.
         :param header: The header of the list of [re|pro]gressions.
-        :param re_pro: 'regression' or 'progression'.
+        :param re_pro: 'regressions' or 'progressions'.
         :type alert: dict
         :type idx: int
         :type header: str
@@ -408,8 +408,8 @@ class Alerting:
 
         text = u""
 
-        legend = (f"Legend:\n[ Last trend in Mpps | number of runs for "
-                  f"last trend |")
+        legend = (f"Legend: Test-name  NIC  Frame-size  Trend[Mpps]  Runs[#]  "
+                  f"Long-Term change[%]")
 
         out_file = (
             f"{self.configs[alert[u'way']][u'output-dir']}/"
@@ -417,7 +417,7 @@ class Alerting:
         )
         try:
             with open(out_file, u'w') as reg_file:
-                reg_file.write(f"{legend} regressions ]")
+                reg_file.write(legend)
         except IOError:
             logging.error(f"Not possible to write the file {out_file}.txt.")
 
@@ -427,7 +427,7 @@ class Alerting:
         )
         try:
             with open(out_file, u'w') as reg_file:
-                reg_file.write(f"{legend} progressions ]")
+                reg_file.write(legend)
         except IOError:
             logging.error(f"Not possible to write the file {out_file}.txt.")
 
