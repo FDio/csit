@@ -839,6 +839,31 @@ def _generate_all_charts(spec, input_data):
     # Evaluate result:
     if anomaly_classifications:
         result = u"PASS"
+
+        class MaxLens():
+            """Class to store the max lengths of strings displayed in
+            regressions and progressions.
+            """
+
+            def __init__(self, tst, nic, frmsize, trend, run, re_pro):
+                """Initialisation.
+
+                :param tst: Name of the test.
+                :param nic: NIC used in the test.
+                :param frmsize: Frame size used in the test.
+                :param trend: Trend Change.
+                :param run: Number of runs for last trend.
+                :param re_pro: Regression or Progression
+                """
+                self.tst = tst
+                self.nic = nic
+                self.frmsize = frmsize
+                self.trend = trend
+                self.run = run
+                self.re_pro = re_pro
+
+        max_len = MaxLens(0, 0, 0, 0, 0, 0)
+
         for job_name, job_data in anomaly_classifications.items():
             data = []
             tb = u"-".join(job_name.split(u"-")[-2:])
@@ -856,20 +881,42 @@ def _generate_all_charts(spec, input_data):
                         if u"2n" in test_name:
                             test_name = test_name.split("-", 2)
                             tst = test_name[2].split(".")[-1]
+                            frmsize = tst.split("-")[0]
+                            tst = u"-".join(tst.split("-")[1:])
                             nic = test_name[1]
-                            tst_name = f"{nic}-{tst}"
+                            tst_name = f"{nic}-{frmsize}-{tst}"
+                            if len(tst) > max_len.tst:
+                                max_len.tst = len(tst)
+                            if len(nic) > max_len.nic:
+                                max_len.nic = len(nic)
+                            if len(frmsize) > max_len.frmsize:
+                                max_len.frmsize = len(frmsize)
                         else:
                             test_name = test_name.split("-", 1)
                             tst = test_name[1].split(".")[-1]
+                            frmsize = tst.split("-")[0]
+                            tst = u"-".join(tst.split("-")[1:])
                             nic = test_name[0].split(".")[-1]
-                            tst_name = f"{nic}-{tst}"
+                            tst_name = f"{nic}-{frmsize}-{tst}"
+                            if len(tst) > max_len.tst:
+                                max_len.tst = len(tst)
+                            if len(nic) > max_len.nic:
+                                max_len.nic = len(nic)
+                            if len(frmsize) > max_len.frmsize:
+                                max_len.frmsize = len(frmsize)
 
                         for line in data:
                             if tst_name in line:
                                 line = line.replace(" ", "")
                                 trend = line.split("|")[2]
+                                if len(trend) > max_len.trend:
+                                    max_len.trend = len(trend)
                                 number = line.split("|")[3]
+                                if len(number) > max_len.run:
+                                    max_len.run = len(number)
                                 ltc = line.split("|")[4]
+                                if len(ltc) > max_len.re_pro:
+                                    max_len.re_pro = len(ltc)
                                 txt_file.write(f"{tst_name} [ {trend}M | "
                                                f"#{number} | {ltc}% ]\n")
 
@@ -883,24 +930,55 @@ def _generate_all_charts(spec, input_data):
                         if u"2n" in test_name:
                             test_name = test_name.split("-", 2)
                             tst = test_name[2].split(".")[-1]
+                            frmsize = tst.split("-")[0]
+                            tst = u"-".join(tst.split("-")[1:])
                             nic = test_name[1]
-                            tst_name = f"{nic}-{tst}"
+                            tst_name = f"{nic}-{frmsize}-{tst}"
+                            if len(tst) > max_len.tst:
+                                max_len.tst = len(tst)
+                            if len(nic) > max_len.nic:
+                                max_len.nic = len(nic)
+                            if len(frmsize) > max_len.frmsize:
+                                max_len.frmsize = len(frmsize)
                         else:
                             test_name = test_name.split("-", 1)
                             tst = test_name[1].split(".")[-1]
+                            frmsize = tst.split("-")[0]
+                            tst = u"-".join(tst.split("-")[1:])
                             nic = test_name[0].split(".")[-1]
-                            tst_name = f"{nic}-{tst}"
+                            tst_name = f"{nic}-{frmsize}-{tst}"
+                            if len(tst) > max_len.tst:
+                                max_len.tst = len(tst)
+                            if len(nic) > max_len.nic:
+                                max_len.nic = len(nic)
+                            if len(frmsize) > max_len.frmsize:
+                                max_len.frmsize = len(frmsize)
 
                         for line in data:
                             if tst_name in line:
                                 line = line.replace(" ", "")
                                 trend = line.split("|")[2]
+                                if len(trend) > max_len.trend:
+                                    max_len.trend = len(trend)
                                 number = line.split("|")[3]
+                                if len(number) > max_len.run:
+                                    max_len.run = len(number)
                                 ltc = line.split("|")[4]
+                                if len(ltc) > max_len.re_pro:
+                                    max_len.re_pro = len(ltc)
                                 txt_file.write(f"{tst_name} [ {trend}M | "
                                                f"#{number} | {ltc}% ]\n")
     else:
         result = u"FAIL"
+
+    try:
+        with open (f"{spec.cpta[u'output-file']}/max_lens.txt", u'w') \
+                as lens_file:
+            lens_file.write(f"{max_len.tst}|{max_len.nic}|{max_len.frmsize}|"
+                            f"{max_len.trend}|{max_len.run}|{max_len.re_pro}")
+    except IOError:
+        logging.error(f"Not possible to write the file "
+                      f"{spec.cpta[u'output-file']}/max_lens.txt")
 
     logging.info(f"Partial results: {anomaly_classifications}")
     logging.info(f"Result: {result}")
