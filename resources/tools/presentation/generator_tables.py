@@ -973,7 +973,7 @@ def table_perf_trending_dash(table, input_data):
         u"Test Case",
         u"Trend [Mpps]",
         u"Number of runs [#]",
-        u"Trend Change [%]",
+        u"Long-Term Change [%]",
         u"Regressions [#]",
         u"Progressions [#]"
     ]
