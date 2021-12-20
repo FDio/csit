@@ -983,7 +983,6 @@ function select_tags () {
             test_tag_array+=("!ipsechw")
             ;;
         *"2n-dnv"*)
-            test_tag_array+=("!ipsechw")
             test_tag_array+=("!memif")
             test_tag_array+=("!srv6_proxy")
             test_tag_array+=("!vhost")
