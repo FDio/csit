@@ -31,6 +31,11 @@ intel_700_compatibility_matrix:
     i40e: "2.15.9"
     iavf: "4.1.1"
     nvm: "8.30"
+  dpdk21.11:
+    # https://doc.dpdk.org/guides/rel_notes/release_21_11.html
+    i40e: "2.17.4"
+    iavf: "4.2.7"
+    nvm: "8.30"
 
 intel_800_compatibility_matrix:
   dpdk21.02:
@@ -45,14 +50,22 @@ intel_800_compatibility_matrix:
     ddp: "1.3.30.0"
     iavf: "4.2.7"
     nvm: "3.00"
+  dpdk21.11:
+    # https://doc.dpdk.org/guides/rel_notes/release_21_11.html
+    ice: "1.6.7" # 1.7.11 - but not public available
+    ddp: "1.3.30.0" # 1.3.31.0 - but not public available
+    iavf: "4.2.7"
+    nvm: "3.10"
 
 intel_i40e_url:
   "2.14.13": "i40e%20stable/2.14.13/i40e-2.14.13.tar.gz/download"
   "2.15.9": "i40e%20stable/2.15.9/i40e-2.15.9.tar.gz/download"
+  "2.17.4": "i40e%20stable/2.17.4/i40e-2.17.4.tar.gz/download"
 
 intel_ice_url:
   "1.4.11": "ice%20stable/1.4.11/ice-1.4.11.tar.gz/download"
   "1.6.4": "ice%20stable/1.6.4/ice-1.6.4.tar.gz/download"
+  "1.6.7": "ice%20stable/1.6.7/ice-1.6.7.tar.gz/download"
 
 intel_iavf_url:
   "4.1.1": "iavf%20stable/4.1.1/iavf-4.1.1.tar.gz/download"
