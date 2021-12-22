@@ -11,7 +11,7 @@ variable "aws_secret_key" {
 }
 
 variable "name" {
-  default     = "dynamic-aws-creds-vault-fdio"
+  default     = "dynamic-aws-creds-vault"
   description = "Vault path"
   type        = string
 }
