@@ -206,6 +206,7 @@ def _convert_to_info_in_memory(data):
         stats = AvgStdevStats.for_runs(rate_node[u"values"])
         rate_node[u"avg"] = stats.avg
         rate_node[u"stdev"] = stats.stdev
+        return data
 
     # Multiple processing steps for ndrpdr.
     if result_type != u"ndrpdr":
@@ -224,7 +225,6 @@ def _convert_to_info_in_memory(data):
             continue
         # Break happened, something is invalid, remove all loads.
         result_node.pop(which_key)
-
     return data
 
 
