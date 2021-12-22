@@ -137,20 +137,19 @@ function activate_virtualenv () {
 
 function archive_tests () {
 
-    # Create .tar.xz of generated/tests for archiving.
+    # Create .tar.gz of generated/tests for archiving.
     # To be run after generate_tests, kept separate to offer more flexibility.
 
     # Directory read:
     # - ${GENERATED_DIR}/tests - Tree of executed suites to archive.
     # File rewriten:
-    # - ${ARCHIVE_DIR}/tests.tar.xz - Archive of generated tests.
+    # - ${ARCHIVE_DIR}/generated_tests.tar.gz - Archive of generated tests.
 
     set -exuo pipefail
 
-    filename="generated_robot_files.tar.xz"
-    tar c "${GENERATED_DIR}/tests" | xz -3 > "${ARCHIVE_DIR}/${filename}" || {
-        die "Error creating archive of generated tests."
-    }
+    pushd "${ARCHIVE_DIR}" || die
+    tar czvf "generated_tests.tar.gz" "${GENERATED_DIR}/tests" || true
+    popd || die
 }
 
 
