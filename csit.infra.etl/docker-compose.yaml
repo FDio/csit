@@ -1,0 +1,18 @@
+version: "3"
+services:
+  etl:
+    build: "."
+    command: "gluesparksubmit stats.py"
+    environment:
+      AWS_ACCESS_KEY_ID: "AKIAQ2AH7YPPWT6CWXXI"
+      AWS_SECRET_ACCESS_KEY: "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"
+      AWS_DEFAULT_REGION: "us-east-1"
+      OUT_AWS_ACCESS_KEY_ID: "AKIAQ2AH7YPPQJK4WBO2"
+      OUT_AWS_SECRET_ACCESS_KEY: "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"
+      OUT_AWS_DEFAULT_REGION: "us-east-1"
+    volumes:
+      - ".:/local"
+      - "parquet:/var/parquet"
+    working_dir: "/local"
+volumes:
+  parquet: {}
