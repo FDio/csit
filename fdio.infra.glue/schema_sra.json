@@ -1,0 +1,35 @@
+{
+    "fields": [
+        {
+            "metadata": {},
+            "name": "job",
+            "nullable": false,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "build",
+            "nullable": false,
+            "type": "integer"
+        },
+        {
+            "metadata": {},
+            "name": "start_time",
+            "nullable": true,
+            "type": "timestamp"
+        },
+        {
+            "metadata": {},
+            "name": "duration",
+            "nullable": true,
+            "type": "double"
+        },
+        {
+            "metadata": {},
+            "name": "version",
+            "nullable": true,
+            "type": "string"
+        }
+    ],
+    "type": "struct"
+}
