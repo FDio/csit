@@ -4,6 +4,10 @@
 # and downstream modules can simply declare resources for that provider
 # and have them automatically associated with the root provider
 # configurations.
+data "vault_generic_secret" "minio_creds" {
+  path = "kv/secret/data/minio"
+}
+
 module "alertmanager" {
   source = "./alertmanager"
   providers = {
@@ -91,10 +95,6 @@ module "grafana" {
 #
 #  minio_buckets = ["logs.fd.io"]
 #}
-
-data "vault_generic_secret" "minio_creds" {
-  path = "kv/secret/data/minio"
-}
 
 module "minio_s3_gateway" {
   source = "./minio_s3_gateway"
