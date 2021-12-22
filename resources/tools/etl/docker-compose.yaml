@@ -1,0 +1,15 @@
+version: "3"
+services:
+  etl:
+    build: "."
+    command: "gluesparksubmit --driver-memory 8g --executor-memory 16g job_trending_s3.py"
+    environment:
+      AWS_ACCESS_KEY_ID: "AKIAQ2AH7YPPWT6CWXXI"
+      AWS_SECRET_ACCESS_KEY: "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"
+      AWS_DEFAULT_REGION: "us-east-1"
+    volumes:
+      - ".:/app"
+      - "parquet:/var/parquet"
+    working_dir: "/app"
+volumes:
+  parquet: {}
