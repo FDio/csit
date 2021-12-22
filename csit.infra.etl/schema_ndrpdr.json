@@ -1,0 +1,697 @@
+{
+    "fields": [
+        {
+            "metadata": {},
+            "name": "job",
+            "nullable": false,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "build",
+            "nullable": false,
+            "type": "integer"
+        },
+        {
+            "metadata": {},
+            "name": "duration",
+            "nullable": true,
+            "type": "double"
+        },
+        {
+            "metadata": {},
+            "name": "dut_type",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "dut_version",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "hosts",
+            "nullable": true,
+            "type": {
+                "containsNull": true,
+                "elementType": "string",
+                "type": "array"
+            }
+        },
+        {
+            "metadata": {},
+            "name": "tg_type",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "tg_version",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "result",
+            "nullable": true,
+            "type": {
+                "fields": [
+                    {
+                        "metadata": {},
+                        "name": "latency_forward",
+                        "nullable": true,
+                        "type": {
+                            "fields": [
+                                {
+                                    "metadata": {},
+                                    "name": "pdr_0",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "avg",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "hdrh",
+                                                "nullable": true,
+                                                "type": "string"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "max",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "min",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "unit",
+                                                "nullable": true,
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                },
+                                {
+                                    "metadata": {},
+                                    "name": "pdr_10",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "avg",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "hdrh",
+                                                "nullable": true,
+                                                "type": "string"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "max",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "min",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "unit",
+                                                "nullable": true,
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                },
+                                {
+                                    "metadata": {},
+                                    "name": "pdr_50",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "avg",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "hdrh",
+                                                "nullable": true,
+                                                "type": "string"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "max",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "min",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "unit",
+                                                "nullable": true,
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                },
+                                {
+                                    "metadata": {},
+                                    "name": "pdr_90",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "avg",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "hdrh",
+                                                "nullable": true,
+                                                "type": "string"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "max",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "min",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "unit",
+                                                "nullable": true,
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                }
+                            ],
+                            "type": "struct"
+                        }
+                    },
+                    {
+                        "metadata": {},
+                        "name": "latency_reverse",
+                        "nullable": true,
+                        "type": {
+                            "fields": [
+                                {
+                                    "metadata": {},
+                                    "name": "pdr_0",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "avg",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "hdrh",
+                                                "nullable": true,
+                                                "type": "string"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "max",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "min",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "unit",
+                                                "nullable": true,
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                },
+                                {
+                                    "metadata": {},
+                                    "name": "pdr_10",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "avg",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "hdrh",
+                                                "nullable": true,
+                                                "type": "string"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "max",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "min",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "unit",
+                                                "nullable": true,
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                },
+                                {
+                                    "metadata": {},
+                                    "name": "pdr_50",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "avg",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "hdrh",
+                                                "nullable": true,
+                                                "type": "string"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "max",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "min",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "unit",
+                                                "nullable": true,
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                },
+                                {
+                                    "metadata": {},
+                                    "name": "pdr_90",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "avg",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "hdrh",
+                                                "nullable": true,
+                                                "type": "string"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "max",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "min",
+                                                "nullable": true,
+                                                "type": "long"
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "unit",
+                                                "nullable": true,
+                                                "type": "string"
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                }
+                            ],
+                            "type": "struct"
+                        }
+                    },
+                    {
+                        "metadata": {},
+                        "name": "ndr",
+                        "nullable": true,
+                        "type": {
+                            "fields": [
+                                {
+                                    "metadata": {},
+                                    "name": "lower",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "bandwidth",
+                                                "nullable": true,
+                                                "type": {
+                                                    "fields": [
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "unit",
+                                                            "nullable": true,
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "value",
+                                                            "nullable": true,
+                                                            "type": "double"
+                                                        }
+                                                    ],
+                                                    "type": "struct"
+                                                }
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "rate",
+                                                "nullable": true,
+                                                "type": {
+                                                    "fields": [
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "unit",
+                                                            "nullable": true,
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "value",
+                                                            "nullable": true,
+                                                            "type": "double"
+                                                        }
+                                                    ],
+                                                    "type": "struct"
+                                                }
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                },
+                                {
+                                    "metadata": {},
+                                    "name": "upper",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "bandwidth",
+                                                "nullable": true,
+                                                "type": {
+                                                    "fields": [
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "unit",
+                                                            "nullable": true,
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "value",
+                                                            "nullable": true,
+                                                            "type": "double"
+                                                        }
+                                                    ],
+                                                    "type": "struct"
+                                                }
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "rate",
+                                                "nullable": true,
+                                                "type": {
+                                                    "fields": [
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "unit",
+                                                            "nullable": true,
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "value",
+                                                            "nullable": true,
+                                                            "type": "double"
+                                                        }
+                                                    ],
+                                                    "type": "struct"
+                                                }
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                }
+                            ],
+                            "type": "struct"
+                        }
+                    },
+                    {
+                        "metadata": {},
+                        "name": "pdr",
+                        "nullable": true,
+                        "type": {
+                            "fields": [
+                                {
+                                    "metadata": {},
+                                    "name": "lower",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "bandwidth",
+                                                "nullable": true,
+                                                "type": {
+                                                    "fields": [
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "unit",
+                                                            "nullable": true,
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "value",
+                                                            "nullable": true,
+                                                            "type": "double"
+                                                        }
+                                                    ],
+                                                    "type": "struct"
+                                                }
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "rate",
+                                                "nullable": true,
+                                                "type": {
+                                                    "fields": [
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "unit",
+                                                            "nullable": true,
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "value",
+                                                            "nullable": true,
+                                                            "type": "double"
+                                                        }
+                                                    ],
+                                                    "type": "struct"
+                                                }
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                },
+                                {
+                                    "metadata": {},
+                                    "name": "upper",
+                                    "nullable": true,
+                                    "type": {
+                                        "fields": [
+                                            {
+                                                "metadata": {},
+                                                "name": "bandwidth",
+                                                "nullable": true,
+                                                "type": {
+                                                    "fields": [
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "unit",
+                                                            "nullable": true,
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "value",
+                                                            "nullable": true,
+                                                            "type": "double"
+                                                        }
+                                                    ],
+                                                    "type": "struct"
+                                                }
+                                            },
+                                            {
+                                                "metadata": {},
+                                                "name": "rate",
+                                                "nullable": true,
+                                                "type": {
+                                                    "fields": [
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "unit",
+                                                            "nullable": true,
+                                                            "type": "string"
+                                                        },
+                                                        {
+                                                            "metadata": {},
+                                                            "name": "value",
+                                                            "nullable": true,
+                                                            "type": "double"
+                                                        }
+                                                    ],
+                                                    "type": "struct"
+                                                }
+                                            }
+                                        ],
+                                        "type": "struct"
+                                    }
+                                }
+                            ],
+                            "type": "struct"
+                        }
+                    },
+                    {
+                        "metadata": {},
+                        "name": "type",
+                        "nullable": true,
+                        "type": "string"
+                    }
+                ],
+                "type": "struct"
+            }
+        },
+        {
+            "metadata": {},
+            "name": "start_time",
+            "nullable": true,
+            "type": "timestamp"
+        },
+        {
+            "metadata": {},
+            "name": "passed",
+            "nullable": true,
+            "type": "boolean"
+        },
+        {
+            "metadata": {},
+            "name": "test_id",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "test_name_long",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "test_name_short",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "test_type",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "message",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "version",
+            "nullable": true,
+            "type": "string"
+        }
+    ],
+    "type": "struct"
+}
