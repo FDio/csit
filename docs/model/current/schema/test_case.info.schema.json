@@ -1,5 +1,5 @@
 {
-  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.1",
+  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.1.0",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Schema for info output of test case.",
   "allOf": [
@@ -73,6 +73,9 @@
                 },
                 {
                   "$ref": "#/$defs/soak_result"
+                },
+                {
+                  "$ref": "#/$defs/reconf_result"
                 }
               ]
             }
@@ -125,7 +128,7 @@
         "version": {
           "description": "CSIT model version (semver format) the exporting code adhered to.",
           "type": "string",
-          "const": "1.0.1"
+          "const": "1.1.0"
         }
       },
       "required": [
@@ -570,6 +573,32 @@
       },
       "required": [
         "critical_rate"
+      ]
+    },
+    "reconf_result": {
+      "description": "Sub-schema for RECONF result type.",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "reconf"
+        },
+        "packet_rate": {
+          "description": "Load used when reconfiguring, found as NDR lower bound. This is aggregate (bidirectional) rate. Note that packets the Traffic Generator did not send are also counted as lost packets.",
+          "$ref": "#/$defs/rate_with_bandwidth"
+        },
+        "packet_loss": {
+          "description": "Number of packets lost during reconfiguration.",
+          "$ref": "#/$defs/nonnegative_integer"
+        },
+        "time_loss": {
+          "description": "A derived quantity, present only in info files. Packet loss divided by packet rate. If the DUT keeps dropping packets for this long (while forwarding with no losses otherwise), it results in the same number of packets lost.",
+          "$ref": "#/$defs/nonnegative_float"
+        }
+      },
+      "required": [
+        "packet_loss",
+        "packet_rate",
+        "time_loss"
       ]
     }
   }

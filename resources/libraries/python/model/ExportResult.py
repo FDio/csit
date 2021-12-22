@@ -175,3 +175,20 @@ def export_ndrpdr_latency(text, latency):
     if len(latency) < 2:
         return
     _add_latency(result_node, percent, u"reverse", latency[1])
+
+
+def export_reconf_result(packet_rate, packet_loss):
+    """Export the results from a reconf test.
+
+    Also, result type is set to RECONF.
+
+    :param packet_rate: Aggregate rate sent in packets per second.
+    :param packet_loss: How many of the packets were dropped or unsent.
+    :type packet_rate: float
+    :type packet_loss: int
+    """
+    result_node = get_export_data()[u"result"]
+    result_node[u"type"] = u"reconf"
+    rate_item = dict(rate=dict(value=float(packet_rate), unit=u"pps"))
+    result_node[u"packet_rate"] = rate_item
+    result_node[u"packet_loss"] = int(packet_loss)
