@@ -20,3 +20,10 @@ Do we want to require more structure for dut_version, e.g. at least two dots?
 Should we parse version strings?
 E.g.: Turn dut_version from "21.11.0"
 into {"major": 21, "minor": 11, "patch": 0}.
+
+In iperf3 passed object, what is "bits_per_second" and "bytes" referring to?
+Is is goodput or bandwidth?
+Is is upload, download, or sum of both?
+Also, what exactly is "omitted"?
+
+In hoststack_vpp_echo_result, do we require one client and one server item?
