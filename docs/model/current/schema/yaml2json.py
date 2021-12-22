@@ -23,7 +23,6 @@ import yaml
 
 for filename in glob.glob(u"*.schema.yaml"):
     name = filename[:-5]
-    with open(f"{name}.yaml", u"rt") as fin:
+    with open(f"{name}.yaml", u"r") as fin, open(f"{name}.json", u"w") as fout:
         data = yaml.load(fin.read())
-    with open(f"{name}.json", u"wt") as fout:
         json.dump(data, fout, indent=2)
