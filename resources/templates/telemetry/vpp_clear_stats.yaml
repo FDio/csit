@@ -142,6 +142,41 @@ programs:
   - name: bundle_vpp
     metrics:
       gauge:
+        - name: rx_frames
+          documentation: Number of received frames for interface
+          labelnames:
+            - name
+            - index
+        - name: rx_bytes
+          documentation: Number of received bytes for interface
+          labelnames:
+            - name
+            - index
+        - name: tx_frames
+          documentation: Number of sent frames for interface
+          labelnames:
+            - name
+            - index
+        - name: tx_bytes
+          documentation: Number of transitted bytes for interface
+          labelnames:
+            - name
+            - index
+        - name: rx_missed
+          documentation: Number of missed RX packets on interface
+          labelnames:
+            - name
+            - index
+        - name: tx_missed
+          documentation: Number of missed TC packets on interface
+          labelnames:
+            - name
+            - index
+    code: |
+      clear hardware
+  - name: bundle_vpp
+    metrics:
+      gauge:
         - name: node_counter
           documentation: Node counter
           labelnames:

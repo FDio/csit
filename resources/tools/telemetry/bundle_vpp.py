@@ -264,16 +264,6 @@ class BundleVpp:
         """
         Parse the show interface output.
 
-        Output format:
-        {
-            "name": "rx_packets",
-            "labels": {
-                "name": "tap0",
-                "index": "0",
-            },
-            "value": "31",
-        },
-
         :param reply: API reply.
         :type reply: str
         """
@@ -301,19 +291,6 @@ class BundleVpp:
     def show_runtime(self, reply):
         """
         Parse the show runtime output.
-
-        Output format:
-        {
-            "name": "clocks",
-            "labels": {
-                "name": "virtio-input",
-                "state": "polling",
-                "thread_name": "vpp_wk_1",
-                "thread_id": "2",
-                "thread_lcore": "3",
-            },
-            "value": "3.17e2",
-        },
 
         :param reply: API reply.
         :type reply: str
@@ -347,19 +324,6 @@ class BundleVpp:
         """
         Parse the show node conuter output.
 
-        Output format:
-        {
-            "name": "node_counters",
-            "labels": {
-                "name": "dpdk-input",
-                "reason": "no_error",
-                "severity": "error",
-                "thread_name": "vpp_wk_1",
-                "thread_id": "2",
-            },
-            "value": "1",
-        },
-
         :param reply: API reply.
         :type reply: str
         """
@@ -390,19 +354,6 @@ class BundleVpp:
     def show_perfmon_statistics(self, reply):
         """
         Parse the permon output.
-
-        Output format:
-        {
-            "name": "clocks",
-            "labels": {
-                "name": "virtio-input",
-                "state": "polling",
-                "thread_name": "vpp_wk_1",
-                "thread_id": "2",
-                "thread_lcore": "3",
-            },
-            "value": "3.17e2",
-        },
 
         :param reply: API reply.
         :type reply: str
@@ -479,15 +430,6 @@ class BundleVpp:
     def show_version(self, reply):
         """
         Parse the version output.
-
-        Output format:
-        {
-            "name": "version",
-            "labels": {
-                "version": "v21.06-rc0~596-g1ca6c65e5~b1065",
-            },
-            "value": 1.0,
-        },
 
         :param reply: API reply.
         :type reply: str
