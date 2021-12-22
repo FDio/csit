@@ -602,6 +602,42 @@ function move_archives () {
 }
 
 
+function post_process_robot_outputs () {
+
+    # Generate INFO level output_info.xml by rebot.
+    # Archive UTI raw json outputs.
+    #
+    # Variables read:
+    # - ARCHIVE_DIR - Path to post-processed files.
+
+    set -exuo pipefail
+
+    # Compress raw json outputs, as they will never be post-processed.
+    pushd "${ARCHIVE_DIR}" || die
+    if [ -d "tests" ]; then
+        # Use deterministic order.
+        options+=("--sort=name")
+        # We are keeping info outputs where they are.
+        # Assuming we want to move anything but info files (and dirs).
+        options+=("--exclude=*.info.json")
+        tar czvf "tests_output_raw.tar.gz" "${options[@]}" "tests" || true
+        # Tar can remove when archiving, but chokes (not deterministically)
+        # on attempting to remove dirs (not empty as info files are there).
+        # So we need to delete the raw files manually.
+        find "tests" -type f -name "*.raw.json" -delete || true
+    fi
+    popd || die
+
+    # Generate INFO level output_info.xml for post-processing.
+    all_options=("--loglevel" "INFO")
+    all_options+=("--log" "none")
+    all_options+=("--report" "none")
+    all_options+=("--output" "${ARCHIVE_DIR}/output_info.xml")
+    all_options+=("${ARCHIVE_DIR}/output.xml")
+    rebot "${all_options[@]}" || true
+}
+
+
 function prepare_topology () {
 
     # Prepare virtual testbed topology if needed based on flavor.
@@ -712,9 +748,9 @@ function reserve_and_cleanup_testbed () {
 
 function run_pybot () {
 
-    # Run pybot with options based on input variables. Create output_info.xml
-    #
-    # Also, .info.json files are moved into an archive to speed up PAL.
+    # Run pybot with options based on input variables.
+    # Generate INFO level output_info.xml by rebot.
+    # Archive UTI raw json outputs.
     #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
@@ -738,37 +774,8 @@ function run_pybot () {
     PYBOT_EXIT_STATUS="$?"
     set -e
 
-    # Compress raw json outputs, if any.
-    pushd "${ARCHIVE_DIR}" || die
-    if [ -d "tests" ]; then
-        # Use deterministic order.
-        options+=("--sort=name")
-        # We are keeping info outputs where they are.
-        # Assuming we want to move anything but info files (and dirs).
-        options+=("--exclude=*.info.json")
-        # There may be other unforeseen errors,
-        # we still want to execute subsequent commands, so disable set -e.
-        set +e
-        tar cvf "tests_output_raw.tar" "${options[@]}" "tests"
-        # If compression fails, it leaves an uncompressed .tar,
-        # we still want to archive that to investigate why compression failed.
-        time xz -9e "tests_output_raw.tar"
-        # Tar can remove when archiving, but chokes (not deterministically)
-        # on attempting to remove dirs (not empty as info files are there).
-        # So we need to delete the raw files manually.
-        find "tests" -type f -name "*.raw.json" -delete
-        set -e
-    fi
-    popd || die
+    post_process_robot_outputs || die
 
-    # Generate INFO level output_info.xml for post-processing.
-    # This comes last, as it is slowest, and sometimes users abort here.
-    all_options=("--loglevel" "INFO")
-    all_options+=("--log" "none")
-    all_options+=("--report" "none")
-    all_options+=("--output" "${ARCHIVE_DIR}/output_info.xml")
-    all_options+=("${ARCHIVE_DIR}/output.xml")
-    rebot "${all_options[@]}" || true
     popd || die "Change directory operation failed."
 }
 
