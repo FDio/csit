@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -333,7 +333,7 @@ class Constants:
         u"Intel-XL710": u"40ge2p1xl710",
         u"Intel-XXV710": u"25ge2p1xxv710",
         u"Intel-E810CQ": u"100ge2p1e810cq",
-        u"Amazon-Nitro-50G": u"50ge1p1ENA",
+        u"Amazon-Nitro-50G": u"50ge1p1ena",
         u"Mellanox-CX556A": u"100ge2p1cx556a",
     }
 
@@ -345,7 +345,7 @@ class Constants:
         u"40ge2p1xl710": u"xl710",
         u"25ge2p1xxv710": u"xxv710",
         u"100ge2p1e810cq": u"e810cq",
-        u"50ge1p1ENA": u"ena",
+        u"50ge1p1ena": u"ena",
         u"100ge2p1cx556a": u"cx556a",
     }
 
