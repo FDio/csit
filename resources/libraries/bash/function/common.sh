@@ -148,7 +148,7 @@ function archive_tests () {
     set -exuo pipefail
 
     pushd "${ARCHIVE_DIR}" || die
-    tar czvf "generated_tests.tar.gz" "${GENERATED_DIR}/tests" || true
+    tar czf "generated_tests.tar.gz" "${GENERATED_DIR}/tests" || true
     popd || die
 }
 
