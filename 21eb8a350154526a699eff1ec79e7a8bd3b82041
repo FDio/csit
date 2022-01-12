@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1119214_55dc47dc",
+        "filename": "docs/cpta/introduction/dashboard.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-01-12T08:13:25Z",
+      "side": 1,
+      "message": "belonging",
+      "range": {
+        "startLine": 11,
+        "startChar": 45,
+        "endLine": 11,
+        "endChar": 54
+      },
+      "revId": "21eb8a350154526a699eff1ec79e7a8bd3b82041",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
