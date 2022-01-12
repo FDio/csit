@@ -148,7 +148,7 @@ function archive_tests () {
     set -exuo pipefail
 
     pushd "${ARCHIVE_DIR}" || die
-    tar czvf "generated_tests.tar.gz" "${GENERATED_DIR}/tests" || true
+    tar czf "generated_tests.tar.gz" "${GENERATED_DIR}/tests" || true
     popd || die
 }
 
@@ -619,7 +619,7 @@ function post_process_robot_outputs () {
         # We are keeping info outputs where they are.
         # Assuming we want to move anything but info files (and dirs).
         options+=("--exclude=*.info.json")
-        tar czvf "tests_output_raw.tar.gz" "${options[@]}" "tests" || true
+        tar czf "generated_output_raw.tar.gz" "${options[@]}" "tests" || true
         # Tar can remove when archiving, but chokes (not deterministically)
         # on attempting to remove dirs (not empty as info files are there).
         # So we need to delete the raw files manually.
