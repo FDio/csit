@@ -75,7 +75,7 @@ class BitCountingGroupList:
         :returns: Readable description.
         :rtype: str
         """
-        return u"group_list={self.group_list} bits={self.bits}"
+        return f"group_list={self.group_list} bits={self.bits}"
 
     def __repr__(self):
         """Return string executable as Python constructor call.
