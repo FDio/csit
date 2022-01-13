@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -92,6 +92,8 @@
 | | ${time_loss} = | Evaluate | ${packet_loss} / ${packet_rate}
 | | Set Test Message | Packets lost due to reconfig: ${packet_loss}
 | | Set Test Message | ${\n}Implied time lost: ${time_loss} | append=yes
+| | # TODO: Add bandwidth for packet rate.
+| | Export Reconf Result | ${packet_rate} | ${packet_loss}
 
 | Display result of NDRPDR search
 | | [Documentation]
