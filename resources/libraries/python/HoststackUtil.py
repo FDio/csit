@@ -17,6 +17,10 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.model.ExportResult import (
+    export_hoststack_iperf3_fail_result, export_hoststack_vpp_echo_fail_result,
+    export_hoststack_iperf3_pass_result, export_hoststack_vpp_echo_pass_result,
+)
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.DUTSetup import DUTSetup
@@ -293,8 +297,7 @@ class HoststackUtil():
         sleep(1)
 
     @staticmethod
-    def analyze_hoststack_test_program_output(
-            node, role, nsim_attr, program):
+    def _analyze_hoststack_output_no_export(node, role, nsim_attr, program):
         """Gather HostStack test program output and check for errors.
 
         The [defer_fail] return bool is used instead of failing immediately
@@ -302,6 +305,8 @@ class HoststackUtil():
         the test program for debugging a test failure.  When [defer_fail]
         is true, then the string returned is debug output instead of
         JSON formatted test program results.
+
+        This internal keywords prepares the outputs without UTI export yet.
 
         :param node: DUT node.
         :param role: Role (client|server) of test program.
@@ -379,8 +384,53 @@ class HoststackUtil():
         else:
             test_results += u"Unknown HostStack Test Program!\n" + \
                             program_stdout
-            return (True, program_stdout)
+            return (True, test_results)
         return (False, json.dumps(program_json))
+
+    @staticmethod
+    def analyze_hoststack_test_program_output(node, role, nsim_attr, program):
+        """Gather HostStack test program output and check for errors.
+
+        The [defer_fail] return bool is used instead of failing immediately
+        to allow the analysis of both the client and server instances of
+        the test program for debugging a test failure.  When [defer_fail]
+        is true, then the string returned is debug output instead of
+        JSON formatted test program results.
+
+        This keyword also exports the UTI results.
+
+        :param node: DUT node.
+        :param role: Role (client|server) of test program.
+        :param nsim_attr: Network Simulation Attributes.
+        :param program: Test program.
+        :type node: dict
+        :type role: str
+        :type nsim_attr: dict
+        :type program: dict
+        :returns: tuple of [defer_fail] bool and either JSON formatted hoststack
+            test program output or failure debug output.
+        :rtype: bool, str
+        :raises RuntimeError: If node subtype is not a DUT.
+        """
+        defer_fail, output = HoststackUtil._analyze_hoststack_output_no_export(
+            node=node,
+            role=role,
+            nsim_attr=nsim_attr,
+            program=program,
+        )
+        if defer_fail:
+            if program[u"name"] == u"iperf3":
+                export_hoststack_iperf3_fail_result(output)
+            else:
+                # Assuming vpp_echo.
+                export_hoststack_vpp_echo_fail_result(output)
+            return (True, output)
+        if program[u"name"] == u"iperf3":
+            export_hoststack_iperf3_pass_result(output)
+        else:
+            # Assuming vpp_echo.
+            export_hoststack_vpp_echo_pass_result(output)
+        return (False, output)
 
     @staticmethod
     def hoststack_test_program_defer_fail(server_defer_fail, client_defer_fail):
