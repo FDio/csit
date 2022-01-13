@@ -17,7 +17,6 @@ This is for storing varied utility functions, which are too short and diverse
 to be put into more descriptive modules.
 """
 
-
 from robot.libraries.BuiltIn import BuiltIn
 
 
