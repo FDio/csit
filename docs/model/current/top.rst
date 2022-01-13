@@ -1,5 +1,5 @@
 ..
-   Copyright (c) 2021 Cisco and/or its affiliates.
+   Copyright (c) 2022 Cisco and/or its affiliates.
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at:
@@ -22,7 +22,7 @@ especially the export side (UTI), not import side (PAL).
 Version
 ~~~~~~~
 
-This document is valid for CSIT model version 1.0.0.
+This document is valid for CSIT model version 1.0.1.
 
 It is recommended to use semantic versioning: https://semver.org/
 That means, if the new model misses a field present in the old model,

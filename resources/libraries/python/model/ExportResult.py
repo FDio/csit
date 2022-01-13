@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -74,9 +74,9 @@ def append_mrr_value(mrr_value, unit):
     """
     if not unit:
         return
-    data = get_export_data()
-    data[u"result"][u"type"] = u"mrr"
-    rate_node = descend(descend(data[u"result"], u"receive_rate"), "rate")
+    result_node = get_export_data()[u"result"]
+    result_node[u"type"] = u"mrr"
+    rate_node = descend(descend(result_node, u"receive_rate"), "rate")
     rate_node[u"unit"] = str(unit)
     values_list = descend(rate_node, u"values", list)
     values_list.append(float(mrr_value))
@@ -110,8 +110,7 @@ def export_search_bound(text, value, unit, bandwidth=None):
     upper_or_lower = u"upper" if u"upper" in text else u"lower"
     ndr_or_pdr = u"ndr" if u"ndr" in text else u"pdr"
 
-    data = get_export_data()
-    result_node = data[u"result"]
+    result_node = get_export_data()[u"result"]
     result_node[u"type"] = result_type
     rate_item = dict(rate=dict(value=value, unit=unit))
     if bandwidth:
@@ -163,8 +162,7 @@ def export_ndrpdr_latency(text, latency):
     :type text: str
     :type latency: 1-tuple or 2-tuple of str
     """
-    data = get_export_data()
-    result_node = data[u"result"]
+    result_node = get_export_data()[u"result"]
     percent = 0
     if u"90" in text:
         percent = 90

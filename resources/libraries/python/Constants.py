@@ -120,7 +120,7 @@ class Constants:
     """Constants used in CSIT."""
 
     # Version for CSIT data model. See docs/model/.
-    MODEL_VERSION = u"1.0.0"
+    MODEL_VERSION = u"1.0.1"
 
     # Global off-switch in case JSON export is large or slow.
     EXPORT_JSON = get_optimistic_bool_from_env(u"EXPORT_JSON")
