@@ -1,0 +1,54 @@
+Plan proposal for CSIT UTI system working end-to-end, phase-1 (MVP-1):
+("Minimum Viable Product", denoting something functional end-to-end.)
+
+1. Data Producer (csit code, robot jobs) json data including:
+   - test results of performance NIC-to-NIC test cases:
+     - mrr: stl pps, astf pps cps.
+     - ndrpdr: stl pps bps lat, astf pps cps.
+     - soak:  stl pps bps.
+   - testbed identification via host IPv4 addresses contacted via SSH.
+   - test duration, suite duration.
+   - test status (pass/fail).
+2. Data Processor (csit code incl. IaaS, AWS svcs, data processing
+   infrastructure):
+   - data ingestion from data producer(s).
+   - data storage, AWS S3 cloud, S3 local.
+   - data crawling (extract, transform, load).
+   - scalable access (load-balanced) of data apache parquet frames by the
+     Plot.ly Dash backend.
+   - Plot.ly Dash / web frontend UI - TBC.
+3. Data Consumer (static pages or Dash).
+   - Plot.ly Dash / web frontend UI - TBC.
+   - Defined number of UI views - TBC.
+   - Integration into CSIT web pages - trending and/or new - TBC.
+
+MVP-1 user stories:
+
+- MRR trending data - pps
+  - default view
+    - graphs with groups of test cases.
+    - pps trend with anomaly markup.
+  -  custom view - TBC
+    - user search based test case selection - TBC.
+    - a graph with custom groups of test cases - TBC.
+    - pps trend with anomaly markup.
+- MRR NDRPDR trending data - pps
+  - default view
+    - graphs with groups of test cases.
+    - pps trend with anomaly markup.
+  -  custom view - TBC
+    - user search based test case selection - TBC.
+    - a graph with custom groups of test cases - TBC.
+    - pps trend with anomaly markup.
+- MRR NDRPDR trending data - latency
+  - default view
+    - graphs with groups of test cases.
+    - latency trend with anomaly markup.
+  -  custom view - TBC - do we need it in MVP-1 or later?
+    - user search based test case selection - TBC.
+    - a graph with custom groups of test cases - TBC.
+    - latency trend with anomaly markup.
+
+MVP-1 is considered complete, once functionality and systems listed above, as
+well as user stories are POC'ed end-to-end, and then operationalized in FD.io
+CSIT production.
