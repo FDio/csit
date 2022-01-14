@@ -160,7 +160,7 @@ def main():
             data.print_all_oper_data()
 
         generate_tables(spec, data)
-        generate_plots(spec, data)
+        # generate_plots(spec, data)
         generate_files(spec, data)
 
         if spec.output[u"output"] == u"report":
