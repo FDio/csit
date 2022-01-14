@@ -17,7 +17,7 @@ Trend Compliance
 .. _Trend_Compliance:
 
 Trend compliance metrics are targeted to provide an indication of trend
-changes, and hint at their reliability.
+changes, and hint at their reliability (see Common Patterns below).
 
 There is a difference between compliance metric names used in this document,
 and column names used in :ref:`Dashboard` tables and Alerting emails.
@@ -146,6 +146,131 @@ The resulting group distribution looks good
 if samples are distributed normally enough within a group.
 But for obviously different distributions (for example `bimodal distribution`_)
 the groups tend to focus on less relevant factors (such as "outlier" density).
+
+Common Patterns
+~~~~~~~~~~~~~~~
+
+When an anomaly is detected, it frequently falls into few known patterns,
+each having its typical behavior over time.
+
+We are going to describe the behaviors,
+as they motivate our chioce of trend compliance metrics.
+
+Sample time and analysis time
+-----------------------------
+
+But first we need to distinguish two roles time plays in analysis,
+so it is more clear which role we are referring to.
+
+Sample time is the more obvious one.
+It is the time the sample is generated.
+It is the start time or the end time of the Jenkins job run,
+does not really matter which (parallel runs are disabled,
+and length of gap between samples does not affect metrics).
+
+Analysis time is the time the current analysis is computed.
+Again, the exact time does not usually matter,
+what matters is how more later (and how less earlier) samples
+were considered in the computation.
+
+For some patterns, it is usual for a previously reported
+anomaly to "vanish", or previously unseen anomaly to "appear late",
+as later samples change which partition into groups is more probable.
+
+Dashboard and graphs are always showing the latest analysis time,
+the compliance metrics are using earlier sample time
+with the same latest analysis time.
+
+Alerting e-mails use the latest analysis time at the time of sending,
+so the values reported there are likely to be different
+from the later analysis time results shown in dashboard and graphs.
+
+Ordinary regression
+-------------------
+
+The real performance changes from previously stable value
+into a new stable value.
+
+For medium to high magnitude of the change, one run
+is enough for anomaly detection to mark this regression.
+
+Ordinary progressions are detected in the same way.
+
+Small regression
+----------------
+
+The real performance changes from previously stable value
+into a new stable value, but the difference is small.
+
+For the anomaly detection algorithm, this change is harder to detect,
+depending on standard deviation of the previous group.
+
+If the new performance value stays stable, eventually
+the detection algorithm is able to detect this anomaly
+when there are enough samples around the new value.
+
+If the difference is too small, it may remain undetected
+(as new performance change happens, or full history of samples
+is still not enough for the detection).
+
+Small progressions have the same behavior.
+
+Reverted regression
+-------------------
+
+Either real performance changes but is immediately restored;
+or no real performance change happened, just some infrastructure
+issue caused a wrong low value to be measured.
+
+For small measured changes, this may remain undetected.
+For medium and big measured changes, this is detected when the regression
+happens on just the last sample.
+
+For big changes, the revert is also immediately detected
+as a subsequent progression. The trend is usually different
+from the previously stable trend (as the two population averages
+are not likely to be exactly equal), but the difference
+between the two trends is relatively small.
+
+For medium changes, the detection algorithm may need several new samples
+to detect a progression (as it dislikes single sample groups),
+in the mean time reporting regressions (difference decreasing
+with analysis time), until it stabilizes the same way as for big changes
+(regression followed by progression, small difference
+between the old stable trend and last trend).
+
+As it is very hard for a fault code or an infrastructure issue
+to increase performance, the opposite (temporary progression)
+almost never happens.
+
+Summary
+-------
+
+There is a tradeoff between detecting small regressions
+and not reporting the same old regressions for a long time.
+
+For people reading e-mails, a sudden regression with a big number of samples
+in the last group means this regression was hard for the algorithm to detect.
+
+If there is a big regression with just one run in the last group,
+we are not sure if it is real, or just a temporary issue.
+It is useful to wait some time before starting investigation.
+
+With decreasing (absolute value of) difference, the number of expected runs
+increases. If there is not enough runs, we still cannot distinguish
+real regression from temporary regression just from the current metrics
+(although humans frequently can tell by looking at the graph).
+
+When there is a regression or progression with just a small difference,
+it is probably an artifact of a temporary regression.
+Not worth examining, unless temporary regessions happen somewhat frequently.
+
+It is not easy for the metrics to locate the previous stable value,
+especially if multiple anomalies happened in last few weeks.
+It is good to compare last trend with long term trend maximum,
+as it highlights the difference between "now" and "what could be".
+It is good to exclude last week from the trend maximum,
+as including the last week would hide all real progressions.
 
 .. _Minimum Description Length: https://en.wikipedia.org/wiki/Minimum_description_length
 .. _Occam's razor: https://en.wikipedia.org/wiki/Occam%27s_razor
