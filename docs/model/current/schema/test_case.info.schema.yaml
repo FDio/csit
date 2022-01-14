@@ -17,6 +17,7 @@ $id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.0
 $schema: https://json-schema.org/draft/2020-12/schema
 description: >-
     Schema for info output of test case.
+    [An edit to text tox.]
 allOf:
 -   description: >-
         The main structure, without conditional relations between fields yet.
