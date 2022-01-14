@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "07dc594e_54136f1e",
+        "filename": "docs/cpta/introduction/dashboard.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-01-14T11:15:34Z",
+      "side": 1,
+      "message": "Rename to Trend [Mpps] to match the naming in emails (generator_alerts.py: 379)",
+      "range": {
+        "startLine": 10,
+        "startChar": 8,
+        "endLine": 10,
+        "endChar": 25
+      },
+      "revId": "21eb8a350154526a699eff1ec79e7a8bd3b82041",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f1119214_55dc47dc",
         "filename": "docs/cpta/introduction/dashboard.rst",
         "patchSetId": 2
@@ -18,6 +41,75 @@
         "startChar": 45,
         "endLine": 11,
         "endChar": 54
+      },
+      "revId": "21eb8a350154526a699eff1ec79e7a8bd3b82041",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05abd859_67688f39",
+        "filename": "docs/cpta/introduction/dashboard.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-01-14T11:15:34Z",
+      "side": 1,
+      "message": "Rename to Runs [#] to match the naming in emails",
+      "range": {
+        "startLine": 11,
+        "startChar": 8,
+        "endLine": 11,
+        "endChar": 26
+      },
+      "revId": "21eb8a350154526a699eff1ec79e7a8bd3b82041",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ee1a366_b4ade871",
+        "filename": "docs/cpta/introduction/dashboard.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-01-14T11:15:34Z",
+      "side": 1,
+      "message": "Rename to Long-Term Change [%] to match the naming in emails",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "21eb8a350154526a699eff1ec79e7a8bd3b82041",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "956cdeb1_2788962b",
+        "filename": "docs/cpta/introduction/dashboard.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-01-14T11:15:34Z",
+      "side": 1,
+      "message": "Can you please add since when are regressions and progressions detected?",
+      "range": {
+        "startLine": 14,
+        "startChar": 58,
+        "endLine": 14,
+        "endChar": 71
       },
       "revId": "21eb8a350154526a699eff1ec79e7a8bd3b82041",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
