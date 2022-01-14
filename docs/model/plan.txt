@@ -1,0 +1,75 @@
+
+Planning for next steps in UTI evolution:
+Two paths and few miscellaneous items.
+
+If there is a gerrit link, it means the implementation
+is ready (at least for review).
+
+
+Context:
+Test result Data Processing Pipeline can be divided into three parts:
+1. Produce (robot jobs).
+2. Process (trending/report job or crawlers).
+3. Consume (static pages or Dash).
+This is about Produce part only.
+
+Before UTI, test results are produced as output_info.xml.
+In future, there will be only .info.json files.
+In the meantime, we have both.
+We need to cover everything in json before we can remove xml.
+
+Currently, json covers results for mrr
+(including ASTF, both pps and cps, but not including GSO),
+ndrpdr (including latency) and soak.
+Json also allows testbed identification via host IPv4 addresses contacted via SSH.
+Also, test duration, suite durations and test status (pass/fail) are available.
+This is the bare minimum for trending, but not enough for release reports.
+
+
+Paths:
+
++ Path one: Big step.
+  + Goal: Add everything needed for release report into json.
+    + Missing result types:
+      + Reconf:
+        + 33788: UTI: Export results of reconf tests | https://gerrit.fd.io/r/c/csit/+/33788
+      + Hoststack:
+        + 34076: UTI: Add export for hoststack test results | https://gerrit.fd.io/r/c/csit/+/34076
+      + GSO.
+    + PAPI history.
+    + Telemetry (at least the "show run" part).
+  + Cons:
+    + This path is time sensitive, as release report runs happen only three times a year.
+    + This needs changes on PAL side to consume json data.
+      + May be hard to debug outside RC1/RC2 phases.
+  + Pros:
+    + Backward-incompatible model change happens at most once per release.
+      + We simply do not merge until RC1/RC2 results look good.
+    + Well defined Minimal Viable Product (MVP):
+      + If report generation needs xml, we are not there yet.
+        + Possible exception: Xml from previous release for comparison tables.
+
++ Path two: Small steps.
+  + Goal: Keep adding things incrementally and use them in trending.
+    + E.g.: Add GSO result export but also add GSO test to job specs and to trending graphs.
+  + Cons:
+    + Possibility of more frequent backward-incompatible model version changes.
+    + Some features are bad fit for trending.
+      + How do you do trending for PAPI history or operational data?
+    + Less clear what the MVP is.
+  + Pros:
+    + Less time sensitive, we can add features as fast/slow as we want.
+
+
+Miscellanous (first two worth doing in either path):
+
++ Improve tox checker:
+  + Make sure .yaml and .json versions of the schema are matching.
+    + 34913: Tox: Add a checker to ensure yaml is converted to json | https://gerrit.fd.io/r/c/csit/+/34913
+  + Make sure all places with model version contain the same version string.
+
++ Refactor schema:
+  + Simplify definitions (types, macros) within the schema:
+    + 34791: UTI: Tweak model | https://gerrit.fd.io/r/c/csit/+/34791
+
++ Minor items listed in docs/model/current/schema/todos.txt.
