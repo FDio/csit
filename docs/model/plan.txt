@@ -1,0 +1,182 @@
+--------------------------------------------------------------------------------
+
+[mk2] CSIT UTI MVP-1 scope - proposal for review:
+
+[mk2] MVP-1 content:
+
+[mk2] 1. Data Producer (csit code, robot jobs) json data including:
+[mk2]    - test results of performance NIC-to-NIC test cases:
+[mk2]      - mrr: stl pps, astf pps cps.
+[mk2]      - ndrpdr: stl pps bps lat, astf pps cps.
+[mk2]      - soak:  stl pps bps.
+[mk2]    - testbed identification via host IPv4 addresses contacted via SSH.
+[mk2]    - test duration, suite duration.
+[mk2]    - test status (pass/fail).
+[mk2] 2. Data Processor (csit code incl. IaaS, AWS svcs, data processing
+[mk2]    infrastructure):
+[mk2]    - data ingestion from data producer(s).
+[mk2]    - data storage, AWS S3 cloud, S3 local.
+[mk2]    - data crawling (extract, transform, load).
+[mk2]    - scalable access (load-balanced) of data apache parquet frames by the
+[mk2]      Plot.ly Dash backend.
+[mk2]    - Plot.ly Dash / web frontend UI - TBC.
+[mk2] 3. Data Consumer (static pages or Dash).
+[mk2]    - Plot.ly Dash / web frontend UI - TBC.
+[mk2]    - Defined number of UI views - TBC.
+[mk2]    - Integration into CSIT web pages - trending and/or new - TBC.
+
+[mk2] MVP-1 user stories:
+
+[mk2] - MRR trending data - pps
+[mk2]   - default view
+[mk2]     - graphs with groups of test cases.
+[mk2]     - pps trend with anomaly markup.
+[mk2]   -  custom view - TBC
+[mk2]     - user search based test case selection - TBC.
+[mk2]     - a graph with custom groups of test cases - TBC.
+[mk2]     - pps trend with anomaly markup.
+[mk2] - MRR NDRPDR trending data - pps
+[mk2]   - default view
+[mk2]     - graphs with groups of test cases.
+[mk2]     - pps trend with anomaly markup.
+[mk2]   -  custom view - TBC
+[mk2]     - user search based test case selection - TBC.
+[mk2]     - a graph with custom groups of test cases - TBC.
+[mk2]     - pps trend with anomaly markup.
+[mk2] - MRR NDRPDR trending data - latency
+[mk2]   - default view
+[mk2]     - graphs with groups of test cases.
+[mk2]     - latency trend with anomaly markup.
+[mk2]   -  custom view - TBC - do we need it in MVP-1 or later?
+[mk2]     - user search based test case selection - TBC.
+[mk2]     - a graph with custom groups of test cases - TBC.
+[mk2]     - latency trend with anomaly markup.
+
+[mk2] MVP-1 is considered complete, once functionality and systems listed above, as
+[mk2] well as user stories are POC'ed end-to-end, and then operationalized in FD.io
+[mk2] CSIT production.
+
+--------------------------------------------------------------------------------
+
+Planning for next steps in UTI evolution:
+Two paths and few miscellaneous items.
+
+If there is a gerrit link, it means the implementation
+is ready (at least for review).
+
+[mk] Makes sense. I decided to comment in-line and in-file, to make them part
+[mk] of the plan instead of just Gerrit review.
+
+Context:
+Test result Data Processing Pipeline can be divided into three parts:
+1. Produce (robot jobs).
+[mk] Robot jobs and associated CSIT code, both executed using existing infrastructure.
+2. Process (trending/report job or crawlers).
+[mk] And equally, or even more, importantly, the new "ETL" data processing
+[mk] infrastructure that provides data storage, data crawling and data viewing.
+3. Consume (static pages or Dash).
+[mk] And equally the data viewing backend and frontend infrastructure.
+This is about Produce part only.
+[mk] The thing is that none of the listed parts can be considered in isolation.
+[mk] They are all interdependent. Changing Produce output (schema, schema
+[mk] version, schema version mechanics that impacts the semantics of version) has
+[mk] direct impact on the downstream data processing pipeline. Hence this plan can
+[mk] not be considered in isolation for Produce part only IMV.
+
+Before UTI, test results are produced as output_info.xml.
+In future, there will be only .info.json files.
+In the meantime, we have both.
+We need to cover everything in json before we can remove xml.
+[mk] IMV covering everything in json and removing xml is not an immediate
+[mk] priority.
+
+Currently, json covers results for mrr
+(including ASTF, both pps and cps, but not including GSO),
+ndrpdr (including latency) and soak.
+Json also allows testbed identification via host IPv4 addresses contacted via SSH.
+Also, test duration, suite durations and test status (pass/fail) are available.
+This is the bare minimum for trending, but not enough for release reports.
+
+[mk] Agree that this is sufficient for complete trending data processing and
+[mk] workflow.
+
+[mk] I suggest we treat this as CSIT's "Minimum Viable Product version 1"
+[mk] ("MVP-1") and get it working end-to-end.
+[mk] I am sure we learned a tonne while doing that.
+[mk] Then we go after extending it and eventually get to completing the
+[mk] workflow for release reports.
+
+Paths:
+
++ Path one: Big step.
+[mk] I do not see it as a valid option at all. See my next comment.
+  + Goal: Add everything needed for release report into json.
+    [mk] No, this is not CSIT's goal as I see it. A Big Bang approach does not
+    [mk] work here. There are too many moving parts (not to mention continuously
+    [mk] evolving VPP and DPDK source code).
+    + Missing result types:
+      + Reconf:
+        + 33788: UTI: Export results of reconf tests | https://gerrit.fd.io/r/c/csit/+/33788
+      + Hoststack:
+        + 34076: UTI: Add export for hoststack test results | https://gerrit.fd.io/r/c/csit/+/34076
+      + GSO.
+    + PAPI history.
+    + Telemetry (at least the "show run" part).
+  + Cons:
+    + This path is time sensitive, as release report runs happen only three times a year.
+    + This needs changes on PAL side to consume json data.
+      + May be hard to debug outside RC1/RC2 phases.
+  + Pros:
+    + Backward-incompatible model change happens at most once per release.
+      + We simply do not merge until RC1/RC2 results look good.
+    + Well defined Minimal Viable Product (MVP):
+      + If report generation needs xml, we are not there yet.
+        + Possible exception: Xml from previous release for comparison tables.
+
++ Path two: Small steps.
+[mk] This is better :)
+  + Goal: Keep adding things incrementally and use them in trending.
+    + E.g.: Add GSO result export but also add GSO test to job specs and to trending graphs.
+    [mk] Agree. Once we are done with working "MVP-1", we can then decide on
+    [mk] incremental adds. GSO may be one of them.
+  + Cons:
+    + Possibility of more frequent backward-incompatible model version changes.
+    [mk] I am struggling to envisage what would be forcing us (CSIT project)
+    [mk] to proceed with "frequent backward-incompatible model version changes".
+    [mk] If we are forced to do an incompatible change, "we do it if it is really
+    [mk] worth it", and we most likely batch multiple requirements behind an
+    [mk] incompatible change. And BTW we can consider version rolling strategies
+    [mk] that will ensure e2e system continuous operation, without breaking even
+    [mk] though when dealing with multiple incompatible versions.
+    [mk] In summary, I don't see this as a valid point under Cons.
+    + Some features are bad fit for trending.
+      + How do you do trending for PAPI history or operational data?
+      [mk] re "PAPI history", there is no need or requirement to trend it, so moot point.
+      [mk] re "operational data", today it is vpp "show runtime"(vpp perfmon),
+      [mk] and with json (openmetrics) telemetry data, we can create time series
+      [mk] for (test-case,selected-vpp-node,cycles-per-packet) and do anomaly
+      [mk] detection on such a series.
+      [mk] Again, I don't see this as a valid point under Cons.
+    + Less clear what the MVP is.
+    [mk] I have just defined above what "MVP-1" is for the Produce part.
+    [mk] Let me work on the Process and Consume parts, will add here to this plan.
+    [mk] TODO Add "MVP-1" description for the Process and Consume parts of this plan.
+  + Pros:
+    + Less time sensitive, we can add features as fast/slow as we want.
+    [mk] Agree.
+
+
+Miscellanous (first two worth doing in either path):
+
++ Improve tox checker:
+  + Make sure .yaml and .json versions of the schema are matching.
+    + 34913: Tox: Add a checker to ensure yaml is converted to json | https://gerrit.fd.io/r/c/csit/+/34913
+  + Make sure all places with model version contain the same version string.
+
++ Refactor schema:
+  + Simplify definitions (types, macros) within the schema:
+    + 34791: UTI: Tweak model | https://gerrit.fd.io/r/c/csit/+/34791
+
++ Minor items listed in docs/model/current/schema/todos.txt.
+[mk] Is this work list in todos.txt complete?
+[mk] Can we use this list and distribute the work items between completion of "MVP-1" and future "MVP-N"?
