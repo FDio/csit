@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -141,5 +141,5 @@ def write_raw_output(raw_file_path, raw_data):
     """
     raw_data = _pre_serialize_root(raw_data)
     os.makedirs(os.path.dirname(raw_file_path), exist_ok=True)
-    with open(raw_file_path, u"xt", encoding="utf-8") as file_out:
+    with open(raw_file_path, u"wt", encoding="utf-8") as file_out:
         json.dump(raw_data, file_out, indent=1)
