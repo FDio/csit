@@ -1,17 +1,20 @@
 Data Plane Performance
 ======================
 
+.. _Dashboard:
+
 Legend to the tables:
 
     - **Test Case**: name of FD.io CSIT test case, naming convention
       `here <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
-    - **Trend [Mpps]**: Trend (population average) of the last group of runs.
-    - **Short-Term Change [%]**: Relative change of last trend value
-      vs. last week trend value.
-    - **Long-Term Change [%]**: Relative change of last trend value vs.
+    - **Trend [Mpps]**: Population average of the last group of runs.
+    - **Runs [#]**: Number of runs belonging to the last sample group.
+    - **Long-Term Change [%]**: Relative change of Last Trend vs.
       maximum of trend values over the last quarter except last week.
-    - **Regressions [#]**: Number of regressions detected.
-    - **Progressions [#]**: Number of progressions detected.
+    - **Regressions [#]**: Number of regressions detected
+      in last few runs (4 for weekly, 14 for daily).
+    - **Progressions [#]**: Number of progressions detected
+      in last few runs (4 for weekly, 14 for daily).
 
 For full explanation see :ref:`Trend_Compliance` document.
 

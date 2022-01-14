@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -331,7 +331,7 @@ class Alerting:
         :param idx: Index of the test set as it is specified in the
             specification file.
         :param header: The header of the list of [re|pro]gressions.
-        :param re_pro: 'regression' or 'progression'.
+        :param re_pro: 'regressions' or 'progressions'.
         :type alert: dict
         :type idx: int
         :type header: str
