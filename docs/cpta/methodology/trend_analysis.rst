@@ -16,35 +16,47 @@ Trend Compliance
 
 .. _Trend_Compliance:
 
-In the text below, "trend at time <t>", shorthand "Trend[t]"
+Trend compliance metrics are targeted to provide an indication of trend
+changes, and hint at their reliability.
+
+There is a difference between compliance metric names used in this document,
+and column names used in :ref:`Dashboard` tables and Alerting emails.
+In cases of low user confusion risk, column names are shortened,
+e.g. Trend instead of Last Trend.
+In cases of high user confusion risk, column names are prolonged,
+e.g. Long-Term Change instead of Trend Change.
+(This document refers to a generic "trend",
+so the compliance metric name is prolonged to Last Trend to avoid confusion.)
+
+The definition of Reference for Trend Change is perhaps surprising.
+It was chosen to allow both positive difference on progression
+(if within last week), but also negative difference on progression
+(if performance was even better somewhere between 3 months and 1 week ago).
+
+In the table below, "trend at time <t>", shorthand "trend[t]"
 means "the group average of the group the sample at time <t> belongs to".
 Here, time is usually given as "last" or last with an offset,
 e.g. "last - 1week".
+Also, "runs[t]" is a shorthand for "number of samples in the group
+the sample at time <t> belongs to".
 
-Trend compliance metrics are targeted to provide an indication of trend
-changes over a short-term (i.e. weekly) and a long-term (i.e.
-quarterly), comparing the last group average Trend[last], to the one from week
-ago, Trend[last - 1week] and to the maximum of trend values over last
-quarter except last week, max(Trend[last - 3mths]..Trend[last - 1week]),
-respectively.
+The definitions of compliance metrics:
 
-This results in following trend compliance calculations:
-
-+-------------------------+---------------------------------+-------------+-----------------------------------------------+
-| Trend Compliance Metric | Trend Change Formula            | Value       | Reference                                     |
-+=========================+=================================+=============+===============================================+
-| Short-Term Change       | (Value - Reference) / Reference | Trend[last] | Trend[last - 1week]                           |
-+-------------------------+---------------------------------+-------------+-----------------------------------------------+
-| Long-Term Change        | (Value - Reference) / Reference | Trend[last] | max(Trend[last - 3mths]..Trend[last - 1week]) |
-+-------------------------+---------------------------------+-------------+-----------------------------------------------+
-
-These metrics are displayed in the Dashboard table.
++-------------------+-------------------+---------------------------------+-------------+-----------------------------------------------+
+| Compliance Metric | Legend Short Name | Formula                         | Value       | Reference                                     |
++===================+===================+=================================+=============+===============================================+
+| Last Trend        | Trend             | trend[last]                     |             |                                               |
++-------------------+-------------------+---------------------------------+-------------+-----------------------------------------------+
+| Number of runs    | Runs              | runs[last]                      |             |                                               |
++-------------------+-------------------+---------------------------------+-------------+-----------------------------------------------+
+| Trend Change      | Long-Term Change  | (Value - Reference) / Reference | trend[last] | max(trend[last - 3mths]..trend[last - 1week]) |
++-------------------+-------------------+---------------------------------+-------------+-----------------------------------------------+
 
 Caveats
 -------
 
-Obviously, is result history is too short, the true Trend[t] value
-may not by available, we use the earliest Trend available instead.
+Obviously, if the result history is too short, the true Trend[t] value
+may not by available. We use the earliest Trend available instead.
 
 The current implementaton does not track time of the samples,
 it counts runs instead.
