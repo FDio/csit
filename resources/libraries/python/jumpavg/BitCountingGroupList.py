@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -75,7 +75,7 @@ class BitCountingGroupList:
         :returns: Readable description.
         :rtype: str
         """
-        return u"group_list={self.group_list} bits={self.bits}"
+        return f"group_list={self.group_list} bits={self.bits}"
 
     def __repr__(self):
         """Return string executable as Python constructor call.
