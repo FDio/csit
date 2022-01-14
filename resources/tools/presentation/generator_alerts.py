@@ -331,7 +331,7 @@ class Alerting:
         :param idx: Index of the test set as it is specified in the
             specification file.
         :param header: The header of the list of [re|pro]gressions.
-        :param re_pro: 'regression' or 'progression'.
+        :param re_pro: 'regressions' or 'progressions'.
         :type alert: dict
         :type idx: int
         :type header: str
