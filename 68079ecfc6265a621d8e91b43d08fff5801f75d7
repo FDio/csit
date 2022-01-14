@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33fbe318_ed393a4c",
+        "filename": "resources/tools/presentation/specification_CPTA.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-14T12:31:54Z",
+      "side": 1,
+      "message": "This one (and its NDR brother above) should be coming from a weekly job, so windows should be 4 and 12.",
+      "range": {
+        "startLine": 1055,
+        "startChar": 0,
+        "endLine": 1056,
+        "endChar": 24
+      },
+      "revId": "68079ecfc6265a621d8e91b43d08fff5801f75d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
