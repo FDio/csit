@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -31,15 +31,6 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 
-impl_log="edited_files.log"
-git diff --name-only HEAD~ > "${impl_log}"
-if ! grep -q '^resources/libraries/python/model' "${impl_log}"; then
-    # Failing grep means no model edits.
-    warn "No model implementation edits detected."
-    warn
-    warn "CSIT model version checker: PASS"
-    exit 0
-fi
 const_log="constants_edits.log"
 git diff -U0 HEAD~ -- "resources/libraries/python/Constants.py" > "${const_log}"
 if ! grep -q '^\+    MODEL_VERSION = ' "${const_log}"; then
