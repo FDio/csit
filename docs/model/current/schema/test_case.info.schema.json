@@ -1,5 +1,5 @@
 {
-  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.1.0",
+  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.2.0",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Schema for info output of test case.",
   "allOf": [
@@ -76,6 +76,15 @@
                 },
                 {
                   "$ref": "#/$defs/reconf_result"
+                },
+                {
+                  "$ref": "#/$defs/hoststack_ab_result"
+                },
+                {
+                  "$ref": "#/$defs/hoststack_iperf3_result"
+                },
+                {
+                  "$ref": "#/$defs/hoststack_vpp_echo_result"
                 }
               ]
             }
@@ -128,7 +137,7 @@
         "version": {
           "description": "CSIT model version (semver format) the exporting code adhered to.",
           "type": "string",
-          "const": "1.1.0"
+          "const": "1.2.0"
         }
       },
       "required": [
@@ -599,6 +608,377 @@
         "packet_loss",
         "packet_rate",
         "time_loss"
+      ]
+    },
+    "hoststack_ab_result": {
+      "description": "Result type HOSTSTACK AB case. This is used for VSAP tests which use AB as a client and NGINX as a server.",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "hoststack_ab"
+        },
+        "object": {
+          "description": "The structured object holding the parsed values obtained from the AB tool output.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "completed_requests": {
+              "description": "How many HTTP requests were completed.",
+              "$ref": "#/$defs/positive_integer"
+            },
+            "failed_requests": {
+              "description": "How many HTTP requests failed. Request failures do not cause overall test failure, especially for CPS test.",
+              "$ref": "#/$defs/nonnegative_integer"
+            },
+            "latency_unit": {
+              "description": "Unit of measurement for latency.",
+              "enum": [
+                "ms"
+              ]
+            },
+            "latency_value": {
+              "description": "Latency value as reported by AB, probably the HTTP response delay averaged over all HTTP requests.",
+              "$ref": "#/$defs/positive_float"
+            },
+            "protocol": {
+              "description": "Protocol used by AB to transport requests.",
+              "enum": [
+                "HTTP",
+                "HTTPS"
+              ]
+            },
+            "quantity": {
+              "description": "Specifies the main quantity of interest. CPS tests measure connections per second (connections are closed and reopened after each response), RPS tests measure requests per second (each client worker reuses its connection without closing it between requests).",
+              "enum": [
+                "cps",
+                "rps"
+              ]
+            },
+            "rate": {
+              "description": "The numeric value measured for the main quantity of interest (cps or rps).",
+              "$ref": "#/$defs/positive_float"
+            },
+            "total_bytes": {
+              "description": "How many bytes were transferred.",
+              "$ref": "#/$defs/positive_float"
+            },
+            "transfer_rate": {
+              "description": "Numeric value measured for the goodput.",
+              "$ref": "#/$defs/positive_float"
+            },
+            "transfer_unit": {
+              "description": "The unit of the goodput measurement.",
+              "enum": [
+                "Kbytes/sec"
+              ]
+            }
+          },
+          "required": [
+            "completed_requests",
+            "failed_requests",
+            "latency_unit",
+            "latency_value",
+            "protocol",
+            "quantity",
+            "rate",
+            "total_bytes",
+            "transfer_rate",
+            "transfer_unit"
+          ]
+        }
+      },
+      "required": [
+        "object"
+      ]
+    },
+    "hoststack_failed_object": {
+      "description": "Sub-schema for part of the result when a tool reports failure, so the output is probably not parseable into expected properties. This covers both iperf3 and vpp_echo output.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "output_text": {
+          "description": "The tool output (multiline), plus any additional info added by CSIT code.",
+          "type": "string"
+        },
+        "reason": {
+          "decription": "Just the copy the first line of the output text.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "output_text",
+        "reason"
+      ]
+    },
+    "iperf3_passed_object_common": {
+      "description": "Sub-schema for part of iperf3 result when tool reports success, so the output is parseable into expected properties. This sub-schema does not distinguish between TCP and UDP item.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "bits_per_second": {
+          "description": "The numberic part of the main performance result. Corresponding unit is obviously \"bps\".",
+          "$ref": "#/$defs/positive_float"
+        },
+        "bytes": {
+          "description": "Amount of data transferred during the test.",
+          "$ref": "#/$defs/positive_integer"
+        },
+        "end": {
+          "description": "The relative time (in seconds) of the program end.",
+          "$ref": "#/$defs/positive_float"
+        },
+        "omitted": {
+          "description": "False in well-behaved tests.",
+          "type": "boolean"
+        },
+        "packets": {
+          "description": "The number of packets transmitted by iperf3 acting as UDP client.",
+          "$ref": "#/$defs/positive_integer"
+        },
+        "retransmits": {
+          "description": "The number of packets retransmitted by iperf3 acting as TCP client. It is zero in well-behaved tests.",
+          "$ref": "#/$defs/nonnegative_integer"
+        },
+        "seconds": {
+          "description": "The relative time difference (in seconds) between program start and end.",
+          "$ref": "#/$defs/positive_float"
+        },
+        "sender": {
+          "description": "In well behaved tests, the value is true, as iperf3 is used as a client that downloads data.",
+          "type": "boolean"
+        },
+        "start": {
+          "description": "The relative time (in seconds) of the program start. In practice, this is zero (integer in json).",
+          "$ref": "#/$defs/nonnegative_float"
+        }
+      },
+      "required": [
+        "bits_per_second",
+        "bytes",
+        "end",
+        "omitted",
+        "seconds",
+        "sender",
+        "start"
+      ]
+    },
+    "iperf3_passed_object_tcp": {
+      "description": "Sub-schema for part of iperf3 result when tool reports success, so the output is parseable into expected properties. This sub-schema matches only UDP result item.",
+      "type": "object",
+      "required": [
+        "retransmits"
+      ]
+    },
+    "iperf3_passed_object_udp": {
+      "description": "This sub-schema matches only UDP result item.",
+      "type": "object",
+      "required": [
+        "packets"
+      ]
+    },
+    "iperf3_passed_object": {
+      "description": "Sub-schema for part of iperf3 result when tool reports success, so the output is parseable into expected properties. This sub-schema requires either TCP or UDP result item.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/iperf3_passed_object_common"
+        },
+        {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/iperf3_passed_object_tcp"
+            },
+            {
+              "$ref": "#/$defs/iperf3_passed_object_udp"
+            }
+          ]
+        }
+      ]
+    },
+    "hoststack_iperf3_result": {
+      "description": "Sub-schema for iperf3 hoststack result, may be passed or failed. Used for hostsack tests, except VSAP or QUIC.",
+      "type": "object",
+      "allOf": [
+        {
+          "description": "The common scructure, regardless of success.",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "hoststack_iperf3"
+            },
+            "object": {
+              "description": "Result item, parsed as possible for given success flag.",
+              "type": "object"
+            },
+            "success": {
+              "description": "If true, numeric values are available. If false, only text output is available. This is different from test status, e.g. test may still fail, even if result is success.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "object",
+            "success"
+          ]
+        },
+        {
+          "oneOf": [
+            {
+              "description": "Sub-schema for successful result.",
+              "properties": {
+                "object": {
+                  "$ref": "#/$defs/iperf3_passed_object"
+                },
+                "success": {
+                  "const": true
+                }
+              }
+            },
+            {
+              "description": "Sub-schema for unsuccessful result.",
+              "properties": {
+                "object": {
+                  "$ref": "#/$defs/hoststack_failed_object"
+                },
+                "success": {
+                  "const": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "vpp_echo_passed_object": {
+      "description": "Sub-schema for part of vpp_echo result when tool reports success, so the output is parseable into expected properties.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "end_evt": {
+          "description": "The name of the event which stops the program timer. In the current udpquic tests, both server and client programs have the same value.",
+          "const": "lastbyte"
+        },
+        "end_evt_missing": {
+          "description": "Tells whether the end event happened at all (false) or not (true). Well behaved test have false value.",
+          "type": "boolean"
+        },
+        "role": {
+          "description": "Describing whether this result item comes from server or client program.",
+          "enum": [
+            "client",
+            "server"
+          ]
+        },
+        "rx_bits_per_second": {
+          "description": "The aggregate speed of data received by this role over its session(s), expressed in bits per second. Can be zero in unidirectional tests.",
+          "$ref": "#/$defs/nonnegative_float"
+        },
+        "rx_data": {
+          "description": "The aggregate number of bytes received by this role over its session(s). Can be zero in unidirectional tests.",
+          "$ref": "#/$defs/nonnegative_integer"
+        },
+        "start_evt": {
+          "description": "The name of the event which starts the program timer. In the current udpquic tests, both server and client programs have the same value.",
+          "const": "sconnect"
+        },
+        "start_evt_missing": {
+          "description": "Tells whether the start event happened at all (false) or not (true). Well behaved test have false value.",
+          "type": "boolean"
+        },
+        "time": {
+          "description": "The relative time difference (in seconds) between program start and end, more specificaly between the start event and the end event.",
+          "$ref": "#/$defs/positive_float"
+        },
+        "tx_bits_per_second": {
+          "description": "The aggregate speed of data transmitted by this role over its session(s), expressed in bits per second. Can be zero in unidirectional tests.",
+          "$ref": "#/$defs/nonnegative_float"
+        },
+        "tx_data": {
+          "description": "The aggregate number of bytes transmitted by this role over its session(s). Can be zero in unidirectional tests.",
+          "$ref": "#/$defs/nonnegative_integer"
+        }
+      },
+      "required": [
+        "end_evt",
+        "end_evt_missing",
+        "role",
+        "rx_bits_per_second",
+        "rx_data",
+        "start_evt",
+        "start_evt_missing",
+        "time",
+        "tx_bits_per_second",
+        "tx_data"
+      ]
+    },
+    "hoststack_vpp_echo_item": {
+      "description": "Sub-schema for vpp_echo hoststack result item, for one program.",
+      "type": "object",
+      "allOf": [
+        {
+          "description": "The common scructure, regardless of success.",
+          "additionalProperties": false,
+          "properties": {
+            "object": {
+              "description": "Result item, parsed as possible for given success flag.",
+              "type": "object"
+            },
+            "success": {
+              "description": "If true, numeric values are available. If false, only text output is available. This is different from test status, e.g. test may still fail, even if result is success.",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "object",
+            "success"
+          ]
+        },
+        {
+          "oneOf": [
+            {
+              "description": "Sub-schema for successful result.",
+              "properties": {
+                "object": {
+                  "$ref": "#/$defs/vpp_echo_passed_object"
+                },
+                "success": {
+                  "const": true
+                }
+              }
+            },
+            {
+              "description": "Sub-schema for unsuccessful result.",
+              "properties": {
+                "object": {
+                  "$ref": "#/$defs/hoststack_failed_object"
+                },
+                "success": {
+                  "const": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "hoststack_vpp_echo_result": {
+      "description": "Sub-schema for vpp_echo hoststack result, for all programs.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "hoststack_vpp_echo"
+        },
+        "outputs": {
+          "description": "Result items, parsed as possible for given success flag. The current tests use exactly two programs (client and server).",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/hoststack_vpp_echo_item"
+          }
+        }
+      },
+      "required": [
+        "outputs"
       ]
     }
   }
