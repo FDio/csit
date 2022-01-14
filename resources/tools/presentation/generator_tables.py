@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -266,7 +266,7 @@ def table_oper_data_html(table, input_data):
             u"Nr of Vectors",
             u"Nr of Packets",
             u"Suspends",
-            u"Cycles per Packet",
+            u"Cycles per Packet	",
             u"Average Vector Size"
         )
 
@@ -297,28 +297,15 @@ def table_oper_data_html(table, input_data):
             threads = dict({idx: list() for idx in range(len(runtime))})
             for idx, run_data in runtime.items():
                 for gnode, gdata in run_data.items():
-                    if gdata[u"vectors"] > 0:
-                        clocks = gdata[u"clocks"] / gdata[u"vectors"]
-                    elif gdata[u"calls"] > 0:
-                        clocks = gdata[u"clocks"] / gdata[u"calls"]
-                    elif gdata[u"suspends"] > 0:
-                        clocks = gdata[u"clocks"] / gdata[u"suspends"]
-                    else:
-                        clocks = 0.0
-                    if gdata[u"calls"] > 0:
-                        vectors_call = gdata[u"vectors"] / gdata[u"calls"]
-                    else:
-                        vectors_call = 0.0
-                    if int(gdata[u"calls"]) + int(gdata[u"vectors"]) + \
-                            int(gdata[u"suspends"]):
-                        threads[idx].append([
-                            gnode,
-                            int(gdata[u"calls"]),
-                            int(gdata[u"vectors"]),
-                            int(gdata[u"suspends"]),
-                            clocks,
-                            vectors_call
-                        ])
+                    threads[idx].append([
+                        gnode,
+                        int(gdata[u"calls"]),
+                        int(gdata[u"vectors"]),
+                        int(gdata[u"suspends"]),
+                        float(gdata[u"clocks"]),
+                        float(gdata[u"vectors"] / gdata[u"calls"]) \
+                            if gdata[u"calls"] else 0.0
+                    ])
 
             bold = ET.SubElement(tcol, u"b")
             bold.text = (
