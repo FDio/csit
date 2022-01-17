@@ -279,6 +279,21 @@ class Alerting:
                         line, error_msg = line[:-1].split(u'###', maxsplit=1)
                         test = line.split(u'-')
                         name = u'-'.join(test[3:-1])
+                        if len(error_msg) > 128:
+                            error_msg1 = error_msg[:128]
+                            if u";" in error_msg[128:256]:
+                                error_msg2 = error_msg[128:].split(u";", 1)[0]\
+                                             + "..."
+                            elif u":" in error_msg[128:256]:
+                                error_msg2 = error_msg[128:].split(u":", 1)[0]\
+                                             + "..."
+                            elif u"'" in error_msg[128:256]:
+                                error_msg2 = error_msg[128:].split(u"'", 1)[0]\
+                                             + "..."
+                            else:
+                                error_msg2 = u""
+                        error_msg = error_msg1 + error_msg2
+
                     except ValueError:
                         continue
 
