@@ -257,7 +257,7 @@ def _merge_into_suite_info_file(teardown_info_path):
     suite_data[u"teardown_log"] = teardown_data[u"log"]
 
     suite_info_path = u"suite".join(teardown_info_path.rsplit(u"teardown", 1))
-    with open(suite_info_path, u"wt", encoding="utf-8") as file_out:
+    with open(suite_info_path, u"xt", encoding="utf-8") as file_out:
         json.dump(suite_data, file_out, indent=1)
     # We moved everything useful from temporary setup/teardown info files.
     os.remove(setup_info_path)
@@ -285,7 +285,7 @@ def convert_content_to_info(from_raw_path):
 
     data = _convert_to_info_in_memory(data)
 
-    with open(to_info_path, u"wt", encoding="utf-8") as file_out:
+    with open(to_info_path, u"xt", encoding="utf-8") as file_out:
         json.dump(data, file_out, indent=1)
     if to_info_path.endswith(u"/teardown.info.json"):
         to_info_path = _merge_into_suite_info_file(to_info_path)
