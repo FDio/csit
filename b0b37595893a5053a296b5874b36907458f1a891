@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc66e9f0_b9e6e397",
+        "filename": "resources/tools/presentation/generator_alerts.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-01-17T13:35:05Z",
+      "side": 1,
+      "message": "This should be in the body of if.",
+      "range": {
+        "startLine": 295,
+        "startChar": 24,
+        "endLine": 295,
+        "endChar": 59
+      },
+      "revId": "b0b37595893a5053a296b5874b36907458f1a891",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
