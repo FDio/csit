@@ -31,6 +31,9 @@ function activate_wrapper () {
     enter_mutex || die
     get_available_interfaces "${1}" "${2}" || die
     bind_dut_interfaces_to_vpp_driver || die
+    # Now that we have rebound drivers, MAC addresses probably changed,
+    # so we need to re-read the current values.
+    redetect_dut_drivers_and_macs || die
     start_topology_containers "${3}" || die
     bind_interfaces_to_containers || die
     set_env_variables || die
@@ -283,7 +286,11 @@ function get_available_interfaces () {
     # - DUT1_NETDEVS - List of network devices allocated to DUT1 container.
     # - DUT1_PCIDEVS - List of PCI addresses allocated to DUT1 container.
     # - DUT1_NETMACS - List of MAC addresses allocated to DUT1 container.
+    #                  This list is kept empty,
+    #                  to be populated after driver rebind.
     # - DUT1_DRIVERS - List of interface drivers to DUT1 container.
+    #                  This list is populated here,
+    #                  but also repopulated after driver rebind.
     # - DUT1_VLANS - List of interface vlans to TG container.
     # - DUT1_MODEL - List of interface models to TG container.
     # - TG_NETDEVS - List of network devices allocated to TG container.
@@ -414,6 +421,29 @@ function get_available_interfaces () {
     if [ "${#TG_NETDEVS[@]}" -lt 2 ] || [ "${#DUT1_NETDEVS[@]}" -lt 2 ]; then
         die "Not enough linux network interfaces found!"
     fi
+}
+
+
+function redetect_dut_drivers_and_macs () {
+
+    # Continuation of get_available_interfaces
+    # to be called after driver rebind.
+    #
+    # Variables set:
+    # - DUT1_NETMACS - List of MAC addresses allocated to DUT1 container.
+    # - DUT1_DRIVERS - List of interface drivers to DUT1 container.
+
+    set -exuo pipefail
+
+    # DUT1_NETMACS is already creatend and empty.
+    # DUT1_DRIVERS is populated, but with old drivers, so we need to wipe.
+    DUT1_DRIVERS=()
+    for NETDEV in "${DUT1_NETDEVS[@]}"; do
+        get_mac_addr
+        get_krn_driver
+        DUT1_NETMACS+=(${MAC_ADDR})
+        DUT1_DRIVERS+=(${KRN_DRIVER})
+    done
 }
 
 
