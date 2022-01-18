@@ -129,6 +129,7 @@ function bind_interfaces_to_driver () {
     pci_path="/sys/bus/pci/devices/${ADDR}"
     drv_path="/sys/bus/pci/drivers/${DRIVER}"
     if [ -d "${pci_path}/driver" ]; then
+        ls -lAn "${pci_path}/driver"
         echo ${ADDR} | sudo tee ${pci_path}/driver/unbind > /dev/null || {
             die "Failed to unbind interface ${ADDR}!"
         }
