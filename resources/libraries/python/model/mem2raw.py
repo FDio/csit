@@ -24,11 +24,10 @@ Validation is outside the scope of this module,
 as it should use the JSON data read from disk.
 """
 
-import json
-import os
-
 from collections.abc import Iterable, Mapping, Set
 from enum import IntFlag
+
+from resources.libraries.python.model.json_io import dump_into
 
 
 def _pre_serialize_recursive(data):
@@ -140,9 +139,4 @@ def write_raw_output(raw_file_path, raw_data):
     :type to_raw_path: str
     """
     raw_data = _pre_serialize_root(raw_data)
-    os.makedirs(os.path.dirname(raw_file_path), exist_ok=True)
-    # Not using "w" mode, we want to fail if target file exists,
-    # as that hints the bootstrap script did not do its job properly
-    # and we do not want to archive "dirty" data without any warning.
-    with open(raw_file_path, u"xt", encoding="utf-8") as file_out:
-        json.dump(raw_data, file_out, indent=1)
+    dump_into(raw_data, raw_file_path)

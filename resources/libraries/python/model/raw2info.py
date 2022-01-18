@@ -14,13 +14,15 @@
 """Module facilitating conversion from raw outputs into info outputs."""
 
 import copy
-import json
 import os
 
 import dateutil.parser
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.jumpavg.AvgStdevStats import AvgStdevStats
+from resources.libraries.python.model.json_io import load_from, dump_into
+from resources.libraries.python.model.util import normalize
+from resources.libraries.python.time_measurement import posix_from_iso
 
 
 def _raw_to_info_path(raw_path):
@@ -165,9 +167,8 @@ def _convert_to_info_in_memory(data):
     data[u"log"] = list()
 
     # Duration is computed for every file.
-    start_float = dateutil.parser.parse(data[u"start_time"]).timestamp()
-    end_float = dateutil.parser.parse(data[u"end_time"]).timestamp()
-    data[u"duration"] = end_float - start_float
+    start_time_float = posix_from_iso(data[u"start_time"])
+    data[u"duration"] = posix_from_iso(data[u"end_time"]) - start_time_float
 
     # Reorder impotant fields to the top.
     sorted_data = dict(version=data.pop(u"version"))
@@ -241,27 +242,20 @@ def _merge_into_suite_info_file(teardown_info_path):
     """
     # Manual right replace: https://stackoverflow.com/a/9943875
     setup_info_path = u"setup".join(teardown_info_path.rsplit(u"teardown", 1))
-    with open(teardown_info_path, u"rt", encoding="utf-8") as file_in:
-        teardown_data = json.load(file_in)
+    teardown_data = load_from(teardown_info_path)
     # Transforming setup data into suite data.
-    with open(setup_info_path, u"rt", encoding="utf-8") as file_in:
-        suite_data = json.load(file_in)
+    suite_data = load_from(setup_info_path)
 
     end_time = teardown_data[u"end_time"]
     suite_data[u"end_time"] = end_time
-    start_float = dateutil.parser.parse(suite_data[u"start_time"]).timestamp()
-    end_float = dateutil.parser.parse(suite_data[u"end_time"]).timestamp()
-    suite_data[u"duration"] = end_float - start_float
+    start_time_float = posix_from_iso(suite_data[u"start_time"])
+    suite_data[u"duration"] = posix_from_iso(end_time) - start_time_float
     setup_log = suite_data.pop(u"log")
     suite_data[u"setup_log"] = setup_log
     suite_data[u"teardown_log"] = teardown_data[u"log"]
 
     suite_info_path = u"suite".join(teardown_info_path.rsplit(u"teardown", 1))
-    # Not using "w" mode, we want to fail if target file exists,
-    # as that hints the bootstrap script did not do its job properly
-    # and we do not want to archive "dirty" data without any warning.
-    with open(suite_info_path, u"xt", encoding="utf-8") as file_out:
-        json.dump(suite_data, file_out, indent=1)
+    dump_into(suite_data, suite_info_path)
     # We moved everything useful from temporary setup/teardown info files.
     os.remove(setup_info_path)
     os.remove(teardown_info_path)
@@ -283,16 +277,11 @@ def convert_content_to_info(from_raw_path):
     :raises RuntimeError: If path or content do not match expectations.
     """
     to_info_path = _raw_to_info_path(from_raw_path)
-    with open(from_raw_path, u"rt", encoding="utf-8") as file_in:
-        data = json.load(file_in)
+    data = load_from(from_raw_path)
 
     data = _convert_to_info_in_memory(data)
 
-    # Not using "w" mode, we want to fail if target file exists,
-    # as that hints the bootstrap script did not do its job properly
-    # and we do not want to archive "dirty" data without any warning.
-    with open(to_info_path, u"xt", encoding="utf-8") as file_out:
-        json.dump(data, file_out, indent=1)
+    dump_into(data, to_info_path)
     if to_info_path.endswith(u"/teardown.info.json"):
         to_info_path = _merge_into_suite_info_file(to_info_path)
         # TODO: Return both paths for validation?
