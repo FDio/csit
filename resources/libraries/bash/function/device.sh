@@ -31,6 +31,9 @@ function activate_wrapper () {
     enter_mutex || die
     get_available_interfaces "${1}" "${2}" || die
     bind_dut_interfaces_to_vpp_driver || die
+    # Now that we have rebound drivers, MAC addresses robably changed,
+    # so we need to re-read the current values.
+    get_available_interfaces "${1}" "${2}" || die
     start_topology_containers "${3}" || die
     bind_interfaces_to_containers || die
     set_env_variables || die
