@@ -31,19 +31,33 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 
+model_updated="false"
 impl_log="edited_files.log"
 git diff --name-only HEAD~ > "${impl_log}"
-if ! grep -q '^docs/model/current/schema/test_case*' "${impl_log}"; then
+if ! grep -q '^resources/libraries/python/model' "${impl_log}"; then
     # Failing grep means no model edits.
     warn "No model implementation edits detected."
-    warn
+else
+    warn "Model implementation edits detected."
+    model_updated="true"
+fi
+if ! grep -q '^docs/model/current/schema/test_case*' "${impl_log}"; then
+    # Failing grep means no schema edits.
+    warn "No model schema edits detected."
+else
+    warn "Model schema edits detected."
+    model_updated="true"
+fi
+# Model is upated if either implementation or schema changes.
+if [[ "${model_updated}" == "false" ]]; then
     warn "CSIT model version checker: PASS"
     exit 0
 fi
+# If model is updated, model version in docs and in Constants should be too.
 const_log="constants_edits.log"
 git diff -U0 HEAD~ -- "resources/libraries/python/Constants.py" > "${const_log}"
 if ! grep -q '^\+    MODEL_VERSION = ' "${const_log}"; then
-    warn "Model implementation edits without version edit detected!"
+    warn "Model edits without Constants version edit detected!"
     warn "See ${impl_log} and ${const_log} for what was detected."
     warn
     warn "CSIT model version checker: FAIL"
@@ -52,7 +66,7 @@ fi
 doc_log="docs_edits.log"
 git diff -U0 HEAD~ -- "docs/model/current/top.rst" > "${doc_log}"
 if ! grep -q '^\+This document is valid for CSIT model' "${doc_log}"; then
-    warn "Model implementation edits without documentation update detected!"
+    warn "Model edits without documentation update detected!"
     warn "See ${impl_log}, ${const_log} and ${doc_log} for what was detected."
     warn
     warn "CSIT model version checker: FAIL"
