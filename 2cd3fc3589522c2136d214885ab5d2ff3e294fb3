@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e8fab29_bc7f3d67",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "agree. that is why current writeup is not an MVP",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 61
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6eba414_a8a91c12",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "Not only it is not priority, it is not a goal at all!! We do not want to build XML:JSON \u003d\u003d 1:1, what value it would bring to have them same? Zero. Same problem we had in past. Hence with Tibor we created vision how to deal with that problem.\nOtherwise we would script xml to json converter and that would be much faster than reading this commit.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 14
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5661f853_b4d53c62",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "disagree. We do not have defined what is enough or not. To me it is enough to produce report.",
+      "range": {
+        "startLine": 39,
+        "startChar": 40,
+        "endLine": 39,
+        "endChar": 73
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa05cbf0_da32c444",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "agree",
+      "range": {
+        "startLine": 53,
+        "startChar": 5,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eacf67b9_54ae4da6",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "agree",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb62af83_9f7a64e8",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "agree. the ETL will ONLY accept backward compatible changes. Not incompatible.",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 80
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4f11409_e7920820",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "Completely disagree",
+      "range": {
+        "startLine": 93,
+        "startChar": 6,
+        "endLine": 93,
+        "endChar": 45
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "050f3686_5245bdf4",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "Same as above.",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 68
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fceadefa_cc5722dc",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "as per above MVP will be together. Not per partes.",
+      "range": {
+        "startLine": 104,
+        "startChar": 19,
+        "endLine": 104,
+        "endChar": 85
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ca61422_be149db5",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "I do not understand why the time and features are tight together. Makes no sense.",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 71
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee569e0b_98691773",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "I do plan to remove yaml entirely.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 107
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1d76e8d_dfbea5e8",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "This is not a tox job. This must be part of code hardening.",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 75
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7a906dc_9037762f",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T09:01:03Z",
+      "side": 1,
+      "message": "We barely start and you need refactor. Clearly we have a problem. From all above comments it is clear that we failed to deliver what was supposed to be stable minimum MVP.",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
