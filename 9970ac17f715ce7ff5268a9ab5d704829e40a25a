@@ -45,6 +45,30 @@
       "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f805b338_e27cfda0",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T12:17:26Z",
+      "side": 1,
+      "message": "I will elaborate more: if this situation happens, then we have code leaks elsewhere. And should be fixed earlier in the code. not here",
+      "parentUuid": "6c7102f4_bfc03120",
+      "range": {
+        "startLine": 385,
+        "startChar": 8,
+        "endLine": 385,
+        "endChar": 54
+      },
+      "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
