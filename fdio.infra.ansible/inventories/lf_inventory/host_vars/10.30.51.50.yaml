@@ -6,6 +6,7 @@ grub:
   hugepagesz: "2M"
   hugepages: 32768
   iommu: "on"
+  vfio.enable_unsafe_noiommu_mode: 1
 inventory_ipmi_hostname: "10.30.50.47"
 cpu_microarchitecture: "skylake"
 

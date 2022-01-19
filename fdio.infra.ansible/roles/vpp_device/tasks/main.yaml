@@ -1,7 +1,7 @@
 ---
 # file: roles/vpp_device/tasks/main.yaml
 
-- name: VPP_device - Load Kernel Modules By Default
+- name: Load Kernel Modules By Default
   lineinfile:
     path: "/etc/modules"
     state: "present"
