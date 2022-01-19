@@ -140,6 +140,30 @@
     },
     {
       "key": {
+        "uuid": "f011936f_0e14fe82",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-01-19T09:31:36Z",
+      "side": 1,
+      "message": "Yes, we discussed it some time ago. Only backward compatible changes are allowed.",
+      "parentUuid": "cb62af83_9f7a64e8",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 80
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4f11409_e7920820",
         "filename": "docs/model/plan.txt",
         "patchSetId": 2
