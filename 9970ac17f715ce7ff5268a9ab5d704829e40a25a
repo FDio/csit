@@ -69,6 +69,30 @@
       "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd8e8d29_6c6ab9b6",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-01-19T13:58:07Z",
+      "side": 1,
+      "message": "This is not here because of any deficiencies in the code, but rather a problem with the DUT setup arising from components outside of our control. I observed a situation where the TG ports were visible in Linux, but DUT ports were not because a previous run did not restore them properly. The restoration seemed completely fine - they were bound to iavf, in root netns and everything looked as it should in Linux, yet they were not visible in Linux. My guess is that some sort of race condition happened when binding back to iavf.\n\nThe purpose of this check is to alert us that this particular case happened so that we won\u0027t have to spend a lot of time figuring it out from logs, as I did when it happened to me.\n\nThis is actually the first opportunity (in code) to check this - we first figure out which ports we want to use and then check them.\n\nOr we could do it the other way around - first select DUT ports and match the TG ports to them. This seems less vulnerable as we\u0027re not binding the TG ports to other drivers.",
+      "parentUuid": "f805b338_e27cfda0",
+      "range": {
+        "startLine": 385,
+        "startChar": 8,
+        "endLine": 385,
+        "endChar": 54
+      },
+      "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
