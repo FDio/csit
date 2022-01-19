@@ -883,8 +883,8 @@ def _generate_all_charts(spec, input_data):
                 if tb in file and u"performance-trending-dashboard" in \
                         file and u"txt" in file:
                     file_to_read = f"{spec.cpta[u'output-file']}/{file}"
-                    with open(f"{file_to_read}", u"rt") as input:
-                        data = data + input.readlines()
+                    with open(f"{file_to_read}", u"rt") as f_in:
+                        data = data + f_in.readlines()
 
             for test_name, classification in job_data.items():
                 if classification != u"normal":
@@ -896,7 +896,7 @@ def _generate_all_charts(spec, input_data):
                         test_name = test_name.split("-", 1)
                         tst = test_name[1].split(".")[-1]
                         nic = test_name[0].split(".")[-1]
-                    frmsize = tst.split("-")[0].upper()
+                    frmsize = tst.split("-")[0]
                     tst = u"-".join(tst.split("-")[1:])
                     tst_name = f"{nic}-{frmsize}-{tst}"
                     if len(tst) > max_len.tst:
@@ -943,7 +943,7 @@ def _generate_all_charts(spec, input_data):
                     f"{u' ' * (max_len.tst - len(test_reg_lst[idx]))}  "
                     f"{nic_reg_lst[idx]}"
                     f"{u' ' * (max_len.nic - len(nic_reg_lst[idx]))}  "
-                    f"{frmsize_reg_lst[idx]}"
+                    f"{frmsize_reg_lst[idx].upper()}"
                     f"{u' ' * (max_len.frmsize - len(frmsize_reg_lst[idx]))}  "
                     f"{trend_reg_lst[idx]}"
                     f"{u' ' * (max_len.trend - len(str(trend_reg_lst[idx])))}  "
