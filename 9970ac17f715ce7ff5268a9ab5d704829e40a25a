@@ -22,6 +22,29 @@
       "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c7102f4_bfc03120",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-19T12:15:58Z",
+      "side": 1,
+      "message": "I do not see a case where this breaks the initial condition. \nIf that happens from some reason the link pair is invalid and will not work.",
+      "range": {
+        "startLine": 385,
+        "startChar": 8,
+        "endLine": 385,
+        "endChar": 54
+      },
+      "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
