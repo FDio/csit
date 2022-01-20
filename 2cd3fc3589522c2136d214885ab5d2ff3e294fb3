@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e213bbfd_456fa5c2",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "Agree.",
+      "parentUuid": "1e8fab29_bc7f3d67",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 61
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e6eba414_a8a91c12",
         "filename": "docs/model/plan.txt",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79565ab1_23ff2fc7",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "Agree.",
+      "parentUuid": "e6eba414_a8a91c12",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 14
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "f816bc88_89154883",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "Agree.\n\nI think the original text is missing one adjective in this highlight, it should say: \"but not enough for complete release reports (as published today)\", as not all test cases are covered.\n\nHence initial target should be trending, and possibly some parts of the report, based on work progress, and what is considered the least-friction path without any throw-aways.",
+      "parentUuid": "5661f853_b4d53c62",
+      "range": {
+        "startLine": 39,
+        "startChar": 40,
+        "endLine": 39,
+        "endChar": 73
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aa05cbf0_da32c444",
         "filename": "docs/model/plan.txt",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "23285284_4510a2af",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa05cbf0_da32c444",
+      "range": {
+        "startLine": 53,
+        "startChar": 5,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eacf67b9_54ae4da6",
         "filename": "docs/model/plan.txt",
         "patchSetId": 2
@@ -114,6 +210,30 @@
       "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "918400b3_38672950",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eacf67b9_54ae4da6",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -164,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "1a837c30_72baa24a",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "Agree.\n\nBut also see the following lines about handling major change scenarios. This is something we would need to iron out.",
+      "parentUuid": "f011936f_0e14fe82",
+      "range": {
+        "startLine": 85,
+        "startChar": 9,
+        "endLine": 86,
+        "endChar": 80
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a4f11409_e7920820",
         "filename": "docs/model/plan.txt",
         "patchSetId": 2
@@ -184,6 +328,30 @@
       "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "063e415c_7d92fd4b",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "Agree 😊.\n\nSee my explanation behind agreeing with the comment, and disagreeing with the highlighted statement.",
+      "parentUuid": "a4f11409_e7920820",
+      "range": {
+        "startLine": 93,
+        "startChar": 6,
+        "endLine": 93,
+        "endChar": 45
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -210,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "6618b6a2_d329e61e",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "Agree. Same as the previous comment.",
+      "parentUuid": "050f3686_5245bdf4",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 68
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fceadefa_cc5722dc",
         "filename": "docs/model/plan.txt",
         "patchSetId": 2
@@ -230,6 +422,30 @@
       "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d888355_7fc63e79",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "Agree.",
+      "parentUuid": "fceadefa_cc5722dc",
+      "range": {
+        "startLine": 104,
+        "startChar": 19,
+        "endLine": 104,
+        "endChar": 85
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -256,6 +472,30 @@
     },
     {
       "key": {
+        "uuid": "ecc3f4b3_547f3b06",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "I think the text refers to hitting the release and report related milestones.\nWe are focusing on continuous development here, and report timelines do not play a role here.",
+      "parentUuid": "7ca61422_be149db5",
+      "range": {
+        "startLine": 106,
+        "startChar": 6,
+        "endLine": 106,
+        "endChar": 71
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee569e0b_98691773",
         "filename": "docs/model/plan.txt",
         "patchSetId": 2
@@ -267,6 +507,30 @@
       "writtenOn": "2022-01-19T09:01:03Z",
       "side": 1,
       "message": "I do plan to remove yaml entirely.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 107
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3968b563_24d0d270",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "I suggest we review the yaml, json point, and strike a consensus.",
+      "parentUuid": "ee569e0b_98691773",
       "range": {
         "startLine": 114,
         "startChar": 0,
@@ -302,6 +566,30 @@
     },
     {
       "key": {
+        "uuid": "3bcb267b_b27916c8",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "TBH I lost the understanding of the ongoing discussion about \"model versioning\", \"code versioning\", \"system-wide  versioning\". \n\nI suggest we review where the opinions and strike a consensus.",
+      "parentUuid": "b1d76e8d_dfbea5e8",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 75
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d7a906dc_9037762f",
         "filename": "docs/model/plan.txt",
         "patchSetId": 2
@@ -322,6 +610,30 @@
       "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "918184a2_f1e7c7a2",
+        "filename": "docs/model/plan.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-01-20T14:16:17Z",
+      "side": 1,
+      "message": "No schema refactoring at this stage please. Let us get first the \"MVP-1\" working.\n\nSee the MVP-1 scope proposal at the beginning of this note.",
+      "parentUuid": "d7a906dc_9037762f",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "2cd3fc3589522c2136d214885ab5d2ff3e294fb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
