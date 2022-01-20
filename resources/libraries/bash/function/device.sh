@@ -409,11 +409,48 @@ function get_available_interfaces () {
         DUT1_VLANS+=(${VLAN_ID})
         DUT1_MODELS+=(${MODEL})
     done
+    fix_macs
 
     # We need at least two interfaces for TG/DUT1 for building topology.
     if [ "${#TG_NETDEVS[@]}" -lt 2 ] || [ "${#DUT1_NETDEVS[@]}" -lt 2 ]; then
         die "Not enough linux network interfaces found!"
     fi
+}
+
+
+function fix_macs () {
+
+    # FIXME: Document.
+
+    set -exuo pipefail
+
+    mac_prefix=""
+    for mac in DUT1_NETMACS; do
+        if [[ "${mac}" == "ba:dc:*" ]]; then
+            mac_prefix="${mac::-6}"
+            break
+        fi
+    done
+    if [[ "${mac_prefix}" == "" ]]; then
+        return 0
+    fi
+    i=0
+    new_macs=()
+    for mac in DUT1_NETMACS; do
+        if [[ "${mac}" == "ba:dc:*" ]]; then
+            new_macs+=(${mac})
+            ((i++))
+            continue
+        fi
+        pci_addr="${DUT1_PCIDEVS[$i]}"
+        pci_part="${pci_addr:8}"
+        pci_1="${pci_part::-2}"
+        pci_2="${pci_part:3}"
+        new_mac="${mac_prefix}:${pci_1}:0${pci_2}"
+        new_macs+=(${new_mac})
+        ((i++))
+    done
+    DUT1_NETMACS=("${new_macs[@]}")
 }
 
 
