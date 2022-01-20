@@ -39,12 +39,12 @@
 
 #### Rack YUL1-8 (3016.8)
 name,oper-status,testbed-id,role,model,s/n,mgmt-ip4,ipmi-ip4,rackid,rackunit
-?,up,switch,uplink,?,?,?,?,3016.8,u47,?,?
-s65-t37-sut1,up,t37,3n-icx,SYS-740GP-TNRT,???,10.30.51.75,10.30.50.75,3016.8,u42-u45
-s66-t37-sut2,up,t37,3n-icx,SYS-740GP-TNRT,???,10.30.51.76,10.30.50.76,3016.8,u38-u41
-s67-t37-tg1,up,t37,3n-icx,SYS-740GP-TNRT,???,10.30.51.77,10.30.50.77,3016.8,u34-u37
-s71-t212-sut1,up,t212,2n-icx,SYS-740GP-TNRT,???,10.30.51.81,10.30.50.81,3016.8,u30-u33
-s72-t212-tg1,up,t212,2n-icx,SYS-740GP-TNRT,???,10.30.51.82,10.30.50.82,3016.8,u26-u29
+mtl1-8-lb4m,up,switch,uplink,?,?,?,?,3016.8,u47,?,?
+s65-t37-sut1,up,t37,3n-icx,SYS-740GP-TNRT,C7470KK25P50098,10.30.51.75,10.30.50.75,3016.8,u42-u45
+s66-t37-sut2,up,t37,3n-icx,SYS-740GP-TNRT,C7470KK33P50247,10.30.51.76,10.30.50.76,3016.8,u38-u41
+s67-t37-tg1,up,t37,3n-icx,SYS-740GP-TNRT,C7470KK25P50076,10.30.51.77,10.30.50.77,3016.8,u34-u37
+s71-t212-sut1,up,t212,2n-icx,SYS-740GP-TNRT,C7470KK25P50173,10.30.51.81,10.30.50.81,3016.8,u30-u33
+s72-t212-tg1,up,t212,2n-icx,SYS-740GP-TNRT,C7470KK33P50220,10.30.51.82,10.30.50.82,3016.8,u26-u29
 s73-t213-sut1,up,t213,2n-icx,SYS-740GP-TNRT,???,10.30.51.83,10.30.50.83,3016.8,u22-u25
 s74-t213-tg1,up,t213,2n-icx,SYS-740GP-TNRT,???,10.30.51.84,10.30.50.84,3016.8,u18-u21
 s75-t214-sut1,up,t214,2n-icx,SYS-740GP-TNRT,???,10.30.51.85,10.30.50.85,3016.8,u14-u17
@@ -135,9 +135,5 @@ s38-t29-tg1,up,t29,2n-clx,SYS-7049GP-TRT,C7470KH37A30506,10.32.8.23,10.30.55.23,
 
 Notes:
 
-- softiron-1, softiron-2, softiron-3, decommission request and instructions issued
-  on 16-Sep-2020, per Vexxhost ticket
-  [#FDU-009676 - New arm hardware - 2xThunderX2](https://secure.vexxhost.com/billing/viewticket.php?tid=FDU-009676&c=ncHht136),
-  search for "softiron".
 - UCSC-C240-M4 EoL:
   [End-of-Life Announcement for the Cisco Unified Computing System C-Series](https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-c-series-rack-servers/eos-eol-notice-c51-741235.html)

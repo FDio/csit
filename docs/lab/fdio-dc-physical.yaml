@@ -3,6 +3,57 @@
 
 yul1:
   rack:
+    name: yul1-8
+    facility_id: 3016.8
+    tenant: Linux Foundation
+    status: active
+    dimensions:
+      type: 4-post cabinet
+      width: 19 inches
+      height: 48U
+      - unit: 47
+        name: mtl1-8-lb4m
+        oper_status: production
+        device_type: switch
+        serial_number: N/A
+        mgmt_ip4: N/A
+        lom_ip4: N/A
+        lom_type: N/A
+      - unit: 42..45
+        name: s65-t37-sut1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: C7470KK25P50098
+        mgmt_ip4: 10.30.51.75
+        lom_ip4: 10.30.50.75
+      - unit: 38..41
+        name: s66-t37-sut2
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: C7470KK33P50247
+        mgmt_ip4: 10.30.51.76
+        lom_ip4: 10.30.50.76
+      - unit: 34..37
+        name: s67-t37-tg1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: C7470KK25P50076
+        mgmt_ip4: 10.30.51.77
+        lom_ip4: 10.30.50.77
+      - unit: 30..33
+        name: s71-t212-sut1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: C7470KK25P50173
+        mgmt_ip4: 10.30.51.81
+        lom_ip4: 10.30.50.81
+      - unit: 26..29
+        name: s72-t212-tg1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: C7470KK33P50220
+        mgmt_ip4: 10.30.51.82
+        lom_ip4: 10.30.50.82
     name: yul1-9
     facility_id: 3016.9
     tenant: Linux Foundation
