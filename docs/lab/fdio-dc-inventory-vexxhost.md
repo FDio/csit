@@ -39,8 +39,8 @@
 
 #### Rack YUL1-8 (3016.8)
 name,oper-status,testbed-id,role,model,s/n,mgmt-ip4,ipmi-ip4,rackid,rackunit
-?,up,switch,uplink,?,?,?,?,3016.8,u47,?,?
-s65-t37-sut1,up,t37,3n-icx,SYS-740GP-TNRT,???,10.30.51.75,10.30.50.75,3016.8,u42-u45
+mtl1-8-lb4m,up,switch,uplink,?,?,?,?,3016.8,u47,?,?
+s65-t37-sut1,up,t37,3n-icx,SYS-740GP-TNRT,S424016X1B00510,10.30.51.75,10.30.50.75,3016.8,u42-u45
 s66-t37-sut2,up,t37,3n-icx,SYS-740GP-TNRT,???,10.30.51.76,10.30.50.76,3016.8,u38-u41
 s67-t37-tg1,up,t37,3n-icx,SYS-740GP-TNRT,???,10.30.51.77,10.30.50.77,3016.8,u34-u37
 s71-t212-sut1,up,t212,2n-icx,SYS-740GP-TNRT,???,10.30.51.81,10.30.50.81,3016.8,u30-u33
