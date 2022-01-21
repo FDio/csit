@@ -117,6 +117,30 @@
       "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aacaedd6_7f556781",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-01-21T10:11:30Z",
+      "side": 1,
+      "message": "\u003e \u003e problem with the DUT setup arising from components outside of our control\n\u003e \n\u003e i think we can control linux entirely (all components), but we are hitting bugs that needs to be understood.\n\u003e \n\u003e \u003e yet they were not visible in Linux.\n\u003e \n\u003e per above.\n\u003e \n\u003e \u003e The purpose of this check is to alert us that this particular case happened so that we won\u0027t have to spend a lot of time figuring it out from logs, as I did when it happened to me.\n\u003e \n\u003e partially agree. but i do not want code that is in wrong place. the above mapping is always correct as per design of VLANs. but the problem is that garbage cleaning is not doing its job properly. thus i do not want to overload code in place where it is useless. IOW line 384 is always true, no need to check it, the problem is that interface is not ready yet.\\\n\u003e \n\nOk, so the design is that we assume that the interfaces are properly configured and we make sure that the assumption is true in the garbage cleaning step. An issue is that when the garbage cleaning doesn\u0027t work the debugging is harder than necessary (I was really confused by the error messages and had to retrace a lot of steps). The aim of this change was not really to fix anything, just help with debugging.\n\n\u003e \u003e Or we could do it the other way around\n\u003e \n\u003e exactly you got my point. so we will not overblown the code with useless functionality, yet it will stay per design clean and no check is needed. so if we know that DUT is sensitive on interface reassign we will flip the logic and use it as primary for decision engine. it should stay one liner, clean, always true and there is no need to check it. in meantime i need to improve GC script (ch. monkey)\n\nI\u0027ll change the patch this way then and leave the garbage cleanup to you.",
+      "parentUuid": "38188c23_2cc1bd3b",
+      "range": {
+        "startLine": 385,
+        "startChar": 8,
+        "endLine": 385,
+        "endChar": 54
+      },
+      "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
