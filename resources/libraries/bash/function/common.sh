@@ -467,6 +467,10 @@ function get_test_code () {
             NODENESS="2n"
             FLAVOR="clx"
             ;;
+        *"2n-icx"*)
+            NODENESS="2n"
+            FLAVOR="icx"
+            ;;
         *"2n-dnv"*)
             NODENESS="2n"
             FLAVOR="dnv"
@@ -864,6 +868,9 @@ function select_tags () {
         *"3n-tsh"*)
             default_nic="nic_intel-x520-da2"
             ;;
+        *"2n-icx"*)
+            default_nic="nic_intel-x710"
+            ;;
         *"3n-skx"* | *"2n-skx"* | *"2n-clx"* | *"2n-zn2"*)
             default_nic="nic_intel-xxv710"
             ;;
@@ -1099,6 +1106,10 @@ function select_topology () {
             ;;
         "2n_clx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "2n_icx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         "2n_dnv")
