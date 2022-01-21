@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0475d85c_7c9cd3f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-01-21T10:33:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "147ed35e_4a1e9531",
+      "range": {
+        "startLine": 11,
+        "startChar": 55,
+        "endLine": 11,
+        "endChar": 56
+      },
+      "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c7102f4_bfc03120",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 3
