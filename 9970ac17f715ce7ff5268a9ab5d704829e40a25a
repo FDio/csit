@@ -93,6 +93,30 @@
       "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38188c23_2cc1bd3b",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-01-21T06:31:28Z",
+      "side": 1,
+      "message": "\u003e problem with the DUT setup arising from components outside of our control\n\ni think we can control linux entirely (all components), but we are hitting bugs that needs to be understood.\n\n\u003e yet they were not visible in Linux.\n\nper above.\n\n\u003e The purpose of this check is to alert us that this particular case happened so that we won\u0027t have to spend a lot of time figuring it out from logs, as I did when it happened to me.\n\npartially agree. but i do not want code that is in wrong place. the above mapping is always correct as per design of VLANs. but the problem is that garbage cleaning is not doing its job properly. thus i do not want to overload code in place where it is useless. IOW line 384 is always true, no need to check it, the problem is that interface is not ready yet.\\\n\n\u003e Or we could do it the other way around\n\nexactly you got my point. so we will not overblown the code with useless functionality, yet it will stay per design clean and no check is needed. so if we know that DUT is sensitive on interface reassign we will flip the logic and use it as primary for decision engine. it should stay one liner, clean, always true and there is no need to check it. in meantime i need to improve GC script (ch. monkey)",
+      "parentUuid": "dd8e8d29_6c6ab9b6",
+      "range": {
+        "startLine": 385,
+        "startChar": 8,
+        "endLine": 385,
+        "endChar": 54
+      },
+      "revId": "9970ac17f715ce7ff5268a9ab5d704829e40a25a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
