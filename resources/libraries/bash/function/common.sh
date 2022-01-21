@@ -455,17 +455,25 @@ function get_test_code () {
             NODENESS="2n"
             FLAVOR="skx"
             ;;
-        *"2n-zn2"*)
-            NODENESS="2n"
-            FLAVOR="zn2"
-            ;;
         *"3n-skx"*)
             NODENESS="3n"
             FLAVOR="skx"
             ;;
+        *"2n-zn2"*)
+            NODENESS="2n"
+            FLAVOR="zn2"
+            ;;
         *"2n-clx"*)
             NODENESS="2n"
             FLAVOR="clx"
+            ;;
+        *"2n-icx"*)
+            NODENESS="2n"
+            FLAVOR="icx"
+            ;;
+        *"3n-icx"*)
+            NODENESS="3n"
+            FLAVOR="icx"
             ;;
         *"2n-dnv"*)
             NODENESS="2n"
@@ -864,6 +872,9 @@ function select_tags () {
         *"3n-tsh"*)
             default_nic="nic_intel-x520-da2"
             ;;
+        *"3n-icx"* | *"2n-icx"*)
+            default_nic="nic_intel-xxv710"
+            ;;
         *"3n-skx"* | *"2n-skx"* | *"2n-clx"* | *"2n-zn2"*)
             default_nic="nic_intel-xxv710"
             ;;
@@ -985,6 +996,14 @@ function select_tags () {
         *"2n-clx"*)
             test_tag_array+=("!ipsechw")
             ;;
+        *"2n-icx"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"3n-icx"*)
+            test_tag_array+=("!ipsechw")
+            # Not enough nic_intel-xxv710 to support double link tests.
+            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            ;;
         *"2n-zn2"*)
             test_tag_array+=("!ipsechw")
             ;;
@@ -1097,8 +1116,16 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_skx*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
+        "3n_icx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx*.yaml )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
         "2n_clx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
+        "2n_icx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         "2n_dnv")
