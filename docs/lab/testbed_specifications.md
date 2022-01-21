@@ -2171,7 +2171,7 @@ To be completed.
         - s28-t26t35-tg1-c6/p2 to s31-t35-sut2-p4.
 ```
 
-#### 3-Node-Icelake Wiring (3n-icx) TBD
+#### 3-Node-Icelake Wiring (3n-icx) PROD
 
 ```
 - testbed37:
