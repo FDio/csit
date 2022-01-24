@@ -17,8 +17,8 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_20K | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | IP4_RND
-| ... | ethip4-ip4scale20k-rnd
+| ... | IP4_RND | IP4_SEEDED
+| ... | ethip4-ip4scale20kseeded-rnd
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -35,7 +35,7 @@
 | ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for IPv4 routing.
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing \
-| ... | and 2x10k static IPv4 /32 route entries in incremental order. \
+| ... | and 2x10k static IPv4 /32 route entries in pseudorandom order. \
 | ... | DUT1 is tested with ${nic_name}.
 | ... |
 | ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
@@ -92,7 +92,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding with scaling in circular topology
-| | ... | ${rts_per_flow}
+| | ... | ${rts_per_flow} | seed=${42}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
