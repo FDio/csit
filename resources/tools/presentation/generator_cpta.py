@@ -838,21 +838,9 @@ def _generate_all_charts(spec, input_data):
 
     # Evaluate result:
     if anomaly_classifications:
-        test_reg_lst = []
-        nic_reg_lst = []
-        frmsize_reg_lst = []
-        trend_reg_lst = []
-        number_reg_lst = []
-        ltc_reg_lst = []
-        test_prog_lst = []
-        nic_prog_lst = []
-        frmsize_prog_lst = []
-        trend_prog_lst = []
-        number_prog_lst = []
-        ltc_prog_lst = []
         result = u"PASS"
 
-        class MaxLens():
+        class MaxLens:
             """Class to store the max lengths of strings displayed in
             regressions and progressions.
             """
@@ -874,11 +862,25 @@ def _generate_all_charts(spec, input_data):
                 self.run = run
                 self.ltc = ltc
 
-        max_len = MaxLens(0, 0, 0, 0, 0, 0)
-
         for job_name, job_data in anomaly_classifications.items():
             data = []
+            test_reg_lst = []
+            nic_reg_lst = []
+            frmsize_reg_lst = []
+            trend_reg_lst = []
+            number_reg_lst = []
+            ltc_reg_lst = []
+            test_prog_lst = []
+            nic_prog_lst = []
+            frmsize_prog_lst = []
+            trend_prog_lst = []
+            number_prog_lst = []
+            ltc_prog_lst = []
+            max_len = MaxLens(0, 0, 0, 0, 0, 0)
+
+            # tb - testbed (2n-skx, 3n-dnv, etc)
             tb = u"-".join(job_name.split(u"-")[-2:])
+            # data - read all txt dashboard files for tb
             for file in listdir(f"{spec.cpta[u'output-file']}"):
                 if tb in file and u"performance-trending-dashboard" in \
                         file and u"txt" in file:
@@ -932,9 +934,6 @@ def _generate_all_charts(spec, input_data):
                                 trend_prog_lst.append(trend)
                                 number_prog_lst.append(number)
                                 ltc_prog_lst.append(ltc)
-
-                    if classification in (u"regression", u"outlier"):
-                        result = u"FAIL"
 
             text = u""
             for idx in range(len(test_reg_lst)):
