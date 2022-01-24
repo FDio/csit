@@ -46,9 +46,9 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
-report_week = u'49'
-project = u'FD.io CSIT-2110.{week}'.format(week=report_week)
-copyright = u'2021, FD.io'
+report_week = u'04'
+project = u'FD.io CSIT-2202-RC1.{week}'.format(week=report_week)
+copyright = u'2022, FD.io'
 author = u'FD.io CSIT'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -125,17 +125,17 @@ rst_epilog = u"""
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu2004-x86_64/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/fdio.infra.ansible?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
-""".format(release=u'rls2110',
+""".format(release=u'rls2202',
            report_week=report_week,
-           prev_release=u'rls2106',
-           srelease=u'2110',
-           csitrelease=u'2110',
-           csit_prev_release=u'2106',
-           vpprelease=u'21.10',
-           vpp_prev_release=u'21.06',
-           dpdkrelease=u'21.08',
-           dpdk_prev_release=u'21.02',
-           sdpdkrelease=u'2108',
+           prev_release=u'rls2110',
+           srelease=u'2202',
+           csitrelease=u'2202',
+           csit_prev_release=u'2110',
+           vpprelease=u'22.02',
+           vpp_prev_release=u'21.10',
+           dpdkrelease=u'21.11',
+           dpdk_prev_release=u'21.08',
+           sdpdkrelease=u'2111',
            trex_version=u'v2.88',
            vpp_release_commit_id=u'0e0384cde97a71acc0313a0904ed340730a87817')
 
