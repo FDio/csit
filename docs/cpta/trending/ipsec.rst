@@ -8,3 +8,4 @@ IPSec IPv4 Routing
     ipsec-3n-tsh-x520
     ipsec-2n-tx2-xl710
     ipsec-3n-dnv-x553
+    ipsec-3n-aws-nitro50g
