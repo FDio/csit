@@ -187,6 +187,25 @@
       file-name: "output.xml.gz"
       file-format: ".gz"
       enabled: True
+    # XML from docs.nexus
+    - type: "xml-docs"
+      url: "https://docs.fd.io/csit"
+      path: "report/_static/archive"
+      file-name: "output_info.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml-docs"
+      url: "https://docs.fd.io/csit"
+      path: "report/_static/archive"
+      file-name: "output.xml.gz"
+      file-format: ".gz"
+      enabled: True
+    - type: "xml-docs"
+      url: "https://docs.fd.io/csit"
+      path: "report/_static/archive"
+      file-name: "robot-plugin.zip"
+      file-format: ".zip"
+      enabled: False
     # JSON from S3
     - type: "json"
       url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
