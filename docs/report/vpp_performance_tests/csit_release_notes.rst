@@ -26,7 +26,7 @@ Changes in |csit-release|
      :ref:`test_environment_versioning`.
 
    - **CSIT in AWS environment**: Completed CSIT automation support for
-     AWS c5n instances environment, including weekly performance 
+     AWS c5n instances environment, including weekly performance
      trending tests execution.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, and
@@ -56,9 +56,8 @@ _____
 Issues reported in previous releases which were fixed in this release:
 
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| #  | JiraID                                  | Issue Description                                                                                         |
+|  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  1 | `CSIT-1789                              | AVF driver does not perform RSS in a deterministic way.                                                   |
 |    | <https://jira.fd.io/browse/CSIT-1789>`_ | VPP now uses the same RSS key with AVF driver as with DPDK driver.                                        |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
@@ -72,7 +71,7 @@ ___
 Issues reported in previous releases which still affect the current results.
 
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| #  | JiraID                                  | Issue Description                                                                                         |
+|  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
 |  3 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
 |    | <https://jira.fd.io/browse/CSIT-1782>`_ | Frequency is reduced by s CSIT workaround, but occasional failures do still happen.                       |

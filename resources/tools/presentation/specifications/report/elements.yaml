@@ -2628,6 +2628,190 @@
     - '2110.0-9 vs 2110.0-8: Compares CSIT environment current vs previous with previous VPP code.'
     - '2202.0-9 vs 2110.0-9: Compares VPP code current vs previous in the current CSIT environment.'
 
+# VPP Performance Changes 2n-aws 2t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-aws 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-aws-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-2n-aws-prev-iter"
+    - title: "2202.0-9"
+      data-set: "vpp-2n-aws-curr-iter"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 2n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 2n-aws 4t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-aws 4t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-aws-4t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-2n-aws-prev-iter"
+    - title: "2202.0-9"
+      data-set: "vpp-2n-aws-curr-iter"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 2n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 2n-aws 2t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-aws 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-aws-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-2n-aws-prev-iter"
+    - title: "2202.0-9"
+      data-set: "vpp-2n-aws-curr-iter"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 2n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 2n-aws 4t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-aws 4t2c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-aws-4t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-2n-aws-prev-iter"
+    - title: "2202.0-9"
+      data-set: "vpp-2n-aws-curr-iter"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 2n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 3n-aws 2t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-aws 2t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-3n-aws-prev-iter"
+    - title: "2202.0-9"
+      data-set: "vpp-3n-aws-curr-iter"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 3n-aws 4t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-aws 4t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-4t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-3n-aws-prev-iter"
+    - title: "2202.0-9"
+      data-set: "vpp-3n-aws-curr-iter"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 3n-aws 2t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-aws 2t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and 'NDRPDR'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-3n-aws-prev-iter"
+    - title: "2202.0-9"
+      data-set: "vpp-3n-aws-curr-iter"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 3n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 3n-aws 4t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-aws 4t2c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-4t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and 'NDRPDR'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-3n-aws-prev-iter"
+    - title: "2202.0-9"
+      data-set: "vpp-3n-aws-curr-iter"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: NDR throughput on 3n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr"
@@ -3816,6 +4000,144 @@
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2110.0-9 vs 2110.0-8: Compares CSIT environment current vs previous with previous VPP code.'
     - '2202.0-9 vs 2110.0-9: Compares VPP code current vs previous in the current CSIT environment.'
+
+# VPP Performance Changes 2n-aws 2t1c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-aws 2t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-aws-2t1c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-2n-aws-prev-iter-mrr"
+    - title: "2202.0-9"
+      data-set: "vpp-2n-aws-curr-iter-mrr"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 2n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 2n-aws 4t2c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-aws 4t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-aws-4t2c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-2n-aws-prev-iter-mrr"
+    - title: "2202.0-9"
+      data-set: "vpp-2n-aws-curr-iter-mrr"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 2n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 2n-aws 8t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 2n-aws 8t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-aws-8t4c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-2n-aws-prev-iter-mrr"
+    - title: "2202.0-9"
+      data-set: "vpp-2n-aws-curr-iter-mrr"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 2n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 3n-aws 2t1c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-aws 2t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-2t1c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-3n-aws-prev-iter-mrr"
+    - title: "2202.0-9"
+      data-set: "vpp-3n-aws-curr-iter-mrr"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 3n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 3n-aws 4t2c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-aws 4t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-4t2c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-3n-aws-prev-iter-mrr"
+    - title: "2202.0-9"
+      data-set: "vpp-3n-aws-curr-iter-mrr"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 3n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 3n-aws 8t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-aws 8t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-8t4c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'8T4C'"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-3n-aws-prev-iter-mrr"
+    - title: "2202.0-9"
+      data-set: "vpp-3n-aws-curr-iter-mrr"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: MRR throughput on 3n-aws with nitro50g.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
 
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr
 - type: "table"
@@ -5610,6 +5932,90 @@
   legend:
     - ""
     - "21.02, 21.08, 21.11 - DPDK versions tested."
+    - "Diff - difference between 21.08 and 21.11 DPDK version."
+
+# DPDK Performance Changes 2n-tx2 1t1c pdr
+- type: "table"
+  title: "DPDK Performance Changes 2n-tx2 1t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-tx2-1t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'NDRPDR'"
+  columns:
+    - title: "21.08"
+      data-set: "dpdk-2n-tx2-prev-iter"
+    - title: "21.11"
+      data-set: "dpdk-2n-tx2-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "21.08, 21.11 - DPDK versions tested."
+    - "Diff - difference between 21.08 and 21.11 DPDK version."
+
+# DPDK Performance Changes 2n-tx2 2t2c pdr
+- type: "table"
+  title: "DPDK Performance Changes 2n-tx2 2t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-tx2-2t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'NDRPDR'"
+  columns:
+    - title: "21.08"
+      data-set: "dpdk-2n-tx2-prev-iter"
+    - title: "21.11"
+      data-set: "dpdk-2n-tx2-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "21.08, 21.11 - DPDK versions tested."
+    - "Diff - difference between 21.08 and 21.11 DPDK version."
+
+# DPDK Performance Changes 2n-tx2 1t1c ndr
+- type: "table"
+  title: "DPDK Performance Changes 2n-tx2 1t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-tx2-1t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C' and 'NDRPDR'"
+  columns:
+    - title: "21.08"
+      data-set: "dpdk-2n-tx2-prev-iter"
+    - title: "21.11"
+      data-set: "dpdk-2n-tx2-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "21.08, 21.11 - DPDK versions tested."
+    - "Diff - difference between 21.08 and 21.11 DPDK version."
+
+# DPDK Performance Changes 2n-tx2 2t2c ndr
+- type: "table"
+  title: "DPDK Performance Changes 2n-tx2 2t2c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-tx2-2t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C' and 'NDRPDR'"
+  columns:
+    - title: "21.08"
+      data-set: "dpdk-2n-tx2-prev-iter"
+    - title: "21.11"
+      data-set: "dpdk-2n-tx2-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "21.08, 21.11 - DPDK versions tested."
     - "Diff - difference between 21.08 and 21.11 DPDK version."
 
 # DPDK Comparison Across Testbeds 2n-skx to 2n-clx ndr
