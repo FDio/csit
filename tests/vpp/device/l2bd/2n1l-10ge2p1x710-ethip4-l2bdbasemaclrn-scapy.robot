@@ -76,7 +76,7 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
+| | When Initialize layer driver max | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize L2 bridge domain
 | | Then Send IPv4 bidirectionally and verify received packets
