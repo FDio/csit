@@ -104,11 +104,6 @@ nodes:
     username: testuser
     password: Csit1234
     uio_driver: vfio-pci
-    honeycomb:
-      user: admin
-      passwd: admin
-      port: 8183
-      netconf_port: 2831
     interfaces:
       port1:
         # s37-t29-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
