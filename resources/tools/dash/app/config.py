@@ -17,7 +17,8 @@ from os import environ
 
 
 class Config:
-    """Flask configuration variables."""
+    """Flask configuration variables.
+    """
 
     # General Config
     FLASK_APP = environ.get("FLASK_APP")

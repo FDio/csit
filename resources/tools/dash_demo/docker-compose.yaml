@@ -1,0 +1,19 @@
+version: "3"
+services:
+  dash:
+    build: "."
+    command: "uwsgi app.ini"
+    environment:
+      AWS_ACCESS_KEY_ID: ""
+      AWS_SECRET_ACCESS_KEY: ""
+      FLASK_APP: "wsgi.py"
+      FLASK_ENV: "production"
+      LESS_BIN: "/usr/local/bin/lessc"
+      ASSETS_DEBUG: "False"
+      LESS_RUN_IN_DEBUG: "False"
+      COMPRESSOR_DEBUG: "True"
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./app/:/app"
+    working_dir: "/app"

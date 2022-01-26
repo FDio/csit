@@ -11,9 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Compile static assets.
-"""
-
+"""Compile static assets."""
 from flask import current_app as app
 from flask_assets import Bundle
 
@@ -26,17 +24,15 @@ def compile_static_assets(assets):
     :returns: Compiled stylesheets.
     :rtype: Environment
     """
-
     assets.auto_build = True
     assets.debug = False
     less_bundle = Bundle(
-        u"less/*.less",
-        filters=u"less,cssmin",
-        output=u"dist/css/styles.css",
-        extra={u"rel": u"stylesheet/less"},
+        "less/*.less",
+        filters="less,cssmin",
+        output="dist/css/styles.css",
+        extra={"rel": "stylesheet/less"},
     )
-    assets.register(u"less_all", less_bundle)
-    if app.config[u"FLASK_ENV"] == u"development":
+    assets.register("less_all", less_bundle)
+    if app.config["FLASK_ENV"] == "development":
         less_bundle.build()
-
     return assets
