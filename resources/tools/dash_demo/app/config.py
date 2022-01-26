@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,21 +13,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Routes for parent Flask app.
-"""
-
-from flask import current_app as app
-from flask import render_template
+from os import environ
 
 
-@app.route(u"/")
-def home():
-    """Landing page.
-    """
+class Config:
+    """Flask configuration variables."""
 
-    return render_template(
-        u"index.jinja2",
-        title=u"FD.io CSIT",
-        description=u"Performance Dashboard",
-        template=u"home-template"
-    )
+    # General Config
+    FLASK_APP = environ.get("FLASK_APP")
+    FLASK_ENV = environ.get("FLASK_ENV")
+    SECRET_KEY = environ.get("SECRET_KEY")
+
+    # Assets
+    LESS_BIN = environ.get("LESS_BIN")
+    ASSETS_DEBUG = environ.get("ASSETS_DEBUG")
+    LESS_RUN_IN_DEBUG = environ.get("LESS_RUN_IN_DEBUG")
+
+    # Static Assets
+    STATIC_FOLDER = "static"
+    TEMPLATES_FOLDER = "templates"
+    COMPRESSOR_DEBUG = environ.get("COMPRESSOR_DEBUG")
