@@ -1,0 +1,106 @@
+2n-aws-nitro-50g-ena:
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C]
+    frame-size: [64B, 1518B]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C]
+    frame-size: [64B, 1518B]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip4base
+    core: [1C, 2C]
+    frame-size: [78B, 1518B]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip4scale20k
+      - ethip6-ip4scale20k-rnd
+    core: [1C, 2C]
+    frame-size: [78B, 1518B]
+    test-type: [MRR, NDR, PDR]
+# 2n-clx-cx556a-rdma:
+# 2n-clx-x710-avf:
+# 2n-clx-x710-dpdk:
+# 2n-clx-xxv710-af-xdp:
+# 2n-clx-xxv710-avf:
+#     l2-base:
+#     l2-scale:
+#     ip4-base:
+#     ip4-scale:
+#     ip4-features:
+#     ip6-base:
+#     ip6-scale:
+#     ethip4-ethip4udpgeneve:
+#     nat44det-ip4-stl-bidir:
+#     nat44ed-ip4-stl-unidir:
+#     nat44ed-ip4-udp-stf-cps:
+#     nat44ed-ip4-tcp-stf-cps:
+#     nat44ed-ip4-udp-stf-pps:
+#     nat44ed-ip4-tcp-stf-pps:
+#     nat44ed-ip4-udp-tput:
+#     nat44ed-ip4-tcp-tput:
+#     vhost-base:
+#     memif-base:
+#     vnf-service-chains-routing:
+#     cnf-service-chains-routing:
+#     cnf-service-pipelines-routing:
+#     vnf-service-chains-tunnels:
+# 2n-clx-xxv710-dpdk:
+# 2n-dnv-x553-ixgbe:
+# 2n-icx-xxv710-avf:
+# 2n-icx-xxv710-dpdk:
+# 2n-skx-x710-avf:
+# 2n-skx-x710-dpdk:
+# 2n-skx-xxv710-avf:
+# 2n-skx-xxv710-dpdk:
+# 2n-tx2-xl710-af-xdp:
+# 2n-tx2-xl710-avf:
+# 2n-tx2-xl710-dpdk:
+# 2n-zn2-x710-avf:
+# 2n-zn2-x710-dpdk:
+# 2n-zn2-cx556a-rdma:
+# 2n-zn2-xxv710-avf:
+# 2n-zn2-xxv710-dpdk:
+3n-aws-nitro-50g-ena:
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C]
+    frame-size: [64B, 1518B]
+    test-type: [MRR, NDR, PDR]
+
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C]
+    frame-size: [64B, 1518B]
+    test-type: [MRR, NDR, PDR]
+
+  ipsec-base:
+    label: IPSec IPv4 Routing Base
+    test:
+      - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+    core: [1C, 2C]
+    frame-size: [IMIX, 1518B]
+    test-type: [MRR, NDR, PDR]
+# 3n-dnv-x553-ixgbe:
+# 3n-icx-xxv710-avf:
+# 3n-icx-xxv710-dpdk:
+# 3n-skx-x710-avf:
+# 3n-skx-xxv710-avf:
+# 3n-skx-xxv710-dpdk:
+# 3n-tsh-x520-ixgbe:

@@ -11,7 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Instantiate a Dash app."""
+"""Instantiate the Trending Dash applocation.
+"""
 import dash
 from dash import dcc
 from dash import html
@@ -20,10 +21,10 @@ import numpy as np
 import pandas as pd
 
 from .data import create_dataframe
-from .layout import html_layout
+from .layout import Layout
 
 
-def init_dashboard(server):
+def init_trending(server):
     """Create a Plotly Dash dashboard.
 
     :param server: Flask server.
@@ -31,12 +32,13 @@ def init_dashboard(server):
     :returns: Dash app server.
     :rtype: Dash
     """
+
     dash_app = dash.Dash(
         server=server,
-        routes_pathname_prefix="/trending/",
+        routes_pathname_prefix=u"/trending/",
         external_stylesheets=[
-            "/static/dist/css/styles.css",
-            "https://fonts.googleapis.com/css?family=Lato",
+            u"/static/dist/css/styles.css",
+            u"https://fonts.googleapis.com/css?family=Lato",
         ],
     )
 
@@ -44,26 +46,29 @@ def init_dashboard(server):
     df = create_dataframe()
 
     # Custom HTML layout
-    dash_app.index_string = html_layout
-
-    # Create Layout
-    dash_app.layout = html.Div(
-        children=[
-            create_data_table(df),
-        ],
-        id="dash-container",
+    layout = Layout(
+        app=dash_app,
+        html_layout_file="pal/trending/html_layout.txt",
+        spec_file="pal/trending/spec_test_selection.yaml"
     )
+    dash_app.index_string = layout.html_layout
+    dash_app.layout = layout.add_content()
+
     return dash_app.server
 
 
 def create_data_table(df):
-    """Create Dash datatable from Pandas DataFrame."""
+    """Create Dash datatable from Pandas DataFrame.
+
+    DEMO
+    """
+
     table = dash_table.DataTable(
-        id="database-table",
-        columns=[{"name": i, "id": i} for i in df.columns],
-        data=df.to_dict("records"),
-        sort_action="native",
-        sort_mode="native",
-        page_size=300,
+        id=u"database-table",
+        columns=[{u"name": i, u"id": i} for i in df.columns],
+        data=df.to_dict(u"records"),
+        sort_action=u"native",
+        sort_mode=u"native",
+        page_size=10,
     )
     return table
