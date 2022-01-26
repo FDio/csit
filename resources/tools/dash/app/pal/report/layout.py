@@ -11,8 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Plotly Dash HTML layout override.
-"""
+"""Plotly Dash HTML layout override."""
 
 html_layout = u"""
 <!DOCTYPE html>
@@ -27,7 +26,7 @@ html_layout = u"""
             <header>
               <div class="nav-wrapper">
                 <a href="/">
-                    <h1>Continuous Performance Trending</h1>
+                    <h1>Report</h1>
                   </a>
                 <nav>
                 </nav>

@@ -5,9 +5,15 @@
   <img src="{{ url_for('static', filename='img/logo.svg') }}" class="logo" />
   <h1 class="site-title">{{ title }}</h1>
   <p class="subtitle">{{ description }}</p>
-  <a href="/trending/" class="dash-link">
-    <span>trending</span>
-    <i class="fas fa-arrow-right"></i>
-  </a>
+  <div>
+    <a href="/trending/" class="dash-link">
+      <span>Trending</span>
+      <i class="fas fa-arrow-right"></i>
+    </a>
+    <a href="/report/" class="dash-link">
+      <span>Report</span>
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
 </div>
 {% endblock %}

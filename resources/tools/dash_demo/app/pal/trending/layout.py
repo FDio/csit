@@ -11,10 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Plotly Dash HTML layout override.
-"""
+"""Plotly Dash HTML layout override."""
 
-html_layout = u"""
+html_layout = """
 <!DOCTYPE html>
     <html>
         <head>

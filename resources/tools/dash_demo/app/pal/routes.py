@@ -11,21 +11,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Routes for parent Flask app.
-"""
-
+"""Routes for parent Flask app."""
 from flask import current_app as app
 from flask import render_template
 
 
-@app.route(u"/")
+@app.route("/")
 def home():
-    """Landing page.
-    """
-
+    """Landing page."""
     return render_template(
-        u"index.jinja2",
-        title=u"FD.io CSIT",
-        description=u"Performance Dashboard",
-        template=u"home-template"
+        "index.jinja2",
+        title="FD.io CSIT",
+        description="Performance Dashboard",
+        template="home-template"
     )
