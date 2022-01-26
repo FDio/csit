@@ -15,6 +15,7 @@
 """Common IP utilities library."""
 
 import re
+import random
 import os
 
 from enum import IntEnum
@@ -120,6 +121,8 @@ class NetworkIncrement(ObjIncrement):
         host_len = self._value.max_prefixlen - self._prefix_len
         self._net_increment = self._increment * (1 << host_len)
         self._format = str(format).lower()
+        # The computation using offset needs the original initial value.
+        self._initial_value = initial_value
 
     def _incr(self):
         """
@@ -157,6 +160,24 @@ class NetworkIncrement(ObjIncrement):
             return f"{self._value.network_address}"
 
         raise RuntimeError(f"Unsupported format {self._format}")
+
+    def fmt_at_offset(self, offset):
+        """Return the value that happens after "offset" increments.
+
+        This is useful when the order is to be randomized.
+        This does alter the internal state, so subsequent iteration
+        would continue from the returned value.
+        See _str_fmt for the output format.
+
+        :param offset: After how many increments the value to return happens.
+        :type offset: int
+        :returns: Value at offset converted to string according to format.
+        :rtype: str
+        :raises RuntimeError: If the format is not supported.
+        """
+        addr = self._initial_value.network_address + offset * self._net_increment
+        self._value = ip_network(f"{addr}/{self._prefix_len}", strict=False)
+        return self._str_fmt()
 
 
 class IPUtil:
@@ -723,6 +744,7 @@ class IPUtil:
             interface: Route interface. (str)
             vrf: VRF table ID. (int)
             count: number of IP addresses to add starting from network IP (int)
+            seed: If not None, use as seed to randomize order of addresses (int)
             local: The route is local with same prefix (increment is 1 network)
             If None, then is not used. (bool)
             lookup_vrf: VRF table ID for lookup. (int)
@@ -737,6 +759,12 @@ class IPUtil:
         :raises RuntimeError: If the argument combination is not supported.
         """
         count = kwargs.get(u"count", 1)
+        seed = kwargs.get(u"seed", None)
+        if seed is None:
+            offsets = range(count)
+        else:
+            random.seed(seed)
+            offsets = random.shuffle(list(range(count)))
 
         if count > 100:
             if not kwargs.get(u"multipath", True):
@@ -774,8 +802,8 @@ class IPUtil:
             )
             tmp_filename = u"/tmp/routes.config"
             with open(tmp_filename, u"w") as tmp_file:
-                for _ in range(count):
-                    command_parts[1] = netiter.inc_fmt()
+                for i in offsets:
+                    command_parts[1] = netiter.fmt_at_offset(i)
                     print(u" ".join(command_parts), file=tmp_file)
             VatExecutor().execute_script(
                 tmp_filename, node, timeout=1800, json_out=False,
@@ -797,11 +825,11 @@ class IPUtil:
             format=u"addr"
         )
         with PapiSocketExecutor(node) as papi_exec:
-            for i in range(count):
+            for i in offsets:
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
-                    node, netiter.inc_fmt(), prefix_len, **kwargs
+                    node, netiter.fmt_at_offset(i), prefix_len, **kwargs
                 )
-                history = bool(not 0 < i < count - 1)
+                history = bool(not 1 < i < count - 2)
                 papi_exec.add(cmd, history=history, **args)
             papi_exec.get_replies(err_msg)
 

@@ -106,6 +106,7 @@
 | |
 | | ... | *Arguments:*
 | | ... | - count - IP route count. Type: integer
+| | ... | - seed - If not None, randomize route order using this. Type: integer
 | |
 | | ... | *Return:*
 | | ... | - No value returned
@@ -115,7 +116,7 @@
 | | ... | \| Initialize IPv6 forwarding with scaling in circular \
 | | ... | topology \| 100000 \|
 | |
-| | [Arguments] | ${count}
+| | [Arguments] | ${count} | ${seed}=${None}
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
@@ -152,15 +153,17 @@
 | | VPP Add IP Neighbor
 | | ... | ${dut} | ${dut_if2} | 2001:5::2 | ${TG_pf2_mac}[0]
 | | Vpp Route Add | ${dut1} | 2001:1::0 | ${host_prefix} | gateway=2001:3::2
-| | ... | interface=${DUT1_${int}1}[0] | count=${count}
+| | ... | interface=${DUT1_${int}1}[0] | count=${count} | seed=${seed}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 2001:2::0 | ${host_prefix}
 | | ... | gateway=2001:4::2 | interface=${DUT1_${int}2}[0] | count=${count}
+| | ... | seed=${seed}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 2001:1::0 | ${host_prefix}
 | | ... | gateway=2001:4::1 | interface=${DUT2_${int}1}[0] | count=${count}
+| | ... | seed=${seed}
 | | Vpp Route Add | ${dut} | 2001:2::0 | ${host_prefix} | gateway=2001:5::2
-| | ... | interface=${dut_if2} | count=${count}
+| | ... | interface=${dut_if2} | count=${count} | seed=${seed}
 
 | Initialize IPv6 forwarding with vhost in 2-node circular topology
 | | [Documentation]

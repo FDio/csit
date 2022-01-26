@@ -105,6 +105,7 @@
 | |
 | | ... | *Arguments:*
 | | ... | - count - IP route count. Type: integer
+| | ... | - seed - If not None, randomize route order using this. Type: integer
 | |
 | | ... | *Return:*
 | | ... | - No value returned
@@ -114,7 +115,7 @@
 | | ... | \| Initialize IPv4 forwarding with scaling in 3-node circular \
 | | ... | topology \| 100000 \|
 | |
-| | [Arguments] | ${count}
+| | [Arguments] | ${count} | ${seed}=${None}
 | |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
@@ -147,15 +148,15 @@
 | | ... | 30
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 3.3.3.2 | 30
 | | Vpp Route Add | ${dut1} | 10.0.0.0 | 32 | gateway=1.1.1.1
-| | ... | interface=${DUT1_${int}1}[0] | count=${count}
+| | ... | interface=${DUT1_${int}1}[0] | count=${count} | seed=${seed}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 32 | gateway=2.2.2.2
-| | ... | interface=${DUT1_${int}2}[0] | count=${count}
+| | ... | interface=${DUT1_${int}2}[0] | count=${count} | seed=${seed}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 32 | gateway=2.2.2.1
-| | ... | interface=${DUT2_${int}1}[0] | count=${count}
+| | ... | interface=${DUT2_${int}1}[0] | count=${count} | seed=${seed}
 | | Vpp Route Add | ${dut} | 20.0.0.0 | 32 | gateway=3.3.3.1
-| | ... | interface=${dut_if2} | count=${count}
+| | ... | interface=${dut_if2} | count=${count} | seed=${seed}
 
 | Initialize IPv4 routing with memif pairs
 | | [Documentation]
