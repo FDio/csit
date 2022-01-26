@@ -11,9 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pal import init_app
 
-app = init_app()
+from pal import app
+
 
 if __name__ == "__main__":
     # Main entry point.

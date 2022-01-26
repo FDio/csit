@@ -11,21 +11,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Routes for parent Flask app.
-"""
+"""Prepare data for Plotly Dash."""
 
-from flask import current_app as app
-from flask import render_template
+import pandas as pd
 
 
-@app.route(u"/")
-def home():
-    """Landing page.
+def create_dataframe():
+    """Create Pandas DataFrame from local CSV.
     """
 
-    return render_template(
-        u"index.jinja2",
-        title=u"FD.io CSIT",
-        description=u"Performance Dashboard",
-        template=u"home-template"
+    return pd.read_csv(
+        u"https://s3-docs.fd.io/csit/master/trending/_static/vpp/"
+        u"csit-vpp-perf-mrr-daily-master-2n-skx-trending.csv"
     )
