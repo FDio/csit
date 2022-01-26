@@ -11,14 +11,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Prepare data for Plotly Dash."""
+"""Prepare data for Plotly Dash.
+"""
 
 import pandas as pd
 
 
 def create_dataframe():
-    """Create Pandas DataFrame from local CSV."""
+    """Create Pandas DataFrame from local CSV.
+
+    DEMO
+    """
+
     return pd.read_csv(
-        "https://s3-docs.fd.io/csit/master/trending/_static/vpp/"
-        "csit-vpp-perf-mrr-daily-master-2n-zn2-trending.csv"
+        u"https://s3-docs.fd.io/csit/master/trending/_static/vpp/"
+        u"csit-vpp-perf-mrr-daily-master-2n-zn2-trending.csv"
     )
