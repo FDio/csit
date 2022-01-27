@@ -66,7 +66,7 @@ nodes:
         model: Intel-E810CQ
       port7:
         # s72-t212-tg1-c2/p1 - 25GE port1 Intel NIC xxv710 4p25GE.
-        mac_address: "40:a6:b7:4c:34:2c"
+        mac_address: "40:a6:b7:4c:34:48"
         pci_address: "0000:4b:00.0"
         ip4_address: "172.16.70.2"
         driver: i40e
@@ -74,28 +74,28 @@ nodes:
         model: Intel-XXV710
       port8:
         # s72-t212-tg1-c2/p2 - 25GE port2 Intel NIC xxv710 4p25GE.
-        mac_address: "40:a6:b7:4c:34:2d"
+        mac_address: "40:a6:b7:4c:34:49"
         pci_address: "0000:4b:00.1"
         ip4_address: "172.16.80.2"
         driver: i40e
         link: link8
         model: Intel-XXV710
-#      port9:
-#        # s72-t212-tg1-c6/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
-#        mac_address: "b4:96:91:b2:a0:40"
-#        pci_address: "0000:ca:00.0"
-#        ip4_address: "172.16.90.2"
-#        driver: ice
-#        link: link9
-#        model: Intel-E810CQ
-#      port10:
-#        # s72-t212-tg1-c6/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
-#        mac_address: "b4:96:91:b2:a0:41"
-#        pci_address: "0000:ca:00.1"
-#        ip4_address: "172.16.100.2"
-#        driver: ice
-#        link: link9
-#        model: Intel-E810CQ
+      port9:
+        # s72-t212-tg1-c6/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
+        mac_address: "b4:96:91:b2:a7:00"
+        pci_address: "0000:ca:00.0"
+        ip4_address: "172.16.90.2"
+        driver: ice
+        link: link9
+        model: Intel-E810CQ
+      port10:
+        # s72-t212-tg1-c6/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
+        mac_address: "b4:96:91:b2:a7:01"
+        pci_address: "0000:ca:00.1"
+        ip4_address: "172.16.100.2"
+        driver: ice
+        link: link9
+        model: Intel-E810CQ
   DUT1:
     type: DUT
     host: "10.30.51.81"
