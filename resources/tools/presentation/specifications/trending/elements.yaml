@@ -3,6 +3,14 @@
 ################################################################################
 
 - type: "plot"
+  title: "Statistics: 2n-icx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-icx-mrr"
+  data: "plot-performance-trending-vpp-2n-icx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
   title: "Statistics: 3n-skx mrr"
   algorithm: "plot_statistics"
   output-file: "{DIR[STATIC,VPP]}/stats-3n-skx-mrr"
