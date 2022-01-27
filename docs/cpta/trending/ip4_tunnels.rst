@@ -3,6 +3,7 @@ IPv4 Tunnels
 
 .. toctree::
 
+    ip4_tunnels-2n-icx-xxv710
     ip4_tunnels-2n-skx-xxv710
     ip4_tunnels-2n-clx-xxv710
     ip4_tunnels-2n-zn2-xxv710

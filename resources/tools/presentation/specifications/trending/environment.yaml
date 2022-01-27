@@ -51,6 +51,8 @@
   - "DIR[BUILD,HTML]"
 
   testbeds:
+    "10.32.51.82": "LF-2n-ICX-212"
+    "10.32.51.77": "LF-3n-ICX-37"
     "10.30.51.45": "LF-2n-SKX-21"
     "10.30.51.53": "LF-2n-SKX-22"
     "10.30.51.55": "LF-2n-SKX-23"
@@ -61,7 +63,6 @@
     "10.30.51.48": "LF-3n-SKX-31"
     "10.30.51.60": "LF-3n-SKX-32"
     "10.30.51.49": "LF-3n-TSH-33"
-    "10.30.51.49": "LF-2n-TX2-34"
     "10.32.8.25": "LF-2n-ZN2-210"
     "10.32.8.10": "LF-DNV"
 
@@ -158,6 +159,7 @@
         type: "failed-tests"
         way: "jenkins"
         include:
+          - "last-failed-tests-vpp-2n-icx-mrr"
           - "last-failed-tests-vpp-2n-skx-mrr"
           - "last-failed-tests-vpp-3n-skx-mrr"
           - "last-failed-tests-vpp-2n-clx-mrr"
@@ -178,6 +180,7 @@
           - "last-failed-tests-vpp-2n-clx-ndrpdr"
           - "last-failed-tests-trex-2n-skx-mrr"
         urls:
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-icx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx"
