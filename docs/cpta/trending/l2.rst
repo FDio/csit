@@ -3,6 +3,7 @@ L2 Ethernet Switching
 
 .. toctree::
 
+    l2-2n-icx-xxv710
     l2-2n-clx-xxv710
     l2-2n-clx-x710
     l2-2n-clx-cx556a
