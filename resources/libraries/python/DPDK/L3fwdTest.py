@@ -80,7 +80,6 @@ class L3fwdTest:
                     pmd_eth_dest_0=f"\\\"0,{adj_mac0}\\\"",
                     pmd_eth_dest_1=f"\\\"1,{adj_mac1}\\\"",
                     pmd_parse_ptype=True,
-                    pmd_enable_jumbo=jumbo_frames,
                     pmd_max_pkt_len=jumbo_frames
                 )
             else:
