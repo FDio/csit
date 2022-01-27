@@ -219,10 +219,6 @@ class DpdkUtil:
         options.add_equals_from_dict(
             u"config", u"pmd_config", kwargs
         )
-        # Enables jumbo frames.
-        options.add_if_from_dict(
-            u"enable-jumbo", u"pmd_enable_jumbo", kwargs, False
-        )
         # Set the max packet length.
         options.add_with_value_if_from_dict(
             u"max-pkt-len", u"9200", u"pmd_max_pkt_len", kwargs, False
