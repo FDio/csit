@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -56,6 +56,23 @@
 | | Run Keyword If | ${validate}
 | | ... | All VPP Interfaces Ready Wait | ${nodes} | retries=${60}
 
+| Set interfaces in path up max
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
+| | ... | maximal MTU allowed.*
+| |
+| | ... | *Arguments:*
+| | ... | - validate - Validate interfaces are up.
+| | ... | Type: boolean
+| |
+| | [Arguments] | ${validate}=${True}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Set interfaces in path up on node max | ${dut}
+| | END
+| | Run Keyword If | ${validate}
+| | ... | All VPP Interfaces Ready Wait | ${nodes} | retries=${60}
+
 | Set interfaces in path up on node
 | | [Documentation]
 | | ... | *Set UP state on VPP interfaces in path on specified DUT node and
@@ -73,6 +90,25 @@
 | |
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | Set interfaces in path up on node on PF | ${dut} | ${pf}
+| | END
+
+| Set interfaces in path up on node max
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
+| | ... | find maximal MTU allowed and set it.*
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node on which to set the interfaces up.
+| | ... | Type: string
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set interfaces in path up on node \| DUT1 \|
+| |
+| | [Arguments] | ${dut}
+| |
+| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
+| | | Set interfaces in path up on node on PF max | ${dut} | ${pf}
 | | END
 
 | Set interfaces in path up on node on PF
@@ -98,6 +134,31 @@
 | | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
 | | | Set Interface State | ${nodes['${dut}']} | ${if} | up
 | | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
+| | END
+
+| Set interfaces in path up on node on PF max
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
+| | ... | find maximal allowed MTU and set it.*
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node on which to set the interfaces up.
+| | ... | Type: string
+| | ... | - pf - NIC physical function (physical port).
+| | ... | Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Set interfaces in path up on node on PF \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
+| |
+| | ${_chains} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | @{${dut}_${int}${pf}_1}
+| | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
+| | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
+| | | Set Interface State | ${nodes['${dut}']} | ${if} | up
+| | | VPP Set Interface MTU max | ${nodes['${dut}']} | ${if}
 | | END
 
 | Pre-initialize layer driver
@@ -227,6 +288,29 @@
 | | END
 | | Set Test Variable | ${int} | vf
 | | Set interfaces in path up | validate=${validate}
+
+| Initialize layer driver max
+| | [Documentation]
+| | ... | Initialize driver based interfaces on all DUT. Interfaces are
+| | ... | brought up.
+| |
+| | ... | *Arguments:*
+| | ... | - driver - NIC driver used in test [vfio-pci|avf|rdma-core].
+| | ... | Type: string
+| | ... | - validate - Validate interfaces are up.
+| | ... | Type: boolean
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer driver \| vfio-pci \|
+| |
+| | [Arguments] | ${driver} | ${validate}=${True}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Initialize layer driver on node | ${dut} | ${driver}
+| | END
+| | Set Test Variable | ${int} | vf
+| | Set interfaces in path up max | validate=${validate}
 
 | Initialize layer driver on node
 | | [Documentation]
