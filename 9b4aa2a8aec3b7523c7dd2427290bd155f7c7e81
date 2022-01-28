@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "178805c0_4f118826",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-28T09:50:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4538f66_f28c5247",
+      "range": {
+        "startLine": 157,
+        "startChar": 21,
+        "endLine": 157,
+        "endChar": 28
+      },
+      "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23630120_f862790e",
         "filename": "docs/cpta/methodology/trend_analysis.rst",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd36e984_119011d5",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-28T09:50:18Z",
+      "side": 1,
+      "message": "I disagree, \"earlier\" is the correct opposite to \"later\".\nIf the grammar checker is still confused I can duplicate the \"samples\" word, so the checker does not need to track context across parentheses.",
+      "parentUuid": "23630120_f862790e",
+      "range": {
+        "startLine": 173,
+        "startChar": 45,
+        "endLine": 173,
+        "endChar": 52
+      },
+      "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0602fe94_8e684c10",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-28T09:50:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ae20997_8c279fa9",
+      "range": {
+        "startLine": 206,
+        "startChar": 10,
+        "endLine": 206,
+        "endChar": 21
+      },
+      "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b62a86b_8665b72e",
         "filename": "docs/cpta/methodology/trend_analysis.rst",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2f8cb70_d7f20e3b",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-28T09:50:18Z",
+      "side": 1,
+      "message": "The structure is (changed + restored) XOR (happened + (caused + measured)).\nAfter some thinking I decided to write that in more verbose sentences.",
+      "parentUuid": "4b62a86b_8665b72e",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 60
+      },
+      "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "20d0453f_2c3ad547",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-28T09:50:18Z",
+      "side": 1,
+      "message": "See above.",
+      "parentUuid": "986dc5e0_d72d1ccb",
+      "range": {
+        "startLine": 222,
+        "startChar": 30,
+        "endLine": 222,
+        "endChar": 44
+      },
+      "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a67b6ae9_c01c95f5",
         "filename": "docs/cpta/methodology/trend_analysis.rst",
         "patchSetId": 1
@@ -137,6 +257,30 @@
       "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30d42af3_485bd06f",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-28T09:50:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a67b6ae9_c01c95f5",
+      "range": {
+        "startLine": 237,
+        "startChar": 7,
+        "endLine": 237,
+        "endChar": 16
+      },
+      "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "9f89971f_01045af7",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-28T09:50:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7a8c3ce_9f6047d1",
+      "range": {
+        "startLine": 257,
+        "startChar": 38,
+        "endLine": 257,
+        "endChar": 60
+      },
+      "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bac53139_8f87ae44",
         "filename": "docs/cpta/methodology/trend_analysis.rst",
         "patchSetId": 1
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "64ab8118_4d37ed42",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-28T09:50:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bac53139_8f87ae44",
+      "range": {
+        "startLine": 266,
+        "startChar": 38,
+        "endLine": 266,
+        "endChar": 48
+      },
+      "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e18d2ab_43feef3a",
         "filename": "docs/cpta/methodology/trend_analysis.rst",
         "patchSetId": 1
@@ -206,6 +398,30 @@
       "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "522f86c4_dcd8eb4b",
+        "filename": "docs/cpta/methodology/trend_analysis.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-01-28T09:50:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e18d2ab_43feef3a",
+      "range": {
+        "startLine": 269,
+        "startChar": 42,
+        "endLine": 269,
+        "endChar": 49
+      },
+      "revId": "9b4aa2a8aec3b7523c7dd2427290bd155f7c7e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
