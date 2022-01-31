@@ -8,6 +8,8 @@
   table-last-failed-tests-2n-icx:
     csit-vpp-perf-mrr-daily-master-2n-icx:
       - "lastCompletedBuild"
+    csit-vpp-perf-mrr-daily-master-3n-icx:
+      - "lastCompletedBuild"
   table-last-failed-tests-3n-skx:
     csit-vpp-perf-mrr-daily-master-3n-skx:
       - "lastCompletedBuild"
@@ -70,6 +72,13 @@
   plot-performance-trending-vpp-2n-icx:
     csit-vpp-perf-mrr-daily-master-2n-icx:
       start: 6
+      end: "lastCompletedBuild"
+      max-builds: 180
+
+  # 3n-icx
+  plot-performance-trending-vpp-3n-icx:
+    csit-vpp-perf-mrr-daily-master-3n-icx:
+      start: 1
       end: "lastCompletedBuild"
       max-builds: 180
 
