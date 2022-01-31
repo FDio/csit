@@ -85,7 +85,7 @@ testbed topology is depicted in a figure below.
 Server is populated with the following NIC models:
 
 #. NIC-1: x710-da4 4p10GE Intel.
-#. NIC-2: x710-da4 4p10GE Intel.
+#. NIC-2: E810-2CQDA2 2p100GbE Intel.
 
 All Intel Xeon Skylake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux, with 56 logical
