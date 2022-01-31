@@ -37,13 +37,7 @@ details examples:
   - Root Device Type: ebs
 
 Both TG and SUT AMIs are created manually before launching topology and are not
-part of automated scripts. To create CSIT AMIs:
-
-::
-
-  cd csit/fdio.infra.packer/aws_c5n/
-  packer init
-  packer build
+part of automated scripts.
 
 Building AMIs requires Hashicorp Packer with Amazon plugin installed.
 

@@ -13,21 +13,14 @@ Changes in |csit-release|
      executing |csit-release| tests. For details about the physical
      setup see :ref:`tested_physical_topologies`.
 
-   - **AWS EC2 c5n**: Performance test data for AWS c5n instances has
-     been added to report for ip4, ip6 and ipsec tests.
-
    - **Reduction of tests**: Removed certain test variations executed
      iteratively for the report (as well as in daily and weekly
      trending) due to physical testbeds overload.
 
 #. TEST FRAMEWORK
 
-   - **CSIT test environment** version has been updated to ver. 8, see
+   - **CSIT test environment** version has been updated to ver. 9, see
      :ref:`test_environment_versioning`.
-
-   - **CSIT in AWS environment**: Completed CSIT automation support for
-     AWS c5n instances environment, including weekly performance
-     trending tests execution.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, and
      deprecation of VAT, CLI is used in CSIT for many VPP scale tests.
