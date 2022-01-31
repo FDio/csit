@@ -8,4 +8,3 @@ VMs vhost-user
     vhost-2n-skx-xxv710
     vhost-3n-skx-xxv710
     vhost-3n-skx-x710
-    vhost-3n-hsw-xl710

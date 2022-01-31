@@ -11,7 +11,6 @@ IPv4 Routing
     ip4-2n-skx-x710
     ip4-3n-skx-xxv710
     ip4-3n-skx-x710
-    ip4-3n-hsw-xl710
     ip4-3n-tsh-x520
     ip4-2n-tx2-xl710
     ip4-2n-dnv-x553
