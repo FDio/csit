@@ -160,6 +160,7 @@
         way: "jenkins"
         include:
           - "last-failed-tests-vpp-2n-icx-mrr"
+          - "last-failed-tests-vpp-3n-icx-mrr"
           - "last-failed-tests-vpp-2n-skx-mrr"
           - "last-failed-tests-vpp-3n-skx-mrr"
           - "last-failed-tests-vpp-2n-clx-mrr"
@@ -181,6 +182,7 @@
           - "last-failed-tests-trex-2n-skx-mrr"
         urls:
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-icx"
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-icx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx"

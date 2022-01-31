@@ -13,6 +13,16 @@ Legend to the tables:
     - **Last Failure [VPP-Build-Id]**: VPP build as of last failure.
     - **Last Failure [CSIT-Job-Build-Id]**: CSIT build as of last failure.
 
+2n-icx-mrr
+----------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-icx.rst
+
+3n-icx-mrr
+----------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-3n-icx.rst
+
 2n-skx-mrr
 ----------
 
