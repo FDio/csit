@@ -101,4 +101,13 @@ Following is the list of CSIT versions to date:
   `CSIT <https://git.fd.io/csit/tree/?h=rls2110>`_).
 
   - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
-    matrix: `depends on testbed type <https://gerrit.fd.io/r/c/csit/+/33311>`_.
+    matrix.
+- Ver. 9 associated with CSIT rls2202 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2202>`_, `Linux
+  <https://s3-docs.fd.io/csit/rls2202/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  `TRex
+  <https://s3-docs.fd.io/csit/rls2202/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2202>`_).
+
+  - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
+    matrix.

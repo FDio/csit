@@ -34,71 +34,10 @@ Requirements
   - `Vault <https://releases.hashicorp.com/vault/>`_ service available
     on specified ip/port.
 
-Usage
-~~~~~
-
-- OPTIONAL: Enable logging
-
-  - Terraform does not have logging enabled by default, to enable logging
-    to stderr, set up TF_LOG variable with specified loglevel.
-  - Available loglevels: TRACE, DEBUG, INFO, WARN, ERROR:
-
-    ::
-
-      export TF_LOG="LOGLEVEL"
-
-  - It is also possible to store logged output to a file by setting up
-    TF_LOG_PATH variable:
-
-    ::
-
-      export TF_LOG_PATH="path/to/logfile"
-
-- Run Terraform in a given root module folder depending on chosen testbed
-  topology.
-
-  - Terraform will deploy and configure instances and other resources,
-    all of these resources can be later identified on AWS via
-    Environment tag.
-  - By default, Environment tag "CSIT-AWS" is used. Example:
-
-    ::
-
-      cd fdio.infra.terraform/2n_aws_c5n/
-      terraform init
-      terraform plan
-      terraform apply
-
-  - This will deploy environment with default values, you can check the
-    defaults in `./2n_aws_c5n/main.tf` and `./2n_aws_c5n/variables.tf` 
-    files.
-  - If you would like to change some of these values, you can:
-
-    - Set up TF_VAR_* environment variables prior to running 'terraform apply':
-
-      ::
-
-        export TF_VAR_testbed_name="testbed1"
-
-    - Use '-var=varname=value' flag when running 'terraform apply':
-
-      ::
-
-        terraform apply -var=testbed_name=testbed1
-
-    - Note: Only variables defined in `variables.tf` file of the root
-      module can be changed using these methods.
-
-- To clean up the AWS environment and remove all used resources, run:
-
-  ::
-
-    terraform destroy
-
 Deployment Example
 ~~~~~~~~~~~~~~~~~~
 
-Following is an example of a 
+Following is an example of a
 `Terraform deploy module <https://git.fd.io/csit/tree/fdio.infra.terraform/2n_aws_c5n/main.tf>`_
 for a CSIT 2-Node testbed topology with AWS variables set to default
 values. A number of variables is also defined in a

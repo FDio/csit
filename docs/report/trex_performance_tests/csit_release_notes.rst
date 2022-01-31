@@ -6,14 +6,7 @@ Changes in |csit-release|
 
 #. TREX PERFORMANCE TESTS
 
-   - **Intel Sky Lake**: Added initial tests for testing latency between
-     2 ports on nic on the TRex.
-     Added tests:
-     - IP4Base
-     - IP4scale2m
-     - IP6Base
-     - IP6scale2m
-     - L2bscale1mmaclrn
+   - No updates
 
 #. TEST FRAMEWORK
 
