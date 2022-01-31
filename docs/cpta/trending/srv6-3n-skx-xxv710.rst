@@ -9,7 +9,7 @@
 
 .. raw:: html
 
-    <a name="78b-2t1c-base-ixgbe"></a>
+    <a name="78b-2t1c-base-avf"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -23,7 +23,7 @@
 
 .. raw:: html
 
-    <a name="78b-4t2c-base-ixgbe"></a>
+    <a name="78b-4t2c-base-avf"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
@@ -37,7 +37,7 @@
 
 .. raw:: html
 
-    <a name="78b-8t4c-base-ixgbe"></a>
+    <a name="78b-8t4c-base-avf"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,

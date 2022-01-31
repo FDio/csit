@@ -37,7 +37,7 @@
 
 .. raw:: html
 
-    <a name="64b-4t2c-base-avf"></a>
+    <a name="64b-8t4c-base-avf"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,

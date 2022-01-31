@@ -1,18 +1,6 @@
 VPP MRR
 =======
 
-2n-clx
-------
-
-.. raw:: html
-
-    <center>
-    Links to builds:
-    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-2n-clx-mrr.html"></iframe>
-    <p><br></p>
-    </center>
-
 2n-icx
 ------
 
@@ -22,6 +10,30 @@ VPP MRR
     Links to builds:
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-icx" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-2n-icx-mrr.html"></iframe>
+    <p><br></p>
+    </center>
+
+3n-icx
+------
+
+.. raw:: html
+
+    <center>
+    Links to builds:
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-icx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-3n-icx-mrr.html"></iframe>
+    <p><br></p>
+    </center>
+
+2n-clx
+------
+
+.. raw:: html
+
+    <center>
+    Links to builds:
+    <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/stats-2n-clx-mrr.html"></iframe>
     <p><br></p>
     </center>
 
