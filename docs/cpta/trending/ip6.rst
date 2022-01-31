@@ -11,7 +11,6 @@ IPv6 Routing
     ip6-2n-skx-x710
     ip6-3n-skx-xxv710
     ip6-3n-skx-x710
-    ip6-3n-hsw-xl710
     ip6-3n-tsh-x520
     ip6-2n-tx2-xl710
     ip6-2n-dnv-x553
