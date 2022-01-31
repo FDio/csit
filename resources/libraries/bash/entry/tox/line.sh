@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,12 +11,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -xeuo pipefail
+set -exuo pipefail
 
 # This file should be executed from tox, as the assumend working directory
 # is different from where this file is located.
 # This file does not have executable flag nor shebang,
 # to dissuade non-tox callers.
+
+# This script runs a grep-based command and fails if it detects any lines
+# longer than 80 characters.
+# The grep output stored to lines.log (overwriting).
 
 # "set -eu" handles failures from the following two lines.
 BASH_CHECKS_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
@@ -27,27 +29,22 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
-source "${BASH_FUNCTION_DIR}/docs.sh" || die "Source failed."
-common_dirs || die
-activate_virtualenv || die
 
-# Documentation generation.
-# Here we do store only stderr to file while stdout (inlcuding Xtrace) is
-# printed to console. This way we can track increased errors in future.
-# We do not need to do trap as the env will be closed after tox finished the
-# task.
-exec 3>&1 || die
-export BASH_XTRACEFD="3" || die
-log_file="$(pwd)/doc_verify.log" || die
-
-generate_docs 2> ${log_file} || die
-
-if [[ "${DOCS_EXIT_STATUS}" != 0 ]]; then
-    # Failed to generate report.
+# Directory docs contains too many wide formatted tables.
+# .txt contains lines with wide URLs.
+piped_command='set -exuo pipefail && grep -rn ".\{81\}" "resources/" "tests/"'
+piped_command+=' | fgrep -v .svg | fgrep -v .txt | tee "lines.log" | wc -l'
+# TODO: The greps "fail" if no long line remains. Fix that if it ever happens.
+lines="$(bash -c "${piped_command}")" || die
+if [ "${lines}" != "0" ]; then
+    # TODO: Decide which text goes to stdout and which to stderr.
+    warn "Long lines detected: ${lines}"
+    ## TODO: Enable when output size does more good than harm.
+    # cat "lines.log" >&2
     warn
-    warn "Doc verify checker: FAIL"
+    warn "Line length checker: FAIL"
     exit 1
 fi
 
 warn
-warn "Doc verify checker: PASS"
+warn "Line length checker: PASS"
