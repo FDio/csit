@@ -127,6 +127,11 @@ programs:
           labelnames:
             - name
             - index
+        - name: mpls
+          documentation: Number of MPLS packets for interface
+          labelnames:
+            - name
+            - index
         - name: rx_no_buf
           documentation: Number of out of buffer RX packets on interface
           labelnames:
