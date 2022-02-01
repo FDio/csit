@@ -684,7 +684,7 @@
 
   dpdk-3n-tsh-curr-iter-best:
     csit-dpdk-perf-report-iterative-2202-3n-tsh:
-      - 2   # rls2202 NDRPDR iter env 9
+      - 14  # rls2202 NDRPDR iter env 9
 
   # 2n-tx2
 
