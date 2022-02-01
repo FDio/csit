@@ -28,16 +28,16 @@
 
     </script>
 
-3n-icx-e810cq
+3n-icx-xxv710
 ~~~~~~~~~~~~~
 
-64b-ip4tunnel-base-[avf,dpdk]
------------------------------
+64b-ip4tunnel-base
+------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-64b-ip4tunnel-base-ndr-tsa.html"></iframe>
+    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-ip4tunnel-base-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-64b-ip4tunnel-base-ndr-tsa}
-            \label{fig:3n-icx-e810cq-64b-ip4tunnel-base-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-64b-ip4tunnel-base-ndr-tsa}
+            \label{fig:3n-icx-xxv710-64b-ip4tunnel-base-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-64b-ip4tunnel-base-pdr-tsa.html"></iframe>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-ip4tunnel-base-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-64b-ip4tunnel-base-pdr-tsa}
-            \label{fig:3n-icx-e810cq-64b-ip4tunnel-base-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-64b-ip4tunnel-base-pdr-tsa}
+            \label{fig:3n-icx-xxv710-64b-ip4tunnel-base-pdr-tsa}
     \end{figure}

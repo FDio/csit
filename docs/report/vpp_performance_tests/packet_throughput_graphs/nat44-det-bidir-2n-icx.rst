@@ -28,7 +28,7 @@
 
     </script>
 
-2n-icx-e810cq
+2n-icx-xxv710
 ~~~~~~~~~~~~~
 
 64b-nat44det-ip4routing-stl-bidir-avf
@@ -37,7 +37,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="01n" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr.html"></iframe>
+    <iframe id="01n" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr}
-            \label{fig:2n-icx-e810cq-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr}
+            \label{fig:2n-icx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="01p" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr.html"></iframe>
+    <iframe id="01p" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr}
-            \label{fig:2n-icx-e810cq-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr}
+            \label{fig:2n-icx-xxv710-64b-2t1c-nat44det-ip4routing-stl-bidir-avf-pdr}
     \end{figure}

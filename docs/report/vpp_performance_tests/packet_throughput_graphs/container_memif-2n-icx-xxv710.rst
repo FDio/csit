@@ -28,16 +28,16 @@
 
     </script>
 
-2n-icx-e810cq
+2n-icx-xxv710
 ~~~~~~~~~~~~~
 
-64b-2t1c-ethip4--ethip4udpgeneve-avf
-------------------------------------
+64b-2t1c-memif-base
+-------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa.html"></iframe>
+    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-memif-base-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa}
-            \label{fig:2n-icx-e810cq-64b-ethip4--ethip4udpgeneve-avf-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-memif-base-ndr}
+            \label{fig:2n-icx-xxv710-64b-2t1c-memif-base-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa.html"></iframe>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-memif-base-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa}
-            \label{fig:2n-icx-e810cq-64b-ethip4--ethip4udpgeneve-avf-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-memif-base-pdr}
+            \label{fig:2n-icx-xxv710-64b-2t1c-memif-base-pdr}
     \end{figure}
