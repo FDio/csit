@@ -37,6 +37,8 @@ Additional information about graph data:
 .. note::
 
     Test results are stored in
+    `build logs from FD.io dpdk performance job 2n-icx`_,
+    `build logs from FD.io dpdk performance job 3n-icx`_,
     `build logs from FD.io dpdk performance job 2n-skx`_,
     `build logs from FD.io dpdk performance job 3n-skx`_,
     `build logs from FD.io dpdk performance job 2n-clx`_,
@@ -51,6 +53,8 @@ Additional information about graph data:
 .. toctree::
     :maxdepth: 3
 
+    2n-icx-xxv710
+    3n-icx-xxv710
     2n-skx-xxv710
     2n-skx-x710
     3n-skx-xxv710

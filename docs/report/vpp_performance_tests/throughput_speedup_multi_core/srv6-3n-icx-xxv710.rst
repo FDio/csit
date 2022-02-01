@@ -28,16 +28,16 @@
 
     </script>
 
-2n-icx-xxv710
+3n-icx-xxv710
 ~~~~~~~~~~~~~
 
-64b-nat44ed-ip4routing-stl-unidir-avf
--------------------------------------
+78b-srv6-ip6routing-base-avf
+----------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="02n" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-78b-srv6-ip6routing-base-avf-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr}
-            \label{fig:2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-78b-srv6-ip6routing-base-avf-ndr-tsa}
+            \label{fig:3n-icx-xxv710-78b-srv6-ip6routing-base-avf-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02p" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-78b-srv6-ip6routing-base-avf-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr}
-            \label{fig:2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-78b-srv6-ip6routing-base-avf-pdr-tsa}
+            \label{fig:3n-icx-xxv710-78b-srv6-ip6routing-base-avf-pdr-tsa}
     \end{figure}

@@ -36,6 +36,8 @@
 
     # Detailed test results
     DIR[DTR]: "{DIR[WORKING,SRC]}/detailed_test_results"
+    DIR[DTR,PERF,DPDK,2N,ICX]: "{DIR[DTR]}/dpdk_performance_results_2n_icx"
+    DIR[DTR,PERF,DPDK,3N,ICX]: "{DIR[DTR]}/dpdk_performance_results_3n_icx"
     DIR[DTR,PERF,DPDK,3N,SKX]: "{DIR[DTR]}/dpdk_performance_results_3n_skx"
     DIR[DTR,PERF,DPDK,2N,SKX]: "{DIR[DTR]}/dpdk_performance_results_2n_skx"
     DIR[DTR,PERF,DPDK,2N,ZN2]: "{DIR[DTR]}/dpdk_performance_results_2n_zn2"

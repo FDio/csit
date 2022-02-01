@@ -23,7 +23,7 @@ CSIT source code for the test cases used for plots can be found in
     vm_vhost-2n-skx-xxv710
     vm_vhost-2n-clx-xxv710
     vm_vhost-2n-clx-cx556a
-    vm_vhost-2n-icx-e810cq
+    vm_vhost-2n-icx-xxv710
     vm_vhost-2n-zn2-xxv710
     vm_vhost-2n-zn2-cx556a
     vm_vhost-3n-tsh-x520

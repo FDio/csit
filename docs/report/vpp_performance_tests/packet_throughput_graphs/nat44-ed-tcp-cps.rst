@@ -10,6 +10,4 @@ ED TCP CPS
 
     nat44-ed-tcp-cps-2n-clx
     nat44-ed-tcp-cps-2n-skx
-
-..
     nat44-ed-tcp-cps-2n-icx
