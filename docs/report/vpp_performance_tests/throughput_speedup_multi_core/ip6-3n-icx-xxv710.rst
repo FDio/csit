@@ -28,16 +28,16 @@
 
     </script>
 
-3n-icx-e810cq
+3n-icx-xxv710
 ~~~~~~~~~~~~~
 
-78b-srv6-ip6routing-base-avf
-----------------------------
+78b-ip6routing-base
+-------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-78b-srv6-ip6routing-base-avf-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-78b-ip6routing-base-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-78b-srv6-ip6routing-base-avf-ndr-tsa}
-            \label{fig:3n-icx-e810cq-78b-srv6-ip6routing-base-avf-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-78b-ip6routing-base-ndr-tsa}
+            \label{fig:3n-icx-xxv710-78b-ip6routing-base-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-78b-srv6-ip6routing-base-avf-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-78b-ip6routing-base-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-78b-srv6-ip6routing-base-avf-pdr-tsa}
-            \label{fig:3n-icx-e810cq-78b-srv6-ip6routing-base-avf-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-78b-ip6routing-base-pdr-tsa}
+            \label{fig:3n-icx-xxv710-78b-ip6routing-base-pdr-tsa}
     \end{figure}

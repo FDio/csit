@@ -28,16 +28,16 @@
 
     </script>
 
-3n-icx-e810cq
+3n-icx-xxv710
 ~~~~~~~~~~~~~
 
-78b-2t1c-ip6routing-base-[avf,dpdk]
------------------------------------
+64b-2t1c-ip4tunnel-base
+-----------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-78b-2t1c-ip6routing-base-ndr.html"></iframe>
+    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-2t1c-ip4tunnel-base-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-78b-2t1c-ip6routing-base-ndr}
-            \label{fig:3n-icx-e810cq-78b-2t1c-ip6routing-base-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-64b-2t1c-ip4tunnel-base-ndr}
+            \label{fig:3n-icx-xxv710-64b-2t1c-ip4tunnel-base-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-78b-2t1c-ip6routing-base-pdr.html"></iframe>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-2t1c-ip4tunnel-base-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-78b-2t1c-ip6routing-base-pdr}
-            \label{fig:3n-icx-e810cq-78b-2t1c-ip6routing-base-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-64b-2t1c-ip4tunnel-base-pdr}
+            \label{fig:3n-icx-xxv710-64b-2t1c-ip4tunnel-base-pdr}
     \end{figure}

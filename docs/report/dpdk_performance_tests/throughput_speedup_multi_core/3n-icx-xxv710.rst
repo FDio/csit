@@ -28,16 +28,23 @@
 
     </script>
 
-2n-icx-xxv710
+3n-icx-xxv710
 ~~~~~~~~~~~~~
 
-64b-nat44ed-ip4routing-stl-unidir-avf
--------------------------------------
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/dpdk/perf?h=rls2110>`_.
+
+.. raw:: latex
+
+    \clearpage
+
+64b-base
+--------
 
 .. raw:: html
 
     <center>
-    <iframe id="02n" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-icx-xxv710-64b-base-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -45,9 +52,9 @@
 
     \begin{figure}[H]
         \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr}
-            \label{fig:2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-ndr}
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-64b-base-ndr-tsa}
+            \label{fig:3n-icx-xxv710-64b-base-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +64,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02p" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/3n-icx-xxv710-64b-base-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -65,7 +72,7 @@
 
     \begin{figure}[H]
         \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr}
-            \label{fig:2n-icx-xxv710-64b-2t1c-nat44ed-ip4routing-stl-unidir-avf-pdr}
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-64b-base-pdr-tsa}
+            \label{fig:3n-icx-xxv710-64b-base-pdr-tsa}
     \end{figure}

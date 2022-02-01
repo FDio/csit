@@ -28,16 +28,16 @@
 
     </script>
 
-3n-icx-e810cq
+2n-icx-xxv710
 ~~~~~~~~~~~~~
 
-64b-2t1c-l2switching-base
--------------------------
+64b-2t1c-vhost-base
+-------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-64b-2t1c-l2switching-base-ndr.html"></iframe>
+    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-vhost-base-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-64b-2t1c-l2switching-base-ndr}
-            \label{fig:3n-icx-e810cq-64b-2t1c-l2switching-base-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-vhost-base-ndr}
+            \label{fig:2n-icx-xxv710-64b-2t1c-vhost-base-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-64b-2t1c-l2switching-base-pdr.html"></iframe>
+    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-2t1c-vhost-base-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-64b-2t1c-l2switching-base-pdr}
-            \label{fig:3n-icx-e810cq-64b-2t1c-l2switching-base-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-2t1c-vhost-base-pdr}
+            \label{fig:2n-icx-xxv710-64b-2t1c-vhost-base-pdr}
     \end{figure}
