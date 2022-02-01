@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -333,14 +333,16 @@ class InterfaceUtil:
 
     @staticmethod
     def vpp_set_interface_mtu(node, interface, mtu=9200):
-        """Set Ethernet MTU on interface.
+        """Set Ethernet MTU on interface. Return whether it succeeded.
 
         :param node: VPP node.
-        :param interface: Interface to setup MTU. Default: 9200.
-        :param mtu: Ethernet MTU size in Bytes.
+        :param interface: Interface to set MTU on.
+        :param mtu: Ethernet MTU size in Bytes. Default: 9200.
         :type node: dict
         :type interface: str or int
         :type mtu: int
+        :returns: Whether VPP reported success.
+        :rtype: bool
         """
         if isinstance(interface, str):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
@@ -358,6 +360,34 @@ class InterfaceUtil:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         except AssertionError as err:
             logger.debug(f"Setting MTU failed.\n{err}")
+            return False
+        return True
+
+    @staticmethod
+    def vpp_set_interface_mtu_max(node, interface, mtu_min=1000, mtu_max=2000):
+        """Set maximal successful Ethernet MTU on interface.
+
+        :param node: VPP node.
+        :param interface: Interface to set MTU on.
+        :param mtu_max: Upper bound to MTU. Default: 9300 B.
+        :param mtu_min: Lower bound to MTU. Default: 1000 B.
+        :type node: dict
+        :type interface: str or int
+        :type mtu_max: int
+        :type mtu_min: int
+        """
+        if mtu_max - mtu_min < 2:
+            logger.info(f"Setting MTU to {mtu_min}")
+            InterfaceUtil.vpp_set_interface_mtu(node, interface, mtu_min)
+            return
+        mtu_middle = (mtu_min + mtu_max) // 2
+        logger.debug(f"Trying MTU {mtu_middle}")
+        if InterfaceUtil.vpp_set_interface_mtu(node, interface, mtu_middle):
+            logger.debug(u"MTU succeeded")
+            InterfaceUtil.vpp_set_interface_mtu_max(node, interface, mtu_middle, mtu_max)
+        else:
+            logger.debug(u"MTU failed")
+            InterfaceUtil.vpp_set_interface_mtu_max(node, interface, mtu_min, mtu_middle)
 
     @staticmethod
     def vpp_set_interfaces_mtu_on_node(node, mtu=9200):

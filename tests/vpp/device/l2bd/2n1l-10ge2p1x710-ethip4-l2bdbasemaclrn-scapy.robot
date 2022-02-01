@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -76,7 +76,7 @@
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer driver | ${nic_driver}
+| | When Initialize layer driver max | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize L2 bridge domain
 | | Then Send IPv4 bidirectionally and verify received packets
