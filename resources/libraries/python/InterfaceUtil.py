@@ -259,12 +259,12 @@ class InterfaceUtil:
             )
 
     @staticmethod
-    def set_interface_mtu(node, pf_pcis, mtu=9200):
+    def set_interface_mtu(node, pf_pcis, mtu=9018):
         """Set Ethernet MTU for specified interfaces.
 
         :param node: Topology node.
         :param pf_pcis: List of node's interfaces PCI addresses.
-        :param mtu: MTU to set. Default: 9200.
+        :param mtu: MTU to set. Default: 9018.
         :type nodes: dict
         :type pf_pcis: list
         :type mtu: int
@@ -332,11 +332,11 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_set_interface_mtu(node, interface, mtu=9200):
+    def vpp_set_interface_mtu(node, interface, mtu=9018):
         """Set Ethernet MTU on interface.
 
         :param node: VPP node.
-        :param interface: Interface to setup MTU. Default: 9200.
+        :param interface: Interface to setup MTU. Default: 9018.
         :param mtu: Ethernet MTU size in Bytes.
         :type node: dict
         :type interface: str or int
@@ -360,11 +360,11 @@ class InterfaceUtil:
             logger.debug(f"Setting MTU failed.\n{err}")
 
     @staticmethod
-    def vpp_set_interfaces_mtu_on_node(node, mtu=9200):
+    def vpp_set_interfaces_mtu_on_node(node, mtu=9018):
         """Set Ethernet MTU on all interfaces.
 
         :param node: VPP node.
-        :param mtu: Ethernet MTU size in Bytes. Default: 9200.
+        :param mtu: Ethernet MTU size in Bytes. Default: 9018.
         :type node: dict
         :type mtu: int
         """
@@ -372,11 +372,11 @@ class InterfaceUtil:
             InterfaceUtil.vpp_set_interface_mtu(node, interface, mtu)
 
     @staticmethod
-    def vpp_set_interfaces_mtu_on_all_duts(nodes, mtu=9200):
+    def vpp_set_interfaces_mtu_on_all_duts(nodes, mtu=9018):
         """Set Ethernet MTU on all interfaces on all DUTs.
 
         :param nodes: VPP nodes.
-        :param mtu: Ethernet MTU size in Bytes. Default: 9200.
+        :param mtu: Ethernet MTU size in Bytes. Default: 9018.
         :type nodes: dict
         :type mtu: int
         """

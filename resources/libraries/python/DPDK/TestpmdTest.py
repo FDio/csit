@@ -56,7 +56,7 @@ class TestpmdTest:
             if_pci0 = Topology.get_interface_pci_addr(node, if1)
             if_pci1 = Topology.get_interface_pci_addr(node, if2)
 
-            pmd_max_pkt_len = u"9200" if jumbo_frames else u"1518"
+            pmd_max_pkt_len = u"9018" if jumbo_frames else u"1518"
             testpmd_args = DpdkUtil.get_testpmd_args(
                 eal_corelist=f"1,{lcores_list}",
                 eal_driver=False,

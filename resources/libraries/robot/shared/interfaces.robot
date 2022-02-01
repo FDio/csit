@@ -184,7 +184,7 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If | ${jumbo}
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9018
 | | | ... | ELSE
 | | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
 | | FOR | ${dut} | IN | @{duts}
@@ -198,7 +198,7 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If | ${jumbo}
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9018
 | | | ... | ELSE
 | | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
 | | | Set Interface Flow Control

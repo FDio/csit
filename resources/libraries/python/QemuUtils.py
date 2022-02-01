@@ -371,7 +371,7 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo_frames"] else u"1518"
+        pmd_max_pkt_len = u"9018" if kwargs[u"jumbo_frames"] else u"1518"
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,
@@ -398,7 +398,7 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo_frames"] else u"1518"
+        pmd_max_pkt_len = u"9018" if kwargs[u"jumbo_frames"] else u"1518"
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,

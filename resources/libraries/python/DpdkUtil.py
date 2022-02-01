@@ -221,7 +221,7 @@ class DpdkUtil:
         )
         # Set the max packet length.
         options.add_with_value_if_from_dict(
-            u"max-pkt-len", u"9200", u"pmd_max_pkt_len", kwargs, False
+            u"max-pkt-len", u"9018", u"pmd_max_pkt_len", kwargs, False
         )
         return options
 
