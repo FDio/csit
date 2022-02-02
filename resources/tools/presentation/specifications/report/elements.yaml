@@ -5047,7 +5047,7 @@
       data: "data name"
     - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
       data: "data msg"
-  data: "vpp-mrr-results-3n-icx"
+  data: "vpp-3n-icx-curr-iter-mrr"
   filter: "'MRR'"
   parameters:
   - "name"
@@ -5251,7 +5251,7 @@
       data: "data name"
     - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
       data: "data conf-history"
-  data: "vpp-mrr-results-3n-icx"
+  data: "vpp-3n-icx-curr-iter-mrr"
   filter: "'MRR'"
   parameters:
   - "parent"
