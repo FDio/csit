@@ -332,7 +332,7 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_set_interface_mtu(node, interface, mtu=1500):
+    def vpp_set_interface_mtu(node, interface, mtu=9200):
         """Set Ethernet MTU on interface.
 
         :param node: VPP node.
