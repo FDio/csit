@@ -11,10 +11,42 @@
     layout: "plot-statistics"
 
 - type: "plot"
+  title: "Statistics: 2n-icx ndrpdr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-icx-ndrpdr"
+  data: "plot-ndrpdr-comparison-2n-icx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 2n-icx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-2n-icx-mrr"
+  data: "plot-performance-trending-dpdk-2n-icx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
   title: "Statistics: 3n-icx mrr"
   algorithm: "plot_statistics"
   output-file: "{DIR[STATIC,VPP]}/stats-3n-icx-mrr"
   data: "plot-performance-trending-vpp-3n-icx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 3n-icx ndrpdr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-3n-icx-ndrpdr"
+  data: "plot-ndrpdr-comparison-3n-icx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 3n-icx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-3n-icx-mrr"
+  data: "plot-performance-trending-dpdk-3n-icx"
   layout:
     layout: "plot-statistics"
 
@@ -181,6 +213,66 @@
 ################################################################################
 ###                               T A B L E S                                ###
 ################################################################################
+
+# VPP NDRPDR weekly comparison 2n-icx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 2n-icx-xxv710 2t1c ndr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-2n-icx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-2n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
+
+# VPP NDRPDR weekly comparison 2n-icx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 2n-icx-xxv710 2t1c pdr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-2n-icx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-2n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
+
+# VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-3n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
+
+# VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-3n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
 
 # VPP NDRPDR weekly comparison 2n-skx-xxv710 2t1c ndr
 - type: "table"
@@ -424,6 +516,32 @@
   output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-aws-mrr"
   data: "table-last-failed-tests-2n-aws"
   filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+    - "msg"
+
+- type: "table"
+  title: "Last failed tests (last builds) VPP 2n-icx-ndrpdr"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-icx-ndrpdr"
+  data: "table-last-failed-tests-2n-icx-ndrpdr"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+    - "msg"
+
+- type: "table"
+  title: "Last failed tests (last builds) VPP 3n-icx-ndrpdr"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-icx-ndrpdr"
+  data: "table-last-failed-tests-3n-icx-ndrpdr"
+  filter: "'NDRPDR'"
   parameters:
     - "name"
     - "parent"
@@ -4172,6 +4290,17 @@
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
       layout: "plot-cpta"
 
+# 2n-icx DPDK
+
+    - title: "2n-icx-xxv710-64b-{core}-dpdk"
+      output-file-name: "2n-icx-xxv710-64b-{core}-dpdk"
+      data: "plot-performance-trending-dpdk-2n-icx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-mrr.64b-{core}-eth-l2xcbase-testpmd-mrr"
+        - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-mrr.64b-{core}-ethip4-ip4base-l3fwd-mrr"
+      layout: "plot-cpta"
+
 # 3n-icx
 
     - title: "3n-icx-xxv710-1518b-{core}-ipsec-aes128cbc-ip4routing-base-scale-sw-avf"
@@ -4334,6 +4463,17 @@
         - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Mrr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-dyn-mrr"
         - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Mrr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-masq-mrr"
         - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Mrr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-stat-mrr"
+      layout: "plot-cpta"
+
+# 3n-icx DPDK
+
+    - title: "3n-icx-xxv710-64b-{core}-dpdk"
+      output-file-name: "3n-icx-xxv710-64b-{core}-dpdk"
+      data: "plot-performance-trending-dpdk-3n-icx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "tests.dpdk.perf.25ge2p1xxv710-eth-l2xcbase-testpmd-mrr.64b-{core}-eth-l2xcbase-testpmd-mrr"
+        - "tests.dpdk.perf.25ge2p1xxv710-ethip4-ip4base-l3fwd-mrr.64b-{core}-ethip4-ip4base-l3fwd-mrr"
       layout: "plot-cpta"
 
 # 2n-tx2
@@ -5066,6 +5206,421 @@
         - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
         - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
         - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
+      layout: "plot-cpta"
+
+# 2n-icx NDRPDR
+
+    - title: "2n-icx-xxv710-64b-{core}-memif-base-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-memif-base-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-ip4-base-scale-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-ip4-base-scale-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-ndrpdr.64B-{core}-avf-ethip4-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-ndrpdr.64B-{core}-avf-ethip4-ip4scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-Rnd-ndrpdr.64B-{core}-avf-ethip4-ip4scale20k-rnd-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-ndrpdr.64B-{core}-avf-ethip4-ip4scale200k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-Rnd-ndrpdr.64B-{core}-avf-ethip4-ip4scale200k-rnd-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale2M-ndrpdr.64B-{core}-avf-ethip4-ip4scale2m-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale2M-Rnd-ndrpdr.64B-{core}-avf-ethip4-ip4scale2m-rnd-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-ip4-base-scale-dpdk-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-ip4-base-scale-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale20K-ndrpdr.64B-{core}-ethip4-ip4scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale20K-Rnd-ndrpdr.64B-{core}-ethip4-ip4scale20k-rnd-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale200K-ndrpdr.64B-{core}-ethip4-ip4scale200k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale200K-Rnd-ndrpdr.64B-{core}-ethip4-ip4scale200k-rnd-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale2M-ndrpdr.64B-{core}-ethip4-ip4scale2m-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Scale2M-Rnd-ndrpdr.64B-{core}-ethip4-ip4scale2m-rnd-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-ip4-base-scale-af_xdp-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-ip4-base-scale-af_xdp-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Af-Xdp-Ethip4-Ip4Base-ndrpdr.64B-{core}-af-xdp-ethip4-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Af-Xdp-Ethip4-Ip4Scale20K-ndrpdr.64B-{core}-af-xdp-ethip4-ip4scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Af-Xdp-Ethip4-Ip4Scale20K-Rnd-ndrpdr.64B-{core}-af-xdp-ethip4-ip4scale20k-rnd-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-ip4-features-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-ip4-features-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-nat44det-ip4routing-stl-bidir-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-nat44det-ip4routing-stl-bidir-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Det-H1024-P63-S64512-ndrpdr.64B-{core}-avf-ethip4udp-nat44det-h1024-p63-s64512-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Det-H16384-P63-S1032192-ndrpdr.64B-{core}-avf-ethip4udp-nat44det-h16384-p63-s1032192-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Det-H65536-P63-S4128758-ndrpdr.64B-{core}-avf-ethip4udp-nat44det-h65536-p63-s4128758-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-stl-unidir-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Udir-ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-udir-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-H1024-P63-S64512-Cps-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-H16384-P63-S1032192-Cps-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Ip4Base-H65536-P63-S4128768-Cps-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Cps-ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Cps-ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Cps-ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
+      layout: "plot-cpta-cps"
+
+    - title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Cps-ndrpdr.64B-{core}-avf-ethip4tcp-ip4base-h1024-p63-s64512-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Ip4Base-H16384-P63-S1032192-Cps-ndrpdr.64B-{core}-avf-ethip4tcp-ip4base-h16384-p63-s1032192-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Ip4Base-H65536-P63-S4128768-Cps-ndrpdr.64B-{core}-avf-ethip4tcp-ip4base-h65536-p63-s4128768-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Cps-ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Cps-ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-cps-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Cps-ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
+      layout: "plot-cpta-cps"
+
+    - title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Tput-ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Tput-ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Tput-ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-ethip4--ethip4udpgeneve-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-ethip4--ethip4udpgeneve-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-1Tun-Ip4Base-ndrpdr.64B-{core}-avf-ethip4--ethip4udpgeneve-1tun-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-4Tun-Ip4Base-ndrpdr.64B-{core}-avf-ethip4--ethip4udpgeneve-4tun-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-16Tun-Ip4Base-ndrpdr.64B-{core}-avf-ethip4--ethip4udpgeneve-16tun-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-64Tun-Ip4Base-ndrpdr.64B-{core}-avf-ethip4--ethip4udpgeneve-64tun-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.2N1L-25Ge2P1Xxv710-Avf-Ethip4--Ethip4Udpgeneve-256Tun-Ip4Base-ndrpdr.64B-{core}-avf-ethip4--ethip4udpgeneve-256tun-ip4base-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-78b-{core}-ip6-base-scale-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-78b-{core}-ip6-base-scale-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-ndrpdr.78B-{core}-avf-ethip6-ip6base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-ndrpdr.78B-{core}-avf-ethip6-ip6scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale20K-Rnd-ndrpdr.78B-{core}-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-ndrpdr.78B-{core}-avf-ethip6-ip6scale200k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale200K-Rnd-ndrpdr.78B-{core}-avf-ethip6-ip6scale200k-rnd-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-ndrpdr.78B-{core}-avf-ethip6-ip6scale2m-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Scale2M-Rnd-ndrpdr.78B-{core}-avf-ethip6-ip6scale2m-rnd-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-78b-{core}-ip6-base-scale-dpdk-{test_type}"
+      output-file-name: "2n-icx-xxv710-78b-{core}-ip6-base-scale-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-ndrpdr.78B-{core}-ethip6-ip6base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-ndrpdr.78B-{core}-ethip6-ip6scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale20K-Rnd-ndrpdr.78B-{core}-ethip6-ip6scale20k-rnd-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-ndrpdr.78B-{core}-ethip6-ip6scale200k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale200K-Rnd-ndrpdr.78B-{core}-ethip6-ip6scale200k-rnd-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-ndrpdr.78B-{core}-ethip6-ip6scale2m-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Scale2M-Rnd-ndrpdr.78B-{core}-ethip6-ip6scale2m-rnd-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-78b-{core}-ip6-base-scale-af_xdp-{test_type}"
+      output-file-name: "2n-icx-xxv710-78b-{core}-ip6-base-scale-af_xdp-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Af-Xdp-Ethip6-Ip6Base-ndrpdr.78B-{core}-af-xdp-ethip6-ip6base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Af-Xdp-Ethip6-Ip6Scale20K-ndrpdr.78B-{core}-af-xdp-ethip6-ip6scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Af-Xdp-Ethip6-Ip6Scale20K-Rnd-ndrpdr.78B-{core}-af-xdp-ethip6-ip6scale20k-rnd-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-l2-base-scale-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-l2-base-scale-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-ndrpdr.64B-{core}-avf-dot1q-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Patch-ndrpdr.64B-{core}-avf-eth-l2patch-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-ndrpdr.64B-{core}-avf-eth-l2xcbase-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale10Kmaclrn-ndrpdr.64B-{core}-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale100Kmaclrn-ndrpdr.64B-{core}-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdscale1Mmaclrn-ndrpdr.64B-{core}-avf-eth-l2bdscale1mmaclrn-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-l2-base-scale-dpdk-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-l2-base-scale-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Patch-ndrpdr.64B-{core}-eth-l2patch-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-ndrpdr.64B-{core}-eth-l2xcbase-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-ndrpdr.64B-{core}-eth-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale10Kmaclrn-ndrpdr.64B-{core}-eth-l2bdscale10kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale100Kmaclrn-ndrpdr.64B-{core}-eth-l2bdscale100kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdscale1Mmaclrn-ndrpdr.64B-{core}-eth-l2bdscale1mmaclrn-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-icx-xxv710-64b-{core}-vhost-base-{test_type}"
+      output-file-name: "2n-icx-xxv710-64b-{core}-vhost-base-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+      layout: "plot-cpta"
+
+# 3n-icx NDRPDR
+
+    - title: "3n-icx-xxv710-1518b-{core}-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-{test_type}"
+      output-file-name: "3n-icx-xxv710-1518b-{core}-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec40Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-1518b-{core}-ipsec-aes256gcm-ip4routing-base-scale-sw-avf-{test_type}"
+      output-file-name: "3n-icx-xxv710-1518b-{core}-ipsec-aes256gcm-ip4routing-base-scale-sw-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-avf-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec40Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-avf-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-avf-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-avf-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-1518b-{core}-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}"
+      output-file-name: "3n-icx-xxv710-1518b-{core}-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec40Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-1518b-{core}-ipsec-scheduler-ip4routing-base-scale-sw-avf-{test_type}"
+      output-file-name: "3n-icx-xxv710-1518b-{core}-ipsec-scheduler-ip4routing-base-scale-sw-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-avf-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-avf-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-1518b-{core}-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-{test_type}"
+      output-file-name: "3n-icx-xxv710-1518b-{core}-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-imix-{core}-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-{test_type}"
+      output-file-name: "3n-icx-xxv710-imix-{core}-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec40Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-imix-{core}-ipsec-aes256gcm-ip4routing-base-scale-sw-avf-{test_type}"
+      output-file-name: "3n-icx-xxv710-imix-{core}-ipsec-aes256gcm-ip4routing-base-scale-sw-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-avf-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec40Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-avf-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-avf-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-avf-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-imix-{core}-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}"
+      output-file-name: "3n-icx-xxv710-imix-{core}-ipsec-ip4routing-base-scale-sw-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec40Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec10000Tnlsw-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-imix-{core}-ipsec-scheduler-ip4routing-base-scale-sw-avf-{test_type}"
+      output-file-name: "3n-icx-xxv710-imix-{core}-ipsec-scheduler-ip4routing-base-scale-sw-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-avf-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-avf-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-imix-{core}-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-{test_type}"
+      output-file-name: "3n-icx-xxv710-imix-{core}-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+        - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-64b-{core}-ip4-base-{test_type}"
+      output-file-name: "3n-icx-xxv710-64b-{core}-ip4-base-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-ndrpdr.64B-{core}-avf-ethip4-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Ethip4-Ip4Base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-64b-{core}-ip4-tunnels-base-{test_type}"
+      output-file-name: "3n-icx-xxv710-64b-{core}-ip4-tunnels-base-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Gtpusw-Ip4Base-ndrpdr.64B-{core}-avf-ethip4gtpusw-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-ndrpdr.64B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Xcbase-ndrpdr.64B-{core}-avf-ethip4vxlan-l2xcbase-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Gtpusw-Ip4Base-ndrpdr.64B-{core}-ethip4gtpusw-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-ndrpdr.64B-{core}-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Xcbase-ndrpdr.64B-{core}-ethip4vxlan-l2xcbase-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-78b-{core}-ip6-base-{test_type}"
+      output-file-name: "3n-icx-xxv710-78b-{core}-ip6-base-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip6.25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-ndrpdr.78B-{core}-avf-ethip6-ip6base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.25Ge2P1Xxv710-Ethip6-Ip6Base-ndrpdr.78B-{core}-ethip6-ip6base-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-64b-{core}-l2-base-{test_type}"
+      output-file-name: "3n-icx-xxv710-64b-{core}-l2-base-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Dot1Q-L2Bdbasemaclrn-ndrpdr.64B-{core}-avf-dot1q-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Patch-ndrpdr.64B-{core}-avf-eth-l2patch-ndrpdr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Xcbase-ndrpdr.64B-{core}-avf-eth-l2xcbase-ndrpdr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Patch-ndrpdr.64B-{core}-eth-l2patch-ndrpdr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Xcbase-ndrpdr.64B-{core}-eth-l2xcbase-ndrpdr"
+        - "Tests.Vpp.Perf.L2.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-ndrpdr.64B-{core}-eth-l2bdbasemaclrn-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-xxv710-78b-{core}-srv6-base-avf-{test_type}"
+      output-file-name: "3n-icx-xxv710-78b-{core}-srv6-base-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-ndrpdr.78B-{core}-avf-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
+        - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
+        - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
+        - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
+        - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
+        - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
       layout: "plot-cpta"
 
 # 2n-skx memif

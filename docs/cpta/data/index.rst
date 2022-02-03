@@ -56,6 +56,18 @@ in the CSV formats:
 
 **VPP NDRPDR**
 
+    - 2n-icx
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-2n-icx-trending.csv>`_
+        - `Latency (P50 at 50% load, direction 1) in CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-2n-icx-lat-P50-50-d1.csv>`_
+        - `Latency (P50 at 50% load, direction 2) in CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-2n-icx-lat-P50-50-d2.csv>`_
+
+    - 3n-icx
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-3n-icx-trending.csv>`_
+        - `Latency (P50 at 50% load, direction 1) in CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-3n-icx-lat-P50-50-d1.csv>`_
+        - `Latency (P50 at 50% load, direction 2) in CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-3n-icx-lat-P50-50-d2.csv>`_
+
     - 3n-skx
 
         - `CSV format <../_static/vpp/csit-vpp-perf-ndrpdr-weekly-master-3n-skx-trending.csv>`_
