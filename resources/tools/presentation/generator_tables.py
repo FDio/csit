@@ -489,17 +489,10 @@ def table_merged_details(table, input_data):
             separator = u"" if table[u'output-file'].endswith(u"/") else u"_"
             file_name = f"{table[u'output-file']}{separator}{suite_name}.csv"
             logging.info(f"      Writing file: {file_name}")
-            try:
-                with open(file_name, u"wt") as file_handler:
-                    file_handler.write(u",".join(header) + u"\n")
-                    for item in table_lst:
-                        file_handler.write(u",".join(item) + u"\n")
-            except Exception as err:
-                logging.error(f"{err}")
-                logging.info(header)
-                logging.info(table_lst)
-                if file_handler:
-                    file_handler.close()
+            with open(file_name, u"wt") as file_handler:
+                file_handler.write(u",".join(header) + u"\n")
+                for item in table_lst:
+                    file_handler.write(u",".join(item) + u"\n")
 
     logging.info(u"  Done.")
 
