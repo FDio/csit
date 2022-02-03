@@ -41,6 +41,12 @@
   table-last-failed-tests-2n-aws:
     csit-vpp-perf-mrr-weekly-master-2n-aws:
       - "lastCompletedBuild"
+  table-last-failed-tests-2n-icx-ndrpdr:
+    csit-vpp-perf-ndrpdr-weekly-master-2n-icx:
+      - "lastCompletedBuild"
+  table-last-failed-tests-3n-icx-ndrpdr:
+    csit-vpp-perf-ndrpdr-weekly-master-3n-icx:
+      - "lastCompletedBuild"
   table-last-failed-tests-3n-skx-ndrpdr:
     csit-vpp-perf-ndrpdr-weekly-master-3n-skx:
       - "lastCompletedBuild"
@@ -76,12 +82,24 @@
       end: "lastCompletedBuild"
       max-builds: 180
 
+  plot-performance-trending-dpdk-2n-icx:
+    csit-dpdk-perf-mrr-weekly-master-2n-icx:
+      start: 1
+      end: "lastCompletedBuild"
+      max-builds: 26
+
   # 3n-icx
   plot-performance-trending-vpp-3n-icx:
     csit-vpp-perf-mrr-daily-master-3n-icx:
       start: 1
       end: "lastCompletedBuild"
       max-builds: 180
+
+  plot-performance-trending-dpdk-3n-icx:
+    csit-dpdk-perf-mrr-weekly-master-3n-icx:
+      start: 1
+      end: "lastCompletedBuild"
+      max-builds: 26
 
   # 3n-skx
   plot-performance-trending-all-3n-skx:
@@ -234,6 +252,18 @@
       max-builds: 26
 
   # NDRPDR
+  plot-ndrpdr-comparison-2n-icx:
+    csit-vpp-perf-ndrpdr-weekly-master-2n-icx:
+      start: 1
+      end: "lastCompletedBuild"
+      max-builds: 26
+
+  plot-ndrpdr-comparison-3n-icx:
+    csit-vpp-perf-ndrpdr-weekly-master-3n-icx:
+      start: 1
+      end: "lastCompletedBuild"
+      max-builds: 26
+
   plot-ndrpdr-comparison-2n-skx:
     csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
       start: 76
@@ -251,6 +281,20 @@
       start: 21
       end: "lastCompletedBuild"
       max-builds: 26
+
+  table-ndrpdr-comparison-2n-icx:
+    csit-vpp-perf-ndrpdr-weekly-master-2n-icx:
+      start: 1
+      end: "lastCompletedBuild"
+      max-builds: 26
+      reverse: True  # Must be reversed
+
+  table-ndrpdr-comparison-3n-icx:
+    csit-vpp-perf-ndrpdr-weekly-master-3n-icx:
+      start: 1
+      end: "lastCompletedBuild"
+      max-builds: 26
+      reverse: True  # Must be reversed
 
   table-ndrpdr-comparison-2n-skx:
     csit-vpp-perf-ndrpdr-weekly-master-2n-skx:
