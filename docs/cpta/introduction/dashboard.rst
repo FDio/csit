@@ -36,6 +36,16 @@ VPP worker on 8t4c
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-2n-icx.rst
 
+NDR Weekly VPP worker on 2t1c
+`````````````````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-2n-icx-ndr.rst
+
+PDR Weekly VPP worker on 2t1c
+`````````````````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-2n-icx-pdr.rst
+
 3n-icx
 ------
 
@@ -53,6 +63,16 @@ VPP worker on 8t4c
 ``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-3n-icx.rst
+
+NDR Weekly VPP worker on 2t1c
+`````````````````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-3n-icx-ndr.rst
+
+PDR Weekly VPP worker on 2t1c
+`````````````````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-3n-icx-pdr.rst
 
 2n-skx
 ------
