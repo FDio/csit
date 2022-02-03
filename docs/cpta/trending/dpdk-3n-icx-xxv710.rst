@@ -1,4 +1,4 @@
-2n-clx-xxv710
+3n-icx-xxv710
 -------------
 
 64b-testpmd-l3fwd
@@ -14,8 +14,8 @@
     <center>
     Links to builds:
     <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-2t1c-dpdk.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-3n-icx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/3n-icx-xxv710-64b-2t1c-dpdk.html"></iframe>
     <p><br></p>
     </center>
 
@@ -29,8 +29,8 @@
     <center>
     Links to builds:
     <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-4t2c-dpdk.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-3n-icx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/3n-icx-xxv710-64b-4t2c-dpdk.html"></iframe>
     <p><br></p>
     </center>
 
@@ -44,7 +44,7 @@
     <center>
     Links to builds:
     <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
-    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-2n-clx" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/2n-clx-xxv710-64b-8t4c-dpdk.html"></iframe>
+    <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-3n-icx" target="_blank">csit-ref</a>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/3n-icx-xxv710-64b-8t4c-dpdk.html"></iframe>
     <p><br></p>
     </center>
