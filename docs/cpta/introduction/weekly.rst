@@ -1,6 +1,48 @@
 NDRPDR Weekly Comparison
 ========================
 
+2n-icx
+------
+
+NDR Comparison
+``````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 2t1c NDR comparison <../_static/vpp/ndrpdr-weekly-comp-2n-icx-2t1c-ndr_in.html>`_
+  - `ASCII 2t1c NDR comparison <../_static/vpp/ndrpdr-weekly-comp-2n-icx-2t1c-ndr.txt>`_
+  - `CSV 2t1c NDR comparison <../_static/vpp/ndrpdr-weekly-comp-2n-icx-2t1c-ndr.csv>`_
+
+PDR Comparison
+``````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 2t1c PDR comparison <../_static/vpp/ndrpdr-weekly-comp-2n-icx-2t1c-pdr_in.html>`_
+  - `ASCII 2t1c PDR comparison <../_static/vpp/ndrpdr-weekly-comp-2n-icx-2t1c-pdr.txt>`_
+  - `CSV 2t1c PDR comparison <../_static/vpp/ndrpdr-weekly-comp-2n-icx-2t1c-pdr.csv>`_
+
+3n-icx
+------
+
+NDR Comparison
+``````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 2t1c NDR comparison <../_static/vpp/ndrpdr-weekly-comp-3n-icx-2t1c-ndr_in.html>`_
+  - `ASCII 2t1c NDR comparison <../_static/vpp/ndrpdr-weekly-comp-3n-icx-2t1c-ndr.txt>`_
+  - `CSV 2t1c NDR comparison <../_static/vpp/ndrpdr-weekly-comp-3n-icx-2t1c-ndr.csv>`_
+
+PDR Comparison
+``````````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML 2t1c PDR comparison <../_static/vpp/ndrpdr-weekly-comp-3n-icx-2t1c-pdr_in.html>`_
+  - `ASCII 2t1c PDR comparison <../_static/vpp/ndrpdr-weekly-comp-3n-icx-2t1c-pdr.txt>`_
+  - `CSV 2t1c PDR comparison <../_static/vpp/ndrpdr-weekly-comp-3n-icx-2t1c-pdr.csv>`_
+
 2n-skx
 ------
 

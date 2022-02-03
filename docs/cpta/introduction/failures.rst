@@ -18,10 +18,20 @@ Legend to the tables:
 
 .. include:: ../../../_build/_static/vpp/failed-tests-2n-icx.rst
 
+2n-icx-ndrpdr
+-------------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-icx-ndrpdr.rst
+
 3n-icx-mrr
 ----------
 
 .. include:: ../../../_build/_static/vpp/failed-tests-3n-icx.rst
+
+3n-icx-ndrpdr
+-------------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-3n-icx-ndrpdr.rst
 
 2n-skx-mrr
 ----------
