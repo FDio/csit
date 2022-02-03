@@ -1043,15 +1043,15 @@
   # 2n-icx
 
   vpp-2n-icx-curr-iter:
-    intel-csit-vpp-perf-report-iterative-2202-2n-icx:
+    csit-vpp-perf-report-iterative-2202-2n-icx:
       - 2   # rls2202.rel NDRPDR iter env 9
 
   vpp-2n-icx-curr-iter-best:
-    intel-csit-vpp-perf-report-iterative-2202-2n-icx:
+    csit-vpp-perf-report-iterative-2202-2n-icx:
       - 2   # rls2202.rel NDRPDR iter env 9
 
   vpp-2n-icx-curr-iter-mrr:
-    intel-csit-vpp-perf-report-iterative-2202-2n-icx:
+    csit-vpp-perf-report-iterative-2202-2n-icx:
       - 1   # rls2202.rc1 MRR iter env 9
 
   vpp-2n-icx-curr-cov:
@@ -1067,7 +1067,7 @@
       - 4   # rls2202 NDRPDR iter env 9
       - 5   # rls2202 NDRPDR iter env 9
       - 6   # rls2202 NDRPDR iter env 9
-      # - 7   # rls2202 NDRPDR iter env 9
+      - 7   # rls2202 NDRPDR iter env 9
       - 8   # rls2202 NDRPDR iter env 9
       - 9   # rls2202 NDRPDR iter env 9
       - 10  # rls2202 NDRPDR iter env 9
@@ -1079,15 +1079,15 @@
   # 3n-icx
 
   vpp-3n-icx-curr-iter:
-    intel-csit-vpp-perf-report-iterative-2202-3n-icx:
+    csit-vpp-perf-report-iterative-2202-3n-icx:
       - 4   # rls2202.rc1 NDRPDR iter env 9
 
   vpp-3n-icx-curr-iter-best:
-    intel-csit-vpp-perf-report-iterative-2202-3n-icx:
+    csit-vpp-perf-report-iterative-2202-3n-icx:
       - 4   # rls2202.rc1 NDRPDR iter env 9
 
   vpp-3n-icx-curr-iter-mrr:
-    intel-csit-vpp-perf-report-iterative-2202-3n-icx:
+    csit-vpp-perf-report-iterative-2202-3n-icx:
       - 3   # rls2202.rc1 MRR iter env 9
 
   vpp-3n-icx-curr-cov:
