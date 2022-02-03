@@ -11,10 +11,42 @@
     layout: "plot-statistics"
 
 - type: "plot"
+  title: "Statistics: 2n-icx ndrpdr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-2n-icx-ndrpdr"
+  data: "plot-ndrpdr-comparison-2n-icx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 2n-icx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-2n-icx-mrr"
+  data: "plot-performance-trending-dpdk-2n-icx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
   title: "Statistics: 3n-icx mrr"
   algorithm: "plot_statistics"
   output-file: "{DIR[STATIC,VPP]}/stats-3n-icx-mrr"
   data: "plot-performance-trending-vpp-3n-icx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: 3n-icx ndrpdr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-3n-icx-ndrpdr"
+  data: "plot-ndrpdr-comparison-3n-icx"
+  layout:
+    layout: "plot-statistics"
+
+- type: "plot"
+  title: "Statistics: DPDK 3n-icx mrr"
+  algorithm: "plot_statistics"
+  output-file: "{DIR[STATIC,VPP]}/stats-dpdk-3n-icx-mrr"
+  data: "plot-performance-trending-dpdk-3n-icx"
   layout:
     layout: "plot-statistics"
 
@@ -181,6 +213,66 @@
 ################################################################################
 ###                               T A B L E S                                ###
 ################################################################################
+
+# VPP NDRPDR weekly comparison 2n-icx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 2n-icx-xxv710 2t1c ndr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-2n-icx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-2n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
+
+# VPP NDRPDR weekly comparison 2n-icx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 2n-icx-xxv710 2t1c pdr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-2n-icx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-2n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
+
+# VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-3n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
+
+# VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-3n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
 
 # VPP NDRPDR weekly comparison 2n-skx-xxv710 2t1c ndr
 - type: "table"
@@ -424,6 +516,32 @@
   output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-aws-mrr"
   data: "table-last-failed-tests-2n-aws"
   filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+    - "msg"
+
+- type: "table"
+  title: "Last failed tests (last builds) VPP 2n-icx-ndrpdr"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-2n-icx-ndrpdr"
+  data: "table-last-failed-tests-2n-icx-ndrpdr"
+  filter: "'NDRPDR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+    - "msg"
+
+- type: "table"
+  title: "Last failed tests (last builds) VPP 3n-icx-ndrpdr"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-icx-ndrpdr"
+  data: "table-last-failed-tests-3n-icx-ndrpdr"
+  filter: "'NDRPDR'"
   parameters:
     - "name"
     - "parent"
