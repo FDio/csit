@@ -110,7 +110,7 @@
 | | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
-| | And Initialize IPSec in 3-node circular topology \
+| | And Initialize IPSec in 3-node circular topology
 | | And Stop VPP service on all DUTs | ${nodes}
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
 | | ... | ${encr_alg} | ${auth_alg} | ${laddr_ip4} | ${raddr_ip4}
