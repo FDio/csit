@@ -86,7 +86,7 @@
 | Local Template
 | | [Documentation]
 | | ... | - **[Cfg]** DUT1 runs IPSec tunneling AES_256_GCM config to \
-| | ... | ${n_instances} containers. \
+| | ... | ${n_instances} containers.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
 | |
