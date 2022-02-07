@@ -244,35 +244,35 @@
     - reference: -2
       compare: -1
 
-# VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr
-- type: "table"
-  title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr"
-  algorithm: "table_weekly_comparison"
-  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  data: "table-ndrpdr-comparison-3n-icx"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  nr-of-data-columns: 3
-  comparisons:
-    - reference: -3
-      compare: -1
-    - reference: -2
-      compare: -1
+# # VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr
+# - type: "table"
+#   title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr"
+#   algorithm: "table_weekly_comparison"
+#   output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-ndr"
+#   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#   data: "table-ndrpdr-comparison-3n-icx"
+#   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+#   nr-of-data-columns: 3
+#   comparisons:
+#     - reference: -3
+#       compare: -1
+#     - reference: -2
+#       compare: -1
 
-# VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr
-- type: "table"
-  title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr"
-  algorithm: "table_weekly_comparison"
-  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  data: "table-ndrpdr-comparison-3n-icx"
-  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-  nr-of-data-columns: 3
-  comparisons:
-    - reference: -3
-      compare: -1
-    - reference: -2
-      compare: -1
+# # VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr
+# - type: "table"
+#   title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr"
+#   algorithm: "table_weekly_comparison"
+#   output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-pdr"
+#   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#   data: "table-ndrpdr-comparison-3n-icx"
+#   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+#   nr-of-data-columns: 3
+#   comparisons:
+#     - reference: -3
+#       compare: -1
+#     - reference: -2
+#       compare: -1
 
 # VPP NDRPDR weekly comparison 2n-skx-xxv710 2t1c ndr
 - type: "table"
