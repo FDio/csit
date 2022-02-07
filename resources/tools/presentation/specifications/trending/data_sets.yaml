@@ -82,6 +82,12 @@
       end: "lastCompletedBuild"
       max-builds: 180
 
+  plot-performance-trending-vpp-nfv-2n-icx:
+    csit-vpp-perf-mrr-weekly-master-2n-icx:
+      start: 1
+      end: "lastCompletedBuild"
+      max-builds: 26
+
   plot-performance-trending-dpdk-2n-icx:
     csit-dpdk-perf-mrr-weekly-master-2n-icx:
       start: 1
