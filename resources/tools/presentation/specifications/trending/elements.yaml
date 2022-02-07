@@ -1871,6 +1871,106 @@
 ################################################################################
 # NFV
 
+# 2n-icx
+
+    - title: "VPP NF Service Density VNFc IMIX MRR Trending 2n-icx"
+      output-file-name: "2n-icx-xxv710-imix-{core}-vhost-chains-avf"
+      data: "plot-performance-trending-vpp-nfv-2n-icx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Ch-2Vh-1Vm1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1ch-2vh-1vm1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Ch-4Vh-2Vm1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1ch-4vh-2vm1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Ch-8Vh-4Vm1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1ch-8vh-4vm1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Ch-12Vh-6Vm1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1ch-12vh-6vm1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-2Ch-4Vh-2Vm1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-2ch-4vh-2vm1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-2Ch-8Vh-4Vm1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-2ch-8vh-4vm1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-4Ch-8Vh-4Vm1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-4ch-8vh-4vm1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-6Ch-12Vh-6Vm1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-6ch-12vh-6vm1t-vppip4-mrr"
+      groups:
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+      group-names:
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+      layout: "plot-cpta"
+
+    - title: "VPP NF Service Density VNFc VXLAN IMIX MRR Trending 2n-icx"
+      output-file-name: "2n-icx-xxv710-imix-{core}-vhost-chains-vxlan-avf"
+      data: "plot-performance-trending-vpp-nfv-2n-icx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-1Ch-2Vh-1Vm1T-Testpmd-Mrr.IMIX-{core}-avf-dot1qip4vxlan-l2bd-1ch-2vh-1vm1t-testpmd-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-2Ch-4Vh-2Vm1T-Testpmd-Mrr.IMIX-{core}-avf-dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-4Ch-8Vh-4Vm1T-Testpmd-Mrr.IMIX-{core}-avf-dot1qip4vxlan-l2bd-4ch-8vh-4vm1t-testpmd-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-6Ch-12Vh-6Vm1T-Testpmd-Mrr.IMIX-{core}-avf-dot1qip4vxlan-l2bd-6ch-12vh-6vm1t-testpmd-mrr"
+      groups:
+        - ["1R1C", ]
+        - ["2R1C", ]
+        - ["4R1C", ]
+        - ["6R1C", ]
+      group-names:
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+      layout: "plot-cpta"
+
+    - title: "VPP NF Service Density CNFc IMIX MRR Trending 2n-icx"
+      output-file-name: "2n-icx-xxv710-imix-{core}-memif-chains-avf"
+      data: "plot-performance-trending-vpp-nfv-2n-icx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Ch-2Mif-1Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1ch-2mif-1dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Ch-4Mif-2Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1ch-4mif-2dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Ch-8Mif-4Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1ch-8mif-4dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Ch-12Mif-6Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1ch-12mif-6dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-2Ch-4Mif-2Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-2ch-4mif-2dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-2Ch-8Mif-4Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-2ch-8mif-4dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-4Ch-8Mif-4Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-4ch-8mif-4dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Chain.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-6Ch-12Mif-6Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-6ch-12mif-6dcr1t-vppip4-mrr"
+      groups:
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+      group-names:
+        - "1 Chain"
+        - "2 Chains"
+        - "4 Chains"
+        - "6 Chains"
+      layout: "plot-cpta"
+
+    - title: "VPP NF Service Density CNFp IMIX MRR Trending 2n-icx"
+      output-file-name: "2n-icx-xxv710-imix-{core}-memif-pipelines-avf"
+      data: "plot-performance-trending-vpp-nfv-2n-icx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Pipeline.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Pl-2Mif-1Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1pl-2mif-1dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Pipeline.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Pl-2Mif-2Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1pl-2mif-2dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Pipeline.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Pl-2Mif-4Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1pl-2mif-4dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Pipeline.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-1Pl-2Mif-6Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-1pl-2mif-6dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Pipeline.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-2Pl-4Mif-2Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-2pl-4mif-2dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Pipeline.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-2Pl-4Mif-4Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-2pl-4mif-4dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Pipeline.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-2Pl-8Mif-4Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-2pl-8mif-4dcr1t-vppip4-mrr"
+        - "Tests.Vpp.Perf.Nfv Density.Dcr Memif.Pipeline.2N-25Ge2P1Xxv710-Avf-Eth-L2Bd-6Pl-12Mif-6Dcr1T-Vppip4-Mrr.IMIX-{core}-avf-eth-l2bd-6pl-12mif-6dcr1t-vppip4-mrr"
+      groups:
+        - ["1R1C", "1R2C", "1R4C", "1R6C", "1R8C", "1R10C"]
+        - ["2R1C", "2R2C", "2R4C", "2R6C", "2R8C", "2R10C"]
+        - ["4R1C", "4R2C", "4R4C", "4R6C"]
+        - ["6R1C", "6R2C", "6R4C"]
+      group-names:
+        - "1 Pipe"
+        - "2 Pipes"
+        - "4 Pipes"
+        - "6 Pipes"
+      layout: "plot-cpta"
+
+################################################################################
+
 # 2n-skx
 
     - title: "VPP NF Service Density VNFc IMIX MRR Trending 2n-skx"
