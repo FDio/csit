@@ -28,7 +28,7 @@
 
     </script>
 
-3n-icx-e810cq
+3n-icx-xxv710
 ~~~~~~~~~~~~~
 
 64b-l2switching-base
@@ -37,7 +37,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-64b-l2switching-base-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-l2switching-base-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810cq-64b-l2switching-base-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-l2switching-base-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 

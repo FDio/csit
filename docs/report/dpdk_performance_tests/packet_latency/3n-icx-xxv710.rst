@@ -28,7 +28,7 @@
 
     </script>
 
-2n-zn2-xxv710
+3n-icx-xxv710
 ~~~~~~~~~~~~~
 
 CSIT source code for the test cases used for plots can be found in
@@ -44,7 +44,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="hdrh-lat-percentile-2n-zn2-25ge2p1xxv710-64b-2t1c-eth-l2xcbase-testpmd.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/hdrh-lat-percentile-2n-zn2-25ge2p1xxv710-64b-2t1c-eth-l2xcbase-testpmd.html"></iframe>
+    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/hdrh-lat-percentile-3n-icx-25ge2p1xxv710-64b-2t1c-eth-l2xcbase-testpmd.html"></iframe>
     <p><br></p>
     </center>
 
@@ -53,8 +53,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-zn2-25ge2p1xxv710-64b-2t1c-eth-l2xcbase-testpmd}
-            \label{fig:hdrh-lat-percentile-2n-zn2-25ge2p1xxv710-64b-2t1c-eth-l2xcbase-testpmd}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-25ge2p1xxv710-64b-2t1c-eth-l2xcbase-testpmd}
+            \label{fig:hdrh-lat-percentile-3n-icx-25ge2p1xxv710-64b-2t1c-eth-l2xcbase-testpmd}
     \end{figure}
 
 .. raw:: latex
@@ -64,7 +64,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="hdrh-lat-percentile-2n-zn2-25ge2p1xxv710-64b-2t1c-ethip4-ip4base-l3fwd.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/hdrh-lat-percentile-2n-zn2-25ge2p1xxv710-64b-2t1c-ethip4-ip4base-l3fwd.html"></iframe>
+    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/hdrh-lat-percentile-3n-icx-25ge2p1xxv710-64b-2t1c-ethip4-ip4base-l3fwd.html"></iframe>
     <p><br></p>
     </center>
 
@@ -73,6 +73,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/dpdk/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-zn2-25ge2p1xxv710-64b-2t1c-ethip4-ip4base-l3fwd}
-            \label{fig:hdrh-lat-percentile-2n-zn2-25ge2p1xxv710-64b-2t1c-ethip4-ip4base-l3fwd}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-25ge2p1xxv710-64b-2t1c-ethip4-ip4base-l3fwd}
+            \label{fig:hdrh-lat-percentile-3n-icx-25ge2p1xxv710-64b-2t1c-ethip4-ip4base-l3fwd}
     \end{figure}
