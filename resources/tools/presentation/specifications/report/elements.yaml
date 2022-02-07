@@ -13714,6 +13714,28 @@
     layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
+  title: "Latency by percentile: DPDK 2n-icx"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-2n-icx"
+  output-file-links: "{DIR[LAT,DPDK]}/2n_icx.rst"
+  target-links: "../../_static/dpdk"
+  data: "dpdk-2n-icx-curr-iter-best"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
+  title: "Latency by percentile: DPDK 3n-icx"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-3n-icx"
+  output-file-links: "{DIR[LAT,DPDK]}/3n_icx.rst"
+  target-links: "../../_static/dpdk"
+  data: "dpdk-3n-icx-curr-iter-best"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
   title: "Latency by percentile: DPDK 2n-skx"
   algorithm: "plot_hdrh_lat_by_percentile_x_log"
   output-file: "{DIR[STATIC,DPDK]}/hdrh-lat-percentile-2n-skx"
