@@ -94,11 +94,11 @@ Following is the list of CSIT versions to date:
   - Ubuntu upgrade:
     `upgrade from 18.04 LTS to 20.04.2 LTS <https://gerrit.fd.io/r/c/csit/+/31290>`_.
 - Ver. 8 associated with CSIT rls2110 branch (`HW
-  <https://git.fd.io/csit/tree/docs/lab?h=rls2110>`_, `Linux
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2202>`_, `Linux
   <https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
   `TRex
   <https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
-  `CSIT <https://git.fd.io/csit/tree/?h=rls2110>`_).
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2202>`_).
 
   - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
     matrix.
