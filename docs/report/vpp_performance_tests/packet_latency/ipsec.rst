@@ -11,9 +11,6 @@ CSIT source code for the test cases used for plots can be found in
 
 .. toctree::
 
+    ipsec-3n-icx-xxv710
     ipsec-3n-skx-xxv710
-    ipsec-3n-icx-e810cq
     ipsec-3n-tsh-x520
-
-..
-    ipsec-3n-aws-nitro50g
