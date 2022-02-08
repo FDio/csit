@@ -1213,6 +1213,25 @@
     - '2110.0-9 vs 2110.0-8: Compares CSIT environment current vs previous with previous VPP code.'
     - '2202.0-9 vs 2110.0-9: Compares VPP code current vs previous in the current CSIT environment.'
 
+# VPP Soak vs NDR - 2n-icx
+- type: "table"
+  title: "VPP Soak vs NDR 2n-icx"
+  algorithm: "table_soak_vs_ndr"
+  output-file: "{DIR[STATIC,VPP]}/soak-vs-ndr-2n-icx"
+  reference:
+    title: "NDR"
+    data: "vpp-soak-vs-ndr-2n-icx-ref"
+  compare:
+    title: "Soak"
+    data: "vpp-2n-icx-curr-soak"
+  data: "vpp-soak-vs-ndr-2n-icx"
+  include-tests: "NDR"
+  filter: "'NDRPDR' or 'SOAK'"
+  parameters:
+    - "throughput"
+    - "name"
+    - "parent"
+
 # VPP Soak vs NDR - 2n-skx
 - type: "table"
   title: "VPP Soak vs NDR 2n-skx"
@@ -7118,6 +7137,42 @@
     layout: "plot-hoststack"
 
 ################################################################################
+
+# Soak Test (PLRsearch), boxes - 2n-icx
+- type: "plot"
+  title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
+  algorithm: "plot_perf_box_name"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-2n-icx-1"
+  data: "vpp-2n-icx-curr-soak"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Soak.64B-2t1c-avf-eth-l2xcbase-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Soak.64B-2t1c-eth-l2xcbase-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-eth-l2bdbasemaclrn-soak"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Soak.64B-2t1c-avf-ethip4-ip4base-soak"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Soak.64B-2t1c-ethip4-ip4base-soak"
+  layout:
+    title: "30 Minutes Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
+
+# Soak Test (PLRsearch), boxes - 2n-icx
+- type: "plot"
+  title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
+  algorithm: "plot_perf_box_name"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-2n-icx-2"
+  data: "vpp-2n-skx-curr-icx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Soak.78B-2t1c-avf-ethip6-ip6base-soak"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Soak.78B-2t1c-ethip6-ip6base-soak"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-soak"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Soak.64B-2t1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-soak"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-soak"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-soak"
+  layout:
+    title: "30 Minutes Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
 
 # Soak Test (PLRsearch), boxes - 2n-clx
 - type: "plot"
