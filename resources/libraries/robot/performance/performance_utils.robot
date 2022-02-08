@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -509,14 +509,14 @@
 | | ... | bind_mask=${iperf_server_bind_mask}
 | | ... | namespace=${iperf_server_namespace}
 | | ... | cpu_skip_cnt=${cpu_skip_cnt}
-| | Run Keyword If | '${iperf_client_namespace}' is not '${None}'
+| | Run Keyword If | '${iperf_client_namespace}' != '${None}'
 | | ... | Set Linux Interface IP
 | | ... | ${nodes['${iperf_client_node}']}
 | | ... | interface=${iperf_client_interface}
 | | ... | ip_addr=${iperf_client_bind}
 | | ... | prefix=${iperf_client_bind_mask}
 | | ... | namespace=${iperf_client_namespace}
-| | Run Keyword If | '${iperf_client_namespace}' is not '${None}'
+| | Run Keyword If | '${iperf_client_namespace}' != '${None}'
 | | ... | Add Default Route To Namespace
 | | ... | ${nodes['${iperf_client_node}']}
 | | ... | namespace=${iperf_client_namespace}
