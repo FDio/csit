@@ -96,6 +96,21 @@ programs:
     code: |
       clear runtime
       wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
+      wait {duration}
       show runtime
   - name: bundle_vpp
     metrics:
