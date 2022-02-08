@@ -54,10 +54,54 @@ Additional information about graph data:
 .. note::
 
     Test results are stored in
+    `build logs from FD.io vpp performance job 2n-icx`_,
     `build logs from FD.io vpp performance job 2n-skx`_ and
     `build logs from FD.io vpp performance job 2n-clx`_ with RF
     result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
+
+.. raw:: latex
+
+    \clearpage
+
+2n-icx
+------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/soak-test-2n-icx-1.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{soak-test-2n-icx-1}
+            \label{fig:soak-test-2n-icx-1}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/soak-test-2n-icx-2.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{soak-test-2n-icx-2}
+            \label{fig:soak-test-2n-icx-2}
+    \end{figure}
 
 .. raw:: latex
 
