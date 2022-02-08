@@ -1213,6 +1213,25 @@
     - '2110.0-9 vs 2110.0-8: Compares CSIT environment current vs previous with previous VPP code.'
     - '2202.0-9 vs 2110.0-9: Compares VPP code current vs previous in the current CSIT environment.'
 
+# VPP Soak vs NDR - 2n-icx
+- type: "table"
+  title: "VPP Soak vs NDR 2n-icx"
+  algorithm: "table_soak_vs_ndr"
+  output-file: "{DIR[STATIC,VPP]}/soak-vs-ndr-2n-icx"
+  reference:
+    title: "NDR"
+    data: "vpp-soak-vs-ndr-2n-icx-ref"
+  compare:
+    title: "Soak"
+    data: "vpp-2n-icx-curr-soak"
+  data: "vpp-soak-vs-ndr-2n-icx"
+  include-tests: "NDR"
+  filter: "'NDRPDR' or 'SOAK'"
+  parameters:
+    - "throughput"
+    - "name"
+    - "parent"
+
 # VPP Soak vs NDR - 2n-skx
 - type: "table"
   title: "VPP Soak vs NDR 2n-skx"
@@ -7119,6 +7138,42 @@
 
 ################################################################################
 
+# Soak Test (PLRsearch), boxes - 2n-icx
+- type: "plot"
+  title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
+  algorithm: "plot_perf_box_name"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-2n-icx-1"
+  data: "vpp-2n-icx-curr-soak"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Soak.64B-2t1c-avf-eth-l2xcbase-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Soak.64B-2t1c-eth-l2xcbase-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-eth-l2bdbasemaclrn-soak"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Soak.64B-2t1c-avf-ethip4-ip4base-soak"
+    - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Soak.64B-2t1c-ethip4-ip4base-soak"
+  layout:
+    title: "30 Minutes Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
+
+# Soak Test (PLRsearch), boxes - 2n-icx
+- type: "plot"
+  title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
+  algorithm: "plot_perf_box_name"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-2n-icx-2"
+  data: "vpp-2n-skx-curr-icx"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Soak.78B-2t1c-avf-ethip6-ip6base-soak"
+    - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Soak.78B-2t1c-ethip6-ip6base-soak"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-soak"
+    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Soak.64B-2t1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-soak"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-soak"
+    - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-soak"
+  layout:
+    title: "30 Minutes Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
+
 # Soak Test (PLRsearch), boxes - 2n-clx
 - type: "plot"
   title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
@@ -7190,6 +7245,27 @@
   layout:
     title: "30 Minutes Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"
+
+###############################################################################
+
+# Reconf tests 2n-icx
+
+- type: "plot"
+  title: "NFV Effective Blocked Time: 2n-icx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  algorithm: "plot_nf_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-icx-xxv710-imix-{core}-dot1qip4vxlan-l2bd-reconf"
+  data: "vpp-2n-icx-curr-nfv-reconf"
+  core: ["2t1c", "4t2c", "8t4c"]
+  include:
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Avf-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-{core}-avf-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
+  layout:
+    title: "dot1qip4vxlan-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-testpmd"
+    layout: "plot-throughput"
 
 ###############################################################################
 
