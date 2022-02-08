@@ -1044,15 +1044,38 @@
 
   vpp-2n-icx-curr-iter:
     csit-vpp-perf-report-iterative-2202-2n-icx:
-      - 2   # rls2202.rel NDRPDR iter env 9
+      - 2   # rls2202.rc1 NDRPDR iter env 9
 
   vpp-2n-icx-curr-iter-best:
     csit-vpp-perf-report-iterative-2202-2n-icx:
-      - 2   # rls2202.rel NDRPDR iter env 9
+      - 2   # rls2202.rc1 NDRPDR iter env 9
 
   vpp-2n-icx-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2202-2n-icx:
       - 1   # rls2202.rc1 MRR iter env 9
+
+  vpp-2n-icx-curr-nfv-ndrpdr:
+    csit-vpp-perf-report-iterative-2202-2n-icx:
+      - 5   # rls2202.rc1 NDRPDR nf-density iter env 9  REPLACE
+
+  vpp-2n-icx-curr-nfv-mrr:
+    csit-vpp-perf-report-iterative-2202-2n-icx:
+      - 4   # rls2202.rc1 NDRPDR nf-density iter env 9  REPLACE
+
+  vpp-2n-icx-curr-nfv-reconf:
+    csit-vpp-perf-report-iterative-2202-2n-icx:
+      - 6   # rls2202.rc1 NDRPDR reconf iter env 9
+
+  vpp-2n-icx-curr-soak:
+    csit-vpp-perf-report-iterative-2202-2n-icx:
+      - 7   # rls2202.rc1 soak env 9                    REPLACE
+  vpp-soak-vs-ndr-2n-icx-ref:
+    csit-vpp-perf-report-iterative-2202-2n-icx:
+      - 2   # rls2202.rc1 NDRPDR iter env 9
+  vpp-soak-vs-ndr-2n-icx:
+    csit-vpp-perf-report-iterative-2202-2n-icx:
+      - 2   # rls2202.rc1 NDRPDR iter env 9
+      - 7   # rls2202.rc1 soak env 9                    REPLACE
 
   vpp-2n-icx-curr-cov:
     # csit-vpp-perf-report-coverage-2202-2n-icx:
