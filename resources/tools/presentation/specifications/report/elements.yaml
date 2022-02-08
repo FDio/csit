@@ -13806,6 +13806,21 @@
 # GSO
 
 - type: "plot"
+  title: "Throughput: 2n-icx-128kb-{core}-ip4routing-iperf3"
+  algorithm: "plot_mrr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-icx-128kb-{core}-ip4routing-iperf3"
+  data: "vpp-2n-icx-curr-gso"
+  core: ["1t1c", "2t2c", "4t4c"]
+  include:
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Gso-Iperf3-Mrr.128KB-{core}-ethip4-ip4base-2tap-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Tap-Iperf3-Mrr.128KB-{core}-ethip4-ip4base-2tap-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Gso-Iperf3-Mrr.128KB-{core}-ethip4-ip4base-2vhost-gso-iperf3-mrr"
+    - "Tests.Vpp.Perf.Gso.2N1L-10Ge2P1X710-Ethip4-Ip4Base-2Vhost-Iperf3-Mrr.128KB-{core}-ethip4-ip4base-2vhost-iperf3-mrr"
+  layout:
+    title: "2n-icx-128kb-{core}-ip4routing-iperf3"
+    layout: "plot-throughput-gbps"
+
+- type: "plot"
   title: "Throughput: 2n-skx-128kb-{core}-ip4routing-iperf3"
   algorithm: "plot_mrr_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-128kb-{core}-ip4routing-iperf3"
