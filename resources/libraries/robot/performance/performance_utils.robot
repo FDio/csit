@@ -396,6 +396,7 @@
 | | Set Test Variable | \${runtime_rate} | ${rate}
 | | FOR | ${action} | IN | @{stat_runtime}
 | | | Run Keyword | Additional Statistics Action For ${action}
+| | | Run Keyword | Additional Statistics Action For ${action}
 | | END
 | | FOR | ${action} | IN | @{stat_pre_trial}
 | | | Run Keyword | Additional Statistics Action For ${action}
