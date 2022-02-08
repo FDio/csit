@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -522,20 +522,21 @@ def write_iperf3_files(in_filename, in_prolog, kwargs_list):
     """
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.iperf3(suite_id)
-    out_filename = replace_defensively(
-        in_filename, u"10ge2p1x710",
-        Constants.NIC_NAME_TO_CODE[u"Intel-X710"], 1,
-        u"File name should contain NIC code once.", in_filename
-    )
-    out_prolog = replace_defensively(
-        in_prolog, u"Intel-X710", u"Intel-X710", 2,
-        u"NIC name should appear twice (tag and variable).",
-        in_filename
-    )
-    check_suite_tag(suite_tag, out_prolog)
-    with open(out_filename, u"wt") as file_out:
-        file_out.write(out_prolog)
-        add_iperf3_testcases(testcase, file_out, kwargs_list)
+    for nic_name in Constants.NIC_NAME_TO_CODE:
+        out_filename = replace_defensively(
+            in_filename, u"10ge2p1x710",
+            Constants.NIC_NAME_TO_CODE[nic_name], 1,
+            u"File name should contain NIC code once.", in_filename
+        )
+        out_prolog = replace_defensively(
+            in_prolog, u"Intel-X710", nic_name, 2,
+            u"NIC name should appear twice (tag and variable).",
+            in_filename
+        )
+        check_suite_tag(suite_tag, out_prolog)
+        with open(out_filename, u"wt") as file_out:
+            file_out.write(out_prolog)
+            add_iperf3_testcases(testcase, file_out, kwargs_list)
 
 
 def write_trex_files(in_filename, in_prolog, kwargs_list):
