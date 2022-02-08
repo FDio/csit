@@ -56,10 +56,218 @@ Additional information about graph data:
 .. note::
 
     Test results are stored in
+    `build logs from FD.io vpp performance job 2n-icx`_,
     `build logs from FD.io vpp performance job 2n-skx`_ and
     `build logs from FD.io vpp performance job 2n-clx`_ with RF
     result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
+
+.. raw:: latex
+
+    \clearpage
+
+2n-icx-xxv710-mrr
+~~~~~~~~~~~~~~~~~
+
+imix-2t1c-eth-l2bd
+------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-icx-xxv710-imix-2t1c-base-vsc-vxlan-mrr.html"></iframe>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-icx-xxv710-imix-2t1c-base-vsc-vxlan-mrr}
+            \label{fig:l2bd-2n-icx-xxv710-imix-2t1c-base-vsc-vxlan-mrr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+imix-4t2c-eth-l2bd
+------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-icx-xxv710-imix-4t2c-base-vsc-vxlan-mrr.html"></iframe>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-icx-xxv710-imix-4t2c-base-vsc-vxlan-mrr}
+            \label{fig:l2bd-2n-icx-xxv710-imix-4t2c-base-vsc-vxlan-mrr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+imix-8t4c-eth-l2bd
+------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-icx-xxv710-imix-8t4c-base-vsc-vxlan-mrr.html"></iframe>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-icx-xxv710-imix-8t4c-base-vsc-vxlan-mrr}
+            \label{fig:l2bd-2n-icx-xxv710-imix-8t4c-base-vsc-vxlan-mrr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+2n-icx-xxv710-ndr
+~~~~~~~~~~~~~~~~~
+
+imix-2t1c-eth-l2bd
+------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-icx-xxv710-imix-2t1c-base-vsc-vxlan-ndr.html"></iframe>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-icx-xxv710-imix-2t1c-base-vsc-vxlan-ndr}
+            \label{fig:l2bd-2n-icx-xxv710-imix-2t1c-base-vsc-vxlan-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+imix-4t2c-eth-l2bd
+------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-icx-xxv710-imix-4t2c-base-vsc-vxlan-ndr.html"></iframe>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-icx-xxv710-imix-4t2c-base-vsc-vxlan-ndr}
+            \label{fig:l2bd-2n-icx-xxv710-imix-4t2c-base-vsc-vxlan-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+imix-8t4c-eth-l2bd
+------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-icx-xxv710-imix-8t4c-base-vsc-vxlan-ndr.html"></iframe>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-icx-xxv710-imix-8t4c-base-vsc-vxlan-ndr}
+            \label{fig:l2bd-2n-icx-xxv710-imix-8t4c-base-vsc-vxlan-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+2n-icx-xxv710-pdr
+~~~~~~~~~~~~~~~~~
+
+imix-2t1c-eth-l2bd
+------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-icx-xxv710-imix-2t1c-base-vsc-vxlan-pdr.html"></iframe>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-icx-xxv710-imix-2t1c-base-vsc-vxlan-pdr}
+            \label{fig:l2bd-2n-icx-xxv710-imix-2t1c-base-vsc-vxlan-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+imix-4t2c-eth-l2bd
+------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-icx-xxv710-imix-4t2c-base-vsc-vxlan-pdr.html"></iframe>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-icx-xxv710-imix-4t2c-base-vsc-vxlan-pdr}
+            \label{fig:l2bd-2n-icx-xxv710-imix-4t2c-base-vsc-vxlan-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+imix-8t4c-eth-l2bd
+------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="icx15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-icx-xxv710-imix-8t4c-base-vsc-vxlan-pdr.html"></iframe>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-icx-xxv710-imix-8t4c-base-vsc-vxlan-pdr}
+            \label{fig:l2bd-2n-icx-xxv710-imix-8t4c-base-vsc-vxlan-pdr}
+    \end{figure}
 
 .. raw:: latex
 
