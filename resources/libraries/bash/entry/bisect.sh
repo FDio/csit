@@ -159,18 +159,23 @@ generate_tests || die
 archive_tests || die
 reserve_and_cleanup_testbed || die
 select_tags || die
+
 # TODO: Does it matter which build is tested first?
+
+select_build "build_earliest" || die
+check_download_dir || die
+run_and_parse "csit_earliest" || die
+cp "csit_earliest/results.txt" "csit_early/results.txt" || die
+
+# Explicit cleanup, in case the previous test left the testbed in a bad shape.
+ansible_playbook "cleanup"
+
 select_build "build_latest" || die
 check_download_dir || die
 run_and_parse "csit_latest" || die
 cp "csit_latest/results.txt" "csit_late/results.txt" || die
-# Explicit cleanup, in case the previous test left the testbed in a bad shape.
-ansible_playbook "cleanup"
-select_build "build_earliest" || die
-check_download_dir || die
-run_and_parse "csit_earliest" || die
+
 untrap_and_unreserve_testbed || die
-cp "csit_earliest/results.txt" "csit_early/results.txt" || die
 # See function documentation for the logic in the loop.
 main_bisect_loop || die
 # In worst case, the middle branch is still checked out.
