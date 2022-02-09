@@ -4,36 +4,6 @@
 # and downstream modules can simply declare resources for that provider
 # and have them automatically associated with the root provider
 # configurations.
-module "alertmanager" {
-  source = "./alertmanager"
-  providers = {
-    nomad = nomad.yul1
-  }
-
-  # nomad
-  nomad_datacenters = ["yul1"]
-
-  # alertmanager
-  alertmanager_job_name    = "prod-alertmanager"
-  alertmanager_use_canary  = true
-  alertmanager_group_count = 1
-  alertmanager_vault_secret = {
-    use_vault_provider        = false,
-    vault_kv_policy_name      = "kv-secret",
-    vault_kv_path             = "secret/data/prometheus",
-    vault_kv_field_access_key = "access_key",
-    vault_kv_field_secret_key = "secret_key"
-  }
-  alertmanager_version               = "0.21.0"
-  alertmanager_cpu                   = 1000
-  alertmanager_mem                   = 1024
-  alertmanager_port                  = 9093
-  alertmanager_slack_jenkins_api_key = "TE07RD1V1/B01U1NV9HV3/hKZXJJ74g2JcISq4K3QC1eG9"
-  alertmanager_slack_jenkins_channel = "fdio-jobs-monitoring"
-  alertmanager_slack_default_api_key = "TE07RD1V1/B01UUK23B6C/hZTcCu42FUv8d6rtirHtcYIi"
-  alertmanager_slack_default_channel = "fdio-infra-monitoring"
-}
-
 module "grafana" {
   source = "./grafana"
   providers = {
