@@ -1,49 +1,114 @@
 # Nomad
-variable "nomad_datacenters" {
-  description = "Nomad data centers"
+variable "datacenters" {
+  description = "Specifies the list of DCs to be considered placing this task"
   type        = list(string)
   default     = ["dc1"]
 }
 
-variable "nomad_host_volume" {
-  description = "Nomad Host Volume"
+variable "region" {
+  description = "Specifies the list of DCs to be considered placing this task"
+  type        = string
+  default     = "global"
+}
+
+variable "volume_source" {
+  description = "The name of the volume to request"
   type        = string
   default     = "persistence"
 }
 
 # Prometheus
-variable "prometheus_job_name" {
-  description = "Prometheus job name"
+variable "pm_version" {
+  description = "Prometheus version"
   type        = string
-  default     = "prometheus"
+  default     = "2.33.1"
 }
 
-variable "prometheus_group_count" {
-  description = "Number of prometheus group instances"
+variable "auto_promote" {
+  description = "Specifies if the job should auto-promote to the canary version"
+  type        = bool
+  default     = true
+}
+
+variable "auto_revert" {
+  description = "Specifies if the job should auto-revert to the last stable job"
+  type        = bool
+  default     = true
+}
+
+variable "canary" {
+  description = "Equal to the count of the task group allows blue/green depl."
   type        = number
   default     = 1
 }
 
-variable "prometheus_service_name" {
-  description = "Prometheus service name"
+variable "cpu" {
+  description = "CPU allocation"
+  type        = number
+  default     = 2000
+}
+
+variable "data_dir" {
+  description = "Prometheus DISK allocation"
+  type        = string
+  default     = "/data"
+}
+
+variable "group_count" {
+  description = "Specifies the number of the task groups running under this one"
+  type        = number
+  default     = 4
+}
+
+variable "job_name" {
+  description = "Specifies a name for the job"
   type        = string
   default     = "prometheus"
 }
 
-variable "prometheus_version" {
-  description = "Prometheus version"
-  type        = string
-  default     = "v2.28.1"
+variable "max_parallel" {
+  description = "Specifies the maximum number of updates to perform in parallel"
+  type        = number
+  default     = 1
 }
 
-variable "prometheus_use_canary" {
+variable "memory" {
+  description = "Specifies the memory required in MB"
+  type        = number
+  default     = 4096
+}
+
+variable "port" {
+  description = "Specifies the static TCP/UDP port to allocate"
+  type        = number
+  default     = 9090
+}
+
+variable "service_name" {
+  description = "Specifies the name this service will be advertised in Consul"
+  type        = string
+  default     = "prometheus"
+}
+
+variable "use_canary" {
   description = "Uses canary deployment"
+  type        = bool
+  default     = true
+}
+
+variable "use_host_volume" {
+  description = "Use Nomad host volume feature"
   type        = bool
   default     = false
 }
 
-variable "prometheus_vault_secret" {
-  description = "Set of properties to be able to fetch secret from vault"
+variable "volume_destination" {
+  description = "Specifies where the volume should be mounted inside the task"
+  type        = string
+  default     = "/data/"
+}
+
+variable "vault_secret" {
   type = object({
     use_vault_provider        = bool,
     vault_kv_policy_name      = string,
@@ -51,34 +116,12 @@ variable "prometheus_vault_secret" {
     vault_kv_field_access_key = string,
     vault_kv_field_secret_key = string
   })
-}
-
-variable "prometheus_cpu" {
-  description = "Prometheus CPU allocation"
-  type        = number
-  default     = 2000
-}
-
-variable "prometheus_mem" {
-  description = "Prometheus RAM allocation"
-  type        = number
-  default     = 8192
-}
-
-variable "prometheus_port" {
-  description = "Prometheus TCP allocation"
-  type        = number
-  default     = 9200
-}
-
-variable "prometheus_data_dir" {
-  description = "Prometheus DISK allocation"
-  type        = string
-  default     = "/data"
-}
-
-variable "prometheus_use_host_volume" {
-  description = "Use Nomad host volume feature"
-  type        = bool
-  default     = false
+  description = "Set of properties to be able to fetch secret from vault."
+  default = {
+    use_vault_provider        = false
+    vault_kv_policy_name      = "kv"
+    vault_kv_path             = "secret/data/prometheus"
+    vault_kv_field_access_key = "access_key"
+    vault_kv_field_secret_key = "secret_key"
+  }
 }
