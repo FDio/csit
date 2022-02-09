@@ -2,12 +2,8 @@ terraform {
   required_providers {
     nomad = {
       source  = "hashicorp/nomad"
-      version = "~> 1.4.15"
-    }
-    template = {
-      source  = "hashicorp/template"
-      version = "~> 2.2.0"
+      version = ">= 1.4.16"
     }
   }
-  required_version = ">= 1.0.3"
+  required_version = ">= 1.1.4"
 }
