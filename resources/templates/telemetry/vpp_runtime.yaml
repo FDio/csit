@@ -506,3 +506,15 @@ programs:
       wait {duration}
       perfmon stop
       show perfmon statistics
+  - name: bundle_vpp
+    # FIXME: Parse output properly.
+    metrics:
+      info:
+        - name: show_hardware
+          documentation: Output of show hardware
+          namespace: vpp
+          subsystem: hardware
+          labelnames:
+            - text
+    code: |
+      show hardware detail
