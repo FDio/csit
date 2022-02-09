@@ -187,3 +187,15 @@ programs:
             - thread_id
     code: |
       show node counters verbose
+  - name: bundle_vpp
+    # FIXME: Parse output properly.
+    metrics:
+      info:
+        - name: show_hardware
+          documentation: Output of show hardware
+          namespace: vpp
+          subsystem: hardware
+          labelnames:
+            - text
+    code: |
+      show hardware detail

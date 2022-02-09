@@ -445,3 +445,30 @@ class BundleVpp:
             self.serializer.serialize(
                 metric=metric, labels=labels, item=item
             )
+
+    def show_hardware_detail(self, reply):
+        """
+        Parse the show hardware output.
+
+        Output format:
+        {
+            "name": "show_hardware",
+            "labels": {
+                "text": "{text output here}",
+            },
+            "value": 1.0,
+        },
+
+        :param reply: API reply.
+        :type reply: str
+        """
+        for metric in self.serializer.metric_registry:
+            item = dict()
+            labels = dict()
+            item[u"name"] = metric
+            labels[u"text"] = reply
+            item[u"labels"] = labels
+            item[u"value"] = 1.0
+            self.serializer.serialize(
+                metric=metric, labels=labels, item=item
+            )
