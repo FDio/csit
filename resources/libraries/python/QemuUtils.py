@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -371,7 +371,10 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo_frames"] else u"1518"
+        if kwargs[u"jumbo_frames"]:
+            pmd_max_pkt_len = Constants.JUMBO_ON_SAFE_MTU
+        else:
+            pmd_max_pkt_len = Constants.JUMBO_OFF_SAFE_MTU
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,
@@ -398,7 +401,10 @@ class QemuUtils:
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        pmd_max_pkt_len = u"9200" if kwargs[u"jumbo_frames"] else u"1518"
+        if kwargs[u"jumbo_frames"]:
+            pmd_max_pkt_len = Constants.JUMBO_ON_SAFE_MTU
+        else:
+            pmd_max_pkt_len = Constants.JUMBO_OFF_SAFE_MTU
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,

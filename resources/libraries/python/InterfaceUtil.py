@@ -259,12 +259,12 @@ class InterfaceUtil:
             )
 
     @staticmethod
-    def set_interface_mtu(node, pf_pcis, mtu=9200):
+    def set_interface_mtu(node, pf_pcis, mtu):
         """Set Ethernet MTU for specified interfaces.
 
         :param node: Topology node.
         :param pf_pcis: List of node's interfaces PCI addresses.
-        :param mtu: MTU to set. Default: 9200.
+        :param mtu: MTU to set.
         :type nodes: dict
         :type pf_pcis: list
         :type mtu: int
@@ -332,11 +332,11 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_set_interface_mtu(node, interface, mtu=9200):
+    def vpp_set_interface_mtu(node, interface, mtu):
         """Set Ethernet MTU on interface.
 
         :param node: VPP node.
-        :param interface: Interface to setup MTU. Default: 9200.
+        :param interface: Interface to setup MTU.
         :param mtu: Ethernet MTU size in Bytes.
         :type node: dict
         :type interface: str or int

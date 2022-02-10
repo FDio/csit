@@ -269,6 +269,15 @@ class Constants:
         u"PERF_TRIAL_ASTF_DELAY", 0.112
     )
 
+    # Some NIC drivers enable/disable jumbo frame support
+    # based on MTU set on the interface.
+    # This value has to be large enough to enable encap tests.
+    # Tests with NIC drivers which enable/disable jumbo frames
+    # some other way (e.g. dpdk_plugin deciding based on no-milti-seg)
+    # should not set MTU, as driver's default is expected to be better.
+    JUMBO_ON_SAFE_MTU = 9200
+    JUMBO_OFF_SAFE_MTU = 1700
+
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
     # override by test.
