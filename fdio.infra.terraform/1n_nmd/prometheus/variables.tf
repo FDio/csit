@@ -14,7 +14,7 @@ variable "region" {
 variable "volume_source" {
   description = "The name of the volume to request"
   type        = string
-  default     = "persistence"
+  default     = "prod-volume-data1-1"
 }
 
 # Prometheus
@@ -99,7 +99,7 @@ variable "use_canary" {
 variable "use_host_volume" {
   description = "Use Nomad host volume feature"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "volume_destination" {
