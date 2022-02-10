@@ -1536,6 +1536,7 @@ class InputData:
             for item in (u"-2n-icx", u"-3n-icx", u"-2n-aws", u"-3n-aws"):
                 if item in job:
                     process_oper = True
+                    break
         checker = ExecutionChecker(
             metadata, self._cfg.mapping, self._cfg.ignore, process_oper
         )
