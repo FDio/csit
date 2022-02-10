@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -56,7 +56,10 @@ class TestpmdTest:
             if_pci0 = Topology.get_interface_pci_addr(node, if1)
             if_pci1 = Topology.get_interface_pci_addr(node, if2)
 
-            pmd_max_pkt_len = u"9200" if jumbo_frames else u"1518"
+            if jumbo_frames:
+                pmd_max_pkt_len = Constants.JUMBO_ON_SAFE_MTU
+            else:
+                pmd_max_pkt_len = Constants.JUMBO_OFF_SAFE_MTU
             testpmd_args = DpdkUtil.get_testpmd_args(
                 eal_corelist=f"1,{lcores_list}",
                 eal_driver=False,

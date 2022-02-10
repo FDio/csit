@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,8 +21,8 @@
 *** Keywords ***
 | Set single interfaces in path up
 | | [Documentation]
-| | ... | *Set UP state on single physical VPP interfaces in path on all DUT
-| | ... | nodes and set maximal MTU.*
+| | ... | *Set UP state on single physical VPP interfaces in path
+| | ... | on all DUT nodes.*
 | |
 | | ... | *Arguments:*
 | | ... | - pf - NIC physical function (physical port).
@@ -41,8 +41,7 @@
 
 | Set interfaces in path up
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
-| | ... | maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on all DUT nodes.*
 | |
 | | ... | *Arguments:*
 | | ... | - validate - Validate interfaces are up.
@@ -58,8 +57,7 @@
 
 | Set interfaces in path up on node
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
-| | ... | set maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node.*
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node on which to set the interfaces up.
@@ -77,8 +75,7 @@
 
 | Set interfaces in path up on node on PF
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
-| | ... | set maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node.*
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node on which to set the interfaces up.
@@ -97,7 +94,6 @@
 | | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
 | | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
 | | | Set Interface State | ${nodes['${dut}']} | ${if} | up
-| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
 | | END
 
 | Pre-initialize layer driver
@@ -184,9 +180,11 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If | ${jumbo}
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci}
+| | | ... | mtu=${JUMBO_OFF_SAFE_MTU}
 | | | ... | ELSE
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci}
+| | | ... | mtu=${JUMBO_ON_SAFE_MTU}
 | | FOR | ${dut} | IN | @{duts}
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
@@ -198,9 +196,11 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If | ${jumbo}
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci}
+| | | ... | mtu=${JUMBO_OFF_SAFE_MTU}
 | | | ... | ELSE
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci}
+| | | ... | mtu=${JUMBO_ON_SAFE_MTU}
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
 | | END
