@@ -28,6 +28,7 @@
 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
 4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
 ## ./crypto
+## ./hoststack
 ## ./ip4
 ### intel-xxv710
 #### af_xdp
@@ -189,22 +190,6 @@
 1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
-##### ethip4-ip4scale200k
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k
-##### ethip4-ip4scale200k-rnd
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k-rnd
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k-rnd
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k-rnd
-##### ethip4-ip4scale2m
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m
-##### ethip4-ip4scale2m-rnd
-1c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
-2c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
-4c AND 64b AND mrr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 ## ./ip4_tunnels
 ### intel-xxv710
 #### avf
@@ -285,22 +270,6 @@
 1c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 2c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 4c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
-##### ethip6-ip6scale200k
-1c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
-2c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
-4c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
-##### ethip6-ip6scale200k-rnd
-1c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k-rnd
-2c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k-rnd
-4c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k-rnd
-##### ethip6-ip6scale2m
-1c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
-2c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
-4c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
-##### ethip6-ip6scale2m-rnd
-1c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m-rnd
-2c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m-rnd
-4c AND 78b AND mrr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m-rnd
 ## ./ip6_tunnels
 ## ./l2
 ### intel-xxv710
