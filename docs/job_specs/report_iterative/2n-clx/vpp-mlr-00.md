@@ -1,9 +1,5 @@
 # 2n-clx
-### tests 375
-### job hrs est. 31.3
-### job hrs real ??.?
-### test mins est. 5.01
-### test mins real 5.01
+### tests 333
 ## ./container_memif
 ### intel-xxv710
 #### avf
@@ -50,11 +46,6 @@
 ## ./hoststack
 ## ./ip4
 ### intel-x710
-#### af_xdp
-##### ethip4-ip4base
-1c AND 64b AND ndrpdr AND x710 AND drv_af_xdp AND ethip4-ip4base
-2c AND 64b AND ndrpdr AND x710 AND drv_af_xdp AND ethip4-ip4base
-4c AND 64b AND ndrpdr AND x710 AND drv_af_xdp AND ethip4-ip4base
 #### avf
 ##### ethip4-ip4base
 1c AND 64b AND ndrpdr AND x710 AND drv_avf AND ethip4-ip4base
@@ -225,22 +216,6 @@
 1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
-##### ethip4-ip4scale200k
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k
-##### ethip4-ip4scale200k-rnd
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k-rnd
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k-rnd
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale200k-rnd
-##### ethip4-ip4scale2m
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m
-##### ethip4-ip4scale2m-rnd
-1c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
-2c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
-4c AND 64b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip4-ip4scale2m-rnd
 ### mellanox-cx556a
 #### rdma-core
 ##### ethip4-ip4base
@@ -255,14 +230,6 @@
 1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale20k-rnd
 2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale20k-rnd
 4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale20k-rnd
-##### ethip4-ip4scale200k
-1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale200k
-2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale200k
-4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale200k
-##### ethip4-ip4scale200k-rnd
-1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale200k-rnd
-2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale200k-rnd
-4c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4-ip4scale200k-rnd
 ##### ethip4udp-ip4base-iacl50sf-10kflows
 1c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4base-iacl50sf-10kflows
 2c AND 64b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip4udp-ip4base-iacl50sf-10kflows
@@ -304,11 +271,6 @@
 4c AND 64b AND ndrpdr AND xxv710 AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
 ## ./ip6
 ### intel-x710
-#### af_xdp
-##### ethip6-ip6base
-1c AND 78b AND ndrpdr AND x710 AND drv_af_xdp AND ethip6-ip6base
-2c AND 78b AND ndrpdr AND x710 AND drv_af_xdp AND ethip6-ip6base
-4c AND 78b AND ndrpdr AND x710 AND drv_af_xdp AND ethip6-ip6base
 #### avf
 ##### ethip6-ip6base
 1c AND 78b AND ndrpdr AND x710 AND drv_avf AND ethip6-ip6base
@@ -375,22 +337,6 @@
 1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
-##### ethip6-ip6scale200k
-1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
-2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
-4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k
-##### ethip6-ip6scale200k-rnd
-1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k-rnd
-2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k-rnd
-4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale200k-rnd
-##### ethip6-ip6scale2m
-1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
-2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
-4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m
-##### ethip6-ip6scale2m-rnd
-1c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m-rnd
-2c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m-rnd
-4c AND 78b AND ndrpdr AND xxv710 AND drv_vfio_pci AND ethip6-ip6scale2m-rnd
 ### mellanox-cx556a
 #### rdma-core
 ##### ethip6-ip6base
@@ -405,14 +351,6 @@
 1c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale20k-rnd
 2c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale20k-rnd
 4c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale20k-rnd
-##### ethip6-ip6scale200k
-1c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k
-2c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k
-4c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k
-##### ethip6-ip6scale200k-rnd
-1c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k-rnd
-2c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k-rnd
-4c AND 78b AND ndrpdr AND cx556a AND drv_rdma_core AND ethip6-ip6scale200k-rnd
 ## ./ip6_tunnels
 ## ./l2
 ### intel-x710
