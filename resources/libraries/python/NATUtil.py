@@ -299,17 +299,27 @@ class NATUtil:
         :returns: Number of established NAT44 sessions.
         :rtype: int
         :raises ValueError: If not supported protocol.
+        :raises RuntimeError: If output is not formatted as expected.
         """
         nat44_data = dict()
-        if proto in [u"UDP", u"TCP", u"ICMP"]:
-            for line in NATUtil.show_nat44_summary(node).splitlines():
-                sum_k, sum_v = line.split(u":") if u":" in line \
-                    else (line, None)
-                nat44_data[sum_k] = sum_v.strip() if isinstance(sum_v, str) \
-                    else sum_v
-        else:
+        proto_l = proto.lower()
+        if proto_l not in [u"udp", u"tcp", u"icmp"]:
             raise ValueError(f"Unsupported protocol: {proto}!")
-        return nat44_data.get(f"total {proto.lower()} sessions", 0)
+        # Currently, the proto info and the session info are not on the same line.
+        found = False
+        for line in NATUtil.show_nat44_summary(node).splitlines():
+            if found:
+                if proto_l == u"tcp" and u"established" not in line:
+                    continue
+                # Currently we have no use for the information in parentheses.
+                line = line.split(u"(", 1)[0]
+                if u"total:" not in line:
+                    raise RuntimeError(u"Unknown format of show nat44 summary")
+                return int(line.split(u":", 1).strip())
+            # Not found yet.
+            if f"{proto_l} sessions:" in line:
+                found = True
+        raise RuntimeError(u"Unknown format of show nat44 summary")
 
     # DET44 PAPI calls
     # DET44 means deterministic mode of NAT44
