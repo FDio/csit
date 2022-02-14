@@ -1146,7 +1146,7 @@
       - 10  # rls2202.rc2 NDRPDR iter env 9
       - 15  # rls2202.rc2 soak env 9
 
-  vpp-2n-icx-curr-iter-gso:
+  vpp-2n-icx-curr-gso:
     csit-vpp-perf-report-iterative-2202-2n-icx:
       - 11  # rls2202.rc2 MRR GSO iter env 9
 
