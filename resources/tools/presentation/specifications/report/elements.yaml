@@ -18,8 +18,6 @@
       data-set: "vpp-2n-icx-curr-iter-gso"
     - job-spec: "soak-00"
       data-set: "vpp-2n-icx-curr-soak"
-    - job-spec: "vsap-00"
-      data-set: "vpp-2n-icx-curr-iter-vsap"
     - job-spec: "nfv-density-mrr-00"
       data-set: "vpp-2n-icx-curr-nfv-mrr"
     - job-spec: "nfv-density-mlr-00"
