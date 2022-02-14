@@ -107,7 +107,7 @@
       # - 6   # rls2202.rc2 NDRPDR cov env 9
       - 7   # rls2202.rc2 NDRPDR cov env 9
       - 8   # rls2202.rc2 NDRPDR cov env 9
-      # - 9   # rls2202.rc2 NDRPDR cov env 9
+      - 9   # rls2202.rc2 NDRPDR cov env 9
       - 10  # rls2202.rc2 NDRPDR cov env 9
       - 11  # rls2202.rc2 NDRPDR cov env 9
       - 12  # rls2202.rc2 NDRPDR cov env 9

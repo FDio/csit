@@ -7162,7 +7162,7 @@
   algorithm: "plot_perf_box_name"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/soak-test-2n-icx-2"
-  data: "vpp-2n-skx-curr-icx"
+  data: "vpp-2n-icx-curr-soak"
   include:
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Avf-Ethip6-Ip6Base-Soak.78B-2t1c-avf-ethip6-ip6base-soak"
     - "Tests.Vpp.Perf.Ip6.2N1L-25Ge2P1Xxv710-Ethip6-Ip6Base-Soak.78B-2t1c-ethip6-ip6base-soak"
