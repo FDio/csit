@@ -271,7 +271,7 @@
       - 37  # rls2202.rc2 NDRPDR reconf iter env 9
       - 38  # rls2202.rc2 NDRPDR reconf iter env 9
 
-  vpp-2n-skx-curr-gso:
+  vpp-2n-skx-curr-iter-gso:
     csit-vpp-perf-report-iterative-2202-2n-skx:
       - 22  # rls2202.rc2 MRR GSO iter env 9
 
