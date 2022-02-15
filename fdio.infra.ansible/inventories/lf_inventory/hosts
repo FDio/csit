@@ -65,6 +65,8 @@ all:
         10.30.51.66: #s51-nomad - thunderx 88xx
         10.30.51.67: #s49-nomad - thunderx 88xx
         10.30.51.68: #s50-nomad - thunderx 88xx
+        10.30.51.91: #s58-nomad - neoverse n1
+        10.30.51.92: #s59-nomad - neoverse n1
     dev:
       hosts:
         10.30.51.38: #fdio-marvell-dev - thunderx 88xx
