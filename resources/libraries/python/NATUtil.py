@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -289,27 +289,68 @@ class NATUtil:
 
     @staticmethod
     def get_nat44_sessions_number(node, proto):
-        """Get number of established NAT44 sessions from actual NAT44 mapping
-        data.
+        """Get number of established NAT44 sessions from NAT44 mapping data.
+
+        This keyword uses output from a CLI command,
+        so it can start failing when VPP changes the output format.
+        TODO: Switch to API (or stat segment) when available.
+
+        The current implementation supports both 2202 and post-2202 format.
+        (The Gerrit number changing the output format is 34877.)
+
+        For TCP proto, the post-2202 format includes "timed out"
+        established sessions into its count of total sessions.
+        As the tests should fail if a session is timed-out,
+        the logic substracts timed out sessions for the resturned value.
+
+        The 2202 output reports most of TCP sessions as in "transitory" state,
+        as opposed to "established", but the previous CSIT logic tolerated that.
+        Ideally, whis keyword would add establised and transitory sessions
+        (but without CLOSED and WAIT_CLOSED sessions) and return that.
+        The current implementation simply returns "total tcp sessions" value,
+        to preserve the previous CSIT behavior for 2202 output.
 
         :param node: DUT node.
         :param proto: Required protocol - TCP/UDP/ICMP.
         :type node: dict
         :type proto: str
-        :returns: Number of established NAT44 sessions.
+        :returns: Number of active established NAT44 sessions.
         :rtype: int
         :raises ValueError: If not supported protocol.
+        :raises RuntimeError: If output is not formatted as expected.
         """
-        nat44_data = dict()
-        if proto in [u"UDP", u"TCP", u"ICMP"]:
-            for line in NATUtil.show_nat44_summary(node).splitlines():
-                sum_k, sum_v = line.split(u":") if u":" in line \
-                    else (line, None)
-                nat44_data[sum_k] = sum_v.strip() if isinstance(sum_v, str) \
-                    else sum_v
-        else:
+        proto_l = proto.strip().lower()
+        if proto_l not in [u"udp", u"tcp", u"icmp"]:
             raise ValueError(f"Unsupported protocol: {proto}!")
-        return nat44_data.get(f"total {proto.lower()} sessions", 0)
+        summary_text = NATUtil.show_nat44_summary(node)
+        summary_lines = summary_text.splitlines()
+        # Output from VPP v22.02 and before, delete when no longer needed.
+        pattern_2202 = f"total {proto_l} sessions:"
+        if pattern_2202 in summary_text:
+            for line in summary_lines:
+                if pattern_2202 not in line:
+                    continue
+                return int(line.split(u":", 1)[1].strip())
+        # Post-2202, the proto info and session info are not on the same line.
+        found = False
+        for line in summary_lines:
+            if not found:
+                if f"{proto_l} sessions:" in line:
+                    found = True
+                continue
+            # Proto is found, find the line we are interested in.
+            if proto_l == u"tcp" and u"established" not in line:
+                continue
+            if u"total" not in line and u"established" not in line:
+                raise RuntimeError(f"show nat summary: no {proto} total.")
+            # We have the line with relevant numbers.
+            total_part, timed_out_part = line.split(u"(", 1)
+            timed_out_part = timed_out_part.split(u")", 1)[0]
+            total_count = int(total_part.split(u":", 1)[1].strip())
+            timed_out_count = int(timed_out_part.split(u":", 1)[1].strip())
+            active_count = total_count - timed_out_count
+            return active_count
+        raise RuntimeError(u"Unknown format of show nat44 summary")
 
     # DET44 PAPI calls
     # DET44 means deterministic mode of NAT44
