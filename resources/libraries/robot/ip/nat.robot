@@ -52,7 +52,8 @@
 | |
 | | ${max_sessions}= | Compute Max Translations Per Thread
 | | ... | ${n_sessions} | ${dp_count_int}
-| | Enable NAT44 Plugin | ${dut1} | mode=${nat_mode} | sessions=${max_sessions}
+| | Enable NAT44 ED Plugin | ${dut1} | mode=${nat_mode}
+| | ... | sessions=${max_sessions}
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${DUT1_${int}2}[0]
 | | ${resetter} = | Set NAT44 Address Range
