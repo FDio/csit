@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc1767f8_e43c9791",
+        "filename": "fdio.infra.ansible/inventories/lf_inventory/host_vars/10.30.51.91.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-02-16T11:34:06Z",
+      "side": 1,
+      "message": "noversen1",
+      "range": {
+        "startLine": 6,
+        "startChar": 24,
+        "endLine": 6,
+        "endChar": 32
+      },
+      "revId": "1364da3548c9dff2d87bbae4db1b18de54522345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8ef419a_ead21cfa",
+        "filename": "fdio.infra.ansible/inventories/lf_inventory/host_vars/10.30.51.91.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-02-16T11:34:06Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 47,
+        "startChar": 21,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "1364da3548c9dff2d87bbae4db1b18de54522345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33115215_0359f8ae",
+        "filename": "fdio.infra.ansible/inventories/lf_inventory/host_vars/10.30.51.92.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-02-16T11:34:06Z",
+      "side": 1,
+      "message": "neoversen1",
+      "range": {
+        "startLine": 6,
+        "startChar": 24,
+        "endLine": 6,
+        "endChar": 32
+      },
+      "revId": "1364da3548c9dff2d87bbae4db1b18de54522345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "811bc7ef_9d398bbd",
+        "filename": "fdio.infra.ansible/inventories/lf_inventory/host_vars/10.30.51.92.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-02-16T11:34:06Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 47,
+        "startChar": 21,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "1364da3548c9dff2d87bbae4db1b18de54522345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6058423_b80ae543",
+        "filename": "fdio.infra.ansible/inventories/lf_inventory/hosts",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-02-16T11:34:06Z",
+      "side": 1,
+      "message": "add (both):\n - neoverse n1",
+      "revId": "1364da3548c9dff2d87bbae4db1b18de54522345",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
