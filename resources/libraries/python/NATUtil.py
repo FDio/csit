@@ -62,23 +62,18 @@ class NATUtil:
         pass
 
     @staticmethod
-    def enable_nat44_plugin(
-            node, inside_vrf=0, outside_vrf=0, users=0, user_memory=0,
-            sessions=0, session_memory=0, user_sessions=0, mode=u""):
+    def enable_nat44_ed_plugin(
+        node, inside_vrf=0, outside_vrf=0, sessions=0, session_memory=0,
+        mode=u""
+    ):
         """Enable NAT44 plugin.
 
         :param node: DUT node.
         :param inside_vrf: Inside VRF ID.
         :param outside_vrf: Outside VRF ID.
-        :param users: Maximum number of users. Used only in endpoint-independent
-            mode.
-        :param user_memory: User memory size - overwrite auto calculated hash
-            allocation parameter if non-zero.
         :param sessions: Maximum number of sessions.
         :param session_memory: Session memory size - overwrite auto calculated
             hash allocation parameter if non-zero.
-        :param user_sessions: Maximum number of sessions per user. Used only in
-            endpoint-independent mode.
         :param mode: NAT44 mode. Valid values:
             - endpoint-independent
             - endpoint-dependent
@@ -88,24 +83,18 @@ class NATUtil:
         :type node: dict
         :type inside_vrf: str or int
         :type outside_vrf: str or int
-        :type users: str or int
-        :type user_memory: str or int
         :type sessions: str or int
         :type session_memory: str or int
-        :type user_sessions: str or int
         :type mode: str
         """
-        cmd = u"nat44_plugin_enable_disable"
+        cmd = u"nat44_plugin_ed_enable_disable"
         err_msg = f"Failed to enable NAT44 plugin on the host {node[u'host']}!"
         args_in = dict(
             enable=True,
             inside_vrf=int(inside_vrf),
             outside_vrf=int(outside_vrf),
-            users=int(users),
-            user_memory=int(user_memory),
             sessions=int(sessions),
             session_memory=int(session_memory),
-            user_sessions=int(user_sessions),
             flags=getattr(
                 Nat44ConfigFlags,
                 f"NAT44_IS_{mode.replace(u'-', u'_').upper()}"

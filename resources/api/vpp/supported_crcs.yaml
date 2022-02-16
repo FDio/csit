@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -208,8 +208,8 @@
     nat44_interface_addr_dump: '0x51077d14'  # dev teardown
     nat44_interface_details: '0x5d286289'  # dev teardown
     nat44_interface_dump: '0x51077d14'  # dev teardown
-    nat44_plugin_enable_disable: '0xdea0d501'  # dev
-    nat44_plugin_enable_disable_reply: '0xe8d4e804'  # dev
+    nat44_plugin_ed_enable_disable: '0xdea0d501'  # dev
+    nat44_plugin_ed_enable_disable_reply: '0xe8d4e804'  # dev
     nat44_show_running_config: '0x51077d14'  # dev teardown
     nat44_show_running_config_reply: '0x93d8e267'  # dev teardown
     nat44_static_mapping_details: '0x06cb40b2'  # dev teardown
