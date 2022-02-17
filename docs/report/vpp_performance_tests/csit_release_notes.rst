@@ -67,7 +67,7 @@ Issues reported in previous releases which still affect the current results.
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
 |  3 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
-|    | <https://jira.fd.io/browse/CSIT-1782>`_ | Frequency is reduced by s CSIT workaround, but occasional failures do still happen.                       |
+|    | <https://jira.fd.io/browse/CSIT-1782>`_ | Frequency is reduced by CSIT workaround, but occasional failures do still happen.                         |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  4 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
 |    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
@@ -78,7 +78,7 @@ Issues reported in previous releases which still affect the current results.
 |  5 | `CSIT-1789                              | IPSEC SW async scheduler tests show bad behavior.                                                         |
 |    | <https://jira.fd.io/browse/CSIT-1789>`_ | VPP code is not behaving correctly when crypto workers are the bottleneck.                                |
 |    +-----------------------------------------+                                                                                                           |
-|  5 | `VPP-1998                               |                                                                                                           |
+|    | `VPP-1998                               |                                                                                                           |
 |    | <https://jira.fd.io/browse/VPP-1998>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  6 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
