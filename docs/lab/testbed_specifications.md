@@ -95,7 +95,8 @@ hosted by LFN FD.io CSIT project.
 15. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0    0    0
 16. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    0    2    0
 17. 3-Node-Icelake     perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    6
-                                 Totals: 32   41  21.5   4   19    1    2    3    3    2    2    7    2  14.5
+18. 1-Node-AmpereAltra nomad  alt   na    2    2    0    0    0    0    0    0    0    0    2    0    0    0
+                                 Totals: 34   43  21.5   4   19    1    2    3    3    2    4    7    2  14.5
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -325,6 +326,8 @@ Name         | Comment
 10.30.50.88  | s78-t215-tg1
 10.30.50.89  | s79-t39t310-tg1
 10.30.50.90  | s80-t311t312-tg1
+10.30.50.91  | s58-nomad
+10.30.50.92  | s59-nomad
 10.30.50.255 | Broadcast
 10.30.55.0   | network
 10.30.55.1   | Router
@@ -417,6 +420,8 @@ Name         | Comment
 10.30.51.88  | s78-t215-tg1
 10.30.51.89  | s79-t39t310-tg1
 10.30.51.90  | s80-t311t312-tg1
+10.30.51.91  | s58-nomad
+10.30.51.92  | s59-nomad
 10.30.51.255 | Broadcast
 10.32.8.0    | network
 10.32.8.1    | Router
@@ -897,6 +902,16 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: e810-XXVDA4-4p25GE Intel.
             - PCIe Slot8 af:00.xx: e810-2CQDA2-2p100GE Intel.
             - PCIe Slot10 d8:00.xx: empty.
+26. Server-Type-E24 : Purpose - Altra Arm Ampere for FD.io build.
+    - Quantity: 2.
+    - Physical connectivity:
+        - IPMI and host management ports.
+    - Main HW configuration:
+        - Chassis: Gigabyte R152-P30-00 1U
+        - Motherboard: MP32-AR1-00
+        - Processors: 1* Ampere(R) Altra(R) Processor (Neoverse N1)
+        - RAM Memory: 4* 16GB RDIMM-3200MHz
+        - Disks: 1* 960GB SSD Samsung M.2 NVMe PM983
 ```
 
 ### Naming Convention
