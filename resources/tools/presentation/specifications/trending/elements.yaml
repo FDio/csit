@@ -244,35 +244,35 @@
     - reference: -2
       compare: -1
 
-# # VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr
-# - type: "table"
-#   title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr"
-#   algorithm: "table_weekly_comparison"
-#   output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-ndr"
-#   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-#   data: "table-ndrpdr-comparison-3n-icx"
-#   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-#   nr-of-data-columns: 3
-#   comparisons:
-#     - reference: -3
-#       compare: -1
-#     - reference: -2
-#       compare: -1
+# VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c ndr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-3n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
 
-# # VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr
-# - type: "table"
-#   title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr"
-#   algorithm: "table_weekly_comparison"
-#   output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-pdr"
-#   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-#   data: "table-ndrpdr-comparison-3n-icx"
-#   filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
-#   nr-of-data-columns: 3
-#   comparisons:
-#     - reference: -3
-#       compare: -1
-#     - reference: -2
-#       compare: -1
+# VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr
+- type: "table"
+  title: "VPP NDRPDR weekly comparison 3n-icx-xxv710 2t1c pdr"
+  algorithm: "table_weekly_comparison"
+  output-file: "{DIR[STATIC,VPP]}/ndrpdr-weekly-comp-3n-icx-2t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  data: "table-ndrpdr-comparison-3n-icx"
+  filter: "'2T1C' and 'NDRPDR' and 'NIC_Intel-XXV710'"
+  nr-of-data-columns: 3
+  comparisons:
+    - reference: -3
+      compare: -1
+    - reference: -2
+      compare: -1
 
 # VPP NDRPDR weekly comparison 2n-skx-xxv710 2t1c ndr
 - type: "table"
@@ -4122,14 +4122,14 @@
         - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-zn2-cx556a-64b-8t4c-rdma-l2-vhost-base"
-      output-file-name: "2n-zn2-cx556a-64b-8t4c-rdma-l2-vhost-base"
+    - title: "2n-zn2-cx556a-64b-{core}-rdma-l2-vhost-base"
+      output-file-name: "2n-zn2-cx556a-64b-{core}-rdma-l2-vhost-base"
       data: "plot-performance-trending-vpp-2n-zn2"
       core: ["2t1c", "4t2c", "8t4c"]
       include:
-        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Mrr.64B-8t4c-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
-        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Mrr.64B-8t4c-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
-        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Mrr.64B-8t4c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Mrr.64B-{core}-rdma-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Mrr.64B-{core}-rdma-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1Cx556A-Rdma-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Mrr.64B-{core}-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
       layout: "plot-cpta"
 
     - title: "2n-zn2-cx556a-64b-{core}-rdma-l2-vhost-vppl2xc-base"
