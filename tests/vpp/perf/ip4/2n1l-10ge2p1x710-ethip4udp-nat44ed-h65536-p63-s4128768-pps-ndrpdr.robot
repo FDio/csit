@@ -90,7 +90,7 @@
 | ${heap_size_mult}= | ${2}
 # Traffic profile
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
-| ${transaction_type}= | udp_pps
+| ${transaction_type}= | udp_tput
 | ${disable_latency}= | ${True}
 
 *** Keywords ***

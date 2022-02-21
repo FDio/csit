@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | UDP_PPS | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | UDP_TPUT | DRV_VFIO_PCI
 | ... | SCALE | HOSTS_262144 | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udp-ip4base-h262144-p63-s16515072-pps
+| ... | ethip4udp-ip4base-h262144-p63-s16515072-tput
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -26,7 +26,7 @@
 |
 | Test Template | Local Template
 |
-| Documentation | **PPS on lightweight UDP transactions with IPv4 routing**
+| Documentation | **TPUT on lightweight UDP transactions with IPv4 routing**
 | ... |
 | ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
@@ -68,8 +68,8 @@
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
 | ${packets_per_transaction_and_direction}= | ${33}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
-| ${transaction_type}= | udp_pps
+| ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-tput
+| ${transaction_type}= | udp_tput
 | ${disable_latency}= | ${True}
 
 *** Keywords ***
@@ -108,14 +108,14 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| 64B-1c-ethip4udp-ip4base-h262144-p63-s16515072-tput-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| 64B-2c-ethip4udp-ip4base-h262144-p63-s16515072-tput-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| 64B-4c-ethip4udp-ip4base-h262144-p63-s16515072-tput-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}

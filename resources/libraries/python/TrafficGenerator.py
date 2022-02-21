@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -842,7 +842,7 @@ class TrafficGenerator(AbstractMeasurer):
             See GPL/traffic_profiles/trex for implemented modules.
         :param async_call: Async mode.
         :param ppta: Packets per transaction, aggregated over directions.
-            Needed for udp_pps which does not have a good transaction counter,
+            Needed for udp_tput which does not have a good transaction counter,
             so we need to compute expected number of packets.
             Default: 1.
         :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
@@ -1284,16 +1284,16 @@ class TrafficGenerator(AbstractMeasurer):
             # (half connections from TCP point of view).
             pass_count = self._l7_data[u"client"][u"tcp"][u"connects"]
             fail_count = expected_attempt_count - pass_count
-        elif self.transaction_type == u"udp_pps":
+        elif self.transaction_type == u"udp_tput":
             if not self.transaction_scale:
-                raise RuntimeError(u"Add support for no-limit udp_pps.")
+                raise RuntimeError(u"Add support for no-limit udp_tput.")
             partial_attempt_count = self._sent
             expected_attempt_count = self.transaction_scale * self.ppta
             unsent = expected_attempt_count - self._sent
             fail_count = self._loss + unsent
-        elif self.transaction_type == u"tcp_pps":
+        elif self.transaction_type == u"tcp_tput":
             if not self.transaction_scale:
-                raise RuntimeError(u"Add support for no-limit tcp_pps.")
+                raise RuntimeError(u"Add support for no-limit tcp_tput.")
             partial_attempt_count = self._sent
             expected_attempt_count = self.transaction_scale * self.ppta
             # One loss-like scenario happens when TRex receives all packets
@@ -1390,7 +1390,7 @@ class TrafficGenerator(AbstractMeasurer):
         :param traffic_profile: Module name as a traffic profile identifier.
             See GPL/traffic_profiles/trex for implemented modules.
         :param ppta: Packets per transaction, aggregated over directions.
-            Needed for udp_pps which does not have a good transaction counter,
+            Needed for udp_tput which does not have a good transaction counter,
             so we need to compute expected number of packets.
             Default: 1.
         :param resetter: Callable to reset DUT state for repeated trials.
@@ -1502,7 +1502,7 @@ class OptimizedSearch:
         :param timeout: The search will fail itself when not finished
             before this overall time [s].
         :param ppta: Packets per transaction, aggregated over directions.
-            Needed for udp_pps which does not have a good transaction counter,
+            Needed for udp_tput which does not have a good transaction counter,
             so we need to compute expected number of packets.
             Default: 1.
         :param resetter: Callable to reset DUT state for repeated trials.
@@ -1635,7 +1635,7 @@ class OptimizedSearch:
             takes significant time even without any trial results.
         :param timeout: The search will stop after this overall time [s].
         :param ppta: Packets per transaction, aggregated over directions.
-            Needed for udp_pps which does not have a good transaction counter,
+            Needed for udp_tput which does not have a good transaction counter,
             so we need to compute expected number of packets.
             Default: 1.
         :param resetter: Callable to reset DUT state for repeated trials.

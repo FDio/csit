@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -36,7 +36,7 @@ Traffic profile:
    - Destination IP address range: source IP address from packet received
      on port 1
 
-This is a profile for PPS tests, it combines TCP connect and data transfer.
+This is a profile for TPUT tests, it combines TCP connect and data transfer.
 No delays, server response waits for full request.
 """
 

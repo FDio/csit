@@ -334,12 +334,30 @@ Test Type Tags
 
     Tests which measure packets per second on lightweight UDP transactions.
     This implies ASTF traffic profile is used.
+    Contrary to UDP_TPUT, we are not using ramp-up trials to establish sessions.
     This tag selects specific output processing in PAL.
 
 .. topic:: TCP_PPS
 
     Tests which measure packets per second on lightweight TCP transactions.
     This implies ASTF traffic profile is used.
+    Contrary to UDP_TPUT, we are not using ramp-up trials to establish sessions.
+    This tag selects specific output processing in PAL.
+
+.. topic:: UDP_TPUT
+
+    Tests which measure packets per second on lightweight UDP transactions.
+    This implies ASTF traffic profile is used.
+    Ramp-up trials are used to keep sessions established (where applicable)
+    and prevent time-out during measured trials.
+    This tag selects specific output processing in PAL.
+
+.. topic:: TCP_TPUT
+
+    Tests which measure packets per second on lightweight TCP transactions.
+    This implies ASTF traffic profile is used.
+    Ramp-up trials are used to keep sessions established (where applicable)
+    and prevent time-out during measured trials.
     This tag selects specific output processing in PAL.
 
 .. topic:: HTTP

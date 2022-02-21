@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | TCP | TCP_PPS | DRV_VFIO_PCI
-| ... | SCALE | HOSTS_4096 | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4tcp-ip4base-h4096-p63-s258048-pps
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | TCP | TCP_TPUT | DRV_VFIO_PCI
+| ... | SCALE | HOSTS_65536 | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | ethip4tcp-ip4base-h65536-p63-s4128768-tput
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -27,7 +27,7 @@
 | Test Template | Local Template
 |
 | # TODO CSIT-1765: Unify suite Documentation.
-| Documentation | **PPS on lightweight TCP transactions with IPv4 routing**
+| Documentation | **TPUT on lightweight TCP transactions with IPv4 routing**
 | ... |
 | ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
@@ -64,13 +64,13 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Scale settings
-| ${n_hosts}= | ${4096}
+| ${n_hosts}= | ${65536}
 | ${n_ports}= | ${63}
 | ${packets_per_transaction_and_direction}= | ${11}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h-pps
-| ${transaction_type}= | tcp_pps
+| ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h-tput
+| ${transaction_type}= | tcp_tput
 | ${disable_latency}= | ${True}
 
 *** Keywords ***
@@ -105,18 +105,18 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
-| | ... | 192.168.0.0 | 20.0.0.0 | ${20}
+| | ... | 192.168.0.0 | 20.0.0.0 | ${16}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr
+| 64B-1c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr
+| 64B-2c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4tcp-ip4base-h4096-p63-s258048-pps-ndrpdr
+| 64B-4c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}

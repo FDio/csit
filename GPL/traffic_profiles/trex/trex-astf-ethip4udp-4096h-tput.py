@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -22,21 +22,20 @@
 # limitations under the License.
 
 """Traffic profile for T-rex advanced stateful (astf) traffic generator.
-
 Traffic profile:
  - Two streams sent in directions 0 --> 1 (client -> server, requests) and
    1 --> 0 (server -> client, responses) at the same time.
- - Packet: ETH / IP / TCP
+ - Packet: ETH / IP / UDP
  - Direction 0 --> 1:
-   - Source IP address range:      172.16.0.0 - 172.19.255.255
-   - Destination IP address range: 20.16.0.0 - 20.19.255.255
+   - Source IP address range:      192.168.0.0 - 192.168.15.255
+   - Destination IP address range: 20.0.0.0 - 20.0.15.255
  - Direction 1 --> 0:
    - Source IP address range:      destination IP address from packet received
      on port 1
    - Destination IP address range: source IP address from packet received
      on port 1
 
-This is a profile for PPS tests, it combines TCP connect and data transfer.
+This is a profile for TPUT tests, it combines UDP connect and data transfer.
 No delays, server response waits for full request.
 """
 
@@ -47,43 +46,70 @@ from profile_trex_astf_base_class import TrafficProfileBaseClass
 class TrafficProfile(TrafficProfileBaseClass):
     """Traffic profile."""
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         """Initialization and setting of profile parameters."""
 
         super(TrafficProfileBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"172.16.0.0"
-        self.p1_src_end_ip = u"172.19.255.255"
-        self.p1_dst_start_ip = u"20.16.0.0"
-        self.p1_dst_end_ip = u"20.19.255.255"
+        self.p1_src_start_ip = u"192.168.0.0"
+        self.p1_src_end_ip = u"192.168.15.255"
+        self.p1_dst_start_ip = u"20.0.0.0"
+        self.p1_dst_end_ip = u"20.0.15.255"
 
-        # Headers length; not used in this profile, just for the record of
-        # header length for TCP packet with 0B payload
-        self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
-        self.data_size = 11111
+        self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B UDP
+
+        self.udp_data = u""
+
+        self.n_data = 32  # TODO: set via input parameter
+        self.m_delay = 2000000  # delay 2000s (2,000,000 ms)
+        self.u_delay = 1000 * self.m_delay  # delay 2000s (2,000,000,000 us)
+        self.limit = 258048
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
         This method MUST return:
 
-            return ip_gen, templates, None
+            return ip_gen, templates
 
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
-        # client commands
-        prog_c = ASTFProgram()
-        prog_c.connect()
-        prog_c.send(u"1" * self.data_size)
-        prog_c.recv(self.data_size)
+        if self.framesize == 64:
+            self.udp_data += self._gen_padding(self.headers_size, 72)
+        if self.framesize == 1518:
+            self.udp_data += self._gen_padding(self.headers_size, 1514)
 
-        # server commands
-        prog_s = ASTFProgram()
-        prog_s.accept()
-        prog_c.recv(self.data_size)
-        prog_c.send(u"1" * self.data_size)
+        # Client program.
+        prog_c = ASTFProgram(stream=False)
+        prog_c.set_keepalive_msg(self.m_delay)
+        prog_c.send_msg(self.udp_data)
+        # No delay, TPUT tests combine connect and data send (no data receive).
+        prog_c.set_var(u"var1", self.n_data)
+        prog_c.set_label(u"a:")
+        prog_c.send_msg(self.udp_data)
+        prog_c.jmp_nz(u"var1", u"a:")
+        # We should read the server response,
+        # but no reason to overload client workers even more.
+
+        # Server program.
+        prog_s = ASTFProgram(stream=False)
+        prog_s.set_keepalive_msg(self.m_delay)
+        # If server closes too soon, new instances are started
+        # leading in too much replies. To prevent that, we need to recv all.
+        prog_s.recv_msg(1 + self.n_data)
+        # In packet loss scenarios, some instances never get here.
+        # This maybe increases server traffic duration,
+        # but no other way if we want to avoid
+        # TRex creating a second instance of the same server.
+        prog_s.send_msg(self.udp_data)
+        prog_s.set_var(u"var2", self.n_data)
+        prog_s.set_label(u"b:")
+        prog_s.send_msg(self.udp_data)
+        prog_s.jmp_nz(u"var2", u"b:")
+        # VPP never duplicates packets,
+        # so it is safe to close the server instance now.
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
@@ -107,7 +133,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         temp_c = ASTFTCPClientTemplate(
             program=prog_c,
             ip_gen=ip_gen,
-            limit=16515072,  # TODO: set via input parameter
+            limit=self.limit,
             port=8080
         )
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)

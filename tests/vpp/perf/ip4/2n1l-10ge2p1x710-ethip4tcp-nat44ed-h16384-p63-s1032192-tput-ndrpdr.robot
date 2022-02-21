@@ -90,8 +90,8 @@
 # Ramp-up settings
 | ${ramp_up_rate}= | ${70000}
 # Traffic profile
-| ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h-pps
-| ${transaction_type}= | tcp_pps
+| ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h-tput
+| ${transaction_type}= | tcp_tput
 | ${disable_latency}= | ${True}
 
 *** Keywords ***

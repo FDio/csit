@@ -88,7 +88,7 @@
 | ${packets_per_transaction_and_direction}= | ${33}
 # Traffic profile
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
-| ${transaction_type}= | udp_pps
+| ${transaction_type}= | udp_tput
 | ${disable_latency}= | ${True}
 
 *** Keywords ***

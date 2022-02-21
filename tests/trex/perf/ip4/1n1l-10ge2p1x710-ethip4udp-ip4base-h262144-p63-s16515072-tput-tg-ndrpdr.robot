@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,8 +16,8 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
 | ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | IP4FWD
-| ... | IP4BASE | N2N | TCP | TCP_PPS | TG_DRV_IGB_UIO | SCALE | HOSTS_262144
-| ... | ethip4tcp-ip4base-h262144-p63-s16515072-pps-tg
+| ... | IP4BASE | N2N | UDP | UDP_TPUT | TG_DRV_IGB_UIO | SCALE | HOSTS_262144
+| ... | ethip4udp-ip4base-h262144-p63-s16515072-tput-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
@@ -26,8 +26,7 @@
 |
 | Test Template | Local Template
 |
-| # TODO CSIT-1765: Unify suite Documentation.
-| Documentation | **PPS on lightweight TCP transactions with L1 cross connect**
+| Documentation | **TPUT on lightweight UDP transactions with L1 cross connect**
 | ... |
 | ... | - **[Top] Network Topologies:** TG-TG 1-node circular topology \
 | ... | with single links between nodes.
@@ -56,11 +55,11 @@
 # Scale settings
 | ${n_hosts}= | ${262144}
 | ${n_ports}= | ${63}
-| ${packets_per_transaction_and_direction}= | ${11}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
+| ${packets_per_transaction_and_direction}= | ${33}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h-pps
-| ${transaction_type}= | tcp_pps
+| ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-tput
+| ${transaction_type}= | udp_tput
 | ${disable_latency}= | ${True}
 
 *** Keywords ***
@@ -81,6 +80,6 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B--ethip4tcp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| 64B--ethip4udp-ip4base-h262144-p63-s16515072-tput-tg-ndrpdr
 | | [Tags] | 64B
 | | frame_size=${64}

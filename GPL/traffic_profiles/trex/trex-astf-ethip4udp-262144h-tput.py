@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -27,15 +27,15 @@ Traffic profile:
    1 --> 0 (server -> client, responses) at the same time.
  - Packet: ETH / IP / UDP
  - Direction 0 --> 1:
-   - Source IP address range:      192.168.0.0 - 192.168.3.255
-   - Destination IP address range: 20.0.0.0 - 20.0.3.255
+   - Source IP address range:      172.16.0.0 - 172.19.255.255
+   - Destination IP address range: 20.16.0.0 - 20.19.255.255
  - Direction 1 --> 0:
    - Source IP address range:      destination IP address from packet received
      on port 1
    - Destination IP address range: source IP address from packet received
      on port 1
 
-This is a profile for PPS tests, it combines UDP connect and data transfer.
+This is a profile for TPUT tests, it combines UDP connect and data transfer.
 No delays, server response waits for full request.
 """
 
@@ -52,10 +52,10 @@ class TrafficProfile(TrafficProfileBaseClass):
         super(TrafficProfileBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.3.255"
-        self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.3.255"
+        self.p1_src_start_ip = u"172.16.0.0"
+        self.p1_src_end_ip = u"172.19.255.255"
+        self.p1_dst_start_ip = u"20.16.0.0"
+        self.p1_dst_end_ip = u"20.19.255.255"
 
         self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B UDP
 
@@ -64,7 +64,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         self.n_data = 32  # TODO: set via input parameter
         self.m_delay = 2000000  # delay 2000s (2,000,000 ms)
         self.u_delay = 1000 * self.m_delay  # delay 2000s (2,000,000,000 us)
-        self.limit = 64512
+        self.limit = 16515072
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
@@ -85,7 +85,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         prog_c = ASTFProgram(stream=False)
         prog_c.set_keepalive_msg(self.m_delay)
         prog_c.send_msg(self.udp_data)
-        # No delay, PPS tests combine connect and data send (no data receive).
+        # No delay, TPUT tests combine connect and data send (no data receive).
         prog_c.set_var(u"var1", self.n_data)
         prog_c.set_label(u"a:")
         prog_c.send_msg(self.udp_data)
