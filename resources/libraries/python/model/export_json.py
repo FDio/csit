@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -93,10 +93,7 @@ class export_json():
     def warn_on_bad_export(self):
         """If bad state is detected, log a warning and clean up state."""
         if self.raw_file_path is not None or self.raw_data is not None:
-            logger.warn(
-                f"Previous export not clean, path {self.raw_file_path}\n"
-                f"data: {self.raw_data}"
-            )
+            logger.warn(f"Previous export not clean, path {self.raw_file_path}")
             self.raw_data = None
             self.raw_file_path = None
 
