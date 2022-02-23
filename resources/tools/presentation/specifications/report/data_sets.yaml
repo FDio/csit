@@ -1190,6 +1190,7 @@
       - 10  # rls2202.rc2 NDRPDR iter env 9
       - 16  # rls2202.rc2 NDRPDR iter env 9
       - 17  # rls2202.rc2 NDRPDR iter env 9
+      - 18  # rls2202.rc2 NDRPDR iter env 9
       - 19  # rls2202.rc2 NDRPDR iter env 9
 
   vpp-2n-icx-curr-iter-best:
@@ -1220,12 +1221,16 @@
   vpp-soak-vs-ndr-2n-icx-ref:
     csit-vpp-perf-report-iterative-2202-2n-icx:
       - 10  # rls2202.rc2 NDRPDR iter env 9
+      - 16  # rls2202.rc2 NDRPDR iter env 9
       - 17  # rls2202.rc2 NDRPDR iter env 9
+      - 18  # rls2202.rc2 NDRPDR iter env 9
       - 19  # rls2202.rc2 NDRPDR iter env 9
   vpp-soak-vs-ndr-2n-icx:
     csit-vpp-perf-report-iterative-2202-2n-icx:
       - 10  # rls2202.rc2 NDRPDR iter env 9
+      - 16  # rls2202.rc2 NDRPDR iter env 9
       - 17  # rls2202.rc2 NDRPDR iter env 9
+      - 18  # rls2202.rc2 NDRPDR iter env 9
       - 19  # rls2202.rc2 NDRPDR iter env 9
       - 15  # rls2202.rc2 soak env 9
 
@@ -1235,18 +1240,18 @@
 
   vpp-2n-icx-curr-cov:
     csit-vpp-perf-report-coverage-2202-2n-icx:
-      # - 1   # rls2202.rc2 NDRPDR cov env 9
+      - 1   # rls2202.rc2 NDRPDR cov env 9
       - 2   # rls2202.rc2 NDRPDR cov env 9
       - 3   # rls2202.rc2 NDRPDR cov env 9
       - 4   # rls2202.rc2 NDRPDR cov env 9
       - 5   # rls2202.rc2 NDRPDR cov env 9
-      # - 6   # rls2202.rc2 NDRPDR cov env 9
+      - 6   # rls2202.rc2 NDRPDR cov env 9
       - 7   # rls2202.rc2 NDRPDR cov env 9
       - 8   # rls2202.rc2 NDRPDR cov env 9
       # - 9   # rls2202.rc2 NDRPDR cov env 9
-      # - 10  # rls2202.rc2 NDRPDR cov env 9
+      - 10  # rls2202.rc2 NDRPDR cov env 9
       - 11  # rls2202.rc2 NDRPDR cov env 9
-      # - 12  # rls2202.rc2 NDRPDR cov env 9
+      - 12  # rls2202.rc2 NDRPDR cov env 9
       - 13  # rls2202.rc2 NDRPDR cov env 9
       # - 14  # rls2202.rc2 NDRPDR cov env 9
       - 15  # rls2202.rc2 NDRPDR cov env 9
@@ -1312,13 +1317,13 @@
       - 20  # rls2202.rc2 NDRPDR cov env 9
       - 21  # rls2202.rc2 NDRPDR cov env 9
       - 22  # rls2202.rc2 NDRPDR cov env 9
-      # - 23  # rls2202.rc2 NDRPDR cov env 9
+      - 23  # rls2202.rc2 NDRPDR cov env 9
       - 24  # rls2202.rc2 NDRPDR cov env 9
       - 25  # rls2202.rc2 NDRPDR cov env 9
       - 26  # rls2202.rc2 NDRPDR cov env 9
       - 27  # rls2202.rc2 NDRPDR cov env 9
       - 28  # rls2202.rc2 NDRPDR cov env 9
-      # - 29  # rls2202.rc2 NDRPDR cov env 9
+      - 29  # rls2202.rc2 NDRPDR cov env 9
       - 30  # rls2202.rc2 NDRPDR cov env 9
       - 31  # rls2202.rc2 NDRPDR cov env 9
       - 32  # rls2202.rc2 NDRPDR cov env 9
