@@ -744,7 +744,7 @@ function reserve_and_cleanup_testbed () {
         fi
 
         # Wait ~3minutes before next try.
-        sleep_time="$[ ( ${RANDOM} % 20 ) + 180 ]s" || {
+        sleep_time="$[ ( ${RANDOM} % 2 ) + 18 ]s" || {
             die "Sleep time calculation failed."
         }
         echo "Sleeping ${sleep_time}"
