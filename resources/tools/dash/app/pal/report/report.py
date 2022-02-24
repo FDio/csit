@@ -18,10 +18,10 @@ import dash
 from dash import dcc
 from dash import html
 from dash import dash_table
-import numpy as np
-import pandas as pd
 
-from .data import create_dataframe
+from .data import read_stats
+from .data import read_trending_mrr, read_trending_ndrpdr
+from .data import read_iterative_mrr, read_iterative_ndrpdr
 from .layout import html_layout
 
 
@@ -43,34 +43,66 @@ def init_report(server):
         ],
     )
 
-    # Load DataFrame
-    df = create_dataframe()
-
     # Custom HTML layout
     dash_app.index_string = html_layout
 
     # Create Layout
     dash_app.layout = html.Div(
         children=[
-            create_data_table(df),
+            html.Div(
+                children=create_data_table(
+                    read_stats().dropna(),
+                    u"database-table-stats"
+                )
+            ),
+            html.Div(
+                children=create_data_table(
+                    read_trending_mrr().dropna(),
+                    u"database-table-mrr"
+                )
+            ),
+            html.Div(
+                children=create_data_table(
+                    read_trending_ndrpdr().dropna(),
+                    u"database-table-ndrpdr"
+                )
+            ),
+            html.Div(
+                children=create_data_table(
+                    read_iterative_mrr().dropna(),
+                    u"database-table-iterative-mrr"
+                )
+            ),
+            html.Div(
+                children=create_data_table(
+                    read_iterative_ndrpdr().dropna(),
+                    u"database-table-iterative-ndrpdr"
+                )
+            )
         ],
         id=u"dash-container",
     )
     return dash_app.server
 
 
-def create_data_table(df):
+def create_data_table(df, id):
     """Create Dash datatable from Pandas DataFrame.
 
     DEMO
     """
 
     table = dash_table.DataTable(
-        id=u"database-table",
+        id=id,
         columns=[{u"name": i, u"id": i} for i in df.columns],
         data=df.to_dict(u"records"),
+        fixed_rows={'headers': True},
         sort_action=u"native",
         sort_mode=u"native",
         page_size=5,
+        style_header={
+            'overflow': 'hidden',
+            'textOverflow': 'ellipsis',
+            'minWidth': 95, 'maxWidth': 95, 'width': 95,
+        }
     )
     return table
