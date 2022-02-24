@@ -70,8 +70,8 @@ job "${job_name}" {
       #     https://www.nomadproject.io/docs/job-specification/artifact
       #
       artifact {
-        source      = "git::https://github.com/pmikus/glue-etl-pyspark.git"
-        destination = "local/etl"
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
       }
 
       # The "driver" parameter specifies the task driver that should be used to
@@ -90,7 +90,7 @@ job "${job_name}" {
           "--executor-memory", "20g",
           "trending.py"
         ]
-        work_dir = "/local/etl"
+        work_dir = "/local/csit/csit.infra.etl"
       }
 
       # The env stanza configures a list of environment variables to populate
@@ -124,8 +124,8 @@ job "${job_name}" {
       #     https://www.nomadproject.io/docs/job-specification/artifact
       #
       artifact {
-        source      = "git::https://github.com/pmikus/glue-etl-pyspark.git"
-        destination = "local/etl"
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
       }
 
       # The "driver" parameter specifies the task driver that should be used to
@@ -144,7 +144,7 @@ job "${job_name}" {
           "--executor-memory", "10g",
           "stats.py"
         ]
-        work_dir = "/local/etl"
+        work_dir = "/local/csit/csit.infra.etl"
       }
 
       # The env stanza configures a list of environment variables to populate
@@ -213,8 +213,8 @@ job "${job_name}" {
       #     https://www.nomadproject.io/docs/job-specification/artifact
       #
       artifact {
-        source      = "git::https://github.com/pmikus/glue-etl-pyspark.git"
-        destination = "local/etl"
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
       }
 
       # The "driver" parameter specifies the task driver that should be used to
@@ -233,7 +233,7 @@ job "${job_name}" {
           "--executor-memory", "20g",
           "coverage_rls2202.py"
         ]
-        work_dir = "/local/etl"
+        work_dir = "/local/csit/csit.infra.etl"
       }
 
       # The env stanza configures a list of environment variables to populate
@@ -267,8 +267,8 @@ job "${job_name}" {
       #     https://www.nomadproject.io/docs/job-specification/artifact
       #
       artifact {
-        source      = "git::https://github.com/pmikus/glue-etl-pyspark.git"
-        destination = "local/etl"
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
       }
 
       # The "driver" parameter specifies the task driver that should be used to
@@ -287,7 +287,7 @@ job "${job_name}" {
           "--executor-memory", "20g",
           "iterative_rls2202.py"
         ]
-        work_dir = "/local/etl"
+        work_dir = "/local/csit/csit.infra.etl"
       }
 
       # The env stanza configures a list of environment variables to populate
