@@ -18,10 +18,8 @@ import dash
 from dash import dcc
 from dash import html
 from dash import dash_table
-import numpy as np
-import pandas as pd
 
-from .data import create_dataframe
+from .data import read_stats, read_mrr, read_ndrpdr
 from .layout import html_layout
 
 
@@ -44,7 +42,9 @@ def init_report(server):
     )
 
     # Load DataFrame
-    df = create_dataframe()
+    df_stats = read_stats()
+    df_mrr = read_mrr()
+    df_ndrpdr = read_ndrpdr()
 
     # Custom HTML layout
     dash_app.index_string = html_layout
@@ -52,21 +52,38 @@ def init_report(server):
     # Create Layout
     dash_app.layout = html.Div(
         children=[
-            create_data_table(df),
+            html.Div(
+                children=create_data_table(
+                    df_stats.dropna(),
+                    u"database-table-stats"
+                )
+            ),
+            html.Div(
+                children=create_data_table(
+                    df_mrr.dropna(),
+                    u"database-table-mrr"
+                )
+            ),
+            html.Div(
+                children=create_data_table(
+                    df_ndrpdr.dropna(),
+                    u"database-table-ndrpdr"
+                )
+            )
         ],
         id=u"dash-container",
     )
     return dash_app.server
 
 
-def create_data_table(df):
+def create_data_table(df, id):
     """Create Dash datatable from Pandas DataFrame.
 
     DEMO
     """
 
     table = dash_table.DataTable(
-        id=u"database-table",
+        id=id,
         columns=[{u"name": i, u"id": i} for i in df.columns],
         data=df.to_dict(u"records"),
         sort_action=u"native",
