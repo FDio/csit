@@ -1,0 +1,244 @@
+<!-- MarkdownTOC autolink="true" -->
+
+- [TODO sequence](#todo-sequence)
+- [sut infra hw](#sut-infra-hw)
+- [tg infra](#tg-infra)
+- [sut infra config](#sut-infra-config)
+  - [sut with containers](#sut-with-containers)
+  - [sut with VMs](#sut-with-vms)
+  - [sut aws ec2](#sut-aws-ec2)
+- [tg infra config](#tg-infra-config)
+- [telemetry](#telemetry)
+- [ubuntu 22.04](#ubuntu-2204)
+
+<!-- /MarkdownTOC -->
+
+# TODO sequence
+
+- sut and tg infra, new yul1 hw builds
+  + seq-1
+    * 2x supermicro icx, ETA w/c 28-feb
+    * 2x ampere n1, ETA w/c 28-feb or w/c 7-mar
+    * TODO1: if above ETA dates hold, build 3n-amp with 2x ampere + 1x supermicro icx
+    * TODO2: if ampere delayed, build 2n-icx with 2x supermicro icx
+  + seq-2
+    * re-fit of MLX NICs into 3x 2n-clx TG 2p100ge, to be used for CVL testing on SUTs
+      - For existing Intel Xeon Cascadelake testbeds
+        + MCX556A-EDAT NIC 2p100GbE - $1,195.00
+        + need 4 NICs (3x TG, 1 TG loopback, 1 spare) => 5 NICs
+        + procurement authorized by TSC on Thu 24-feb
+    * TODO1 order 5x MCX556A-EDAT NIC 2p100GbE
+      - re-confirm all pluggables+cables are available on site in YUL1
+    * TODO2 install 5x MCX556A-EDAT
+  + seq-3
+    * 10x supermicro icx ETA TBC
+  + seq-4
+    * fit of 3x MLX NICs (1 in TG, 2 in SUTs) into 1x 3n-amp testbeds, to be used for MLX testing on SUTs
+  + seq-5
+    * fit of MLX NICs into 3x icx testbeds, to be used for MLX and CVL testing on SUTs
+  + seq-6
+    * re-purpose and/or de-commision all skx perf testbeds
+
+- aws builds
+  + seq-1
+    * calibration of c5n 2n and 3n instances
+      - trex + ena-dpdk calibration
+        + TODO create aws topology with TRex with loopback link
+      - trex mlrsearch impact on c5n 4xl packet drops due to admin rate limit
+        + can't start with MRR/MRT
+        + need to change mlrsearch initial search phase(s)
+  + seq-2
+    * new ec2 instances
+      - add arm instances
+      - efa vs ena dpdp
+  + seq-3
+    - new intel icx
+
+- nic compatibility
+  + seq-1
+    * fvl nic
+      - TODO VPP-1995 "VPP DPDK i40e (FVL NICs) can't initialize VF interface with configured VLAN (fvl api: vlan_stripping_v2)".
+  + seq-2
+    * fvl nic
+      - TODO update compatibility matrix for vpp-af-xdp, vpp-avf, dpdk-i40e-vf, dpdk-i40e-pf vpp tests, for current CSIT environment
+  + seq-3
+    * fvl nic
+      - TODO update compatibility matrix for vpp-af-xdp, vpp-avf, dpdk-i40e-vf, dpdk-i40e-pf vpp tests, for updated CSIT environment, ubuntu 22.04
+  + seq-4
+    * mlx nic
+      - TODO update compatibility matrix for vpp-af-xdp, vpp-avf, dpdk-i40e-vf, dpdk-i40e-pf vpp tests, for current CSIT environment
+  + seq-5
+    * cvl nic
+      - TODO update compatibility matrix for vpp-af-xdp, vpp-avf, dpdk-i40e-vf, dpdk-i40e-pf vpp tests, for current CSIT environment
+
+# sut infra hw
+
+- icx testbeds
+  + new hw: 2p100ge nic mlx connectx5, commission, once ordered, shipped and delivered
+  + new hw: 2n-icx, 3n-icx, build and commission, once shipped & delivered
+
+- ampere n1 testbeds
+  + new hw: 3n-amp, build and commission, once shipped & delivered
+  + supply mlx connectx5
+
+- dnv testbeds
+  + mode: best effort support
+
+- skx testbeds
+  + without change
+
+- zn2 testbeds
+  + without change
+
+- fvl nic
+  + fw, driver compatibility matrix for vpp-af-xdp, vpp-avf, dpdk-i40e-vf, dpdk-i40e-pf vpp tests
+  + driver change management
+    * kernel driver changes
+    * dpdk version change
+    * ubuntu or linux kernel version change
+
+- cvl nic
+  + fw, driver compatibility matrix for vpp-af-xdp, vpp-avf, dpdk-ice-vf, dpdk-ice-pf vpp tests
+  + driver change management
+    * kernel driver changes
+    * dpdk version change
+    * ubuntu or linux kernel version change
+
+- mlx nic
+  + fw, driver compatibility matrix for vpp-rdma, dpdk-mlx5-vf, dpdk-mlx5-pf vpp tests
+  + driver change management
+    * kernel driver changes
+
+# tg infra
+
+- clx testbeds
+  + replace cvl with 2p100ge nic mlx connectx5
+
+# sut infra config
+
+- hugepages
+  + today, 2 MB
+  + experiments, 1 GB
+  + no noticeable difference in throughput
+  + telemetry analysis to be done
+
+- core frequency
+  + shall we switch to all-core-turbo ?
+
+## sut with containers
+
+- vpp in container
+- calibration and versioning strategy
+
+## sut with VMs
+
+- vpp in VM
+- testpmd/l3fwd in VM
+- calibration and versioning strategy
+
+## sut aws ec2
+
+- c5n 4xl
+  + mlrsearch with mrr triggering reaching admin rate limit
+    * need solution from Vratko
+    * e.g. replace first mrr trials with exponential search instead
+  + ec2 telemetry reporting
+    * pkt drop reasons
+      - per trial
+      - per mlrsearch test duration
+    * e.g. limit exceeded
+      - pps
+      - Gbps
+      - else?
+
+- c6gn 4xl
+  + patch ready for test
+  + consider only after cleaning c5n 4xl
+
+# tg infra config
+
+- seq-1: calibration for STL
+  + vpp in l2xc config
+  + performance consistency
+    * TODO Calibrate: 64B, 78B
+    * Calibrate TBD: IMIX 7 : 4 : 1, 1518B : 570B : (64B | 78B)
+    * Calibrate not needed: 1518B
+    * TO DISCUSS calibrate Jumbo frame
+  + tx duration stretching handling
+    * detection
+    * optimizations
+      - trex code
+      - trex api's
+      - csit code
+  + rx in-flight handling
+  + trex loop tests
+    * clx 25 GbE FVL
+    * icx 100 GbE CVL
+  + ramp-up phase handling
+
+- calibration for ASTF
+  + performance consistency
+  + tcp
+    * 64B
+    * file transfers?
+  + udp
+    * 64B
+    * file transfers?
+  + pcap
+    * TODO examples from trex repo?
+  + trex loop tests
+    * clx 25 GbE FVL
+    * icx 100 GbE CVL
+  + trex vpp-ip4 tests
+
+- central scapy-to-pcap script repository
+
+- performance
+  + 100 GbE MLX
+    * STL only
+    * number of threads
+    * thread allocation to trex tasks
+      - rx
+      - tx
+      - latency
+      - TODO else?
+  + 10 GbE, 25 GbE FVL
+    * STL and ASTF
+  + 100 GbE CVL - future
+
+# telemetry
+
+- vpp interface counters
+  + show hw verbose
+  + show interface
+  + TODO complete the list
+
+- vpp memory
+  + show memory
+  + show fib memory
+  + show physmem
+
+- vpp perfmon
+  + incl. `show runtime`
+
+- linux telemetry
+
+# ubuntu 22.04
+
+- perf
+  + slow rollout (fmlm - first machine, last machine)
+
+- backend
+  + nomad infra
+  + nomad version bump
+
+- containers
+  + add 22.04
+
+- jenkins
+  + add jobs
+
+- csit
+  + bump python
+  + bump pypi
+  + debug
