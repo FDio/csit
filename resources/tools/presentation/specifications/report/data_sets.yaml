@@ -1205,6 +1205,7 @@
       - 43  # rls2110.rel NDRPDR iter env 8
 
   vpp-3n-aws-curr-iter:
+    csit-vpp-perf-report-iterative-2202-3n-aws:
       - 12  # rls2202.rel NDRPDR iter env 9
       - 13  # rls2202.rel NDRPDR iter env 9
       - 14  # rls2202.rel NDRPDR iter env 9
