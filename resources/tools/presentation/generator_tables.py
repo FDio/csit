@@ -1831,8 +1831,8 @@ def table_comparison(table, input_data):
                             include_tests=table[u"include-tests"]
                         )
 
-        if table[u"include-tests"] in (u"NDR", u"PDR") or \
-                u"latency" in table[u"include-tests"]:
+        if table[u"include-tests"] in (u"NDR", u"PDR", u"hoststack", u"vsap") \
+                or u"latency" in table[u"include-tests"]:
             for tst_name, tst_data in col_data[u"data"].items():
                 if tst_data[u"data"]:
                     tst_data[u"mean"] = mean(tst_data[u"data"])
