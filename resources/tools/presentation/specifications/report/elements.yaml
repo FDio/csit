@@ -1583,6 +1583,52 @@
 ################################################################################
 # VPP
 
+# VPP Performance Changes 3n-skx Hoststack
+- type: "table"
+  title: "VPP Performance Changes 3n-skx Hoststack"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-hoststack"
+  include-tests: "hoststack"
+  filter: "all"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-3n-skx-prev-iter-hoststack-old-env"
+    - title: "2202.0-9"
+      data-set: "vpp-3n-skx-curr-iter-hoststack"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: Hoststack on 3n-skx with xxv710.'
+    - 'YYMM.V-E:             [Gbps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
+# VPP Performance Changes 2n-clx VSAP
+- type: "table"
+  title: "VPP Performance Changes 2n-clx VSAP"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-clx-vsap"
+  include-tests: "vsap"
+  filter: "all"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-2n-clx-curr-iter-vsap-old-env"
+    - title: "2202.0-9"
+      data-set: "vpp-2n-clx-curr-iter-vsap"
+  comparisons:
+    - title: "2202.0-9 vs 2110.0-8"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: VSAP on 2n-clx with cx556a.'
+    - 'YYMM.V-E:             [cps|rps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "8" for CSIT rls2110, "9" for CSIT rls2202).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2202.0-9 vs 2110.0-8: Compares VPP code current vs previous.'
+
 # VPP Performance Changes 3n-skx 2t1c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 2t1c pdr"

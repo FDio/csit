@@ -94,6 +94,19 @@
     csit-vpp-perf-report-iterative-2202-3n-skx:
       - 27  # rls2202.rel MRR iter env 9
 
+  vpp-3n-skx-prev-iter-hoststack-old-env:
+    csit-vpp-perf-report-iterative-2110-3n-skx:
+      - 40  # rls2110.rel NDRPDR iter env 8
+      - 41  # rls2110.rel NDRPDR iter env 8
+      - 42  # rls2110.rel NDRPDR iter env 8
+      - 43  # rls2110.rel NDRPDR iter env 8
+      - 44  # rls2110.rel NDRPDR iter env 8
+      - 45  # rls2110.rel NDRPDR iter env 8
+      - 46  # rls2110.rel NDRPDR iter env 8
+      - 47  # rls2110.rel NDRPDR iter env 8
+      - 48  # rls2110.rel NDRPDR iter env 8
+      - 49  # rls2110.rel NDRPDR iter env 8
+
   vpp-3n-skx-curr-iter-hoststack:
     csit-vpp-perf-report-iterative-2202-3n-skx:
       - 29  # rls2202.rel hoststack iter env 9
@@ -565,6 +578,7 @@
       - 61  # rls2202.rel NDRPDR iter env 9
       - 62  # rls2202.rel NDRPDR iter env 9
       - 64  # rls2202.rel NDRPDR iter env 9
+      - 71  # rls2202.rel NDRPDR iter env 9
       - 78  # rls2202.rel NDRPDR iter env 9
       - 79  # rls2202.rel NDRPDR iter env 9
       - 83  # rls2202.rel NDRPDR iter env 9
@@ -592,6 +606,19 @@
   vpp-2n-clx-curr-iter-gso:
     csit-vpp-perf-report-iterative-2202-2n-clx:
       - 51  # rls2202.rel MRR GSO iter env 9
+
+  vpp-2n-clx-curr-iter-vsap-old-env:
+    csit-vpp-perf-report-iterative-2110-2n-clx:
+      - 95  # rls2110.rel VSAP iter env 8
+      - 96  # rls2110.rel VSAP iter env 8
+      - 97  # rls2110.rel VSAP iter env 8
+      - 98  # rls2110.rel VSAP iter env 8
+      - 99  # rls2110.rel VSAP iter env 8
+      - 101 # rls2110.rel VSAP iter env 8
+      - 104 # rls2110.rel VSAP iter env 8
+      - 105 # rls2110.rel VSAP iter env 8
+      - 106 # rls2110.rel VSAP iter env 8
+      - 107 # rls2110.rel VSAP iter env 8
 
   vpp-2n-clx-curr-iter-vsap:
     csit-vpp-perf-report-iterative-2202-2n-clx:
