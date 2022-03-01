@@ -563,6 +563,22 @@ def _tpc_insert_data(target, src, include_tests):
                 target[u"data"].append(
                     float(u"nan") if lat == -1 else lat * 1e6
                 )
+        elif include_tests == u"hoststack":
+            try:
+                target[u"data"].append(
+                    float(src[u"result"][u"bits_per_second"])
+                )
+            except KeyError:
+                target[u"data"].append(
+                    (float(src[u"result"][u"client"][u"tx_data"]) * 8) /
+                    ((float(src[u"result"][u"client"][u"time"]) +
+                      float(src[u"result"][u"server"][u"time"])) / 2)
+                )
+        elif include_tests == u"vsap":
+            try:
+                target[u"data"].append(src[u"result"][u"cps"])
+            except KeyError:
+                target[u"data"].append(src[u"result"][u"rps"])
     except (KeyError, TypeError):
         pass
 
