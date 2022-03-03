@@ -44,6 +44,8 @@ informative:
 
 --- abstract
 
+TODO: Update after all sections are ready.
+
 This document proposes changes to [RFC2544], specifically to packet
 throughput search methodology, by defining a new search algorithm
 referred to as Multiple Loss Ratio search (MLRsearch for short). Instead
@@ -68,6 +70,8 @@ can be done to describe the replicability.
 --- middle
 
 # Terminology
+
+TODO: Update after most other sections are updated.
 
 * Frame size: size of an Ethernet Layer-2 frame on the wire, including
   any VLAN tags (dot1q, dot1ad) and Ethernet FCS, but excluding Ethernet
@@ -150,7 +154,129 @@ can be done to describe the replicability.
 * Trial duration: amount of time over which packets are transmitted
   in a single measurement step.
 
+## TODO: Incorporate newer terms
+
+Since publication of RFC2544, newer terms were introduced in later RFCs,
+many of which are useful when describing RFC2544 requirements
+and this document's ideas.
+
+### DUT/SUT
+
+https://datatracker.ietf.org/doc/html/rfc2544#section-19
+already hints at DUT (part in whose performance we are interested)
+being maybe different from SUT (part we are able to measure).
+
+https://datatracker.ietf.org/doc/html/rfc2285#section-3.1
+defines DUT and SUT, but SUT there feels "intentional",
+whereas when testing software/virtual DUTs, the host machine
+is "unintentional but unavoidable" part of SUT.
+
+### TG and TA
+
+The sending and receiving devices, as parts of test equipment,
+already mentioned in https://datatracker.ietf.org/doc/html/rfc2544#section-6
+are named Traffic Generator (TG) and Traffic Analyzer (TA).
+
+TODO: https://datatracker.ietf.org/doc/html/rfc6894#section-4
+already has the definitions, but maybe there is even earlier RFC?
+
+# Scope of this document
+
+TODO: Quick recap of RFC2544 here?
+
+## Intentions
+
+The intention of this document is to provide suggestions
+and list possible extensions to RFC2544.
+No part of RFC2544 is intended to be obsoleted by this document.
+
+This document may contain examples which contradict RFC2544 requirements.
+Such examples should not be considered as suggestions to violate RFC2544.
+
+## Additional requirements
+
+RFC2544 has implicit requirements. They are made explicit in this section.
+Recommendations on how to address the implicit requirements
+is out of scope of this document in general, but some ideas are mentioned.
+
+### Tester reliability
+
+TODO: RFC2544 uses "tester", some later RFCs use "test equipment".
+What is the authoritative document introducing "test equipment"?
+
+Both TG and TA need to be able to handle the required load.
+
+TODO expand: If it results in smaller Throughput reported,
+it is not a big issue. Treat similarly to bandwidth and PPS limits of NICs.
+
+TODO expand: TA dropping packets when loaded only lowers Throughput,
+so not an issue.
+
+TODO expand: TG sending less packets but stopping at target duration
+is also fine.
+
+TODO expand: Duration stretching is not fine. Neither "check for actual duration"
+nor "start+sleep+stop" are reliable solutions due to time overheads
+of TG starting/stopping traffic (and TA stopping counting packets).
+
+Solutions (even problem formulations) are outside of the scope of this document.
+
+TODO: Mention self-test as an idea,
+https://datatracker.ietf.org/doc/html/rfc8219#section-9.2.1
+
+## TODO: Bad behavior of SUT
+
+(Very large buffers, non-determinism, cold start, perf decrease over time, ...)
+(Not even sure which section this belongs to, perhaps multiple.)
+
+## Extensions
+
+### Non-zero target loss ratio
+
+TODO expand: NFVs have trouble with NDR, so PDR is introduced.
+
+### Metrics other than frames.
+
+TODO expand: Small TCP transaction can succeed even if some frames are lost.
+
+TODO expand: It is possible for loss ratio to use different metric than load.
+E.g. pps loss ratio when traffic profile uses higher level transactions per second.
+
+## Old Industry Standard
+
+TODO: Recap https://datatracker.ietf.org/doc/html/rfc2544#section-26.1
+with https://www.rfc-editor.org/errata/eid422
+
+This description does not even say when the search procedure has to stop.
+
+TODO: Should we mention it can be "gamed" for non-deterministic SUTs?
+Simply lower by very small amounts and hope for lucky zero loss trial.
+
+TODO expand: Bisect
+
+Usually, some kind of precision goal is given, search stops
+when lower bound is close enough to upper bound.
+Bisection (halving in the quantity used in precision goal, usually pps)
+is both simple and quite good at minimizing search time.
+
+TODO: Link to section discussing not-exact-half tricks.
+
+(No recommendations on min and max load, except the obvios zero and bandwidth.)
+
+## Suggestions
+
+This document gives several independent ideas on how to save search time
+(in average case) while conforming to RFC2544 (and some of extensions).
+
+This document also specifies one particular way to combine all the ideas
+into a single search algorithm class (single logic but few tweakable parameters).
+
+TODO: How important is to discuss particular implementation choices,
+especially when motivated by non-deterministic SUT behavior?
+
 # MLRsearch Background
+
+TODO: Old section, probably obsoleted by preceding section(s).
 
 Multiple Loss Ratio search (MLRsearch) is a packet throughput search
 algorithm suitable for deterministic systems (as opposed to
