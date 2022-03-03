@@ -8,10 +8,27 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
+   - **Regressions with DPDK drivers**: Change from DPDK v21.08 to DPDK
+     v21.11 introduced regression across all tests using dpdk
+     drivers (with dpdk_plugin loaded). Compared to previous VPP
+     release performance drop varies in the range of -15% to -6%,
+     depending on test. It is related to updated MTU checks within
+     DPDK code and associated VPP code changes. See
+     `VPP v2202 release notes <https://s3-docs.fd.io/vpp/22.02/aboutvpp/releasenotes/v22.02.html>`_
+     and :ref:`vpp_known_issues`.
+
+   - **Number of CSIT 9000B frame tests failing**: tests with higher
+     encapsulation overhead are failing due to exceeding default
+     Ethernet Maximum Frame Size value that has been reduced by MTU
+     related VPP code changes. See
+     `VPP v2202 release notes <https://s3-docs.fd.io/vpp/22.02/aboutvpp/releasenotes/v22.02.html>`_
+     and :ref:`vpp_known_issues`.
+
    - **Intel Xeon Ice Lake**: Performance test data for these platforms
-     continues to be provided by external Intel benchmarking labs
-     executing |csit-release| tests. For details about the physical
-     setup see :ref:`tested_physical_topologies`.
+     is now provided by testbeds newly installed in FD.io CSIT labs.
+     For details about the physical setup see
+     :ref:`physical_testbeds_2n_icx` and
+     :ref:`physical_testbeds_3n_icx`.
 
    - **Reduction of tests**: Removed certain test variations executed
      iteratively for the report (as well as in daily and weekly
@@ -23,8 +40,8 @@ Changes in |csit-release|
      :ref:`test_environment_versioning`.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, and
-     deprecation of VAT, CLI is used in CSIT for many VPP scale tests.
-     See known issues below.
+     deprecation of VAT, VPP CLI is used in CSIT for many VPP scale
+     tests. See :ref:`vpp_known_issues`.
 
    - **General Code Housekeeping**: Ongoing code optimizations and bug
      fixes.
@@ -43,23 +60,55 @@ Changes in |csit-release|
 Known Issues
 ------------
 
-Fixed
-_____
-
-Issues reported in previous releases which were fixed in this release:
+New
+___
 
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1789                              | AVF driver does not perform RSS in a deterministic way.                                                   |
-|    | <https://jira.fd.io/browse/CSIT-1789>`_ | VPP now uses the same RSS key with AVF driver as with DPDK driver.                                        |
+|  1 | `CSIT-1799                              | All NAT44-ED 16M scale tests fail while setting NAT44 address range.                                      |
+|    | <https://jira.fd.io/browse/CSIT-1799>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  2 | `CSIT-1786                              | IP4 and IP6 scale tests failing with no traffic forwarded.                                                |
-|    | <https://jira.fd.io/browse/CSIT-1786>`_ | CSIT replaced the old single VAT command by file full of "exec" CLI commands executed by VAT.             |
+|  2 | `CSIT-1800                              | All Geneve L3 mode scale tests (1024 tunnels) are failing.                                                |
+|    | <https://jira.fd.io/browse/CSIT-1800>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  3 | `CSIT-1801                              | 9000B payload frames not forwarded over tunnels due to violating supported Max Frame Size (VxLAN, LISP,   |
+|    | <https://jira.fd.io/browse/CSIT-1801>`_ | SRv6).                                                                                                    |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  4 | `CSIT-1802                              | AF-XDP - NDR tests failing from time to time.                                                             |
+|    | <https://jira.fd.io/browse/CSIT-1802>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  5 | `CSIT-1803                              | 3n-icx testbeds (Icelake): all IMIX aes128cbc-hmac512sha tests are failing due to excessive packet loss.  |
+|    | <https://jira.fd.io/browse/CSIT-1803>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  6 | `CSIT-1804                              | Sporadic packet drops at NDR Crypto, Ip4, L2, Srv6, VM vhost.                                             |
+|    | <https://jira.fd.io/browse/CSIT-1804>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  7 | `CSIT-1805                              | Hoststack vppecho-Bps tests failing with timeout.                                                         |
+|    | <https://jira.fd.io/browse/CSIT-1805>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  8 | `CSIT-1806                              | ethip6lispip6 half packets forwarded only.                                                                |
+|    | <https://jira.fd.io/browse/CSIT-1806>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  9 | `CSIT-xxxx                              | Tunnel encapsulations tests failing with 9000B Ethernet frames.                                           |
+|    | <https://jira.fd.io/browse/CSIT-xxxx>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 10 | `CSIT-xxxx                              | VPP performance regression with DPDK drivers.                                                             |
+|    | <https://jira.fd.io/browse/CSIT-xxxx>`_ |                                                                                                           |
+|    +-----------------------------------------+                                                                                                           |
+|    | `VPP-xxxx                               |                                                                                                           |
+|    | <https://jira.fd.io/browse/VPP-xxxx>`_  |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 11 | `CSIT-1808                              | 9000B memif tests failing.                                                                                |
+|    | <https://jira.fd.io/browse/CSIT-1800>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 12 | `CSIT-1809                              | 9000B vhostuser tests failing.                                                                            |
+|    | <https://jira.fd.io/browse/CSIT-1800>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
-Old
-___
+
+Previous
+________
 
 Issues reported in previous releases which still affect the current results.
 
@@ -91,11 +140,20 @@ Issues reported in previous releases which still affect the current results.
 |    | <https://jira.fd.io/browse/CSIT-1791>`_ | Two symptoms: 1. 10-20% regression across most tests. 2. DUT performance cap just below 38 Mpps.          |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
-New
-___
+Fixed
+_____
 
-No new issues appeared in |csit-release| for VPP performance tests,
-except for the performance changes listed below.
+Issues reported in previous releases which were fixed in this release:
+
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  # | JiraID                                  | Issue Description                                                                                         |
++====+=========================================+===========================================================================================================+
+|  1 | `CSIT-1789                              | AVF driver does not perform RSS in a deterministic way.                                                   |
+|    | <https://jira.fd.io/browse/CSIT-1789>`_ | VPP now uses the same RSS key with AVF driver as with DPDK driver.                                        |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  2 | `CSIT-1786                              | IP4 and IP6 scale tests failing with no traffic forwarded.                                                |
+|    | <https://jira.fd.io/browse/CSIT-1786>`_ | CSIT replaced the old single VAT command by file full of "exec" CLI commands executed by VAT.             |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Root Cause Analysis for Performance Changes
 -------------------------------------------

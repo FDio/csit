@@ -160,6 +160,8 @@ TG NICs:
 All Intel Xeon Cascadelake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux.
 
+.. _physical_testbeds_2n_icx:
+
 2-Node Xeon Icelake (2n-icx)
 ----------------------------
 
@@ -192,6 +194,8 @@ SUT and TG NICs:
 
 All Intel Xeon Icelake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux.
+
+.. _physical_testbeds_3n_icx:
 
 3-Node Xeon Icelake (3n-icx)
 ----------------------------
