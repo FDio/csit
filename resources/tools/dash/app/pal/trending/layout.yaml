@@ -1,0 +1,77 @@
+plot-trending:
+  title: ""
+  titlefont:
+    size: 16
+  autosize: True
+  showlegend: True
+  # width: 1100
+  height: 800
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Throughput [Mpps]"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+    rangeselector:
+      buttons:
+      - count: 14
+        label: "2w"
+        step: "day"
+        stepmode: "backward"
+      - count: 1
+        label: "1m"
+        step: "month"
+        stepmode: "backward"
+      - count: 2
+        label: "2m"
+        step: "month"
+        stepmode: "backward"
+      - count: 3
+        label: "3m"
+        step: "month"
+        stepmode: "backward"
+      - count: 4
+        label: "4m"
+        step: "month"
+        stepmode: "backward"
+      - count: 5
+        label: "5m"
+        step: "month"
+        stepmode: "backward"
+      - step: "all"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  legend:
+    orientation: "h"
+    y: -0.2
+    xanchor: "auto"
+    traceorder: "normal"
+    bordercolor: "rgb(238, 238, 238)"
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
