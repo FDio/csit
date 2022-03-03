@@ -1,4 +1,4 @@
-2n-aws-nitro-50g-ena:
+2n-aws-50ge1p1ena-dpdk:
   ip4-base:
     label: IPv4 Routing Base
     test:
@@ -32,7 +32,7 @@
 # 2n-clx-cx556a-rdma:
 # 2n-clx-x710-avf:
 # 2n-clx-x710-dpdk:
-# 2n-clx-xxv710-af-xdp:
+# 2n-clx-xxv710-af_xdp:
 # 2n-clx-xxv710-avf:
 #     l2-base:
 #     l2-scale:
@@ -64,7 +64,7 @@
 # 2n-skx-x710-dpdk:
 # 2n-skx-xxv710-avf:
 # 2n-skx-xxv710-dpdk:
-# 2n-tx2-xl710-af-xdp:
+# 2n-tx2-xl710-af_xdp:
 # 2n-tx2-xl710-avf:
 # 2n-tx2-xl710-dpdk:
 # 2n-zn2-x710-avf:
@@ -72,7 +72,7 @@
 # 2n-zn2-cx556a-rdma:
 # 2n-zn2-xxv710-avf:
 # 2n-zn2-xxv710-dpdk:
-3n-aws-nitro-50g-ena:
+3n-aws-50ge1p1ena-dpdk:
   ip4-base:
     label: IPv4 Routing Base
     test:
