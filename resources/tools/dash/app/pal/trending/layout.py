@@ -14,11 +14,14 @@
 """Plotly Dash HTML layout override.
 """
 
+import time
+from copy import deepcopy
 import logging
 
 from dash import dcc
 from dash import html
-from dash import Input, Output, callback
+from dash import callback_context
+from dash import Input, Output, State, callback
 from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
 
@@ -72,6 +75,20 @@ class Layout:
             "test-type": ""
         }
 
+        # State of controls:
+        self._ctrls = dict(
+            info_val=u"",
+            phy_val=None,
+            area_opts=list(),
+            area_val=None,
+            area_dis=True,
+            test_opts=list(),
+            test_val=None,
+            test_dis=True,
+            btn_val=None,
+            btn_dis=True,
+        )
+
     @property
     def html_layout(self):
         return self._html_layout
@@ -89,6 +106,20 @@ class Layout:
             "frame-size": "",
             "test-type": ""
         }
+
+    def _reset_ctrls(self):
+        self._ctrls = dict(
+            info_val=u"",
+            phy_val=None,
+            area_opts=list(),
+            area_val=None,
+            area_dis=True,
+            test_opts=list(),
+            test_val=None,
+            test_dis=True,
+            btn_val=None,
+            btn_dis=True,
+        )
 
     def add_content(self):
         """
@@ -202,41 +233,41 @@ class Layout:
                     clearable=False,
                 ),
 
-                # Change to radio buttons:
+                # # Change to radio buttons:
+                # html.Br(),
+                # html.Div(
+                #     children="Number of Cores"
+                # ),
+                # dcc.Dropdown(
+                #     id="dd-ctrl-core",
+                #     placeholder="Select a Number of Cores...",
+                #     disabled=True,
+                #     multi=False,
+                #     clearable=False,
+                # ),
+                # html.Br(),
+                # html.Div(
+                #     children="Frame Size"
+                # ),
+                # dcc.Dropdown(
+                #     id="dd-ctrl-framesize",
+                #     placeholder="Select a Frame Size...",
+                #     disabled=True,
+                #     multi=False,
+                #     clearable=False,
+                # ),
+                # html.Br(),
+                # html.Div(
+                #     children="Test Type"
+                # ),
+                # dcc.Dropdown(
+                #     id="dd-ctrl-testtype",
+                #     placeholder="Select a Test Type...",
+                #     disabled=True,
+                #     multi=False,
+                #     clearable=False,
+                # ),
                 html.Br(),
-                html.Div(
-                    children="Number of Cores"
-                ),
-                dcc.Dropdown(
-                    id="dd-ctrl-core",
-                    placeholder="Select a Number of Cores...",
-                    disabled=True,
-                    multi=False,
-                    clearable=False,
-                ),
-                html.Br(),
-                html.Div(
-                    children="Frame Size"
-                ),
-                dcc.Dropdown(
-                    id="dd-ctrl-framesize",
-                    placeholder="Select a Frame Size...",
-                    disabled=True,
-                    multi=False,
-                    clearable=False,
-                ),
-                html.Br(),
-                html.Div(
-                    children="Test Type"
-                ),
-                dcc.Dropdown(
-                    id="dd-ctrl-testtype",
-                    placeholder="Select a Test Type...",
-                    disabled=True,
-                    multi=False,
-                    clearable=False,
-                ),
-                            html.Br(),
                 html.Button(
                     id="btn-ctrl-add",
                     children="Add",
@@ -252,98 +283,218 @@ class Layout:
     def callbacks(self, app):
 
         @app.callback(
+            Output("div-ctrl-info", "children"),
+            Output("dd-ctrl-phy", "value"),
             Output("dd-ctrl-area", "options"),
+            Output("dd-ctrl-area", "value"),
             Output("dd-ctrl-area", "disabled"),
-            Input("dd-ctrl-phy", "value"),
-        )
-        def _update_dd_area(phy):
-            """
-            """
-
-            if phy is None:
-                raise PreventUpdate
-
-            try:
-                options = [
-                    {"label": self._spec_test[phy][v]["label"], "value": v}
-                        for v in [v for v in self._spec_test[phy].keys()]
-                ]
-            except KeyError:
-                options = list()
-
-            return options, False
-
-        @app.callback(
             Output("dd-ctrl-test", "options"),
+            Output("dd-ctrl-test", "value"),
             Output("dd-ctrl-test", "disabled"),
-            Input("dd-ctrl-phy", "value"),
-            Input("dd-ctrl-area", "value"),
-        )
-        def _update_dd_test(phy, area):
-            """
-            """
-
-            if not all((phy, area, )):
-                raise PreventUpdate
-
-            try:
-                options = [
-                    {"label": v, "value": v}
-                        for v in self._spec_test[phy][area]["test"]
-                ]
-            except KeyError:
-                options = list()
-
-            return options, False
-
-        @app.callback(
+            Output("btn-ctrl-add", "n_clicks"),
             Output("btn-ctrl-add", "disabled"),
             Input("dd-ctrl-phy", "value"),
             Input("dd-ctrl-area", "value"),
             Input("dd-ctrl-test", "value"),
+            Input("btn-ctrl-add", "n_clicks"),
+            prevent_initial_call=True
         )
-        def _update_btn_add(phy, area, test):
+        def _update_ctrls(phy, area, test, btn):
             """
             """
 
-            if all((phy, area, test, )):
-                self._test_selection["phy"] = phy
-                self._test_selection["area"] = area
-                self._test_selection["test"] = test
-                return False
+            trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
+
+            logging.info(trigger_id)
+            logging.info(
+                u"Before:\n"
+                f"info_val = {self._ctrls[u'info_val']}\n"
+                f"phy_val = {self._ctrls[u'phy_val']}\n"
+                f"area_opts = {self._ctrls[u'area_opts']}\n"
+                f"area_val = {self._ctrls[u'area_val']}\n"
+                f"area_dis = {self._ctrls[u'area_dis']}\n"
+                f"test_opts = {self._ctrls[u'test_opts']}\n"
+                f"test_val = {self._ctrls[u'test_val']}\n"
+                f"test_dis = {self._ctrls[u'test_dis']}\n"
+                f"btn_val = {self._ctrls[u'btn_val']}\n"
+                f"btn_dis = {self._ctrls[u'btn_dis']}\n\n"
+            )
+
+            if trigger_id == "dd-ctrl-phy":
+                try:
+                    self._ctrls[u'phy_val'] = phy
+                    self._ctrls[u'area_opts'] = [
+                        {"label": self._spec_test[self._ctrls[u'phy_val']][v]["label"], "value": v}
+                            for v in [v for v in self._spec_test[self._ctrls[u'phy_val']].keys()]
+                    ]
+                    self._ctrls[u'area_dis'] = False
+                    self._ctrls[u'area_val'] = None
+                    self._ctrls[u'test_dis'] = True
+                    self._ctrls[u'test_val'] = None
+                    self._ctrls[u'btn_dis'] = True
+                except KeyError:
+                    self._ctrls[u'area_opts'] = list()
+
+            elif trigger_id == u"dd-ctrl-area":
+                self._ctrls[u'area_val'] = area
+                try:
+                    self._ctrls[u'test_opts'] = [
+                        {"label": v, "value": v}
+                            for v in self._spec_test[self._ctrls[u'phy_val']][self._ctrls[u'area_val']]["test"]
+                    ]
+                    self._ctrls[u'test_dis'] = False
+                    self._ctrls[u'test_val'] = None
+                    self._ctrls[u'btn_dis'] = True
+                except KeyError:
+                    self._ctrls[u'test_opts'] = list()
+
+            elif trigger_id == u"dd-ctrl-test":
+                self._ctrls[u'test_val'] = test
+                self._ctrls[u'btn_dis'] = False
+            elif trigger_id == u"btn-ctrl-add":
+                self._ctrls[u'info_val'] = (
+                    f"phy_val = {self._ctrls[u'phy_val']}\n"
+                    f"area_val = {self._ctrls[u'area_val']}\n"
+                    f"test_val = {self._ctrls[u'test_val']}\n"
+                )
+                self._reset_ctrls()
             else:
-                return True
-
-        @app.callback(
-            Output("div-ctrl-info", "children"),
-            Output("dd-ctrl-phy", "value"),
-            Output("dd-ctrl-area", "value"),
-            Output("dd-ctrl-test", "value"),
-            Output("btn-ctrl-add", "n_clicks"),
-            Input("btn-ctrl-add", "n_clicks")
-        )
-        def _print_user_selection(n_clicks):
-            """
-            """
-
-            logging.info(f"\n\n{n_clicks}\n\n")
-
-            if not n_clicks:
                 raise PreventUpdate
 
-            selected = (
-                f"{self._test_selection['phy']} # "
-                f"{self._test_selection['area']} # "
-                f"{self._test_selection['test']} # "
-                f"{n_clicks}\n"
-            )
+            trigger_id = None
 
-            self._reset_test_selection()
+            logging.info(
+                u"After:\n"
+                f"info_val = {self._ctrls[u'info_val']}\n"
+                f"phy_val = {self._ctrls[u'phy_val']}\n"
+                f"area_opts = {self._ctrls[u'area_opts']}\n"
+                f"area_val = {self._ctrls[u'area_val']}\n"
+                f"area_dis = {self._ctrls[u'area_dis']}\n"
+                f"test_opts = {self._ctrls[u'test_opts']}\n"
+                f"test_val = {self._ctrls[u'test_val']}\n"
+                f"test_dis = {self._ctrls[u'test_dis']}\n"
+                f"btn_val = {self._ctrls[u'btn_val']}\n"
+                f"btn_dis = {self._ctrls[u'btn_dis']}\n\n"
+            )
 
             return (
-                selected,
-                None,
-                None,
-                None,
-                0,
+                self._ctrls[u'info_val'],
+                self._ctrls[u'phy_val'],
+                self._ctrls[u'area_opts'],
+                self._ctrls[u'area_val'],
+                self._ctrls[u'area_dis'],
+                self._ctrls[u'test_opts'],
+                self._ctrls[u'test_val'],
+                self._ctrls[u'test_dis'],
+                self._ctrls[u'btn_val'],
+                self._ctrls[u'btn_dis'],
             )
+
+
+
+
+
+
+        # @app.callback(
+        #     Output("dd-ctrl-area", "options"),
+        #     Output("dd-ctrl-area", "disabled"),
+        #     Input("dd-ctrl-phy", "value"),
+        # )
+        # def _update_dd_area(phy):
+        #     """
+        #     """
+
+        #     if phy is None:
+        #         raise PreventUpdate
+
+        #     try:
+        #         options = [
+        #             {"label": self._spec_test[phy][v]["label"], "value": v}
+        #                 for v in [v for v in self._spec_test[phy].keys()]
+        #         ]
+        #     except KeyError:
+        #         options = list()
+
+        #     return options, False
+
+        # @app.callback(
+        #     Output("dd-ctrl-test", "options"),
+        #     Output("dd-ctrl-test", "disabled"),
+        #     State("dd-ctrl-phy", "value"),
+        #     Input("dd-ctrl-area", "value"),
+        # )
+        # def _update_dd_test(phy, area):
+        #     """
+        #     """
+
+        #     if not all((phy, area, )):
+        #         raise PreventUpdate
+
+        #     try:
+        #         options = [
+        #             {"label": v, "value": v}
+        #                 for v in self._spec_test[phy][area]["test"]
+        #         ]
+        #     except KeyError:
+        #         options = list()
+
+        #     return options, False
+
+        # @app.callback(
+        #     Output("btn-ctrl-add", "disabled"),
+        #     State("dd-ctrl-phy", "value"),
+        #     State("dd-ctrl-area", "value"),
+        #     Input("dd-ctrl-test", "value"),
+        # )
+        # def _update_btn_add(phy, area, test):
+        #     """
+        #     """
+
+        #     if all((phy, area, test, )):
+        #         self._test_selection["phy"] = phy
+        #         self._test_selection["area"] = area
+        #         self._test_selection["test"] = test
+        #         return False
+        #     else:
+        #         return True
+
+        # @app.callback(
+        #     Output("div-ctrl-info", "children"),
+        #     Output("dd-ctrl-phy", "value"),
+        #     Output("dd-ctrl-area", "value"),
+        #     # Output("dd-ctrl-area", "disabled"),
+        #     Output("dd-ctrl-test", "value"),
+        #     # Output("dd-ctrl-test", "disabled"),
+        #     Output("btn-ctrl-add", "n_clicks"),
+        #     Input("btn-ctrl-add", "n_clicks"),
+        #     # prevent_initial_call=True
+        # )
+        # def _print_user_selection(n_clicks):
+        #     """
+        #     """
+
+        #     logging.info(f"\n\n{n_clicks}\n\n")
+
+        #     disable_area = True if n_clicks else False
+
+        #     if not n_clicks:
+        #         raise PreventUpdate
+
+        #     selected = (
+        #         f"{self._test_selection['phy']} # "
+        #         f"{self._test_selection['area']} # "
+        #         f"{self._test_selection['test']} # "
+        #         f"{n_clicks}\n"
+        #     )
+
+        #     self._reset_test_selection()
+
+        #     return (
+        #         selected,
+        #         None,
+        #         None,
+        #         # disable_area,
+        #         None,
+        #         # True,
+        #         0,
+        #     )
