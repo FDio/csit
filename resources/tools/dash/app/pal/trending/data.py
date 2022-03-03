@@ -17,13 +17,13 @@
 import pandas as pd
 
 
-def create_dataframe():
+def read_data():
     """Create Pandas DataFrame from local CSV.
 
-    DEMO
+    Only for DEMO
     """
 
     return pd.read_csv(
         u"https://s3-docs.fd.io/csit/master/trending/_static/vpp/"
-        u"csit-vpp-perf-mrr-daily-master-2n-zn2-trending.csv"
+        u"csit-vpp-perf-mrr-weekly-master-2n-aws-trending.csv"
     )
