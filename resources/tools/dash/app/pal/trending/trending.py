@@ -14,14 +14,8 @@
 """Instantiate the Trending Dash applocation.
 """
 import dash
-from dash import dcc
-from dash import html
-from dash import dash_table
-import numpy as np
-import pandas as pd
 
-from .data import create_dataframe
-from .layout import Layout
+from .layout import create_layout, add_content
 
 
 def init_trending(server):
@@ -42,33 +36,10 @@ def init_trending(server):
         ],
     )
 
-    # Load DataFrame
-    df = create_dataframe()
-
     # Custom HTML layout
-    layout = Layout(
-        app=dash_app,
-        html_layout_file="pal/trending/html_layout.txt",
-        spec_file="pal/trending/spec_test_selection.yaml"
+    dash_app.index_string = create_layout(
+        html_layout_file="pal/trending/html_layout.txt"
     )
-    dash_app.index_string = layout.html_layout
-    dash_app.layout = layout.add_content()
+    dash_app.layout = add_content()
 
     return dash_app.server
-
-
-def create_data_table(df):
-    """Create Dash datatable from Pandas DataFrame.
-
-    DEMO
-    """
-
-    table = dash_table.DataTable(
-        id=u"database-table",
-        columns=[{u"name": i, u"id": i} for i in df.columns],
-        data=df.to_dict(u"records"),
-        sort_action=u"native",
-        sort_mode=u"native",
-        page_size=10,
-    )
-    return table
