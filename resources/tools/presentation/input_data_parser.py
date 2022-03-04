@@ -1533,7 +1533,7 @@ class InputData:
             process_oper = True
         elif u"-vpp-perf-report-iterative-" in job:
             # Exceptions for TBs where we do not have coverage data:
-            for item in (u"-2n-aws", u"-3n-aws"):
+            for item in (u"-2n-icx", ):
                 if item in job:
                     process_oper = True
                     break
