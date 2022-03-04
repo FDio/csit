@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4bcf1d90_507b5fd6",
+        "filename": "resources/libraries/python/HoststackUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2022-03-04T18:22:20Z",
+      "side": 1,
+      "message": "There are no other changes to this file, thus no need to change the copyright year.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "f98103a7f361af1075f17d01a0c4cfa0d65c0dce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
