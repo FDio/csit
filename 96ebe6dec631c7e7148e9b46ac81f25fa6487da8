@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5dc6d67a_c435bbc0",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-03-04T09:01:46Z",
+      "side": 1,
+      "message": "We do not have specific ticket for jumbo encap, but CSIT-1797 mentions this as a consequence (mostly caused by VPP-2012).",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 17
+      },
+      "revId": "96ebe6dec631c7e7148e9b46ac81f25fa6487da8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b90f58be_367549e3",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-03-04T09:01:46Z",
+      "side": 1,
+      "message": "Once again, CSIT-1797 mentions this as a consequence of VPP-2012 in combination with VPP-1876. (And possibly some bugs/inefficiences in DPDK code, but that is only my comment here and in some e-mail threads, not in Jira.)",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 18
+      },
+      "revId": "96ebe6dec631c7e7148e9b46ac81f25fa6487da8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51b3b48e_991e14c2",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-03-04T09:01:46Z",
+      "side": 1,
+      "message": "VPP-1876 is still the best description of how the performance is decreased in some conditions.",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 75,
+        "endChar": 16
+      },
+      "revId": "96ebe6dec631c7e7148e9b46ac81f25fa6487da8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
