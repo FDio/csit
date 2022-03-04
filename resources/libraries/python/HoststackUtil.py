@@ -56,6 +56,8 @@ class HoststackUtil():
             vpp_echo_cmd[u"args"] += u" rx-results-diff"
         if vpp_echo_attributes[u"tx_results_diff"]:
             vpp_echo_cmd[u"args"] += u" tx-results-diff"
+        if vpp_echo_attributes[u"use_app_socket_api"]:
+            vpp_echo_cmd[u"args"] += u" use-app-socket-api"
         return vpp_echo_cmd
 
     @staticmethod
