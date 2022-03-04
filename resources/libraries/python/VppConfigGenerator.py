@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -550,6 +550,15 @@ class VppConfigGenerator:
         """Add session enable."""
         path = [u"session", u"enable"]
         self.add_config_item(self._nodeconfig, u"", path)
+
+    def add_session_app_socket_api(self, value):
+        """Add session app socket api.
+
+        :param value: app socket path
+        :type value: str
+        """
+        path = [u"session", u"app-socket-api"]
+        self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_event_queues_memfd_segment(self):
         """Add session event queue memfd segment."""
