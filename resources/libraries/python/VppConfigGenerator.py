@@ -551,6 +551,15 @@ class VppConfigGenerator:
         path = [u"session", u"enable"]
         self.add_config_item(self._nodeconfig, u"", path)
 
+    def add_session_app_socket_api(self, value):
+        """Add session app socket api.
+
+        :param value: app socket path
+        :type value: str
+        """
+        path = [u"session", u"app-socket-api"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_session_event_queues_memfd_segment(self):
         """Add session event queue memfd segment."""
         path = [u"session", u"evt_qs_memfd_seg"]

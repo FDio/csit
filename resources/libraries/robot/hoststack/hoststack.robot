@@ -37,7 +37,7 @@
 | ... | api_seg_global_size=2G
 | ... | api_seg_api_size=1G
 | ... | tcp_cc_algo=cubic
-| ... | sess_evt_q_seg_size=64M
+| ... | app_socket_api=/run/vpp/app_ns_sockets/default
 | ... | sess_evt_q_length=16384
 | ... | sess_prealloc_sess=1024
 | ... | sess_v4_tbl_buckets=20000
@@ -136,8 +136,8 @@
 | | ... | - ${vpp_api_socket} - Path to VPP api socket file Type: string
 | | ... | - ${api_seg_global_size} - Global API segment size Type: string
 | | ... | - ${api_seg_api_size} - API segment API fifo size Type: string
+| | ... | - ${app_socket_api} - Path so app api socket file Type: string
 | | ... | - ${tcp_cc_algo} - TCP congestion control algorithm Type: string
-| | ... | - ${sess_evt_q_seg_size} - Session event queue segment size
 | | ... | Type: string
 | | ... | - ${sess_evt_q_length} - Session event queue length Type: string
 | | ... | - ${sess_prealloc_sess} - Number of sessions to preallocate
@@ -167,8 +167,8 @@
 | | ... | ${vpp_api_socket}=${vpp_hoststack_attr}[vpp_api_socket]
 | | ... | ${api_seg_global_size}=${vpp_hoststack_attr}[api_seg_global_size]
 | | ... | ${api_seg_api_size}=${vpp_hoststack_attr}[api_seg_api_size]
+| | ... | ${app_socket_api}=${vpp_hoststack_attr}[app_socket_api]
 | | ... | ${tcp_cc_algo}=${vpp_hoststack_attr}[tcp_cc_algo]
-| | ... | ${sess_evt_q_seg_size}=${vpp_hoststack_attr}[sess_evt_q_seg_size]
 | | ... | ${sess_evt_q_length}=${vpp_hoststack_attr}[sess_evt_q_length]
 | | ... | ${sess_prealloc_sess}=${vpp_hoststack_attr}[sess_prealloc_sess]
 | | ... | ${sess_v4_tbl_buckets}=${vpp_hoststack_attr}[sess_v4_tbl_buckets]
@@ -189,9 +189,9 @@
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | api_seg_api_size | ${api_seg_api_size}
 | | Set To Dictionary | ${vpp_hoststack_attr}
-| | ... | tcp_cc_algo | ${tcp_cc_algo}
+| | ... | app_socket_api | ${app_socket_api}
 | | Set To Dictionary | ${vpp_hoststack_attr}
-| | ... | sess_evt_q_seg_size | ${sess_evt_q_seg_size}
+| | ... | tcp_cc_algo | ${tcp_cc_algo}
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | sess_evt_q_length | ${sess_evt_q_length}
 | | Set To Dictionary | ${vpp_hoststack_attr}
@@ -464,9 +464,8 @@
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | ... | ${vpp_hoststack_attr}[tcp_cc_algo]
 | | | Run keyword | ${dut}.Add session enable
-| | | Run keyword | ${dut}.Add session event queues memfd segment
-| | | Run keyword | ${dut}.Add session event queues segment size
-| | | ... | ${vpp_hoststack_attr}[sess_evt_q_seg_size]
+| | | Run keyword | ${dut}.Add session app socket api
+| | | ... | ${vpp_hoststack_attr}[app_socket_api]
 | | | Run keyword | ${dut}.Add session event queue length
 | | | ... | ${vpp_hoststack_attr}[sess_evt_q_length]
 | | | Run keyword | ${dut}.Add session preallocated sessions
