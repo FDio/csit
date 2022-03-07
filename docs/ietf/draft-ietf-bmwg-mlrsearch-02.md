@@ -2,7 +2,7 @@
 title: Multiple Loss Ratio Search for Packet Throughput (MLRsearch)
 abbrev: Multiple Loss Ratio Search
 docname: draft-ietf-bmwg-mlrsearch-02
-date: 2021-11-02
+date: 2021-03-07
 
 ipr: trust200902
 area: ops
@@ -34,15 +34,17 @@ normative:
 
 informative:
   FDio-CSIT-MLRsearch:
-    target: https://docs.fd.io/csit/rls2101/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.html
+    target: https://s3-docs.fd.io/csit/rls2110/report/introduction/methodology_data_plane_throughput/methodology_data_plane_throughput.html#mlrsearch-tests
     title: "FD.io CSIT Test Methodology - MLRsearch"
-    date: 2021-02
+    date: 2021-11
   PyPI-MLRsearch:
     target: https://pypi.org/project/MLRsearch/0.4.0/
     title: "MLRsearch 0.4.0, Python Package Index"
     date: 2021-04
 
 --- abstract
+
+TODO: Update after all sections are ready.
 
 This document proposes changes to [RFC2544], specifically to packet
 throughput search methodology, by defining a new search algorithm
@@ -67,90 +69,617 @@ can be done to describe the replicability.
 
 --- middle
 
+{::comment}
+    As we use kramdown to convert from markdown,
+    we use this way of marking comments not to be visible in rendered draft.
+    https://stackoverflow.com/a/42323390
+    If other engine is used, convert to this way:
+    https://stackoverflow.com/a/20885980
+{:/comment}
+
 # Terminology
 
-* Frame size: size of an Ethernet Layer-2 frame on the wire, including
-  any VLAN tags (dot1q, dot1ad) and Ethernet FCS, but excluding Ethernet
-  preamble and inter-frame gap. Measured in bytes (octets).
-* Packet size: same as frame size, both terms used interchangeably.
-* Device Under Test (DUT): In software networking, "device" denotes a
-  specific piece of software tasked with packet processing. Such device
-  is surrounded with other software components (such as operating system
-  kernel). It is not possible to run devices without also running the
-  other components, and hardware resources are shared between both. For
-  purposes of testing, the whole set of hardware and software components
-  is called "system under test" (SUT). As SUT is the part of the whole
-  test setup performance of which can be measured by [RFC2544] methods,
-  this document uses SUT instead of [RFC2544] DUT. Device under test
-  (DUT) can be re-introduced when analysing test results using whitebox
-  techniques, but this document sticks to blackbox testing.
-* System Under Test (SUT): System under test (SUT) is a part of the
-  whole test setup whose performance is to be benchmarked. The complete
-  test setup contains other parts, whose performance is either already
-  established, or not affecting the benchmarking result.
-* Bi-directional throughput tests: involve packets/frames flowing in
-  both transmit and receive directions over every tested interface of
-  SUT/DUT. Packet flow metrics are measured per direction, and can be
-  reported as aggregate for both directions and/or separately
-  for each measured direction. In most cases bi-directional tests
-  use the same (symmetric) load in both directions.
-* Uni-directional throughput tests: involve packets/frames flowing in
-  only one direction, i.e. either transmit or receive direction, over
-  every tested interface of SUT/DUT. Packet flow metrics are measured
-  and are reported for measured direction.
-* Packet Loss Ratio (PLR): ratio of packets received relative to packets
-  transmitted over the test trial duration, calculated using formula:
-  PLR = ( pkts_transmitted - pkts_received ) / pkts_transmitted.
-  For bi-directional throughput tests aggregate PLR is calculated based
-  on the aggregate number of packets transmitted and received.
-* Effective loss ratio: A corrected value of measured packet loss ratio
-  chosen to avoid difficulties if SUT exhibits decreasing loss
-  with increasing load. Maximum of packet loss ratios measured at the same
-  duration on all loads smaller than (and including) the current one.
-* Target loss ratio: A packet loss ratio value acting as an input for search.
-  The search is finding tight enough lower and upper bound in intended load,
-  so that the lower bound has smaller or equal loss ratio, and upper bound
-  has strictly larger loss ratio. For the tightest upper bound,
-  the effective loss ratio is the same as packet loss ratio.
+TODO: Update after most other sections are updated.
+
+{::comment}
+    The following is probably not needed (or defined elsewhere).
+
+    * Frame size: size of an Ethernet Layer-2 frame on the wire, including
+      any VLAN tags (dot1q, dot1ad) and Ethernet FCS, but excluding Ethernet
+      preamble and inter-frame gap. Measured in bytes (octets).
+    * Packet size: same as frame size, both terms used interchangeably.
+    * Device Under Test (DUT): In software networking, "device" denotes a
+      specific piece of software tasked with packet processing. Such device
+      is surrounded with other software components (such as operating system
+      kernel). It is not possible to run devices without also running the
+      other components, and hardware resources are shared between both. For
+      purposes of testing, the whole set of hardware and software components
+      is called "system under test" (SUT). As SUT is the part of the whole
+      test setup performance of which can be measured by [RFC2544] methods,
+      this document uses SUT instead of [RFC2544] DUT. Device under test
+      (DUT) can be re-introduced when analysing test results using whitebox
+      techniques, but this document sticks to blackbox testing.
+    * System Under Test (SUT): System under test (SUT) is a part of the
+      whole test setup whose performance is to be benchmarked. The complete
+      test setup contains other parts, whose performance is either already
+      established, or not affecting the benchmarking result.
+    * Bi-directional throughput tests: involve packets/frames flowing in
+      both transmit and receive directions over every tested interface of
+      SUT/DUT. Packet flow metrics are measured per direction, and can be
+      reported as aggregate for both directions and/or separately
+      for each measured direction. In most cases bi-directional tests
+      use the same (symmetric) load in both directions.
+    * Uni-directional throughput tests: involve packets/frames flowing in
+      only one direction, i.e. either transmit or receive direction, over
+      every tested interface of SUT/DUT. Packet flow metrics are measured
+      and are reported for measured direction.
+    * Packet Throughput Rate: maximum packet offered load DUT/SUT forwards
+      within the specified Packet Loss Ratio (PLR). In many cases the rate
+      depends on the frame size processed by DUT/SUT. Hence packet
+      throughput rate MUST be quoted with specific frame size as received by
+      DUT/SUT during the measurement. For bi-directional tests, packet
+      throughput rate should be reported as aggregate for both directions.
+      Measured in packets-per-second (pps) or frames-per-second (fps),
+      equivalent metrics.
+    * Bandwidth Throughput Rate: a secondary metric calculated from packet
+      throughput rate using formula: bw_rate = pkt_rate * (frame_size +
+      L1_overhead) * 8, where L1_overhead for Ethernet includes preamble (8
+      octets) and inter-frame gap (12 octets). For bi-directional tests,
+      bandwidth throughput rate should be reported as aggregate for both
+      directions. Expressed in bits-per-second (bps).
+    * TODO do we need this as it is identical to RFC2544 Throughput?
+      Non Drop Rate (NDR): maximum packet/bandwidth throughput rate sustained
+      by DUT/SUT at PLR equal zero (zero packet loss) specific to tested
+      frame size(s). MUST be quoted with specific packet size as received by
+      DUT/SUT during the measurement. Packet NDR measured in
+      packets-per-second (or fps), bandwidth NDR expressed in
+      bits-per-second (bps).
+    * TODO if needed, reformulate to make it clear there can be multiple rates
+      for multiple (non-zero) loss ratios.
+      : Partial Drop Rate (PDR): maximum packet/bandwidth throughput rate
+      sustained by DUT/SUT at PLR greater than zero (non-zero packet loss)
+      specific to tested frame size(s). MUST be quoted with specific packet
+      size as received by DUT/SUT during the measurement. Packet PDR
+      measured in packets-per-second (or fps), bandwidth PDR expressed in
+      bits-per-second (bps).
+    * TODO: Refer to FRMOL instead.
+      Maximum Receive Rate (MRR): packet/bandwidth rate regardless of PLR
+      sustained by DUT/SUT under specified Maximum Transmit Rate (MTR)
+      packet load offered by traffic generator. MUST be quoted with both
+      specific packet size and MTR as received by DUT/SUT during the
+      measurement. Packet MRR measured in packets-per-second (or fps),
+      bandwidth MRR expressed in bits-per-second (bps).
+    * TODO just keep using "trial measurement"?
+      Trial: a single measurement step. See [RFC2544] section 23.
+    * TODO already defined in RFC2544:
+      Trial duration: amount of time over which packets are transmitted
+      in a single measurement step.
+{:/comment}
+{::comment}
+{:/comment}
+
+* DUT and SUT: see the definitions in https://gerrit.fd.io/r/c/csit/+/35545
+* Traffic Generator (TG) and Traffic Analyzer (TA): see
+  https://datatracker.ietf.org/doc/html/rfc6894#section-4
+  TODO: Maybe there is an earlier RFC?
+* Overall search time: the time it takes to find all required loads within
+  their precision goals, starting from zero trials measured at given
+  DUT configuration and traffic profile.
+* TODO: traffic profile?
+* Intended load: https://datatracker.ietf.org/doc/html/rfc2285#section-3.5.1
+* Offered load: https://datatracker.ietf.org/doc/html/rfc2285#section-3.5.2
+* Maximum offered load (MOL): see
+  https://datatracker.ietf.org/doc/html/rfc2285#section-3.5.3
+* Forwarding rate at maximum offered load (FRMOL)
+  https://datatracker.ietf.org/doc/html/rfc2285#section-3.6.2
+* Trial Loss Count: the number of frames transmitted
+  minus the number of frames received. Negative count is possible,
+  e.g. when SUT duplicates some frames.
+* Trial Loss Ratio: ratio of frames received relative to frames
+  transmitted over the trial duration.
+  For bi-directional throughput tests, the aggregate ratio is calculated,
+  based on the aggregate number of frames transmitted and received.
+  If the trial loss count is negative, its absolute value MUST be used
+  to keep compliance with RFC2544.
+* Safe load: any value, such that trial measurement at this (or lower)
+  intended load is correcrly handled by both TG and TA, regardless of SUT behavior.
+  Frequently, it is not known what the safe load is.
+* Max load (TODO rename?): Maximal intended load to be used during search.
+  Benchmarking team decides which value is low enough
+  to guarantee values reported by TG and TA are reliable.
+  It has to be a safe load, but it can be lower than a safe load estimate
+  for added safety.
+  See the subsection on unreliable test equipment below.
+  This value MUST NOT be higher than MOL, which itself MUST NOT
+  be higher than Maximum Frame Rate
+  https://datatracker.ietf.org/doc/html/rfc2544#section-20
+* Min load: Minimal intended load to be used during search.
+  Benchmarking team decides which value is high enough
+  to guarantee the trial measurement results are valid.
+  E.g. considerable overall search time can be saved by declaring SUT
+  faulty if min load trial shows too high loss rate.
+  Zero frames per second is a valid min load value
+* Effective loss ratio: a corrected value of trial loss ratio
+  chosen to avoid difficulties if SUT exhibits decreasing loss ratio
+  with increasing load. It is the maximum of trial loss ratios
+  measured at the same duration on all loads smaller than (and including)
+  the current one.
+* Target loss ratio: a loss ratio value acting as an input for the search.
+  The search is finding tight enough lower and upper bounds in intended load,
+  so that the measurement at the lower bound has smaller or equal
+  trial loss ratio, and upper bound has strictly larger trial loss ratio.
+  For the tightest upper bound, the effective loss ratio is the same as
+  trial loss ratio at that upper bound load.
   For the tightest lower bound, the effective loss ratio can be higher
-  than the packet loss ratio, but still not larger than the target loss ratio.
-* Packet Throughput Rate: maximum packet offered load DUT/SUT forwards
-  within the specified Packet Loss Ratio (PLR). In many cases the rate
-  depends on the frame size processed by DUT/SUT. Hence packet
-  throughput rate MUST be quoted with specific frame size as received by
-  DUT/SUT during the measurement. For bi-directional tests, packet
-  throughput rate should be reported as aggregate for both directions.
-  Measured in packets-per-second (pps) or frames-per-second (fps),
-  equivalent metrics.
-* Bandwidth Throughput Rate: a secondary metric calculated from packet
-  throughput rate using formula: bw_rate = pkt_rate * (frame_size +
-  L1_overhead) * 8, where L1_overhead for Ethernet includes preamble (8
-  octets) and inter-frame gap (12 octets). For bi-directional tests,
-  bandwidth throughput rate should be reported as aggregate for both
-  directions. Expressed in bits-per-second (bps).
-* Non Drop Rate (NDR): maximum packet/bandwidth throughput rate sustained
-  by DUT/SUT at PLR equal zero (zero packet loss) specific to tested
-  frame size(s). MUST be quoted with specific packet size as received by
-  DUT/SUT during the measurement. Packet NDR measured in
-  packets-per-second (or fps), bandwidth NDR expressed in
-  bits-per-second (bps).
-* Partial Drop Rate (PDR): maximum packet/bandwidth throughput rate
-  sustained by DUT/SUT at PLR greater than zero (non-zero packet loss)
-  specific to tested frame size(s). MUST be quoted with specific packet
-  size as received by DUT/SUT during the measurement. Packet PDR
-  measured in packets-per-second (or fps), bandwidth PDR expressed in
-  bits-per-second (bps).
-* Maximum Receive Rate (MRR): packet/bandwidth rate regardless of PLR
-  sustained by DUT/SUT under specified Maximum Transmit Rate (MTR)
-  packet load offered by traffic generator. MUST be quoted with both
-  specific packet size and MTR as received by DUT/SUT during the
-  measurement. Packet MRR measured in packets-per-second (or fps),
-  bandwidth MRR expressed in bits-per-second (bps).
-* Trial: a single measurement step. See [RFC2544] section 23.
-* Trial duration: amount of time over which packets are transmitted
-  in a single measurement step.
+  than the trial loss ratio at that lower bound, but still not larger
+  than the target loss ratio.
+* TODO: Search algorithm.
+* TODO: Precision goal.
+* TODO: Define a "benchmarking group".
+* TODO: Upper and lower bound.
+* TODO: Valid and invalid bound?
+* TODO: Interval and interval width?
+
+TODO: Mention NIC/PCI bandwidth/pps limits can be lower than bandwidth of medium.
+
+# Intentions of this document
+
+{::comment}
+    Instead of talking about DUTs being non-deterministic
+    and vendors "gaming" in order to get better Throughput results,
+    Maciek and Vratko currently prefer to talk about result repeatability.
+{:/comment}
+
+The intention of this document is to provide suggestions to:
+* speed up overall search time,
+* list some extensions to RFC2544,
+* to make search results more consistent across benchmarking groups.
+
+No part of RFC2544 is intended to be obsoleted by this document.
+
+This document may contain examples which contradict RFC2544 requirements
+and suggestions.
+That is not an ecouragement for benchmarking groups
+to stop being compliant with RFC2544.
+
+# RFC2544
+
+TODO: Quick recap of RFC2544 here.
+
+## Old Industry Standard
+
+TODO: Recap https://datatracker.ietf.org/doc/html/rfc2544#section-26.1
+with https://www.rfc-editor.org/errata/eid422
+
+That description does not even say when the search procedure has to stop.
+
+TODO expand: Bisection.
+
+TODO: Importance of min and max load.
+TODO: No recommendations on min and max load, except the obvios zero
+and the bandwidth of the medium.
+
+Usually, some kind of precision goal is given, search stops
+when lower bound is close enough to upper bound.
+Bisection (halving in the quantity used for precision goal, usually pps)
+is both simple and quite good at minimizing the overall search time.
+
+TODO: Link to section discussing not-exact-half tricks.
+
+## Additional requirements
+
+RFC2544 has implicit requirements. They are made explicit in this section.
+Recommendations on how to properly address the implicit requirements
+are out of scope of this document.
+{::comment}
+    Although some (insufficient) ideas are proposed.
+{:/comment}
+
+### Reliability of Test Equipment
+
+Both TG and TA MUST be able to handle correctly
+every intended load used during the search.
+
+On TG side, the difference between Intended Load and Offered Load
+MUST be small.
+TODO: How small? Difference of one packet may not be measurable
+due to time uncertainties.
+TODO expand: time uncertainty.
+
+To ensure that, max load (see Terminology) has to be set to low enough value.
+Benchmark groups MAY list the max load value used,
+especially if the Throughput value is equal (or close) to the max load.
+
+{::comment}
+{:/comment}
+    The following is probably out of scope of this document,
+    but can be useful when put into a separate document.
+
+    TODO expand: If it results in smaller Throughput reported,
+    it is not a big issue. Treat similarly to bandwidth and PPS limits of NICs.
+
+    TODO expand: TA dropping packets when loaded only lowers Throughput,
+    so not an issue.
+
+    TODO expand: TG sending less packets but stopping at target duration
+    is also fine, as long as the forwarding rate is used as Throughput value,
+    not the higher intended load.
+
+    TODO expand: Duration stretching is not fine.
+    Neither "check for actual duration" nor "start+sleep+stop"
+    are reliable solutions due to time overheads and uncertainty
+    of TG starting/stopping traffic (and TA stopping counting packets).
+{:/comment}
+
+Solutions (even problem formulations) for the following open problems
+are outside of the scope of this document:
+* Detecting when the test equipment operates above its safe load.
+* Finding a large but safe load value.
+* Correcting any result affected by max load value not being a safe load.
+
+TODO: Mention 90% of self-test as an idea:
+https://datatracker.ietf.org/doc/html/rfc8219#section-9.2.1
+
+{::comment}
+    Part of discussion on BMWG mailing list (with small edits):
+
+    This is a hard issue.
+    The algorithm as described has no way of knowing
+    which part of the whole system is limiting the performance.
+
+    It could be SUT only (no problem, testing SUT as expected),
+    it could be TG only (can be mitigated by TG self-test
+    and using small enough loads).
+
+    But it could also be an interaction between DUT and TG.
+    Imagine a TG (the Traffic Analyzer part) which is only able
+    to handle incoming traffic up to some rate,
+    but passes the self-test as the Generator part has maximal rate
+    not larger than that. But what if SUT turns that steady rate
+    into long-enough bursts of a higher rate (with delays between bursts
+    large enough, so average forwarding rate matches the load).
+    This way TA will see some packets as missing (when its buffers
+    fill up), even though SUT has processed them correctly.
+{:/comment}
+
+### Very late frames
+
+RFC2544 requires quite conservative time delays
+see https://datatracker.ietf.org/doc/html/rfc2544#section-23
+to prevent frames buffered in one trial measurement
+to be counted as received in a subsequent trial measurement.
+
+However, for some SUTs it may still still possible to buffer enough frames
+so they are still sending them (perhaps in bursts)
+when the next trial measurement starts.
+Sometimes, this can be detected as a negative trial loss count, e.g. TA receiving
+more frames than TG has sent during this trial measurement. Frame duplication
+is another way of causing the negative trial loss count.
+
+https://datatracker.ietf.org/doc/html/rfc2544#section-10
+recomments to use sequence numbers in frame payloads,
+but generating and verifying them requires test equipment resources,
+which may be not plenty enough to suport at high loads.
+
+RFC2544 does not ofer any solution to the negative loss problem,
+except implicitly treating negative trial loss counts
+the same way as positive trial loss counts.
+
+This document also does not offer any practical solution.
+
+Instead, this document SUGGESTS the search algorithm to take any precausion
+necessary to avoid very late frames.
+
+This document also REQUIRES any detected duplicate frames to be counted
+as additional lost frames.
+This document also REQUIRES, any negative trial loss ratio
+to be treated as positive trial loss ratio of the same absolute value.
+
+{::comment}
+    !!! Make sure this is covered elsewere, at least in better comments. !!!
+
+    ## TODO: Bad behavior of SUT
+
+    (Highest load with always zero loss can be quite far from lowest load
+    with always nonzero loss.)
+    (Non-determinism: warm up, periodic "stalls", perf decrease over time, ...)
+
+    Big buffers:
+    http://www.hit.bme.hu/~lencse/publications/ECC-2017-B-M-DNS64-revised.pdf
+    See page 8 and search for the word "gaming".
+{:/comment}
+
+# Problems
+
+## repeatability and comparability
+
+RFC2544 does not suggest to repeat Throughput search,
+{::comment}(probably because the full set of tests already takes long{:/comment}
+and from just one Throughput value, it cannot be determined
+how repeatable that value is (how likely it is for a repeated Throughput search
+to end up with a value less then the precision goal away from the first value).
+
+Depending on SUT behavior, different benchmark groups
+can report significantly different Througput values,
+even when using identical SUT and test equipment,
+just because of minor differences in their search algorithm
+(e.g. different max load value).
+
+While repeatability can be addressed by repeating the search several times,
+the differences in the comparability scenario may be systematic,
+e.g. seeming like a bias in one or both benchmark groups.
+
+MLRsearch algorithm does not really help with the repeatability problem.
+This document RECOMMENDS to repeat a selection of "important" tests
+ten times, so users can ascertain the repeatability of the results.
+
+TODO: How to report? Average and standard deviation?
+
+Following MLRsearch algorithm leaves less freedom for the benchmark groups
+to encounter the comparability problem,
+alghough more research is needed to determine the effect
+of MLRsearch's tweakable parameters.
+
+{::comment}
+    Possibly, the old DUTs were quite sharply consistent in their performance,
+    and/or precision goals were quite large in order to save overal search time.
+
+    With software DUTs and with time-efficient search algorithms,
+    nowadays the repeatability of Throughput can be quite low,
+    as in standard deviation of repeated Througput results
+    is considerably higher than the precision goal.
+{:/comment}
+
+{::comment}
+    TODO: Unify with PLRsearch draft.
+    TODO: No-loss region, random region, lossy region.
+    TODO: Tweaks with respect to non-zero loss ratio goal.
+    TODO: Duration dependence?
+
+    Both RFC2544 and MLRsearch return Throughput somewhere inside the random region,
+    or at most the precision goal below it.
+{:/comment}
+
+{::comment}
+    TODO: Make sure this is covered elsewhere, then delete.
+
+    ## Search repeatability
+
+    The goal of RFC1242 and RFC2544 is to limit how vendors benchmark their DUTs,
+    in order to force them to report values that have higher chance
+    to be confirmed by independent benchmarking groups following the same RFCs.
+
+    This works well for deterministic DUTs.
+
+    But for non-deterministic DUTs, the RFC2544 Throughput value
+    is only guaranteed to fall somewhere below the lossy region (TODO define).
+    It is possible to arrive at a value positioned likely high in the random region
+    at the cost of increased overall search duration,
+    simply by lowering the load by very small amounts (instead of exact halving)
+    upon lossy trial and increasing by large amounts upon lossless trial.
+
+    Prescribing an exact search algorithm (bisection or MLRsearch or other)
+    will force vendors to report less "gamey" Throughput values.
+{:/comment}
+
+{::comment}
+    ## Extensions
+
+    The following two sections are probably out of scope,
+    as they does not affect MLRsearch design choices.
+
+    ### Direct and inverse measurements
+
+    TODO expand: Direct measurement is single trial measurement,
+    with predescribed inputs and outputs turned directly into the quality of interest
+    Examples:
+    Latency https://datatracker.ietf.org/doc/html/rfc2544#section-26.2
+    is a single direct measurement.
+    Frame loss rate https://datatracker.ietf.org/doc/html/rfc2544#section-26.3
+    is a sequence of direct measurements.
+
+    TODO expand: Indirect measurement aims to solve an "inverse function problem",
+    meaning (a part of) trial measurement output is prescribed, and the quantity
+    of interest is (derived from) the input parameters of trial measurement
+    that achieves the prescribed output.
+    In general this is a hard problem, but if the unknown input parameter
+    is just one-dimensional quantity, algorithms such as bisection
+    do converge regardless of outputs seen.
+    We call any such algorithm examining one-dimensional input as "search".
+    Of course, some exit condition is needed for the search to end.
+    In case of Throughput, bisection algorithm tracks both upper bound
+    and lower bound, with lower bound at the end of search is the quantity
+    satisfying the definition of Throughput.
+
+    ### Metrics other than frames
+
+    TODO expand: Small TCP transaction can succeed even if some frames are lost.
+
+    TODO expand: It is possible for loss ratio to use different metric than load.
+    E.g. pps loss ratio when traffic profile uses higher level transactions per second.
+
+    ### TODO: Stateful DUT
+
+    ### TODO: Stateful traffic
+{:/comment}
+
+## Popularity of non-zero target loss ratios
+
+https://datatracker.ietf.org/doc/html/rfc1242#section-3.17
+says:
+    Since even the loss of one frame in a
+    data stream can cause significant delays while
+    waiting for the higher level protocols to time out,
+    it is useful to know the actual maximum data
+    rate that the device can support.
+
+While this may still be true for some protocols,
+research has been performed...
+
+TODO: Add this link properly: https://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-Y.1541-201112-I!!PDF-E&type=items
+TODO: List values from that document, from 10^-3 to 4*10^-6.
+
+...on other protocols and use cases,
+resulting in some small but non-zero loss ratios being considered
+as acceptable. Unfortunately, the acceptable value depends on use case
+and properties such as TCP window size and round trip time,
+so no single value of target loss rate (other than zero)
+is considered to be universally applicable.
+
+Also, since those times, new "software DUTs" (traffic forwarding programs
+running on on-the-shelf host hardware) appeared, and their Throughput results
+frequently exhibit quite small repeatability.
+
+* discovering multiple rates of interest is required for software DUTs
+  running on COTS general purpose servers (x86, arm)
+
+  * in general, throughput rates of software DUTs (programs)
+    are sensitive to server resources allocated to them by OS during runtime,
+    as well as to any system interrupts
+
+    * these are general purpose systems, not purpose built,
+      single function systems
+    * as such server resources shared across multiple programs
+    * real time packet processing makes it sensitive to any interrupts
+      or blocking of software threads
+
+In our experience, the higher the target loss ratio is,
+the better is the repeatability of the corresponding load found.
+
+TODO: Define a good name for a load corresponding to a specific non-zero
+target loss ration, while keeping Throughput for the load corresponding
+to zero target loss ratio.
+
+This document RECOMMENDS the benchmark groups to search for corresponding loads
+to at least one non-zero target loss ratio.
+This document does not suggest any particular non-zero target loss ratio value
+to search the corresponding load for.
+
+{::comment}
+    What is worse, some benchmark groups (which groups?; citation needed)
+    started reporting loads that achieved only "approximate zero loss",
+    while still calling that a Throughput (and thus becoming non-compliant
+    with RFC2544).
+{:/comment}
+
+# Solution ideas
+
+This document gives several independent ideas on how to lower the (average)
+overall search time, while remaining unconditionally compliant with RFC2544
+(and adding some of extensions).
+
+This document also specifies one particular way to combine all the ideas
+into a single search algorithm class (single logic with few tweakable parameters).
+
+Little to no research has been done into the question of which combination
+of ideas achieves the best compromise with respect to overal search time,
+high repeatability and high comparability.
+
+TODO: How important it is to discuss particular implementation choices,
+especially when motivated by non-deterministic SUT behavior?
+
+## Short duration trials
+
+https://datatracker.ietf.org/doc/html/rfc2544#section-24
+already mentions the possibity of using shorter duration
+for trials that are not part of "final determination".
+
+Obviously, the upper and lower bound from a smaller duration trial
+can be used as the initial upper and lower bound for the final determination.
+
+MLRsearch makes it clear a re-measurement is always needed
+(new trial measurement with the same load but longer duration).
+It also specifes what to do if the longer trial is no longer a valid bound
+(TODO define?), e.g. start an external search.
+Additionaly one halving can be saved during the shorter duration search.
+
+## FRMOL as reasonable start
+
+TODO expand: Overal search ends with "final determination" search,
+preceded by "shorter duration search" preceded by "bound initialization",
+where the bounds can be considerably different from min and max load.
+
+For SUTs with high repeatability, the FRMOL is usually a good approximation
+of Throughput. But for less repeatable SUTs, forwarding rate (TODO define)
+is frequently a bad approximation to Throughput, therefore halving
+and other robust-to-worst-case approaches have to be used.
+Still, forwarding rate at FRMOL load can be a good initial bound.
+
+## Non-zero loss ratios
+
+See the "Popularity of non-zero target loss ratios" section above.
+
+TODO: Define "trial measurement result classification criteria",
+or keep reusing long phrases without definitions?
+
+A search for a load corresponding to a non-zero target loss rate
+is very similar to a search for Throughput,
+just the criterion when to increase or decrease the intended load
+for the next trial measurement uses the comparison of trial loss ratio
+to the target loss ratio (instead of comparing loss count to zero)
+Any search algorithm that works for Throughput can be easily used also for
+non-zero target loss rates, perhaps with small modifications
+in places where the measured forwarding rate is used.
+
+Note that it is possible to search for multiple loss ratio goals if needed.
+
+## Concurrent ratio search
+
+A single trial measurement result can act as an NDR upper bound
+and PDR lower bound at the same time. This is an example of how
+it can be advantageous to search for all loss ratio goals "at once".
+
+Even when a search algorithm is fully deterministic in load selection
+while focusing on a single loss ratio and trial duration,
+the choice of iteration order between loss ratios and trial durations
+can affect the obtained results in subtle ways.
+MLRsearch offers one particular ordering.
+
+{::comment}
+    It is not clear if the current ordering is "best",
+    it is not even clear how to measure how good an ordering is.
+    We would need several models for bad SUT behaviors,
+    bug-free implementations of different orderings,
+    simulator to show the distribution of rates found and overall durations,
+    and a criterion of which rate distribution is "bad"
+    and whether it is worth the time savings.
+{:/comment}
+{::comment}
+{:/comment}
+
+## Load selection heuristics and shortcuts
+
+Aside of the two heuristics already mentioned (FRMOL based initial bounds
+and saving one halving when increasing trial duration),
+there are other tricks that can save some overall search time
+at the cost of keeping the difference between final lower and upper bound
+intentionally large (but still within the precision goal).
+
+TODO: Refer implementation subsections on:
+Uneven splits.
+Rounding the interval width up.
+Using old invalid bounds for interval width guessing.
+
+The impact on overall duration is probably small,
+and the effect on result distribution maybe even smaller.
+TODO: Is the two-liner above useful at all?
+
+# Non-compliance with RFC2544
+
+It is possible to achieve even faster search times by abandoning
+some requirements and suggestions of RFC2544.
+Such results are therefore no longer compliant with RFC2544
+(or at least not unconditionally),
+but they may still be useful for internal usage, or for comparing
+results of different DUTs achieved with an identical non-compliant algorithm.
+
+TODO: Refer to the subsection with CSIT customizations.
+
+!!! Nothing below is up-to-date. !!!
 
 # MLRsearch Background
+
+TODO: Old section, probably obsoleted by preceding section(s).
 
 Multiple Loss Ratio search (MLRsearch) is a packet throughput search
 algorithm suitable for deterministic systems (as opposed to
