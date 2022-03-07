@@ -556,13 +556,10 @@ Comparison tables in HTML, ASCII and CSV formats:
 
   - `HTML 2t1c MRR comparison <performance-changes-2n-aws-2t1c-mrr.html>`_
   - `HTML 4t2c MRR comparison <performance-changes-2n-aws-4t2c-mrr.html>`_
-  - `HTML 8t4c MRR comparison <performance-changes-2n-aws-8t4c-mrr.html>`_
   - `ASCII 2t1c MRR comparison <../../_static/vpp/performance-changes-2n-aws-2t1c-mrr.txt>`_
   - `ASCII 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-aws-4t2c-mrr.txt>`_
-  - `ASCII 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-aws-8t4c-mrr.txt>`_
   - `CSV 2t1c MRR comparison <../../_static/vpp/performance-changes-2n-aws-2t1c-mrr-csv.csv>`_
   - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-aws-4t2c-mrr-csv.csv>`_
-  - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-aws-8t4c-mrr-csv.csv>`_
 
 3n-aws-nitro50g
 ~~~~~~~~~~~~~~~
@@ -598,10 +595,7 @@ Comparison tables in HTML, ASCII and CSV formats:
 
   - `HTML 2t1c MRR comparison <performance-changes-3n-aws-2t1c-mrr.html>`_
   - `HTML 4t2c MRR comparison <performance-changes-3n-aws-4t2c-mrr.html>`_
-  - `HTML 8t4c MRR comparison <performance-changes-3n-aws-8t4c-mrr.html>`_
   - `ASCII 2t1c MRR comparison <../../_static/vpp/performance-changes-3n-aws-2t1c-mrr.txt>`_
   - `ASCII 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-aws-4t2c-mrr.txt>`_
-  - `ASCII 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-aws-8t4c-mrr.txt>`_
   - `CSV 2t1c MRR comparison <../../_static/vpp/performance-changes-3n-aws-2t1c-mrr-csv.csv>`_
   - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-aws-4t2c-mrr-csv.csv>`_
-  - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-aws-8t4c-mrr-csv.csv>`_
