@@ -522,7 +522,7 @@
       - 20  # rls2202.rel NDRPDR cov env 9
       # - 21  # rls2202.rel NDRPDR cov env 9
       # - 22  # rls2202.rel NDRPDR cov env 9
-      # - 23  # rls2202.rel NDRPDR cov env 9
+      - 23  # rls2202.rel NDRPDR cov env 9
       # - 24  # rls2202.rel NDRPDR cov env 9
       # - 25  # rls2202.rel NDRPDR cov env 9
       # - 26  # rls2202.rel NDRPDR cov env 9
@@ -884,11 +884,11 @@
       - 21  # rls2202.rel NDRPDR cov env 9
       - 22  # rls2202.rel NDRPDR cov env 9
       - 23  # rls2202.rel NDRPDR cov env 9
-      # - 24  # rls2202.rel NDRPDR cov env 9
+      - 24  # rls2202.rel NDRPDR cov env 9
       # - 25  # rls2202.rel NDRPDR cov env 9
       # - 26  # rls2202.rel NDRPDR cov env 9
       # - 27  # rls2202.rel NDRPDR cov env 9
-      # - 28  # rls2202.rel NDRPDR cov env 9
+      - 28  # rls2202.rel NDRPDR cov env 9
       # - 29  # rls2202.rel NDRPDR cov env 9
       # - 30  # rls2202.rel NDRPDR cov env 9
       # - 31  # rls2202.rel NDRPDR cov env 9
@@ -1019,14 +1019,14 @@
       - 16  # rls2202.rel NDRPDR cov env 9
       - 17  # rls2202.rel NDRPDR cov env 9
       - 18  # rls2202.rel NDRPDR cov env 9
-      # - 19  # rls2202.rel NDRPDR cov env 9
+      - 19  # rls2202.rel NDRPDR cov env 9
       - 20  # rls2202.rel NDRPDR cov env 9
       - 21  # rls2202.rel NDRPDR cov env 9
       # - 22  # rls2202.rel NDRPDR cov env 9
       - 23  # rls2202.rel NDRPDR cov env 9
       - 24  # rls2202.rel NDRPDR cov env 9
       # - 25  # rls2202.rel NDRPDR cov env 9
-      # - 26  # rls2202.rel NDRPDR cov env 9
+      - 26  # rls2202.rel NDRPDR cov env 9
       # - 27  # rls2202.rel NDRPDR cov env 9
       # - 28  # rls2202.rel NDRPDR cov env 9
 
@@ -1337,6 +1337,7 @@
       - 36  # rls2202.rel NDRPDR nf-density iter env 9
       - 43  # rls2202.rel NDRPDR nf-density iter env 9
       - 45  # rls2202.rel NDRPDR nf-density iter env 9
+      - 46  # rls2202.rel NDRPDR nf-density iter env 9
       - 54  # rls2202.rel NDRPDR nf-density iter env 9
 
   vpp-2n-icx-curr-nfv-mrr:
