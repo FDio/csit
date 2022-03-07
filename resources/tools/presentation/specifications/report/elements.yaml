@@ -8995,9 +8995,9 @@
     - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-{core}-avf-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
     - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
     - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-#    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
-#    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
-#    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Dyn-Ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Masq-Ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr"
+    - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-Ndrpdr.78B-{core}-avf-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
   layout:
     title: "3n-skx-xxv710-78b-{core}-srv6-ip6routing-base-avf-{test_type}"
     layout: "plot-throughput"
