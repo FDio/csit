@@ -75,35 +75,32 @@ ___
 |  3 | `CSIT-1801                              | 9000B payload frames not forwarded over tunnels due to violating supported Max Frame Size (VxLAN, LISP,   |
 |    | <https://jira.fd.io/browse/CSIT-1801>`_ | SRv6).                                                                                                    |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1802                              | AF-XDP - NDR tests failing from time to time.                                                             |
+|  4 | `CSIT-1808                              | All tests with 9000B payload frames not forwarded over memif interfaces.                                  |
+|    | <https://jira.fd.io/browse/CSIT-1808>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  5 | `CSIT-1809                              | All tests with 9000B payload frames not forwarded over vhostuser interfaces.                              |
+|    | <https://jira.fd.io/browse/CSIT-1809>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  6 | `CSIT-1802                              | AF-XDP - NDR tests failing from time to time.                                                             |
 |    | <https://jira.fd.io/browse/CSIT-1802>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1803                              | 3n-icx testbeds (Icelake): all IMIX aes128cbc-hmac512sha tests are failing due to excessive packet loss.  |
+|  7 | `CSIT-1803                              | 3n-icx testbeds (Icelake): all IMIX aes128cbc-hmac512sha tests are failing due to excessive packet loss.  |
 |    | <https://jira.fd.io/browse/CSIT-1803>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1804                              | Sporadic packet drops at NDR Crypto, Ip4, L2, Srv6, VM vhost.                                             |
+|  8 | `CSIT-1804                              | 3n-tsh testbed (Taishan): all tests are failing with small packet drops at NDR with medium frequency.     |
 |    | <https://jira.fd.io/browse/CSIT-1804>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1805                              | Hoststack vppecho-Bps tests failing with timeout.                                                         |
+|  9 | `CSIT-1805                              | 3n-skx testbeds (Skylake): all hoststack vppecho-Bps scale tests are failing.                             |
 |    | <https://jira.fd.io/browse/CSIT-1805>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  8 | `CSIT-1806                              | ethip6lispip6 half packets forwarded only.                                                                |
+| 10 | `CSIT-1806                              | 3n-skx testbeds (Skylake): all LISP ip6-ip6 tests are failing due to address overflow drops.              |
 |    | <https://jira.fd.io/browse/CSIT-1806>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  9 | `CSIT-xxxx                              | Tunnel encapsulations tests failing with 9000B Ethernet frames.                                           |
-|    | <https://jira.fd.io/browse/CSIT-xxxx>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 10 | `CSIT-xxxx                              | VPP performance regression with DPDK drivers.                                                             |
-|    | <https://jira.fd.io/browse/CSIT-xxxx>`_ |                                                                                                           |
+| 11 | `CSIT-1810                              | DPDK - performance regression with DPDK driver when Max Frame Size is set to less than 2023.      |
+|    | <https://jira.fd.io/browse/CSIT-1810>`_ |                                                                                                           |
 |    +-----------------------------------------+                                                                                                           |
-|    | `VPP-xxxx                               |                                                                                                           |
-|    | <https://jira.fd.io/browse/VPP-xxxx>`_  |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1808                              | 9000B memif tests failing.                                                                                |
-|    | <https://jira.fd.io/browse/CSIT-1800>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1809                              | 9000B vhostuser tests failing.                                                                            |
-|    | <https://jira.fd.io/browse/CSIT-1800>`_ |                                                                                                           |
+|    | `VPP-1876                               |                                                                                                           |
+|    | <https://jira.fd.io/browse/VPP-1876>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 
@@ -161,7 +158,7 @@ Root Cause Analysis for Performance Changes
 List of RCAs in |csit-release| for VPP performance changes:
 
 +----+-----------------------------------------+------------------------------------------------------------+
-| #  | JiraID                                  | Issue Description                                          |
+|  # | JiraID                                  | Issue Description                                          |
 +====+=========================================+============================================================+
 |  0 |                                         | To be updated when descriptions in Jira tickets are ready. |
 +----+-----------------------------------------+------------------------------------------------------------+
