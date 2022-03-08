@@ -339,13 +339,13 @@
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | 2001:1::2 | ${TG_pf1_mac}[0]
 | | VPP Add IP Neighbor
-| | ... | ${dut2} | ${DUT2_${int}1}[0] | 2001:2::2 | ${TG_pf2_mac}[0]
-| | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_dut1_address}
 | | ... | ${DUT2_${int}1_mac}[0]
 | | VPP Add IP Neighbor
 | | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut1_dut2_address}
 | | ... | ${DUT1_${int}2_mac}[0]
+| | VPP Add IP Neighbor
+| | ... | ${dut2} | ${DUT2_${int}2}[0] | 2001:2::2 | ${TG_pf2_mac}[0]
 
 | Initialize LISP IPv4 over IPv6 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 over IPv6 topology on all DUT nodes \
