@@ -102,7 +102,7 @@ ___
 |    | `VPP-1876                               | Worse performance with DPDK driver when MTU is set to 2022 or less.                                       |
 |    | <https://jira.fd.io/browse/VPP-1876>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1811                              | All 9000B NAT44DET tests fail due to bps (pps) rate set to high on TRex.                                  |
+| 12 | `CSIT-1811                              | All 9000B NAT44DET 65k 1m scale tests fail due to bps (pps) rate set to high on TRex.                     |
 |    | <https://jira.fd.io/browse/CSIT-1811>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | 13 | `CSIT-1812                              | All IMIX NAT44DET 4m 16m scale tests fail due to not creating required session count.                     |
