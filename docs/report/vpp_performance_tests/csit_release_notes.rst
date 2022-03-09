@@ -93,7 +93,7 @@ ___
 |  9 | `CSIT-1805                              | 3n-skx testbeds (Skylake): all hoststack quic vppecho scale tests are failing.                            |
 |    | <https://jira.fd.io/browse/CSIT-1805>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 10 | `CSIT-1806                              | 3n-skx testbeds (Skylake): all LISP ip6-ip6 tests are failing due to 100% drops in one direction.         |
+| 10 | `CSIT-1806                              | 3n-skx testbeds (Skylake): NDRPDR LISP ip6-ip6 tests are failing due to 100% drops in one direction.      |
 |    | <https://jira.fd.io/browse/CSIT-1806>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | 11 | `CSIT-1810                              | DPDK - performance regression with DPDK driver when Max Frame Size is set to less than 2023.              |
@@ -102,7 +102,7 @@ ___
 |    | `VPP-1876                               | Worse performance with DPDK driver when MTU is set to 2022 or less.                                       |
 |    | <https://jira.fd.io/browse/VPP-1876>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1811                              | All 9000B NAT44DET tests fail due to bps (pps) rate set to high on TRex.                                  |
+| 12 | `CSIT-1811                              | All 9000B NAT44DET 64k 1m scale tests fail due to bps rate set to high on TRex.                           |
 |    | <https://jira.fd.io/browse/CSIT-1811>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | 13 | `CSIT-1812                              | All IMIX NAT44DET 4m 16m scale tests fail due to not creating required session count.                     |
@@ -118,28 +118,28 @@ Issues reported in previous releases which still affect the current results.
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  3 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
+|  1 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
 |    | <https://jira.fd.io/browse/CSIT-1782>`_ | Frequency is reduced by CSIT workaround, but occasional failures do still happen.                         |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
+|  2 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
 |    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
 |    +-----------------------------------------+ Currently, the time critical code uses VAT running large files with exec statements and CLI commands.     |
 |    | `VPP-1763                               | Still, we needed to reduce the number of scale tests run to keep overall duration reasonable.             |
 |    | <https://jira.fd.io/browse/VPP-1763>`_  | More improvements needed to achieve sufficient configuration speed.                                       |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1789                              | IPSEC SW async scheduler tests show bad behavior.                                                         |
+|  3 | `CSIT-1789                              | IPSEC SW async scheduler tests show bad behavior.                                                         |
 |    | <https://jira.fd.io/browse/CSIT-1789>`_ | VPP code is not behaving correctly when crypto workers are the bottleneck.                                |
 |    +-----------------------------------------+                                                                                                           |
 |    | `VPP-1998                               |                                                                                                           |
 |    | <https://jira.fd.io/browse/VPP-1998>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
+|  4 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
 |    | <https://jira.fd.io/browse/CSIT-1785>`_ | At least for max scale, in allotted time (limited by session 500s timeout) due to worse                   |
 |    +-----------------------------------------+ slow path performance than previously measured and calibrated for.                                        |
 |    | `VPP-1972                               | CSIT removed the max scale NAT tests to avoid this issue.                                                 |
 |    | <https://jira.fd.io/browse/VPP-1972>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1791                              | Performance regression in RDMA tests, due to CSIT environment changes.                                    |
+|  5 | `CSIT-1791                              | Performance regression in RDMA tests, due to CSIT environment changes.                                    |
 |    | <https://jira.fd.io/browse/CSIT-1791>`_ | Two symptoms: 1. 10-20% regression across most tests. 2. DUT performance cap just below 38 Mpps.          |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
