@@ -518,10 +518,10 @@
       - 16  # rls2202.rel NDRPDR cov env 9
       # - 17  # rls2202.rel NDRPDR cov env 9
       - 18  # rls2202.rel NDRPDR cov env 9
-      - 19  # rls2202.rel NDRPDR cov env 9
+      - 19  # rls2202.rel NDRPDR cov env 9q
       - 20  # rls2202.rel NDRPDR cov env 9
-      # - 21  # rls2202.rel NDRPDR cov env 9
-      # - 22  # rls2202.rel NDRPDR cov env 9
+      - 21  # rls2202.rel NDRPDR cov env 9
+      - 22  # rls2202.rel NDRPDR cov env 9
       - 23  # rls2202.rel NDRPDR cov env 9
       # - 24  # rls2202.rel NDRPDR cov env 9
       # - 25  # rls2202.rel NDRPDR cov env 9
@@ -879,7 +879,7 @@
   vpp-3n-tsh-curr-cov:
     csit-vpp-perf-report-coverage-2202-3n-tsh:
       - 18  # rls2202.rel NDRPDR cov env 9
-      # - 19  # rls2202.rel NDRPDR cov env 9
+      - 19  # rls2202.rel NDRPDR cov env 9
       - 20  # rls2202.rel NDRPDR cov env 9
       - 21  # rls2202.rel NDRPDR cov env 9
       - 22  # rls2202.rel NDRPDR cov env 9
@@ -890,10 +890,10 @@
       # - 27  # rls2202.rel NDRPDR cov env 9
       - 28  # rls2202.rel NDRPDR cov env 9
       # - 29  # rls2202.rel NDRPDR cov env 9
-      # - 30  # rls2202.rel NDRPDR cov env 9
+      - 30  # rls2202.rel NDRPDR cov env 9
       - 31  # rls2202.rel NDRPDR cov env 9
-      # - 32  # rls2202.rel NDRPDR cov env 9
-      # - 33  # rls2202.rel NDRPDR cov env 9
+      - 32  # rls2202.rel NDRPDR cov env 9
+      - 33  # rls2202.rel NDRPDR cov env 9
       - 34  # rls2202.rel NDRPDR cov env 9
 
   dpdk-3n-tsh-hist-iter:
@@ -1456,14 +1456,14 @@
       - 57  # rls2202.rel NDRPDR cov env 9
       - 58  # rls2202.rel NDRPDR cov env 9
       - 59  # rls2202.rel NDRPDR cov env 9
-      # - 60  # rls2202.rel NDRPDR cov env 9
-      # - 61  # rls2202.rel NDRPDR cov env 9
-      # - 69  # rls2202.rel NDRPDR cov env 9
+      - 60  # rls2202.rel NDRPDR cov env 9
+      - 61  # rls2202.rel NDRPDR cov env 9
+      - 69  # rls2202.rel NDRPDR cov env 9
       # - 63  # rls2202.rel NDRPDR cov env 9
       - 64  # rls2202.rel NDRPDR cov env 9
       - 65  # rls2202.rel NDRPDR cov env 9
       - 66  # rls2202.rel NDRPDR cov env 9
-      # - 67  # rls2202.rel NDRPDR cov env 9
+      - 67  # rls2202.rel NDRPDR cov env 9
 
   dpdk-3n-icx-curr-iter:
     csit-dpdk-perf-report-iterative-2202-3n-icx:
