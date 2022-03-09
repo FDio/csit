@@ -5,7 +5,9 @@ Job Durations
 ------
 
   - `ASCII Iterative jobs <../_static/vpp/job-spec-duration-2n-icx-iter.txt>`_
-  - `ASCII Coverage jobs <../_static/vpp/job-spec-duration-2n-icx-cov.txt>`_
+
+..
+    - `ASCII Coverage jobs <../_static/vpp/job-spec-duration-2n-icx-cov.txt>`_
 
 3n-icx
 ------
