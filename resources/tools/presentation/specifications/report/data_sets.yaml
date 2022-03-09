@@ -524,7 +524,7 @@
       - 22  # rls2202.rel NDRPDR cov env 9
       - 23  # rls2202.rel NDRPDR cov env 9
       # - 24  # rls2202.rel NDRPDR cov env 9
-      # - 25  # rls2202.rel NDRPDR cov env 9
+      - 25  # rls2202.rel NDRPDR cov env 9
       - 26  # rls2202.rel NDRPDR cov env 9
       - 27  # rls2202.rel NDRPDR cov env 9
       # - 28  # rls2202.rel NDRPDR cov env 9
@@ -1443,14 +1443,14 @@
       - 44  # rls2202.rel NDRPDR cov env 9
       - 45  # rls2202.rel NDRPDR cov env 9
       - 46  # rls2202.rel NDRPDR cov env 9
-      # - 47  # rls2202.rel NDRPDR cov env 9
+      - 47  # rls2202.rel NDRPDR cov env 9
       - 48  # rls2202.rel NDRPDR cov env 9
       - 49  # rls2202.rel NDRPDR cov env 9
       - 50  # rls2202.rel NDRPDR cov env 9
       - 51  # rls2202.rel NDRPDR cov env 9
       - 52  # rls2202.rel NDRPDR cov env 9
       - 53  # rls2202.rel NDRPDR cov env 9
-      # - 68  # rls2202.rel NDRPDR cov env 9
+      - 68  # rls2202.rel NDRPDR cov env 9
       - 55  # rls2202.rel NDRPDR cov env 9
       - 56  # rls2202.rel NDRPDR cov env 9
       - 57  # rls2202.rel NDRPDR cov env 9
