@@ -25,5 +25,6 @@ report.html
 *.pyc
 *~
 .idea
+.vscode
 *.raw.json
 *.info.json
