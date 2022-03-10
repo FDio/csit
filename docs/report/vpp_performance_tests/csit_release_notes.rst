@@ -93,19 +93,16 @@ ___
 |  9 | `CSIT-1805                              | 3n-skx testbeds (Skylake): all hoststack quic vppecho scale tests are failing.                            |
 |    | <https://jira.fd.io/browse/CSIT-1805>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 10 | `CSIT-1806                              | 3n-skx testbeds (Skylake): NDRPDR LISP ip6-ip6 tests are failing due to 100% drops in one direction.      |
-|    | <https://jira.fd.io/browse/CSIT-1806>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1810                              | DPDK - performance regression with DPDK driver when Max Frame Size is set to less than 2023.              |
+| 10 | `CSIT-1810                              | DPDK - performance regression with DPDK driver when Max Frame Size is set to less than 2023.              |
 |    | <https://jira.fd.io/browse/CSIT-1810>`_ |                                                                                                           |
 |    +-----------------------------------------+                                                                                                           |
 |    | `VPP-1876                               | Worse performance with DPDK driver when MTU is set to 2022 or less.                                       |
 |    | <https://jira.fd.io/browse/VPP-1876>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1811                              | All 9000B NAT44DET 64k 1m scale tests fail due to bps rate set to high on TRex.                           |
+| 11 | `CSIT-1811                              | All 9000B NAT44DET 64k 1m scale tests fail due to bps rate set to high on TRex.                           |
 |    | <https://jira.fd.io/browse/CSIT-1811>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 13 | `CSIT-1812                              | All IMIX NAT44DET 4m 16m scale tests fail due to not creating required session count.                     |
+| 12 | `CSIT-1812                              | All IMIX NAT44DET 4m 16m scale tests fail due to not creating required session count.                     |
 |    | <https://jira.fd.io/browse/CSIT-1812>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
