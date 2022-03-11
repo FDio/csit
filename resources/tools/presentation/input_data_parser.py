@@ -1531,12 +1531,12 @@ class InputData:
         process_oper = False
         if u"-vpp-perf-report-coverage-" in job:
             process_oper = True
-        elif u"-vpp-perf-report-iterative-" in job:
-            # Exceptions for TBs where we do not have coverage data:
-            for item in (u"-2n-icx", ):
-                if item in job:
-                    process_oper = True
-                    break
+        # elif u"-vpp-perf-report-iterative-" in job:
+        #     # Exceptions for TBs where we do not have coverage data:
+        #     for item in (u"-2n-icx", ):
+        #         if item in job:
+        #             process_oper = True
+        #             break
         checker = ExecutionChecker(
             metadata, self._cfg.mapping, self._cfg.ignore, process_oper
         )

@@ -1399,9 +1399,24 @@
       - 25  # rls2202.rel MRR GSO iter env 9
 
   vpp-2n-icx-curr-cov:
-    # csit-vpp-perf-report-coverage-2202-2n-icx:
-    csit-vpp-perf-report-iterative-2202-2n-icx:
-      - 32  # rls2202.rel NDRPDR iter env 9
+    csit-vpp-perf-report-coverage-2202-2n-icx:
+      - 1   # rls2202.rc2 NDRPDR cov env 9
+      - 2   # rls2202.rc2 NDRPDR cov env 9
+      - 3   # rls2202.rc2 NDRPDR cov env 9
+      - 4   # rls2202.rc2 NDRPDR cov env 9
+      - 5   # rls2202.rc2 NDRPDR cov env 9
+      - 6   # rls2202.rc2 NDRPDR cov env 9
+      - 7   # rls2202.rc2 NDRPDR cov env 9
+      - 8   # rls2202.rc2 NDRPDR cov env 9
+      # - 9   # rls2202.rc2 NDRPDR cov env 9
+      - 10  # rls2202.rc2 NDRPDR cov env 9
+      - 11  # rls2202.rc2 NDRPDR cov env 9
+      - 12  # rls2202.rc2 NDRPDR cov env 9
+      - 13  # rls2202.rc2 NDRPDR cov env 9
+      # - 14  # rls2202.rc2 NDRPDR cov env 9
+      - 15  # rls2202.rc2 NDRPDR cov env 9
+      - 16  # rls2202.rc2 NDRPDR cov env 9
+      - 17  # rls2202.rc2 NDRPDR cov env 9
 
   dpdk-2n-icx-curr-iter:
     csit-dpdk-perf-report-iterative-2202-2n-icx:
