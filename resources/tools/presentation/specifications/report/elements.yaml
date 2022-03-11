@@ -402,8 +402,8 @@
   lines:
     - job-spec: "gso-00"
       build: "16"
-#     - job-spec: "ip4-00"
-#       build: "17"
+    - job-spec: "ip4-00"
+      build: "17"
     - job-spec: "ip4-01"
       build: "18"
     - job-spec: "ip4-02"
