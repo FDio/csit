@@ -10,6 +10,7 @@ below.
 | .11            | 1. Added iterative data for 2n-icx.                        |
 |                | 2. Added coverage data for:                                |
 |                |                                                            |
+|                |    - 2n-icx (rc2)                                          |
 |                |    - 2n-zn2                                                |
 |                |    - 3n-icx                                                |
 |                |    - 3n-skx                                                |
