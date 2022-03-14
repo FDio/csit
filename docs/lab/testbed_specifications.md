@@ -95,12 +95,12 @@ hosted by LFN FD.io CSIT project.
 12. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0    0    0    0
 13. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0    0    0    0
 14. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    0    2    0    0    0    0    0
-15. 3-Node-Altra       perf   alt   icx   1    2    .5   0    0    0    0    0    0    0    2    0    0    .5   0
+15. 3-Node-Altra       perf   alt   icx   1    2    1    0    0    0    0    0    0    0    2    0    0    1    0
 16. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0    0    0    0
 17. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    0    2    0    0
 18. 3-Node-Icelake     perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    0    0    6    0
 19. 3-Node-SnowRidge   perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    0    0    .5   2
-                                 Totals: 34   44   21    4   17    1    2    3    3    2    4    7    2   15    2
+                                 Totals: 34   44  21.5   4   17    1    2    3    3    2    4    7    2  15.5   2
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -321,7 +321,7 @@ Name         | Comment
 10.30.50.71  | s56-t14-sut1
 10.30.50.72  | s62-t34-sut1
 10.30.50.73  | s63-t34-sut2
-10.30.50.74  | s64-t34t36-tg1
+10.30.50.74  | s64-t34-tg1
 10.30.50.75  | s65-t37-sut1
 10.30.50.76  | s66-t37-sut2
 10.30.50.77  | s67-t37-tg1
@@ -417,7 +417,7 @@ Name         | Comment
 10.30.51.71  | s56-t14-sut1
 10.30.51.72  | s62-t34-sut1
 10.30.51.73  | s63-t34-sut2
-10.30.51.74  | s64-t34t36-tg1
+10.30.51.74  | s64-t34-tg1
 10.30.51.75  | s65-t37-sut1
 10.30.51.76  | s66-t37-sut2
 10.30.51.77  | s67-t37-tg1
@@ -797,28 +797,38 @@ FD.io CSIT lab contains following server types:
         - Disks: 1* 480GB SSD Micron, 1* 1000GB HDD Seagate_25
     - NICs configuration:
         - Numa0:
-            - PCIe Slot6 08:00.xx: XL710-QDA2-2p40GE Intel.
+            - no cards
         - Numa1:
             - PCIe Slot18 91:00.xx: XL710-QDA2-2p40GE Intel.
 20.  Server-Type-E23: Purpose - Altra Arm Ampere SUT for FD.io performance testing.
-    - Quantity: 1
+    - Quantity: 2
     - Physical connectivity:
         - IPMI and host management ports.
         - NIC ports connected into 3-node topologies.
     - Main HW configuration:
-        - Chassis: TBD
-        - Motherboard: TBD
-        - Processors: n* TBD
-        - RAM Memory: n* TBD
-        - Disks: TBD
+        - Chassis: WIWYNN Mt.Jade Server System B81.030Z1.0007 2U
+        - Motherboard: Mt.Jade Motherboard
+        - Processors: 2* Ampere(R) Altra(R) Q80-30 Processor (Neoverse N1)
+        - Processor Signature: Implementor 0x41, Variant 0x3, Architecture 15, Part 0xd0c, Revision 1
+        - RAM Memory: 16* 8GB DDR4-3200MT/s
+        - Disks: 2* 960GB SSD Samsung M.2 NVMe PM983
     - NICs configuration:
         - Numa0:
-            - PCIe Slotn xx:xx.xx: XL710-QDA2-2p40GE Intel.
-            - PCIe Slotk xx:xx.xx: mcx556a-edat ConnectX5-2p100GE Mellanox.
+            - PCIe Slot1 0004:04:00.x: xl710-QDA2-2p40GE Intel.
         - Numa1:
-            - PCIe Slotn xx:xx.xx: XL710-QDA2-2p40GE Intel.
-            - PCIe Slotk xx:xx.xx: mcx556a-edat ConnectX5-2p100GE Mellanox.
-21.  Server-Type-E31: Purpose - Skylake Xeon TG for FD.io performance testing.
+            - no cards.
+21. Server-Type-E24 : Purpose - Altra Arm Ampere for FD.io build.
+    - Quantity: 2.
+    - Physical connectivity:
+        - IPMI and host management ports.
+    - Main HW configuration:
+        - Chassis: Gigabyte R152-P30-00 1U
+        - Motherboard: MP32-AR1-00
+        - Processors: 1* Ampere(R) Altra(R) Q80-30 Processor (Neoverse N1)
+        - Processor Signature: Implementor 0x0a, Variant 0x1, Architecture 6, Part 0x000, Revision 1
+        - RAM Memory: 12* 16GB DDR4-3200MT/s
+        - Disks: 1* 960GB SSD Samsung M.2 NVMe PM983
+22.  Server-Type-E31: Purpose - Skylake Xeon TG for FD.io performance testing.
     - Quantity: 1
     - Physical connectivity:
         - IPMI and host management ports.
@@ -838,7 +848,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: XL710-QDA2-2p40GE Intel.
             - PCIe Slot10 d8:00.xx: x710-4p10GE Intel.
-22. Server-Type-F1: Purpose - Icelake Xeon SUT for FD.io performance testing.
+23. Server-Type-F1: Purpose - Icelake Xeon SUT for FD.io performance testing.
     - Quantity: 8.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -858,7 +868,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-23. Server-Type-F2: Purpose - Icelake Xeon TG for FD.io performance testing.
+24. Server-Type-F2: Purpose - Icelake Xeon TG for FD.io performance testing.
     - Quantity: 3.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -878,7 +888,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: e810-2CQDA2-2p100GE Intel.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-24. Server-Type-F3: Purpose - Icelake Xeon TG for FD.io performance testing.
+25. Server-Type-F3: Purpose - Icelake Xeon TG for FD.io performance testing.
     - Quantity: 3.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -898,7 +908,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-25. Server-Type-F4: Purpose - Icelake Xeon Shared TG for FD.io performance testing.
+26. Server-Type-F4: Purpose - Icelake Xeon Shared TG for FD.io performance testing.
     - Quantity: 3.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -918,16 +928,6 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: e810-XXVDA4-4p25GE Intel.
             - PCIe Slot8 af:00.xx: e810-2CQDA2-2p100GE Intel.
             - PCIe Slot10 d8:00.xx: empty.
-26. Server-Type-E24 : Purpose - Altra Arm Ampere for FD.io build.
-    - Quantity: 2.
-    - Physical connectivity:
-        - IPMI and host management ports.
-    - Main HW configuration:
-        - Chassis: Gigabyte R152-P30-00 1U
-        - Motherboard: MP32-AR1-00
-        - Processors: 1* Ampere(R) Altra(R) Processor (Neoverse N1)
-        - RAM Memory: 4* 16GB RDIMM-3200MHz
-        - Disks: 1* 960GB SSD Samsung M.2 NVMe PM983
 27. Server-Type-G1: Purpose - SnowRidge Atom SUT for FD.io performance testing.
     - Quantity: 2
     - Physical connectivity:
@@ -1380,8 +1380,6 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
     - IPMI IP: 10.30.50.69
     - Host IP: 10.30.51.69
     - portnames:
-        - s27-t211-sut1-c6/p1 - 40GE-port1 XL710-QDA2-2p40GE.
-        - s27-t211-sut1-c6/p2 - 40GE-port2 XL710-QDA2-2p40GE.
         - s27-t211-sut1-c18/p1 - 40GE-port1 XL710-QDA2-2p40GE.
         - s27-t211-sut1-c18/p2 - 40GE-port2 XL710-QDA2-2p40GE.
 - TG [Server-Type-E31]:
@@ -1695,8 +1693,6 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 
 #### 3-Node-Altra Servers (3n-alt) PROD
 
-Note: Server64 (TG) is shared between testbed34 & testbed36
-
 ```
 - SUT [Server-Type-E23]:
     - testbedname: testbed34.
@@ -1704,28 +1700,32 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
     - IPMI IP: 10.30.50.72
     - Host IP: 10.30.51.72
     - portnames:
-        - s62-t34-sut1-cn/p1 - 40GE-port1 xl710-QDA2-2p40GE.
-        - s62-t34-sut1-cn/p2 - 40GE-port2 xl710-QDA2-2p40GE.
-        - s62-t34-sut1-ck/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s62-t34-sut1-ck/p2 - 100GE-port1 ConnectX5-2p100GE.
+        - s62-t34-sut1-c1/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s62-t34-sut1-c1/p2 - 40GE-port2 xl710-QDA2-2p40GE.
 - SUT [Server-Type-E23]:
     - testbedname: testbed34.
     - hostname: s63-t34-sut2.
     - IPMI IP: 10.30.50.73
     - Host IP: 10.30.51.73
     - portnames:
-        - s63-t34-sut2-cn/p1 - 40GE-port1 xl710-QDA2-2p40GE.
-        - s63-t34-sut2-cn/p2 - 40GE-port2 xl710-QDA2-2p40GE.
-        - s63-t34-sut2-ck/p1 - 100GE-port1 ConnectX5-2p100GE.
-        - s63-t34-sut2-ck/p2 - 100GE-port1 ConnectX5-2p100GE.
+        - s63-t34-sut2-c1/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s63-t34-sut2-c1/p2 - 40GE-port2 xl710-QDA2-2p40GE.
 - TG [Server-Type-F4]:
     - testbedname: testbed34.
-    - hostname: s64-t34t36-tg1.
+    - hostname: s64-t34-tg1.
     - IPMI IP: 10.30.50.74
     - Host IP: 10.30.51.74
     - portnames:
-        - s64-t34-tg1-c1/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s64-t34-tg1-c1/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s64-t34-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s64-t34-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s64-t34-tg1-c4/p1 - 40GE-port1 xl710-QDA2-2p40GE.
+        - s64-t34-tg1-c4/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s64-t34-tg1-c6/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s64-t34-tg1-c6/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s64-t34-tg1-c6/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s64-t34-tg1-c6/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s64-t34-tg1-c8/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s64-t34-tg1-c8/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 ```
 
 #### 3-Node-Denverton Servers (3n-dnv) PROD
@@ -2232,13 +2232,9 @@ To be completed.
 ```
 - testbed34:
     - ring1 40GE-ports xl710-QDA2-2p40GE on SUTs:
-        - s64-t34-tg1-cn/p2 - s62-t34-sut1-cn/p2.
-        - s62-t34-sut1-cn/p1 - s63-t34-sut2-cn/p2.
-        - s63-t34-sut2-cn/p1 - s64-t34-tg1-cn/p1.
-    - ring2 100GE-ports ConnectX5-2p100GE on SUTs:
-        - s64-t34-tg1-ck/p2 - s62-t34-sut1-ck/p2.
-        - s62-t34-sut1-ck/p1 - s63-t34-sut2-ckp2.
-        - s63-t34-sut2-ck/p1 - s64-t34-tg1-ck/p1.
+        - s64-t34-tg1-c4/p1 - s62-t34-sut1-c1/p2.
+        - s62-t34-sut1-c1/p1 - s63-t34-sut2-c1/p2.
+        - s63-t34-sut2-c1/p1 - s64-t34-tg1-c4/p2.
 ```
 
 #### 3-Node-Denverton Wiring (3n-dnv) PROD
@@ -2338,11 +2334,20 @@ To be completed.
         - Processors: 2* hip07-d05 ~ 32* Arm Cortex-A72.
         - RAM Memory: 8* 16GB DDR4-2400MT/s.
         - Disks: 1* 4TB SATA HDD.
-    - 2 * Ampere Altra
-        - Chassis: TBD
-        - Processors: TBD
-        - RAM Memory: TBD
-        - Disks: TBD
+2. Arm Neoverse N1 servers
+    - 2 * Ampere Altra (Performance)
+        - Chassis: WIWYNN Mt.Jade Server System B81.030Z1.0007 2U
+        - Processors: 2* Ampere(R) Altra(R) Q80-30 Processor (Neoverse N1)
+        - Processor Signature: Implementor 0x41, Variant 0x3, Architecture 15, Part 0xd0c, Revision 1
+        - RAM Memory: 16* 8GB DDR4-3200MT/s
+        - Disks: 2* 960GB SSD Samsung M.2 NVMe PM983
+    - 2 * Ampere Altra (Build)
+        - Chassis: Gigabyte R152-P30-00 1U
+        - Motherboard: MP32-AR1-00
+        - Processors: 1* Ampere(R) Altra(R) Q80-30 Processor (Neoverse N1)
+        - Processor Signature: Implementor 0x0a, Variant 0x1, Architecture 6, Part 0x000, Revision 1
+        - RAM Memory: 12* 16GB DDR4-3200MT/s
+        - Disks: 1* 960GB SSD Samsung M.2 NVMe PM983
 ```
 
 ### Xeon and Atom Servers
