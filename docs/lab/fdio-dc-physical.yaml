@@ -313,6 +313,34 @@ yul1:
         serial_number: FCH2013V0J2
         mgmt_ip4: 10.30.51.29
         lom_ip4: 10.30.50.29
+      - unit: 21..22
+        name: s52-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.65
+        lom_ip4: 10.30.50.65
+      - unit: 21..22
+        name: s51-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.66
+        lom_ip4: 10.30.50.66
+      - unit: 21..22
+        name: s49-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.67
+        lom_ip4: 10.30.50.67
+      - unit: 21..22
+        name: s50-nomad
+        oper_status: production
+        device_type: ThunderX-88XX
+        serial_number: N/A
+        mgmt_ip4: 10.30.51.68
+        lom_ip4: 10.30.50.68
       - unit: 19..20
         name: s42-nomad
         oper_status: production
@@ -349,52 +377,24 @@ yul1:
         mgmt_ip4: 10.30.51.70
         lom_ip4: 10.30.50.70
       - unit: 9..10
-        name: s52-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.65
-        lom_ip4: 10.30.50.65
-      - unit: 9..10
-        name: s52-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.66
-        lom_ip4: 10.30.50.66
-      - unit: 9..10
-        name: s52-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.67
-        lom_ip4: 10.30.50.67
-      - unit: 9..10
-        name: s52-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.68
-        lom_ip4: 10.30.50.68
-      - unit: 7..8
         name: s62-t34-sut1
-        oper_status: in-transit
-        device_type: Ampere-TBD
-        serial_number: TBD
+        oper_status: production
+        device_type: Mt.Jade Server System B81.030Z1.0007
+        serial_number: 04000059N0SC
         mgmt_ip4: 10.30.51.72
         lom_ip4: 10.30.50.72
-      - unit: 5..6
+      - unit: 7..8
         name: s63-t34-sut2
-        oper_status: in-transit
-        device_type: Ampere-TBD
-        serial_number: TBD
+        oper_status: production
+        device_type: Mt.Jade Server System B81.030Z1.0007
+        serial_number: 0390003EN0SC
         mgmt_ip4: 10.30.51.73
         lom_ip4: 10.30.50.73
-      - unit: 1..4
+      - unit: 3..6
         name: s64-t34-tg1
-        oper_status: in-transit
-        device_type: Intel-TBD
-        serial_number: TBD
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: C7470KK40P50249
         mgmt_ip4: 10.30.51.74
         lom_ip4: 10.30.50.74
   rack:
