@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3cd101f6_8d0d09d4",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-15T10:23:19Z",
+      "side": 1,
+      "message": "RC2 coverage test data is used for 2n-icx test bed",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 59
+      },
+      "revId": "317f1054fdf80223e5f935165980e8fe6451a6a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8f877dd_2db69c9c",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-15T10:23:19Z",
+      "side": 1,
+      "message": "There is",
+      "range": {
+        "startLine": 37,
+        "startChar": 64,
+        "endLine": 37,
+        "endChar": 75
+      },
+      "revId": "317f1054fdf80223e5f935165980e8fe6451a6a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a13af4b_cc6188bf",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-15T10:23:19Z",
+      "side": 1,
+      "message": "so we decided to use test data already available from RC2 testing.",
+      "range": {
+        "startLine": 39,
+        "startChar": 17,
+        "endLine": 39,
+        "endChar": 52
+      },
+      "revId": "317f1054fdf80223e5f935165980e8fe6451a6a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba43dd8d_8824d43d",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-15T10:23:19Z",
+      "side": 1,
+      "message": "tests is large (same as 2n-skx with 4 test beds)",
+      "range": {
+        "startLine": 38,
+        "startChar": 43,
+        "endLine": 39,
+        "endChar": 15
+      },
+      "revId": "317f1054fdf80223e5f935165980e8fe6451a6a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
