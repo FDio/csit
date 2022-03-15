@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -564,6 +564,20 @@ class PLRsearch:
             :rtype: multiprocessing.Connection
             """
 
+            boss_pipe_end, worker_pipe_end = multiprocessing.Pipe()
+            # Starting the worker first. Contrary to documentation
+            # https://docs.python.org/3/library/multiprocessing.html#multiprocessing.connection.Connection
+            # sending of large object without active listener on the other side
+            # results in a deadlock, not in a ValueError.
+            # See https://stackoverflow.com/questions/15137292/large-objects-and-multiprocessing-pipes-and-send
+            worker = multiprocessing.Process(
+                target=Integrator.try_estimate_nd,
+                args=(worker_pipe_end, 10.0, self.trace_enabled)
+            )
+            worker.daemon = True
+            worker.start()
+
+            # Only now it is safe to send the function to compute with.
             def value_logweight_func(trace, x_mrr, x_spread):
                 """Return log of critical rate and log of likelihood.
 
@@ -609,15 +623,6 @@ class PLRsearch:
                 return value, logweight
 
             dilled_function = dill.dumps(value_logweight_func)
-            boss_pipe_end, worker_pipe_end = multiprocessing.Pipe()
-            # Do not send yet, run the worker first to avoid a deadlock.
-            # See https://stackoverflow.com/a/15716500
-            worker = multiprocessing.Process(
-                target=Integrator.try_estimate_nd,
-                args=(worker_pipe_end, 10.0, self.trace_enabled)
-            )
-            worker.daemon = True
-            worker.start()
             boss_pipe_end.send(
                 (dimension, dilled_function, focus_tracker, max_samples)
             )
