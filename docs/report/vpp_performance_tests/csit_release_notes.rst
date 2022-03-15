@@ -34,6 +34,10 @@ Changes in |csit-release|
      iteratively for the report (as well as in daily and weekly
      trending) due to physical testbeds overload.
 
+     **RC2 data from 2n-icx test bed used for coverage tests**: As there is only
+     one 2n-icx test bed and the amount of tests is similar as for 2n-skx (4
+     test beds), we deciced to use rc2 coverage data.
+
 #. TEST FRAMEWORK
 
    - **CSIT test environment** version has been updated to ver. 9, see
