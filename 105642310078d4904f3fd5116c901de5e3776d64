@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c1262090_ac1a5055",
+        "filename": "docs/lab/fdio-dc-physical.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-15T08:25:50Z",
+      "side": 1,
+      "message": "production",
+      "range": {
+        "startLine": 381,
+        "startChar": 21,
+        "endLine": 381,
+        "endChar": 31
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1c6fc50_02c54014",
+        "filename": "docs/lab/fdio-dc-physical.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-15T08:25:50Z",
+      "side": 1,
+      "message": "should be replaced with chassis type once online",
+      "range": {
+        "startLine": 389,
+        "startChar": 21,
+        "endLine": 389,
+        "endChar": 31
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "332681a9_8910836b",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-15T08:25:50Z",
+      "side": 1,
+      "message": "should be filled once up",
+      "range": {
+        "startLine": 793,
+        "startChar": 0,
+        "endLine": 797,
+        "endChar": 20
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6400e028_a75e6423",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-15T08:25:50Z",
+      "side": 1,
+      "message": "lower case",
+      "range": {
+        "startLine": 897,
+        "startChar": 35,
+        "endLine": 897,
+        "endChar": 37
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffdd5ff7_f076b76a",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-15T08:25:50Z",
+      "side": 1,
+      "message": "hmm maybe we should move the section to line 803",
+      "range": {
+        "startLine": 903,
+        "startChar": 0,
+        "endLine": 903,
+        "endChar": 65
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "975fe2ae_459bfd7d",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2166,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-15T08:25:50Z",
+      "side": 1,
+      "message": "we need to be precise which port it is.",
+      "range": {
+        "startLine": 2166,
+        "startChar": 43,
+        "endLine": 2166,
+        "endChar": 46
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "329d7956_caec07a7",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2258,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-15T08:25:50Z",
+      "side": 1,
+      "message": "Arm Neoverse N1 ? \n\nArm Armv8-A (Harvard) ?\n\nhttps://developer.arm.com/Processors/Neoverse%20N1",
+      "range": {
+        "startLine": 2258,
+        "startChar": 3,
+        "endLine": 2258,
+        "endChar": 20
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
