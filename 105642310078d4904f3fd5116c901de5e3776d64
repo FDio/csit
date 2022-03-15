@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "897a9534_657cca83",
+        "filename": "docs/lab/fdio-dc-physical.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-03-15T08:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1262090_ac1a5055",
+      "range": {
+        "startLine": 381,
+        "startChar": 21,
+        "endLine": 381,
+        "endChar": 31
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1c6fc50_02c54014",
         "filename": "docs/lab/fdio-dc-physical.yaml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2022-03-15T08:25:50Z",
       "side": 1,
       "message": "should be replaced with chassis type once online",
+      "range": {
+        "startLine": 389,
+        "startChar": 21,
+        "endLine": 389,
+        "endChar": 31
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08217a1d_7f3feb66",
+        "filename": "docs/lab/fdio-dc-physical.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-03-15T08:52:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d1c6fc50_02c54014",
       "range": {
         "startLine": 389,
         "startChar": 21,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "37bb69b5_698213a5",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-03-15T08:52:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "332681a9_8910836b",
+      "range": {
+        "startLine": 793,
+        "startChar": 0,
+        "endLine": 797,
+        "endChar": 20
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6400e028_a75e6423",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 1
@@ -91,6 +163,30 @@
       "revId": "105642310078d4904f3fd5116c901de5e3776d64",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c671e9a_00be2b38",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-03-15T08:52:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6400e028_a75e6423",
+      "range": {
+        "startLine": 897,
+        "startChar": 35,
+        "endLine": 897,
+        "endChar": 37
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "63659e86_e50bc00d",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-03-15T08:52:01Z",
+      "side": 1,
+      "message": "Makes sense, E comes before F :-)\nI\u0027ll move it.",
+      "parentUuid": "ffdd5ff7_f076b76a",
+      "range": {
+        "startLine": 903,
+        "startChar": 0,
+        "endLine": 903,
+        "endChar": 65
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "975fe2ae_459bfd7d",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 1
@@ -128,6 +248,30 @@
       "writtenOn": "2022-03-15T08:25:50Z",
       "side": 1,
       "message": "we need to be precise which port it is.",
+      "range": {
+        "startLine": 2166,
+        "startChar": 43,
+        "endLine": 2166,
+        "endChar": 46
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6211f32_0c3cfe88",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2166,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-03-15T08:52:01Z",
+      "side": 1,
+      "message": "The ports are specified - p1 and p2.\nI don\u0027t know exactly what slots are available on the SUTs, but the slot corresponds to the NIC we want to use:\nPCIe Slotn xx:xx.xx: xl710-QDA2-2p40GE Intel - slotn corresponds to cn\nBut in any case, there is only one NIC in these SUTs, so it shouldn\u0027t be that confusing.",
+      "parentUuid": "975fe2ae_459bfd7d",
       "range": {
         "startLine": 2166,
         "startChar": 43,
@@ -160,6 +304,30 @@
       "revId": "105642310078d4904f3fd5116c901de5e3776d64",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c82b27bb_43474ace",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 2258,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-03-15T08:52:01Z",
+      "side": 1,
+      "message": "To be consistent with the previous section, I\u0027ll go with Neoverse N1. N1 is based on cortex A-76 and is its own microarchitecture (distinct from A-76), which is why A-76 would not be entirely accurate.",
+      "parentUuid": "329d7956_caec07a7",
+      "range": {
+        "startLine": 2258,
+        "startChar": 3,
+        "endLine": 2258,
+        "endChar": 20
+      },
+      "revId": "105642310078d4904f3fd5116c901de5e3776d64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
