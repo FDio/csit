@@ -1,5 +1,4 @@
 locals {
-  bucket = "${var.application_name}-bucket"
   tags = {
     "Name"        = "${var.application_name}"
     "Environment" = "${var.application_name}"
@@ -305,51 +304,6 @@ resource "aws_iam_role_policy" "default" {
   role   = aws_iam_role.ec2.id
 }
 
-# Create elastic beanstalk Application
-resource "aws_s3_bucket" "bucket" {
-  bucket = local.bucket
-  tags   = local.tags
-}
-
-resource "aws_s3_object" "object" {
-  bucket = aws_s3_bucket.bucket.id
-  key    = "beanstalk/app.zip"
-  source = "app.zip"
-  tags   = local.tags
-}
-
-resource "aws_elastic_beanstalk_application_version" "application_version" {
-  depends_on = [
-    aws_elastic_beanstalk_application.application
-  ]
-  name        = "${var.application_name}-base"
-  application = var.application_name
-  description = var.application_description
-  bucket      = aws_s3_bucket.bucket.id
-  key         = aws_s3_object.object.id
-  tags        = local.tags
-}
-
-resource "aws_elastic_beanstalk_application" "application" {
-  depends_on = [
-    aws_vpc.vpc,
-    aws_subnet.subnet,
-    aws_ssm_activation.ec2
-  ]
-  name        = var.application_name
-  description = var.application_description
-
-  dynamic "appversion_lifecycle" {
-    for_each = var.appversion_lifecycle_service_role_arn != "" ? ["true"] : []
-    content {
-      service_role          = var.appversion_lifecycle_service_role_arn
-      max_count             = var.appversion_lifecycle_max_count
-      delete_source_from_s3 = var.appversion_lifecycle_delete_source_from_s3
-    }
-  }
-  tags = local.tags
-}
-
 # Create elastic beanstalk Environment
 resource "aws_elastic_beanstalk_environment" "environment" {
   depends_on = [
@@ -357,7 +311,7 @@ resource "aws_elastic_beanstalk_environment" "environment" {
     aws_subnet.subnet,
     aws_ssm_activation.ec2
   ]
-  application            = aws_elastic_beanstalk_application.application.name
+  application            = var.environment_application
   description            = var.environment_description
   name                   = var.environment_name
   solution_stack_name    = var.environment_solution_stack_name
