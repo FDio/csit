@@ -129,19 +129,13 @@ Issues reported in previous releases which still affect the current results.
 |    | `VPP-1763                               | Still, we needed to reduce the number of scale tests run to keep overall duration reasonable.             |
 |    | <https://jira.fd.io/browse/VPP-1763>`_  | More improvements needed to achieve sufficient configuration speed.                                       |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `CSIT-1789                              | IPSEC SW async scheduler tests show bad behavior.                                                         |
-|    | <https://jira.fd.io/browse/CSIT-1789>`_ | VPP code is not behaving correctly when crypto workers are the bottleneck.                                |
-|    +-----------------------------------------+                                                                                                           |
-|    | `VPP-1998                               |                                                                                                           |
-|    | <https://jira.fd.io/browse/VPP-1998>`_  |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
+|  3 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
 |    | <https://jira.fd.io/browse/CSIT-1785>`_ | At least for max scale, in allotted time (limited by session 500s timeout) due to worse                   |
 |    +-----------------------------------------+ slow path performance than previously measured and calibrated for.                                        |
 |    | `VPP-1972                               | CSIT removed the max scale NAT tests to avoid this issue.                                                 |
 |    | <https://jira.fd.io/browse/VPP-1972>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1791                              | Performance regression in RDMA tests, due to CSIT environment changes.                                    |
+|  4 | `CSIT-1791                              | Performance regression in RDMA tests, due to CSIT environment changes.                                    |
 |    | <https://jira.fd.io/browse/CSIT-1791>`_ | Two symptoms: 1. 10-20% regression across most tests. 2. DUT performance cap just below 38 Mpps.          |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
@@ -153,11 +147,11 @@ Issues reported in previous releases which were fixed in this release:
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1789                              | AVF driver does not perform RSS in a deterministic way.                                                   |
-|    | <https://jira.fd.io/browse/CSIT-1789>`_ | VPP now uses the same RSS key with AVF driver as with DPDK driver.                                        |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  2 | `CSIT-1786                              | IP4 and IP6 scale tests failing with no traffic forwarded.                                                |
-|    | <https://jira.fd.io/browse/CSIT-1786>`_ | CSIT replaced the old single VAT command by file full of "exec" CLI commands executed by VAT.             |
+|  1 | `CSIT-1789                              | IPSEC SW async scheduler tests show bad behavior.                                                         |
+|    | <https://jira.fd.io/browse/CSIT-1789>`_ | VPP code is not behaving correctly when crypto workers are the bottleneck.                                |
+|    +-----------------------------------------+                                                                                                           |
+|    | `VPP-1998                               |                                                                                                           |
+|    | <https://jira.fd.io/browse/VPP-1998>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Root Cause Analysis for Performance Changes
