@@ -7,8 +7,19 @@ data "vault_aws_access_credentials" "creds" {
   role    = "${var.vault_name}-role"
 }
 
+module "elastic_beanstalk_application" {
+  source = "../../terraform-aws-elastic-beanstalk-application"
+
+  # application
+  application_description                    = "FD.io CSIT Results Dashboard"
+  application_name                           = "fdio-csit-dash-app"
+  appversion_lifecycle_service_role_arn      = ""
+  appversion_lifecycle_max_count             = 2
+  appversion_lifecycle_delete_source_from_s3 = false
+}
+
 module "elastic_beanstalk_environment" {
-  source = "../"
+  source = "../../terraform-aws-elastic-beanstalk-environment"
 
   # vpc
   vpc_cidr_block           = "192.168.0.0/24"
@@ -19,15 +30,9 @@ module "elastic_beanstalk_environment" {
   # subnet
   subnet_availability_zone = "us-east-1a"
 
-  # application
-  application_description                    = "FD.io CSIT Results Dashboard"
-  application_name                           = "fdio-csit-dash-app"
-  appversion_lifecycle_service_role_arn      = ""
-  appversion_lifecycle_max_count             = 2
-  appversion_lifecycle_delete_source_from_s3 = false
-
   # environment
-  environment_description            = "FD.io CSIT Results Dashboard"
+  environment_application            = module.elastic_beanstalk_application.application_name
+  environment_description            = module.elastic_beanstalk_application.application_description
   environment_name                   = "fdio-csit-dash-env"
   environment_solution_stack_name    = "64bit Amazon Linux 2 v3.3.11 running Python 3.8"
   environment_tier                   = "WebServer"
@@ -35,7 +40,7 @@ module "elastic_beanstalk_environment" {
   environment_version_label          = ""
 
   # aws:ec2:instances
-  instances_instance_types = "t3a.2xlarge"
+  instances_instance_types = "t3a.xlarge"
 
   # aws:ec2:vpc
   associate_public_ip_address = true
