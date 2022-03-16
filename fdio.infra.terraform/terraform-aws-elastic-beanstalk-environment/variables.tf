@@ -31,6 +31,12 @@ variable "subnet_availability_zone" {
 }
 
 # Variables for elastic beanstalk Application
+variable "environment_application" {
+  description = "The name of the application, must be unique within account."
+  type        = string
+  default     = "Beanstalk Application"
+}
+
 variable "application_description" {
   description = "Short description of the application."
   type        = string
