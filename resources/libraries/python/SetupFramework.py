@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -107,7 +107,7 @@ def extract_tarball_at_node(tarball, node):
         node, cmd,
         message=f"Failed to extract {tarball} at node {node[u'type']} "
         f"host {node[u'host']}, port {node[u'port']}",
-        timeout=240, include_reason=True, export=False
+        timeout=360, include_reason=True, export=False
     )
     logger.console(
         f"Extracting tarball to {con.REMOTE_FW_DIR} on {node[u'type']} "
