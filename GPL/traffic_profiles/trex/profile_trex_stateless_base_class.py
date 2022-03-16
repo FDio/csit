@@ -43,9 +43,7 @@ class TrafficStreamsBaseClass:
             {u"size": 1514, u"pps": 4, u"isg": 0.2}
         ],
         'IMIX_v4_1': [
-            {u"size": 64, u"pps": 28, u"isg": 0},
-            {u"size": 570, u"pps": 16, u"isg": 0.1},
-            {u"size": 1518, u"pps": 4, u"isg": 0.2}
+            {u"size": i, u"pps": 1, u"isg": 0} for i in range(64, 1519)
         ]
     }
 
