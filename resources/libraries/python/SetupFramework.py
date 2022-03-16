@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -58,7 +58,8 @@ def pack_framework_dir():
     run(
         [
             u"tar", u"--sparse", u"--exclude-vcs", u"--exclude=output*.xml",
-            u"--exclude=./tmp", u"-zcf", file_name, u"."
+            u"--exclude=./tmp", u"--exclude=./env", u"--exclude=./.git",
+            u"-zcf", file_name, u"."
         ], msg=u"Could not pack testing framework"
     )
 
