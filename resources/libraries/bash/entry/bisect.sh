@@ -110,8 +110,17 @@ git reset --hard "${GIT_BISECT_FROM}"
 
 # This is the place for custom code manipulating local git history.
 
+git cherry-pick 521a9f8eb9d35d2d8783175b89821c6a157237ca
+git checkout "latest"
+git rebase "earliest" || git rebase --skip
+
 #git checkout -b "alter"
-#...
+## Move AVF RSS determinism fix earlier.
+## https://stackoverflow.com/a/24455872
+#git reset --hard 3295ddf6b6e06f43ebf1e081a09b7b785dd217ea
+#git cherry-pick 895def45c82ea5d901987bc3049c8d1cc1c1da66
+#git reset --soft 3295ddf6b6e06f43ebf1e081a09b7b785dd217ea
+#git commit --amend --no-edit
 #git checkout "latest"
 #git rebase "alter" || git rebase --skip
 #git branch -D "alter"
