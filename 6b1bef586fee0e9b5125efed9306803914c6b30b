@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9064de87_8c532745",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-16T12:01:28Z",
+      "side": 1,
+      "message": "it would be good to add level of performance drop in the title of the ticket, e.g.:\n\nrls2202 regression: -19% NAT44ED CPS larger scales.",
+      "range": {
+        "startLine": 171,
+        "startChar": 49,
+        "endLine": 171,
+        "endChar": 95
+      },
+      "revId": "6b1bef586fee0e9b5125efed9306803914c6b30b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7e31149_72a317fb",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-16T12:01:28Z",
+      "side": 1,
+      "message": "rls2202 regression: -4% l2bdbasemaclrn around 2021-11-11.",
+      "range": {
+        "startLine": 174,
+        "startChar": 49,
+        "endLine": 174,
+        "endChar": 102
+      },
+      "revId": "6b1bef586fee0e9b5125efed9306803914c6b30b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94ded441_60cf72f7",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-16T12:01:28Z",
+      "side": 1,
+      "message": "rls2202 regression: -3% l2-input.",
+      "range": {
+        "startLine": 177,
+        "startChar": 49,
+        "endLine": 177,
+        "endChar": 78
+      },
+      "revId": "6b1bef586fee0e9b5125efed9306803914c6b30b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1687be97_5c70578e",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-16T12:01:28Z",
+      "side": 1,
+      "message": "rls2202 regression: -6% tx2 ip6base at dpdk upgrade.",
+      "range": {
+        "startLine": 180,
+        "startChar": 49,
+        "endLine": 180,
+        "endChar": 97
+      },
+      "revId": "6b1bef586fee0e9b5125efed9306803914c6b30b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1da73f3a_e59b5044",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-16T12:01:28Z",
+      "side": 1,
+      "message": "rls2202 regression: -10% tx2 ip6base before dpdk upgrade.",
+      "range": {
+        "startLine": 183,
+        "startChar": 49,
+        "endLine": 183,
+        "endChar": 101
+      },
+      "revId": "6b1bef586fee0e9b5125efed9306803914c6b30b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6615fb6c_34e7d6b5",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-16T12:01:28Z",
+      "side": 1,
+      "message": "rls2202 regression: -3% avf-ip4base around 2022-01-06.",
+      "range": {
+        "startLine": 186,
+        "startChar": 49,
+        "endLine": 186,
+        "endChar": 99
+      },
+      "revId": "6b1bef586fee0e9b5125efed9306803914c6b30b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd3680b3_7a7f426f",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-16T12:01:28Z",
+      "side": 1,
+      "message": "rls2202 regression: TBC% vxlan-l2xcbase on tsh around 2022-01-07.",
+      "range": {
+        "startLine": 189,
+        "startChar": 49,
+        "endLine": 189,
+        "endChar": 109
+      },
+      "revId": "6b1bef586fee0e9b5125efed9306803914c6b30b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aaaed2ce_4925e8f1",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-03-16T12:01:28Z",
+      "side": 1,
+      "message": "rls2202 regression: -9% SRv6.",
+      "range": {
+        "startLine": 192,
+        "startChar": 49,
+        "endLine": 192,
+        "endChar": 74
+      },
+      "revId": "6b1bef586fee0e9b5125efed9306803914c6b30b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
