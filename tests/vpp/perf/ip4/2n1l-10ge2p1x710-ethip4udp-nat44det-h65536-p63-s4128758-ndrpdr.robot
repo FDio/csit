@@ -87,8 +87,8 @@
 # Main heap size multiplicator
 | ${heap_size_mult}= | ${2}
 # Ramp-up settings
-| ${ramp_up_rate}= | ${150000}
-| ${ramp_up_duration}= | ${31.4}
+| ${ramp_up_rate}= | ${110100}
+| ${ramp_up_duration}= | ${38.0}
 # Traffic profile
 | ${traffic_profile}= | trex-stl-ethip4udp-${n_hosts}u${n_ports}p
 
