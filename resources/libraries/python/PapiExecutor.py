@@ -793,6 +793,7 @@ class PapiSocketExecutor:
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
                 reply = [reply]
+            logger.trace(f"reply list: {reply!r}")
             for item in reply:
                 message_name = item.__class__.__name__
                 self.crc_checker.check_api_name(message_name)
