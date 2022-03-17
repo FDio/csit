@@ -793,6 +793,13 @@ class PapiSocketExecutor:
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
                 reply = [reply]
+            if isinstance(reply, tuple):
+                # Modern streamed data. Do not return the end message.
+                ignore, reply = reply
+                ignore = [ignore]
+                reply = ignore + reply
+            else:
+                ignore = False
             for item in reply:
                 message_name = item.__class__.__name__
                 self.crc_checker.check_api_name(message_name)
@@ -807,6 +814,8 @@ class PapiSocketExecutor:
                             f"for command {command}."
                         )
                 replies.append(dict_item)
+            if ignore:
+                replies = replies[1:]
         return replies
 
 
