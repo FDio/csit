@@ -778,7 +778,9 @@ class PapiSocketExecutor:
             papi_fn = getattr(vpp_instance.api, api_name)
             try:
                 try:
+                    logger.trace(f"command: {command!r}")
                     reply = papi_fn(**command[u"api_args"])
+                    logger.trace(f"command reply: {reply!r}")
                 except (IOError, struct.error) as err:
                     # Occasionally an error happens, try reconnect.
                     logger.warn(f"Reconnect after error: {err!r}")
