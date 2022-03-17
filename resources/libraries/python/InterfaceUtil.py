@@ -1902,9 +1902,7 @@ class InterfaceUtil:
         cmd = u"sw_interface_rx_placement_dump"
         err_msg = f"Failed to run '{cmd}' PAPI command on host {node[u'host']}!"
         with PapiSocketExecutor(node) as papi_exec:
-            for ifc in node[u"interfaces"].values():
-                if ifc[u"vpp_sw_index"] is not None:
-                    papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
+            papi_exec.add(cmd, sw_if_index=Constants.BITWISE_NON_ZERO)
             details = papi_exec.get_details(err_msg)
         return sorted(details, key=lambda k: k[u"sw_if_index"])
 
@@ -1920,6 +1918,37 @@ class InterfaceUtil:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
+
+    @staticmethod
+    def vpp_sw_interface_tx_placement_dump(node):
+        """Dump VPP interface TX placement on node.
+
+        :param node: Node to run command on.
+        :type node: dict
+        :returns: Thread mapping information as a list of dictionaries.
+        :rtype: list
+        """
+        cmd = u"sw_interface_tx_placement_get"
+        err_msg = f"Failed to run '{cmd}' PAPI command on host {node[u'host']}!"
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(
+                cmd, sw_if_index=Constants.BITWISE_NON_ZERO, cursor=2
+            )
+            details = papi_exec.get_details(err_msg)
+        return sorted(details, key=lambda k: k[u"sw_if_index"])
+
+    @staticmethod
+    def vpp_sw_interface_tx_placement_dump_on_all_duts(nodes):
+        """Dump VPP interface TX placement on all given nodes.
+
+        :param nodes: Nodes to run command on.
+        :type nodes: dict
+        :returns: Thread mapping information as a list of dictionaries.
+        :rtype: list
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                InterfaceUtil.vpp_sw_interface_tx_placement_dump(node)
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(

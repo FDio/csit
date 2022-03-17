@@ -32,6 +32,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
+from resources.libraries.python.logging_socket import LoggingSocket
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
@@ -255,7 +256,7 @@ class PapiSocketExecutor:
             # We need to create instance before removing from sys.path.
             vpp_instance = vpp_class(
                 use_socket=True, server_address=u"TBD", async_thread=False,
-                read_timeout=14, logger=FilteredLogger(logger, u"INFO")
+                read_timeout=14, logger=FilteredLogger(logger, u"DEBUG")
             )
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
@@ -476,6 +477,9 @@ class PapiSocketExecutor:
         logger.trace(
             f"Establishing socket connection took {time.time()-time_enter}s"
         )
+        socket = vpp_instance.transport.socket
+        socket = LoggingSocket(socket)
+        vpp_instance.transport.socket = socket
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -773,12 +777,18 @@ class PapiSocketExecutor:
         # Clear first as execution may fail.
         self._api_command_list = list()
         replies = list()
+        received = vpp_instance.transport.socket.flush_received()
+        logger.debug(f"Received before: {received!r}")
         for command in local_list:
             api_name = command[u"api_name"]
             papi_fn = getattr(vpp_instance.api, api_name)
             try:
                 try:
+                    logger.trace(f"command: {command!r}")
                     reply = papi_fn(**command[u"api_args"])
+                    received = vpp_instance.transport.socket.flush_received()
+                    logger.debug(f"Received after: {received!r}")
+                    logger.trace(f"command reply: {reply!r}")
                 except (IOError, struct.error) as err:
                     # Occasionally an error happens, try reconnect.
                     logger.warn(f"Reconnect after error: {err!r}")

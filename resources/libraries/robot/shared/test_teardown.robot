@@ -194,6 +194,8 @@
 | | ... | Additional teardown for tests which uses performance measurement.
 | | ... | Optionally, call \${resetter} (if defined) to reset DUT state.
 | |
+| | Vpp Sw Interface RX Placement Dump On All Duts | ${nodes}
+| | Vpp Sw Interface TX Placement Dump On All Duts | ${nodes}
 | | Run Keyword If Test Passed | Return From Keyword
 | | ${use_latency} = | Get Use Latency
 | | ${rate_for_teardown} = | Get Rate For Teardown
