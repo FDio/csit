@@ -255,7 +255,7 @@ class PapiSocketExecutor:
             # We need to create instance before removing from sys.path.
             vpp_instance = vpp_class(
                 use_socket=True, server_address=u"TBD", async_thread=False,
-                read_timeout=14, logger=FilteredLogger(logger, u"INFO")
+                read_timeout=14, logger=FilteredLogger(logger, u"DEBUG")
             )
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
@@ -778,7 +778,9 @@ class PapiSocketExecutor:
             papi_fn = getattr(vpp_instance.api, api_name)
             try:
                 try:
+                    logger.trace(f"command: {command!r}")
                     reply = papi_fn(**command[u"api_args"])
+                    logger.trace(f"command reply: {reply!r}")
                 except (IOError, struct.error) as err:
                     # Occasionally an error happens, try reconnect.
                     logger.warn(f"Reconnect after error: {err!r}")
