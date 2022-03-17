@@ -34,7 +34,7 @@ Changes in |csit-release|
      iteratively for the report (as well as in daily and weekly
      trending) due to physical testbeds overload.
 
-     **RC2 coverage test data is used for 2n-icx test bed**: There is only
+   - **RC2 coverage test data is used for 2n-icx test bed**: There is only
      one 2n-icx test bed and the amount of tests is large (same as 2n-skx with 4
      test beds), so we decided to use test data already available from RC2
      testing.
