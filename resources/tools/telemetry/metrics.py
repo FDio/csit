@@ -602,9 +602,9 @@ class Info(MetricBase):
         """
         Set info to the given value.
 
-        :param amount: Value to set.
-        :type amount: int or float
-        :raises ValueError: If lables are overlapping.
+        :param value: Value to set.
+        :type value: int or float
+        :raises ValueError: If labels are overlapping.
         """
         if self._labelname_set.intersection(value.keys()):
             raise ValueError(
