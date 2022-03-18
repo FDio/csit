@@ -18,7 +18,7 @@ Although time.time() is susceptible to big (or even negative) jumps
 when a system is badly synchronized, it is still better
 than time.monotonic(), as that value has no relation to epoch time.
 """
-
+import pdb
 from collections import namedtuple
 from threading import Lock
 from time import time
@@ -340,7 +340,7 @@ class MetricBase:
 
     def samples(self):
         """
-        Returns samples wheter an object is parent or child.
+        Returns samples whether an object is parent or child.
 
         :returns: List of Metric objects with values.
         :rtype: list
@@ -602,9 +602,9 @@ class Info(MetricBase):
         """
         Set info to the given value.
 
-        :param amount: Value to set.
-        :type amount: int or float
-        :raises ValueError: If lables are overlapping.
+        :param value: Value to set.
+        :type value: int or float
+        :raises ValueError: If labels are overlapping.
         """
         if self._labelname_set.intersection(value.keys()):
             raise ValueError(
