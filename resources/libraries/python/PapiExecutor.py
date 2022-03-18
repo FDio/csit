@@ -791,6 +791,13 @@ class PapiSocketExecutor:
             except (AttributeError, IOError, struct.error) as err:
                 raise AssertionError(err_msg) from err
             # *_dump commands return list of objects, convert, ordinary reply.
+            if type(reply) is tuple:
+                # Modern streamed data. Do not return the end message.
+                ignore, reply = reply
+                reply = [ignore, *reply]
+            else:
+                # Ordinary replies are a namedtuple, old details are a list.
+                ignore = False
             if not isinstance(reply, list):
                 reply = [reply]
             for item in reply:
@@ -806,7 +813,10 @@ class PapiSocketExecutor:
                             f"retval {exp_rv!r} in message {message_name} "
                             f"for command {command}."
                         )
-                replies.append(dict_item)
+                if ignore:
+                    ignore = False
+                else:
+                    replies.append(dict_item)
         return replies
 
 
