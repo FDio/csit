@@ -1,0 +1,204 @@
+---
+logging:
+  version: 1
+  formatters:
+    console_stdout:
+      format: '%(asctime)s - %(name)s - %(message)s'
+    console_stderr:
+      format: '%(message)s'
+    prom:
+      format: '%(message)s'
+  handlers:
+    console_stdout:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: console_stdout
+      stream: ext://sys.stdout
+    console_stderr:
+      class: logging.StreamHandler
+      level: ERROR
+      formatter: console_stderr
+      stream: ext://sys.stderr
+    prom:
+      class: logging.handlers.RotatingFileHandler
+      level: INFO
+      formatter: prom
+      filename: /tmp/metric.prom
+      mode: w
+  loggers:
+    prom:
+      handlers: [prom]
+      level: INFO
+      propagate: False
+  root:
+    level: INFO
+    handlers: [console_stdout, console_stderr]
+scheduler:
+  duration: 3
+programs:
+  - name: bundle_vpp
+    metrics:
+      info:
+        - name: version
+          documentation: VPP version
+          namespace: vpp
+          subsystem: version
+          labelnames:
+            - version
+    code: |
+      show version
+  - name: bundle_vpp
+    metrics:
+      gauge:
+        - name: calls
+          documentation: Number of calls total
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: vectors
+          documentation: Number of vectors total
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: suspends
+          documentation: Number of suspends total
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: clocks
+          documentation: Number of clocks total
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+        - name: vectors_calls
+          documentation: Number of vectors per call
+          namespace: vpp
+          subsystem: runtime
+          labelnames:
+            - name
+            - state
+            - thread_name
+            - thread_id
+            - thread_lcore
+    code: |
+      clear runtime
+      wait {duration}
+      show runtime
+  - name: bundle_vpp
+    metrics:
+      gauge:
+        - name: rx_packets
+          documentation: Number of received packets for interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: rx_bytes
+          documentation: Number of received bytes for interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: rx_error
+          documentation: Number of errors on interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: tx_packets
+          documentation: Number of transitted packets for interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: tx_bytes
+          documentation: Number of transitted bytes for interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: tx_error
+          documentation: Number of errors on interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: drops
+          documentation: Number of dropped packets for interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: punt
+          documentation: Number of punted packets for interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: ip4
+          documentation: Number of IPv4 packets for interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: ip6
+          documentation: Number of IPv6 packets for interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: mpls
+          documentation: Number of MPLS packets for interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: rx_no_buf
+          documentation: Number of out of buffer RX packets on interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+        - name: rx_mss
+          documentation: Number of missed RX packets on interface
+          namespace: vpp
+          subsystem: interface
+          labelnames:
+            - name
+            - index
+    code: |
+      clear interfaces
+      wait {duration}
+      show interface

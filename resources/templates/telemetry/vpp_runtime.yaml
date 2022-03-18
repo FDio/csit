@@ -2,16 +2,23 @@
 logging:
   version: 1
   formatters:
-    console:
+    console_stdout:
       format: '%(asctime)s - %(name)s - %(message)s'
+    console_stderr:
+      format: '%(message)s'
     prom:
       format: '%(message)s'
   handlers:
-    console:
+    console_stdout:
       class: logging.StreamHandler
       level: INFO
-      formatter: console
+      formatter: console_stdout
       stream: ext://sys.stdout
+    console_stderr:
+      class: logging.StreamHandler
+      level: ERROR
+      formatter: console_stderr
+      stream: ext://sys.stderr
     prom:
       class: logging.handlers.RotatingFileHandler
       level: INFO
@@ -25,7 +32,7 @@ logging:
       propagate: False
   root:
     level: INFO
-    handlers: [console]
+    handlers: [console_stdout, console_stderr]
 scheduler:
   duration: 1
 programs:
