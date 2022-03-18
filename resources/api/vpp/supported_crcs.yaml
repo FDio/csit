@@ -288,6 +288,7 @@
     sw_interface_set_vxlan_bypass_reply: '0xe8d4e804'  # dev
     sw_interface_tap_v2_details: '0x1e2b2a47'  # dev
     sw_interface_tap_v2_dump: '0xf9e6675e'  # dev
+    sw_interface_tx_placement_get: '0x47250981'  # perf
     sw_interface_vhost_user_details: '0x0cee1e53'  # dev teardown
     sw_interface_vhost_user_dump: '0xf9e6675e'  # dev deardown
     sw_member_interface_details: '0x3c4a0e23'  # perf
