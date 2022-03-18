@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -209,8 +209,8 @@ class BundleVpp:
         try:
             self.obj.connect(name=u"telemetry")
         except (ConnectionRefusedError, OSError):
-            getLogger(__name__).error(u"Cannot connect to VPP!")
-            sys.exit(1)
+            getLogger("console_stderr").error(u"Could not connect to VPP!")
+            sys.exit(11)
 
         for command in self.code.splitlines():
             api_name = u"cli_inband"
@@ -223,7 +223,11 @@ class BundleVpp:
         """
         Detach from VPP.
         """
-        self.obj.disconnect()
+        try:
+            self.obj.disconnect()
+        except (ConnectionRefusedError, OSError):
+            getLogger("console_stderr").error(u"Could not disconnect from VPP!")
+            sys.exit(12)
 
     def fetch_data(self):
         """
@@ -234,8 +238,10 @@ class BundleVpp:
                 papi_fn = getattr(self.obj.api, command[u"api_name"])
                 getLogger(__name__).info(command[u"api_args"][u"cmd"])
                 replies = papi_fn(**command[u"api_args"])
-            except (AttributeError, IOError, struct.error) as err:
-                raise AssertionError(err)
+            except (AssertionError, AttributeError, IOError, struct.error):
+                getLogger("console_stderr").error(f"Failed when executing command:"
+                                               f" {command['api_args']['cmd']}")
+                sys.exit(13)
 
             if not isinstance(replies, list):
                 replies = [replies]
@@ -253,12 +259,22 @@ class BundleVpp:
         Post process command reply.
         """
         for command in zip(self.api_command_list, self.api_replies_list):
-            self_fn = command[0][u"api_args"][u"cmd"]
+            self_fn = command[0][u"api_args"][u"cmd"].replace(u" ", u"_")
+            self_method_list = [meth for meth in dir(self)
+                           if callable(getattr(self, meth)) and
+                           meth.startswith('__') is False]
+            if self_fn not in self_method_list:
+                continue
             try:
-                self_fn = getattr(self, self_fn.replace(u" ", u"_"))
+                self_fn = getattr(self, self_fn)
                 self_fn(command[1].reply)
             except AttributeError:
                 pass
+            except (KeyError, ValueError, TypeError) as e:
+                getLogger("console_err").error(
+                    f"Failed when processing data. Error message {e}"
+                )
+                sys.exit(1)
 
     def show_interface(self, reply):
         """
