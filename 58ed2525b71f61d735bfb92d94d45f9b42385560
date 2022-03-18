@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4d991716_bb954546",
+        "filename": "docs/lab/work_items.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-18T06:34:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3ca272cb_762c38f6",
+      "range": {
+        "startLine": 19,
+        "startChar": 44,
+        "endLine": 19,
+        "endChar": 50
+      },
+      "revId": "58ed2525b71f61d735bfb92d94d45f9b42385560",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50927478_c4cf104d",
         "filename": "docs/lab/work_items.md",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d24488e7_e14fa8a1",
+        "filename": "docs/lab/work_items.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-18T06:34:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "50927478_c4cf104d",
+      "range": {
+        "startLine": 172,
+        "startChar": 6,
+        "endLine": 172,
+        "endChar": 20
+      },
+      "revId": "58ed2525b71f61d735bfb92d94d45f9b42385560",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7f7a3a8c_c7e600e6",
         "filename": "docs/lab/work_items.md",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2022-03-14T10:48:27Z",
       "side": 1,
       "message": "we need to agree on the target timeline, e.g. in v22.10 or later VPP/CSIT release cycle",
+      "range": {
+        "startLine": 222,
+        "startChar": 6,
+        "endLine": 222,
+        "endChar": 35
+      },
+      "revId": "58ed2525b71f61d735bfb92d94d45f9b42385560",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8199ca90_49b44581",
+        "filename": "docs/lab/work_items.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-18T06:34:34Z",
+      "side": 1,
+      "message": "We will do gradually. Nomad will be re-installed in 22.06 release cycle.\nIn parallel Dave will be working on creating new images for building VPP.",
+      "parentUuid": "7f7a3a8c_c7e600e6",
       "range": {
         "startLine": 222,
         "startChar": 6,
