@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -340,7 +340,7 @@ class MetricBase:
 
     def samples(self):
         """
-        Returns samples wheter an object is parent or child.
+        Returns samples whether an object is parent or child.
 
         :returns: List of Metric objects with values.
         :rtype: list
@@ -602,9 +602,9 @@ class Info(MetricBase):
         """
         Set info to the given value.
 
-        :param amount: Value to set.
-        :type amount: int or float
-        :raises ValueError: If lables are overlapping.
+        :param value: Value to set.
+        :type value: int or float
+        :raises ValueError: If labels are overlapping.
         """
         if self._labelname_set.intersection(value.keys()):
             raise ValueError(
