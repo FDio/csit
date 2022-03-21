@@ -341,7 +341,7 @@ class QemuUtils:
             vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
             vpp_config.add_dpdk_dev(u"0000:00:06.0", u"0000:00:07.0")
             vpp_config.add_dpdk_dev_default_rxq(kwargs[u"queues"])
-            vpp_config.add_dpdk_log_level(u"debug")
+            vpp_config.add_dpdk_log_level(u".*,debug")
             if not kwargs[u"jumbo_frames"]:
                 vpp_config.add_dpdk_no_multi_seg()
                 vpp_config.add_dpdk_no_tx_checksum_offload()
