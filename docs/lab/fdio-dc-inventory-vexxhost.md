@@ -109,9 +109,9 @@ s43-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1H5,10.30.51.24,
 s44-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FS,10.30.51.25,10.30.50.25,3016.11,u15-u16
 s45-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FL,10.30.51.26,10.30.50.26,3016.11,u13-u14
 s55-t13-sut1,up,t13,1n-tx2,ThunderX2-9980,N/A,10.30.51.70,10.30.50.70,3016.11,u11-u12
-s62-t34-sut1,in-transit,t34,3n-alt,Ampere-TBD,TBD,10.30.51.72,10.30.50.72,3016.11,u9-u10
-s63-t34-sut2,in-transit,t34,3n-alt,Ampere-TBD,TBD,10.30.51.73,10.30.50.73,3016.11,u7-u8
-s64-t34-tg1,in-transit,t34,3n-alt,Intel-TBD,TBD,10.30.51.74,10.30.50.74,3016.11,u3-u6
+s62-t34-sut1,up,t34,3n-alt,WIWYNN,04000059N0SC,10.30.51.72,10.30.50.72,3016.11,u9-u10
+s63-t34-sut2,up,t34,3n-alt,WIWYNN,0390003EN0SC,10.30.51.73,10.30.50.73,3016.11,u7-u8
+s64-t34-tg1,up,t34,3n-alt,SYS-740GP-TNRT,C7470KK40P50249,10.30.51.74,10.30.50.74,3016.11,u3-u6
 
 #### Rack YUL1-12 (3016.12)
 
