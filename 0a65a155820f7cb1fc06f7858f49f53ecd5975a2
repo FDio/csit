@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a9b74e71_fa0786b2",
+        "filename": "resources/templates/telemetry/vpp_runtime.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-03-21T12:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ff60d83_81d024a1",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 11
+      },
+      "revId": "0a65a155820f7cb1fc06f7858f49f53ecd5975a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "817efbed_1112030a",
         "filename": "resources/templates/telemetry/vpp_runtime.yaml",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "0a65a155820f7cb1fc06f7858f49f53ecd5975a2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80f3af5a_07b1278d",
+        "filename": "resources/templates/telemetry/vpp_runtime.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-03-21T12:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "817efbed_1112030a",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 15
+      },
+      "revId": "0a65a155820f7cb1fc06f7858f49f53ecd5975a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "117a4a1c_3f669813",
+        "filename": "resources/tools/telemetry/bundle_vpp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-03-21T12:20:56Z",
+      "side": 1,
+      "message": "this actually compares self_fn (function to be called) with all methods in self (self_method_list). If such method doesn\u0027t exists in self, it skips further execution and goes on to next function. Basically it handles line 269. So getattr always finds the method. Not actually required.",
+      "parentUuid": "26ec5260_dc046614",
+      "range": {
+        "startLine": 266,
+        "startChar": 12,
+        "endLine": 267,
+        "endChar": 24
+      },
+      "revId": "0a65a155820f7cb1fc06f7858f49f53ecd5975a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "77e71927_edc67e9d",
         "filename": "resources/tools/telemetry/bundle_vpp.py",
         "patchSetId": 3
@@ -114,6 +186,30 @@
       "revId": "0a65a155820f7cb1fc06f7858f49f53ecd5975a2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19d6fec2_abedcba6",
+        "filename": "resources/tools/telemetry/bundle_vpp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-03-21T12:20:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77e71927_edc67e9d",
+      "range": {
+        "startLine": 274,
+        "startChar": 46,
+        "endLine": 274,
+        "endChar": 47
+      },
+      "revId": "0a65a155820f7cb1fc06f7858f49f53ecd5975a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
