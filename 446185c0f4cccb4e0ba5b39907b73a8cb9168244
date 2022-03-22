@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcbf7464_6a1b1c36",
+        "filename": "VPP_STABLE_VER_UBUNTU_FOCAL",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2022-03-22T14:39:23Z",
+      "side": 1,
+      "message": "Please do not change this outside of the normal verification process.\n\nIt is ok if this is required temporarily for testing purposes, but must not be merged with this gerrit change.\nPlease note any dependency on a specific VPP version in the commit message.",
+      "revId": "446185c0f4cccb4e0ba5b39907b73a8cb9168244",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a079d1d7_9a462cb9",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2022-03-22T14:39:23Z",
+      "side": 1,
+      "message": "Please do not hardcode this value.  Add a new attribute (e.g. vpp_app_api_socket) to vpp_hoststack_attr above and use it here and in the vpp_echo_client_attr (line 74).\n\nAlso, please add a comment mentioning that this must be the same as api-socket-name in ...resources/templates/vcl/vcl_iperf3.conf",
+      "range": {
+        "startLine": 53,
+        "startChar": 23,
+        "endLine": 53,
+        "endChar": 54
+      },
+      "revId": "446185c0f4cccb4e0ba5b39907b73a8cb9168244",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f95317f_9cb77a92",
+        "filename": "resources/templates/vcl/vcl_iperf3.conf",
+        "patchSetId": 13
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2022-03-22T14:39:23Z",
+      "side": 1,
+      "message": "Please add a comment that this must be kept in sync with vpp_hoststack_attr{vpp_app_api_socket} in .../resources/libraries/robot/hoststack/hoststack.robot\n\nSee [0] for vcl conf file comment styles.\n\n[0] https://github.com/FDio/vpp/blob/master/src/vcl/vcl_test.conf",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 48
+      },
+      "revId": "446185c0f4cccb4e0ba5b39907b73a8cb9168244",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
