@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -63,6 +63,8 @@
 | ${dut_ip_prefix}= | 24
 | @{dut_ip_addrs}= | 192.168.10.1
 | ${nginx_version}= | 1.21.5
+| ${sess_evt_q_length}= | 100000
+| ${sess_prealloc_sess}= | 1100000
 
 *** Keywords ***
 | Local template
@@ -77,8 +79,12 @@
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
 | | | Run keyword | ${dut}.Add Session Event Queues Memfd Segment
-| | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | Run keyword | ${dut}.Add session enable
+| | | Run keyword | ${dut}.Add session app socket api
+| | | Run keyword | ${dut}.Add session preallocated sessions
+| | | ... | ${sess_prealloc_sess}
+| | | Run keyword | ${dut}.Add session event queue length
+| | | ... | ${sess_evt_q_length}
 | | END
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
