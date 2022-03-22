@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -56,6 +56,8 @@ class HoststackUtil():
             vpp_echo_cmd[u"args"] += u" rx-results-diff"
         if vpp_echo_attributes[u"tx_results_diff"]:
             vpp_echo_cmd[u"args"] += u" tx-results-diff"
+        if vpp_echo_attributes[u"use_app_socket_api"]:
+            vpp_echo_cmd[u"args"] += u" use-app-socket-api"
         return vpp_echo_cmd
 
     @staticmethod
