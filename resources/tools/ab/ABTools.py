@@ -178,7 +178,7 @@ class ABTools:
                 failed_requests = int(line.split(u" ")[2])
 
         export_hoststack_results(
-            rate, rate_unit, bandwidth, latency, failed_requests,
+            bandwidth, rate, rate_unit, latency, failed_requests,
             completed_requests
         )
 
