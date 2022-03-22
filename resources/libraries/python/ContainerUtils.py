@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -737,6 +737,8 @@ class ContainerEngine:
         vpp_config.add_dpdk_log_level(u"debug")
         vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.add_dpdk_dev_default_rxq(rxq)
+        vpp_config.add_dpdk_dev_default_rxd(256)
+        vpp_config.add_dpdk_dev_default_txd(256)
         vpp_config.add_plugin(u"enable", u"dpdk_plugin.so")
         vpp_config.add_plugin(u"enable", u"perfmon_plugin.so")
 
