@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -34,10 +34,8 @@
 | ... | txd=${256}
 | ... | phy_cores=${1}
 | ... | vpp_api_socket=${SOCKSVR_PATH}
-| ... | api_seg_global_size=2G
-| ... | api_seg_api_size=1G
+| ... | app_api_socket=/run/vpp/app_ns_sockets/default
 | ... | tcp_cc_algo=cubic
-| ... | sess_evt_q_seg_size=64M
 | ... | sess_evt_q_length=16384
 | ... | sess_prealloc_sess=1024
 | ... | sess_v4_tbl_buckets=20000
@@ -51,7 +49,7 @@
 | ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${None}
 | ... | namespace=default
-| ... | vpp_api_socket=${vpp_hoststack_attr}[vpp_api_socket]
+| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
 | ... | json_output=json
 | ... | uri_protocol=quic
 | ... | uri_ip4_addr=${EMPTY}
@@ -66,12 +64,13 @@
 | ... | tx_bytes=0
 | ... | rx_results_diff=${False}
 | ... | tx_results_diff=${False}
+| ... | use_app_socket_api=${True}
 | &{vpp_echo_client_attr}=
 | ... | role=client
 | ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${None}
 | ... | namespace=default
-| ... | vpp_api_socket=${vpp_hoststack_attr}[vpp_api_socket]
+| ... | app_api_socket=${vpp_hoststack_attr}[app_api_socket]
 | ... | json_output=json
 | ... | uri_protocol=quic
 | ... | uri_ip4_addr=${EMPTY}
@@ -86,6 +85,7 @@
 | ... | tx_bytes=0
 | ... | rx_results_diff=${False}
 | ... | tx_results_diff=${False}
+| ... | use_app_socket_api=${True}
 | &{iperf3_server_attr}=
 | ... | role=server
 | ... | cpu_cnt=${1}
@@ -117,7 +117,7 @@
 | ... | cpu_cnt=${1}
 | ... | cfg_vpp_feature=${Empty}
 | ... | namespace=default
-| ... | vcl_config=vcl_iperf3.conf
+| ... | vcl_config=vcl_nginx.conf
 | ... | ld_preload=${True}
 | ... | transparent_tls=${False}
 | ... | json=${True}
@@ -134,10 +134,7 @@
 | | ... | - ${txd} - Number of Tx Descriptors Type: int
 | | ... | - ${phy_cores} - Number of cores for workers Type: int
 | | ... | - ${vpp_api_socket} - Path to VPP api socket file Type: string
-| | ... | - ${api_seg_global_size} - Global API segment size Type: string
-| | ... | - ${api_seg_api_size} - API segment API fifo size Type: string
 | | ... | - ${tcp_cc_algo} - TCP congestion control algorithm Type: string
-| | ... | - ${sess_evt_q_seg_size} - Session event queue segment size
 | | ... | Type: string
 | | ... | - ${sess_evt_q_length} - Session event queue length Type: string
 | | ... | - ${sess_prealloc_sess} - Number of sessions to preallocate
@@ -165,10 +162,7 @@
 | | ... | ${txd}=${vpp_hoststack_attr}[txd]
 | | ... | ${phy_cores}=${vpp_hoststack_attr}[phy_cores]
 | | ... | ${vpp_api_socket}=${vpp_hoststack_attr}[vpp_api_socket]
-| | ... | ${api_seg_global_size}=${vpp_hoststack_attr}[api_seg_global_size]
-| | ... | ${api_seg_api_size}=${vpp_hoststack_attr}[api_seg_api_size]
 | | ... | ${tcp_cc_algo}=${vpp_hoststack_attr}[tcp_cc_algo]
-| | ... | ${sess_evt_q_seg_size}=${vpp_hoststack_attr}[sess_evt_q_seg_size]
 | | ... | ${sess_evt_q_length}=${vpp_hoststack_attr}[sess_evt_q_length]
 | | ... | ${sess_prealloc_sess}=${vpp_hoststack_attr}[sess_prealloc_sess]
 | | ... | ${sess_v4_tbl_buckets}=${vpp_hoststack_attr}[sess_v4_tbl_buckets]
@@ -185,13 +179,7 @@
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | vpp_api_socket | ${vpp_api_socket}
 | | Set To Dictionary | ${vpp_hoststack_attr}
-| | ... | api_seg_global_size | ${api_seg_global_size}
-| | Set To Dictionary | ${vpp_hoststack_attr}
-| | ... | api_seg_api_size | ${api_seg_api_size}
-| | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | tcp_cc_algo | ${tcp_cc_algo}
-| | Set To Dictionary | ${vpp_hoststack_attr}
-| | ... | sess_evt_q_seg_size | ${sess_evt_q_seg_size}
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | sess_evt_q_length | ${sess_evt_q_length}
 | | Set To Dictionary | ${vpp_hoststack_attr}
@@ -227,6 +215,7 @@
 | | ... | - ${tx_bytes} - Number of Bytes to send Type: string
 | | ... | - ${rx_results_diff} - Rx Results are different to pass Type: boolean
 | | ... | - ${tx_results_diff} - Tx Results are different to pass Type: boolean
+| | ... | - ${use_app_socket_api} - Use app socket API instead of VPP API
 | |
 | | ... | *Example:*
 | |
@@ -246,6 +235,7 @@
 | | ... | ${tx_bytes}=${vpp_echo_server_attr}[tx_bytes]
 | | ... | ${rx_results_diff}=${vpp_echo_server_attr}[rx_results_diff]
 | | ... | ${tx_results_diff}=${vpp_echo_server_attr}[tx_results_diff]
+| | ... | ${use_app_socket_api}=${vpp_echo_server_attr}[use_app_socket_api]
 | |
 | | Set To Dictionary | ${vpp_echo_server_attr} | cfg_vpp_feature
 | | ... | ${cfg_vpp_feature}
@@ -262,6 +252,8 @@
 | | ... | ${vpp_echo_server_attr} | rx_results_diff | ${rx_results_diff}
 | | Set To Dictionary
 | | ... | ${vpp_echo_server_attr} | tx_results_diff | ${tx_results_diff}
+| | Set To Dictionary
+| | ... | ${vpp_echo_server_attr} | use_app_socket_api | ${use_app_socket_api}
 
 | Set VPP Echo Client Attributes
 | | [Documentation]
@@ -281,6 +273,7 @@
 | | ... | - ${tx_bytes} - Number of Bytes to send Type: string
 | | ... | - ${rx_results_diff} - Rx Results are different to pass Type: boolean
 | | ... | - ${tx_results_diff} - Tx Results are different to pass Type: boolean
+| | ... | - ${use_app_socket_api} - Use app socket API instead of VPP API
 | |
 | | ... | *Example:*
 | |
@@ -300,6 +293,7 @@
 | | ... | ${tx_bytes}=${vpp_echo_client_attr}[tx_bytes]
 | | ... | ${rx_results_diff}=${vpp_echo_client_attr}[rx_results_diff]
 | | ... | ${tx_results_diff}=${vpp_echo_client_attr}[tx_results_diff]
+| | ... | ${use_app_socket_api}=${vpp_echo_client_attr}[use_app_socket_api]
 | |
 | | Set To Dictionary | ${vpp_echo_client_attr} | cfg_vpp_feature
 | | ... | ${cfg_vpp_feature}
@@ -316,6 +310,8 @@
 | | ... | ${vpp_echo_client_attr} | rx_results_diff | ${rx_results_diff}
 | | Set To Dictionary
 | | ... | ${vpp_echo_client_attr} | tx_results_diff | ${tx_results_diff}
+| | Set To Dictionary
+| | ... | ${vpp_echo_client_attr} | use_app_socket_api | ${use_app_socket_api}
 
 | Set Iperf3 Server Attributes
 | | [Documentation]
@@ -440,7 +436,7 @@
 | | Set hoststack quic fifo size | ${node} | ${quic_fifo_size}
 | | Set hoststack quic crypto engine | ${node} | ${quic_crypto_engine}
 
-| Configure VPP hoststack attributes on all DUTs
+| Configure VPP Hoststack Attributes on all DUTs
 | | [Documentation]
 | | ... | Configure VPP HostStack attributes on all DUTs.
 | |
@@ -453,10 +449,6 @@
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
 | | | Run keyword | ${dut}.Add socksvr | ${vpp_hoststack_attr}[vpp_api_socket]
-| | | Run keyword | ${dut}.Add api segment global size
-| | | ... | ${vpp_hoststack_attr}[api_seg_global_size]
-| | | Run keyword | ${dut}.Add api segment api size
-| | | ... | ${vpp_hoststack_attr}[api_seg_api_size]
 | | | Run Keyword If
 | | | ... | '${dut}' == 'DUT1' and ${vpp_nsim_attr}[output_nsim_enable]
 | | | ... | ${dut}.Add Nsim poll main thread
@@ -464,9 +456,7 @@
 | | | Run keyword | ${dut}.Add tcp congestion control algorithm
 | | | ... | ${vpp_hoststack_attr}[tcp_cc_algo]
 | | | Run keyword | ${dut}.Add session enable
-| | | Run keyword | ${dut}.Add session event queues memfd segment
-| | | Run keyword | ${dut}.Add session event queues segment size
-| | | ... | ${vpp_hoststack_attr}[sess_evt_q_seg_size]
+| | | Run keyword | ${dut}.Add session app socket api
 | | | Run keyword | ${dut}.Add session event queue length
 | | | ... | ${vpp_hoststack_attr}[sess_evt_q_length]
 | | | Run keyword | ${dut}.Add session preallocated sessions
@@ -518,11 +508,13 @@
 | | ... | ${vpp_echo_client_attr}[namespace] | ${core_list}
 | | ... | ${vpp_echo_client_attr}[cfg_vpp_feature] | ${vpp_echo_client}
 | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | ... | ${vpp_echo_client} | ${dut2} | ${vpp_echo_server}
 | | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${vpp_echo_client}
 | | Then Set test message | ${client_output}
 | | And Hoststack Test Program Finished | ${dut2} | ${server_pid}
+| | ... | ${vpp_echo_server} | ${dut1} | ${vpp_echo_client}
 | | ${server_defer_fail} | ${server_output}=
 | | ... | Analyze hoststack test program output | ${dut2} | Server
 | | ... | ${vpp_nsim_attr} | ${vpp_echo_server}
@@ -560,6 +552,7 @@
 | | ... | ${iperf3_client_attr}[namespace] | ${core_list}
 | | ... | ${iperf3_client_attr}[cfg_vpp_feature] | ${iperf3_client}
 | | When Hoststack Test Program Finished | ${dut1} | ${client_pid}
+| | ... | ${iperf3_client} | ${dut2} | ${iperf3_server}
 | | ${client_defer_fail} | ${client_output}=
 | | ... | Analyze hoststack test program output | ${dut1} | Client
 | | ... | ${vpp_nsim_attr} | ${iperf3_client}
