@@ -1,4 +1,0 @@
-menuentry "Install s62-t34-sut1" {
-    linux    /casper/ubuntu-focal-arm64/vmlinuz ip=dhcp interface=70:e2:84:8f:e3:48 url=http://10.30.51.28:8081/ubuntu_focal_arm64/ubuntu-20.04.4-live-server-arm64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.28:8081/ubuntu_focal_arm64/70:e2:84:8f:e3:48/ --- console=ttyAMA0,115200n8 quiet
-    initrd   /casper/ubuntu-focal-arm64/initrd
-}
