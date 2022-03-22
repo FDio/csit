@@ -63,6 +63,8 @@
 | ${dut_ip_prefix}= | 24
 | @{dut_ip_addrs}= | 192.168.10.1
 | ${nginx_version}= | 1.21.5
+| ${sess_evt_q_length}= | 100000
+| ${sess_prealloc_sess}= | 1100000
 
 *** Keywords ***
 | Local template
@@ -70,6 +72,7 @@
 | |
 | | Set Test Variable | \${frame_size}
 | | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
+| | Set VPP Hoststack Attributes | phy_cores=${phy_cores} | sess_evt_q_length=${sess_evt_q_length} | sess_prealloc_sess=${sess_prealloc_sess}
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
