@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -63,6 +63,14 @@
 | ${dut_ip_prefix}= | 24
 | @{dut_ip_addrs}= | 192.168.10.1
 | ${nginx_version}= | 1.21.5
+| ${sess_evt_q_length}= | 100000
+| ${sess_prealloc_sess}= | 1100000
+| ${v4_sess_tbl_buckets}= | 250000
+| ${v4_sess_tbl_mem}= | 1g
+| ${local_endpts_tbl_buckets}= | 250000
+| ${local_endpts_tbl_mem}= | 1g
+| ${tcp_prealloc_conns}= | 1100000
+| ${tcp_prealloc_ho_conns}= | 1100000
 
 *** Keywords ***
 | Local template
@@ -73,13 +81,10 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | FOR | ${dut} | IN | @{duts}
-| | | Import Library | resources.libraries.python.VppConfigGenerator
-| | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Add Session Event Queues Memfd Segment
-| | | Run keyword | ${dut}.Add tcp congestion control algorithm
-| | | Run keyword | ${dut}.Add session enable
-| | END
+| | And Configure VPP startup configuration for NGINX | ${sess_prealloc_sess}
+| | ... | ${sess_evt_q_length} | ${v4_sess_tbl_buckets} | ${v4_sess_tbl_mem}
+| | ... | ${local_endpts_tbl_buckets} | ${local_endpts_tbl_mem}
+| | ... | ${tcp_prealloc_conns} | ${tcp_prealloc_ho_conns}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
