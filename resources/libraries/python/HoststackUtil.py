@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -56,6 +56,8 @@ class HoststackUtil():
             vpp_echo_cmd[u"args"] += u" rx-results-diff"
         if vpp_echo_attributes[u"tx_results_diff"]:
             vpp_echo_cmd[u"args"] += u" tx-results-diff"
+        if vpp_echo_attributes[u"use_app_socket_api"]:
+            vpp_echo_cmd[u"args"] += u" use-app-socket-api"
         return vpp_echo_cmd
 
     @staticmethod
@@ -152,6 +154,25 @@ class HoststackUtil():
                     raise
 
     @staticmethod
+    def _get_hoststack_test_program_logs(node, program_name):
+        """Get HostStack test program stdout log.
+
+        :param node: DUT node.
+        :param program_name: test program.
+        :type node: dict
+        :type program_name: str
+        """
+        cmd = f"sh -c \'cat /tmp/{program_name}_stdout.log\'"
+        stdout_log, _ = exec_cmd_no_error(node, cmd, sudo=True, \
+            message=f"Get {program_name} stdout log failed!")
+
+        cmd = f"sh -c \'cat /tmp/{program_name}_stderr.log\'"
+        stderr_log, _ = exec_cmd_no_error(node, cmd, sudo=True, \
+            message=f"Get {program_name} stderr log failed!")
+
+        return stdout_log, stderr_log
+
+    @staticmethod
     def get_hoststack_test_program_logs(node, program):
         """Get HostStack test program stdout log.
 
@@ -161,14 +182,15 @@ class HoststackUtil():
         :type program: dict
         """
         program_name = program[u"name"]
-        cmd = f"sh -c \'cat /tmp/{program_name}_stdout.log\'"
-        stdout_log, _ = exec_cmd_no_error(node, cmd, sudo=True, \
-            message=f"Get {program_name} stdout log failed!")
-
-        cmd = f"sh -c \'cat /tmp/{program_name}_stderr.log\'"
-        stderr_log, _ = exec_cmd_no_error(node, cmd, sudo=True, \
-            message=f"Get {program_name} stderr log failed!")
-        return stdout_log, stderr_log
+        program_stdout_log, program_stderr_log = \
+            HoststackUtil._get_hoststack_test_program_logs(node,
+                                                           program_name)
+        if len(program_stdout_log) == 0 and len(program_stderr_log) == 0:
+            logger.trace(f"Retrying {program_name} log retrieval")
+            program_stdout_log, program_stderr_log = \
+               HoststackUtil._get_hoststack_test_program_logs(node,
+                                                              program_name)
+        return program_stdout_log, program_stderr_log
 
     @staticmethod
     def get_nginx_command(nginx_attributes, nginx_version, nginx_ins_dir):
@@ -274,20 +296,49 @@ class HoststackUtil():
         exec_cmd_no_error(node, cmd, message=errmsg, sudo=True)
 
     @staticmethod
-    def hoststack_test_program_finished(node, program_pid):
+    def hoststack_test_program_finished(node, program_pid, program,
+                                        other_node, other_program):
         """Wait for the specified HostStack test program process to complete.
 
         :param node: DUT node.
         :param program_pid: test program pid.
+        :param program: test program
+        :param other_node: DUT node of other hoststack program
+        :param other_program: other test program
         :type node: dict
         :type program_pid: str
+        :type program: dict
+        :type other_node: dict
+        :type other_program: dict
         :raises RuntimeError: If node subtype is not a DUT.
         """
         if node[u"type"] != u"DUT":
             raise RuntimeError(u"Node type is not a DUT!")
+        if other_node[u"type"] != u"DUT":
+            raise RuntimeError(u"Other node type is not a DUT!")
 
         cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}'"
-        exec_cmd(node, cmd, sudo=True)
+        try:
+            exec_cmd(node, cmd, sudo=True)
+        except:
+            program_stdout, program_stderr = \
+                HoststackUtil.get_hoststack_test_program_logs(node, program)
+            if len(program_stdout) > 0:
+                logger.trace(f"{program[u'name']} stdout log:\n"
+                             f"{program_stdout}")
+            if len(program_stderr) > 0:
+                logger.trace(f"{program[u'name']} stderr log:\n"
+                             f"{program_stderr}")
+            program_stdout, program_stderr = \
+                HoststackUtil.get_hoststack_test_program_logs(other_node,
+                                                              other_program)
+            if len(program_stdout) > 0:
+                logger.trace(f"{other_program[u'name']} stdout log:\n"
+                             f"{program_stdout}")
+            if len(program_stderr) > 0:
+                logger.trace(f"{other_program[u'name']} stderr log:\n"
+                             f"{program_stderr}")
+            raise
         # Wait a bit for stdout/stderr to be flushed to log files
         # TODO: see if sub-second sleep works e.g. sleep(0.1)
         sleep(1)
@@ -323,10 +374,6 @@ class HoststackUtil():
         program_name = program[u"name"]
         program_stdout, program_stderr = \
             HoststackUtil.get_hoststack_test_program_logs(node, program)
-        if len(program_stdout) == 0 and len(program_stderr) == 0:
-            logger.trace(f"Retrying {program_name} log retrieval")
-            program_stdout, program_stderr = \
-               HoststackUtil.get_hoststack_test_program_logs(node, program)
 
         env_vars = f"{program[u'env_vars']} " if u"env_vars" in program else u""
         program_cmd = f"{env_vars}{program_name} {program[u'args']}"
