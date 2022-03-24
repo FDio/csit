@@ -15,7 +15,7 @@ resource "aws_vpc" "vpc" {
   tags                             = local.tags
 }
 
-# Create Security Groups
+# Create Security Group
 resource "aws_security_group" "security_group" {
   depends_on = [
     aws_vpc.vpc
@@ -29,26 +29,26 @@ resource "aws_security_group" "security_group" {
   dynamic "ingress" {
     for_each = var.security_group_ingress
     content {
-      from_port        = ingress.value["from_port"]
-      to_port          = ingress.value["to_port"]
-      protocol         = ingress.value["protocol"]
-      cidr_blocks      = ingress.value["cidr_blocks"]
-      ipv6_cidr_blocks = ingress.value["ipv6_cidr_blocks"]
+      from_port        = lookup(ingress.value, "from_port", null)
+      to_port          = lookup(ingress.value, "to_port", null)
+      protocol         = lookup(ingress.value, "protocol", null)
+      cidr_blocks      = lookup(ingress.value, "cidr_blocks", null)
+      ipv6_cidr_blocks = lookup(ingress.value, "ipv6_cidr_blocks", null)
     }
   }
   dynamic "egress" {
     for_each = var.security_group_egress
     content {
-      from_port        = ingress.value["from_port"]
-      to_port          = ingress.value["to_port"]
-      protocol         = ingress.value["protocol"]
-      cidr_blocks      = ingress.value["cidr_blocks"]
-      ipv6_cidr_blocks = ingress.value["ipv6_cidr_blocks"]
+      from_port        = lookup(ingress.value, "from_port", null)
+      to_port          = lookup(ingress.value, "to_port", null)
+      protocol         = lookup(ingress.value, "protocol", null)
+      cidr_blocks      = lookup(ingress.value, "cidr_blocks", null)
+      ipv6_cidr_blocks = lookup(ingress.value, "ipv6_cidr_blocks", null)
     }
   }
 }
 
-# Create Gateway
+# Create Internet Gateway
 resource "aws_internet_gateway" "internet_gateway" {
   depends_on = [
     aws_vpc.vpc
@@ -57,18 +57,18 @@ resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
 }
 
-# Create Routes
+# Create Route
 resource "aws_route" "route" {
   depends_on = [
     aws_vpc.vpc,
     aws_internet_gateway.internet_gateway
   ]
-  destination_cidr_block      = "0.0.0.0/0"
-  gateway_id                  = aws_internet_gateway.internet_gateway.id
-  route_table_id              = aws_vpc.vpc.main_route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.internet_gateway.id
+  route_table_id         = aws_vpc.vpc.main_route_table_id
 }
 
-# Create Subnets
+# Create Subnet
 resource "aws_subnet" "subnet" {
   depends_on = [
     aws_vpc.vpc
