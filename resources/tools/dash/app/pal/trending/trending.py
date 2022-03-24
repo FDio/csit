@@ -41,7 +41,8 @@ def init_trending(server):
         app=dash_app,
         html_layout_file="pal/trending/html_layout.txt",
         spec_file="pal/trending/spec_test_selection.yaml",
-        graph_layout_file="pal/trending/layout.yaml"
+        graph_layout_file="pal/trending/layout.yaml",
+        data_spec_file="pal/data/data.yaml"
     )
     dash_app.index_string = layout.html_layout
     dash_app.layout = layout.add_content()
