@@ -5,7 +5,7 @@
       - ethip4-ip4base
     core: [1C, 2C]
     frame-size: [64B, 1518B]
-    test-type: [MRR, NDR, PDR]
+    test-type: [MRR, ]
   ip4-scale:
     label: IPv4 Routing Scale
     test:
@@ -13,14 +13,14 @@
       - ethip4-ip4scale20k-rnd
     core: [1C, 2C]
     frame-size: [64B, 1518B]
-    test-type: [MRR, NDR, PDR]
+    test-type: [MRR, ]
   ip6-base:
     label: IPv6 Routing Base
     test:
       - ethip6-ip4base
     core: [1C, 2C]
     frame-size: [78B, 1518B]
-    test-type: [MRR, NDR, PDR]
+    test-type: [MRR, ]
   ip6-scale:
     label: IPv6 Routing Scale
     test:
@@ -28,50 +28,1429 @@
       - ethip6-ip4scale20k-rnd
     core: [1C, 2C]
     frame-size: [78B, 1518B]
+    test-type: [MRR, ]
+2n-clx-100ge2p1cx556a-rdma:
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
     test-type: [MRR, NDR, PDR]
-# 2n-clx-cx556a-rdma:
-# 2n-clx-x710-avf:
-# 2n-clx-x710-dpdk:
-# 2n-clx-xxv710-af_xdp:
-# 2n-clx-xxv710-avf:
-#     l2-base:
-#     l2-scale:
-#     ip4-base:
-#     ip4-scale:
-#     ip4-features:
-#     ip6-base:
-#     ip6-scale:
-#     ethip4-ethip4udpgeneve:
-#     nat44det-ip4-stl-bidir:
-#     nat44ed-ip4-stl-unidir:
-#     nat44ed-ip4-udp-stf-cps:
-#     nat44ed-ip4-tcp-stf-cps:
-#     nat44ed-ip4-udp-stf-pps:
-#     nat44ed-ip4-tcp-stf-pps:
-#     nat44ed-ip4-udp-tput:
-#     nat44ed-ip4-tcp-tput:
-#     vhost-base:
-#     memif-base:
-#     vnf-service-chains-routing:
-#     cnf-service-chains-routing:
-#     cnf-service-pipelines-routing:
-#     vnf-service-chains-tunnels:
-# 2n-clx-xxv710-dpdk:
-# 2n-dnv-x553-ixgbe:
-# 2n-icx-xxv710-avf:
-# 2n-icx-xxv710-dpdk:
-# 2n-skx-x710-avf:
-# 2n-skx-x710-dpdk:
-# 2n-skx-xxv710-avf:
-# 2n-skx-xxv710-dpdk:
-# 2n-tx2-xl710-af_xdp:
-# 2n-tx2-xl710-avf:
-# 2n-tx2-xl710-dpdk:
-# 2n-zn2-x710-avf:
-# 2n-zn2-x710-dpdk:
-# 2n-zn2-cx556a-rdma:
-# 2n-zn2-xxv710-avf:
-# 2n-zn2-xxv710-dpdk:
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-features:
+    label: IPv4 Routing Features
+    test:
+      - ethip4udp-ip4base-iacl50sf-10kflows
+      - ethip4udp-ip4base-iacl50sl-10kflows
+      - ethip4udp-ip4base-oacl50sf-10kflows
+      - ethip4udp-ip4base-oacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+2n-clx-10ge2p1x710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale1mmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+2n-clx-10ge2p1x710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+2n-clx-25ge2p1xxv710-af_xdp:
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+2n-clx-25ge2p1xxv710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - dot1q-l2bdbasemaclrn
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+      - eth-l2bdscale1mmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale200k
+      - ethip4-ip4scale2m
+      - ethip4-ip4scale20k-rnd
+      - ethip4-ip4scale200k-rnd
+      - ethip4-ip4scale2m-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-features:
+    label: IPv4 Routing Features
+    test:
+      - ethip4udp-ip4base-iacl50sf-10kflows
+      - ethip4udp-ip4base-iacl50sl-10kflows
+      - ethip4udp-ip4base-oacl50sf-10kflows
+      - ethip4udp-ip4base-oacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+      - ethip6-ip6scale200k
+      - ethip6-ip6scale200k-rnd
+      - ethip6-ip6scale2m
+      - ethip6-ip6scale2m-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ethip4-ethip4udpgeneve:
+    label: IPv4 Tunnels
+    test:
+      - ethip4--ethip4udpgeneve-1tun-ip4base
+      - ethip4--ethip4udpgeneve-4tun-ip4base
+      - ethip4--ethip4udpgeneve-16tun-ip4base
+      - ethip4--ethip4udpgeneve-64tun-ip4base
+      - ethip4--ethip4udpgeneve-256tun-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44det-ip4-stl-bidir:
+    label: NAT44 Deterministic BiDir
+    test:
+      - ethip4udp-nat44det-h1024-p63-s64512
+      - ethip4udp-nat44det-h16384-p63-s1032192
+      - ethip4udp-nat44det-h65536-p63-s4128758
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-stl-unidir:
+    label: NAT44 ED UniDir
+    test:
+      - ethip4udp-nat44ed-h1024-p63-s64512-udir
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-udp-stf-cps:
+    label: NAT44 ED UDP CPS
+    test:
+      - ethip4udp-ip4base-h1024-p63-s64512-cps
+      - ethip4udp-ip4base-h16384-p63-s1032192-cps
+      - ethip4udp-ip4base-h65536-p63-s4128768-cps
+      - ethip4udp-nat44ed-h1024-p63-s64512-cps
+      - ethip4udp-nat44ed-h16384-p63-s1032192-cps
+      - ethip4udp-nat44ed-h65536-p63-s4128768-cps
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-tcp-stf-cps:
+    label: NAT44 ED TCP CPS
+    test:
+      - ethip4tcp-ip4base-h1024-p63-s64512-cps
+      - ethip4tcp-ip4base-h16384-p63-s1032192-cps
+      - ethip4tcp-ip4base-h65536-p63-s4128768-cps
+      - ethip4tcp-nat44ed-h1024-p63-s64512-cps
+      - ethip4tcp-nat44ed-h16384-p63-s1032192-cps
+      - ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-udp-tput:
+    label: NAT44 ED UDP TPUT
+    test:
+      - ethip4udp-nat44ed-h1024-p63-s64512-tput
+      - ethip4udp-nat44ed-h16384-p63-s1032192-tput
+      - ethip4udp-nat44ed-h65536-p63-s4128768-tput
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-tcp-tput:
+    label: NAT44 ED TCP TPUT
+    test:
+      - ethip4tcp-nat44ed-h1024-p63-s64512-tput
+      - ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+      - ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+      - eth-l2xcbase-eth-2vhostvr1024-1vm
+      - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  # vnf-service-chains-routing:
+  # cnf-service-chains-routing:
+  # cnf-service-pipelines-routing:
+  # vnf-service-chains-tunnels:
+2n-clx-25ge2p1xxv710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+      - eth-l2bdscale1mmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+2n-dnv-10ge2p1x553-ixgbe:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+2n-icx-25ge2p1xxv710-af_xdp:
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+2n-icx-25ge2p1xxv710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - dot1q-l2bdbasemaclrn
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+      - eth-l2bdscale1mmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale200k
+      - ethip4-ip4scale2m
+      - ethip4-ip4scale20k-rnd
+      - ethip4-ip4scale200k-rnd
+      - ethip4-ip4scale2m-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-features:
+    label: IPv4 Routing Features
+    test:
+      - ethip4udp-ip4base-iacl50sf-10kflows
+      - ethip4udp-ip4base-iacl50sl-10kflows
+      - ethip4udp-ip4base-oacl50sf-10kflows
+      - ethip4udp-ip4base-oacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+      - ethip6-ip6scale200k
+      - ethip6-ip6scale200k-rnd
+      - ethip6-ip6scale2m
+      - ethip6-ip6scale2m-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ethip4-ethip4udpgeneve:
+    label: IPv4 Tunnels
+    test:
+      - ethip4--ethip4udpgeneve-1tun-ip4base
+      - ethip4--ethip4udpgeneve-4tun-ip4base
+      - ethip4--ethip4udpgeneve-16tun-ip4base
+      - ethip4--ethip4udpgeneve-64tun-ip4base
+      - ethip4--ethip4udpgeneve-256tun-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44det-ip4-stl-bidir:
+    label: NAT44 Deterministic BiDir
+    test:
+      - ethip4udp-nat44det-h1024-p63-s64512
+      - ethip4udp-nat44det-h16384-p63-s1032192
+      - ethip4udp-nat44det-h65536-p63-s4128758
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-stl-unidir:
+    label: NAT44 ED UniDir
+    test:
+      - ethip4udp-nat44ed-h1024-p63-s64512-udir
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-udp-stf-cps:
+    label: NAT44 ED UDP CPS
+    test:
+      - ethip4udp-ip4base-h1024-p63-s64512-cps
+      - ethip4udp-ip4base-h16384-p63-s1032192-cps
+      - ethip4udp-ip4base-h65536-p63-s4128768-cps
+      - ethip4udp-nat44ed-h1024-p63-s64512-cps
+      - ethip4udp-nat44ed-h16384-p63-s1032192-cps
+      - ethip4udp-nat44ed-h65536-p63-s4128768-cps
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-tcp-stf-cps:
+    label: NAT44 ED TCP CPS
+    test:
+      - ethip4tcp-ip4base-h1024-p63-s64512-cps
+      - ethip4tcp-ip4base-h16384-p63-s1032192-cps
+      - ethip4tcp-ip4base-h65536-p63-s4128768-cps
+      - ethip4tcp-nat44ed-h1024-p63-s64512-cps
+      - ethip4tcp-nat44ed-h16384-p63-s1032192-cps
+      - ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-udp-tput:
+    label: NAT44 ED UDP TPUT
+    test:
+      - ethip4udp-nat44ed-h1024-p63-s64512-tput
+      - ethip4udp-nat44ed-h16384-p63-s1032192-tput
+      - ethip4udp-nat44ed-h65536-p63-s4128768-tput
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-tcp-tput:
+    label: NAT44 ED TCP TPUT
+    test:
+      - ethip4tcp-nat44ed-h1024-p63-s64512-tput
+      - ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+      - ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+      - eth-l2xcbase-eth-2vhostvr1024-1vm
+      - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+2n-icx-25ge2p1xxv710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+      - eth-l2bdscale1mmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+2n-skx-10ge2p1x710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale1mmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+2n-skx-10ge2p1x710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale1mmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+2n-skx-25ge2p1xxv710-af_xdp:
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+2n-skx-25ge2p1xxv710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - dot1q-l2bdbasemaclrn
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+      - eth-l2bdscale1mmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale200k
+      - ethip4-ip4scale2m
+      - ethip4-ip4scale20k-rnd
+      - ethip4-ip4scale200k-rnd
+      - ethip4-ip4scale2m-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-features:
+    label: IPv4 Routing Features
+    test:
+      - ethip4udp-ip4base-iacl50sf-10kflows
+      - ethip4udp-ip4base-iacl50sl-10kflows
+      - ethip4udp-ip4base-oacl50sf-10kflows
+      - ethip4udp-ip4base-oacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+      - ethip6-ip6scale200k
+      - ethip6-ip6scale200k-rnd
+      - ethip6-ip6scale2m
+      - ethip6-ip6scale2m-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ethip4-ethip4udpgeneve:
+    label: IPv4 Tunnels
+    test:
+      - ethip4--ethip4udpgeneve-1tun-ip4base
+      - ethip4--ethip4udpgeneve-4tun-ip4base
+      - ethip4--ethip4udpgeneve-16tun-ip4base
+      - ethip4--ethip4udpgeneve-64tun-ip4base
+      - ethip4--ethip4udpgeneve-256tun-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44det-ip4-stl-bidir:
+    label: NAT44 Deterministic BiDir
+    test:
+      - ethip4udp-nat44det-h1024-p63-s64512
+      - ethip4udp-nat44det-h16384-p63-s1032192
+      - ethip4udp-nat44det-h65536-p63-s4128758
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-stl-unidir:
+    label: NAT44 ED UniDir
+    test:
+      - ethip4udp-nat44ed-h1024-p63-s64512-udir
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-udp-stf-cps:
+    label: NAT44 ED UDP CPS
+    test:
+      - ethip4udp-ip4base-h1024-p63-s64512-cps
+      - ethip4udp-ip4base-h16384-p63-s1032192-cps
+      - ethip4udp-ip4base-h65536-p63-s4128768-cps
+      - ethip4udp-nat44ed-h1024-p63-s64512-cps
+      - ethip4udp-nat44ed-h16384-p63-s1032192-cps
+      - ethip4udp-nat44ed-h65536-p63-s4128768-cps
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-tcp-stf-cps:
+    label: NAT44 ED TCP CPS
+    test:
+      - ethip4tcp-ip4base-h1024-p63-s64512-cps
+      - ethip4tcp-ip4base-h16384-p63-s1032192-cps
+      - ethip4tcp-ip4base-h65536-p63-s4128768-cps
+      - ethip4tcp-nat44ed-h1024-p63-s64512-cps
+      - ethip4tcp-nat44ed-h16384-p63-s1032192-cps
+      - ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-udp-tput:
+    label: NAT44 ED UDP TPUT
+    test:
+      - ethip4udp-nat44ed-h1024-p63-s64512-tput
+      - ethip4udp-nat44ed-h16384-p63-s1032192-tput
+      - ethip4udp-nat44ed-h65536-p63-s4128768-tput
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  nat44ed-ip4-tcp-tput:
+    label: NAT44 ED TCP TPUT
+    test:
+      - ethip4tcp-nat44ed-h1024-p63-s64512-tput
+      - ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+      - ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+      - eth-l2xcbase-eth-2vhostvr1024-1vm
+      - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+2n-skx-25ge2p1xxv710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+      - eth-l2bdscale1mmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+      - eth-l2xcbase-eth-2vhostvr1024-1vm
+      - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+2n-tx2-40ge2p1xl710-af_xdp:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale200k
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale200k
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+2n-tx2-40ge2p1xl710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - dot1q-l2bdbasemaclrn
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  l2-features:
+    label: L2 Ethernet Switching Features
+    test:
+      - eth-l2bdbasemaclrn-iacl50sf-10kflows
+      - eth-l2bdbasemaclrn-iacl50sl-10kflows
+      - eth-l2bdbasemaclrn-oacl50sf-10kflows
+      - eth-l2bdbasemaclrn-oacl50sl-10kflows
+      - eth-l2bdbasemaclrn-macip-iacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ipsec:
+    label: IPSec IPv4 Routing
+    test:
+      - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+      - ethip4ipsec4tnlsw-ip4base-int-aes128gcm-udir
+      - ethip4ipsec4tnlsw-ip4base-int-aes256gcm-udir
+      - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+      - ethip4ipsec1000tnlsw-ip4base-int-aes128gcm-udir
+      - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-udir
+      - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-udir
+      - ethip4ipsec10000tnlsw-ip4base-int-aes128gcm-udir
+      - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-udir
+    core: [1C, 2C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, ]
+  ipsec-policy:
+    label: IPSec IPv4 Routing Policy
+    test:
+      - ethip4ipsec1spe-cache-ip4base-policy-outbound-nocrypto
+      - ethip4ipsec1spe-ip4base-policy-outbound-nocrypto
+      - ethip4ipsec1tnlsw-ip4base-policy-aes256gcm-udir
+      - ethip4ipsec100spe-cache-ip4base-policy-outbound-nocrypto
+      - ethip4ipsec100spe-ip4base-policy-outbound-nocrypto
+      - ethip4ipsec1000spe-cache-ip4base-policy-outbound-nocrypto
+      - ethip4ipsec1000spe-ip4base-policy-outbound-nocrypto
+      - ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-udir
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale200k
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-features:
+    label: IPv4 Routing Features
+    test:
+      - ethip4-ip4base-iacldstbase
+      - ethip4udp-ip4base-iacl50sf-10kflows
+      - ethip4udp-ip4base-iacl50sl-10kflows
+      - ethip4udp-ip4base-oacl50sf-10kflows
+      - ethip4udp-ip4base-oacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale200k
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip6-features:
+    label: IPv6 Routing Features
+    test:
+      - ethip6-ip6base-iacldstbase
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+2n-zn2-10ge2p1x710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+2n-zn2-10ge2p1x710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+2n-zn2-100ge2p1cx556a-rdma:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - dot1q-l2bdbasemaclrn
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+      - ethip6-ip6scale200k
+      - ethip6-ip6scale200k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip4-features:
+    label: IPv4 Routing Features
+    test:
+      - ethip4udp-ip4base-iacl50sf-10kflows
+      - ethip4udp-ip4base-iacl50sl-10kflows
+      - ethip4udp-ip4base-oacl50sf-10kflows
+      - ethip4udp-ip4base-oacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+      - eth-l2xcbase-eth-2vhostvr1024-1vm
+      - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+2n-zn2-25ge2p1xxv710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - dot1q-l2bdbasemaclrn
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-features:
+    label: IPv4 Routing Features
+    test:
+      - ethip4udp-ip4base-iacl50sf-10kflows
+      - ethip4udp-ip4base-iacl50sl-10kflows
+      - ethip4udp-ip4base-oacl50sf-10kflows
+      - ethip4udp-ip4base-oacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+      - ethip6-ip6scale200k
+      - ethip6-ip6scale200k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ethip4-ethip4udpgeneve:
+    label: IPv4 Tunnels
+    test:
+      - ethip4--ethip4udpgeneve-1tun-ip4base
+      - ethip4--ethip4udpgeneve-4tun-ip4base
+      - ethip4--ethip4udpgeneve-16tun-ip4base
+      - ethip4--ethip4udpgeneve-64tun-ip4base
+      - ethip4--ethip4udpgeneve-256tun-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  nat44det-ip4-stl-bidir:
+    label: NAT44 Deterministic BiDir
+    test:
+      - ethip4udp-nat44det-h1024-p63-s64512
+      - ethip4udp-nat44det-h16384-p63-s1032192
+      - ethip4udp-nat44det-h65536-p63-s4128758
+      - ethip4udp-nat44det-h262144-p63-s16515072
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+      - eth-l2xcbase-eth-2vhostvr1024-1vm
+      - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+2n-zn2-25ge2p1xxv710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+      - eth-l2bdscale100kmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  memif-base:
+    label: LXC/DRC Container Memif
+    test:
+      - eth-l2bdbasemaclrn-eth-2memif-1dcr
+      - eth-l2xcbase-eth-2memif-1dcr
+      - ethip4-ip4base-eth-2memif-1dcr
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
 3n-aws-50ge1p1ena-dpdk:
   ip4-base:
     label: IPv4 Routing Base
@@ -79,8 +1458,7 @@
       - ethip4-ip4base
     core: [1C, 2C]
     frame-size: [64B, 1518B]
-    test-type: [MRR, NDR, PDR]
-
+    test-type: [MRR, ]
   ip4-scale:
     label: IPv4 Routing Scale
     test:
@@ -88,19 +1466,452 @@
       - ethip4-ip4scale20k-rnd
     core: [1C, 2C]
     frame-size: [64B, 1518B]
-    test-type: [MRR, NDR, PDR]
-
+    test-type: [MRR, ]
   ipsec-base:
     label: IPSec IPv4 Routing Base
     test:
       - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
     core: [1C, 2C]
     frame-size: [IMIX, 1518B]
+    test-type: [MRR, ]
+3n-dnv-10ge2p1x553-ixgbe:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  l2-scale:
+    label: L2 Ethernet Switching Scale
+    test:
+      - eth-l2bdscale10kmaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-scale:
+    label: IPv4 Routing Scale
+    test:
+      - ethip4-ip4scale20k
+      - ethip4-ip4scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip6-scale:
+    label: IPv6 Routing Scale
+    test:
+      - ethip6-ip6scale20k
+      - ethip6-ip6scale20k-rnd
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip4-tunnels:
+    label: IPv4 Tunnels
+    test:
+      - ethip4vxlan-l2xcbase
+      - ethip4vxlan-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ipsec:
+    label: IPSec IPv4 Routing
+    test:
+      - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+    core: [1C, 2C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, ]
+  ipsec-scheduler:
+    label: IPSec IPv4 Routing Scheduler
+    test:
+      - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+    core: [2C, 3C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, ]
+3n-icx-25ge2p1xxv710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - dot1q-l2bdbasemaclrn
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
     test-type: [MRR, NDR, PDR]
-# 3n-dnv-x553-ixgbe:
-# 3n-icx-xxv710-avf:
-# 3n-icx-xxv710-dpdk:
-# 3n-skx-x710-avf:
-# 3n-skx-xxv710-avf:
-# 3n-skx-xxv710-dpdk:
-# 3n-tsh-x520-ixgbe:
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  srv6:
+    label: SRv6 Routing
+    test:
+      - ethip6ip6-ip6base-srv6enc1sid
+      - ethip6srhip6-ip6base-srv6enc2sids
+      - ethip6srhip6-ip6base-srv6enc2sids-nodecaps
+      - ethip6srhip6-ip6base-srv6proxy-dyn
+      - ethip6srhip6-ip6base-srv6proxy-masq
+      - ethip6srhip6-ip6base-srv6proxy-stat
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-tunnels:
+    label: IPv4 Tunnels
+    test:
+      - ethip4gtpusw-ip4base
+      - ethip4vxlan-l2bdbasemaclrn
+      - ethip4vxlan-l2xcbase
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ipsec:
+    label: IPSec IPv4 Routing
+    test:
+      - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+    core: [1C, 2C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, NDR, PDR]
+  ipsec-scheduler:
+    label: IPSec IPv4 Routing Scheduler
+    test:
+      - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+      - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+    core: [2C, 3C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, NDR, PDR]
+3n-icx-25ge2p1xxv710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-tunnels:
+    label: IPv4 Tunnels
+    test:
+      - ethip4gtpusw-ip4base
+      - ethip4vxlan-l2bdbasemaclrn
+      - ethip4vxlan-l2xcbase
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ipsec:
+    label: IPSec IPv4 Routing
+    test:
+      - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+    core: [1C, 2C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, NDR, PDR]
+  ipsec-scheduler:
+    label: IPSec IPv4 Routing Scheduler
+    test:
+      - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+      - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+    core: [2C, 3C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, NDR, PDR]
+3n-skx-10ge2p1x710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+3n-skx-25ge2p1xxv710-avf:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - dot1q-l2bdbasemaclrn
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-tunnels:
+    label: IPv4 Tunnels
+    test:
+      - ethip4gtpusw-ip4base
+      - ethip4vxlan-l2bdbasemaclrn
+      - ethip4vxlan-l2xcbase
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  srv6:
+    label: SRv6 Routing
+    test:
+      - ethip6ip6-ip6base-srv6enc1sid
+      - ethip6srhip6-ip6base-srv6enc2sids
+      - ethip6srhip6-ip6base-srv6enc2sids-nodecaps
+      - ethip6srhip6-ip6base-srv6proxy-dyn
+      - ethip6srhip6-ip6base-srv6proxy-masq
+      - ethip6srhip6-ip6base-srv6proxy-stat
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ipsec:
+    label: IPSec IPv4 Routing
+    test:
+      - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+    core: [1C, 2C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, NDR, PDR]
+  ipsec-scheduler:
+    label: IPSec IPv4 Routing Scheduler
+    test:
+      - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+      - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+    core: [2C, 3C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, NDR, PDR]
+3n-skx-25ge2p1xxv710-dpdk:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, NDR, PDR]
+  ip4-tunnels:
+    label: IPv4 Tunnels
+    test:
+      - ethip4gtpusw-ip4base
+      - ethip4vxlan-l2bdbasemaclrn
+      - ethip4vxlan-l2xcbase
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, NDR, PDR]
+  ipsec:
+    label: IPSec IPv4 Routing
+    test:
+      - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec40tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+    core: [1C, 2C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, NDR, PDR]
+  ipsec-scheduler:
+    label: IPSec IPv4 Routing Scheduler
+    test:
+      - ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+      - ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm
+    core: [2C, 3C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, NDR, PDR]
+3n-tsh-10ge2p1x520-ixgbe:
+  l2-base:
+    label: L2 Ethernet Switching Base
+    test:
+      - dot1q-l2bdbasemaclrn
+      - eth-l2xcbase
+      - eth-l2patch
+      - eth-l2bdbasemaclrn
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  l2-features:
+    label: L2 Ethernet Switching Features
+    test:
+      - eth-l2bdbasemaclrn-iacl50sf-10kflows
+      - eth-l2bdbasemaclrn-iacl50sl-10kflows
+      - eth-l2bdbasemaclrn-oacl50sf-10kflows
+      - eth-l2bdbasemaclrn-oacl50sl-10kflows
+      - eth-l2bdbasemaclrn-macip-iacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-base:
+    label: IPv4 Routing Base
+    test:
+      - ethip4-ip4base
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip4-features:
+    label: IPv4 Routing Features
+    test:
+      - ethip4udp-ip4base-iacl50sf-10kflows
+      - ethip4udp-ip4base-iacl50sl-10kflows
+      - ethip4udp-ip4base-oacl50sf-10kflows
+      - ethip4udp-ip4base-oacl50sl-10kflows
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ip6-base:
+    label: IPv6 Routing Base
+    test:
+      - ethip6-ip6base
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  srv6:
+    label: SRv6 Routing
+    test:
+      - ethip6ip6-ip6base-srv6enc1sid
+      - ethip6srhip6-ip6base-srv6enc2sids
+      - ethip6srhip6-ip6base-srv6enc2sids-nodecaps
+      - ethip6srhip6-ip6base-srv6proxy-dyn
+      - ethip6srhip6-ip6base-srv6proxy-masq
+      - ethip6srhip6-ip6base-srv6proxy-stat
+    core: [1C, 2C, 4C]
+    frame-size: [78B, ]
+    test-type: [MRR, ]
+  ip4-tunnels:
+    label: IPv4 Tunnels
+    test:
+      - ethip4vxlan-l2bdbasemaclrn
+      - ethip4vxlan-l2xcbase
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  ipsec:
+    label: IPSec IPv4 Routing
+    test:
+      - ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec4tnlsw-ip4base-int-aes128gcm
+      - ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec1000tnlsw-ip4base-int-aes128gcm
+      - ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+      - ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha
+      - ethip4ipsec10000tnlsw-ip4base-int-aes128gcm
+      - ethip4ipsec10000tnlsw-ip4base-int-aes256gcm
+    core: [1C, 2C, 4C]
+    frame-size: [1518B, IMIX]
+    test-type: [MRR, ]
+  ipsec-policy:
+    label: IPSec IPv4 Routing Policy
+    test:
+      - ethip4ipsec1tnlsw-ip4base-policy-aes256gcm
+      - ethip4ipsec40tnlsw-ip4base-policy-aes256gcm
+      - ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
+  vhost-base:
+    label: VMs vhost-user
+    test:
+      - eth-l2xcbase-eth-2vhostvr1024-1vm
+      - eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+      - ethip4-ip4base-eth-2vhostvr1024-1vm
+      - ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4
+      - ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm
+      - ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc
+    core: [1C, 2C, 4C]
+    frame-size: [64B, ]
+    test-type: [MRR, ]
