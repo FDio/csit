@@ -720,13 +720,22 @@ class QemuUtils:
             else:
                 interface[u"name"] = if_name
 
-    def qemu_start(self):
+    def qemu_start(self, affinity):
         """Start QEMU and wait until VM boot.
 
+        Affinity is given here, as qemu can assign resources
+        on wrong numa node otherwise (pin after start does not help).
+        https://bugzilla.redhat.com/show_bug.cgi?id=1405036#c21
+
+        :param affinity: Optional list of allowed cores.
+        :type affinity: Optional[Iterable[int]]
         :returns: VM node info.
         :rtype: dict
         """
         cmd_opts = OptionString()
+        if affinity:
+            cmd_opts.add_with_value(f"taskset",  u"-c")
+            cmd_opts.add(u",".join(map(str, affinity)))
         cmd_opts.add(f"{Constants.QEMU_BIN_PATH}/qemu-system-{self._arch}")
         cmd_opts.extend(self._params)
         message = f"QEMU: Start failed on {self._node[u'host']}!"
