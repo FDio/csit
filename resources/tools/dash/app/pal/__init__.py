@@ -50,8 +50,9 @@ def init_app():
         from .trending.trending import init_trending
         app = init_trending(app)
 
-        from .report.report import init_report
-        app = init_report(app)
+        # Temporarily switched off
+        # from .report.report import init_report
+        # app = init_report(app)
 
     return app
 
