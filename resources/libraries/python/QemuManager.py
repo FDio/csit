@@ -113,7 +113,8 @@ class QemuManager:
                 zip(self.machines.values(), self.machines_affinity.values()):
             index = list(self.machines.values()).index(machine)
             name = list(self.machines.keys())[index]
-            self.nodes[name] = machine.qemu_start()
+            affinity = machine_affinity if pinning else None
+            self.nodes[name] = machine.qemu_start(affinity)
             if pinning:
                 machine.qemu_set_affinity(*machine_affinity)
                 cpus.extend(machine_affinity)
