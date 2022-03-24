@@ -15,7 +15,10 @@
 """
 
 
+import logging
 import plotly.graph_objects as go
+import pandas as pd
+import re
 
 from dash import dcc
 from dash import html
@@ -25,16 +28,15 @@ from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 
-from pprint import pformat
-
-from .data import read_data
+from ..data.data import Data
 
 
 class Layout:
     """
     """
 
-    def __init__(self, app, html_layout_file, spec_file, graph_layout_file):
+    def __init__(self, app, html_layout_file, spec_file, graph_layout_file,
+        data_spec_file):
         """
         """
 
@@ -43,9 +45,13 @@ class Layout:
         self._html_layout_file = html_layout_file
         self._spec_file = spec_file
         self._graph_layout_file = graph_layout_file
+        self._data_spec_file = data_spec_file
 
         # Read the data:
-        self._data = read_data()
+        self._data = Data(
+            data_spec_file=self._data_spec_file,
+            debug=True
+        ).read_trending_mrr()
 
         # Read from files:
         self._html_layout = ""
@@ -195,9 +201,6 @@ class Layout:
                         )
                     ]
                 ),
-                # Debug output, TODO: Remove
-                html.H5("Debug output"),
-                html.Pre(id="div-ctrl-info")
             ]
         )
 
@@ -289,11 +292,12 @@ class Layout:
                 html.Br(),
                 dcc.DatePickerRange(
                     id="dpr-period",
-                    min_date_allowed=datetime(2021, 1, 1),
+                    min_date_allowed=datetime.utcnow() - timedelta(days=180),
                     max_date_allowed=datetime.utcnow(),
                     initial_visible_month=datetime.utcnow(),
                     start_date=datetime.utcnow() - timedelta(days=180),
-                    end_date=datetime.utcnow()
+                    end_date=datetime.utcnow(),
+                    display_format="D MMMM YY"
                 )
             ]
         )
@@ -446,7 +450,6 @@ class Layout:
 
         @app.callback(
             Output("graph", "figure"),
-            Output("div-ctrl-info", "children"),  # Debug output TODO: Remove
             Output("selected-tests", "data"),  # Store
             Output("cl-selected", "options"),  # User selection
             Output("dd-ctrl-phy", "value"),
@@ -525,12 +528,12 @@ class Layout:
                                         "core": core.lower(),
                                         "testtype": ttype.lower()
                                     })
-                return (no_update, no_update, store_sel, _list_tests(), None,
+                return (no_update, store_sel, _list_tests(), None,
                     None, None, no_update)
 
             elif trigger_id in ("btn-sel-display", "dpr-period"):
                 fig, style = _update_graph(store_sel, d_start, d_end)
-                return (fig, pformat(store_sel), no_update, no_update,
+                return (fig, no_update, no_update,
                     no_update, no_update, no_update, style)
 
             elif trigger_id == "btn-sel-remove":
@@ -541,7 +544,7 @@ class Layout:
                             new_store_sel.append(item)
                     store_sel = new_store_sel
                     fig, style = _update_graph(store_sel, d_start, d_end)
-                return (fig, pformat(store_sel), store_sel, _list_tests(),
+                return (fig, store_sel, _list_tests(),
                     no_update, no_update, no_update, style)
 
         def _update_graph(sel, start, end):
@@ -551,31 +554,64 @@ class Layout:
             if not sel:
                 return no_update, no_update
 
-            def _is_selected(label, sel):
-                for itm in sel:
-                    phy = itm["phy"].split("-")
-                    if len(phy) == 4:
-                        topo, arch, nic, drv = phy
-                    else:
-                        continue
-                    if nic not in label:
-                        continue
-                    if drv != "dpdk" and drv not in label:
-                        continue
-                    if itm["test"] not in label:
-                        continue
-                    if itm["framesize"] not in label:
-                        continue
-                    if itm["core"] not in label:
-                        continue
-                    if itm["testtype"] not in label:
-                        continue
-                    return (
-                        f"{itm['phy']}-{itm['framesize']}-{itm['core']}-"
-                        f"{itm['test']}-{itm['testtype']}"
+            def _generate_trace(name: str, df: pd.DataFrame,
+                start: datetime, end: datetime):
+
+                x_axis = [
+                    d for d in df["start_time"] if d >= start and d <= end
+                ]
+                hover_txt = list()
+                for _, row in df.iterrows():
+                    hover_txt.append(
+                        f"date: "
+                        f"{row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+                        f"average [{row['result_receive_rate_rate_unit']}]: "
+                        f"{int(row['result_receive_rate_rate_avg']):,}<br>"
+                        f"stdev [{row['result_receive_rate_rate_unit']}]: "
+                        f"{int(row['result_receive_rate_rate_stdev']):,}<br>"
+                        f"{row['dut_type']}-ref: {row['dut_version']}<br>"
+                        f"csit-ref: {row['job']}/{row['build']}"
                     )
+
+                return go.Scatter(
+                    x=x_axis,
+                    y=df["result_receive_rate_rate_avg"],
+                    name=name,
+                    mode="markers+lines",
+                    text=hover_txt,
+                    hoverinfo=u"text+name"
+                )
+
+            # Generate graph:
+            fig = go.Figure()
+            for itm in sel:
+                phy = itm["phy"].split("-")
+                if len(phy) == 4:
+                    topo, arch, nic, drv = phy
+                    if drv == "dpdk":
+                        drv = ""
                 else:
-                    return None
+                    continue
+                sel_topo_arch = (
+                    f"csit-vpp-perf-{itm['testtype']}-"
+                    f"{'weekly' if arch == 'aws' else 'daily'}-master-"
+                    f"{topo}-{arch}"
+                )
+                df_sel = self.data.loc[(self.data["job"] == sel_topo_arch)]
+                regex = (
+                    f".*{nic}.*{itm['framesize']}.*{itm['core']}.*"
+                    f"{drv}.*{itm['test']}"
+                )
+                df = df_sel.loc[
+                    df_sel["test_id"].apply(
+                        lambda x: True if re.search(regex, x) else False
+                    )
+                ].sort_values(by="start_time", ignore_index=True)
+                name = (
+                    f"{itm['phy']}-{itm['framesize']}-{itm['core']}-"
+                    f"{itm['test']}-{itm['testtype']}"
+                )
+                fig.add_trace(_generate_trace(name, df, start, end))
 
             style={
                 "vertical-align": "top",
@@ -584,46 +620,6 @@ class Layout:
                 "padding": "5px"
             }
 
-            fig = go.Figure()
-            dates = self.data.iloc[[0], 1:].values.flatten().tolist()[::-1]
-            x_data = [
-                datetime(
-                    int(date[0:4]), int(date[4:6]), int(date[6:8]),
-                    int(date[9:11]), int(date[12:])
-                ) for date in dates
-            ]
-            x_data_range = [
-                date for date in x_data if date >= start and date <= end
-            ]
-            vpp = self.data.iloc[[1], 1:].values.flatten().tolist()[::-1]
-            csit = list(self.data.columns[1:])[::-1]
-            labels = list(self.data["Build Number:"][3:])
-            for i in range(3, len(self.data)):
-                name = _is_selected(labels[i-3], sel)
-                if not name:
-                    continue
-                y_data = [
-                    float(v) / 1e6 for v in \
-                        self.data.iloc[[i], 1:].values.flatten().tolist()[::-1]
-                ]
-                hover_txt = list()
-                for x_idx, x_itm in enumerate(x_data):
-                    hover_txt.append(
-                        f"date: {x_itm}<br>"
-                        f"average [Mpps]: {y_data[x_idx]}<br>"
-                        f"vpp-ref: {vpp[x_idx]}<br>"
-                        f"csit-ref: {csit[x_idx]}"
-                    )
-                fig.add_trace(
-                    go.Scatter(
-                        x=x_data_range,
-                        y= y_data,
-                        name=name,
-                        mode="markers+lines",
-                        text=hover_txt,
-                        hoverinfo=u"text+name"
-                    )
-                )
             layout = self._graph_layout.get("plot-trending", dict())
             fig.update_layout(layout)
 

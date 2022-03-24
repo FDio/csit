@@ -10,5 +10,6 @@ services:
       - "5000:5000"
     volumes:
       - "./app/:/app"
-      - "/home/vagrant/.aws:/root/.aws"
+      # - "/home/vagrant/.aws:/root/.aws"
+      - "/home/tibor/.aws:/root/.aws"
     working_dir: "/app"
