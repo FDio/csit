@@ -743,6 +743,9 @@ class QemuUtils:
                 int(self._opt.get(u"mem"))
             )
 
+            hucmd = u"cat /sys/devices/system/node/node*/meminfo | fgrep Huge"
+            exec_cmd_no_error(self._node, hucmd)
+
             exec_cmd_no_error(
                 self._node, cmd_opts, timeout=300, sudo=True, message=message
             )
