@@ -15,6 +15,7 @@
 """
 
 
+import logging
 import plotly.graph_objects as go
 
 from dash import dcc
@@ -27,14 +28,15 @@ from datetime import datetime, timedelta
 
 from pprint import pformat
 
-from .data import read_data
+from ..data.data import Data
 
 
 class Layout:
     """
     """
 
-    def __init__(self, app, html_layout_file, spec_file, graph_layout_file):
+    def __init__(self, app, html_layout_file, spec_file, graph_layout_file,
+        data_spec_file):
         """
         """
 
@@ -43,9 +45,15 @@ class Layout:
         self._html_layout_file = html_layout_file
         self._spec_file = spec_file
         self._graph_layout_file = graph_layout_file
+        self._data_spec_file = data_spec_file
 
         # Read the data:
-        self._data = read_data()
+        self._data = Data(
+            data_spec_file=self._data_spec_file,
+            debug=True
+        ).read_trending_mrr()
+
+        logging.info(self._data.columns)
 
         # Read from files:
         self._html_layout = ""
