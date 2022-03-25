@@ -173,7 +173,7 @@ def check_ip(pkt_recv, ip_layer, src_mac, dst_mac, src_ip, dst_ip):
         )
 
 
-def main():
+def main(size_limit):
     """Send and receive IPsec packet."""
 
     args = TrafficScriptArg(
@@ -228,7 +228,6 @@ def main():
     sent_packets = list()
     tx_pkt_send = (Ether(src=tx_src_mac, dst=tx_dst_mac) / ip_pkt)
     tx_pkt_send /= Raw()
-    size_limit = 78 if ip_layer == IPv6 else 64
     if len(tx_pkt_send) < size_limit:
         tx_pkt_send[Raw].load += (b"\0" * (size_limit - len(tx_pkt_send)))
     sent_packets.append(tx_pkt_send)
@@ -297,8 +296,9 @@ def main():
 
     check_ip(tx_pkt_recv, ip_layer, tx_dst_mac, tx_src_mac, dst_ip, src_ip)
 
-    sys.exit(0)
+    return
 
 
 if __name__ == u"__main__":
-    main()
+    for size_limit in range(64, 1519, 8):
+        main(size_limit)
