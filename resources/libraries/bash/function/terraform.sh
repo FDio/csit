@@ -32,7 +32,7 @@ function terraform_apply () {
     fi
 
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
-    pushd "${NODENESS}_${FLAVOR}_c5n" || die "Pushd failed!"
+    pushd "terraform-aws-${NODENESS}-${FLAVOR}-c5n" || die "Pushd failed!"
     export TF_LOG=INFO
     trap 'terraform_destroy' ERR || {
          die "Trap attempt failed, please cleanup manually. Aborting!"
@@ -58,7 +58,7 @@ function terraform_destroy () {
     fi
 
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
-    pushd "${NODENESS}_${FLAVOR}_c5n" || die "Pushd failed!"
+    pushd "terraform-aws-${NODENESS}-${FLAVOR}-c5n" || die "Pushd failed!"
     export TF_LOG=INFO
     terraform destroy -auto-approve -no-color || die "Terraform destroy failed!"
     popd || die "Popd failed!"
@@ -88,7 +88,7 @@ function terraform_init () {
     fi
 
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
-    pushd "${NODENESS}_${FLAVOR}_c5n" || die "Pushd failed!"
+    pushd "terraform-aws-${NODENESS}-${FLAVOR}-c5n" || die "Pushd failed!"
 
     plugin_url="https://github.com/radekg/terraform-provisioner-ansible/"
     plugin_url+="releases/download/v2.5.0/"
