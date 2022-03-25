@@ -74,6 +74,7 @@
   Example end.
 """
 
+import datetime
 import os
 import select
 import time
@@ -250,7 +251,8 @@ class RxQueue(PacketVerifier):
                 continue
             pkt = self._sock.recv(0x7fff)
             pkt_pad = str(auto_pad(pkt))
-            print(f"Received packet on {self._ifname} of len {len(pkt)}")
+            now = str(datetime.datetime.utcnow())
+            print(f"Received packet at {now} on {self._ifname} of len {len(pkt)}")
             if verbose:
                 if hasattr(pkt, u"show2"):
                     pkt.show2()

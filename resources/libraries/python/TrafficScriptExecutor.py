@@ -35,7 +35,7 @@ class TrafficScriptExecutor:
 
     @staticmethod
     def run_traffic_script_on_node(
-            script_file_name, node, script_args, timeout=60):
+            script_file_name, node, script_args, timeout=1800):
         """Run traffic script on the TG node.
 
         :param script_file_name: Traffic script name.
