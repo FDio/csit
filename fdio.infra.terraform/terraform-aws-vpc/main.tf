@@ -32,6 +32,7 @@ resource "aws_security_group" "security_group" {
       from_port        = lookup(ingress.value, "from_port", null)
       to_port          = lookup(ingress.value, "to_port", null)
       protocol         = lookup(ingress.value, "protocol", null)
+      self             = lookup(ingress.value, "self", null)
       cidr_blocks      = lookup(ingress.value, "cidr_blocks", null)
       ipv6_cidr_blocks = lookup(ingress.value, "ipv6_cidr_blocks", null)
     }
@@ -39,11 +40,12 @@ resource "aws_security_group" "security_group" {
   dynamic "egress" {
     for_each = var.security_group_egress
     content {
-      from_port        = lookup(ingress.value, "from_port", null)
-      to_port          = lookup(ingress.value, "to_port", null)
-      protocol         = lookup(ingress.value, "protocol", null)
-      cidr_blocks      = lookup(ingress.value, "cidr_blocks", null)
-      ipv6_cidr_blocks = lookup(ingress.value, "ipv6_cidr_blocks", null)
+      from_port        = lookup(egress.value, "from_port", null)
+      to_port          = lookup(egress.value, "to_port", null)
+      protocol         = lookup(egress.value, "protocol", null)
+      self             = lookup(egress.value, "self", null)
+      cidr_blocks      = lookup(egress.value, "cidr_blocks", null)
+      ipv6_cidr_blocks = lookup(egress.value, "ipv6_cidr_blocks", null)
     }
   }
 }

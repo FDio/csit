@@ -1145,11 +1145,11 @@ function select_topology () {
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         "2n_aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_aws*.yaml )
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-aws*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         "3n_aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_aws*.yaml )
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *)
