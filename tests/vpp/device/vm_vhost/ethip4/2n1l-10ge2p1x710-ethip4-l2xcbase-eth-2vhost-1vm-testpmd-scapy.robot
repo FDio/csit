@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,9 +16,9 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Intel-X710 | ETH | L2XCFWD | BASE | VHOST | 1VM | DRV_VFIO_PCI
-| ... | NF_VPPL2XC
+| ... | NF_TESTPMD
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4-l2xcbase-eth-2vhost-1vm
+| ... | ethip4-l2xcbase-eth-2vhost-1vm-testpmd
 |
 | Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
@@ -35,7 +35,7 @@
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 is configured with L2 \
 | ... | (L2XC) switching. Qemu Guest is connected to VPP via vhost-user \
-| ... | interfaces. Guest is configured with VPP l2 cross-connect. \
+| ... | interfaces. Guest is configured with testpmd \
 | ... | interconnecting vhost-user interfaces.
 | ... |
 | ... | - **[Ver] TG verification:** Test IPv4 packets with IP protocol=61 are \
@@ -93,11 +93,11 @@
 | | And Initialize L2 xconnect with Vhost-User | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
-| | ... | vnf=vppl2xc_2vhostvr1024 | pinning=${False}
+| | ... | vnf=testpmd_io | pinning=${False}
 | | Then Send IPv4 bidirectionally and verify received packets | ${tg}
 | | ... | ${TG_pf1}[0] | ${TG_pf2}[0]
 
 *** Test Cases ***
-| 64B-0c-ethip4-l2xcbase-eth-2vhost-1vm-scapy
+| 64B-0c-ethip4-l2xcbase-eth-2vhost-1vm-testpmd-scapy
 | | [Tags] | 64B | 0C
 | | frame_size=${64} | phy_cores=${0}
