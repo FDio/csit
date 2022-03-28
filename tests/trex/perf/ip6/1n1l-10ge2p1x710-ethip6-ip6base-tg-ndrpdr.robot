@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,7 +14,8 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 |
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
+| Force Tags | 1_NODE_SINGLE_LINK_TOPO | 2_NODE_SINGLE_LINK_TOPO
+| ... | 3_NODE_SINGLE_LINK_TOPO
 | ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | IP6BASE
 | ... | N2N | BASE | IP6BASE | TG_DRV_IGB_UIO
 | ... | ethip6-ip6base-tg
