@@ -439,9 +439,13 @@ function get_test_code () {
             NODENESS="1n"
             FLAVOR="skx"
             ;;
-       *"1n-tx2"*)
+        *"1n-tx2"*)
             NODENESS="1n"
             FLAVOR="tx2"
+            ;;
+        *"1n-aws"*)
+            NODENESS="1n"
+            FLAVOR="aws"
             ;;
         *"2n-aws"*)
             NODENESS="2n"
@@ -662,12 +666,7 @@ function prepare_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "2n_aws")
-            export TF_VAR_testbed_name="${TEST_CODE}"
-            terraform_init || die "Failed to call terraform init."
-            terraform_apply || die "Failed to call terraform apply."
-            ;;
-        "3n_aws")
+        "1n_aws" | "2n_aws" | "3n_aws")
             export TF_VAR_testbed_name="${TEST_CODE}"
             terraform_init || die "Failed to call terraform init."
             terraform_apply || die "Failed to call terraform apply."
@@ -849,17 +848,24 @@ function select_tags () {
     set -exuo pipefail
 
     # NIC SELECTION
-    start_pattern='^  TG:'
+    case "${TEST_CODE}" in
+        *"1n-aws"*)
+            start_pattern='^  SUT:'
+            ;;
+        *)
+            start_pattern='^  TG:'
+            ;;
+    esac
     end_pattern='^ \? \?[A-Za-z0-9]\+:'
-    # Remove the TG section from topology file
+    # Remove the sections from topology file
     sed_command="/${start_pattern}/,/${end_pattern}/d"
-    # All topologies DUT NICs
+    # All topologies NICs
     available=$(sed "${sed_command}" "${TOPOLOGIES_DIR}"/* \
                 | grep -hoP "model: \K.*" | sort -u)
-    # Selected topology DUT NICs
+    # Selected topology NICs
     reserved=$(sed "${sed_command}" "${WORKING_TOPOLOGY}" \
                | grep -hoP "model: \K.*" | sort -u)
-    # All topologies DUT NICs - Selected topology DUT NICs
+    # All topologies NICs - Selected topology NICs
     exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}"))) || {
         die "Computation of excluded NICs failed."
     }
@@ -881,7 +887,7 @@ function select_tags () {
         *"2n-tx2"* | *"mrr-daily-master")
             default_nic="nic_intel-xl710"
             ;;
-        *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
             default_nic="nic_amazon-nitro-50g"
             ;;
         *)
@@ -1029,7 +1035,7 @@ function select_tags () {
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
             ;;
-        *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
             test_tag_array+=("!ipsechw")
             ;;
     esac
@@ -1144,12 +1150,16 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
+        "1n_aws")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-aws*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
         "2n_aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_aws*.yaml )
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n-aws*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         "3n_aws")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_aws*.yaml )
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n-aws*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *)
@@ -1177,7 +1187,7 @@ function set_environment_variables () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
             # T-Rex 2.88 workaround for ENA NICs
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
@@ -1224,7 +1234,7 @@ function untrap_and_unreserve_testbed () {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }
         case "${TEST_CODE}" in
-            *"2n-aws"* | *"3n-aws"*)
+            *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
             *)
