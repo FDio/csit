@@ -1,0 +1,30 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/1_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 1-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "{{ tg_public_ip }}"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port1:
+        # tg_instance/p1 - 50GE port1 on ENA NIC.
+        mac_address: {{ tg_if1_mac }}
+        pci_address: "0000:00:06.0"
+        link: link1
+        model: Amazon-Nitro-50G
+      port2:
+        # tg_instance/p2 - 50GE port2 on ENA NIC.
+        mac_address: {{ tg_if2_mac }}
+        pci_address: "0000:00:07.0"
+        link: link1
+        model: Amazon-Nitro-50G
