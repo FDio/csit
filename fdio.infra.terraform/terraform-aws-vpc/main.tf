@@ -33,6 +33,7 @@ resource "aws_security_group" "security_group" {
       to_port          = lookup(ingress.value, "to_port", null)
       protocol         = lookup(ingress.value, "protocol", null)
       cidr_blocks      = lookup(ingress.value, "cidr_blocks", null)
+      self             = lookup(ingress.value, "self", null)
       ipv6_cidr_blocks = lookup(ingress.value, "ipv6_cidr_blocks", null)
     }
   }
@@ -43,6 +44,7 @@ resource "aws_security_group" "security_group" {
       to_port          = lookup(egress.value, "to_port", null)
       protocol         = lookup(egress.value, "protocol", null)
       cidr_blocks      = lookup(egress.value, "cidr_blocks", null)
+      self             = lookup(egress.value, "self", null)
       ipv6_cidr_blocks = lookup(egress.value, "ipv6_cidr_blocks", null)
     }
   }
