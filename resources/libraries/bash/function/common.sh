@@ -439,9 +439,13 @@ function get_test_code () {
             NODENESS="1n"
             FLAVOR="skx"
             ;;
-       *"1n-tx2"*)
+        *"1n-tx2"*)
             NODENESS="1n"
             FLAVOR="tx2"
+            ;;
+        *"1n-aws"*)
+            NODENESS="1n"
+            FLAVOR="aws"
             ;;
         *"2n-aws"*)
             NODENESS="2n"
@@ -662,12 +666,7 @@ function prepare_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "2n_aws")
-            export TF_VAR_testbed_name="${TEST_CODE}"
-            terraform_init || die "Failed to call terraform init."
-            terraform_apply || die "Failed to call terraform apply."
-            ;;
-        "3n_aws")
+        "1n_aws" | "2n_aws" | "3n_aws")
             export TF_VAR_testbed_name="${TEST_CODE}"
             terraform_init || die "Failed to call terraform init."
             terraform_apply || die "Failed to call terraform apply."
@@ -881,7 +880,7 @@ function select_tags () {
         *"2n-tx2"* | *"mrr-daily-master")
             default_nic="nic_intel-xl710"
             ;;
-        *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
             default_nic="nic_amazon-nitro-50g"
             ;;
         *)
@@ -1029,7 +1028,7 @@ function select_tags () {
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
             ;;
-        *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
             test_tag_array+=("!ipsechw")
             ;;
     esac
@@ -1177,7 +1176,7 @@ function set_environment_variables () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
             # T-Rex 2.88 workaround for ENA NICs
             export TREX_RX_DESCRIPTORS_COUNT=1024
             export TREX_EXTRA_CMDLINE="--mbuf-factor 19"
@@ -1224,7 +1223,7 @@ function untrap_and_unreserve_testbed () {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }
         case "${TEST_CODE}" in
-            *"2n-aws"* | *"3n-aws"*)
+            *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
             *)
