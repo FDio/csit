@@ -4,7 +4,7 @@
 - name: Create Topology File
   template:
     src: "templates/topology_{{ cloud_topology }}.j2"
-    dest: "../topologies/available/{{ cloud_topology }}_{{ testbed_name }}.yaml"
+    dest: "../topologies/available/{{ cloud_topology }}-{{ testbed_name }}.yaml"
   tags:
     - create-topology-file
 
