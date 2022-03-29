@@ -520,7 +520,7 @@ class Layout:
                         for framesize in framesizes:
                             for ttype in testtypes:
                                 tid = (
-                                    f"{phy}-"
+                                    f"{phy.replace('af_xdp', 'af-xdp')}-"
                                     f"{area}-"
                                     f"{framesize.lower()}-"
                                     f"{core.lower()}-"
