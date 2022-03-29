@@ -73,7 +73,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
             x=x_axis,
             y=df[value[ttype]],
             name=name,
-            mode="markers+lines",
+            mode="markers",
             text=hover_txt,
             hoverinfo=u"text+name"
         )
