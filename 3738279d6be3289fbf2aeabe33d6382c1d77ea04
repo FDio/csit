@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b31a7cd_213b95ab",
+        "filename": "resources/templates/telemetry/vpp_runtime.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-29T08:27:46Z",
+      "side": 1,
+      "message": "console_stdout",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 11
+      },
+      "revId": "3738279d6be3289fbf2aeabe33d6382c1d77ea04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67993a12_d26c7d0a",
+        "filename": "resources/templates/telemetry/vpp_runtime.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-29T08:27:46Z",
+      "side": 1,
+      "message": "console_stderr",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "3738279d6be3289fbf2aeabe33d6382c1d77ea04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83ce0f27_87392be6",
+        "filename": "resources/tools/telemetry/bundle_vpp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-29T08:27:46Z",
+      "side": 1,
+      "message": "LTL",
+      "range": {
+        "startLine": 242,
+        "startChar": 50,
+        "endLine": 242,
+        "endChar": 83
+      },
+      "revId": "3738279d6be3289fbf2aeabe33d6382c1d77ea04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e24c8ef_5d99492e",
+        "filename": "resources/tools/telemetry/bundle_vpp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-03-29T08:27:46Z",
+      "side": 1,
+      "message": "consider ENUM for code",
+      "range": {
+        "startLine": 244,
+        "startChar": 25,
+        "endLine": 244,
+        "endChar": 27
+      },
+      "revId": "3738279d6be3289fbf2aeabe33d6382c1d77ea04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
