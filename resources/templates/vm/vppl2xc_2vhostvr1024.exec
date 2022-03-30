@@ -1,3 +1,8 @@
+show hardware GigabitEthernet0/6/0
+show hardware GigabitEthernet0/7/0
+
+set logging class dpdk level debug
+
 set interface state GigabitEthernet0/6/0 up
 set interface state GigabitEthernet0/7/0 up
 
