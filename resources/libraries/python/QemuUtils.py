@@ -612,7 +612,7 @@ class QemuUtils:
         :type retries: int
         """
         for _ in range(retries):
-            command = f"tail -1 {self._temp.get(u'log')}"
+            command = f"tail -20 {self._temp.get(u'log')}"
             stdout = None
             try:
                 stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
