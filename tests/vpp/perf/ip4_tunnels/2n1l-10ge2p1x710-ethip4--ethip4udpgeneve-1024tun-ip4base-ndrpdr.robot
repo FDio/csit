@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -39,7 +39,7 @@
 | ... | for IPv4 routing over GENEVE tunnels.
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4 routing \
-| ... | over ${n_tunnels} GENEVE tunnels and ${${4} ** ${n_tunnels}} static \
+| ... | over ${n_tunnels} GENEVE tunnels and ${${4} * ${n_tunnels}} static \
 | ... | IPv4 /24 \
 | ... | route entries. DUT1 is tested with ${nic_name}.
 | ... |
