@@ -1,0 +1,40 @@
+locals {
+  datacenters = join(",", var.datacenters)
+  url = join("",
+    [
+      "https://github.com",
+      "/grafana/loki/releases/download/v${var.gl_version}/loki-linux-amd64.zip"
+    ]
+  )
+}
+
+resource "nomad_job" "nomad_job_prometheus" {
+  jobspec = templatefile(
+    "${path.module}/conf/nomad/loki.hcl.tftpl",
+    {
+      auto_promote              = var.auto_promote,
+      auto_revert               = var.auto_revert,
+      canary                    = var.canary,
+      cpu                       = var.cpu,
+      datacenters               = local.datacenters,
+      group_count               = var.group_count,
+      job_name                  = var.job_name,
+      max_parallel              = var.max_parallel,
+      memory                    = var.memory
+      port                      = var.port,
+      region                    = var.region,
+      service_name              = var.service_name,
+      url                       = local.url,
+      use_canary                = var.use_canary,
+      use_host_volume           = var.use_host_volume,
+      use_vault_provider        = var.vault_secret.use_vault_provider,
+      vault_kv_policy_name      = var.vault_secret.vault_kv_policy_name,
+      vault_kv_path             = var.vault_secret.vault_kv_path,
+      vault_kv_field_access_key = var.vault_secret.vault_kv_field_access_key,
+      vault_kv_field_secret_key = var.vault_secret.vault_kv_field_secret_key,
+      version                   = var.gl_version,
+      volume_destination        = var.volume_destination,
+      volume_source             = var.volume_source
+  })
+  detach = false
+}

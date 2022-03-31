@@ -4,8 +4,7 @@ locals {
     [
       "https://github.com",
       "/prometheus/prometheus/releases/download/",
-      "v${var.pm_version}/",
-      "prometheus-${var.pm_version}.linux-amd64.tar.gz"
+      "v${var.pm_version}/prometheus-${var.pm_version}.linux-amd64.tar.gz"
     ]
   )
 }
