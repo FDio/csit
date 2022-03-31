@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,6 +20,7 @@ import sys
 
 from .parser import Parser
 from .serializer import Serializer
+from .constants import Constants
 
 
 class Executor:
@@ -103,5 +104,5 @@ class ExecutorError(Exception):
         """
         super().__init__()
         self.message = message
-        getLogger(__name__).error(message)
-        sys.exit(1)
+        getLogger("console_stderr").error(message)
+        sys.exit(Constants.err_telemetry_bundle)
