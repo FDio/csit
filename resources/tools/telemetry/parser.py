@@ -103,5 +103,5 @@ class ParserError(Exception):
         """
         super().__init__()
         self.message = message
-        getLogger(__name__).error(self.message)
-        sys.exit(1)
+        getLogger("console_stderr").error(self.message)
+        sys.exit(Constants.err_telemetry_yaml)

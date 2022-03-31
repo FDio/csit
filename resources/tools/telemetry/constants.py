@@ -26,6 +26,12 @@ class Constants:
     # Failed when processing data
     err_telemetry_process = 1
 
+    # Failed to read YAML file
+    err_telemetry_yaml = 2
+
+    # Error executing bundle
+    err_telemetry_bundle = 3
+
     # Could not connect to VPP
     err_vpp_connect = 11
 
@@ -34,4 +40,10 @@ class Constants:
 
     # Failed when executing command
     err_vpp_execute = 13
+
+    # Could not attach BPF events
+    err_linux_attach = 51
+
+    # Could not detach BPF events
+    err_linux_detach = 52
 

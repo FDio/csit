@@ -20,6 +20,7 @@ import sys
 
 from .parser import Parser
 from .serializer import Serializer
+from .constants import Constants
 
 
 class Executor:
@@ -103,5 +104,5 @@ class ExecutorError(Exception):
         """
         super().__init__()
         self.message = message
-        getLogger(__name__).error(message)
-        sys.exit(1)
+        getLogger("console_stderr").error(message)
+        sys.exit(Constants.err_telemetry_bundle)
