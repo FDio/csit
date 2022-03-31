@@ -218,7 +218,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                     anomaly_x.append(x_axis[idx])
                     anomaly_y.append(trend_avg[idx])
                     anomaly_color.append(_ANOMALY_COLOR[anomaly])
-            anomaly_color.append([0.0, 1.0])
+            anomaly_color.append([0.0, 0.5, 1.0])
             traces.append(
                 go.Scatter(
                     x=anomaly_x,

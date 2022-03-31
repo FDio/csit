@@ -5,7 +5,7 @@ plot-trending:
   autosize: True
   showlegend: True
   # width: 1100
-  height: 800
+  height: 600
   yaxis:
     showticklabels: True
     tickformat: ".3s"
@@ -67,7 +67,7 @@ plot-trending:
     l: 70
   legend:
     orientation: "h"
-    y: -0.2
+    y: -0.18
     xanchor: "auto"
     traceorder: "normal"
     bordercolor: "rgb(238, 238, 238)"
