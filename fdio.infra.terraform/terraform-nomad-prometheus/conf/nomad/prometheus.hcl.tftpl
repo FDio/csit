@@ -581,13 +581,6 @@ scrape_configs:
     - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
       services: [ 'storage' ]
     metrics_path: /minio/prometheus/metrics
-
-  - job_name: 'Minio Proxy'
-    bearer_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ3OTAwNjE1NDIsImlzcyI6InByb21ldGhldXMiLCJzdWIiOiJBS0lBUTJBSDdZUFBXVDZDV1hYSSJ9.CU9x9j-yO0_Uta5iep6yqNiGQPolrr2608E3lpU6Yg21rIv_eOwS5zqzXaSvrhzkJP9H5kO1Pj6kqjYhbqjN_w
-    consul_sd_configs:
-    - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
-      services: [ 'minio' ]
-    metrics_path: /minio/v2/metrics/cluster
 EOH
       }
 
