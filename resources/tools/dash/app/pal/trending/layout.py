@@ -173,7 +173,8 @@ class Layout:
                         )
                     ],
                     type="circle"
-                )
+                ),
+                
             ],
             style={
                 "vertical-align": "top",
