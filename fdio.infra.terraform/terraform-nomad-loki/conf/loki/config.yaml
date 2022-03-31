@@ -1,0 +1,28 @@
+---
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+
+schema_config:
+  configs:
+  - from: 2020-05-15
+    store: aws
+    object_store: s3
+    schema: v11
+    index:
+      prefix: loki_
+
+storage_config:
+  aws:
+    bucketnames: loki
+    endpoint: http://storage.service.consul:9000
+    access_key_id: storage
+    secret_access_key: Storage1234
+    insecure: false
+    sse_encryption: false
+    http_config:
+      idle_conn_timeout: 90s
+      response_header_timeout: 0s
+      insecure_skip_verify: false
+    s3forcepathstyle: true
