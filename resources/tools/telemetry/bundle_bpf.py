@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,6 +17,7 @@ from logging import getLogger
 import sys
 
 from bcc import BPF
+from .constants import Constants
 
 
 class BundleBpf:
@@ -67,8 +68,8 @@ class BundleBpf:
                     sample_period=duration
                 )
         except AttributeError:
-            getLogger(__name__).error(u"Cannot attach BPF events!")
-            sys.exit(1)
+            getLogger("console_stderr").error(u"Could not attach BPF events!")
+            sys.exit(Constants.err_linux_attach)
 
     def detach(self):
         """
@@ -81,8 +82,8 @@ class BundleBpf:
                     ev_config=event[u"name"]
                 )
         except AttributeError:
-            getLogger(__name__).error(u"Cannot dettach BPF events!")
-            sys.exit(1)
+            getLogger("console_stderr").error(u"Could not detach BPF events!")
+            sys.exit(Constants.err_linux_detach)
 
     def fetch_data(self):
         """
