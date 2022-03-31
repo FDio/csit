@@ -17,6 +17,7 @@ from logging import getLogger
 import sys
 
 from bcc import BPF
+from .constants import Constants
 
 
 class BundleBpf:
@@ -67,8 +68,8 @@ class BundleBpf:
                     sample_period=duration
                 )
         except AttributeError:
-            getLogger(__name__).error(u"Cannot attach BPF events!")
-            sys.exit(1)
+            getLogger("console_stderr").error(u"Could not attach BPF events!")
+            sys.exit(Constants.err_linux_attach)
 
     def detach(self):
         """
@@ -81,8 +82,8 @@ class BundleBpf:
                     ev_config=event[u"name"]
                 )
         except AttributeError:
-            getLogger(__name__).error(u"Cannot dettach BPF events!")
-            sys.exit(1)
+            getLogger("console_stderr").error(u"Could not detach BPF events!")
+            sys.exit(Constants.err_linux_detach)
 
     def fetch_data(self):
         """
