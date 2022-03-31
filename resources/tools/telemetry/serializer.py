@@ -94,6 +94,7 @@ class Serializer:
                     if line.labels:
                         llabel = []
                         for k, value in sorted(line.labels.items()):
+                            value = str(value)
                             value = value.replace(u"\\", r"\\")
                             value = value.replace(u"\n", r"\n")
                             value = value.replace(u'"', r'\"')

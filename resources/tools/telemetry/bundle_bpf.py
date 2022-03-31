@@ -96,7 +96,7 @@ class BundleBpf:
                     labels = dict()
                     item[u"name"] = metric[u"name"]
                     item[u"value"] = val.value
-                    for label in metric[u"labels"]:
+                    for label in metric[u"labelnames"]:
                         labels[label] = getattr(key, label)
                     item[u"labels"] = labels
                     self.api_replies_list.append(item)
