@@ -15,6 +15,7 @@
 """
 
 
+import json
 import pandas as pd
 
 from dash import dcc
@@ -173,6 +174,18 @@ class Layout:
                         )
                     ],
                     type="circle"
+                ),
+                html.Div(
+                    children=[
+                        dcc.Markdown("""
+                        **Metadata**
+
+                        Click on data points in the graph.
+                        """),
+                        html.Pre(
+                            id="hover-metadata"
+                        )
+                    ]
                 )
             ],
             style={
@@ -569,3 +582,12 @@ class Layout:
                     }
                     return (no_update, store_sel, _list_tests(),
                         no_update, no_update, no_update, style)
+
+        @app.callback(
+            Output("hover-metadata", "children"),
+            Input("graph", "clickData")
+        )
+        def _show_metadata(hover_data):
+            if not hover_data:
+                raise PreventUpdate
+            return json.dumps(hover_data, indent=2)
