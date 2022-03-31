@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -96,7 +96,7 @@ class BundleBpf:
                     labels = dict()
                     item[u"name"] = metric[u"name"]
                     item[u"value"] = val.value
-                    for label in metric[u"labels"]:
+                    for label in metric[u"labelnames"]:
                         labels[label] = getattr(key, label)
                     item[u"labels"] = labels
                     self.api_replies_list.append(item)

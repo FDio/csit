@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -94,6 +94,7 @@ class Serializer:
                     if line.labels:
                         llabel = []
                         for k, value in sorted(line.labels.items()):
+                            value = str(value)
                             value = value.replace(u"\\", r"\\")
                             value = value.replace(u"\n", r"\n")
                             value = value.replace(u'"', r'\"')
