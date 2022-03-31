@@ -8,7 +8,7 @@ data "vault_aws_access_credentials" "creds" {
 }
 
 module "elastic_beanstalk_application" {
-  source = "../../terraform-aws-elastic-beanstalk-application"
+  source = "../terraform-aws-elastic-beanstalk-application"
 
   # application
   application_description                    = "FD.io CSIT Results Dashboard"
@@ -19,7 +19,7 @@ module "elastic_beanstalk_application" {
 }
 
 module "elastic_beanstalk_environment" {
-  source = "../../terraform-aws-elastic-beanstalk-environment"
+  source = "../terraform-aws-elastic-beanstalk-environment"
 
   # vpc
   vpc_cidr_block           = "192.168.0.0/24"

@@ -69,12 +69,6 @@ job "${job_name}" {
 %{ endif }
   }
 
-  # All groups in this job should be scheduled on different hosts.
-  constraint {
-    operator = "distinct_hosts"
-    value    = "true"
-  }
-
   # The "group" stanza defines a series of tasks that should be co-located on
   # the same Nomad client. Any task within a group will be placed on the same
   # client.
@@ -112,6 +106,22 @@ job "${job_name}" {
       mode     = "delay"
     }
 
+    # The constraint allows restricting the set of eligible nodes. Constraints
+    # may filter on attributes or client metadata.
+    #
+    #     https://www.nomadproject.io/docs/job-specification/constraint
+    #
+    constraint {
+      attribute = "$${attr.cpu.arch}"
+      operator  = "!="
+      value     = "arm64"
+    }
+
+    constraint {
+      attribute = "$${node.class}"
+      value     = "builder"
+    }
+
     # The network stanza specifies the networking requirements for the task
     # group, including the network mode and port allocations. When scheduling
     # jobs in Nomad they are provisioned across your fleet of machines along
@@ -122,20 +132,16 @@ job "${job_name}" {
     #     https://www.nomadproject.io/docs/job-specification/network
     #
     network {
-      port "base" {
-        static = ${port_base}
-        to     = ${port_base}
-      }
-      port "console" {
-        static = ${port_console}
-        to     = ${port_console}
+      port "${service_name}" {
+        static = ${port}
+        to     = ${port}
       }
     }
 
     # The "task" stanza creates an individual unit of work, such as a Docker
     # container, web application, or batch processing.
     #
-    #     https://www.nomadproject.io/docs/job-specification/task.html
+    #     https://www.nomadproject.io/docs/job-specification/task
     #
     task "${job_name}-task-1" {
       # The "driver" parameter specifies the task driver that should be used to
@@ -161,12 +167,7 @@ job "${job_name}" {
       # are specific to each driver, so please see specific driver
       # documentation for more information.
       config {
-        args         = [
-          "${mode}", "s3",
-          "-address", ":${port_base}",
-          "-console-address", ":${port_console}"
-        ]
-        command      = "local/minio"
+        command = "local/loki-linux-amd64"
       }
 
       # The artifact stanza instructs Nomad to fetch and unpack a remote resource,
@@ -174,30 +175,57 @@ job "${job_name}" {
       # popular go-getter library, which permits downloading artifacts from a
       # variety of locations using a URL as the input source.
       #
-      # For more information and examples on the "artifact" stanza, please see
-      # the online documentation at:
-      #
       #     https://www.nomadproject.io/docs/job-specification/artifact
       #
       artifact {
-        source      = "https://dl.min.io/server/minio/release/linux-amd64/minio"
+        source = "${url}"
+        args   = [
+          "-config.file secrets/config.yml"
+        ]
       }
 
-      # The env stanza configures a list of environment variables to populate
-      # the task's environment before starting.
-      env {
-%{ if use_vault_provider }
-{{ with secret "${vault_kv_path}" }}
-        MINIO_ROOT_USER     = "{{ .Data.data.${vault_kv_field_access_key} }}"
-        MINIO_ROOT_PASSWORD = "{{ .Data.data.${vault_kv_field_secret_key} }}"
-{{ end }}
-%{ else }
-        MINIO_ROOT_USER       = "${access_key}"
-        MINIO_ROOT_PASSWORD   = "${secret_key}"
-        AWS_ACCESS_KEY_ID     = "${access_key}"
-        AWS_SECRET_ACCESS_KEY = "${secret_key}"
-%{ endif }
-        ${ envs }
+      template {
+        change_mode     = "noop"
+        change_signal   = "SIGINT"
+        destination     = "secrets/loki.yml"
+        data            = <<EOH
+---
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+  http_listen_address: 127.0.0.1
+
+schema_config:
+  configs:
+  - from: 2020-05-15
+    store: boltdb
+    object_store: filesystem
+    schema: v11
+    index:
+      prefix: index_
+      period: 168h
+
+storage_config:
+  boltdb:
+    directory: /tmp/loki/index
+
+  filesystem:
+    directory: /tmp/loki/chunks
+
+  aws:
+    bucketnames: loki
+    endpoint: http://storage.service.consul:9000
+    access_key_id: storage
+    secret_access_key: Storage1234
+    insecure: false
+    sse_encryption: false
+    http_config:
+      idle_conn_timeout: 90s
+      response_header_timeout: 0s
+      insecure_skip_verify: false
+    s3forcepathstyle: true
+EOH
       }
 
       # The service stanza instructs Nomad to register a service with Consul.
@@ -205,26 +233,13 @@ job "${job_name}" {
       #     https://www.nomadproject.io/docs/job-specification/service
       #
       service {
-        name       = "${service_name}"
-        port       = "base"
-        tags       = [ "${service_name}$${NOMAD_ALLOC_INDEX}" ]
+        name = "${service_name}"
+        port = "${service_name}"
+        tags = [ "${service_name}$${NOMAD_ALLOC_INDEX}" ]
         check {
-          name     = "Min.io Server HTTP Check Live"
+          name     = "Loki Check Live"
           type     = "http"
-          port     = "base"
-          protocol = "http"
-          method   = "GET"
-          path     = "/minio/health/live"
-          interval = "10s"
-          timeout  = "2s"
-        }
-        check {
-          name     = "Min.io Server HTTP Check Ready"
-          type     = "http"
-          port     = "base"
-          protocol = "http"
-          method   = "GET"
-          path     = "/minio/health/ready"
+          path     = "/-/healthy"
           interval = "10s"
           timeout  = "2s"
         }
@@ -238,8 +253,8 @@ job "${job_name}" {
       #     https://www.nomadproject.io/docs/job-specification/resources
       #
       resources {
-        cpu        = ${cpu}
-        memory     = ${memory}
+        cpu    = ${cpu}
+        memory = ${memory}
       }
     }
   }
