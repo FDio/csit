@@ -3,7 +3,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.4 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.4 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.3.0 |
 
 ## Providers
@@ -32,7 +32,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_security_group_description"></a> [security\_group\_description](#input\_security\_group\_description) | Security group description. | `string` | `"Allow inbound/outbound traffic"` | no |
 | <a name="input_security_group_egress"></a> [security\_group\_egress](#input\_security\_group\_egress) | Egress security group map. | `list(any)` | <pre>[<br>  {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "from_port": 0,<br>    "ipv6_cidr_blocks": [<br>      "::/0"<br>    ],<br>    "protocol": "-1",<br>    "to_port": 0<br>  }<br>]</pre> | no |
-| <a name="input_security_group_ingress"></a> [security\_group\_ingress](#input\_security\_group\_ingress) | Ingress security group map. | `list(any)` | <pre>[<br>  {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "from_port": 22,<br>    "ipv6_cidr_blocks": [<br>      "::/0"<br>    ],<br>    "protocol": "tcp",<br>    "to_port": 22<br>  }<br>]</pre> | no |
+| <a name="input_security_group_ingress"></a> [security\_group\_ingress](#input\_security\_group\_ingress) | Ingress security group map. | `list(any)` | <pre>[<br>  {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "from_port": 22,<br>    "ipv6_cidr_blocks": [<br>      "::/0"<br>    ],<br>    "protocol": "tcp",<br>    "self": false,<br>    "to_port": 22<br>  },<br>  {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "from_port": 0,<br>    "ipv6_cidr_blocks": [<br>      "::/0"<br>    ],<br>    "protocol": -1,<br>    "self": true,<br>    "to_port": 0<br>  }<br>]</pre> | no |
 | <a name="input_security_group_name"></a> [security\_group\_name](#input\_security\_group\_name) | Name of the security group. | `string` | n/a | yes |
 | <a name="input_security_group_revoke_rules_on_delete"></a> [security\_group\_revoke\_rules\_on\_delete](#input\_security\_group\_revoke\_rules\_on\_delete) | Instruct Terraform to revoke all of the Security Groups attached ingress and egress rules before deleting the rule itself. | `bool` | `false` | no |
 | <a name="input_subnet_assign_ipv6_address_on_creation"></a> [subnet\_assign\_ipv6\_address\_on\_creation](#input\_subnet\_assign\_ipv6\_address\_on\_creation) | Specify true to indicate that network interfaces created in the specified subnet should be assigned an IPv6 address. | `bool` | `false` | no |
@@ -50,5 +50,9 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC |
+| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC. |
+| <a name="output_vpc_ipv6_cidr_block"></a> [vpc\_ipv6\_cidr\_block](#output\_vpc\_ipv6\_cidr\_block) | IPv6 CIDR block. |
+| <a name="output_vpc_main_route_table_id"></a> [vpc\_main\_route\_table\_id](#output\_vpc\_main\_route\_table\_id) | The ID of the Main Route Table. |
+| <a name="output_vpc_security_group_id"></a> [vpc\_security\_group\_id](#output\_vpc\_security\_group\_id) | The ID of the Security Group. |
+| <a name="output_vpc_subnet_id"></a> [vpc\_subnet\_id](#output\_vpc\_subnet\_id) | The ID of the Subnet. |
 <!-- END_TF_DOCS -->
