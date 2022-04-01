@@ -1,0 +1,85 @@
+# Copyright (c) 2022 PANTHEON.tech and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+metadata:
+  version: 0.1
+  schema: # list of schema files against which to validate
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: 10.30.51.74
+    arch: x86_64
+    port: 22
+    username: root
+    password: Csit1234
+    interfaces:
+      port0:
+        mac_address: "3c:fd:fe:c3:e7:a0"
+        pci_address: "0000:31:00.0"
+        link: link1
+        driver: i40e
+        model: Intel-XL710
+      port1:
+        mac_address: "3c:fd:fe:c3:e7:a1"
+        pci_address: "0000:31:00.1"
+        link: link2
+        driver: i40e
+        model: Intel-XL710
+  DUT1:
+    type: DUT
+    host: 10.30.51.72
+    arch: aarch64
+    port: 22
+    uio_driver: vfio-pci
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port0:
+        mac_address: "40:a6:b7:85:e7:80"
+        pci_address: "0004:04:00.0"
+        link: link3
+        driver: i40e
+        model: Intel-XL710
+      port1:
+        mac_address: "40:a6:b7:85:e7:81"
+        pci_address: "0004:04:00.1"
+        link: link2
+        driver: i40e
+        model: Intel-XL710
+  DUT2:
+    type: DUT
+    host: 10.30.51.73
+    arch: aarch64
+    port: 22
+    username: testuser
+    uio_driver: vfio-pci
+    password: Csit1234
+    interfaces:
+      port0:
+        mac_address: "40:a6:b7:85:e7:78"
+        pci_address: "0004:04:00.0"
+        link: link1
+        driver: i40e
+        model: Intel-XL710
+      port1:
+        mac_address: "40:a6:b7:85:e7:79"
+        pci_address: "0004:04:00.1"
+        link: link3
+        driver: i40e
+        model: Intel-XL710
