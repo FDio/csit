@@ -15,14 +15,12 @@
 """
 
 
-import logging
 import plotly.graph_objects as go
 import pandas as pd
 import re
 
 from datetime import datetime
 from numpy import isnan
-from dash import no_update
 
 from ..jumpavg import classify
 
@@ -57,7 +55,7 @@ _ANOMALY_COLOR = {
     u"normal": 0.5,
     u"progression": 1.0
 }
-_COLORSCALE = [
+_COLORSCALE_TPUT = [
     [0.00, u"red"],
     [0.33, u"red"],
     [0.33, u"white"],
@@ -65,15 +63,27 @@ _COLORSCALE = [
     [0.66, u"green"],
     [1.00, u"green"]
 ]
+_TICK_TEXT_TPUT = [u"Regression", u"Normal", u"Progression"]
+_COLORSCALE_LAT = [
+    [0.00, u"green"],
+    [0.33, u"green"],
+    [0.33, u"white"],
+    [0.66, u"white"],
+    [0.66, u"red"],
+    [1.00, u"red"]
+]
+_TICK_TEXT_LAT = [u"Progression", u"Normal", u"Regression"]
 _VALUE = {
     "mrr": "result_receive_rate_rate_avg",
     "ndr": "result_ndr_lower_rate_value",
-    "pdr": "result_pdr_lower_rate_value"
+    "pdr": "result_pdr_lower_rate_value",
+    "pdr-lat": "result_latency_forward_pdr_50_avg"
 }
 _UNIT = {
     "mrr": "result_receive_rate_rate_unit",
     "ndr": "result_ndr_lower_rate_unit",
-    "pdr": "result_pdr_lower_rate_unit"
+    "pdr": "result_pdr_lower_rate_unit",
+    "pdr-lat": "result_latency_forward_pdr_50_unit"
 }
 
 
@@ -133,7 +143,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
     """
 
     if not sel:
-        return no_update, no_update
+        return None, None
 
     def _generate_traces(ttype: str, name: str, df: pd.DataFrame,
         start: datetime, end: datetime, color: str):
@@ -151,10 +161,9 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
         hover = list()
         for _, row in df.iterrows():
             hover_itm = (
-                f"date: "
-                f"{row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
-                f"average [{row[_UNIT[ttype]]}]: "
-                f"{row[_VALUE[ttype]]}<br>"
+                f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+                f"<prop> [{row[_UNIT[ttype]]}]: {row[_VALUE[ttype]]}<br>"
+                f"<stdev>"
                 f"{row['dut_type']}-ref: {row['dut_version']}<br>"
                 f"csit-ref: {row['job']}/{row['build']}"
             )
@@ -165,15 +174,23 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                 )
             else:
                 stdev = ""
-            hover_itm = hover_itm.replace("<stdev>", stdev)
+            hover_itm = hover_itm.replace(
+                "<prop>", "latency" if ttype == "pdr-lat" else "average"
+            ).replace("<stdev>", stdev)
             hover.append(hover_itm)
 
         hover_trend = list()
         for avg, stdev in zip(trend_avg, trend_stdev):
-            hover_trend.append(
-                f"trend [pps]: {avg}<br>"
-                f"stdev [pps]: {stdev}"
-            )
+            if ttype == "pdr-lat":
+                hover_trend.append(
+                    f"trend [us]: {avg}<br>"
+                    f"stdev [us]: {stdev}"
+                )
+            else:
+                hover_trend.append(
+                    f"trend [pps]: {avg}<br>"
+                    f"stdev [pps]: {stdev}"
+                )
 
         traces = [
             go.Scatter(  # Samples
@@ -212,13 +229,12 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
             anomaly_x = list()
             anomaly_y = list()
             anomaly_color = list()
-            ticktext = [u"Regression", u"Normal", u"Progression"]
             for idx, anomaly in enumerate(anomalies):
                 if anomaly in (u"regression", u"progression"):
                     anomaly_x.append(x_axis[idx])
                     anomaly_y.append(trend_avg[idx])
                     anomaly_color.append(_ANOMALY_COLOR[anomaly])
-            anomaly_color.append([0.0, 0.5, 1.0])
+            anomaly_color.extend([0.0, 0.5, 1.0])
             traces.append(
                 go.Scatter(
                     x=anomaly_x,
@@ -232,7 +248,8 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                         u"size": 15,
                         u"symbol": u"circle-open",
                         u"color": anomaly_color,
-                        u"colorscale": _COLORSCALE,
+                        u"colorscale": _COLORSCALE_LAT \
+                            if ttype == "pdr-lat" else _COLORSCALE_TPUT,
                         u"showscale": True,
                         u"line": {
                             u"width": 2
@@ -247,7 +264,8 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                             },
                             u"tickmode": u"array",
                             u"tickvals": [0.167, 0.500, 0.833],
-                            u"ticktext": ticktext,
+                            u"ticktext": _TICK_TEXT_LAT \
+                                if ttype == "pdr-lat" else _TICK_TEXT_TPUT,
                             u"ticks": u"",
                             u"ticklen": 0,
                             u"tickangle": -90,
@@ -260,7 +278,8 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
         return traces
 
     # Generate graph:
-    fig = go.Figure()
+    fig_tput = None
+    fig_lat = None
     for idx, itm in enumerate(sel):
         phy = itm["phy"].split("-")
         if len(phy) == 4:
@@ -293,18 +312,29 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
             f"{itm['phy']}-{itm['framesize']}-{itm['core']}-"
             f"{itm['test']}-{itm['testtype']}"
         )
-        for trace in _generate_traces(itm['testtype'], name, df, start, end,
-                _COLORS[idx % len(_COLORS)]):
-            fig.add_trace(trace)
 
-    style={
-        "vertical-align": "top",
-        "display": "inline-block",
-        "width": "80%",
-        "padding": "5px"
-    }
+        traces = _generate_traces(
+            itm["testtype"], name, df, start, end, _COLORS[idx % len(_COLORS)]
+        )
+        if traces:
+            if not fig_tput:
+                fig_tput = go.Figure()
+            for trace in traces:
+                fig_tput.add_trace(trace)
 
-    layout = layout.get("plot-trending", dict())
-    fig.update_layout(layout)
+        if itm["testtype"] == "pdr":
+            traces = _generate_traces(
+                "pdr-lat", name, df, start, end, _COLORS[idx % len(_COLORS)]
+            )
+            if traces:
+                if not fig_lat:
+                    fig_lat = go.Figure()
+                for trace in traces:
+                    fig_lat.add_trace(trace)
 
-    return fig, style
+    if fig_tput:
+        fig_tput.update_layout(layout.get("plot-trending-tput", dict()))
+    if fig_lat:
+        fig_lat.update_layout(layout.get("plot-trending-lat", dict()))
+
+    return fig_tput, fig_lat
