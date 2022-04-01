@@ -34,6 +34,11 @@ class Layout:
     """
     """
 
+    STYLE_HIDEN = {"display": "none"}
+    STYLE_BLOCK = {"display": "block"}
+    STYLE_INLINE ={"display": "inline-block", "width": "50%"}
+    NO_GRAPH = {"data": [], "layout": {}, "frames": []}
+
     def __init__(self, app, html_layout_file, spec_file, graph_layout_file,
         data_spec_file):
         """
@@ -170,27 +175,52 @@ class Layout:
                     id="loading-graph",
                     children=[
                         dcc.Graph(
-                            id="graph"
+                            id="graph-tput",
+                            style=self.STYLE_HIDEN
+                        ),
+                        dcc.Graph(
+                            id="graph-latency",
+                            style=self.STYLE_HIDEN
                         )
                     ],
                     type="circle"
                 ),
                 html.Div(
                     children=[
-                        dcc.Markdown("""
-                        **Metadata**
+                        html.Div(
+                            id="div-tput-metadata",
+                            children=[
+                                dcc.Markdown("""
+                                **Metadata**
 
-                        Click on data points in the graph.
-                        """),
-                        html.Pre(
-                            id="hover-metadata"
+                                Click on data points in the graph.
+                                """),
+                                html.Pre(
+                                    id="tput-metadata"
+                                )
+                            ],
+                            style=self.STYLE_HIDEN
+                        ),
+                        html.Div(
+                            id="div-latency-metadata",
+                            children=[
+                                dcc.Markdown("""
+                                **Metadata**
+
+                                Click on data points in the graph.
+                                """),
+                                html.Pre(
+                                    id="latency-metadata"
+                                )
+                            ],
+                            style=self.STYLE_HIDEN
                         )
                     ]
                 )
             ],
             style={
                 "vertical-align": "top",
-                "display": "none",
+                "display": "inline-block",
                 "width": "80%",
                 "padding": "5px"
             }
@@ -471,13 +501,17 @@ class Layout:
             return _sync_checklists(opt, sel, all, "cl-ctrl-testtype")
 
         @app.callback(
-            Output("graph", "figure"),
+            Output("graph-tput", "figure"),
+            Output("graph-tput", "style"),
+            Output("div-tput-metadata", "style"),
+            Output("graph-latency", "figure"),
+            Output("graph-latency", "style"),
+            Output("div-latency-metadata", "style"),
             Output("selected-tests", "data"),  # Store
             Output("cl-selected", "options"),  # User selection
             Output("dd-ctrl-phy", "value"),
             Output("dd-ctrl-area", "value"),
             Output("dd-ctrl-test", "value"),
-            Output("div-plotting-area", "style"),
             State("selected-tests", "data"),  # Store
             State("cl-selected", "value"),
             State("dd-ctrl-phy", "value"),
@@ -511,24 +545,46 @@ class Layout:
                 else:
                     return list()
 
+            class RetunValue:
+                def __init__(self) -> None:
+                    self._output = {
+                        "graph-tput-figure": no_update,
+                        "graph-tput-style": no_update,
+                        "div-tput-metadata-style": no_update,
+                        "graph-lat-figure": no_update,
+                        "graph-lat-style": no_update,
+                        "div-lat-metadata-style": no_update,
+                        "selected-tests-data": no_update,
+                        "cl-selected-options": no_update,
+                        "dd-ctrl-phy-value": no_update,
+                        "dd-ctrl-area-value": no_update,
+                        "dd-ctrl-test-value": no_update,
+                    }
+
+                def value(self):
+                    return tuple(self._output.values())
+
+                def set_values(self, kwargs: dict) -> None:
+                    for key, val in kwargs.items():
+                        if key in self._output:
+                            self._output[key] = val
+                        else:
+                            raise KeyError(f"The key {key} is not defined.")
+
+
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
 
-            d_start = datetime(
-                 int(d_start[0:4]), int(d_start[5:7]), int(d_start[8:10])
-            )
-            d_end = datetime(
-                 int(d_end[0:4]), int(d_end[5:7]), int(d_end[8:10])
-            )
+            d_start = datetime(int(d_start[0:4]), int(d_start[5:7]),
+                int(d_start[8:10]))
+            d_end = datetime(int(d_end[0:4]), int(d_end[5:7]), int(d_end[8:10]))
+
+            output = RetunValue()
 
             if trigger_id == "btn-ctrl-add":
                 # Add selected test to the list of tests in store:
                 if phy and area and test and cores and framesizes and testtypes:
-
-                    # TODO: Add validation
-
                     if store_sel is None:
                         store_sel = list()
-
                     for core in cores:
                         for framesize in framesizes:
                             for ttype in testtypes:
@@ -550,15 +606,32 @@ class Layout:
                                         "core": core.lower(),
                                         "testtype": ttype.lower()
                                     })
-                return (no_update, store_sel, _list_tests(), None,
-                    None, None, no_update)
+                output.set_values({
+                    "selected-tests-data": store_sel,
+                    "cl-selected-options": _list_tests(),
+                    "dd-ctrl-phy-value": None,
+                    "dd-ctrl-area-value": None,
+                    "dd-ctrl-test-value": None,
+                })
 
             elif trigger_id in ("btn-sel-display", "dpr-period"):
-                fig, style = trending_tput(
+                fig_tput, fig_lat = trending_tput(
                     self.data, store_sel, self.layout, d_start, d_end
                 )
-                return (fig, no_update, no_update,
-                    no_update, no_update, no_update, style)
+                output.set_values({
+                    "graph-tput-figure": \
+                        fig_tput if fig_tput else self.NO_GRAPH,
+                    "graph-tput-style": \
+                        self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                    "div-tput-metadata-style": \
+                        self.STYLE_INLINE if fig_tput else self.STYLE_HIDEN,
+                    "graph-lat-figure": \
+                        fig_lat if fig_lat else self.NO_GRAPH,
+                    "graph-lat-style": \
+                        self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
+                    "div-lat-metadata-style": \
+                        self.STYLE_INLINE if fig_lat else self.STYLE_HIDEN
+                })
 
             elif trigger_id == "btn-sel-remove":
                 if list_sel:
@@ -568,26 +641,53 @@ class Layout:
                             new_store_sel.append(item)
                     store_sel = new_store_sel
                 if store_sel:
-                    fig, style = trending_tput(
+                    fig_tput, fig_lat = trending_tput(
                         self.data, store_sel, self.layout, d_start, d_end
                     )
-                    return (fig, store_sel, _list_tests(),
-                    no_update, no_update, no_update, style)
+                    output.set_values({
+                        "graph-tput-figure": \
+                            fig_tput if fig_tput else self.NO_GRAPH,
+                        "graph-tput-style": \
+                            self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                        "div-tput-metadata-style": \
+                            self.STYLE_INLINE if fig_tput else self.STYLE_HIDEN,
+                        "graph-lat-figure": \
+                            fig_lat if fig_lat else self.NO_GRAPH,
+                        "graph-lat-style": \
+                            self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
+                        "div-lat-metadata-style": \
+                            self.STYLE_INLINE if fig_lat else self.STYLE_HIDEN,
+                        "selected-tests-data": store_sel,
+                        "cl-selected-options": _list_tests()
+                    })
                 else:
-                    style={
-                        "vertical-align": "top",
-                        "display": "none",
-                        "width": "80%",
-                        "padding": "5px"
-                    }
-                    return (no_update, store_sel, _list_tests(),
-                        no_update, no_update, no_update, style)
+                    output.set_values({
+                        "graph-tput-figure": self.NO_GRAPH,
+                        "graph-tput-style": self.STYLE_HIDEN,
+                        "div-tput-metadata-style": self.STYLE_HIDEN,
+                        "graph-lat-figure": self.NO_GRAPH,
+                        "graph-lat-style": self.STYLE_HIDEN,
+                        "div-lat-metadata-style": self.STYLE_HIDEN,
+                        "selected-tests-data": store_sel,
+                        "cl-selected-options": _list_tests()
+                    })
+
+            return output.value()
 
         @app.callback(
-            Output("hover-metadata", "children"),
-            Input("graph", "clickData")
+            Output("tput-metadata", "children"),
+            Input("graph-tput", "clickData")
         )
-        def _show_metadata(hover_data):
+        def _show_tput_metadata(hover_data):
+            if not hover_data:
+                raise PreventUpdate
+            return json.dumps(hover_data, indent=2)
+
+        @app.callback(
+            Output("latency-metadata", "children"),
+            Input("graph-latency", "clickData")
+        )
+        def _show_latency_metadata(hover_data):
             if not hover_data:
                 raise PreventUpdate
             return json.dumps(hover_data, indent=2)
