@@ -495,6 +495,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="tsh"
             ;;
+        *"3n-alt"*)
+            NODENESS="3n"
+            FLAVOR="alt"
+            ;;
     esac
 }
 
@@ -884,7 +888,7 @@ function select_tags () {
         *"3n-skx"* | *"2n-skx"* | *"2n-clx"* | *"2n-zn2"*)
             default_nic="nic_intel-xxv710"
             ;;
-        *"2n-tx2"* | *"mrr-daily-master")
+        *"2n-tx2"* | *"3n-alt"* | *"mrr-daily-master")
             default_nic="nic_intel-xl710"
             ;;
         *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
@@ -1020,7 +1024,7 @@ function select_tags () {
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
             ;;
-        *"2n-tx2"*)
+        *"2n-tx2"* | *"3n-alt"*)
             test_tag_array+=("!ipsechw")
             ;;
         *"3n-dnv"*)
@@ -1149,6 +1153,10 @@ function select_topology () {
         "2n_tx2")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "3n_alt")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_alt*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "1n_aws")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*1n-aws*.yaml )
