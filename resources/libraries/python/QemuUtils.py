@@ -352,6 +352,9 @@ class QemuUtils:
         if "nat" in self._opt.get(u'vnf'):
             vpp_config.add_nat(value=u"endpoint-dependent")
             vpp_config.add_plugin(u"enable", u"nat_plugin.so")
+        # Logging tweaks to see logs even if "unix exec" fails early.
+        vpp_config.add_unix_nosyslog()
+        vpp_config.add_default_syslog_level(u"debug")
         vpp_config.write_config(startup)
 
         # Create VPP running configuration.

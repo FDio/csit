@@ -167,6 +167,11 @@ class VppConfigGenerator:
         path = [u"unix", u"nodaemon"]
         self.add_config_item(self._nodeconfig, u"", path)
 
+    def add_unix_nosyslog(self):
+        """Add UNIX nosyslog configuration."""
+        path = [u"unix", u"nosyslog"]
+        self.add_config_item(self._nodeconfig, u"", path)
+
     def add_unix_coredump(self):
         """Add UNIX full-coredump configuration."""
         path = [u"unix", u"full-coredump"]
@@ -440,6 +445,15 @@ class VppConfigGenerator:
         :type value: str
         """
         path = [u"ip6", u"heap-size"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_default_syslog_level(self, value):
+        """FIXME Useful for qemu.
+
+        :param value: Log level.
+        :type value: str
+        """
+        path = [u"logging", u"default-syslog-log-level"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_spd_flow_cache_ipv4_outbound(self):
