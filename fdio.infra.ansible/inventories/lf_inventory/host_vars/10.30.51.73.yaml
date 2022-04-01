@@ -5,23 +5,16 @@ hostname: "s63-t34-sut2"
 grub:
   audit: "0"
   default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
-  hpet: "disable"
-  intel_idle.max_cstate: "1"
-  intel_iommu: "on"
-  intel_pstate: "disable"
-  iommu: "pt"
-  isolcpus: "1-31,33-63,65-95,97-127"
-  mce: "off"
+  iommu.passthrough: "1"
+  isolcpus: "1-40,81-120"
   nmi_watchdog: "0"
-  nohz_full: "1-31,33-63,65-95,97-127"
+  nohz_full: "1-40,81-120"
   nosoftlockup: true
-  numa_balancing: "disable"
   processor.max_cstate: "1"
-  rcu_nocbs: "1-31,33-63,65-95,97-127"
-  tsc: "reliable"
+  rcu_nocbs: "1-40,81-120"
 sysctl:
   kernel:
-    watchdog_cpumask: "0,32,64,96"
+    watchdog_cpumask: "0,41-80,121-159"
   vm:
     nr_hugepages: 32768
     max_map_count: 20000
