@@ -11,5 +11,6 @@ services:
     volumes:
       - "./app/:/app"
       - "../../libraries/python/jumpavg/:/app/pal/jumpavg"
-      - "/home/vagrant/.aws:/root/.aws"
+      # - "/home/vagrant/.aws:/root/.aws"
+      - "/home/tibor/.aws:/root/.aws"
     working_dir: "/app"

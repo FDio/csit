@@ -68,12 +68,14 @@ _COLORSCALE = [
 _VALUE = {
     "mrr": "result_receive_rate_rate_avg",
     "ndr": "result_ndr_lower_rate_value",
-    "pdr": "result_pdr_lower_rate_value"
+    "pdr": "result_pdr_lower_rate_value",
+    "pdr-lat": "result_latency_forward_pdr_50_avg"
 }
 _UNIT = {
     "mrr": "result_receive_rate_rate_unit",
     "ndr": "result_ndr_lower_rate_unit",
-    "pdr": "result_pdr_lower_rate_unit"
+    "pdr": "result_pdr_lower_rate_unit",
+    "pdr-lat": "result_latency_forward_pdr_50_unit"
 }
 
 
@@ -297,12 +299,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                 _COLORS[idx % len(_COLORS)]):
             fig.add_trace(trace)
 
-    style={
-        "vertical-align": "top",
-        "display": "inline-block",
-        "width": "80%",
-        "padding": "5px"
-    }
+    style = {"display": "block"}
 
     layout = layout.get("plot-trending", dict())
     fig.update_layout(layout)

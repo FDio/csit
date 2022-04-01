@@ -170,27 +170,50 @@ class Layout:
                     id="loading-graph",
                     children=[
                         dcc.Graph(
-                            id="graph"
+                            id="graph-tput",
+                            style={"display": "none"}
+                        ),
+                        dcc.Graph(
+                            id="graph-latency",
+                            style={"display": "none"}
                         )
                     ],
                     type="circle"
                 ),
                 html.Div(
                     children=[
-                        dcc.Markdown("""
-                        **Metadata**
+                        html.Div(
+                            children=[
+                                dcc.Markdown("""
+                                **Metadata**
 
-                        Click on data points in the graph.
-                        """),
-                        html.Pre(
-                            id="hover-metadata"
+                                Click on data points in the graph.
+                                """),
+                                html.Pre(
+                                    id="tput-metadata"
+                                )
+                            ],
+                            style={"display": "none"}
+                        ),
+                        html.Div(
+                            children=[
+                                dcc.Markdown("""
+                                **Metadata**
+
+                                Click on data points in the graph.
+                                """),
+                                html.Pre(
+                                    id="latency-metadata"
+                                )
+                            ],
+                            style={"display": "none"}
                         )
                     ]
                 )
             ],
             style={
                 "vertical-align": "top",
-                "display": "none",
+                "display": "inline-block",
                 "width": "80%",
                 "padding": "5px"
             }
@@ -471,13 +494,14 @@ class Layout:
             return _sync_checklists(opt, sel, all, "cl-ctrl-testtype")
 
         @app.callback(
-            Output("graph", "figure"),
+            Output("graph-tput", "figure"),
             Output("selected-tests", "data"),  # Store
             Output("cl-selected", "options"),  # User selection
             Output("dd-ctrl-phy", "value"),
             Output("dd-ctrl-area", "value"),
             Output("dd-ctrl-test", "value"),
-            Output("div-plotting-area", "style"),
+            Output("graph-tput", "style"),
+            Output("graph-latency", "style"),
             State("selected-tests", "data"),  # Store
             State("cl-selected", "value"),
             State("dd-ctrl-phy", "value"),
@@ -551,14 +575,14 @@ class Layout:
                                         "testtype": ttype.lower()
                                     })
                 return (no_update, store_sel, _list_tests(), None,
-                    None, None, no_update)
+                    None, None, no_update, no_update)
 
             elif trigger_id in ("btn-sel-display", "dpr-period"):
                 fig, style = trending_tput(
                     self.data, store_sel, self.layout, d_start, d_end
                 )
                 return (fig, no_update, no_update,
-                    no_update, no_update, no_update, style)
+                    no_update, no_update, no_update, style, style)
 
             elif trigger_id == "btn-sel-remove":
                 if list_sel:
@@ -572,22 +596,26 @@ class Layout:
                         self.data, store_sel, self.layout, d_start, d_end
                     )
                     return (fig, store_sel, _list_tests(),
-                    no_update, no_update, no_update, style)
+                    no_update, no_update, no_update, style, style)
                 else:
-                    style={
-                        "vertical-align": "top",
-                        "display": "none",
-                        "width": "80%",
-                        "padding": "5px"
-                    }
+                    style = {"display": "none"}
                     return (no_update, store_sel, _list_tests(),
-                        no_update, no_update, no_update, style)
+                        no_update, no_update, no_update, style, style)
 
         @app.callback(
-            Output("hover-metadata", "children"),
-            Input("graph", "clickData")
+            Output("tput-metadata", "children"),
+            Input("graph-tput", "clickData")
         )
-        def _show_metadata(hover_data):
+        def _show_tput_metadata(hover_data):
+            if not hover_data:
+                raise PreventUpdate
+            return json.dumps(hover_data, indent=2)
+
+        @app.callback(
+            Output("latency-metadata", "children"),
+            Input("graph-latency", "clickData")
+        )
+        def _show_latency_metadata(hover_data):
             if not hover_data:
                 raise PreventUpdate
             return json.dumps(hover_data, indent=2)
