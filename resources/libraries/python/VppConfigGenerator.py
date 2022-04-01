@@ -340,6 +340,13 @@ class VppConfigGenerator:
         path = [u"dpdk", u"log-level"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_logging_for_dpdk(self):
+        """Add logging element specific for dpdk class.
+        """
+        path = [u"logging", u"class dpdk"]
+        value = u"level debug"
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_no_pci(self):
         """Add DPDK no-pci."""
         path = [u"dpdk", u"no-pci"]
