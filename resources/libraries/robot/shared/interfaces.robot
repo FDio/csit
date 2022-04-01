@@ -142,7 +142,8 @@
 | | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
 | | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
 | | | ... | ${dut}.Add DPDK No Tx Checksum Offload
-| | | Run Keyword | ${dut}.Add DPDK Log Level | .*,debug
+| | | Run Keyword | ${dut}.Add DPDK Log Level | debug
+| | | Run Keyword | ${dut}.Add Logging For DPDK
 | | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
 | | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
 | | | Run Keyword If | not ${jumbo}
