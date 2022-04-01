@@ -334,10 +334,30 @@ class VppConfigGenerator:
     def add_dpdk_log_level(self, value):
         """Add DPDK log-level configuration.
 
+        This affects visibility of logging commands from DPDK libs
+        (not from VPP dpdk_plugin code).
+
         :param value: Log level.
         :type value: str
         """
         path = [u"dpdk", u"log-level"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_logging_level_for_dpdk(self, value):
+        """Add logging element specific for dpdk class.
+
+        This afects visibility of logging from VPP dpdk_plugin code
+        not from DPDK libraries themselves).
+
+        Typical value is "debug". Advanced values for the whole class
+        for example "rate-limit 100 level debug syslog-level error"
+        are not supported yet.
+
+        :param value: Log level.
+        :type value: str
+        """
+        path = [u"logging", u"class dpdk", u"level"]
+        value = u"debug"
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_no_pci(self):
