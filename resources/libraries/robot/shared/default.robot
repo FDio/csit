@@ -170,6 +170,7 @@
 | | | Run Keyword | ${dut}.Set Node | ${nodes['${dut}']} | node_key=${dut}
 | | | Run Keyword | ${dut}.Add Unix Log
 | | | Run Keyword | ${dut}.Add Unix CLI Listen
+| | | Run Keyword | ${dut}.Add Unix CLI No Pager
 | | | Run Keyword | ${dut}.Add Unix Nodaemon
 | | | Run Keyword | ${dut}.Add Unix Coredump
 | | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}

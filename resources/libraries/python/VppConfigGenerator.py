@@ -153,6 +153,11 @@ class VppConfigGenerator:
         path = [u"unix", u"cli-listen"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_unix_cli_no_pager(self):
+        """Add UNIX cli-no-pager configuration."""
+        path = [u"unix", u"cli-no-pager"]
+        self.add_config_item(self._nodeconfig, u"", path)
+
     def add_unix_gid(self, value=u"vpp"):
         """Add UNIX gid configuration.
 
