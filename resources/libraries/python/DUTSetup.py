@@ -689,8 +689,7 @@ class DUTSetup:
                         timeout=120, sudo=True, message=message
                     )
                     exec_cmd_no_error(node, u"dpkg -l | grep vpp", sudo=True)
-                    if DUTSetup.running_in_container(node):
-                        DUTSetup.restart_service(node, Constants.VPP_UNIT)
+                    DUTSetup.restart_service(node, Constants.VPP_UNIT)
                 else:
                     exec_cmd_no_error(
                         node, u"yum -y remove '*vpp*' || true",
