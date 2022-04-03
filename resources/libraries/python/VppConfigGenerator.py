@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -152,6 +152,11 @@ class VppConfigGenerator:
         """
         path = [u"unix", u"cli-listen"]
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_unix_cli_no_pager(self):
+        """Add UNIX cli-no-pager configuration."""
+        path = [u"unix", u"cli-no-pager"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_unix_gid(self, value=u"vpp"):
         """Add UNIX gid configuration.
