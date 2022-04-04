@@ -90,6 +90,31 @@ class BundleBpf:
         Fetch data by invoking API calls to BPF.
         """
         self.serializer.create(metrics=self.metrics)
+
+
+        class MaxLens:
+            """Class to store the max lengths of strings displayed in
+            linux telemetry.
+            """
+
+            def __init__(self, cpu, pid, name, value):
+                """Initialization.
+
+                :param cpu: CPU to be measured.
+                :param pid: PID to be measured.
+                :param name: Name to be measured.
+                :param value: measured value.
+                """
+                self.cpu = cpu
+                self.pid = pid
+                self.name = name
+                self.value = value
+
+        max_len = MaxLens(3, 3, 4, 5)
+        text = ""
+        table_name = ""
+        item_list = []
+
         for _, metric_list in self.metrics.items():
             for metric in metric_list:
                 for (key, val) in self.obj.get_table(metric[u"name"]).items():
@@ -100,8 +125,44 @@ class BundleBpf:
                     for label in metric[u"labelnames"]:
                         labels[label] = getattr(key, label)
                     item[u"labels"] = labels
+                    item[u'labels'][u'name'] = item[u'labels'][u'name'].decode(
+                        u'utf-8')
+                    if item[u"labels"][u"name"] == u"python3":
+                        continue
+                    if len(str(item[u'value'])) > max_len.value:
+                        max_len.value = len(str(item[u'value']))
+                    if len(str(item[u'labels'][u'cpu'])) > max_len.cpu:
+                        max_len.cpu = len(str(item[u'labels'][u'cpu']))
+                    if len(str(item[u'labels'][u'pid'])) > max_len.pid:
+                        max_len.pid = len(str(item[u'labels'][u'pid']))
+                    if len(str(item[u'labels'][u'name'])) > max_len.name:
+                        max_len.name = len(str(item[u'labels'][u'name']))
+
                     self.api_replies_list.append(item)
-                    getLogger(__name__).info(item)
+                    item_list.append(item)
+
+        item_list = sorted(item_list, key=lambda x: x['labels']['cpu'])
+        item_list = sorted(item_list, key=lambda x: x['name'])
+
+        for it in item_list:
+            if table_name != it[u"name"]:
+                table_name = it[u"name"]
+                text += f"\n==={table_name}===\n" \
+                        f"cpu {u' ' * (max_len.cpu - 3)} " \
+                        f"pid {u' ' * (max_len.pid - 3)} " \
+                        f"name {u' ' * (max_len.name - 4)} " \
+                        f"value {u' ' * (max_len.value - 5)}\n"
+            text += (
+                f"""{str(it[u'labels'][u'cpu']) + u' ' *
+                     (max_len.cpu - len(str(it[u'labels'][u'cpu'])))}  """
+                f"""{str(it[u'labels'][u'pid']) + u' ' *
+                     (max_len.pid - len(str(it[u'labels'][u'pid'])))}  """
+                f"""{str(it[u'labels'][u'name']) + u' ' *
+                     (max_len.name - len(str(it[u'labels'][u'name'])))}  """
+                f"""{str(it[u'value']) + u' ' *
+                     (max_len.value - len(str(it[u'value'])))}\n"""
+            )
+        getLogger(__name__).info(text)
 
     def process_data(self):
         """
