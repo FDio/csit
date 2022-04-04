@@ -86,7 +86,7 @@ variable "tg_source_dest_check" {
 variable "sut1_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-0c2d02d48236a23dd"
+  default     = "ami-05ea90e57d2df4368"
 }
 
 variable "sut1_associate_public_ip_address" {

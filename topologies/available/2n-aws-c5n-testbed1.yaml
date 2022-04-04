@@ -1,0 +1,56 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/2_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 2-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "18.194.173.114"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port1:
+        # tg_instance/p1 - 50GE port1 on ENA NIC.
+        mac_address: 02:4a:3e:4c:b3:32
+        pci_address: "0000:00:06.0"
+        link: link1
+        model: Amazon-Nitro-50G
+      port2:
+        # tg_instance/p2 - 50GE port2 on ENA NIC.
+        mac_address: 02:6f:c5:44:29:4e
+        pci_address: "0000:00:07.0"
+        link: link2
+        model: Amazon-Nitro-50G
+  DUT1:
+    type: DUT
+    host: "35.158.210.193"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    honeycomb:
+      user: admin
+      passwd: admin
+      port: 8183
+      netconf_port: 2831
+    interfaces:
+      port1:
+        # dut1_instance/p1 - 50GE port1 on ENA NIC.
+        mac_address: 02:26:9c:82:76:1e
+        pci_address: "0000:00:06.0"
+        link: link1
+        model: Amazon-Nitro-50G
+      port2:
+        # dut1_instance/p2 - 50GE port2 on ENA NIC.
+        mac_address: 02:01:d2:bb:a2:00
+        pci_address: "0000:00:07.0"
+        link: link2
+        model: Amazon-Nitro-50G
