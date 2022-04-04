@@ -90,6 +90,12 @@ class BundleBpf:
         Fetch data by invoking API calls to BPF.
         """
         self.serializer.create(metrics=self.metrics)
+
+        max_len = {"cpu": 3, "pid": 3, "name": 4, "value": 5}
+        text = ""
+        table_name = ""
+        item_list = []
+
         for _, metric_list in self.metrics.items():
             for metric in metric_list:
                 for (key, val) in self.obj.get_table(metric[u"name"]).items():
@@ -100,8 +106,43 @@ class BundleBpf:
                     for label in metric[u"labelnames"]:
                         labels[label] = getattr(key, label)
                     item[u"labels"] = labels
+                    item[u'labels'][u'name'] = \
+                        item[u'labels'][u'name'].decode(u'utf-8')
+                    if item[u"labels"][u"name"] == u"python3":
+                        continue
+                    if len(str(item[u'labels'][u'cpu'])) > max_len["cpu"]:
+                        max_len["cpu"]= len(str(item[u'labels'][u'cpu']))
+                    if len(str(item[u'labels'][u'pid'])) > max_len[u"pid"]:
+                        max_len[u"pid"] = len(str(item[u'labels'][u'pid']))
+                    if len(str(item[u'labels'][u'name'])) > max_len[u"name"]:
+                        max_len[u"name"] = len(str(item[u'labels'][u'name']))
+                    if len(str(item[u'value'])) > max_len[u"value"]:
+                        max_len[u"value"] = len(str(item[u'value']))
+
                     self.api_replies_list.append(item)
-                    getLogger(__name__).info(item)
+                    item_list.append(item)
+
+        item_list = sorted(item_list, key=lambda x: x['labels']['cpu'])
+        item_list = sorted(item_list, key=lambda x: x['name'])
+
+        for it in item_list:
+            if table_name != it[u"name"]:
+                table_name = it[u"name"]
+                text += f"\n==={table_name}===\n" \
+                        f"cpu {u' ' * (max_len[u'cpu'] - 3)} " \
+                        f"pid {u' ' * (max_len[u'pid'] - 3)} " \
+                        f"name {u' ' * (max_len[u'name'] - 4)} " \
+                        f"value {u' ' * (max_len[u'value'] - 5)}\n"
+            text += (
+                f"""{str(it[u'labels'][u'cpu']) + u' ' * 
+                     (max_len[u"cpu"] - len(str(it[u'labels'][u'cpu'])))}  """
+                f"""{str(it[u'labels'][u'pid']) + u' ' * 
+                     (max_len[u"pid"] - len(str(it[u'labels'][u'pid'])))}  """
+                f"""{str(it[u'labels'][u'name']) + u' ' * 
+                     (max_len[u"name"] - len(str(it[u'labels'][u'name'])))}  """
+                f"""{str(it[u'value']) + u' ' * 
+                     (max_len[u"value"] - len(str(it[u'value'])))}\n""")
+        getLogger(u"console_stdout").info(text)
 
     def process_data(self):
         """
