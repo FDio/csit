@@ -85,6 +85,30 @@ _UNIT = {
     "pdr": "result_pdr_lower_rate_unit",
     "pdr-lat": "result_latency_forward_pdr_50_unit"
 }
+_LAT_HDRH = (
+    "result_latency_reverse_pdr_0_hdrh",
+    "result_latency_reverse_pdr_10_hdrh",
+    "result_latency_reverse_pdr_50_hdrh",
+    "result_latency_reverse_pdr_90_hdrh",
+    "result_latency_forward_pdr_0_hdrh",
+    "result_latency_forward_pdr_10_hdrh",
+    "result_latency_forward_pdr_50_hdrh",
+    "result_latency_forward_pdr_90_hdrh"
+)
+
+
+def _get_hdrh_latencies(row: pd.Series, name: str) -> dict():
+    """
+    """
+
+    latencies = {"name": name}
+    for key in _LAT_HDRH:
+        try:
+            latencies[key] = row[key]
+        except KeyError:
+            return None
+
+    return latencies
 
 
 def _classify_anomalies(data):
@@ -138,7 +162,7 @@ def _classify_anomalies(data):
 
 
 def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
-    end: datetime):
+    end: datetime) -> tuple(go.Figure(), go.Figure()):
     """
     """
 
@@ -146,7 +170,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
         return None, None
 
     def _generate_traces(ttype: str, name: str, df: pd.DataFrame,
-        start: datetime, end: datetime, color: str):
+        start: datetime, end: datetime, color: str) -> list():
 
         df = df.dropna(subset=[_VALUE[ttype], ])
         if df.empty:
@@ -159,6 +183,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
         )
 
         hover = list()
+        customdata = list()
         for _, row in df.iterrows():
             hover_itm = (
                 f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
@@ -178,6 +203,8 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                 "<prop>", "latency" if ttype == "pdr-lat" else "average"
             ).replace("<stdev>", stdev)
             hover.append(hover_itm)
+            if ttype == "pdr-lat":
+                customdata.append(_get_hdrh_latencies(row, name))
 
         hover_trend = list()
         for avg, stdev in zip(trend_avg, trend_stdev):
@@ -207,6 +234,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                 hoverinfo=u"text+name",
                 showlegend=True,
                 legendgroup=name,
+                customdata=customdata
             ),
             go.Scatter(  # Trend line
                 x=x_axis,
