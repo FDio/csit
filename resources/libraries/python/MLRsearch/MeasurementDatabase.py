@@ -13,6 +13,8 @@
 
 """Module defining MeasurementDatabase class."""
 
+import copy
+
 from .ReceiveRateInterval import ReceiveRateInterval
 from .PerDurationDatabase import PerDurationDatabase
 
@@ -30,34 +32,18 @@ class MeasurementDatabase:
     or minimal rates.
     """
 
-    def __init__(self, measurements):
-        """Store measurement results in per-duration databases.
+    def __init__(self, database):
+        """Store per-duration databases, sort and store durations.
 
-        TODO: Move processing to a factory method,
-        keep constructor only to store (presumably valid) values.
+        Deepcopy is used so further processing does not affect the argument.
 
-        If the measurements argument contains is a dict,
-        the constructor assumes it contains the processed databases.
-
-        :param measurements: The measurement results to store.
-        :type measurements: Iterable[ReceiveRateMeasurement]
+        :param database: Measurements grouped by their durations.
+        :type database: Mapping[float, PerDurationDatabase]
         """
-        if isinstance(measurements, dict):
-            self.data_for_duration = measurements
-        else:
-            self.data_for_duration = dict()
-            # TODO: There is overlap with add() code. Worth extracting?
-            for measurement in measurements:
-                duration = measurement.duration
-                if duration in self.data_for_duration:
-                    self.data_for_duration[duration].add(measurement)
-                else:
-                    self.data_for_duration[duration] = PerDurationDatabase(
-                        duration, [measurement]
-                    )
-        durations = sorted(self.data_for_duration.keys())
-        self.current_duration = durations[-1] if duration else None
-        self.previous_duration = durations[-2] if len(durations) > 1 else None
+        self.data_for_duration = dict()
+        for duration, data in database.items():
+            self.data_for_duration[duration] = copy.deepcopy(data)
+        self.durations = sorted(self.data_for_duration.keys())
 
     def __repr__(self):
         """Return string executable to get equivalent instance.
@@ -66,6 +52,38 @@ class MeasurementDatabase:
         :rtype: str
         """
         return f"MeasurementDatabase(measurements={self.data_for_duration!r})"
+
+    @classmethod
+    def from_list(cls, measurements):
+        """Form a database out of unsorted list of measurements.
+
+        :param measurements: The measurement results for database to contain.
+        :type measurements: Iterable[ReceiveRateMeasurement]
+        :returns: New MeasurementDatabase containing the measurements.
+        :rtype: cls
+        """
+        database = cls(dict())
+        for measurement in measurements:
+            database.add(measurement, ignore_current_duration=True)
+        return database
+
+    @property
+    def current_duration(self):
+        """Return None or largest duration present.
+
+        :returns: Largest duration (can have empty PerDurationDatabase).
+        :rtype: float
+        """
+        return self.durations[-1] if self.durations else None
+
+    @property
+    def previous_duration(self):
+        """Return None or second largest duration present.
+
+        :returns: Largest duration (should not have empty PerDurationDatabase).
+        :rtype: float
+        """
+        return self.durations[-2] if len(self.durations) >= 2 else None
 
     def set_current_duration(self, duration):
         """Remember what MLRsearch considers the current duration.
@@ -82,25 +100,26 @@ class MeasurementDatabase:
                 f" {self.current_duration}"
             )
         if duration > self.current_duration:
-            self.previous_duration = self.current_duration
-            self.current_duration = duration
             self.data_for_duration[duration] = PerDurationDatabase(
                 duration, list()
             )
         # Else no-op.
 
-    def add(self, measurement):
+    def add(self, measurement, ignore_current_duration=False):
         """Add a measurement. Duration has to match the set one.
 
         :param measurement: Measurement result to add to the database.
+        :param ignore_current_duration: Do not check duration if true.
         :type measurement: ReceiveRateMeasurement
+        :type ignore_current_duration: bool
         """
         duration = measurement.duration
-        if duration != self.current_duration:
-            raise ValueError(
-                f"{measurement!r} duration different than"
-                f" {self.current_duration}"
-            )
+        if not ignore_current_duration:
+            if duration != self.current_duration:
+                raise ValueError(
+                    f"{measurement!r} duration different than"
+                    f" {self.current_duration}"
+                )
         self.data_for_duration[duration].add(measurement)
 
     def get_bounds(self, ratio):
@@ -109,7 +128,7 @@ class MeasurementDatabase:
         Second tightest bounds are only returned for current duration.
         None instead of a measurement if there is no measurement of that type.
 
-        The result cotains bounds in this order:
+        The result contains bounds in this order:
         1. Tightest lower bound for current duration.
         2. Tightest upper bound for current duration.
         3. Tightest lower bound for previous duration.
@@ -138,7 +157,8 @@ class MeasurementDatabase:
 
         Attempt to construct valid intervals. If a valid bound is missing,
         use smallest/biggest target_tr for lower/upper bound.
-        This can result in degenerate intervals.
+        This can result in degenerate intervals,
+        but is expected e.g. if max load had zero loss.
 
         :param ratio_list: Ratios to create intervals for.
         :type ratio_list: Iterable[float]
@@ -149,9 +169,11 @@ class MeasurementDatabase:
         current_data = self.data_for_duration[self.current_duration]
         for ratio in ratio_list:
             lower_bound, upper_bound, _, _, _, _ = self.get_bounds(ratio)
+            # TODO: Enrich PerDurationDatabase API, instead of assuming
+            # it allways be a sorted list.
             if lower_bound is None:
-                lower_bound = current_data.measurements[0]
+                lower_bound = current_data.smallest_load_measurement
             if upper_bound is None:
-                upper_bound = current_data.measurements[-1]
+                upper_bound = current_data.largest_load_measurement
             ret_list.append(ReceiveRateInterval(lower_bound, upper_bound))
         return ret_list
