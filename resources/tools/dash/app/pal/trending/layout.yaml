@@ -5,7 +5,7 @@ plot-trending-tput:
   autosize: True
   showlegend: True
   # width: 1100
-  height: 600
+  height: 400
   yaxis:
     showticklabels: True
     tickformat: ".3s"
@@ -83,7 +83,7 @@ plot-trending-lat:
   autosize: True
   showlegend: True
   # width: 1100
-  height: 600
+  height: 400
   yaxis:
     showticklabels: True
     tickformat: ".3s"
@@ -153,3 +153,59 @@ plot-trending-lat:
   plot_bgcolor: "#fff"
   hoverlabel:
     namelength: -1
+
+plot-hdrh-latency:
+    title:
+      text: "<b>Latency by Percentile Distribution</b>"
+      xanchor: "center"
+      x: 0.5
+      font:
+        size: 10
+    showlegend: True
+    legend:
+      traceorder: "normal"
+      orientation: "h"
+      # font:
+      #   size: 16
+      xanchor: "left"
+      yanchor: "top"
+      x: 0
+      y: -0.2
+      bgcolor: "rgba(255, 255, 255, 0)"
+      bordercolor: "rgba(255, 255, 255, 0)"
+    xaxis:
+      type: "log"
+      title: "<b>Percentile [%]</b>"
+      # titlefont:
+      #   size: 14
+      autorange: False
+      fixedrange: True
+      gridcolor: "rgb(230, 230, 230)"
+      linecolor: "rgb(220, 220, 220)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(220, 220, 220)"
+      tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6]
+      ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999]
+      # tickfont:
+      #   size: 14
+    yaxis:
+      title: "<b>One-Way Latency per Direction [uSec]</b>"
+      # titlefont:
+      #   size: 14
+      gridcolor: "rgb(230, 230, 230)"
+      linecolor: "rgb(220, 220, 220)"
+      linewidth: 1
+      showgrid: True
+      showline: True
+      showticklabels: True
+      tickcolor: "rgb(220, 220, 220)"
+      # tickfont:
+      #   size: 14
+    autosize: False
+    # width: 700
+    # height: 700
+    paper_bgcolor: "white"
+    plot_bgcolor: "white"

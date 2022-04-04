@@ -15,7 +15,6 @@
 """
 
 
-import json
 import pandas as pd
 
 from dash import dcc
@@ -27,7 +26,7 @@ from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 
 from ..data.data import Data
-from .graphs import trending_tput
+from .graphs import graph_trending_tput, graph_hdrh_latency
 
 
 class Layout:
@@ -35,8 +34,12 @@ class Layout:
     """
 
     STYLE_HIDEN = {"display": "none"}
-    STYLE_BLOCK = {"display": "block"}
-    STYLE_INLINE ={"display": "inline-block", "width": "50%"}
+    STYLE_BLOCK = {"display": "block", "vertical-align": "top"}
+    STYLE_INLINE ={
+        "display": "inline-block",
+        "vertical-align": "top",
+        "width": "33%"
+    }
     NO_GRAPH = {"data": [], "layout": {}, "frames": []}
 
     def __init__(self, app, html_layout_file, spec_file, graph_layout_file,
@@ -190,13 +193,10 @@ class Layout:
                         html.Div(
                             id="div-tput-metadata",
                             children=[
-                                dcc.Markdown("""
-                                **Metadata**
-
-                                Click on data points in the graph.
-                                """),
+                                dcc.Markdown("**Throughput**"),
                                 html.Pre(
-                                    id="tput-metadata"
+                                    id="tput-metadata",
+                                    children="Click on data points in the graph"
                                 )
                             ],
                             style=self.STYLE_HIDEN
@@ -204,13 +204,25 @@ class Layout:
                         html.Div(
                             id="div-latency-metadata",
                             children=[
-                                dcc.Markdown("""
-                                **Metadata**
-
-                                Click on data points in the graph.
-                                """),
+                                dcc.Markdown("**Latency**"),
                                 html.Pre(
-                                    id="latency-metadata"
+                                    id="latency-metadata",
+                                    children="Click on data points in the graph"
+                                )
+                            ],
+                            style=self.STYLE_HIDEN
+                        ),
+                        html.Div(
+                            id="div-latency-hdrh",
+                            children=[
+                                dcc.Loading(
+                                    id="loading-hdrh-latency-graph",
+                                    children=[
+                                        dcc.Graph(
+                                            id="graph-latency-hdrh"
+                                        )
+                                    ],
+                                    type="circle"
                                 )
                             ],
                             style=self.STYLE_HIDEN
@@ -507,6 +519,7 @@ class Layout:
             Output("graph-latency", "figure"),
             Output("graph-latency", "style"),
             Output("div-latency-metadata", "style"),
+            Output("div-latency-hdrh", "style"),
             Output("selected-tests", "data"),  # Store
             Output("cl-selected", "options"),  # User selection
             Output("dd-ctrl-phy", "value"),
@@ -554,6 +567,7 @@ class Layout:
                         "graph-lat-figure": no_update,
                         "graph-lat-style": no_update,
                         "div-lat-metadata-style": no_update,
+                        "div-lat-hdrh-style": no_update,
                         "selected-tests-data": no_update,
                         "cl-selected-options": no_update,
                         "dd-ctrl-phy-value": no_update,
@@ -615,7 +629,7 @@ class Layout:
                 })
 
             elif trigger_id in ("btn-sel-display", "dpr-period"):
-                fig_tput, fig_lat = trending_tput(
+                fig_tput, fig_lat = graph_trending_tput(
                     self.data, store_sel, self.layout, d_start, d_end
                 )
                 output.set_values({
@@ -630,6 +644,8 @@ class Layout:
                     "graph-lat-style": \
                         self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
                     "div-lat-metadata-style": \
+                        self.STYLE_INLINE if fig_lat else self.STYLE_HIDEN,
+                    "div-lat-hdrh-style": \
                         self.STYLE_INLINE if fig_lat else self.STYLE_HIDEN
                 })
 
@@ -641,7 +657,7 @@ class Layout:
                             new_store_sel.append(item)
                     store_sel = new_store_sel
                 if store_sel:
-                    fig_tput, fig_lat = trending_tput(
+                    fig_tput, fig_lat = graph_trending_tput(
                         self.data, store_sel, self.layout, d_start, d_end
                     )
                     output.set_values({
@@ -657,6 +673,8 @@ class Layout:
                             self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
                         "div-lat-metadata-style": \
                             self.STYLE_INLINE if fig_lat else self.STYLE_HIDEN,
+                        "div-lat-hdrh-style": \
+                            self.STYLE_INLINE if fig_lat else self.STYLE_HIDEN,
                         "selected-tests-data": store_sel,
                         "cl-selected-options": _list_tests()
                     })
@@ -668,6 +686,7 @@ class Layout:
                         "graph-lat-figure": self.NO_GRAPH,
                         "graph-lat-style": self.STYLE_HIDEN,
                         "div-lat-metadata-style": self.STYLE_HIDEN,
+                        "div-lat-hdrh-style": self.STYLE_HIDEN,
                         "selected-tests-data": store_sel,
                         "cl-selected-options": _list_tests()
                     })
@@ -681,13 +700,22 @@ class Layout:
         def _show_tput_metadata(hover_data):
             if not hover_data:
                 raise PreventUpdate
-            return json.dumps(hover_data, indent=2)
+            return hover_data["points"][0]["text"].replace("<br>", "\n"),
 
         @app.callback(
             Output("latency-metadata", "children"),
+            Output("graph-latency-hdrh", "figure"),
             Input("graph-latency", "clickData")
         )
         def _show_latency_metadata(hover_data):
             if not hover_data:
                 raise PreventUpdate
-            return json.dumps(hover_data, indent=2)
+            graph = graph_hdrh_latency(
+                hover_data["points"][0]["customdata"], self.layout
+            )
+            if not graph:
+                graph = no_update
+            return (
+                hover_data["points"][0]["text"].replace("<br>", "\n"),
+                graph
+            )
