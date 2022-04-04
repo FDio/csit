@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b90db441_d4766c6a",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1159,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-04-04T12:24:04Z",
+      "side": 1,
+      "message": "3_node",
+      "range": {
+        "startLine": 1159,
+        "startChar": 29,
+        "endLine": 1159,
+        "endChar": 35
+      },
+      "revId": "8e2c71e105d88c68924c3350c85ef445bda2ab17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
