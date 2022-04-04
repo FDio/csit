@@ -194,7 +194,7 @@ class MultipleLossRatioSearch:
             # Overall, with mrr2 measurement done, we never need
             # the first measurement done at max rate.
             measurements = measurements[1:]
-        database = MeasurementDatabase(measurements)
+        database = MeasurementDatabase.from_list(measurements)
         stop_time = time.monotonic() + self.timeout
         self.state = ProgressState(
             database, self.number_of_intermediate_phases,

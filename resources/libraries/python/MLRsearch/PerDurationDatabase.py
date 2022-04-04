@@ -64,11 +64,10 @@ class PerDurationDatabase:
 
         :raises ValueError: If duration does not match or if TR duplicity.
         """
-        measurements = self.measurements
-        measurements.sort(key=lambda measurement: measurement.target_tr)
+        self.measurements.sort(key=lambda measurement: measurement.target_tr)
         # Detect duplicated TRs.
         previous_tr = None
-        for measurement in measurements:
+        for measurement in self.measurements:
             current_tr = measurement.target_tr
             if current_tr == previous_tr:
                 raise ValueError(
@@ -78,7 +77,7 @@ class PerDurationDatabase:
             previous_tr = current_tr
         # Update effective ratios.
         ratio_previous = None
-        for measurement in measurements:
+        for measurement in self.measurements:
             if ratio_previous is None:
                 ratio_previous = measurement.loss_ratio
                 measurement.effective_loss_ratio = ratio_previous
@@ -121,3 +120,27 @@ class PerDurationDatabase:
                 break
             lower_1, lower_2 = measurement, lower_1
         return lower_1, upper_1, lower_2, upper_2
+
+    @property
+    def smallest_load_measurement(self):
+        """Return measurement with smallest load.
+
+        One-liner just so MeasurementDatabase does not assume a list.
+
+        :returns: Measurement in this with smallest target_tr.
+        :rtype: ReceiveRateMeasurement
+        :raises IndexError: If per duration database is empty.
+        """
+        return self.measurements[0]
+
+    @property
+    def largest_load_measurement(self):
+        """Return measurement with largest load.
+
+        One-liner just so MeasurementDatabase does not assume a list.
+
+        :returns: Measurement in this with largest target_tr.
+        :rtype: ReceiveRateMeasurement
+        :raises IndexError: If per duration database is empty.
+        """
+        return self.measurements[-1]
