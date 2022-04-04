@@ -24,6 +24,7 @@ module "vpc" {
   subnet_availability_zone = local.availability_zone
   tags_name                = local.name
   tags_environment         = local.environment
+  vpc_enable_dns_hostnames = false
 }
 
 # Create Subnet
@@ -126,6 +127,7 @@ resource "aws_network_interface" "tg_if2" {
     module.subnet_d,
     aws_instance.tg
   ]
+  private_ip        = var.tg_if2_private_ip
   private_ips       = [var.tg_if2_private_ip]
   security_groups   = [module.vpc.vpc_security_group_id]
   source_dest_check = var.tg_source_dest_check
@@ -202,6 +204,7 @@ resource "aws_network_interface" "sut1_if1" {
     module.subnet_b,
     aws_instance.sut1
   ]
+  private_ip        = var.sut1_if1_private_ip
   private_ips       = [var.sut1_if1_private_ip]
   security_groups   = [module.vpc.vpc_security_group_id]
   source_dest_check = var.sut1_source_dest_check
@@ -223,6 +226,7 @@ resource "aws_network_interface" "sut1_if2" {
     module.subnet_d,
     aws_instance.sut1
   ]
+  private_ip        = var.sut1_if2_private_ip
   private_ips       = [var.sut1_if2_private_ip]
   security_groups   = [module.vpc.vpc_security_group_id]
   source_dest_check = var.sut1_source_dest_check

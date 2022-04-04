@@ -14,7 +14,7 @@ variable "tags_environment" {
 variable "subnet_assign_ipv6_address_on_creation" {
   description = "Specify true to indicate that network interfaces created in the specified subnet should be assigned an IPv6 address."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "subnet_availability_zone" {

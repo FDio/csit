@@ -26,6 +26,14 @@ resource "aws_security_group" "security_group" {
   tags                   = local.tags
   vpc_id                 = aws_vpc.vpc.id
 
+  ingress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = -1
+    self             = true
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
   dynamic "ingress" {
     for_each = var.security_group_ingress
     content {
