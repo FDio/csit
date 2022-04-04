@@ -31,11 +31,12 @@ def multiply_relative_width(relative_width, coefficient):
     :returns: The relative width of multiplied logarithmic size.
     :rtype: float
     """
-    old_log_width = math.log(1.0 - relative_width)
+    # Using log1p and expm1 to avoid rounding errors for small widths.
+    old_log_width = math.log1p(-relative_width)
     # Slight decrease to prevent rounding errors from prolonging the search.
     # TODO: Make the nines configurable.
     new_log_width = old_log_width * coefficient * ROUNDING_CONSTANT
-    return 1.0 - math.exp(new_log_width)
+    return -math.expm1(new_log_width)
 
 def halve_relative_width(relative_width, goal_width):
     """Return relative width corresponding to half logarithmic width.
@@ -51,14 +52,13 @@ def halve_relative_width(relative_width, goal_width):
     :returns: The relative width of half logarithmic size.
     :rtype: float
     """
-    fallback_width = 1.0 - math.sqrt(1.0 - relative_width)
     # Wig means Width In Goals.
-    wig = math.log(1.0 - relative_width) / math.log(1.0 - goal_width)
+    wig = math.log1p(-relative_width) / math.log1p(-goal_width)
     cwig = 2.0 * math.ceil(wig / 2.0)
-    fwig = 2.0 * math.ceil(wig * ROUNDING_CONSTANT / 2.0)
+    fwig = 2.0 * math.ceil(wig * ROUNDING_CONSTANT * ROUNDING_CONSTANT / 2.0)
     if wig <= 2.0 or cwig != fwig:
         # Avoid too uneven splits.
-        return fallback_width
+        return multiply_relative_width(relative_width, 0.5)
     coefficient = cwig / 2
     new_width = multiply_relative_width(goal_width, coefficient)
     return new_width
