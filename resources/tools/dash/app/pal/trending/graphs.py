@@ -14,10 +14,12 @@
 """
 """
 
-
 import plotly.graph_objects as go
 import pandas as pd
 import re
+
+import hdrh.histogram
+import hdrh.codec
 
 from datetime import datetime
 from numpy import isnan
@@ -26,29 +28,10 @@ from ..jumpavg import classify
 
 
 _COLORS = (
-    u"#1A1110",
-    u"#DA2647",
-    u"#214FC6",
-    u"#01786F",
-    u"#BD8260",
-    u"#FFD12A",
-    u"#A6E7FF",
-    u"#738276",
-    u"#C95A49",
-    u"#FC5A8D",
-    u"#CEC8EF",
-    u"#391285",
-    u"#6F2DA8",
-    u"#FF878D",
-    u"#45A27D",
-    u"#FFD0B9",
-    u"#FD5240",
-    u"#DB91EF",
-    u"#44D7A8",
-    u"#4F86F7",
-    u"#84DE02",
-    u"#FFCFF1",
-    u"#614051"
+    u"#1A1110", u"#DA2647", u"#214FC6", u"#01786F", u"#BD8260", u"#FFD12A",
+    u"#A6E7FF", u"#738276", u"#C95A49", u"#FC5A8D", u"#CEC8EF", u"#391285",
+    u"#6F2DA8", u"#FF878D", u"#45A27D", u"#FFD0B9", u"#FD5240", u"#DB91EF",
+    u"#44D7A8", u"#4F86F7", u"#84DE02", u"#FFCFF1", u"#614051"
 )
 _ANOMALY_COLOR = {
     u"regression": 0.0,
@@ -85,6 +68,44 @@ _UNIT = {
     "pdr": "result_pdr_lower_rate_unit",
     "pdr-lat": "result_latency_forward_pdr_50_unit"
 }
+_LAT_HDRH = (  # Do not change the order
+    "result_latency_forward_pdr_0_hdrh",
+    "result_latency_reverse_pdr_0_hdrh",
+    "result_latency_forward_pdr_10_hdrh",
+    "result_latency_reverse_pdr_10_hdrh",
+    "result_latency_forward_pdr_50_hdrh",
+    "result_latency_reverse_pdr_50_hdrh",
+    "result_latency_forward_pdr_90_hdrh",
+    "result_latency_reverse_pdr_90_hdrh",
+)
+# This value depends on latency stream rate (9001 pps) and duration (5s).
+# Keep it slightly higher to ensure rounding errors to not remove tick mark.
+PERCENTILE_MAX = 99.999501
+
+_GRAPH_LAT_HDRH_DESC = {
+    u"result_latency_forward_pdr_0_hdrh": u"No-load.",
+    u"result_latency_reverse_pdr_0_hdrh": u"No-load.",
+    u"result_latency_forward_pdr_10_hdrh": u"Low-load, 10% PDR.",
+    u"result_latency_reverse_pdr_10_hdrh": u"Low-load, 10% PDR.",
+    u"result_latency_forward_pdr_50_hdrh": u"Mid-load, 50% PDR.",
+    u"result_latency_reverse_pdr_50_hdrh": u"Mid-load, 50% PDR.",
+    u"result_latency_forward_pdr_90_hdrh": u"High-load, 90% PDR.",
+    u"result_latency_reverse_pdr_90_hdrh": u"High-load, 90% PDR."
+}
+
+
+def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
+    """
+    """
+
+    latencies = {"name": name}
+    for key in _LAT_HDRH:
+        try:
+            latencies[key] = row[key]
+        except KeyError:
+            return None
+
+    return latencies
 
 
 def _classify_anomalies(data):
@@ -137,8 +158,8 @@ def _classify_anomalies(data):
     return classification, avgs, stdevs
 
 
-def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
-    end: datetime):
+def graph_trending_tput(data: pd.DataFrame, sel:dict, layout: dict,
+    start: datetime, end: datetime) -> tuple:
     """
     """
 
@@ -146,7 +167,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
         return None, None
 
     def _generate_traces(ttype: str, name: str, df: pd.DataFrame,
-        start: datetime, end: datetime, color: str):
+        start: datetime, end: datetime, color: str) -> list:
 
         df = df.dropna(subset=[_VALUE[ttype], ])
         if df.empty:
@@ -159,6 +180,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
         )
 
         hover = list()
+        customdata = list()
         for _, row in df.iterrows():
             hover_itm = (
                 f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
@@ -178,6 +200,8 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                 "<prop>", "latency" if ttype == "pdr-lat" else "average"
             ).replace("<stdev>", stdev)
             hover.append(hover_itm)
+            if ttype == "pdr-lat":
+                customdata.append(_get_hdrh_latencies(row, name))
 
         hover_trend = list()
         for avg, stdev in zip(trend_avg, trend_stdev):
@@ -207,6 +231,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                 hoverinfo=u"text+name",
                 showlegend=True,
                 legendgroup=name,
+                customdata=customdata
             ),
             go.Scatter(  # Trend line
                 x=x_axis,
@@ -259,9 +284,9 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
                             u"len": 0.8,
                             u"title": u"Circles Marking Data Classification",
                             u"titleside": u"right",
-                            u"titlefont": {
-                                u"size": 14
-                            },
+                            # u"titlefont": {
+                            #     u"size": 14
+                            # },
                             u"tickmode": u"array",
                             u"tickvals": [0.167, 0.500, 0.833],
                             u"ticktext": _TICK_TEXT_LAT \
@@ -319,8 +344,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
         if traces:
             if not fig_tput:
                 fig_tput = go.Figure()
-            for trace in traces:
-                fig_tput.add_trace(trace)
+            fig_tput.add_traces(traces)
 
         if itm["testtype"] == "pdr":
             traces = _generate_traces(
@@ -329,8 +353,7 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
             if traces:
                 if not fig_lat:
                     fig_lat = go.Figure()
-                for trace in traces:
-                    fig_lat.add_trace(trace)
+                fig_lat.add_traces(traces)
 
     if fig_tput:
         fig_tput.update_layout(layout.get("plot-trending-tput", dict()))
@@ -338,3 +361,79 @@ def trending_tput(data: pd.DataFrame, sel:dict, layout: dict, start: datetime,
         fig_lat.update_layout(layout.get("plot-trending-lat", dict()))
 
     return fig_tput, fig_lat
+
+
+def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
+    """
+    """
+
+    fig = None
+
+    try:
+        name = data.pop("name")
+    except (KeyError, AttributeError):
+        return None
+
+    traces = list()
+    for idx, (lat_name, lat_hdrh) in enumerate(data.items()):
+        try:
+            decoded = hdrh.histogram.HdrHistogram.decode(lat_hdrh)
+        except (hdrh.codec.HdrLengthException, TypeError) as err:
+            continue
+        previous_x = 0.0
+        prev_perc = 0.0
+        xaxis = list()
+        yaxis = list()
+        hovertext = list()
+        for item in decoded.get_recorded_iterator():
+            # The real value is "percentile".
+            # For 100%, we cut that down to "x_perc" to avoid
+            # infinity.
+            percentile = item.percentile_level_iterated_to
+            x_perc = min(percentile, PERCENTILE_MAX)
+            xaxis.append(previous_x)
+            yaxis.append(item.value_iterated_to)
+            hovertext.append(
+                f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
+                f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
+                f"Latency: {item.value_iterated_to}uSec"
+            )
+            next_x = 100.0 / (100.0 - x_perc)
+            xaxis.append(next_x)
+            yaxis.append(item.value_iterated_to)
+            hovertext.append(
+                f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
+                f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
+                f"Latency: {item.value_iterated_to}uSec"
+            )
+            previous_x = next_x
+            prev_perc = percentile
+
+        traces.append(
+            go.Scatter(
+                x=xaxis,
+                y=yaxis,
+                name=_GRAPH_LAT_HDRH_DESC[lat_name],
+                mode=u"lines",
+                legendgroup=_GRAPH_LAT_HDRH_DESC[lat_name],
+                showlegend=bool(idx % 2),
+                line=dict(
+                    color=_COLORS[int(idx/2)],
+                    dash=u"solid",
+                    width=1 if idx % 2 else 2
+                ),
+                hovertext=hovertext,
+                hoverinfo=u"text"
+            )
+        )
+    if traces:
+        fig = go.Figure()
+        fig.add_traces(traces)
+        layout_hdrh = layout.get("plot-hdrh-latency", None)
+        if lat_hdrh:
+            layout_hdrh["title"]["text"] = f"<b>{name}</b>"
+            fig.update_layout(layout_hdrh)
+
+    return fig
