@@ -1,6 +1,5 @@
 locals {
   tags = {
-    "Name"        = "${var.tags_name}"
     "Environment" = "${var.tags_environment}"
   }
 }
