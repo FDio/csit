@@ -38,6 +38,16 @@ module "subnet_b" {
   subnet_vpc_id            = module.vpc.vpc_id
 }
 
+module "subnet_c" {
+  source                   = "../terraform-aws-subnet"
+  subnet_cidr_block        = "200.0.0.0/24"
+  subnet_ipv6_cidr_block   = cidrsubnet(module.vpc.vpc_ipv6_cidr_block, 8, 3)
+  subnet_availability_zone = local.availability_zone
+  tags_name                = local.name
+  tags_environment         = local.environment
+  subnet_vpc_id            = module.vpc.vpc_id
+}
+
 module "subnet_d" {
   source                   = "../terraform-aws-subnet"
   subnet_cidr_block        = "192.168.20.0/24"
@@ -74,7 +84,8 @@ resource "aws_placement_group" "placement_group" {
 resource "aws_instance" "tg" {
   depends_on = [
     module.vpc,
-    aws_placement_group.placement_group
+    aws_placement_group.placement_group,
+    module.vpc.vpc_security_group_id,
   ]
   ami                                  = var.tg_ami
   availability_zone                    = local.availability_zone
@@ -102,6 +113,7 @@ resource "aws_instance" "tg" {
 
 resource "aws_network_interface" "tg_if1" {
   depends_on = [
+    module.vpc,
     module.subnet_b,
     aws_instance.tg
   ]
@@ -124,6 +136,7 @@ resource "aws_network_interface" "tg_if1" {
 
 resource "aws_network_interface" "tg_if2" {
   depends_on = [
+    module.vpc,
     module.subnet_d,
     aws_instance.tg
   ]
@@ -154,7 +167,8 @@ data "aws_network_interface" "tg_if2" {
 
 resource "aws_route" "route_tg_if1" {
   depends_on = [
-    aws_instance.tg
+    module.vpc,
+    aws_instance.sut1
   ]
   destination_cidr_block = var.destination_cidr_block_tg_if1
   network_interface_id   = aws_instance.tg.primary_network_interface_id
@@ -163,7 +177,8 @@ resource "aws_route" "route_tg_if1" {
 
 resource "aws_route" "route_tg_if2" {
   depends_on = [
-    aws_instance.tg
+    module.vpc,
+    aws_instance.sut1
   ]
   destination_cidr_block = var.destination_cidr_block_tg_if2
   network_interface_id   = aws_instance.tg.primary_network_interface_id
@@ -173,7 +188,9 @@ resource "aws_route" "route_tg_if2" {
 resource "aws_instance" "sut1" {
   depends_on = [
     module.vpc,
-    aws_placement_group.placement_group
+    aws_placement_group.placement_group,
+    module.vpc.vpc_security_group_id,
+    aws_instance.tg
   ]
   ami                                  = var.sut1_ami
   availability_zone                    = local.availability_zone
@@ -201,6 +218,7 @@ resource "aws_instance" "sut1" {
 
 resource "aws_network_interface" "sut1_if1" {
   depends_on = [
+    module.vpc,
     module.subnet_b,
     aws_instance.sut1
   ]
@@ -223,6 +241,7 @@ resource "aws_network_interface" "sut1_if1" {
 
 resource "aws_network_interface" "sut1_if2" {
   depends_on = [
+    module.vpc,
     module.subnet_d,
     aws_instance.sut1
   ]
