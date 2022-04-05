@@ -28,24 +28,76 @@ module "vpc" {
 }
 
 # Create Subnet
-module "subnet_b" {
-  source                   = "../terraform-aws-subnet"
-  subnet_cidr_block        = "192.168.10.0/24"
-  subnet_ipv6_cidr_block   = cidrsubnet(module.vpc.vpc_ipv6_cidr_block, 8, 2)
-  subnet_availability_zone = local.availability_zone
-  tags_name                = local.name
-  tags_environment         = local.environment
-  subnet_vpc_id            = module.vpc.vpc_id
+resource "aws_vpc_ipv4_cidr_block_association" "b" {
+  depends_on = [
+    module.vpc
+  ]
+  cidr_block = "192.168.10.0/24"
+  vpc_id     = module.vpc.vpc_id
 }
 
-module "subnet_d" {
-  source                   = "../terraform-aws-subnet"
-  subnet_cidr_block        = "192.168.20.0/24"
-  subnet_ipv6_cidr_block   = cidrsubnet(module.vpc.vpc_ipv6_cidr_block, 8, 4)
-  subnet_availability_zone = local.availability_zone
-  tags_name                = local.name
-  tags_environment         = local.environment
-  subnet_vpc_id            = module.vpc.vpc_id
+resource "aws_vpc_ipv4_cidr_block_association" "c" {
+  depends_on = [
+    module.vpc
+  ]
+  cidr_block = "200.0.0.0/24"
+  vpc_id     = module.vpc.vpc_id
+}
+
+resource "aws_vpc_ipv4_cidr_block_association" "d" {
+  depends_on = [
+    module.vpc
+  ]
+  cidr_block = "192.168.20.0/24"
+  vpc_id     = module.vpc.vpc_id
+}
+
+resource "aws_subnet" "b" {
+  availability_zone               = local.availability_zone
+  assign_ipv6_address_on_creation = true
+  cidr_block                      = "192.168.10.0/24"
+  depends_on = [
+    module.vpc,
+    aws_vpc_ipv4_cidr_block_association.b
+  ]
+  ipv6_cidr_block                 = cidrsubnet(module.vpc.vpc_ipv6_cidr_block, 8, 2)
+  map_public_ip_on_launch         = false
+  vpc_id                          = module.vpc.vpc_id
+  tags = {
+    "Environment" = local.environment
+  }
+}
+
+resource "aws_subnet" "c" {
+  availability_zone               = local.availability_zone
+  assign_ipv6_address_on_creation = true
+  cidr_block                      = "200.0.0.0/24"
+  depends_on = [
+    module.vpc,
+    aws_vpc_ipv4_cidr_block_association.c
+  ]
+  ipv6_cidr_block                 = cidrsubnet(module.vpc.vpc_ipv6_cidr_block, 8, 3)
+  map_public_ip_on_launch         = false
+  vpc_id                          = module.vpc.vpc_id
+  tags = {
+    "Environment" = local.environment
+  }
+}
+
+resource "aws_subnet" "d" {
+  availability_zone               = local.availability_zone
+  assign_ipv6_address_on_creation = true
+  cidr_block                      = "192.168.20.0/24"
+  depends_on = [
+    module.vpc,
+    aws_vpc_ipv4_cidr_block_association.d
+  ]
+  ipv6_cidr_block                 = cidrsubnet(module.vpc.vpc_ipv6_cidr_block, 8, 4)
+  map_public_ip_on_launch         = false
+  vpc_id                          = module.vpc.vpc_id
+  tags = {
+    "Environment" = local.environment
+  }
 }
 
 # Create Private Key
@@ -74,7 +126,8 @@ resource "aws_placement_group" "placement_group" {
 resource "aws_instance" "tg" {
   depends_on = [
     module.vpc,
-    aws_placement_group.placement_group
+    aws_placement_group.placement_group,
+    module.vpc.vpc_security_group_id,
   ]
   ami                                  = var.tg_ami
   availability_zone                    = local.availability_zone
@@ -102,14 +155,15 @@ resource "aws_instance" "tg" {
 
 resource "aws_network_interface" "tg_if1" {
   depends_on = [
-    module.subnet_b,
+    module.vpc,
+    aws_subnet.b,
     aws_instance.tg
   ]
   private_ip        = var.tg_if1_private_ip
   private_ips       = [var.tg_if1_private_ip]
   security_groups   = [module.vpc.vpc_security_group_id]
   source_dest_check = var.tg_source_dest_check
-  subnet_id         = module.subnet_b.subnet_id
+  subnet_id         = aws_subnet.b.id
 
   attachment {
     instance     = aws_instance.tg.id
@@ -117,21 +171,21 @@ resource "aws_network_interface" "tg_if1" {
   }
 
   tags = {
-    "Name"        = local.tg_name
     "Environment" = local.environment
   }
 }
 
 resource "aws_network_interface" "tg_if2" {
   depends_on = [
-    module.subnet_d,
+    module.vpc,
+    aws_subnet.d,
     aws_instance.tg
   ]
   private_ip        = var.tg_if2_private_ip
   private_ips       = [var.tg_if2_private_ip]
   security_groups   = [module.vpc.vpc_security_group_id]
   source_dest_check = var.tg_source_dest_check
-  subnet_id         = module.subnet_d.subnet_id
+  subnet_id         = aws_subnet.d.id
 
   attachment {
     instance     = aws_instance.tg.id
@@ -139,7 +193,6 @@ resource "aws_network_interface" "tg_if2" {
   }
 
   tags = {
-    "Name"        = local.tg_name
     "Environment" = local.environment
   }
 }
@@ -154,7 +207,8 @@ data "aws_network_interface" "tg_if2" {
 
 resource "aws_route" "route_tg_if1" {
   depends_on = [
-    aws_instance.tg
+    module.vpc,
+    aws_instance.sut1
   ]
   destination_cidr_block = var.destination_cidr_block_tg_if1
   network_interface_id   = aws_instance.tg.primary_network_interface_id
@@ -163,7 +217,8 @@ resource "aws_route" "route_tg_if1" {
 
 resource "aws_route" "route_tg_if2" {
   depends_on = [
-    aws_instance.tg
+    module.vpc,
+    aws_instance.sut1
   ]
   destination_cidr_block = var.destination_cidr_block_tg_if2
   network_interface_id   = aws_instance.tg.primary_network_interface_id
@@ -173,7 +228,9 @@ resource "aws_route" "route_tg_if2" {
 resource "aws_instance" "sut1" {
   depends_on = [
     module.vpc,
-    aws_placement_group.placement_group
+    aws_placement_group.placement_group,
+    module.vpc.vpc_security_group_id,
+    aws_instance.tg
   ]
   ami                                  = var.sut1_ami
   availability_zone                    = local.availability_zone
@@ -194,21 +251,21 @@ resource "aws_instance" "sut1" {
   }
 
   tags = {
-    "Name"        = local.sut1_name
     "Environment" = local.environment
   }
 }
 
 resource "aws_network_interface" "sut1_if1" {
   depends_on = [
-    module.subnet_b,
+    module.vpc,
+    aws_subnet.b,
     aws_instance.sut1
   ]
   private_ip        = var.sut1_if1_private_ip
   private_ips       = [var.sut1_if1_private_ip]
   security_groups   = [module.vpc.vpc_security_group_id]
   source_dest_check = var.sut1_source_dest_check
-  subnet_id         = module.subnet_b.subnet_id
+  subnet_id         = aws_subnet.b.id
 
   attachment {
     instance     = aws_instance.sut1.id
@@ -216,21 +273,21 @@ resource "aws_network_interface" "sut1_if1" {
   }
 
   tags = {
-    "Name"        = local.sut1_name
     "Environment" = local.environment
   }
 }
 
 resource "aws_network_interface" "sut1_if2" {
   depends_on = [
-    module.subnet_d,
+    module.vpc,
+    aws_subnet.d,
     aws_instance.sut1
   ]
   private_ip        = var.sut1_if2_private_ip
   private_ips       = [var.sut1_if2_private_ip]
   security_groups   = [module.vpc.vpc_security_group_id]
   source_dest_check = var.sut1_source_dest_check
-  subnet_id         = module.subnet_d.subnet_id
+  subnet_id         = aws_subnet.d.id
 
   attachment {
     instance     = aws_instance.sut1.id
@@ -238,7 +295,6 @@ resource "aws_network_interface" "sut1_if2" {
   }
 
   tags = {
-    "Name"        = local.sut1_name
     "Environment" = local.environment
   }
 }
