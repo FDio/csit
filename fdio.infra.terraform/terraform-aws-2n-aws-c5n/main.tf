@@ -5,7 +5,7 @@ data "vault_aws_access_credentials" "creds" {
 
 locals {
   ansible_python_executable = "/usr/bin/python3"
-  availability_zone         = "eu-central-1a"
+  availability_zone         = "eu-central-1c"
   name                      = "csit-vpc"
   environment               = "csit-vpc-environment"
   key_pair_key_name         = "${var.resource_prefix}-${var.testbed_name}-pk"
@@ -32,6 +32,16 @@ module "subnet_b" {
   source                   = "../terraform-aws-subnet"
   subnet_cidr_block        = "192.168.10.0/24"
   subnet_ipv6_cidr_block   = cidrsubnet(module.vpc.vpc_ipv6_cidr_block, 8, 2)
+  subnet_availability_zone = local.availability_zone
+  tags_name                = local.name
+  tags_environment         = local.environment
+  subnet_vpc_id            = module.vpc.vpc_id
+}
+
+module "subnet_c" {
+  source                   = "../terraform-aws-subnet"
+  subnet_cidr_block        = "200.0.0.0/24"
+  subnet_ipv6_cidr_block   = cidrsubnet(module.vpc.vpc_ipv6_cidr_block, 8, 3)
   subnet_availability_zone = local.availability_zone
   tags_name                = local.name
   tags_environment         = local.environment
