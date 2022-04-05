@@ -27,6 +27,20 @@ resource "aws_security_group" "security_group" {
   vpc_id                 = aws_vpc.vpc.id
 
   ingress {
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
     from_port        = 0
     to_port          = 0
     protocol         = -1
@@ -34,27 +48,18 @@ resource "aws_security_group" "security_group" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  dynamic "ingress" {
-    for_each = var.security_group_ingress
-    content {
-      from_port        = lookup(ingress.value, "from_port", null)
-      to_port          = lookup(ingress.value, "to_port", null)
-      protocol         = lookup(ingress.value, "protocol", null)
-      self             = lookup(ingress.value, "self", null)
-      cidr_blocks      = lookup(ingress.value, "cidr_blocks", null)
-      ipv6_cidr_blocks = lookup(ingress.value, "ipv6_cidr_blocks", null)
-    }
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
-  dynamic "egress" {
-    for_each = var.security_group_egress
-    content {
-      from_port        = lookup(egress.value, "from_port", null)
-      to_port          = lookup(egress.value, "to_port", null)
-      protocol         = lookup(egress.value, "protocol", null)
-      self             = lookup(egress.value, "self", null)
-      cidr_blocks      = lookup(egress.value, "cidr_blocks", null)
-      ipv6_cidr_blocks = lookup(egress.value, "ipv6_cidr_blocks", null)
-    }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    ipv6_cidr_blocks = ["::/0"]
   }
 }
 
