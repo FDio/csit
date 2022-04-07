@@ -417,7 +417,7 @@
 | | | ... | transaction_type=${transaction_type}
 | | | ... | use_latency=${use_latency}
 | | | ... | ramp_up_duration=${ramp_up_duration}
-| | | ... | ramp_up_rate=${ramp_up_rate}
+| | | ... | ramp_up_rate=${0.0}
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
 | | | ${value} = | Set Variable | ${result.approximated_receive_rate}
