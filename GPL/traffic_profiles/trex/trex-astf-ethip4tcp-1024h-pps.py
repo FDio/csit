@@ -113,7 +113,14 @@ class TrafficProfile(TrafficProfileBaseClass):
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
         template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
 
-        return ip_gen, template, None
+        info = ASTFGlobalInfo()
+        info.mss = self.framesize - self.headers_size
+        kwargs = dict(
+            default_c_glob_info=info,
+            default_s_glob_info=info,
+        )
+
+        return ip_gen, template, kwargs
 
 
 def register():

@@ -80,6 +80,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         """
         self.udp_req += self._gen_padding(self.headers_size + len(self.udp_req))
         self.udp_res += self._gen_padding(self.headers_size + len(self.udp_res))
+        print(f"Profile: lengths req {len(self.udp_req)} res {len(self.udp_res)}")
 
         # client commands
         prog_c = ASTFProgram(stream=False)

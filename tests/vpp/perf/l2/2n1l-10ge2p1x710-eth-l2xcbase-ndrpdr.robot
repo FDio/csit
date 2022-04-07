@@ -88,6 +88,7 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize L2 cross connect
+| | Fail | Triggering "performance" teardown action.
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
