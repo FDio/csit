@@ -80,6 +80,7 @@ class TrafficProfile(TrafficProfileBaseClass):
             self.udp_data += self._gen_padding(self.headers_size, 72)
         if self.framesize == 1518:
             self.udp_data += self._gen_padding(self.headers_size, 1514)
+        print(f"DEBUG length udp_data {len(self.udp_data)}")
 
         # Client program.
         prog_c = ASTFProgram(stream=False)
