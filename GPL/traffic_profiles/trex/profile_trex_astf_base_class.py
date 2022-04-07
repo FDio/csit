@@ -72,7 +72,7 @@ class TrafficProfileBaseClass:
 
         :param current_length: Current length of the packet.
         :param required_length: Required length of the packet. If set to 0 then
-        self.framesize value is used.
+            self.framesize value is used.
         :type current_length: int
         :type required_length: int
         :returns: The generated padding.
@@ -95,7 +95,7 @@ class TrafficProfileBaseClass:
             templates or cap_list CAN be None.
 
         :returns: IP generator and profile templates or list of pcap files for
-        traffic generator.
+            traffic generator.
         :rtype: tuple
         """
         raise NotImplementedError
@@ -112,7 +112,6 @@ class TrafficProfileBaseClass:
 
         # In most cases you will not have to change the code below:
 
-        # profile
         profile = ASTFProfile(
             default_ip_gen=ip_gen,
             templates=templates,
@@ -127,7 +126,7 @@ class TrafficProfileBaseClass:
         If needed, add your own parameters.
 
         :param kwargs: Key-value pairs used by "create_profile" method while
-        creating the profile.
+            creating the profile.
         :returns: Traffic profile.
         :rtype: trex.astf.trex_astf_profile.ASTFProfile
         """
