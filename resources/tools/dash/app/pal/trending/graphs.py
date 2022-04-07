@@ -158,7 +158,183 @@ def _classify_anomalies(data):
     return classification, avgs, stdevs
 
 
-def graph_trending_tput(data: pd.DataFrame, sel:dict, layout: dict,
+def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
+    """
+    """
+
+    phy = itm["phy"].split("-")
+    if len(phy) == 4:
+        topo, arch, nic, drv = phy
+        if drv in ("dpdk", "ixgbe"):
+            drv = ""
+        else:
+            drv += "-"
+            drv = drv.replace("_", "-")
+    else:
+        return None
+    cadence = \
+        "weekly" if (arch == "aws" or itm["testtype"] != "mrr") else "daily"
+    sel_topo_arch = (
+        f"csit-vpp-perf-"
+        f"{itm['testtype'] if itm['testtype'] == 'mrr' else 'ndrpdr'}-"
+        f"{cadence}-master-{topo}-{arch}"
+    )
+    df_sel = data.loc[(data["job"] == sel_topo_arch)]
+    regex = (
+        f"^.*{nic}.*\.{itm['framesize']}-{itm['core']}-{drv}{itm['test']}-"
+        f"{'mrr' if itm['testtype'] == 'mrr' else 'ndrpdr'}$"
+    )
+    df = df_sel.loc[
+        df_sel["test_id"].apply(
+            lambda x: True if re.search(regex, x) else False
+        )
+    ].sort_values(by="start_time", ignore_index=True)
+
+    return df
+
+
+def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
+    start: datetime, end: datetime, color: str) -> list:
+    """
+    """
+
+    df = df.dropna(subset=[_VALUE[ttype], ])
+    if df.empty:
+        return list()
+
+    x_axis = [d for d in df["start_time"] if d >= start and d <= end]
+
+    anomalies, trend_avg, trend_stdev = _classify_anomalies(
+        {k: v for k, v in zip(x_axis, df[_VALUE[ttype]])}
+    )
+
+    hover = list()
+    customdata = list()
+    for _, row in df.iterrows():
+        hover_itm = (
+            f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+            f"<prop> [{row[_UNIT[ttype]]}]: {row[_VALUE[ttype]]}<br>"
+            f"<stdev>"
+            f"{row['dut_type']}-ref: {row['dut_version']}<br>"
+            f"csit-ref: {row['job']}/{row['build']}<br>"
+            f"hosts: {', '.join(row['hosts'])}"
+        )
+        if ttype == "mrr":
+            stdev = (
+                f"stdev [{row['result_receive_rate_rate_unit']}]: "
+                f"{row['result_receive_rate_rate_stdev']}<br>"
+            )
+        else:
+            stdev = ""
+        hover_itm = hover_itm.replace(
+            "<prop>", "latency" if ttype == "pdr-lat" else "average"
+        ).replace("<stdev>", stdev)
+        hover.append(hover_itm)
+        if ttype == "pdr-lat":
+            customdata.append(_get_hdrh_latencies(row, name))
+
+    hover_trend = list()
+    for avg, stdev, (_, row) in zip(trend_avg, trend_stdev, df.iterrows()):
+        hover_itm = (
+            f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+            f"trend [pps]: {avg}<br>"
+            f"stdev [pps]: {stdev}<br>"
+            f"{row['dut_type']}-ref: {row['dut_version']}<br>"
+            f"csit-ref: {row['job']}/{row['build']}<br>"
+            f"hosts: {', '.join(row['hosts'])}"
+        )
+        if ttype == "pdr-lat":
+            hover_itm = hover_itm.replace("[pps]", "[us]")
+        hover_trend.append(hover_itm)
+
+    traces = [
+        go.Scatter(  # Samples
+            x=x_axis,
+            y=df[_VALUE[ttype]],
+            name=name,
+            mode="markers",
+            marker={
+                u"size": 5,
+                u"color": color,
+                u"symbol": u"circle",
+            },
+            text=hover,
+            hoverinfo=u"text+name",
+            showlegend=True,
+            legendgroup=name,
+            customdata=customdata
+        ),
+        go.Scatter(  # Trend line
+            x=x_axis,
+            y=trend_avg,
+            name=name,
+            mode="lines",
+            line={
+                u"shape": u"linear",
+                u"width": 1,
+                u"color": color,
+            },
+            text=hover_trend,
+            hoverinfo=u"text+name",
+            showlegend=False,
+            legendgroup=name,
+        )
+    ]
+
+    if anomalies:
+        anomaly_x = list()
+        anomaly_y = list()
+        anomaly_color = list()
+        for idx, anomaly in enumerate(anomalies):
+            if anomaly in (u"regression", u"progression"):
+                anomaly_x.append(x_axis[idx])
+                anomaly_y.append(trend_avg[idx])
+                anomaly_color.append(_ANOMALY_COLOR[anomaly])
+        anomaly_color.extend([0.0, 0.5, 1.0])
+        traces.append(
+            go.Scatter(
+                x=anomaly_x,
+                y=anomaly_y,
+                mode=u"markers",
+                hoverinfo=u"none",
+                showlegend=False,
+                legendgroup=name,
+                name=f"{name}-anomalies",
+                marker={
+                    u"size": 15,
+                    u"symbol": u"circle-open",
+                    u"color": anomaly_color,
+                    u"colorscale": _COLORSCALE_LAT \
+                        if ttype == "pdr-lat" else _COLORSCALE_TPUT,
+                    u"showscale": True,
+                    u"line": {
+                        u"width": 2
+                    },
+                    u"colorbar": {
+                        u"y": 0.5,
+                        u"len": 0.8,
+                        u"title": u"Circles Marking Data Classification",
+                        u"titleside": u"right",
+                        # u"titlefont": {
+                        #     u"size": 14
+                        # },
+                        u"tickmode": u"array",
+                        u"tickvals": [0.167, 0.500, 0.833],
+                        u"ticktext": _TICK_TEXT_LAT \
+                            if ttype == "pdr-lat" else _TICK_TEXT_TPUT,
+                        u"ticks": u"",
+                        u"ticklen": 0,
+                        u"tickangle": -90,
+                        u"thickness": 10
+                    }
+                }
+            )
+        )
+
+    return traces
+
+
+def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
     start: datetime, end: datetime) -> tuple:
     """
     """
@@ -166,179 +342,20 @@ def graph_trending_tput(data: pd.DataFrame, sel:dict, layout: dict,
     if not sel:
         return None, None
 
-    def _generate_traces(ttype: str, name: str, df: pd.DataFrame,
-        start: datetime, end: datetime, color: str) -> list:
-
-        df = df.dropna(subset=[_VALUE[ttype], ])
-        if df.empty:
-            return list()
-
-        x_axis = [d for d in df["start_time"] if d >= start and d <= end]
-
-        anomalies, trend_avg, trend_stdev = _classify_anomalies(
-            {k: v for k, v in zip(x_axis, df[_VALUE[ttype]])}
-        )
-
-        hover = list()
-        customdata = list()
-        for _, row in df.iterrows():
-            hover_itm = (
-                f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
-                f"<prop> [{row[_UNIT[ttype]]}]: {row[_VALUE[ttype]]}<br>"
-                f"<stdev>"
-                f"{row['dut_type']}-ref: {row['dut_version']}<br>"
-                f"csit-ref: {row['job']}/{row['build']}"
-            )
-            if ttype == "mrr":
-                stdev = (
-                    f"stdev [{row['result_receive_rate_rate_unit']}]: "
-                    f"{row['result_receive_rate_rate_stdev']}<br>"
-                )
-            else:
-                stdev = ""
-            hover_itm = hover_itm.replace(
-                "<prop>", "latency" if ttype == "pdr-lat" else "average"
-            ).replace("<stdev>", stdev)
-            hover.append(hover_itm)
-            if ttype == "pdr-lat":
-                customdata.append(_get_hdrh_latencies(row, name))
-
-        hover_trend = list()
-        for avg, stdev in zip(trend_avg, trend_stdev):
-            if ttype == "pdr-lat":
-                hover_trend.append(
-                    f"trend [us]: {avg}<br>"
-                    f"stdev [us]: {stdev}"
-                )
-            else:
-                hover_trend.append(
-                    f"trend [pps]: {avg}<br>"
-                    f"stdev [pps]: {stdev}"
-                )
-
-        traces = [
-            go.Scatter(  # Samples
-                x=x_axis,
-                y=df[_VALUE[ttype]],
-                name=name,
-                mode="markers",
-                marker={
-                    u"size": 5,
-                    u"color": color,
-                    u"symbol": u"circle",
-                },
-                text=hover,
-                hoverinfo=u"text+name",
-                showlegend=True,
-                legendgroup=name,
-                customdata=customdata
-            ),
-            go.Scatter(  # Trend line
-                x=x_axis,
-                y=trend_avg,
-                name=name,
-                mode="lines",
-                line={
-                    u"shape": u"linear",
-                    u"width": 1,
-                    u"color": color,
-                },
-                text=hover_trend,
-                hoverinfo=u"text+name",
-                showlegend=False,
-                legendgroup=name,
-            )
-        ]
-
-        if anomalies:
-            anomaly_x = list()
-            anomaly_y = list()
-            anomaly_color = list()
-            for idx, anomaly in enumerate(anomalies):
-                if anomaly in (u"regression", u"progression"):
-                    anomaly_x.append(x_axis[idx])
-                    anomaly_y.append(trend_avg[idx])
-                    anomaly_color.append(_ANOMALY_COLOR[anomaly])
-            anomaly_color.extend([0.0, 0.5, 1.0])
-            traces.append(
-                go.Scatter(
-                    x=anomaly_x,
-                    y=anomaly_y,
-                    mode=u"markers",
-                    hoverinfo=u"none",
-                    showlegend=False,
-                    legendgroup=name,
-                    name=f"{name}-anomalies",
-                    marker={
-                        u"size": 15,
-                        u"symbol": u"circle-open",
-                        u"color": anomaly_color,
-                        u"colorscale": _COLORSCALE_LAT \
-                            if ttype == "pdr-lat" else _COLORSCALE_TPUT,
-                        u"showscale": True,
-                        u"line": {
-                            u"width": 2
-                        },
-                        u"colorbar": {
-                            u"y": 0.5,
-                            u"len": 0.8,
-                            u"title": u"Circles Marking Data Classification",
-                            u"titleside": u"right",
-                            # u"titlefont": {
-                            #     u"size": 14
-                            # },
-                            u"tickmode": u"array",
-                            u"tickvals": [0.167, 0.500, 0.833],
-                            u"ticktext": _TICK_TEXT_LAT \
-                                if ttype == "pdr-lat" else _TICK_TEXT_TPUT,
-                            u"ticks": u"",
-                            u"ticklen": 0,
-                            u"tickangle": -90,
-                            u"thickness": 10
-                        }
-                    }
-                )
-            )
-
-        return traces
-
-    # Generate graph:
     fig_tput = None
     fig_lat = None
     for idx, itm in enumerate(sel):
-        phy = itm["phy"].split("-")
-        if len(phy) == 4:
-            topo, arch, nic, drv = phy
-            if drv in ("dpdk", "ixgbe"):
-                drv = ""
-            else:
-                drv += "-"
-                drv = drv.replace("_", "-")
-        else:
+
+        df = select_trending_data(data, itm)
+        if df is None:
             continue
-        cadence = \
-            "weekly" if (arch == "aws" or itm["testtype"] != "mrr") else "daily"
-        sel_topo_arch = (
-            f"csit-vpp-perf-"
-            f"{itm['testtype'] if itm['testtype'] == 'mrr' else 'ndrpdr'}-"
-            f"{cadence}-master-{topo}-{arch}"
-        )
-        df_sel = data.loc[(data["job"] == sel_topo_arch)]
-        regex = (
-            f"^.*{nic}.*\.{itm['framesize']}-{itm['core']}-{drv}{itm['test']}-"
-            f"{'mrr' if itm['testtype'] == 'mrr' else 'ndrpdr'}$"
-        )
-        df = df_sel.loc[
-            df_sel["test_id"].apply(
-                lambda x: True if re.search(regex, x) else False
-            )
-        ].sort_values(by="start_time", ignore_index=True)
+
         name = (
             f"{itm['phy']}-{itm['framesize']}-{itm['core']}-"
             f"{itm['test']}-{itm['testtype']}"
         )
 
-        traces = _generate_traces(
+        traces = _generate_trending_traces(
             itm["testtype"], name, df, start, end, _COLORS[idx % len(_COLORS)]
         )
         if traces:
@@ -347,7 +364,7 @@ def graph_trending_tput(data: pd.DataFrame, sel:dict, layout: dict,
             fig_tput.add_traces(traces)
 
         if itm["testtype"] == "pdr":
-            traces = _generate_traces(
+            traces = _generate_trending_traces(
                 "pdr-lat", name, df, start, end, _COLORS[idx % len(_COLORS)]
             )
             if traces:
