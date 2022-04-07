@@ -129,6 +129,7 @@
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
 | | Then Send ramp-up traffic
 | | And Verify NAT44 TCP sessions number on DUT1 node
+| | Fail | Triggering "performance" teardown action.
 | | And Find NDR and PDR intervals using optimized search
 | | And Verify NAT44 TCP sessions number on DUT1 node
 
