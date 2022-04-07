@@ -61,7 +61,9 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Headers length; not used in this profile, just for the record of
         # header length for TCP packet with 0B payload
         self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
-        self.data_size = 11111
+        self.headers_size = 58  # 4B l1 crc + 14B l2 + 20B ipv4 + 20B tcp
+        self.mss = self.framesize - self.headers_size
+        self.data_size = 10 * self.mss
 
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
@@ -113,7 +115,14 @@ class TrafficProfile(TrafficProfileBaseClass):
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
         template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
 
-        return ip_gen, template, None
+        globinfo = ASTFGlobalInfo()
+        globinfo.tcp.mss = self.mss
+        kwargs = dict(
+            default_c_glob_info=globinfo,
+            default_s_glob_info=globinfo,
+        )
+
+        return ip_gen, template, kwargs
 
 
 def register():
