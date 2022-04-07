@@ -14,7 +14,6 @@
 """Plotly Dash HTML layout override.
 """
 
-
 import pandas as pd
 
 from dash import dcc
@@ -26,7 +25,8 @@ from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 
 from ..data.data import Data
-from .graphs import graph_trending_tput, graph_hdrh_latency
+from .graphs import graph_trending, graph_hdrh_latency, \
+    select_trending_data
 
 
 class Layout:
@@ -193,7 +193,23 @@ class Layout:
                         html.Div(
                             id="div-tput-metadata",
                             children=[
-                                dcc.Markdown("**Throughput**"),
+                                html.Button(
+                                    id="btn-download-data",
+                                    children=["Download Data"],
+                                    style={"display": "block"}
+                                ),
+                                dcc.Download(id="download-data"),
+                                dcc.Clipboard(
+                                    target_id="tput-metadata",
+                                    title="Copy",
+                                    style={"display": "inline-block"}
+                                ),
+                                html.Nobr(" "),
+                                html.Nobr(" "),
+                                dcc.Markdown(
+                                    children="**Throughput**",
+                                    style={"display": "inline-block"}
+                                ),
                                 html.Pre(
                                     id="tput-metadata",
                                     children="Click on data points in the graph"
@@ -204,7 +220,17 @@ class Layout:
                         html.Div(
                             id="div-latency-metadata",
                             children=[
-                                dcc.Markdown("**Latency**"),
+                                dcc.Clipboard(
+                                    target_id="latency-metadata",
+                                    title="Copy",
+                                    style={"display": "inline-block"}
+                                ),
+                                html.Nobr(" "),
+                                html.Nobr(" "),
+                                dcc.Markdown(
+                                    children="**Latency**",
+                                    style={"display": "inline-block"}
+                                ),
                                 html.Pre(
                                     id="latency-metadata",
                                     children="Click on data points in the graph"
@@ -627,7 +653,7 @@ class Layout:
                 })
 
             elif trigger_id in ("btn-sel-display", "dpr-period"):
-                fig_tput, fig_lat = graph_trending_tput(
+                fig_tput, fig_lat = graph_trending(
                     self.data, store_sel, self.layout, d_start, d_end
                 )
                 output.set_values({
@@ -653,7 +679,7 @@ class Layout:
                             new_store_sel.append(item)
                     store_sel = new_store_sel
                 if store_sel:
-                    fig_tput, fig_lat = graph_trending_tput(
+                    fig_tput, fig_lat = graph_trending(
                         self.data, store_sel, self.layout, d_start, d_end
                     )
                     output.set_values({
@@ -691,8 +717,11 @@ class Layout:
             Input("graph-tput", "clickData")
         )
         def _show_tput_metadata(hover_data):
+            """
+            """
             if not hover_data:
                 raise PreventUpdate
+
             return hover_data["points"][0]["text"].replace("<br>", "\n"),
 
         @app.callback(
@@ -702,15 +731,40 @@ class Layout:
             Input("graph-latency", "clickData")
         )
         def _show_latency_metadata(hover_data):
+            """
+            """
             if not hover_data:
                 raise PreventUpdate
-            graph = graph_hdrh_latency(
-                hover_data["points"][0]["customdata"], self.layout
-            )
-            if not graph:
-                graph = no_update
+
+            graph = no_update
+            hdrh_data = hover_data["points"][0].get("customdata", None)
+            if hdrh_data:
+                graph = graph_hdrh_latency(hdrh_data, self.layout)
+
             return (
                 hover_data["points"][0]["text"].replace("<br>", "\n"),
                 graph,
                 self.STYLE_INLINE if graph else self.STYLE_HIDEN
             )
+
+        @app.callback(
+            Output("download-data", "data"),
+            State("selected-tests", "data"),
+            Input("btn-download-data", "n_clicks"),
+            prevent_initial_call=True
+        )
+        def _download_data(store_sel, n_clicks):
+            """
+            """
+
+            if not n_clicks:
+                raise PreventUpdate
+
+            df = pd.DataFrame()
+            for itm in store_sel:
+                sel_data = select_trending_data(self.data, itm)
+                if sel_data is None:
+                    continue
+                df = pd.concat([df, sel_data], ignore_index=True)
+
+            return dcc.send_data_frame(df.to_csv, "trending_data.csv")
