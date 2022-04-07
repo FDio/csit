@@ -76,10 +76,8 @@ class TrafficProfile(TrafficProfileBaseClass):
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
-        if self.framesize == 64:
-            self.udp_data += self._gen_padding(self.headers_size, 72)
-        if self.framesize == 1518:
-            self.udp_data += self._gen_padding(self.headers_size, 1514)
+        self.udp_data += self._gen_padding(self.headers_size)
+        print(f"DEBUG length udp_data {len(self.udp_data)}")
 
         # Client program.
         prog_c = ASTFProgram(stream=False)
