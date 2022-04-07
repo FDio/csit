@@ -171,13 +171,13 @@ variable "tg_if2_private_ip" {
 variable "destination_cidr_block_tg_if1" {
   description = "The destination CIDR block."
   type        = string
-  default     = "10.0.0.0/16"
+  default     = "10.0.0.0/24"
 }
 
 variable "destination_cidr_block_tg_if2" {
   description = "The destination CIDR block."
   type        = string
-  default     = "20.0.0.0/16"
+  default     = "20.0.0.0/24"
 }
 
 variable "sut1_if1_private_ip" {

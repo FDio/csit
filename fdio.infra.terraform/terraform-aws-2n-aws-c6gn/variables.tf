@@ -11,7 +11,7 @@ variable "region" {
 variable "resource_prefix" {
   description = "Resources name prefix."
   type        = string
-  default     = "csit-2n-aws-c5n"
+  default     = "csit-2n-aws-c6gn"
 }
 
 variable "testbed_name" {
@@ -68,7 +68,7 @@ variable "tg_instance_initiated_shutdown_behavior" {
 variable "tg_instance_type" {
   description = "The instance type to use for the instance."
   type        = string
-  default     = "c5n.4xlarge"
+  default     = "c6gn.4xlarge"
 }
 
 variable "tg_private_ip" {
@@ -104,7 +104,7 @@ variable "sut1_instance_initiated_shutdown_behavior" {
 variable "sut1_instance_type" {
   description = "The instance type to use for the instance."
   type        = string
-  default     = "c5n.4xlarge"
+  default     = "c6gn.4xlarge"
 }
 
 variable "sut1_private_ip" {
