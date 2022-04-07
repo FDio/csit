@@ -14,6 +14,8 @@
 """Plotly Dash HTML layout override.
 """
 
+import logging
+import json
 
 import pandas as pd
 
@@ -193,7 +195,17 @@ class Layout:
                         html.Div(
                             id="div-tput-metadata",
                             children=[
-                                dcc.Markdown("**Throughput**"),
+                                dcc.Clipboard(
+                                    target_id="tput-metadata",
+                                    title="Copy",
+                                    style={"display": "inline-block"}
+                                ),
+                                html.Nobr(" "),
+                                html.Nobr(" "),
+                                dcc.Markdown(
+                                    children="**Throughput**",
+                                    style={"display": "inline-block"}
+                                ),
                                 html.Pre(
                                     id="tput-metadata",
                                     children="Click on data points in the graph"
@@ -204,7 +216,17 @@ class Layout:
                         html.Div(
                             id="div-latency-metadata",
                             children=[
-                                dcc.Markdown("**Latency**"),
+                                dcc.Clipboard(
+                                    target_id="latency-metadata",
+                                    title="Copy",
+                                    style={"display": "inline-block"}
+                                ),
+                                html.Nobr(" "),
+                                html.Nobr(" "),
+                                dcc.Markdown(
+                                    children="**Latency**",
+                                    style={"display": "inline-block"}
+                                ),
                                 html.Pre(
                                     id="latency-metadata",
                                     children="Click on data points in the graph"
@@ -691,8 +713,11 @@ class Layout:
             Input("graph-tput", "clickData")
         )
         def _show_tput_metadata(hover_data):
+            """
+            """
             if not hover_data:
                 raise PreventUpdate
+
             return hover_data["points"][0]["text"].replace("<br>", "\n"),
 
         @app.callback(
@@ -702,13 +727,16 @@ class Layout:
             Input("graph-latency", "clickData")
         )
         def _show_latency_metadata(hover_data):
+            """
+            """
             if not hover_data:
                 raise PreventUpdate
-            graph = graph_hdrh_latency(
-                hover_data["points"][0]["customdata"], self.layout
-            )
-            if not graph:
-                graph = no_update
+
+            graph = no_update
+            hdrh_data = hover_data["points"][0].get("customdata", None)
+            if hdrh_data:
+                graph = graph_hdrh_latency(hdrh_data, self.layout)
+
             return (
                 hover_data["points"][0]["text"].replace("<br>", "\n"),
                 graph,

@@ -187,7 +187,8 @@ def graph_trending_tput(data: pd.DataFrame, sel:dict, layout: dict,
                 f"<prop> [{row[_UNIT[ttype]]}]: {row[_VALUE[ttype]]}<br>"
                 f"<stdev>"
                 f"{row['dut_type']}-ref: {row['dut_version']}<br>"
-                f"csit-ref: {row['job']}/{row['build']}"
+                f"csit-ref: {row['job']}/{row['build']}<br>"
+                f"hosts: {', '.join(row['hosts'])}"
             )
             if ttype == "mrr":
                 stdev = (
@@ -204,17 +205,18 @@ def graph_trending_tput(data: pd.DataFrame, sel:dict, layout: dict,
                 customdata.append(_get_hdrh_latencies(row, name))
 
         hover_trend = list()
-        for avg, stdev in zip(trend_avg, trend_stdev):
+        for avg, stdev, (_, row) in zip(trend_avg, trend_stdev, df.iterrows()):
+            hover_itm = (
+                f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+                f"trend [pps]: {avg}<br>"
+                f"stdev [pps]: {stdev}<br>"
+                f"{row['dut_type']}-ref: {row['dut_version']}<br>"
+                f"csit-ref: {row['job']}/{row['build']}<br>"
+                f"hosts: {', '.join(row['hosts'])}"
+            )
             if ttype == "pdr-lat":
-                hover_trend.append(
-                    f"trend [us]: {avg}<br>"
-                    f"stdev [us]: {stdev}"
-                )
-            else:
-                hover_trend.append(
-                    f"trend [pps]: {avg}<br>"
-                    f"stdev [pps]: {stdev}"
-                )
+                hover_itm = hover_itm.replace("[pps]", "[us]")
+            hover_trend.append(hover_itm)
 
         traces = [
             go.Scatter(  # Samples
