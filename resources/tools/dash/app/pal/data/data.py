@@ -135,8 +135,6 @@ class Data:
                     u"\n"
                     f"Creation of dataframe {path} took: {time() - start}"
                     u"\n"
-                    f"{df}"
-                    u"\n"
                 )
         except NoFilesFound as err:
             logging.error(f"No parquets found.\n{err}")
