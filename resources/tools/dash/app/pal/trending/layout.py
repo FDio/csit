@@ -19,7 +19,7 @@ import pandas as pd
 from dash import dcc
 from dash import html
 from dash import callback_context, no_update
-from dash import Input, Output, State, callback
+from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
@@ -37,8 +37,7 @@ class Layout:
     STYLE_BLOCK = {"display": "block", "vertical-align": "top"}
     STYLE_INLINE ={
         "display": "inline-block",
-        "vertical-align": "top",
-        "width": "33%"
+        "vertical-align": "top"
     }
     NO_GRAPH = {"data": [], "layout": {}, "frames": []}
 
@@ -163,8 +162,7 @@ class Layout:
             ],
             style={
                 "display": "inline-block",
-                "width": "18%",
-                "padding": "5px"
+                "width": "20%"
             }
         )
 
@@ -174,31 +172,19 @@ class Layout:
         return html.Div(
             id="div-plotting-area",
             children=[
-                dcc.Loading(
-                    id="loading-graph",
-                    children=[
-                        dcc.Graph(
-                            id="graph-tput",
-                            style=self.STYLE_HIDEN
-                        ),
-                        dcc.Graph(
-                            id="graph-latency",
-                            style=self.STYLE_HIDEN
-                        )
-                    ],
-                    type="circle"
-                ),
-                html.Div(
-                    children=[
-                        html.Div(
-                            id="div-tput-metadata",
-                            children=[
-                                html.Button(
-                                    id="btn-download-data",
-                                    children=["Download Data"],
-                                    style={"display": "block"}
-                                ),
-                                dcc.Download(id="download-data"),
+                html.Table(children=[
+                    html.Tr(
+                        id="div-tput",
+                        style=self.STYLE_HIDEN,
+                        children=[
+                            html.Td(children=[
+                                dcc.Loading(
+                                    dcc.Graph(
+                                        id="graph-tput"
+                                    ),
+                                )
+                            ], style={"width": "80%"}),
+                            html.Td(children=[
                                 dcc.Clipboard(
                                     target_id="tput-metadata",
                                     title="Copy",
@@ -212,55 +198,81 @@ class Layout:
                                 ),
                                 html.Pre(
                                     id="tput-metadata",
-                                    children="Click on data points in the graph"
-                                )
-                            ],
-                            style=self.STYLE_HIDEN
-                        ),
-                        html.Div(
-                            id="div-latency-metadata",
-                            children=[
-                                dcc.Clipboard(
-                                    target_id="latency-metadata",
-                                    title="Copy",
-                                    style={"display": "inline-block"}
+                                    children="Click on data point in the graph"
                                 ),
-                                html.Nobr(" "),
-                                html.Nobr(" "),
-                                dcc.Markdown(
-                                    children="**Latency**",
-                                    style={"display": "inline-block"}
-                                ),
-                                html.Pre(
-                                    id="latency-metadata",
-                                    children="Click on data points in the graph"
-                                )
-                            ],
-                            style=self.STYLE_HIDEN
-                        ),
-                        html.Div(
-                            id="div-latency-hdrh",
-                            children=[
-                                dcc.Loading(
-                                    id="loading-hdrh-latency-graph",
+                                html.Div(
+                                    id="div-lat-metadata",
+                                    style=self.STYLE_HIDEN,
                                     children=[
-                                        dcc.Graph(
-                                            id="graph-latency-hdrh"
+                                        dcc.Clipboard(
+                                            target_id="lat-metadata",
+                                            title="Copy",
+                                            style={"display": "inline-block"}
+                                        ),
+                                        html.Nobr(" "),
+                                        html.Nobr(" "),
+                                        dcc.Markdown(
+                                            children="**Latency**",
+                                            style={"display": "inline-block"}
+                                        ),
+                                        html.Pre(
+                                            id="lat-metadata",
+                                            children= \
+                                            "Click on data point in the graph"
                                         )
-                                    ],
-                                    type="circle"
+                                    ]
                                 )
-                            ],
-                            style=self.STYLE_HIDEN
-                        )
-                    ]
-                )
+                            ], style={"width": "20%"}),
+                        ]
+                    ),
+                    html.Tr(
+                        id="div-latency",
+                        style=self.STYLE_HIDEN,
+                        children=[
+                            html.Td(children=[
+                                dcc.Loading(
+                                    dcc.Graph(
+                                        id="graph-latency"
+                                    )
+                                )
+                            ], style={"width": "80%"}),
+                            html.Td(children=[
+                                dcc.Loading(
+                                    dcc.Graph(
+                                        id="graph-latency-hdrh",
+                                        style=self.STYLE_INLINE,
+                                        figure=self.NO_GRAPH
+                                    )
+                                )
+                            ], style={"width": "20%"}),
+                        ]
+                    ),
+                    html.Tr(
+                        id="div-download",
+                        style=self.STYLE_HIDEN,
+                        children=[
+                            html.Td(children=[
+                                dcc.Loading(
+                                    children=[
+                                        html.Button(
+                                            id="btn-download-data",
+                                            children=["Download Data"]
+                                        ),
+                                        dcc.Download(id="download-data")
+                                    ]
+                                )
+                            ], style={"width": "80%"}),
+                            html.Td(children=[
+                                html.Nobr(" ")
+                            ], style={"width": "20%"}),
+                        ]
+                    ),
+                ]),
             ],
             style={
                 "vertical-align": "top",
                 "display": "inline-block",
-                "width": "80%",
-                "padding": "5px"
+                "width": "80%"
             }
         )
 
@@ -540,11 +552,11 @@ class Layout:
 
         @app.callback(
             Output("graph-tput", "figure"),
-            Output("graph-tput", "style"),
-            Output("div-tput-metadata", "style"),
             Output("graph-latency", "figure"),
-            Output("graph-latency", "style"),
-            Output("div-latency-metadata", "style"),
+            Output("div-tput", "style"),
+            Output("div-latency", "style"),
+            Output("div-lat-metadata", "style"),
+            Output("div-download", "style"),
             Output("selected-tests", "data"),  # Store
             Output("cl-selected", "options"),  # User selection
             Output("dd-ctrl-phy", "value"),
@@ -587,11 +599,11 @@ class Layout:
                 def __init__(self) -> None:
                     self._output = {
                         "graph-tput-figure": no_update,
-                        "graph-tput-style": no_update,
-                        "div-tput-metadata-style": no_update,
                         "graph-lat-figure": no_update,
-                        "graph-lat-style": no_update,
+                        "div-tput-style": no_update,
+                        "div-latency-style": no_update,
                         "div-lat-metadata-style": no_update,
+                        "div-download-style": no_update,
                         "selected-tests-data": no_update,
                         "cl-selected-options": no_update,
                         "dd-ctrl-phy-value": no_update,
@@ -659,16 +671,16 @@ class Layout:
                 output.set_values({
                     "graph-tput-figure": \
                         fig_tput if fig_tput else self.NO_GRAPH,
-                    "graph-tput-style": \
-                        self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
-                    "div-tput-metadata-style": \
-                        self.STYLE_INLINE if fig_tput else self.STYLE_HIDEN,
                     "graph-lat-figure": \
                         fig_lat if fig_lat else self.NO_GRAPH,
-                    "graph-lat-style": \
+                    "div-tput-style": \
+                        self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                    "div-latency-style": \
                         self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
                     "div-lat-metadata-style": \
-                        self.STYLE_INLINE if fig_lat else self.STYLE_HIDEN
+                        self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
+                    "div-download-style": \
+                        self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
                 })
 
             elif trigger_id == "btn-sel-remove":
@@ -685,27 +697,27 @@ class Layout:
                     output.set_values({
                         "graph-tput-figure": \
                             fig_tput if fig_tput else self.NO_GRAPH,
-                        "graph-tput-style": \
-                            self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
-                        "div-tput-metadata-style": \
-                            self.STYLE_INLINE if fig_tput else self.STYLE_HIDEN,
                         "graph-lat-figure": \
                             fig_lat if fig_lat else self.NO_GRAPH,
-                        "graph-lat-style": \
+                        "div-tput-style": \
+                            self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                        "div-latency-style": \
                             self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
                         "div-lat-metadata-style": \
-                            self.STYLE_INLINE if fig_lat else self.STYLE_HIDEN,
+                            self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
+                        "div-download-style": \
+                            self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
                         "selected-tests-data": store_sel,
                         "cl-selected-options": _list_tests()
                     })
                 else:
                     output.set_values({
                         "graph-tput-figure": self.NO_GRAPH,
-                        "graph-tput-style": self.STYLE_HIDEN,
-                        "div-tput-metadata-style": self.STYLE_HIDEN,
                         "graph-lat-figure": self.NO_GRAPH,
-                        "graph-lat-style": self.STYLE_HIDEN,
+                        "div-tput-style": self.STYLE_HIDEN,
+                        "div-latency-style": self.STYLE_HIDEN,
                         "div-lat-metadata-style": self.STYLE_HIDEN,
+                        "div-download-style": self.STYLE_HIDEN,
                         "selected-tests-data": store_sel,
                         "cl-selected-options": _list_tests()
                     })
@@ -722,15 +734,15 @@ class Layout:
             if not hover_data:
                 raise PreventUpdate
 
-            return hover_data["points"][0]["text"].replace("<br>", "\n"),
+            return hover_data["points"][0]["text"].replace("<br>", "\n")
 
         @app.callback(
-            Output("latency-metadata", "children"),
             Output("graph-latency-hdrh", "figure"),
-            Output("div-latency-hdrh", "style"),
+            Output("graph-latency-hdrh", "style"),
+            Output("lat-metadata", "children"),
             Input("graph-latency", "clickData")
         )
-        def _show_latency_metadata(hover_data):
+        def _show_latency_hdhr(hover_data):
             """
             """
             if not hover_data:
@@ -742,9 +754,9 @@ class Layout:
                 graph = graph_hdrh_latency(hdrh_data, self.layout)
 
             return (
-                hover_data["points"][0]["text"].replace("<br>", "\n"),
                 graph,
-                self.STYLE_INLINE if graph else self.STYLE_HIDEN
+                self.STYLE_INLINE,
+                hover_data["points"][0]["text"].replace("<br>", "\n")
             )
 
         @app.callback(
