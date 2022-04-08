@@ -161,6 +161,12 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
                 or u"-pps-" in suite_id
                 or u"-tput-" in suite_id
         ):
+            if u"imix" in str(kwargs[u"frame_size"]).lower():
+                # ASTF does not support IMIX (yet).
+                emit = False
+        if u"tcp" in suite_id and u"-cps-" in suite_id:
+            # Contrary to UDP, there is no place to affect frame size
+            # in TCP CPS tests. Actual frames are close to min size.
             if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
                 emit = False
         if emit:
