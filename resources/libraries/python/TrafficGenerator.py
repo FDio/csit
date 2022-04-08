@@ -643,6 +643,7 @@ class TrafficGenerator(AbstractMeasurer):
         )
         command_line.add_with_value(u"duration", f"{computed_duration!r}")
         command_line.add_with_value(u"frame_size", self.frame_size)
+        # TODO: Make n_data_frames configurable here?
         command_line.add_with_value(u"multiplier", multiplier)
         command_line.add_with_value(u"port_0", p_0)
         command_line.add_with_value(u"port_1", p_1)
