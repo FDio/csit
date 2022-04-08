@@ -118,3 +118,39 @@
 | 64B-4c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
+
+| 1518B-1c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
+| | [Tags] | 1518B | 1C
+| | frame_size=${1518} | phy_cores=${1}
+
+| 1518B-2c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
+| | [Tags] | 1518B | 2C
+| | frame_size=${1518} | phy_cores=${2}
+
+| 1518B-4c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
+| | [Tags] | 1518B | 4C
+| | frame_size=${1518} | phy_cores=${4}
+
+| 9000B-1c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
+| | [Tags] | 9000B | 1C
+| | frame_size=${9000} | phy_cores=${1}
+
+| 9000B-2c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
+| | [Tags] | 9000B | 2C
+| | frame_size=${9000} | phy_cores=${2}
+
+| 9000B-4c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
+| | [Tags] | 9000B | 4C
+| | frame_size=${9000} | phy_cores=${4}
+
+| IMIX-1c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
+| | [Tags] | IMIX | 1C
+| | frame_size=IMIX_v4_1 | phy_cores=${1}
+
+| IMIX-2c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
+| | [Tags] | IMIX | 2C
+| | frame_size=IMIX_v4_1 | phy_cores=${2}
+
+| IMIX-4c-ethip4udp-ip4base-h65536-p63-s4128768-cps-ndrpdr
+| | [Tags] | IMIX | 4C
+| | frame_size=IMIX_v4_1 | phy_cores=${4}
