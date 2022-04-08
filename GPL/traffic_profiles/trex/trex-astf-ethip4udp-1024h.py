@@ -66,6 +66,7 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # Headers length
         self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B udp
+        self.headers_size = 46  # 4B l1 crc + 14B l2 + 20B ipv4 + 8B udp
 
         # No need to set keepalive, both programs end just after start&send.
 
@@ -80,6 +81,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         """
         self.udp_req += self._gen_padding(self.headers_size + len(self.udp_req))
         self.udp_res += self._gen_padding(self.headers_size + len(self.udp_res))
+        print(f"DEBUG req {len(self.udp_req)} res {len(self.udp_res)}")
 
         # client commands
         prog_c = ASTFProgram(stream=False)
