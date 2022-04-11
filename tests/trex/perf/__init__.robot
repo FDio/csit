@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -36,7 +36,7 @@
 | | [Documentation]
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | |
-| | ${stat_runtime}= | Create List | noop
+| | ${stat_runtime}= | Create List | trex-runtime
 | | ${stat_pre_trial}= | Create List | noop
 | | ${stat_post_trial}= | Create List | noop
 | | Set Global Variable | ${stat_runtime}
