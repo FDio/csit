@@ -58,7 +58,7 @@
 | | ... | duration_limit=${0.0}
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
-| | Sleep | 1s
+| | Sleep | ${PERF_TRIAL_LATENCY_DURATION}s
 | | Stop traffic on tg
 
 | Additional Statistics Action For vpp-runtime
