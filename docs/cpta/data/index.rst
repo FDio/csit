@@ -26,6 +26,10 @@ in the CSV formats:
 
         - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-3n-icx-trending.csv>`_
 
+    - 3n-alt
+
+        - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-3n-alt-trending.csv>`_
+
     - 2n-zn2
 
         - `CSV format <../_static/vpp/csit-vpp-perf-mrr-daily-master-2n-zn2-trending.csv>`_

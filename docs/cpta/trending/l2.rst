@@ -5,6 +5,7 @@ L2 Ethernet Switching
 
     l2-2n-icx-xxv710
     l2-3n-icx-xxv710
+    l2-3n-alt-xl710
     l2-2n-clx-xxv710
     l2-2n-clx-x710
     l2-2n-clx-cx556a
