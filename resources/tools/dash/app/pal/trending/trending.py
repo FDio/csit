@@ -14,6 +14,7 @@
 """Instantiate the Trending Dash applocation.
 """
 import dash
+import dash_bootstrap_components as dbc
 
 from .layout import Layout
 
@@ -30,16 +31,13 @@ def init_trending(server):
     dash_app = dash.Dash(
         server=server,
         routes_pathname_prefix=u"/trending/",
-        external_stylesheets=[
-            u"/static/dist/css/styles.css",
-            u"https://fonts.googleapis.com/css?family=Lato",
-        ],
+        external_stylesheets=[dbc.themes.JOURNAL],
     )
 
     # Custom HTML layout
     layout = Layout(
         app=dash_app,
-        html_layout_file="pal/trending/html_layout.txt",
+        html_layout_file="pal/templates/trending_layout.jinja2",
         spec_file="pal/trending/spec_test_selection.yaml",
         graph_layout_file="pal/trending/layout.yaml",
         data_spec_file="pal/data/data.yaml"

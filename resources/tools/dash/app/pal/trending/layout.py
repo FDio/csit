@@ -21,6 +21,7 @@ from dash import html
 from dash import callback_context, no_update
 from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
+import dash_bootstrap_components as dbc
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 
@@ -136,6 +137,7 @@ class Layout:
                 id="div-main",
                 children=[
                     dcc.Store(id="selected-tests"),
+                    self._add_navbar(),
                     self._add_ctrl_div(),
                     self._add_plotting_div()
                 ]
@@ -144,6 +146,22 @@ class Layout:
             return html.Div(
             id="div-main-error",
             children="An Error Occured."
+        )
+
+    def _add_navbar(self):
+        """Add nav element with navigation panel. It is placed on the top.
+        """
+        return dbc.NavbarSimple(
+            children=[
+                dbc.NavItem(
+                    dbc.NavLink("Continuous Performance Trending", href="#")
+                )
+            ],
+            brand="FD.io CSIT",
+            brand_href="/",
+            color="dark",
+            dark=True,
+            expand="always",
         )
 
     def _add_ctrl_div(self):

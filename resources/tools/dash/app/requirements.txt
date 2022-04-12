@@ -4,6 +4,7 @@ Brotli==1.0.9
 click==8.0.3
 dash==2.0.0
 dash-core-components==2.0.0
+dash_bootstrap_components==1.1.0
 dash-html-components==2.0.0
 dash-renderer==1.9.1
 dash-table==5.0.0
