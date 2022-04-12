@@ -129,6 +129,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
+| | Fail | Triggering "performance" teardown action.
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
@@ -143,3 +144,27 @@
 | 64B-4c-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
+
+| 1518B-1c-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr
+| | [Tags] | 1518B | 1C
+| | frame_size=${1518} | phy_cores=${1}
+
+| 1518B-2c-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr
+| | [Tags] | 1518B | 2C
+| | frame_size=${1518} | phy_cores=${2}
+
+| 1518B-4c-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr
+| | [Tags] | 1518B | 4C
+| | frame_size=${1518} | phy_cores=${4}
+
+| 9000B-1c-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr
+| | [Tags] | 9000B | 1C
+| | frame_size=${9000} | phy_cores=${1}
+
+| 9000B-2c-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr
+| | [Tags] | 9000B | 2C
+| | frame_size=${9000} | phy_cores=${2}
+
+| 9000B-4c-ethip4udp-nat44ed-h1024-p63-s64512-cps-ndrpdr
+| | [Tags] | 9000B | 4C
+| | frame_size=${9000} | phy_cores=${4}
