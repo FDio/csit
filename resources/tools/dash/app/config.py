@@ -21,11 +21,6 @@ class Config:
     FLASK_APP = "wsgi.py"
     FLASK_ENV = "production"
 
-    # Assets
-    LESS_BIN = "/usr/local/bin/lessc"
-    ASSETS_DEBUG = "False"
-    LESS_RUN_IN_DEBUG = "False"
-
     # Static Assets
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
