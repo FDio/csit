@@ -127,20 +127,45 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
+| | Fail | Triggering "performance" teardown action.
 | | Then Send ramp-up traffic
 | | And Verify NAT44 TCP sessions number on DUT1 node
 | | And Find NDR and PDR intervals using optimized search
 | | And Verify NAT44 TCP sessions number on DUT1 node
 
 *** Test Cases ***
-| 64B-1c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
-| | [Tags] | 64B | 1C
-| | frame_size=${64} | phy_cores=${1}
+| 100B-1c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
+| | [Tags] | 100B | 1C
+| | frame_size=${100} | phy_cores=${1}
 
-| 64B-2c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
-| | [Tags] | 64B | 2C
-| | frame_size=${64} | phy_cores=${2}
+| 100B-2c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
+| | [Tags] | 100B | 2C
+| | frame_size=${100} | phy_cores=${2}
 
-| 64B-4c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
-| | [Tags] | 64B | 4C
-| | frame_size=${64} | phy_cores=${4}
+| 100B-4c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
+| | [Tags] | 100B | 4C
+| | frame_size=${100} | phy_cores=${4}
+
+| 1518B-1c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
+| | [Tags] | 1518B | 1C
+| | frame_size=${1518} | phy_cores=${1}
+
+| 1518B-2c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
+| | [Tags] | 1518B | 2C
+| | frame_size=${1518} | phy_cores=${2}
+
+| 1518B-4c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
+| | [Tags] | 1518B | 4C
+| | frame_size=${1518} | phy_cores=${4}
+
+| 9000B-1c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
+| | [Tags] | 9000B | 1C
+| | frame_size=${9000} | phy_cores=${1}
+
+| 9000B-2c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
+| | [Tags] | 9000B | 2C
+| | frame_size=${9000} | phy_cores=${2}
+
+| 9000B-4c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr
+| | [Tags] | 9000B | 4C
+| | frame_size=${9000} | phy_cores=${4}

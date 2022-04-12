@@ -204,7 +204,7 @@ class Constants:
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 8192)
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 8)
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 1)
 
     # TRex set number of RX/TX descriptors
     # Set to 0 to use default values
@@ -268,6 +268,10 @@ class Constants:
     PERF_TRIAL_ASTF_DELAY = get_float_from_env(
         u"PERF_TRIAL_ASTF_DELAY", 0.112
     )
+
+    # Number of data frames in TPUT transaction.
+    # Setting more than 3 makes 9000B TCP test push in 32768B chunks.
+    ASTF_N_DATA_FRAMES = get_int_from_env(u"ASTF_N_DATA_FRAMES", 3)
 
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
