@@ -5,6 +5,9 @@
 - type: "data-sets"
 
   # Compressed failed tests (last builds)
+  table-last-failed-tests-3n-alt:
+    csit-vpp-perf-mrr-daily-master-3n-alt:
+      - "lastCompletedBuild"
   table-last-failed-tests-2n-icx:
     csit-vpp-perf-mrr-daily-master-2n-icx:
       - "lastCompletedBuild"
@@ -74,6 +77,13 @@
   table-last-failed-tests-trex-2n-skx-ndrpdr:
     csit-trex-perf-ndrpdr-weekly-master-2n-skx:
       - "lastCompletedBuild"
+
+  # 3n-icx
+  plot-performance-trending-vpp-3n-alt:
+    csit-vpp-perf-mrr-daily-master-3n-alt:
+      start: 2
+      end: "lastCompletedBuild"
+      max-builds: 180
 
   # 2n-icx
   plot-performance-trending-vpp-2n-icx:

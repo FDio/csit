@@ -33,6 +33,11 @@ Legend to the tables:
 
 .. include:: ../../../_build/_static/vpp/failed-tests-3n-icx-ndrpdr.rst
 
+3n-alt-mrr
+----------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-3n-alt.rst
+
 2n-skx-mrr
 ----------
 
