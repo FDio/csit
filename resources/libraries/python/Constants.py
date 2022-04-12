@@ -204,7 +204,7 @@ class Constants:
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 8192)
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 8)
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 1)
 
     # TRex set number of RX/TX descriptors
     # Set to 0 to use default values
@@ -268,6 +268,14 @@ class Constants:
     PERF_TRIAL_ASTF_DELAY = get_float_from_env(
         u"PERF_TRIAL_ASTF_DELAY", 0.112
     )
+
+    # Number of data frames in TPUT transaction, used both by TCP and UDP.
+    # The value should be 33 to keep historic continuity for UDP TPUT tests,
+    # but for TCP and 9000B frames we are limited by TRex window of 48 KiB.
+    # https://github.com/cisco-system-traffic-generator/
+    # trex-core/blob/v2.88/src/44bsd/tcp_var.h#L896-L903
+    ASTF_N_DATA_FRAMES = get_int_from_env(u"ASTF_N_DATA_FRAMES", 33)
+    # FIXME: ^ is trying 33 anyway.
 
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
