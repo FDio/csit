@@ -38,13 +38,9 @@ def init_app():
     with app.app_context():
         # Import parts of our core Flask app.
         from . import routes
-        from .assets import compile_static_assets
 
         assets = Environment()
         assets.init_app(app)
-
-        # Compile static assets.
-        compile_static_assets(assets)
 
         # Import Dash applications.
         from .trending.trending import init_trending
