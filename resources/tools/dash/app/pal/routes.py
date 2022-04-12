@@ -22,10 +22,9 @@ from flask import render_template
 def home():
     """Landing page.
     """
-
     return render_template(
-        u"index.jinja2",
+        u"index_layout.jinja2",
         title=u"FD.io CSIT",
         description=u"Performance Dashboard",
-        template=u"home-template"
+        template=u"d-flex h-100 text-center text-white bg-dark"
     )
