@@ -16,6 +16,7 @@
 from importlib import import_module
 from logging.config import dictConfig
 from logging import getLogger
+from time import sleep
 import sys
 
 from .parser import Parser
@@ -46,7 +47,7 @@ class Executor:
         Main executor function will run programs from all bundles in a loop.
 
         Function call:
-            attach(duration)
+            attach(sample_period) for BPF / attach(duration) for VPP
             fetch_data()
             process_data()
             detach()
@@ -69,7 +70,11 @@ class Executor:
                     serializer=serializer,
                     hook=hook
                 )
-                bundle.attach(duration=self.scheduler[u"duration"])
+                if u"sample_period" in self.scheduler:
+                    bundle.attach(self.scheduler[u"sample_period"])
+                    sleep(self.scheduler[u"duration"])
+                else:
+                    bundle.attach(self.scheduler[u"duration"])
                 bundle.fetch_data()
                 bundle.process_data()
                 bundle.detach()
