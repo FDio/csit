@@ -13,10 +13,12 @@
 
 """Prepare data for Plotly Dash."""
 
+from datetime import datetime, timedelta
 import logging
 from time import time
 
 import awswrangler as wr
+from pytz import UTC
 
 from yaml import load, FullLoader, YAMLError
 from awswrangler.exceptions import EmptyDataFrame, NoFilesFound
@@ -82,7 +84,7 @@ class Data:
     def _create_dataframe_from_parquet(self,
         path, partition_filter=None, columns=None,
         validate_schema=False, last_modified_begin=None,
-        last_modified_end=None):
+        last_modified_end=None, days=None):
         """Read parquet stored in S3 compatible storage and returns Pandas
         Dataframe.
 
@@ -116,6 +118,8 @@ class Data:
         """
         df = None
         start = time()
+        if days:
+            last_modified_begin = datetime.now(tz=UTC) - timedelta(days=days)
         try:
             df = wr.s3.read_parquet(
                 path=path,
@@ -144,7 +148,7 @@ class Data:
         self._data = df
         return df
 
-    def read_stats(self):
+    def read_stats(self, days=None):
         """Read Suite Result Analysis data partition from parquet.
         """
         lambda_f = lambda part: True if part["stats_type"] == "sra" else False
@@ -152,10 +156,11 @@ class Data:
         return self._create_dataframe_from_parquet(
             path=self._get_path("statistics"),
             partition_filter=lambda_f,
-            columns=None  # Get all columns.
+            columns=None,  # Get all columns.
+            days=days
         )
 
-    def read_trending_mrr(self):
+    def read_trending_mrr(self, days=None):
         """Read MRR data partition from parquet.
         """
         lambda_f = lambda part: True if part["test_type"] == "mrr" else False
@@ -163,10 +168,11 @@ class Data:
         return self._create_dataframe_from_parquet(
             path=self._get_path("trending-mrr"),
             partition_filter=lambda_f,
-            columns=self._get_columns("trending-mrr")
+            columns=self._get_columns("trending-mrr"),
+            days=days
         )
 
-    def read_trending_ndrpdr(self):
+    def read_trending_ndrpdr(self, days=None):
         """Read NDRPDR data partition from iterative parquet.
         """
         lambda_f = lambda part: True if part["test_type"] == "ndrpdr" else False
@@ -174,10 +180,11 @@ class Data:
         return self._create_dataframe_from_parquet(
             path=self._get_path("trending-ndrpdr"),
             partition_filter=lambda_f,
-            columns=self._get_columns("trending-ndrpdr")
+            columns=self._get_columns("trending-ndrpdr"),
+            days=days
         )
 
-    def read_iterative_mrr(self):
+    def read_iterative_mrr(self, days=None):
         """Read MRR data partition from iterative parquet.
         """
         lambda_f = lambda part: True if part["test_type"] == "mrr" else False
@@ -185,10 +192,11 @@ class Data:
         return self._create_dataframe_from_parquet(
             path=self._get_path("iterative-mrr"),
             partition_filter=lambda_f,
-            columns=self._get_columns("iterative-mrr")
+            columns=self._get_columns("iterative-mrr"),
+            days=days
         )
 
-    def read_iterative_ndrpdr(self):
+    def read_iterative_ndrpdr(self, days=None):
         """Read NDRPDR data partition from parquet.
         """
         lambda_f = lambda part: True if part["test_type"] == "ndrpdr" else False
@@ -196,5 +204,6 @@ class Data:
         return self._create_dataframe_from_parquet(
             path=self._get_path("iterative-ndrpdr"),
             partition_filter=lambda_f,
-            columns=self._get_columns("iterative-ndrpdr")
+            columns=self._get_columns("iterative-ndrpdr"),
+            days=days
         )
