@@ -15,6 +15,7 @@
 
 from logging import getLogger
 import sys
+import subprocess
 
 from bcc import BPF
 from .constants import Constants
@@ -52,12 +53,15 @@ class BundleBpf:
 
         self.obj = BPF(text=self.code)
 
-    def attach(self, duration):
+
+    def attach(self, sample_period):
         """
         Attach events to BPF.
 
-        :param duration: Trial duration.
-        :type duration: int
+        :param sample_period:  A "sampling" event is one that generates
+        an overflow notification every N events, where N is given by
+        sample_period.
+        :type sample_period: int
         """
         try:
             for event in self.events:
@@ -65,15 +69,16 @@ class BundleBpf:
                     ev_type=event[u"type"],
                     ev_config=event[u"name"],
                     fn_name=event[u"target"],
-                    sample_period=duration
+                    sample_period=sample_period
                 )
         except AttributeError:
-            getLogger("console_stderr").error(u"Could not attach BPF events!")
+            getLogger("console_stderr").error(f"Could not attach BPF event: "
+                                              f"{event[u'name']}")
             sys.exit(Constants.err_linux_attach)
 
     def detach(self):
         """
-        Dettach events from BPF.
+        Detach events from BPF.
         """
         try:
             for event in self.events:
@@ -98,6 +103,9 @@ class BundleBpf:
 
         for _, metric_list in self.metrics.items():
             for metric in metric_list:
+                if table_name != metric[u"name"]:
+                    table_name = metric[u"name"]
+                    text += f"{table_name}\n"
                 for (key, val) in self.obj.get_table(metric[u"name"]).items():
                     item = dict()
                     labels = dict()
@@ -111,7 +119,7 @@ class BundleBpf:
                     if item[u"labels"][u"name"] == u"python3":
                         continue
                     if len(str(item[u'labels'][u'cpu'])) > max_len["cpu"]:
-                        max_len["cpu"]= len(str(item[u'labels'][u'cpu']))
+                        max_len["cpu"] = len(str(item[u'labels'][u'cpu']))
                     if len(str(item[u'labels'][u'pid'])) > max_len[u"pid"]:
                         max_len[u"pid"] = len(str(item[u'labels'][u'pid']))
                     if len(str(item[u'labels'][u'name'])) > max_len[u"name"]:

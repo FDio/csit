@@ -69,7 +69,7 @@ class Executor:
                     serializer=serializer,
                     hook=hook
                 )
-                bundle.attach(duration=self.scheduler[u"duration"])
+                bundle.attach(self.scheduler[u"duration"])
                 bundle.fetch_data()
                 bundle.process_data()
                 bundle.detach()
