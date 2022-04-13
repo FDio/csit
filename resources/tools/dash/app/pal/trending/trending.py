@@ -31,7 +31,7 @@ def init_trending(server):
     dash_app = dash.Dash(
         server=server,
         routes_pathname_prefix=u"/trending/",
-        external_stylesheets=[dbc.themes.BOOTSTRAP],
+        external_stylesheets=[dbc.themes.LUX],
     )
 
     # Custom HTML layout

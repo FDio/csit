@@ -14,6 +14,8 @@
 """Plotly Dash HTML layout override.
 """
 
+import logging
+
 import pandas as pd
 
 from dash import dcc
@@ -58,12 +60,12 @@ class Layout:
         data_mrr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_mrr()
+        ).read_trending_mrr(days=5)
 
         data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_ndrpdr()
+        ).read_trending_ndrpdr(days=14)
 
         self._data = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
@@ -136,201 +138,105 @@ class Layout:
             return html.Div(
                 id="div-main",
                 children=[
-                    dcc.Store(id="selected-tests"),
-                    self._add_navbar(),
-                    self._add_ctrl_div(),
-                    self._add_plotting_div()
+                    dbc.Row(
+                        id="row-navbar",
+                        className="g-0",
+                        children=[
+                            self._add_navbar(),
+                        ]
+                    ),
+                    dbc.Row(
+                        id="row-main",
+                        className="g-0",
+                        children=[
+                            dcc.Store(
+                                id="selected-tests"
+                            ),
+                            self._add_ctrl_col(),
+                            self._add_plotting_col(),
+                        ]
+                    ),
+                    dbc.Offcanvas(
+                        id="offcanvas-metadata",
+                        title="Throughput And Latency",
+                        placement="end",
+                        is_open=True,
+                        children=[
+                            html.P(
+                                id="metadata",
+                                children=[
+                                    "This is the placeholder for metadata."
+                                ],
+                            )
+                        ]
+                    )
                 ]
             )
         else:
             return html.Div(
-            id="div-main-error",
-            children="An Error Occured."
-        )
+                id="div-main-error",
+                children=[
+                    dbc.Alert(
+                        [
+                            "An Error Occured",
+                        ],
+                        color="danger",
+                    ),
+                ]
+            )
 
     def _add_navbar(self):
         """Add nav element with navigation panel. It is placed on the top.
         """
         return dbc.NavbarSimple(
+            id="navbarsimple-main",
             children=[
                 dbc.NavItem(
-                    dbc.NavLink("Continuous Performance Trending", href="#")
+                    dbc.NavLink(
+                        "Continuous Performance Trending",
+                        external_link=True,
+                        href="#"
+                    )
                 )
             ],
             brand="Dashboard",
             brand_href="/",
-            color="dark",
-            dark=True,
+            brand_external_link=True,
+            #color="dark",
+            #dark=True,
             fluid=True,
         )
 
-    def _add_ctrl_div(self):
-        """Add div with controls. It is placed on the left side.
+    def _add_ctrl_col(self) -> dbc.Col:
+        """Add column with controls. It is placed on the left side.
         """
-        return html.Div(
-            id="div-controls",
+        return dbc.Col(
+            id="col-controls",
             children=[
-                html.Div(
-                    id="div-controls-tabs",
-                    children=[
-                        self._add_ctrl_select(),
-                        self._add_ctrl_shown()
-                    ]
-                )
+                self._add_ctrl_panel(),
+                self._add_ctrl_shown()
             ],
-            style={
-                "display": "inline-block",
-                "width": "20%"
-            }
         )
 
-    def _add_plotting_div(self):
-        """Add div with plots and tables. It is placed on the right side.
+    def _add_plotting_col(self) -> dbc.Col:
+        """Add column with plots and tables. It is placed on the right side.
         """
-        return html.Div(
-            id="div-plotting-area",
+        return dbc.Col(
+            id="col-plotting-area",
             children=[
-                html.Table(children=[
-                    html.Tr(
-                        id="div-tput",
-                        style=self.STYLE_HIDEN,
-                        children=[
-                            html.Td(children=[
-                                dcc.Loading(
-                                    dcc.Graph(
-                                        id="graph-tput"
-                                    ),
-                                )
-                            ], style={"width": "80%"}),
-                            html.Td(children=[
-                                dcc.Clipboard(
-                                    target_id="tput-metadata",
-                                    title="Copy",
-                                    style={"display": "inline-block"}
-                                ),
-                                html.Nobr(" "),
-                                html.Nobr(" "),
-                                dcc.Markdown(
-                                    children="**Throughput**",
-                                    style={"display": "inline-block"}
-                                ),
-                                html.Pre(
-                                    id="tput-metadata",
-                                    children="Click on data point in the graph"
-                                ),
-                                html.Div(
-                                    id="div-lat-metadata",
-                                    style=self.STYLE_HIDEN,
-                                    children=[
-                                        dcc.Clipboard(
-                                            target_id="lat-metadata",
-                                            title="Copy",
-                                            style={"display": "inline-block"}
-                                        ),
-                                        html.Nobr(" "),
-                                        html.Nobr(" "),
-                                        dcc.Markdown(
-                                            children="**Latency**",
-                                            style={"display": "inline-block"}
-                                        ),
-                                        html.Pre(
-                                            id="lat-metadata",
-                                            children= \
-                                            "Click on data point in the graph"
-                                        )
-                                    ]
-                                )
-                            ], style={"width": "20%"}),
-                        ]
-                    ),
-                    html.Tr(
-                        id="div-latency",
-                        style=self.STYLE_HIDEN,
-                        children=[
-                            html.Td(children=[
-                                dcc.Loading(
-                                    dcc.Graph(
-                                        id="graph-latency"
-                                    )
-                                )
-                            ], style={"width": "80%"}),
-                            html.Td(children=[
-                                dcc.Loading(
-                                    dcc.Graph(
-                                        id="graph-latency-hdrh",
-                                        style=self.STYLE_INLINE,
-                                        figure=self.NO_GRAPH
-                                    )
-                                )
-                            ], style={"width": "20%"}),
-                        ]
-                    ),
-                    html.Tr(
-                        id="div-download",
-                        style=self.STYLE_HIDEN,
-                        children=[
-                            html.Td(children=[
-                                dcc.Loading(
-                                    children=[
-                                        html.Button(
-                                            id="btn-download-data",
-                                            children=["Download Data"]
-                                        ),
-                                        dcc.Download(id="download-data")
-                                    ]
-                                )
-                            ], style={"width": "80%"}),
-                            html.Td(children=[
-                                html.Nobr(" ")
-                            ], style={"width": "20%"}),
-                        ]
-                    ),
-                ]),
+                # Empty for now
             ],
-            style={
-                "vertical-align": "top",
-                "display": "inline-block",
-                "width": "80%"
-            }
+            width=9,
         )
 
-    def _add_ctrl_shown(self):
+    def _add_ctrl_panel(self) -> dbc.Row:
         """
         """
-        return html.Div(
-            id="div-ctrl-shown",
+        return dbc.Row(
+            id="row-ctrl-panel",
+            className="g-0",
             children=[
-                html.H5("Selected tests"),
-                html.Div(
-                    id="container-selected-tests",
-                    children=[
-                        dcc.Checklist(
-                            id="cl-selected",
-                            options=[],
-                            labelStyle={"display": "block"}
-                        ),
-                        html.Button(
-                            id="btn-sel-remove",
-                            children="Remove Selected",
-                            disabled=False
-                        ),
-                        html.Button(
-                            id="btn-sel-display",
-                            children="Display",
-                            disabled=False
-                        )
-                    ]
-                ),
-            ]
-        )
-
-    def _add_ctrl_select(self):
-        """
-        """
-        return html.Div(
-            id="div-ctrl-select",
-            children=[
-                html.H5("Physical Test Bed Topology, NIC and Driver"),
+                dbc.Label("Physical Test Bed Topology, NIC and Driver"),
                 dcc.Dropdown(
                     id="dd-ctrl-phy",
                     placeholder="Select a Physical Test Bed Topology...",
@@ -340,7 +246,7 @@ class Layout:
                         {"label": k, "value": k} for k in self.spec_tbs.keys()
                     ],
                 ),
-                html.H5("Area"),
+                dbc.Label("Area"),
                 dcc.Dropdown(
                     id="dd-ctrl-area",
                     placeholder="Select an Area...",
@@ -348,7 +254,7 @@ class Layout:
                     multi=False,
                     clearable=False,
                 ),
-                html.H5("Test"),
+                dbc.Label("Test"),
                 dcc.Dropdown(
                     id="dd-ctrl-test",
                     placeholder="Select a Test...",
@@ -356,68 +262,133 @@ class Layout:
                     multi=False,
                     clearable=False,
                 ),
-                html.Div(
-                    id="div-ctrl-core",
+                dbc.Row(
+                    id="row-ctrl-core",
+                    className="g-0",
                     children=[
-                        html.H5("Number of Cores"),
-                        dcc.Checklist(
+                        dbc.Label("Number of Cores"),
+                        dbc.Checklist(
                             id="cl-ctrl-core-all",
                             options=[{"label": "All", "value": "all"}, ],
-                            labelStyle={"display": "inline-block"}
+                            inline=True,
+                            switch=False
                         ),
-                        dcc.Checklist(
+                        dbc.Checklist(
                             id="cl-ctrl-core",
-                            labelStyle={"display": "inline-block"}
+                            inline=True,
+                            switch=False
                         )
-                    ],
-                    style={"display": "none"}
+                    ]
                 ),
-                html.Div(
-                    id="div-ctrl-framesize",
+                dbc.Row(
+                    id="row-ctrl-framesize",
+                    className="g-0",
                     children=[
-                        html.H5("Frame Size"),
-                        dcc.Checklist(
+                        dbc.Label("Frame Size"),
+                        dbc.Checklist(
                             id="cl-ctrl-framesize-all",
                             options=[{"label": "All", "value": "all"}, ],
-                            labelStyle={"display": "inline-block"}
+                            inline=True,
+                            switch=False
                         ),
-                        dcc.Checklist(
+                        dbc.Checklist(
                             id="cl-ctrl-framesize",
-                            labelStyle={"display": "inline-block"}
+                            inline=True,
+                            switch=False
                         )
-                    ],
-                    style={"display": "none"}
+                    ]
                 ),
-                html.Div(
-                    id="div-ctrl-testtype",
+                dbc.Row(
+                    id="row-ctrl-testtype",
+                    className="g-0",
                     children=[
-                        html.H5("Test Type"),
-                        dcc.Checklist(
+                        dbc.Label("Test Type"),
+                        dbc.Checklist(
                             id="cl-ctrl-testtype-all",
                             options=[{"label": "All", "value": "all"}, ],
-                            labelStyle={"display": "inline-block"}
+                            inline=True,
+                            switch=False
                         ),
-                        dcc.Checklist(
+                        dbc.Checklist(
                             id="cl-ctrl-testtype",
-                            labelStyle={"display": "inline-block"}
+                            inline=True,
+                            switch=False
                         )
-                    ],
-                    style={"display": "none"}
+                    ]
                 ),
-                html.Button(
-                    id="btn-ctrl-add",
-                    children="Add",
-                    disabled=True
+                dbc.Row(
+                    className="g-0",
+                    children=[
+                        dbc.Button(
+                            id="btn-ctrl-add",
+                            children="Add",
+                        )
+                    ]
                 ),
-                html.Br(),
-                dcc.DatePickerRange(
-                    id="dpr-period",
-                    min_date_allowed=datetime.utcnow() - timedelta(days=180),
-                    max_date_allowed=datetime.utcnow(),
-                    initial_visible_month=datetime.utcnow(),
-                    start_date=datetime.utcnow() - timedelta(days=180),
-                    end_date=datetime.utcnow(),
-                    display_format="D MMMM YY"
+                dbc.Row(
+                    className="g-0",
+                    children=[
+                        dcc.DatePickerRange(
+                            id="dpr-period",
+                            min_date_allowed=\
+                                datetime.utcnow()-timedelta(days=180),
+                            max_date_allowed=datetime.utcnow(),
+                            initial_visible_month=datetime.utcnow(),
+                            start_date=datetime.utcnow() - timedelta(days=180),
+                            end_date=datetime.utcnow(),
+                            display_format="D MMMM YY"
+                        )
+                    ]
+                )
+            ]
+        )
+
+    def _add_ctrl_shown(self) -> dbc.Row:
+        """
+        """
+        return dbc.Row(
+            id="div-ctrl-shown",
+            className="g-0",
+            children=[
+                dbc.Row(
+                    className="g-0",
+                    children=[
+                        dbc.Label("Selected tests"),
+                        dbc.Checklist(
+                            id="cl-selected",
+                            options=[],
+                            inline=False
+                        )
+                    ]
+                ),
+                dbc.Row(
+                    className="g-0",
+                    children=[
+                        dbc.ButtonGroup(
+                            [
+                                dbc.Button(
+                                    id="btn-sel-remove",
+                                    children="Remove Selected",
+                                    color="secondary",
+                                    disabled=False
+                                ),
+                                dbc.Button(
+                                    id="btn-sel-remove-all",
+                                    children="Remove All",
+                                    color="secondary",
+                                    disabled=False
+                                ),
+                                dbc.Button(
+                                    id="btn-sel-display",
+                                    children="Display",
+                                    color="secondary",
+                                    disabled=False
+                                )
+                            ],
+                            size="md",
+                            className="me-1",
+                        ),
+                    ]
                 )
             ]
         )
@@ -474,13 +445,13 @@ class Layout:
             return options, disable
 
         @app.callback(
-            Output("div-ctrl-core", "style"),
+            # Output("row-ctrl-core", "style"),
             Output("cl-ctrl-core", "options"),
-            Output("div-ctrl-framesize", "style"),
+            # Output("row-ctrl-framesize", "style"),
             Output("cl-ctrl-framesize", "options"),
-            Output("div-ctrl-testtype", "style"),
+            # Output("row-ctrl-testtype", "style"),
             Output("cl-ctrl-testtype", "options"),
-            Output("btn-ctrl-add", "disabled"),
+            # Output("btn-ctrl-add", "disabled"),
             State("dd-ctrl-phy", "value"),
             State("dd-ctrl-area", "value"),
             Input("dd-ctrl-test", "value"),
@@ -492,36 +463,39 @@ class Layout:
             if test is None:
                 raise PreventUpdate
 
-            core_style = {"display": "none"}
+            # core_style = {"display": "none"}
             core_opts = []
-            framesize_style = {"display": "none"}
+            # framesize_style = {"display": "none"}
             framesize_opts = []
-            testtype_style = {"display": "none"}
+            # testtype_style = {"display": "none"}
             testtype_opts = []
-            add_disabled = True
+            # add_disabled = True
             if phy and area and test:
-                core_style = {"display": "block"}
+                # core_style = {"display": "block"}
                 core_opts = [
                     {"label": v, "value": v}
                         for v in self.spec_tbs[phy][area]["core"]
                 ]
-                framesize_style = {"display": "block"}
+                # framesize_style = {"display": "block"}
                 framesize_opts = [
                     {"label": v, "value": v}
                         for v in self.spec_tbs[phy][area]["frame-size"]
                 ]
-                testtype_style = {"display": "block"}
+                # testtype_style = {"display": "block"}
                 testtype_opts = [
                     {"label": v, "value": v}
                         for v in self.spec_tbs[phy][area]["test-type"]
                 ]
-                add_disabled = False
+                # add_disabled = False
 
             return (
-                core_style, core_opts,
-                framesize_style, framesize_opts,
-                testtype_style, testtype_opts,
-                add_disabled
+                # core_style,
+                core_opts,
+                # framesize_style,
+                framesize_opts,
+                # testtype_style,
+                testtype_opts,
+                # add_disabled
             )
 
         def _sync_checklists(opt, sel, all, id):
@@ -569,12 +543,12 @@ class Layout:
             return _sync_checklists(opt, sel, all, "cl-ctrl-testtype")
 
         @app.callback(
-            Output("graph-tput", "figure"),
-            Output("graph-latency", "figure"),
-            Output("div-tput", "style"),
-            Output("div-latency", "style"),
-            Output("div-lat-metadata", "style"),
-            Output("div-download", "style"),
+            # Output("graph-tput", "figure"),
+            # Output("graph-latency", "figure"),
+            # Output("div-tput", "style"),
+            # Output("div-latency", "style"),
+            # Output("div-lat-metadata", "style"),
+            # Output("div-download", "style"),
             Output("selected-tests", "data"),  # Store
             Output("cl-selected", "options"),  # User selection
             Output("dd-ctrl-phy", "value"),
@@ -591,17 +565,19 @@ class Layout:
             Input("btn-ctrl-add", "n_clicks"),
             Input("btn-sel-display", "n_clicks"),
             Input("btn-sel-remove", "n_clicks"),
+            Input("btn-sel-remove-all", "n_clicks"),
             Input("dpr-period", "start_date"),
             Input("dpr-period", "end_date"),
             prevent_initial_call=True
         )
         def _process_list(store_sel, list_sel, phy, area, test, cores,
                 framesizes, testtypes, btn_add, btn_display, btn_remove,
-                d_start, d_end):
+                btn_remove_all, d_start, d_end):
             """
             """
 
-            if not (btn_add or btn_display or btn_remove or d_start or d_end):
+            if not (btn_add or btn_display or btn_remove or btn_remove_all or \
+                    d_start or d_end):
                 raise PreventUpdate
 
             def _list_tests():
@@ -616,12 +592,12 @@ class Layout:
             class RetunValue:
                 def __init__(self) -> None:
                     self._output = {
-                        "graph-tput-figure": no_update,
-                        "graph-lat-figure": no_update,
-                        "div-tput-style": no_update,
-                        "div-latency-style": no_update,
-                        "div-lat-metadata-style": no_update,
-                        "div-download-style": no_update,
+                        # "graph-tput-figure": no_update,
+                        # "graph-lat-figure": no_update,
+                        # "div-tput-style": no_update,
+                        # "div-latency-style": no_update,
+                        # "div-lat-metadata-style": no_update,
+                        # "div-download-style": no_update,
                         "selected-tests-data": no_update,
                         "cl-selected-options": no_update,
                         "dd-ctrl-phy-value": no_update,
@@ -686,21 +662,25 @@ class Layout:
                 fig_tput, fig_lat = graph_trending(
                     self.data, store_sel, self.layout, d_start, d_end
                 )
+                # output.set_values({
+                #     "graph-tput-figure": \
+                #         fig_tput if fig_tput else self.NO_GRAPH,
+                #     "graph-lat-figure": \
+                #         fig_lat if fig_lat else self.NO_GRAPH,
+                #     "div-tput-style": \
+                #         self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                #     "div-latency-style": \
+                #         self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
+                #     "div-lat-metadata-style": \
+                #         self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
+                #     "div-download-style": \
+                #         self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                # })
+            elif trigger_id == "btn-sel-remove-all":
                 output.set_values({
-                    "graph-tput-figure": \
-                        fig_tput if fig_tput else self.NO_GRAPH,
-                    "graph-lat-figure": \
-                        fig_lat if fig_lat else self.NO_GRAPH,
-                    "div-tput-style": \
-                        self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
-                    "div-latency-style": \
-                        self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
-                    "div-lat-metadata-style": \
-                        self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
-                    "div-download-style": \
-                        self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                    "selected-tests-data": list(),
+                    "cl-selected-options": list()
                 })
-
             elif trigger_id == "btn-sel-remove":
                 if list_sel:
                     new_store_sel = list()
@@ -713,88 +693,88 @@ class Layout:
                         self.data, store_sel, self.layout, d_start, d_end
                     )
                     output.set_values({
-                        "graph-tput-figure": \
-                            fig_tput if fig_tput else self.NO_GRAPH,
-                        "graph-lat-figure": \
-                            fig_lat if fig_lat else self.NO_GRAPH,
-                        "div-tput-style": \
-                            self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
-                        "div-latency-style": \
-                            self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
-                        "div-lat-metadata-style": \
-                            self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
-                        "div-download-style": \
-                            self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                        # "graph-tput-figure": \
+                        #     fig_tput if fig_tput else self.NO_GRAPH,
+                        # "graph-lat-figure": \
+                        #     fig_lat if fig_lat else self.NO_GRAPH,
+                        # "div-tput-style": \
+                        #     self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                        # "div-latency-style": \
+                        #     self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
+                        # "div-lat-metadata-style": \
+                        #     self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
+                        # "div-download-style": \
+                        #     self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
                         "selected-tests-data": store_sel,
                         "cl-selected-options": _list_tests()
                     })
                 else:
                     output.set_values({
-                        "graph-tput-figure": self.NO_GRAPH,
-                        "graph-lat-figure": self.NO_GRAPH,
-                        "div-tput-style": self.STYLE_HIDEN,
-                        "div-latency-style": self.STYLE_HIDEN,
-                        "div-lat-metadata-style": self.STYLE_HIDEN,
-                        "div-download-style": self.STYLE_HIDEN,
+                        # "graph-tput-figure": self.NO_GRAPH,
+                        # "graph-lat-figure": self.NO_GRAPH,
+                        # "div-tput-style": self.STYLE_HIDEN,
+                        # "div-latency-style": self.STYLE_HIDEN,
+                        # "div-lat-metadata-style": self.STYLE_HIDEN,
+                        # "div-download-style": self.STYLE_HIDEN,
                         "selected-tests-data": store_sel,
                         "cl-selected-options": _list_tests()
                     })
 
             return output.value()
 
-        @app.callback(
-            Output("tput-metadata", "children"),
-            Input("graph-tput", "clickData")
-        )
-        def _show_tput_metadata(hover_data):
-            """
-            """
-            if not hover_data:
-                raise PreventUpdate
+        # @app.callback(
+        #     Output("tput-metadata", "children"),
+        #     Input("graph-tput", "clickData")
+        # )
+        # def _show_tput_metadata(hover_data):
+        #     """
+        #     """
+        #     if not hover_data:
+        #         raise PreventUpdate
 
-            return hover_data["points"][0]["text"].replace("<br>", "\n")
+        #     return hover_data["points"][0]["text"].replace("<br>", "\n")
 
-        @app.callback(
-            Output("graph-latency-hdrh", "figure"),
-            Output("graph-latency-hdrh", "style"),
-            Output("lat-metadata", "children"),
-            Input("graph-latency", "clickData")
-        )
-        def _show_latency_hdhr(hover_data):
-            """
-            """
-            if not hover_data:
-                raise PreventUpdate
+        # @app.callback(
+        #     Output("graph-latency-hdrh", "figure"),
+        #     Output("graph-latency-hdrh", "style"),
+        #     Output("lat-metadata", "children"),
+        #     Input("graph-latency", "clickData")
+        # )
+        # def _show_latency_hdhr(hover_data):
+        #     """
+        #     """
+        #     if not hover_data:
+        #         raise PreventUpdate
 
-            graph = no_update
-            hdrh_data = hover_data["points"][0].get("customdata", None)
-            if hdrh_data:
-                graph = graph_hdrh_latency(hdrh_data, self.layout)
+        #     graph = no_update
+        #     hdrh_data = hover_data["points"][0].get("customdata", None)
+        #     if hdrh_data:
+        #         graph = graph_hdrh_latency(hdrh_data, self.layout)
 
-            return (
-                graph,
-                self.STYLE_INLINE,
-                hover_data["points"][0]["text"].replace("<br>", "\n")
-            )
+        #     return (
+        #         graph,
+        #         self.STYLE_INLINE,
+        #         hover_data["points"][0]["text"].replace("<br>", "\n")
+        #     )
 
-        @app.callback(
-            Output("download-data", "data"),
-            State("selected-tests", "data"),
-            Input("btn-download-data", "n_clicks"),
-            prevent_initial_call=True
-        )
-        def _download_data(store_sel, n_clicks):
-            """
-            """
+        # @app.callback(
+        #     Output("download-data", "data"),
+        #     State("selected-tests", "data"),
+        #     Input("btn-download-data", "n_clicks"),
+        #     prevent_initial_call=True
+        # )
+        # def _download_data(store_sel, n_clicks):
+        #     """
+        #     """
 
-            if not n_clicks:
-                raise PreventUpdate
+        #     if not n_clicks:
+        #         raise PreventUpdate
 
-            df = pd.DataFrame()
-            for itm in store_sel:
-                sel_data = select_trending_data(self.data, itm)
-                if sel_data is None:
-                    continue
-                df = pd.concat([df, sel_data], ignore_index=True)
+        #     df = pd.DataFrame()
+        #     for itm in store_sel:
+        #         sel_data = select_trending_data(self.data, itm)
+        #         if sel_data is None:
+        #             continue
+        #         df = pd.concat([df, sel_data], ignore_index=True)
 
-            return dcc.send_data_frame(df.to_csv, "trending_data.csv")
+        #     return dcc.send_data_frame(df.to_csv, "trending_data.csv")
