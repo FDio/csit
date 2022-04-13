@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -105,7 +105,11 @@ class TelemetryUtil:
         cd_cmd += f"sh -c \"cd {Constants.REMOTE_FW_DIR}/"
         cd_cmd += f"{Constants.RESOURCES_TOOLS}"
 
-        bin_cmd = f"python3 -m telemetry --config {config} --hook {hook}\""
+        if hook is None:
+            bin_cmd = f"python3 -m telemetry --config {config}\""
+        else:
+            bin_cmd = f"python3 -m telemetry --config {config} --hook {hook}\""
+
         hostname = node[u"host"]
 
         exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
@@ -133,6 +137,10 @@ class TelemetryUtil:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 try:
+                    if u"bpf" in profile:
+                        TelemetryUtil.run_telemetry(node, profile=profile)
+                        continue
+
                     for socket in node[u"sockets"][u"PAPI"].values():
                         TelemetryUtil.run_telemetry(
                             node, profile=profile, hook=socket
