@@ -136,22 +136,37 @@ class Layout:
             return html.Div(
                 id="div-main",
                 children=[
-                    dcc.Store(id="selected-tests"),
+                    dcc.Store(
+                        id="selected-tests"
+                    ),
                     self._add_navbar(),
-                    self._add_ctrl_div(),
-                    self._add_plotting_div()
+                    dbc.Row(
+                        id="row-main",
+                        children=[
+                            self._add_ctrl_div(),
+                            self._add_plotting_div(),
+                        ]
+                    )
                 ]
             )
         else:
             return html.Div(
-            id="div-main-error",
-            children="An Error Occured."
-        )
+                id="div-main-error",
+                children=[
+                    dbc.Alert(
+                        [
+                            "An Error Occured",
+                        ],
+                        color="danger",
+                    ),
+                ]
+            )
 
     def _add_navbar(self):
         """Add nav element with navigation panel. It is placed on the top.
         """
         return dbc.NavbarSimple(
+            id="navbarsimple-main",
             children=[
                 dbc.NavItem(
                     dbc.NavLink("Continuous Performance Trending", href="#")
@@ -167,137 +182,125 @@ class Layout:
     def _add_ctrl_div(self):
         """Add div with controls. It is placed on the left side.
         """
-        return html.Div(
+        return dbc.Col(
             id="div-controls",
             children=[
-                html.Div(
-                    id="div-controls-tabs",
-                    children=[
-                        self._add_ctrl_select(),
-                        self._add_ctrl_shown()
-                    ]
-                )
+                self._add_ctrl_select(),
+                self._add_ctrl_shown()
             ],
-            style={
-                "display": "inline-block",
-                "width": "20%"
-            }
+            width=2,
         )
 
     def _add_plotting_div(self):
         """Add div with plots and tables. It is placed on the right side.
         """
-        return html.Div(
-            id="div-plotting-area",
+        return dbc.Col(
+            id="col-plotting-area",
             children=[
-                html.Table(children=[
-                    html.Tr(
-                        id="div-tput",
-                        style=self.STYLE_HIDEN,
-                        children=[
-                            html.Td(children=[
-                                dcc.Loading(
-                                    dcc.Graph(
-                                        id="graph-tput"
+                dbc.Row(
+                    id="row-graph-tput",
+                    children=[
+                        dcc.Loading(
+                            dcc.Graph(
+                                id="graph-tput"
+                            ),
+                        ),
+                    ],
+                ),
+                dbc.Row(
+                    id="div-tput",
+                    style=self.STYLE_HIDEN,
+                    children=[
+                        html.Td(children=[
+                            dcc.Clipboard(
+                                target_id="tput-metadata",
+                                title="Copy",
+                                style={"display": "inline-block"}
+                            ),
+                            html.Nobr(" "),
+                            html.Nobr(" "),
+                            dcc.Markdown(
+                                children="**Throughput**",
+                                style={"display": "inline-block"}
+                            ),
+                            html.Pre(
+                                id="tput-metadata",
+                                children="Click on data point in the graph"
+                            ),
+                            html.Div(
+                                id="div-lat-metadata",
+                                style=self.STYLE_HIDEN,
+                                children=[
+                                    dcc.Clipboard(
+                                        target_id="lat-metadata",
+                                        title="Copy",
+                                        style={"display": "inline-block"}
                                     ),
-                                )
-                            ], style={"width": "80%"}),
-                            html.Td(children=[
-                                dcc.Clipboard(
-                                    target_id="tput-metadata",
-                                    title="Copy",
-                                    style={"display": "inline-block"}
-                                ),
-                                html.Nobr(" "),
-                                html.Nobr(" "),
-                                dcc.Markdown(
-                                    children="**Throughput**",
-                                    style={"display": "inline-block"}
-                                ),
-                                html.Pre(
-                                    id="tput-metadata",
-                                    children="Click on data point in the graph"
-                                ),
-                                html.Div(
-                                    id="div-lat-metadata",
-                                    style=self.STYLE_HIDEN,
-                                    children=[
-                                        dcc.Clipboard(
-                                            target_id="lat-metadata",
-                                            title="Copy",
-                                            style={"display": "inline-block"}
-                                        ),
-                                        html.Nobr(" "),
-                                        html.Nobr(" "),
-                                        dcc.Markdown(
-                                            children="**Latency**",
-                                            style={"display": "inline-block"}
-                                        ),
-                                        html.Pre(
-                                            id="lat-metadata",
-                                            children= \
-                                            "Click on data point in the graph"
-                                        )
-                                    ]
-                                )
-                            ], style={"width": "20%"}),
-                        ]
-                    ),
-                    html.Tr(
-                        id="div-latency",
-                        style=self.STYLE_HIDEN,
-                        children=[
-                            html.Td(children=[
-                                dcc.Loading(
-                                    dcc.Graph(
-                                        id="graph-latency"
+                                    html.Nobr(" "),
+                                    html.Nobr(" "),
+                                    dcc.Markdown(
+                                        children="**Latency**",
+                                        style={"display": "inline-block"}
+                                    ),
+                                    html.Pre(
+                                        id="lat-metadata",
+                                        children= \
+                                        "Click on data point in the graph"
                                     )
+                                ]
+                            )
+                        ], style={"width": "20%"}),
+                    ]
+                ),
+                dbc.Row(
+                    id="div-latency",
+                    style=self.STYLE_HIDEN,
+                    children=[
+                        html.Td(children=[
+                            dcc.Loading(
+                                dcc.Graph(
+                                    id="graph-latency"
                                 )
-                            ], style={"width": "80%"}),
-                            html.Td(children=[
-                                dcc.Loading(
-                                    dcc.Graph(
-                                        id="graph-latency-hdrh",
-                                        style=self.STYLE_INLINE,
-                                        figure=self.NO_GRAPH
-                                    )
+                            )
+                        ], style={"width": "80%"}),
+                        html.Td(children=[
+                            dcc.Loading(
+                                dcc.Graph(
+                                    id="graph-latency-hdrh",
+                                    style=self.STYLE_INLINE,
+                                    figure=self.NO_GRAPH
                                 )
-                            ], style={"width": "20%"}),
-                        ]
-                    ),
-                    html.Tr(
-                        id="div-download",
-                        style=self.STYLE_HIDEN,
-                        children=[
-                            html.Td(children=[
-                                dcc.Loading(
-                                    children=[
-                                        html.Button(
-                                            id="btn-download-data",
-                                            children=["Download Data"]
-                                        ),
-                                        dcc.Download(id="download-data")
-                                    ]
-                                )
-                            ], style={"width": "80%"}),
-                            html.Td(children=[
-                                html.Nobr(" ")
-                            ], style={"width": "20%"}),
-                        ]
-                    ),
-                ]),
+                            )
+                        ], style={"width": "20%"}),
+                    ]
+                ),
+                dbc.Row(
+                    id="div-download",
+                    style=self.STYLE_HIDEN,
+                    children=[
+                        html.Td(children=[
+                            dcc.Loading(
+                                children=[
+                                    html.Button(
+                                        id="btn-download-data",
+                                        children=["Download Data"]
+                                    ),
+                                    dcc.Download(id="download-data")
+                                ]
+                            )
+                        ], style={"width": "80%"}),
+                        html.Td(children=[
+                            html.Nobr(" ")
+                        ], style={"width": "20%"}),
+                    ]
+                ),
             ],
-            style={
-                "vertical-align": "top",
-                "display": "inline-block",
-                "width": "80%"
-            }
         )
 
     def _add_ctrl_shown(self):
         """
         """
-        return html.Div(
+        return dbc.Row(
             id="div-ctrl-shown",
             children=[
                 html.H5("Selected tests"),
@@ -327,7 +330,7 @@ class Layout:
     def _add_ctrl_select(self):
         """
         """
-        return html.Div(
+        return dbc.Row(
             id="div-ctrl-select",
             children=[
                 html.H5("Physical Test Bed Topology, NIC and Driver"),
