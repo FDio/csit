@@ -1,0 +1,115 @@
+---
+logging:
+  version: 1
+  formatters:
+    console_stdout:
+      format: '%(asctime)s - %(name)s - %(message)s'
+    console_stderr:
+      format: '%(message)s'
+    prom:
+      format: '%(message)s'
+  handlers:
+    console_stdout:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: console_stdout
+      stream: ext://sys.stdout
+    console_stderr:
+      class: logging.StreamHandler
+      level: ERROR
+      formatter: console_stderr
+      stream: ext://sys.stderr
+    prom:
+      class: logging.handlers.RotatingFileHandler
+      level: INFO
+      formatter: prom
+      filename: /tmp/metric.prom
+      mode: w
+  loggers:
+    prom:
+      handlers: [prom]
+      level: INFO
+      propagate: False
+  root:
+    level: INFO
+    handlers: [console_stdout, console_stderr]
+scheduler:
+  duration: 1
+programs:
+  - name: bundle_perf_stat
+    metrics:
+      gauge:
+        - name: cpu-cycles
+          documentation: Cycles processed by CPUs
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - name: cpu-cycles # 0x3C
+  - name: bundle_perf_stat
+    metrics:
+      gauge:
+        - name: instructions
+          documentation: Instructions retired by CPUs
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - name: instructions # 0xC0
+  - name: bundle_perf_stat
+    metrics:
+      gauge:
+        - name: cache-references
+          documentation: Cache references
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - name: cache-references # 0x2e umask: 0x4f
+  - name: bundle_perf_stat
+    metrics:
+      gauge:
+        - name: cache-misses
+          documentation: Cache misses
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - name: cache-misses # 0x2e umask: 0x41
+  - name: bundle_perf_stat
+    metrics:
+      gauge:
+        - name: context-switches
+          documentation: SW context switches
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - name: context-switches # type: 0x1 (SW) name: 0x3
+  - name: bundle_perf_stat
+    metrics:
+      gauge:
+        - name: minor-faults
+          documentation: SW page faults minor
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - name: minor-faults # type: 0x1 (SW) name: 0x5
+  - name: bundle_perf_stat
+    metrics:
+      gauge:
+        - name: major-faults
+          documentation: SW page faults major
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - name: major-faults # type: 0x1 (SW) name: 0x6
