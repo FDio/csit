@@ -61,12 +61,13 @@ class BundleBpf:
         """
         try:
             for event in self.events:
-                self.obj.attach_perf_event(
-                    ev_type=event[u"type"],
-                    ev_config=event[u"name"],
-                    fn_name=event[u"target"],
-                    sample_period=duration
-                )
+                if u"sw" not in event[u"target"]:
+                    self.obj.attach_perf_event(
+                        ev_type=event[u"type"],
+                        ev_config=event[u"name"],
+                        fn_name=event[u"target"],
+                        sample_period=duration
+                    )
         except AttributeError:
             getLogger("console_stderr").error(u"Could not attach BPF events!")
             sys.exit(Constants.err_linux_attach)
