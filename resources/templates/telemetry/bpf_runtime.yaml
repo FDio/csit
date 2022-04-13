@@ -35,6 +35,7 @@ logging:
     handlers: [console_stdout, console_stderr]
 scheduler:
   duration: 1
+  sample_period: 1
 programs:
   - name: bundle_bpf
     metrics:
@@ -61,12 +62,103 @@ programs:
             - cpu
             - pid
         - name: llc_miss
-          documentation: Last level cache operations by type
+          documentation: Last level miss operations by type
           namespace: bpf
           labelnames:
             - name
             - cpu
             - pid
+#        - name: branch_instruction
+#          documentation: Instructions retired by branch
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: branch_misses
+#          documentation: Last level miss operations by type
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: bus_cycles
+#          documentation: Count of bus cycles
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: stalled_cycles_frontend
+#          documentation: Frontend stalled cycles
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: stalled_cycles_backend
+#          documentation: Backend stalled cycles
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: referenced_cpu_cycles
+#          documentation: Referenced CPU cycles
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: sw_cpu_clock
+#          documentation: SW CPU clock
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: sw_task_clock
+#          documentation: SW task clock
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: sw_page_faults
+#          documentation: SW page faults
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: sw_context_switches
+#          documentation: SW context switches
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: sw_cpu_migrations
+#          documentation: SW cpu migrations
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: sw_page_faults_min
+#          documentation: SW page faults minor
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
+#        - name: sw_page_faults_maj
+#          documentation: SW page faults major
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - cpu
+#            - pid
     events:
       - type: 0x0 # HARDWARE
         name: 0x0 # PERF_COUNT_HW_CPU_CYCLES
@@ -84,6 +176,58 @@ programs:
         name: 0x3 # PERF_COUNT_HW_CACHE_MISSES
         target: on_cache_miss
         table: llc_miss
+#      - type: 0x0 # HARDWARE
+#        name: 0x4 # PERF_COUNT_HW_BRANCH_INSTRUCTION
+#        target: on_branch_instruction
+#        table: branch_instruction
+#      - type: 0x0 # HARDWARE
+#        name: 0x5 # PERF_COUNT_HW_BRANCH_MISSES
+#        target: on_branch_misses
+#        table: branch_misses
+#      - type: 0x0 # HARDWARE
+#        name: 0x6 # PERF_COUNT_HW_BUS_CYCLES
+#        target: on_bus_cycles
+#        table: bus_cycles
+#      - type: 0x0 # HARDWARE
+#        name: 0x7 # PERF_COUNT_HW_STALLED_CYCLES_FRONTEND
+#        target: on_stalled_cycles_frontend
+#        table: stalled_cycles_frontend
+#      - type: 0x0 # HARDWARE
+#        name: 0x8 # PERF_COUNT_HW_STALLED_CYCLES_BACKEND
+#        target: on_stalled_cycles_backend
+#        table: stalled_cycles_backend
+#      - type: 0x0 # HARDWARE
+#        name: 0x9 # PERF_COUNT_HW_REF_CPU_CYCLES
+#        target: on_referenced_cpu_cycles
+#        table: referenced_cpu_cycles
+#      - type: 0x0 # SOFTWARE
+#        name: 0x0 # PERF_COUNT_SW_CPU_CLOCK
+#        target: on_sw_cpu_clock
+#        table: sw_cpu_clock
+#      - type: 0x0 # SOFTWARE
+#        name: 0x1 # PERF_COUNT_SW_TASK_CLOCK
+#        target: on_sw_task_clock
+#        table: sw_task_clock
+#      - type: 0x0 # SOFTWARE
+#        name: 0x2 # PERF_COUNT_SW_PAGE_FAULTS
+#        target: on_sw_page_faults
+#        table: sw_page_faults
+#      - type: 0x0 # SOFTWARE
+#        name: 0x3 # PERF_COUNT_SW_CONTEXT_SWITCHES
+#        target: on_sw_context_switches
+#        table: sw_context_switches
+#      - type: 0x0 # SOFTWARE
+#        name: 0x4 # PERF_COUNT_SW_CPU_MIGRATIONS
+#        target: on_sw_cpu_migrations
+#        table: sw_cpu_migrations
+#      - type: 0x0 # SOFTWARE
+#        name: 0x5 # PERF_COUNT_SW_PAGE_FAULTS_MIN
+#        target: on_sw_page_faults_min
+#        table: sw_page_faults_min
+#      - type: 0x0 # SOFTWARE
+#        name: 0x6 # PERF_COUNT_SW_PAGE_FAULTS_MAJ
+#        target: on_sw_page_faults_maj
+#        table: sw_page_faults_maj
     code: |
       #include <linux/ptrace.h>
       #include <uapi/linux/bpf_perf_event.h>
@@ -96,10 +240,23 @@ programs:
           char name[TASK_COMM_LEN];
       };
 
-      BPF_HASH(llc_miss, struct key_t);
-      BPF_HASH(llc_reference, struct key_t);
-      BPF_HASH(cpu_instruction, struct key_t);
       BPF_HASH(cpu_cycle, struct key_t);
+      BPF_HASH(cpu_instruction, struct key_t);
+      BPF_HASH(llc_reference, struct key_t);
+      BPF_HASH(llc_miss, struct key_t);
+      BPF_HASH(branch_instruction, struct key_t);
+      BPF_HASH(branch_misses, struct key_t);
+      BPF_HASH(bus_cycles, struct key_t);
+      BPF_HASH(stalled_cycles_frontend, struct key_t);
+      BPF_HASH(stalled_cycles_backend, struct key_t);
+      BPF_HASH(referenced_cpu_cycles, struct key_t);
+      BPF_HASH(sw_cpu_clock, struct key_t);
+      BPF_HASH(sw_task_clock, struct key_t);
+      BPF_HASH(sw_page_faults, struct key_t);
+      BPF_HASH(sw_context_switches, struct key_t);
+      BPF_HASH(sw_cpu_migrations, struct key_t);
+      BPF_HASH(sw_page_faults_min, struct key_t);
+      BPF_HASH(sw_page_faults_maj, struct key_t);
 
       static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
           key->cpu = bpf_get_smp_processor_id();
@@ -135,3 +292,95 @@ programs:
           llc_miss.increment(key, ctx->sample_period);
           return 0;
       }
+      int on_branch_instruction(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          branch_instruction.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_branch_misses(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          branch_misses.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_bus_cycles(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          bus_cycles.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_stalled_cycles_frontend(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          stalled_cycles_frontend.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_stalled_cycles_backend(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          stalled_cycles_backend.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_referenced_cpu_cycles(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          referenced_cpu_cycles.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_sw_cpu_clock(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_cpu_clock.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_sw_task_clock(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_task_clock.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_sw_page_faults(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_page_faults.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_sw_context_switches(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_context_switches.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_sw_cpu_migrations(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_cpu_migrations.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_sw_page_faults_min(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_page_faults_min.increment(key, ctx->sample_period);
+          return 0;
+      }
+      int on_sw_page_faults_maj(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_page_faults_maj.increment(key, ctx->sample_period);
+          return 0;
+      }
+
