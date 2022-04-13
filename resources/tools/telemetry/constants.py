@@ -17,6 +17,7 @@
 does not need to be hard coded here, but can be read from environment variables.
 """
 
+
 class Constants:
     """Constants used in telemetry.
     1-10: Telemetry errors
@@ -46,4 +47,7 @@ class Constants:
 
     # Could not detach BPF events
     err_linux_detach = 52
+
+    # Could not successfuly run perf stat command
+    err_linux_perf_stat = 53
 

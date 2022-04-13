@@ -19,7 +19,7 @@ from logging import getLogger
 
 class Serializer:
     """
-    Executor class reponsible for executing configuration.
+    Executor class responsible for executing configuration.
     """
     def __init__(self):
         """
