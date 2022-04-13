@@ -35,55 +35,25 @@ logging:
     handlers: [console_stdout, console_stderr]
 scheduler:
   duration: 1
+  sample_period: 100
 programs:
   - name: bundle_bpf
     metrics:
-      counter:
+      gauge:
         - name: cpu_cycle
           documentation: Cycles processed by CPUs
           namespace: bpf
           labelnames:
             - name
-            - cpu
-            - pid
-        - name: cpu_instruction
-          documentation: Instructions retired by CPUs
-          namespace: bpf
-          labelnames:
-            - name
-            - cpu
-            - pid
-        - name: llc_reference
-          documentation: Last level cache operations by type
-          namespace: bpf
-          labelnames:
-            - name
-            - cpu
-            - pid
-        - name: llc_miss
-          documentation: Last level cache operations by type
-          namespace: bpf
-          labelnames:
-            - name
-            - cpu
+            - thread
             - pid
     events:
-      - type: 0x0 # HARDWARE
-        name: 0x0 # PERF_COUNT_HW_CPU_CYCLES
+      - type: 0x4 # RAW
+        name: 0x3C # INTEL_CORE_E_CPU_CLK_UNHALTED_THREAD_P
+        counter: cpu_cycle
+        umask: 0x00
         target: on_cpu_cycle
         table: cpu_cycle
-      - type: 0x0 # HARDWARE
-        name: 0x1 # PERF_COUNT_HW_INSTRUCTIONS
-        target: on_cpu_instruction
-        table: cpu_instruction
-      - type: 0x0 # HARDWARE
-        name: 0x2 # PERF_COUNT_HW_CACHE_REFERENCES
-        target: on_cache_reference
-        table: llc_reference
-      - type: 0x0 # HARDWARE
-        name: 0x3 # PERF_COUNT_HW_CACHE_MISSES
-        target: on_cache_miss
-        table: llc_miss
     code: |
       #include <linux/ptrace.h>
       #include <uapi/linux/bpf_perf_event.h>
@@ -96,9 +66,6 @@ programs:
           char name[TASK_COMM_LEN];
       };
 
-      BPF_HASH(llc_miss, struct key_t);
-      BPF_HASH(llc_reference, struct key_t);
-      BPF_HASH(cpu_instruction, struct key_t);
       BPF_HASH(cpu_cycle, struct key_t);
 
       static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
@@ -114,6 +81,43 @@ programs:
           cpu_cycle.increment(key, ctx->sample_period);
           return 0;
       }
+  - name: bundle_bpf
+    metrics:
+      gauge:
+        - name: cpu_instruction
+          documentation: Instructions retired by CPUs
+          namespace: bpf
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - type: 0x4 # RAW
+        name: 0xC0 # INTEL_CORE_E_INST_RETIRED_ANY_P
+        counter: cpu_instruction
+        umask: 0x00
+        target: on_cpu_instruction
+        table: cpu_instruction
+    code: |
+      #include <linux/ptrace.h>
+      #include <uapi/linux/bpf_perf_event.h>
+
+      const int max_cpus = 256;
+
+      struct key_t {
+          int cpu;
+          int pid;
+          char name[TASK_COMM_LEN];
+      };
+
+      BPF_HASH(cpu_instruction, struct key_t);
+
+      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+          key->cpu = bpf_get_smp_processor_id();
+          key->pid = bpf_get_current_pid_tgid();
+          bpf_get_current_comm(&(key->name), sizeof(key->name));
+      }
+
       int on_cpu_instruction(struct bpf_perf_event_data *ctx) {
           struct key_t key = {};
           get_key(&key);
@@ -121,17 +125,642 @@ programs:
           cpu_instruction.increment(key, ctx->sample_period);
           return 0;
       }
+  - name: bundle_bpf
+    metrics:
+      gauge:
+        - name: cache_references
+          documentation: Cache references
+          namespace: bpf
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - type: 0x0 # HARDWARE
+        name: 0x2e # PERF_COUNT_HW_CACHE_REFERENCES
+        counter: cache_references
+        umask: 0x4f
+        target: on_cache_reference
+        table: cache_references
+    code: |
+      #include <linux/ptrace.h>
+      #include <uapi/linux/bpf_perf_event.h>
+
+      const int max_cpus = 256;
+
+      struct key_t {
+          int cpu;
+          int pid;
+          char name[TASK_COMM_LEN];
+      };
+
+      BPF_HASH(cache_references, struct key_t);
+
+      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+          key->cpu = bpf_get_smp_processor_id();
+          key->pid = bpf_get_current_pid_tgid();
+          bpf_get_current_comm(&(key->name), sizeof(key->name));
+      }
+
       int on_cache_reference(struct bpf_perf_event_data *ctx) {
           struct key_t key = {};
           get_key(&key);
 
-          llc_reference.increment(key, ctx->sample_period);
+          cache_references.increment(key, ctx->sample_period);
           return 0;
       }
+  - name: bundle_bpf
+    metrics:
+      gauge:
+        - name: cache_miss
+          documentation: Cache misses
+          namespace: bpf
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - type: 0x0 # HARDWARE
+        name: 0x2e # PERF_COUNT_HW_CACHE_MISSES
+        counter: cache_miss
+        umask: 0x41
+        target: on_cache_miss
+        table: cache_miss
+    code: |
+      #include <linux/ptrace.h>
+      #include <uapi/linux/bpf_perf_event.h>
+
+      const int max_cpus = 256;
+
+      struct key_t {
+          int cpu;
+          int pid;
+          char name[TASK_COMM_LEN];
+      };
+
+      BPF_HASH(cache_miss, struct key_t);
+
+      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+          key->cpu = bpf_get_smp_processor_id();
+          key->pid = bpf_get_current_pid_tgid();
+          bpf_get_current_comm(&(key->name), sizeof(key->name));
+      }
+
       int on_cache_miss(struct bpf_perf_event_data *ctx) {
           struct key_t key = {};
           get_key(&key);
 
-          llc_miss.increment(key, ctx->sample_period);
+          cache_miss.increment(key, ctx->sample_period);
+          return 0;
+      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: branch_instruction
+#          documentation: Instructions retired by branch
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x0 # HARDWARE
+#        name: 0x4 # PERF_COUNT_HW_BRANCH_INSTRUCTION
+#        target: on_branch_instruction
+#        table: branch_instruction
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(branch_instruction, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#
+#      int on_branch_instruction(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          branch_instruction.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: branch_misses (not supported by CPU)
+#          documentation: Last level miss operations by type
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x0 # HARDWARE
+#        name: 0x5 # PERF_COUNT_HW_BRANCH_MISSES
+#        target: on_branch_misses
+#        table: branch_misses
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(branch_misses, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#
+#      int on_branch_misses(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          branch_misses.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: bus_cycles
+#          documentation: Count of bus cycles
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x0 # HARDWARE
+#        name: 0x6 # PERF_COUNT_HW_BUS_CYCLES
+#        target: on_bus_cycles
+#        table: bus_cycles
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(bus_cycles, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#      int on_bus_cycles(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          bus_cycles.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: stalled_cycles_frontend (not supported by CPU)
+#          documentation: Frontend stalled cycles
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x0 # HARDWARE
+#        name: 0x7 # PERF_COUNT_HW_STALLED_CYCLES_FRONTEND
+#        target: on_stalled_cycles_frontend
+#        table: stalled_cycles_frontend
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(stalled_cycles_frontend, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#
+#      int on_stalled_cycles_frontend(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          stalled_cycles_frontend.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: stalled_cycles_backend
+#          documentation: Backend stalled cycles
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x0 # HARDWARE
+#        name: 0x8 # PERF_COUNT_HW_STALLED_CYCLES_BACKEND
+#        target: on_stalled_cycles_backend
+#        table: stalled_cycles_backend
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(stalled_cycles_backend, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#
+#      int on_stalled_cycles_backend(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          stalled_cycles_backend.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: referenced_cpu_cycles
+#          documentation: Referenced CPU cycles
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x0 # HARDWARE
+#        name: 0x9 # PERF_COUNT_HW_REF_CPU_CYCLES
+#        target: on_referenced_cpu_cycles
+#        table: referenced_cpu_cycles
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(referenced_cpu_cycles, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#
+#      int on_referenced_cpu_cycles(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          referenced_cpu_cycles.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: sw_cpu_clock
+#          documentation: SW CPU clock
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x1 # SOFTWARE
+#        name: 0x0 # PERF_COUNT_SW_CPU_CLOCK
+#        target: on_sw_cpu_clock
+#        table: sw_cpu_clock
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(sw_cpu_clock, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#
+#      int on_sw_cpu_clock(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          sw_cpu_clock.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: sw_task_clock
+#          documentation: SW task clock
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x1 # SOFTWARE
+#        name: 0x1 # PERF_COUNT_SW_TASK_CLOCK
+#        target: on_sw_task_clock
+#        table: sw_task_clock
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(sw_task_clock, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#
+#      int on_sw_task_clock(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          sw_task_clock.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: sw_page_faults
+#          documentation: SW page faults
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x1 # SOFTWARE
+#        name: 0x2 # PERF_COUNT_SW_PAGE_FAULTS
+#        target: on_sw_page_faults
+#        table: sw_page_faults
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(sw_page_faults, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#
+#      int on_sw_page_faults(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          sw_page_faults.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+  - name: bundle_bpf
+    metrics:
+      gauge:
+        - name: sw_context_switches
+          documentation: SW context switches
+          namespace: bpf
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - type: 0x1 # SOFTWARE
+        name: 0x3 # PERF_COUNT_SW_CONTEXT_SWITCHES
+        counter: context_switches
+        umask: 0x00
+        target: on_sw_context_switches
+        table: sw_context_switches
+    code: |
+      #include <linux/ptrace.h>
+      #include <uapi/linux/bpf_perf_event.h>
+
+      const int max_cpus = 256;
+
+      struct key_t {
+          int cpu;
+          int pid;
+          char name[TASK_COMM_LEN];
+      };
+
+      BPF_HASH(sw_context_switches, struct key_t);
+
+      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+          key->cpu = bpf_get_smp_processor_id();
+          key->pid = bpf_get_current_pid_tgid();
+          bpf_get_current_comm(&(key->name), sizeof(key->name));
+      }
+
+      int on_sw_context_switches(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_context_switches.increment(key, ctx->sample_period);
+          return 0;
+      }
+#  - name: bundle_bpf
+#    metrics:
+#      gauge:
+#        - name: sw_cpu_migrations
+#          documentation: SW cpu migrations
+#          namespace: bpf
+#          labelnames:
+#            - name
+#            - thread
+#            - pid
+#    events:
+#      - type: 0x1 # SOFTWARE
+#        name: 0x4 # PERF_COUNT_SW_CPU_MIGRATIONS
+#        target: on_sw_cpu_migrations
+#        table: sw_cpu_migrations
+#    code: |
+#      #include <linux/ptrace.h>
+#      #include <uapi/linux/bpf_perf_event.h>
+#
+#      const int max_cpus = 256;
+#
+#      struct key_t {
+#          int cpu;
+#          int pid;
+#          char name[TASK_COMM_LEN];
+#      };
+#
+#      BPF_HASH(sw_cpu_migrations, struct key_t);
+#
+#      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+#          key->cpu = bpf_get_smp_processor_id();
+#          key->pid = bpf_get_current_pid_tgid();
+#          bpf_get_current_comm(&(key->name), sizeof(key->name));
+#      }
+#
+#      int on_sw_cpu_migrations(struct bpf_perf_event_data *ctx) {
+#          struct key_t key = {};
+#          get_key(&key);
+#
+#          sw_cpu_migrations.increment(key, ctx->sample_period);
+#          return 0;
+#      }
+  - name: bundle_bpf
+    metrics:
+      gauge:
+        - name: sw_page_faults_min
+          documentation: SW page faults minor
+          namespace: bpf
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - type: 0x1 # SOFTWARE
+        name: 0x5 # PERF_COUNT_SW_PAGE_FAULTS_MIN
+        counter: page_faults_min
+        umask: 0x00
+        target: on_sw_page_faults_min
+        table: sw_page_faults_min
+    code: |
+      #include <linux/ptrace.h>
+      #include <uapi/linux/bpf_perf_event.h>
+
+      const int max_cpus = 256;
+
+      struct key_t {
+          int cpu;
+          int pid;
+          char name[TASK_COMM_LEN];
+      };
+
+      BPF_HASH(sw_page_faults_min, struct key_t);
+
+      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+          key->cpu = bpf_get_smp_processor_id();
+          key->pid = bpf_get_current_pid_tgid();
+          bpf_get_current_comm(&(key->name), sizeof(key->name));
+      }
+
+      int on_sw_page_faults_min(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_page_faults_min.increment(key, ctx->sample_period);
+          return 0;
+      }
+  - name: bundle_bpf
+    metrics:
+      gauge:
+        - name: sw_page_faults_maj
+          documentation: SW page faults major
+          namespace: bpf
+          labelnames:
+            - name
+            - thread
+            - pid
+    events:
+      - type: 0x1 # SOFTWARE
+        name: 0x6 # PERF_COUNT_SW_PAGE_FAULTS_MAJ
+        counter: page_faults_maj
+        umask: 0x00
+        target: on_sw_page_faults_maj
+        table: sw_page_faults_maj
+    code: |
+      #include <linux/ptrace.h>
+      #include <uapi/linux/bpf_perf_event.h>
+
+      const int max_cpus = 256;
+
+      struct key_t {
+          int cpu;
+          int pid;
+          char name[TASK_COMM_LEN];
+      };
+
+      BPF_HASH(sw_page_faults_maj, struct key_t);
+
+      static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+          key->cpu = bpf_get_smp_processor_id();
+          key->pid = bpf_get_current_pid_tgid();
+          bpf_get_current_comm(&(key->name), sizeof(key->name));
+      }
+
+      int on_sw_page_faults_maj(struct bpf_perf_event_data *ctx) {
+          struct key_t key = {};
+          get_key(&key);
+
+          sw_page_faults_maj.increment(key, ctx->sample_period);
           return 0;
       }

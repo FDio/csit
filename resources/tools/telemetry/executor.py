@@ -46,7 +46,7 @@ class Executor:
         Main executor function will run programs from all bundles in a loop.
 
         Function call:
-            attach(duration)
+            attach(sample_period) for BPF / attach(duration) for VPP
             fetch_data()
             process_data()
             detach()
@@ -69,10 +69,14 @@ class Executor:
                     serializer=serializer,
                     hook=hook
                 )
-                bundle.attach(duration=self.scheduler[u"duration"])
-                bundle.fetch_data()
-                bundle.process_data()
-                bundle.detach()
+                if u"Bpf" in package:
+                    bundle.perf_stat(self.scheduler[u"duration"])
+                    bundle.process_data()
+                else:
+                    bundle.attach(self.scheduler[u"duration"])
+                    bundle.fetch_data()
+                    bundle.process_data()
+                    bundle.detach()
             except (ImportError, AttributeError) as exc:
                 raise ExecutorError(
                     f"Error executing bundle {package!r}! - {exc}"
