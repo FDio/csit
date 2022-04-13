@@ -17,6 +17,7 @@ TODO: How can we check each suite id is unique,
       when currently the suite generation is run on each directory separately?
 """
 
+import copy
 import sys
 
 from glob import glob
@@ -130,7 +131,9 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
     :type file_out: file
     :type tc_kwargs_list: dict
     """
-    for kwargs in tc_kwargs_list:
+    for kwas in tc_kwargs_list:
+        # We may edit framesize for ASTF, the copy should be local.
+        kwargs = copy.deepcopy(kwas)
         # TODO: Is there a better way to disable some combinations?
         emit = True
         if kwargs[u"frame_size"] == 9000:
@@ -161,8 +164,20 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
                 or u"-pps-" in suite_id
                 or u"-tput-" in suite_id
         ):
-            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
+            if u"imix" in str(kwargs[u"frame_size"]).lower():
+                # ASTF does not support IMIX (yet).
                 emit = False
+        if u"tcp" in suite_id:
+            if u"-cps-" in suite_id:
+                # Contrary to UDP, there is no place to affect frame size
+                # in TCP CPS tests. Actual frames are close to min size.
+                if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
+                    emit = False
+            if (u"-pps-" in suite_id or u"-tput-" in suite_id):
+                if kwargs[u"frame_size"] in MIN_FRAME_SIZE_VALUES:
+                    # Zero MSS with ip4 (trex) TCP is 70B frame size.
+                    # In future, we may want to have ip6 TCP.
+                    kwargs[u"frame_size"] = 100
         if emit:
             file_out.write(testcase.generate(**kwargs))
 
@@ -207,7 +222,9 @@ def add_trex_testcases(testcase, suite_id, file_out, tc_kwargs_list):
     :type file_out: file
     :type tc_kwargs_list: dict
     """
-    for kwargs in tc_kwargs_list:
+    for kwas in tc_kwargs_list:
+        # We may edit framesize for ASTF, the copy should be local.
+        kwargs = copy.deepcopy(kwas)
         # TODO: Is there a better way to disable some combinations?
         emit = True
         if (
@@ -215,8 +232,20 @@ def add_trex_testcases(testcase, suite_id, file_out, tc_kwargs_list):
                 or u"-pps-" in suite_id
                 or u"-tput-" in suite_id
         ):
-            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
+            if u"imix" in str(kwargs[u"frame_size"]).lower():
+                # ASTF does not support IMIX (yet).
                 emit = False
+        if u"tcp" in suite_id:
+            if u"-cps-" in suite_id:
+                # Contrary to UDP, there is no place to affect frame size
+                # in TCP CPS tests. Actual frames are close to min size.
+                if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
+                    emit = False
+            if (u"-pps-" in suite_id or u"-tput-" in suite_id):
+                if kwargs[u"frame_size"] in MIN_FRAME_SIZE_VALUES:
+                    # Zero MSS with ip4 (trex) TCP is 70B frame size.
+                    # In future, we may want to have ip6 TCP.
+                    kwargs[u"frame_size"] = 100
         if emit:
             file_out.write(testcase.generate(**kwargs))
 

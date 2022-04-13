@@ -73,6 +73,7 @@ def simple_burst(
         profile_file,
         duration,
         framesize,
+        n_data_frames,
         multiplier,
         port_0,
         port_1,
@@ -115,6 +116,7 @@ def simple_burst(
     :param duration: Expected duration for all transactions to finish,
         without any TRex related delays, without even latency.
     :param framesize: Frame size.
+    :param n_data_frames: Controls "size" of transaction for TPUT tests.
     :param multiplier: Multiplier of profile CPS.
     :param port_0: Port 0 on the traffic generator.
     :param port_1: Port 1 on the traffic generator.
@@ -125,6 +127,7 @@ def simple_burst(
     :type profile_file: str
     :type duration: float
     :type framesize: int or str
+    :type n_data_frames: int
     :type multiplier: int
     :type port_0: int
     :type port_1: int
@@ -151,7 +154,11 @@ def simple_burst(
         # TODO: key-values pairs to the profile file
         #  - ips ?
         print(f"### Profile file:\n{profile_file}")
-        profile = ASTFProfile.load(profile_file, framesize=framesize)
+        profile = ASTFProfile.load(
+            profile_file,
+            framesize=framesize,
+            n_data_frames=n_data_frames,
+        )
     except TRexError:
         print(f"Error while loading profile '{profile_file}'!")
         raise
@@ -416,6 +423,10 @@ def main():
         help=u"Size of a Frame without padding and IPG."
     )
     parser.add_argument(
+        u"--n_data_frames", type=int, default=10,
+        help=u"Use this many data frames per transaction and direction (TPUT)."
+    )
+    parser.add_argument(
         u"-m", u"--multiplier", required=True, type=float,
         help=u"Multiplier of profile CPS."
     )
@@ -455,6 +466,7 @@ def main():
         profile_file=args.profile,
         duration=args.duration,
         framesize=framesize,
+        n_data_frames=args.n_data_frames,
         multiplier=args.multiplier,
         port_0=args.port_0,
         port_1=args.port_1,
