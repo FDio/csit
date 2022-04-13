@@ -52,12 +52,14 @@ class BundleBpf:
 
         self.obj = BPF(text=self.code)
 
-    def attach(self, duration):
+    def attach(self, sample_period):
         """
         Attach events to BPF.
 
-        :param duration: Trial duration.
-        :type duration: int
+        :param sample_period:  A "sampling" event is one that generates
+        an overflow notification every N events, where N is given by
+        sample_period.
+        :type sample_period: int
         """
         try:
             for event in self.events:
@@ -65,7 +67,7 @@ class BundleBpf:
                     ev_type=event[u"type"],
                     ev_config=event[u"name"],
                     fn_name=event[u"target"],
-                    sample_period=duration
+                    sample_period=sample_period
                 )
         except AttributeError:
             getLogger("console_stderr").error(u"Could not attach BPF events!")
