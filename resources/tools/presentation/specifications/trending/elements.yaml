@@ -4734,7 +4734,7 @@
     - title: "3n-alt-xl710-64b-{core}-ipsec-ip4base-policy-aes256gcm-sw"
       output-file-name: "3n-alt-xl710-64b-{core}-ipsec-ip4base-policy-aes256gcm-sw"
       data: "plot-performance-trending-vpp-3n-alt"
-      core: ["1t{core}", "2t2c", "4t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec1Tnlsw-Ip4Base-Policy-Aes256Gcm-Mrr.64B-{core}-ethip4ipsec1tnlsw-ip4base-policy-aes256gcm-mrr"
         - "Tests.Vpp.Perf.Crypto.40Ge2P1Xl710-Ethip4Ipsec40Tnlsw-Ip4Base-Policy-Aes256Gcm-Mrr.64B-{core}-ethip4ipsec40tnlsw-ip4base-policy-aes256gcm-mrr"
@@ -4744,7 +4744,7 @@
     - title: "3n-alt-xl710-64b-{core}-ip4-base-scale"
       output-file-name: "3n-alt-xl710-64b-{core}-ip4-base-scale"
       data: "plot-performance-trending-vpp-3n-alt"
-      core: ["1t{core}", "2t2c", "4t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Base-Mrr.64B-{core}-ethip4-ip4base-mrr"
         - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Scale20K-Mrr.64B-{core}-ethip4-ip4scale20k-mrr"
@@ -4754,7 +4754,7 @@
     - title: "3n-alt-xl710-64b-{core}-ip4-feature"
       output-file-name: "3n-alt-xl710-64b-{core}-ip4-feature"
       data: "plot-performance-trending-vpp-3n-alt"
-      core: ["1t{core}", "2t2c", "4t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4-Ip4Base-Iacldstbase-Mrr.64B-{core}-ethip4-ip4base-iacldstbase-mrr"
         - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Mrr.64B-{core}-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
@@ -4763,10 +4763,10 @@
         - "Tests.Vpp.Perf.Ip4.40Ge2P1Xl710-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-{core}-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
       layout: "plot-cpta"
 
-    - title: "3n-alt-xl710-64b-{core}-ip4-tunnel-base"
-      output-file-name: "3n-alt-xl710-64b-{core}-ip4-tunnel-base"
+    - title: "3n-alt-xl710-64b-{core}-ip4tunnel-base"
+      output-file-name: "3n-alt-xl710-64b-{core}-ip4tunnel-base"
       data: "plot-performance-trending-vpp-3n-alt"
-      core: ["1t{core}", "2t2c", "4t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.Ip4 Tunnels.40Ge2P1Xl710-Ethip4Vxlan-L2Xcbase-Mrr.64B-{core}-ethip4vxlan-l2xcbase-mrr"
         - "Tests.Vpp.Perf.Ip4 Tunnels.40Ge2P1Xl710-Ethip4Vxlan-L2Bdbasemaclrn-Mrr.64B-{core}-ethip4vxlan-l2bdbasemaclrn-mrr"
@@ -4775,7 +4775,7 @@
     - title: "3n-alt-xl710-78b-{core}-ip6-base-scale"
       output-file-name: "3n-alt-xl710-78b-{core}-ip6-base-scale"
       data: "plot-performance-trending-vpp-3n-alt"
-      core: ["1t{core}", "2t2c", "4t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Base-Mrr.78B-{core}-ethip6-ip6base-mrr"
         - "Tests.Vpp.Perf.Ip6.40Ge2P1Xl710-Ethip6-Ip6Scale20K-Mrr.78B-{core}-ethip6-ip6scale20k-mrr"
@@ -4786,7 +4786,7 @@
     - title: "3n-alt-xl710-64b-{core}-l2-base-scale"
       output-file-name: "3n-alt-xl710-64b-{core}-l2-base-scale"
       data: "plot-performance-trending-vpp-3n-alt"
-      core: ["1t{core}", "2t2c", "4t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Mrr.64B-{core}-dot1q-l2bdbasemaclrn-mrr"
         - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Xcbase-Mrr.64B-{core}-eth-l2xcbase-mrr"
@@ -4799,7 +4799,7 @@
     - title: "3n-alt-xl710-64b-{core}-l2-feature"
       output-file-name: "3n-alt-xl710-64b-{core}-l2-feature"
       data: "plot-performance-trending-vpp-3n-alt"
-      core: ["1t{core}", "2t2c", "4t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Macip-Iacl50Sl-10Kflows-Mrr.64B-{core}-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr"
         - "Tests.Vpp.Perf.L2.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Iacl50Sf-10Kflows-Mrr.64B-{core}-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr"
@@ -4811,7 +4811,7 @@
     - title: "3n-alt-xl710-64b-{core}-vhost"
       output-file-name: "3n-alt-xl710-64b-{core}-vhost"
       data: "plot-performance-trending-vpp-3n-alt"
-      core: ["1t{core}", "2t2c", "4t4c"]
+      core: ["1t1c", "2t2c", "4t4c"]
       include:
         - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Mrr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
         - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"

@@ -437,7 +437,7 @@ class Alerting:
             try:
                 groups = re.search(
                     re.compile(
-                        r'((vpp|dpdk)-\dn-(skx|clx|tsh|dnv|zn2|tx2|icx)-.*)'
+                        r'((vpp|dpdk)-\dn-(skx|clx|tsh|dnv|zn2|tx2|icx|alt)-.*)'
                     ),
                     test_set
                 )
