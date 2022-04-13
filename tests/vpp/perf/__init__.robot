@@ -50,7 +50,7 @@
 | | ... | - packages_dir - Path to directory where VPP packages are stored.
 | |
 | | ${stat_runtime}= | Create List
-| | ... | vpp-runtime
+| | ... | vpp-runtime | bpf-runtime
 | | ${stat_pre_trial}= | Create List
 | | ... | vpp-clear-stats | vpp-enable-packettrace
 | | ${stat_post_trial}= | Create List

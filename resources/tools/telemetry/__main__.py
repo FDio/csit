@@ -19,6 +19,7 @@ from argparse import ArgumentParser, RawDescriptionHelpFormatter
 
 from .executor import Executor
 
+
 def main():
     """
     Main entry function when called from cli
@@ -44,6 +45,7 @@ def main():
         Executor(args.config).execute_daemon(args.hook)
     else:
         Executor(args.config).execute(args.hook)
+
 
 if __name__ == u"__main__":
     main()
