@@ -104,7 +104,7 @@ class Metric:
             u"Sample", [u"name", u"labels", u"value", u"timestamp"]
         )
 
-        if not re.compile(r"^[a-zA-Z_:][a-zA-Z0-9_:]*$").match(name):
+        if not re.compile(r"^[a-zA-Z_:\-][a-zA-Z0-9_:\-]*$").match(name):
             raise ValueError(f"Invalid metric name: {name}!")
         if typ not in self.metric_types:
             raise ValueError(f"Invalid metric type: {typ}!")
@@ -214,7 +214,7 @@ class MetricBase:
         full_name += f"{subsystem}_" if subsystem else u""
         full_name += name
 
-        if not re.compile(r"^[a-zA-Z_:][a-zA-Z0-9_:]*$").match(full_name):
+        if not re.compile(r"^[a-zA-Z_:\-][a-zA-Z0-9_:\-]*$").match(full_name):
             raise ValueError(
                 f"Invalid metric name: {full_name}!"
             )
