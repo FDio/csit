@@ -49,26 +49,6 @@ from profile_trex_astf_base_class import TrafficProfileBaseClass
 class TrafficProfile(TrafficProfileBaseClass):
     """Traffic profile."""
 
-    def __init__(self):
-        """Initialization and setting of profile parameters."""
-
-        super(TrafficProfileBaseClass, self).__init__()
-
-        # IPs used in packet headers.
-        self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.255.255"
-        self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.255.255"
-
-        # UDP messages
-        self.udp_req = u"GET"
-        self.udp_res = u"ACK"
-
-        # Headers length
-        self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B udp
-
-        # No need to set keepalive, both programs end just after start&send.
-
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
@@ -78,13 +58,29 @@ class TrafficProfile(TrafficProfileBaseClass):
         :returns: IP generator and profile templates ASTFProfile().
         :rtype: tuple
         """
-        self.udp_req += self._gen_padding(self.headers_size + len(self.udp_req))
-        self.udp_res += self._gen_padding(self.headers_size + len(self.udp_res))
+        # IPs used in packet headers.
+        p1_src_start_ip = u"192.168.0.0"
+        p1_src_end_ip = u"192.168.255.255"
+        p1_dst_start_ip = u"20.0.0.0"
+        p1_dst_end_ip = u"20.0.255.255"
+
+        # Headers length
+        headers_size = 46  # 18B L2 + 20B IPv4 + 8B UDP.
+
+        # UDP messages, not padded yet.
+        udp_req = u"GET"
+        udp_res = u"ACK"
+
+        # Padd to the required frame size.
+        udp_req += self._gen_padding(headers_size + len(udp_req))
+        udp_res += self._gen_padding(headers_size + len(udp_res))
+
+        # No need to set keepalive, both programs end just after start&send.
 
         # client commands
         prog_c = ASTFProgram(stream=False)
         # send REQ message
-        prog_c.send_msg(self.udp_req)
+        prog_c.send_msg(udp_req)
         # No need to process the response, seeing L2 counter is enough.
         # Client program can end here.
 
@@ -93,22 +89,22 @@ class TrafficProfile(TrafficProfileBaseClass):
         # When server instance is created means REQ is visible in L2 counter.
         # No need to receive explicitly?
         # send RES message
-        prog_s.send_msg(self.udp_res)
+        prog_s.send_msg(udp_res)
         # Server program can end here.
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
-            ip_range=[self.p1_src_start_ip, self.p1_src_end_ip],
-            distribution=u"seq"
+            ip_range=[p1_src_start_ip, p1_src_end_ip],
+            distribution=u"seq",
         )
         ip_gen_s = ASTFIPGenDist(
-            ip_range=[self.p1_dst_start_ip, self.p1_dst_end_ip],
-            distribution=u"seq"
+            ip_range=[p1_dst_start_ip, p1_dst_end_ip],
+            distribution=u"seq",
         )
         ip_gen = ASTFIPGen(
             glob=ASTFIPGenGlobal(ip_offset=u"0.0.0.1"),
             dist_client=ip_gen_c,
-            dist_server=ip_gen_s
+            dist_server=ip_gen_s,
         )
 
         # server association
@@ -119,7 +115,7 @@ class TrafficProfile(TrafficProfileBaseClass):
             program=prog_c,
             ip_gen=ip_gen,
             limit=4128768,  # TODO: set via input parameter ?
-            port=8080
+            port=8080,
         )
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
         template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
