@@ -16,6 +16,7 @@
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.VppCounters import VppCounters
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
@@ -118,6 +119,7 @@ class TelemetryUtil:
             f"target_info{{hostname=\"{hostname}\",hook=\"{hook}\"}} 1\n"
             f"{stdout}"
         )
+        VppCounters.vpp_show_runtime(node)
 
     @staticmethod
     def run_telemetry_on_all_duts(nodes, profile):
