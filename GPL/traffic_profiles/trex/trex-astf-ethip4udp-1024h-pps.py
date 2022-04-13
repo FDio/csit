@@ -75,6 +75,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         udp_data = u""
         # Pad the data to achieve the intended frame size.
         udp_data += self._gen_padding(headers_size)
+        print(f"DEBUG length udp_data {len(udp_data)}")
 
         # Safety check, the current programs send at least 1 packet.
         if self.n_data_frames < 1:

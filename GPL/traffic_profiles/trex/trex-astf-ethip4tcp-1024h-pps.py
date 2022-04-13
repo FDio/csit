@@ -69,6 +69,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         trex_mss = self.framesize - trex_headers_size
         real_mss = trex_mss - 12  # TRex honors header+data limit.
         data_size = self.n_data_frames * real_mss
+        print(f"fs {self.framesize} rhs {real_headers_size} ths {trex_headers_size} tmss {trex_mss} rmss {real_mss} ds {data_size}")
 
         # client commands
         prog_c = ASTFProgram()
@@ -118,6 +119,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Ensure buffers are large enough so starting window works.
         globinfo.tcp.txbufsize = data_size
         globinfo.tcp.rxbufsize = data_size
+        print(f"globinfo {globinfo.to_json()}")
         kwargs = dict(
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,

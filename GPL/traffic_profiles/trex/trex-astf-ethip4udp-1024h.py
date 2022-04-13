@@ -74,6 +74,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Padd to the required frame size.
         udp_req += self._gen_padding(headers_size + len(udp_req))
         udp_res += self._gen_padding(headers_size + len(udp_res))
+        print(f"DEBUG req {len(udp_req)} res {len(udp_res)}")
 
         # No need to set keepalive, both programs end just after start&send.
 
