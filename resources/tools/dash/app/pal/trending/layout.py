@@ -140,14 +140,14 @@ class Layout:
                 children=[
                     dbc.Row(
                         id="row-navbar",
-                        className="g-0",
+                        class_name="g-0",
                         children=[
                             self._add_navbar(),
                         ]
                     ),
                     dbc.Row(
                         id="row-main",
-                        className="g-0",
+                        className="g-0 p-2",
                         children=[
                             dcc.Store(
                                 id="selected-tests"
@@ -194,6 +194,7 @@ class Layout:
                 dbc.NavItem(
                     dbc.NavLink(
                         "Continuous Performance Trending",
+                        disabled=True,
                         external_link=True,
                         href="#"
                     )
@@ -202,8 +203,7 @@ class Layout:
             brand="Dashboard",
             brand_href="/",
             brand_external_link=True,
-            #color="dark",
-            #dark=True,
+            className="p-2",
             fluid=True,
         )
 
@@ -267,30 +267,30 @@ class Layout:
             className="g-0",
             children=[
                 dbc.Label("Physical Test Bed Topology, NIC and Driver"),
-                dcc.Dropdown(
+                dbc.Select(
                     id="dd-ctrl-phy",
+                    className="p-2",
                     placeholder="Select a Physical Test Bed Topology...",
-                    multi=False,
-                    clearable=False,
                     options=[
                         {"label": k, "value": k} for k in self.spec_tbs.keys()
                     ],
+                    size="sm",
                 ),
                 dbc.Label("Area"),
-                dcc.Dropdown(
+                dbc.Select(
                     id="dd-ctrl-area",
+                    className="p-2",
                     placeholder="Select an Area...",
                     disabled=True,
-                    multi=False,
-                    clearable=False,
+                    size="sm",
                 ),
                 dbc.Label("Test"),
-                dcc.Dropdown(
+                dbc.Select(
                     id="dd-ctrl-test",
+                    className="p-2",
                     placeholder="Select a Test...",
                     disabled=True,
-                    multi=False,
-                    clearable=False,
+                    size="sm",
                 ),
                 dbc.Row(
                     id="row-ctrl-core",
@@ -409,14 +409,14 @@ class Layout:
                         dbc.ButtonGroup(
                             [
                                 dbc.Button(
-                                    id="btn-sel-remove",
-                                    children="Remove Selected",
+                                    id="btn-sel-remove-all",
+                                    children="Remove All",
                                     color="secondary",
                                     disabled=False
                                 ),
                                 dbc.Button(
-                                    id="btn-sel-remove-all",
-                                    children="Remove All",
+                                    id="btn-sel-remove",
+                                    children="Remove Selected",
                                     color="secondary",
                                     disabled=False
                                 ),
