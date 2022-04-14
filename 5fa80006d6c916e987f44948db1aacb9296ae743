@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9548b2df_10bfc44c",
+        "filename": "resources/tools/telemetry/bundle_bpf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-04-14T10:07:01Z",
+      "side": 1,
+      "message": "WHY??????\n\nWhy this torture? Why you cannot have just dict?",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 34
+      },
+      "revId": "5fa80006d6c916e987f44948db1aacb9296ae743",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b6d06f0_1b90b70d",
+        "filename": "resources/tools/telemetry/bundle_bpf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-04-14T10:07:01Z",
+      "side": 1,
+      "message": "on new line",
+      "range": {
+        "startLine": 129,
+        "startChar": 32,
+        "endLine": 129,
+        "endChar": 33
+      },
+      "revId": "5fa80006d6c916e987f44948db1aacb9296ae743",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03972c7c_1318e12d",
+        "filename": "resources/tools/telemetry/bundle_bpf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-04-14T10:07:01Z",
+      "side": 1,
+      "message": "we want logger for stdout and err like in vpp bundle. next patch?",
+      "range": {
+        "startLine": 165,
+        "startChar": 18,
+        "endLine": 165,
+        "endChar": 26
+      },
+      "revId": "5fa80006d6c916e987f44948db1aacb9296ae743",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
