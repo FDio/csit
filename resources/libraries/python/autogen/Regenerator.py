@@ -17,6 +17,7 @@ TODO: How can we check each suite id is unique,
       when currently the suite generation is run on each directory separately?
 """
 
+import copy
 import sys
 
 from glob import glob
@@ -116,6 +117,39 @@ def check_suite_tag(suite_tag, prolog):
         raise ValueError(f"Suite tag found {found} times for {suite_tag}")
 
 
+def filter_and_edit_kwargs_for_astf(suite_id, kwargs):
+    """Return possibly edited kwargs, or None if to be skipped.
+
+    This is a code block used in few places.
+    Kwargs is (a copy of) one item from tc_kwargs_list.
+    Currently, the editable field is frame_size,
+    to be increased to for tests with data (not just CPS).
+
+    :param suite_id: Suite ID.
+    :param kwargs: Key-value pairs used to construct one testcase.
+    :type suite_id: str
+    :type tc_kwargs_list: dict
+    :returns: Edited kwargs.
+    :rtype Optional[dict]
+    """
+    if u"-cps-" in suite_id:
+        # Contrary to UDP, there is no place to affect frame size
+        # in TCP CPS tests. Actual frames are close to min size.
+        # UDP uses the min value too, for fairer comparison to TCP.
+        if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
+            return None
+    elif (u"-pps-" in suite_id or u"-tput-" in suite_id):
+        if u"imix" in str(kwargs[u"frame_size"]).lower():
+            # ASTF does not support IMIX (yet).
+            return None
+        if kwargs[u"frame_size"] in MIN_FRAME_SIZE_VALUES:
+            # Minimal (TRex) TCP data frame is 80B for IPv4.
+            # In future, we may want to have also IPv6 TCP.
+            # UDP uses the same value, for fairer comparison to TCP.
+            kwargs[u"frame_size"] = 100
+    return kwargs
+
+
 def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
     """Add default testcases to file.
 
@@ -130,7 +164,9 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
     :type file_out: file
     :type tc_kwargs_list: dict
     """
-    for kwargs in tc_kwargs_list:
+    for kwas in tc_kwargs_list:
+        # We may edit framesize for ASTF, the copy should be local.
+        kwargs = copy.deepcopy(kwas)
         # TODO: Is there a better way to disable some combinations?
         emit = True
         if kwargs[u"frame_size"] == 9000:
@@ -156,14 +192,8 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
                 emit = False
             if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
                 emit = False
-        if (
-                u"-cps-" in suite_id
-                or u"-pps-" in suite_id
-                or u"-tput-" in suite_id
-        ):
-            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
-                emit = False
-        if emit:
+        kwargs = filter_and_edit_kwargs_for_astf(suite_id, kwargs)
+        if emit and kwargs is not None:
             file_out.write(testcase.generate(**kwargs))
 
 
@@ -207,17 +237,11 @@ def add_trex_testcases(testcase, suite_id, file_out, tc_kwargs_list):
     :type file_out: file
     :type tc_kwargs_list: dict
     """
-    for kwargs in tc_kwargs_list:
-        # TODO: Is there a better way to disable some combinations?
-        emit = True
-        if (
-                u"-cps-" in suite_id
-                or u"-pps-" in suite_id
-                or u"-tput-" in suite_id
-        ):
-            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
-                emit = False
-        if emit:
+    for kwas in tc_kwargs_list:
+        # We may edit framesize for ASTF, the copy should be local.
+        kwargs = copy.deepcopy(kwas)
+        kwargs = filter_and_edit_kwargs_for_astf(suite_id, kwargs)
+        if kwargs is not None:
             file_out.write(testcase.generate(**kwargs))
 
 

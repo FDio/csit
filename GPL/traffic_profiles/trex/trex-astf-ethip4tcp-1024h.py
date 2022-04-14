@@ -47,21 +47,6 @@ from profile_trex_astf_base_class import TrafficProfileBaseClass
 class TrafficProfile(TrafficProfileBaseClass):
     """Traffic profile."""
 
-    def __init__(self):
-        """Initialization and setting of profile parameters."""
-
-        super(TrafficProfileBaseClass, self).__init__()
-
-        # IPs used in packet headers.
-        self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.3.255"
-        self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.3.255"
-
-        # Headers length; not used in this profile, just for the record of
-        # header length for TCP packet with 0B payload
-        self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
-
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
@@ -72,6 +57,14 @@ class TrafficProfile(TrafficProfileBaseClass):
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
+        # No data, no way to manipulate frame sizes via MSS.
+
+        # IPs used in packet headers.
+        p1_src_start_ip = u"192.168.0.0"
+        p1_src_end_ip = u"192.168.3.255"
+        p1_dst_start_ip = u"20.0.0.0"
+        p1_dst_end_ip = u"20.0.3.255"
+
         # client commands
         prog_c = ASTFProgram()
         # send syn
@@ -88,17 +81,17 @@ class TrafficProfile(TrafficProfileBaseClass):
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
-            ip_range=[self.p1_src_start_ip, self.p1_src_end_ip],
-            distribution=u"seq"
+            ip_range=[p1_src_start_ip, p1_src_end_ip],
+            distribution=u"seq",
         )
         ip_gen_s = ASTFIPGenDist(
-            ip_range=[self.p1_dst_start_ip, self.p1_dst_end_ip],
-            distribution=u"seq"
+            ip_range=[p1_dst_start_ip, p1_dst_end_ip],
+            distribution=u"seq",
         )
         ip_gen = ASTFIPGen(
             glob=ASTFIPGenGlobal(ip_offset=u"0.0.0.1"),
             dist_client=ip_gen_c,
-            dist_server=ip_gen_s
+            dist_server=ip_gen_s,
         )
 
         # server association
@@ -109,7 +102,7 @@ class TrafficProfile(TrafficProfileBaseClass):
             program=prog_c,
             ip_gen=ip_gen,
             limit=64512,  # TODO: set via input parameter
-            port=8080
+            port=8080,
         )
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
         template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
