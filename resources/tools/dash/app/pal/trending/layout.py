@@ -14,8 +14,6 @@
 """Plotly Dash HTML layout override.
 """
 
-import logging
-
 import pandas as pd
 
 from dash import dcc
@@ -36,12 +34,6 @@ class Layout:
     """
     """
 
-    STYLE_HIDEN = {"display": "none"}
-    STYLE_BLOCK = {"display": "block", "vertical-align": "top"}
-    STYLE_INLINE ={
-        "display": "inline-block",
-        "vertical-align": "top"
-    }
     NO_GRAPH = {"data": [], "layout": {}, "frames": []}
 
     def __init__(self, app, html_layout_file, spec_file, graph_layout_file,
@@ -140,34 +132,32 @@ class Layout:
                 children=[
                     dbc.Row(
                         id="row-navbar",
-                        className="g-0",
+                        class_name="g-0",
                         children=[
                             self._add_navbar(),
                         ]
                     ),
+                    dcc.Loading(
+                        dbc.Offcanvas(
+                            id="offcanvas-metadata",
+                            title="Throughput And Latency",
+                            placement="end",
+                            is_open=False,
+                            children=[
+                                dbc.Row(id="metadata-tput-lat"),
+                                dbc.Row(id="metadata-hdrh-graph"),
+                            ]
+                        )
+                    ),
                     dbc.Row(
                         id="row-main",
-                        className="g-0",
+                        class_name="g-0 p-2",
                         children=[
                             dcc.Store(
                                 id="selected-tests"
                             ),
                             self._add_ctrl_col(),
                             self._add_plotting_col(),
-                        ]
-                    ),
-                    dbc.Offcanvas(
-                        id="offcanvas-metadata",
-                        title="Throughput And Latency",
-                        placement="end",
-                        is_open=True,
-                        children=[
-                            html.P(
-                                id="metadata",
-                                children=[
-                                    "This is the placeholder for metadata."
-                                ],
-                            )
                         ]
                     )
                 ]
@@ -202,8 +192,7 @@ class Layout:
             brand="Dashboard",
             brand_href="/",
             brand_external_link=True,
-            #color="dark",
-            #dark=True,
+            class_name="p-2",
             fluid=True,
         )
 
@@ -226,7 +215,7 @@ class Layout:
             children=[
                 dbc.Row(  # Throughput
                     id="row-graph-tput",
-                    className="g-0",
+                    class_name="g-0 p-2",
                     children=[
                         dcc.Loading(
                             dcc.Graph(id="graph-tput")
@@ -235,7 +224,7 @@ class Layout:
                 ),
                 dbc.Row(  # Latency
                     id="row-graph-lat",
-                    className="g-0",
+                    class_name="g-0 p-2",
                     children=[
                         dcc.Loading(
                             dcc.Graph(id="graph-latency")
@@ -244,7 +233,7 @@ class Layout:
                 ),
                 dbc.Row(  # Download
                     id="div-download",
-                    className="g-0",
+                    class_name="g-0",
                     children=[
                         dcc.Loading(children=[
                             dbc.Button(
@@ -264,7 +253,7 @@ class Layout:
         """
         return dbc.Row(
             id="row-ctrl-panel",
-            className="g-0",
+            class_name="g-0",
             children=[
                 dbc.Label("Physical Test Bed Topology, NIC and Driver"),
                 dcc.Dropdown(
@@ -294,7 +283,7 @@ class Layout:
                 ),
                 dbc.Row(
                     id="row-ctrl-core",
-                    className="g-0",
+                    class_name="g-0",
                     children=[
                         dbc.Label("Number of Cores"),
                         dbc.Col([
@@ -316,7 +305,7 @@ class Layout:
                 ),
                 dbc.Row(
                     id="row-ctrl-framesize",
-                    className="g-0",
+                    class_name="g-0",
                     children=[
                         dbc.Label("Frame Size"),
                         dbc.Col([
@@ -338,7 +327,7 @@ class Layout:
                 ),
                 dbc.Row(
                     id="row-ctrl-testtype",
-                    className="g-0",
+                    class_name="g-0",
                     children=[
                         dbc.Label("Test Type"),
                         dbc.Col([
@@ -359,7 +348,7 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
-                    className="g-0",
+                    class_name="g-0",
                     children=[
                         dbc.Button(
                             id="btn-ctrl-add",
@@ -368,7 +357,7 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
-                    className="g-0",
+                    class_name="g-0",
                     children=[
                         dcc.DatePickerRange(
                             id="dpr-period",
@@ -390,10 +379,10 @@ class Layout:
         """
         return dbc.Row(
             id="div-ctrl-shown",
-            className="g-0",
+            class_name="g-0",
             children=[
                 dbc.Row(
-                    className="g-0",
+                    class_name="g-0",
                     children=[
                         dbc.Label("Selected tests"),
                         dbc.Checklist(
@@ -404,7 +393,7 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
-                    className="g-0",
+                    class_name="g-0",
                     children=[
                         dbc.ButtonGroup(
                             [
@@ -428,7 +417,7 @@ class Layout:
                                 )
                             ],
                             size="md",
-                            className="me-1",
+                            class_name="me-1",
                         ),
                     ]
                 )
@@ -487,13 +476,9 @@ class Layout:
             return options, disable
 
         @app.callback(
-            # Output("row-ctrl-core", "style"),
             Output("cl-ctrl-core", "options"),
-            # Output("row-ctrl-framesize", "style"),
             Output("cl-ctrl-framesize", "options"),
-            # Output("row-ctrl-testtype", "style"),
             Output("cl-ctrl-testtype", "options"),
-            # Output("btn-ctrl-add", "disabled"),
             State("dd-ctrl-phy", "value"),
             State("dd-ctrl-area", "value"),
             Input("dd-ctrl-test", "value"),
@@ -505,39 +490,27 @@ class Layout:
             if test is None:
                 raise PreventUpdate
 
-            # core_style = {"display": "none"}
             core_opts = []
-            # framesize_style = {"display": "none"}
             framesize_opts = []
-            # testtype_style = {"display": "none"}
             testtype_opts = []
-            # add_disabled = True
             if phy and area and test:
-                # core_style = {"display": "block"}
                 core_opts = [
                     {"label": v, "value": v}
                         for v in self.spec_tbs[phy][area]["core"]
                 ]
-                # framesize_style = {"display": "block"}
                 framesize_opts = [
                     {"label": v, "value": v}
                         for v in self.spec_tbs[phy][area]["frame-size"]
                 ]
-                # testtype_style = {"display": "block"}
                 testtype_opts = [
                     {"label": v, "value": v}
                         for v in self.spec_tbs[phy][area]["test-type"]
                 ]
-                # add_disabled = False
 
             return (
-                # core_style,
                 core_opts,
-                # framesize_style,
                 framesize_opts,
-                # testtype_style,
                 testtype_opts,
-                # add_disabled
             )
 
         def _sync_checklists(opt, sel, all, id):
@@ -585,12 +558,8 @@ class Layout:
             return _sync_checklists(opt, sel, all, "cl-ctrl-testtype")
 
         @app.callback(
-            # Output("graph-tput", "figure"),
-            # Output("graph-latency", "figure"),
-            # Output("div-tput", "style"),
-            # Output("div-latency", "style"),
-            # Output("div-lat-metadata", "style"),
-            # Output("div-download", "style"),
+            Output("graph-tput", "figure"),
+            Output("graph-latency", "figure"),
             Output("selected-tests", "data"),  # Store
             Output("cl-selected", "options"),  # User selection
             Output("dd-ctrl-phy", "value"),
@@ -634,12 +603,8 @@ class Layout:
             class RetunValue:
                 def __init__(self) -> None:
                     self._output = {
-                        # "graph-tput-figure": no_update,
-                        # "graph-lat-figure": no_update,
-                        # "div-tput-style": no_update,
-                        # "div-latency-style": no_update,
-                        # "div-lat-metadata-style": no_update,
-                        # "div-download-style": no_update,
+                        "graph-tput-figure": no_update,
+                        "graph-lat-figure": no_update,
                         "selected-tests-data": no_update,
                         "cl-selected-options": no_update,
                         "dd-ctrl-phy-value": no_update,
@@ -704,22 +669,16 @@ class Layout:
                 fig_tput, fig_lat = graph_trending(
                     self.data, store_sel, self.layout, d_start, d_end
                 )
-                # output.set_values({
-                #     "graph-tput-figure": \
-                #         fig_tput if fig_tput else self.NO_GRAPH,
-                #     "graph-lat-figure": \
-                #         fig_lat if fig_lat else self.NO_GRAPH,
-                #     "div-tput-style": \
-                #         self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
-                #     "div-latency-style": \
-                #         self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
-                #     "div-lat-metadata-style": \
-                #         self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
-                #     "div-download-style": \
-                #         self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
-                # })
+                output.set_values({
+                    "graph-tput-figure": \
+                        fig_tput if fig_tput else self.NO_GRAPH,
+                    "graph-lat-figure": \
+                        fig_lat if fig_lat else self.NO_GRAPH,
+                })
             elif trigger_id == "btn-sel-remove-all":
                 output.set_values({
+                    "graph-tput-figure": self.NO_GRAPH,
+                    "graph-lat-figure": self.NO_GRAPH,
                     "selected-tests-data": list(),
                     "cl-selected-options": list()
                 })
@@ -735,88 +694,82 @@ class Layout:
                         self.data, store_sel, self.layout, d_start, d_end
                     )
                     output.set_values({
-                        # "graph-tput-figure": \
-                        #     fig_tput if fig_tput else self.NO_GRAPH,
-                        # "graph-lat-figure": \
-                        #     fig_lat if fig_lat else self.NO_GRAPH,
-                        # "div-tput-style": \
-                        #     self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
-                        # "div-latency-style": \
-                        #     self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
-                        # "div-lat-metadata-style": \
-                        #     self.STYLE_BLOCK if fig_lat else self.STYLE_HIDEN,
-                        # "div-download-style": \
-                        #     self.STYLE_BLOCK if fig_tput else self.STYLE_HIDEN,
+                        "graph-tput-figure": \
+                            fig_tput if fig_tput else self.NO_GRAPH,
+                        "graph-lat-figure": \
+                            fig_lat if fig_lat else self.NO_GRAPH,
                         "selected-tests-data": store_sel,
                         "cl-selected-options": _list_tests()
                     })
                 else:
                     output.set_values({
-                        # "graph-tput-figure": self.NO_GRAPH,
-                        # "graph-lat-figure": self.NO_GRAPH,
-                        # "div-tput-style": self.STYLE_HIDEN,
-                        # "div-latency-style": self.STYLE_HIDEN,
-                        # "div-lat-metadata-style": self.STYLE_HIDEN,
-                        # "div-download-style": self.STYLE_HIDEN,
+                        "graph-tput-figure": self.NO_GRAPH,
+                        "graph-lat-figure": self.NO_GRAPH,
                         "selected-tests-data": store_sel,
                         "cl-selected-options": _list_tests()
                     })
 
             return output.value()
 
-        # @app.callback(
-        #     Output("tput-metadata", "children"),
-        #     Input("graph-tput", "clickData")
-        # )
-        # def _show_tput_metadata(hover_data):
-        #     """
-        #     """
-        #     if not hover_data:
-        #         raise PreventUpdate
+        @app.callback(
+            Output("metadata-tput-lat", "children"),
+            Output("metadata-hdrh-graph", "children"),
+            Output("offcanvas-metadata", "is_open"),
+            Input("graph-tput", "clickData"),
+            Input("graph-latency", "clickData")
+        )
+        def _show_tput_metadata(tput_data, lat_data) -> dbc.Card:
+            """
+            """
+            if not (tput_data or lat_data):
+                raise PreventUpdate
 
-        #     return hover_data["points"][0]["text"].replace("<br>", "\n")
+            metadata = no_update
+            graph = list()
 
-        # @app.callback(
-        #     Output("graph-latency-hdrh", "figure"),
-        #     Output("graph-latency-hdrh", "style"),
-        #     Output("lat-metadata", "children"),
-        #     Input("graph-latency", "clickData")
-        # )
-        # def _show_latency_hdhr(hover_data):
-        #     """
-        #     """
-        #     if not hover_data:
-        #         raise PreventUpdate
+            trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
+            if trigger_id == "graph-tput":
+                title = "Throughput"
+                txt = tput_data["points"][0]["text"].replace("<br>", "\n")
+            elif trigger_id == "graph-latency":
+                title = "Latency"
+                txt = lat_data["points"][0]["text"].replace("<br>", "\n")
+                hdrh_data = lat_data["points"][0].get("customdata", None)
+                if hdrh_data:
+                    graph = [dcc.Graph(
+                        id="hdrh-latency-graph",
+                        figure=graph_hdrh_latency(hdrh_data, self.layout)
+                    ), ]
 
-        #     graph = no_update
-        #     hdrh_data = hover_data["points"][0].get("customdata", None)
-        #     if hdrh_data:
-        #         graph = graph_hdrh_latency(hdrh_data, self.layout)
+            metadata = [
+                dbc.Card(
+                    children=[
+                        dbc.CardHeader(title),
+                        dbc.CardBody(children=[txt])
+                    ]
+                )
+            ]
 
-        #     return (
-        #         graph,
-        #         self.STYLE_INLINE,
-        #         hover_data["points"][0]["text"].replace("<br>", "\n")
-        #     )
+            return metadata, graph, True
 
-        # @app.callback(
-        #     Output("download-data", "data"),
-        #     State("selected-tests", "data"),
-        #     Input("btn-download-data", "n_clicks"),
-        #     prevent_initial_call=True
-        # )
-        # def _download_data(store_sel, n_clicks):
-        #     """
-        #     """
+        @app.callback(
+            Output("download-data", "data"),
+            State("selected-tests", "data"),
+            Input("btn-download-data", "n_clicks"),
+            prevent_initial_call=True
+        )
+        def _download_data(store_sel, n_clicks):
+            """
+            """
 
-        #     if not n_clicks:
-        #         raise PreventUpdate
+            if not n_clicks:
+                raise PreventUpdate
 
-        #     df = pd.DataFrame()
-        #     for itm in store_sel:
-        #         sel_data = select_trending_data(self.data, itm)
-        #         if sel_data is None:
-        #             continue
-        #         df = pd.concat([df, sel_data], ignore_index=True)
+            df = pd.DataFrame()
+            for itm in store_sel:
+                sel_data = select_trending_data(self.data, itm)
+                if sel_data is None:
+                    continue
+                df = pd.concat([df, sel_data], ignore_index=True)
 
-        #     return dcc.send_data_frame(df.to_csv, "trending_data.csv")
+            return dcc.send_data_frame(df.to_csv, "trending_data.csv")
