@@ -66,7 +66,8 @@
 # Scale settings
 | ${n_hosts}= | ${262144}
 | ${n_ports}= | ${63}
-| ${packets_per_transaction_and_direction}= | ${11}
+| ${packets_per_transaction_and_direction}= | ${4 + ${ASTF_N_DATA_FRAMES}}
+| ${packets_per_transaction_aggregated}= | ${6 + 2 * ${ASTF_N_DATA_FRAMES}}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
 # Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h-pps
@@ -109,14 +110,38 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
-| | [Tags] | 64B | 1C
-| | frame_size=${64} | phy_cores=${1}
+| 100B-1c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| | [Tags] | 100B | 1C
+| | frame_size=${100} | phy_cores=${1}
 
-| 64B-2c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
-| | [Tags] | 64B | 2C
-| | frame_size=${64} | phy_cores=${2}
+| 100B-2c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| | [Tags] | 100B | 2C
+| | frame_size=${100} | phy_cores=${2}
 
-| 64B-4c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
-| | [Tags] | 64B | 4C
-| | frame_size=${64} | phy_cores=${4}
+| 100B-4c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| | [Tags] | 100B | 4C
+| | frame_size=${100} | phy_cores=${4}
+
+| 1518B-1c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| | [Tags] | 1518B | 1C
+| | frame_size=${1518} | phy_cores=${1}
+
+| 1518B-2c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| | [Tags] | 1518B | 2C
+| | frame_size=${1518} | phy_cores=${2}
+
+| 1518B-4c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| | [Tags] | 1518B | 4C
+| | frame_size=${1518} | phy_cores=${4}
+
+| 9000B-1c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| | [Tags] | 9000B | 1C
+| | frame_size=${9000} | phy_cores=${1}
+
+| 9000B-2c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| | [Tags] | 9000B | 2C
+| | frame_size=${9000} | phy_cores=${2}
+
+| 9000B-4c-ethip4tcp-ip4base-h262144-p63-s16515072-pps-ndrpdr
+| | [Tags] | 9000B | 4C
+| | frame_size=${9000} | phy_cores=${4}
