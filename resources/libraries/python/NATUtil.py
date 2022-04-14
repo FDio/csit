@@ -278,7 +278,7 @@ class NATUtil:
 
     @staticmethod
     def get_nat44_sessions_number(node, proto):
-        """Get number of established NAT44 sessions from NAT44 mapping data.
+        """Get number of expected NAT44 sessions from NAT44 mapping data.
 
         This keyword uses output from a CLI command,
         so it can start failing when VPP changes the output format.
@@ -287,17 +287,18 @@ class NATUtil:
         The current implementation supports both 2202 and post-2202 format.
         (The Gerrit number changing the output format is 34877.)
 
-        For TCP proto, the post-2202 format includes "timed out"
-        established sessions into its count of total sessions.
+        For TCP proto, the expected state after rampup is
+        some number of sessions in transitory state (VPP has seen the FINs),
+        and no session in established state (would meaning some FINs were lost).
+        Transitory state is enough to go through fast path,
+        so we do not need a specialized traffic profile to keep sessions open.
+
+        Also for TCP proto, the post-2202 format includes "timed out"
+        transitory sessions into its count of total sessions.
         As the tests should fail if a session is timed-out,
         the logic substracts timed out sessions for the resturned value.
-
-        The 2202 output reports most of TCP sessions as in "transitory" state,
-        as opposed to "established", but the previous CSIT logic tolerated that.
-        Ideally, whis keyword would add establised and transitory sessions
-        (but without CLOSED and WAIT_CLOSED sessions) and return that.
-        The current implementation simply returns "total tcp sessions" value,
-        to preserve the previous CSIT behavior for 2202 output.
+        With the 2202 format, we count both transitory and established sessions,
+        as that was the behavior of CSIT code at that release.
 
         :param node: DUT node.
         :param proto: Required protocol - TCP/UDP/ICMP.
@@ -328,9 +329,9 @@ class NATUtil:
                     found = True
                 continue
             # Proto is found, find the line we are interested in.
-            if proto_l == u"tcp" and u"established" not in line:
+            if proto_l == u"tcp" and u"transitory" not in line:
                 continue
-            if u"total" not in line and u"established" not in line:
+            if u"total" not in line and u"transitory" not in line:
                 raise RuntimeError(f"show nat summary: no {proto} total.")
             # We have the line with relevant numbers.
             total_part, timed_out_part = line.split(u"(", 1)
