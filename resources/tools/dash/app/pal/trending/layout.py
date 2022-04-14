@@ -224,7 +224,37 @@ class Layout:
         return dbc.Col(
             id="col-plotting-area",
             children=[
-                # Empty for now
+                dbc.Row(  # Throughput
+                    id="row-graph-tput",
+                    className="g-0",
+                    children=[
+                        dcc.Loading(
+                            dcc.Graph(id="graph-tput")
+                        )
+                    ]
+                ),
+                dbc.Row(  # Latency
+                    id="row-graph-lat",
+                    className="g-0",
+                    children=[
+                        dcc.Loading(
+                            dcc.Graph(id="graph-latency")
+                        )
+                    ]
+                ),
+                dbc.Row(  # Download
+                    id="div-download",
+                    className="g-0",
+                    children=[
+                        dcc.Loading(children=[
+                            dbc.Button(
+                                id="btn-download-data",
+                                children=["Download Data"]
+                            ),
+                            dcc.Download(id="download-data")
+                        ])
+                    ]
+                )
             ],
             width=9,
         )
@@ -267,17 +297,21 @@ class Layout:
                     className="g-0",
                     children=[
                         dbc.Label("Number of Cores"),
-                        dbc.Checklist(
-                            id="cl-ctrl-core-all",
-                            options=[{"label": "All", "value": "all"}, ],
-                            inline=True,
-                            switch=False
-                        ),
-                        dbc.Checklist(
-                            id="cl-ctrl-core",
-                            inline=True,
-                            switch=False
-                        )
+                        dbc.Col([
+                            dbc.Checklist(
+                                id="cl-ctrl-core-all",
+                                options=[{"label": "All", "value": "all"}, ],
+                                inline=False,
+                                switch=False
+                            ),
+                        ], width=3),
+                        dbc.Col([
+                            dbc.Checklist(
+                                id="cl-ctrl-core",
+                                inline=True,
+                                switch=False
+                            )
+                        ])
                     ]
                 ),
                 dbc.Row(
@@ -285,17 +319,21 @@ class Layout:
                     className="g-0",
                     children=[
                         dbc.Label("Frame Size"),
-                        dbc.Checklist(
-                            id="cl-ctrl-framesize-all",
-                            options=[{"label": "All", "value": "all"}, ],
-                            inline=True,
-                            switch=False
-                        ),
-                        dbc.Checklist(
-                            id="cl-ctrl-framesize",
-                            inline=True,
-                            switch=False
-                        )
+                        dbc.Col([
+                            dbc.Checklist(
+                                id="cl-ctrl-framesize-all",
+                                options=[{"label": "All", "value": "all"}, ],
+                                inline=True,
+                                switch=False
+                            ),
+                        ], width=3),
+                        dbc.Col([
+                            dbc.Checklist(
+                                id="cl-ctrl-framesize",
+                                inline=True,
+                                switch=False
+                            )
+                        ])
                     ]
                 ),
                 dbc.Row(
@@ -303,17 +341,21 @@ class Layout:
                     className="g-0",
                     children=[
                         dbc.Label("Test Type"),
-                        dbc.Checklist(
-                            id="cl-ctrl-testtype-all",
-                            options=[{"label": "All", "value": "all"}, ],
-                            inline=True,
-                            switch=False
-                        ),
-                        dbc.Checklist(
-                            id="cl-ctrl-testtype",
-                            inline=True,
-                            switch=False
-                        )
+                        dbc.Col([
+                            dbc.Checklist(
+                                id="cl-ctrl-testtype-all",
+                                options=[{"label": "All", "value": "all"}, ],
+                                inline=True,
+                                switch=False
+                            ),
+                        ], width=3),
+                        dbc.Col([
+                            dbc.Checklist(
+                                id="cl-ctrl-testtype",
+                                inline=True,
+                                switch=False
+                            )
+                        ])
                     ]
                 ),
                 dbc.Row(
@@ -738,7 +780,7 @@ class Layout:
         #     Output("graph-latency-hdrh", "figure"),
         #     Output("graph-latency-hdrh", "style"),
         #     Output("lat-metadata", "children"),
-        #     Input("graph-latency", "clickData")
+        #     Input("graph-latency", "clickDat")
         # )
         # def _show_latency_hdhr(hover_data):
         #     """
