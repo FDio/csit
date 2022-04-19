@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -392,19 +392,14 @@
 
 | Set Jumbo
 | | [Documentation]
-| | ... | For jumbo frames detection, the maximal packet size is relevant,
-| | ... | encapsulation overhead (if any) has effect.
-| |
-| | ... | This keyword computes jumbo boolean (some suites need that for
-| | ... | configuration decisions).
+| | ... | Call Set Numeric Frame Sizes and set jumbo based on max framesize.
 | | ... | To streamline suite autogeneration, both input and output values
 | | ... | are communicated as test (or broader scope) variables,
 | | ... | instead of explicit arguments and return values.
 | |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - overhead - Overhead in bytes; default value: 0. Type: integer
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
-| | ... | string
+| | ... | - frame_size - Framesize. Type: integer or string
 | |
 | | ... | *Test variables set:*
 | | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
@@ -414,8 +409,7 @@
 | |
 | | ... | \| Set Jumbo \|
 | |
-| | # Already called by Set Max Rate And Jumbo, but some suites (e.g. device)
-| | # are calling this directly.
+| | # Some suites (e.g. device) are not calling Set Max Rate And Jumbo.
 | | Set Numeric Frame Sizes
 | | ${jumbo} = | Set Variable If | ${max_frame_size} < 1522
 | | ... | ${False} | ${True}
@@ -423,22 +417,14 @@
 
 | Set Max Rate And Jumbo
 | | [Documentation]
-| | ... | Input framesize can be either integer in case of a single packet
-| | ... | in stream, or IMIX string defining mix of packets.
-| | ... | For jumbo frames detection, the maximal packet size is relevant.
-| | ... | For maximal transmit rate, the average packet size is relevant.
-| | ... | In both cases, encapsulation overhead (if any) has effect.
-| | ... | The maximal rate is computed from NIC name.
-| | ... | The implementation works by mapping from exact
-| | ... | whitelisted NIC names.
-| | ... | The mapping is hardcoded in nic_limits.yaml
-| | ... | TODO: Make the mapping from NIC names case insensistive.
-| |
 | | ... | This keyword computes maximal unidirectional transmit rate
 | | ... | and jumbo boolean (some suites need that for configuration decisions).
 | | ... | To streamline suite autogeneration, both input and output values
 | | ... | are communicated as test (or broader scope) variables,
 | | ... | instead of explicit arguments and return values.
+| |
+| | ... | For correctly applying bandwidth limit, average frame size is used,
+| | ... | see Set Numeric Frame Sizes keyword documentation for details.
 | |
 | | ... | If this keyword detects the test is interested in (unidirectional)
 | | ... | transactons per second maximal rate (tps), that is returned (not pps).
@@ -457,8 +443,8 @@
 | | ... | Type: float
 | | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
 | | ... | enabled. Type: boolean
-| | ... | avg_frame_size - Average frame size including overhead. Type: float
-| | ... | max_frame_size - Maximal frame size including overhead. Type: float
+| | ... | - avg_frame_size - Average frame size including overhead. Type: float
+| | ... | - max_frame_size - Maximal frame size including overhead. Type: float
 | |
 | | ... | *Example:*
 | |
@@ -470,7 +456,8 @@
 | | ... | ${NIC_NAME_TO_PPS_LIMIT} | ${nic_name}
 | | ${bps_limit} = | Get From Dictionary
 | | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
-| | Set Numeric Frame Sizes
+| | # Set Jumbo also calls Set Numeric Frame Sizes.
+| | Set Jumbo
 | | # We need to add 20B (Ethernet preamble and inter-frame gap)
 | | # to avg_frame_size
 | | ${rate} = | Evaluate | ${bps_limit} / ((${avg_frame_size} + 20.0) * 8)
@@ -479,7 +466,6 @@
 | | ${pptad} = | Get Packets Per Transaction And Direction
 | | ${max_rate} = | Evaluate | ${max_rate} / ${pptad}
 | | Set Test Variable | \${max_rate}
-| | Set Jumbo
 
 | Set Numeric Frame Sizes
 | | [Documentation]
@@ -487,7 +473,9 @@
 | | ... | in stream, or set of packets in case of IMIX type or simmilar.
 | | ... | For jumbo decisions, we need a numeric size of the biggest packet.
 | | ... | For max rate decisions, we need a numeric average packet size.
-| | ... | This keyword computes both and sets them as test variables.
+| | ... | Average size is also used for displaying bandwidth achieved.
+| | ... | This keyword computes both (accounting for overheads)
+| | ... | and sets them as test variables.
 | |
 | | ... | Each suite sets a value named \${overhead},
 | | ... | which describes by how many bytes the frames on DUT-DUT link
@@ -497,32 +485,53 @@
 | | ... | For calculations in this keyword, we need largest sizes
 | | ... | across links, so zero is used if \${overhead} is negative.
 | |
+| | ... | The other overhead is from TCP control packets.
+| | ... | TCP_CPS tests have SYN frames of length 78B and other frames 70B.
+| | ... | The more loaded is client-to-server direction with 1 SYN and 3 other.
+| | ... | TCP_PPS and TCP_TPUT tests have one other control packet less,
+| | ... | but they do contain data frames.
+| |
 | | ... | *Test variables read:*
 | | ... | - frame_size - Framesize. Type: integer or string
 | | ... | - overhead - Overhead in bytes; default value: ${0}. Type: integer
 | |
 | | ... | *Test variables set*
-| | ... | avg_frame_size - Average frame size including overhead. Type: float
-| | ... | max_frame_size - Maximal frame size including overhead. Type: float
+| | ... | - avg_frame_size - Average frame size including overhead. Type: float
+| | ... | - max_frame_size - Maximal frame size including overhead. Type: float
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Set Numeric Frame Sizes \|
 | |
-| | ${max_overhead} = | Set Variable If | ${overhead} >= 0 | ${overhead} | ${0}
-| | ${bare_avg_frame_size} = | Run Keyword If | '${frame_size}' == 'IMIX_v4_1'
-| | ... | Set Variable | ${353.83333}
-| | ... | ELSE
-| | ... | Convert To Number | ${frame_size}
-| | # Do not use $max_overhead (without braces), that does not tolerate string.
-| | ${avg_frame_size} = | Evaluate | ${bare_avg_frame_size} + ${max_overhead}
-| | Set Test Variable | \${avg_frame_size}
 | | ${bare_max_frame_size} = | Run Keyword If | '${frame_size}' == 'IMIX_v4_1'
-| | ... | Set Variable | ${1518}
+| | ... | Set Variable | ${1518.0}
 | | ... | ELSE
 | | ... | Convert To Number | ${frame_size}
-| | ${max_frame_size} = | Evaluate | $bare_max_frame_size + $max_overhead
-| | Set Test Variable | ${max_frame_size}
+| | ${bare_avg_frame_size} = | Run Keyword If | '${frame_size}' == 'IMIX_v4_1'
+| | ... | Set Variable | ${353.8333333333333}
+| | ... | ELSE
+| | ... | Convert To Number | ${frame_size}
+| | # Increase max_frame_size for TCP tests if used for more than just jumbo.
+| | Run Keyword If | 'TCP_CPS' in ${TEST_TAGS} and '${frame_size}' != '64B'
+| | ... | Fail | TCP_CPS tests are only supported for nominal 64B frames.
+| | ${tcp_cps_avg_frame_size} = | Evaluate | (78.0 * 1 + 70.0 * 3) / (1 + 3)
+| | # Long float formula in 4 lines.
+| | ${numerator} = | Evaluate | ${bare_avg_frame_size} * ${ASTF_N_DATA_FRAMES}
+| | ${numerator} = | Evaluate | 78.0 * 1 + 70.0 * 2 + ${numerator}
+| | ${denominator} = | Evaluate | 2 + 1 + ${ASTF_N_DATA_FRAMES}
+| | ${tcp_tput_avg_frame_size} = | Evaluate | ${numerator} / ${denominator}
+| | # Long boolean formula in 2 lines.
+| | ${is_tcp_pps} = | Evaluate | 'TCP_PPS' in ${TEST_TAGS}
+| | ${is_tcp_tput} = | Evaluate | ${is_tcp_pps} or 'TCP_TPUT' in ${TEST_TAGS}
+| | ${proto_avg_frame_size} = | Set Variable If
+| | ... | 'TCP_CPS' in ${TEST_TAGS} | ${tcp_cps_avg_frame_size}
+| | ... | ${is_tcp_tput} | ${tcp_tput_avg_frame_size}
+| | ... | ${True} | ${bare_avg_frame_size}
+| | ${max_overhead} = | Set Variable If | ${overhead} >= 0 | ${overhead} | ${0}
+| | ${max_frame_size} = | Evaluate | ${bare_max_frame_size} + ${max_overhead}
+| | ${avg_frame_size} = | Evaluate | ${proto_avg_frame_size} + ${max_overhead}
+| | Set Test Variable | \${max_frame_size}
+| | Set Test Variable | \${avg_frame_size}
 
 | Set Rates For Policer
 | | [Documentation]

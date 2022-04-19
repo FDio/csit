@@ -58,7 +58,7 @@
 | ${n_hosts}= | ${1024}
 | ${n_ports}= | ${63}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
-| ${packets_per_transaction_and_direction}= | ${33}
+| ${packets_per_transaction_and_direction}= | ${ASTF_N_DATA_FRAMES}
 # Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
 | ${transaction_type}= | udp_pps
@@ -82,6 +82,14 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
-| | [Tags] | 64B
-| | frame_size=${64}
+| 100B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 100B
+| | frame_size=${100}
+
+| 1518B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1518B
+| | frame_size=${1518}
+
+| 9000B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 9000B
+| | frame_size=${9000}
