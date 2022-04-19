@@ -744,8 +744,18 @@ class Layout:
             metadata = [
                 dbc.Card(
                     children=[
-                        dbc.CardHeader(title),
-                        dbc.CardBody(children=[txt])
+                        dbc.CardHeader(children=[
+                            dcc.Clipboard(
+                                target_id="tput-lat-metadata",
+                                title="Copy",
+                                style={"display": "inline-block"}
+                            ),
+                            title
+                        ]),
+                        dbc.CardBody(
+                            id="tput-lat-metadata",
+                            children=[txt]
+                        )
                     ]
                 )
             ]
