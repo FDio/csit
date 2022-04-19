@@ -164,7 +164,7 @@ class Layout:
                     ),
                     dbc.Row(
                         id="row-main",
-                        class_name="g-0 p-2",
+                        class_name="g-0",
                         children=[
                             dcc.Store(
                                 id="selected-tests"
@@ -220,7 +220,6 @@ class Layout:
             id="col-controls",
             children=[
                 self._add_ctrl_panel(),
-                self._add_ctrl_shown()
             ],
         )
 
@@ -270,112 +269,162 @@ class Layout:
         """
         return dbc.Row(
             id="row-ctrl-panel",
-            class_name="g-0",
+            class_name="g-0 p-2",
             children=[
-                dbc.Label("Physical Test Bed Topology, NIC and Driver"),
-                dbc.Select(
-                    id="dd-ctrl-phy",
-                    className="p-2",
-                    placeholder="Select a Physical Test Bed Topology...",
-                    options=[
-                        {"label": k, "value": k} for k in self.spec_tbs.keys()
-                    ],
-                    size="sm",
+                dbc.Row(
+                    class_name="gy-1",
+                    children=[
+                        dbc.Label(
+                            "Physical Test Bed Topology, NIC and Driver",
+                            class_name="p-0"
+                        ),
+                        dbc.Select(
+                            id="dd-ctrl-phy",
+                            placeholder="Select a Physical Test Bed Topology...",
+                            options=[
+                                {"label": k, "value": k} for k in self.spec_tbs.keys()
+                            ],
+                            size="sm",
+                        ),
+                    ]
                 ),
-                dbc.Label("Area"),
-                dbc.Select(
-                    id="dd-ctrl-area",
-                    className="p-2",
-                    placeholder="Select an Area...",
-                    disabled=True,
-                    size="sm",
+                dbc.Row(
+                    class_name="gy-1",
+                    children=[
+                        dbc.Label(
+                            "Area",
+                            class_name="p-0"
+                        ),
+                        dbc.Select(
+                            id="dd-ctrl-area",
+                            placeholder="Select an Area...",
+                            disabled=True,
+                            size="sm",
+                        ),
+                    ]
                 ),
-                dbc.Label("Test"),
-                dbc.Select(
-                    id="dd-ctrl-test",
-                    className="p-2",
-                    placeholder="Select a Test...",
-                    disabled=True,
-                    size="sm",
+                dbc.Row(
+                    class_name="gy-1",
+                    children=[
+                        dbc.Label(
+                            "Test",
+                            class_name="p-0"
+                        ),
+                        dbc.Select(
+                            id="dd-ctrl-test",
+                            placeholder="Select a Test...",
+                            disabled=True,
+                            size="sm",
+                        ),
+                    ]
                 ),
                 dbc.Row(
                     id="row-ctrl-core",
-                    class_name="g-0",
+                    class_name="gy-1",
                     children=[
-                        dbc.Label("Number of Cores"),
-                        dbc.Col([
-                            dbc.Checklist(
-                                id="cl-ctrl-core-all",
-                                options=self.CL_ALL_DISABLED,
-                                inline=True,
-                                switch=False
-                            ),
-                        ], width=3),
-                        dbc.Col([
-                            dbc.Checklist(
-                                id="cl-ctrl-core",
-                                inline=True,
-                                switch=False
-                            )
-                        ])
-                    ]
-                ),
-                dbc.Row(
-                    id="row-ctrl-framesize",
-                    class_name="g-0",
-                    children=[
-                        dbc.Label("Frame Size"),
-                        dbc.Col([
-                            dbc.Checklist(
-                                id="cl-ctrl-framesize-all",
-                                options=self.CL_ALL_DISABLED,
-                                inline=True,
-                                switch=False
-                            ),
-                        ], width=3),
-                        dbc.Col([
-                            dbc.Checklist(
-                                id="cl-ctrl-framesize",
-                                inline=True,
-                                switch=False
-                            )
-                        ])
-                    ]
-                ),
-                dbc.Row(
-                    id="row-ctrl-testtype",
-                    class_name="g-0",
-                    children=[
-                        dbc.Label("Test Type"),
-                        dbc.Col([
-                            dbc.Checklist(
-                                id="cl-ctrl-testtype-all",
-                                options=self.CL_ALL_DISABLED,
-                                inline=True,
-                                switch=False
-                            ),
-                        ], width=3),
-                        dbc.Col([
-                            dbc.Checklist(
-                                id="cl-ctrl-testtype",
-                                inline=True,
-                                switch=False
-                            )
-                        ])
-                    ]
-                ),
-                dbc.Row(
-                    class_name="g-0",
-                    children=[
-                        dbc.Button(
-                            id="btn-ctrl-add",
-                            children="Add",
-                            disabled=True
+                        dbc.Label(
+                            "Number of Cores",
+                            class_name="p-0"
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-core-all",
+                                    options=self.CL_ALL_DISABLED,
+                                    inline=False,
+                                    switch=False
+                                )
+                            ],
+                            width=3
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-core",
+                                    inline=True,
+                                    switch=False
+                                )
+                            ]
                         )
                     ]
                 ),
                 dbc.Row(
-                    class_name="g-0",
+                    id="row-ctrl-framesize",
+                    class_name="gy-1",
+                    children=[
+                        dbc.Label(
+                            "Frame Size",
+                            class_name="p-0"
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-framesize-all",
+                                    options=self.CL_ALL_DISABLED,
+                                    inline=True,
+                                    switch=False
+                                ),
+                            ],
+                            width=3
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-framesize",
+                                    inline=True,
+                                    switch=False
+                                )
+                            ]
+                        )
+                    ]
+                ),
+                dbc.Row(
+                    id="row-ctrl-testtype",
+                    class_name="gy-1",
+                    children=[
+                        dbc.Label(
+                            "Test Type",
+                            class_name="p-0"
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-testtype-all",
+                                    options=self.CL_ALL_DISABLED,
+                                    inline=True,
+                                    switch=False
+                                ),
+                            ],
+                            width=3
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-testtype",
+                                    inline=True,
+                                    switch=False
+                                )
+                            ]
+                        )
+                    ]
+                ),
+                dbc.Row(
+                    class_name="gy-1",
+                    children=[
+                        dbc.ButtonGroup(
+                            [
+                                dbc.Button(
+                                    id="btn-ctrl-add",
+                                    children="Add Selected",
+                                    color="secondary",
+                                )
+                            ],
+                            size="md",
+                        )
+                    ]
+                ),
+                dbc.Row(
+                    class_name="gy-1",
                     children=[
                         dcc.DatePickerRange(
                             id="dpr-period",
@@ -388,57 +437,58 @@ class Layout:
                             display_format="D MMMM YY"
                         )
                     ]
-                )
-            ]
-        )
-
-    def _add_ctrl_shown(self) -> dbc.Row:
-        """
-        """
-        return dbc.Row(
-            id="div-ctrl-shown",
-            class_name="g-0",
-            children=[
+                ),
                 dbc.Row(
-                    class_name="g-0",
+                    class_name="gy-1",
                     children=[
-                        dbc.Label("Selected tests"),
-                        dbc.Checklist(
-                            id="cl-selected",
-                            options=[],
-                            inline=False
+                        dbc.Card(
+                            class_name="p-0",
+                            children=[
+                                dbc.Label(
+                                    "Selected tests",
+                                    class_name="p-0"
+                                ),
+                                dbc.Checklist(
+                                    id="cl-selected",
+                                    options=[],
+                                    inline=False
+                                )
+                            ],
+                            color="light",
+                            outline=True
                         )
                     ]
                 ),
                 dbc.Row(
-                    class_name="g-0",
                     children=[
                         dbc.ButtonGroup(
                             [
                                 dbc.Button(
                                     id="btn-sel-remove-all",
                                     children="Remove All",
+                                    class_name="w-100",
                                     color="secondary",
                                     disabled=False
                                 ),
                                 dbc.Button(
                                     id="btn-sel-remove",
                                     children="Remove Selected",
+                                    class_name="w-100",
                                     color="secondary",
                                     disabled=False
                                 ),
                                 dbc.Button(
                                     id="btn-sel-display",
                                     children="Display",
+                                    class_name="w-100",
                                     color="secondary",
                                     disabled=False
                                 )
                             ],
                             size="md",
-                            class_name="me-1",
                         ),
                     ]
-                )
+                ),
             ]
         )
 
@@ -867,6 +917,7 @@ class Layout:
 
             metadata = [
                 dbc.Card(
+                    class_name="g-0",
                     children=[
                         dbc.CardHeader(children=[
                             dcc.Clipboard(
