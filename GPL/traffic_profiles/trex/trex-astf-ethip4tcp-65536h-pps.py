@@ -47,22 +47,6 @@ from profile_trex_astf_base_class import TrafficProfileBaseClass
 class TrafficProfile(TrafficProfileBaseClass):
     """Traffic profile."""
 
-    def __init__(self):
-        """Initialization and setting of profile parameters."""
-
-        super(TrafficProfileBaseClass, self).__init__()
-
-        # IPs used in packet headers.
-        self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.255.255"
-        self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.255.255"
-
-        # Headers length; not used in this profile, just for the record of
-        # header length for TCP packet with 0B payload
-        self.headers_size = 58  # 14B l2 + 20B ipv4 + 24B tcp incl. 4B options
-        self.data_size = 11111
-
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
@@ -73,31 +57,44 @@ class TrafficProfile(TrafficProfileBaseClass):
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
+        # IPs used in packet headers.
+        p1_src_start_ip = u"192.168.0.0"
+        p1_src_end_ip = u"192.168.255.255"
+        p1_dst_start_ip = u"20.0.0.0"
+        p1_dst_end_ip = u"20.0.255.255"
+
+        # Headers length, not sure why TRex needs 32B for segment header.
+        real_headers_size = 70  # 18B L2 + 20B IPv4 + 32B TCP.
+        trex_headers_size = real_headers_size - 12  # As if TCP header is 20B.
+        trex_mss = self.framesize - trex_headers_size
+        real_mss = trex_mss - 12  # TRex honors segment header+data limit.
+        data_size = self.n_data_frames * real_mss
+
         # client commands
         prog_c = ASTFProgram()
         prog_c.connect()
-        prog_c.send(u"1" * self.data_size)
-        prog_c.recv(self.data_size)
+        prog_c.send(u"1" * data_size)
+        prog_c.recv(data_size)
 
         # server commands
         prog_s = ASTFProgram()
         prog_s.accept()
-        prog_c.recv(self.data_size)
-        prog_c.send(u"1" * self.data_size)
+        prog_s.recv(data_size)
+        prog_s.send(u"1" * data_size)
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
-            ip_range=[self.p1_src_start_ip, self.p1_src_end_ip],
-            distribution=u"seq"
+            ip_range=[p1_src_start_ip, p1_src_end_ip],
+            distribution=u"seq",
         )
         ip_gen_s = ASTFIPGenDist(
-            ip_range=[self.p1_dst_start_ip, self.p1_dst_end_ip],
-            distribution=u"seq"
+            ip_range=[p1_dst_start_ip, p1_dst_end_ip],
+            distribution=u"seq",
         )
         ip_gen = ASTFIPGen(
             glob=ASTFIPGenGlobal(ip_offset=u"0.0.0.1"),
             dist_client=ip_gen_c,
-            dist_server=ip_gen_s
+            dist_server=ip_gen_s,
         )
 
         # server association
@@ -108,12 +105,25 @@ class TrafficProfile(TrafficProfileBaseClass):
             program=prog_c,
             ip_gen=ip_gen,
             limit=4128768,  # TODO: set via input parameter
-            port=8080
+            port=8080,
         )
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
         template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
 
-        return ip_gen, template, None
+        globinfo = ASTFGlobalInfo()
+        # Ensure correct data frame size.
+        globinfo.tcp.mss = trex_mss
+        # Ensure the whole transaction is a single burst (per direction).
+        globinfo.tcp.initwnd = self.n_data_frames
+        # Ensure buffers are large enough so starting window works.
+        globinfo.tcp.txbufsize = data_size
+        globinfo.tcp.rxbufsize = data_size
+        kwargs = dict(
+            default_c_glob_info=globinfo,
+            default_s_glob_info=globinfo,
+        )
+
+        return ip_gen, template, kwargs
 
 
 def register():

@@ -46,84 +46,80 @@ from profile_trex_astf_base_class import TrafficProfileBaseClass
 class TrafficProfile(TrafficProfileBaseClass):
     """Traffic profile."""
 
-    def __init__(self, **kwargs):
-        """Initialization and setting of profile parameters."""
-
-        super(TrafficProfileBaseClass, self).__init__()
-
-        # IPs used in packet headers.
-        self.p1_src_start_ip = u"192.168.0.0"
-        self.p1_src_end_ip = u"192.168.3.255"
-        self.p1_dst_start_ip = u"20.0.0.0"
-        self.p1_dst_end_ip = u"20.0.3.255"
-
-        self.headers_size = 42  # 14B l2 + 20B ipv4 + 8B UDP
-
-        self.udp_data = u""
-
-        self.n_data = 32  # TODO: set via input parameter
-        self.m_delay = 2000000  # delay 2000s (2,000,000 ms)
-        self.u_delay = 1000 * self.m_delay  # delay 2000s (2,000,000,000 us)
-        self.limit = 64512
-
     def define_profile(self):
         """Define profile to be used by advanced stateful traffic generator.
 
         This method MUST return:
 
-            return ip_gen, templates
+            return ip_gen, templates, None
 
         :returns: IP generator and profile templates for ASTFProfile().
         :rtype: tuple
         """
-        if self.framesize == 64:
-            self.udp_data += self._gen_padding(self.headers_size, 72)
-        if self.framesize == 1518:
-            self.udp_data += self._gen_padding(self.headers_size, 1514)
+        # IPs used in packet headers.
+        p1_src_start_ip = u"192.168.0.0"
+        p1_src_end_ip = u"192.168.3.255"
+        p1_dst_start_ip = u"20.0.0.0"
+        p1_dst_end_ip = u"20.0.3.255"
+
+        # The difference between data size and frame size.
+        headers_size = 46  # 18B L2 + 20B IPv4 + 8B UDP.
+
+        # TODO: Use the "connection protocol" from CPS traffic profile?
+        # Currently, the first data packet is all DUT sees about the session.
+
+        # Avoid sending keepalives.
+        m_delay = 2000000  # delay 2000s (2,000,000 ms)
+
+        # Data, not padded yet.
+        udp_data = u""
+        # Pad the data to achieve the intended frame size.
+        udp_data += self._gen_padding(headers_size)
+
+        # Safety check, the current programs send at least 1 packet.
+        if self.n_data_frames < 1:
+            raise RuntimeError("n_data_frames < 1: {self.n_data_frames}")
 
         # Client program.
         prog_c = ASTFProgram(stream=False)
-        prog_c.set_keepalive_msg(self.m_delay)
-        prog_c.send_msg(self.udp_data)
-        # No delay, PPS tests combine connect and data send (no data receive).
-        prog_c.set_var(u"var1", self.n_data)
+        prog_c.set_keepalive_msg(m_delay)
+        prog_c.set_var(u"var1", self.n_data_frames)
         prog_c.set_label(u"a:")
-        prog_c.send_msg(self.udp_data)
+        prog_c.send_msg(udp_data)
         prog_c.jmp_nz(u"var1", u"a:")
         # We should read the server response,
         # but no reason to overload client workers even more.
 
         # Server program.
         prog_s = ASTFProgram(stream=False)
-        prog_s.set_keepalive_msg(self.m_delay)
+        prog_s.set_keepalive_msg(m_delay)
         # If server closes too soon, new instances are started
         # leading in too much replies. To prevent that, we need to recv all.
-        prog_s.recv_msg(1 + self.n_data)
+        prog_s.recv_msg(self.n_data_frames)
         # In packet loss scenarios, some instances never get here.
         # This maybe increases server traffic duration,
         # but no other way if we want to avoid
         # TRex creating a second instance of the same server.
-        prog_s.send_msg(self.udp_data)
-        prog_s.set_var(u"var2", self.n_data)
+        prog_s.set_var(u"var2", self.n_data_frames)
         prog_s.set_label(u"b:")
-        prog_s.send_msg(self.udp_data)
+        prog_s.send_msg(udp_data)
         prog_s.jmp_nz(u"var2", u"b:")
         # VPP never duplicates packets,
         # so it is safe to close the server instance now.
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
-            ip_range=[self.p1_src_start_ip, self.p1_src_end_ip],
-            distribution=u"seq"
+            ip_range=[p1_src_start_ip, p1_src_end_ip],
+            distribution=u"seq",
         )
         ip_gen_s = ASTFIPGenDist(
-            ip_range=[self.p1_dst_start_ip, self.p1_dst_end_ip],
-            distribution=u"seq"
+            ip_range=[p1_dst_start_ip, p1_dst_end_ip],
+            distribution=u"seq",
         )
         ip_gen = ASTFIPGen(
             glob=ASTFIPGenGlobal(ip_offset=u"0.0.0.1"),
             dist_client=ip_gen_c,
-            dist_server=ip_gen_s
+            dist_server=ip_gen_s,
         )
 
         # server association
@@ -133,8 +129,8 @@ class TrafficProfile(TrafficProfileBaseClass):
         temp_c = ASTFTCPClientTemplate(
             program=prog_c,
             ip_gen=ip_gen,
-            limit=self.limit,
-            port=8080
+            limit=64512,  # TODO: Any benefit of making this configurable?
+            port=8080,
         )
         temp_s = ASTFTCPServerTemplate(program=prog_s, assoc=s_assoc)
         template = ASTFTemplate(client_template=temp_c, server_template=temp_s)
