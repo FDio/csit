@@ -49,6 +49,8 @@ class Layout:
         "disabled": False
     }]
 
+    PLACEHOLDER = html.Nobr("")
+
     def __init__(self, app, html_layout_file, spec_file, graph_layout_file,
         data_spec_file):
         """
@@ -233,31 +235,21 @@ class Layout:
                     id="row-graph-tput",
                     class_name="g-0 p-2",
                     children=[
-                        dcc.Loading(
-                            dcc.Graph(id="graph-tput")
-                        )
+                        self.PLACEHOLDER
                     ]
                 ),
                 dbc.Row(  # Latency
                     id="row-graph-lat",
                     class_name="g-0 p-2",
                     children=[
-                        dcc.Loading(
-                            dcc.Graph(id="graph-latency")
-                        )
+                        self.PLACEHOLDER
                     ]
                 ),
                 dbc.Row(  # Download
-                    id="div-download",
-                    class_name="g-0",
+                    id="row-btn-download",
+                    class_name="g-0 p-2",
                     children=[
-                        dcc.Loading(children=[
-                            dbc.Button(
-                                id="btn-download-data",
-                                children=["Download Data"]
-                            ),
-                            dcc.Download(id="download-data")
-                        ])
+                        self.PLACEHOLDER
                     ]
                 )
             ],
@@ -576,11 +568,52 @@ class Layout:
 
     def callbacks(self, app):
 
+        def _generate_plotting_arrea(args: tuple) -> tuple:
+            """
+            """
+
+            (fig_tput, fig_lat) = args
+
+            row_fig_tput = self.PLACEHOLDER
+            row_fig_lat = self.PLACEHOLDER
+            row_btn_dwnld = self.PLACEHOLDER
+
+            if fig_tput:
+                row_fig_tput = [
+                    dcc.Loading(
+                        dcc.Graph(
+                            id="graph-tput",
+                            figure=fig_tput
+                        )
+                    ),
+                ]
+                row_btn_dwnld = [
+                    dcc.Loading(children=[
+                        dbc.Button(
+                            id="btn-download-data",
+                            children=["Download Data"]
+                        ),
+                        dcc.Download(id="download-data")
+                    ]),
+                ]
+            if fig_lat:
+                row_fig_lat = [
+                    dcc.Loading(
+                        dcc.Graph(
+                            id="graph-latency",
+                            figure=fig_lat
+                        )
+                    )
+                ]
+
+            return row_fig_tput, row_fig_lat, row_btn_dwnld
+
         @app.callback(
             Output("control-panel", "data"),  # Store
             Output("selected-tests", "data"),  # Store
-            Output("graph-tput", "figure"),
-            Output("graph-latency", "figure"),
+            Output("row-graph-tput", "children"),
+            Output("row-graph-lat", "children"),
+            Output("row-btn-download", "children"),
             Output("dd-ctrl-phy", "value"),
             Output("dd-ctrl-area", "options"),
             Output("dd-ctrl-area", "disabled"),
@@ -634,8 +667,9 @@ class Layout:
                 int(d_start[8:10]))
             d_end = datetime(int(d_end[0:4]), int(d_end[5:7]), int(d_end[8:10]))
 
-            fig_tput = no_update
-            fig_lat = no_update
+            row_fig_tput = no_update
+            row_fig_lat = no_update
+            row_btn_dwnld = no_update
 
             ctrl_panel = self.ControlPanel(cp_data)
 
@@ -842,15 +876,17 @@ class Layout:
                     })
             elif trigger_id in ("btn-sel-display", "dpr-period"):
                 _ = btn_display
-                fig_tput, fig_lat = graph_trending(
-                    self.data, store_sel, self.layout, d_start, d_end
-                )
-                fig_tput = fig_tput if fig_tput else self.NO_GRAPH
-                fig_lat = fig_lat if fig_lat else self.NO_GRAPH
+                row_fig_tput, row_fig_lat, row_btn_dwnld = \
+                    _generate_plotting_arrea(
+                        graph_trending(
+                            self.data, store_sel, self.layout, d_start, d_end
+                        )
+                    )
             elif trigger_id == "btn-sel-remove-all":
                 _ = btn_remove_all
-                fig_tput = self.NO_GRAPH
-                fig_lat = self.NO_GRAPH
+                row_fig_tput = self.PLACEHOLDER
+                row_fig_lat = self.PLACEHOLDER
+                row_btn_dwnld = self.PLACEHOLDER
                 store_sel = list()
                 ctrl_panel.set({
                         "cl-selected-options": list()
@@ -864,23 +900,28 @@ class Layout:
                             new_store_sel.append(item)
                     store_sel = new_store_sel
                 if store_sel:
-                    fig_tput, fig_lat = graph_trending(
-                        self.data, store_sel, self.layout, d_start, d_end
+                    row_fig_tput, row_fig_lat, row_btn_dwnld = \
+                    _generate_plotting_arrea(
+                        graph_trending(
+                            self.data, store_sel, self.layout, d_start, d_end
+                        )
                     )
-                    fig_tput = fig_tput if fig_tput else self.NO_GRAPH
-                    fig_lat = fig_lat if fig_lat else self.NO_GRAPH
                     ctrl_panel.set({
                         "cl-selected-options": self._list_tests(store_sel)
                     })
                 else:
-                    fig_tput = self.NO_GRAPH
-                    fig_lat = self.NO_GRAPH
+                    row_fig_tput = self.PLACEHOLDER
+                    row_fig_lat = self.PLACEHOLDER
+                    row_btn_dwnld = self.PLACEHOLDER
                     store_sel = list()
                     ctrl_panel.set({
                             "cl-selected-options": list()
                     })
 
-            ret_val = [ctrl_panel.panel, store_sel, fig_tput, fig_lat]
+            ret_val = [
+                ctrl_panel.panel, store_sel,
+                row_fig_tput, row_fig_lat, row_btn_dwnld
+            ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
 
@@ -957,6 +998,9 @@ class Layout:
             """
 
             if not n_clicks:
+                raise PreventUpdate
+
+            if not store_sel:
                 raise PreventUpdate
 
             df = pd.DataFrame()
