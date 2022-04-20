@@ -154,6 +154,7 @@ class Layout:
                     ),
                     dcc.Loading(
                         dbc.Offcanvas(
+                            class_name="w-50",
                             id="offcanvas-metadata",
                             title="Throughput And Latency",
                             placement="end",
@@ -420,6 +421,7 @@ class Layout:
                     children=[
                         dcc.DatePickerRange(
                             id="dpr-period",
+                            className="d-flex justify-content-center",
                             min_date_allowed=\
                                 datetime.utcnow()-timedelta(days=180),
                             max_date_allowed=datetime.utcnow(),
@@ -955,14 +957,24 @@ class Layout:
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
             if trigger_id == "graph-tput":
                 title = "Throughput"
-                txt = tput_data["points"][0]["text"].replace("<br>", "\n")
+                array = tput_data["points"][0]["text"].split("<br>")
+                children = [
+                    dbc.ListGroupItem(
+                        [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
+                    ) for x in array
+                ]
             elif trigger_id == "graph-latency":
                 title = "Latency"
-                txt = lat_data["points"][0]["text"].replace("<br>", "\n")
+                array = lat_data["points"][0]["text"].split("<br>")
+                children = [
+                    dbc.ListGroupItem(
+                        [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
+                    ) for x in array
+                ]
                 hdrh_data = lat_data["points"][0].get("customdata", None)
                 if hdrh_data:
                     graph = [dbc.Card(
-                        class_name="g-0",
+                        class_name="gy-2 p-0",
                         children=[
                             dbc.CardHeader(hdrh_data.pop("name")),
                             dbc.CardBody(children=[
@@ -977,7 +989,7 @@ class Layout:
                     ]
             metadata = [
                 dbc.Card(
-                    class_name="g-0",
+                    class_name="gy-2 p-0",
                     children=[
                         dbc.CardHeader(children=[
                             dcc.Clipboard(
@@ -989,7 +1001,10 @@ class Layout:
                         ]),
                         dbc.CardBody(
                             id="tput-lat-metadata",
-                            children=[txt]
+                            class_name="p-0",
+                            children=[
+                                dbc.ListGroup(children, flush=True)
+                            ]
                         )
                     ]
                 )
