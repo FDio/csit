@@ -35,14 +35,14 @@ class Layout:
     """
     """
 
-    NO_GRAPH = {"data": [], "layout": {}, "frames": []}
+    STYLE_DISABLED = {"display": "none"}
+    STYLE_ENABLED = {"display": "inherit"}
 
     CL_ALL_DISABLED = [{
         "label": "All",
         "value": "all",
         "disabled": True
     }]
-
     CL_ALL_ENABLED = [{
         "label": "All",
         "value": "all",
@@ -431,30 +431,29 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
+                    id="row-card-sel-tests",
                     class_name="gy-1",
+                    style=self.STYLE_DISABLED,
                     children=[
-                        dbc.Card(
-                            class_name="p-0",
-                            children=[
-                                dbc.Label(
-                                    "Selected tests",
-                                    class_name="p-0"
-                                ),
-                                dbc.Checklist(
-                                    id="cl-selected",
-                                    options=[],
-                                    inline=False
-                                )
-                            ],
-                            color="light",
-                            outline=True
+                        dbc.Label(
+                            "Selected tests",
+                            class_name="p-0"
+                        ),
+                        dbc.Checklist(
+                            class_name="overflow-auto",
+                            id="cl-selected",
+                            options=[],
+                            inline=False,
+                            style={"max-height": "12em"},
                         )
-                    ]
+                    ],
                 ),
                 dbc.Row(
+                    id="row-btns-sel-tests",
+                    style=self.STYLE_DISABLED,
                     children=[
                         dbc.ButtonGroup(
-                            [
+                            children=[
                                 dbc.Button(
                                     id="btn-sel-remove-all",
                                     children="Remove All",
@@ -478,7 +477,7 @@ class Layout:
                                 )
                             ],
                             size="md",
-                        ),
+                        )
                     ]
                 ),
             ]
@@ -614,6 +613,8 @@ class Layout:
             Output("row-graph-tput", "children"),
             Output("row-graph-lat", "children"),
             Output("row-btn-download", "children"),
+            Output("row-card-sel-tests", "style"),
+            Output("row-btns-sel-tests", "style"),
             Output("dd-ctrl-phy", "value"),
             Output("dd-ctrl-area", "options"),
             Output("dd-ctrl-area", "disabled"),
@@ -670,6 +671,8 @@ class Layout:
             row_fig_tput = no_update
             row_fig_lat = no_update
             row_btn_dwnld = no_update
+            row_card_sel_tests = no_update
+            row_btns_sel_tests = no_update
 
             ctrl_panel = self.ControlPanel(cp_data)
 
@@ -870,6 +873,8 @@ class Layout:
                                         "core": core.lower(),
                                         "testtype": ttype.lower()
                                     })
+                    row_card_sel_tests = self.STYLE_ENABLED
+                    row_btns_sel_tests = self.STYLE_ENABLED
                     ctrl_panel.set(ctrl_panel.defaults)
                     ctrl_panel.set({
                         "cl-selected-options": self._list_tests(store_sel)
@@ -887,6 +892,8 @@ class Layout:
                 row_fig_tput = self.PLACEHOLDER
                 row_fig_lat = self.PLACEHOLDER
                 row_btn_dwnld = self.PLACEHOLDER
+                row_card_sel_tests = self.STYLE_DISABLED
+                row_btns_sel_tests = self.STYLE_DISABLED
                 store_sel = list()
                 ctrl_panel.set({
                         "cl-selected-options": list()
@@ -913,6 +920,8 @@ class Layout:
                     row_fig_tput = self.PLACEHOLDER
                     row_fig_lat = self.PLACEHOLDER
                     row_btn_dwnld = self.PLACEHOLDER
+                    row_card_sel_tests = self.STYLE_DISABLED
+                    row_btns_sel_tests = self.STYLE_DISABLED
                     store_sel = list()
                     ctrl_panel.set({
                             "cl-selected-options": list()
@@ -920,7 +929,8 @@ class Layout:
 
             ret_val = [
                 ctrl_panel.panel, store_sel,
-                row_fig_tput, row_fig_lat, row_btn_dwnld
+                row_fig_tput, row_fig_lat, row_btn_dwnld,
+                row_card_sel_tests, row_btns_sel_tests
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
