@@ -269,6 +269,14 @@ class Constants:
         u"PERF_TRIAL_ASTF_DELAY", 0.112
     )
 
+    # Number of data frames in TPUT transaction, used both by TCP and UDP.
+    # The value should be 33 to keep historic continuity for UDP TPUT tests,
+    # but we are limited by TRex window of 48 KiB, so for 9000B tests
+    # it means we can send only 5 full data frames in a burst.
+    # https://github.com/cisco-system-traffic-generator/
+    # trex-core/blob/v2.88/src/44bsd/tcp_var.h#L896-L903
+    ASTF_N_DATA_FRAMES = get_int_from_env(u"ASTF_N_DATA_FRAMES", 5)
+
     # Extended debug (incl. vpp packet trace, linux perf stat, ...).
     # Full list is available as suite variable (__init__.robot) or is
     # override by test.
