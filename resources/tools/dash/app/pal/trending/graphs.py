@@ -285,21 +285,31 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         anomaly_x = list()
         anomaly_y = list()
         anomaly_color = list()
+        hover = list()
         for idx, anomaly in enumerate(anomalies):
             if anomaly in (u"regression", u"progression"):
                 anomaly_x.append(x_axis[idx])
                 anomaly_y.append(trend_avg[idx])
                 anomaly_color.append(_ANOMALY_COLOR[anomaly])
+                hover_itm = (
+                    f"date: {x_axis[idx].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+                    f"trend [pps]: {trend_avg[idx]}<br>"
+                    f"classification: {anomaly}"
+                )
+                if ttype == "pdr-lat":
+                    hover_itm = hover_itm.replace("[pps]", "[us]")
+                hover.append(hover_itm)
         anomaly_color.extend([0.0, 0.5, 1.0])
         traces.append(
             go.Scatter(
                 x=anomaly_x,
                 y=anomaly_y,
                 mode=u"markers",
-                hoverinfo=u"none",
+                text=hover,
+                hoverinfo=u"text+name",
                 showlegend=False,
                 legendgroup=name,
-                name=f"{name}-anomalies",
+                name=name,
                 marker={
                     u"size": 15,
                     u"symbol": u"circle-open",
