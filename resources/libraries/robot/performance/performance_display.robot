@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,11 +46,11 @@
 | | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
 | | Fail | ${message}
 
-| Compute bandwidth
+| Compute Bandwidth
 | | [Documentation]
 | | ... | Compute (bidir) bandwidth from given (unidir) transaction rate.
 | | ...
-| | ... | This keyword reads "ppta" and "avg_frame_size" set elsewhere.
+| | ... | This keyword reads \${ppta} and \${avg_agg_frame_size} set elsewhere.
 | | ... | The implementation should work for both pps and cps rates.
 | | ... |
 | | ... | *Arguments:*
@@ -68,7 +68,7 @@
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${pps} = | Evaluate | ${tps} * ${ppta}
-| | ${bandwidth} = | Evaluate | ${pps} * (${avg_frame_size}+20)*8 / 1e9
+| | ${bandwidth} = | Evaluate | ${pps} * (${avg_agg_frame_size}+20)*8 / 1e9
 | | Return From Keyword | ${bandwidth} | ${pps}
 
 | Display Reconfig Test Message

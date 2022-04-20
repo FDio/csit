@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -155,11 +155,11 @@
 | Get Packets Per Transaction Aggregated
 | | [Documentation]
 | | ... | Return value of \${packets_per_transaction_aggregated};
-| | ... | if not defined, assume traffic is symmetric and compute
-| | ... | from unidirectional values.
+| | ... | if not defined, assume traffic is symmetric (or unidirectional)
+| | ... | and compute from unidirectional values.
 | |
-| | ... | The return value is used when reporting PPS values from TPS found
-| | ... | by some search (e.g. NDRPDR).
+| | ... | The return value is used when reporting PPS (and bandwidth) values
+| | ... | from TPS found by some search (e.g. NDRPDR).
 | | ... | Return type: integer.
 | |
 | | ... | *Example:*
@@ -169,7 +169,6 @@
 | | ${ppta} = | Get Variable Value | \${packets_per_transaction_aggregated}
 | | ... | ${0}
 | | Return From Keyword If | "${ppta}" != "0" | ${ppta}
-| | # TODO: Insert TCP computation from packet size here.
 | | ${pptad} = | Get Packets Per Transaction And Direction
 | | ${traffic_directions} = | Get Traffic Directions
 | | # We do not support ASTF profiles with multiple transactions, yet.
@@ -181,8 +180,9 @@
 | | ... | Return value of \${packets_per_transaction_and_direction},
 | | ... | or ${1} if not defined.
 | |
-| | ... | The return value is used when computing max rate (TPS),
-| | ... | so for asymmetric transaction use the more numerous direction.
+| | ... | The return value is used when computing max rate (TPS)
+| | ... | from packet level (pps or bps) limits.
+| | ... | For asymmetric transactions, use the more numerous direction.
 | | ... | Return type: integer.
 | |
 | | ... | *Example:*
@@ -392,19 +392,14 @@
 
 | Set Jumbo
 | | [Documentation]
-| | ... | For jumbo frames detection, the maximal packet size is relevant,
-| | ... | encapsulation overhead (if any) has effect.
-| |
-| | ... | This keyword computes jumbo boolean (some suites need that for
-| | ... | configuration decisions).
+| | ... | Call Set Numeric Frame Sizes and set jumbo based on max framesize.
 | | ... | To streamline suite autogeneration, both input and output values
 | | ... | are communicated as test (or broader scope) variables,
 | | ... | instead of explicit arguments and return values.
 | |
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - overhead - Overhead in bytes; default value: 0. Type: integer
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
-| | ... | string
+| | ... | - frame_size - Framesize. Type: integer or string
 | |
 | | ... | *Test variables set:*
 | | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
@@ -414,31 +409,21 @@
 | |
 | | ... | \| Set Jumbo \|
 | |
-| | # Already called by Set Max Rate And Jumbo, but some suites (e.g. device)
-| | # are calling this directly.
+| | # Some suites (e.g. device) are not calling Set Max Rate And Jumbo.
 | | Set Numeric Frame Sizes
-| | ${jumbo} = | Set Variable If | ${max_frame_size} < 1522
-| | ... | ${False} | ${True}
+| | ${jumbo} = | Evaluate | ${max_frame_size} < 1522
 | | Set Test Variable | \${jumbo}
 
 | Set Max Rate And Jumbo
 | | [Documentation]
-| | ... | Input framesize can be either integer in case of a single packet
-| | ... | in stream, or IMIX string defining mix of packets.
-| | ... | For jumbo frames detection, the maximal packet size is relevant.
-| | ... | For maximal transmit rate, the average packet size is relevant.
-| | ... | In both cases, encapsulation overhead (if any) has effect.
-| | ... | The maximal rate is computed from NIC name.
-| | ... | The implementation works by mapping from exact
-| | ... | whitelisted NIC names.
-| | ... | The mapping is hardcoded in nic_limits.yaml
-| | ... | TODO: Make the mapping from NIC names case insensistive.
-| |
 | | ... | This keyword computes maximal unidirectional transmit rate
 | | ... | and jumbo boolean (some suites need that for configuration decisions).
 | | ... | To streamline suite autogeneration, both input and output values
 | | ... | are communicated as test (or broader scope) variables,
 | | ... | instead of explicit arguments and return values.
+| |
+| | ... | For correctly applying bandwidth limit, average frame size is used,
+| | ... | see Set Numeric Frame Sizes keyword documentation for details.
 | |
 | | ... | If this keyword detects the test is interested in (unidirectional)
 | | ... | transactons per second maximal rate (tps), that is returned (not pps).
@@ -448,8 +433,13 @@
 | | ... | - overhead - Overhead in bytes; default value: 0. Type: integer
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: integer or
 | | ... | string
-| | ... | - packets_per_transaction_and_direction - Pps-tps conversion.
-| | ... | Optional, default 1.
+| | ... | - ASTF_N_DATA_FRAMES - Number of data frames per transaction
+| | ... | and direction. Type: integer
+| | ... | - packets_per_transaction_and_direction - May be unset.
+| | ... | See Get Packets Per Transaction And Direction keyword. Type: integer
+| | ... | - packets_per_transaction_aggregated - May be unset.
+| | ... | See Get Packets Per Transaction Aggregated keyword. Type: integer
+| | ... | - TEST_TAGS - Robot tags of this test. Type: list of string
 | |
 | | ... | *Test variables set:*
 | | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
@@ -457,8 +447,11 @@
 | | ... | Type: float
 | | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
 | | ... | enabled. Type: boolean
-| | ... | avg_frame_size - Average frame size including overhead. Type: float
-| | ... | max_frame_size - Maximal frame size including overhead. Type: float
+| | ... | - max_frame_size - Maximal frame size including overhead. Type: float
+| | ... | - avg_directional_frame_size - Average frame size including overhead
+| | ... | for the more loaded direction. Type: float
+| | ... | - avg_aggregated_frame_size - Average frame size including overhead
+| | ... | across both traffic directions. Type: float
 | |
 | | ... | *Example:*
 | |
@@ -470,68 +463,187 @@
 | | ... | ${NIC_NAME_TO_PPS_LIMIT} | ${nic_name}
 | | ${bps_limit} = | Get From Dictionary
 | | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
-| | Set Numeric Frame Sizes
-| | # We need to add 20B (Ethernet preamble and inter-frame gap)
-| | # to avg_frame_size
-| | ${rate} = | Evaluate | ${bps_limit} / ((${avg_frame_size} + 20.0) * 8)
+| | # Set Jumbo also calls Set Numeric Frame Sizes.
+| | Set Jumbo
+| | # We need to add 20B (Ethernet preamble and inter-frame gap).
+| | ${adfs} = | Get Variable Value | \${avg_directional_frame_size}
+| | ${rate} = | Evaluate | ${bps_limit} / ((${adfs} + 20.0) * 8)
 | | ${max_rate} = | Set Variable If | ${rate} > ${pps_limit}
 | | ... | ${pps_limit} | ${rate}
 | | ${pptad} = | Get Packets Per Transaction And Direction
 | | ${max_rate} = | Evaluate | ${max_rate} / ${pptad}
 | | Set Test Variable | \${max_rate}
-| | Set Jumbo
 
 | Set Numeric Frame Sizes
 | | [Documentation]
 | | ... | Framesize can be either integer in case of a single packet
 | | ... | in stream, or set of packets in case of IMIX type or simmilar.
 | | ... | For jumbo decisions, we need a numeric size of the biggest packet.
-| | ... | For max rate decisions, we need a numeric average packet size.
-| | ... | This keyword computes both and sets them as test variables.
+| | ... | For bandwidth limit decisions, we need a numeric average packet size
+| | ... | in the more bit intensive direction if traffic is non-symmetric.
+| | ... | Computation of max_rate assumes it is also the more pps direction.
+| | ... | Average (across both directions) frame size is also used
+| | ... | for displaying the bidirectional bandwidth forwarded.
+| | ... | This keyword computes all three values (accounting for overheads)
+| | ... | and sets them as test variables.
 | |
 | | ... | Each suite sets a value named \${overhead},
 | | ... | which describes by how many bytes the frames on DUT-DUT link
 | | ... | are larger (due to encapsulation) than those
-| | ... | on the primary TG-DUT link. But for some suites that value
+| | ... | on the primary TG-DUT link. For some suites that value
 | | ... | can be negaive (if TG-DUT is encapsulated more heavily).
 | | ... | For calculations in this keyword, we need largest sizes
 | | ... | across links, so zero is used if \${overhead} is negative.
 | |
+| | ... | The other overhead is from TCP control packets (only IPv4 supported).
+| | ... | TCP_CPS tests have SYN frames of length 78B and other frames 70B.
+| | ... | The more loaded is client-to-server direction with 1 SYN and 3 other,
+| | ... | across both directions it is 2 SYN and 5 other.
+| | ... | TCP_PPS and TCP_TPUT tests have one other control packet less
+| | ... | (in the less loaded direction), but they do contain data frames.
+| |
 | | ... | *Test variables read:*
 | | ... | - frame_size - Framesize. Type: integer or string
 | | ... | - overhead - Overhead in bytes; default value: ${0}. Type: integer
+| | ... | - ASTF_N_DATA_FRAMES - Number of data frames per transaction
+| | ... | and direction. Type: integer
+| | ... | - packets_per_transaction_and_direction - May be unset.
+| | ... | See Get Packets Per Transaction And Direction keyword. Type: integer
+| | ... | - packets_per_transaction_aggregated - May be unset.
+| | ... | See Get Packets Per Transaction Aggregated keyword. Type: integer
+| | ... | - TEST_TAGS - Robot tags of this test. Type: list of string
 | |
 | | ... | *Test variables set*
-| | ... | avg_frame_size - Average frame size including overhead. Type: float
-| | ... | max_frame_size - Maximal frame size including overhead. Type: float
+| | ... | - max_frame_size - Maximal frame size including overhead. Type: float
+| | ... | - avg_directional_frame_size - Average frame size including overhead
+| | ... | for the more loaded direction. Type: float
+| | ... | - avg_aggregated_frame_size - Average frame size including overhead
+| | ... | across both traffic directions. Type: float
 | |
 | | ... | *Example:*
 | |
 | | ... | \| Set Numeric Frame Sizes \|
 | |
+| | ${bare_max_frame_size} = | Run Keyword If
+| | ... | '${frame_size}' == 'IMIX_v4_1' | Set Variable | ${1518.0}
+| | ... | ELSE | Convert To Number | ${frame_size}
+| | ${bafs} = | Run Keyword If
+| | ... | '${frame_size}' == 'IMIX_v4_1' | Set Variable | ${353.8333333333333}
+| | ... | ELSE | Convert To Number | ${frame_size}
+| | # Long boolean formula in 2 lines.
+| | ${is_tcp_pps} = | Evaluate | 'TCP_PPS' in ${TEST_TAGS}
+| | ${is_tcp_tput} = | Evaluate | ${is_tcp_pps} or 'TCP_TPUT' in ${TEST_TAGS}
+| | ${avg_dir_frame_size} | ${avg_agg_frame_size} = | Run Keyword If
+| | ... | 'TCP_CPS' in ${TEST_TAGS} | Apply Tcp Cps Proto Overhead | ${bafs}
+| | ... | ELSE IF | ${is_tcp_tput} | Apply Tcp Tput Proto Overhead | ${bafs}
+| | ... | ELSE | Set Variable | ${bafs} | ${bafs}
 | | ${max_overhead} = | Set Variable If | ${overhead} >= 0 | ${overhead} | ${0}
-| | ${bare_avg_frame_size} = | Run Keyword If | '${frame_size}' == 'IMIX_v4_1'
-| | ... | Set Variable | ${353.83333}
-| | ... | ELSE
-| | ... | Convert To Number | ${frame_size}
-| | # Do not use $max_overhead (without braces), that does not tolerate string.
-| | ${avg_frame_size} = | Evaluate | ${bare_avg_frame_size} + ${max_overhead}
-| | Set Test Variable | \${avg_frame_size}
-| | ${bare_max_frame_size} = | Run Keyword If | '${frame_size}' == 'IMIX_v4_1'
-| | ... | Set Variable | ${1518}
-| | ... | ELSE
-| | ... | Convert To Number | ${frame_size}
-| | ${max_frame_size} = | Evaluate | $bare_max_frame_size + $max_overhead
-| | Set Test Variable | ${max_frame_size}
+| | ${mfs} = | Evaluate | ${bare_max_frame_size} + ${max_overhead}
+| | ${adfs} = | Evaluate | ${avg_dir_frame_size} + ${max_overhead}
+| | ${aafs} = | Evaluate | ${avg_agg_frame_size} + ${max_overhead}
+| | Set Test Variable | \${max_frame_size} | ${mfs}
+| | Set Test Variable | \${avg_directional_frame_size} | ${adfs}
+| | Set Test Variable | \${avg_aggregated_frame_size} | ${aafs}
+
+| Apply Tcp Cps Proto Overhead
+| | [Documentation]
+| | ... | Recompute average frame size for TCP CPS test cases.
+| |
+| | ... | This is contitionally called from Set Numeric Frame Sizes.
+| | ... | In Robot Framework it is more convenient to wrap such a block
+| | ... | as a standalone keyword to Run Keyword If.
+| |
+| | ... | *Test variables read:*
+| | ... | - ASTF_N_DATA_FRAMES - Number of data frames per transaction
+| | ... | and direction. Usually set globally. Type: integer
+| | ... | - packets_per_transaction_and_direction - May be unset.
+| | ... | See Get Packets Per Transaction And Direction keyword. Type: integer
+| | ... | - packets_per_transaction_aggregated - May be unset.
+| | ... | See Get Packets Per Transaction Aggregated keyword. Type: integer
+| |
+| | ... | *Arguments:*
+| | ... | - bare_avg_frame_size - Average numeric framesize without overheads.
+| |
+| | ... | *Returns:*
+| | ... | - avg_dir_frame_size - Average framesize for more loaded direction.
+| | ... | - avg_agg_frame_size - Average framesize across both directions.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| \${adfs} \| \${aafs} = \| Apply Tcp Cps Proto Overhead \| \${bafs}
+| |
+| | [Arguments] | ${bare_avg_frame_size}
+| |
+| | # Increase max_frame_size for TCP tests if used for more than just jumbo.
+| | Run Keyword If | ${bare_avg_frame_size} != 64
+| | ... | Fail | TCP_CPS tests are only supported for (nominal) 64B frames.
+| | # TODO: Unify with packets_per_transaction_* variables when adding PCAP.
+| | ${pptad} = | Get Packets Per Transaction And Direction
+| | ${ppta} = | Get Packets Per Transaction Aggregated
+| | ${avg_dir_frame_size} = | Evaluate | (78.0 * 1 + 70.0 * 3) / (1 + 3)
+| | Run Keyword If | '${pptad}' != '4'
+| | ... | Fail | TCP CPS with pptad '${pptad}' != '4'.
+| | ${avg_agg_frame_size} = | Evaluate | (78.0 * 2 + 70.0 * 5) / (2 + 5)
+| | Run Keyword If | '${ppta}' != '7'
+| | ... | Fail | TCP CPS with ppta '${ppta}' != '7'.
+| | Return From Keyword | ${avg_dir_frame_size} | ${avg_agg_frame_size}
+
+| Apply Tcp Tput Proto Overhead
+| | [Documentation]
+| | ... | Recompute average frame size for TCP TPUT (or PPS) test cases.
+| |
+| | ... | This is contitionally called from Set Numeric Frame Sizes.
+| | ... | In Robot Framework it is more convenient to wrap such a block
+| | ... | as a standalone keyword to Run Keyword If.
+| |
+| | ... | *Test variables read:*
+| | ... | - ASTF_N_DATA_FRAMES - Number of data frames per transaction
+| | ... | and direction. Usually set globally. Type: integer
+| | ... | - packets_per_transaction_and_direction - May be unset.
+| | ... | See Get Packets Per Transaction And Direction keyword. Type: integer
+| | ... | - packets_per_transaction_aggregated - May be unset.
+| | ... | See Get Packets Per Transaction Aggregated keyword. Type: integer
+| |
+| | ... | *Arguments:*
+| | ... | - bare_avg_frame_size - Average numeric framesize without overheads.
+| |
+| | ... | *Returns:*
+| | ... | - avg_dir_frame_size - Average framesize for more loaded direction.
+| | ... | - avg_agg_frame_size - Average framesize across both directions.
+| |
+| | ... | *Example:*
+| |
+| | ... | \| \${adfs} \| \${aafs} = \| Apply Tcp Cps Proto Overhead \| \${bafs}
+| |
+| | [Arguments] | ${bare_avg_frame_size}
+| |
+| | # TODO: Unify with packets_per_transaction_* variables when adding PCAP.
+| | ${pptad} = | Get Packets Per Transaction And Direction
+| | ${ppta} = | Get Packets Per Transaction Aggregated
+| | # Long float formula in 4 lines.
+| | ${numerator} = | Evaluate | ${bare_avg_frame_size} * ${ASTF_N_DATA_FRAMES}
+| | ${numerator} = | Evaluate | 78.0 * 1 + 70.0 * 3 + ${numerator}
+| | ${denominator} = | Evaluate | 1 + 3 + ${ASTF_N_DATA_FRAMES}
+| | ${avg_dir_frame_size} = | Evaluate | ${numerator} / ${ddenominator}
+| | Run Keyword If | '${pptad}' != '${denominator}'
+| | ... Fail | TCP TPUT with pptad '${pptad}' != '${denominator}'.
+| | # Long float formula in 4 lines.
+| | ${numerator} = | Evaluate | ${bare_avg_frame_size} * ${2*ASTF_N_DATA_FRAMES}
+| | ${numerator} = | Evaluate | 78.0 * 2 + 70.0 * 5 + ${numerator}
+| | ${denominator} = | Evaluate | 2 + 5 + ${2*ASTF_N_DATA_FRAMES}
+| | ${avg_agg_frame_size} = | Evaluate | ${numerator} / ${denominator}
+| | Run Keyword If | '${ppta}' != '${denominator}'
+| | ... Fail | TCP TPUT with ppta '${ppta}' != '${denominator}'.
+| | Return From Keyword | ${avg_dir_frame_size} | ${avg_agg_frame_size}
 
 | Set Rates For Policer
 | | [Documentation]
 | | ... | Policer tests need these values,
-| | ... | currently computed from \${avg_frame_size}.
+| | ... | currently computed from \${avg_dir_frame_size}.
 | | ... | TODO: Verify the units match and computation is correct.
 | |
 | | ... | *Test (or broader scope) variables read:*
-| | ... | - avg_frame_size - Average L2 Frame Size [B]. Type: float
+| | ... | - avg_dir_frame_size - Average L2 Frame Size [B]. Type: float
 | | ... | Set by Set Max Rate And Jumbo keyword.
 | |
 | | ... | *Test variables set:*
@@ -542,5 +654,5 @@
 | |
 | | ... | \| Set Rates For Policer \|
 | |
-| | Set Test Variable | \${eb} | ${avg_frame_size}
-| | Set Test Variable | \${cb} | ${avg_frame_size}
+| | Set Test Variable | \${eb} | ${avg_dir_frame_size}
+| | Set Test Variable | \${cb} | ${avg_dir_frame_size}
