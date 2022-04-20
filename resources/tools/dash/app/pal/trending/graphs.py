@@ -386,11 +386,6 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
 
     fig = None
 
-    try:
-        name = data.pop("name")
-    except (KeyError, AttributeError):
-        return None
-
     traces = list()
     for idx, (lat_name, lat_hdrh) in enumerate(data.items()):
         try:
@@ -450,7 +445,6 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
         fig.add_traces(traces)
         layout_hdrh = layout.get("plot-hdrh-latency", None)
         if lat_hdrh:
-            layout_hdrh["title"]["text"] = f"<b>{name}</b>"
             fig.update_layout(layout_hdrh)
 
     return fig

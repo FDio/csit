@@ -155,10 +155,10 @@ plot-trending-lat:
     namelength: -1
 
 plot-hdrh-latency:
-  title:
-    text: "Latency by Percentile Distribution"
-    xanchor: "center"
-    x: 0.5
+  # title:
+  #   text: "Latency by Percentile Distribution"
+  #   xanchor: "center"
+  #   x: 0.5
     # font:
     #   size: 10
   showlegend: True
@@ -192,7 +192,7 @@ plot-hdrh-latency:
     # tickfont:
     #   size: 14
   yaxis:
-    title: "One-Way Latency per Direction [uSec]"
+    title: "One-Way Latency per Direction [us]"
     # titlefont:
     #   size: 14
     gridcolor: "rgb(230, 230, 230)"

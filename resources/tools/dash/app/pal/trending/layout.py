@@ -910,11 +910,20 @@ class Layout:
                 txt = lat_data["points"][0]["text"].replace("<br>", "\n")
                 hdrh_data = lat_data["points"][0].get("customdata", None)
                 if hdrh_data:
-                    graph = [dcc.Graph(
-                        id="hdrh-latency-graph",
-                        figure=graph_hdrh_latency(hdrh_data, self.layout)
-                    ), ]
-
+                    graph = [dbc.Card(
+                        class_name="g-0",
+                        children=[
+                            dbc.CardHeader(hdrh_data.pop("name")),
+                            dbc.CardBody(children=[
+                                dcc.Graph(
+                                    id="hdrh-latency-graph",
+                                    figure=graph_hdrh_latency(
+                                        hdrh_data, self.layout
+                                    )
+                                )
+                            ])
+                        ])
+                    ]
             metadata = [
                 dbc.Card(
                     class_name="g-0",
