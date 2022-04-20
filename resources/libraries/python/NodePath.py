@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -251,12 +251,18 @@ class NodePath:
 
         for _ in range(0, nic_pfs // 2):
             if topo_has_tg:
-                self.append_node(nodes[u"TG"])
+                if topo_has_dut:
+                    self.append_node(nodes[u"TG"])
+                else:
+                    self.append_node(nodes[u"TG"], filter_list=filter_list)
             if topo_has_dut:
                 for dut in duts:
                     self.append_node(nodes[dut], filter_list=filter_list)
         if topo_has_tg:
-            self.append_node(nodes[u"TG"])
+            if topo_has_dut:
+                self.append_node(nodes[u"TG"])
+            else:
+                self.append_node(nodes[u"TG"], filter_list=filter_list)
         self.compute_path(always_same_link, topo_has_dut)
 
         n_idx = 0 # node index
