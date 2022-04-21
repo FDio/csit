@@ -470,13 +470,6 @@ class Layout:
                                     color="secondary",
                                     disabled=False
                                 ),
-                                dbc.Button(
-                                    id="btn-sel-display",
-                                    children="Display",
-                                    class_name="w-100",
-                                    color="secondary",
-                                    disabled=False
-                                )
                             ],
                             size="md",
                         )
@@ -653,7 +646,6 @@ class Layout:
             Input("btn-ctrl-add", "n_clicks"),
             Input("dpr-period", "start_date"),
             Input("dpr-period", "end_date"),
-            Input("btn-sel-display", "n_clicks"),
             Input("btn-sel-remove", "n_clicks"),
             Input("btn-sel-remove-all", "n_clicks"),
         )
@@ -661,7 +653,7 @@ class Layout:
             dd_phy: str, dd_area: str, dd_test: str, cl_core: list,
             cl_core_all: list, cl_framesize: list, cl_framesize_all: list,
             cl_testtype: list, cl_testtype_all: list, btn_add: int,
-            d_start: str, d_end: str, btn_display: int, btn_remove: int,
+            d_start: str, d_end: str, btn_remove: int,
             btn_remove_all: int) -> tuple:
             """
             """
@@ -881,8 +873,13 @@ class Layout:
                     ctrl_panel.set({
                         "cl-selected-options": self._list_tests(store_sel)
                     })
-            elif trigger_id in ("btn-sel-display", "dpr-period"):
-                _ = btn_display
+                    row_fig_tput, row_fig_lat, row_btn_dwnld = \
+                    _generate_plotting_arrea(
+                        graph_trending(
+                            self.data, store_sel, self.layout, d_start, d_end
+                        )
+                    )
+            elif trigger_id == "dpr-period":
                 row_fig_tput, row_fig_lat, row_btn_dwnld = \
                     _generate_plotting_arrea(
                         graph_trending(

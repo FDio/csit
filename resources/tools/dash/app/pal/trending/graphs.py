@@ -203,6 +203,8 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         return list()
 
     x_axis = [d for d in df["start_time"] if d >= start and d <= end]
+    if not x_axis:
+        return list()
 
     anomalies, trend_avg, trend_stdev = _classify_anomalies(
         {k: v for k, v in zip(x_axis, df[_VALUE[ttype]])}
