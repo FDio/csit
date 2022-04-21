@@ -266,48 +266,54 @@ class Layout:
             class_name="g-0 p-2",
             children=[
                 dbc.Row(
-                    class_name="gy-1",
+                    class_name="g-0",
                     children=[
-                        dbc.Label(
-                            "Physical Test Bed Topology, NIC and Driver",
-                            class_name="p-0"
-                        ),
-                        dbc.Select(
-                            id="dd-ctrl-phy",
-                            placeholder="Select a Physical Test Bed Topology...",
-                            options=[
-                                {"label": k, "value": k} for k in self.spec_tbs.keys()
+                        dbc.InputGroup(
+                            [
+                                dbc.InputGroupText("Infra"),
+                                dbc.Select(
+                                    id="dd-ctrl-phy",
+                                    placeholder="Select a Physical Test Bed Topology...",
+                                    options=[
+                                        {"label": k, "value": k} for k in self.spec_tbs.keys()
+                                    ],
+                                ),
                             ],
+                            class_name="mb-3",
                             size="sm",
                         ),
                     ]
                 ),
                 dbc.Row(
-                    class_name="gy-1",
+                    class_name="g-0",
                     children=[
-                        dbc.Label(
-                            "Area",
-                            class_name="p-0"
-                        ),
-                        dbc.Select(
-                            id="dd-ctrl-area",
-                            placeholder="Select an Area...",
-                            disabled=True,
+                        dbc.InputGroup(
+                            [
+                                dbc.InputGroupText("Area"),
+                                dbc.Select(
+                                    id="dd-ctrl-area",
+                                    placeholder="Select an Area...",
+                                    disabled=True,
+                                ),
+                            ],
+                            class_name="mb-3",
                             size="sm",
                         ),
                     ]
                 ),
                 dbc.Row(
-                    class_name="gy-1",
+                    class_name="g-0",
                     children=[
-                        dbc.Label(
-                            "Test",
-                            class_name="p-0"
-                        ),
-                        dbc.Select(
-                            id="dd-ctrl-test",
-                            placeholder="Select a Test...",
-                            disabled=True,
+                        dbc.InputGroup(
+                            [
+                                dbc.InputGroupText("Test"),
+                                dbc.Select(
+                                    id="dd-ctrl-test",
+                                    placeholder="Select a Test...",
+                                    disabled=True,
+                                ),
+                            ],
+                            class_name="mb-3",
                             size="sm",
                         ),
                     ]
