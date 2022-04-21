@@ -46,7 +46,7 @@
 | | ... | Display results as formatted test message.
 | | ... | Fail if computed lower bound is 110% of the minimal rate or less.
 | | ... | Input rates are unidirectional, in transaction per second.
-| | ... | Reported result may contain aggregate pps rates, depending on test.
+| | ... | Reported result may contain aggregated pps rates, depending on test.
 | | ... | Call \${resetter} (if defined) to reset DUT state before each trial.
 | |
 | | ... | *Test (or broader scope) variables read:*
@@ -105,7 +105,7 @@
 | | ... | Display findings as a formatted test message.
 | | ... | Fail if a resulting lower bound has too high loss ratio.
 | | ... | Input rates are unidirectional, in transaction per second.
-| | ... | Reported result may contain aggregate pps rates, depending on test.
+| | ... | Reported result may contain aggregated pps rates, depending on test.
 | | ... | Additional latency measurements are performed for smaller loads,
 | | ... | even if latency stream is disabled in search. Their results
 | | ... | are also displayed.
@@ -468,7 +468,7 @@
 | | ... | *Arguments:*
 | | ... | - trial_duration - Duration of single trial [s].
 | | ... | Type: float
-| | ... | - rate - Target aggregate transmit rate [bps] / Bits per second
+| | ... | - rate - Target aggregated transmit rate [bps] / Bits per second.
 | | ... | Type: float
 | | ... | - frame_size - L2 Frame Size [B].
 | | ... | Type: integer or string
