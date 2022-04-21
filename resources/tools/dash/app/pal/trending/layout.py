@@ -19,12 +19,13 @@ import dash_bootstrap_components as dbc
 
 from dash import dcc
 from dash import html
-from dash import callback_context, no_update
+from dash import callback_context, no_update, ALL
 from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 from copy import deepcopy
+from json import loads, JSONDecodeError
 
 from ..data.data import Data
 from .graphs import graph_trending, graph_hdrh_latency, \
@@ -576,7 +577,7 @@ class Layout:
                 row_fig_tput = [
                     dcc.Loading(
                         dcc.Graph(
-                            id="graph-tput",
+                            id={"type": "graph", "index": "tput"},
                             figure=fig_tput
                         )
                     ),
@@ -594,7 +595,7 @@ class Layout:
                 row_fig_lat = [
                     dcc.Loading(
                         dcc.Graph(
-                            id="graph-latency",
+                            id={"type": "graph", "index": "lat"},
                             figure=fig_lat
                         )
                     )
@@ -938,37 +939,35 @@ class Layout:
             Output("metadata-tput-lat", "children"),
             Output("metadata-hdrh-graph", "children"),
             Output("offcanvas-metadata", "is_open"),
-            Input("graph-tput", "clickData"),
-            Input("graph-latency", "clickData")
+            Input({"type": "graph", "index": ALL}, "clickData"),
+            prevent_initial_call=True
         )
-        def _show_metadata_from_graphs(
-            tput_data: dict, lat_data: dict) -> tuple:
+        def _show_metadata_from_graphs(graph_data: dict) -> tuple:
             """
             """
-            if not (tput_data or lat_data):
+            try:
+                trigger_id = loads(
+                    callback_context.triggered[0]["prop_id"].split(".")[0]
+                )["index"]
+                idx = 0 if trigger_id == "tput" else 1
+                graph_data = graph_data[idx]["points"][0]
+            except (JSONDecodeError, IndexError, KeyError, ValueError,
+                    TypeError):
                 raise PreventUpdate
 
             metadata = no_update
             graph = list()
 
-            trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
-            if trigger_id == "graph-tput":
+            children = [
+                dbc.ListGroupItem(
+                    [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
+                ) for x in graph_data.get("text", "").split("<br>")
+            ]
+            if trigger_id == "tput":
                 title = "Throughput"
-                array = tput_data["points"][0]["text"].split("<br>")
-                children = [
-                    dbc.ListGroupItem(
-                        [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
-                    ) for x in array
-                ]
-            elif trigger_id == "graph-latency":
+            elif trigger_id == "lat":
                 title = "Latency"
-                array = lat_data["points"][0]["text"].split("<br>")
-                children = [
-                    dbc.ListGroupItem(
-                        [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
-                    ) for x in array
-                ]
-                hdrh_data = lat_data["points"][0].get("customdata", None)
+                hdrh_data = graph_data.get("customdata", None)
                 if hdrh_data:
                     graph = [dbc.Card(
                         class_name="gy-2 p-0",
@@ -999,9 +998,7 @@ class Layout:
                         dbc.CardBody(
                             id="tput-lat-metadata",
                             class_name="p-0",
-                            children=[
-                                dbc.ListGroup(children, flush=True)
-                            ]
+                            children=[dbc.ListGroup(children, flush=True), ]
                         )
                     ]
                 )
