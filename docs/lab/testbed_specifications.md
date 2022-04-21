@@ -668,7 +668,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot4 3b:00.xx: xxv710-DA2-2p25GE Intel.
             - PCIe Slot9 5e:00.xx: ConnectX5-2p100GE Mellanox.
         - Numa1: (x16, x16, x16 PCIe3.0 lanes)
-            - PCIe Slot6 86:00.xx: empty.
+            - PCIe Slot6 86:00.xx: e810-2p100GE Intel.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 13. Server-Type-C3: Purpose - Cascadelake Xeon TG for FD.io performance testing.
@@ -688,13 +688,13 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot4 3b:00.xx: xxv710-DA2 2p25GE Intel.
             - PCIe Slot9 5e:00.xx: ConnectX5-2p100GE Mellanox.
         - Numa1: (x16, x16, x16 PCIe3.0 lanes)
-            - PCIe Slot6 86:00.xx: empty.
-            - PCIe Slot8 af:00.xx: empty.
+            - PCIe Slot6 86:00.xx: ConnectX5-2p100GE Mellanox.
+            - PCIe Slot8 af:00.xx: ConnectX5-2p100GE Mellanox.
             - PCIe Slot10 d8:00.xx: empty.
 14. Server-Type-C4: Purpose - Cascadelake Xeon Backend hosts for FD.io builds and data processing.
     - Quantity: 3.
     - Physical connectivity:
-        - CIMC and host management ports.
+        - IPMI and host management ports.
         - no NIC ports, standalone setup.
     - Main HW configuration:
         - Chassis: SuperMicro 1029P-WTRT.
@@ -1232,8 +1232,10 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s34-t27-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s34-t27-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s34-t27-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s34-t27-tg1-c6/p1 - 100GE-port1 e810-2p100GE.
-        - s34-t27-tg1-c6/p2 - 100GE-port2 e810-2p100GE.
+        - s34-t27-tg1-c6/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s34-t27-tg1-c6/p2 - 100GE-port2 ConnectX5-2p100GE.
+        - s38-t27-tg1-c8/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s38-t27-tg1-c8/p2 - 100GE-port2 ConnectX5-2p100GE.
         - s34-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
         - s34-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 - SUT [Server-Type-C2]:
@@ -1264,8 +1266,10 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s36-t28-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s36-t28-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s36-t28-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s36-t28-tg1-c6/p1 - 100GE-port1 e810-2p100GE.
-        - s36-t28-tg1-c6/p2 - 100GE-port2 e810-2p100GE.
+        - s36-t28-tg1-c6/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s36-t28-tg1-c6/p2 - 100GE-port2 ConnectX5-2p100GE.
+        - s38-t28-tg1-c8/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s38-t28-tg1-c8/p2 - 100GE-port2 ConnectX5-2p100GE.
         - s36-t28-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
         - s36-t28-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 - SUT [Server-Type-C2]:
@@ -1296,8 +1300,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s38-t29-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s38-t29-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s38-t29-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s38-t29-tg1-c6/p1 - 100GE-port1 e810-2p100GE.
-        - s38-t29-tg1-c6/p2 - 100GE-port2 e810-2p100GE.
+        - s38-t29-tg1-c6/p1 - 100GE-port1 ConnectX5-2p100GE.
+        - s38-t29-tg1-c6/p2 - 100GE-port2 ConnectX5-2p100GE.
         - s38-t29-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
         - s38-t29-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
 ```
@@ -1964,9 +1968,12 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
     - ring4 100GE-ports ConnectX5-2p100GE on SUT:
         - s34-t27-tg1-c9/p1 to s33-t27-sut1-c9/p1.
         - s33-t27-sut1-c9/p2 to s34-t27-tg1-c9/p2.
-    - ring5 100GE-ports e810-2p100GE on SUT:
+    - ring5 100GE-ports e810-2p100GE on SUT 100GE-ports ConnectX5-2p100GE on TG:
         - s34-t27-tg1-c6/p1 to s33-t27-sut1-c6/p1.
         - s33-t27-sut1-c6/p2 to s34-t27-tg1-c6/p2.
+    - ring6 100GE-ports e810-2p100GE on TG:
+        - s34-t27-tg1-c8/p1 to s34-t27-tg1-c8/p2.
+        - s34-t27-tg1-c8/p2 to s34-t27-tg1-c8/p1.
 - testbed28:
     - ring1 10GE-ports x710-4p10GE on SUT:
         - s36-t28-tg1-c2/p1 to s35-t28-sut1-c2/p1.
@@ -1980,9 +1987,12 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
     - ring4 100GE-ports ConnectX5-2p100GE on SUT:
         - s36-t28-tg1-c9/p1 to s35-t28-sut1-c9/p1.
         - s35-t28-sut1-c9/p2 to s36-t28-tg1-c9/p2.
-    - ring5 100GE-ports e810-2p100GE on SUT:
+    - ring5 100GE-ports e810-2p100GE on SUT 100GE-ports ConnectX5-2p100GE on TG:
         - s36-t28-tg1-c6/p1 to s35-t28-sut1-c6/p1.
         - s35-t28-sut1-c6/p2 to s36-t28-tg1-c6/p2.
+    - ring6 100GE-ports e810-2p100GE on TG:
+        - s36-t28-tg1-c8/p1 to s36-t28-tg1-c8/p2.
+        - s36-t28-tg1-c8/p2 to s36-t28-tg1-c8/p1.
 - testbed29:
     - ring1 10GE-ports x710-4p10GE on SUT:
         - s38-t29-tg1-c2/p1 to s37-t29-sut1-c2/p1.
@@ -1996,7 +2006,7 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
     - ring4 100GE-ports ConnectX5-2p100GE on SUT:
         - s38-t29-tg1-c9/p1 to s37-t29-sut1-c9/p1.
         - s37-t29-sut1-c9/p2 to s38-t29-tg1-c9/p2.
-    - ring6 100GE-ports e810-2p100GE on SUT:
+    - ring5 100GE-ports e810-2p100GE on SUT 100GE-ports ConnectX5-2p100GE on TG:
         - s38-t29-tg1-c6/p1 to s37-t29-sut1-c6/p1.
         - s37-t29-sut1-c6/p2 to s38-t29-tg1-c6/p2.
 ```
