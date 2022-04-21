@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f307ec9a_795cd2bc",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-04-21T14:16:42Z",
+      "side": 1,
+      "message": "I was recently made aware there is yet another config knob that needs to be switched to get fully 1G setup. At least for DPDK plugin to be affected, not sure about other NIC drivers.\n\nIt is here [0]. Even though the default behavior sounds like it is applying the value configured here, it instead uses this [1] constant.\n\nThat means we also need a function that sets the value to path [u\"buffers\", u\"page-size\"].\n\n[0] https://github.com/FDio/vpp/blob/v22.02/src/vpp/conf/startup.conf#L108\n[1] https://github.com/FDio/vpp/blob/v22.02/src/vppinfra/mem.h#L61",
+      "range": {
+        "startLine": 410,
+        "startChar": 15,
+        "endLine": 410,
+        "endChar": 50
+      },
+      "revId": "f27f09b9a3997710844b662c882505f783b56934",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
