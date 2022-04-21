@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,19 +46,19 @@
 | | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
 | | Fail | ${message}
 
-| Compute bandwidth
+| Compute Bandwidth
 | | [Documentation]
 | | ... | Compute (bidir) bandwidth from given (unidir) transaction rate.
 | | ...
-| | ... | This keyword reads "ppta" and "avg_frame_size" set elsewhere.
-| | ... | The implementation should work for both pps and cps rates.
+| | ... | This keyword reads \${ppta} and \${avg_aggregated_frame_size} set
+| | ... | elsewhere. The implementation should work for both pps and cps rates.
 | | ... |
 | | ... | *Arguments:*
 | | ... | - tps - Transaction rate (unidirectional) [tps]. Type: float
 | | ...
 | | ... | *Returns:*
 | | ... | - Computed bandwidth in Gbps.
-| | ... | - Computed aggregate packet rate in pps.
+| | ... | - Computed aggregated packet rate in pps.
 | |
 | | ... | *Example:*
 | |
@@ -68,7 +68,7 @@
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${pps} = | Evaluate | ${tps} * ${ppta}
-| | ${bandwidth} = | Evaluate | ${pps} * (${avg_frame_size}+20)*8 / 1e9
+| | ${bandwidth} = | Evaluate | ${pps} * (${avg_aggregated_frame_size}+20)*8/1e9
 | | Return From Keyword | ${bandwidth} | ${pps}
 
 | Display Reconfig Test Message
@@ -96,7 +96,7 @@
 | Display result of NDRPDR search
 | | [Documentation]
 | | ... | Display result of NDR+PDR search, both quantities, both bounds,
-| | ... | aggregate in units given by trasaction type, e.g. by default
+| | ... | aggregated, in units given by trasaction type, e.g. by default
 | | ... | in packet per seconds and Gbps total bandwidth
 | | ... | (for initial packet size).
 | | ... |
@@ -115,7 +115,7 @@
 | | ... | - transaction_type - String identifier to determine how to count
 | | ... | transactions. Default is "packet".
 | | ... | *Arguments:*
-| | ... | - result - Measured result data. Aggregate rate, tps or pps.
+| | ... | - result - Measured result data. Aggregated rate, tps or pps.
 | | ... | Type: NdrPdrResult
 | |
 | | ... | *Example:*
@@ -175,7 +175,7 @@
 | | ... | it is in transactions per second. Bidirectional traffic
 | | ... | transaction is understood as having 2 packets, for this purpose.
 | | ... |
-| | ... | Pps values are aggregate in packet per seconds,
+| | ... | Pps values are aggregated, in packet per seconds
 | | ... | and Gbps total bandwidth (for initial packet size).
 | | ... |
 | | ... | Througput is calculated as:
@@ -231,8 +231,8 @@
 
 | Display single pps bound
 | | [Documentation]
-| | ... | Display one pps bound of NDR+PDR search,
-| | ... | aggregate in packet per seconds and Gbps total bandwidth
+| | ... | Display one pps bound of NDR+PDR search, aggregated,
+| | ... | in packet per seconds and Gbps total bandwidth
 | | ... | (for initial packet size).
 | | ... |
 | | ... | The bound to display is given as target transfer rate, it is assumed
