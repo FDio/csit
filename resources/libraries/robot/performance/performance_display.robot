@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -201,10 +201,10 @@
 | |
 | | ${transaction_type} = | Get Transaction Type
 | | Run Keyword And Return If | """_cps""" in """${transaction_type}"""
-| | ... | Display single cps bound | ${text} | ${tps} | ${latency}
-| | Display single pps bound | ${text} | ${tps} | ${latency}
+| | ... | Display Single CPS Bound | ${text} | ${tps} | ${latency}
+| | Display Single PPS Bound | ${text} | ${tps} | ${latency}
 
-| Display single cps bound
+| Display Single CPS Bound
 | | [Documentation]
 | | ... | Display one bound of NDR+PDR search for CPS tests.
 | | ... | The bounds are expressed as transactions per second.
@@ -217,7 +217,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Display single cps bound \| NDR lower bound \| \${12345.67} \
+| | ... | \| Display Single CPS Bound \| NDR lower bound \| \${12345.67} \
 | | ... | \| latency=\${EMPTY} \|
 | |
 | | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
@@ -229,7 +229,7 @@
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
 
-| Display single pps bound
+| Display Single PPS Bound
 | | [Documentation]
 | | ... | Display one pps bound of NDR+PDR search,
 | | ... | aggregate in packet per seconds and Gbps total bandwidth
@@ -252,7 +252,7 @@
 | |
 | | ... | *Example:*
 | |
-| | ... | \| Display single pps bound \| NDR lower bound \| \${12345.67} \
+| | ... | \| Display Single PPS Bound \| NDR lower bound \| \${12345.67} \
 | | ... | \| latency=\${EMPTY} \|
 | |
 | | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
