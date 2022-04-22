@@ -224,7 +224,7 @@
 | |
 | | Set Test Message | ${\n}${text}: ${tps} CPS | append=yes
 | | ${bandwidth} | ${pps} = | Compute Bandwidth | ${tps}
-| | Export Search Bound | ${text} | ${tps} | cps | ${bandwidth}
+| | Export Search Bound | ${text} | ${tps} | cps | ${bandwidth * 1e9}
 | | Return From Keyword If | not """${latency}"""
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
