@@ -68,12 +68,12 @@ class Layout:
         data_mrr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_mrr(days=5)
+        ).read_trending_mrr(days=180)
 
         data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_ndrpdr(days=14)
+        ).read_trending_ndrpdr(days=180)
 
         self._data = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
@@ -464,15 +464,15 @@ class Layout:
                         dbc.ButtonGroup(
                             children=[
                                 dbc.Button(
-                                    id="btn-sel-remove-all",
-                                    children="Remove All",
+                                    id="btn-sel-remove",
+                                    children="Remove Selected",
                                     class_name="w-100",
                                     color="secondary",
                                     disabled=False
                                 ),
                                 dbc.Button(
-                                    id="btn-sel-remove",
-                                    children="Remove Selected",
+                                    id="btn-sel-remove-all",
+                                    children="Remove All",
                                     class_name="w-100",
                                     color="secondary",
                                     disabled=False
