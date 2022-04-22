@@ -28,19 +28,19 @@ module "elastic_beanstalk_environment" {
   vpc_instance_tenancy     = "default"
 
   # subnet
-  subnet_availability_zone = "us-east-1a"
+  subnet_availability_zone = "eu-central-1a"
 
   # environment
   environment_application            = module.elastic_beanstalk_application.application_name
   environment_description            = module.elastic_beanstalk_application.application_description
   environment_name                   = "fdio-csit-dash-env"
-  environment_solution_stack_name    = "64bit Amazon Linux 2 v3.3.11 running Python 3.8"
+  environment_solution_stack_name    = "64bit Amazon Linux 2 v3.3.12 running Python 3.8"
   environment_tier                   = "WebServer"
   environment_wait_for_ready_timeout = "20m"
   environment_version_label          = ""
 
   # aws:ec2:instances
-  instances_instance_types = "t3a.xlarge"
+  instances_instance_types = "t3a.medium"
 
   # aws:ec2:vpc
   associate_public_ip_address = true
