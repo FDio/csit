@@ -1,5 +1,19 @@
 statistics:
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/stats
+  columns:
+    - job
+    - build
+    - start_time
+    - duration
+statistics-trending:
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - hosts
+    - passed
 trending-mrr:
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
   columns:

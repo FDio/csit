@@ -1,0 +1,23 @@
+mrr:
+  daily:
+    - 2n-clx
+    - 2n-dnv
+    - 2n-icx
+    - 2n-skx
+    - 2n-tx2
+    - 2n-zn2
+    - 3n-alt
+    - 3n-dnv
+    - 3n-icx
+    - 3n-skx
+    - 3n-tsh
+  weekly:
+    - 2n-aws
+    - 3n-aws
+ndrpdr:
+  weekly:
+    - 2n-clx
+    - 2n-icx
+    - 2n-skx
+    - 3n-icx
+    - 3n-skx
