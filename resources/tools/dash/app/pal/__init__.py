@@ -43,12 +43,11 @@ def init_app():
         assets.init_app(app)
 
         # Import Dash applications.
+        from .stats.stats import init_stats
+        app = init_stats(app)
+
         from .trending.trending import init_trending
         app = init_trending(app)
-
-        # Temporarily switched off
-        # from .report.report import init_report
-        # app = init_report(app)
 
     return app
 

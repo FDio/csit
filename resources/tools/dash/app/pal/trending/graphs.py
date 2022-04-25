@@ -165,7 +165,7 @@ def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
     phy = itm["phy"].split("-")
     if len(phy) == 4:
         topo, arch, nic, drv = phy
-        if drv in ("dpdk", "ixgbe"):
+        if drv == "dpdk":
             drv = ""
         else:
             drv += "-"
