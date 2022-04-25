@@ -76,26 +76,26 @@ nodes:
         # s38-t29-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
         mac_address: "b8:59:9f:fe:4a:a9"
         pci_address: "0000:5e:00.1"
-        ip4_address: "172.16.70.2"
+        ip4_address: "172.16.80.2"
         driver: mlx5_core
         link: link8
         model: Mellanox-CX556A
       port9:
-        # s38-t29-tg1-c6/p1 - 100GE-port1 Intel E810-CQDA2 2p100GE.
-        mac_address: "b4:96:91:a4:26:38"
+        # s38-t29-tg1-c6/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "10:70:fd:18:44:ec"
         pci_address: "0000:86:00.0"
-        ip4_address: "172.16.80.2"
-        driver: ice
+        ip4_address: "172.16.90.2"
+        driver: mlx5_core
         link: link9
-        model: Intel-E810CQ
+        model: Mellanox-CX556A
       port10:
-        # s38-t29-tg1-c6/p2 - 100GE-port1 Intel E810-CQDA2 2p100GE.
-        mac_address: "b4:96:91:a4:26:39"
+        # s38-t29-tg1-c6/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "10:70:fd:18:44:ed"
         pci_address: "0000:86:00.1"
-        ip4_address: "172.16.90.1"
-        driver: ice
+        ip4_address: "172.16.100.2"
+        driver: mlx5_core
         link: link10
-        model: Intel-E810CQ
+        model: Mellanox-CX556A
   DUT1:
     type: DUT
     host: "10.32.8.22"
@@ -165,7 +165,7 @@ nodes:
         # s37-t29-sut1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
         mac_address: "b8:59:9f:fe:4a:c9"
         pci_address: "0000:5e:00.1"
-        ip4_address: "172.16.70.1"
+        ip4_address: "172.16.80.1"
         driver: mlx5_core
         link: link8
         model: Mellanox-CX556A
@@ -173,7 +173,7 @@ nodes:
         # s37-t29-sut1-c6/p1 - 100GE-port1 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:a4:23:50"
         pci_address: "0000:86:00.0"
-        ip4_address: "172.16.80.2"
+        ip4_address: "172.16.90.1"
         driver: ice
         link: link9
         model: Intel-E810CQ
@@ -181,7 +181,7 @@ nodes:
         # s37-t29-sut1-c6/p2 - 100GE-port1 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:a4:23:51"
         pci_address: "0000:86:00.1"
-        ip4_address: "172.16.90.1"
+        ip4_address: "172.16.100.1"
         driver: ice
         link: link10
         model: Intel-E810CQ

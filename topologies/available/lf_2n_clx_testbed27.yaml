@@ -76,26 +76,42 @@ nodes:
         # s34-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
         mac_address: "ec:0d:9a:8c:c6:a7"
         pci_address: "0000:5e:00.1"
-        ip4_address: "172.16.70.1"
+        ip4_address: "172.16.80.2"
         driver: mlx5_core
         link: link8
         model: Mellanox-CX556A
       port9:
-        # s34-t27-tg1-c6/p1 - 100GE-port1 Intel E810-CQDA2 2p100GE.
-        mac_address: "b4:96:91:a4:24:e8"
+        # s34-t27-tg1-c6/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "10:70:fd:15:60:54"
         pci_address: "0000:86:00.0"
-        ip4_address: "172.16.80.2"
-        driver: ice
+        ip4_address: "172.16.90.2"
+        driver: mlx5_core
         link: link9
-        model: Intel-E810CQ
+        model: Mellanox-CX556A
       port10:
-        # s34-t27-tg1-c6/p2 - 100GE-port1 Intel E810-CQDA2 2p100GE.
-        mac_address: "b4:96:91:a4:24:e9"
+        # s34-t27-tg1-c6/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "10:70:fd:15:60:55"
         pci_address: "0000:86:00.1"
-        ip4_address: "172.16.90.1"
-        driver: ice
+        ip4_address: "172.16.100.2"
+        driver: mlx5_core
         link: link10
-        model: Intel-E810CQ
+        model: Mellanox-CX556A
+      port11:
+        # s34-t27-tg1-c8/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "0c:42:a1:0b:92:1a"
+        pci_address: "0000:af:00.0"
+        ip4_address: "172.16.110.2"
+        driver: mlx5_core
+        link: link11
+        model: Mellanox-CX556A
+      port12:
+        # s34-t27-tg1-c8/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "0c:42:a1:0b:92:1b"
+        pci_address: "0000:af:00.1"
+        ip4_address: "172.16.120.2"
+        driver: mlx5_core
+        link: link11
+        model: Mellanox-CX556A
   DUT1:
     type: DUT
     host: "10.32.8.18"
@@ -157,7 +173,7 @@ nodes:
         # s33-t27-sut1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
         mac_address: "ec:0d:9a:8c:c6:96"
         pci_address: "0000:5e:00.0"
-        ip4_address: "172.16.70.2"
+        ip4_address: "172.16.70.1"
         driver: mlx5_core
         link: link7
         model: Mellanox-CX556A
@@ -165,7 +181,7 @@ nodes:
         # s33-t27-sut1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
         mac_address: "ec:0d:9a:8c:c6:96"
         pci_address: "0000:5e:00.1"
-        ip4_address: "172.16.70.1"
+        ip4_address: "172.16.80.1"
         driver: mlx5_core
         link: link8
         model: Mellanox-CX556A
@@ -173,7 +189,7 @@ nodes:
         # s33-t27-sut1-c6/p1 - 100GE-port1 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:a2:fb:d0"
         pci_address: "0000:86:00.0"
-        ip4_address: "172.16.80.2"
+        ip4_address: "172.16.90.1"
         driver: ice
         link: link9
         model: Intel-E810CQ
@@ -181,7 +197,7 @@ nodes:
         # s33-t27-sut1-c6/p2 - 100GE-port1 Intel E810-CQDA2 2p100GE.
         mac_address: "b4:96:91:a2:fb:d1"
         pci_address: "0000:86:00.1"
-        ip4_address: "172.16.90.1"
+        ip4_address: "172.16.100.1"
         driver: ice
         link: link10
         model: Intel-E810CQ
