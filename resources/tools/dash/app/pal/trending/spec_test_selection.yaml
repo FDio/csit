@@ -395,7 +395,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, NDR, PDR]
-2n-dnv-x553-ixgbe:
+2n-dnv-x553-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1474,7 +1474,7 @@
     core: [1C, 2C]
     frame-size: [IMIX, 1518B]
     test-type: [MRR, ]
-3n-dnv-x553-ixgbe:
+3n-dnv-x553-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1811,7 +1811,7 @@
     core: [2C, 3C, 4C]
     frame-size: [1518B, IMIX]
     test-type: [MRR, NDR, PDR]
-3n-tsh-x520-ixgbe:
+3n-tsh-x520-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
