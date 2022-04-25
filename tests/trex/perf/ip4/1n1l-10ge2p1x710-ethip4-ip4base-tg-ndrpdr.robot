@@ -50,7 +50,7 @@
 | ... | - **[Ref] Applicable standard specifications:** RFC2544.
 
 *** Variables ***
-| ${nic_name}= | Intel-X710
+| ${nic_name}= | Mellanox-CX556A
 | ${nic_pfs}= | 2
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
@@ -76,7 +76,7 @@
 
 *** Test Cases ***
 | 64B--ethip4-ip4base-tg-ndrpdr
-| | [Tags] | 64B
+| | [Tags] | 64B | THIS
 | | frame_size=${64}
 
 | 1518B--ethip4-ip4base-tg-ndrpdr
