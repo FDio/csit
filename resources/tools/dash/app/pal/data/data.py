@@ -151,13 +151,29 @@ class Data:
     def read_stats(self, days=None):
         """Read Suite Result Analysis data partition from parquet.
         """
-        lambda_f = lambda part: True if part["stats_type"] == "sra" else False
+        l_stats = lambda part: True if part["stats_type"] == "sra" else False
+        l_mrr = lambda part: True if part["test_type"] == "mrr" else False
+        l_ndrpdr = lambda part: True if part["test_type"] == "ndrpdr" else False
 
-        return self._create_dataframe_from_parquet(
-            path=self._get_path("statistics"),
-            partition_filter=lambda_f,
-            columns=None,  # Get all columns.
-            days=days
+        return (
+            self._create_dataframe_from_parquet(
+                path=self._get_path("statistics"),
+                partition_filter=l_stats,
+                columns=self._get_columns("statistics"),
+                days=days
+            ),
+            self._create_dataframe_from_parquet(
+                path=self._get_path("statistics-trending"),
+                partition_filter=l_mrr,
+                columns=self._get_columns("statistics-trending"),
+                days=days
+            ),
+            self._create_dataframe_from_parquet(
+                path=self._get_path("statistics-trending"),
+                partition_filter=l_ndrpdr,
+                columns=self._get_columns("statistics-trending"),
+                days=days
+            )
         )
 
     def read_trending_mrr(self, days=None):

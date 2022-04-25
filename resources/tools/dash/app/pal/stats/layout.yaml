@@ -1,0 +1,117 @@
+plot-stats-passed:
+  autosize: True
+  showlegend: False
+  yaxis:
+    showticklabels: True
+    title: "Number of Passed / Failed Tests"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+    rangemode: "tozero"
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+    rangeselector:
+      buttons:
+      - count: 14
+        label: "2w"
+        step: "day"
+        stepmode: "backward"
+      - count: 1
+        label: "1m"
+        step: "month"
+        stepmode: "backward"
+      - count: 2
+        label: "2m"
+        step: "month"
+        stepmode: "backward"
+      - count: 3
+        label: "3m"
+        step: "month"
+        stepmode: "backward"
+      - step: "all"
+  margin:
+    r: 20
+    b: 5
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  barmode: "stack"
+  hoverlabel:
+    namelength: -1
+
+plot-stats-duration:
+  autosize: True
+  showlegend: False
+  yaxis:
+    showticklabels: True
+    title: "Duration [hh:mm]"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickmode: "array"
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+    rangemode: "tozero"
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+    rangeselector:
+      buttons:
+      - count: 14
+        label: "2w"
+        step: "day"
+        stepmode: "backward"
+      - count: 1
+        label: "1m"
+        step: "month"
+        stepmode: "backward"
+      - count: 2
+        label: "2m"
+        step: "month"
+        stepmode: "backward"
+      - count: 3
+        label: "3m"
+        step: "month"
+        stepmode: "backward"
+      - step: "all"
+  margin:
+    r: 20
+    b: 5
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
