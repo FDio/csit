@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -643,6 +643,9 @@ class TrafficGenerator(AbstractMeasurer):
         )
         command_line.add_with_value(u"duration", f"{computed_duration!r}")
         command_line.add_with_value(u"frame_size", self.frame_size)
+        command_line.add_with_value(
+            u"n_data_frames", Constants.ASTF_N_DATA_FRAMES
+        )
         command_line.add_with_value(u"multiplier", multiplier)
         command_line.add_with_value(u"port_0", p_0)
         command_line.add_with_value(u"port_1", p_1)
@@ -811,7 +814,7 @@ class TrafficGenerator(AbstractMeasurer):
             use_latency=False,
             ramp_up_rate=None,
             ramp_up_duration=None,
-            state_timeout=300.0,
+            state_timeout=240.0,
             ramp_up_only=False,
         ):
         """Send traffic from all configured interfaces on TG.
@@ -1215,7 +1218,7 @@ class TrafficGenerator(AbstractMeasurer):
         The target_tr field of ReceiveRateMeasurement is in
         transactions per second. Transmit count and loss count units
         depend on the transaction type. Usually they are in transactions
-        per second, or aggregate packets per second.
+        per second, or aggregated packets per second.
 
         TODO: Fail on running or already reported measurement.
 
@@ -1382,7 +1385,7 @@ class TrafficGenerator(AbstractMeasurer):
             use_latency=False,
             ramp_up_rate=None,
             ramp_up_duration=None,
-            state_timeout=300.0,
+            state_timeout=240.0,
         ):
         """Store values accessed by measure().
 
@@ -1451,7 +1454,7 @@ class OptimizedSearch:
     """Class to be imported as Robot Library, containing search keywords.
 
     Aside of setting up measurer and forwarding arguments,
-    the main business is to translate min/max rate from unidir to aggregate.
+    the main business is to translate min/max rate from unidir to aggregated.
     """
 
     @staticmethod
@@ -1475,7 +1478,7 @@ class OptimizedSearch:
             use_latency=False,
             ramp_up_rate=None,
             ramp_up_duration=None,
-            state_timeout=300.0,
+            state_timeout=240.0,
             expansion_coefficient=4.0,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
@@ -1616,7 +1619,7 @@ class OptimizedSearch:
             use_latency=False,
             ramp_up_rate=None,
             ramp_up_duration=None,
-            state_timeout=300.0,
+            state_timeout=240.0,
     ):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
@@ -1674,7 +1677,7 @@ class OptimizedSearch:
         :type ramp_up_rate: float
         :type ramp_up_duration: float
         :type state_timeout: float
-        :returns: Average and stdev of estimated aggregate rate giving PLR.
+        :returns: Average and stdev of estimated aggregated rate giving PLR.
         :rtype: 2-tuple of float
         """
         tg_instance = BuiltIn().get_library_instance(
