@@ -1,4 +1,4 @@
-2n-aws-50ge1p1ena-dpdk:
+2n-aws-ena-dpdk:
   ip4-base:
     label: IPv4 Routing Base
     test:
@@ -29,7 +29,7 @@
     core: [1C, 2C]
     frame-size: [78B, 1518B]
     test-type: [MRR, ]
-2n-clx-100ge2p1cx556a-rdma:
+2n-clx-cx556a-rdma:
   memif-base:
     label: LXC/DRC Container Memif
     test:
@@ -87,7 +87,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, NDR, PDR]
-2n-clx-10ge2p1x710-avf:
+2n-clx-x710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -116,7 +116,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, NDR, PDR]
-2n-clx-10ge2p1x710-dpdk:
+2n-clx-x710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -138,7 +138,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, NDR, PDR]
-2n-clx-25ge2p1xxv710-af_xdp:
+2n-clx-xxv710-af_xdp:
   ip4-base:
     label: IPv4 Routing Base
     test:
@@ -169,7 +169,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, NDR, PDR]
-2n-clx-25ge2p1xxv710-avf:
+2n-clx-xxv710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -329,7 +329,7 @@
   # cnf-service-chains-routing:
   # cnf-service-pipelines-routing:
   # vnf-service-chains-tunnels:
-2n-clx-25ge2p1xxv710-dpdk:
+2n-clx-xxv710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -395,7 +395,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, NDR, PDR]
-2n-dnv-10ge2p1x553-ixgbe:
+2n-dnv-x553-ixgbe:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -442,7 +442,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, ]
-2n-icx-25ge2p1xxv710-af_xdp:
+2n-icx-xxv710-af_xdp:
   ip4-base:
     label: IPv4 Routing Base
     test:
@@ -473,7 +473,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, NDR, PDR]
-2n-icx-25ge2p1xxv710-avf:
+2n-icx-xxv710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -629,7 +629,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, NDR, PDR]
-2n-icx-25ge2p1xxv710-dpdk:
+2n-icx-xxv710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -695,7 +695,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, NDR, PDR]
-2n-skx-10ge2p1x710-avf:
+2n-skx-x710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -726,7 +726,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, NDR, PDR]
-2n-skx-10ge2p1x710-dpdk:
+2n-skx-x710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -757,7 +757,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, NDR, PDR]
-2n-skx-25ge2p1xxv710-af_xdp:
+2n-skx-xxv710-af_xdp:
   ip4-base:
     label: IPv4 Routing Base
     test:
@@ -788,7 +788,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, NDR, PDR]
-2n-skx-25ge2p1xxv710-avf:
+2n-skx-xxv710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -944,7 +944,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, NDR, PDR]
-2n-skx-25ge2p1xxv710-dpdk:
+2n-skx-xxv710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1012,7 +1012,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, NDR, PDR]
-2n-tx2-40ge2p1xl710-af_xdp:
+2n-tx2-xl710-af_xdp:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1060,7 +1060,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, ]
-2n-tx2-40ge2p1xl710-dpdk:
+2n-tx2-xl710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1176,7 +1176,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, ]
-2n-zn2-10ge2p1x710-avf:
+2n-zn2-x710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1198,7 +1198,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, ]
-2n-zn2-10ge2p1x710-dpdk:
+2n-zn2-x710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1220,7 +1220,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, ]
-2n-zn2-100ge2p1cx556a-rdma:
+2n-zn2-cx556a-rdma:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1300,7 +1300,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, ]
-2n-zn2-25ge2p1xxv710-avf:
+2n-zn2-xxv710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1401,7 +1401,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, ]
-2n-zn2-25ge2p1xxv710-dpdk:
+2n-zn2-xxv710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1451,7 +1451,7 @@
     core: [1C, 2C, 4C]
     frame-size: [64B, ]
     test-type: [MRR, ]
-3n-aws-50ge1p1ena-dpdk:
+3n-aws-ena-dpdk:
   ip4-base:
     label: IPv4 Routing Base
     test:
@@ -1474,7 +1474,7 @@
     core: [1C, 2C]
     frame-size: [IMIX, 1518B]
     test-type: [MRR, ]
-3n-dnv-10ge2p1x553-ixgbe:
+3n-dnv-x553-ixgbe:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1547,7 +1547,7 @@
     core: [2C, 3C, 4C]
     frame-size: [1518B, IMIX]
     test-type: [MRR, ]
-3n-icx-25ge2p1xxv710-avf:
+3n-icx-xxv710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1617,7 +1617,7 @@
     core: [2C, 3C, 4C]
     frame-size: [1518B, IMIX]
     test-type: [MRR, NDR, PDR]
-3n-icx-25ge2p1xxv710-dpdk:
+3n-icx-xxv710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1667,7 +1667,7 @@
     core: [2C, 3C, 4C]
     frame-size: [1518B, IMIX]
     test-type: [MRR, NDR, PDR]
-3n-skx-10ge2p1x710-avf:
+3n-skx-x710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1691,7 +1691,7 @@
     core: [1C, 2C, 4C]
     frame-size: [78B, ]
     test-type: [MRR, NDR, PDR]
-3n-skx-25ge2p1xxv710-avf:
+3n-skx-xxv710-avf:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1761,7 +1761,7 @@
     core: [2C, 3C, 4C]
     frame-size: [1518B, IMIX]
     test-type: [MRR, NDR, PDR]
-3n-skx-25ge2p1xxv710-dpdk:
+3n-skx-xxv710-dpdk:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
@@ -1811,7 +1811,7 @@
     core: [2C, 3C, 4C]
     frame-size: [1518B, IMIX]
     test-type: [MRR, NDR, PDR]
-3n-tsh-10ge2p1x520-ixgbe:
+3n-tsh-x520-ixgbe:
   l2-base:
     label: L2 Ethernet Switching Base
     test:
