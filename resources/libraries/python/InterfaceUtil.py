@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -358,31 +358,6 @@ class InterfaceUtil:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         except AssertionError as err:
             logger.debug(f"Setting MTU failed.\n{err}")
-
-    @staticmethod
-    def vpp_set_interfaces_mtu_on_node(node, mtu=9200):
-        """Set Ethernet MTU on all interfaces.
-
-        :param node: VPP node.
-        :param mtu: Ethernet MTU size in Bytes. Default: 9200.
-        :type node: dict
-        :type mtu: int
-        """
-        for interface in node[u"interfaces"]:
-            InterfaceUtil.vpp_set_interface_mtu(node, interface, mtu)
-
-    @staticmethod
-    def vpp_set_interfaces_mtu_on_all_duts(nodes, mtu=9200):
-        """Set Ethernet MTU on all interfaces on all DUTs.
-
-        :param nodes: VPP nodes.
-        :param mtu: Ethernet MTU size in Bytes. Default: 9200.
-        :type nodes: dict
-        :type mtu: int
-        """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                InterfaceUtil.vpp_set_interfaces_mtu_on_node(node, mtu)
 
     @staticmethod
     def vpp_node_interfaces_ready_wait(node, retries=15):
