@@ -22,4 +22,4 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.73"
 cpu_microarchitecture: "altra"
 
-intel_700_matrix: "dpdk21.11"
+intel_700_matrix: "dpdk22.03"

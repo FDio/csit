@@ -36,11 +36,6 @@ nodes:
     username: testuser
     password: Csit1234
     uio_driver: vfio-pci
-    honeycomb:
-      user: admin
-      passwd: admin
-      port: 8183
-      netconf_port: 2831
     interfaces:
       port1:
         # dut1_instance/p1 - 40GE port1 on Mellanox NIC.
