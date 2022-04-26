@@ -23,5 +23,5 @@ packages_by_arch:
 
 dpdk_target_dir: "/opt"
 dpdk_version:
-  - "21.11"
+  - "22.03"
 dpdk_url: "https://fast.dpdk.org/rel"

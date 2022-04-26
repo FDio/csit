@@ -26,15 +26,10 @@ intel_700_compatibility_matrix:
     i40e: "2.14.13"
     iavf: "4.1.1"
     nvm: "8.00"
-  dpdk21.08:
-    # https://doc.dpdk.org/guides/rel_notes/release_21_08.html
-    i40e: "2.15.9"
-    iavf: "4.1.1"
-    nvm: "8.30"
-  dpdk21.11:
-    # https://doc.dpdk.org/guides/rel_notes/release_21_11.html
-    i40e: "2.17.4"
-    iavf: "4.2.7"
+  dpdk22.03:
+    # https://doc.dpdk.org/guides/rel_notes/release_22_03.html
+    i40e: "2.17.15"
+    iavf: "4.3.19"
     nvm: "8.30"
 
 intel_800_compatibility_matrix:
@@ -44,33 +39,25 @@ intel_800_compatibility_matrix:
     ddp: "1.3.28.0"
     iavf: "4.1.1"
     nvm: "2.40"
-  dpdk21.08:
-    # https://doc.dpdk.org/guides/rel_notes/release_21_08.html
-    ice: "1.6.4"
-    ddp: "1.3.30.0"
-    iavf: "4.2.7"
-    nvm: "3.00"
-  dpdk21.11:
-    # https://doc.dpdk.org/guides/rel_notes/release_21_11.html
-    ice: "1.7.16" # 1.7.11 - but not public available
-    ddp: "1.3.30.0" # 1.3.31.0 - but not public available
-    iavf: "4.2.7"
-    nvm: "3.10"
+  dpdk22.03:
+    # https://doc.dpdk.org/guides/rel_notes/release_22_03.html
+    ice: "1.8.3"
+    ddp: "1.3.35.0"
+    iavf: "4.3.19"
+    nvm: "3.20"
 
 intel_i40e_url:
   "2.14.13": "i40e%20stable/2.14.13/i40e-2.14.13.tar.gz/download"
-  "2.15.9": "i40e%20stable/2.15.9/i40e-2.15.9.tar.gz/download"
-  "2.17.4": "i40e%20stable/2.17.4/i40e-2.17.4.tar.gz/download"
+  "2.17.15": "i40e%20stable/2.17.15/i40e-2.17.15.tar.gz/download"
 
 intel_ice_url:
   "1.4.11": "ice%20stable/1.4.11/ice-1.4.11.tar.gz/download"
-  "1.6.4": "ice%20stable/1.6.4/ice-1.6.4.tar.gz/download"
-  "1.7.16": "ice%20stable/1.7.16/ice-1.7.16.tar.gz/download"
+  "1.8.3": "ice%20stable/1.8.3/ice-1.8.3.tar.gz/download"
 
 intel_iavf_url:
   "4.1.1": "iavf%20stable/4.1.1/iavf-4.1.1.tar.gz/download"
-  "4.2.7": "iavf%20stable/4.2.7/iavf-4.2.7.tar.gz/download"
+  "4.3.19": "iavf%20stable/4.3.19/iavf-4.3.19.tar.gz/download"
 
 intel_ddp_url:
-  "1.3.28.0": "29889/eng/800%20Series%20Comms%20Binary%20Package%201.3.28.0.zip"
-  "1.3.30.0": "30590/eng/800%20Series%20Comms%20Binary%20Package%201.3.30.0.zip"
+  "1.3.28.0": "30467/eng/800%20series%20comms%20binary%20package%201.3.28.0.zip"
+  "1.3.35.0": "727568/ice_comms-1.3.35.0.zip"

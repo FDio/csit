@@ -29,5 +29,5 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.74"
 cpu_microarchitecture: "icelake"
 
-intel_700_matrix: "dpdk21.11"
-intel_800_matrix: "dpdk21.11"
+intel_700_matrix: "dpdk21.02"
+intel_800_matrix: "dpdk21.02"

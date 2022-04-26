@@ -29,4 +29,4 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.51"
 cpu_microarchitecture: "skylake"
 
-intel_700_matrix: "dpdk21.11"
+intel_700_matrix: "dpdk22.03"
