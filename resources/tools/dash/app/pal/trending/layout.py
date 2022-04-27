@@ -409,14 +409,15 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
-                    class_name="gy-1",
+                    class_name="gy-1 p-0",
                     children=[
                         dbc.ButtonGroup(
                             [
                                 dbc.Button(
                                     id="btn-ctrl-add",
                                     children="Add Selected",
-                                    color="secondary",
+                                    class_name="me-1",
+                                    color="info"
                                 )
                             ],
                             size="md",
@@ -462,19 +463,20 @@ class Layout:
                     style=self.STYLE_DISABLED,
                     children=[
                         dbc.ButtonGroup(
+                            class_name="gy-2",
                             children=[
                                 dbc.Button(
                                     id="btn-sel-remove",
                                     children="Remove Selected",
-                                    class_name="w-100",
-                                    color="secondary",
+                                    class_name="w-100 me-1",
+                                    color="info",
                                     disabled=False
                                 ),
                                 dbc.Button(
                                     id="btn-sel-remove-all",
                                     children="Remove All",
-                                    class_name="w-100",
-                                    color="secondary",
+                                    class_name="w-100 me-1",
+                                    color="info",
                                     disabled=False
                                 ),
                             ],
@@ -592,7 +594,9 @@ class Layout:
                     dcc.Loading(children=[
                         dbc.Button(
                             id="btn-download-data",
-                            children=["Download Data"]
+                            children=["Download Data"],
+                            class_name="me-1",
+                            color="info"
                         ),
                         dcc.Download(id="download-data")
                     ]),
