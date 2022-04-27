@@ -68,12 +68,12 @@ class Layout:
         data_mrr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_mrr(days=180)
+        ).read_trending_mrr()
 
         data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_ndrpdr(days=180)
+        ).read_trending_ndrpdr()
 
         self._data = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
