@@ -17,6 +17,7 @@
 import pandas as pd
 import dash_bootstrap_components as dbc
 
+from flask import Flask
 from dash import dcc
 from dash import html
 from dash import callback_context, no_update
@@ -33,8 +34,9 @@ class Layout:
     """
     """
 
-    def __init__(self, app, html_layout_file, spec_file, graph_layout_file,
-        data_spec_file):
+    def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
+        graph_layout_file: str, data_spec_file: str,
+        time_period: int=None) -> None:
         """
         """
 
@@ -44,12 +46,13 @@ class Layout:
         self._spec_file = spec_file
         self._graph_layout_file = graph_layout_file
         self._data_spec_file = data_spec_file
+        self._time_period = time_period
 
         # Read the data:
         data_stats, data_mrr, data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_stats()
+        ).read_stats(days=time_period)
 
         df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
@@ -143,6 +146,10 @@ class Layout:
     @property
     def jobs(self) -> list:
         return self._jobs
+
+    @property
+    def time_period(self):
+        return self._time_period
 
     def add_content(self):
         """
@@ -302,10 +309,13 @@ class Layout:
                             id="dpr-period",
                             className="d-flex justify-content-center",
                             min_date_allowed=\
-                                datetime.utcnow()-timedelta(days=180),
+                                datetime.utcnow() - timedelta(
+                                    days=self.time_period),
                             max_date_allowed=datetime.utcnow(),
                             initial_visible_month=datetime.utcnow(),
-                            start_date=datetime.utcnow() - timedelta(days=180),
+                            start_date=\
+                                datetime.utcnow() - timedelta(
+                                    days=self.time_period),
                             end_date=datetime.utcnow(),
                             display_format="D MMMM YY"
                         )
