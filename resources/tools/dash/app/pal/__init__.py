@@ -20,6 +20,17 @@ from flask import Flask
 from flask_assets import Environment
 
 
+# Maximal value of TIME_PERIOD in days.
+# Do not change without a good reason.
+MAX_TIME_PERIOD = 180
+
+# It defines the time period in days from now back to the past from which data
+# is read to dataframes.
+# TIME_PERIOD = None means all data (max MAX_TIME_PERIOD days) is read.
+# TIME_PERIOD = MAX_TIME_PERIOD is the default value
+TIME_PERIOD = MAX_TIME_PERIOD  # [days]
+
+
 def init_app():
     """Construct core Flask application with embedded Dash app.
     """
@@ -42,13 +53,19 @@ def init_app():
         assets = Environment()
         assets.init_app(app)
 
+        if TIME_PERIOD is None or TIME_PERIOD > MAX_TIME_PERIOD:
+            time_period = MAX_TIME_PERIOD
+        else:
+            time_period = TIME_PERIOD
+
         # Import Dash applications.
         from .stats.stats import init_stats
-        app = init_stats(app)
+        app = init_stats(app, time_period=time_period)
 
         from .trending.trending import init_trending
-        app = init_trending(app)
+        app = init_trending(app, time_period=time_period)
 
     return app
+
 
 app = init_app()

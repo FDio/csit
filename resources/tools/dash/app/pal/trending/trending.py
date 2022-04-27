@@ -19,7 +19,7 @@ import dash_bootstrap_components as dbc
 from .layout import Layout
 
 
-def init_trending(server):
+def init_trending(server, time_period=None):
     """Create a Plotly Dash dashboard.
 
     :param server: Flask server.
@@ -40,7 +40,8 @@ def init_trending(server):
         html_layout_file="pal/templates/trending_layout.jinja2",
         spec_file="pal/trending/spec_test_selection.yaml",
         graph_layout_file="pal/trending/layout.yaml",
-        data_spec_file="pal/data/data.yaml"
+        data_spec_file="pal/data/data.yaml",
+        time_period=time_period
     )
     dash_app.index_string = layout.html_layout
     dash_app.layout = layout.add_content()
