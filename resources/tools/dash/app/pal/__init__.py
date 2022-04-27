@@ -20,6 +20,11 @@ from flask import Flask
 from flask_assets import Environment
 
 
+# Data from now minus TIME_PERIOD is read to the dataframes.
+# TIME_PERIOD = None means all data is read.
+TIME_PERIOD = 7
+
+
 def init_app():
     """Construct core Flask application with embedded Dash app.
     """
@@ -44,11 +49,12 @@ def init_app():
 
         # Import Dash applications.
         from .stats.stats import init_stats
-        app = init_stats(app)
+        app = init_stats(app, time_period=TIME_PERIOD)
 
         from .trending.trending import init_trending
-        app = init_trending(app)
+        app = init_trending(app, time_period=TIME_PERIOD)
 
     return app
+
 
 app = init_app()

@@ -53,7 +53,7 @@ class Layout:
     PLACEHOLDER = html.Nobr("")
 
     def __init__(self, app, html_layout_file, spec_file, graph_layout_file,
-        data_spec_file):
+        data_spec_file, time_period=None):
         """
         """
 
@@ -68,12 +68,12 @@ class Layout:
         data_mrr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_mrr()
+        ).read_trending_mrr(days=time_period)
 
         data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_ndrpdr()
+        ).read_trending_ndrpdr(days=time_period)
 
         self._data = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 

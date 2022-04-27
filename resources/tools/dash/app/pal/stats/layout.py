@@ -34,7 +34,7 @@ class Layout:
     """
 
     def __init__(self, app, html_layout_file, spec_file, graph_layout_file,
-        data_spec_file):
+        data_spec_file, time_period=None):
         """
         """
 
@@ -49,7 +49,7 @@ class Layout:
         data_stats, data_mrr, data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_stats()
+        ).read_stats(days=time_period)
 
         df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
