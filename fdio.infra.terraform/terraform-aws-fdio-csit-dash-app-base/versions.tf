@@ -2,7 +2,7 @@ terraform {
   backend "consul" {
     address = "10.32.8.14:8500"
     scheme  = "http"
-    path    = "terraform/dash"
+    path    = "terraform/app-base"
   }
   required_providers {
     aws = {

@@ -26,3 +26,9 @@ variable "vault_name" {
   type    = string
   default = "dynamic-aws-creds-vault-fdio-csit-jenkins"
 }
+
+variable "version" {
+  description = "Application version string."
+  type        = number
+  default     = 1
+}

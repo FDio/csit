@@ -2,7 +2,7 @@ terraform {
   backend "consul" {
     address = "consul.service.consul:8500"
     scheme  = "http"
-    path    = "fdio/terraform/1n/nomad"
+    path    = "terraform/aws-secret-backend"
   }
   required_providers {
     vault = {
