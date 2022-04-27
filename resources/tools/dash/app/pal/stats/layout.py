@@ -14,13 +14,17 @@
 """Plotly Dash HTML layout override.
 """
 
+from asyncio.log import logger
+import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
 
 from dash import dcc
 from dash import html
+from dash import callback_context, no_update
 from dash import Input, Output
 from dash.exceptions import PreventUpdate
+from pyparsing import PrecededBy
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 
@@ -48,7 +52,7 @@ class Layout:
         data_stats, data_mrr, data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_stats(days=180)
+        ).read_stats(days=7)
 
         df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
@@ -157,16 +161,22 @@ class Layout:
                             self._add_navbar(),
                         ]
                     ),
+                    dcc.Loading(
+                        dbc.Offcanvas(
+                            class_name="w-50",
+                            id="offcanvas-metadata",
+                            title="Detailed Information",
+                            placement="end",
+                            is_open=False,
+                            children=[
+                                dbc.Row(id="row-metadata")
+                            ]
+                        )
+                    ),
                     dbc.Row(
                         id="row-main",
                         class_name="g-0",
                         children=[
-                            dcc.Store(
-                                id="selected-tests"
-                            ),
-                            dcc.Store(
-                                id="control-panel"
-                            ),
                             self._add_ctrl_col(),
                             self._add_plotting_col(),
                         ]
@@ -329,3 +339,63 @@ class Layout:
                 raise PreventUpdate
 
             return dcc.send_data_frame(self.data.to_csv, "statistics.csv")
+
+        @app.callback(
+            Output("row-metadata", "children"),
+            Output("offcanvas-metadata", "is_open"),
+            Input("graph-passed", "clickData"),
+            Input("graph-duration", "clickData"),
+            prevent_initial_call=True
+        )
+        def _show_metadata_from_graphs(
+                passed_data: dict, duration_data: dict) -> tuple:
+            """
+            """
+
+            if not (passed_data or duration_data):
+                raise PreventUpdate
+
+            metadata = no_update
+            open_canvas = False
+            title = "Job Statistics"
+            trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
+            if trigger_id == "graph-passed":
+                graph_data = passed_data["points"][0].get("hovertext", "")
+            elif trigger_id == "graph-duration":
+                graph_data = duration_data["points"][0].get("text", "")
+            if graph_data:
+                metadata = [
+                    dbc.Card(
+                        class_name="gy-2 p-0",
+                        children=[
+                            dbc.CardHeader(children=[
+                                dcc.Clipboard(
+                                    target_id="metadata",
+                                    title="Copy",
+                                    style={"display": "inline-block"}
+                                ),
+                                title
+                            ]),
+                            dbc.CardBody(
+                                id="metadata",
+                                class_name="p-0",
+                                children=[dbc.ListGroup(
+                                    children=[
+                                        dbc.ListGroupItem(
+                                            [
+                                                dbc.Badge(
+                                                    x.split(":")[0]
+                                                ),
+                                                x.split(": ")[1]
+                                            ]
+                                        ) for x in graph_data.split("<br>")
+                                    ],
+                                    flush=True),
+                                ]
+                            )
+                        ]
+                    )
+                ]
+                open_canvas = True
+
+            return metadata, open_canvas

@@ -46,8 +46,8 @@ def init_app():
         from .stats.stats import init_stats
         app = init_stats(app)
 
-        from .trending.trending import init_trending
-        app = init_trending(app)
+        # from .trending.trending import init_trending
+        # app = init_trending(app)
 
     return app
 
