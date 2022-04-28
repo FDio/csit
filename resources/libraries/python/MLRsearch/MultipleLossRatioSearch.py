@@ -14,14 +14,14 @@
 """Module defining MultipleLossRatioSearch class."""
 
 import logging
-import math
 import time
 
+from .DurationAndWidthScaling import DurationAndWidthScaling
 from .MeasurementDatabase import MeasurementDatabase
-from .ProgressState import ProgressState
+from .OtherConfig import OtherConfig
 from .ReceiveRateInterval import ReceiveRateInterval
+from .RelevantBounds import RelevantBounds
 from .WidthArithmetics import (
-    multiply_relative_width,
     step_down,
     step_up,
     multiple_step_down,
@@ -32,6 +32,8 @@ from .WidthArithmetics import (
 
 class MultipleLossRatioSearch:
     """Optimized binary search algorithm for finding bounds for multiple ratios.
+
+    FIXME: Update.
 
     Traditional binary search algorithm needs initial interval
     (lower and upper bound), and returns final interval after bisecting
@@ -91,8 +93,10 @@ class MultipleLossRatioSearch:
             self, measurer, final_relative_width=0.005,
             final_trial_duration=30.0, initial_trial_duration=1.0,
             number_of_intermediate_phases=2, timeout=600.0, debug=None,
-            expansion_coefficient=2.0):
+            expansion_coefficient=4.0):
         """Store the measurer object and additional arguments.
+
+        Also, values related to phase scaling are precomputed.
 
         :param measurer: Rate provider to use by this search object.
         :param final_relative_width: Final lower bound transmit rate
@@ -116,14 +120,17 @@ class MultipleLossRatioSearch:
         :type expansion_coefficient: float
         """
         self.measurer = measurer
-        self.final_trial_duration = float(final_trial_duration)
-        self.final_relative_width = float(final_relative_width)
-        self.number_of_intermediate_phases = int(number_of_intermediate_phases)
-        self.initial_trial_duration = float(initial_trial_duration)
-        self.timeout = float(timeout)
-        self.state = None
         self.debug = logging.debug if debug is None else debug
         self.expansion_coefficient = float(expansion_coefficient)
+        self.scaling = DurationAndWidthScaling(
+            phases=number_of_intermediate_phases,
+            initial_duration=initial_trial_duration,
+            final_duration=final_trial_duration,
+            final_width=final_relative_width,
+        )
+        self.timeout = float(timeout)
+        self.config = None
+        self.database = None
 
     def narrow_down_intervals(self, min_rate, max_rate, packet_loss_ratios):
         """Perform initial phase, create state object, proceed with next phases.
@@ -143,340 +150,510 @@ class MultipleLossRatioSearch:
         :raises RuntimeError: If total duration is larger than timeout.
             Or if ratios list is (empty or) not sorted or unique.
         """
-        min_rate = float(min_rate)
-        max_rate = float(max_rate)
-        packet_loss_ratios = [float(ratio) for ratio in packet_loss_ratios]
-        if len(packet_loss_ratios) < 1:
-            raise RuntimeError(u"At least one ratio is required!")
-        if packet_loss_ratios != sorted(set(packet_loss_ratios)):
-            raise RuntimeError(u"Input ratios have to be sorted and unique!")
+        self.config = OtherConfig(
+            packet_loss_ratios=packet_loss_ratios,
+            min_rate=min_rate,
+            max_rate=max_rate,
+            timeout=self.timeout,
+        )
+        self.database = MeasurementDatabase(self.do_initial_measurements())
+        self.ndrpdr_root()
+        return self.database.get_results(
+            ratio_list=packet_loss_ratios,
+            duration=self.scaling.final_duration,
+        )
+
+    def do_initial_measurements(self):
+        """Perform measurements to get enough data for full logic.
+
+        :returns: Measurement result to consider next.
+        :rtype: Iterable[ReceiveRateMeasurement]
+        """
         measurements = list()
-        self.debug(f"First measurement at max rate: {max_rate}")
+        self.debug(f"First measurement at max rate: {self.config.max_rate}")
         measured = self.measurer.measure(
-            duration=self.initial_trial_duration,
-            transmit_rate=max_rate,
+            duration=self.scaling.initial_duration,
+            transmit_rate=self.config.max_rate,
         )
         measurements.append(measured)
-        initial_width_goal = self.final_relative_width
-        for _ in range(self.number_of_intermediate_phases):
-            initial_width_goal = multiply_relative_width(
-                initial_width_goal, 2.0
-            )
-        max_lo = step_down(max_rate, initial_width_goal)
-        mrr = max(min_rate, min(max_lo, measured.relative_receive_rate))
-        self.debug(f"Second measurement at mrr: {mrr}")
+        width_goal = self.scaling.width_goal(phase=0)
+        correction_factor = 1.0 / (1.0 - self.config.packet_loss_ratios[0])
+        corrected_rr = measured.relative_receive_rate * correction_factor
+        if corrected_rr >= self.config.max_rate:
+            return measurements
+        mrr = self.handle_load_limits(
+            corrected_rr, width_goal, None, self.config.max_rate
+        )
+        if mrr is None:
+            self.debug(u"Warning: hard interval narrow or goal wide?")
+            return measurements
+        self.debug(f"Second measurement at (corrected) mrr: {mrr}")
         measured = self.measurer.measure(
-            duration=self.initial_trial_duration,
+            duration=self.scaling.initial_duration,
             transmit_rate=mrr,
         )
         measurements.append(measured)
         # Attempt to get narrower width.
-        if measured.loss_ratio > packet_loss_ratios[0]:
-            max_lo = step_down(mrr, initial_width_goal)
-            mrr2 = min(max_lo, measured.relative_receive_rate)
-        else:
-            mrr2 = step_up(mrr, initial_width_goal)
-        if min_rate < mrr2 < max_rate:
-            self.debug(f"Third measurement at mrr2: {mrr2}")
-            measured = self.measurer.measure(
-                duration=self.initial_trial_duration,
-                transmit_rate=mrr2,
+        if measured.loss_ratio > self.config.packet_loss_ratios[0]:
+            corrected_rr2 = measured.relative_receive_rate * correction_factor
+            # TODO: Assert corrected_rr2 > mrr
+            mrr2 = self.handle_load_limits(
+                corrected_rr2, width_goal, None, mrr
             )
-            measurements.append(measured)
-            # If mrr2 > mrr and mrr2 got zero loss,
-            # it is better to do external search from mrr2 up.
-            # To prevent bisection between mrr2 and max_rate,
-            # we simply remove the max_rate measurement.
-            # Similar logic applies to higher loss ratio goals.
-            # Overall, with mrr2 measurement done, we never need
-            # the first measurement done at max rate.
-            measurements = measurements[1:]
-        database = MeasurementDatabase.from_list(measurements)
-        stop_time = time.monotonic() + self.timeout
-        self.state = ProgressState(
-            database, self.number_of_intermediate_phases,
-            self.final_trial_duration, self.final_relative_width,
-            packet_loss_ratios, min_rate, max_rate, stop_time
+        else:
+            mrr2 = step_up(mrr, width_goal)
+            if mrr2 < self.config.max_rate:
+                mrr2 = self.handle_load_limits(
+                    mrr2, width_goal, mrr, self.config.max_rate
+                )
+            else:
+                # TODO: Were we safe against rounding errors?
+                self.debug(u"Mrr2 would be max rate again.")
+                mrr2 = None
+        if mrr2 is None:
+            self.debug(u"Warning: NDR too close to max rate?")
+            return measurements
+        self.debug(f"Third measurement at (corrected) mrr2: {mrr2}")
+        measured = self.measurer.measure(
+            duration=self.scaling.initial_duration,
+            transmit_rate=mrr2,
         )
-        self.ndrpdr()
-        return self.state.database.get_results(ratio_list=packet_loss_ratios)
+        measurements.append(measured)
+        # If mrr2 > mrr and mrr2 got zero loss,
+        # it is better to do external search from mrr2 up.
+        # To prevent bisection between mrr2 and max_rate,
+        # we simply remove the max_rate measurement.
+        # Similar logic applies to higher loss ratio goals.
+        # Overall, with mrr2 measurement done, we never need
+        # the first measurement done at max rate.
+        measurements = measurements[1:]
+        return measurements
 
-    def ndrpdr(self):
-        """Perform trials for this phase. State is updated in-place.
-
-        Recursion to smaller durations is performed (if not performed yet).
+    def ndrpdr_root(self):
+        """Iterate search over ratios and phases.
 
         :raises RuntimeError: If total duration is larger than timeout.
         """
-        state = self.state
-        if state.phases > 0:
-            # We need to finish preceding intermediate phases first.
-            saved_phases = state.phases
-            state.phases -= 1
-            # Preceding phases have shorter duration.
-            saved_duration = state.duration
-            duration_multiplier = state.duration / self.initial_trial_duration
-            phase_exponent = float(state.phases) / saved_phases
-            state.duration = self.initial_trial_duration * math.pow(
-                duration_multiplier, phase_exponent
-            )
-            # Shorter durations do not need that narrow widths.
-            saved_width = state.width_goal
-            state.width_goal = multiply_relative_width(saved_width, 2.0)
-            # Recurse.
-            self.ndrpdr()
-            # Restore the state for current phase.
-            state.width_goal = saved_width
-            state.duration = saved_duration
-            state.phases = saved_phases  # Not needed, but just in case.
+        for ratio in self.config.packet_loss_ratios:
+            self.debug(f"Focusing on ratio {ratio} now.")
+            for phase in range(self.scaling.intermediate_phases + 1):
+                self.ndrpdr_iteration(ratio, phase)
+        self.debug(u"All ratios done.")
+
+    def ndrpdr_iteration(self, ratio, phase):
+        """Search for narrow enough bounds for this ratio at this phase.
+
+        :param ratio: Target loss ratio the bounds should encompass.
+        :param phase: Current phase number, implies duration and width goal.
+        :type ratio: float
+        :type phase: int
+        """
+        width_goal = self.scaling.width_goal(phase)
+        current_duration = self.scaling.duration(phase)
+        previous_duration = self.scaling.duration(phase - 1) if phase else None
         self.debug(
-            f"Starting phase with {state.duration} duration"
-            f" and {state.width_goal} relative width goal."
+            f"Starting phase with {current_duration} duration"
+            f" and {width_goal} relative width goal."
         )
-        failing_fast = False
-        database = state.database
-        database.set_current_duration(state.duration)
-        while time.monotonic() < state.stop_time:
-            for index, ratio in enumerate(state.packet_loss_ratios):
-                new_tr = self._select_for_ratio(ratio)
-                if new_tr is None:
-                    # Either this ratio is fine, or min rate got invalid result.
-                    # If fine, we will continue to handle next ratio.
-                    if index > 0:
-                        # First ratio passed, all next have a valid lower bound.
-                        continue
-                    lower_bound, _, _, _, _, _ = database.get_bounds(ratio)
-                    if lower_bound is None:
-                        failing_fast = True
-                        self.debug(u"No valid lower bound for this iteration.")
-                        break
-                    # First ratio is fine.
-                    continue
-                # We have transmit rate to measure at.
-                # We do not check duration versus stop_time here,
-                # as some measurers can be unpredictably faster
-                # than what duration suggests.
-                measurement = self.measurer.measure(
-                    duration=state.duration,
-                    transmit_rate=new_tr,
-                )
-                database.add(measurement)
-                # Restart ratio handling on updated database.
+        # TODO: Add failing fast.
+        while time.monotonic() < self.config.stop_time:
+            bounds = RelevantBounds.from_database(
+                self.database, ratio, current_duration, previous_duration
+            )
+            load = self.select_load(bounds, width_goal)
+            load = self.handle_load_limits(
+                load, width_goal, bounds.clo1, bounds.chi1
+            )
+            if load is None:
                 break
-            else:
-                # No ratio needs measuring, we are done with this phase.
-                self.debug(u"Phase done.")
-                break
-            # We have broken out of the for loop.
-            if failing_fast:
-                # Abort the while loop early.
-                break
-            # Not failing fast but database got updated, restart the while loop.
+            # We have transmit rate to measure at.
+            # We do not check duration versus stop_time here,
+            # as some measurers can be unpredictably faster
+            # than what duration suggests.
+            measurement = self.measurer.measure(
+                duration=current_duration,
+                transmit_rate=load,
+            )
+            self.database.add(measurement)
         else:
             # Time is up.
             raise RuntimeError(u"Optimized search takes too long.")
-        # Min rate is not valid, but returning what we have
-        # so next duration can recover.
+        self.debug(u"Phase done.")
 
-    @staticmethod
-    def improves(new_bound, lower_bound, upper_bound):
-        """Return whether new bound improves upon old bounds.
+    def handle_load_limits(self, load, width_goal, clotr, chitr):
+        """Return new target transmit rate after considering min and max rate.
 
-        To improve, new_bound has to be not None,
-        and between the old bounds (where the bound is not None).
+        Not only we want to avoid measuring outside minmax interval,
+        we also want to avoid measuring too close to limits and bounds.
+        We either round or return None, depending on hints from bound loads.
 
-        This piece of logic is commonly used, when we know old bounds
-        from a primary source (e.g. current duration database)
-        and new bound from a secondary source (e.g. previous duration database).
-        Having a function allows "if improves(..):" construction to save space.
+        When rounding away from hard limits, we may end up being
+        too close to already measured bound.
+        In this case, pick a midpoint between the bound and the limit.
+        The caller should have chosen (unrounded) load far enough from bounds.
 
-        :param new_bound: The bound we consider applying.
-        :param lower_bound: Known bound, new_bound has to be higher to apply.
-        :param upper_bound: Known bound, new_bound has to be lower to apply.
-        :type new_bound: Optional[ReceiveRateMeasurement]
-        :type lower_bound: Optional[ReceiveRateMeasurement]
-        :type upper_bound: Optional[ReceiveRateMeasurement]
-        :returns: Whether we can apply the new bound.
-        :rtype: bool
+        The last two arguments are just loads (not full measurement result)
+        to allow callers to exclude come load without measuring them.
+        As a convenience full results are also supported,
+        so that callers do not need to care about None when extracting load.
+
+        :param load: Target transmit rate candidate from select_load.
+        :param width_goal: Relative width goal, considered narrow enough.
+        :param clotr: Target TR of current tightest lower bound.
+        :param chitr: Target TR of current tightest upper bound.
+        :type load: Optional[float]
+        :type width_goal: float
+        :type clotr: Optional[Union[float, ReceiveRateMeasurement]]
+        :type chitr: Optional[Union[float, ReceiveRateMeasurement]]
+        :return: Adjusted load to measure at, or None if narrow enough.
+        :rtype: Optional[float]
+        :raises RuntimeError: If unsupported corner case is detected.
         """
-        if new_bound is None:
-            return False
-        if lower_bound is not None:
-            if new_bound.target_tr <= lower_bound.target_tr:
-                return False
-        if upper_bound is not None:
-            if new_bound.target_tr >= upper_bound.target_tr:
-                return False
-        return True
+        if load is None:
+            return None
+        min_rate, max_rate = self.config.min_rate, self.config.max_rate
+        load = max(min_rate, min(max_rate, load))
+        if hasattr(clotr, u"target_tr"):
+            clotr = clotr.target_tr
+        if hasattr(chitr, u"target_tr"):
+            chitr = chitr.target_tr
+        if clotr is None and chitr is None:
+            load = self._handle_load_with_excludes(
+                load, width_goal, min_rate, max_rate, min_ex=False, max_ex=False
+            )
+            return load
+        if clotr is None:
+            if load >= chitr:
+                raise RuntimeError(u"Lower load expected.")
+            if chitr <= min_rate:
+                self.debug(u"Warning: detect hitting min rate sooner?")
+                return None
+            load = self._handle_load_with_excludes(
+                load, width_goal, min_rate, chitr, min_ex=False, max_ex=True
+            )
+            return load
+        if chitr is None:
+            if load <= clotr:
+                raise RuntimeError(u"Higher load expected.")
+            if clotr >= max_rate:
+                self.debug(u"Warning: detect hitting max rate sooner?")
+                return None
+            load = self._handle_load_with_excludes(
+                load, width_goal, clotr, max_rate, min_ex=True, max_ex=False
+            )
+            return load
+        if load <= clotr:
+            raise RuntimeError(u"Higher load expected.")
+        if load >= chitr:
+            raise RuntimeError(u"Lower load expected.")
+        load = self._handle_load_with_excludes(
+            load, width_goal, clotr, chitr, min_ex=True, max_ex=True
+        )
+        return load
 
-    def _select_for_ratio(self, ratio):
+    def _handle_load_with_excludes(
+        self, load, width_goal, minimum, maximum, min_ex, max_ex
+    ):
+        """Round load if too close to limits, respecting exclusions.
+
+        This is a reusable block. Limits may come from previous bounds
+        or from hard load limits. When coming from hard limits,
+        rounding to the limit value us allowed. When coming from bounds,
+        rounding to that is not allowed (given by the setting the _ex flag).
+
+        :param load: The candidate intended load before accounting for limits.
+        :param width_goal: Relative width of area around the limits to avoid.
+        :param minimum: The lower limit to round around.
+        :param maximum: The upper limit to round around.
+        :param min_ex: If false, rounding to the minimum is allowed.
+        :param max_ex: If false, rounding to the maximum is allowed.
+        :type load: float
+        :type width_goal: float
+        :type minimum: float
+        :type maximum: float
+        :type min_ex: bool
+        :type max_ex: bool
+        :returns: Adjusted load value, or None if narrow enough.
+        :rtype: Optional[float]
+        :raises RuntimeError: If internal inconsistency is detected.
+        """
+        if not minimum <= load <= maximum:
+            raise RuntimeError(u"Please do not call with irrelevant load.")
+        width = (maximum - minimum) / maximum
+        if width <= width_goal:
+            self.debug(u"Warning: Rounding called when narrow enough.")
+            if not min_ex:
+                self.debug(u"Minimum not excluded, rounding to it.")
+                return minimum
+            if not max_ex:
+                self.debug(u"Maximum not excluded, rounding to it.")
+                return maximum
+            self.debug(u"Both limits excluded, narrow enough.")
+            return None
+        soft_min = step_up(minimum, width_goal)
+        soft_max = step_down(maximum, width_goal)
+        if soft_min > soft_max:
+            self.debug(u"Whole interval is less than two goals.")
+            soft_min = soft_max = half_step_up(minimum, width)
+        if load < soft_min:
+            if min_ex:
+                self.debug(u"Min excluded, rounding to soft min.")
+                return soft_min
+            self.debug(u"Min not excluded, rounding to minimum.")
+            return minimum
+        if load > soft_max:
+            if max_ex:
+                self.debug(u"Max excluded, rounding to soft max.")
+                return soft_max
+            self.debug(u"Max not excluded, rounding to maximum.")
+            return maximum
+        self.debug(u"Far enough from limits, rounding not needed.")
+        return load
+
+    def select_load(self, bounds, width_goal):
         """Return None or new target_tr to measure at.
 
         Returning None means either we have narrow enough valid interval
-        for this ratio, or we are hitting min rate and should fail early.
+        for this phase, or we are hitting some other early return condition.
+        TODO: Are there other conditions here?
 
-        :param ratio: Loss ratio to ensure narrow valid bounds for.
-        :type ratio: float
-        :returns: The next target transmit rate to measure at.
+        Situations related to min and max rate are expected in measurement
+        results, but load candidates are not constrained here,
+        so the handling can be centralized elsewhere.
+
+        :param bounds: Relevant bounds obtained from database.
+        :param width_goal: Relative width goal, considered narrow enough.
+        :type bounds: RelevantBounds
+        :type width_goal: float
+        :returns: The next load rate to measure at, None to end phase.
         :rtype: Optional[float]
         :raises RuntimeError: If database inconsistency is detected.
         """
-        state = self.state
-        data = state.database
-        bounds = data.get_bounds(ratio)
-        cur_lo1, cur_hi1, pre_lo, pre_hi, cur_lo2, cur_hi2 = bounds
-        pre_lo_improves = self.improves(pre_lo, cur_lo1, cur_hi1)
-        pre_hi_improves = self.improves(pre_hi, cur_lo1, cur_hi1)
-        # TODO: Detect also the other case for initial bisect, see below.
-        if pre_lo_improves and pre_hi_improves:
-            # We allowed larger width for previous phase
-            # as single bisect here guarantees only one re-measurement.
-            new_tr = self._bisect(pre_lo, pre_hi)
-            if new_tr is not None:
-                self.debug(f"Initial bisect for {ratio}, tr: {new_tr}")
-                return new_tr
-        if pre_lo_improves:
-            new_tr = pre_lo.target_tr
-            self.debug(f"Re-measuring lower bound for {ratio}, tr: {new_tr}")
-            return new_tr
-        if pre_hi_improves:
-            # This can also happen when we did not do initial bisect
-            # for this ratio yet, but the previous duration lower bound
-            # for this ratio got already re-measured as previous duration
-            # upper bound for previous ratio.
-            new_tr = pre_hi.target_tr
-            self.debug(f"Re-measuring upper bound for {ratio}, tr: {new_tr}")
-            return new_tr
-        if cur_lo1 is None and cur_hi1 is None:
-            raise RuntimeError(u"No results found in databases!")
-        if cur_lo1 is None:
-            # Upper bound exists (cur_hi1).
-            # We already tried previous lower bound.
-            # So, we want to extend down.
-            new_tr = self._extend_down(
-                cur_hi1, cur_hi2, pre_hi, second_needed=False
-            )
-            self.debug(
-                f"Extending down for {ratio}:"
-                f" old {cur_hi1.target_tr} new {new_tr}"
-            )
-            return new_tr
-        if cur_hi1 is None:
-            # Lower bound exists (cur_lo1).
-            # We already tried previous upper bound.
-            # So, we want to extend up.
-            new_tr = self._extend_up(cur_lo1, cur_lo2, pre_lo)
-            self.debug(
-                f"Extending up for {ratio}:"
-                f" old {cur_lo1.target_tr} new {new_tr}"
-            )
-            return new_tr
-        # Both bounds exist (cur_lo1 and cur_hi1).
-        # cur_lo1 might have been selected for this ratio (we are bisecting)
-        # or for previous ratio (we are extending down for this ratio).
-        # Compute both estimates and choose the higher value.
-        bisected_tr = self._bisect(cur_lo1, cur_hi1)
-        extended_tr = self._extend_down(
-            cur_hi1, cur_hi2, pre_hi, second_needed=True
-        )
-        # Only if both are not None we need to decide.
-        if bisected_tr and extended_tr and extended_tr > bisected_tr:
-            self.debug(
-                f"Extending down for {ratio}:"
-                f" old {cur_hi1.target_tr} new {extended_tr}"
-            )
-            new_tr = extended_tr
-        else:
-            self.debug(
-                f"Bisecting for {ratio}: lower {cur_lo1.target_tr},"
-                f" upper {cur_hi1.target_tr}, new {bisected_tr}"
-            )
-            new_tr = bisected_tr
-        return new_tr
+        # Detecting cases in order they can appear chronologically for phase.
+        load = self._get_halving_load(bounds, width_goal)
+        if load is not None:
+            self.debug(f"Halving available: {load}")
+            return load
+        load = self._get_lo_remeas_load(bounds, width_goal)
+        if load is not None:
+            self.debug(f"Lowerbound remeasurement available: {load}")
+            return load
+        load = self._get_min_remeas_load(bounds)
+        if load is not None:
+            self.debug(f"Min load remeasurement available: {load}")
+            return load
+        load = self._get_hi_remeas_load(bounds, width_goal)
+        if load is not None:
+            self.debug(f"Upperbound remeasurement available: {load}")
+            return load
+        load = self._get_max_remeas_load(bounds)
+        if load is not None:
+            self.debug(f"Max load remeasurement available: {load}")
+            return load
+        if bounds.clo1 is None:
+            load = self._extend_down(bounds, width_goal)
+            if load is None:
+                self.debug(u"Probably hitting min load, FIXME")
+                return None
+            self.debug(f"No current lower bound, extending down: {load}")
+            return load
+        if bounds.chi1 is None:
+            load = self._extend_up(bounds, width_goal)
+            if load is None:
+                self.debug(u"Probably hitting max load, FIXME")
+                return None
+            self.debug(f"No current upper bound, extending up: {load}")
+            return load
+        bisect_load = self._bisect(bounds, width_goal)
+        if bisect_load is None:
+            self.debug(u"Width small enough, no more bisecting needed.")
+            return None
+        if bounds.chi2 is None:
+            self.debug(f"Not extending down, so doing bisect: {bisect_load}")
+            return bisect_load
+        extend_load = self._extend_down(bounds, width_goal)
+        if extend_load is not None and extend_load > bisect_load:
+            self.debug(f"Preferring to extend down: {extend_load}.")
+            return extend_load
+        self.debug(f"Preferring to bisect: {bisect_load}.")
+        return bisect_load
 
-    def _extend_down(self, cur_hi1, cur_hi2, pre_hi, second_needed=False):
-        """Return extended width below, or None if hitting min rate.
+    def _get_halving_load(self, bounds, width_goal):
+        """Return None, or load for phase halving when detected.
 
-        If no second tightest (nor previous) upper bound is available,
-        the behavior is governed by second_needed argument.
-        If true, return None. If false, start from width goal.
-        This is useful, as if a bisect is possible,
-        we want to give it a chance.
+        There is some overlap with last bisect, but we want to select
+        the same load in both cases, regardless of tightest bounds duration.
 
-        :param cur_hi1: Tightest upper bound for current duration. Has to exist.
-        :param cur_hi2: Second tightest current upper bound, may not exist.
-        :param pre_hi: Tightest upper bound, previous duration, may not exist.
-        :param second_needed: Whether second tightest bound is required.
-        :type cur_hi1: ReceiveRateMeasurement
-        :type cur_hi2: Optional[ReceiveRateMeasurement]
-        :type pre_hi: Optional[ReceiveRateMeasurement]
-        :type second_needed: bool
-        :returns: The next target transmit rate to measure at.
+        The decision is made based purely on interval width.
+
+        :param bounds: Relevant bounds obtained from database.
+        :param width_goal: Width goal for the current phase.
+        :type bounds: RelevantBounds
+        :type width_goal: float
+        :returns: Intended load for halving, or None if this is not halving.
         :rtype: Optional[float]
         """
-        state = self.state
-        old_tr = cur_hi1.target_tr
-        if state.min_rate >= old_tr:
-            self.debug(u"Extend down hits min rate.")
+        tlo, thi = bounds.clo1, bounds.chi1
+        # Use plo1 if tighter.
+        if bounds.plo1 is not None and (tlo is None or tlo < bounds.plo1):
+            tlo = bounds.plo1
+        # Use phi if tighter.
+        if bounds.phi1 is not None and (thi is None or thi > bounds.phi1):
+            thi = bounds.phi1
+        if tlo is None or thi is None:
             return None
-        next_bound = cur_hi2
-        if self.improves(pre_hi, cur_hi1, cur_hi2):
-            next_bound = pre_hi
-        if next_bound is None and second_needed:
-            return None
-        old_width = state.width_goal
-        if next_bound is not None:
-            old_width = ReceiveRateInterval(cur_hi1, next_bound).rel_tr_width
-            old_width = max(old_width, state.width_goal)
-        new_tr = multiple_step_down(
-            old_tr, old_width, self.expansion_coefficient
-        )
-        new_tr = max(new_tr, state.min_rate)
-        return new_tr
+        interval = ReceiveRateInterval(tlo, thi)
+        wig = interval.width_in_goals(width_goal)
+        if 1.0 < wig <= 2.0:
+            # TODO: Support autoexctraction of target_tr in util functions?
+            load = half_step_up(
+                tlo.target_tr, interval.rel_tr_width, width_goal
+            )
+            self.debug(f"Halving load found: {load}")
+            return load
+        return None
 
-    def _extend_up(self, cur_lo1, cur_lo2, pre_lo):
-        """Return extended width above, or None if hitting max rate.
+    def _get_min_remeas_load(self, bounds):
+        """Return None, or min load remeasurement when detected.
 
-        :param cur_lo1: Tightest lower bound for current duration. Has to exist.
-        :param cur_lo2: Second tightest current lower bound, may not exist.
-        :param pre_lo: Tightest lower bound, previous duration, may not exist.
-        :type cur_lo1: ReceiveRateMeasurement
-        :type cur_lo2: Optional[ReceiveRateMeasurement]
-        :type pre_lo: Optional[ReceiveRateMeasurement]
-        :returns: The next target transmit rate to measure at.
+        :param bounds: Relevant bounds obtained from database.
+        :param width_goal: Width goal for the current phase.
+        :type bounds: RelevantBounds
+        :type width_goal: float
+        :returns: Intended load for remeasurement, or None if this is not it.
         :rtype: Optional[float]
         """
-        state = self.state
-        old_tr = cur_lo1.target_tr
-        if state.max_rate <= old_tr:
-            self.debug(u"Extend up hits max rate.")
-            return None
-        next_bound = cur_lo2
-        if self.improves(pre_lo, cur_lo2, cur_lo1):
-            next_bound = pre_lo
-        old_width = state.width_goal
-        if next_bound is not None:
-            old_width = ReceiveRateInterval(cur_lo1, next_bound).rel_tr_width
-            old_width = max(old_width, state.width_goal)
-        new_tr = multiple_step_up(old_tr, old_width, self.expansion_coefficient)
-        new_tr = min(new_tr, state.max_rate)
-        return new_tr
+        if bounds.phi1 is not None:
+            if bounds.phi1.target_tr == self.config.min_rate:
+                return self.config.min_rate
+        return None
 
-    def _bisect(self, lower_bound, upper_bound):
+    def _get_lo_remeas_load(self, bounds, width_goal):
+        """Return None, or load for lowerbound remeasurement when detected.
+
+        :param bounds: Relevant bounds obtained from database.
+        :param width_goal: Width goal for the current phase.
+        :type bounds: RelevantBounds
+        :type width_goal: float
+        :returns: Intended load for remeasurement, or None if this is not it.
+        :rtype: Optional[float]
+        """
+        # TODO: Document the logic.
+        if bounds.plo1 is None or bounds.chi1 is None:
+            return None
+        interval = ReceiveRateInterval(bounds.plo1, bounds.chi1)
+        if interval.width_in_goals(width_goal) > 1.0:
+            return None
+        load = bounds.plo1.target_tr
+        self.debug(f"Low remeasure candidate found: {load}")
+        return load
+
+    def _get_max_remeas_load(self, bounds):
+        """Return None, or max load remeasurement when detected.
+
+        :param bounds: Relevant bounds obtained from database.
+        :param width_goal: Width goal for the current phase.
+        :type bounds: RelevantBounds
+        :type width_goal: float
+        :returns: Intended load for remeasurement, or None if this is not it.
+        :rtype: Optional[float]
+        """
+        if bounds.plo1 is not None:
+            if bounds.plo1.target_tr == self.config.max_rate:
+                return self.config.max_rate
+        return None
+
+    def _get_hi_remeas_load(self, bounds, width_goal):
+        """Return None, or load for upperbound remeasurement when detected.
+
+        :param bounds: Relevant bounds obtained from database.
+        :param width_goal: Width goal for the current phase.
+        :type bounds: RelevantBounds
+        :type width_goal: float
+        :returns: Intended load for remeasurement, or None if this is not it.
+        :rtype: Optional[float]
+        """
+        # TODO: Document the logic.
+        if bounds.phi1 is None or bounds.clo1 is None:
+            return None
+        interval = ReceiveRateInterval(bounds.clo1, bounds.phi1)
+        if interval.width_in_goals(width_goal) > 1.0:
+            return None
+        load = bounds.phi1.target_tr
+        self.debug(f"High remeasure candidate found: {load}")
+        return load
+
+    def _extend_down(self, bounds, width_goal):
+        """Return extended width below.
+
+        :param bounds: Relevant bounds obtained from database.
+        :param width_goal: Width goal for the current phase.
+        :type bounds: RelevantBounds
+        :type width_goal: float
+        :returns: The next target transmit rate to measure at.
+        :rtype: Optional[float]
+        :raises RuntimeError: If algorithm inconsistency is detected.
+        """
+        if bounds.chi2 is None:
+            if bounds.chi1.target_tr < self.config.max_rate:
+                raise RuntimeError(f"Extending down without chi2: {bounds!r}")
+            self.debug(u"Assuming max rate just got remeasured high.")
+            load = step_down(bounds.chi1.target_tr, width_goal)
+            return load
+        # TODO: Explain why are we ignoring possible phi1.
+        old_width = ReceiveRateInterval(bounds.chi1, bounds.chi2).rel_tr_width
+        if old_width < width_goal:
+            # The following is possible with out width rounding.
+            self.debug(f"Width {old_width} < {width_goal} in _extend_down.")
+        load = multiple_step_down(
+            bounds.chi1.target_tr, old_width, self.expansion_coefficient
+        )
+        return load
+
+    def _extend_up(self, bounds, width_goal):
+        """Return extended width above.
+
+        :param bounds: Relevant bounds obtained from database.
+        :param width_goal: Width goal for the current phase.
+        :type bounds: RelevantBounds
+        :type width_goal: float
+        :returns: The next target transmit rate to measure at.
+        :rtype: Optional[float]
+        :raises RuntimeError: If algorithm inconsistency is detected.
+        """
+        if bounds.clo2 is None:
+            if bounds.clo1.target_tr >= self.config.max_rate:
+                self.debug(u"Assuming we are hitting max rate.")
+                return None
+            if bounds.clo1.target_tr > self.config.min_rate:
+                raise RuntimeError(f"Extending up without clo2: {bounds!r}")
+            self.debug(u"Assuming min rate just got remeasured low.")
+            load = step_up(bounds.clo1.target_tr, width_goal)
+            return load
+        # TODO: Explain why are we ignoring possible plo1.
+        old_width = ReceiveRateInterval(bounds.clo2, bounds.clo1).rel_tr_width
+        if old_width < width_goal:
+            # The following is possible with out width rounding.
+            self.debug(f"Width {old_width} < {width_goal} in _extend_up.")
+        load = multiple_step_up(
+            bounds.clo1.target_tr, old_width, self.expansion_coefficient
+        )
+        return load
+
+    def _bisect(self, bounds, width_goal):
         """Return middle rate or None if width is narrow enough.
 
-        :param lower_bound: Measurement to use as a lower bound. Has to exist.
-        :param upper_bound: Measurement to use as an upper bound. Has to exist.
-        :type lower_bound: ReceiveRateMeasurement
-        :type upper_bound: ReceiveRateMeasurement
+        :param bounds: Relevant bounds obtained from database.
+        :param width_goal: Width goal for the current phase.
+        :type bounds: RelevantBounds
+        :type width_goal: float
         :returns: The next target transmit rate to measure at.
         :rtype: Optional[float]
-        :raises RuntimeError: If database inconsistency is detected.
+        :raises RuntimeError: If algorithm inconsistency is detected.
         """
-        state = self.state
-        width = ReceiveRateInterval(lower_bound, upper_bound).rel_tr_width
-        if width <= state.width_goal:
-            self.debug(u"No more bisects needed.")
+        width = ReceiveRateInterval(bounds.clo1, bounds.chi1).rel_tr_width
+        if width <= width_goal:
             return None
-        new_tr = half_step_up(lower_bound.target_tr, width, state.width_goal)
-        return new_tr
+        load = half_step_up(bounds.clo1.target_tr, width, width_goal)
+        self.debug(f"Bisect candidate: {load}")
+        return load

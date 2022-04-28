@@ -38,22 +38,26 @@ def multiply_relative_width(relative_width, coefficient):
     new_log_width = old_log_width * coefficient * ROUNDING_CONSTANT
     return -math.expm1(new_log_width)
 
-def halve_relative_width(relative_width, goal_width):
+def halve_relative_width(relative_width, goal_width=None):
     """Return relative width corresponding to half logarithmic width.
 
-    The logic attempts to save some halvings in future by performing
-    uneven split. If rounding error risk is detected,
+    If goal wigth is given, the logic attempts to save some halvings
+    in future by performing uneven split.
+    If rounding error risk is detected (or goal width not given)
     even split is used.
 
     :param relative_width: The base relative width to halve.
     :param goal_width: Width goal for final phase.
     :type relative_width: float
-    :type goal_width: float
+    :type goal_width: Optional[float]
     :returns: The relative width of half logarithmic size.
     :rtype: float
     """
-    # Wig means Width In Goals.
+    if goal_width is None:
+        return multiply_relative_width(relative_width, 0.5)
+    # TODO: Explain pylint that goal_width is never None from now on.
     wig = math.log1p(-relative_width) / math.log1p(-goal_width)
+    # Wig means Width In Goals.
     cwig = 2.0 * math.ceil(wig / 2.0)
     fwig = 2.0 * math.ceil(wig * ROUNDING_CONSTANT * ROUNDING_CONSTANT / 2.0)
     if wig <= 2.0 or cwig != fwig:
@@ -123,13 +127,15 @@ def multiple_step_up(current_bound, relative_width, coefficient):
     new_width = multiply_relative_width(relative_width, coefficient)
     return step_up(current_bound, new_width)
 
-def half_step_up(current_bound, relative_width, goal_width):
+def half_step_up(current_bound, relative_width, goal_width=None):
     """Return rate of half logarithmic width above.
 
     :param relative_width: The base relative width to halve.
     :param current_bound: The current target transmit rate to move [pps].
+    :param goal_width: Apply uneven splits when this is provided.
     :type relative_width: float
     :type current_bound: float
+    :type goal_width: Optional[float]
     :returns: Transmit rate larger by logarithmically half width [pps].
     :rtype: float
     """
