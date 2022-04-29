@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,7 +13,10 @@
 
 """Module defining ReceiveRateMeasurement class."""
 
+import functools
 
+
+@functools.total_ordering
 class ReceiveRateMeasurement:
     """Structure defining the result of single Rr measurement."""
 
@@ -123,3 +126,56 @@ class ReceiveRateMeasurement:
             f"approximated_duration={self.approximated_duration!r}," \
             f"partial_transmit_count={self.partial_transmit_count!r}," \
             f"effective_loss_ratio={self.effective_loss_ratio!r})"
+
+    def __eq__(self, other):
+        """Return whether the argument is equivalent to self.
+
+        Types are not compared, so comparisons with subclasses
+        may give surprising results.
+        The only exception to that rule is None,
+        treated as a missing (hence unequal) measurement.
+
+        Other is equal if it has all primary quantities equal.
+
+        :param other: Other result to compare with.
+        :type other: Optional[ReceiveRateMeasurement]
+        :returns: True if all primary values are equal.
+        :rtype: bool
+        """
+        return (
+            other is not None
+            and self.duration == other.duration
+            and self.target_tr == other.target_tr
+            and self.transmit_count == other.transmit_count
+            and self.loss_count == other.loss_count
+            and self.approximated_duration == other.approximated_duration
+            and self.partial_transmit_count == other.partial_transmit_count
+            and self.effective_loss_ratio == other.effective_loss_ratio
+        )
+
+    def __lt__(self, other):
+        """Return whether self is less than the argument.
+
+        Types are not compared, so comparisons with subclasses
+        may give surprising results.
+        For the order of comparisons, it is important target_tr is the most
+        relevant quantity, and duration is the second most relevant.
+
+        If the two quatities are equal, an exception is raised,
+        as this means there is an internal error in MLRsearch algorithm.
+
+        :param other: Other result to compare with.
+        :type other: ReceiveRateMeasurement
+        :returns: True if self is considered smaller.
+        :rtype: bool
+        :raises RuntimeError: If target_tr and duration are not enough.
+        """
+        if self.target_tr < other.target_tr:
+            return True
+        if self.target_tr > other.target_tr:
+            return False
+        if self.duration < other.duration:
+            return True
+        if self.duration > other.duration:
+            return False
+        raise RuntimeError(u"One of target_tr and duration should differ.")

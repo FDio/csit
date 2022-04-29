@@ -70,5 +70,4 @@ class ReceiveRateInterval:
         :returns: Current width as logarithmic multiple of goal width [1].
         :rtype: float
         """
-        return math.log(1.0 - self.rel_tr_width) / math.log(
-            1.0 - relative_width_goal)
+        return math.log1p(-self.rel_tr_width) / math.log1p(-relative_width_goal)
