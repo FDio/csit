@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -32,9 +32,6 @@ from .WidthArithmetics import (
 
 class MultipleLossRatioSearch:
     """Optimized binary search algorithm for finding bounds for multiple ratios.
-
-    This is unofficially a subclass of AbstractSearchAlgorithm,
-    but constructor signature is different.
 
     Traditional binary search algorithm needs initial interval
     (lower and upper bound), and returns final interval after bisecting
@@ -94,7 +91,7 @@ class MultipleLossRatioSearch:
             self, measurer, final_relative_width=0.005,
             final_trial_duration=30.0, initial_trial_duration=1.0,
             number_of_intermediate_phases=2, timeout=600.0, debug=None,
-            expansion_coefficient=2.0):
+            expansion_coefficient=4.0):
         """Store the measurer object and additional arguments.
 
         :param measurer: Rate provider to use by this search object.
@@ -194,7 +191,7 @@ class MultipleLossRatioSearch:
             # Overall, with mrr2 measurement done, we never need
             # the first measurement done at max rate.
             measurements = measurements[1:]
-        database = MeasurementDatabase(measurements)
+        database = MeasurementDatabase.from_list(measurements)
         stop_time = time.monotonic() + self.timeout
         self.state = ProgressState(
             database, self.number_of_intermediate_phases,
