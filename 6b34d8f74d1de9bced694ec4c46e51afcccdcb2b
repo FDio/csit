@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "792f57ed_19c38c5f",
+        "filename": "docs/report/introduction/methodology_drivers.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-04-29T11:06:01Z",
+      "side": 1,
+      "message": "Maciek mentioned we should also mention different VPP interface types, some of the associated code is not in plugins (e.g. tap and vhost).",
+      "range": {
+        "startLine": 23,
+        "startChar": 13,
+        "endLine": 23,
+        "endChar": 39
+      },
+      "revId": "6b34d8f74d1de9bced694ec4c46e51afcccdcb2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
