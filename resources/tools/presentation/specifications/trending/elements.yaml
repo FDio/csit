@@ -505,19 +505,6 @@
     - "msg"
 
 - type: "table"
-  title: "Last failed tests (last builds) VPP 3n-aws"
-  algorithm: "table_last_failed_tests"
-  output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-aws-mrr"
-  data: "table-last-failed-tests-3n-aws"
-  filter: "'MRR'"
-  parameters:
-    - "name"
-    - "parent"
-    - "status"
-    - "msg"
-
-- type: "table"
   title: "Last failed tests (last builds) VPP 2n-aws"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
