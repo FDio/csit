@@ -38,9 +38,6 @@
   table-last-failed-tests-2n-dnv:
     csit-vpp-perf-mrr-daily-master-2n-dnv:
       - "lastCompletedBuild"
-  table-last-failed-tests-3n-aws:
-    csit-vpp-perf-mrr-weekly-master-3n-aws:
-      - "lastCompletedBuild"
   table-last-failed-tests-2n-aws:
     csit-vpp-perf-mrr-weekly-master-2n-aws:
       - "lastCompletedBuild"
@@ -257,7 +254,7 @@
   plot-performance-trending-vpp-3n-aws:
     csit-vpp-perf-mrr-weekly-master-3n-aws:
       start: 5
-      end: "lastCompletedBuild"
+      end: 45
       max-builds: 26
 
   # 2n-aws
