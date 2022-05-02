@@ -15,7 +15,7 @@
 
 import copy
 
-from .ReceiveRateInterval import ReceiveRateInterval
+from .receive_rate_interval import ReceiveRateInterval
 
 
 class MeasurementDatabase:
@@ -62,13 +62,11 @@ class MeasurementDatabase:
                 if other_duration < duration:
                     continue
                 if other_measurement.target_tr == measurement.target_tr:
-                    #print(f"pruning {measurement!r} as we have same load {other_measurement!r}")
                     break
                 if (
                     other_duration > measurement.duration
                     and other_measurement.loss_ratio < measurement.loss_ratio
                 ):
-                    #print(f"pruning {measurement!r} as we have longer less lossy {other_measurement!r}")
                     break
             else:
                 new_reversed_measurements.append(measurement)

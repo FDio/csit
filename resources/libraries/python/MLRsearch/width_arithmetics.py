@@ -38,25 +38,21 @@ def multiply_relative_width(relative_width, coefficient):
     new_log_width = old_log_width * coefficient * ROUNDING_CONSTANT
     return -math.expm1(new_log_width)
 
-def halve_relative_width(relative_width, goal_width=None):
+def halve_relative_width(relative_width, width_goal):
     """Return relative width corresponding to half logarithmic width.
 
-    If goal wigth is given, the logic attempts to save some halvings
-    in future by performing uneven split.
-    If rounding error risk is detected (or goal width not given)
-    even split is used.
+    The logic attempts to save some halvings in future
+    by performing uneven split here.
+    If rounding error risk is detected even split is used.
 
     :param relative_width: The base relative width to halve.
-    :param goal_width: Width goal for final phase.
+    :param width_goal: Width goal for final phase.
     :type relative_width: float
-    :type goal_width: Optional[float]
+    :type width_goal: float
     :returns: The relative width of half logarithmic size.
     :rtype: float
     """
-    if goal_width is None:
-        return multiply_relative_width(relative_width, 0.5)
-    # TODO: Explain pylint that goal_width is never None from now on.
-    wig = math.log1p(-relative_width) / math.log1p(-goal_width)
+    wig = math.log1p(-relative_width) / math.log1p(-width_goal)
     # Wig means Width In Goals.
     cwig = 2.0 * math.ceil(wig / 2.0)
     fwig = 2.0 * math.ceil(wig * ROUNDING_CONSTANT * ROUNDING_CONSTANT / 2.0)
@@ -64,7 +60,7 @@ def halve_relative_width(relative_width, goal_width=None):
         # Avoid too uneven splits.
         return multiply_relative_width(relative_width, 0.5)
     coefficient = cwig / 2
-    new_width = multiply_relative_width(goal_width, coefficient)
+    new_width = multiply_relative_width(width_goal, coefficient)
     return new_width
 
 def step_down(current_bound, relative_width):
@@ -127,17 +123,38 @@ def multiple_step_up(current_bound, relative_width, coefficient):
     new_width = multiply_relative_width(relative_width, coefficient)
     return step_up(current_bound, new_width)
 
-def half_step_up(current_bound, relative_width, goal_width=None):
+def half_step_up(current_bound, relative_width, width_goal):
     """Return rate of half logarithmic width above.
+
+    This function is smart, using uneven splits to avoid some measurements,
+    that is why the width goal is needed.
+
+    Not supporting strict halving here, because pylint has trouble
+    determining when an "optional" typed variable is no longer None.
 
     :param relative_width: The base relative width to halve.
     :param current_bound: The current target transmit rate to move [pps].
-    :param goal_width: Apply uneven splits when this is provided.
+    :param width_goal: Apply uneven splits when this is provided.
     :type relative_width: float
     :type current_bound: float
-    :type goal_width: Optional[float]
+    :type width_goal: Optional[float]
     :returns: Transmit rate larger by logarithmically half width [pps].
     :rtype: float
     """
-    new_width = halve_relative_width(relative_width, goal_width)
+    new_width = halve_relative_width(relative_width, width_goal)
+    return step_up(current_bound, new_width)
+
+def strict_half_step_up(current_bound, relative_width):
+    """Return rate of half logarithmic width above.
+
+    This function avoids the smart logic.
+
+    :param relative_width: The base relative width to halve.
+    :param current_bound: The current target transmit rate to move [pps].
+    :type relative_width: float
+    :type current_bound: float
+    :returns: Transmit rate larger by logarithmically half width [pps].
+    :rtype: float
+    """
+    new_width = multiply_relative_width(relative_width, 0.5)
     return step_up(current_bound, new_width)

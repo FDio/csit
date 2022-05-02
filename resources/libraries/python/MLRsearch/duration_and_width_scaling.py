@@ -13,7 +13,7 @@
 
 """Module defining a class dealing with duration scaling and width scaling."""
 
-from .WidthArithmetics import multiply_relative_width
+from .width_arithmetics import multiply_relative_width
 
 
 class DurationAndWidthScaling:

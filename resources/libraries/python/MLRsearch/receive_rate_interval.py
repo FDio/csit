@@ -29,10 +29,10 @@ class ReceiveRateInterval:
         """
         self.measured_low = measured_low
         self.measured_high = measured_high
-        # Declare secondary quantities to appease pylint.
-        self.abs_tr_width = None
+        # Declare secondary quantities (bogus values, correct types) for pylint.
+        self.abs_tr_width = 0.5
         """Absolute width of target transmit rate. Upper minus lower."""
-        self.rel_tr_width = None
+        self.rel_tr_width = 0.5
         """Relative width of target transmit rate. Absolute divided by upper."""
         self.sort()
 

@@ -16,17 +16,13 @@
 import logging
 import time
 
-from .DurationAndWidthScaling import DurationAndWidthScaling
-from .MeasurementDatabase import MeasurementDatabase
-from .OtherConfig import OtherConfig
-from .ReceiveRateInterval import ReceiveRateInterval
-from .RelevantBounds import RelevantBounds
-from .WidthArithmetics import (
-    step_down,
-    step_up,
-    multiple_step_down,
-    multiple_step_up,
-    half_step_up,
+from .duration_and_width_scaling import DurationAndWidthScaling
+from .measurement_database import MeasurementDatabase
+from .receive_rate_interval import ReceiveRateInterval
+from .relevant_bounds import RelevantBounds
+from .width_arithmetics import (
+    step_down, step_up, multiple_step_down, multiple_step_up,
+    half_step_up, strict_half_step_up,
 )
 
 
@@ -89,77 +85,50 @@ class MultipleLossRatioSearch:
     TODO: Review and update this docstring according to rst docs.
     """
 
-    def __init__(
-            self, measurer, final_relative_width=0.005,
-            final_trial_duration=30.0, initial_trial_duration=1.0,
-            number_of_intermediate_phases=2, timeout=600.0, debug=None,
-            expansion_coefficient=4.0):
-        """Store the measurer object and additional arguments.
+    def __init__(self, config):
+        """Store the configuration and declare dynamic fields.
 
-        Also, values related to phase scaling are precomputed.
+        The user is allowed to mutate configuration after it is stored,
+        but not when search is running.
+
+        :param config: Structure holding multiple configuration values.
+        :type config: Config
+        """
+        self.config = config
+        self.measurer = None
+        self.debug = None
+        self.scaling = None
+        self.database = None
+        self.stop_time = None
+
+    def search(self, measurer, debug=None):
+        """Perform initial phase, create state object, proceed with next phases.
+
+        Stateful arguments (measurer and debug) are stored.
+        Derived objects are constructed from config.
 
         :param measurer: Rate provider to use by this search object.
-        :param final_relative_width: Final lower bound transmit rate
-            cannot be more distant that this multiple of upper bound [1].
-        :param final_trial_duration: Trial duration for the final phase [s].
-        :param initial_trial_duration: Trial duration for the initial phase
-            and also for the first intermediate phase [s].
-        :param number_of_intermediate_phases: Number of intermediate phases
-            to perform before the final phase [1].
-        :param timeout: The search will fail itself when not finished
-            before this overall time [s].
-        :param debug: Callable to use instead of logging.debug().
-        :param expansion_coefficient: External search multiplies width by this.
-        :type measurer: AbstractMeasurer.AbstractMeasurer
-        :type final_relative_width: float
-        :type final_trial_duration: float
-        :type initial_trial_duration: float
-        :type number_of_intermediate_phases: int
-        :type timeout: float
+        :param debug: Callable to optionally use instead of logging.debug().
+        :returns: Structure containing narrowed down intervals
+            and their measurements.
+        :type measurer: AbstractMeasurer
         :type debug: Optional[Callable[[str], None]]
-        :type expansion_coefficient: float
+        :rtype: List[ReceiveRateInterval]
+        :raises RuntimeError: If total duration is larger than timeout.
         """
         self.measurer = measurer
         self.debug = logging.debug if debug is None else debug
-        self.expansion_coefficient = float(expansion_coefficient)
         self.scaling = DurationAndWidthScaling(
-            phases=number_of_intermediate_phases,
-            initial_duration=initial_trial_duration,
-            final_duration=final_trial_duration,
-            final_width=final_relative_width,
+            phases=self.config.number_of_intermediate_phases,
+            initial_duration=self.config.initial_trial_duration,
+            final_duration=self.config.final_trial_duration,
+            final_width=self.config.final_relative_width,
         )
-        self.timeout = float(timeout)
-        self.config = None
-        self.database = None
-
-    def narrow_down_intervals(self, min_rate, max_rate, packet_loss_ratios):
-        """Perform initial phase, create state object, proceed with next phases.
-
-        The current implementation requires the ratios so be unique and sorted.
-        Also non-empty.
-
-        :param min_rate: Minimal target transmit rate [tps].
-        :param max_rate: Maximal target transmit rate [tps].
-        :param packet_loss_ratios: Target ratios of packets loss to locate.
-        :type min_rate: float
-        :type max_rate: float
-        :type packet_loss_ratios: Iterable[float]
-        :returns: Structure containing narrowed down intervals
-            and their measurements.
-        :rtype: List[ReceiveRateInterval]
-        :raises RuntimeError: If total duration is larger than timeout.
-            Or if ratios list is (empty or) not sorted or unique.
-        """
-        self.config = OtherConfig(
-            packet_loss_ratios=packet_loss_ratios,
-            min_rate=min_rate,
-            max_rate=max_rate,
-            timeout=self.timeout,
-        )
+        self.stop_time = time.monotonic() + self.config.max_search_duration
         self.database = MeasurementDatabase(self.do_initial_measurements())
         self.ndrpdr_root()
         return self.database.get_results(
-            ratio_list=packet_loss_ratios,
+            ratio_list=self.config.target_loss_ratios,
             duration=self.scaling.final_duration,
         )
 
@@ -177,7 +146,7 @@ class MultipleLossRatioSearch:
         )
         measurements.append(measured)
         width_goal = self.scaling.width_goal(phase=0)
-        correction_factor = 1.0 / (1.0 - self.config.packet_loss_ratios[0])
+        correction_factor = 1.0 / (1.0 - self.config.target_loss_ratios[0])
         corrected_rr = measured.relative_receive_rate * correction_factor
         if corrected_rr >= self.config.max_rate:
             return measurements
@@ -194,7 +163,7 @@ class MultipleLossRatioSearch:
         )
         measurements.append(measured)
         # Attempt to get narrower width.
-        if measured.loss_ratio > self.config.packet_loss_ratios[0]:
+        if measured.loss_ratio > self.config.target_loss_ratios[0]:
             corrected_rr2 = measured.relative_receive_rate * correction_factor
             # TODO: Assert corrected_rr2 > mrr
             mrr2 = self.handle_load_limits(
@@ -234,7 +203,7 @@ class MultipleLossRatioSearch:
 
         :raises RuntimeError: If total duration is larger than timeout.
         """
-        for ratio in self.config.packet_loss_ratios:
+        for ratio in self.config.target_loss_ratios:
             self.debug(f"Focusing on ratio {ratio} now.")
             for phase in range(self.scaling.intermediate_phases + 1):
                 self.ndrpdr_iteration(ratio, phase)
@@ -256,7 +225,7 @@ class MultipleLossRatioSearch:
             f" and {width_goal} relative width goal."
         )
         # TODO: Add failing fast.
-        while time.monotonic() < self.config.stop_time:
+        while time.monotonic() < self.stop_time:
             bounds = RelevantBounds.from_database(
                 self.database, ratio, current_duration, previous_duration
             )
@@ -404,7 +373,7 @@ class MultipleLossRatioSearch:
         soft_max = step_down(maximum, width_goal)
         if soft_min > soft_max:
             self.debug(u"Whole interval is less than two goals.")
-            soft_min = soft_max = half_step_up(minimum, width)
+            soft_min = soft_max = strict_half_step_up(minimum, width)
         if load < soft_min:
             if min_ex:
                 self.debug(u"Min excluded, rounding to soft min.")
@@ -636,7 +605,7 @@ class MultipleLossRatioSearch:
             # The following is possible with out width rounding.
             self.debug(f"Width {old_width} < {width_goal} in _extend_down.")
         load = multiple_step_down(
-            bounds.chi1.target_tr, old_width, self.expansion_coefficient
+            bounds.chi1.target_tr, old_width, self.config.expansion_coefficient
         )
         return load
 
@@ -666,7 +635,7 @@ class MultipleLossRatioSearch:
             # The following is possible with out width rounding.
             self.debug(f"Width {old_width} < {width_goal} in _extend_up.")
         load = multiple_step_up(
-            bounds.clo1.target_tr, old_width, self.expansion_coefficient
+            bounds.clo1.target_tr, old_width, self.config.expansion_coefficient
         )
         return load
 

@@ -11,41 +11,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""FIXME."""
+"""Module defining RelevantBounds class."""
+
+from dataclasses import dataclass
+from typing import Optional
+
+from .receive_rate_measurement import ReceiveRateMeasurement
 
 
+@dataclass
 class RelevantBounds:
-    """Structure of several bounds relevant for specific ratio and phase.
+    """Structure of several bounds relevant for specific ratio and phase."""
 
-    The main reason is to avoid long argument lists in functions.
-
-    Several utility methods are included.
-    """
-
-    def __init__(self, clo1, chi1, plo1, phi1, clo2, chi2):
-        """Store the values.
-
-        No processing nor checking is done here, see factory methods for that.
-        Each value can be None.
-        Values starting with p should be different from values starting with c
-        (or None).
-
-        :param clo1: Tightest valid lower bound at current duration or longer.
-        :param chi1: Tightest valid upper bound at current duration or longer.
-        :param plo1: Tightest valid lower bound at previous duration or longer.
-        :param phi1: Tightest valid upper bound at previous duration or longer.
-        :param clo2: Second tightest lower bound at current duration or longer.
-        :param chi2: Second tightest upper bound at current duration or longer.
-        :type clo1: Optional[ReceiveRateMeasurement]
-        :type chi1: Optional[ReceiveRateMeasurement]
-        :type plo1: Optional[ReceiveRateMeasurement]
-        :type phi1: Optional[ReceiveRateMeasurement]
-        :type clo2: Optional[ReceiveRateMeasurement]
-        :type chi2: Optional[ReceiveRateMeasurement]
-        """
-        self.clo1, self.chi1, self.plo1, self.phi1, self.clo2, self.chi2 = (
-            clo1, chi1, plo1, phi1, clo2, chi2
-        )
+    clo1: Optional[ReceiveRateMeasurement]
+    """Tightest valid lower bound at current duration or longer."""
+    chi1: Optional[ReceiveRateMeasurement]
+    """Tightest valid upper bound at current duration or longer."""
+    plo1: Optional[ReceiveRateMeasurement]
+    """Tightest valid lower bound at previous duration or longer."""
+    phi1: Optional[ReceiveRateMeasurement]
+    """Tightest valid upper bound at previous duration or longer."""
+    clo2: Optional[ReceiveRateMeasurement]
+    """Second tightest lower bound at current duration or longer."""
+    chi2: Optional[ReceiveRateMeasurement]
+    """Second tightest upper bound at current duration or longer."""
 
     @classmethod
     def from_database(
