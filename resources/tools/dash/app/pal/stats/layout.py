@@ -14,6 +14,7 @@
 """Plotly Dash HTML layout override.
 """
 
+import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -21,10 +22,11 @@ from flask import Flask
 from dash import dcc
 from dash import html
 from dash import callback_context, no_update
-from dash import Input, Output
+from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
+from copy import deepcopy
 
 from ..data.data import Data
 from .graphs import graph_statistics
@@ -33,6 +35,14 @@ from .graphs import graph_statistics
 class Layout:
     """
     """
+
+    DEFAULT_JOB = {
+        "job": "csit-vpp-perf-mrr-daily-master-2n-icx",
+        "dut": "vpp",
+        "ttype": "mrr",
+        "cadence": "daily",
+        "tbed": "2n-icx"
+    }
 
     def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
         graph_layout_file: str, data_spec_file: str,
@@ -68,6 +78,21 @@ class Layout:
             self._time_period = data_time_period
 
         self._jobs = sorted(list(data_stats["job"].unique()))
+        job_info = {
+            "job": list(),
+            "dut": list(),
+            "ttype": list(),
+            "cadence": list(),
+            "tbed": list()
+        }
+        for job in self._jobs:
+            lst_job = job.split("-")
+            job_info["job"].append(job)
+            job_info["dut"].append(lst_job[1])
+            job_info["ttype"].append(lst_job[3])
+            job_info["cadence"].append(lst_job[4])
+            job_info["tbed"].append("-".join(lst_job[-2:]))
+        self.df_job_info = pd.DataFrame.from_dict(job_info)
 
         tst_info = {
             "job": list(),
@@ -129,7 +154,7 @@ class Layout:
             )
 
         self._default_fig_passed, self._default_fig_duration = graph_statistics(
-            self.data, self.jobs[0], self.layout
+            self.data, self.DEFAULT_JOB["job"], self.layout
         )
 
         # Callbacks:
@@ -149,12 +174,50 @@ class Layout:
         return self._graph_layout
 
     @property
-    def jobs(self) -> list:
-        return self._jobs
-
-    @property
-    def time_period(self):
+    def time_period(self) -> int:
         return self._time_period
+
+    def _get_duts(self) -> list:
+        """
+        """
+        return sorted(list(self.df_job_info["dut"].unique()))
+
+    def _get_ttypes(self, dut: str) -> list:
+        """
+        """
+        return sorted(list(self.df_job_info.loc[(
+            self.df_job_info["dut"] == dut
+        )]["ttype"].unique()))
+
+    def _get_cadences(self, dut: str, ttype: str) -> list:
+        """
+        """
+        return sorted(list(self.df_job_info.loc[(
+            (self.df_job_info["dut"] == dut) &
+            (self.df_job_info["ttype"] == ttype)
+        )]["cadence"].unique()))
+
+    def _get_test_beds(self, dut: str, ttype: str, cadence: str) -> list:
+        """
+        """
+        return sorted(list(self.df_job_info.loc[(
+            (self.df_job_info["dut"] == dut) &
+            (self.df_job_info["ttype"] == ttype) &
+            (self.df_job_info["cadence"] == cadence)
+        )]["tbed"].unique()))
+
+    def _get_job(self, dut, ttype, cadence, testbed):
+        """Get the name of a job defined by dut, ttype, cadence, testbed.
+
+        Input information comes from control panel.
+        """
+        return self.df_job_info.loc[(
+            (self.df_job_info["dut"] == dut) &
+            (self.df_job_info["ttype"] == ttype) &
+            (self.df_job_info["cadence"] == cadence) &
+            (self.df_job_info["tbed"] == testbed)
+        )]["job"].item()
+
 
     def add_content(self):
         """
@@ -163,6 +226,9 @@ class Layout:
             return html.Div(
                 id="div-main",
                 children=[
+                    dcc.Store(
+                        id="control-panel"
+                    ),
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
@@ -296,12 +362,88 @@ class Layout:
                 dbc.Row(
                     class_name="g-0 p-2",
                     children=[
-                        dbc.Label("Choose the Trending Job"),
-                        dbc.RadioItems(
-                            id="ri_job",
-                            value=self.jobs[0],
-                            options=[
-                                {"label": i, "value": i} for i in self.jobs
+                        dbc.Row(
+                            class_name="gy-1",
+                            children=[
+                                dbc.Label(
+                                    "Device under Test",
+                                    class_name="p-0"
+                                ),
+                                dbc.RadioItems(
+                                    id="ri-duts",
+                                    inline=True,
+                                    value=self.DEFAULT_JOB["dut"],
+                                    options=[
+                                        {"label": i, "value": i} \
+                                            for i in self._get_duts()
+                                    ]
+                                )
+                            ]
+                        ),
+                        dbc.Row(
+                            class_name="gy-1",
+                            children=[
+                                dbc.Label(
+                                    "Test Type",
+                                    class_name="p-0"
+                                ),
+                                dbc.RadioItems(
+                                    id="ri-ttypes",
+                                    inline=True,
+                                    value=self.DEFAULT_JOB["ttype"],
+                                    options=[
+                                        {"label": i, "value": i} \
+                                            for i in self._get_ttypes("vpp")
+                                    ]
+                                )
+                            ]
+                        ),
+                        dbc.Row(
+                            class_name="gy-1",
+                            children=[
+                                dbc.Label(
+                                    "Cadence",
+                                    class_name="p-0"
+                                ),
+                                dbc.RadioItems(
+                                    id="ri-cadences",
+                                    inline=True,
+                                    value=self.DEFAULT_JOB["cadence"],
+                                    options=[
+                                        {"label": i, "value": i,} \
+                                            for i in self._get_cadences(
+                                                "vpp", "mrr")
+                                    ]
+                                )
+                            ]
+                        ),
+                        dbc.Row(
+                            class_name="gy-1",
+                            children=[
+                                dbc.Label(
+                                    "Test Bed",
+                                    class_name="p-0"
+                                ),
+                                dbc.Select(
+                                    id="dd-tbeds",
+                                    placeholder="Select a test bed...",
+                                    value=self.DEFAULT_JOB["tbed"],
+                                    options=[
+                                        {"label": i, "value": i} \
+                                            for i in self._get_test_beds(
+                                                "vpp", "mrr", "daily")
+                                    ]
+                                )
+                            ]
+                        ),
+                        dbc.Row(
+                            class_name="gy-1",
+                            children=[
+                                dbc.Alert(
+                                    id="al-job",
+                                    color="info",
+                                    children=self.DEFAULT_JOB["job"]
+                                )
                             ]
                         )
                     ]
@@ -329,29 +471,157 @@ class Layout:
             ]
         )
 
+    class ControlPanel:
+        def __init__(self, panel: dict) -> None:
+            self._defaults = {
+                "graph-passed-figure": no_update,
+                "graph-duration-figure": no_update,
+                "ri-ttypes-options": no_update,
+                "ri-cadences-options": no_update,
+                "dd-tbeds-options": no_update,
+                "ri-duts-value": no_update,
+                "ri-ttypes-value": no_update,
+                "ri-cadences-value": no_update,
+                "dd-tbeds-value": no_update,
+                "al-job-children": no_update
+            }
+            self._panel = deepcopy(self._defaults)
+            if panel:
+                for key in self._defaults:
+                    self._panel[key] = panel[key]
+
+        def set(self, kwargs: dict) -> None:
+            for key, val in kwargs.items():
+                if key in self._panel:
+                    self._panel[key] = val
+                else:
+                    raise KeyError(f"The key {key} is not defined.")
+
+        @property
+        def defaults(self) -> dict:
+            return self._defaults
+
+        @property
+        def panel(self) -> dict:
+            return self._panel
+
+        def get(self, key: str) -> any:
+            return self._panel[key]
+
+        def values(self) -> list:
+            return list(self._panel.values())
+
+    @staticmethod
+    def _generate_options(opts: list) -> list:
+        """
+        """
+        return [{"label": i, "value": i} for i in opts]
+
     def callbacks(self, app):
 
         @app.callback(
+            Output("control-panel", "data"),  # Store
             Output("graph-passed", "figure"),
             Output("graph-duration", "figure"),
-            Input("ri_job", "value"),
+            Output("ri-ttypes", "options"),
+            Output("ri-cadences", "options"),
+            Output("dd-tbeds", "options"),
+            Output("ri-duts", "value"),
+            Output("ri-ttypes", "value"),
+            Output("ri-cadences", "value"),
+            Output("dd-tbeds", "value"),
+            Output("al-job", "children"),
+            State("control-panel", "data"),  # Store
+            Input("ri-duts", "value"),
+            Input("ri-ttypes", "value"),
+            Input("ri-cadences", "value"),
+            Input("dd-tbeds", "value"),
             Input("dpr-period", "start_date"),
             Input("dpr-period", "end_date"),
             prevent_initial_call=True
         )
-        def _update_ctrl_panel(job:str, d_start: str, d_end: str) -> tuple:
+        def _update_ctrl_panel(cp_data: dict, dut:str, ttype: str, cadence:str,
+                tbed: str, d_start: str, d_end: str) -> tuple:
             """
             """
+
+            ctrl_panel = self.ControlPanel(cp_data)
 
             d_start = datetime(int(d_start[0:4]), int(d_start[5:7]),
                 int(d_start[8:10]))
             d_end = datetime(int(d_end[0:4]), int(d_end[5:7]), int(d_end[8:10]))
 
-            fig_passed, fig_duration = graph_statistics(
-                self.data, job, self.layout, d_start, d_end
-            )
+            trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
 
-            return fig_passed, fig_duration
+            logging.info(trigger_id)
+
+            if trigger_id == "ri-duts":
+                ttype_opts = self._generate_options(self._get_ttypes(dut))
+                ttype_val = ttype_opts[0]["value"]
+                cad_opts = self._generate_options(
+                    self._get_cadences(dut, ttype_val))
+                cad_val = cad_opts[0]["value"]
+                tbed_opts = self._generate_options(
+                    self._get_test_beds(dut, ttype_val, cad_val))
+                tbed_val = tbed_opts[0]["value"]
+                ctrl_panel.set({
+                    "ri-duts-value": dut,
+                    "ri-ttypes-options": ttype_opts,
+                    "ri-ttypes-value": ttype_val,
+                    "ri-cadences-options": cad_opts,
+                    "ri-cadences-value": cad_val,
+                    "dd-tbeds-options": tbed_opts,
+                    "dd-tbeds-value": tbed_val
+                })
+            elif trigger_id == "ri-ttypes":
+                cad_opts = self._generate_options(
+                    self._get_cadences(ctrl_panel.get("ri-duts-value"), ttype))
+                cad_val = cad_opts[0]["value"]
+                tbed_opts = self._generate_options(
+                    self._get_test_beds(ctrl_panel.get("ri-duts-value"),
+                    ttype, cad_val))
+                tbed_val = tbed_opts[0]["value"]
+                ctrl_panel.set({
+                    "ri-ttypes-value": ttype,
+                    "ri-cadences-options": cad_opts,
+                    "ri-cadences-value": cad_val,
+                    "dd-tbeds-options": tbed_opts,
+                    "dd-tbeds-value": tbed_val
+                })
+            elif trigger_id == "ri-cadences":
+                tbed_opts = self._generate_options(
+                    self._get_test_beds(ctrl_panel.get("ri-duts-value"),
+                    ctrl_panel.get("ri-ttypes-value"), cadence))
+                tbed_val = tbed_opts[0]["value"]
+                ctrl_panel.set({
+                    "ri-cadences-value": cadence,
+                    "dd-tbeds-options": tbed_opts,
+                    "dd-tbeds-value": tbed_val
+                })
+            elif trigger_id == "dd-tbeds":
+                ctrl_panel.set({
+                    "dd-tbeds-value": tbed
+                })
+            elif trigger_id == "dpr-period":
+                pass
+
+            job = self._get_job(
+                ctrl_panel.get("ri-duts-value"),
+                ctrl_panel.get("ri-ttypes-value"),
+                ctrl_panel.get("ri-cadences-value"),
+                ctrl_panel.get("dd-tbeds-value")
+            )
+            fig_passed, fig_duration = graph_statistics(
+                self.data, job, self.layout, d_start, d_end)
+            ctrl_panel.set({
+                "graph-passed-figure": fig_passed,
+                "graph-duration-figure": fig_duration,
+                "al-job-children": job
+            })
+
+            ret_val = [ctrl_panel.panel, ]
+            ret_val.extend(ctrl_panel.values())
+            return ret_val
 
         @app.callback(
             Output("download-data", "data"),
