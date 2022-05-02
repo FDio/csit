@@ -201,10 +201,11 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     df = df.dropna(subset=[_VALUE[ttype], ])
     if df.empty:
         return list()
-
-    x_axis = [d for d in df["start_time"] if d >= start and d <= end]
-    if not x_axis:
+    df = df.loc[((df["start_time"] >= start) & (df["start_time"] <= end))]
+    if df.empty:
         return list()
+
+    x_axis = df["start_time"].tolist()
 
     anomalies, trend_avg, trend_stdev = _classify_anomalies(
         {k: v for k, v in zip(x_axis, df[_VALUE[ttype]])}
@@ -327,9 +328,6 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
                         u"len": 0.8,
                         u"title": u"Circles Marking Data Classification",
                         u"titleside": u"right",
-                        # u"titlefont": {
-                        #     u"size": 14
-                        # },
                         u"tickmode": u"array",
                         u"tickvals": [0.167, 0.500, 0.833],
                         u"ticktext": _TICK_TEXT_LAT \

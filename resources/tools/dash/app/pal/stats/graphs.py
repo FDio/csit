@@ -40,8 +40,10 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict,
     if data.empty:
         return None, None
 
-    x_axis = [d for d in data["start_time"] if d >= start and d <= end]
-    if not x_axis:
+    data = data.loc[(
+        (data["start_time"] >= start) & (data["start_time"] <= end)
+    )]
+    if data.empty:
         return None, None
 
     hover = list()
@@ -62,7 +64,7 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict,
     # Job durations:
     fig_duration = go.Figure(
         data=go.Scatter(
-            x=x_axis,
+            x=data["start_time"],
             y=data["duration"],
             name=u"Duration",
             text=hover,
@@ -87,14 +89,14 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict,
     fig_passed = go.Figure(
         data=[
             go.Bar(
-                x=x_axis,
+                x=data["start_time"],
                 y=data["passed"],
                 name=u"Passed",
                 hovertext=hover,
                 hoverinfo=u"text"
             ),
             go.Bar(
-                x=x_axis,
+                x=data["start_time"],
                 y=data["failed"],
                 name=u"Failed",
                 hovertext=hover,
