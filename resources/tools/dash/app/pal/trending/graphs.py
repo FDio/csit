@@ -172,18 +172,27 @@ def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
             drv = drv.replace("_", "-")
     else:
         return None
-    cadence = \
-        "weekly" if (arch == "aws" or itm["testtype"] != "mrr") else "daily"
+
+    if itm["dut"] == "vpp":
+        cadence = \
+            "weekly" if (arch == "aws" or itm["testtype"] != "mrr") else "daily"
+    else:
+        cadence = "weekly"
+
+    core = str() if itm["dut"] == "trex" else f"{itm['core']}"
+    ttype = "mrr" if itm["testtype"] == "mrr" else "ndrpdr"
+
     sel_topo_arch = (
-        f"csit-vpp-perf-"
-        f"{itm['testtype'] if itm['testtype'] == 'mrr' else 'ndrpdr'}-"
-        f"{cadence}-master-{topo}-{arch}"
+        f"csit-{itm['dut']}-perf-{ttype}-{cadence}-master-{topo}-{arch}"
     )
-    df_sel = data.loc[(data["job"] == sel_topo_arch)]
+
+    df_sel = data.loc[(
+        (data["job"] == sel_topo_arch) & (data["passed"] == True)
+    )]
     regex = (
-        f"^.*{nic}.*\.{itm['framesize']}-{itm['core']}-{drv}{itm['test']}-"
-        f"{'mrr' if itm['testtype'] == 'mrr' else 'ndrpdr'}$"
+        f"^.*{nic}.*\.{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$"
     )
+
     df = df_sel.loc[
         df_sel["test_id"].apply(
             lambda x: True if re.search(regex, x) else False
@@ -357,14 +366,11 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
     for idx, itm in enumerate(sel):
 
         df = select_trending_data(data, itm)
-        if df is None:
+        if df is None or df.empty:
             continue
 
-        name = (
-            f"{itm['phy']}-{itm['framesize']}-{itm['core']}-"
-            f"{itm['test']}-{itm['testtype']}"
-        )
-
+        name = "-".join((itm["dut"], itm["phy"], itm["framesize"], itm["core"],
+            itm["test"], itm["testtype"], ))
         traces = _generate_trending_traces(
             itm["testtype"], name, df, start, end, _COLORS[idx % len(_COLORS)]
         )

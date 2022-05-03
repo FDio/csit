@@ -53,6 +53,25 @@ class Layout:
 
     PLACEHOLDER = html.Nobr("")
 
+    DRIVERS = ("avf", "af-xdp", "rdma", "dpdk")
+
+    LABELS = {
+        "dpdk": "DPDK",
+        "container_memif": "LXC/DRC Container Memif",
+        "crypto": "IPSec IPv4 Routing",
+        "ip4": "IPv4 Routing",
+        "ip6": "IPv6 Routing",
+        "ip4_tunnels": "IPv4 Tunnels",
+        "l2": "L2 Ethernet Switching",
+        "srv6": "SRv6 Routing",
+        "vm_vhost": "VMs vhost-user",
+        "nfv_density-dcr_memif-chain_ipsec": "CNF Service Chains Routing IPSec",
+        "nfv_density-vm_vhost-chain_dot1qip4vxlan":"VNF Service Chains Tunnels",
+        "nfv_density-vm_vhost-chain": "VNF Service Chains Routing",
+        "nfv_density-dcr_memif-pipeline": "CNF Service Pipelines Routing",
+        "nfv_density-dcr_memif-chain": "CNF Service Chains Routing",
+    }
+
     def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
         graph_layout_file: str, data_spec_file: str,
         time_period: str=None) -> None:
@@ -85,9 +104,68 @@ class Layout:
         if self._time_period > data_time_period:
             self._time_period = data_time_period
 
+
+        # Get structure of tests:
+        tbs = dict()
+        for _, row in self._data[["job", "test_id"]].drop_duplicates().\
+                iterrows():
+            lst_job = row["job"].split("-")
+            dut = lst_job[1]
+            ttype = lst_job[3]
+            tbed = "-".join(lst_job[-2:])
+            lst_test = row["test_id"].split(".")
+            if dut == "dpdk":
+                area = "dpdk"
+            else:
+                area = "-".join(lst_test[3:-2])
+            suite = lst_test[-2].replace("2n1l-", "").replace("1n1l-", "").\
+                replace("2n-", "")
+            test = lst_test[-1]
+            nic = suite.split("-")[0]
+            for drv in self.DRIVERS:
+                if drv in test:
+                    if drv == "af-xdp":
+                        driver = "af_xdp"
+                    else:
+                        driver = drv
+                    test = test.replace(f"{drv}-", "")
+                    break
+            else:
+                driver = "dpdk"
+            infra = "-".join((tbed, nic, driver))
+            lst_test = test.split("-")
+            framesize = lst_test[0]
+            core = lst_test[1] if lst_test[1] else "1C"
+            test = "-".join(lst_test[2: -1])
+
+            if tbs.get(dut, None) is None:
+                tbs[dut] = dict()
+            if tbs[dut].get(infra, None) is None:
+                tbs[dut][infra] = dict()
+            if tbs[dut][infra].get(area, None) is None:
+                tbs[dut][infra][area] = dict()
+            if tbs[dut][infra][area].get(test, None) is None:
+                tbs[dut][infra][area][test] = dict()
+                tbs[dut][infra][area][test]["core"] = list()
+                tbs[dut][infra][area][test]["frame-size"] = list()
+                tbs[dut][infra][area][test]["test-type"] = list()
+            if core.upper() not in tbs[dut][infra][area][test]["core"]:
+                tbs[dut][infra][area][test]["core"].append(core.upper())
+            if framesize.upper() not in \
+                    tbs[dut][infra][area][test]["frame-size"]:
+                tbs[dut][infra][area][test]["frame-size"].append(
+                    framesize.upper())
+            if ttype == "mrr":
+                if "MRR" not in tbs[dut][infra][area][test]["test-type"]:
+                    tbs[dut][infra][area][test]["test-type"].append("MRR")
+            elif ttype == "ndrpdr":
+                if "NDR" not in tbs[dut][infra][area][test]["test-type"]:
+                    tbs[dut][infra][area][test]["test-type"].extend(
+                        ("NDR", "PDR"))
+        self._spec_tbs = tbs
+
         # Read from files:
         self._html_layout = ""
-        self._spec_tbs = None
         self._graph_layout = None
 
         try:
@@ -96,20 +174,6 @@ class Layout:
         except IOError as err:
             raise RuntimeError(
                 f"Not possible to open the file {self._html_layout_file}\n{err}"
-            )
-
-        try:
-            with open(self._spec_file, "r") as file_read:
-                self._spec_tbs = load(file_read, Loader=FullLoader)
-        except IOError as err:
-            raise RuntimeError(
-                f"Not possible to open the file {self._spec_file,}\n{err}"
-            )
-        except YAMLError as err:
-            raise RuntimeError(
-                f"An error occurred while parsing the specification file "
-                f"{self._spec_file,}\n"
-                f"{err}"
             )
 
         try:
@@ -150,6 +214,9 @@ class Layout:
     @property
     def time_period(self):
         return self._time_period
+
+    def label(self, key: str) -> str:
+        return self.LABELS.get(key, key)
 
     def add_content(self):
         """
@@ -245,25 +312,29 @@ class Layout:
         return dbc.Col(
             id="col-plotting-area",
             children=[
-                dbc.Row(  # Throughput
-                    id="row-graph-tput",
-                    class_name="g-0 p-2",
+                dcc.Loading(
                     children=[
-                        self.PLACEHOLDER
-                    ]
-                ),
-                dbc.Row(  # Latency
-                    id="row-graph-lat",
-                    class_name="g-0 p-2",
-                    children=[
-                        self.PLACEHOLDER
-                    ]
-                ),
-                dbc.Row(  # Download
-                    id="row-btn-download",
-                    class_name="g-0 p-2",
-                    children=[
-                        self.PLACEHOLDER
+                        dbc.Row(  # Throughput
+                            id="row-graph-tput",
+                            class_name="g-0 p-2",
+                            children=[
+                                self.PLACEHOLDER
+                            ]
+                        ),
+                        dbc.Row(  # Latency
+                            id="row-graph-lat",
+                            class_name="g-0 p-2",
+                            children=[
+                                self.PLACEHOLDER
+                            ]
+                        ),
+                        dbc.Row(  # Download
+                            id="row-btn-download",
+                            class_name="g-0 p-2",
+                            children=[
+                                self.PLACEHOLDER
+                            ]
+                        )
                     ]
                 )
             ],
@@ -282,18 +353,39 @@ class Layout:
                     children=[
                         dbc.InputGroup(
                             [
+                                dbc.InputGroupText("DUT"),
+                                dbc.Select(
+                                    id="dd-ctrl-dut",
+                                    placeholder=(
+                                        "Select a Device under Test..."
+                                    ),
+                                    options=sorted(
+                                        [
+                                            {"label": k, "value": k} \
+                                                for k in self.spec_tbs.keys()
+                                        ],
+                                        key=lambda d: d["label"]
+                                    )
+                                )
+                            ],
+                            class_name="mb-3",
+                            size="sm",
+                        ),
+                    ]
+                ),
+                dbc.Row(
+                    class_name="g-0",
+                    children=[
+                        dbc.InputGroup(
+                            [
                                 dbc.InputGroupText("Infra"),
                                 dbc.Select(
                                     id="dd-ctrl-phy",
                                     placeholder=(
                                         "Select a Physical Test Bed "
                                         "Topology..."
-                                    ),
-                                    options=[
-                                        {"label": k, "value": k} \
-                                            for k in self.spec_tbs.keys()
-                                    ],
-                                ),
+                                    )
+                                )
                             ],
                             class_name="mb-3",
                             size="sm",
@@ -517,6 +609,9 @@ class Layout:
 
             # Defines also the order of keys
             self._defaults = {
+                "dd-ctrl-dut-value": str(),
+                "dd-ctrl-phy-options": list(),
+                "dd-ctrl-phy-disabled": True,
                 "dd-ctrl-phy-value": str(),
                 "dd-ctrl-area-options": list(),
                 "dd-ctrl-area-disabled": True,
@@ -582,9 +677,7 @@ class Layout:
         """Display selected tests with checkboxes
         """
         if selection:
-            return [
-                {"label": v["id"], "value": v["id"]} for v in selection
-            ]
+            return [{"label": v["id"], "value": v["id"]} for v in selection]
         else:
             return list()
 
@@ -602,31 +695,25 @@ class Layout:
 
             if fig_tput:
                 row_fig_tput = [
-                    dcc.Loading(
-                        dcc.Graph(
-                            id={"type": "graph", "index": "tput"},
-                            figure=fig_tput
-                        )
-                    ),
+                    dcc.Graph(
+                        id={"type": "graph", "index": "tput"},
+                        figure=fig_tput
+                    )
                 ]
                 row_btn_dwnld = [
-                    dcc.Loading(children=[
-                        dbc.Button(
-                            id="btn-download-data",
-                            children=["Download Data"],
-                            class_name="me-1",
-                            color="info"
-                        ),
-                        dcc.Download(id="download-data")
-                    ]),
+                    dbc.Button(
+                        id="btn-download-data",
+                        children=["Download Data"],
+                        class_name="me-1",
+                        color="info"
+                    ),
+                    dcc.Download(id="download-data")
                 ]
             if fig_lat:
                 row_fig_lat = [
-                    dcc.Loading(
-                        dcc.Graph(
-                            id={"type": "graph", "index": "lat"},
-                            figure=fig_lat
-                        )
+                    dcc.Graph(
+                        id={"type": "graph", "index": "lat"},
+                        figure=fig_lat
                     )
                 ]
 
@@ -640,6 +727,9 @@ class Layout:
             Output("row-btn-download", "children"),
             Output("row-card-sel-tests", "style"),
             Output("row-btns-sel-tests", "style"),
+            Output("dd-ctrl-dut", "value"),
+            Output("dd-ctrl-phy", "options"),
+            Output("dd-ctrl-phy", "disabled"),
             Output("dd-ctrl-phy", "value"),
             Output("dd-ctrl-area", "options"),
             Output("dd-ctrl-area", "disabled"),
@@ -664,6 +754,7 @@ class Layout:
             State("control-panel", "data"),  # Store
             State("selected-tests", "data"),  # Store
             State("cl-selected", "value"),  # User selection
+            Input("dd-ctrl-dut", "value"),
             Input("dd-ctrl-phy", "value"),
             Input("dd-ctrl-area", "value"),
             Input("dd-ctrl-test", "value"),
@@ -680,7 +771,7 @@ class Layout:
             Input("btn-sel-remove-all", "n_clicks"),
         )
         def _update_ctrl_panel(cp_data: dict, store_sel: list, list_sel: list,
-            dd_phy: str, dd_area: str, dd_test: str, cl_core: list,
+            dd_dut: str, dd_phy: str, dd_area: str, dd_test: str, cl_core: list,
             cl_core_all: list, cl_framesize: list, cl_framesize_all: list,
             cl_testtype: list, cl_testtype_all: list, btn_add: int,
             d_start: str, d_end: str, btn_remove: int,
@@ -702,16 +793,56 @@ class Layout:
 
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
 
-            if trigger_id == "dd-ctrl-phy":
+            if trigger_id == "dd-ctrl-dut":
                 try:
-                    options = [
-                        {"label": self.spec_tbs[dd_phy][v]["label"], "value": v}
-                            for v in [v for v in self.spec_tbs[dd_phy].keys()]
-                    ]
+                    options = sorted(
+                        [
+                            {"label": v, "value": v}
+                                for v in self.spec_tbs[dd_dut].keys()
+                        ],
+                        key=lambda d: d["label"]
+                    )
                     disabled = False
                 except KeyError:
                     options = list()
-                    disabled = no_update
+                    disabled = True
+                ctrl_panel.set({
+                    "dd-ctrl-dut-value": dd_dut,
+                    "dd-ctrl-phy-value": str(),
+                    "dd-ctrl-phy-options": options,
+                    "dd-ctrl-phy-disabled": disabled,
+                    "dd-ctrl-area-value": str(),
+                    "dd-ctrl-area-options": list(),
+                    "dd-ctrl-area-disabled": True,
+                    "dd-ctrl-test-options": list(),
+                    "dd-ctrl-test-disabled": True,
+                    "cl-ctrl-core-options": list(),
+                    "cl-ctrl-core-value": list(),
+                    "cl-ctrl-core-all-value": list(),
+                    "cl-ctrl-core-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-framesize-options": list(),
+                    "cl-ctrl-framesize-value": list(),
+                    "cl-ctrl-framesize-all-value": list(),
+                    "cl-ctrl-framesize-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-testtype-options": list(),
+                    "cl-ctrl-testtype-value": list(),
+                    "cl-ctrl-testtype-all-value": list(),
+                    "cl-ctrl-testtype-all-options": self.CL_ALL_DISABLED,
+                })
+            if trigger_id == "dd-ctrl-phy":
+                try:
+                    dut = ctrl_panel.get("dd-ctrl-dut-value")
+                    options = sorted(
+                        [
+                            {"label": self.label(v), "value": v}
+                                for v in self.spec_tbs[dut][dd_phy].keys()
+                        ],
+                        key=lambda d: d["label"]
+                    )
+                    disabled = False
+                except KeyError:
+                    options = list()
+                    disabled = True
                 ctrl_panel.set({
                     "dd-ctrl-phy-value": dd_phy,
                     "dd-ctrl-area-value": str(),
@@ -731,15 +862,18 @@ class Layout:
                     "cl-ctrl-testtype-value": list(),
                     "cl-ctrl-testtype-all-value": list(),
                     "cl-ctrl-testtype-all-options": self.CL_ALL_DISABLED,
-                    "btn-ctrl-add-disabled": True,
                 })
             elif trigger_id == "dd-ctrl-area":
                 try:
+                    dut = ctrl_panel.get("dd-ctrl-dut-value")
                     phy = ctrl_panel.get("dd-ctrl-phy-value")
-                    options = [
-                        {"label": v, "value": v}
-                            for v in self.spec_tbs[phy][dd_area]["test"]
-                    ]
+                    options = sorted(
+                        [
+                            {"label": v, "value": v}
+                                for v in self.spec_tbs[dut][phy][dd_area].keys()
+                        ],
+                        key=lambda d: d["label"]
+                    )
                     disabled = False
                 except KeyError:
                     options = list()
@@ -761,26 +895,26 @@ class Layout:
                     "cl-ctrl-testtype-value": list(),
                     "cl-ctrl-testtype-all-value": list(),
                     "cl-ctrl-testtype-all-options": self.CL_ALL_DISABLED,
-                    "btn-ctrl-add-disabled": True,
                 })
             elif trigger_id == "dd-ctrl-test":
                 core_opts = list()
                 framesize_opts = list()
                 testtype_opts = list()
+                dut = ctrl_panel.get("dd-ctrl-dut-value")
                 phy = ctrl_panel.get("dd-ctrl-phy-value")
                 area = ctrl_panel.get("dd-ctrl-area-value")
-                if phy and area and dd_test:
+                cores = self.spec_tbs[dut][phy][area][dd_test]["core"]
+                fsizes = self.spec_tbs[dut][phy][area][dd_test]["frame-size"]
+                ttypes = self.spec_tbs[dut][phy][area][dd_test]["test-type"]
+                if dut and phy and area and dd_test:
                     core_opts = [
-                        {"label": v, "value": v}
-                            for v in self.spec_tbs[phy][area]["core"]
+                        {"label": v, "value": v} for v in sorted(cores)
                     ]
                     framesize_opts = [
-                        {"label": v, "value": v}
-                            for v in self.spec_tbs[phy][area]["frame-size"]
+                        {"label": v, "value": v} for v in sorted(fsizes)
                     ]
                     testtype_opts = [
-                        {"label": v, "value": v}
-                            for v in self.spec_tbs[phy][area]["test-type"]
+                        {"label": v, "value": v}for v in sorted(ttypes)
                     ]
                     ctrl_panel.set({
                         "dd-ctrl-test-value": dd_test,
@@ -796,7 +930,6 @@ class Layout:
                         "cl-ctrl-testtype-value": list(),
                         "cl-ctrl-testtype-all-value": list(),
                         "cl-ctrl-testtype-all-options": self.CL_ALL_ENABLED,
-                        "btn-ctrl-add-disabled": False,
                     })
             elif trigger_id == "cl-ctrl-core":
                 val_sel, val_all = self._sync_checklists(
@@ -866,6 +999,7 @@ class Layout:
                 })
             elif trigger_id == "btn-ctrl-add":
                 _ = btn_add
+                dut = ctrl_panel.get("dd-ctrl-dut-value")
                 phy = ctrl_panel.get("dd-ctrl-phy-value")
                 area = ctrl_panel.get("dd-ctrl-area-value")
                 test = ctrl_panel.get("dd-ctrl-test-value")
@@ -873,23 +1007,23 @@ class Layout:
                 framesizes = ctrl_panel.get("cl-ctrl-framesize-value")
                 testtypes = ctrl_panel.get("cl-ctrl-testtype-value")
                 # Add selected test to the list of tests in store:
-                if phy and area and test and cores and framesizes and testtypes:
+                if all((dut, phy, area, test, cores, framesizes, testtypes)):
                     if store_sel is None:
                         store_sel = list()
                     for core in cores:
                         for framesize in framesizes:
                             for ttype in testtypes:
-                                tid = (
-                                    f"{phy.replace('af_xdp', 'af-xdp')}-"
-                                    f"{area}-"
-                                    f"{framesize.lower()}-"
-                                    f"{core.lower()}-"
-                                    f"{test}-"
-                                    f"{ttype.lower()}"
-                                )
+                                if dut == "trex":
+                                    core = str()
+                                tid = "-".join((
+                                    dut, phy.replace('af_xdp', 'af-xdp'), area,
+                                    framesize.lower(), core.lower(), test,
+                                    ttype.lower()
+                                ))
                                 if tid not in [itm["id"] for itm in store_sel]:
                                     store_sel.append({
                                         "id": tid,
+                                        "dut": dut,
                                         "phy": phy,
                                         "area": area,
                                         "test": test,
@@ -897,6 +1031,7 @@ class Layout:
                                         "core": core.lower(),
                                         "testtype": ttype.lower()
                                     })
+                    store_sel = sorted(store_sel, key=lambda d: d["id"])
                     row_card_sel_tests = self.STYLE_ENABLED
                     row_btns_sel_tests = self.STYLE_ENABLED
                     ctrl_panel.set(ctrl_panel.defaults)
@@ -904,11 +1039,12 @@ class Layout:
                         "cl-selected-options": self._list_tests(store_sel)
                     })
                     row_fig_tput, row_fig_lat, row_btn_dwnld = \
-                    _generate_plotting_arrea(
-                        graph_trending(
-                            self.data, store_sel, self.layout, d_start, d_end
+                        _generate_plotting_arrea(
+                            graph_trending(
+                                self.data, store_sel, self.layout, d_start,
+                                d_end
+                            )
                         )
-                    )
             elif trigger_id == "dpr-period":
                 row_fig_tput, row_fig_lat, row_btn_dwnld = \
                     _generate_plotting_arrea(
@@ -937,11 +1073,12 @@ class Layout:
                     store_sel = new_store_sel
                 if store_sel:
                     row_fig_tput, row_fig_lat, row_btn_dwnld = \
-                    _generate_plotting_arrea(
-                        graph_trending(
-                            self.data, store_sel, self.layout, d_start, d_end
+                        _generate_plotting_arrea(
+                            graph_trending(
+                                self.data, store_sel, self.layout, d_start,
+                                d_end
+                            )
                         )
-                    )
                     ctrl_panel.set({
                         "cl-selected-options": self._list_tests(store_sel)
                     })
@@ -955,6 +1092,16 @@ class Layout:
                     ctrl_panel.set({
                             "cl-selected-options": list()
                     })
+
+            if ctrl_panel.get("cl-ctrl-core-value") and \
+                    ctrl_panel.get("cl-ctrl-framesize-value") and \
+                    ctrl_panel.get("cl-ctrl-testtype-value"):
+                disabled = False
+            else:
+                disabled = True
+            ctrl_panel.set({
+                "btn-ctrl-add-disabled": disabled
+            })
 
             ret_val = [
                 ctrl_panel.panel, store_sel,
