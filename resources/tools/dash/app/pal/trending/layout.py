@@ -14,6 +14,9 @@
 """Plotly Dash HTML layout override.
 """
 
+import logging
+from pprint import pformat
+
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -53,6 +56,24 @@ class Layout:
 
     PLACEHOLDER = html.Nobr("")
 
+    DRIVERS = ("avf", "af-xdp", "rdma", "dpdk")
+
+    LABELS = {
+        "container_memif": "LXC/DRC Container Memif",
+        "crypto": "IPSec IPv4 Routing",
+        "ip4": "IPv4 Routing",
+        "ip6": "IPv6 Routing",
+        "ip4_tunnels": "IPv4 Tunnels",
+        "l2": "L2 Ethernet Switching",
+        "srv6": "SRv6 Routing",
+        "vm_vhost": "VMs vhost-user",
+        "nfv_density-dcr_memif-chain_ipsec": "CNF Service Chains Routing IPSec",
+        "nfv_density-vm_vhost-chain_dot1qip4vxlan":"VNF Service Chains Tunnels",
+        "nfv_density-vm_vhost-chain": "VNF Service Chains Routing",
+        "nfv_density-dcr_memif-pipeline": "CNF Service Pipelines Routing",
+        "nfv_density-dcr_memif-chain": "CNF Service Chains Routing",
+    }
+
     def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
         graph_layout_file: str, data_spec_file: str,
         time_period: str=None) -> None:
@@ -85,9 +106,75 @@ class Layout:
         if self._time_period > data_time_period:
             self._time_period = data_time_period
 
+
+        # Get structure of tests:
+        tbs = dict()
+        for _, row in self._data[["job", "test_id"]].drop_duplicates().\
+                iterrows():
+            lst_job = row["job"].split("-")
+            dut = lst_job[1]
+            ttype = lst_job[3]
+            tbed = "-".join(lst_job[-2:])
+            lst_test = row["test_id"].split(".")
+            if dut == "dpdk":
+                area = "dpdk"
+            else:
+                area = "-".join(lst_test[3:-2])
+            suite = lst_test[-2].replace("2n1l-", "").replace("1n1l-", "").\
+                replace("2n-", "")
+            test = lst_test[-1]
+            nic = suite.split("-")[0]
+            for drv in self.DRIVERS:
+                if drv in test:
+                    if drv == "af-xdp":
+                        driver = "af_xdp"
+                    else:
+                        driver = drv
+                    test = test.replace(f"{drv}-", "")
+                    break
+            else:
+                driver = "dpdk"
+            infra = "-".join((tbed, nic, driver))
+            lst_test = test.split("-")
+            framesize = lst_test[0]
+            core = lst_test[1] if lst_test[1] else "1C"
+            test = "-".join(lst_test[2: -1])
+
+            if tbs.get(dut, None) is None:
+                tbs[dut] = dict()
+            if tbs[dut].get(infra, None) is None:
+                tbs[dut][infra] = dict()
+            if tbs[dut][infra].get(area, None) is None:
+                tbs[dut][infra][area] = dict()
+                if self.LABELS.get(area, None) is None:
+                    tbs[dut][infra][area]["label"] = area
+                else:
+                    tbs[dut][infra][area]["label"] = self.LABELS[area]
+            if tbs[dut][infra][area].get(test, None) is None:
+                tbs[dut][infra][area][test] = dict()
+                tbs[dut][infra][area][test]["core"] = list()
+                tbs[dut][infra][area][test]["frame-size"] = list()
+                tbs[dut][infra][area][test]["test-type"] = list()
+            if core.upper() not in tbs[dut][infra][area][test]["core"]:
+                tbs[dut][infra][area][test]["core"].append(core.upper())
+            if framesize.upper() not in \
+                    tbs[dut][infra][area][test]["frame-size"]:
+                tbs[dut][infra][area][test]["frame-size"].append(
+                    framesize.upper())
+            if ttype == "mrr":
+                if "MRR" not in tbs[dut][infra][area][test]["test-type"]:
+                    tbs[dut][infra][area][test]["test-type"].append("MRR")
+            elif ttype == "ndrpdr":
+                if "NDR" not in tbs[dut][infra][area][test]["test-type"]:
+                    tbs[dut][infra][area][test]["test-type"].extend(
+                        ("NDR", "PDR"))
+
+        logging.info(pformat(tbs))
+
+        self._spec_tbs = tbs
+
         # Read from files:
         self._html_layout = ""
-        self._spec_tbs = None
         self._graph_layout = None
 
         try:
@@ -96,20 +183,6 @@ class Layout:
         except IOError as err:
             raise RuntimeError(
                 f"Not possible to open the file {self._html_layout_file}\n{err}"
-            )
-
-        try:
-            with open(self._spec_file, "r") as file_read:
-                self._spec_tbs = load(file_read, Loader=FullLoader)
-        except IOError as err:
-            raise RuntimeError(
-                f"Not possible to open the file {self._spec_file,}\n{err}"
-            )
-        except YAMLError as err:
-            raise RuntimeError(
-                f"An error occurred while parsing the specification file "
-                f"{self._spec_file,}\n"
-                f"{err}"
             )
 
         try:

@@ -28,7 +28,7 @@ MAX_TIME_PERIOD = 180
 # is read to dataframes.
 # TIME_PERIOD = None means all data (max MAX_TIME_PERIOD days) is read.
 # TIME_PERIOD = MAX_TIME_PERIOD is the default value
-TIME_PERIOD = MAX_TIME_PERIOD  # [days]
+TIME_PERIOD = 10  # MAX_TIME_PERIOD  # [days]
 
 
 def init_app():
@@ -59,8 +59,8 @@ def init_app():
             time_period = TIME_PERIOD
 
         # Import Dash applications.
-        from .stats.stats import init_stats
-        app = init_stats(app, time_period=time_period)
+        # from .stats.stats import init_stats
+        # app = init_stats(app, time_period=time_period)
 
         from .trending.trending import init_trending
         app = init_trending(app, time_period=time_period)
