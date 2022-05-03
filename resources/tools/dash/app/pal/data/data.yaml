@@ -46,22 +46,22 @@ trending-ndrpdr:
     - test_name_long
     - test_name_short
     - version
-    - result_pdr_upper_rate_unit
-    - result_pdr_upper_rate_value
-    - result_pdr_upper_bandwidth_unit
-    - result_pdr_upper_bandwidth_value
+    # - result_pdr_upper_rate_unit
+    # - result_pdr_upper_rate_value
+    # - result_pdr_upper_bandwidth_unit
+    # - result_pdr_upper_bandwidth_value
     - result_pdr_lower_rate_unit
     - result_pdr_lower_rate_value
-    - result_pdr_lower_bandwidth_unit
-    - result_pdr_lower_bandwidth_value
-    - result_ndr_upper_rate_unit
-    - result_ndr_upper_rate_value
-    - result_ndr_upper_bandwidth_unit
-    - result_ndr_upper_bandwidth_value
+    # - result_pdr_lower_bandwidth_unit
+    # - result_pdr_lower_bandwidth_value
+    # - result_ndr_upper_rate_unit
+    # - result_ndr_upper_rate_value
+    # - result_ndr_upper_bandwidth_unit
+    # - result_ndr_upper_bandwidth_value
     - result_ndr_lower_rate_unit
     - result_ndr_lower_rate_value
-    - result_ndr_lower_bandwidth_unit
-    - result_ndr_lower_bandwidth_value
+    # - result_ndr_lower_bandwidth_unit
+    # - result_ndr_lower_bandwidth_value
     # - result_latency_reverse_pdr_90_avg
     - result_latency_reverse_pdr_90_hdrh
     # - result_latency_reverse_pdr_90_max

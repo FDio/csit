@@ -172,23 +172,21 @@ def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
             drv = drv.replace("_", "-")
     else:
         return None
-    cadence = \
-        "weekly" if (arch == "aws" or itm["testtype"] != "mrr") else "daily"
-    sel_topo_arch = (
-        f"csit-vpp-perf-"
-        f"{itm['testtype'] if itm['testtype'] == 'mrr' else 'ndrpdr'}-"
-        f"{cadence}-master-{topo}-{arch}"
-    )
-    df_sel = data.loc[(data["job"] == sel_topo_arch)]
-    regex = (
-        f"^.*{nic}.*\.{itm['framesize']}-{itm['core']}-{drv}{itm['test']}-"
-        f"{'mrr' if itm['testtype'] == 'mrr' else 'ndrpdr'}$"
-    )
-    df = df_sel.loc[
-        df_sel["test_id"].apply(
-            lambda x: True if re.search(regex, x) else False
-        )
-    ].sort_values(by="start_time", ignore_index=True)
+
+    core = str() if itm["dut"] == "trex" else f"{itm['core']}"
+    ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
+    dut = "none" if itm["dut"] == "trex" else itm["dut"].upper()
+
+    df = data.loc[(
+        (data["dut_type"] == dut) &
+        (data["test_type"] == ttype) &
+        (data["passed"] == True)
+    )]
+    df = df[df.job.str.endswith(f"{topo}-{arch}")]
+    df = df[df.test_id.str.contains(
+        f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$",
+        regex=True
+    )].sort_values(by="start_time", ignore_index=True)
 
     return df
 
@@ -357,14 +355,11 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
     for idx, itm in enumerate(sel):
 
         df = select_trending_data(data, itm)
-        if df is None:
+        if df is None or df.empty:
             continue
 
-        name = (
-            f"{itm['phy']}-{itm['framesize']}-{itm['core']}-"
-            f"{itm['test']}-{itm['testtype']}"
-        )
-
+        name = "-".join((itm["dut"], itm["phy"], itm["framesize"], itm["core"],
+            itm["test"], itm["testtype"], ))
         traces = _generate_trending_traces(
             itm["testtype"], name, df, start, end, _COLORS[idx % len(_COLORS)]
         )

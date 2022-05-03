@@ -70,7 +70,7 @@ class Layout:
         if self._time_period > data_time_period:
             self._time_period = data_time_period
 
-        self._jobs = sorted(list(data_stats["job"].unique()))
+        jobs = sorted(list(data_stats["job"].unique()))
         job_info = {
             "job": list(),
             "dut": list(),
@@ -78,7 +78,7 @@ class Layout:
             "cadence": list(),
             "tbed": list()
         }
-        for job in self._jobs:
+        for job in jobs:
             lst_job = job.split("-")
             job_info["job"].append(job)
             job_info["dut"].append(lst_job[1])
@@ -111,7 +111,8 @@ class Layout:
             "passed": list(),
             "failed": list()
         }
-        for job in self._jobs:
+        for job in jobs:
+            # TODO: Add list of failed tests for each build
             df_job = df_tst_info.loc[(df_tst_info["job"] == job)]
             builds = df_job["build"].unique()
             for build in builds:
