@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -31,36 +31,36 @@ def multiply_relative_width(relative_width, coefficient):
     :returns: The relative width of multiplied logarithmic size.
     :rtype: float
     """
-    old_log_width = math.log(1.0 - relative_width)
+    # Using log1p and expm1 to avoid rounding errors for small widths.
+    old_log_width = math.log1p(-relative_width)
     # Slight decrease to prevent rounding errors from prolonging the search.
     # TODO: Make the nines configurable.
     new_log_width = old_log_width * coefficient * ROUNDING_CONSTANT
-    return 1.0 - math.exp(new_log_width)
+    return -math.expm1(new_log_width)
 
-def halve_relative_width(relative_width, goal_width):
+def halve_relative_width(relative_width, width_goal):
     """Return relative width corresponding to half logarithmic width.
 
-    The logic attempts to save some halvings in future by performing
-    uneven split. If rounding error risk is detected,
-    even split is used.
+    The logic attempts to save some halvings in future
+    by performing uneven split here.
+    If rounding error risk is detected even split is used.
 
     :param relative_width: The base relative width to halve.
-    :param goal_width: Width goal for final phase.
+    :param width_goal: Width goal for final phase.
     :type relative_width: float
-    :type goal_width: float
+    :type width_goal: float
     :returns: The relative width of half logarithmic size.
     :rtype: float
     """
-    fallback_width = 1.0 - math.sqrt(1.0 - relative_width)
+    wig = math.log1p(-relative_width) / math.log1p(-width_goal)
     # Wig means Width In Goals.
-    wig = math.log(1.0 - relative_width) / math.log(1.0 - goal_width)
     cwig = 2.0 * math.ceil(wig / 2.0)
-    fwig = 2.0 * math.ceil(wig * ROUNDING_CONSTANT / 2.0)
+    fwig = 2.0 * math.ceil(wig * ROUNDING_CONSTANT * ROUNDING_CONSTANT / 2.0)
     if wig <= 2.0 or cwig != fwig:
         # Avoid too uneven splits.
-        return fallback_width
+        return multiply_relative_width(relative_width, 0.5)
     coefficient = cwig / 2
-    new_width = multiply_relative_width(goal_width, coefficient)
+    new_width = multiply_relative_width(width_goal, coefficient)
     return new_width
 
 def step_down(current_bound, relative_width):
@@ -123,8 +123,31 @@ def multiple_step_up(current_bound, relative_width, coefficient):
     new_width = multiply_relative_width(relative_width, coefficient)
     return step_up(current_bound, new_width)
 
-def half_step_up(current_bound, relative_width, goal_width):
+def half_step_up(current_bound, relative_width, width_goal):
     """Return rate of half logarithmic width above.
+
+    This function is smart, using uneven splits to avoid some measurements,
+    that is why the width goal is needed.
+
+    Not supporting strict halving here, because pylint has trouble
+    determining when an "optional" typed variable is no longer None.
+
+    :param relative_width: The base relative width to halve.
+    :param current_bound: The current target transmit rate to move [pps].
+    :param width_goal: Apply uneven splits when this is provided.
+    :type relative_width: float
+    :type current_bound: float
+    :type width_goal: Optional[float]
+    :returns: Transmit rate larger by logarithmically half width [pps].
+    :rtype: float
+    """
+    new_width = halve_relative_width(relative_width, width_goal)
+    return step_up(current_bound, new_width)
+
+def strict_half_step_up(current_bound, relative_width):
+    """Return rate of half logarithmic width above.
+
+    This function avoids the smart logic.
 
     :param relative_width: The base relative width to halve.
     :param current_bound: The current target transmit rate to move [pps].
@@ -133,5 +156,5 @@ def half_step_up(current_bound, relative_width, goal_width):
     :returns: Transmit rate larger by logarithmically half width [pps].
     :rtype: float
     """
-    new_width = halve_relative_width(relative_width, goal_width)
+    new_width = multiply_relative_width(relative_width, 0.5)
     return step_up(current_bound, new_width)
