@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -22,9 +22,10 @@ from robot.libraries.BuiltIn import BuiltIn
 from .Constants import Constants
 from .CpuUtils import CpuUtils
 from .DropRateSearch import DropRateSearch
-from .MLRsearch.AbstractMeasurer import AbstractMeasurer
-from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
-from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
+from .MLRsearch.abstract_measurer import AbstractMeasurer
+from .MLRsearch.config import Config as MLRconfig
+from .MLRsearch.multiple_loss_ratio_search import MultipleLossRatioSearch
+from .MLRsearch.receive_rate_measurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
 from .ssh import exec_cmd_no_error, exec_cmd
@@ -1558,6 +1559,7 @@ class OptimizedSearch:
             initial_trial_duration = 1.0
             final_trial_duration = 1.0
             number_of_intermediate_phases = 0
+            # TODO: Move the value to Constants.py?
             timeout += transaction_scale * 3e-4
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
@@ -1574,26 +1576,23 @@ class OptimizedSearch:
             ramp_up_duration=ramp_up_duration,
             state_timeout=state_timeout,
         )
-        algorithm = MultipleLossRatioSearch(
-            measurer=tg_instance,
-            final_trial_duration=final_trial_duration,
-            final_relative_width=final_relative_width,
-            number_of_intermediate_phases=number_of_intermediate_phases,
-            initial_trial_duration=initial_trial_duration,
-            timeout=timeout,
-            debug=logger.debug,
-            expansion_coefficient=expansion_coefficient,
-        )
         if packet_loss_ratio:
             packet_loss_ratios = [0.0, packet_loss_ratio]
         else:
             # Happens in reconf tests.
             packet_loss_ratios = [packet_loss_ratio]
-        results = algorithm.narrow_down_intervals(
-            min_rate=minimum_transmit_rate,
-            max_rate=maximum_transmit_rate,
-            packet_loss_ratios=packet_loss_ratios,
-        )
+        config = MLRconfig()
+        config.min_rate = float(minimum_transmit_rate)
+        config.max_rate = float(maximum_transmit_rate)
+        config.final_trial_duration = float(final_trial_duration)
+        config.final_relative_width = float(final_relative_width)
+        config.number_of_intermediate_phases = number_of_intermediate_phases
+        config.initial_trial_duration = float(initial_trial_duration)
+        config.max_search_duration = float(timeout)
+        config.expansion_coefficient = float(expansion_coefficient)
+        config.target_loss_ratios = packet_loss_ratios
+        algorithm = MultipleLossRatioSearch(config)
+        results = algorithm.search(measurer=tg_instance, debug=logger.debug)
         return results
 
     @staticmethod

@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,10 +29,10 @@ class ReceiveRateInterval:
         """
         self.measured_low = measured_low
         self.measured_high = measured_high
-        # Declare secondary quantities to appease pylint.
-        self.abs_tr_width = None
+        # Declare secondary quantities (bogus values, correct types) for pylint.
+        self.abs_tr_width = 0.5
         """Absolute width of target transmit rate. Upper minus lower."""
-        self.rel_tr_width = None
+        self.rel_tr_width = 0.5
         """Relative width of target transmit rate. Absolute divided by upper."""
         self.sort()
 
@@ -70,5 +70,4 @@ class ReceiveRateInterval:
         :returns: Current width as logarithmic multiple of goal width [1].
         :rtype: float
         """
-        return math.log(1.0 - self.rel_tr_width) / math.log(
-            1.0 - relative_width_goal)
+        return math.log1p(-self.rel_tr_width) / math.log1p(-relative_width_goal)
