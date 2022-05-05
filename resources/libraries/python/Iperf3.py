@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -32,6 +32,31 @@ class Iperf3:
         self._s_affinity = None
         # Computed affinity for iPerf client.
         self._c_affinity = None
+
+    @staticmethod
+    def get_iperf_type(node):
+        """Log and return the installed traffic generator type.
+
+        :param node: Node from topology file.
+        :type node: dict
+        :returns: Traffic generator type string.
+        :rtype: str
+        """
+        return "IPERF"
+
+    @staticmethod
+    def get_iperf_version(node):
+        """Log and return the installed traffic generator version.
+
+        :param node: Node from topology file.
+        :type node: dict
+        :returns: Traffic generator version string.
+        :rtype: str
+        """
+        command = f"iperf3 --version | head -1"
+        message = u"Get iPerf version failed!"
+        stdout, _ = exec_cmd_no_error(node, command, message=message)
+        return stdout.strip()
 
     def initialize_iperf_server(
             self, node, pf_key, interface, bind, bind_gw, bind_mask,

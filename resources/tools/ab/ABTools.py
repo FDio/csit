@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2022 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -77,6 +77,31 @@ class ABTools:
         cmd = u"command -v ab"
         message = u"ab not installed on TG node!"
         exec_cmd_no_error(tg_node, cmd, message=message)
+
+    @staticmethod
+    def get_ab_type(node):
+        """Log and return the installed traffic generator type.
+
+        :param node: Node from topology file.
+        :type node: dict
+        :returns: Traffic generator type string.
+        :rtype: str
+        """
+        return "AB"
+
+    @staticmethod
+    def get_ab_version(node):
+        """Log and return the installed traffic generator version.
+
+        :param node: Node from topology file.
+        :type node: dict
+        :returns: Traffic generator version string.
+        :rtype: str
+        """
+        command = f"ab -V | head -1 | cut -d',' -f2"
+        message = u"Get AB version failed!"
+        stdout, _ = exec_cmd_no_error(node, command, message=message)
+        return stdout.strip()
 
     @staticmethod
     def run_ab(tg_node, ip_addr, tg_addr, tls_tcp, cipher, files_num, rps_cps,

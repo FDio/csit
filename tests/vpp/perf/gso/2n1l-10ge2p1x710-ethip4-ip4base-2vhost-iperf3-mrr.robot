@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_1024 | TXQ_SIZE_1024 | GSO_TRUE
 | ... | ethip4-ip4base-2vhost-iperf3
 |
-| Suite Setup | Setup suite topology interfaces
+| Suite Setup | Setup suite topology interfaces | iPerf3
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test | iPerf3 | vhost

@@ -34,7 +34,7 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.model.ExportResult import (
-    export_dut_type_and_version
+    export_dut_type_and_version, export_tg_type_and_version
 )
 from resources.libraries.python.model.mem2raw import write_raw_output
 from resources.libraries.python.model.raw2info import convert_content_to_info
@@ -167,6 +167,7 @@ class export_json():
         self.raw_data[u"hosts"] = set()
         self.raw_data[u"log"] = list()
         export_dut_type_and_version()
+        export_tg_type_and_version()
 
     def start_suite_teardown_export(self):
         """Set new file path, initialize data for the suite teardown.

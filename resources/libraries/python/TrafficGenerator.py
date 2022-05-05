@@ -252,7 +252,38 @@ class TrafficGenerator(AbstractMeasurer):
             f"{self._node[u'subtype']} not running in {expected_mode} mode!"
         )
 
-    # TODO: pylint says disable=too-many-locals.
+    @staticmethod
+    def get_tg_type(tg_node):
+        """Log and return the installed traffic generator type.
+
+        :param tg_node: Node from topology file.
+        :type tg_node: dict
+        :returns: Traffic generator type string.
+        :rtype: str
+        :raises RuntimeError: If command returns nonzero return code.
+        """
+        return str(check_subtype(tg_node))
+
+    @staticmethod
+    def get_tg_version(tg_node):
+        """Log and return the installed traffic generator version.
+
+        :param tg_node: Node from topology file.
+        :type tg_node: dict
+        :returns: Traffic generator version string.
+        :rtype: str
+        :raises RuntimeError: If command returns nonzero return code.
+        """
+        subtype = check_subtype(tg_node)
+        if subtype == NodeSubTypeTG.TREX:
+            command = f"cat {Constants.TREX_INSTALL_DIR}/VERSION"
+            message = u"Get T-Rex version failed!"
+            stdout, _ = exec_cmd_no_error(tg_node, command, message=message)
+            return stdout.strip()
+        else:
+            return "none"
+
+    # TODO: pylint disable=too-many-locals.
     def initialize_traffic_generator(
             self, tg_node, tg_if1, tg_if2, tg_if1_adj_node, tg_if1_adj_if,
             tg_if2_adj_node, tg_if2_adj_if, osi_layer, tg_if1_dst_mac=None,
