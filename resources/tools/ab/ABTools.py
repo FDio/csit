@@ -79,6 +79,31 @@ class ABTools:
         exec_cmd_no_error(tg_node, cmd, message=message)
 
     @staticmethod
+    def get_ab_type(node):
+        """Log and return the installed traffic generator type.
+
+        :param node: Node from topology file.
+        :type node: dict
+        :returns: Traffic generator type string.
+        :rtype: str
+        """
+        return "AB"
+
+    @staticmethod
+    def get_ab_version(node):
+        """Log and return the installed traffic generator version.
+
+        :param node: Node from topology file.
+        :type node: dict
+        :returns: Traffic generator version string.
+        :rtype: str
+        """
+        command = f"ab -V | head -1"
+        message = u"Get AB version failed!"
+        stdout, _ = exec_cmd_no_error(node, command, message=message)
+        return stdout.strip()
+
+    @staticmethod
     def run_ab(tg_node, ip_addr, tg_addr, tls_tcp, cipher, files_num, rps_cps,
                r_total, c_total, port, protocol=u"TLS1.3"):
         """ Run ab test.

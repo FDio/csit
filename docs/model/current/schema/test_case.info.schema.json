@@ -1,5 +1,5 @@
 {
-  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.0",
+  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.1",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Schema for info output of test case.",
   "allOf": [
@@ -14,11 +14,13 @@
         },
         "dut_type": {
           "description": "DUT type used, e.g. VPP or DPDK.",
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "dut_version": {
           "description": "Version string appropriate to DUT type used.",
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "end_time": {
           "description": "UTC date and time in RFC 3339 format, specifying calendar time just before test case ended (at the end of test case teardown).",
@@ -183,10 +185,20 @@
             "vsap"
           ]
         },
+        "tg_type": {
+          "description": "TG type used, e.g. TREX.",
+          "type": "string",
+          "minLength": 1
+        },
+        "tg_version": {
+          "description": "Version string appropriate to TG type used.",
+          "type": "string",
+          "minLength": 1
+        },
         "version": {
           "description": "CSIT model version (semver format) the exporting code adhered to.",
           "type": "string",
-          "const": "1.0.0"
+          "const": "1.0.1"
         }
       },
       "required": [
@@ -206,6 +218,8 @@
         "test_name_long",
         "test_name_short",
         "test_type",
+        "tg_type",
+        "tg_version",
         "version"
       ]
     },
@@ -232,47 +246,6 @@
               "const": false
             },
             "message": {
-              "minLength": 1
-            }
-          }
-        }
-      ]
-    },
-    {
-      "description": "Subschema validating relation between dut_type and dut_version.",
-      "oneOf": [
-        {
-          "description": "Subschema for tests with no DUT, e.g. TRex self-test.",
-          "type": "object",
-          "properties": {
-            "dut_type": {
-              "const": "none"
-            },
-            "dut_version": {
-              "const": ""
-            }
-          }
-        },
-        {
-          "description": "Subschema for DUT type VPP.",
-          "type": "object",
-          "properties": {
-            "dut_type": {
-              "const": "VPP"
-            },
-            "dut_version": {
-              "minLength": 1
-            }
-          }
-        },
-        {
-          "description": "Subschema for DUT type DPDK.",
-          "type": "object",
-          "properties": {
-            "dut_type": {
-              "const": "DPDK"
-            },
-            "dut_version": {
               "minLength": 1
             }
           }
