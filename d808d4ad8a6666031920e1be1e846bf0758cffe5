@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "574fb183_e8def49c",
+        "filename": "docs/model/current/schema/test_case.info.schema.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-05T12:12:08Z",
+      "side": 1,
+      "message": "New data would fail to validate with the old schema (because of line 24). Semver requires (at least) minor version to be bumped.",
+      "range": {
+        "startLine": 284,
+        "startChar": 8,
+        "endLine": 284,
+        "endChar": 15
+      },
+      "revId": "d808d4ad8a6666031920e1be1e846bf0758cffe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1248642_11cf1368",
+        "filename": "docs/model/current/schema/test_case.info.schema.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-05T12:12:08Z",
+      "side": 1,
+      "message": "Marking the new field as required means old data would fail to validate with the new schema. Semver requires major version to be bumped.",
+      "range": {
+        "startLine": 317,
+        "startChar": 8,
+        "endLine": 317,
+        "endChar": 15
+      },
+      "revId": "d808d4ad8a6666031920e1be1e846bf0758cffe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
