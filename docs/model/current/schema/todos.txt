@@ -1,6 +1,4 @@
 
-Export also tg_type and tg_version properties.
-
 Add description with link to methodology for MRR, NDRPDR and SOAK.
 
 Add multiplicity field to MRR result, so PAL can detect incomplete samples.
@@ -8,9 +6,3 @@ Add multiplicity field to MRR result, so PAL can detect incomplete samples.
 Add link explaining our L1 bandwidth calculation.
 
 Add a link to URL explaining how to decode the hdrh data.
-
-Do we want to require more structure for dut_version, e.g. at least two dots?
-
-Should we parse version strings?
-E.g.: Turn dut_version from "21.11.0"
-into {"major": 21, "minor": 11, "patch": 0}.

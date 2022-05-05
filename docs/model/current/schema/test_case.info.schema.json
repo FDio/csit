@@ -1,5 +1,5 @@
 {
-  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.0",
+  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.1",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Schema for info output of test case.",
   "allOf": [
@@ -183,10 +183,20 @@
             "vsap"
           ]
         },
+        "tg_type": {
+          "description": "TG type used, e.g. TREX.",
+          "type": "string",
+          "minLength": 1
+        },
+        "tg_version": {
+          "description": "Version string appropriate to TG type used.",
+          "type": "string",
+          "minLength": 1
+        },
         "version": {
           "description": "CSIT model version (semver format) the exporting code adhered to.",
           "type": "string",
-          "const": "1.0.0"
+          "const": "1.0.1"
         }
       },
       "required": [
@@ -206,6 +216,8 @@
         "test_name_long",
         "test_name_short",
         "test_type",
+        "tg_type",
+        "tg_version",
         "version"
       ]
     },

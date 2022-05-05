@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,6 +18,7 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NGINX.NGINXTools
 | Library | resources.tools.ab.ABTools
+| Library | resources.libraries.python.Iperf3
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficGenerator
@@ -114,6 +115,7 @@
 | | ... | always_same_link=${True} | topo_has_tg=${False}
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
+| | Export TG Type And Version | none | ${EMPTY}
 | | Finalize Suite Setup Export
 
 | Setup suite topology interfaces with no DUT
@@ -149,6 +151,7 @@
 | | END
 | | Set Interface State | ${tg} | ${TG_pf1}[0] | up
 | | Set Interface State | ${tg} | ${TG_pf2}[0] | up
+| | Export TG Type And Version | SCAPY | ${EMPTY}
 
 | Additional Suite Setup Action For dpdk
 | | [Documentation]
@@ -158,7 +161,8 @@
 | | | Initialize DPDK Framework | ${nodes['${dut}']}
 | | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0] | ${nic_driver}
 | | END
-| | Get And Export DPDK Version
+| | ${version} = | Get Dpdk Version | ${nodes}[DUT1]
+| | Export Dut Type And Version | DPDK | ${version}
 
 | Additional Suite Setup Action For performance vf
 | | [Documentation]
@@ -235,6 +239,9 @@
 | | | ... | ELSE
 | | | ... | Additional Suite Setup Action For performance pf | ${dut}
 | | END
+| | ${type} = | Get TG Type | ${nodes}[TG]
+| | ${version} = | Get TG Version | ${nodes}[TG]
+| | Export TG Type And Version | ${type} | ${version}
 | | Initialize traffic generator
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 | | ... | ${dut1} | ${DUT1_${int}1}[0]
@@ -246,13 +253,24 @@
 | | ... | Additional Setup for suites which uses performance measurement
 | | ... | for L1 cross connect tests
 | |
-| | # TRex suites have only TG (and a loopback cable), no SUT nor DUT.
 | | Export Dut Type And Version | none | ${EMPTY}
+| | ${type} = | Get TG Type | ${nodes}[TG]
+| | ${version} = | Get TG Version | ${nodes}[TG]
+| | Export TG Type And Version | ${type} | ${version}
 | | Initialize traffic generator
 | | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
 | | ... | ${tg} | ${TG_pf2}[0]
 | | ... | ${tg} | ${TG_pf1}[0]
 | | ... | ${osi_layer}
+
+| Additional Suite Setup Action For iPerf3
+| | [Documentation]
+| | ... | Additional Setup for suites which uses performance measurement over
+| | ... | iPerf3.
+| |
+| | ${type} = | Get iPerf Type | ${nodes}[TG]
+| | ${version} = | Get iPerf Version | ${nodes}[TG]
+| | Export TG Type And Version | ${type} | ${version}
 
 | Additional Suite Setup Action For ipsechw
 | | [Documentation]
@@ -276,6 +294,7 @@
 | | [Documentation]
 | | ... | Additional Setup for suites which uses ab TG.
 | |
+| | Export TG Type And Version | AB | ${EMPTY}
 | | Verify Program Installed | ${tg} | ab
 | | Iface update numa node | ${tg}
 | | ${running}= | Is TRex running | ${tg}
