@@ -336,16 +336,6 @@
 | | Run Keyword If | ${with_trace} | VPP Enable Traces On Dut
 | | ... | ${nodes['${dut}']}
 
-| Get And Export DPDK Version
-| | [Documentation] | Add version to test export as detected on DUT1.
-| |
-| | ... | *Example:*
-| |
-| | ... | \| Get And Export DPDK Version \|
-| |
-| | ${version} = | Get Dpdk Version | ${nodes}[DUT1]
-| | Export Dut Type And Version | DPDK | ${version}
-
 | Save VPP PIDs
 | | [Documentation] | Get PIDs of VPP processes from all DUTs in topology and\
 | | ... | set it as a test variable. The PIDs are stored as dictionary items\

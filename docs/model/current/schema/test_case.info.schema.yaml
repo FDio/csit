@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,7 +13,7 @@
 
 ---
 
-$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.0
+$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.1
 $schema: https://json-schema.org/draft/2020-12/schema
 description: >-
     Schema for info output of test case.
@@ -32,10 +32,12 @@ allOf:
             description: >-
                 DUT type used, e.g. VPP or DPDK.
             type: string
+            minLength: 1
         dut_version:
             description: >-
                 Version string appropriate to DUT type used.
             type: string
+            minLength: 1
         end_time:
             description: >-
                 UTC date and time in RFC 3339 format, specifying calendar time
@@ -281,12 +283,22 @@ allOf:
             -   reconf
             -   soak
             -   vsap
+        tg_type:
+            description: >-
+                TG type used, e.g. TREX.
+            type: string
+            minLength: 1
+        tg_version:
+            description: >-
+                Version string appropriate to TG type used.
+            type: string
+            minLength: 1
         version:
             description: >-
                 CSIT model version (semver format)
                 the exporting code adhered to.
             type: string
-            const: 1.0.0
+            const: 1.0.1
     required:
     -   duration
     -   dut_type
@@ -304,6 +316,8 @@ allOf:
     -   test_name_long
     -   test_name_short
     -   test_type
+    -   tg_type
+    -   tg_version
     -   version
 -   description: >-
         Subschema validating relation between status and message.
@@ -323,33 +337,6 @@ allOf:
             passed:
                 const: false
             message:
-                minLength: 1
--   description: >-
-        Subschema validating relation between dut_type and dut_version.
-    oneOf:
-    -   description: >-
-            Subschema for tests with no DUT, e.g. TRex self-test.
-        type: object
-        properties:
-            dut_type:
-                const: none
-            dut_version:
-                const: ""
-    -   description: >-
-            Subschema for DUT type VPP.
-        type: object
-        properties:
-            dut_type:
-                const: VPP
-            dut_version:
-                minLength: 1
-    -   description: >-
-            Subschema for DUT type DPDK.
-        type: object
-        properties:
-            dut_type:
-                const: DPDK
-            dut_version:
                 minLength: 1
 
 $defs:

@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -39,18 +39,13 @@ def export_dut_type_and_version(dut_type=u"unknown", dut_version=u"unknown"):
     else:
         # We want to set a variable in higher level suite setup
         # to be available to test setup several levels lower.
-        # Documentation [0] looks like "children" is a keyword argument,
-        # but code [1] lines 1458 and 1511-1512 show
-        # it is just last stringy argument.
-        # [0] http://robotframework.org/robotframework/
-        #     3.1.2/libraries/BuiltIn.html#Set%20Suite%20Variable
-        # [1] https://github.com/robotframework/robotframework/blob/
-        #     v3.1.2/src/robot/libraries/BuiltIn.py
         BuiltIn().set_suite_variable(
             u"\\${DUT_TYPE}", dut_type, u"children=True"
         )
     if dut_version == u"unknown":
-        dut_version = BuiltIn().get_variable_value(u"\\${DUT_VERSION}", u"unknown")
+        dut_version = BuiltIn().get_variable_value(
+            u"\\${DUT_VERSION}", u"unknown"
+        )
         if dut_type == u"unknown":
             raise RuntimeError(u"Dut version not provided.")
     else:
@@ -58,8 +53,47 @@ def export_dut_type_and_version(dut_type=u"unknown", dut_version=u"unknown"):
             u"\\${DUT_VERSION}", dut_version, u"children=True"
         )
     data = get_export_data()
-    data[u"dut_type"] = dut_type
+    data[u"dut_type"] = dut_type.lower()
     data[u"dut_version"] = dut_version
+
+
+def export_tg_type_and_version(tg_type=u"unknown", tg_version=u"unknown"):
+    """Export the arguments as tg type and version.
+
+    Robot tends to convert "none" into None, hence the unusual default values.
+
+    If either argument is missing, the value from robot variable is used.
+    If argument is present, the value is also stored to robot suite variable.
+
+    :param tg_type: TG type, e.g. TREX.
+    :param tg_version: TG version as determined by the caller.
+    :type tg_type: Optional[str]
+    :type tg_version: Optiona[str]
+    :raises RuntimeError: If value is neither in argument not robot variable.
+    """
+    if tg_type == u"unknown":
+        tg_type = BuiltIn().get_variable_value(u"\\${TG_TYPE}", u"unknown")
+        if tg_type == u"unknown":
+            raise RuntimeError(u"TG type not provided.")
+    else:
+        # We want to set a variable in higher level suite setup
+        # to be available to test setup several levels lower.
+        BuiltIn().set_suite_variable(
+            u"\\${TG_TYPE}", tg_type, u"children=True"
+        )
+    if tg_version == u"unknown":
+        tg_version = BuiltIn().get_variable_value(
+            u"\\${TG_VERSION}", u"unknown"
+        )
+        if tg_type == u"unknown":
+            raise RuntimeError(u"TG version not provided.")
+    else:
+        BuiltIn().set_suite_variable(
+            u"\\${TG_VERSION}", tg_version, u"children=True"
+        )
+    data = get_export_data()
+    data[u"tg_type"] = tg_type.lower()
+    data[u"tg_version"] = tg_version
 
 
 def append_mrr_value(mrr_value, unit):
