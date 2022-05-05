@@ -28,6 +28,7 @@ from datetime import datetime, timedelta
 from copy import deepcopy
 from json import loads, JSONDecodeError
 
+from ......libraries.python.Constantc import Constants
 from ..data.data import Data
 from .graphs import graph_trending, graph_hdrh_latency, \
     select_trending_data
@@ -217,6 +218,13 @@ class Layout:
 
     def label(self, key: str) -> str:
         return self.LABELS.get(key, key)
+
+    @staticmethod
+    def shorten_nic_code(key: str) -> str:
+        for code in Constants.NIC_CODE_TO_SHORT_NAME:
+            if code in key:
+                return key.replace(code, Constants.NIC_CODE_TO_SHORT_NAME[code])
+        return key
 
     def add_content(self):
         """
@@ -799,7 +807,7 @@ class Layout:
                 try:
                     options = sorted(
                         [
-                            {"label": v, "value": v}
+                            {"label": self.shorten_nic_code(v), "value": v}
                                 for v in self.spec_tbs[dd_dut].keys()
                         ],
                         key=lambda d: d["label"]
