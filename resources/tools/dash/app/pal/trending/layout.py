@@ -28,6 +28,7 @@ from datetime import datetime, timedelta
 from copy import deepcopy
 from json import loads, JSONDecodeError
 
+from ......libraries.python.Constantc import Constants
 from ..data.data import Data
 from .graphs import graph_trending, graph_hdrh_latency, \
     select_trending_data
@@ -122,6 +123,7 @@ class Layout:
                 replace("2n-", "")
             test = lst_test[-1]
             nic = suite.split("-")[0]
+            nic = Constants.NIC_CODE_TO_SHORT_NAME.get(nic, nic)
             for drv in self.DRIVERS:
                 if drv in test:
                     if drv == "af-xdp":
