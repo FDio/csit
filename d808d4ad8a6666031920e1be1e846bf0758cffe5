@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "01977fab_76bd5f15",
+        "filename": "docs/model/current/schema/test_case.info.schema.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-05T12:19:16Z",
+      "side": 1,
+      "message": "And where is such use case? Who is using new schema for old data?",
+      "parentUuid": "574fb183_e8def49c",
+      "range": {
+        "startLine": 284,
+        "startChar": 8,
+        "endLine": 284,
+        "endChar": 15
+      },
+      "revId": "d808d4ad8a6666031920e1be1e846bf0758cffe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b1248642_11cf1368",
         "filename": "docs/model/current/schema/test_case.info.schema.yaml",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2022-05-05T12:12:08Z",
       "side": 1,
       "message": "Marking the new field as required means old data would fail to validate with the new schema. Semver requires major version to be bumped.",
+      "range": {
+        "startLine": 317,
+        "startChar": 8,
+        "endLine": 317,
+        "endChar": 15
+      },
+      "revId": "d808d4ad8a6666031920e1be1e846bf0758cffe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c9678e8_a466b013",
+        "filename": "docs/model/current/schema/test_case.info.schema.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-05T12:19:16Z",
+      "side": 1,
+      "message": "Nobody is validating against old data. And if it fails it should be valid.",
+      "parentUuid": "b1248642_11cf1368",
       "range": {
         "startLine": 317,
         "startChar": 8,
