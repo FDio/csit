@@ -427,36 +427,6 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
-                    id="row-ctrl-core",
-                    class_name="gy-1",
-                    children=[
-                        dbc.Label(
-                            "Number of Cores",
-                            class_name="p-0"
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-core-all",
-                                    options=self.CL_ALL_DISABLED,
-                                    inline=False,
-                                    switch=False
-                                )
-                            ],
-                            width=3
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-core",
-                                    inline=True,
-                                    switch=False
-                                )
-                            ]
-                        )
-                    ]
-                ),
-                dbc.Row(
                     id="row-ctrl-framesize",
                     class_name="gy-1",
                     children=[
@@ -479,6 +449,36 @@ class Layout:
                             children=[
                                 dbc.Checklist(
                                     id="cl-ctrl-framesize",
+                                    inline=True,
+                                    switch=False
+                                )
+                            ]
+                        )
+                    ]
+                ),
+                dbc.Row(
+                    id="row-ctrl-core",
+                    class_name="gy-1",
+                    children=[
+                        dbc.Label(
+                            "Number of Cores",
+                            class_name="p-0"
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-core-all",
+                                    options=self.CL_ALL_DISABLED,
+                                    inline=False,
+                                    switch=False
+                                )
+                            ],
+                            width=3
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-core",
                                     inline=True,
                                     switch=False
                                 )
@@ -547,7 +547,7 @@ class Layout:
                                 datetime.utcnow() - timedelta(
                                     days=self.time_period),
                             end_date=datetime.utcnow(),
-                            display_format="D MMMM YY"
+                            display_format="D MMM YY"
                         )
                     ]
                 ),

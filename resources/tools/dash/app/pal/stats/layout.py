@@ -231,6 +231,25 @@ class Layout:
             (self.df_job_info["tbed"] == testbed)
         )]["job"].item()
 
+    def _show_info(self, id: str, title: str) -> list:
+        """
+        """
+        return [
+            f"{title} ",
+            dbc.Badge(
+                id=id,
+                children="?",
+                pill=True,
+                color="white",
+                text_color="info",
+                class_name="border me-1",
+            ),
+            dbc.Tooltip(
+                children="Very useful text",
+                target=id,
+                placement="auto"
+            )
+        ]
 
     def add_content(self):
         """
@@ -378,15 +397,20 @@ class Layout:
                         dbc.Row(
                             class_name="gy-1",
                             children=[
-                                dbc.Label(
-                                    "Device under Test",
-                                    class_name="p-0"
+                                dbc.Row(
+                                    children=[
+                                        dbc.Label(
+                                            children=self._show_info("help-dut", "Device under Test")
+                                        ),
+                                    ]
                                 ),
-                                dbc.RadioItems(
-                                    id="ri-duts",
-                                    inline=True,
-                                    value=self.default["dut"],
-                                    options=self.default["duts"]
+                                dbc.Row(
+                                    dbc.RadioItems(
+                                        id="ri-duts",
+                                        inline=True,
+                                        value=self.default["dut"],
+                                        options=self.default["duts"]
+                                    )
                                 )
                             ]
                         ),
@@ -463,7 +487,7 @@ class Layout:
                                 datetime.utcnow() - timedelta(
                                     days=self.time_period),
                             end_date=datetime.utcnow(),
-                            display_format="D MMMM YY"
+                            display_format="D MMM YY"
                         )
                     ]
                 )
