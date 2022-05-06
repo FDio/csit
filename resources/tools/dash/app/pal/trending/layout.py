@@ -14,6 +14,7 @@
 """Plotly Dash HTML layout override.
 """
 
+import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -73,7 +74,7 @@ class Layout:
     }
 
     def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
-        graph_layout_file: str, data_spec_file: str,
+        graph_layout_file: str, data_spec_file: str, tooltip_file: str,
         time_period: str=None) -> None:
         """
         """
@@ -84,6 +85,7 @@ class Layout:
         self._spec_file = spec_file
         self._graph_layout_file = graph_layout_file
         self._data_spec_file = data_spec_file
+        self._tooltip_file = tooltip_file
         self._time_period = time_period
 
         # Read the data:
@@ -135,7 +137,7 @@ class Layout:
             infra = "-".join((tbed, nic, driver))
             lst_test = test.split("-")
             framesize = lst_test[0]
-            core = lst_test[1] if lst_test[1] else "1C"
+            core = lst_test[1] if lst_test[1] else "8C"
             test = "-".join(lst_test[2: -1])
 
             if tbs.get(dut, None) is None:
@@ -167,6 +169,7 @@ class Layout:
         # Read from files:
         self._html_layout = ""
         self._graph_layout = None
+        self._tooltips = dict()
 
         try:
             with open(self._html_layout_file, "r") as file_read:
@@ -187,8 +190,20 @@ class Layout:
         except YAMLError as err:
             raise RuntimeError(
                 f"An error occurred while parsing the specification file "
-                f"{self._graph_layout_file}\n"
-                f"{err}"
+                f"{self._graph_layout_file}\n{err}"
+            )
+
+        try:
+            with open(self._tooltip_file, "r") as file_read:
+                self._tooltips = load(file_read, Loader=FullLoader)
+        except IOError as err:
+            logging.warning(
+                f"Not possible to open the file {self._tooltip_file}\n{err}"
+            )
+        except YAMLError as err:
+            logging.warning(
+                f"An error occurred while parsing the specification file "
+                f"{self._tooltip_file}\n{err}"
             )
 
         # Callbacks:
@@ -217,6 +232,26 @@ class Layout:
 
     def label(self, key: str) -> str:
         return self.LABELS.get(key, key)
+
+    def _show_tooltip(self, id: str, title: str) -> list:
+        """
+        """
+        return [
+            f"{title} ",
+            dbc.Badge(
+                id=id,
+                children="?",
+                pill=True,
+                color="white",
+                text_color="info",
+                class_name="border ms-1",
+            ),
+            dbc.Tooltip(
+                children=self._tooltips.get(id, str()),
+                target=id,
+                placement="auto"
+            )
+        ]
 
     def add_content(self):
         """
@@ -353,7 +388,10 @@ class Layout:
                     children=[
                         dbc.InputGroup(
                             [
-                                dbc.InputGroupText("DUT"),
+                                dbc.InputGroupText(
+                                    children=self._show_tooltip(
+                                        "help-dut", "DUT")
+                                ),
                                 dbc.Select(
                                     id="dd-ctrl-dut",
                                     placeholder=(
@@ -378,7 +416,10 @@ class Layout:
                     children=[
                         dbc.InputGroup(
                             [
-                                dbc.InputGroupText("Infra"),
+                                dbc.InputGroupText(
+                                    children=self._show_tooltip(
+                                        "help-infra", "Infra")
+                                ),
                                 dbc.Select(
                                     id="dd-ctrl-phy",
                                     placeholder=(
@@ -397,7 +438,10 @@ class Layout:
                     children=[
                         dbc.InputGroup(
                             [
-                                dbc.InputGroupText("Area"),
+                                dbc.InputGroupText(
+                                    children=self._show_tooltip(
+                                        "help-area", "Area")
+                                ),
                                 dbc.Select(
                                     id="dd-ctrl-area",
                                     placeholder="Select an Area...",
@@ -414,7 +458,10 @@ class Layout:
                     children=[
                         dbc.InputGroup(
                             [
-                                dbc.InputGroupText("Test"),
+                                dbc.InputGroupText(
+                                    children=self._show_tooltip(
+                                        "help-test", "Test")
+                                ),
                                 dbc.Select(
                                     id="dd-ctrl-test",
                                     placeholder="Select a Test...",
@@ -427,41 +474,12 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
-                    id="row-ctrl-core",
-                    class_name="gy-1",
-                    children=[
-                        dbc.Label(
-                            "Number of Cores",
-                            class_name="p-0"
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-core-all",
-                                    options=self.CL_ALL_DISABLED,
-                                    inline=False,
-                                    switch=False
-                                )
-                            ],
-                            width=3
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-core",
-                                    inline=True,
-                                    switch=False
-                                )
-                            ]
-                        )
-                    ]
-                ),
-                dbc.Row(
                     id="row-ctrl-framesize",
                     class_name="gy-1",
                     children=[
                         dbc.Label(
-                            "Frame Size",
+                            children=self._show_tooltip(
+                                "help-framesize", "Frame Size"),
                             class_name="p-0"
                         ),
                         dbc.Col(
@@ -487,11 +505,43 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
+                    id="row-ctrl-core",
+                    class_name="gy-1",
+                    children=[
+                        dbc.Label(
+                            children=self._show_tooltip(
+                                "help-cores", "Number of Cores"),
+                            class_name="p-0"
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-core-all",
+                                    options=self.CL_ALL_DISABLED,
+                                    inline=False,
+                                    switch=False
+                                )
+                            ],
+                            width=3
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-core",
+                                    inline=True,
+                                    switch=False
+                                )
+                            ]
+                        )
+                    ]
+                ),
+                dbc.Row(
                     id="row-ctrl-testtype",
                     class_name="gy-1",
                     children=[
                         dbc.Label(
-                            "Test Type",
+                            children=self._show_tooltip(
+                                "help-ttype", "Test Type"),
                             class_name="p-0"
                         ),
                         dbc.Col(
@@ -535,6 +585,11 @@ class Layout:
                 dbc.Row(
                     class_name="gy-1",
                     children=[
+                        dbc.Label(
+                            class_name="gy-1",
+                            children=self._show_tooltip(
+                                "help-time-period", "Time Period"),
+                        ),
                         dcc.DatePickerRange(
                             id="dpr-period",
                             className="d-flex justify-content-center",
@@ -547,7 +602,7 @@ class Layout:
                                 datetime.utcnow() - timedelta(
                                     days=self.time_period),
                             end_date=datetime.utcnow(),
-                            display_format="D MMMM YY"
+                            display_format="D MMM YY"
                         )
                     ]
                 ),
@@ -704,7 +759,8 @@ class Layout:
                     dcc.Loading(children=[
                         dbc.Button(
                             id="btn-download-data",
-                            children=["Download Data"],
+                            children=self._show_tooltip(
+                                "help-download", "Download"),
                             class_name="me-1",
                             color="info"
                         ),

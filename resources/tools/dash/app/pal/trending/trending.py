@@ -41,6 +41,7 @@ def init_trending(server, time_period=None):
         spec_file="pal/trending/spec_test_selection.yaml",
         graph_layout_file="pal/trending/layout.yaml",
         data_spec_file="pal/data/data.yaml",
+        tooltip_file="pal/data/tooltips.yaml",
         time_period=time_period
     )
     dash_app.index_string = layout.html_layout
