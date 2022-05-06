@@ -1,0 +1,27 @@
+help-area:
+  The area defines a VPP packet path and lookup type.
+help-cadence:
+  The cadence of the Jenkins job which runs the tests.
+help-cores:
+  Number of cores the DUT uses during the test.
+help-download:
+  Download the selected data as a csv file.
+help-dut:
+  Device Under Test (DUT) - In software networking, “device” denotes a specific
+  piece of software tasked with packet processing. Such device is surrounded
+  with other software components (such as operating system kernel).
+help-framesize:
+  Frame size - size of an Ethernet Layer-2 frame on the wire, including any VLAN
+  tags (dot1q, dot1ad) and Ethernet FCS, but excluding Ethernet preamble and
+  inter-frame gap. Measured in Bytes.
+help-infra:
+  Infrastructure is defined by the toplology (number of nodes), processor
+  architecture, NIC and driver.
+help-tbed: Teh test bed is defined by toplology (number of nodes) and processor
+  architecture.
+help-test:
+  The test specification consists of packet encapsulation, VPP packet processing
+  (packet forwarding mode and packet processing function(s)) and packet
+  forwarding path.
+help-time-period: Choose a time period for selected tests.
+help-ttype: Main measured variable.

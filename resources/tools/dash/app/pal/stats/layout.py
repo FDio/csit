@@ -14,6 +14,7 @@
 """Plotly Dash HTML layout override.
 """
 
+import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -38,7 +39,7 @@ class Layout:
     DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
 
     def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
-        graph_layout_file: str, data_spec_file: str,
+        graph_layout_file: str, data_spec_file: str, tooltip_file: str,
         time_period: int=None) -> None:
         """
         """
@@ -49,6 +50,7 @@ class Layout:
         self._spec_file = spec_file
         self._graph_layout_file = graph_layout_file
         self._data_spec_file = data_spec_file
+        self._tooltip_file = tooltip_file
         self._time_period = time_period
 
         # Read the data:
@@ -138,6 +140,7 @@ class Layout:
         # Read from files:
         self._html_layout = ""
         self._graph_layout = None
+        self._tooltips = dict()
 
         try:
             with open(self._html_layout_file, "r") as file_read:
@@ -161,6 +164,15 @@ class Layout:
                 f"{self._graph_layout_file}\n"
                 f"{err}"
             )
+
+        try:
+            with open(self._tooltip_file, "r") as file_read:
+                self._tooltips = load(file_read, Loader=FullLoader)
+        except (IOError, YAMLError) as err:
+            logging.warning(
+                f"Not possible to open the file {self._tooltip_file}\n{err}"
+            )
+
 
         self._default_fig_passed, self._default_fig_duration = graph_statistics(
             self.data, self._default["job"], self.layout
@@ -231,6 +243,25 @@ class Layout:
             (self.df_job_info["tbed"] == testbed)
         )]["job"].item()
 
+    def _show_info(self, id: str, title: str) -> list:
+        """
+        """
+        return [
+            f"{title} ",
+            dbc.Badge(
+                id=id,
+                children="?",
+                pill=True,
+                color="white",
+                text_color="info",
+                class_name="border ms-1",
+            ),
+            dbc.Tooltip(
+                children=self._tooltips.get(id, str()),
+                target=id,
+                placement="auto"
+            )
+        ]
 
     def add_content(self):
         """
@@ -353,7 +384,8 @@ class Layout:
                         dcc.Loading(children=[
                             dbc.Button(
                                 id="btn-download-data",
-                                children=["Download Data"],
+                                children=self._show_info(
+                                        "help-download", "Download"),
                                 class_name="me-1",
                                 color="info"
                             ),
@@ -379,14 +411,17 @@ class Layout:
                             class_name="gy-1",
                             children=[
                                 dbc.Label(
-                                    "Device under Test",
-                                    class_name="p-0"
+                                    class_name="p-0",
+                                    children=self._show_info(
+                                        "help-dut", "Device under Test")
                                 ),
-                                dbc.RadioItems(
-                                    id="ri-duts",
-                                    inline=True,
-                                    value=self.default["dut"],
-                                    options=self.default["duts"]
+                                dbc.Row(
+                                    dbc.RadioItems(
+                                        id="ri-duts",
+                                        inline=True,
+                                        value=self.default["dut"],
+                                        options=self.default["duts"]
+                                    )
                                 )
                             ]
                         ),
@@ -394,8 +429,9 @@ class Layout:
                             class_name="gy-1",
                             children=[
                                 dbc.Label(
-                                    "Test Type",
-                                    class_name="p-0"
+                                    class_name="p-0",
+                                    children=self._show_info(
+                                        "help-ttype", "Test Type"),
                                 ),
                                 dbc.RadioItems(
                                     id="ri-ttypes",
@@ -409,8 +445,9 @@ class Layout:
                             class_name="gy-1",
                             children=[
                                 dbc.Label(
-                                    "Cadence",
-                                    class_name="p-0"
+                                    class_name="p-0",
+                                    children=self._show_info(
+                                        "help-cadence", "Cadence"),
                                 ),
                                 dbc.RadioItems(
                                     id="ri-cadences",
@@ -424,8 +461,9 @@ class Layout:
                             class_name="gy-1",
                             children=[
                                 dbc.Label(
-                                    "Test Bed",
-                                    class_name="p-0"
+                                    class_name="p-0",
+                                    children=self._show_info(
+                                        "help-tbed", "Test Bed"),
                                 ),
                                 dbc.Select(
                                     id="dd-tbeds",
@@ -444,29 +482,33 @@ class Layout:
                                     children=self.default["job"]
                                 )
                             ]
+                        ),
+                        dbc.Row(
+                            class_name="g-0 p-2",
+                            children=[
+                                dbc.Label(
+                                    class_name="gy-1",
+                                    children=self._show_info(
+                                        "help-time-period", "Time Period"),
+                                ),
+                                dcc.DatePickerRange(
+                                    id="dpr-period",
+                                    className="d-flex justify-content-center",
+                                    min_date_allowed=\
+                                        datetime.utcnow() - timedelta(
+                                            days=self.time_period),
+                                    max_date_allowed=datetime.utcnow(),
+                                    initial_visible_month=datetime.utcnow(),
+                                    start_date=\
+                                        datetime.utcnow() - timedelta(
+                                            days=self.time_period),
+                                    end_date=datetime.utcnow(),
+                                    display_format="D MMM YY"
+                                )
+                            ]
                         )
                     ]
                 ),
-                dbc.Row(
-                    class_name="g-0 p-2",
-                    children=[
-                        dbc.Label("Choose the Time Period"),
-                        dcc.DatePickerRange(
-                            id="dpr-period",
-                            className="d-flex justify-content-center",
-                            min_date_allowed=\
-                                datetime.utcnow() - timedelta(
-                                    days=self.time_period),
-                            max_date_allowed=datetime.utcnow(),
-                            initial_visible_month=datetime.utcnow(),
-                            start_date=\
-                                datetime.utcnow() - timedelta(
-                                    days=self.time_period),
-                            end_date=datetime.utcnow(),
-                            display_format="D MMMM YY"
-                        )
-                    ]
-                )
             ]
         )
 
