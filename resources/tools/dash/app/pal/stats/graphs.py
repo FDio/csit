@@ -19,12 +19,16 @@ import pandas as pd
 
 from datetime import datetime, timedelta
 
-def select_data(data: pd.DataFrame, itm:str) -> pd.DataFrame:
+def select_data(data: pd.DataFrame, itm:str, start: datetime,
+        end: datetime) -> pd.DataFrame:
     """
     """
 
-    df = data.loc[(data["job"] == itm)].sort_values(
-        by="start_time", ignore_index=True)
+    df = data.loc[
+        (data["job"] == itm) &
+        (data["start_time"] >= start) & (data["start_time"] <= end)
+    ].sort_values(by="start_time", ignore_index=True)
+    df = df.dropna(subset=["duration", ])
 
     return df
 
@@ -35,14 +39,7 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict,
     """
     """
 
-    data = select_data(df, job)
-    data = data.dropna(subset=["duration", ])
-    if data.empty:
-        return None, None
-
-    data = data.loc[(
-        (data["start_time"] >= start) & (data["start_time"] <= end)
-    )]
+    data = select_data(df, job, start, end)
     if data.empty:
         return None, None
 

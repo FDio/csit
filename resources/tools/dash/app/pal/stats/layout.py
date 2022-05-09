@@ -29,7 +29,7 @@ from datetime import datetime, timedelta
 from copy import deepcopy
 
 from ..data.data import Data
-from .graphs import graph_statistics
+from .graphs import graph_statistics, select_data
 
 
 class Layout:
@@ -661,16 +661,33 @@ class Layout:
 
         @app.callback(
             Output("download-data", "data"),
+            State("control-panel", "data"),  # Store
+            State("dpr-period", "start_date"),
+            State("dpr-period", "end_date"),
             Input("btn-download-data", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_data(n_clicks):
+        def _download_data(cp_data: dict, start: str, end: str, n_clicks: int):
             """
             """
-            if not n_clicks:
+            if not (n_clicks):
                 raise PreventUpdate
 
-            return dcc.send_data_frame(self.data.to_csv, "statistics.csv")
+            ctrl_panel = self.ControlPanel(cp_data, self.default)
+
+            job = self._get_job(
+                ctrl_panel.get("ri-duts-value"),
+                ctrl_panel.get("ri-ttypes-value"),
+                ctrl_panel.get("ri-cadences-value"),
+                ctrl_panel.get("dd-tbeds-value")
+            )
+
+            start = datetime(int(start[0:4]), int(start[5:7]), int(start[8:10]))
+            end = datetime(int(end[0:4]), int(end[5:7]), int(end[8:10]))
+            data = select_data(self.data, job, start, end)
+            data = data.drop(columns=["job", ])
+
+            return dcc.send_data_frame(data.T.to_csv, f"{job}-stats.csv")
 
         @app.callback(
             Output("row-metadata", "children"),
