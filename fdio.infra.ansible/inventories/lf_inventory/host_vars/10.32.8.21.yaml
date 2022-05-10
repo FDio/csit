@@ -31,3 +31,4 @@ cpu_microarchitecture: "cascadelake"
 
 intel_700_matrix: "dpdk21.02"
 intel_800_matrix: "dpdk21.02"
+mellanox_cx5_matrix: "dpdk21.02"
