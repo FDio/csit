@@ -1,5 +1,5 @@
 ---
-# file: roles/performance_tuning/tasks/main.yaml
+# file: roles/intel/tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
   apt:
@@ -10,7 +10,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Machine Prerequisites
+- name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest

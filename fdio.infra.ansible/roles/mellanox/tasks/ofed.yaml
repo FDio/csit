@@ -1,0 +1,42 @@
+---
+# file: roles/intel/tasks/i40e.yaml
+
+- name: Inst - Get OFED
+  get_url:
+    url: "{{ mellanox_download_url }}/MLNX_OFED-{{ ofed }}/MLNX_OFED_LINUX-{{ ofed }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
+    dest: "{{ mellanox_extract_dir }}/MLNX_OFED_LINUX-{{ ofed }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
+    mode: "0644"
+  when: mellanox_pcis.stdout_lines | length > 0
+  tags:
+    - mellanox-inst-drivers
+
+- name: Inst - Extract OFED
+  unarchive:
+    remote_src: true
+    src: "{{ mellanox_extract_dir }}/MLNX_OFED_LINUX-{{ ofed }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}.tgz"
+    dest: "{{ mellanox_extract_dir }}/"
+    creates: "{{ mellanox_extract_dir }}/MLNX_OFED_LINUX-{{ ofed }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}"
+  register: mellanox_firmware_extracted
+  tags:
+    - mellanox-inst-drivers
+
+- name: Inst - OFED
+  command: "./mlnxofedinstall --with-mft --dpdk --force --upstream-libs --without-fw-update"
+  args:
+    chdir: "{{ mellanox_extract_dir }}/MLNX_OFED_LINUX-{{ ofed }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}"
+  when: mellanox_firmware_extracted
+  tags:
+    - mellanox-inst-drivers
+
+- name: Inst - Switch Infiniband to Ethernet
+  command: "mlxconfig --yes --dev {{ item }} set LINK_TYPE_P1=2 LINK_TYPE_P2=2"
+  with_items: "{{ mellanox_pcis.stdout_lines }}"
+  tags:
+    - mellanox-inst-drivers
+
+- name: FIX qemu-system removal
+  package:
+    name: "qemu-system"
+    state: latest
+  tags:
+    - mellanox-inst-drivers
