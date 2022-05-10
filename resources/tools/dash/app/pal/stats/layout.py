@@ -15,6 +15,7 @@
 """
 
 import logging
+import urllib
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -89,20 +90,7 @@ class Layout:
             job_info["tbed"].append("-".join(lst_job[-2:]))
         self.df_job_info = pd.DataFrame.from_dict(job_info)
 
-        lst_job = self.DEFAULT_JOB.split("-")
-        self._default = {
-            "job": self.DEFAULT_JOB,
-            "dut": lst_job[1],
-            "ttype": lst_job[3],
-            "cadence": lst_job[4],
-            "tbed": "-".join(lst_job[-2:]),
-            "duts": self._generate_options(self._get_duts()),
-            "ttypes": self._generate_options(self._get_ttypes(lst_job[1])),
-            "cadences": self._generate_options(self._get_cadences(
-                lst_job[1], lst_job[3])),
-            "tbeds": self._generate_options(self._get_test_beds(
-                lst_job[1], lst_job[3], lst_job[4]))
-        }
+        self._default = self._set_job_params(self.DEFAULT_JOB)
 
         tst_info = {
             "job": list(),
@@ -247,6 +235,24 @@ class Layout:
             (self.df_job_info["tbed"] == testbed)
         )]["job"].item()
 
+    def _set_job_params(self, job: str) -> dict:
+        """
+        """
+        lst_job = job.split("-")
+        return {
+            "job": job,
+            "dut": lst_job[1],
+            "ttype": lst_job[3],
+            "cadence": lst_job[4],
+            "tbed": "-".join(lst_job[-2:]),
+            "duts": self._generate_options(self._get_duts()),
+            "ttypes": self._generate_options(self._get_ttypes(lst_job[1])),
+            "cadences": self._generate_options(self._get_cadences(
+                lst_job[1], lst_job[3])),
+            "tbeds": self._generate_options(self._get_test_beds(
+                lst_job[1], lst_job[3], lst_job[4]))
+        }
+
     def _show_tooltip(self, id: str, title: str) -> list:
         """
         """
@@ -274,9 +280,8 @@ class Layout:
             return html.Div(
                 id="div-main",
                 children=[
-                    dcc.Store(
-                        id="control-panel"
-                    ),
+                    dcc.Store(id="control-panel"),
+                    dcc.Location(id="url", refresh=False),
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
@@ -381,20 +386,37 @@ class Layout:
                         ])
                     ]
                 ),
-                dbc.Row(  # Download
-                    id="row-btn-download",
+                dbc.Row(
                     class_name="g-0 p-2",
+                    align="center",
+                    justify="start",
                     children=[
-                        dcc.Loading(children=[
-                            dbc.Button(
-                                id="btn-download-data",
-                                children=self._show_tooltip(
-                                    "help-download", "Download"),
-                                class_name="me-1",
-                                color="info"
-                            ),
-                            dcc.Download(id="download-data")
-                        ])
+                        dbc.Col(  # Download
+                            width=2,
+                            children=[
+                                dcc.Loading(children=[
+                                    dbc.Button(
+                                        id="btn-download-data",
+                                        children=self._show_tooltip(
+                                            "help-download", "Download Data"),
+                                        class_name="me-1",
+                                        color="info"
+                                    ),
+                                    dcc.Download(id="download-data")
+                                ]),
+                            ]
+                        ),
+                        dbc.Col(  # Show URL
+                            width=10,
+                            children=[
+                                dbc.Card(
+                                    id="card-url",
+                                    body=True,
+                                    class_name="gy-2 p-0",
+                                    children=[]
+                                ),
+                            ]
+                        )
                     ]
                 )
             ],
@@ -566,6 +588,7 @@ class Layout:
             Output("control-panel", "data"),  # Store
             Output("graph-passed", "figure"),
             Output("graph-duration", "figure"),
+            Output("card-url", "children"),
             Output("ri-ttypes", "options"),
             Output("ri-cadences", "options"),
             Output("dd-tbeds", "options"),
@@ -581,18 +604,22 @@ class Layout:
             Input("dd-tbeds", "value"),
             Input("dpr-period", "start_date"),
             Input("dpr-period", "end_date"),
-            prevent_initial_call=True
+            Input("url", "href")
+            # prevent_initial_call=True
         )
         def _update_ctrl_panel(cp_data: dict, dut:str, ttype: str, cadence:str,
-                tbed: str, d_start: str, d_end: str) -> tuple:
+                tbed: str, start: str, end: str, href: str) -> tuple:
             """
             """
 
             ctrl_panel = self.ControlPanel(cp_data, self.default)
 
-            d_start = datetime(int(d_start[0:4]), int(d_start[5:7]),
-                int(d_start[8:10]))
-            d_end = datetime(int(d_end[0:4]), int(d_end[5:7]), int(d_end[8:10]))
+            start = datetime(int(start[0:4]), int(start[5:7]), int(start[8:10]))
+            end = datetime(int(end[0:4]), int(end[5:7]), int(end[8:10]))
+
+            parsed_url = urllib.parse.urlparse(href)
+            url = f"{parsed_url.netloc}{parsed_url.path}"
+            url_params = urllib.parse.parse_qs(parsed_url.fragment)
 
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
             if trigger_id == "ri-duts":
@@ -644,6 +671,29 @@ class Layout:
                 })
             elif trigger_id == "dpr-period":
                 pass
+            elif trigger_id == "url":
+                # TODO: Add verification
+                if url_params:
+                    new_job = url_params.get("job", list())[0]
+                    new_start = url_params.get("start", list())[0]
+                    new_end = url_params.get("end", list())[0]
+                    if new_job and new_start and new_end:
+                        start = datetime(
+                            int(new_start[0:4]), int(new_start[5:7]),
+                            int(new_start[8:10]))
+                        end = datetime(
+                            int(new_end[0:4]), int(new_end[5:7]),
+                            int(new_end[8:10]))
+                        job_params = self._set_job_params(new_job)
+                        ctrl_panel = self.ControlPanel(None, job_params)
+                else:
+                    ctrl_panel = self.ControlPanel(cp_data, self.default)
+                    job = self._get_job(
+                        ctrl_panel.get("ri-duts-value"),
+                        ctrl_panel.get("ri-ttypes-value"),
+                        ctrl_panel.get("ri-cadences-value"),
+                        ctrl_panel.get("dd-tbeds-value")
+                    )
 
             job = self._get_job(
                 ctrl_panel.get("ri-duts-value"),
@@ -651,11 +701,29 @@ class Layout:
                 ctrl_panel.get("ri-cadences-value"),
                 ctrl_panel.get("dd-tbeds-value")
             )
+            url_params = {
+                "job": job,
+                "start": start,
+                "end": end
+            }
+
             ctrl_panel.set({"al-job-children": job})
             fig_passed, fig_duration = graph_statistics(
-                self.data, job, self.layout, d_start, d_end)
+                self.data, job, self.layout, start, end)
 
-            ret_val = [ctrl_panel.panel, fig_passed, fig_duration]
+            ret_val = [
+                ctrl_panel.panel,
+                fig_passed,
+                fig_duration,
+                [
+                    dcc.Clipboard(
+                        target_id="card-url",
+                        title="Copy URL",
+                        style={"display": "inline-block"}
+                    ),
+                    f"{url}#{urllib.parse.urlencode(url_params)}"
+                ]
+            ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
 
