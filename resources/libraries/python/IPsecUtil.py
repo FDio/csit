@@ -34,6 +34,7 @@ from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology, NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.VPPUtil import VPPUtil
+from resources.libraries.python.FlowUtil import FlowUtil
 
 
 IPSEC_UDP_PORT_NONE = 0xffff
@@ -471,7 +472,8 @@ class IPsecUtil:
     @staticmethod
     def vpp_ipsec_add_sad_entries(
             node, n_entries, sad_id, spi, crypto_alg, crypto_key,
-            integ_alg=None, integ_key=u"", tunnel_src=None, tunnel_dst=None):
+            integ_alg=None, integ_key=u"", tunnel_src=None,tunnel_dst=None,
+            tunnel_addr_incr=True):
         """Create multiple Security Association Database entries on VPP node.
 
         :param node: VPP node to add SAD entry on.
@@ -488,6 +490,8 @@ class IPsecUtil:
             specified ESP transport mode is used.
         :param tunnel_dst: Tunnel header destination IPv4 or IPv6 address. If
             not specified ESP transport mode is used.
+        :param tunnel_addr_incr: Enable or disable tunnel IP address
+            incremental step.
         :type node: dict
         :type n_entries: int
         :type sad_id: int
@@ -498,6 +502,7 @@ class IPsecUtil:
         :type integ_key: str
         :type tunnel_src: str
         :type tunnel_dst: str
+        :type tunnel_addr_incr: bool
         """
         if isinstance(crypto_key, str):
             crypto_key = crypto_key.encode(encoding=u"utf-8")
@@ -510,8 +515,11 @@ class IPsecUtil:
             src_addr = u""
             dst_addr = u""
 
-        addr_incr = 1 << (128 - 96) if src_addr.version == 6 \
-            else 1 << (32 - 24)
+        if tunnel_addr_incr:
+            addr_incr = 1 << (128 - 96) if src_addr.version == 6 \
+                else 1 << (32 - 24)
+        else:
+            addr_incr = 0
 
         if int(n_entries) > 10:
             tmp_filename = f"/tmp/ipsec_sad_{sad_id}_add_del_entry.script"
@@ -2114,7 +2122,8 @@ class IPsecUtil:
     @staticmethod
     def vpp_ipsec_add_multiple_tunnels(
             nodes, interface1, interface2, n_tunnels, crypto_alg, integ_alg,
-            tunnel_ip1, tunnel_ip2, raddr_ip1, raddr_ip2, raddr_range):
+            tunnel_ip1, tunnel_ip2, raddr_ip1, raddr_ip2, raddr_range,
+            tunnel_addr_incr=True):
         """Create multiple IPsec tunnels between two VPP nodes.
 
         :param nodes: VPP nodes to create tunnels.
@@ -2131,6 +2140,8 @@ class IPsecUtil:
             first tunnel in direction node2->node1.
         :param raddr_range: Mask specifying range of Policy selector Remote
             IPv4 addresses. Valid values are from 1 to 32.
+        :param tunnel_addr_incr: Enable or disable tunnel IP address
+            incremental step.
         :type nodes: dict
         :type interface1: str or int
         :type interface2: str or int
@@ -2142,6 +2153,7 @@ class IPsecUtil:
         :type raddr_ip1: string
         :type raddr_ip2: string
         :type raddr_range: int
+        :type tunnel_addr_incr: bool
         """
         spd_id = 1
         p_hi = 100
@@ -2184,7 +2196,7 @@ class IPsecUtil:
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
             nodes[u"DUT1"], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
-            integ_alg, integ_key, tunnel_ip1, tunnel_ip2
+            integ_alg, integ_key, tunnel_ip1, tunnel_ip2, tunnel_addr_incr
         )
 
         IPsecUtil.vpp_ipsec_add_spd_entries(
@@ -2196,7 +2208,7 @@ class IPsecUtil:
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
             nodes[u"DUT1"], n_tunnels, sa_id_2, spi_2, crypto_alg, crypto_key,
-            integ_alg, integ_key, tunnel_ip2, tunnel_ip1
+            integ_alg, integ_key, tunnel_ip2, tunnel_ip1, tunnel_addr_incr
         )
         IPsecUtil.vpp_ipsec_add_spd_entries(
             nodes[u"DUT1"], n_tunnels, spd_id, priority=ObjIncrement(p_lo, 0),
@@ -2226,7 +2238,8 @@ class IPsecUtil:
 
             IPsecUtil.vpp_ipsec_add_sad_entries(
                 nodes[u"DUT2"], n_tunnels, sa_id_1, spi_1, crypto_alg,
-                crypto_key, integ_alg, integ_key, tunnel_ip1, tunnel_ip2
+                crypto_key, integ_alg, integ_key, tunnel_ip1, tunnel_ip2,
+                tunnel_addr_incr
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
                 nodes[u"DUT2"], n_tunnels, spd_id,
@@ -2238,7 +2251,8 @@ class IPsecUtil:
 
             IPsecUtil.vpp_ipsec_add_sad_entries(
                 nodes[u"DUT2"], n_tunnels, sa_id_2, spi_2, crypto_alg,
-                crypto_key, integ_alg, integ_key, tunnel_ip2, tunnel_ip1
+                crypto_key, integ_alg, integ_key, tunnel_ip2, tunnel_ip1,
+                tunnel_addr_incr
             )
             IPsecUtil.vpp_ipsec_add_spd_entries(
                 nodes[u"DUT2"], n_tunnels, spd_id,
@@ -2268,3 +2282,53 @@ class IPsecUtil:
             u"ipsec_sa_v3_dump"
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
+
+    @staticmethod
+    def vpp_ipsec_flow_enale_rss(node, proto, type, function="default"):
+        """Ipsec flow enable rss action.
+
+        :param node: DUT node.
+        :param proto: The flow protocol.
+        :param type: RSS type.
+        :param function: RSS function.
+
+        :type node: dict
+        :type proto: str
+        :type type: str
+        :type function: str
+        :returns: flow_index.
+        """
+        # TODO: to be fixed to use full PAPI when it is ready in VPP
+        cmd = f"test flow add src-ip any proto {proto} rss function " \
+            f"{function} rss types {type}"
+        stdout = PapiSocketExecutor.run_cli_cmd(node, cmd)
+        flow_index = stdout.split()[1]
+
+        return flow_index
+
+    @staticmethod
+    def vpp_create_ipsec_flows_on_dut(
+            node, n_flows, rx_queues, spi_start, interface):
+        """Create mutiple ipsec flows and enable flows onto interface.
+
+        :param node: DUT node.
+        :param n_flows: Number of flows to create.
+        :param rx_queues: NUmber of RX queues.
+        :param spi_start: The start spi.
+        :param interface: Name of the interface.
+
+        :type node: dict
+        :type n_flows: int
+        :type rx_queues: int
+        :type spi_start: int
+        :type interface: str
+        :returns: flow_index.
+        """
+
+        for i in range(0, n_flows):
+            rx_queue = i%rx_queues
+
+            spi = spi_start + i
+            flow_index = FlowUtil.vpp_create_ip4_ipsec_flow(
+                    node, "ESP", spi, "redirect-to-queue", value=rx_queue)
+            FlowUtil.vpp_flow_enable(node, interface, flow_index)
