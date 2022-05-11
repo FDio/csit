@@ -16,14 +16,14 @@ nodes:
     username: testuser
     password: Csit1234
     interfaces:
-      port1:
-        # s67-t37-tg1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
-        mac_address: "b4:96:91:b2:a1:48"
-        pci_address: "0000:17:00.0"
-        ip4_address: "172.16.10.1"
-        driver: ice
-        link: link1
-        model: Intel-E810CQ
+#      port1:
+#        # s67-t37-tg1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
+#        mac_address: "b4:96:91:b2:a1:48"
+#        pci_address: "0000:17:00.0"
+#        ip4_address: "172.16.10.1"
+#        driver: ice
+#        link: link1
+#        model: Intel-E810CQ
 #      port2:
 #        # s67-t37-tg1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
 #        mac_address: "b4:96:91:b2:a1:49"
@@ -89,14 +89,14 @@ nodes:
     password: Csit1234
     uio_driver: vfio-pci
     interfaces:
-      port1:
-        # s65-t37-sut1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
-        mac_address: "b4:96:91:b2:a7:b0"
-        pci_address: "0000:17:00.0"
-        ip4_address: "172.16.10.2"
-        driver: ice
-        link: link1
-        model: Intel-E810CQ
+#      port1:
+#        # s65-t37-sut1-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
+#        mac_address: "b4:96:91:b2:a7:b0"
+#        pci_address: "0000:17:00.0"
+#        ip4_address: "172.16.10.2"
+#        driver: ice
+#        link: link1
+#        model: Intel-E810CQ
 #      port2:
 #        # s65-t37-sut1-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
 #        mac_address: "b4:96:91:b2:a7:b1"
@@ -162,14 +162,14 @@ nodes:
     password: Csit1234
     uio_driver: vfio-pci
     interfaces:
-      port1:
-        # s66-t37-sut2-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
-        mac_address: "40:a6:b7:67:27:50"
-        pci_address: "0000:17:00.0"
-        ip4_address: "172.16.10.3"
-        driver: ice
-        link: link2
-        model: Intel-E810CQ
+#      port1:
+#        # s66-t37-sut2-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
+#        mac_address: "40:a6:b7:67:27:50"
+#        pci_address: "0000:17:00.0"
+#        ip4_address: "172.16.10.3"
+#        driver: ice
+#        link: link2
+#        model: Intel-E810CQ
 #      port2:
 #        # s66-t37-sut2-c9/p2 - 100GE port2 Intel E810-CQDA2 2p100GE.
 #        mac_address: "40:a6:b7:67:27:51"

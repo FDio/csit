@@ -531,6 +531,10 @@ Encapsulation Tags
 
     All test cases with GTPU.
 
+.. topic:: GTPU_OFFLOAD
+
+    All test cases with GTPU_OFFLOAD.
+
 .. topic:: IPSEC
 
     All test cases with IPSEC.
