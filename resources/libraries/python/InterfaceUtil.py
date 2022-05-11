@@ -1108,6 +1108,31 @@ class InterfaceUtil:
         return sw_if_index
 
     @staticmethod
+    def vpp_enable_gtpu_offload_rx(node, interface, gtpu_if_index):
+        """Enable gtpu offload rx onto interface.
+
+        :param node: Node to run command on.
+        :param interface: Name of the specific interface.
+        :param gtpu_if_index: Index of gtpu tunnel interface.
+
+        :type node: dict
+        :type interface: str
+        :type gtpu_interface: int
+        """
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
+
+        cmd = u"gtpu_offload_rx"
+        args = dict(
+            hw_if_index=sw_if_index,
+            sw_if_index=gtpu_if_index,
+            enable=True
+        )
+
+        err_msg = f"Failed to enable gtpu offload rx on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
     def vpp_create_loopback(node, mac=None):
         """Create loopback interface on VPP node.
 

@@ -16,9 +16,10 @@
 | Resource | resources/libraries/robot/overlay/gtpu.robot
 
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | IP4FWD | IP4BASE | ENCAP | GTPU | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | IP4FWD | IP4BASE | ENCAP | GTPU | GTPU_OFFLOAD
+| ... | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4gtpusw-ip4base
+| ... | ethip4gtpuhw-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -36,8 +37,8 @@
 | ... | Eth-IPv4 on TG-DUTn for IPv4 routing over GTPU tunnel.
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with IPv4. \
-| ... | routing and static routes. GTPU tunnel is configured between DUT1 \
-| ... | and DUT2. DUT1 and DUT2 are tested with ${nic_name}.
+| ... | routing and static routes. GTPU tunnel is configured on each DUT and \
+| ... | enabled GTPU offload rx. DUT1 and DUT2 are tested with ${nic_name}.
 | ... |
 | ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
 | ... | Drop Rate) with zero packet loss tolerance and throughput PDR \
@@ -70,8 +71,9 @@
 | Local Template
 | |
 | | [Documentation]
-| | ... | - **[Cfg]** DUT runs gtpu routing config. Each DUT uses \
-| | ... | ${phy_cores} physical core(s) for worker threads.
+| | ... | - **[Cfg]** DUT runs gtpu routing config, and Enable gtpu offload \
+| | ... | rx config. Each DUT uses ${phy_cores} physical core(s) for worker \
+| | ... | threads.
 | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
 | |
 | | ... | *Arguments:*
@@ -91,53 +93,54 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IP4 forwarding with GTPU tunnel in 3-node circular topology
+| | ... | offload=${True}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4gtpusw-ip4base-ndrpdr
+| 64B-1c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4gtpusw-ip4base-ndrpdr
+| 64B-2c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4gtpusw-ip4base-ndrpdr
+| 64B-4c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4gtpusw-ip4base-ndrpdr
+| 1518B-1c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4gtpusw-ip4base-ndrpdr
+| 1518B-2c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4gtpusw-ip4base-ndrpdr
+| 1518B-4c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4gtpusw-ip4base-ndrpdr
+| 9000B-1c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4gtpusw-ip4base-ndrpdr
+| 9000B-2c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4gtpusw-ip4base-ndrpdr
+| 9000B-4c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4gtpusw-ip4base-ndrpdr
+| IMIX-1c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4gtpusw-ip4base-ndrpdr
+| IMIX-2c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4gtpusw-ip4base-ndrpdr
+| IMIX-4c-ethip4gtpuhw-ip4base-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
