@@ -531,6 +531,10 @@ Encapsulation Tags
 
     All test cases with GTPU.
 
+.. topic:: GTPU_HWACCEL
+
+    All test cases with GTPU_HWACCEL.
+
 .. topic:: IPSEC
 
     All test cases with IPSEC.
