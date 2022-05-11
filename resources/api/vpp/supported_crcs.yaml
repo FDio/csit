@@ -115,6 +115,8 @@
     gtpu_add_del_tunnel_reply: '0x5383d31f'  # perf
     # ^^ 64B-1c-ethip4gtpusw-ip4base-ndrpdr
     # ^ ndrpdrAND1cAND64BANDethip4gtpusw-ip4base
+    gtpu_offload_rx: '0xf0b08786' # perf
+    gtpu_offload_rx_reply: '0xe8d4e804' # perf
     hw_interface_set_mtu: '0xe6746899'  # dev
     hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
     input_acl_set_interface: '0xde7ad708'  # dev
