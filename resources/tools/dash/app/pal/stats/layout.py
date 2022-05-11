@@ -15,7 +15,6 @@
 """
 
 import logging
-import urllib
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -30,6 +29,7 @@ from datetime import datetime, timedelta
 from copy import deepcopy
 
 from ..data.data import Data
+from ..data.url_processing import url_decode, url_encode
 from .graphs import graph_statistics, select_data
 
 
@@ -578,9 +578,11 @@ class Layout:
 
     @staticmethod
     def _generate_options(opts: list) -> list:
-        """
-        """
         return [{"label": i, "value": i} for i in opts]
+
+    @staticmethod
+    def _get_date(s_date: str) -> datetime:
+        return datetime(int(s_date[0:4]), int(s_date[5:7]), int(s_date[8:10]))
 
     def callbacks(self, app):
 
@@ -614,12 +616,15 @@ class Layout:
 
             ctrl_panel = self.ControlPanel(cp_data, self.default)
 
-            start = datetime(int(start[0:4]), int(start[5:7]), int(start[8:10]))
-            end = datetime(int(end[0:4]), int(end[5:7]), int(end[8:10]))
+            start = self._get_date(start)
+            end = self._get_date(end)
 
-            parsed_url = urllib.parse.urlparse(href)
-            url = f"{parsed_url.netloc}{parsed_url.path}"
-            url_params = urllib.parse.parse_qs(parsed_url.fragment)
+            # Parse the url:
+            parsed_url = url_decode(href)
+            if parsed_url:
+                url_params = parsed_url["params"]
+            else:
+                url_params = None
 
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
             if trigger_id == "ri-duts":
@@ -678,12 +683,8 @@ class Layout:
                     new_start = url_params.get("start", list())[0]
                     new_end = url_params.get("end", list())[0]
                     if new_job and new_start and new_end:
-                        start = datetime(
-                            int(new_start[0:4]), int(new_start[5:7]),
-                            int(new_start[8:10]))
-                        end = datetime(
-                            int(new_end[0:4]), int(new_end[5:7]),
-                            int(new_end[8:10]))
+                        start = self._get_date(new_start)
+                        end = self._get_date(new_end)
                         job_params = self._set_job_params(new_job)
                         ctrl_panel = self.ControlPanel(None, job_params)
                 else:
@@ -701,27 +702,36 @@ class Layout:
                 ctrl_panel.get("ri-cadences-value"),
                 ctrl_panel.get("dd-tbeds-value")
             )
-            url_params = {
-                "job": job,
-                "start": start,
-                "end": end
-            }
 
             ctrl_panel.set({"al-job-children": job})
-            fig_passed, fig_duration = graph_statistics(
-                self.data, job, self.layout, start, end)
+            fig_passed, fig_duration = graph_statistics(self.data, job,
+                self.layout, start, end)
+
+            if parsed_url:
+                new_url = url_encode({
+                    "scheme": parsed_url["scheme"],
+                    "netloc": parsed_url["netloc"],
+                    "path": parsed_url["path"],
+                    "params": {
+                        "job": job,
+                        "start": start,
+                        "end": end
+                    }
+                })
+            else:
+                new_url = str()
 
             ret_val = [
                 ctrl_panel.panel,
                 fig_passed,
                 fig_duration,
-                [
+                [  # URL
                     dcc.Clipboard(
                         target_id="card-url",
                         title="Copy URL",
                         style={"display": "inline-block"}
                     ),
-                    f"{url}#{urllib.parse.urlencode(url_params)}"
+                    new_url
                 ]
             ]
             ret_val.extend(ctrl_panel.values())
