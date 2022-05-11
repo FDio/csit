@@ -571,6 +571,14 @@ Encapsulation Tags
 
     All test cases with FLOW.
 
+.. topic:: FLOW_DIR
+
+    All test cases with FLOW_DIR.
+
+.. topic:: FLOW_RSS
+
+    All test cases with FLOW_RSS.
+
 .. topic:: NTUPLE
 
     All test cases with NTUPLE.
