@@ -33,37 +33,37 @@ nodes:
 #        link: link2
 #        model: Intel-E810CQ
       port3:
-        # s67-t37-tg1-c4/p1 - 25GE port1 Intel E810-CQDA4 4p25GE.
+        # s67-t37-tg1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ec"
         pci_address: "0000:31:00.0"
         ip4_address: "172.16.30.1"
         driver: ice
         link: link3
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port4:
-        # s67-t37-tg1-c4/p2 - 25GE port2 Intel E810-CQDA4 4p25GE.
+        # s67-t37-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ed"
         pci_address: "0000:31:00.1"
         ip4_address: "172.16.40.1"
         driver: ice
         link: link4
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port5:
-        # s67-t37-tg1-c4/p3 - 25GE port3 Intel E810-CQDA4 4p25GE.
+        # s67-t37-tg1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ee"
         pci_address: "0000:31:00.2"
         ip4_address: "172.16.50.1"
         driver: ice
         link: link5
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port6:
-        # s67-t37-tg1-c4/p4 - 25GE port4 Intel E810-CQDA4 4p25GE.
+        # s67-t37-tg1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:ef"
         pci_address: "0000:31:00.3"
         ip4_address: "172.16.60.1"
         driver: ice
         link: link6
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port7:
         # s67-t37-tg1-c2/p1 - 25GE port1 Intel NIC x710 2p25GE.
         mac_address: "3c:fd:fe:bd:fa:24"
@@ -106,37 +106,37 @@ nodes:
 #        link: link22
 #        model: Intel-E810CQ
       port3:
-        # s65-t37-sut1-c4/p1 - 25GE port1 Intel E810-CQDA4 4p25GE.
+        # s65-t37-sut1-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:60"
         pci_address: "0000:31:00.0"
         ip4_address: "172.16.30.2"
         driver: ice
         link: link3
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port4:
-        # s65-t37-sut1-c4/p2 - 25GE port2 Intel E810-CQDA4 4p25GE.
+        # s65-t37-sut1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:61"
         pci_address: "0000:31:00.1"
         ip4_address: "172.16.40.2"
         driver: ice
         link: link44
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port5:
-        # s65-t37-sut1-c4/p3 - 25GE port3 Intel E810-CQDA4 4p25GE.
+        # s65-t37-sut1-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:62"
         pci_address: "0000:31:00.2"
         ip4_address: "172.16.50.2"
         driver: ice
         link: link5
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port6:
-        # s65-t37-sut1-c4/p4 - 25GE port4 Intel E810-CQDA4 4p25GE.
+        # s65-t37-sut1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:77:63"
         pci_address: "0000:31:00.3"
         ip4_address: "172.16.60.2"
         driver: ice
         link: link66
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port7:
         # s65-t37-sut1-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f8:68"
@@ -179,37 +179,37 @@ nodes:
 #        link: link22
 #        model: Intel-E810CQ
       port3:
-        # s66-t37-sut2-c4/p1 - 25GE port1 Intel E810-CQDA4 4p25GE.
+        # s66-t37-sut2-c4/p1 - 25GE port1 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:24"
         pci_address: "0000:31:00.0"
         ip4_address: "172.16.30.3"
         driver: ice
         link: link4
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port4:
-        # s66-t37-sut2-c4/p2 - 25GE port2 Intel E810-CQDA4 4p25GE.
+        # s66-t37-sut2-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:25"
         pci_address: "0000:31:00.1"
         ip4_address: "172.16.40.3"
         driver: ice
         link: link44
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port5:
-        # s66-t37-sut2-c4/p3 - 25GE port3 Intel E810-CQDA4 4p25GE.
+        # s66-t37-sut2-c4/p3 - 25GE port3 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:26"
         pci_address: "0000:31:00.2"
         ip4_address: "172.16.50.3"
         driver: ice
         link: link6
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port6:
-        # s66-t37-sut2-c4/p4 - 25GE port4 Intel E810-CQDA4 4p25GE.
+        # s66-t37-sut2-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
         mac_address: "b4:96:91:a5:78:27"
         pci_address: "0000:31:00.3"
         ip4_address: "172.16.60.3"
         driver: ice
         link: link66
-        model: Intel-E810CQ
+        model: Intel-E810XXV
       port7:
         # s66-t37-sut2-c2/p1 - 25GE port1 Intel NIC xxv710 2p25GE.
         mac_address: "3c:fd:fe:bd:f9:f4"
