@@ -28,10 +28,12 @@ from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 from copy import deepcopy
 from json import loads, JSONDecodeError
+from ast import literal_eval
 
 from ..data.data import Data
 from .graphs import graph_trending, graph_hdrh_latency, \
     select_trending_data
+from ..data.url_processing import url_decode, url_encode
 
 
 class Layout:
@@ -284,12 +286,9 @@ class Layout:
                         id="row-main",
                         class_name="g-0",
                         children=[
-                            dcc.Store(
-                                id="selected-tests"
-                            ),
-                            dcc.Store(
-                                id="control-panel"
-                            ),
+                            dcc.Store(id="selected-tests"),
+                            dcc.Store(id="control-panel"),
+                            dcc.Location(id="url", refresh=False),
                             self._add_ctrl_col(),
                             self._add_plotting_col(),
                         ]
@@ -736,13 +735,17 @@ class Layout:
         else:
             return list()
 
+    @staticmethod
+    def _get_date(s_date: str) -> datetime:
+        return datetime(int(s_date[0:4]), int(s_date[5:7]), int(s_date[8:10]))
+
     def callbacks(self, app):
 
-        def _generate_plotting_arrea(args: tuple) -> tuple:
+        def _generate_plotting_area(figs: tuple, url: str) -> tuple:
             """
             """
 
-            (fig_tput, fig_lat) = args
+            (fig_tput, fig_lat) = figs
 
             row_fig_tput = self.PLACEHOLDER
             row_fig_lat = self.PLACEHOLDER
@@ -756,16 +759,39 @@ class Layout:
                     )
                 ]
                 row_btn_dwnld = [
-                    dcc.Loading(children=[
-                        dbc.Button(
-                            id="btn-download-data",
-                            children=self._show_tooltip(
-                                "help-download", "Download"),
-                            class_name="me-1",
-                            color="info"
-                        ),
-                        dcc.Download(id="download-data")
-                    ]),
+                    dbc.Col(  # Download
+                        width=2,
+                        children=[
+                            dcc.Loading(children=[
+                                dbc.Button(
+                                    id="btn-download-data",
+                                    children=self._show_tooltip(
+                                        "help-download", "Download"),
+                                    class_name="me-1",
+                                    color="info"
+                                ),
+                                dcc.Download(id="download-data")
+                            ]),
+                        ]
+                    ),
+                    dbc.Col(  # Show URL
+                        width=10,
+                        children=[
+                            dbc.Card(
+                                id="card-url",
+                                body=True,
+                                class_name="gy-2 p-0",
+                                children=[
+                                    dcc.Clipboard(
+                                        target_id="card-url",
+                                        title="Copy URL",
+                                        style={"display": "inline-block"}
+                                    ),
+                                    url
+                                ]
+                            ),
+                        ]
+                    )
                 ]
             if fig_lat:
                 row_fig_lat = [
@@ -827,27 +853,49 @@ class Layout:
             Input("dpr-period", "end_date"),
             Input("btn-sel-remove", "n_clicks"),
             Input("btn-sel-remove-all", "n_clicks"),
+            Input("url", "href")
         )
         def _update_ctrl_panel(cp_data: dict, store_sel: list, list_sel: list,
             dd_dut: str, dd_phy: str, dd_area: str, dd_test: str, cl_core: list,
             cl_core_all: list, cl_framesize: list, cl_framesize_all: list,
             cl_testtype: list, cl_testtype_all: list, btn_add: int,
             d_start: str, d_end: str, btn_remove: int,
-            btn_remove_all: int) -> tuple:
+            btn_remove_all: int, href: str) -> tuple:
             """
             """
 
-            d_start = datetime(int(d_start[0:4]), int(d_start[5:7]),
-                int(d_start[8:10]))
-            d_end = datetime(int(d_end[0:4]), int(d_end[5:7]), int(d_end[8:10]))
+            def _gen_new_url(parsed_url: dict, store_sel: list,
+                    start: datetime, end: datetime) -> str:
+
+                if parsed_url:
+                    new_url = url_encode({
+                        "scheme": parsed_url["scheme"],
+                        "netloc": parsed_url["netloc"],
+                        "path": parsed_url["path"],
+                        "params": {
+                            "store_sel": store_sel,
+                            "start": start,
+                            "end": end
+                        }
+                    })
+                else:
+                    new_url = str()
+                return new_url
+
+
+            ctrl_panel = self.ControlPanel(cp_data)
+
+            d_start = self._get_date(d_start)
+            d_end = self._get_date(d_end)
+
+            # Parse the url:
+            parsed_url = url_decode(href)
 
             row_fig_tput = no_update
             row_fig_lat = no_update
             row_btn_dwnld = no_update
             row_card_sel_tests = no_update
             row_btns_sel_tests = no_update
-
-            ctrl_panel = self.ControlPanel(cp_data)
 
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
 
@@ -887,7 +935,7 @@ class Layout:
                     "cl-ctrl-testtype-all-value": list(),
                     "cl-ctrl-testtype-all-options": self.CL_ALL_DISABLED,
                 })
-            if trigger_id == "dd-ctrl-phy":
+            elif trigger_id == "dd-ctrl-phy":
                 try:
                     dut = ctrl_panel.get("dd-ctrl-dut-value")
                     options = sorted(
@@ -1097,18 +1145,20 @@ class Layout:
                         "cl-selected-options": self._list_tests(store_sel)
                     })
                     row_fig_tput, row_fig_lat, row_btn_dwnld = \
-                        _generate_plotting_arrea(
+                        _generate_plotting_area(
                             graph_trending(
                                 self.data, store_sel, self.layout, d_start,
                                 d_end
-                            )
+                            ),
+                            _gen_new_url(parsed_url, store_sel, d_start, d_end)
                         )
             elif trigger_id == "dpr-period":
                 row_fig_tput, row_fig_lat, row_btn_dwnld = \
-                    _generate_plotting_arrea(
+                    _generate_plotting_area(
                         graph_trending(
                             self.data, store_sel, self.layout, d_start, d_end
-                        )
+                        ),
+                        _gen_new_url(parsed_url, store_sel, d_start, d_end)
                     )
             elif trigger_id == "btn-sel-remove-all":
                 _ = btn_remove_all
@@ -1131,11 +1181,12 @@ class Layout:
                     store_sel = new_store_sel
                 if store_sel:
                     row_fig_tput, row_fig_lat, row_btn_dwnld = \
-                        _generate_plotting_arrea(
+                        _generate_plotting_area(
                             graph_trending(
                                 self.data, store_sel, self.layout, d_start,
                                 d_end
-                            )
+                            ),
+                            _gen_new_url(parsed_url, store_sel, d_start, d_end)
                         )
                     ctrl_panel.set({
                         "cl-selected-options": self._list_tests(store_sel)
@@ -1148,8 +1199,42 @@ class Layout:
                     row_btns_sel_tests = self.STYLE_DISABLED
                     store_sel = list()
                     ctrl_panel.set({
-                            "cl-selected-options": list()
+                        "cl-selected-options": list()
                     })
+            elif trigger_id == "url":
+                # TODO: Add verification
+                url_params = parsed_url["params"]
+                if url_params:
+                    store_sel = literal_eval(
+                        url_params.get("store_sel", list())[0])
+                    d_start = self._get_date(url_params.get("start", list())[0])
+                    d_end = self._get_date(url_params.get("end", list())[0])
+                    if store_sel:
+                        row_fig_tput, row_fig_lat, row_btn_dwnld = \
+                            _generate_plotting_area(
+                                graph_trending(
+                                    self.data, store_sel, self.layout, d_start,
+                                    d_end
+                                ),
+                                _gen_new_url(
+                                    parsed_url, store_sel, d_start, d_end
+                                )
+                            )
+                        row_card_sel_tests = self.STYLE_ENABLED
+                        row_btns_sel_tests = self.STYLE_ENABLED
+                        ctrl_panel.set({
+                            "cl-selected-options": self._list_tests(store_sel)
+                        })
+                    else:
+                        row_fig_tput = self.PLACEHOLDER
+                        row_fig_lat = self.PLACEHOLDER
+                        row_btn_dwnld = self.PLACEHOLDER
+                        row_card_sel_tests = self.STYLE_DISABLED
+                        row_btns_sel_tests = self.STYLE_DISABLED
+                        store_sel = list()
+                        ctrl_panel.set({
+                                "cl-selected-options": list()
+                        })
 
             if ctrl_panel.get("cl-ctrl-core-value") and \
                     ctrl_panel.get("cl-ctrl-framesize-value") and \

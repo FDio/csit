@@ -29,7 +29,7 @@ def url_encode(params: dict) -> str:
     url_params = params.get("params", None)
     if url_params:
         encoded_params = urlsafe_b64encode(
-            compress(urlencode(url_params).encode("utf-8"))
+            compress(urlencode(url_params).encode("utf-8"), level=9)
         ).rstrip(b"=").decode("utf-8")
     else:
         encoded_params = str()
