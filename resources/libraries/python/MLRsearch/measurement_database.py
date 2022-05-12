@@ -13,11 +13,18 @@
 
 """Module defining MeasurementDatabase class."""
 
-import copy
+from copy import deepcopy
+from dataclasses import dataclass
+from typing import List, Optional, Tuple
 
-from .receive_rate_interval import ReceiveRateInterval
+from .comparable_measurement_result import ComparableMeasurementResult as Result
+from .measurement_interval import MeasurementInterval
 
 
+MaybeResult = Optional[Result]
+
+
+@dataclass
 class MeasurementDatabase:
     """Structure holding measurement results for multiple durations.
 
@@ -28,51 +35,42 @@ class MeasurementDatabase:
     (as longer results are hard limits, incompatible short results are removed).
     """
 
-    def __init__(self, measurements):
-        """Store (deep copy of) measurement results and normalize them.
+    measurements: List[Result]
+    """The measurement results to store, kept in normalized form."""
 
-        Empty iterable (zero measurements) is an acceptable input.
-
-        :param measurements: The measurement results to store.
-        :type measurements: Iterable[ReceiveRateMeasurement]
-        """
-        self.measurements = [copy.deepcopy(meas) for meas in measurements]
+    def __post_init__(self) -> None:
+        """Store (deep copy of) measurement results and normalize them."""
+        self.measurements = [deepcopy(meas) for meas in self.measurements]
         self._normalize()
 
-    def __repr__(self):
-        """Return string executable to get equivalent instance.
-
-        :returns: Code to construct equivalent instance.
-        :rtype: str
-        """
-        return f"NewDatabase(measurements={self.measurements!r})"
-
-    def _normalize(self):
+    def _normalize(self) -> None:
         """Sort, remove obsoleted results, set effective loss ratios.
 
         TODO: Explain the logic.
         """
         self.measurements.sort()
-        # Remove shorter and worse results at same or smaller load.
+        # Remove obsolete result, override conflicting loss ratios.
         last_by_duration = dict()
         new_reversed_measurements = list()
         for measurement in reversed(self.measurements):
-            duration = measurement.duration
+            duration = measurement.intended_duration
+            measurement.overridden_loss_ratio = measurement.loss_ratio
             for other_duration, other_measurement in last_by_duration.items():
                 if other_duration < duration:
                     # Fine, keep comparing with others.
                     continue
-                if other_measurement.target_tr == measurement.target_tr:
-                    # Obsolete, do not keep.
+                if other_measurement.intended_load == measurement.intended_load:
+                    # Obsoleted, do not keep.
                     break
+                ratio_override = other_measurement.overridden_loss_ratio
                 if (
-                    other_duration > measurement.duration
-                    and other_measurement.loss_ratio < measurement.loss_ratio
+                    other_duration > measurement.intended_duration
+                    and ratio_override < measurement.overridden_loss_ratio
                 ):
-                    # We cannot keep the old measurement with this high loss,
-                    # but we can artificially lower the high loss,
-                    # so the measurement is still available for re-measurement.
-                    measurement.loss_ratio = other_measurement.loss_ratio
+                    # We cannot remove the measurement,
+                    # as it can be the latest one, but we have to override.
+                    measurement.overridden_loss_ratio = ratio_override
+                    # Continue, there may be stricter override.
             else:
                 new_reversed_measurements.append(measurement)
                 last_by_duration[duration] = measurement
@@ -82,22 +80,26 @@ class MeasurementDatabase:
         ratio_previous = None
         for measurement in self.measurements:
             if ratio_previous is None:
-                ratio_previous = measurement.loss_ratio
+                ratio_previous = measurement.overridden_loss_ratio
                 measurement.effective_loss_ratio = ratio_previous
                 continue
-            ratio_previous = max(ratio_previous, measurement.loss_ratio)
+            ratio_previous = max(
+                ratio_previous, measurement.overridden_loss_ratio
+            )
             measurement.effective_loss_ratio = ratio_previous
 
-    def add(self, measurement):
+    def add(self, measurement: Result) -> None:
         """Add measurement and normalize.
 
         :param measurement: Measurement result to add to the database.
-        :type measurement: ReceiveRateMeasurement
+        :type measurement: MeasurementResult
         """
-        self.measurements.append(copy.deepcopy(measurement))
+        self.measurements.append(deepcopy(measurement))
         self._normalize()
 
-    def get_valid_bounds(self, ratio, min_duration):
+    def get_valid_bounds(
+        self, ratio: float, min_duration: float
+    ) -> Tuple[MaybeResult, MaybeResult, MaybeResult, MaybeResult]:
         """Return None or a valid measurement for two tightest bounds.
 
         Measurement result with smaller duration are ignored.
@@ -114,11 +116,11 @@ class MeasurementDatabase:
         :type min_duration: float
         :returns: Tightest lower bound, tightest upper bound,
             second tightest lower bound, second tightest upper bound.
-        :rtype: 4-tuple of Optional[ReceiveRateMeasurement]
+        :rtype: 4-tuple of Optional[ComparableMeasurementResult]
         """
         lower_1, upper_1, lower_2, upper_2 = None, None, None, None
         for measurement in self.measurements:
-            if measurement.duration < min_duration:
+            if measurement.intended_duration < min_duration:
                 continue
             if measurement.effective_loss_ratio > ratio:
                 if upper_1 is None:
@@ -129,13 +131,13 @@ class MeasurementDatabase:
             lower_1, lower_2 = measurement, lower_1
         return lower_1, upper_1, lower_2, upper_2
 
-    def smallest_load_measurement(self, min_duration):
-        """Return measurement with smallest load.
+    def smallest_load_measurement(self, min_duration: float) -> Result:
+        """Return measurement with smallest load and large enough duration.
 
         :param min_duration: Consider results with at least this duration [s].
         :type min_duration: float
-        :returns: Measurement in this with smallest target_tr.
-        :rtype: ReceiveRateMeasurement
+        :returns: Measurement in this with smallest intended_load.
+        :rtype: MeasurementResult
         :raises RuntimeError: If no results at requested duration.
         """
         for measurement in self.measurements:
@@ -144,13 +146,13 @@ class MeasurementDatabase:
             return measurement
         raise RuntimeError(f"No smallest duration {min_duration}: {self!r}")
 
-    def largest_load_measurement(self, min_duration):
-        """Return measurement with largest load.
+    def largest_load_measurement(self, min_duration: float) -> Result:
+        """Return measurement with largest load and large enough duration.
 
         :param min_duration: Consider results with at least this duration [s].
         :type min_duration: float
-        :returns: Measurement in this with largest target_tr.
-        :rtype: ReceiveRateMeasurement
+        :returns: Measurement in this with largest intended_load.
+        :rtype: MeasurementResult
         :raises RuntimeError: If no results at requested duration.
         """
         for measurement in reversed(self.measurements):
@@ -159,28 +161,30 @@ class MeasurementDatabase:
             return measurement
         raise RuntimeError(f"No largest duration {min_duration}: {self!r}")
 
-    def get_results(self, ratio_list, duration):
+    def get_intervals(
+        self, ratio_list: List[float], duration: float
+    ) -> List[MeasurementInterval]:
         """Return list of intervals for given ratios, at the duration.
 
         This assumes no trial had larger duration.
 
         Attempt to construct valid intervals. If a valid bound is missing,
-        use smallest/biggest target_tr for lower/upper bound.
+        use smallest/biggest intended_load for lower/upper bound.
         This can result in degenerate intervals,
-        but is expected e.g. if max load had zero loss.
+        but is expected e.g. if max load has zero loss.
 
         :param ratio_list: Ratios to create intervals for.
         :type ratio_list: Iterable[float]
         :returns: List of intervals.
-        :rtype: List[ReceiveRateInterval]
+        :rtype: List[MeasurementInterval]
         """
         ret_list = list()
         for ratio in ratio_list:
-            bounds = self.get_valid_bounds(ratio, duration)
+            bounds = self.get_valid_bounds(ratio=ratio, min_duration=duration)
             lower_bound, upper_bound, _, _ = bounds
             if lower_bound is None:
                 lower_bound = self.smallest_load_measurement(duration)
             if upper_bound is None:
                 upper_bound = self.largest_load_measurement(duration)
-            ret_list.append(ReceiveRateInterval(lower_bound, upper_bound))
+            ret_list.append(MeasurementInterval(lower_bound, upper_bound))
         return ret_list

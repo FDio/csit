@@ -13,9 +13,13 @@
 
 """Module defining a class dealing with duration scaling and width scaling."""
 
+from dataclasses import dataclass, field
+from typing import Dict
+
 from .width_arithmetics import multiply_relative_width, ROUNDING_CONSTANT
 
 
+@dataclass
 class DurationAndWidthScaling:
     """Encapsulate values that depend on MLRsearch phase.
 
@@ -23,39 +27,52 @@ class DurationAndWidthScaling:
     for the initial phase.
     If there are 2 intermediate phases, the final phase is phase 2,
     so 3 phases overall.
+
+    No default values, contructor call has to specify everything.
+
+    The caller may need multiple instances if different ratios
+    require different final width goal.
     """
 
-    def __init__(self, phases, initial_duration, final_duration, final_width):
-        """Compute the dicts with results.
+    intermediate_phases: int
+    """Number of intermediate phases, at least 1."""
+    initial_duration: float
+    """Duration [s] for first intermediate phase."""
+    final_duration: float
+    """Duration [s] for the final phase."""
+    final_width: float
+    """Relative width goal for the final phase."""
+    # Secondary private quantities.
+    _duration_by_phase: Dict[int, float] = field(init=False, repr=False)
+    """Durations computed for phase number."""
+    _width_by_phase: Dict[int, float] = field(init=False, repr=False)
+    """Width goals computed for phase number."""
 
-        The caller may need multiple instances if different ratios
-        require different final width.
-
-        :param phases: Number of intermediate phases, at least 1.
-        :param initial_duration: Duration [s] for first intermediate phase.
-        :param final_duration: Duration [s] for the final phase.
-        :param final_width: Relative width goal for the final phase.
-        :type phases: int
-        :type initial_duration: float
-        :type final_dutration: float
-        :type final_width: float
+    def __post_init__(self):
+        """Ensure correct primary types and compute the secondary quantities.
         """
-        self.intermediate_phases = int(phases)
-        self.initial_duration = float(initial_duration)
-        self.final_duration = float(final_duration)
-        self.final_width = float(final_width)
-        self.duration_by_phase = dict()
-        multiplier = pow(final_duration / initial_duration, 1.0 / phases)
+        self.intermediate_phases = int(self.intermediate_phases)
+        self.initial_duration = float(self.initial_duration)
+        self.final_duration = float(self.final_duration)
+        self.final_width = float(self.final_width)
+        self._duration_by_phase = dict()
+        multiplier = pow(
+            self.final_duration / self.initial_duration,
+            1.0 / self.intermediate_phases
+        )
         duration = self.initial_duration
         for phase in range(self.intermediate_phases + 1):
-            self.duration_by_phase[phase] = duration
+            self._duration_by_phase[phase] = duration
             duration *= multiplier
-        self.width_by_phase = dict()
+        self._width_by_phase = dict()
         width = self.final_width
         for phase in range(self.intermediate_phases, -1, -1):
-            self.width_by_phase[phase] = width
+            self._width_by_phase[phase] = width
             # Rounding constant is needed to ensure halving works reliably.
-            width = multiply_relative_width(width, 2.0 * ROUNDING_CONSTANT)
+            # One constant is not enough when uneven splits happen.
+            width = multiply_relative_width(
+                width, 2.0 * ROUNDING_CONSTANT * ROUNDING_CONSTANT
+            )
 
     def duration(self, phase):
         """Return the trial duration for this phase.
@@ -66,7 +83,7 @@ class DurationAndWidthScaling:
         :rtype: float
         :raises IndexError: If the phase is outside the constructed data.
         """
-        return self.duration_by_phase[phase]
+        return self._duration_by_phase[phase]
 
     def width_goal(self, phase):
         """Return the target relative width for this phase.
@@ -77,4 +94,4 @@ class DurationAndWidthScaling:
         :rtype: float
         :raises IndexError: If the phase is outside the constructed data.
         """
-        return self.width_by_phase[phase]
+        return self._width_by_phase[phase]

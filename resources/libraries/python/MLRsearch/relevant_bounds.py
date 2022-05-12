@@ -13,33 +13,42 @@
 
 """Module defining RelevantBounds class."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Optional
 
-from .receive_rate_measurement import ReceiveRateMeasurement
+from .comparable_measurement_result import ComparableMeasurementResult
+from .measurement_database import MeasurementDatabase
 
 
 @dataclass
 class RelevantBounds:
-    """Structure of several bounds relevant for specific ratio and phase."""
+    """Structure of several bounds relevant for specific ratio and phase.
 
-    clo1: Optional[ReceiveRateMeasurement]
+    Nothing special in the fields, the added value is the factory.
+    """
+
+    clo1: Optional[ComparableMeasurementResult]
     """Tightest valid lower bound at current duration or longer."""
-    chi1: Optional[ReceiveRateMeasurement]
+    chi1: Optional[ComparableMeasurementResult]
     """Tightest valid upper bound at current duration or longer."""
-    plo1: Optional[ReceiveRateMeasurement]
+    plo1: Optional[ComparableMeasurementResult]
     """Tightest valid lower bound at previous duration or longer."""
-    phi1: Optional[ReceiveRateMeasurement]
+    phi1: Optional[ComparableMeasurementResult]
     """Tightest valid upper bound at previous duration or longer."""
-    clo2: Optional[ReceiveRateMeasurement]
+    clo2: Optional[ComparableMeasurementResult]
     """Second tightest lower bound at current duration or longer."""
-    chi2: Optional[ReceiveRateMeasurement]
+    chi2: Optional[ComparableMeasurementResult]
     """Second tightest upper bound at current duration or longer."""
 
-    @classmethod
+    @staticmethod
     def from_database(
-        cls, database, ratio_goal, current_duration, previous_duration
-    ):
+        database: MeasurementDatabase,
+        ratio_goal: float,
+        current_duration: float,
+        previous_duration: float,
+    ) -> RelevantBounds:
         """Create instance by getting and processing bounds from database.
 
         If bounds for previous duration are already reported
@@ -68,6 +77,6 @@ class RelevantBounds:
                 plo1 = None
             if phi1 is not None and phi1 in [chi1, chi2]:
                 phi1 = None
-        return cls(
+        return RelevantBounds(
             clo1=clo1, chi1=chi1, clo2=clo2, chi2=chi2, plo1=plo1, phi1=phi1
         )

@@ -22,6 +22,7 @@ class SelectionInfo:
     """Structure for output (and one input) of load selection method.
 
     Contains default values, so that calling code can be shorter.
+    The default value is always the falsy one, as that is pythonic.
     """
 
     load: Optional[float] = None
