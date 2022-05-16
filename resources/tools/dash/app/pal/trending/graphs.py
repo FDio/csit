@@ -16,7 +16,6 @@
 
 import plotly.graph_objects as go
 import pandas as pd
-import re
 
 import hdrh.histogram
 import hdrh.codec
@@ -212,11 +211,12 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     hover = list()
     customdata = list()
     for _, row in df.iterrows():
+        d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
             f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
             f"<prop> [{row[_UNIT[ttype]]}]: {row[_VALUE[ttype]]}<br>"
             f"<stdev>"
-            f"{row['dut_type']}-ref: {row['dut_version']}<br>"
+            f"{d_type}-ref: {row['dut_version']}<br>"
             f"csit-ref: {row['job']}/{row['build']}<br>"
             f"hosts: {', '.join(row['hosts'])}"
         )
@@ -236,11 +236,12 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
 
     hover_trend = list()
     for avg, stdev, (_, row) in zip(trend_avg, trend_stdev, df.iterrows()):
+        d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
             f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
             f"trend [pps]: {avg}<br>"
             f"stdev [pps]: {stdev}<br>"
-            f"{row['dut_type']}-ref: {row['dut_version']}<br>"
+            f"{d_type}-ref: {row['dut_version']}<br>"
             f"csit-ref: {row['job']}/{row['build']}<br>"
             f"hosts: {', '.join(row['hosts'])}"
         )
