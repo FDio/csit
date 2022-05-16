@@ -39,6 +39,12 @@ class Layout:
 
     DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
 
+    URL_STYLE = {
+        "background-color": "#d2ebf5",
+        "border-color": "#bce1f1",
+        "color": "#135d7c"
+    }
+
     def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
         graph_layout_file: str, data_spec_file: str, tooltip_file: str,
         time_period: int=None) -> None:
@@ -253,10 +259,13 @@ class Layout:
                 lst_job[1], lst_job[3], lst_job[4]))
         }
 
-    def _show_tooltip(self, id: str, title: str) -> list:
+    def _show_tooltip(self, id: str, title: str,
+            clipboard_id: str=None) -> list:
         """
         """
         return [
+            dcc.Clipboard(target_id=clipboard_id, title="Copy URL") \
+                if clipboard_id else str(),
             f"{title} ",
             dbc.Badge(
                 id=id,
@@ -403,18 +412,29 @@ class Layout:
                                         color="info"
                                     ),
                                     dcc.Download(id="download-data")
-                                ]),
+                                ])
                             ]
                         ),
                         dbc.Col(  # Show URL
                             width=10,
                             children=[
-                                dbc.Card(
-                                    id="card-url",
-                                    body=True,
-                                    class_name="gy-2 p-0",
-                                    children=[]
-                                ),
+                                dbc.InputGroup(
+                                    class_name="me-1",
+                                    children=[
+                                        dbc.InputGroupText(
+                                            style=self.URL_STYLE,
+                                            children=self._show_tooltip(
+                                                "help-url", "URL", "input-url")
+                                        ),
+                                        dbc.Input(
+                                            id="input-url",
+                                            readonly=True,
+                                            type="url",
+                                            style=self.URL_STYLE,
+                                            value=""
+                                        )
+                                    ]
+                                )
                             ]
                         )
                     ]
@@ -590,7 +610,7 @@ class Layout:
             Output("control-panel", "data"),  # Store
             Output("graph-passed", "figure"),
             Output("graph-duration", "figure"),
-            Output("card-url", "children"),
+            Output("input-url", "value"),
             Output("ri-ttypes", "options"),
             Output("ri-cadences", "options"),
             Output("dd-tbeds", "options"),
@@ -725,14 +745,7 @@ class Layout:
                 ctrl_panel.panel,
                 fig_passed,
                 fig_duration,
-                [  # URL
-                    dcc.Clipboard(
-                        target_id="card-url",
-                        title="Copy URL",
-                        style={"display": "inline-block"}
-                    ),
-                    new_url
-                ]
+                new_url
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val

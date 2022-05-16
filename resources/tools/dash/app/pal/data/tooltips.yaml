@@ -28,3 +28,6 @@ help-time-period:
   Choose a time period for selected tests.
 help-ttype:
   Main measured variable.
+help-url:
+  URL with current configuration. If there is no "Copy URL" button, use triple
+  click.
