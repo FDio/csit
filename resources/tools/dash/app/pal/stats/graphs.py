@@ -45,6 +45,7 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict,
 
     hover = list()
     for _, row in data.iterrows():
+        d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
             f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
             f"duration: "
@@ -52,7 +53,7 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict,
             f"{((int(row['duration']) % 3600) // 60):02d}<br>"
             f"passed: {row['passed']}<br>"
             f"failed: {row['failed']}<br>"
-            f"{row['dut_type']}-ref: {row['dut_version']}<br>"
+            f"{d_type}-ref: {row['dut_version']}<br>"
             f"csit-ref: {row['job']}/{row['build']}<br>"
             f"hosts: {', '.join(row['hosts'])}"
         )
