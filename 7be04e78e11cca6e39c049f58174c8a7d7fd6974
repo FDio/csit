@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77496e5c_40d2ceed",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "I would add that it is about HW acceleration",
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37267cfb_7273ef5b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "GTPU, let use abbreviation in description.",
+      "range": {
+        "startLine": 1112,
+        "startChar": 18,
+        "endLine": 1112,
+        "endChar": 23
+      },
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e58acf95_5b0a401c",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "GTPU",
+      "range": {
+        "startLine": 1116,
+        "startChar": 39,
+        "endLine": 1116,
+        "endChar": 44
+      },
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57f86b1e_7b54069b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "did someone think of this on VPP side? why hw is sw and why gtpu is sw. hmmm why they cannot name gtpu as gtpu_if_index.\n\ninteresting.",
+      "range": {
+        "startLine": 1126,
+        "startChar": 0,
+        "endLine": 1127,
+        "endChar": 38
+      },
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1961d9b4_c167dd61",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "RX",
+      "range": {
+        "startLine": 1131,
+        "startChar": 50,
+        "endLine": 1131,
+        "endChar": 53
+      },
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b87e948_7314091d",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "GTPU",
+      "range": {
+        "startLine": 1131,
+        "startChar": 37,
+        "endLine": 1131,
+        "endChar": 42
+      },
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8000da2_9192934c",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x710-ethip4gtpuhw-ip4base-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "RX",
+      "range": {
+        "startLine": 41,
+        "startChar": 29,
+        "endLine": 41,
+        "endChar": 31
+      },
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d6fcb41_063b6efd",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x710-ethip4gtpusw-ip4base-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "GTPU",
+      "range": {
+        "startLine": 73,
+        "startChar": 31,
+        "endLine": 73,
+        "endChar": 36
+      },
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b600ea7f_c04ca6dd",
+        "filename": "topologies/available/lf_3n_icx_testbed37.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "I want the same change for 2n-icx as well to have it equal.",
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9478c857_a8726e96",
+        "filename": "topologies/available/lf_3n_icx_testbed37.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-05-16T12:44:21Z",
+      "side": 1,
+      "message": "Lets use E810-XXV-4 as ID from PCI.ID",
+      "range": {
+        "startLine": 36,
+        "startChar": 47,
+        "endLine": 36,
+        "endChar": 57
+      },
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
