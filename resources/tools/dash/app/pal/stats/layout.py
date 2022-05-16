@@ -105,10 +105,10 @@ class Layout:
             "dut_version": list(),
             "hosts": list(),
             "passed": list(),
-            "failed": list()
+            "failed": list(),
+            "lst_failed": list()
         }
         for job in jobs:
-            # TODO: Add list of failed tests for each build
             df_job = df_tst_info.loc[(df_tst_info["job"] == job)]
             builds = df_job["build"].unique()
             for build in builds:
@@ -119,15 +119,25 @@ class Layout:
                 tst_info["dut_version"].append(df_build["dut_version"].iloc[-1])
                 tst_info["hosts"].append(df_build["hosts"].iloc[-1])
                 try:
-                    passed = df_build.value_counts(subset='passed')[True]
+                    passed = df_build.value_counts(subset="passed")[True]
                 except KeyError:
                     passed = 0
                 try:
-                    failed = df_build.value_counts(subset='passed')[False]
+                    failed = df_build.value_counts(subset="passed")[False]
+                    failed_tests = df_build.loc[(df_build["passed"] == False)]\
+                        ["test_id"].to_list()
+                    l_failed = list()
+                    for tst in failed_tests:
+                        lst_tst = tst.split(".")
+                        suite = lst_tst[-2].replace("2n1l-", "").\
+                            replace("1n1l-", "").replace("2n-", "")
+                        l_failed.append(f"{suite.split('-')[0]}-{lst_tst[-1]}")
                 except KeyError:
                     failed = 0
+                    l_failed = list()
                 tst_info["passed"].append(passed)
                 tst_info["failed"].append(failed)
+                tst_info["lst_failed"].append(sorted(l_failed))
 
         self._data = data_stats.merge(pd.DataFrame.from_dict(tst_info))
 
@@ -804,6 +814,26 @@ class Layout:
             elif trigger_id == "graph-duration":
                 graph_data = duration_data["points"][0].get("text", "")
             if graph_data:
+                lst_graph_data = graph_data.split("<br>")
+
+                # Prepare list of failed tests:
+                job = str()
+                build = str()
+                for itm in lst_graph_data:
+                    if "csit-ref:" in itm:
+                        job, build = itm.split(" ")[-1].split("/")
+                        break
+                if job and build:
+                    failed_tests = self.data.loc[
+                        (self.data["job"] == job) &
+                        (self.data["build"] == build)
+                    ]["lst_failed"].values[0]
+                    if not failed_tests:
+                        failed_tests = None
+                else:
+                    failed_tests = None
+
+                # Create the content of the offcanvas:
                 metadata = [
                     dbc.Card(
                         class_name="gy-2 p-0",
@@ -828,7 +858,7 @@ class Layout:
                                                 ),
                                                 x.split(": ")[1]
                                             ]
-                                        ) for x in graph_data.split("<br>")
+                                        ) for x in lst_graph_data
                                     ],
                                     flush=True),
                                 ]
@@ -836,6 +866,28 @@ class Layout:
                         ]
                     )
                 ]
+
+                if failed_tests is not None:
+                    metadata.append(
+                        dbc.Card(
+                            class_name="gy-2 p-0",
+                            children=[
+                                dbc.CardHeader("List of Failed Tests"),
+                                dbc.CardBody(
+                                    id="failed-tests",
+                                    class_name="p-0",
+                                    children=[dbc.ListGroup(
+                                        children=[
+                                            dbc.ListGroupItem(x) \
+                                                for x in failed_tests
+                                        ],
+                                        flush=True),
+                                    ]
+                                )
+                            ]
+                        )
+                    )
+
                 open_canvas = True
 
             return metadata, open_canvas

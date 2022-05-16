@@ -14,6 +14,7 @@ statistics-trending:
     - dut_version
     - hosts
     - passed
+    - test_id
 trending-mrr:
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
   columns:
