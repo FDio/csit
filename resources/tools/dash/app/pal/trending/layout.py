@@ -75,6 +75,12 @@ class Layout:
         "nfv_density-dcr_memif-chain": "CNF Service Chains Routing",
     }
 
+    URL_STYLE = {
+        "background-color": "#d2ebf5",
+        "border-color": "#bce1f1",
+        "color": "#135d7c"
+    }
+
     def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
         graph_layout_file: str, data_spec_file: str, tooltip_file: str,
         time_period: str=None) -> None:
@@ -235,10 +241,13 @@ class Layout:
     def label(self, key: str) -> str:
         return self.LABELS.get(key, key)
 
-    def _show_tooltip(self, id: str, title: str) -> list:
+    def _show_tooltip(self, id: str, title: str,
+            clipboard_id: str=None) -> list:
         """
         """
         return [
+            dcc.Clipboard(target_id=clipboard_id, title="Copy URL") \
+                if clipboard_id else str(),
             f"{title} ",
             dbc.Badge(
                 id=id,
@@ -766,7 +775,7 @@ class Layout:
                                 dbc.Button(
                                     id="btn-download-data",
                                     children=self._show_tooltip(
-                                        "help-download", "Download"),
+                                        "help-download", "Download Data"),
                                     class_name="me-1",
                                     color="info"
                                 ),
@@ -777,19 +786,23 @@ class Layout:
                     dbc.Col(  # Show URL
                         width=10,
                         children=[
-                            dbc.Card(
-                                id="card-url",
-                                body=True,
-                                class_name="gy-2 p-0",
+                            dbc.InputGroup(
+                                class_name="me-1",
                                 children=[
-                                    dcc.Clipboard(
-                                        target_id="card-url",
-                                        title="Copy URL",
-                                        style={"display": "inline-block"}
+                                    dbc.InputGroupText(
+                                        style=self.URL_STYLE,
+                                        children=self._show_tooltip(
+                                            "help-url", "URL", "input-url")
                                     ),
-                                    url
+                                    dbc.Input(
+                                        id="input-url",
+                                        readonly=True,
+                                        type="url",
+                                        style=self.URL_STYLE,
+                                        value=url
+                                    )
                                 ]
-                            ),
+                            )
                         ]
                     )
                 ]
