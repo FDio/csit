@@ -199,12 +199,12 @@
 | | ${rate_for_teardown} = | Get Rate For Teardown
 | | Call Resetter
 | | Set Test Variable | \${extended_debug} | ${True}
-| | Send traffic at specified rate
-| | ... | trial_duration=${1.0}
-| | ... | rate=${rate_for_teardown}
-| | ... | trial_multiplicity=${1}
-| | ... | use_latency=${use_latency}
-| | ... | duration_limit=${1.0}
+#| | Send traffic at specified rate
+#| | ... | trial_duration=${1.0}
+#| | ... | rate=${rate_for_teardown}
+#| | ... | trial_multiplicity=${1}
+#| | ... | use_latency=${use_latency}
+#| | ... | duration_limit=${1.0}
 
 | Additional Test Tear Down Action For srv6
 | | [Documentation]
