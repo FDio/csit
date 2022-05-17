@@ -38,7 +38,6 @@ def init_trending(server, time_period=None):
     layout = Layout(
         app=dash_app,
         html_layout_file="pal/templates/trending_layout.jinja2",
-        spec_file="pal/trending/spec_test_selection.yaml",
         graph_layout_file="pal/trending/layout.yaml",
         data_spec_file="pal/data/data.yaml",
         tooltip_file="pal/data/tooltips.yaml",

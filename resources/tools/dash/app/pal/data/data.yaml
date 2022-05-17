@@ -104,7 +104,7 @@ trending-ndrpdr:
     # - result_latency_forward_pdr_0_min
     # - result_latency_forward_pdr_0_unit
 iterative-mrr:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2202
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_{release}
   columns:
     - job
     - build
@@ -122,7 +122,7 @@ iterative-mrr:
     - result_receive_rate_rate_unit
     - result_receive_rate_rate_values
 iterative-ndrpdr:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2202
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_{release}
   columns:
     - job
     - build

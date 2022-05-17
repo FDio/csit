@@ -81,7 +81,7 @@ class Layout:
         "color": "#135d7c"
     }
 
-    def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
+    def __init__(self, app: Flask, html_layout_file: str,
         graph_layout_file: str, data_spec_file: str, tooltip_file: str,
         time_period: str=None) -> None:
         """
@@ -90,7 +90,6 @@ class Layout:
         # Inputs
         self._app = app
         self._html_layout_file = html_layout_file
-        self._spec_file = spec_file
         self._graph_layout_file = graph_layout_file
         self._data_spec_file = data_spec_file
         self._tooltip_file = tooltip_file
