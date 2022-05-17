@@ -84,7 +84,7 @@ def main():
 
     # If TRexError happens, let the script fail with stack trace.
     finally:
-        client.clear_profile()
+        client.reset()
         client.disconnect()
 
     # TODO: check xstats format
