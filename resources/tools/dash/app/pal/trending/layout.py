@@ -31,14 +31,18 @@ from json import loads, JSONDecodeError
 from ast import literal_eval
 
 from ..data.data import Data
+from ..data.url_processing import url_decode, url_encode
 from .graphs import graph_trending, graph_hdrh_latency, \
     select_trending_data
-from ..data.url_processing import url_decode, url_encode
 
 
 class Layout:
     """
     """
+
+    # If True, clear all inputs in control panel when button "ADD SELECTED" is
+    # pressed.
+    CLEAR_ALL_INPUTS = False
 
     STYLE_DISABLED = {"display": "none"}
     STYLE_ENABLED = {"display": "inherit"}
@@ -81,7 +85,7 @@ class Layout:
         "color": "#135d7c"
     }
 
-    def __init__(self, app: Flask, html_layout_file: str, spec_file: str,
+    def __init__(self, app: Flask, html_layout_file: str,
         graph_layout_file: str, data_spec_file: str, tooltip_file: str,
         time_period: str=None) -> None:
         """
@@ -90,7 +94,6 @@ class Layout:
         # Inputs
         self._app = app
         self._html_layout_file = html_layout_file
-        self._spec_file = spec_file
         self._graph_layout_file = graph_layout_file
         self._data_spec_file = data_spec_file
         self._tooltip_file = tooltip_file
@@ -914,11 +917,9 @@ class Layout:
 
             if trigger_id == "dd-ctrl-dut":
                 try:
+                    dut = self.spec_tbs[dd_dut]
                     options = sorted(
-                        [
-                            {"label": v, "value": v}
-                                for v in self.spec_tbs[dd_dut].keys()
-                        ],
+                        [{"label": v, "value": v}for v in dut.keys()],
                         key=lambda d: d["label"]
                     )
                     disabled = False
@@ -933,6 +934,7 @@ class Layout:
                     "dd-ctrl-area-value": str(),
                     "dd-ctrl-area-options": list(),
                     "dd-ctrl-area-disabled": True,
+                    "dd-ctrl-test-value": str(),
                     "dd-ctrl-test-options": list(),
                     "dd-ctrl-test-disabled": True,
                     "cl-ctrl-core-options": list(),
@@ -951,11 +953,10 @@ class Layout:
             elif trigger_id == "dd-ctrl-phy":
                 try:
                     dut = ctrl_panel.get("dd-ctrl-dut-value")
+                    phy = self.spec_tbs[dut][dd_phy]
                     options = sorted(
-                        [
-                            {"label": self.label(v), "value": v}
-                                for v in self.spec_tbs[dut][dd_phy].keys()
-                        ],
+                        [{"label": self.label(v), "value": v}
+                            for v in phy.keys()],
                         key=lambda d: d["label"]
                     )
                     disabled = False
@@ -967,6 +968,7 @@ class Layout:
                     "dd-ctrl-area-value": str(),
                     "dd-ctrl-area-options": options,
                     "dd-ctrl-area-disabled": disabled,
+                    "dd-ctrl-test-value": str(),
                     "dd-ctrl-test-options": list(),
                     "dd-ctrl-test-disabled": True,
                     "cl-ctrl-core-options": list(),
@@ -986,11 +988,9 @@ class Layout:
                 try:
                     dut = ctrl_panel.get("dd-ctrl-dut-value")
                     phy = ctrl_panel.get("dd-ctrl-phy-value")
+                    area = self.spec_tbs[dut][phy][dd_area]
                     options = sorted(
-                        [
-                            {"label": v, "value": v}
-                                for v in self.spec_tbs[dut][phy][dd_area].keys()
-                        ],
+                        [{"label": v, "value": v} for v in area.keys()],
                         key=lambda d: d["label"]
                     )
                     disabled = False
@@ -1022,19 +1022,17 @@ class Layout:
                 dut = ctrl_panel.get("dd-ctrl-dut-value")
                 phy = ctrl_panel.get("dd-ctrl-phy-value")
                 area = ctrl_panel.get("dd-ctrl-area-value")
-                cores = self.spec_tbs[dut][phy][area][dd_test]["core"]
-                fsizes = self.spec_tbs[dut][phy][area][dd_test]["frame-size"]
-                ttypes = self.spec_tbs[dut][phy][area][dd_test]["test-type"]
+                test = self.spec_tbs[dut][phy][area][dd_test]
+                cores = test["core"]
+                fsizes = test["frame-size"]
+                ttypes = test["test-type"]
                 if dut and phy and area and dd_test:
-                    core_opts = [
-                        {"label": v, "value": v} for v in sorted(cores)
-                    ]
-                    framesize_opts = [
-                        {"label": v, "value": v} for v in sorted(fsizes)
-                    ]
-                    testtype_opts = [
-                        {"label": v, "value": v}for v in sorted(ttypes)
-                    ]
+                    core_opts = [{"label": v, "value": v}
+                        for v in sorted(cores)]
+                    framesize_opts = [{"label": v, "value": v}
+                        for v in sorted(fsizes)]
+                    testtype_opts = [{"label": v, "value": v}
+                        for v in sorted(ttypes)]
                     ctrl_panel.set({
                         "dd-ctrl-test-value": dd_test,
                         "cl-ctrl-core-options": core_opts,
@@ -1153,24 +1151,22 @@ class Layout:
                     store_sel = sorted(store_sel, key=lambda d: d["id"])
                     row_card_sel_tests = self.STYLE_ENABLED
                     row_btns_sel_tests = self.STYLE_ENABLED
-                    ctrl_panel.set(ctrl_panel.defaults)
+                    if self.CLEAR_ALL_INPUTS:
+                        ctrl_panel.set(ctrl_panel.defaults)
                     ctrl_panel.set({
                         "cl-selected-options": self._list_tests(store_sel)
                     })
                     row_fig_tput, row_fig_lat, row_btn_dwnld = \
                         _generate_plotting_area(
-                            graph_trending(
-                                self.data, store_sel, self.layout, d_start,
-                                d_end
-                            ),
+                            graph_trending(self.data, store_sel, self.layout,
+                                d_start, d_end),
                             _gen_new_url(parsed_url, store_sel, d_start, d_end)
                         )
             elif trigger_id == "dpr-period":
                 row_fig_tput, row_fig_lat, row_btn_dwnld = \
                     _generate_plotting_area(
-                        graph_trending(
-                            self.data, store_sel, self.layout, d_start, d_end
-                        ),
+                        graph_trending(self.data, store_sel, self.layout,
+                            d_start, d_end),
                         _gen_new_url(parsed_url, store_sel, d_start, d_end)
                     )
             elif trigger_id == "btn-sel-remove-all":
@@ -1181,9 +1177,7 @@ class Layout:
                 row_card_sel_tests = self.STYLE_DISABLED
                 row_btns_sel_tests = self.STYLE_DISABLED
                 store_sel = list()
-                ctrl_panel.set({
-                        "cl-selected-options": list()
-                })
+                ctrl_panel.set({"cl-selected-options": list()})
             elif trigger_id == "btn-sel-remove":
                 _ = btn_remove
                 if list_sel:
@@ -1195,10 +1189,8 @@ class Layout:
                 if store_sel:
                     row_fig_tput, row_fig_lat, row_btn_dwnld = \
                         _generate_plotting_area(
-                            graph_trending(
-                                self.data, store_sel, self.layout, d_start,
-                                d_end
-                            ),
+                            graph_trending(self.data, store_sel, self.layout,
+                                d_start, d_end),
                             _gen_new_url(parsed_url, store_sel, d_start, d_end)
                         )
                     ctrl_panel.set({
@@ -1211,9 +1203,7 @@ class Layout:
                     row_card_sel_tests = self.STYLE_DISABLED
                     row_btns_sel_tests = self.STYLE_DISABLED
                     store_sel = list()
-                    ctrl_panel.set({
-                        "cl-selected-options": list()
-                    })
+                    ctrl_panel.set({"cl-selected-options": list()})
             elif trigger_id == "url":
                 # TODO: Add verification
                 url_params = parsed_url["params"]
@@ -1255,9 +1245,7 @@ class Layout:
                 disabled = False
             else:
                 disabled = True
-            ctrl_panel.set({
-                "btn-ctrl-add-disabled": disabled
-            })
+            ctrl_panel.set({"btn-ctrl-add-disabled": disabled})
 
             ret_val = [
                 ctrl_panel.panel, store_sel,
