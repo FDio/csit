@@ -490,7 +490,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type node: dict
         :raises RuntimeError: If stop traffic script fails.
         """
-        command_line = OptionString().add(u"python3")
+        command_line = OptionString().add(u"python3").add(u"-vv")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
         command_line.add(f"'{dirname}/trex_astf_stop.py'")
         command_line.change_prefix(u"--")
@@ -499,7 +499,7 @@ class TrafficGenerator(AbstractMeasurer):
                 value = value.replace(u"'", u"\"")
                 command_line.add_equals(f"xstat{index}", f"'{value}'")
         stdout, _ = exec_cmd_no_error(
-            node, command_line,
+            node, command_line, timeout=60.0,
             message=u"T-Rex ASTF runtime error!"
         )
         self._parse_traffic_results(stdout)
@@ -662,7 +662,7 @@ class TrafficGenerator(AbstractMeasurer):
         self._start_time = time.monotonic()
         self._rate = multiplier
         stdout, _ = exec_cmd_no_error(
-            self._node, command_line, timeout=computed_duration + 10.0,
+            self._node, command_line, timeout=computed_duration + 300.0,
             message=u"T-Rex ASTF runtime error!"
         )
 
