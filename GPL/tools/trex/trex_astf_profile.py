@@ -220,8 +220,7 @@ def simple_burst(
                 for warning in client.get_warnings():
                     print(warning)
 
-            # Now finish the complete reset.
-            client.reset()
+            # No profile cleanup here, reset will be done in the finally block.
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
@@ -385,7 +384,7 @@ def simple_burst(
             if async_start:
                 client.disconnect(stop_traffic=False, release_ports=True)
             else:
-                client.clear_profile()
+                client.reset()
                 client.disconnect()
                 print(
                     f"multiplier={multiplier!r}; "
