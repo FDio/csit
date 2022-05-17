@@ -662,7 +662,7 @@ class TrafficGenerator(AbstractMeasurer):
         self._start_time = time.monotonic()
         self._rate = multiplier
         stdout, _ = exec_cmd_no_error(
-            self._node, command_line, timeout=computed_duration + 10.0,
+            self._node, command_line, timeout=computed_duration + 300.0,
             message=u"T-Rex ASTF runtime error!"
         )
 
