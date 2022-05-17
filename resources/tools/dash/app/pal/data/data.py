@@ -28,7 +28,7 @@ class Data:
     """
     """
 
-    def __init__(self, data_spec_file, debug=False):
+    def __init__(self, data_spec_file: str, debug: bool=False) -> None:
         """
         """
 
@@ -71,7 +71,7 @@ class Data:
                 f"specified.\n{err}"
             )
 
-    def _get_path(self, parquet):
+    def _get_path(self, parquet: str) -> str:
         try:
             return self._data_spec[parquet]["path"]
         except KeyError as err:
@@ -200,26 +200,26 @@ class Data:
             days=days
         )
 
-    def read_iterative_mrr(self, days=None):
+    def read_iterative_mrr(self, release):
         """Read MRR data partition from iterative parquet.
         """
         lambda_f = lambda part: True if part["test_type"] == "mrr" else False
 
+        logging.info(self._get_path("iterative-mrr").format(release=release))
+
         return self._create_dataframe_from_parquet(
-            path=self._get_path("iterative-mrr"),
+            path=self._get_path("iterative-mrr").format(release=release),
             partition_filter=lambda_f,
-            columns=self._get_columns("iterative-mrr"),
-            days=days
+            columns=self._get_columns("iterative-mrr")
         )
 
-    def read_iterative_ndrpdr(self, days=None):
+    def read_iterative_ndrpdr(self, release):
         """Read NDRPDR data partition from parquet.
         """
         lambda_f = lambda part: True if part["test_type"] == "ndrpdr" else False
 
         return self._create_dataframe_from_parquet(
-            path=self._get_path("iterative-ndrpdr"),
+            path=self._get_path("iterative-ndrpdr").format(release=release),
             partition_filter=lambda_f,
-            columns=self._get_columns("iterative-ndrpdr"),
-            days=days
+            columns=self._get_columns("iterative-ndrpdr")
         )

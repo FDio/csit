@@ -11,21 +11,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Instantiate the Report Dash application.
+"""Instantiate the Report Dash applocation.
 """
-
 import dash
-from dash import dcc
-from dash import html
-from dash import dash_table
+import dash_bootstrap_components as dbc
 
-from .data import read_stats
-from .data import read_trending_mrr, read_trending_ndrpdr
-from .data import read_iterative_mrr, read_iterative_ndrpdr
-from .layout import html_layout
+from .layout import Layout
 
 
-def init_report(server):
+def init_report(server, releases):
     """Create a Plotly Dash dashboard.
 
     :param server: Flask server.
@@ -37,72 +31,19 @@ def init_report(server):
     dash_app = dash.Dash(
         server=server,
         routes_pathname_prefix=u"/report/",
-        external_stylesheets=[
-            u"/static/dist/css/styles.css",
-            u"https://fonts.googleapis.com/css?family=Lato",
-        ],
+        external_stylesheets=[dbc.themes.LUX],
     )
 
     # Custom HTML layout
-    dash_app.index_string = html_layout
-
-    # Create Layout
-    dash_app.layout = html.Div(
-        children=[
-            html.Div(
-                children=create_data_table(
-                    read_stats().dropna(),
-                    u"database-table-stats"
-                )
-            ),
-            html.Div(
-                children=create_data_table(
-                    read_trending_mrr().dropna(),
-                    u"database-table-mrr"
-                )
-            ),
-            html.Div(
-                children=create_data_table(
-                    read_trending_ndrpdr().dropna(),
-                    u"database-table-ndrpdr"
-                )
-            ),
-            html.Div(
-                children=create_data_table(
-                    read_iterative_mrr().dropna(),
-                    u"database-table-iterative-mrr"
-                )
-            ),
-            html.Div(
-                children=create_data_table(
-                    read_iterative_ndrpdr().dropna(),
-                    u"database-table-iterative-ndrpdr"
-                )
-            )
-        ],
-        id=u"dash-container",
+    layout = Layout(
+        app=dash_app,
+        releases=releases,
+        html_layout_file="pal/templates/report_layout.jinja2",
+        graph_layout_file="pal/report/layout.yaml",
+        data_spec_file="pal/data/data.yaml",
+        tooltip_file="pal/data/tooltips.yaml"
     )
+    dash_app.index_string = layout.html_layout
+    dash_app.layout = layout.add_content()
+
     return dash_app.server
-
-
-def create_data_table(df, id):
-    """Create Dash datatable from Pandas DataFrame.
-
-    DEMO
-    """
-
-    table = dash_table.DataTable(
-        id=id,
-        columns=[{u"name": i, u"id": i} for i in df.columns],
-        data=df.to_dict(u"records"),
-        fixed_rows={'headers': True},
-        sort_action=u"native",
-        sort_mode=u"native",
-        page_size=5,
-        style_header={
-            'overflow': 'hidden',
-            'textOverflow': 'ellipsis',
-            'minWidth': 95, 'maxWidth': 95, 'width': 95,
-        }
-    )
-    return table
