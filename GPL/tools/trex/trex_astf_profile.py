@@ -170,7 +170,9 @@ def simple_burst(
         client.connect()
         # Acquire ports, stop the traffic, remove loaded traffic and clear
         # stats.
+        print(u"DEBUG before reset")
         client.reset()
+        print(u"DEBUG after reset")
         # Load the profile.
         client.load_profile(profile)
 
@@ -220,8 +222,9 @@ def simple_burst(
                 for warning in client.get_warnings():
                     print(warning)
 
-            # Now finish the complete reset.
-            client.reset()
+#            # Now finish the complete reset.
+#            client.reset()
+#            # But reset() calls blocking profile clear which gets stuck?
 
             print(u"##### Statistics #####")
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
@@ -385,7 +388,7 @@ def simple_burst(
             if async_start:
                 client.disconnect(stop_traffic=False, release_ports=True)
             else:
-                client.clear_profile()
+                client.clear_profile(block=False)
                 client.disconnect()
                 print(
                     f"multiplier={multiplier!r}; "
