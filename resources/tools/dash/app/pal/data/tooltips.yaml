@@ -10,6 +10,8 @@ help-dut:
   Device Under Test (DUT) - In software networking, “device” denotes a specific
   piece of software tasked with packet processing. Such device is surrounded
   with other software components (such as operating system kernel).
+help-dut-ver:
+  The version of the Device under Test.
 help-framesize:
   Frame size - size of an Ethernet Layer-2 frame on the wire, including any VLAN
   tags (dot1q, dot1ad) and Ethernet FCS, but excluding Ethernet preamble and
@@ -17,6 +19,8 @@ help-framesize:
 help-infra:
   Infrastructure is defined by the toplology (number of nodes), processor
   architecture, NIC and driver.
+help-release:
+  The CSIT release.
 help-tbed:
   The test bed is defined by toplology (number of nodes) and processor
   architecture.
