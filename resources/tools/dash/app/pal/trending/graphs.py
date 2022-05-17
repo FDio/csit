@@ -214,7 +214,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
             f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
-            f"<prop> [{row[_UNIT[ttype]]}]: {row[_VALUE[ttype]]}<br>"
+            f"<prop> [{row[_UNIT[ttype]]}]: {row[_VALUE[ttype]]:,.0f}<br>"
             f"<stdev>"
             f"{d_type}-ref: {row['dut_version']}<br>"
             f"csit-ref: {row['job']}/{row['build']}<br>"
@@ -223,7 +223,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         if ttype == "mrr":
             stdev = (
                 f"stdev [{row['result_receive_rate_rate_unit']}]: "
-                f"{row['result_receive_rate_rate_stdev']}<br>"
+                f"{row['result_receive_rate_rate_stdev']:,.0f}<br>"
             )
         else:
             stdev = ""
@@ -239,8 +239,8 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
             f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
-            f"trend [pps]: {avg}<br>"
-            f"stdev [pps]: {stdev}<br>"
+            f"trend [pps]: {avg:,.0f}<br>"
+            f"stdev [pps]: {stdev:,.0f}<br>"
             f"{d_type}-ref: {row['dut_version']}<br>"
             f"csit-ref: {row['job']}/{row['build']}<br>"
             f"hosts: {', '.join(row['hosts'])}"
