@@ -78,24 +78,24 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
-| | Send traffic on tg
-| | ... | duration=${-1}
-| | ... | rate=${runtime_rate}
-| | ... | frame_size=${frame_size}
-| | ... | traffic_profile=${traffic_profile}
-| | ... | async_call=${True}
-| | ... | ppta=${ppta}
-| | ... | use_latency=${use_latency}
-| | ... | traffic_directions=${traffic_directions}
-| | ... | transaction_duration=${transaction_duration}
-| | ... | transaction_scale=${transaction_scale}
-| | ... | transaction_type=${transaction_type}
-| | ... | duration_limit=${0.0}
-| | ... | ramp_up_duration=${ramp_up_duration}
-| | ... | ramp_up_rate=${ramp_up_rate}
-| | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vpp_runtime.yaml
-| | Stop traffic on tg
+#| | Send traffic on tg
+#| | ... | duration=${-1}
+#| | ... | rate=${runtime_rate}
+#| | ... | frame_size=${frame_size}
+#| | ... | traffic_profile=${traffic_profile}
+#| | ... | async_call=${True}
+#| | ... | ppta=${ppta}
+#| | ... | use_latency=${use_latency}
+#| | ... | traffic_directions=${traffic_directions}
+#| | ... | transaction_duration=${transaction_duration}
+#| | ... | transaction_scale=${transaction_scale}
+#| | ... | transaction_type=${transaction_type}
+#| | ... | duration_limit=${0.0}
+#| | ... | ramp_up_duration=${ramp_up_duration}
+#| | ... | ramp_up_rate=${ramp_up_rate}
+#| | Run Telemetry On All DUTs
+#| | ... | ${nodes} | profile=vpp_runtime.yaml
+#| | Stop traffic on tg
 
 | Additional Statistics Action For vpp-runtime-iperf3
 | | [Documentation]
