@@ -38,7 +38,6 @@ def init_stats(server, time_period=None):
     layout = Layout(
         app=dash_app,
         html_layout_file="pal/templates/stats_layout.jinja2",
-        spec_file="pal/stats/spec_job_selection.yaml",
         graph_layout_file="pal/stats/layout.yaml",
         data_spec_file="pal/data/data.yaml",
         tooltip_file="pal/data/tooltips.yaml",
