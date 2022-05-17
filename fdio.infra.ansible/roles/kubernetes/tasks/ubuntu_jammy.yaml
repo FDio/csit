@@ -1,5 +1,5 @@
 ---
-# file: roles/kubernetes/tasks/ubuntu_bionic.yaml
+# file: roles/kubernetes/tasks/ubuntu_jammy.yaml
 
 - name: Kubernetes repository - Dependencies
   apt:

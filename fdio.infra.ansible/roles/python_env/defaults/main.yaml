@@ -8,14 +8,7 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    bionic:
-      - "python-all"
-      - "python-apt"
-      - "python-cffi"
-      - "python-cffi-backend"
-      - "python-dev"
-      - "python-pip"
-      - "python-setuptools"
+    focal:
       - "python3-all"
       - "python3-apt"
       - "python3-cffi"
@@ -24,7 +17,7 @@ packages_by_distro:
       - "python3-pip"
       - "python3-pyelftools"
       - "python3-setuptools"
-    focal:
+    jammy:
       - "python3-all"
       - "python3-apt"
       - "python3-cffi"

@@ -18,7 +18,7 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - bionic
         - focal
+        - jammy
   galaxy_tags:
     - dpdk

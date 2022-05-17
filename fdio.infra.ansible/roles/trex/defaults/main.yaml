@@ -8,7 +8,7 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    bionic:
+    focal:
       - "build-essential"
       - "libmnl-dev"
       - "libnuma-dev"
@@ -19,7 +19,7 @@ packages_by_distro:
       - "pciutils"
       - "python3-pip"
       - "zlib1g-dev"
-    focal:
+    jammy:
       - "build-essential"
       - "libmnl-dev"
       - "libnuma-dev"

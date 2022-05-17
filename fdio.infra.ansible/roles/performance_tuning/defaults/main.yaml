@@ -8,9 +8,9 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    bionic:
-      - []
     focal:
+      - []
+    jammy:
       - []
 
 packages_by_arch:

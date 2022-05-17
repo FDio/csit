@@ -1,5 +1,5 @@
 ---
-# file: roles/kernel/tasks/ubuntu_bionic.yaml
+# file: roles/kernel/tasks/ubuntu_jammy.yaml
 
 - name: Get Available Kernel Versions
   command: "apt-cache showpkg linux-headers-*"

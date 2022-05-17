@@ -8,10 +8,10 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    bionic:
+    focal:
       - "build-essential"
       - "lib32z1"
-    focal:
+    jammy:
       - "build-essential"
       - "lib32z1"
 

@@ -12,19 +12,19 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    bionic:
-      - "build-essential"
-      - "libglib2.0-dev"
-      - "libmbedcrypto1"
-      - "libmbedtls10"
-      - "libmbedx509-0"
-      - "libnuma-dev"
-      - "libpixman-1-dev"
     focal:
       - "build-essential"
       - "libglib2.0-dev"
       - "libmbedcrypto3"
       - "libmbedtls12"
+      - "libmbedx509-0"
+      - "libnuma-dev"
+      - "libpixman-1-dev"
+    jammy:
+      - "build-essential"
+      - "libglib2.0-dev"
+      - "libmbedcrypto1"
+      - "libmbedtls10"
       - "libmbedx509-0"
       - "libnuma-dev"
       - "libpixman-1-dev"

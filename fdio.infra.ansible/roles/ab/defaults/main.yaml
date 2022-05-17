@@ -1,5 +1,5 @@
 ---
-# file: roles/wrk/defaults/main.yaml
+# file: roles/ab/defaults/main.yaml
 
 packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
@@ -8,9 +8,9 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    bionic:
-      - "apache2-utils"
     focal:
+      - "apache2-utils"
+    jammy:
       - "apache2-utils"
 
 packages_by_arch:

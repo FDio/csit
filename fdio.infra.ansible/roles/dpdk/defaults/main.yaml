@@ -8,10 +8,10 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    bionic:
+    focal:
       - "build-essential"
       - "libnuma-dev"
-    focal:
+    jammy:
       - "build-essential"
       - "libnuma-dev"
 
