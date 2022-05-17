@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2022 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,7 +23,13 @@
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
 | | ... | topology. Create GTPU tunnel on both DUT nodes, setup IPv4 adresses
 | | ... | with /30 prefix on DUT1-DUT2 link, and set routing on both DUT nodes
-| | ... | with prefix /24 and next hop of neighbour DUT interface.
+| | ... | with prefix /24 and next hop of neighbour DUT interface. Gtpu offload
+| | ... | rx will be enabled on both DUT nodes if offload is set to true.
+| |
+| | ... | *Arguments:*
+| | ... | - offload - False or True. Type: bool
+| |
+| | [Arguments] | ${offload}=${False}
 | |
 | | VPP Interface Set IP Address | ${dut1} | ${DUT1_${int}1}[0]
 | | ... | 10.10.10.1 | 24
@@ -60,3 +66,14 @@
 | | ... | interface=${dut1_tunnel_if_index}
 | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
 | | ... | interface=${dut2_tunnel_if_index}
+| |
+| | Vpp Get IP Addr | ${dut1}
+| | Vpp Get Ice | ${dut1}
+| | Vpp Get DDP | ${dut1}
+| |
+| | Run keyword if | ${offload} == ${True}
+| | ... | Vpp Enable GTPU Offload rx
+| | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut1_tunnel_if_index}
+| | Run keyword if | ${offload} == ${True}
+| | ... | Vpp Enable GTPU Offload rx
+| | ... | ${dut2} | ${DUT2_${int}1}[0] | ${dut2_tunnel_if_index}

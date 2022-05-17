@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -1106,6 +1106,62 @@ class InterfaceUtil:
         Topology.update_interface_name(node, if_key, ifc_name)
 
         return sw_if_index
+
+    @staticmethod
+    def vpp_enable_gtpu_offload_rx(node, interface, gtpu_if_index):
+        """Enable gtpu offload rx onto interface.
+
+        :param node: Node to run command on.
+        :param interface: Name of the specific interface.
+        :param gtpu_if_index: Index of gtpu tunnel interface.
+
+        :type node: dict
+        :type interface: str
+        :type gtpu_interface: int
+        """
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
+
+        cmd = u"gtpu_offload_rx"
+        args = dict(
+            hw_if_index=sw_if_index,
+            sw_if_index=gtpu_if_index,
+            enable=True
+        )
+
+        err_msg = f"Failed to enable gtpu offload rx on host {node[u'host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
+    def vpp_get_ip_addr(node):
+        cmd = u"ip addr"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+    @staticmethod
+    def vpp_get_ice(node):
+        cmd = u"ls -l /usr/lib/firmware/intel/ice/ddp/"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+
+    @staticmethod
+    def vpp_get_ddp(node):
+        cmd = u"dmesg | grep DDP"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
 
     @staticmethod
     def vpp_create_loopback(node, mac=None):
