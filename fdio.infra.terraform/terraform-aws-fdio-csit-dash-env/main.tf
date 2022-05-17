@@ -34,9 +34,9 @@ module "elastic_beanstalk_environment" {
   environment_application            = module.elastic_beanstalk_application.application_name
   environment_description            = module.elastic_beanstalk_application.application_description
   environment_name                   = "fdio-csit-dash-env"
-  environment_solution_stack_name    = "64bit Amazon Linux 2 v3.3.12 running Python 3.8"
+  environment_solution_stack_name    = "64bit Amazon Linux 2 v3.3.13 running Python 3.8"
   environment_tier                   = "WebServer"
-  environment_wait_for_ready_timeout = "20m"
+  environment_wait_for_ready_timeout = "25m"
   environment_version_label          = ""
 
   # aws:ec2:instances
@@ -57,6 +57,17 @@ module "elastic_beanstalk_environment" {
   environment_process_default_healthy_threshold_count   = 3
   environment_process_default_port                      = 5000
   environment_process_default_unhealthy_threshold_count = 3
+
+  # aws:autoscaling:updatepolicy:rollingupdate
+  autoscaling_updatepolicy_rolling_update_enabled  = true
+  autoscaling_updatepolicy_rolling_update_type     = "Immutable"
+  autoscaling_updatepolicy_min_instance_in_service = 1
+
+  # aws:elasticbeanstalk:command
+  command_deployment_policy = "Rolling"
+
+  # aws:autoscaling:updatepolicy:rollingupdate
+  updatepolicy_max_batch_size = 1
 
   # aws:elasticbeanstalk:healthreporting:system
   healthreporting_system_type = "enhanced"

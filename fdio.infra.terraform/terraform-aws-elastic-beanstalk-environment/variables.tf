@@ -163,6 +163,39 @@ variable "environment_process_default_unhealthy_threshold_count" {
   default     = 3
 }
 
+# aws:autoscaling:updatepolicy:rollingupdate
+variable "autoscaling_updatepolicy_rolling_update_enabled" {
+  description = "Whether to enable rolling update."
+  type        = bool
+  default     = true
+}
+
+variable "autoscaling_updatepolicy_rolling_update_type" {
+  description = "`Health` or `Immutable`. Set it to `Immutable` to apply the configuration change to a fresh group of instances."
+  type        = string
+  default     = "Immutable"
+}
+
+variable "autoscaling_updatepolicy_min_instance_in_service" {
+  description = "Minimum number of instances in service during update."
+  type        = number
+  default     = 1
+}
+
+# aws:elasticbeanstalk:command
+variable "command_deployment_policy" {
+  description = "Use the DeploymentPolicy option to set the deployment type. The following values are supported: `AllAtOnce`, `Rolling`, `RollingWithAdditionalBatch`, `Immutable`, `TrafficSplitting`."
+  type        = string
+  default     = "Rolling"
+}
+
+# aws:autoscaling:updatepolicy:rollingupdate
+variable "updatepolicy_max_batch_size" {
+  description = "Maximum number of instances to update at once."
+  type        = number
+  default     = 1
+}
+
 # aws:elasticbeanstalk:healthreporting:system
 variable "healthreporting_system_type" {
   description = "Whether to enable enhanced health reporting for this environment"

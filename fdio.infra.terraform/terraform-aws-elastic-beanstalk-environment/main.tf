@@ -422,6 +422,39 @@ resource "aws_elastic_beanstalk_environment" "environment" {
     value     = aws_iam_instance_profile.ec2_iam_instance_profile.name
   }
 
+  # aws:autoscaling:updatepolicy:rollingupdate
+  setting {
+    namespace = "aws:autoscaling:updatepolicy:rollingupdate"
+    name      = "RollingUpdateEnabled"
+    value     = var.autoscaling_updatepolicy_rolling_update_enabled
+  }
+
+  setting {
+    namespace = "aws:autoscaling:updatepolicy:rollingupdate"
+    name      = "RollingUpdateType"
+    value     = var.autoscaling_updatepolicy_rolling_update_type
+  }
+
+  setting {
+    namespace = "aws:autoscaling:updatepolicy:rollingupdate"
+    name      = "MinInstancesInService"
+    value     = var.autoscaling_updatepolicy_min_instance_in_service
+  }
+
+  # aws:elasticbeanstalk:command
+  setting {
+    namespace = "aws:elasticbeanstalk:command"
+    name      = "DeploymentPolicy"
+    value     = var.command_deployment_policy
+  }
+
+  # aws:autoscaling:updatepolicy:rollingupdate
+  setting {
+    namespace = "aws:autoscaling:updatepolicy:rollingupdate"
+    name      = "MaxBatchSize"
+    value     = var.updatepolicy_max_batch_size
+  }
+
   # aws:elasticbeanstalk:healthreporting:system
   setting {
     namespace = "aws:elasticbeanstalk:healthreporting:system"
