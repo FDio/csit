@@ -62,30 +62,42 @@ def main():
     )
     args = parser.parse_args()
 
+    print(u"DEBUG args parsed")
     client = ASTFClient()
+    print(u"DEBUG client created")
     try:
         # connect to server
         client.connect()
+        print(u"DEBUG client connected")
 
         client.acquire(force=True)
+        print(u"DEBUG ports acquired")
         client.stop()
+        print(u"DEBUG stop called")
 
         # Read the stats after the test,
         # we need to update values before the last trial started.
         if args.xstat0:
             snapshot = eval(args.xstat0)
             client.ports[0].get_xstats().reference_stats = snapshot
+            print(u"DEBUG port0 refstats set")
         if args.xstat1:
             snapshot = eval(args.xstat1)
             client.ports[1].get_xstats().reference_stats = snapshot
+            print(u"DEBUG port1 refstats set")
         # Now we can call the official method to get differences.
         xstats0 = client.get_xstats(0)
+        print(u"DEBUG port0 xstats got")
         xstats1 = client.get_xstats(1)
+        print(u"DEBUG port1 xstats got")
 
     # If TRexError happens, let the script fail with stack trace.
     finally:
-        client.clear_profile()
+        print(u"DEBUG attempting reset")
+        client.reset()
+        print(u"DEBUG done reset")
         client.disconnect()
+        print(u"DEBUG client disconnected")
 
     # TODO: check xstats format
     print(u"##### statistics port 0 #####")
@@ -115,4 +127,5 @@ def main():
 
 
 if __name__ == u"__main__":
+    print(u"DEBUG import success")
     main()
