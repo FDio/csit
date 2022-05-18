@@ -88,6 +88,30 @@
     },
     {
       "key": {
+        "uuid": "b97e1012_15c22d85",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-18T10:49:43Z",
+      "side": 1,
+      "message": "Line 1126 looks like a bug: https://lists.fd.io/g/vpp-dev/message/21416\nLuckily, CSIT never creates non-hardware interfaces before the hardware ones are created, so the index values are the same.",
+      "parentUuid": "57f86b1e_7b54069b",
+      "range": {
+        "startLine": 1126,
+        "startChar": 0,
+        "endLine": 1127,
+        "endChar": 38
+      },
+      "revId": "7be04e78e11cca6e39c049f58174c8a7d7fd6974",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1961d9b4_c167dd61",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 4
