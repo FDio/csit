@@ -29,3 +29,4 @@ Test Methodology
     methodology_nfv_service_density
     methodology_vpp_device_functional
     methodology_aws/index
+    methodology_telemetry
