@@ -22,6 +22,30 @@
       "revId": "5b76491f7eda6cbd88c6f10058f6cd0a2b5f081c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bc9785d_447e9759",
+        "filename": "docs/report/introduction/methodology_telemetry.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-05-18T14:04:36Z",
+      "side": 1,
+      "message": "Would it make sense to put reference to resources/templates/telemetry/bpf_runtime.yaml?",
+      "parentUuid": "785edb73_369aa33e",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 13
+      },
+      "revId": "5b76491f7eda6cbd88c6f10058f6cd0a2b5f081c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
