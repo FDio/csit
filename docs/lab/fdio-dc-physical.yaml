@@ -221,19 +221,26 @@ yul1:
         mgmt_ip4: 10.30.51.55
         lom_ip4: 10.30.50.52
       - unit: 10..13
-        name: s9-t24-sut1
+        name: s93-t39-sut1
         oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20055
-        mgmt_ip4: 10.30.51.56
-        lom_ip4: 10.30.50.53
+        device_type: ?
+        serial_number: ?
+        mgmt_ip4: 10.30.51.93
+        lom_ip4: 10.30.50.93
       - unit: 6..9
-        name: s10-t24-tg1
+        name: s94-t39-sut2
         oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20196
-        mgmt_ip4: 10.30.51.57
-        lom_ip4: 10.30.50.54
+        device_type: ?
+        serial_number: ?
+        mgmt_ip4: 10.30.51.94
+        lom_ip4: 10.30.50.94
+      - unit: 2..5
+        name: s89-t39t310-tg1
+        oper_status: production
+        device_type: ?
+        serial_number: ?
+        mgmt_ip4: 10.30.51.89
+        lom_ip4: 10.30.50.89
   rack:
     name: yul1-11
     facility_id: 3016.11
