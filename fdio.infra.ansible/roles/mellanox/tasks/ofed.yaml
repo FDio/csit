@@ -1,5 +1,5 @@
 ---
-# file: roles/intel/tasks/i40e.yaml
+# file: roles/intel/tasks/ofed.yaml
 
 - name: Inst - Get OFED
   get_url:
