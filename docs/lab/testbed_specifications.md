@@ -18,6 +18,7 @@
    1. [3-Node-TaiShan Arm Huawei (3n-tsh)](#3-node-taishan-arm-huawei-3n-tsh)
    1. [3-Node-Altra Arm Ampere (3n-alt)](#3-node-altra-arm-armpere-3n-alt)
    1. [3-Node-Icelake Xeon Intel (3n-icx)](#3-node-icelake-xeon-intel-3n-icx)
+   1. [3-Node-SnowRidge Atom Intel (3n-snr)](#3-node-snowridge-atom-intel-3n-snr)
 1. [Server Management](#server-management)
    1. [Requirements](#requirements)
    1. [Addressing](#addressing)
@@ -37,12 +38,13 @@
       1. [2-Node-Cascadelake Servers (2n-clx) PROD](#2-node-cascadelake-servers-2n-clx-prod)
       1. [2-Node-Zen2 Servers (2n-zn2) PROD](#2-node-zen2-servers-2n-zn2-prod])
       1. [2-Node-ThunderX2 Servers (2n-tx2) PROD](#2-node-thunderx2-servers-2n-tx2-prod)
-      1. [2-Node-Icelake Servers (2n-icx) TBD](#2-node-icelake-servers-2n-icx-tbd)
+      1. [2-Node-Icelake Servers (2n-icx) PROD](#2-node-icelake-servers-2n-icx-prod)
       1. [3-Node-Skylake Servers (3n-skx) PROD](#3-node-skylake-servers-3n-skx-prod)
       1. [3-Node-Rangeley Servers (3n-rng) VERIFY](#3-node-rangeley-servers-3n-rng-verify)
       1. [3-Node-Taishan Servers (3n-tsh) PROD](#3-node-taishan-servers-3n-tsh-prod)
-      1. [3-Node-Altra Servers (3n-alt) TBD](#3-node-altra-servers-3n-alt-tbd)
-      1. [3-Node-Icelake Servers (3n-icx) TBD](#3-node-icelake-servers-3n-icx-tbd)
+      1. [3-Node-Altra Servers (3n-alt) PROD](#3-node-altra-servers-3n-alt-prod)
+      1. [3-Node-Icelake Servers (3n-icx) PROD](#3-node-icelake-servers-3n-icx-prod)
+      1. [3-Node-SnowRidge Servers (3n-snr) PROD](#3-node-snowridge-servers-3n-snr-prod)
    1. [Per Testbed Wiring](#per-testbed-wiring)
       1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
       1. [1-Node-ThunderX2 Wiring (1n-tx2) PROD](#1-node-thunderx2-wiring-1n-tx2-prod)
@@ -53,12 +55,13 @@
       1. [2-Node-Cascadelake Wiring (2n-clx) PROD](#2-node-cascadelake-wiring-2n-clx-prod)
       1. [2-Node-Zen2 Wiring (2n-zn2) PROD](#2-node-zen2-wiring-2n-zn2-prod])
       1. [2-Node-ThunderX2 Wiring (2n-tx2) PROD](#2-node-thunderx2-wiring-2n-tx2-prod)
-      1. [2-Node-Icelake Servers (2n-icx) TBD](#2-node-icelake-servers-2n-icx-tbd)
+      1. [2-Node-Icelake Servers (2n-icx) PROD](#2-node-icelake-servers-2n-icx-prod)
       1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
-      1. [3-Node-Rangeley Wiring (3n-rng) TODO](#3-node-rangeley-wiring-3n-rng-todo)
+      1. [3-Node-Rangeley Wiring (3n-rng) VERIFY](#3-node-rangeley-wiring-3n-rng-todo)
       1. [3-Node-Taishan Wiring (3n-tsh) PROD](#3-node-taishan-wiring-3n-tsh-prod)
-      1. [3-Node-Altra Wiring (3n-alt) TBD](#3-node-altra-wiring-3n-alt-tbd)
-      1. [3-Node-Icelake Wiring (3n-icx) TBD](#3-node-icelake-wiring-3n-icx-tbd)
+      1. [3-Node-Altra Wiring (3n-alt) PROD](#3-node-altra-wiring-3n-alt-prod)
+      1. [3-Node-Icelake Wiring (3n-icx) PROD](#3-node-icelake-wiring-3n-icx-prod)
+      1. [3-Node-SnowRidge Wiring (3n-snr) PROD](#3-node-snowridge-wiring-3n-snr-prod)
 1. [Inventory](#inventory)
    1. [Appliances](#appliances)
    1. [Arm Servers](#arm-servers)
@@ -77,26 +80,27 @@ hosted by LFN FD.io CSIT project.
 ### Summary List
 
 ```
- #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #alt #clx #zn2 #icx
- 1. 1-Node-Haswell     nomad  hsw   na    4    4    0    4    0    0    0    0    0    0    0    0    0    0
- 2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0    0    0
- 3. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    0    2    0    0    0    0    0
- 4. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    0    1    0    0
- 5. 2-Node-Skylake     perf   skx   skx   4    4    4    0    8    0    0    0    0    0    0    0    0    0
- 6. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0    0    0    0
- 7. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0    0    0
- 8. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    0    6    0    0
- 9. 2-Node-ThunderX2   perf   tx2   skx   1    1    .5   0    .5   0    0    0    1    0    0    0    0    0
-10. 2-Node-Icelake     perf   icx   icx   4    4    4    0    0    0    0    0    0    0    0    0    0    8
-11. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0    0    0
-12. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0    0    0
-13. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    0    2    0    0    0    0
-14. 3-Node-Altra       perf   alt   icx   1    2    .5   0    0    0    0    0    0    0    2    0    0    .5
-15. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0    0    0
-16. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    0    2    0
-17. 3-Node-Icelake     perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    6
-18. 1-Node-AmpereAltra nomad  alt   na    2    2    0    0    0    0    0    0    0    0    2    0    0    0
-                                 Totals: 34   43  21.5   4   19    1    2    3    3    2    4    7    2  14.5
+ #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #alt #clx #zn2 #icx #snr
+ 1. 1-Node-Haswell     nomad  hsw   na    4    4    0    4    0    0    0    0    0    0    0    0    0    0    0
+ 2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0    0    0    0
+ 3. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    0    2    0    0    0    0    0    0
+ 4. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    0    1    0    0    0
+ 5. 1-Node-AmpereAltra nomad  alt   na    2    2    0    0    0    0    0    0    0    0    2    0    0    0    0
+ 6. 2-Node-Skylake     perf   skx   skx   3    3    3    0    6    0    0    0    0    0    0    0    0    0    0
+ 7. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0    0    0    0    0
+ 8. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0    0    0    0
+ 9. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    0    6    0    0    0
+10. 2-Node-ThunderX2   perf   tx2   skx   1    1    .5   0    .5   0    0    0    1    0    0    0    0    0    0
+11. 2-Node-Icelake     perf   icx   icx   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0
+12. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0    0    0    0
+13. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0    0    0    0
+14. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    0    2    0    0    0    0    0
+15. 3-Node-Altra       perf   alt   icx   1    2    .5   0    0    0    0    0    0    0    2    0    0    .5   0
+16. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0    0    0    0
+17. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    0    2    0    0
+18. 3-Node-Icelake     perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    0    0    6    0
+19. 3-Node-SnowRidge   perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    0    0    .5   2
+                                 Totals: 34   44   21    4   17    1    2    3    3    2    4    7    2   15    2
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -207,6 +211,14 @@ Each 3-Node-Icelake testbed includes two SUTs (Server-Type-F1) and one
 TG (Server-Type-F3) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
+
+### 3-Node-SnowRidge Atom Intel (3n-snr)
+
+Each 3-Node-SnowRidge testbed includes two SUTs (Server-Type-G1) and one
+TG (Server-Type-F4) connected in a 3-node circular topology
+([Server Types](#server-types)).
+Used for FD.io performance tests.
+
 
 ## Server Management
 
@@ -324,10 +336,12 @@ Name         | Comment
 10.30.50.86  | s76-t214-tg1
 10.30.50.87  | s77-t215-sut1
 10.30.50.88  | s78-t215-tg1
-10.30.50.89  | s79-t39t310-tg1
-10.30.50.90  | s80-t311t312-tg1
+10.30.50.89  | s89-t39t310-tg1
+10.30.50.90  | s90-t311t312-tg1
 10.30.50.91  | s58-nomad
 10.30.50.92  | s59-nomad
+10.30.50.93  | s93-t39-sut1
+10.30.50.94  | s94-t39-sut2
 10.30.50.255 | Broadcast
 10.30.55.0   | network
 10.30.55.1   | Router
@@ -418,10 +432,12 @@ Name         | Comment
 10.30.51.86  | s76-t214-tg1
 10.30.51.87  | s77-t215-sut1
 10.30.51.88  | s78-t215-tg1
-10.30.51.89  | s79-t39t310-tg1
-10.30.51.90  | s80-t311t312-tg1
+10.30.51.89  | s89-t39t310-tg1
+10.30.51.90  | s90-t311t312-tg1
 10.30.51.91  | s58-nomad
 10.30.51.92  | s59-nomad
+10.30.51.93  | s93-t39-sut1
+10.30.51.94  | s94-t39-sut2
 10.30.51.255 | Broadcast
 10.32.8.0    | network
 10.32.8.1    | Router
@@ -912,6 +928,20 @@ FD.io CSIT lab contains following server types:
         - Processors: 1* Ampere(R) Altra(R) Processor (Neoverse N1)
         - RAM Memory: 4* 16GB RDIMM-3200MHz
         - Disks: 1* 960GB SSD Samsung M.2 NVMe PM983
+27. Server-Type-G1: Purpose - SnowRidge Atom SUT for FD.io performance testing.
+    - Quantity: 2
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 3-node testbed topology.
+    - Main HW configuration:
+        - Chassis: ?.
+        - Motherboard: ?.
+        - Processors: ?* Intel Atom P5362B 2.2 GHz.
+        - RAM Memory: ?* ?GB DDR4-2933.
+        - Disks: ?* ? SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, PCIe3.0 lane)
+            - PCIe Slot yy:00.xx: ?.
 ```
 
 ### Naming Convention
@@ -1374,7 +1404,7 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s19-t33t211-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 ```
 
-#### 2-Node-Icelake Servers (2n-icx) TBD
+#### 2-Node-Icelake Servers (2n-icx) PROD
 
 ```
 - SUT [Server-Type-F1]:
@@ -1663,7 +1693,7 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s19-t33t211-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 ```
 
-#### 3-Node-Altra Servers (3n-alt) TBD
+#### 3-Node-Altra Servers (3n-alt) PROD
 
 Note: Server64 (TG) is shared between testbed34 & testbed36
 
@@ -1723,7 +1753,7 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
         - s31-t35-sut2-p4 - 10GE-port4 x553 fiber port.
 ```
 
-#### 3-Node-Icelake Servers (3n-icx) TBD
+#### 3-Node-Icelake Servers (3n-icx) PROD
 
 ```
 - ServerF1 [Server-Type-F1]:
@@ -1810,6 +1840,35 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
         - s70-t38-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
         - s70-t38-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s70-t38-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+```
+
+#### 3-Node-SnowRidge Servers (3n-snr) PROD
+
+```
+- ServerG1 [Server-Type-G1]:
+    - testbedname: testbed39.
+    - hostname: s93-t39-sut1.
+    - IPMI IP: 10.30.50.93
+    - Host IP: 10.30.51.93
+    - portnames:
+        - s93-t39-sut1-c1/p1 - 100GE-port1 e810-DA2-2p100GE.
+        - s93-t39-sut1-c1/p2 - 100GE-port2 e810-DA2-2p100GE.
+- ServerG1 [Server-Type-G1]:
+    - testbedname: testbed39.
+    - hostname: s94-t39-sut2.
+    - IPMI IP: 10.30.50.94
+    - Host IP: 10.30.51.94
+    - portnames:
+        - s94-t39-sut2-c1/p1 - 100GE-port1 e810-DA2-2p100GE.
+        - s94-t39-sut2-c1/p2 - 100GE-port1 e810-DA2-2p100GE.
+- ServerF4 [Server-Type-F4]:
+    - testbedname: testbed39.
+    - hostname: s89-t39t310-tg1.
+    - IPMI IP: 10.30.50.89
+    - Host IP: 10.30.51.89
+    - portnames:
+        - s89-t39t310-tg1-c6/p1 - 100GE-port1 e810-DA2-2p100GE.
+        - s89-t39t310-tg1-c6/p2 - 100GE-port1 e810-DA2-2p100GE.
 ```
 
 ### Per Testbed Wiring
@@ -2038,7 +2097,7 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
         - s27-t211-sut1-c18/p2 - s19-t33t211-tg1-c8/p2.
 ```
 
-#### 2-Node-Icelake Wiring (2n-icx) TBD
+#### 2-Node-Icelake Wiring (2n-icx) PROD
 
 ```
 - testbed212:
@@ -2148,7 +2207,7 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
         - s16-t32-tg1-c10/p3 to s16-t32-tg1-c10/p4.
 ```
 
-#### 3-Node-Rangeley Wiring (3n-rng) TODO
+#### 3-Node-Rangeley Wiring (3n-rng) VERIFY
 
 ```
 To be completed.
@@ -2168,7 +2227,7 @@ To be completed.
         - s18-t33-sut2-c4/p1 - s19-t33t211-tg1-c4/p1.
 ```
 
-#### 3-Node-Altra Wiring (3n-alt) TBD
+#### 3-Node-Altra Wiring (3n-alt) PROD
 
 ```
 - testbed34:
@@ -2231,6 +2290,16 @@ To be completed.
         - s70-t38-tg1-c9/p1 to s68-t38-sut1-c9/p1.
         - s68-t38-sut1-c9/p2 to s69-t38-sut2-c9/p2.
         - s69-t38-sut2-c9/p1 to s70-t38-tg1-c9/p2.
+```
+
+#### 3-Node-SnowRidge Wiring (3n-snr) PROD
+
+```
+- testbed39:
+    - ring1 100GE-ports e810-DA2-2p100GE on SUTs and TG:
+        - s89-t39t310-tg1-c6/p1 to s93-t39-sut1-c1/p1.
+        - s93-t39-sut1-c1/p2 to s94-t39-sut2-c1/p2.
+        - s94-t39-sut2-c1/p1 to s89-t39t310-tg1-c6/p2.
 ```
 
 ## Inventory
