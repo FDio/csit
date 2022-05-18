@@ -158,12 +158,12 @@ Improving existing CSIT telemetry implementaion including these areas.
 - telemetry output
   - standardize output
 
-Exesting stats implementation was abstracted to having pre-/post-run-stats
+Existing stats implementation was abstracted to having pre-/post-run-stats
 phases. Improvement will be done by merging pre-/post- logic implementation into
 separated stat-runtime block configurable and locally executed on SUT.
 
 This will increase precision, remove complexity and move implementation into
-spearated module.
+separated module.
 
 OpenMetric format for cloud native metric capturing will be used to ensure
 integration with post processing module.
@@ -182,6 +182,7 @@ MRR measurement
 Legend:
   - stat_runtime
     - vpp-runtime
+    - bpf-runtime
   - stat_pre_trial
     - vpp-clear-stats
     - vpp-enable-packettrace  // if extended_debug == True
@@ -226,6 +227,7 @@ MLR measurement
 Legend:
   - stat_runtime
     - vpp-runtime
+    - bpf-runtime
   - stat_pre_trial
     - vpp-clear-stats
     - vpp-enable-packettrace  // if extended_debug == True
@@ -234,6 +236,77 @@ Legend:
     - vpp-show-packettrace    // if extended_debug == True
 ```
 
+vpp-runtime
+~~~~~~~~~~~
+It's a phase when VPP telemetry is collected. VPP uses perfmon to collect
+counters for different events.
+
+How VPP measures performance counters:
+
+  Reset perfmon counters.
+  Opens file descriptor (FD) and attaches to event ~ 2ms
+  Then waits 1s ~ 1001ms
+  Show perfmon counters for measured event ~ 1ms
+
+Counters collected per event:
+  - context-switches
+    - CONTEXT_SWITCHES (0x3)
+  - page-faults
+    - PAGE-FAULTS-MINOR (0x5)
+    - PAGE-FAULTS-MAJOR (0x6)
+  - inst-and-clock
+    - INTEL_CORE_E_INST_RETIRED_ANY_P (0xc0)
+    - INTEL_CORE_E_CPU_CLK_UNHALTED_THREAD_P (0x3c)
+    - INTEL_CORE_E_CPU_CLK_UNHALTED_REF_TSC (0x300)
+  - cache-hierarchy
+    - INTEL_CORE_E_MEM_LOAD_RETIRED_L1_HIT (0xd1, 0x01)
+    - INTEL_CORE_E_MEM_LOAD_RETIRED_L1_MISS (0xd1, 0x08)
+    - INTEL_CORE_E_MEM_LOAD_RETIRED_L2_MISS (0xd1, 0x10)
+    - INTEL_CORE_E_MEM_LOAD_RETIRED_L3_MISS (0xd1, 0x20)
+  - load-blocks
+    - INTEL_CORE_E_LD_BLOCKS_STORE_FORWARD (0x203)
+    - INTEL_CORE_E_LD_BLOCKS_NO_SR (0x803)
+    - INTEL_CORE_E_LD_BLOCKS_PARTIAL_ADDRESS_ALIAS (0x107)
+  - branch-mispred
+    - INTEL_CORE_E_BR_INST_RETIRED_ALL_BRANCHES (0xc4)
+    - INTEL_CORE_E_BR_INST_RETIRED_NEAR_TAKEN (0x20c4)
+    - INTEL_CORE_E_BR_MISP_RETIRED_ALL_BRANCHES (0xc5)
+  - power-licensing
+    - INTEL_CORE_E_CPU_CLK_UNHALTED_THREAD_P (0x3c)
+    - INTEL_CORE_E_CORE_POWER_LVL0_TURBO_LICENSE (0x728)
+    - INTEL_CORE_E_CORE_POWER_LVL1_TURBO_LICENSE (0x1828)
+    - INTEL_CORE_E_CORE_POWER_LVL2_TURBO_LICENSE (0x2028)
+    - INTEL_CORE_E_CORE_POWER_THROTTLE (0x4028)
+  - memory-bandwidth
+    - INTEL_UNCORE_E_IMC_UNC_M_CAS_COUNT_RD
+    - INTEL_UNCORE_E_IMC_UNC_M_CAS_COUNT_WR
+
+bpf-runtime
+~~~~~~~~~~~
+It's a phase when linux telemetry is collected. CSIT uses BPF to collect perf
+counters for different events. Difference between VPP and CSIT measurment is
+that BPF uses one more syscall to load BPF program to kernel.
+
+How CSIT measures performance counters:
+
+  BPF opens file descriptor (FD) and attaches to event ~ 4.5ms
+  Then sleeps 1s ~ 1001ms
+  Collect counters for measured event ~ 2ms
+
+Counters collected per event:
+  - context-switches
+    - CONTEXT_SWITCHES (0x3)
+  - page-faults
+    - PAGE-FAULTS-MINOR (0x5)
+    - PAGE-FAULTS-MAJOR (0x6)
+  - inst-and-clock
+    - INTEL_CORE_E_INST_RETIRED_ANY_P (0xc0)
+    - INTEL_CORE_E_CPU_CLK_UNHALTED_THREAD_P (0x3c)
+  - cache-hierarchy
+    - PERF_COUNT_HW_CACHE_REFERENCES (0x1)
+    - PERF_COUNT_HW_CACHE_MISSES (0x2)
+
+Other counters are implemented but not used.
 
 Tooling
 -------
@@ -257,16 +330,23 @@ Configuration
   logging:
     version: 1
     formatters:
-      console:
-        format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+      console_stdout:
+        format: '%(asctime)s - %(name)s - %(message)s'
+      console_stderr:
+        format: '%(message)s'
       prom:
         format: '%(message)s'
     handlers:
-      console:
+      console_stdout:
         class: logging.StreamHandler
         level: INFO
-        formatter: console
+        formatter: console_stdout
         stream: ext://sys.stdout
+      console_stderr:
+        class: logging.StreamHandler
+        level: ERROR
+        formatter: console_stderr
+        stream: ext://sys.stderr
       prom:
         class: logging.handlers.RotatingFileHandler
         level: INFO
@@ -280,9 +360,10 @@ Configuration
         propagate: False
     root:
       level: INFO
-      handlers: [console]
+      handlers: [console_stdout, console_stderr]
   scheduler:
     duration: 1
+    sample_period: 100
   programs:
     - name: bundle_bpf
       metrics:
@@ -294,6 +375,35 @@ Configuration
               - name
               - cpu
               - pid
+      events:
+        - type: 0x4 # RAW
+          name: 0x3c # INTEL_CORE_E_CPU_CLK_UNHALTED_THREAD_P
+          target: on_cpu_cycle
+          table: cpu_cycle
+      code: |
+        #include <linux/ptrace.h>
+        #include <uapi/linux/bpf_perf_event.h>
+        const int max_cpus = 256;
+        struct key_t {
+            int cpu;
+            int pid;
+            char name[TASK_COMM_LEN];
+        };
+        BPF_HASH(cpu_cycle, struct key_t);
+        static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+            key->cpu = bpf_get_smp_processor_id();
+            key->pid = bpf_get_current_pid_tgid();
+            bpf_get_current_comm(&(key->name), sizeof(key->name));
+        }
+        int on_cpu_cycle(struct bpf_perf_event_data *ctx) {
+            struct key_t key = {};
+            get_key(&key);
+            cpu_cycle.increment(key, ctx->sample_period);
+            return 0;
+        }
+    - name: bundle_bpf
+      metrics:
+        counter:
           - name: cpu_instruction
             documentation: Instructions retired by CPUs
             namespace: bpf
@@ -301,15 +411,37 @@ Configuration
               - name
               - cpu
               - pid
-          - name: llc_reference
-            documentation: Last level cache operations by type
-            namespace: bpf
-            labelnames:
-              - name
-              - cpu
-              - pid
-          - name: llc_miss
-            documentation: Last level cache operations by type
+      events:
+        - type: 0x4 # RAW
+          name: 0xc0 # INTEL_CORE_E_INST_RETIRED_ANY_P
+          target: on_cpu_instruction
+          table: cpu_instruction
+      code: |
+        #include <linux/ptrace.h>
+        #include <uapi/linux/bpf_perf_event.h>
+        const int max_cpus = 256;
+        struct key_t {
+            int cpu;
+            int pid;
+            char name[TASK_COMM_LEN];
+        };
+        BPF_HASH(cpu_instruction, struct key_t);
+        static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+            key->cpu = bpf_get_smp_processor_id();
+            key->pid = bpf_get_current_pid_tgid();
+            bpf_get_current_comm(&(key->name), sizeof(key->name));
+        }
+        int on_cpu_instruction(struct bpf_perf_event_data *ctx) {
+            struct key_t key = {};
+            get_key(&key);
+            cpu_instruction.increment(key, ctx->sample_period);
+            return 0;
+        }
+    - name: bundle_bpf
+      metrics:
+        counter:
+          - name: cache_references
+            documentation: Cache references
             namespace: bpf
             labelnames:
               - name
@@ -317,70 +449,64 @@ Configuration
               - pid
       events:
         - type: 0x0 # HARDWARE
-          name: 0x0 # PERF_COUNT_HW_CPU_CYCLES
-          target: on_cpu_cycle
-          table: cpu_cycle
-        - type: 0x0 # HARDWARE
-          name: 0x1 # PERF_COUNT_HW_INSTRUCTIONS
-          target: on_cpu_instruction
-          table: cpu_instruction
-        - type: 0x0 # HARDWARE
           name: 0x2 # PERF_COUNT_HW_CACHE_REFERENCES
           target: on_cache_reference
-          table: llc_reference
-        - type: 0x0 # HARDWARE
-          name: 0x3 # PERF_COUNT_HW_CACHE_MISSES
-          target: on_cache_miss
-          table: llc_miss
+          table: cache_references
       code: |
         #include <linux/ptrace.h>
         #include <uapi/linux/bpf_perf_event.h>
-
         const int max_cpus = 256;
-
         struct key_t {
             int cpu;
             int pid;
             char name[TASK_COMM_LEN];
         };
-
-        BPF_HASH(llc_miss, struct key_t);
-        BPF_HASH(llc_reference, struct key_t);
-        BPF_HASH(cpu_instruction, struct key_t);
-        BPF_HASH(cpu_cycle, struct key_t);
-
+        BPF_HASH(cache_references, struct key_t);
         static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
             key->cpu = bpf_get_smp_processor_id();
             key->pid = bpf_get_current_pid_tgid();
             bpf_get_current_comm(&(key->name), sizeof(key->name));
         }
-
-        int on_cpu_cycle(struct bpf_perf_event_data *ctx) {
-            struct key_t key = {};
-            get_key(&key);
-
-            cpu_cycle.increment(key, ctx->sample_period);
-            return 0;
-        }
-        int on_cpu_instruction(struct bpf_perf_event_data *ctx) {
-            struct key_t key = {};
-            get_key(&key);
-
-            cpu_instruction.increment(key, ctx->sample_period);
-            return 0;
-        }
         int on_cache_reference(struct bpf_perf_event_data *ctx) {
             struct key_t key = {};
             get_key(&key);
-
-            llc_reference.increment(key, ctx->sample_period);
+            cache_references.increment(key, ctx->sample_period);
             return 0;
+        }
+    - name: bundle_bpf
+      metrics:
+        counter:
+          - name: cache_miss
+            documentation: Cache misses
+            namespace: bpf
+            labelnames:
+              - name
+              - cpu
+              - pid
+      events:
+        - type: 0x0 # HARDWARE
+          name: 0x3 # PERF_COUNT_HW_CACHE_MISSES
+          target: on_cache_miss
+          table: cache_miss
+      code: |
+        #include <linux/ptrace.h>
+        #include <uapi/linux/bpf_perf_event.h>
+        const int max_cpus = 256;
+        struct key_t {
+            int cpu;
+            int pid;
+            char name[TASK_COMM_LEN];
+        };
+        BPF_HASH(cache_miss, struct key_t);
+        static inline __attribute__((always_inline)) void get_key(struct key_t* key) {
+            key->cpu = bpf_get_smp_processor_id();
+            key->pid = bpf_get_current_pid_tgid();
+            bpf_get_current_comm(&(key->name), sizeof(key->name));
         }
         int on_cache_miss(struct bpf_perf_event_data *ctx) {
             struct key_t key = {};
             get_key(&key);
-
-            llc_miss.increment(key, ctx->sample_period);
+            cache_miss.increment(key, ctx->sample_period);
             return 0;
         }
 ```
@@ -395,10 +521,10 @@ Compute resource
 ________________
 
 - BPF /process
-  - BPF_HASH(llc_miss, struct key_t);
-  - BPF_HASH(llc_reference, struct key_t);
   - BPF_HASH(cpu_instruction, struct key_t);
   - BPF_HASH(cpu_cycle, struct key_t);
+  - BPF_HASH(cache_reference, struct key_t);
+  - BPF_HASH(cache_miss, struct key_t);
 
 Memory resource
 _______________
@@ -480,10 +606,10 @@ Compute resource
 ________________
 
 - BPF /process
-  - BPF_HASH(llc_miss, struct key_t);
-  - BPF_HASH(llc_reference, struct key_t);
   - BPF_HASH(cpu_instruction, struct key_t);
   - BPF_HASH(cpu_cycle, struct key_t);
+  - BPF_HASH(cache_reference, struct key_t);
+  - BPF_HASH(cache_miss, struct key_t);
 
 Memory resource
 _______________
