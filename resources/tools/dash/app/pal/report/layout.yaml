@@ -19,12 +19,12 @@ plot-throughput:
       size: 14
     zeroline: False
   yaxis:
-    title: "<b>Packet Throughput [Mpps]</b>"
+    title: "<b>Packet Throughput [pps]</b>"
     titlefont:
       size: 14
     gridcolor: "rgb(230, 230, 230)"
-    hoverformat: ".4r"
-    tickformat: ".3r"
+    hoverformat: ".3s"
+    tickformat: ".3s"
     linecolor: "rgb(220, 220, 220)"
     linewidth: 1
     showgrid: True
@@ -52,6 +52,116 @@ plot-throughput:
   plot_bgcolor: "#fff"
   hoverlabel:
     namelength: -1
+
+plot-latency:
+  titlefont:
+    size: 16
+  xaxis:
+    title: "<b>Test Cases [Index]</b>"
+    titlefont:
+      size: 14
+    autorange: True
+    fixedrange: False
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    tickmode: "array"
+    tickfont:
+      size: 14
+    zeroline: False
+  yaxis:
+    title: "<b>Packet Latency [us]</b>"
+    titlefont:
+      size: 14
+    gridcolor: "rgb(230, 230, 230)"
+    hoverformat: ".3s"
+    tickformat: ".3s"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    tickfont:
+      size: 14
+    zeroline: False
+    range: [0, 50]
+  autosize: False
+  margin:
+    t: 50
+    b: 0
+    l: 80
+    r: 20
+  showlegend: True
+  legend:
+    orientation: "h"
+    font:
+      size: 14
+  width: 700
+  height: 900
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: -1
+
+plot-hdrh-latency:
+  # title:
+  #   text: "Latency by Percentile Distribution"
+  #   xanchor: "center"
+  #   x: 0.5
+    # font:
+    #   size: 10
+  showlegend: True
+  legend:
+    traceorder: "normal"
+    orientation: "h"
+    # font:
+    #   size: 16
+    xanchor: "left"
+    yanchor: "top"
+    x: 0
+    y: -0.25
+    bgcolor: "rgba(255, 255, 255, 0)"
+    bordercolor: "rgba(255, 255, 255, 0)"
+  xaxis:
+    type: "log"
+    title: "Percentile [%]"
+    # titlefont:
+    #   size: 14
+    autorange: False
+    fixedrange: True
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    tickvals: [1, 2, 1e1, 20, 1e2, 1e3, 1e4, 1e5, 1e6]
+    ticktext: [0, 50, 90, 95, 99, 99.9, 99.99, 99.999, 99.9999]
+    # tickfont:
+    #   size: 14
+  yaxis:
+    title: "One-Way Latency per Direction [us]"
+    # titlefont:
+    #   size: 14
+    gridcolor: "rgb(230, 230, 230)"
+    linecolor: "rgb(220, 220, 220)"
+    linewidth: 1
+    showgrid: True
+    showline: True
+    showticklabels: True
+    tickcolor: "rgb(220, 220, 220)"
+    # tickfont:
+    #   size: 14
+  autosize: True
+  #height: 400
+  paper_bgcolor: "white"
+  plot_bgcolor: "white"
 
 plot-throughput-speedup-analysis:
   titlefont:
