@@ -14,21 +14,18 @@
 """
 """
 
+import re
 import plotly.graph_objects as go
 import pandas as pd
+
+from copy import deepcopy
 
 import hdrh.histogram
 import hdrh.codec
 
 
-_COLORS = (
-    u"#1A1110", u"#DA2647", u"#214FC6", u"#01786F", u"#BD8260", u"#FFD12A",
-    u"#A6E7FF", u"#738276", u"#C95A49", u"#FC5A8D", u"#CEC8EF", u"#391285",
-    u"#6F2DA8", u"#FF878D", u"#45A27D", u"#FFD0B9", u"#FD5240", u"#DB91EF",
-    u"#44D7A8", u"#4F86F7", u"#84DE02", u"#FFCFF1", u"#614051"
-)
 _VALUE = {
-    "mrr": "result_receive_rate_rate_avg",
+    "mrr": "result_receive_rate_rate_values",
     "ndr": "result_ndr_lower_rate_value",
     "pdr": "result_pdr_lower_rate_value",
     "pdr-lat": "result_latency_forward_pdr_50_avg"
@@ -63,6 +60,37 @@ _GRAPH_LAT_HDRH_DESC = {
     u"result_latency_forward_pdr_90_hdrh": u"High-load, 90% PDR.",
     u"result_latency_reverse_pdr_90_hdrh": u"High-load, 90% PDR."
 }
+REG_EX_VPP_VERSION = re.compile(r"^(\d{2}).(\d{2})-(rc0|rc1|rc2|release$)")
+
+
+def _get_color(idx: int) -> str:
+    """
+    """
+    _COLORS = (
+        "#1A1110", "#DA2647", "#214FC6", "#01786F", "#BD8260", "#FFD12A",
+        "#A6E7FF", "#738276", "#C95A49", "#FC5A8D", "#CEC8EF", "#391285",
+        "#6F2DA8", "#FF878D", "#45A27D", "#FFD0B9", "#FD5240", "#DB91EF",
+        "#44D7A8", "#4F86F7", "#84DE02", "#FFCFF1", "#614051"
+    )
+    return _COLORS[idx % len(_COLORS)]
+
+
+def get_short_version(version: str, dut_type: str="vpp") -> str:
+    """
+    """
+
+    if dut_type in ("trex", "dpdk"):
+        return version
+
+    s_version = str()
+    groups = re.search(pattern=REG_EX_VPP_VERSION, string=version)
+    if groups:
+        try:
+            s_version = f"{groups.group(1)}.{groups.group(2)}_{groups.group(3)}"
+        except IndexError:
+            pass
+
+    return s_version
 
 
 def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
@@ -82,18 +110,31 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 
     core = str() if itm["dut"] == "trex" else f"{itm['core']}"
     ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
-    dut = "none" if itm["dut"] == "trex" else itm["dut"].upper()
+    dut_v100 = "none" if itm["dut"] == "trex" else itm["dut"]
+    dut_v101 = itm["dut"]
 
     df = data.loc[(
-        (data["dut_type"] == dut) &
+        (data["release"] == itm["rls"]) &
+        (
+            (
+                (data["version"] == "1.0.0") &
+                (data["dut_type"].str.lower() == dut_v100)
+            ) |
+            (
+                (data["version"] == "1.0.1") &
+                (data["dut_type"].str.lower() == dut_v101)
+            )
+        ) &
         (data["test_type"] == ttype) &
         (data["passed"] == True)
     )]
-    df = df[df.job.str.endswith(f"{topo}-{arch}")]
-    df = df[df.test_id.str.contains(
-        f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$",
-        regex=True
-    )].sort_values(by="start_time", ignore_index=True)
+    regex_test = \
+        f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$"
+    df = df[
+        (df.job.str.endswith(f"{topo}-{arch}")) &
+        (df.dut_version.str.contains(itm["dutver"].replace("_", "-"))) &
+        (df.test_id.str.contains(regex_test, regex=True))
+    ]
 
     return df
 
@@ -102,56 +143,129 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
     """
     """
 
-    fig_tput = go.Figure()
-    fig_tsa = go.Figure()
+    fig_tput = None
+    fig_lat = None
 
-    return fig_tput, fig_tsa
+    tput_traces = list()
+    y_tput_max = 0
+    lat_traces = list()
+    y_lat_max = 0
+    x_lat = list()
+    for idx, itm in enumerate(sel):
+        itm_data = select_iterative_data(data, itm)
+        if itm["testtype"] == "mrr":
+            y_data = itm_data[_VALUE[itm["testtype"]]].to_list()[0]
+            if y_data.size > 0:
+                y_tput_max = \
+                    max(y_data) if max(y_data) > y_tput_max else y_tput_max
+        else:
+            y_data = itm_data[_VALUE[itm["testtype"]]].to_list()
+            if y_data:
+                y_tput_max = \
+                    max(y_data) if max(y_data) > y_tput_max else y_tput_max
+        nr_of_samples = len(y_data)
+        tput_kwargs = dict(
+            y=y_data,
+            name=(
+                f"{idx + 1}. "
+                f"({nr_of_samples:02d} "
+                f"run{u's' if nr_of_samples > 1 else u''}) "
+                f"{itm['id']}"
+            ),
+            hoverinfo=u"y+name",
+            boxpoints="all",
+            jitter=0.3,
+            marker=dict(color=_get_color(idx))
+        )
+        tput_traces.append(go.Box(**tput_kwargs))
+
+        show_latency = False
+        if itm["testtype"] == "pdr":
+            y_lat = itm_data[_VALUE["pdr-lat"]].to_list()
+            if y_lat:
+                y_lat_max = max(y_lat) if max(y_lat) > y_lat_max else y_lat_max
+            nr_of_samples = len(y_lat)
+            lat_kwargs = dict(
+                y=y_lat,
+                name=(
+                    f"{idx + 1}. "
+                    f"({nr_of_samples:02d} "
+                    f"run{u's' if nr_of_samples > 1 else u''}) "
+                    f"{itm['id']}"
+                ),
+                hoverinfo=u"y+name",
+                boxpoints="all",
+                jitter=0.3,
+                marker=dict(color=_get_color(idx))
+            )
+            x_lat.append(idx + 1)
+            lat_traces.append(go.Box(**lat_kwargs))
+            show_latency = True
+        else:
+            lat_traces.append(go.Box())
+
+    pl_tput = deepcopy(layout["plot-throughput"])
+    pl_tput[u"xaxis"][u"tickvals"] = [i for i in range(len(sel))]
+    pl_tput[u"xaxis"][u"ticktext"] = [str(i + 1) for i in range(len(sel))]
+    if y_tput_max:
+        pl_tput[u"yaxis"][u"range"] = [0, (int(y_tput_max / 1e6) + 1) * 1e6]
+    fig_tput = go.Figure(data=tput_traces, layout=pl_tput)
+
+    if show_latency:
+        pl_lat = deepcopy(layout["plot-latency"])
+        pl_lat[u"xaxis"][u"tickvals"] = [i for i in range(len(x_lat))]
+        pl_lat[u"xaxis"][u"ticktext"] = x_lat
+        if y_lat_max:
+            pl_lat[u"yaxis"][u"range"] = [0, (int(y_lat_max / 10) + 1) * 10]
+        fig_lat = go.Figure(data=lat_traces, layout=pl_lat)
+
+    return fig_tput, fig_lat
 
 
 def table_comparison(data: pd.DataFrame, sel:dict) -> pd.DataFrame:
     """
     """
     table = pd.DataFrame(
-    {
-        "Test Case": [
-            "64b-2t1c-avf-eth-l2xcbase-eth-2memif-1dcr",
-            "64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
-            "64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows",
-            "78b-2t1c-avf-ethip6-ip6scale2m-rnd "],
-        "2106.0-8": [
-            "14.45 +- 0.08",
-            "9.63 +- 0.05",
-            "9.7 +- 0.02",
-            "8.95 +- 0.06"],
-        "2110.0-8": [
-            "14.45 +- 0.08",
-            "9.63 +- 0.05",
-            "9.7 +- 0.02",
-            "8.95 +- 0.06"],
-        "2110.0-9": [
-            "14.45 +- 0.08",
-            "9.63 +- 0.05",
-            "9.7 +- 0.02",
-            "8.95 +- 0.06"],
-        "2202.0-9": [
-            "14.45 +- 0.08",
-            "9.63 +- 0.05",
-            "9.7 +- 0.02",
-            "8.95 +- 0.06"],
-        "2110.0-9 vs 2110.0-8": [
-            "-0.23 +-  0.62",
-            "-1.37 +-   1.3",
-            "+0.08 +-   0.2",
-            "-2.16 +-  0.83"],
-        "2202.0-9 vs 2110.0-9": [
-            "+6.95 +-  0.72",
-            "+5.35 +-  1.26",
-            "+4.48 +-  1.48",
-            "+4.09 +-  0.95"]
-    }
-)
+        {
+            "Test Case": [
+                "64b-2t1c-avf-eth-l2xcbase-eth-2memif-1dcr",
+                "64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
+                "64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows",
+                "78b-2t1c-avf-ethip6-ip6scale2m-rnd "],
+            "2106.0-8": [
+                "14.45 +- 0.08",
+                "9.63 +- 0.05",
+                "9.7 +- 0.02",
+                "8.95 +- 0.06"],
+            "2110.0-8": [
+                "14.45 +- 0.08",
+                "9.63 +- 0.05",
+                "9.7 +- 0.02",
+                "8.95 +- 0.06"],
+            "2110.0-9": [
+                "14.45 +- 0.08",
+                "9.63 +- 0.05",
+                "9.7 +- 0.02",
+                "8.95 +- 0.06"],
+            "2202.0-9": [
+                "14.45 +- 0.08",
+                "9.63 +- 0.05",
+                "9.7 +- 0.02",
+                "8.95 +- 0.06"],
+            "2110.0-9 vs 2110.0-8": [
+                "-0.23 +-  0.62",
+                "-1.37 +-   1.3",
+                "+0.08 +-   0.2",
+                "-2.16 +-  0.83"],
+            "2202.0-9 vs 2110.0-9": [
+                "+6.95 +-  0.72",
+                "+5.35 +-  1.26",
+                "+4.48 +-  1.48",
+                "+4.09 +-  0.95"]
+        }
+    )
 
-    return table
+    return pd.DataFrame()  #table
 
 
 def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
@@ -206,7 +320,7 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
                 legendgroup=_GRAPH_LAT_HDRH_DESC[lat_name],
                 showlegend=bool(idx % 2),
                 line=dict(
-                    color=_COLORS[int(idx/2)],
+                    color=_get_color(int(idx/2)),
                     dash=u"solid",
                     width=1 if idx % 2 else 2
                 ),

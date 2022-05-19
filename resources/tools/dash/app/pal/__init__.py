@@ -33,7 +33,7 @@ TIME_PERIOD = MAX_TIME_PERIOD  # [days]
 # List of releases used for iterative data processing.
 # The releases MUST be in the order from the current (newest) to the last
 # (oldest).
-RELEASES=["rls2202", ]
+RELEASES=["rls2206", "rls2202", ]
 
 def init_app():
     """Construct core Flask application with embedded Dash app.

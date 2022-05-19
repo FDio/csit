@@ -26,12 +26,6 @@ from numpy import isnan
 from ..jumpavg import classify
 
 
-_COLORS = (
-    u"#1A1110", u"#DA2647", u"#214FC6", u"#01786F", u"#BD8260", u"#FFD12A",
-    u"#A6E7FF", u"#738276", u"#C95A49", u"#FC5A8D", u"#CEC8EF", u"#391285",
-    u"#6F2DA8", u"#FF878D", u"#45A27D", u"#FFD0B9", u"#FD5240", u"#DB91EF",
-    u"#44D7A8", u"#4F86F7", u"#84DE02", u"#FFCFF1", u"#614051"
-)
 _ANOMALY_COLOR = {
     u"regression": 0.0,
     u"normal": 0.5,
@@ -91,6 +85,18 @@ _GRAPH_LAT_HDRH_DESC = {
     u"result_latency_forward_pdr_90_hdrh": u"High-load, 90% PDR.",
     u"result_latency_reverse_pdr_90_hdrh": u"High-load, 90% PDR."
 }
+
+
+def _get_color(idx: int) -> str:
+    """
+    """
+    _COLORS = (
+        "#1A1110", "#DA2647", "#214FC6", "#01786F", "#BD8260", "#FFD12A",
+        "#A6E7FF", "#738276", "#C95A49", "#FC5A8D", "#CEC8EF", "#391285",
+        "#6F2DA8", "#FF878D", "#45A27D", "#FFD0B9", "#FD5240", "#DB91EF",
+        "#44D7A8", "#4F86F7", "#84DE02", "#FFCFF1", "#614051"
+    )
+    return _COLORS[idx % len(_COLORS)]
 
 
 def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
@@ -174,10 +180,20 @@ def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 
     core = str() if itm["dut"] == "trex" else f"{itm['core']}"
     ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
-    dut = "none" if itm["dut"] == "trex" else itm["dut"].upper()
+    dut_v100 = "none" if itm["dut"] == "trex" else itm["dut"]
+    dut_v101 = itm["dut"]
 
     df = data.loc[(
-        (data["dut_type"] == dut) &
+        (
+            (
+                (data["version"] == "1.0.0") &
+                (data["dut_type"].str.lower() == dut_v100)
+            ) |
+            (
+                (data["version"] == "1.0.1") &
+                (data["dut_type"].str.lower() == dut_v101)
+            )
+        ) &
         (data["test_type"] == ttype) &
         (data["passed"] == True)
     )]
@@ -362,7 +378,7 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
         name = "-".join((itm["dut"], itm["phy"], itm["framesize"], itm["core"],
             itm["test"], itm["testtype"], ))
         traces = _generate_trending_traces(
-            itm["testtype"], name, df, start, end, _COLORS[idx % len(_COLORS)]
+            itm["testtype"], name, df, start, end, _get_color(idx)
         )
         if traces:
             if not fig_tput:
@@ -371,7 +387,7 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
 
         if itm["testtype"] == "pdr":
             traces = _generate_trending_traces(
-                "pdr-lat", name, df, start, end, _COLORS[idx % len(_COLORS)]
+                "pdr-lat", name, df, start, end, _get_color(idx)
             )
             if traces:
                 if not fig_lat:
@@ -438,7 +454,7 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
                 legendgroup=_GRAPH_LAT_HDRH_DESC[lat_name],
                 showlegend=bool(idx % 2),
                 line=dict(
-                    color=_COLORS[int(idx/2)],
+                    color=_get_color(int(idx/2)),
                     dash=u"solid",
                     width=1 if idx % 2 else 2
                 ),
