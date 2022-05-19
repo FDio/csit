@@ -986,36 +986,48 @@ function select_tags () {
     #
     # Reasons for blacklisting:
     # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
+    # - 1_node_single_link_topo - Only some testbeds+NICs have loopback cable.
     case "${TEST_CODE}" in
         *"1n-vbox"*)
             test_tag_array+=("!avf")
             test_tag_array+=("!vhost")
             test_tag_array+=("!flow")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"1n_tx2"*)
             test_tag_array+=("!flow")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
+            # Only Intel-X710 has a TG loopback link.
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-xxv710")
             ;;
         *"3n-skx"*)
             test_tag_array+=("!ipsechw")
             # Not enough nic_intel-xxv710 to support double link tests.
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            # Only Intel-X710 has a TG loopback link.
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-xxv710")
             ;;
         *"2n-clx"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-icx"*)
             test_tag_array+=("!ipsechw")
+            # Only Intel-E810CQ has a TG loopback link.
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-xxv710")
             ;;
         *"3n-icx"*)
             test_tag_array+=("!ipsechw")
             # Not enough nic_intel-xxv710 to support double link tests.
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-zn2"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-dnv"*)
             test_tag_array+=("!memif")
@@ -1023,9 +1035,11 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-tx2"* | *"3n-alt"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"3n-dnv"*)
             test_tag_array+=("!memif")
@@ -1033,14 +1047,17 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"3n-tsh"*)
             # 3n-tsh only has x520 NICs which don't work with AVF
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
     esac
 
