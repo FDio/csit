@@ -301,7 +301,11 @@
     vxlan_add_del_tunnel_v3_reply: '0x5383d31f'  # dev
     # vxlan_gpe_tunnel_dump / details # honeycomb
     # vxlan_tunnel_dump /details # unused L2 keyword: Get VXLAN dump
-# Please keep alphabetic order.
+    wireguard_interface_create: '0xa530137e'
+    wireguard_interface_create_reply: '0x5383d31f'
+    wireguard_peer_add: '0x9b8aad61'
+    wireguard_peer_add_reply: '0x084a0cd3'
+    # Please keep alphabetic order.
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # Hint to see the currently used command messages:
