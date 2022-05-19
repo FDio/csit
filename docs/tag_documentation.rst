@@ -539,6 +539,10 @@ Encapsulation Tags
 
     All test cases with IPSEC.
 
+.. topic:: WIREGUARD
+
+    All test cases with WIREGUARD.
+
 .. topic:: SRv6
 
     All test cases with Segment routing over IPv6 dataplane.
