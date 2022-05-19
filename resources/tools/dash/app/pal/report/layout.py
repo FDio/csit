@@ -157,20 +157,27 @@ class Layout:
                 tbs[rls][dut][d_ver][infra][area] = dict()
             if tbs[rls][dut][d_ver][infra][area].get(test, None) is None:
                 tbs[rls][dut][d_ver][infra][area][test] = dict()
-                tbs_test = tbs[rls][dut][d_ver][infra][area][test]
-                tbs_test["core"] = list()
-                tbs_test["frame-size"] = list()
-                tbs_test["test-type"] = list()
-            if core.upper() not in tbs_test["core"]:
-                tbs_test["core"].append(core.upper())
-            if framesize.upper() not in tbs_test["frame-size"]:
-                tbs_test["frame-size"].append(framesize.upper())
+                tbs[rls][dut][d_ver][infra][area][test]["core"] = list()
+                tbs[rls][dut][d_ver][infra][area][test]["frame-size"] = list()
+                tbs[rls][dut][d_ver][infra][area][test]["test-type"] = list()
+            if core.upper() not in \
+                    tbs[rls][dut][d_ver][infra][area][test]["core"]:
+                tbs[rls][dut][d_ver][infra][area][test]["core"].append(
+                    core.upper())
+            if framesize.upper() not in \
+                        tbs[rls][dut][d_ver][infra][area][test]["frame-size"]:
+                tbs[rls][dut][d_ver][infra][area][test]["frame-size"].append(
+                    framesize.upper())
             if ttype == "mrr":
-                if "MRR" not in tbs_test["test-type"]:
-                    tbs_test["test-type"].append("MRR")
+                if "MRR" not in \
+                        tbs[rls][dut][d_ver][infra][area][test]["test-type"]:
+                    tbs[rls][dut][d_ver][infra][area][test]["test-type"].append(
+                        "MRR")
             elif ttype == "ndrpdr":
-                if "NDR" not in tbs_test["test-type"]:
-                    tbs_test["test-type"].extend(("NDR", "PDR", ))
+                if "NDR" not in \
+                        tbs[rls][dut][d_ver][infra][area][test]["test-type"]:
+                    tbs[rls][dut][d_ver][infra][area][test]["test-type"].extend(
+                        ("NDR", "PDR", ))
         self._spec_tbs = tbs
 
         # Read from files:
