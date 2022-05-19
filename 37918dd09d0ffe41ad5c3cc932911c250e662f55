@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4be01e31_36341133",
+        "filename": "resources/libraries/python/WireGuardUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "Seems that peer_allowed_ips, peer_n_allowed_ips is useless if you put below code in this method\n\ndut1_allowed_ips \u003d \\\n                [IPUtil.create_prefix_object(raddr_ip2,raddr_range),]\n\nreplace  raddr_range  to addr_range is better.",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3eb9f83_ff5bd3fb",
+        "filename": "resources/libraries/python/WireGuardUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "Interface already up in   \"Initialize WireGuard in 3-node circular topology\"  ?",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd6ad724_e66c676f",
+        "filename": "resources/libraries/robot/crypto/wireguard.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "place on resources/libraries/robot/wireguard/wireguard.robot ?",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37538ec4_bc405bc1",
+        "filename": "resources/libraries/robot/crypto/wireguard.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "Intel",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29b52ac2_e00d35aa",
+        "filename": "resources/libraries/robot/crypto/wireguard.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "seems it was not used in test case.",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "728cec05_ddc44a5b",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x710-ethip4udpwireguard1tnlsw-ip4base-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "Copyright (c) 2022 Intel and/or its affiliates.",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2435353b_6856f288",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x710-ethip4udpwireguard1tnlsw-ip4base-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "TNL_1",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c463a97_ca384b8d",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x710-ethip4udpwireguard1tnlsw-ip4base-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "WIREGUARD\nno SCALE tag",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c20456b_230f8df3",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x710-ethip4udpwireguard1tnlsw-ip4base-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "Eth-IPv4-UDP-WireGuard",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22d21065_1a2d969f",
+        "filename": "tests/vpp/perf/ip4_tunnels/10ge2p1x710-ethip4udpwireguard1tnlsw-ip4base-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-05-19T12:00:12Z",
+      "side": 1,
+      "message": "useless",
+      "revId": "37918dd09d0ffe41ad5c3cc932911c250e662f55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
