@@ -14,6 +14,9 @@
 """
 """
 
+import logging
+
+import re
 import plotly.graph_objects as go
 import pandas as pd
 
@@ -63,6 +66,30 @@ _GRAPH_LAT_HDRH_DESC = {
     u"result_latency_forward_pdr_90_hdrh": u"High-load, 90% PDR.",
     u"result_latency_reverse_pdr_90_hdrh": u"High-load, 90% PDR."
 }
+REG_EX_VPP_VERSION = re.compile(r"^(\d{2}).(\d{2})-(rc0|rc1|rc2|release$)")
+
+# def match_version(patern: str, version: str) -> bool:
+#     """
+#     """
+#     return bool(patern in version.replace("_", "-"))
+
+
+def get_short_version(version: str, dut_type: str="vpp") -> str:
+    """
+    """
+
+    if dut_type in ("trex", "dpdk"):
+        return version
+
+    s_version = str()
+    groups = re.search(pattern=REG_EX_VPP_VERSION, string=version)
+    if groups:
+        try:
+            s_version = f"{groups.group(1)}.{groups.group(2)}_{groups.group(3)}"
+        except IndexError:
+            pass
+
+    return s_version
 
 
 def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
@@ -82,18 +109,39 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 
     core = str() if itm["dut"] == "trex" else f"{itm['core']}"
     ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
-    dut = "none" if itm["dut"] == "trex" else itm["dut"].upper()
+    dut_v100 = "none" if itm["dut"] == "trex" else itm["dut"]
+    dut_v101 = itm["dut"]
 
     df = data.loc[(
-        (data["dut_type"] == dut) &
+        (data["release"] == itm["rls"]) &
+        (
+            (
+                (data["version"] == "1.0.0") &
+                (data["dut_type"].str.lower() == dut_v100)
+            ) |
+            (
+                (data["version"] == "1.0.1") &
+                (data["dut_type"].str.lower() == dut_v101)
+            )
+        ) &
         (data["test_type"] == ttype) &
         (data["passed"] == True)
     )]
-    df = df[df.job.str.endswith(f"{topo}-{arch}")]
-    df = df[df.test_id.str.contains(
-        f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$",
-        regex=True
-    )].sort_values(by="start_time", ignore_index=True)
+    regex_test = \
+        f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$"
+    df = df[
+        (df.job.str.endswith(f"{topo}-{arch}")) &
+        (df.dut_version.str.contains(itm["dutver"].replace("_", "-"))) &
+        (df.test_id.str.contains(regex_test, regex=True))
+    ]
+
+    logging.info(df["job"].to_list())
+    logging.info(df["build"].to_list())
+    logging.info(df["test_type"].to_list())
+    logging.info(df["dut_version"].to_list())
+    logging.info(df["test_id"].to_list())
+    logging.info(df["day"].to_list())
+    logging.info(df["month"].to_list())
 
     return df
 
@@ -101,6 +149,9 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
     """
     """
+
+    for itm in sel:
+        itm_data = select_iterative_data(data, itm)
 
     fig_tput = go.Figure()
     fig_tsa = go.Figure()

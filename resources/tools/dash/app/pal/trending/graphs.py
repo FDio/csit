@@ -174,10 +174,20 @@ def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 
     core = str() if itm["dut"] == "trex" else f"{itm['core']}"
     ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
-    dut = "none" if itm["dut"] == "trex" else itm["dut"].upper()
+    dut_v100 = "none" if itm["dut"] == "trex" else itm["dut"]
+    dut_v101 = itm["dut"]
 
     df = data.loc[(
-        (data["dut_type"] == dut) &
+        (
+            (
+                (data["version"] == "1.0.0") &
+                (data["dut_type"].str.lower() == dut_v100)
+            ) |
+            (
+                (data["version"] == "1.0.1") &
+                (data["dut_type"].str.lower() == dut_v101)
+            )
+        ) &
         (data["test_type"] == ttype) &
         (data["passed"] == True)
     )]
