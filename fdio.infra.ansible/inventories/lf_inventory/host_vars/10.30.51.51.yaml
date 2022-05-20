@@ -10,7 +10,7 @@ grub:
 inventory_ipmi_hostname: "10.30.50.48"
 cpu_microarchitecture: "skylake"
 
-intel_800_matrix: "dpdk21.11"
+intel_800_matrix: "dpdk22.03"
 
 # User management.
 users:
