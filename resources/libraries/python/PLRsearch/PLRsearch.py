@@ -195,7 +195,7 @@ class PLRsearch:
             # exponential impact. Make it configurable, or is 4:3 good enough?
             if measurement.loss_ratio >= self.packet_loss_ratio_target:
                 for _ in range(4 * zeros):
-                    lossy_loads.append(measurement.target_tr)
+                    lossy_loads.append(measurement.intended_load)
             if measurement.loss_count > 0:
                 zeros = 0
             lossy_loads.sort()
@@ -460,17 +460,17 @@ class PLRsearch:
         trace(u"log_weight for mrr", mrr)
         trace(u"spread", spread)
         for result in trial_result_list:
-            trace(u"for tr", result.target_tr)
+            trace(u"for tr", result.intended_load)
             trace(u"lc", result.loss_count)
             trace(u"d", result.duration)
-            # _rel_ values use units of target_tr (transactions per second).
+            # _rel_ values use units of intended_load (transactions per second).
             log_avg_rel_loss_per_second = lfit_func(
-                trace, result.target_tr, mrr, spread
+                trace, result.intended_load, mrr, spread
             )
             # _abs_ values use units of loss count (maybe packets).
             # There can be multiple packets per transaction.
             log_avg_abs_loss_per_trial = log_avg_rel_loss_per_second + math.log(
-                result.transmit_count / result.target_tr
+                result.offered_count / result.intended_load
             )
             # Geometric probability computation for logarithms.
             log_trial_likelihood = log_plus(0.0, -log_avg_abs_loss_per_trial)
