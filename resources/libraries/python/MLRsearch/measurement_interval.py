@@ -16,7 +16,8 @@
 from dataclasses import dataclass, field
 
 from .comparable_measurement_result import ComparableMeasurementResult
-from .width_arithmetics import width_in_goals
+from .discrete_load import DiscreteLoad
+from .discrete_width import DiscreteWidth
 
 
 @dataclass
@@ -25,57 +26,86 @@ class MeasurementInterval:
 
     The main purpose is in utilities calculating "distance" between
     the intended loads, a.k.a. interval width, in various quantities.
+
+    Only measurements with round (int vlaue matching float value)
+    intended load are accepted.
+    Also, a MLR specific halving method is included.
     """
     low_end: ComparableMeasurementResult
     """Measurement for the lower (or higher) load."""
     high_end: ComparableMeasurementResult
     """Measurement for the higher (or lower) load."""
-    absolute_width: float = field(init=False, repr=False)
-    """Absolute width of intended loads. Tps of high_end minus of low_end."""
-    relative_width: float = field(init=False, repr=False)
-    """Relative width of intended loads. Absolute divided by high_end tps."""
+    discrete_width: DiscreteWidth = field(init=False, repr=False)
+    """Discrete width between intended loads. Tps of high_end minus of low_end."""
 
     def __post_init__(self):
-        """Sort bounds by intended load, compute secondary quantities."""
+        """Sort bounds by intended load, compute secondary quantities.
+
+        :raises RuntimeError: If a result used non-rounded load.
+        """
         if self.low_end.intended_load > self.high_end.intended_load:
             self.low_end, self.high_end = self.high_end, self.low_end
-        self.absolute_width = (
-            self.high_end.intended_load - self.low_end.intended_load
+        if not self.low_end.discrete_load.is_round:
+            raise RuntimeError(f"Non-round low end: {self.low_end!r}")
+        if not self.high_end.discrete_load.is_round:
+            raise RuntimeError(f"Non-round low end: {self.high_end!r}")
+        self.discrete_width = (
+            self.high_end.discrete_load - self.low_end.discrete_load
         )
-        self.relative_width = self.absolute_width / self.high_end.intended_load
 
-    def width_in_goals(self, relative_width_goal: float) -> float:
+    def width_in_goals(self, goal: DiscreteWidth) -> float:
         """Return relative width as a logaritmic multiple of given goal.
 
-        Relative width goal is some (negative) value on logarithmic scale.
-        Current relative width is another logarithmic value.
-        Return the latter divided by the former.
+        In values are used for computation, safe as end loads are rounded.
+        The result is in float, as rounding is to int, not to width goal.
 
-        :param relative_width_goal: high_end bound times this is the goal
+        :param goal: high_end bound (float) times this (float) is the goal
             difference between high_end bound and low_end bound.
-        :type relative_width_goal: float
-        :returns: Current width as logarithmic multiple of goal width [1].
+        :type relative_width_goal: DiscreteWidth
+        :returns: Current width as (logarithmic) multiple of goal width.
         :rtype: float
         """
-        return width_in_goals(self.relative_width, relative_width_goal)
+        return int(self.discrete_width) / int(goal)
 
-    @staticmethod
-    def wig(low_end: float, high_end: float, goal: float) -> float:
-        """Return "logarithmic distance" between two loads.
+    def middle(self, width_goal: DiscreteWidth) -> DiscreteLoad:
+        """Return new intended load (discrete form) in the middle.
 
-        See width_in_goals for more details.
+        All calculations are based on int forms.
 
-        It is useful to expose this part of logic, so users can see distances
-        before performning the measurement.
+        One of the halfs is rounded to a power-of-two multiple of the goal.
+        The power that leads to most even split is used.
+        Lower width is the smaller one (if not exactly even).
+        This approach prefers lower loads and can save some measurements
+        (by avoiding intervals smaller than the goal).
 
-        :param low_end: Intended load for the lower bound [tps].
-        :param high_end: Intended load for the lower bound [tps].
-        :param goal: Width goal to use as unit of measurement.
-        :type low_end: float
-        :type high_end: float
-        :type goal: float
-        :returns: Width between bounds as multiple of goal.
-        :rtype: float
+        If the interval width is one goal (or less), exception is raised.
+        If the interval width is between one and two goals (not including),
+        even split is attempted (still rounded to integer).
+
+        :param width_goal: Target width goal to use for uneven halving.
+        :type width_goal: DiscreteWidth
+        :returns: New load to use for bisecting.
+        :rtype: DiscreteLoad
+        :raises RuntimeError: If an internal inconsistency is detected.
         """
-        relative_width = (high_end - low_end) / (high_end)
-        return width_in_goals(relative_width, goal)
+        int_self, int_goal = int(self.discrete_width), int(width_goal)
+        if int_self <= int_goal:
+            raise RuntimeError(f"Do not halve small enough interval: {self!r}")
+        if int_self <= 2 * int_goal:
+            lo_width = DiscreteWidth(
+                rounding=self.discrete_width.rounding, int_width=int_self // 2
+            )
+            return self.low_end.discrete_load + lo_width
+        hi_width = width_goal
+        lo_width = self.discrete_width - hi_width
+        # We know lo_width > hi_width because we did not do the even split.
+        while 1:
+            hi2_width = hi_width * 2
+            lo2_width = self.discrete_width - hi2_width
+            if lo2_width <= hi2_width:
+                break
+            hi_width, lo_width = hi2_width, lo2_width
+        # Which of the two options is more even? Product decides.
+        if int(hi_width) * int(lo_width) < int(hi2_width) * int(lo2_width):
+            hi_width, lo_width = hi2_width, lo2_width
+        return self.low_end.discrete_load + lo_width
