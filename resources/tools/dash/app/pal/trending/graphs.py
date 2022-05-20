@@ -213,7 +213,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     for _, row in df.iterrows():
         d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
-            f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+            f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
             f"<prop> [{row[_UNIT[ttype]]}]: {row[_VALUE[ttype]]:,.0f}<br>"
             f"<stdev>"
             f"{d_type}-ref: {row['dut_version']}<br>"
@@ -238,7 +238,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     for avg, stdev, (_, row) in zip(trend_avg, trend_stdev, df.iterrows()):
         d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
-            f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+            f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
             f"trend [pps]: {avg:,.0f}<br>"
             f"stdev [pps]: {stdev:,.0f}<br>"
             f"{d_type}-ref: {row['dut_version']}<br>"
@@ -294,7 +294,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
                 anomaly_y.append(trend_avg[idx])
                 anomaly_color.append(_ANOMALY_COLOR[anomaly])
                 hover_itm = (
-                    f"date: {x_axis[idx].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+                    f"date: {x_axis[idx].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                     f"trend [pps]: {trend_avg[idx]:,.0f}<br>"
                     f"classification: {anomaly}"
                 )
