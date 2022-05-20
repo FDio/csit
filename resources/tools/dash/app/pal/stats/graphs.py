@@ -47,7 +47,7 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict,
     for _, row in data.iterrows():
         d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
-            f"date: {row['start_time'].strftime('%d-%m-%Y %H:%M:%S')}<br>"
+            f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
             f"duration: "
             f"{(int(row['duration']) // 3600):02d}:"
             f"{((int(row['duration']) % 3600) // 60):02d}<br>"
