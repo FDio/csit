@@ -15,13 +15,16 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass, field
 from functools import total_ordering
 from typing import Optional
 
+from .discrete_load import DiscreteLoad
 from .trial_measurement.measurement_result import MeasurementResult
 
 
 @total_ordering
+@dataclass()  # Not using order=True since operations are overridden.
 class ComparableMeasurementResult(MeasurementResult):
     """Adding MLRsearch specific comparisons to MeasurementResult.
 
@@ -33,20 +36,40 @@ class ComparableMeasurementResult(MeasurementResult):
 
     Overridden loss ratios are to be set before effective ones.
     For details, see normalization in MeasurementDatabase.
+
+    As a convenience DiscreteLoad form of intended load is also stored,
+    to force consistency checks, and there is a factory
+    to simplify converting from MeasurementResult.
     """
 
+    discrete_load: DiscreteLoad = None
+    """Integer form of intended load, the associated rounding is not stored."""
     effective_loss_ratio: float = None
     """Set to a higher value when any lower load has higher overridden loss."""
     overridden_loss_ratio: float = None
     """Set to a lower value when higher duration higher load has lower loss."""
+    original_result: Optional[MeasurementResult] = field(
+        default=None, repr=False
+    )
+    """Some measurers contain additional data (e.g. latency)."""
 
     def __post_init__(self) -> None:
-        """Replace None (if present) with the measured loss ratio."""
+        """Replace None (if present) with the measured loss ratio.
+
+        :raises RuntimeError: If an internal inconsistency is detected.
+        """
         super().__post_init__()
         if self.overridden_loss_ratio is None:
             self.overridden_loss_ratio = self.loss_ratio
         if self.effective_loss_ratio is None:
             self.effective_loss_ratio = self.overridden_loss_ratio
+        # TODO: Add other checks around discrete load value (type)?
+        # The fully correct approach would require setters.
+        # https://florimond.dev/en/posts/2018/10/reconciling-dataclasses-and-properties-in-python/
+        if not self.discrete_load.is_round:
+            raise RuntimeError(f"Load has to be round: {self.discrete_load!r}")
+        if self.intended_load != float(self.discrete_load):
+            raise RuntimeError(f"Loads do not match: {self.discrete_load}")
 
     def __eq__(self, other: Optional[ComparableMeasurementResult]) -> bool:
         """Return whether the argument is equivalent to self.
@@ -97,13 +120,23 @@ class ComparableMeasurementResult(MeasurementResult):
         raise RuntimeError(u"Load or duration should differ.")
 
     @staticmethod
-    def from_result(result: MeasurementResult) -> ComparableMeasurementResult:
+    def construct(
+        result: MeasurementResult,
+        discrete_load: DiscreteLoad,
+    ) -> ComparableMeasurementResult:
         """Factory that gets data from existing (maybe not comparable) result.
 
+        Consistency between loads is checked in constructor.
+        Original (argument) reference is also stored,
+        so users can access any additional info there.
+
         :param result: Instanace to copy values from.
+        :param int_load: Integer form of load, MLR caller knows it.
         :type result: MeasurementResult
+        :type int_load: int
         :return: The copy of argument result, but in comparable class.
         :rtype: ComparableMeasurementResult
+        :raises RuntimeError: If intended load and discrete load do not match.
         """
         return ComparableMeasurementResult(
             intended_duration=result.intended_duration,
@@ -111,6 +144,8 @@ class ComparableMeasurementResult(MeasurementResult):
             offered_count=result.offered_count,
             loss_count=result.loss_count,
             forwarding_count=result.forwarding_count,
+            discrete_load=discrete_load,
             offered_duration=result.offered_duration,
             intended_count=result.intended_count,
+            original_result=result,
         )

@@ -16,6 +16,8 @@
 from dataclasses import dataclass
 from typing import Optional
 
+from .discrete_load import DiscreteLoad
+
 
 @dataclass
 class SelectionInfo:
@@ -25,8 +27,8 @@ class SelectionInfo:
     The default value is always the falsy one, as that is pythonic.
     """
 
-    load: Optional[float] = None
-    """Selected load [tps]. None means no measurements needed at the phase."""
+    load: Optional[DiscreteLoad] = None
+    """Selected load. None means no measurements needed at the phase."""
     halve: bool = False
     """Whether the subsequent load selections can attempt the halving."""
     remeasure: bool = False

@@ -195,8 +195,8 @@ class PLRsearch:
             # exponential impact. Make it configurable, or is 4:3 good enough?
             if measurement.loss_ratio >= self.packet_loss_ratio_target:
                 for _ in range(4 * zeros):
-                    lossy_loads.append(measurement.target_tr)
-            if measurement.loss_count > 0:
+                    lossy_loads.append(measurement.intended_load)
+            if measurement.loss_ratio > 0.0:
                 zeros = 0
             lossy_loads.sort()
             if stop_time <= time.time():
@@ -205,7 +205,7 @@ class PLRsearch:
             if (trial_number - self.trial_number_offset) <= 1:
                 next_load = max_rate
             elif (trial_number - self.trial_number_offset) <= 3:
-                next_load = (measurement.relative_receive_rate / (
+                next_load = (measurement.relative_forwarding_rate / (
                     1.0 - self.packet_loss_ratio_target))
             else:
                 next_load = (avg1 + avg2) / 2.0
@@ -460,17 +460,17 @@ class PLRsearch:
         trace(u"log_weight for mrr", mrr)
         trace(u"spread", spread)
         for result in trial_result_list:
-            trace(u"for tr", result.target_tr)
+            trace(u"for tr", result.intended_load)
             trace(u"lc", result.loss_count)
-            trace(u"d", result.duration)
-            # _rel_ values use units of target_tr (transactions per second).
+            trace(u"d", result.intended_duration)
+            # _rel_ values use units of intended_load (transactions per second).
             log_avg_rel_loss_per_second = lfit_func(
-                trace, result.target_tr, mrr, spread
+                trace, result.intended_load, mrr, spread
             )
             # _abs_ values use units of loss count (maybe packets).
             # There can be multiple packets per transaction.
             log_avg_abs_loss_per_trial = log_avg_rel_loss_per_second + math.log(
-                result.transmit_count / result.target_tr
+                result.offered_count / result.intended_load
             )
             # Geometric probability computation for logarithms.
             log_trial_likelihood = log_plus(0.0, -log_avg_abs_loss_per_trial)

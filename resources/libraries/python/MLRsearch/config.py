@@ -14,7 +14,9 @@
 """Module defining Config class."""
 
 from dataclasses import dataclass, field
-from typing import List, Union
+from typing import Iterable, List, Optional
+
+from .dataclass_property import dataclass_property
 
 
 @dataclass
@@ -34,13 +36,17 @@ class Config:
     All fields have default values, so instances can be created without any.
     It is still recommended to set all values after instantiation,
     as the defaults may change in next version.
+
+    As some requirements are between values of different fields,
+    users must take care to set them in the correct order.
     """
 
+    # Externally visible "fields" (but in fact redefined as properties).
     min_load: float = 1e0
     """Minimal target transmit rate available for the current search [tps]."""
-    max_load: float = 1e7
+    max_load: float = 1e9
     """Maximal target transmit rate available for the current search [tps]."""
-    _target_loss_ratios: List[float] = field(default_factory=lambda: [0.0])
+    target_loss_ratios: Iterable[float] = (0.0,)
     """Packet loss ratios. Has to be non-empty and strictly increasing.
     Each ratio has to be non-negative and smaller than one."""
     initial_trial_duration: float = 1.0
@@ -48,48 +54,82 @@ class Config:
     for the first intermediate phase [s]."""
     final_trial_duration: float = 60.0
     """Trial duration for the final phase [s]."""
-    _final_relative_widths: Union[float, List[float]] = 0.005
-    # TODO: ^ Plural? Maybe with two setters, one for float one for list?
+    final_relative_widths: Iterable[float] = (0.005,)
     """Final lower bound offered load cannot be more distant
     than this multiple of upper bound.
-    Besides a single width value (common for all ratios),
-    a list of values (one for each ratio) is also supported."""
+    This variant sets multiple widths. Cannot be empty.
+    If the values are all the same, the length effectively matches
+    the length of target_loss_ratios."""
+    final_relative_width: Optional[float] = None
+    """A shorthand for the case when all final_relative_widths values
+    are the same. If they are not, this getter returns None.
+    If setter gets None, it does not change the previously stored value."""
     number_of_intermediate_phases: int = 2
     """Number of intermediate phases to perform before the final phase."""
-    expansion_coefficient: float = 4.0
+    expansion_coefficient: int = 4
     """External search multiplies width (in logarithmic space) by this."""
     max_search_duration: float = 1800.0
     """The search will end as a failure this long [s] after it is started."""
+    # Internal private fields holding the values for properties to access.
+    _min_load: float = field(init=False, repr=False)
+    _max_load: float = field(init=False, repr=False)
+    _target_loss_ratios: List[float] = field(init=False, repr=False)
+    _initial_trial_duration: float = field(init=False, repr=False)
+    _final_trial_duration: float = field(init=False, repr=False)
+    _final_relative_widths: List[float] = field(init=False, repr=False)
+    # No _final_relative_width, length 1 list in _final_relative_widths instead.
+    _number_of_intermediate_phases: int = field(init=False, repr=False)
+    _expansion_coefficient: int = field(init=False, repr=False)
+    _max_search_duration: float = field(init=False, repr=False)
 
-    # TODO: Is this needed? If yes, do we need setters?
-    def __post_init__(self) -> None:
-        """Convert inputs and apply checks."""
-        self.min_load = float(self.min_load)
-        if self.min_load <= 0.0:
-            raise RuntimeError(f"Min load {self.min_load} must be positive.")
-        self.max_load = float(self.max_load)
-        if self.max_load <= self.min_load:
-            raise RuntimeError(f"Max load {self.max_load} must be bigger.")
-        # Ratios and widths are converted and checked in setters.
-        self.initial_trial_duration = float(self.initial_trial_duration)
-        if self.initial_trial_duration <= 0.0:
-            raise RuntimeError(u"initial_trial_duration not positive.")
-        self.final_trial_duration = float(self.final_trial_duration)
-        if self.final_trial_duration <= self.initial_trial_duration:
-            raise RuntimeError(u"initial_trial_duration must be bigger.")
-        self.number_of_intermediate_phases = int(
-            self.number_of_intermediate_phases
-        )
-        if self.number_of_intermediate_phases < 1:
-            raise RuntimeError(u"number_of_intermediate_phases must be bigger.")
-        self.expansion_coefficient = float(self.expansion_coefficient)
-        if self.expansion_coefficient <= 1.0:
-            raise RuntimeError(u"expansion_coefficient must be bigger.")
-        self.max_search_duration = float(self.max_search_duration)
-        if self.max_search_duration <= 0.0:
-            raise RuntimeError(u"max_search_duration must be positive.")
+    @dataclass_property
+    def min_load(self) -> float:
+        """Getter for min load, no logic here.
 
-    @property
+        :returns: Currently set minimal intended load [tps].
+        :rtype: float
+        """
+        return self._min_load
+
+    @min_load.setter
+    def min_load(self, load: float) -> None:
+        """Set min load after converting type and checking value.
+
+        :param load: Minimal intended load [tps] to set.
+        :type load: float
+        :raises RuntimeError: If the argument is found invalid.
+        """
+        load = float(load)
+        if load <= 0.0:
+            raise RuntimeError(f"Min load {load} must be positive.")
+        if hasattr(self, u"_max_load") and load >= self.max_load:
+            # During init, _max_load may not be set yet.
+            raise RuntimeError(f"Min load {load} must be smaller.")
+        self._min_load = load
+
+    @dataclass_property
+    def max_load(self) -> float:
+        """Getter for max load, no logic here.
+
+        :returns: Currently set maximal intended load [tps].
+        :rtype: float
+        """
+        return self._max_load
+
+    @max_load.setter
+    def max_load(self, load: float) -> None:
+        """Set max load after converting type and checking value.
+
+        :param load: Minimal intended load [tps] to set.
+        :type load: float
+        :raises RuntimeError: If the argument is found invalid.
+        """
+        load = float(load)
+        if load <= self.min_load:
+            raise RuntimeError(f"Max load {load} must be bigger.")
+        self._max_load = load
+
+    @dataclass_property
     def target_loss_ratios(self) -> List[float]:
         """Return a copy of the current list.
 
@@ -99,15 +139,15 @@ class Config:
         return list(self._target_loss_ratios)
 
     @target_loss_ratios.setter
-    def target_loss_ratios(self, target_loss_ratios: List[float]) -> None:
+    def target_loss_ratios(self, loss_ratios: Iterable[float]) -> None:
         """Copy, convert, check and store the argument list values.
 
-        :param target_loss_ratios: List of ratios for the current search.
-        :type target_loss_ratios: Iterable[float]
-        :raises RuntimeError: If there is no ratio or the ratios are not sorted.
+        :param loss_ratios: List of ratios for the current search.
+        :type loss_ratios: Iterable[float]
+        :raises RuntimeError: If there is some problem with the argument.
         """
         ratios = list()
-        for ratio in target_loss_ratios:
+        for ratio in loss_ratios:
             ratio = float(ratio)
             if ratio < 0.0:
                 raise RuntimeError(f"Ratio {ratio} cannot be negative.")
@@ -120,36 +160,197 @@ class Config:
             raise RuntimeError(u"Input ratios have to be sorted and unique!")
         self._target_loss_ratios = ratios
 
-    @property
-    def final_relative_width(self) -> List[float]:
-        """Return a copy of the list if its length is expected.
+    @dataclass_property
+    def initial_trial_duration(self) -> float:
+        """Getter for initial trial duration, no logic here.
 
-        If a float value was stored, contruct list of correct length.
+        :returns: Currently set trial duration [s] for initial phase.
+        :rtype: float
+        """
+        return self._initial_trial_duration
+
+    @initial_trial_duration.setter
+    def initial_trial_duration(self, duration: float) -> None:
+        """Set initial trial duration after converting type and checking value.
+
+        :param duration: Trial duration [s] for initial phase to set.
+        :type duration: float
+        :raises RuntimeError: If the argument is found invalid.
+        """
+        duration = float(duration)
+        if duration <= 0.0:
+            raise RuntimeError(f"Initial duration {duration} must be bigger.")
+        if hasattr(self, u"_final_trial_duration"):
+            # During init, _final_trial_duration may not be set yet.
+            if duration >= self.final_trial_duration:
+                raise RuntimeError(f"Initial duration {duration} must be smaller.")
+        self._initial_trial_duration = duration
+
+    @dataclass_property
+    def final_trial_duration(self) -> float:
+        """Getter for final trial duration, no logic here.
+
+        :returns: Currently set trial duration [s] for the final phase.
+        :rtype: float
+        """
+        return self._final_trial_duration
+
+    @final_trial_duration.setter
+    def final_trial_duration(self, duration: float) -> None:
+        """Set final trial duration after converting type and checking value.
+
+        :param duration: Trial duration [s] for final phase to set.
+        :type duration: float
+        :raises RuntimeError: If the argument is found invalid.
+        """
+        duration = float(duration)
+        if duration <= self.initial_trial_duration:
+            raise RuntimeError(f"Final duration {duration} must be bigger.")
+        self._final_trial_duration = duration
+
+    @dataclass_property
+    def final_relative_widths(self) -> List[float]:
+        """Return a copy of the list if its length is compatible.
+
+        If the list is constant, length will be presented as compatible.
+        Otherwise, length of the stored list has to match length of ratios.
 
         :returns: Width goals, one for each ratio.
         :rtype: List[float]
         :raises RuntimeError: If stored list does not match number of ratios.
         """
-        if isinstance(self._final_relative_widths, float):
-            widths = [self._final_relative_widths]
-            widths *= len(self._target_loss_ratios)
-            return widths
-        if len(self._final_relative_widths) != len(self._target_loss_ratios):
+        widths = list(self._final_relative_widths)
+        len_loss_ratios = len(self._target_loss_ratios)
+        first_value, *other_values = widths
+        for other in other_values:
+            if other != first_value:
+                break
+        else:
+            return [first_value] * len_loss_ratios
+        if len(widths) != len_loss_ratios:
             raise RuntimeError(u"Width length does not match ratios.")
-        return list(self._final_relative_widths)
+        return widths
+
+    @final_relative_widths.setter
+    def final_relative_widths(self, widths: Iterable[float]) -> None:
+        """Copy the values (checking them).
+
+        :param widths: Multiple width values to set, cannot be empty.
+        :type widths: Iterable[float]
+        :raises RuntimeError: If argument is found invalid (e.g. empty).
+        """
+        widths = list(map(float, widths))
+        if not widths:
+            raise RuntimeError(u"Width list cannot be empty.")
+        for width in widths:
+            if width <= 0.0:
+                raise RuntimeError(f"Width must be positive: {width}")
+            if width >= 1.0:
+                raise RuntimeError(f"Width must be less than 1: {width}")
+        # We could check for constantness, but no real need to bother.
+        self._final_relative_widths = widths
+
+    @dataclass_property
+    def final_relative_width(self) -> Optional[float]:
+        """Return the stored scalar value, None if non-constant list is stored.
+
+        :returns: Single width goal, to be applied for all ratios.
+        :rtype: Optional[float]
+        """
+        first_value, *other_values = self.final_relative_widths
+        for other in other_values:
+            if other != first_value:
+                return None
+        return first_value
 
     @final_relative_width.setter
-    def final_relative_width(self, widths: Union[float, List[float]]) -> None:
-        """Check type and store the value.
+    def final_relative_width(self, width: Optional[float]) -> None:
+        """Check type and store the singular value.
 
-        :param widths: Single or multiple values to set.
-        :type widths: Union[float, List[float]]
-        :raises RuntimeError: If argument is not of expected fype.
+        None means no change.
+
+        Otherwise this overwrites any previously stored value
+        with a one-element list.
+
+        :param width: Single value to set.
+        :type width: Optional[float]
+        :raises RuntimeError: If argument is found invalid.
         """
-        if isinstance(widths, float):
-            self._final_relative_widths = widths
+        if width is None:
             return
-        if isinstance(widths, list):
-            self._final_relative_widths = map(float, widths)
-            return
-        raise RuntimeError(f"Unexpected widths: {widths!r}")
+        # The float() happens to also add support for DiscreteWidth.
+        width = float(width)
+        if width <= 0.0:
+            raise RuntimeError(f"Width must be positive: {width}")
+        if width >= 1.0:
+            raise RuntimeError(f"Width must be less than 1: {width}")
+        # No need to use length of ratios, plural getter does that.
+        self._final_relative_widths = [width]
+
+    @dataclass_property
+    def number_of_intermediate_phases(self) -> int:
+        """Getter for number of intermetiate phases, no logic here.
+
+        :returns: Currently set number of intermetiate phases.
+        :rtype: int
+        """
+        return self._number_of_intermediate_phases
+
+    @number_of_intermediate_phases.setter
+    def number_of_intermediate_phases(self, number: int) -> None:
+        """Set number of phases after checking type and value.
+
+        :param number: Number of intermediate phases to set.
+        :type number: int
+        :raises RuntimeError: If the argument is found invalid.
+        """
+        if not isinstance(number, int):
+            raise RuntimeError(u"Number of phases must be an integer.")
+        if number < 1:
+            raise RuntimeError(u"Number of intermediate phases must be bigger.")
+        self._number_of_intermediate_phases = number
+
+    @dataclass_property
+    def expansion_coefficient(self) -> int:
+        """Getter for expansion coefficient, no logic here.
+
+        :returns: Currently set expansion coefficient value.
+        :rtype: int
+        """
+        return self._expansion_coefficient
+
+    @expansion_coefficient.setter
+    def expansion_coefficient(self, coefficient: int) -> None:
+        """Set expansion coefficient after checking type and value.
+
+        :param coefficient: Expansion coefficient value to set.
+        :type coefficient: int
+        :raises RuntimeError: If the argument is found invalid.
+        """
+        if not isinstance(coefficient, int):
+            raise RuntimeError(u"Expansion coefficient must be an integer.")
+        if coefficient < 1:
+            raise RuntimeError(u"Expansion coefficient must be bigger.")
+        self._expansion_coefficient = coefficient
+
+    @dataclass_property
+    def max_search_duration(self) -> float:
+        """Getter for max search duration, no logic here.
+
+        :returns: Currently set max search duration [s].
+        :rtype: float
+        """
+        return self._max_search_duration
+
+    @max_search_duration.setter
+    def max_search_duration(self, duration: int) -> None:
+        """Set max search duration after converting and checking value.
+
+        :param duration: Max search duration [s]ue to set.
+        :type duration: float
+        :raises RuntimeError: If the argument is found invalid.
+        """
+        duration = float(duration)
+        if duration <= 0.0:
+            raise RuntimeError(u"Max search duration must be bigger.")
+        self._max_search_duration = duration

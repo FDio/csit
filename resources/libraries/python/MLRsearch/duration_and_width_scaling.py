@@ -16,7 +16,7 @@
 from dataclasses import dataclass, field
 from typing import Dict
 
-from .width_arithmetics import multiply_relative_width, ROUNDING_CONSTANT
+from .discrete_width import DiscreteWidth
 
 
 @dataclass
@@ -31,7 +31,7 @@ class DurationAndWidthScaling:
     No default values, contructor call has to specify everything.
 
     The caller may need multiple instances if different ratios
-    require different final width goal.
+    require different final width goal integers.
     """
 
     intermediate_phases: int
@@ -40,21 +40,24 @@ class DurationAndWidthScaling:
     """Duration [s] for first intermediate phase."""
     final_duration: float
     """Duration [s] for the final phase."""
-    final_width: float
-    """Relative width goal for the final phase."""
+    final_width: DiscreteWidth
+    """Relative width goal for the final phase, in discrete form."""
     # Secondary private quantities.
     _duration_by_phase: Dict[int, float] = field(init=False, repr=False)
     """Durations computed for phase number."""
-    _width_by_phase: Dict[int, float] = field(init=False, repr=False)
-    """Width goals computed for phase number."""
+    _width_by_phase: Dict[int, DiscreteWidth] = field(init=False, repr=False)
+    """Width goal (discrete form) computed for phase number."""
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Ensure correct primary types and compute the secondary quantities.
+
+        :raises RuntimeError: If an unsupported argument value is detected.
         """
         self.intermediate_phases = int(self.intermediate_phases)
         self.initial_duration = float(self.initial_duration)
         self.final_duration = float(self.final_duration)
-        self.final_width = float(self.final_width)
+        if not isinstance(self.final_width, DiscreteWidth):
+            raise RuntimeError(f"Not discrete width: {self.final_width!r}")
         self._duration_by_phase = dict()
         multiplier = pow(
             self.final_duration / self.initial_duration,
@@ -68,13 +71,9 @@ class DurationAndWidthScaling:
         width = self.final_width
         for phase in range(self.intermediate_phases, -1, -1):
             self._width_by_phase[phase] = width
-            # Rounding constant is needed to ensure halving works reliably.
-            # One constant is not enough when uneven splits happen.
-            width = multiply_relative_width(
-                width, 2.0 * ROUNDING_CONSTANT * ROUNDING_CONSTANT
-            )
+            width *= 2
 
-    def duration(self, phase):
+    def duration(self, phase: int) -> float:
         """Return the trial duration for this phase.
 
         :param phase: Number of phase, 0 is the first intermediate one.
@@ -85,13 +84,13 @@ class DurationAndWidthScaling:
         """
         return self._duration_by_phase[phase]
 
-    def width_goal(self, phase):
-        """Return the target relative width for this phase.
+    def width_goal(self, phase: int) -> DiscreteWidth:
+        """Return the target relative width (discrete form) for this phase.
 
         :param phase: Number of phase, 0 is the first intermediate one.
         :type phase: int
-        :returns: Target relative width for this phase.
-        :rtype: float
+        :returns: Target relative width for this phase, in discrete form.
+        :rtype: DiscreteWidth
         :raises IndexError: If the phase is outside the constructed data.
         """
         return self._width_by_phase[phase]
