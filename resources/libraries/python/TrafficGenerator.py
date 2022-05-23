@@ -490,7 +490,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type node: dict
         :raises RuntimeError: If stop traffic script fails.
         """
-        command_line = OptionString().add(u"python3")
+        command_line = OptionString().add(u"python3").add(u"-udXdev")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
         command_line.add(f"'{dirname}/trex_astf_stop.py'")
         command_line.change_prefix(u"--")
@@ -633,7 +633,7 @@ class TrafficGenerator(AbstractMeasurer):
         # and both the initial and the computed durations are logged.
         computed_duration, _ = self._compute_duration(duration, multiplier)
 
-        command_line = OptionString().add(u"python3")
+        command_line = OptionString().add(u"python3").add(u"-udXdev")
         dirname = f"{Constants.REMOTE_FW_DIR}/GPL/tools/trex"
         command_line.add(f"'{dirname}/trex_astf_profile.py'")
         command_line.change_prefix(u"--")
