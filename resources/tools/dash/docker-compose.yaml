@@ -2,7 +2,7 @@ version: "3"
 services:
   dash:
     build: "."
-    command: "uwsgi app.ini"
+    command: "uwsgi --ini app.ini --workers 1"
     environment:
       AWS_ACCESS_KEY_ID: ""
       AWS_SECRET_ACCESS_KEY: ""
