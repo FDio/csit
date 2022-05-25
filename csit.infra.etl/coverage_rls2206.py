@@ -145,7 +145,6 @@ filtered_paths = [path for path in paths if "report-coverage-2206" in path]
 
 for schema_name in ["mrr", "ndrpdr", "soak", "device"]:
     out_sdf = process_json_to_dataframe(schema_name, filtered_paths)
-    out_sdf.show(truncate=False)
     out_sdf.printSchema()
     out_sdf = out_sdf \
         .withColumn("year", lit(datetime.now().year)) \
