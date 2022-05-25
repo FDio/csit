@@ -3,6 +3,16 @@
 
 - name: Clean Docker Images
   block:
+    - name: Copy Purge Docker Builder Images Script
+      copy:
+        src: "files/purge_docker_builder_images.sh"
+        dest: "/usr/local/bin"
+        owner: "root"
+        group: "root"
+        mode: "744"
+      tags:
+        - copy-purge-docker-builder-images-script
+
   - name: Clean Images - Prefetch Docker Images
     cron:
       name: "Prefetch docker image {{ item }}"
@@ -23,6 +33,16 @@
       job: "/usr/bin/docker rmi $(/usr/bin/docker images --filter 'dangling=true' -q)"
     tags:
       - remove-docker-images-dangling
+
+  - name: Clean Images - Purge Docker Builder Images
+    cron:
+      name: "Purge docker builder images"
+      minute: "10"
+      hour: "6"
+      weekday: "7"
+      job: "/usr/local/bin/purge_docker_builder_images.sh"
+    tags:
+      - purge-docker-builder-images
 
 # TODO: Disabled until all images will be in registry
 # - name: Clean Images - Prune Docker Images
