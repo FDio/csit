@@ -288,5 +288,5 @@
   format:
     html:
       - full
-    pdf:
-      - minimal
+    # pdf:
+    #   - minimal
