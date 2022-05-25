@@ -32,6 +32,18 @@
         },
         {
             "metadata": {},
+            "name": "tg_type",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
+            "name": "tg_version",
+            "nullable": true,
+            "type": "string"
+        },
+        {
+            "metadata": {},
             "name": "start_time",
             "nullable": true,
             "type": "timestamp"
