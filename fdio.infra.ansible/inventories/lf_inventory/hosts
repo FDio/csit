@@ -7,7 +7,6 @@ all:
         10.30.51.49: #s19-t33t211-tg1 - skylake
         10.30.51.53: #s6-t22-tg1 - skylake
         10.30.51.55: #s8-t23-tg1 - skylake
-        10.30.51.57: #s10-t24-tg1 - skylake
         10.30.51.60: #s16-t32-tg1 - skylake
         10.30.51.74: #s64-t34-tg1 - icelake
         10.30.51.77: #s67-t37-tg1 - icelake
@@ -26,7 +25,6 @@ all:
         10.30.51.47: #s12-t31-sut2 - skylake
         10.30.51.52: #s5-t22-sut1 - skylake
         10.30.51.54: #s7-t23-sut1 - skylake
-        10.30.51.56: #s9-t24-sut1 - skylake
         10.30.51.58: #s14-t32-sut1 - skylake
         10.30.51.59: #s15-t32-sut2 - skylake
         10.30.51.72: #s62-t34-sut1 - altra
