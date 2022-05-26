@@ -269,7 +269,7 @@
 | |
 | | ${type} = | Get iPerf Type | ${nodes}[TG]
 | | ${version} = | Get iPerf Version | ${nodes}[TG]
-| | Export DUT Type And Version | ${type} | ${version}
+| | Export TG Type And Version | ${type} | ${version}
 
 | Additional Suite Setup Action For ipsechw
 | | [Documentation]
