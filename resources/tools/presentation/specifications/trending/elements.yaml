@@ -2504,9 +2504,6 @@
       data: "plot-performance-trending-vpp-2n-clx"
       core: ["2t1c", "4t2c", "8t4c"]
       include:
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-mrr"
         - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-mrr.64b-{core}-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-mrr"
         - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-mrr.64b-{core}-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-mrr"
         - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-mrr.64b-{core}-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-mrr"
@@ -2514,19 +2511,36 @@
         - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-mrr.64b-{core}-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-mrr"
       layout: "plot-cpta"
 
+    - title: "2n-clx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf"
+      output-file-name: "2n-clx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: [ "2t1c", "4t2c", "8t4c" ]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-mrr"
+      layout: "plot-cpta"
+
     - title: "2n-clx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf"
       output-file-name: "2n-clx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-mrr"
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-mrr"
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-mrr"
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128768-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h65536-p63-s4128768-pps-mrr"
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf"
+      output-file-name: "2n-clx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf"
       data: "plot-performance-trending-vpp-2n-clx"
       core: ["2t1c", "4t2c", "8t4c"]
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4udp-Nat44Ed-H1024-P63-S64512-Tput-mrr.100B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4udp-Nat44Ed-H16384-P63-S1032192-Tput-mrr.100B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4udp-Nat44Ed-H65536-P63-S4128768-Tput-mrr.100B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128768-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h65536-p63-s4128768-pps-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-mrr"
       layout: "plot-cpta"
 
     - title: "2n-clx-cx556a-64b-{core}-rdma-ip4base"
@@ -2805,9 +2819,6 @@
       data: "plot-performance-trending-vpp-2n-skx"
       core: ["2t1c", "4t2c", "8t4c"]
       include:
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-mrr"
-        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-mrr"
         - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-mrr.64b-{core}-avf-ethip4tcp-ip4base-h1024-p63-s64512-pps-mrr"
         - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-mrr.64b-{core}-avf-ethip4tcp-ip4base-h4096-p63-s258048-pps-mrr"
         - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-mrr.64b-{core}-avf-ethip4tcp-ip4base-h16384-p63-s1032192-pps-mrr"
@@ -2815,19 +2826,58 @@
         - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-mrr.64b-{core}-avf-ethip4tcp-ip4base-h262144-p63-s16515072-pps-mrr"
       layout: "plot-cpta"
 
+    - title: "2n-skx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf"
+      output-file-name: "2n-skx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-mrr.100B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-mrr"
+      layout: "plot-cpta"
+
     - title: "2n-skx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf"
       output-file-name: "2n-skx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf"
+      data: "plot-performance-trending-vpp-2n-skx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-mrr"
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-mrr"
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-mrr"
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128768-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h65536-p63-s4128768-pps-mrr"
+        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf"
+      output-file-name: "2n-skx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf"
       data: "plot-performance-trending-vpp-2n-skx"
       core: ["2t1c", "4t2c", "8t4c"]
       include:
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4udp-Nat44Ed-H1024-P63-S64512-Tput-mrr.100B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4udp-Nat44Ed-H16384-P63-S1032192-Tput-mrr.100B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput-mrr"
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4udp-Nat44Ed-H65536-P63-S4128768-Tput-mrr.100B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h1024-p63-s64512-pps-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h4096-p63-s258048-pps-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h16384-p63-s1032192-pps-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h65536-p63-s4128768-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h65536-p63-s4128768-pps-mrr"
-        - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-mrr.64b-{core}-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+      output-file-name: "2n-skx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-skx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-ndrpdr.100B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-ndrpdr.100B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-ndrpdr.100B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-skx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+      output-file-name: "2n-skx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-skx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Tput-ndrpdr.100B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Tput-ndrpdr.100B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Tput-ndrpdr.100B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
       layout: "plot-cpta"
 
     - title: "2n-skx-xxv710-64b-{core}-features-ip4routing-base-dpdk"
@@ -4353,8 +4403,8 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Cps-Mrr.64B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-cps-mrr"
       layout: "plot-cpta-cps"
 
-    - title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-tput-avf"
-      output-file-name: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-tput-avf"
+    - title: "2n-icx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf"
+      output-file-name: "2n-icx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf"
       data: "plot-performance-trending-vpp-2n-icx"
       core: ["2t1c", "4t2c", "8t4c"]
       include:
@@ -4363,8 +4413,8 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-Mrr.100B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf"
-      output-file-name: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf"
+    - title: "2n-icx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf"
+      output-file-name: "2n-icx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf"
       data: "plot-performance-trending-vpp-2n-icx"
       core: ["2t1c", "4t2c", "8t4c"]
       include:
@@ -5262,6 +5312,28 @@
         - "tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr.64b-{core}-avf-ethip4udp-ip4base-h262144-p63-s16515072-pps-ndrpdr"
       layout: "plot-cpta"
 
+    - title: "2n-clx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+      output-file-name: "2n-clx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-ndrpdr.100B-{core}-avf-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-ndrpdr.100B-{core}-avf-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-ndrpdr.100B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+      output-file-name: "2n-clx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H1024-P63-S64512-Tput-ndrpdr.100B-{core}-avf-ethip4udp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H16384-P63-S1032192-Tput-ndrpdr.100B-{core}-avf-ethip4udp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Tput-ndrpdr.100B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+      layout: "plot-cpta"
+
     - title: "2n-clx-xxv710-64b-{core}-ip4-base-scale-dpdk-{test_type}"
       output-file-name: "2n-clx-xxv710-64b-{core}-ip4-base-scale-dpdk-{test_type}"
       data: "plot-ndrpdr-comparison-2n-clx"
@@ -5647,8 +5719,8 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Cps-ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
       layout: "plot-cpta-cps"
 
-    - title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
-      output-file-name: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+    - title: "2n-icx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-100b-{core}-nat44ed-ip4routing-tcp-tput-avf-{test_type}"
       data: "plot-ndrpdr-comparison-2n-icx"
       core: ["2t1c", ]
       test-type: ["ndr", "pdr"]
@@ -5658,8 +5730,8 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-ndrpdr.100B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
-      output-file-name: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+    - title: "2n-icx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
+      output-file-name: "2n-icx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
       data: "plot-ndrpdr-comparison-2n-icx"
       core: ["2t1c", ]
       test-type: ["ndr", "pdr"]
@@ -6729,8 +6801,8 @@
         - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H262144-P63-S16515072-Cps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h262144-p63-s16515072-cps-tg-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "2n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
-      output-file-name: "2n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
+    - title: "2n-skx-x710-100b--ip4routing-stf-pps-{test_type}"
+      output-file-name: "2n-skx-x710-100b--ip4routing-stf-pps-{test_type}"
       data: "plot-ndrpdr-trending-trex-2n-skx"
       core: ["2t1c", ]
       test-type: ["ndr", "pdr"]
