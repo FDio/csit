@@ -1,9 +1,4 @@
 # 2n-clx
-### tests 84
-### job hrs est. 7.4
-### job hrs real 7.4
-### test mins est. 5.26
-### test mins real 5.26
 ## ./container_memif
 ## ./crypto
 ## ./ip4
