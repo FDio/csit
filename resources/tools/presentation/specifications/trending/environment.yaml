@@ -180,7 +180,7 @@
           - "last-failed-tests-vpp-2n-skx-ndrpdr"
           - "last-failed-tests-vpp-3n-skx-ndrpdr"
           - "last-failed-tests-vpp-2n-clx-ndrpdr"
-          - "last-failed-tests-trex-2n-skx-mrr"
+          - "last-failed-tests-trex-2n-skx-ndrpdr"
         urls:
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-alt"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-icx"
