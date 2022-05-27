@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11657be7_bd12d993",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "Previously, we iterated over all goals before increasing trial duration.\nThis was the main intended deliverable.\nIn comments below mentioned as \"cycle inversion\".",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 1
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dea07b4e_8eaa9374",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "Not planned initially, just a low hanging fruit.\nCSIT (Robot) still uses 0.005 for both NDR and PDR.\nUsing broader goal for NDR is expected to save some search time, while not affecting PDR.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 1
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0e692bc_7430293d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "Also not planned initially. But as most code was already affected by edits, using better terminology allowed me to avoid some logic errors.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "662e7937_3fb589c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "Just one more line in the new code for dividing interval in half.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7df71bac_374e1818",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "This was a low priority point before, but now that rounding is centralized it was easy enough to implement.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 1
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a9d36ce_6a672952",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "The old way of \"rounding conservatively\" simply does not work after cycle inversion.\nTook a while to implement and debug.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da29e5d1_8a4e3ddb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "Multiple paths would need to be stored in PYTHONPATH environment variable.",
+      "range": {
+        "startLine": 25,
+        "startChar": 52,
+        "endLine": 25,
+        "endChar": 70
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e1e0e76_cb06c02d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "After cycle inversion, database can contain durations longer than what the current phase needs, so something else than effective_loss_rate was required.",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 2
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a4d433c_3f8cc983",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "This allowed me to \"hide\" the integer rounding from \"business logic\" code, thus reducing bug possibilities.",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 2
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3a9c138_3cab6d8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "This way the main search code does not need to deal with irregular values.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 1
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b6b113b_f5ccca9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T11:50:30Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/c/csit/+/36061/13/resources/libraries/python/MLRsearch/multiple_loss_ratio_search.py#498\n\nThis assumes SelectionInfo is readable enough.",
+      "range": {
+        "startLine": 39,
+        "startChar": 10,
+        "endLine": 39,
+        "endChar": 21
+      },
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
