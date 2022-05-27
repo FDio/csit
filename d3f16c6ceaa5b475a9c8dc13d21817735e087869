@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "715e0f99_f3ceca51",
+        "filename": "resources/tools/dash/app/pal/trending/layout.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-05-27T08:21:12Z",
+      "side": 1,
+      "message": "For TRex v2.97 it is 16C [1] (except 2n-zn2 [2]).\n\nIf we want reliable values, they should be exported during text execution into JSON somehow.\n\n[1] https://gerrit.fd.io/r/c/csit/+/36145\n[2] https://gerrit.fd.io/r/c/csit/+/36156",
+      "range": {
+        "startLine": 140,
+        "startChar": 51,
+        "endLine": 140,
+        "endChar": 55
+      },
+      "revId": "d3f16c6ceaa5b475a9c8dc13d21817735e087869",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
