@@ -29,6 +29,7 @@ parses for various counters.
 """
 
 import argparse
+import datetime
 import json
 import sys
 import time
@@ -37,6 +38,9 @@ sys.path.insert(
     0, u"/opt/trex-core-2.97/scripts/automation/trex_control_plane/interactive/"
 )
 from trex.astf.api import ASTFClient, ASTFProfile, TRexError
+
+def prnt(text):
+    print(f"{datetime.datetime.now().time()} {text}")
 
 
 def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
@@ -162,17 +166,22 @@ def simple_burst(
     except TRexError:
         print(f"Error while loading profile '{profile_file}'!")
         raise
+    prnt(u"profile imported")
 
     try:
         # Create the client.
         client = ASTFClient()
+        prnt(u"client created")
         # Connect to server
         client.connect()
+        prnt(u"client connected")
         # Acquire ports, stop the traffic, remove loaded traffic and clear
         # stats.
         client.reset()
+        prnt(u"client reset")
         # Load the profile.
         client.load_profile(profile)
+        prnt(u"client profiled")
 
         ports = [port_0]
         if traffic_directions > 1:
@@ -191,6 +200,7 @@ def simple_burst(
             latency_pps=int(multiplier) if latency else 0,
             client_mask=2**len(ports)-1,
         )
+        prnt(u"client started")
         time_stop = time.monotonic() + duration + delay
 
         if async_start:
@@ -202,19 +212,29 @@ def simple_burst(
                 print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
             time.sleep(duration + delay)
+            prnt(u"sleep is over")
             # Do not block yet, the existing transactions may take long time
             # to finish. We need an action that is almost reset(),
             # but without clearing stats.
-            client.stop(block=False)
+            try:
+                client.stop(block=False)
+                prnt(u"client pre-stopped")
+            except Exception:
+                prnt(u"client pre-stopp failed")
+                riase
             client.stop_latency()
+            prnt(u"latency stopped")
             client.remove_rx_queue(client.get_all_ports())
+            prnt(u"queues removed")
             # Now we can wait for the real traffic stop.
             client.stop(block=True)
+            prnt(u"client stopped")
 
             # Read the stats after the traffic stopped (or time up).
             stats[time.monotonic() - time_stop] = client.get_stats(
                 ports=ports
             )
+            prnt(u"stats read")
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -383,9 +403,12 @@ def simple_burst(
         if client:
             if async_start:
                 client.disconnect(stop_traffic=False, release_ports=True)
+                prnt(u"client disconnected")
             else:
                 client.reset()
+                prnt(u"client reset")
                 client.disconnect()
+                prnt(u"client disconnected")
                 print(
                     f"multiplier={multiplier!r}; "
                     f"total_received={total_received}; "
