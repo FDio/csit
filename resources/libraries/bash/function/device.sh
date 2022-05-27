@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -763,16 +763,17 @@ function start_topology_containers () {
     dcr_stc_params+="--mount type=tmpfs,destination=/sys/bus/pci/devices "
     # Mount vfio devices to be able to use VFs inside the container.
     vfio_bound="false"
+    dcr_vfio_bind_params=""
     for PCI_ADDR in ${DUT1_PCIDEVS[@]}; do
         get_krn_driver
         if [[ ${KRN_DRIVER} == "vfio-pci" ]]; then
             get_vfio_group
-            dcr_stc_params+="--device /dev/vfio/${VFIO_GROUP} "
+            dcr_vfio_bind_params+="--device /dev/vfio/${VFIO_GROUP} "
             vfio_bound="true"
         fi
     done
     if ! ${vfio_bound}; then
-        dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
+        dcr_vfio_bind_params+="--volume /dev/vfio:/dev/vfio "
     fi
     # Disable manipulation with hugepages by VPP.
     dcr_stc_params+="--volume /dev/null:/etc/sysctl.d/80-vpp.conf "
@@ -798,7 +799,9 @@ function start_topology_containers () {
     DCR_UUIDS+=([tg]=$(docker run "${params[@]}")) || {
         die "Failed to start TG docker container!"
     }
-    params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${dcr_image})
+    # Only bind vfio devices to DUT1, TG uses kernel driver instead of vfio
+    params=(${dcr_stc_params} ${dcr_vfio_bind_params})
+    params+=(--name csit-dut1-$(uuidgen) ${dcr_image})
     DCR_UUIDS+=([dut1]=$(docker run "${params[@]}")) || {
         die "Failed to start DUT1 docker container!"
     }
