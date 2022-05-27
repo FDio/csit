@@ -22,9 +22,10 @@ from robot.libraries.BuiltIn import BuiltIn
 from .Constants import Constants
 from .CpuUtils import CpuUtils
 from .DropRateSearch import DropRateSearch
-from .MLRsearch.AbstractMeasurer import AbstractMeasurer
-from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
-from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
+from .MLRsearch.config import Config as MLRconfig
+from .MLRsearch.multiple_loss_ratio_search import MultipleLossRatioSearch
+from .MLRsearch.trial_measurement.abstract_measurer import AbstractMeasurer
+from .MLRsearch.trial_measurement.measurement_result import MeasurementResult
 from .PLRsearch.PLRsearch import PLRsearch
 from .OptionString import OptionString
 from .ssh import exec_cmd_no_error, exec_cmd
@@ -563,7 +564,7 @@ class TrafficGenerator(AbstractMeasurer):
         """Stop all traffic on TG.
 
         :returns: Structure containing the result of the measurement.
-        :rtype: ReceiveRateMeasurement
+        :rtype: MeasurementResult
         :raises ValueError: If TG traffic profile is not supported.
         """
         subtype = check_subtype(self._node)
@@ -912,7 +913,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type state_timeout: float
         :type ramp_up_only: bool
         :returns: TG results.
-        :rtype: ReceiveRateMeasurement or None
+        :rtype: MeasurementResult or None
         :raises ValueError: If TG traffic profile is not supported.
         """
         self.set_rate_provider_defaults(
@@ -959,7 +960,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type rate: float
         :type async_call: bool
         :returns: TG results.
-        :rtype: ReceiveRateMeasurement or None
+        :rtype: MeasurementResult or None
         :raises ValueError: If TG traffic profile is not supported.
         """
         subtype = check_subtype(self._node)
@@ -1011,7 +1012,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type async_call: bool
         :type ramp_up_only: bool
         :returns: TG results.
-        :rtype: ReceiveRateMeasurement or None
+        :rtype: MeasurementResult or None
         :raises ValueError: If TG traffic profile is not supported.
         """
         complete = False
@@ -1241,12 +1242,12 @@ class TrafficGenerator(AbstractMeasurer):
                         int(self._result.get(u"server_tcp_rx_bytes", 0))
 
     def _get_measurement_result(self):
-        """Return the result of last measurement as ReceiveRateMeasurement.
+        """Return the result of last measurement as MeasurementResult.
 
         Separate function, as measurements can end either by time
         or by explicit call, this is the common block at the end.
 
-        The target_tr field of ReceiveRateMeasurement is in
+        The intended_load field of MeasurementResult is in
         transactions per second. Transmit count and loss count units
         depend on the transaction type. Usually they are in transactions
         per second, or aggregated packets per second.
@@ -1254,7 +1255,7 @@ class TrafficGenerator(AbstractMeasurer):
         TODO: Fail on running or already reported measurement.
 
         :returns: Structure containing the result of the measurement.
-        :rtype: ReceiveRateMeasurement
+        :rtype: MeasurementResult
         """
         try:
             # Client duration seems to include a setup period
@@ -1346,21 +1347,21 @@ class TrafficGenerator(AbstractMeasurer):
             logger.debug(f"Unsent packets/transactions: {unsent}")
         if fail_count < 0 and not self.negative_loss:
             fail_count = 0
-        measurement = ReceiveRateMeasurement(
-            duration=target_duration,
-            target_tr=transmit_rate,
-            transmit_count=expected_attempt_count,
+        measurement = MeasurementResult(
+            intended_duration=target_duration,
+            intended_load=transmit_rate,
+            offered_count=expected_attempt_count,
             loss_count=fail_count,
-            approximated_duration=approximated_duration,
-            partial_transmit_count=partial_attempt_count,
+            offered_duration=approximated_duration,
+            intended_count=partial_attempt_count,
         )
         measurement.latency = self.get_latency_int()
         return measurement
 
-    def measure(self, duration, transmit_rate):
+    def measure(self, intended_duration, intended_load):
         """Run trial measurement, parse and return results.
 
-        The input rate is for transactions. Stateles bidirectional traffic
+        The intended load is for transactions. Stateles bidirectional traffic
         is understood as sequence of (asynchronous) transactions,
         two packets each.
 
@@ -1368,26 +1369,26 @@ class TrafficGenerator(AbstractMeasurer):
         the count either transactions or packets (aggregated over directions).
 
         Optionally, this method sleeps if measurement finished before
-        the time specified as duration.
+        the time specified as intended_duration (PLRsearch needs time for math).
 
-        :param duration: Trial duration [s].
-        :param transmit_rate: Target rate in transactions per second.
-        :type duration: float
-        :type transmit_rate: float
+        :param intended_duration: Trial duration [s].
+        :param intended_load: Target rate in transactions per second.
+        :type intended_duration: float
+        :type intended_load: float
         :returns: Structure containing the result of the measurement.
-        :rtype: ReceiveRateMeasurement
+        :rtype: MeasurementResult
         :raises RuntimeError: If TG is not set or if node is not TG
             or if subtype is not specified.
         :raises NotImplementedError: If TG is not supported.
         """
-        duration = float(duration)
+        intended_duration = float(intended_duration)
         time_start = time.monotonic()
-        time_stop = time_start + duration
+        time_stop = time_start + intended_duration
         if self.resetter:
             self.resetter()
         result = self._send_traffic_on_tg_with_ramp_up(
-            duration=duration,
-            rate=transmit_rate,
+            duration=intended_duration,
+            rate=intended_load,
             async_call=False,
         )
         logger.debug(f"trial measurement result: {result!r}")
@@ -1510,7 +1511,7 @@ class OptimizedSearch:
             ramp_up_rate=None,
             ramp_up_duration=None,
             state_timeout=240.0,
-            expansion_coefficient=4.0,
+            expansion_coefficient=4,
     ):
         """Setup initialized TG, perform optimized search, return intervals.
 
@@ -1592,6 +1593,7 @@ class OptimizedSearch:
             initial_trial_duration = 1.0
             final_trial_duration = 1.0
             number_of_intermediate_phases = 0
+            # TODO: Move the value to Constants.py?
             timeout += transaction_scale * 3e-4
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
@@ -1608,26 +1610,23 @@ class OptimizedSearch:
             ramp_up_duration=ramp_up_duration,
             state_timeout=state_timeout,
         )
-        algorithm = MultipleLossRatioSearch(
-            measurer=tg_instance,
-            final_trial_duration=final_trial_duration,
-            final_relative_width=final_relative_width,
-            number_of_intermediate_phases=number_of_intermediate_phases,
-            initial_trial_duration=initial_trial_duration,
-            timeout=timeout,
-            debug=logger.debug,
-            expansion_coefficient=expansion_coefficient,
-        )
         if packet_loss_ratio:
             packet_loss_ratios = [0.0, packet_loss_ratio]
         else:
             # Happens in reconf tests.
             packet_loss_ratios = [packet_loss_ratio]
-        results = algorithm.narrow_down_intervals(
-            min_rate=minimum_transmit_rate,
-            max_rate=maximum_transmit_rate,
-            packet_loss_ratios=packet_loss_ratios,
-        )
+        config = MLRconfig()
+        config.min_load = minimum_transmit_rate
+        config.max_load = maximum_transmit_rate
+        config.target_loss_ratios = packet_loss_ratios
+        config.initial_trial_duration = initial_trial_duration
+        config.final_trial_duration = final_trial_duration
+        config.final_relative_width = final_relative_width
+        config.number_of_intermediate_phases = number_of_intermediate_phases
+        config.expansion_coefficient = expansion_coefficient
+        config.max_search_duration = timeout
+        algorithm = MultipleLossRatioSearch(config)
+        results = algorithm.search(measurer=tg_instance, debug=logger.debug)
         return results
 
     @staticmethod
