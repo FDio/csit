@@ -151,70 +151,19 @@
       file-name: "output_info.xml.gz"
       file-format: ".gz"
       enabled: True
-    # To be deprecated soon:
-    - type: "xml"
-      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/{filename}"
-      file-name: "output_info.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    # Deprecated:
-    - type: "xml"
-      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/archives/{filename}"
-      file-name: "output_info.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    - type: "xml"
-      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/archives/{filename}"
-      file-name: "output.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    - type: "xml"
-      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/{filename}"
-      file-name: "output.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    - type: "xml"
-      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/archives/{filename}"
-      file-name: "output.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    - type: "xml"
-      url: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/{filename}"
-      file-name: "output.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    # XML from docs.nexus
+    # XML from S3 docs
     - type: "xml-docs"
-      url: "https://docs.fd.io/csit"
+      url: "https://s3-docs.fd.io/csit"
       path: "report/_static/archive"
       file-name: "output_info.xml.gz"
       file-format: ".gz"
       enabled: True
     - type: "xml-docs"
-      url: "https://docs.fd.io/csit"
+      url: "https://s3-docs.fd.io/csit"
       path: "report/_static/archive"
       file-name: "output.xml.gz"
       file-format: ".gz"
       enabled: True
-    - type: "xml-docs"
-      url: "https://docs.fd.io/csit"
-      path: "report/_static/archive"
-      file-name: "robot-plugin.zip"
-      file-format: ".zip"
-      enabled: False
-    # JSON from S3
-    - type: "json"
-      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/{filename}"
-      file-name: "output.json.gz"
-      file-format: ".gz"
-      enabled: False
 
   archive-inputs: False
 
