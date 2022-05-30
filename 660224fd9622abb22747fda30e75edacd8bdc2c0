@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a0c6b2b_2cd7395b",
+        "filename": "docs/cpta/trending/nat44-ed-tcp-tput-2n-clx-xxv710.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-05-30T04:52:42Z",
+      "side": 1,
+      "message": "too short, check everywhere.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 35
+      },
+      "revId": "660224fd9622abb22747fda30e75edacd8bdc2c0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
