@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3517ca54_d2807cb2",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-05-30T13:41:50Z",
+      "side": 1,
+      "message": "not",
+      "range": {
+        "startLine": 52,
+        "startChar": 57,
+        "endLine": 52,
+        "endChar": 60
+      },
+      "revId": "e5daf202e68bdc2a68519778809a2a5f67ccc8f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b19e53f_fa2bc4ad",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-05-30T13:41:50Z",
+      "side": 1,
+      "message": "required state",
+      "range": {
+        "startLine": 62,
+        "startChar": 14,
+        "endLine": 62,
+        "endChar": 23
+      },
+      "revId": "e5daf202e68bdc2a68519778809a2a5f67ccc8f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81ad9ff8_293380f4",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-05-30T13:41:50Z",
+      "side": 1,
+      "message": "re UDP PPS - I thought we are deprecating ASTF PPS test, focusing on ASTF throughput tests, or?",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 7
+      },
+      "revId": "e5daf202e68bdc2a68519778809a2a5f67ccc8f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f43c146c_1e82c4b4",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-05-30T13:41:50Z",
+      "side": 1,
+      "message": "re TCP PPS - I thought we are deprecating ASTF PPS test, focusing on ASTF throughput tests, or?",
+      "range": {
+        "startLine": 405,
+        "startChar": 0,
+        "endLine": 405,
+        "endChar": 7
+      },
+      "revId": "e5daf202e68bdc2a68519778809a2a5f67ccc8f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
