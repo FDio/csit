@@ -122,6 +122,7 @@ class TrafficProfile(TrafficProfileBaseClass):
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,
         )
+        print(f"kwargs: {kwargs!r}")
 
         return ip_gen, template, kwargs
 

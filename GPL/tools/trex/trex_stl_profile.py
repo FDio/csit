@@ -29,6 +29,7 @@ latency.
 """
 
 import argparse
+import codecs
 import json
 import sys
 import time
@@ -216,6 +217,15 @@ def simple_burst(
             if client.get_warnings():
                 for warning in client.get_warnings():
                     print(warning)
+            # Dump log to compare.
+            # 200 lines cover around 3 seconds, 7 samples.
+            n_lines = int(66 * duration) + 1
+            output = subprocess.check_output(
+                [u"tail", u"-n", str(n_lines), u"/tmp/trex.log"]
+            )
+            print(u"From trex.log:")
+            # For details on unescaping see https://stackoverflow.com/a/37059682
+            print(codecs.escape_decode(output)[0].decode(u"utf-8"))
             # Now finish the complete reset.
             client.reset()
 
