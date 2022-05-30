@@ -116,8 +116,8 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Ensure the whole transaction is a single burst (per direction).
         globinfo.tcp.initwnd = self.n_data_frames
         # Ensure buffers are large enough so starting window works.
-        globinfo.tcp.txbufsize = data_size
-        globinfo.tcp.rxbufsize = data_size
+        globinfo.tcp.txbufsize = max(data_size, 1024)
+        globinfo.tcp.rxbufsize = max(data_size, 1024)
         kwargs = dict(
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,
