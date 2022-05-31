@@ -38,8 +38,10 @@ Functionality:
 """
 
 import argparse
+import codecs
 import datetime
 import json
+import subprocess
 import sys
 
 from collections import OrderedDict  # Needed to parse xstats representation.
@@ -97,6 +99,14 @@ def main():
 
     # If TRexError happens, let the script fail with stack trace.
     finally:
+        # Dump log to compare.
+        n_lines = 100
+        output = subprocess.check_output(
+            [u"tail", u"-n", str(n_lines), u"/tmp/trex.log"]
+        )
+        print(u"From trex.log:")
+        # For details on unescaping see https://stackoverflow.com/a/37059682
+        print(codecs.escape_decode(output)[0].decode(u"utf-8"))
         client.reset()
         prnt(u"client reset")
         client.disconnect()
