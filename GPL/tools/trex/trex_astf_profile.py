@@ -29,8 +29,10 @@ parses for various counters.
 """
 
 import argparse
+import codecs
 import datetime
 import json
+import subprocess
 import sys
 import time
 
@@ -400,6 +402,14 @@ def simple_burst(
         raise
 
     finally:
+        # Dump log to compare.
+        n_lines = 100
+        output = subprocess.check_output(
+            [u"tail", u"-n", str(n_lines), u"/tmp/trex.log"]
+        )
+        print(u"From trex.log:")
+        # For details on unescaping see https://stackoverflow.com/a/37059682
+        print(codecs.escape_decode(output)[0].decode(u"utf-8"))
         if client:
             if async_start:
                 client.disconnect(stop_traffic=False, release_ports=True)
