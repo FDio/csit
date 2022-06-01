@@ -42,6 +42,7 @@ Additional information about graph data:
     `build logs from FD.io vpp performance job 3n-skx`_,
     `build logs from FD.io vpp performance job 2n-clx`_,
     `build logs from FD.io vpp performance job 2n-zn2`_,
+    `build logs from FD.io vpp performance job 3n-alt`_,
     `build logs from FD.io vpp performance job 3n-tsh`_,
     `build logs from FD.io vpp performance job 2n-tx2`_,
     `build logs from FD.io vpp performance job 2n-dnv`_ and
