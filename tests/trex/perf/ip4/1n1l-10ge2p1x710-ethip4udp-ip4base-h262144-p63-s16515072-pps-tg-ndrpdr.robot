@@ -81,9 +81,129 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 100B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
-| | [Tags] | 100B
-| | frame_size=${100}
+| 120B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 120B
+| | frame_size=${120}
+
+| 121B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 121B
+| | frame_size=${121}
+
+| 122B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 122B
+| | frame_size=${122}
+
+| 123B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 123B
+| | frame_size=${123}
+
+| 124B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 124B
+| | frame_size=${124}
+
+| 125B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 125B
+| | frame_size=${125}
+
+| 126B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 126B
+| | frame_size=${126}
+
+| 127B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 127B
+| | frame_size=${127}
+
+| 128B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 128B
+| | frame_size=${128}
+
+| 129B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 129B
+| | frame_size=${129}
+
+| 130B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 130B
+| | frame_size=${130}
+
+| 131B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 131B
+| | frame_size=${131}
+
+| 132B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 132B
+| | frame_size=${132}
+
+| 133B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 133B
+| | frame_size=${133}
+
+| 134B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 134B
+| | frame_size=${134}
+
+| 135B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 135B
+| | frame_size=${135}
+
+| 136B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 136B
+| | frame_size=${136}
+
+| 137B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 137B
+| | frame_size=${137}
+
+| 138B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 138B
+| | frame_size=${138}
+
+| 139B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 139B
+| | frame_size=${139}
+
+| 140B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 140B
+| | frame_size=${140}
+
+| 141B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 141B
+| | frame_size=${141}
+
+| 142B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 142B
+| | frame_size=${142}
+
+| 143B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 143B
+| | frame_size=${143}
+
+| 144B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 144B
+| | frame_size=${144}
+
+| 145B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 145B
+| | frame_size=${145}
+
+| 146B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 146B
+| | frame_size=${146}
+
+| 147B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 147B
+| | frame_size=${147}
+
+| 148B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 148B
+| | frame_size=${148}
+
+| 149B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 149B
+| | frame_size=${149}
+
+| 150B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| | [Tags] | 150B
+| | frame_size=${150}
 
 | 1518B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
 | | [Tags] | 1518B

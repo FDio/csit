@@ -23,7 +23,7 @@
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Start Test Export
-| Test Teardown | Tear down test raw | performance
+| Test Teardown | Tear down test raw
 |
 | Test Template | Local Template
 |
@@ -77,15 +77,141 @@
 | |
 | | [Arguments] | ${frame_size}
 | |
+| | Initialize traffic generator
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf1}[0]
+| | ... | ${osi_layer}
+| |
 | | Set Test Variable | \${frame_size}
 | |
 | | Given Set Max Rate And Jumbo
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 100B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
-| | [Tags] | 100B
-| | frame_size=${100}
+| 120B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 120B
+| | frame_size=${120}
+
+| 121B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 121B
+| | frame_size=${121}
+
+| 122B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 122B
+| | frame_size=${122}
+
+| 123B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 123B
+| | frame_size=${123}
+
+| 124B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 124B
+| | frame_size=${124}
+
+| 125B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 125B
+| | frame_size=${125}
+
+| 126B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 126B
+| | frame_size=${126}
+
+| 127B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 127B
+| | frame_size=${127}
+
+| 128B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 128B
+| | frame_size=${128}
+
+| 129B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 129B
+| | frame_size=${129}
+
+| 130B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 130B
+| | frame_size=${130}
+
+| 131B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 131B
+| | frame_size=${131}
+
+| 132B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 132B
+| | frame_size=${132}
+
+| 133B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 133B
+| | frame_size=${133}
+
+| 134B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 134B
+| | frame_size=${134}
+
+| 135B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 135B
+| | frame_size=${135}
+
+| 136B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 136B
+| | frame_size=${136}
+
+| 137B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 137B
+| | frame_size=${137}
+
+| 138B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 138B
+| | frame_size=${138}
+
+| 139B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 139B
+| | frame_size=${139}
+
+| 140B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 140B
+| | frame_size=${140}
+
+| 141B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 141B
+| | frame_size=${141}
+
+| 142B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 142B
+| | frame_size=${142}
+
+| 143B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 143B
+| | frame_size=${143}
+
+| 144B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 144B
+| | frame_size=${144}
+
+| 145B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 145B
+| | frame_size=${145}
+
+| 146B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 146B
+| | frame_size=${146}
+
+| 147B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 147B
+| | frame_size=${147}
+
+| 148B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 148B
+| | frame_size=${148}
+
+| 149B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 149B
+| | frame_size=${149}
+
+| 150B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 150B
+| | frame_size=${150}
 
 | 1518B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
 | | [Tags] | 1518B
