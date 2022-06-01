@@ -514,8 +514,8 @@
       data-set: "vpp-3n-skx-curr-iter-mrr"
     - job-spec: "vpp-mlr-00"
       data-set: "vpp-3n-skx-curr-iter"
-    # - job-spec: "hoststack-00"
-    #   data-set: "vpp-3n-skx-curr-iter-hoststack"
+    - job-spec: "hoststack-00"
+      data-set: "vpp-3n-skx-curr-iter-hoststack"
     - job-spec: "dpdk-mlr-00"
       data-set: "dpdk-3n-skx-curr-iter"
 
@@ -1871,36 +1871,30 @@
 ################################################################################
 # VPP
 
-# # VPP Performance Changes 3n-skx Hoststack
-# - type: "table"
-#   title: "VPP Performance Changes 3n-skx Hoststack"
-#   algorithm: "table_comparison"
-#   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-hoststack"
-#   include-tests: "hoststack"
-#   filter: "all"
-#   columns:
-#     - title: "2110.0-8"
-#       data-set: "vpp-3n-skx-hist-iter-hoststack-new-env"
-#     - title: "2202.0-9"
-#       data-set: "vpp-3n-skx-prev-iter-hoststack-old-env"
-#     - title: "2202.0-10"
-#       data-set: "vpp-3n-skx-prev-iter-hoststack-new-env"
-#     - title: "2206.0-10"
-#       data-set: "vpp-3n-skx-curr-iter-hoststack"
-#   comparisons:
-#     - title: "2202.0-10 vs 2202.0-9"
-#       reference: 2
-#       compare: 3
-#     - title: "2206.0-10 vs 2202.0-10"
-#       reference: 3
-#       compare: 4
-#   legend:
-#     - ''
-#     - 'Test Case:            Test cases executed for: Hoststack on 3n-skx with xxv710.'
-#     - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
-#     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-#     - '2202.0-10 vs 2202.0-9: Compares CSIT environment current vs previous with previous VPP code.'
-#     - '2206.0-10 vs 2202.0-10: Compares VPP code current vs previous in the current CSIT environment.'
+# VPP Performance Changes 3n-skx Hoststack
+- type: "table"
+  title: "VPP Performance Changes 3n-skx Hoststack"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-hoststack"
+  include-tests: "hoststack"
+  filter: "all"
+  columns:
+    - title: "2110.0-8"
+      data-set: "vpp-3n-skx-hist-iter-hoststack-new-env"
+    - title: "2202.0-9"
+      data-set: "vpp-3n-skx-prev-iter-hoststack-old-env"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-skx-curr-iter-hoststack"
+  comparisons:
+    - title: "2206.0-10 vs 2202.0-9"
+      reference: 2
+      compare: 3
+  legend:
+    - ''
+    - 'Test Case:            Test cases executed for: Hoststack on 3n-skx with xxv710.'
+    - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
+    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
 # VPP Performance Changes 2n-clx VSAP
 - type: "table"
@@ -7820,43 +7814,43 @@
 
 # Hoststack tests 3n-skx
 
-# - type: "plot"
-#   title: "Bandwidth: 3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3"
-#   algorithm: "plot_perf_box_name"
-#   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps"
-#   data: "vpp-3n-skx-curr-iter-hoststack"
-#   include:
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpbase-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpbase-ldpreload-iperf3-bps"
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpscale1Cl10S-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpscale1cl10s-ldpreload-iperf3-bps"
-#   layout:
-#     title: "3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3"
-#     layout: "plot-hoststack"
+- type: "plot"
+  title: "Bandwidth: 3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps"
+  data: "vpp-3n-skx-curr-iter-hoststack"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpbase-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpbase-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Tcpscale1Cl10S-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4tcpscale1cl10s-ldpreload-iperf3-bps"
+  layout:
+    title: "3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3"
+    layout: "plot-hoststack"
 
-# - type: "plot"
-#   title: "Bandwidth: 3n-skx-xxv710-1460b-2t1c-eth-ip4udp-ldpreload-iperf3"
-#   algorithm: "plot_perf_box_name"
-#   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1460b-2t1c-eth-ip4udp-ldpreload-iperf3-bps"
-#   data: "vpp-3n-skx-curr-iter-hoststack"
-#   include:
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpbase-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4udpbase-ldpreload-iperf3-bps"
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpscale1Cl10S-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4udpscale1cl10s-ldpreload-iperf3-bps"
-#   layout:
-#     title: "3n-skx-xxv710-1460b-2t1c-eth-ip4udp-ldpreload-iperf3"
-#     layout: "plot-hoststack"
+- type: "plot"
+  title: "Bandwidth: 3n-skx-xxv710-1460b-2t1c-eth-ip4udp-ldpreload-iperf3"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1460b-2t1c-eth-ip4udp-ldpreload-iperf3-bps"
+  data: "vpp-3n-skx-curr-iter-hoststack"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpbase-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4udpbase-ldpreload-iperf3-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpscale1Cl10S-Ldpreload-Iperf3-Bps.1460B-2t1c-eth-ip4udpscale1cl10s-ldpreload-iperf3-bps"
+  layout:
+    title: "3n-skx-xxv710-1460b-2t1c-eth-ip4udp-ldpreload-iperf3"
+    layout: "plot-hoststack"
 
-# - type: "plot"
-#   title: "Bandwidth: 3n-skx-xxv710-1280b-2t1c-eth-ip4udpquic-vppecho"
-#   algorithm: "plot_perf_box_name"
-#   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1280b-2t1c-eth-ip4udpquic-vppecho-bps"
-#   data: "vpp-3n-skx-curr-iter-hoststack"
-#   include:
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicbase-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicbase-vppecho-bps"
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicscale1Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale1cl10s-vppecho-bps"
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicscale10Cl1S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl1s-vppecho-bps"
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicscale10Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl10s-vppecho-bps"
-#   layout:
-#     title: "3n-skx-xxv710-1280b-2t1c-eth-ip4udpquic-vppecho"
-#     layout: "plot-hoststack"
+- type: "plot"
+  title: "Bandwidth: 3n-skx-xxv710-1280b-2t1c-eth-ip4udpquic-vppecho"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-1280b-2t1c-eth-ip4udpquic-vppecho-bps"
+  data: "vpp-3n-skx-curr-iter-hoststack"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicbase-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicbase-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicscale1Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale1cl10s-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicscale10Cl1S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl1s-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1Xxv710-Eth-Ip4Udpquicscale10Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl10s-vppecho-bps"
+  layout:
+    title: "3n-skx-xxv710-1280b-2t1c-eth-ip4udpquic-vppecho"
+    layout: "plot-hoststack"
 
 ################################################################################
 
