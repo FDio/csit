@@ -36,7 +36,7 @@
 | | [Documentation]
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | |
-| | ${stat_runtime}= | Create List | trex-runtime
+| | ${stat_runtime}= | Create List | noop
 | | ${stat_pre_trial}= | Create List | noop
 | | ${stat_post_trial}= | Create List | noop
 | | Set Global Variable | ${stat_runtime}
