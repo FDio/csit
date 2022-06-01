@@ -43,6 +43,7 @@ Additional information about graph data:
     `build logs from FD.io dpdk performance job 3n-skx`_,
     `build logs from FD.io dpdk performance job 2n-clx`_,
     `build logs from FD.io dpdk performance job 2n-zn2`_,
+    `build logs from FD.io dpdk performance job 3n-alt`_,
     `build logs from FD.io dpdk performance job 3n-tsh`_,
     `build logs from FD.io dpdk performance job 2n-tx2`_ with RF
     result files csit-vpp-perf-|srelease|-\*.zip
@@ -63,5 +64,6 @@ Additional information about graph data:
     2n-clx-x710
     2n-zn2-xxv710
     2n-zn2-x710
+    3n-alt-xl710
     3n-tsh-x520
     2n-tx2-xl710
