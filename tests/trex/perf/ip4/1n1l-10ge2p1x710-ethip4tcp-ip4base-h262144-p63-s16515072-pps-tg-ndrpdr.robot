@@ -23,7 +23,7 @@
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Start Test Export
-| Test Teardown | Tear down test raw | performance
+| Test Teardown | Tear down test raw
 |
 | Test Template | Local Template
 |
@@ -76,6 +76,12 @@
 | | ... | Type: integer, string
 | |
 | | [Arguments] | ${frame_size}
+| |
+| | Initialize traffic generator
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf1}[0]
+| | ... | ${osi_layer}
 | |
 | | Set Test Variable | \${frame_size}
 | |
