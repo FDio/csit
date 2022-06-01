@@ -295,6 +295,7 @@
 | | ... | VPP Echo.
 | |
 | | Export DUT Type And Version | ${DUT_TYPE} | ${DUT_VERSION}
+| | Export TG Type And Version | ${DUT_TYPE} | ${DUT_VERSION}
 
 | Additional Suite Setup Action For ab
 | | [Documentation]
