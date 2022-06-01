@@ -108,17 +108,29 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 100B-1c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
-| | [Tags] | 100B | 1C
-| | frame_size=${100} | phy_cores=${1}
+| 133B-1c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| | [Tags] | 133B | 1C
+| | frame_size=${133} | phy_cores=${1}
 
-| 100B-2c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
-| | [Tags] | 100B | 2C
-| | frame_size=${100} | phy_cores=${2}
+| 134B-1c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| | [Tags] | 134B | 1C
+| | frame_size=${134} | phy_cores=${1}
 
-| 100B-4c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
-| | [Tags] | 100B | 4C
-| | frame_size=${100} | phy_cores=${4}
+| 133B-2c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| | [Tags] | 133B | 2C
+| | frame_size=${133} | phy_cores=${2}
+
+| 134B-2c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| | [Tags] | 134B | 2C
+| | frame_size=${134} | phy_cores=${2}
+
+| 133B-4c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| | [Tags] | 133B | 4C
+| | frame_size=${133} | phy_cores=${4}
+
+| 134B-4c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| | [Tags] | 134B | 4C
+| | frame_size=${134} | phy_cores=${4}
 
 | 1518B-1c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
 | | [Tags] | 1518B | 1C

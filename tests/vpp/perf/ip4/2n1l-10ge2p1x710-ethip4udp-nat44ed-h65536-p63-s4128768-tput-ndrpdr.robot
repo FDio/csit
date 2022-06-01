@@ -134,17 +134,29 @@
 | | And Verify NAT44 UDP sessions number on DUT1 node
 
 *** Test Cases ***
-| 100B-1c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
-| | [Tags] | 100B | 1C
-| | frame_size=${100} | phy_cores=${1}
+| 133B-1c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
+| | [Tags] | 133B | 1C
+| | frame_size=${133} | phy_cores=${1}
 
-| 100B-2c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
-| | [Tags] | 100B | 2C
-| | frame_size=${100} | phy_cores=${2}
+| 134B-1c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
+| | [Tags] | 134B | 1C
+| | frame_size=${134} | phy_cores=${1}
 
-| 100B-4c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
-| | [Tags] | 100B | 4C
-| | frame_size=${100} | phy_cores=${4}
+| 133B-2c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
+| | [Tags] | 133B | 2C
+| | frame_size=${133} | phy_cores=${2}
+
+| 134B-2c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
+| | [Tags] | 134B | 2C
+| | frame_size=${134} | phy_cores=${2}
+
+| 133B-4c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
+| | [Tags] | 133B | 4C
+| | frame_size=${133} | phy_cores=${4}
+
+| 134B-4c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
+| | [Tags] | 134B | 4C
+| | frame_size=${134} | phy_cores=${4}
 
 | 1518B-1c-ethip4udp-nat44ed-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 1518B | 1C
