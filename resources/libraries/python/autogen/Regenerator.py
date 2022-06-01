@@ -242,7 +242,12 @@ def add_trex_testcases(testcase, suite_id, file_out, tc_kwargs_list):
         kwargs = copy.deepcopy(kwas)
         kwargs = filter_and_edit_kwargs_for_astf(suite_id, kwargs)
         if kwargs is not None:
-            file_out.write(testcase.generate(**kwargs))
+            if kwargs[u"frame_size"] != 100:
+                file_out.write(testcase.generate(**kwargs))
+                continue
+            for framesize in range(90, 1500, 30):
+                kwargs[u"frame_size"] = framesize
+                file_out.write(testcase.generate(**kwargs))
 
 
 def write_default_files(in_filename, in_prolog, kwargs_list):

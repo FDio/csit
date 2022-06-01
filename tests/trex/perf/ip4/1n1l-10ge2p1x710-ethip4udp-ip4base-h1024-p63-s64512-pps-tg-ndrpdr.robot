@@ -82,9 +82,193 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 100B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
-| | [Tags] | 100B
-| | frame_size=${100}
+| 90B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 90B
+| | frame_size=${90}
+
+| 120B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 120B
+| | frame_size=${120}
+
+| 150B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 150B
+| | frame_size=${150}
+
+| 180B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 180B
+| | frame_size=${180}
+
+| 210B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 210B
+| | frame_size=${210}
+
+| 240B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 240B
+| | frame_size=${240}
+
+| 270B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 270B
+| | frame_size=${270}
+
+| 300B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 300B
+| | frame_size=${300}
+
+| 330B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 330B
+| | frame_size=${330}
+
+| 360B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 360B
+| | frame_size=${360}
+
+| 390B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 390B
+| | frame_size=${390}
+
+| 420B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 420B
+| | frame_size=${420}
+
+| 450B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 450B
+| | frame_size=${450}
+
+| 480B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 480B
+| | frame_size=${480}
+
+| 510B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 510B
+| | frame_size=${510}
+
+| 540B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 540B
+| | frame_size=${540}
+
+| 570B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 570B
+| | frame_size=${570}
+
+| 600B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 600B
+| | frame_size=${600}
+
+| 630B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 630B
+| | frame_size=${630}
+
+| 660B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 660B
+| | frame_size=${660}
+
+| 690B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 690B
+| | frame_size=${690}
+
+| 720B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 720B
+| | frame_size=${720}
+
+| 750B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 750B
+| | frame_size=${750}
+
+| 780B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 780B
+| | frame_size=${780}
+
+| 810B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 810B
+| | frame_size=${810}
+
+| 840B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 840B
+| | frame_size=${840}
+
+| 870B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 870B
+| | frame_size=${870}
+
+| 900B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 900B
+| | frame_size=${900}
+
+| 930B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 930B
+| | frame_size=${930}
+
+| 960B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 960B
+| | frame_size=${960}
+
+| 990B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 990B
+| | frame_size=${990}
+
+| 1020B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1020B
+| | frame_size=${1020}
+
+| 1050B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1050B
+| | frame_size=${1050}
+
+| 1080B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1080B
+| | frame_size=${1080}
+
+| 1110B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1110B
+| | frame_size=${1110}
+
+| 1140B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1140B
+| | frame_size=${1140}
+
+| 1170B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1170B
+| | frame_size=${1170}
+
+| 1200B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1200B
+| | frame_size=${1200}
+
+| 1230B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1230B
+| | frame_size=${1230}
+
+| 1260B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1260B
+| | frame_size=${1260}
+
+| 1290B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1290B
+| | frame_size=${1290}
+
+| 1320B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1320B
+| | frame_size=${1320}
+
+| 1350B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1350B
+| | frame_size=${1350}
+
+| 1380B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1380B
+| | frame_size=${1380}
+
+| 1410B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1410B
+| | frame_size=${1410}
+
+| 1440B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1440B
+| | frame_size=${1440}
+
+| 1470B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
+| | [Tags] | 1470B
+| | frame_size=${1470}
 
 | 1518B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr
 | | [Tags] | 1518B
