@@ -277,16 +277,16 @@
 #     - job-spec: "vpp-00"
 #       build: "1"
 
-- type: "table"
-  title: "Job Specification Duration: 3n-aws-iterative"
-  algorithm: "table_job_spec_duration"
-  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-aws-iter"
-  jb-type: "iterative"
-  lines:
-    - job-spec: "vpp-mrr-00"
-      data-set: "vpp-3n-aws-curr-iter-mrr"
-    - job-spec: "vpp-mlr-00"
-      data-set: "vpp-3n-aws-curr-iter"
+# - type: "table"
+#   title: "Job Specification Duration: 3n-aws-iterative"
+#   algorithm: "table_job_spec_duration"
+#   output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-aws-iter"
+#   jb-type: "iterative"
+#   lines:
+#     - job-spec: "vpp-mrr-00"
+#       data-set: "vpp-3n-aws-curr-iter-mrr"
+#     - job-spec: "vpp-mlr-00"
+#       data-set: "vpp-3n-aws-curr-iter"
 
 # - type: "table"
 #   title: "Job Specification Duration: 3n-aws-coverage"
@@ -3391,105 +3391,105 @@
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
-# VPP Performance Changes 3n-aws 2t1c pdr
-- type: "table"
-  title: "VPP Performance Changes 3n-aws 2t1c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-2t1c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
-  columns:
-    - title: "2110.0-8"
-      data-set: "vpp-3n-aws-hist-iter"
-    - title: "2202.0-9"
-      data-set: "vpp-3n-aws-prev-iter"
-    - title: "2206.0-10"
-      data-set: "vpp-3n-aws-curr-iter"
-  comparisons:
-    - title: "2206.0-10 vs 2202.0-9"
-      reference: 2
-      compare: 3
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
+# # VPP Performance Changes 3n-aws 2t1c pdr
+# - type: "table"
+#   title: "VPP Performance Changes 3n-aws 2t1c pdr"
+#   algorithm: "table_comparison"
+#   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-2t1c-pdr"
+#   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#   filter: "'2T1C' and 'NDRPDR'"
+#   columns:
+#     - title: "2110.0-8"
+#       data-set: "vpp-3n-aws-hist-iter"
+#     - title: "2202.0-9"
+#       data-set: "vpp-3n-aws-prev-iter"
+#     - title: "2206.0-10"
+#       data-set: "vpp-3n-aws-curr-iter"
+#   comparisons:
+#     - title: "2206.0-10 vs 2202.0-9"
+#       reference: 2
+#       compare: 3
+#   legend:
+#     - ''
+#     - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
+#     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
+#     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+#     - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
-# VPP Performance Changes 3n-aws 4t2c pdr
-- type: "table"
-  title: "VPP Performance Changes 3n-aws 4t2c pdr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-4t2c-pdr"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
-  columns:
-    - title: "2110.0-8"
-      data-set: "vpp-3n-aws-hist-iter"
-    - title: "2202.0-9"
-      data-set: "vpp-3n-aws-prev-iter"
-    - title: "2206.0-10"
-      data-set: "vpp-3n-aws-curr-iter"
-  comparisons:
-    - title: "2206.0-10 vs 2202.0-9"
-      reference: 2
-      compare: 3
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
+# # VPP Performance Changes 3n-aws 4t2c pdr
+# - type: "table"
+#   title: "VPP Performance Changes 3n-aws 4t2c pdr"
+#   algorithm: "table_comparison"
+#   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-4t2c-pdr"
+#   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#   filter: "'4T2C' and 'NDRPDR'"
+#   columns:
+#     - title: "2110.0-8"
+#       data-set: "vpp-3n-aws-hist-iter"
+#     - title: "2202.0-9"
+#       data-set: "vpp-3n-aws-prev-iter"
+#     - title: "2206.0-10"
+#       data-set: "vpp-3n-aws-curr-iter"
+#   comparisons:
+#     - title: "2206.0-10 vs 2202.0-9"
+#       reference: 2
+#       compare: 3
+#   legend:
+#     - ''
+#     - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
+#     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
+#     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+#     - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
-# VPP Performance Changes 3n-aws 2t1c ndr
-- type: "table"
-  title: "VPP Performance Changes 3n-aws 2t1c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-2t1c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'NDRPDR'"
-  columns:
-    - title: "2110.0-8"
-      data-set: "vpp-3n-aws-hist-iter"
-    - title: "2202.0-9"
-      data-set: "vpp-3n-aws-prev-iter"
-    - title: "2206.0-10"
-      data-set: "vpp-3n-aws-curr-iter"
-  comparisons:
-    - title: "2206.0-10 vs 2202.0-9"
-      reference: 2
-      compare: 3
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
+# # VPP Performance Changes 3n-aws 2t1c ndr
+# - type: "table"
+#   title: "VPP Performance Changes 3n-aws 2t1c ndr"
+#   algorithm: "table_comparison"
+#   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-2t1c-ndr"
+#   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#   filter: "'2T1C' and 'NDRPDR'"
+#   columns:
+#     - title: "2110.0-8"
+#       data-set: "vpp-3n-aws-hist-iter"
+#     - title: "2202.0-9"
+#       data-set: "vpp-3n-aws-prev-iter"
+#     - title: "2206.0-10"
+#       data-set: "vpp-3n-aws-curr-iter"
+#   comparisons:
+#     - title: "2206.0-10 vs 2202.0-9"
+#       reference: 2
+#       compare: 3
+#   legend:
+#     - ''
+#     - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
+#     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
+#     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+#     - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
-# VPP Performance Changes 3n-aws 4t2c ndr
-- type: "table"
-  title: "VPP Performance Changes 3n-aws 4t2c ndr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-4t2c-ndr"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'NDRPDR'"
-  columns:
-    - title: "2110.0-8"
-      data-set: "vpp-3n-aws-hist-iter"
-    - title: "2202.0-9"
-      data-set: "vpp-3n-aws-prev-iter"
-    - title: "2206.0-10"
-      data-set: "vpp-3n-aws-curr-iter"
-  comparisons:
-    - title: "2206.0-10 vs 2202.0-9"
-      reference: 2
-      compare: 3
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
+# # VPP Performance Changes 3n-aws 4t2c ndr
+# - type: "table"
+#   title: "VPP Performance Changes 3n-aws 4t2c ndr"
+#   algorithm: "table_comparison"
+#   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-4t2c-ndr"
+#   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#   filter: "'4T2C' and 'NDRPDR'"
+#   columns:
+#     - title: "2110.0-8"
+#       data-set: "vpp-3n-aws-hist-iter"
+#     - title: "2202.0-9"
+#       data-set: "vpp-3n-aws-prev-iter"
+#     - title: "2206.0-10"
+#       data-set: "vpp-3n-aws-curr-iter"
+#   comparisons:
+#     - title: "2206.0-10 vs 2202.0-9"
+#       reference: 2
+#       compare: 3
+#   legend:
+#     - ''
+#     - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
+#     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
+#     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+#     - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c ndr
 - type: "table"
@@ -4900,55 +4900,55 @@
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
-# VPP Performance Changes 3n-aws 2t1c mrr
-- type: "table"
-  title: "VPP Performance Changes 3n-aws 2t1c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-2t1c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C'"
-  columns:
-    - title: "2110.0-8"
-      data-set: "vpp-3n-aws-hist-iter-mrr"
-    - title: "2202.0-9"
-      data-set: "vpp-3n-aws-prev-iter-mrr"
-    - title: "2206.0-10"
-      data-set: "vpp-3n-aws-curr-iter-mrr"
-  comparisons:
-    - title: "2206.0-10 vs 2202.0-9"
-      reference: 2
-      compare: 3
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
+# # VPP Performance Changes 3n-aws 2t1c mrr
+# - type: "table"
+#   title: "VPP Performance Changes 3n-aws 2t1c mrr"
+#   algorithm: "table_comparison"
+#   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-2t1c-mrr"
+#   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+#   filter: "'2T1C'"
+#   columns:
+#     - title: "2110.0-8"
+#       data-set: "vpp-3n-aws-hist-iter-mrr"
+#     - title: "2202.0-9"
+#       data-set: "vpp-3n-aws-prev-iter-mrr"
+#     - title: "2206.0-10"
+#       data-set: "vpp-3n-aws-curr-iter-mrr"
+#   comparisons:
+#     - title: "2206.0-10 vs 2202.0-9"
+#       reference: 2
+#       compare: 3
+#   legend:
+#     - ''
+#     - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
+#     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
+#     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+#     - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
-# VPP Performance Changes 3n-aws 4t2c mrr
-- type: "table"
-  title: "VPP Performance Changes 3n-aws 4t2c mrr"
-  algorithm: "table_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-4t2c-mrr"
-  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C'"
-  columns:
-    - title: "2110.0-8"
-      data-set: "vpp-3n-aws-hist-iter-mrr"
-    - title: "2202.0-9"
-      data-set: "vpp-3n-aws-prev-iter-mrr"
-    - title: "2206.0-10"
-      data-set: "vpp-3n-aws-curr-iter-mrr"
-  comparisons:
-    - title: "2206.0-10 vs 2202.0-9"
-      reference: 2
-      compare: 3
-  legend:
-    - ''
-    - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
-    - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
-    - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
+# # VPP Performance Changes 3n-aws 4t2c mrr
+# - type: "table"
+#   title: "VPP Performance Changes 3n-aws 4t2c mrr"
+#   algorithm: "table_comparison"
+#   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-aws-4t2c-mrr"
+#   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+#   filter: "'4T2C'"
+#   columns:
+#     - title: "2110.0-8"
+#       data-set: "vpp-3n-aws-hist-iter-mrr"
+#     - title: "2202.0-9"
+#       data-set: "vpp-3n-aws-prev-iter-mrr"
+#     - title: "2206.0-10"
+#       data-set: "vpp-3n-aws-curr-iter-mrr"
+#   comparisons:
+#     - title: "2206.0-10 vs 2202.0-9"
+#       reference: 2
+#       compare: 3
+#   legend:
+#     - ''
+#     - 'Test Case:            Test cases executed for: PDR throughput on 3n-aws with nitro50g.'
+#     - 'YYMM.V-E:             [Mpps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
+#     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+#     - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
 # VPP Comparison Across Testbeds 2n-skx to 2n-clx 2t1c mrr
 - type: "table"
@@ -5394,22 +5394,22 @@
   - "parent"
   - "msg"
 
-# Detailed Test Results - VPP Performance Results 3n-aws
-- type: "table"
-  title: "Detailed Test Results - VPP Performance Results 3n-aws"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,PERF,VPP,3N,AWS]}/"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  min  avg  max       min  avg  max (10% PDR) |br| 4.  min  avg  max       min  avg  max (50% PDR) |br| 5.  min  avg  max       min  avg  max (90% PDR) |preout| "
-      data: "data msg"
-  data: "vpp-3n-aws-curr-cov"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "msg"
+# # Detailed Test Results - VPP Performance Results 3n-aws
+# - type: "table"
+#   title: "Detailed Test Results - VPP Performance Results 3n-aws"
+#   algorithm: "table_merged_details"
+#   output-file: "{DIR[DTR,PERF,VPP,3N,AWS]}/"
+#   columns:
+#     - title: " |prein| Test Name |preout| "
+#       data: "data name"
+#     - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  min  avg  max       min  avg  max (10% PDR) |br| 4.  min  avg  max       min  avg  max (50% PDR) |br| 5.  min  avg  max       min  avg  max (90% PDR) |preout| "
+#       data: "data msg"
+#   data: "vpp-3n-aws-curr-cov"
+#   filter: "all"
+#   parameters:
+#   - "name"
+#   - "parent"
+#   - "msg"
 
 # Test configuration - VPP Performance Test Configs 3n-skx
 - type: "table"
@@ -5600,22 +5600,22 @@
   - "name"
   - "conf-history"
 
-# Test configuration - VPP Performance Test Configs 3n-aws
-- type: "table"
-  title: "Test configuration - VPP Performance Test Configs 3n-aws"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTC,PERF,VPP,3N,AWS]}/"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-      data: "data conf-history"
-  data: "vpp-3n-aws-curr-cov"
-  filter: "all"
-  parameters:
-  - "parent"
-  - "name"
-  - "conf-history"
+# # Test configuration - VPP Performance Test Configs 3n-aws
+# - type: "table"
+#   title: "Test configuration - VPP Performance Test Configs 3n-aws"
+#   algorithm: "table_merged_details"
+#   output-file: "{DIR[DTC,PERF,VPP,3N,AWS]}/"
+#   columns:
+#     - title: " |prein| Test Name |preout| "
+#       data: "data name"
+#     - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+#       data: "data conf-history"
+#   data: "vpp-3n-aws-curr-cov"
+#   filter: "all"
+#   parameters:
+#   - "parent"
+#   - "name"
+#   - "conf-history"
 
 # Test Operational Data - VPP Performance Operational Data 3n-skx
 - type: "table"
@@ -5705,13 +5705,13 @@
   data: "vpp-2n-aws-curr-cov"
   filter: "all"
 
-# Test Operational Data - VPP Performance Operational Data 3n-aws
-- type: "table"
-  title: "Test Operational Data - VPP Performance Operational Data 3n-aws"
-  algorithm: "table_oper_data_html"
-  output-file: "{DIR[DTO,PERF,VPP,3N,AWS]}/"
-  data: "vpp-3n-aws-curr-cov"
-  filter: "all"
+# # Test Operational Data - VPP Performance Operational Data 3n-aws
+# - type: "table"
+#   title: "Test Operational Data - VPP Performance Operational Data 3n-aws"
+#   algorithm: "table_oper_data_html"
+#   output-file: "{DIR[DTO,PERF,VPP,3N,AWS]}/"
+#   data: "vpp-3n-aws-curr-cov"
+#   filter: "all"
 
 # Detailed Test Results - VPP MRR Results 3n-skx
 - type: "table"
@@ -5900,22 +5900,22 @@
   - "parent"
   - "msg"
 
-# Detailed Test Results - VPP MRR Results 3n-aws
-- type: "table"
-  title: "Detailed Test Results - VPP MRR Results 3n-aws"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,MRR,VPP,3N,AWS]}/"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
-      data: "data msg"
-  data: "vpp-3n-aws-curr-iter-mrr"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "msg"
+# # Detailed Test Results - VPP MRR Results 3n-aws
+# - type: "table"
+#   title: "Detailed Test Results - VPP MRR Results 3n-aws"
+#   algorithm: "table_merged_details"
+#   output-file: "{DIR[DTR,MRR,VPP,3N,AWS]}/"
+#   columns:
+#     - title: " |prein| Test Name |preout| "
+#       data: "data name"
+#     - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+#       data: "data msg"
+#   data: "vpp-3n-aws-curr-iter-mrr"
+#   filter: "all"
+#   parameters:
+#   - "name"
+#   - "parent"
+#   - "msg"
 
 # Test configuration - VPP MRR Test Configs 3n-skx
 - type: "table"
@@ -6104,22 +6104,22 @@
   - "name"
   - "conf-history"
 
-# Test configuration - VPP MRR Test Configs 3n-aws
-- type: "table"
-  title: "Test configuration - VPP MRR Test Configs 3n-aws"
-  algorithm: "table_merged_details"
-  output-file: "{DIR[DTC,MRR,VPP,3N,AWS]}/"
-  columns:
-    - title: " |prein| Test Name |preout| "
-      data: "data name"
-    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
-      data: "data conf-history"
-  data: "vpp-3n-aws-curr-iter-mrr"
-  filter: "all"
-  parameters:
-  - "parent"
-  - "name"
-  - "conf-history"
+# # Test configuration - VPP MRR Test Configs 3n-aws
+# - type: "table"
+#   title: "Test configuration - VPP MRR Test Configs 3n-aws"
+#   algorithm: "table_merged_details"
+#   output-file: "{DIR[DTC,MRR,VPP,3N,AWS]}/"
+#   columns:
+#     - title: " |prein| Test Name |preout| "
+#       data: "data name"
+#     - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+#       data: "data conf-history"
+#   data: "vpp-3n-aws-curr-iter-mrr"
+#   filter: "all"
+#   parameters:
+#   - "parent"
+#   - "name"
+#   - "conf-history"
 
 # Detailed Test Results - VPP Device Results - Ubuntu
 - type: "table"
@@ -7253,7 +7253,7 @@
     - "vpp-2n-dnv-curr-cov"
     - "vpp-3n-dnv-curr-cov"
     - "vpp-2n-aws-curr-cov"
-    - "vpp-3n-aws-curr-cov"
+    # - "vpp-3n-aws-curr-cov"
   filter: "'NDRPDR'"
   data-start-level: 4
   order-chapters:
@@ -7283,7 +7283,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
-      - "3n-aws"
+      # - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -7326,7 +7326,7 @@
     - "vpp-2n-dnv-curr-cov"
     - "vpp-3n-dnv-curr-cov"
     - "vpp-2n-aws-curr-cov"
-    - "vpp-3n-aws-curr-cov"
+    # - "vpp-3n-aws-curr-cov"
   filter: "'NDRPDR'"
   data-start-level: 4
   order-chapters:
@@ -7356,7 +7356,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
-      - "3n-aws"
+      # - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -7399,7 +7399,7 @@
     - "vpp-2n-dnv-curr-cov"
     - "vpp-3n-dnv-curr-cov"
     - "vpp-2n-aws-curr-cov"
-    - "vpp-3n-aws-curr-cov"
+    # - "vpp-3n-aws-curr-cov"
   filter: "'NDRPDR'"
   data-start-level: 4
   order-chapters:
@@ -7429,7 +7429,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
-      - "3n-aws"
+      # - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -7472,7 +7472,7 @@
     - "vpp-2n-dnv-curr-iter-mrr"
     - "vpp-3n-dnv-curr-iter-mrr"
     - "vpp-2n-aws-curr-iter-mrr"
-    - "vpp-3n-aws-curr-iter-mrr"
+    # - "vpp-3n-aws-curr-iter-mrr"
   filter: "'MRR'"
   data-start-level: 4
   order-chapters:
@@ -7502,7 +7502,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
-      - "3n-aws"
+      # - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -7545,7 +7545,7 @@
     - "vpp-2n-dnv-curr-iter-mrr"
     - "vpp-3n-dnv-curr-iter-mrr"
     - "vpp-2n-aws-curr-iter-mrr"
-    - "vpp-3n-aws-curr-iter-mrr"
+    # - "vpp-3n-aws-curr-iter-mrr"
   filter: "'MRR'"
   data-start-level: 4
   order-chapters:
@@ -7575,7 +7575,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
-      - "3n-aws"
+      # - "3n-aws"
     level-3:
       - "xl710"
       - "x520"
@@ -9004,57 +9004,57 @@
     title: "2n-aws-nitro50g-1518b-{core}-ip6routing-base-scale-ena-{test_type}"
     layout: "plot-throughput"
 
-- type: "plot"
-  title: "Throughput: 3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
-  data: "vpp-3n-aws-curr-iter"
-  core: ["2t1c", 4t2c]
-  include:
-    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-ndrpdr.64B-{core}-ethip4-ip4scale20k-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-rnd-ndrpdr.64B-{core}-ethip4-ip4scale20k-rnd-ndrpdr"
-  layout:
-    title: "3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
-    layout: "plot-throughput"
+# - type: "plot"
+#   title: "Throughput: 3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-{test_type}"
+#   data: "vpp-3n-aws-curr-iter"
+#   core: ["2t1c", 4t2c]
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-ndrpdr.64B-{core}-ethip4-ip4scale20k-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-rnd-ndrpdr.64B-{core}-ethip4-ip4scale20k-rnd-ndrpdr"
+#   layout:
+#     title: "3n-aws-nitro50g-64b-{core}-ip4routing-base-scale-ena-{test_type}"
+#     layout: "plot-throughput"
 
-- type: "plot"
-  title: "Throughput: 3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
-  data: "vpp-3n-aws-curr-iter"
-  core: ["2t1c", 4t2c]
-  include:
-    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.1518b-{core}-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-ndrpdr.1518b-{core}-ethip4-ip4scale20k-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-rnd-ndrpdr.1518b-{core}-ethip4-ip4scale20k-rnd-ndrpdr"
-  layout:
-    title: "3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
-    layout: "plot-throughput"
+# - type: "plot"
+#   title: "Throughput: 3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-{test_type}"
+#   data: "vpp-3n-aws-curr-iter"
+#   core: ["2t1c", 4t2c]
+#   include:
+#     - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4base-ndrpdr.1518b-{core}-ethip4-ip4base-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-ndrpdr.1518b-{core}-ethip4-ip4scale20k-ndrpdr"
+#     - "Tests.Vpp.Perf.Ip4.50ge1p1ENA-ethip4-ip4scale20k-rnd-ndrpdr.1518b-{core}-ethip4-ip4scale20k-rnd-ndrpdr"
+#   layout:
+#     title: "3n-aws-nitro50g-1518b-{core}-ip4routing-base-scale-ena-{test_type}"
+#     layout: "plot-throughput"
 
-- type: "plot"
-  title: "Throughput: 3n-aws-nitro50g-1518b-{core}-ipsec-ip4routing-scale-ena-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-1518b-{core}-ipsec-ip4routing-scale-{test_type}"
-  data: "vpp-3n-aws-curr-iter"
-  core: ["2t1c", 4t2c]
-  include:
-    - "Tests.Vpp.Perf.Crypto.50ge1p1ENA-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr.1518B-{core}-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
-  layout:
-    title: "3n-aws-nitro50g-1518b-{core}-ipsec-ip4routing-scale-ena-{test_type}"
-    layout: "plot-throughput"
+# - type: "plot"
+#   title: "Throughput: 3n-aws-nitro50g-1518b-{core}-ipsec-ip4routing-scale-ena-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-1518b-{core}-ipsec-ip4routing-scale-{test_type}"
+#   data: "vpp-3n-aws-curr-iter"
+#   core: ["2t1c", 4t2c]
+#   include:
+#     - "Tests.Vpp.Perf.Crypto.50ge1p1ENA-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr.1518B-{core}-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
+#   layout:
+#     title: "3n-aws-nitro50g-1518b-{core}-ipsec-ip4routing-scale-ena-{test_type}"
+#     layout: "plot-throughput"
 
-- type: "plot"
-  title: "Throughput: 3n-aws-nitro50g-imix-{core}-ipsec-ip4routing-scale-ena-{test_type}"
-  algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-imix-{core}-ipsec-ip4routing-scale-{test_type}"
-  data: "vpp-3n-aws-curr-iter"
-  core: ["2t1c", 4t2c]
-  include:
-    - "Tests.Vpp.Perf.Crypto.50ge1p1ENA-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr.imix-{core}-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
-  layout:
-    title: "3n-aws-nitro50g-imix-{core}-ipsec-ip4routing-scale-ena-{test_type}"
-    layout: "plot-throughput"
+# - type: "plot"
+#   title: "Throughput: 3n-aws-nitro50g-imix-{core}-ipsec-ip4routing-scale-ena-{test_type}"
+#   algorithm: "plot_ndrpdr_box_name"
+#   output-file: "{DIR[STATIC,VPP]}/3n-aws-nitro50g-imix-{core}-ipsec-ip4routing-scale-{test_type}"
+#   data: "vpp-3n-aws-curr-iter"
+#   core: ["2t1c", 4t2c]
+#   include:
+#     - "Tests.Vpp.Perf.Crypto.50ge1p1ENA-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr.imix-{core}-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr"
+#   layout:
+#     title: "3n-aws-nitro50g-imix-{core}-ipsec-ip4routing-scale-ena-{test_type}"
+#     layout: "plot-throughput"
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-{core}-ip4tunnel-base-[avf,dpdk]-{test_type}"
@@ -14664,16 +14664,16 @@
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
-- type: "plot"
-  title: "Latency by percentile: 3n-aws"
-  algorithm: "plot_hdrh_lat_by_percentile_x_log"
-  output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-aws"
-  output-file-links: "{DIR[LAT,VPP]}/3n_aws.rst"
-  target-links: "../../_static/vpp"
-  data: "vpp-3n-aws-curr-iter-best"
-  filter: "'2T1C'"
-  layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
+# - type: "plot"
+#   title: "Latency by percentile: 3n-aws"
+#   algorithm: "plot_hdrh_lat_by_percentile_x_log"
+#   output-file: "{DIR[STATIC,VPP]}/hdrh-lat-percentile-3n-aws"
+#   output-file-links: "{DIR[LAT,VPP]}/3n_aws.rst"
+#   target-links: "../../_static/vpp"
+#   data: "vpp-3n-aws-curr-iter-best"
+#   filter: "'2T1C'"
+#   layout:
+#     layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
   title: "Latency by percentile: DPDK 2n-icx"

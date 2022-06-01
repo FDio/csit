@@ -48,7 +48,6 @@ Graphs are split into sections as follows:
      - 2n-dnv: 2-node Atom Denverton
      - 3n-dnv: 3-node Atom Denverton
      - 2n-aws: 2-node AWS
-     - 3n-aws: 3-node AWS
      - 2n-icx: 2-node Xeon Icelake
      - 3n-icx: 3-node Xeon Icelake
 
@@ -137,7 +136,6 @@ Additional information about graph data:
 
     Test results are stored in
     `build logs from FD.io vpp performance job 2n-aws`_,
-    `build logs from FD.io vpp performance job 3n-aws`_,
     `build logs from FD.io vpp performance job 2n-skx`_,
     `build logs from FD.io vpp performance job 3n-skx`_,
     `build logs from FD.io vpp performance job 2n-clx`_,

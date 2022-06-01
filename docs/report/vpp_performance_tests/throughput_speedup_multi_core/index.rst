@@ -38,7 +38,6 @@ Additional information about graph data:
 
     Test results are stored in
     `build logs from FD.io vpp performance job 2n-aws`_,
-    `build logs from FD.io vpp performance job 3n-aws`_,
     `build logs from FD.io vpp performance job 2n-skx`_,
     `build logs from FD.io vpp performance job 3n-skx`_,
     `build logs from FD.io vpp performance job 2n-clx`_,
