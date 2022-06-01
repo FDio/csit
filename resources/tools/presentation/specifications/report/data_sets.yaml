@@ -1290,11 +1290,10 @@
     csit-vpp-perf-report-iterative-2206-3n-alt:
       - 1   # rls2206.rc1 MRR iter env 10
 
-  # vpp-3n-alt-curr-cov:
-  #   # csit-vpp-perf-report-coverage-2206-3n-alt:
-  #   # csit-vpp-perf-report-iterative-2206-3n-alt:
-  #   csit-vpp-perf-report-coverage-2202-3n-alt:
-  #     - 35  # rls2202.rel NDRPDR cov env 9
+  vpp-3n-alt-curr-cov:
+    # csit-vpp-perf-report-coverage-2206-3n-alt:
+    csit-vpp-perf-report-iterative-2206-3n-alt:
+      - 2   # rls2206.rc1 NDRPDR iter env 10
 
   dpdk-3n-alt-curr-iter:
     csit-dpdk-perf-report-iterative-2206-3n-alt:
