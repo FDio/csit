@@ -13,7 +13,7 @@ running in multiple configurations of VPP worker thread(s), a.k.a. VPP
 data plane thread(s), and their physical CPU core(s) placement.
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip4?h=rls2202>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/ip4?h=rls2206>`_.
 
 .. toctree::
 
@@ -34,4 +34,3 @@ CSIT source code for the test cases used for plots can be found in
     ip4-2n-dnv-x553
     ip4-3n-dnv-x553
     ip4-2n-aws-nitro50g
-    ip4-3n-aws-nitro50g
