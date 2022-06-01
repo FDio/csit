@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8c0c6a6_dd6189c0",
+        "filename": "resources/tools/telemetry/bundle_bpf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-01T10:04:32Z",
+      "side": 1,
+      "message": "it is not bpf anymore. i suggest to create separate bundle \"bundle_perfstat.py\"",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 15
+      },
+      "revId": "58e9d6fbcb047d3d7a74b5ed3d38e088f3301752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d232d2c_be367ef6",
+        "filename": "resources/tools/telemetry/executor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-01T10:04:32Z",
+      "side": 1,
+      "message": "Do not edit scheduler/executor. Instead, in module, use pass().",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 35
+      },
+      "revId": "58e9d6fbcb047d3d7a74b5ed3d38e088f3301752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
