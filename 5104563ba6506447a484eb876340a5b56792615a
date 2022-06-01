@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7882eaa_a2595eb9",
+        "filename": "resources/libraries/python/WireGuardUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-01T10:28:51Z",
+      "side": 1,
+      "message": "wrong indentation. Check pylint.\n\nhttps://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-verify-tox-master-ubuntu2004-x86_64/4404/pylint.log.gz",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "5104563ba6506447a484eb876340a5b56792615a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f79dc7cd_12488570",
+        "filename": "resources/libraries/python/WireGuardUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-01T10:28:51Z",
+      "side": 1,
+      "message": "wrong indentation. Check pylint.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 28
+      },
+      "revId": "5104563ba6506447a484eb876340a5b56792615a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a63ec8f_983025c1",
+        "filename": "resources/libraries/python/WireGuardUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-01T10:28:51Z",
+      "side": 1,
+      "message": "wrong indentation. Check pylint.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 12
+      },
+      "revId": "5104563ba6506447a484eb876340a5b56792615a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d22734ef_44c45148",
+        "filename": "resources/libraries/python/WireGuardUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-01T10:28:51Z",
+      "side": 1,
+      "message": "wrong indentation. Check pylint.",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 20
+      },
+      "revId": "5104563ba6506447a484eb876340a5b56792615a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd5c3852_02607fce",
+        "filename": "resources/libraries/robot/wireguard/wireguard.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-01T10:28:51Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 35,
+        "startChar": 75,
+        "endLine": 35,
+        "endChar": 76
+      },
+      "revId": "5104563ba6506447a484eb876340a5b56792615a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d4ee569_dbef6bcb",
+        "filename": "resources/libraries/robot/wireguard/wireguard.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-01T10:28:51Z",
+      "side": 1,
+      "message": "i think this is already part of previous Robot KWs executed in test. Should not be there\n\n| | And Initialize layer interface",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 29
+      },
+      "revId": "5104563ba6506447a484eb876340a5b56792615a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
