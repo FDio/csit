@@ -1,8 +1,8 @@
 ---
 title: Multiple Loss Ratio Search for Packet Throughput (MLRsearch)
 abbrev: Multiple Loss Ratio Search
-docname: draft-ietf-bmwg-mlrsearch-02
-date: 2022-03-07
+docname: draft-ietf-bmwg-mlrsearch-03
+date: 2022-06-08
 
 ipr: trust200902
 area: ops
@@ -155,87 +155,88 @@ TODO: Update after most other sections are updated.
       Trial duration: amount of time over which packets are transmitted
       in a single measurement step.
 {:/comment}
-{::comment}
-{:/comment}
 
-* TODO: The current text uses Throughput for the zero loss ratio load.
+## Existing
+
+* TODO: The current text uses Throughput for the zero loss load.
   Is the capital T needed/useful?
-* DUT and SUT: see the definitions in https://gerrit.fd.io/r/c/csit/+/35545
-* Traffic Generator (TG) and Traffic Analyzer (TA): see
-  https://datatracker.ietf.org/doc/html/rfc6894#section-4
-  TODO: Maybe there is an earlier RFC?
-* Overall search time: the time it takes to find all required loads within
-  their precision goals, starting from zero trials measured at given
-  DUT configuration and traffic profile.
-* TODO: traffic profile?
+* DUT and SUT: see the definitions in sections 3.1.1 and 3.1.2 of:
+  https://datatracker.ietf.org/doc/html/rfc2285
 * Intended load: https://datatracker.ietf.org/doc/html/rfc2285#section-3.5.1
 * Offered load: https://datatracker.ietf.org/doc/html/rfc2285#section-3.5.2
 * Maximum offered load (MOL): see
   https://datatracker.ietf.org/doc/html/rfc2285#section-3.5.3
 * Forwarding rate at maximum offered load (FRMOL)
   https://datatracker.ietf.org/doc/html/rfc2285#section-3.6.2
+* Traffic Generator (TG) and Traffic Analyzer (TA): see
+  https://datatracker.ietf.org/doc/html/rfc6894#section-4
+
+## Introduced
+
+* Overall search time: the time it takes to find all required loads within
+  their precision goals, starting from zero trials measured at given
+  DUT configuration and traffic profile.
+* TODO: traffic profile?
 * Trial Loss Count: the number of frames transmitted
   minus the number of frames received. Negative count is possible,
   e.g. when SUT duplicates some frames.
-* Trial Loss Ratio: ratio of frames received relative to frames
+* Trial Loss Ratio: Trial loss count divided by the count of frames
   transmitted over the trial duration.
+  {::comment}
   For bi-directional throughput tests, the aggregate ratio is calculated,
   based on the aggregate number of frames transmitted and received.
   If the trial loss count is negative, its absolute value MUST be used
   to keep compliance with RFC2544.
-* Safe load: any value, such that trial measurement at this (or lower)
-  intended load is correcrly handled by both TG and TA, regardless of SUT behavior.
-  Frequently, it is not known what the safe load is.
+  {:/comment}
+* Safe load: Any value for intended load, such that any trial measurement
+  at this (or lower) intended load is correctly handled by both TG and TA,
+  regardless of SUT behavior.
+  Frequently, it is not known what the maximal safe load is.
 * Max load (TODO rename?): Maximal intended load to be used during search.
   Benchmarking team decides which value is low enough
   to guarantee values reported by TG and TA are reliable.
-  It has to be a safe load, but it can be lower than a safe load estimate
+  It has to be a safe load, but it can be lower than a safe load (estimate)
   for added safety.
-  See the subsection on unreliable test equipment below.
   This value MUST NOT be higher than MOL, which itself MUST NOT
   be higher than Maximum Frame Rate
   https://datatracker.ietf.org/doc/html/rfc2544#section-20
+  TODO: Mention NIC/PCI bandwidth/pps limits can be lower than bandwidth of medium.
 * Min load: Minimal intended load to be used during search.
   Benchmarking team decides which value is high enough
   to guarantee the trial measurement results are valid.
   E.g. considerable overall search time can be saved by declaring SUT
-  faulty if min load trial shows too high loss rate.
-  Zero frames per second is a valid min load value
-* Effective loss ratio: a corrected value of trial loss ratio
+  faulty if a measurement at the min load shows too high trial loss ratio.
+  Zero frames per second is not a valid min load value,
+  at least not when relative width is used as an exit criterion.
+* Loss ratio goal: A loss ratio value acting as an input for the search.
+  The search is finding tight enough lower and upper bounds in intended load,
+  so that the trial loss ratio at the lower bound is smaller or equal
+  than the loss ratio goal, and the trial loss ratio at the upper bound
+  is strictly larger than the loss ratio goal.
+* TODO: Search algorithm.
+* TODO: Precision goal.
+* TODO: Define a "benchmarking group" / "benchmarking team".
+* TODO: Upper and lower bound.
+* TODO: Valid and invalid bound?
+* TODO: Interval and interval width?
+* TODO: Hide this implementation detail.
+  Effective loss ratio: a corrected value of trial loss ratio
   chosen to avoid difficulties if SUT exhibits decreasing loss ratio
   with increasing load. It is the maximum of trial loss ratios
   measured at the same duration on all loads smaller than (and including)
   the current one.
-* Target loss ratio: a loss ratio value acting as an input for the search.
-  The search is finding tight enough lower and upper bounds in intended load,
-  so that the measurement at the lower bound has smaller or equal
-  trial loss ratio, and upper bound has strictly larger trial loss ratio.
   For the tightest upper bound, the effective loss ratio is the same as
   trial loss ratio at that upper bound load.
   For the tightest lower bound, the effective loss ratio can be higher
   than the trial loss ratio at that lower bound, but still not larger
   than the target loss ratio.
-* TODO: Search algorithm.
-* TODO: Precision goal.
-* TODO: Define a "benchmarking group".
-* TODO: Upper and lower bound.
-* TODO: Valid and invalid bound?
-* TODO: Interval and interval width?
-
-TODO: Mention NIC/PCI bandwidth/pps limits can be lower than bandwidth of medium.
 
 # Intentions of this document
 
-{::comment}
-    Instead of talking about DUTs being non-deterministic
-    and vendors "gaming" in order to get better Throughput results,
-    Maciek and Vratko currently prefer to talk about result repeatability.
-{:/comment}
-
 The intention of this document is to provide recommendations for:
-* optimizing search for multiple target loss ratios at once,
-* speeding up the overall search time,
-* improve search results repeatability and comparability.
+* searching for multiple loss ratio goals at once,
+* improving search results repeatability and comparability,
+* speeding up the overall search time.
 
 No part of RFC2544 is intended to be obsoleted by this document.
 
@@ -256,13 +257,13 @@ using the new terminology (see section Terminology).
 The following sections of RFC2544 are of interest for this document.
 
 * https://datatracker.ietf.org/doc/html/rfc2544#section-20
-  Mentions the max load SHOULD not be larget than the theoretical
+  Mentions the max load SHOULD not be larger than the theoretical
   maximum rate for the frame size on the media.
 
 * https://datatracker.ietf.org/doc/html/rfc2544#section-23
   Lists the actions to be done for each trial measurement,
   it also mentions loss rate as an example of trial measurement results.
-  This document uses loss count instead, as that is the quantity
+  This document uses loss ratio instead, as that is the quantity
   that is easier for the current test equipment to measure,
   e.g. it is not affected by the real traffic duration.
   TODO: Time uncertainty again.
@@ -272,7 +273,7 @@ The following sections of RFC2544 are of interest for this document.
   as opposed to shorter trial durations, allowed in an attempt
   to "minimize the length of search procedure".
   This document talks about "final trial duration" and aims to
-  "optimize overal search time".
+  "optimize overall search time".
 
 * https://datatracker.ietf.org/doc/html/rfc2544#section-26.1
   with https://www.rfc-editor.org/errata/eid422
@@ -281,7 +282,7 @@ The following sections of RFC2544 are of interest for this document.
   and decrease intended load upon non-zero trial loss".
 
 No additional constraints are placed on the load selection,
-and there is no mention of an exit condition, e.g. when there is enough
+and there is no mention of an exit condition, i.e. when there is enough
 trial measurements to proclaim the largest load with zero trial loss
 (and final trial duration) to be the Throughput found.
 
@@ -302,22 +303,21 @@ trial measurements to proclaim the largest load with zero trial loss
     and false at high loads.
 
     MLRsearch can incorporate multiple different conditions,
-    as long as there is total ligical ordering between them
+    as long as there is total logical ordering between them
     (e.g. if a condition for a target loss ratio is not satisfied,
-    it is also not satisfied for any other codition which uses
+    it is also not satisfied for any other condition which uses
     larger target loss ratio).
 
     TODO: How to call a "load associated with this particular condition"?
 {:/comment}
 
 {::comment}
-
-    TODO: Not sure if this subsection is needed an where.
+    TODO: Not sure if this subsection is needed anywhere.
 
     ## Simple bisection
 
     There is one obvious and simple search algorithm which conforms
-    to throughput search requirements: simple bijection.
+    to throughput search requirements: simple bisection.
 
     Input: target precision, in frames per second.
 
@@ -332,7 +332,7 @@ trial measurements to proclaim the largest load with zero trial loss
        3. Use max load as the current upper bound.
     3. Repeat until the difference between lower bound and upper bound is
        smaller or equal to the precision goal.
-       1. If it is not larget, return the current lower bound as Throughput.
+       1. If it is, return the current lower bound as Throughput.
        2. Else: Chose new load as the arithmetic average of lower and upper bound.
        3. Perform a trial measurement (at the full length duration) at this load.
        4. If the trial loss rate is zero, consider the load as new lower bound.
@@ -345,8 +345,8 @@ trial measurements to proclaim the largest load with zero trial loss
     and the difference between max and min load.
 
     While this algorithm can be accomodated to search for multiple
-    target loss ratios "at the same time (see somewhere below),
-    it is still missing multiple improvement which give MLRsearch
+    target loss ratios "at the same time" (see somewhere below),
+    it is still missing multiple improvements which give MLRsearch
     considerably better overal search time in practice.
 
 {:/comment}
@@ -358,8 +358,9 @@ trial measurements to proclaim the largest load with zero trial loss
 RFC2544 does not suggest to repeat Throughput search,
 {::comment}probably because the full set of tests already takes long{:/comment}
 and from just one Throughput value, it cannot be determined
-how repeatable that value is (how likely it is for a repeated Throughput search
-to end up with a value less then the precision goal away from the first value).
+how repeatable that value is, i.e. how likely it is
+for a repeated Throughput search to end up with a value
+less then the precision goal away from the first value.
 
 Depending on SUT behavior, different benchmark groups
 can report significantly different Througput values,
@@ -377,7 +378,7 @@ ten times, so users can ascertain the repeatability of the results.
 
 TODO: How to report? Average and standard deviation?
 
-Following MLRsearch algorithm leaves less freedom for the benchmark groups
+The MLRsearch algorithm leaves less freedom for the benchmark groups
 to encounter the comparability problem,
 alghough more research is needed to determine the effect
 of MLRsearch's tweakable parameters.
@@ -428,7 +429,7 @@ of MLRsearch's tweakable parameters.
     ## Extensions
 
     The following two sections are probably out of scope,
-    as they does not affect MLRsearch design choices.
+    as they do not affect MLRsearch design choices.
 
     ### Direct and inverse measurements
 
@@ -442,11 +443,11 @@ of MLRsearch's tweakable parameters.
 
     TODO expand: Indirect measurement aims to solve an "inverse function problem",
     meaning (a part of) trial measurement output is prescribed, and the quantity
-    of interest is (derived from) the input parameters of trial measurement
+    of interest is (derived from) the input parameters of the trial measurement
     that achieves the prescribed output.
     In general this is a hard problem, but if the unknown input parameter
     is just one-dimensional quantity, algorithms such as bisection
-    do converge regardless of outputs seen.
+    do converge for any possible set of outputs seen.
     We call any such algorithm examining one-dimensional input as "search".
     Of course, some exit condition is needed for the search to end.
     In case of Throughput, bisection algorithm tracks both upper bound
@@ -465,7 +466,7 @@ of MLRsearch's tweakable parameters.
     ### TODO: Stateful traffic
 {:/comment}
 
-## Non-Zero Target Loss Ratios
+## Non-Zero Loss Ratio Goals
 
 https://datatracker.ietf.org/doc/html/rfc1242#section-3.17
 defines Throughput as:
@@ -491,35 +492,36 @@ and then it says:
     resulting in some small but non-zero loss ratios being considered
     as acceptable. Unfortunately, the acceptable value depends on use case
     and properties such as TCP window size and round trip time,
-    so no single value of target loss rate (other than zero)
+    so no single value of loss ratio goal (other than zero)
     is considered to be universally applicable.
 
 {:/comment}
 
 New "software DUTs" (traffic forwarding programs running on
-commercial-off-the-shelf compute server hardware) frequently exhibit quite
+commercial off-the-shelf (COTS) compute server hardware) frequently exhibit quite
 low repeatability of Throughput results per above definition.
 
-This is due to, in general, throughput rates of software DUTs (programs)
-being sensitive to server resource allocation by OS during runtime,
-as well as any interrupts or blocking of software threads involved
+This is due to Throughput of software DUTs (programs) being sensitive (in general)
+to server resource allocation by operating system during runtime,
+as well as any interrupts or other interference with software threads involved
 in packet processing.
 
-To deal with this, this document recommends discovery of multiple throughput rates of interest for software DUTs that run on general purpose COTS servers (with x86, AArch64 Instruction Set Architectures):
-* throughput rate with target of zero packet loss ratio.
-* at least one throughput rate with target of non-zero packet loss ratio.
+To deal with this, this document recommends
+searching for multiple "throughput rates" of interest
+for software DUTs that run on general purpose COTS servers:
+* throughput rate with zero loss ratio goal (the usual Throughput),
+* and at least one throughput rate with non-zero loss ratio goal.
 
-
-In our experience, the higher the target loss ratio is,
-the better is the repeatability of the corresponding load found.
+In our experience, the higher the loss ratio goal is,
+the better is the repeatability of the corresponding throughput rate.
 
 TODO: Define a good name for a load corresponding to a specific non-zero
-target loss ration, while keeping Throughput for the load corresponding
-to zero target loss ratio.
+loss ratio goal, while keeping Throughput for the load corresponding
+to zero loss ratio goal.
 
 This document RECOMMENDS the benchmark groups to search for corresponding loads
-to at least one non-zero target loss ratio.
-This document does not suggest any particular non-zero target loss ratio value
+to at least one non-zero loss ratio goal (regardless of DUT type).
+This document does not suggest any particular non-zero loss ratio goal value
 to search the corresponding load for.
 
 {::comment}
@@ -552,10 +554,12 @@ already mentions the possibity of using shorter duration
 for trials that are not part of "final determination".
 
 Obviously, the upper and lower bound from a smaller duration trial
-can be used as the initial upper and lower bound for the final determination.
+can be used as the initial upper and lower bound candidates
+for the final determination.
 
 MLRsearch makes it clear a re-measurement is always needed
-(new trial measurement with the same load but longer duration).
+(new trial measurement with the same load but longer duration)
+if no tighter bound was found with the longer duration.
 It also specifes what to do if the longer trial is no longer a valid bound
 (TODO define?), e.g. start an external search.
 Additionaly one halving can be saved during the shorter duration search.
@@ -574,33 +578,31 @@ Still, forwarding rate at FRMOL load can be a good initial bound.
 
 ## Non-zero loss ratios
 
-See the "Popularity of non-zero target loss ratios" section above.
+See the "Non-Zero Loss Ratio Goals" section above.
 
 TODO: Define "trial measurement result classification criteria",
 or keep reusing long phrases without definitions?
 
-A search for a load corresponding to a non-zero target loss rate
+A search for a load corresponding to a non-zero loss ratio goal
 is very similar to a search for Throughput,
 just the criterion when to increase or decrease the intended load
 for the next trial measurement uses the comparison of trial loss ratio
-to the target loss ratio (instead of comparing loss count to zero)
+to the loss ratio goal (instead of comparing loss count to zero)
 Any search algorithm that works for Throughput can be easily used also for
-non-zero target loss rates, perhaps with small modifications
+non-zero loss ratios, perhaps with small modifications
 in places where the measured forwarding rate is used.
-
-Note that it is possible to search for multiple loss ratio goals if needed.
 
 ## Concurrent ratio search
 
 A single trial measurement result can act as an upper bound for a lower
-target loss ratio, and as a lower bound for a higher target loss ratio
+loss ratio goal, and as a lower bound for a higher loss ratio goal
 at the same time. This is an example of how
 it can be advantageous to search for all loss ratio goals "at once",
 or at least "reuse" trial measurement result done so far.
 
 Even when a search algorithm is fully deterministic in load selection
 while focusing on a single loss ratio and trial duration,
-the choice of iteration order between target loss ratios and trial durations
+the choice of iteration order between loss ratio goals and trial durations
 can affect the obtained results in subtle ways.
 MLRsearch offers one particular ordering.
 
@@ -610,11 +612,9 @@ MLRsearch offers one particular ordering.
     We would need several models for bad SUT behaviors,
     bug-free implementations of different orderings,
     simulator to show the distribution of rates found,
-    distribution of overall durations,
+    distribution of overall search durations,
     and a criterion of which rate distribution is "bad"
     and whether it is worth the time saved.
-{:/comment}
-{::comment}
 {:/comment}
 
 ## Load selection heuristics and shortcuts
@@ -714,7 +714,7 @@ especially if the Throughput value is equal (or close) to the max load.
 
     TODO expand: TG sending less packets but stopping at target duration
     is also fine, as long as the forwarding rate is used as Throughput value,
-    not the higher intended load.
+    not the higher intended load. But MLRsearch uses intended load...
 
     TODO expand: Duration stretching is not fine.
     Neither "check for actual duration" nor "start+sleep+stop"
@@ -759,7 +759,8 @@ are outside of the scope of this document:
     into long-enough bursts of a higher rate (with delays between bursts
     large enough, so average forwarding rate matches the load).
     This way TA will see some packets as missing (when its buffers
-    fill up), even though SUT has processed them correctly.
+    fill up), even though SUT has processed them correctly
+    (albeit with latency jitter).
 
 {:/comment}
 
@@ -767,12 +768,11 @@ are outside of the scope of this document:
 
 {::comment}
 
-    In CSIT we are aggressive at skipping all wait times around trial,
+    In CSIT we are aggressive at skipping all wait times around trial measurement,
     but few of DUTs have large enough buffers.
-    Or there is another reason why we are seeing negative loss counts.
+    Or there some is another reason why we are seeing negative loss counts.
 
 {:/comment}
-
 
 RFC2544 requires quite conservative time delays
 see https://datatracker.ietf.org/doc/html/rfc2544#section-23
@@ -791,7 +791,7 @@ recommends to use sequence numbers in frame payloads,
 but generating and verifying them requires test equipment resources,
 which may be not plenty enough to suport at high loads.
 (Using low enough max load would work, but frequently that would be
-smaller than SUT's sctual Throughput.)
+smaller than SUT's actual Throughput.)
 
 RFC2544 does not offer any solution to the negative loss problem,
 except implicitly treating negative trial loss counts
@@ -828,6 +828,8 @@ to be treated as positive trial loss ratio of the same absolute value.
 # MLRsearch Background
 
 TODO: Old section, probably obsoleted by preceding section(s).
+Looks like an expanded abstract, but make sure to extract any interesting
+detail (bidirectionality, packet reorders) before deleting.
 
 Multiple Loss Ratio search (MLRsearch) is a packet throughput search
 algorithm suitable for deterministic systems (as opposed to
@@ -882,6 +884,8 @@ and loss ratio as output (duration as input is optional).
 This text uses mostly packet-centric language.
 
 # MLRsearch Overview
+
+TODO: Delete when abstracted structure is somewhere else.
 
 The main properties of MLRsearch:
 
