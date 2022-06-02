@@ -15204,7 +15204,7 @@
   output-file-links: "{DIR[LAT,VPP]}/3n_alt.rst"
   target-links: "../../_static/vpp"
   data: "vpp-3n-alt-curr-iter-best"
-  filter: "'1T1C' and 'NIC_Intel-X520-DA2'"
+  filter: "'1T1C' and 'NIC_Intel-XL710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
@@ -15325,7 +15325,7 @@
   output-file-links: "{DIR[LAT,DPDK]}/3n_alt.rst"
   target-links: "../../_static/dpdk"
   data: "dpdk-3n-alt-curr-iter-best"
-  filter: "'1T1C' and 'NIC_Intel-X520-DA2'"
+  filter: "'1T1C' and 'NIC_Intel-XL710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
