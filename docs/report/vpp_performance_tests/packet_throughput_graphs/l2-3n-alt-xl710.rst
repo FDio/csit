@@ -80,7 +80,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-alt-xl710-64b-{core}-l2-feature-ndr.html"></iframe>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-alt-xl710-64b-1t1c-l2-feature-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -89,8 +89,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-alt-xl710-64b-{core}-l2-feature-ndr}
-            \label{fig:3n-alt-xl710-64b-{core}-l2-feature-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-alt-xl710-64b-1t1c-l2-feature-ndr}
+            \label{fig:3n-alt-xl710-64b-1t1c-l2-feature-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -100,7 +100,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-alt-xl710-64b-{core}-l2-feature-pdr.html"></iframe>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-alt-xl710-64b-1t1c-l2-feature-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -109,6 +109,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-alt-xl710-64b-{core}-l2-feature-pdr}
-            \label{fig:3n-alt-xl710-64b-{core}-l2-feature-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-alt-xl710-64b-1t1c-l2-feature-pdr}
+            \label{fig:3n-alt-xl710-64b-1t1c-l2-feature-pdr}
     \end{figure}
