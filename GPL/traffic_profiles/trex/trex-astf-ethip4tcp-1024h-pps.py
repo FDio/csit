@@ -73,14 +73,23 @@ class TrafficProfile(TrafficProfileBaseClass):
         # client commands
         prog_c = ASTFProgram()
         prog_c.connect()
-        prog_c.send(u"1" * data_size)
+        # Not using trex program loops as number of iterations is small.
+        prog_c.set_send_blocking(False)
+        for _ in range(self.n_data_frames - 1):
+            prog_c.send(u"1" * real_mss)
+        prog_c.set_send_blocking(True)
+        prog_c.send(u"1" * real_mss)
         prog_c.recv(data_size)
 
         # server commands
         prog_s = ASTFProgram()
         prog_s.accept()
         prog_s.recv(data_size)
-        prog_s.send(u"1" * data_size)
+        prog_s.set_send_blocking(False)
+        for _ in range(self.n_data_frames - 1):
+            prog_s.send(u"1" * real_mss)
+        prog_s.set_send_blocking(True)
+        prog_s.send(u"1" * real_mss)
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
@@ -120,6 +129,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         globinfo.tcp.rxbufsize = max(data_size, 1024)
         # Some NICs alarm malicious programming when short packets are not PSH.
         globinfo.tcp.no_delay = 2  # Force push.
+        print(f"globinfo: {globinfo.to_json()}")
         kwargs = dict(
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,

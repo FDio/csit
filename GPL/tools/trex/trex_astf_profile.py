@@ -403,7 +403,7 @@ def simple_burst(
 
     finally:
         # Dump log to compare.
-        n_lines = 100
+        n_lines = 1000
         output = subprocess.check_output(
             [u"tail", u"-n", str(n_lines), u"/tmp/trex.log"]
         )
