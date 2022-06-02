@@ -49,12 +49,9 @@
 | | ... | - stat_post_trial - Statistics actions after traffic trials.
 | | ... | - packages_dir - Path to directory where VPP packages are stored.
 | |
-| | ${stat_runtime}= | Create List
-| | ... | vpp-runtime
-| | ${stat_pre_trial}= | Create List
-| | ... | vpp-clear-stats | vpp-enable-packettrace
-| | ${stat_post_trial}= | Create List
-| | ... | vpp-show-stats | vpp-show-packettrace
+| | ${stat_runtime}= | Create List | noop
+| | ${stat_pre_trial}= | Create List | noop
+| | ${stat_post_trial}= | Create List | noop
 | | Set Global Variable | ${stat_runtime}
 | | Set Global Variable | ${stat_pre_trial}
 | | Set Global Variable | ${stat_post_trial}
