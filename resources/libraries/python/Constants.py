@@ -204,7 +204,7 @@ class Constants:
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 8192)
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 16)
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 2)
 
     # TRex set number of RX/TX descriptors
     # Set to 0 to use default values

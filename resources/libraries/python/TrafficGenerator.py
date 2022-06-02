@@ -436,10 +436,13 @@ class TrafficGenerator(AbstractMeasurer):
                     message=u"Unbind PCI ports from driver failed!"
                 )
 
+                # Debugs.
+                exec_cmd_no_error(tg_node, u"swapon --show", sudo=True)
+
                 # Start TRex.
                 cd_cmd = f"cd '{Constants.TREX_INSTALL_DIR}/scripts/'"
-                trex_cmd = OptionString([u"nohup", u"./t-rex-64"])
-                trex_cmd.add(u"-i")
+                trex_cmd = OptionString([u"nohup", u"./t-rex-64-debug"])
+                trex_cmd.add(u"-i").add(u"-v").add(u"3")
                 trex_cmd.add(u"--prefix $(hostname)")
                 trex_cmd.add(u"--hdrh")
                 trex_cmd.add(u"--no-scapy-server")

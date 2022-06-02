@@ -69,6 +69,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         trex_mss = self.framesize - trex_headers_size
         real_mss = trex_mss - 12  # TRex honors segment header+data limit.
         data_size = self.n_data_frames * real_mss
+        print(f"trex_mss {trex_mss} real_mss {real_mss} data_size {data_size}")
 
         # client commands
         prog_c = ASTFProgram()
@@ -122,6 +123,7 @@ class TrafficProfile(TrafficProfileBaseClass):
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,
         )
+        print(f"kwargs: {kwargs!r} globinfo.tcp.rxbufsize {globinfo.tcp.rxbufsize}")
 
         return ip_gen, template, kwargs
 
