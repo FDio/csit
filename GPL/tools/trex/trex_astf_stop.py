@@ -38,6 +38,7 @@ Functionality:
 """
 
 import argparse
+import datetime
 import json
 import sys
 
@@ -47,6 +48,9 @@ sys.path.insert(
     0, u"/opt/trex-core-2.97/scripts/automation/trex_control_plane/interactive/"
 )
 from trex.astf.api import ASTFClient
+
+def prnt(text):
+    print(f"{datetime.datetime.now().time()} {text}")
 
 
 def main():
@@ -63,12 +67,20 @@ def main():
     args = parser.parse_args()
 
     client = ASTFClient()
+    prnt(u"client created")
     try:
         # connect to server
-        client.connect()
+        try:
+            client.connect()
+            prnt(u"client connected")
+        except Exception:
+            prnt(u"client connect failed")
+            raise
 
         client.acquire(force=True)
+        prnt(u"client acquired")
         client.stop()
+        prnt(u"client stopped")
 
         # Read the stats after the test,
         # we need to update values before the last trial started.
@@ -81,11 +93,14 @@ def main():
         # Now we can call the official method to get differences.
         xstats0 = client.get_xstats(0)
         xstats1 = client.get_xstats(1)
+        prnt(u"stats read")
 
     # If TRexError happens, let the script fail with stack trace.
     finally:
         client.reset()
+        prnt(u"client reset")
         client.disconnect()
+        prnt(u"client disconnected")
 
     # TODO: check xstats format
     print(u"##### statistics port 0 #####")
