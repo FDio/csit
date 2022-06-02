@@ -120,6 +120,7 @@ class TrafficProfile(TrafficProfileBaseClass):
         globinfo.tcp.rxbufsize = max(data_size, 1024)
         # Some NICs alarm malicious programming when short packets are not PSH.
         globinfo.tcp.no_delay = 2  # Force push.
+        print(f"globinfo: {globinfo.to_json()}")
         kwargs = dict(
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,
