@@ -387,7 +387,7 @@
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${ramp_up_duration} = | Get Ramp Up Duration
-| | ${ramp_up_rate} = | Get Ramp Up Rate
+| | ${ramp_up_rate} = | Set Variable | ${0.0}
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
 | | ${transaction_scale} = | Get Transaction Scale
