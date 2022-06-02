@@ -15,6 +15,7 @@ Following throughput test methods are used:
 
 ..
     TODO: Add RECONF.
+    TODO: Link to method-specific pages instead of duplicate info below.
 
 Description of each test method is followed by generic test properties
 shared by all methods.
@@ -143,3 +144,8 @@ properties:
 - All measured and reported packet and bandwidth rates are aggregate
   bi-directional rates reported from external Traffic Generator
   perspective.
+
+..
+    TODO: Incorporate ASTF specifics: No IMIX, transactions instead of packets,
+    slightly non-symmetric traffic with TCP profiles, unsure max_rate.
+    TODO: Mention latency.

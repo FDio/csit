@@ -123,6 +123,7 @@ NAT44det scenario tested:
 ..
     TODO: The -s{S} part is redundant,
     we can save space by removing it.
+    TODO: Rename nat44det suites so it is clear they are throughput (not cps).
     TODO: Make traffic profile names resemble suite names more closely.
 
 NAT44 Endpoint-Dependent
@@ -136,9 +137,9 @@ but applied to different subnet (starting with 20.0.0.0).
 
 As the mapping is not deterministic (for security reasons),
 we cannot easily use stateless bidirectional traffic profiles.
-Outside address and port range is fully covered,
+Inside address and port range is fully covered,
 but we do not know which outside-to-inside source address and port to use
-to hit an open session of a particular outside address and port.
+to hit an open session.
 
 Therefore, NAT44ed is benchmarked using following methodologies:
 
@@ -163,9 +164,10 @@ with both UDP and TCP/IP sessions.
 As both NAT44ed CPS (connections-per-second) and PPS (packets-per-second)
 stateful tests measure (also) session opening performance,
 they use state reset instead of ramp-up trial.
-NAT44ed bidirectional throughput tests use the same traffic profile
+NAT44ed TPUT (bidirectional throughput) tests use the same traffic profile
 as PPS tests, but also prepend ramp-up trials as in the unidirectional tests,
-so the test results describe performance without session opening overhead.
+so the test results describe performance without translation entry
+creation overhead.
 
 Associated CSIT test cases use the following naming scheme to indicate
 NAT44det case tested:
@@ -194,7 +196,7 @@ NAT44det case tested:
 Stateful traffic profiles
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There are several important detais which distinguish ASTF profiles
+There are several important details which distinguish ASTF profiles
 from stateless profiles.
 
 General considerations
@@ -209,8 +211,10 @@ Programs
 ________
 
 Each template in the profile defines two "programs", one for client side
-and one for server side. Each program specifies when that side has to wait
-until enough data is received (counted in packets for UDP and in bytes for TCP)
+and one for server side.
+
+Each program specifies when that side has to wait until enough data is received
+(counted in packets for UDP and in bytes for TCP)
 and when to send additional data. Together, the two programs
 define a single transaction. Due to packet loss, transaction may take longer,
 use more packets (retransmission) or never finish in its entirety.
@@ -220,10 +224,17 @@ _________
 
 Client instance is created according to TPS parameter for the trial,
 and sends the first packet of the transaction (in some cases more packets).
-Server instance is created when first packet arrives on server side,
-each instance has different address or port.
-When a program reaches its end, the instance is deleted.
+Each client instance uses a different source address (see sequencing below)
+and random source port. The destination address also comes from a range,
+but destination port has to be constant for a given program.
 
+Server instance is created when the first packet arrives to the server side.
+
+Source address and port of the first packet are used as destination address
+and port for the server responses. This is the ability we need
+when outside surface is not predictable.
+
+When a program reaches its end, the instance is deleted.
 This creates possible issues with server instances. If the server instance
 does not read all the data client has sent, late data packets
 can cause second copy of server instance to be created,
@@ -244,13 +255,9 @@ for client programs: seqential and pseudorandom.
 In current tests we are using sequential addressing only (if destination
 address varies at all).
 
-For choosing client source UDP/TCP port, there is only one mode.
-We have not investigated whether it results in sequential or pseudorandom order.
-
-For client destination UDP/TCP port, we use a constant value,
-as typical TRex usage pattern binds the server instances (of the same program)
-to a single port. (If profile defines multiple server programs, different
-programs use different ports.)
+For client destination UDP/TCP port, we use a single constant value.
+(TRex can support multiple program pairs in the same traffic profile,
+distinguished by the port number.)
 
 Transaction overlap
 ___________________
@@ -264,7 +271,8 @@ This generally leads to duration stretching, and/or packet loss on TRex.
 
 Currently used transactions were chosen to be short, so risk of bad behavior
 is decreased. But in MRR tests, where load is computed based on NIC ability,
-not TRex ability, anomalous behavior is still possible.
+not TRex ability, anomalous behavior is still possible
+(e.g. MRR values being way lower than NDR).
 
 Delays
 ______
@@ -324,7 +332,7 @@ use size-limited profiles, so they know what the count of attempted
 transactions should be, but due to duration stretching
 TRex might have been unable to send that many packets.
 For search purposes, unattempted transactions are treated the same
-as attemted byt failed transactions.
+as attempted but failed transactions.
 
 Sometimes even the number of transactions as tracked by search algorithm
 does not match the transactions as defined by ASTF programs.
@@ -340,7 +348,7 @@ Client instance sends one packet and ends.
 Server instance sends one packet upon creation and ends.
 
 In principle, packet size is configurable,
-but currently used tests apply only one value (64 bytes frame).
+but currently used tests apply only one value (100 bytes frame).
 
 Transaction counts as attempted when opackets counter increases on client side.
 Transaction counts as successful when ipackets counter increases on client side.
@@ -375,58 +383,57 @@ UDP PPS
 This profile uses a small transaction of "request-response" type,
 with several packets simulating data payload.
 
-Client sends 33 packets and closes immediately.
-Server reads all 33 packets (needed to avoid late packets creating new
-server instances), then sends 33 packets and closes.
-The value 33 was chosen ad-hoc (1 "protocol" packet and 32 "data" packets).
-It is possible other values would still be safe from avoiding overlapping
-transactions point of view.
+Client sends 5 packets and closes immediately.
+Server reads all 5 packets (needed to avoid late packets creating new
+server instances), then sends 5 packets and closes.
+The value 5 was chosen to mirror what TCP PPS (see below) choses.
 
-..
-    TODO: 32 was chosen as it is a batch size DPDK driver puts on the PCIe bus
-    at a time. May want to verify this with TRex ASTF devs and see if better
-    UDP transaction sizes can be found to yield higher performance out of TRex.
+Packet size is configurable, currently we have tests for 100,
+1518 and 9000 bytes frame (to match size of TCP PPS data frames, see below).
 
-In principle, packet size is configurable,
-but currently used tests apply only one value (64 bytes frame)
-for both "protocol" and "data" packets.
-
-As this is a PPS tests, we do not track the big 66 packet transaction.
+As this is a PPS test, we do not track the whole 10 packet transaction.
 Similarly to stateless tests, we treat each packet as a "transaction"
-for search algorthm purposes. Therefore a "transaction" is attempted
-when opacket counter on client or server side is increased.
-Transaction is successful if ipacket counter on client or server side
-is increased.
+for search algorthm packet loss purposes.
+Therefore a "transaction" is attempted when opacket counter on client
+or server side is increased. Transaction is successful if ipacket counter
+on client or server side is increased.
 
-If one of 33 client packets is lost, server instance will get stuck
+If one of 5 client packets is lost, server instance will get stuck
 in the reading phase. This probably decreases TRex performance,
-but it leads to more stable results.
+but it leads to more stable results then alternatives.
 
 TCP PPS
 ~~~~~~~
 
 This profile uses a small transaction of "request-response" type,
-with some data size to be transferred both ways.
+with some data amount to be transferred both ways.
 
-Client connects, sends 11111 bytes of data, receives 11111 of data and closes.
-Server accepts connection, reads 11111 bytes of data, sends 11111 bytes
-of data and closes.
+Client connects, sends 5 data packets worth of data,
+receives 5 data packets worth of data and closes its side of the connection.
+Server accepts connection, reads 5 data packets worth of data,
+sends 5 data packets worth of data and closes its side of the connection.
 Server read is needed to avoid premature close and second server instance.
-Client read is not stricly needed, but acks help TRex to close server quickly,
-thus saving CPU and improving performance.
+Client read is not stricly needed, but acks allow TRex to close
+the server instance quickly, thus saving CPU and improving performance.
 
-The value of 11111 bytes was chosen ad-hoc. It leads to 22 packets
-(11 each direction) to be exchanged if no loss occurs.
-In principle, size of data packets is configurable via setting
-maximum segment size. Currently that is not applied, so the TRex default value
-(1460 bytes) is used, while the test name still (wrongly) mentions
-64 byte frame size.
+The number 5 of data packets was chosen so TRex is able to send them
+in a single burst, even with 9000 byte frame size (TRex has a hard limit
+on initial window size).
+That leads to 16 packets (9 of them in c2s direction) to be exchanged
+if no loss occurs.
+The size of data packets is controlled by the traffic profile setting
+the appropriate maximum segment size. Due to TRex restrictions,
+the minimal size for IPv6 data frame achievable by this method is 70 bytes,
+which is more than our usual minimum of 64 bytes.
+For that reason, the minimal frame size tested is 100 bytes
+(that allows room for eventually adding IPv6 ASTF tests),
+1518 bytes and 9000 bytes.
 
 Exactly as in UDP_PPS, ipackets and opackets counters are used for counting
 "transactions" (in fact packets).
 
-If packet loss occurs, there is large transaction overlap, even if most
-ASTF programs finish eventually. This leads to big duration stretching
+If packet loss occurs, there can be large transaction overlap, even if most
+ASTF programs finish eventually. This can leads to big duration stretching
 and somehow uneven rate of packets sent. This makes it hard to interpret
 MRR results, but NDR and PDR results tend to be stable enough.
 
@@ -443,7 +450,7 @@ directions.
 The packets arrive to server end of TRex with different source address&port
 than in NAT44ed tests (no translation to outside values is done with ip4base),
 but those are not specified in the stateful traffic profiles.
-The server end uses the received address&port as destination
+The server end (as always) uses the received address&port as destination
 for outside-to-inside traffic. Therefore the same stateful traffic profile
 works for both NAT44ed and ip4base test (of the same scale).
 
