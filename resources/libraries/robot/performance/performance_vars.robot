@@ -73,7 +73,7 @@
 | |
 | | ... | \| \${min_rate_hard} = \| Get Min Rate Hard \|
 | |
-| | Return From Keyword | ${9001.0}
+| | Return From Keyword | ${10.4}
 
 | Get Min Rate Soft
 | | [Documentation]
@@ -245,9 +245,10 @@
 | |
 | | ... | \| \${rate_for_teardown} = \| Get Rate For Teardown \|
 | |
+| | Run Keyword And Return | Get Min Rate Hard
 | | ${rate_for_teardown} = | Get Variable Value | \${rate_for_teardown} | ${0.0}
 | | Return From Keyword If | ${rate_for_teardown} | ${rate_for_teardown}
-| | Run Keyword And Return | Get Min Rate Soft
+| | Run Keyword And Return | Get Min Rate Hard
 
 | Get Resetter
 | | [Documentation]
