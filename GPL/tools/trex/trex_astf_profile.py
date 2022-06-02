@@ -29,8 +29,10 @@ parses for various counters.
 """
 
 import argparse
+import codecs
 import datetime
 import json
+import subprocess
 import sys
 import time
 
@@ -226,9 +228,9 @@ def simple_burst(
             prnt(u"latency stopped")
             client.remove_rx_queue(client.get_all_ports())
             prnt(u"queues removed")
-            # Now we can wait for the real traffic stop.
-            client.stop(block=True)
-            prnt(u"client stopped")
+#            # Now we can wait for the real traffic stop.
+#            client.stop(block=True)
+#            prnt(u"client stopped")
 
             # Read the stats after the traffic stopped (or time up).
             stats[time.monotonic() - time_stop] = client.get_stats(
@@ -400,6 +402,14 @@ def simple_burst(
         raise
 
     finally:
+        # Dump log to compare.
+        n_lines = 100
+        output = subprocess.check_output(
+            [u"tail", u"-n", str(n_lines), u"/tmp/trex.log"]
+        )
+        print(u"From trex.log:")
+        # For details on unescaping see https://stackoverflow.com/a/37059682
+        print(codecs.escape_decode(output)[0].decode(u"utf-8"))
         if client:
             if async_start:
                 client.disconnect(stop_traffic=False, release_ports=True)
