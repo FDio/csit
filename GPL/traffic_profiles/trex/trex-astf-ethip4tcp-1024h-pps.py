@@ -118,6 +118,8 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Ensure buffers are large enough so starting window works.
         globinfo.tcp.txbufsize = max(data_size, 1024)
         globinfo.tcp.rxbufsize = max(data_size, 1024)
+        # Some NICs alarm malicious programming when short packets are not PSH.
+        globinfo.tcp.no_delay = 2  # Force push.
         kwargs = dict(
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,
