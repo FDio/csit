@@ -387,7 +387,7 @@
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${ramp_up_duration} = | Get Ramp Up Duration
-| | ${ramp_up_rate} = | Get Ramp Up Rate
+| | ${ramp_up_rate} = | Set Variable | ${0.0}
 | | ${traffic_directions} = | Get Traffic Directions
 | | ${transaction_duration} = | Get Transaction Duration
 | | ${transaction_scale} = | Get Transaction Scale
@@ -413,7 +413,7 @@
 | | | ... | ppta=${ppta}
 | | | ... | traffic_directions=${traffic_directions}
 | | | ... | transaction_duration=${transaction_duration}
-| | | ... | transaction_scale=${transaction_scale}
+| | | ... | transaction_scale=${1}
 | | | ... | transaction_type=${transaction_type}
 | | | ... | use_latency=${use_latency}
 | | | ... | ramp_up_duration=${ramp_up_duration}

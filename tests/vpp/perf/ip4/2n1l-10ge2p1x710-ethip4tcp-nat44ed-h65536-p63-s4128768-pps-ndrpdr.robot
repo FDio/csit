@@ -128,6 +128,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
+| | Fail | Triggering "performance" teardown action.
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
