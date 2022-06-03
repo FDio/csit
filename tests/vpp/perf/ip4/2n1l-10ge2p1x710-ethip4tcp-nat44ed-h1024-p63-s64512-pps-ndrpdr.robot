@@ -108,6 +108,12 @@
 | |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
+| | Initialize traffic generator
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf1}[0]
+| | ... | ${osi_layer}
+| |
 | | Set Test Variable | \${frame_size}
 | | ${pre_stats}= | Create List
 | | ... | vpp-clear-stats | vpp-enable-packettrace | vpp-enable-elog
@@ -126,6 +132,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
+| | Fail | Triggering "performance" teardown action.
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
