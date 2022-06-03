@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3b9346d3_a266a356",
+        "filename": "resources/tools/telemetry/bundle_bpf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-06-03T11:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8c0c6a6_dd6189c0",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 15
+      },
+      "revId": "58e9d6fbcb047d3d7a74b5ed3d38e088f3301752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d232d2c_be367ef6",
         "filename": "resources/tools/telemetry/executor.py",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "58e9d6fbcb047d3d7a74b5ed3d38e088f3301752",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03d7e96f_281be7e0",
+        "filename": "resources/tools/telemetry/executor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-06-03T11:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d232d2c_be367ef6",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 35
+      },
+      "revId": "58e9d6fbcb047d3d7a74b5ed3d38e088f3301752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
