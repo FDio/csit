@@ -266,7 +266,7 @@ class Constants:
 
     # ASTF usually needs a different value for the delay.
     PERF_TRIAL_ASTF_DELAY = get_float_from_env(
-        u"PERF_TRIAL_ASTF_DELAY", 0.112
+        u"PERF_TRIAL_ASTF_DELAY", 1.112
     )
 
     # Number of data frames in TPUT transaction, used both by TCP and UDP.

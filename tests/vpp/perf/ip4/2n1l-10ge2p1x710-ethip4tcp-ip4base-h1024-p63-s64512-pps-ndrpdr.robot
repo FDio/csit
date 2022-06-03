@@ -88,6 +88,11 @@
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
+| | Initialize traffic generator
+| | ... | ${tg} | ${TG_pf1}[0] | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf2}[0]
+| | ... | ${tg} | ${TG_pf1}[0]
+| | ... | ${osi_layer}
 | |
 | | Set Test Variable | \${frame_size}
 | | ${pre_stats}= | Create List
