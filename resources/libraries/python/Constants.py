@@ -204,7 +204,7 @@ class Constants:
     TREX_LIMIT_MEMORY = get_int_from_env(u"TREX_LIMIT_MEMORY", 8192)
 
     # TRex number of cores
-    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 2)
+    TREX_CORE_COUNT = get_int_from_env(u"TREX_CORE_COUNT", 1)
 
     # TRex set number of RX/TX descriptors
     # Set to 0 to use default values
@@ -266,7 +266,7 @@ class Constants:
 
     # ASTF usually needs a different value for the delay.
     PERF_TRIAL_ASTF_DELAY = get_float_from_env(
-        u"PERF_TRIAL_ASTF_DELAY", 0.112
+        u"PERF_TRIAL_ASTF_DELAY", 1.112
     )
 
     # Number of data frames in TPUT transaction, used both by TCP and UDP.
