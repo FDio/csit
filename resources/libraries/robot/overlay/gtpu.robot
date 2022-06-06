@@ -67,6 +67,15 @@
 | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
 | | ... | interface=${dut2_tunnel_if_index}
 | |
+| | Vpp Get Ice | ${dut1}
+| | Vpp Get DDP | ${dut1}
+| | Vpp Get Ice | ${dut2}
+| | Vpp Get DDP | ${dut2}
+| |
+| | Vpp Set Flow | ${dut2} | ${DUT2_${int}2}[0]
+| |
+| | Vpp Set Flow | ${dut1} | ${DUT1_${int}2}[0]
+| |
 | | Run keyword if | ${offload} == ${True}
 | | ... | Vpp Enable GTPU Offload rx
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut1_tunnel_if_index}
