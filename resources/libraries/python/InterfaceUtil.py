@@ -1133,6 +1133,53 @@ class InterfaceUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
+    def vpp_get_ice(node):
+        cmd = u"ls -l /lib/firmware/intel/ice/ddp/"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+        cmd = u"ls -l /lib/firmware/updates/intel/ice/ddp/"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+
+    @staticmethod
+    def vpp_get_ddp(node):
+        pf_pci_addr = Topology.get_interface_pci_addr(node, "port3")
+        DUTSetup.pci_driver_unbind(node, pf_pci_addr)
+        DUTSetup.pci_driver_bind(nide, pf_pci_addr, "ice")
+
+        pf_pci_addr = Topology.get_interface_pci_addr(node, "port4")
+        DUTSetup.pci_driver_unbind(node, pf_pci_addr)
+        DUTSetup.pci_driver_bind(nide, pf_pci_addr, "ice")
+
+        cmd = u"modinfo ice"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+
+    @staticmethod
+    def vpp_set_flow(node, interface):
+        from resources.libraries.python.FlowUtil import FlowUtil
+        from resources.libraries.python.ssh import exec_cmd_no_error
+
+        flow_index = FlowUtil.vpp_create_ip4_ipsec_flow(
+                    node, "ESP", 1000, "redirect-to-queue", value=2)
+        FlowUtil.vpp_flow_enable(node, interface, flow_index)
+
+    @staticmethod
     def vpp_create_loopback(node, mac=None):
         """Create loopback interface on VPP node.
 
