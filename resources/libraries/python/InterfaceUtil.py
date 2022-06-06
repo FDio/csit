@@ -1133,6 +1133,27 @@ class InterfaceUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
+    def vpp_get_ice(node):
+        cmd = u"ls -l /usr/lib/firmware/intel/ice/ddp/"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+
+    @staticmethod
+    def vpp_get_ddp(node):
+        cmd = u"modinfo ice"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+    @staticmethod
     def vpp_create_loopback(node, mac=None):
         """Create loopback interface on VPP node.
 
