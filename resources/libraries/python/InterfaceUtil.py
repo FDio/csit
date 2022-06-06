@@ -1133,6 +1133,74 @@ class InterfaceUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
+    def vpp_get_ice(node):
+        cmd = u"ls -l /lib/firmware/intel/ice/ddp/"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+        cmd = u"ls -l /lib/firmware/updates/intel/ice/ddp/"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+
+    @staticmethod
+    def vpp_get_ddp(node):
+        cmd = u"modinfo ice"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+        cmd = u"dmesg | grep DDP"
+
+        err_msg = u"Failed."
+        ret, stdout, _ = exec_cmd(
+            node, cmd, sudo=True
+            )
+        logger.info(stdout)
+
+        cmd = u"vppctl show interface rx-placement"
+
+        err_msg = u"Failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        logger.info(stdout)
+
+    @staticmethod
+    def vpp_set_flow(node, interface, queues):
+        from resources.libraries.python.FlowUtil import FlowUtil
+        from resources.libraries.python.ssh import exec_cmd_no_error
+
+        for i in range(1000):
+            spi = 400000 + i
+            rx_queue = i%queues
+            flow_index = FlowUtil.vpp_create_ip4_ipsec_flow(
+                    node, "ESP", spi, "redirect-to-queue", value=rx_queue)
+            FlowUtil.vpp_flow_enable(node, interface, flow_index)
+
+        cmd = f"vppctl test flow add src-ip any proto IPSEC_ESP rss function \
+                default rss types esp"
+
+        err_msg = f"Failed"
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=False, message=err_msg, retries=10
+            )
+        flow_index = stdout.split()[1]
+        FlowUtil.vpp_flow_enable(node, interface, flow_index)
+
+
+    @staticmethod
     def vpp_create_loopback(node, mac=None):
         """Create loopback interface on VPP node.
 
