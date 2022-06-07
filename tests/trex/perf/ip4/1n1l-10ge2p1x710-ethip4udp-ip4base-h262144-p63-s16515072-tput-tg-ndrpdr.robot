@@ -18,7 +18,7 @@
 | ... | 3_NODE_SINGLE_LINK_TOPO
 | ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | IP4FWD
 | ... | IP4BASE | N2N | UDP | UDP_PPS | TG_DRV_IGB_UIO | SCALE | HOSTS_262144
-| ... | ethip4udp-ip4base-h262144-p63-s16515072-pps-tg
+| ... | ethip4udp-ip4base-h262144-p63-s16515072-tput-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
@@ -27,7 +27,7 @@
 |
 | Test Template | Local Template
 |
-| Documentation | **PPS on lightweight UDP transactions with L1 cross connect**
+| Documentation | **TPUT on lightweight UDP transactions with L1 cross connect**
 | ... |
 | ... | - **[Top] Network Topologies:** TG-TG 1-node circular topology \
 | ... | with single links between nodes.
@@ -81,14 +81,14 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 100B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| 100B--ethip4udp-ip4base-h262144-p63-s16515072-tput-tg-ndrpdr
 | | [Tags] | 100B
 | | frame_size=${100}
 
-| 1518B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| 1518B--ethip4udp-ip4base-h262144-p63-s16515072-tput-tg-ndrpdr
 | | [Tags] | 1518B
 | | frame_size=${1518}
 
-| 9000B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| 9000B--ethip4udp-ip4base-h262144-p63-s16515072-tput-tg-ndrpdr
 | | [Tags] | 9000B
 | | frame_size=${9000}
