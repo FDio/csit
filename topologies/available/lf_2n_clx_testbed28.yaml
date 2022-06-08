@@ -121,22 +121,22 @@ nodes:
     password: Csit1234
     uio_driver: vfio-pci
     interfaces:
-      port1:
-        # s35-t28-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:ca:e3:b0"
-        pci_address: "0000:18:00.0"
-        ip4_address: "172.16.10.1"
-        driver: i40e
-        link: link1
-        model: Intel-X710
-      port2:
-        # s35-t28-sut1-c2/p2 - 10GE port2 on Intel NIC x710 4p10GE.
-        mac_address: "3c:fd:fe:ca:e3:b1"
-        pci_address: "0000:18:00.1"
-        ip4_address: "172.16.20.1"
-        driver: i40e
-        link: link2
-        model: Intel-X710
+      #port1:
+      #  # s35-t28-sut1-c2/p1 - 10GE port1 on Intel NIC x710 4p10GE.
+      #  mac_address: "3c:fd:fe:ca:e3:b0"
+      #  pci_address: "0000:18:00.0"
+      #  ip4_address: "172.16.10.1"
+      #  driver: i40e
+      #  link: link1
+      #  model: Intel-X710
+      #port2:
+      #  # s35-t28-sut1-c2/p2 - 10GE port2 on Intel NIC x710 4p10GE.
+      #  mac_address: "3c:fd:fe:ca:e3:b1"
+      #  pci_address: "0000:18:00.1"
+      #  ip4_address: "172.16.20.1"
+      #  driver: i40e
+      #  link: link2
+      #  model: Intel-X710
       port3:
         # s35-t28-sut1-c2/p3 - 10GE port3 on Intel NIC x710 4p10GE.
         mac_address: "3c:fd:fe:ca:e3:b2"

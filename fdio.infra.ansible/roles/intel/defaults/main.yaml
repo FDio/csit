@@ -1,5 +1,5 @@
 ---
-# file: roles/mellanox/defaults/main.yaml
+# file: roles/intel/defaults/main.yaml
 
 packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
 
