@@ -21,6 +21,48 @@
 1c AND 64b AND mrr AND x553 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 2c AND 64b AND mrr AND x553 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 4c AND 64b AND mrr AND x553 AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
+##### ethip4tcp-ip4base-h1024-p63-s64512-tput
+1c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h1024-p63-s64512-tput
+2c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h1024-p63-s64512-tput
+4c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h1024-p63-s64512-tput
+1c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h1024-p63-s64512-tput
+2c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h1024-p63-s64512-tput
+4c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h1024-p63-s64512-tput
+##### ethip4tcp-ip4base-h16384-p63-s1032192-tput
+1c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h16384-p63-s1032192-tput
+2c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h16384-p63-s1032192-tput
+4c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h16384-p63-s1032192-tput
+1c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h16384-p63-s1032192-tput
+2c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h16384-p63-s1032192-tput
+4c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h16384-p63-s1032192-tput
+##### ethip4tcp-ip4base-h65536-p63-s4128768-tput
+1c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
+2c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
+4c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
+1c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
+2c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
+4c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
+##### ethip4tcp-nat44ed-h1024-p63-s64512-tput
+1c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
+2c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
+4c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
+1c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
+2c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
+4c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
+##### ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+1c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+2c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+4c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+1c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+2c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+4c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+##### ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+1c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+2c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+4c AND 100b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+1c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+2c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+4c AND 1518b AND mrr AND x553 AND drv_vfio_pci AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 ## ./ip4_tunnels
 ## ./ip6
 ### intel-x553
