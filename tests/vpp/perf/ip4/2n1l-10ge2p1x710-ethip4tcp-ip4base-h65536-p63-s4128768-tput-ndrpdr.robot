@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | TCP | TCP_PPS | DRV_VFIO_PCI
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | TCP | TCP_TPUT | DRV_VFIO_PCI
 | ... | SCALE | HOSTS_65536 | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4tcp-ip4base-h65536-p63-s4128768-pps
+| ... | ethip4tcp-ip4base-h65536-p63-s4128768-tput
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -27,7 +27,7 @@
 | Test Template | Local Template
 |
 | # TODO CSIT-1765: Unify suite Documentation.
-| Documentation | **PPS on lightweight TCP transactions with IPv4 routing**
+| Documentation | **TPUT on lightweight TCP transactions with IPv4 routing**
 | ... |
 | ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
@@ -110,38 +110,38 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 100B-1c-ethip4tcp-ip4base-h65536-p63-s4128768-pps-ndrpdr
+| 100B-1c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 100B | 1C
 | | frame_size=${100} | phy_cores=${1}
 
-| 100B-2c-ethip4tcp-ip4base-h65536-p63-s4128768-pps-ndrpdr
+| 100B-2c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 100B | 2C
 | | frame_size=${100} | phy_cores=${2}
 
-| 100B-4c-ethip4tcp-ip4base-h65536-p63-s4128768-pps-ndrpdr
+| 100B-4c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 100B | 4C
 | | frame_size=${100} | phy_cores=${4}
 
-| 1518B-1c-ethip4tcp-ip4base-h65536-p63-s4128768-pps-ndrpdr
+| 1518B-1c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4tcp-ip4base-h65536-p63-s4128768-pps-ndrpdr
+| 1518B-2c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4tcp-ip4base-h65536-p63-s4128768-pps-ndrpdr
+| 1518B-4c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4tcp-ip4base-h65536-p63-s4128768-pps-ndrpdr
+| 9000B-1c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4tcp-ip4base-h65536-p63-s4128768-pps-ndrpdr
+| 9000B-2c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4tcp-ip4base-h65536-p63-s4128768-pps-ndrpdr
+| 9000B-4c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
