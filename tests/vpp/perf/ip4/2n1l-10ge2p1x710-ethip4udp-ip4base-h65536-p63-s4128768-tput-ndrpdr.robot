@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | UDP_PPS | DRV_VFIO_PCI
-| ... | SCALE | HOSTS_16384 | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udp-ip4base-h16384-p63-s1032192-pps
+| ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | UDP_TPUT | DRV_VFIO_PCI
+| ... | SCALE | HOSTS_65536 | RXQ_SIZE_0 | TXQ_SIZE_0
+| ... | ethip4udp-ip4base-h65536-p63-s4128768-tput
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -26,7 +26,7 @@
 |
 | Test Template | Local Template
 |
-| Documentation | **PPS on lightweight UDP transactions with IPv4 routing**
+| Documentation | **TPUT on lightweight UDP transactions with IPv4 routing**
 | ... |
 | ... | - **[Top] Network Topologies:** TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
@@ -34,7 +34,7 @@
 | ... | - **[Enc] Packet Encapsulations:** Eth-IPv4 for IPv4 routing.
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 is configured with IPv4. \
-| ... | routing and two static IPv4 /18 route entries. DUT1 is tested with \
+| ... | routing and two static IPv4 /16 route entries. DUT1 is tested with \
 | ... | with ${nic_name}.
 | ... |
 | ... | - **[Ver] TG verification:** TG finds and reports throughput NDR (Non \
@@ -63,7 +63,7 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Scale settings
-| ${n_hosts}= | ${16384}
+| ${n_hosts}= | ${65536}
 | ${n_ports}= | ${63}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
 | ${packets_per_transaction_and_direction}= | ${ASTF_N_DATA_FRAMES}
@@ -104,42 +104,42 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
-| | ... | 192.168.0.0 | 20.0.0.0 | ${18}
+| | ... | 192.168.0.0 | 20.0.0.0 | ${16}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 100B-1c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| 100B-1c-ethip4udp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 100B | 1C
 | | frame_size=${100} | phy_cores=${1}
 
-| 100B-2c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| 100B-2c-ethip4udp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 100B | 2C
 | | frame_size=${100} | phy_cores=${2}
 
-| 100B-4c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| 100B-4c-ethip4udp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 100B | 4C
 | | frame_size=${100} | phy_cores=${4}
 
-| 1518B-1c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| 1518B-1c-ethip4udp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| 1518B-2c-ethip4udp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| 1518B-4c-ethip4udp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| 9000B-1c-ethip4udp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| 9000B-2c-ethip4udp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4udp-ip4base-h16384-p63-s1032192-pps-ndrpdr
+| 9000B-4c-ethip4udp-ip4base-h65536-p63-s4128768-tput-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}

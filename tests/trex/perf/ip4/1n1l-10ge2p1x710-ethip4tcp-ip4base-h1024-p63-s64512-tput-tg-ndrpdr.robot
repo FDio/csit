@@ -17,8 +17,8 @@
 | Force Tags | 1_NODE_SINGLE_LINK_TOPO | 2_NODE_SINGLE_LINK_TOPO
 | ... | 3_NODE_SINGLE_LINK_TOPO
 | ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | IP4FWD
-| ... | IP4BASE | N2N | UDP | UDP_PPS | TG_DRV_IGB_UIO | SCALE | HOSTS_262144
-| ... | ethip4udp-ip4base-h262144-p63-s16515072-pps-tg
+| ... | IP4BASE | N2N | TCP | TCP_TPUT | TG_DRV_IGB_UIO | SCALE | HOSTS_1024
+| ... | ethip4tcp-ip4base-h1024-p63-s64512-tput-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
@@ -27,7 +27,8 @@
 |
 | Test Template | Local Template
 |
-| Documentation | **PPS on lightweight UDP transactions with L1 cross connect**
+| # TODO CSIT-1765: Unify suite Documentation.
+| Documentation | **TPUT on lightweight TCP transactions with L1 cross connect**
 | ... |
 | ... | - **[Top] Network Topologies:** TG-TG 1-node circular topology \
 | ... | with single links between nodes.
@@ -54,13 +55,14 @@
 | ${osi_layer}= | L7
 | ${overhead}= | ${0}
 # Scale settings
-| ${n_hosts}= | ${262144}
+| ${n_hosts}= | ${1024}
 | ${n_ports}= | ${63}
+| ${packets_per_transaction_and_direction}= | ${4 + ${ASTF_N_DATA_FRAMES}}
+| ${packets_per_transaction_aggregated}= | ${6 + 2 * ${ASTF_N_DATA_FRAMES}}
 | ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
-| ${packets_per_transaction_and_direction}= | ${ASTF_N_DATA_FRAMES}
 # Traffic profile:
-| ${traffic_profile}= | trex-astf-ethip4udp-${n_hosts}h-pps
-| ${transaction_type}= | udp_pps
+| ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h-pps
+| ${transaction_type}= | tcp_pps
 | ${disable_latency}= | ${True}
 
 *** Keywords ***
@@ -81,14 +83,14 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 100B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| 100B--ethip4tcp-ip4base-h1024-p63-s64512-tput-tg-ndrpdr
 | | [Tags] | 100B
 | | frame_size=${100}
 
-| 1518B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| 1518B--ethip4tcp-ip4base-h1024-p63-s64512-tput-tg-ndrpdr
 | | [Tags] | 1518B
 | | frame_size=${1518}
 
-| 9000B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr
+| 9000B--ethip4tcp-ip4base-h1024-p63-s64512-tput-tg-ndrpdr
 | | [Tags] | 9000B
 | | frame_size=${9000}
