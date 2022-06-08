@@ -54,14 +54,14 @@
   tags:
     - intel-inst
 
-#- name: Inst - Extract Dynamic Device Personalization (DDP) Package
-#  unarchive:
-#    remote_src: true
-#    src: "{{ intel_extract_dir }}/ice_comms-{{ ddp }}.zip"
-#    dest: "{{ intel_extract_dir }}/"
-#  register: intel_driver_extracted
-#  tags:
-#    - intel-inst
+- name: Inst - Extract Dynamic Device Personalization (DDP) Package
+  unarchive:
+    remote_src: true
+    src: "{{ intel_extract_dir }}/ice_comms-{{ ddp }}.zip"
+    dest: "{{ intel_extract_dir }}/"
+  register: intel_driver_extracted
+  tags:
+    - intel-inst
 
 - name: Inst - Copy Dynamic Device Personalization (DDP) Package
   copy:
