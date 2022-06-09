@@ -236,24 +236,6 @@
 | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | Set Tags | ${dp_count_int}T${cpu_count_int}C
 
-| Add DPDK VLAN strip offload switch off between DUTs
-| | [Documentation]
-| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
-| | ... | configuration file.
-| |
-| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
-| | | ${_even}= | Evaluate | ${pf} % 2
-| | | Run Keyword Unless | ${even}
-| | | ... | DUT1.Add DPDK Dev Parameter | ${DUT1_${int}${pf}_pci}[0]
-| | | ... | vlan-strip-offload | off
-| | END
-| | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
-| | | ${_even}= | Evaluate | ${pf} % 2
-| | | Run Keyword If | ${even}
-| | | ... | DUT2.Add DPDK Dev Parameter | ${DUT2_${int}${pf}_pci}[0]
-| | | ... | vlan-strip-offload | off
-| | END
-
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | |

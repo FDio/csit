@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -155,10 +155,6 @@
 | | | ... | ${dut}.Add DPDK Cryptodev | ${dp_count_int}
 | | | Run Keyword | ${dut}.Add DPDK Max Simd Bitwidth | ${GRAPH_NODE_VARIANT}
 | | END
-| | ${_vlan_strip} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${vlan_strip_off}
-| | Run keyword If | '${_vlan_strip}' == 'PASS' and ${duts_count} == 2
-| | ... | Add DPDK VLAN strip offload switch off between DUTs
 
 | Pre-initialize layer avf on all DUTs
 | | [Documentation]
