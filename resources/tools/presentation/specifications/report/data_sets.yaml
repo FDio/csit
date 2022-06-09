@@ -377,7 +377,7 @@
       - 6   # rls2202.rel NDRPDR iter env 10
       - 7   # rls2202.rel NDRPDR iter env 10
       - 19  # rls2202.rel NDRPDR iter env 10
-      # - 23  # rls2202.rel NDRPDR iter env 10
+      - 23  # rls2202.rel NDRPDR iter env 10
       - 24  # rls2202.rel NDRPDR iter env 10
       - 25  # rls2202.rel NDRPDR iter env 10
       - 26  # rls2202.rel NDRPDR iter env 10
@@ -1136,6 +1136,7 @@
       - 16  # rls2202.rel NDRPDR iter env 10
       - 20  # rls2202.rel NDRPDR iter env 10
       - 21  # rls2202.rel NDRPDR iter env 10
+      - 22  # rls2202.rel NDRPDR iter env 10
       - 23  # rls2202.rel NDRPDR iter env 10
       - 24  # rls2202.rel NDRPDR iter env 10
       - 26  # rls2202.rel NDRPDR iter env 10
