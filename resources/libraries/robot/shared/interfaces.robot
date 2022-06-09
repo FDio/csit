@@ -155,10 +155,6 @@
 | | | ... | ${dut}.Add DPDK Cryptodev | ${dp_count_int}
 | | | Run Keyword | ${dut}.Add DPDK Max Simd Bitwidth | ${GRAPH_NODE_VARIANT}
 | | END
-| | ${_vlan_strip} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${vlan_strip_off}
-| | Run keyword If | '${_vlan_strip}' == 'PASS' and ${duts_count} == 2
-| | ... | Add DPDK VLAN strip offload switch off between DUTs
 
 | Pre-initialize layer avf on all DUTs
 | | [Documentation]
