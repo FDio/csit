@@ -423,18 +423,37 @@ class TrafficGenerator(AbstractMeasurer):
                     tg_node, cmd, sudo=True, message=u"Kill TRex failed!"
                 )
 
-                # Configure TRex.
-                ports = ''
+                # Prepare interfaces for TRex.
+                mlx_ports = u""
+                mlx_driver = u""
+                itl_ports = u""
                 for port in tg_node[u"interfaces"].values():
-                    if u'Mellanox' not in port.get(u'model'):
-                        ports += f" {port.get(u'pci_address')}"
+                    if u"Mellanox" in port.get(u"model"):
+                        mlx_ports += f" {port.get(u'pci_address')}"
+                        mlx_driver = port.get(u"driver")
+                    if u"Intel" in port.get(u"model"):
+                        itl_ports += f" {port.get(u'pci_address')}"
 
-                cmd = f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && " \
-                    f"./dpdk_nic_bind.py -u {ports} || true\""
-                exec_cmd_no_error(
-                    tg_node, cmd, sudo=True,
-                    message=u"Unbind PCI ports from driver failed!"
-                )
+                if itl_ports:
+                    cmd = (
+                        f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && ",
+                        f"./dpdk_nic_bind.py -u {itl_ports} || ",
+                        f"true\""
+                    )
+                    exec_cmd_no_error(
+                        tg_node, cmd, sudo=True,
+                        message=u"Unbind PCI ports from driver failed!"
+                    )
+                if mlx_ports:
+                    cmd = (
+                        f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && ",
+                        f"./dpdk_nic_bind.py -b {mlx_driver} {mlx_ports} || ",
+                        f"true\""
+                    )
+                    exec_cmd_no_error(
+                        tg_node, cmd, sudo=True,
+                        message=u"Bind PCI ports from driver failed!"
+                    )
 
                 # Start TRex.
                 cd_cmd = f"cd '{Constants.TREX_INSTALL_DIR}/scripts/'"
