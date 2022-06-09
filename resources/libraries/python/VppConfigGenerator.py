@@ -257,20 +257,6 @@ class VppConfigGenerator:
                 path = [u"dpdk", f"dev {device}"]
                 self.add_config_item(self._nodeconfig, u"", path)
 
-    def add_dpdk_dev_parameter(self, device, parameter, value):
-        """Add parameter for DPDK device.
-
-        :param device: PCI device (format xxxx:xx:xx.x).
-        :param parameter: Parameter name.
-        :param value: Parameter value.
-        :type device: str
-        :type parameter: str
-        :type value: str
-        """
-        if pci_dev_check(device):
-            path = [u"dpdk", f"dev {device}", parameter]
-            self.add_config_item(self._nodeconfig, value, path)
-
     def add_dpdk_cryptodev(self, count):
         """Add DPDK Crypto PCI device configuration.
 
