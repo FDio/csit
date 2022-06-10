@@ -1,6 +1,6 @@
 plot-throughput:
   xaxis:
-    title: "<b>Test Cases [Index]</b>"
+    title: "Test Cases [Index]"
     autorange: True
     fixedrange: False
     gridcolor: "rgb(230, 230, 230)"
@@ -13,7 +13,7 @@ plot-throughput:
     tickmode: "array"
     zeroline: False
   yaxis:
-    title: "<b>Packet Throughput [pps]</b>"
+    title: "Packet Throughput [pps]"
     gridcolor: "rgb(230, 230, 230)"
     hoverformat: ".3s"
     tickformat: ".3s"
@@ -45,7 +45,7 @@ plot-throughput:
 
 plot-latency:
   xaxis:
-    title: "<b>Test Cases [Index]</b>"
+    title: "Test Cases [Index]"
     autorange: True
     fixedrange: False
     gridcolor: "rgb(230, 230, 230)"
@@ -58,7 +58,7 @@ plot-latency:
     tickmode: "array"
     zeroline: False
   yaxis:
-    title: "<b>Packet Latency [us]</b>"
+    title: "Average Latency at 50% PDR [us]"
     gridcolor: "rgb(230, 230, 230)"
     hoverformat: ".3s"
     tickformat: ".3s"
