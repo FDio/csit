@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": false,
       "key": {
         "uuid": "11657be7_bd12d993",
         "filename": "/COMMIT_MSG",
@@ -20,10 +21,10 @@
         "endChar": 1
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "dea07b4e_8eaa9374",
         "filename": "/COMMIT_MSG",
@@ -43,10 +44,10 @@
         "endChar": 1
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "b0e692bc_7430293d",
         "filename": "/COMMIT_MSG",
@@ -66,10 +67,10 @@
         "endChar": 1
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "662e7937_3fb589c5",
         "filename": "/COMMIT_MSG",
@@ -89,10 +90,10 @@
         "endChar": 1
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "7df71bac_374e1818",
         "filename": "/COMMIT_MSG",
@@ -112,10 +113,10 @@
         "endChar": 1
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "6a9d36ce_6a672952",
         "filename": "/COMMIT_MSG",
@@ -135,10 +136,10 @@
         "endChar": 1
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "da29e5d1_8a4e3ddb",
         "filename": "/COMMIT_MSG",
@@ -158,10 +159,10 @@
         "endChar": 70
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "5e1e0e76_cb06c02d",
         "filename": "/COMMIT_MSG",
@@ -181,10 +182,10 @@
         "endChar": 2
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "2a4d433c_3f8cc983",
         "filename": "/COMMIT_MSG",
@@ -204,10 +205,10 @@
         "endChar": 2
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "e3a9c138_3cab6d8e",
         "filename": "/COMMIT_MSG",
@@ -227,10 +228,10 @@
         "endChar": 1
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "0b6b113b_f5ccca9c",
         "filename": "/COMMIT_MSG",
@@ -250,8 +251,24 @@
         "endChar": 21
       },
       "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": false
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa11cfb2_83a90110",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-10T08:26:38Z",
+      "side": 1,
+      "message": "I realized with the stricter requirements on config, ASTF tests will not work. Fix incoming.",
+      "revId": "4b332e556087a7c9aafa376811d8872f0850ca30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
