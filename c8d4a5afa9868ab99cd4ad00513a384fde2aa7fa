@@ -33,6 +33,23 @@
       "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-skx/3821/ : SUCCESS\n\nThe forced upper bound re-measurement (both for NDR and for PDR) were inconsistent, so this is likely to increase overall search duration for ASTF.\nLet me think about a better compromise.",
       "revId": "c8d4a5afa9868ab99cd4ad00513a384fde2aa7fa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcad37c8_20b1b38e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-10T14:34:17Z",
+      "side": 1,
+      "message": "\u003e Let me think about a better compromise.\n\nI think I have a good solution in mind (allow final\u003d\u003dinitial, but add some checks; the intent is to only re-measure max rate as mrr2), but I am running out of time this week. Also Gerrit wants a rebase.",
+      "revId": "c8d4a5afa9868ab99cd4ad00513a384fde2aa7fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
