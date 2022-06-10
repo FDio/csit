@@ -533,10 +533,12 @@
 | | ... | ELSE | Convert To Number | ${frame_size}
 | | # Long boolean formula in 2 lines.
 | | ${is_tcp_pps} = | Evaluate | 'TCP_PPS' in ${TEST_TAGS}
-| | ${is_tcp_tput} = | Evaluate | ${is_tcp_pps} or 'TCP_TPUT' in ${TEST_TAGS}
+| | ${is_tcp} = | Evaluate | ${is_tcp_pps} or 'TCP_TPUT' in ${TEST_TAGS}
+| | # TODO: Investigate impact of values on hoststack tests.
+| | ${is_tcp} = | Evaluate | ${is_tcp} and 'HOSTSTACK' not in ${TEST_TAGS}
 | | ${avg_dir_frame_size} | ${avg_agg_frame_size} = | Run Keyword If
 | | ... | 'TCP_CPS' in ${TEST_TAGS} | Apply Tcp Cps Proto Overhead | ${bafs}
-| | ... | ELSE IF | ${is_tcp_tput} | Apply Tcp Tput Proto Overhead | ${bafs}
+| | ... | ELSE IF | ${is_tcp} | Apply Tcp Tput Proto Overhead | ${bafs}
 | | ... | ELSE | Set Variable | ${bafs} | ${bafs}
 | | ${max_overhead} = | Set Variable If | ${overhead} >= 0 | ${overhead} | ${0}
 | | ${mfs} = | Evaluate | ${bare_max_frame_size} + ${max_overhead}
