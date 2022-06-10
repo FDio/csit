@@ -16,6 +16,23 @@
       "message": "csit-2n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciAND1cAND0bANDeth-ip4tcphttp-ldpreload-nginx-1_15_0",
       "revId": "f3a55b00e3f9e3418426c295cc6f9810a6eb137e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0b4449a_cd811745",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-10T14:18:59Z",
+      "side": 1,
+      "message": "Ready.",
+      "revId": "f3a55b00e3f9e3418426c295cc6f9810a6eb137e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
