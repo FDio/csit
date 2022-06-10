@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest nic_intel-e810xxvAND64bAND1cANDwireguardANDndrpdrANDdrv_vfio_pci",
       "revId": "575e88c3e9b386fe00cccb98364ec6be841a5ee3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89079b5_e0ac8ae0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-10T08:39:43Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/82/ : SUCCESS\n\nIt works.\n\nBefore:\nNo PAPI history.\nMissing json output: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-icx/83/tests/vpp/perf/ip4_tunnels/25ge2p1e810xxv-ethip4udpwireguard1tnlsw-ip4base-ndrpdr/index.html\n\nAfter:\nYes PAPI history: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-icx/82/log.html.gz#s1-s1-s1-s1-s1-t1-k3-k2\nJson output present: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-icx/82/tests/vpp/perf/ip4_tunnels/25ge2p1e810xxv-ethip4udpwireguard1tnlsw-ip4base-ndrpdr/index.html",
+      "revId": "575e88c3e9b386fe00cccb98364ec6be841a5ee3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
