@@ -16,6 +16,23 @@
       "message": "csit-2n-skx-perftest ndrpdrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4udp-ip4base-h1024-p63-s64512-cps",
       "revId": "c8d4a5afa9868ab99cd4ad00513a384fde2aa7fa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e72c8cc_ddcb1854",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-10T08:54:22Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-skx/3821/ : SUCCESS\n\nThe forced upper bound re-measurement (both for NDR and for PDR) were inconsistent, so this is likely to increase overall search duration for ASTF.\nLet me think about a better compromise.",
+      "revId": "c8d4a5afa9868ab99cd4ad00513a384fde2aa7fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
