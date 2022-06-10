@@ -532,11 +532,15 @@
 | | ... | '${frame_size}' == 'IMIX_v4_1' | Set Variable | ${353.8333333333333}
 | | ... | ELSE | Convert To Number | ${frame_size}
 | | # Long boolean formula in 2 lines.
-| | ${is_tcp_pps} = | Evaluate | 'TCP_PPS' in ${TEST_TAGS}
-| | ${is_tcp_tput} = | Evaluate | ${is_tcp_pps} or 'TCP_TPUT' in ${TEST_TAGS}
+| | ${is_cps} = | Evaluate | 'TCP_CPS' in ${TEST_TAGS}
+| | ${is_pps} = | Evaluate | 'TCP_PPS' in ${TEST_TAGS}
+| | ${is_tput} = | Evaluate | ${is_pps} or 'TCP_TPUT' in ${TEST_TAGS}
+| | # TODO: Investigate impact of values on hoststack tests.
+| | ${is_cps} = | Evaluate | ${is_cps} and 'HOSTSTACK' not in ${TEST_TAGS}
+| | ${is_tput} = | Evaluate | ${is_tput} and 'HOSTSTACK' not in ${TEST_TAGS}
 | | ${avg_dir_frame_size} | ${avg_agg_frame_size} = | Run Keyword If
-| | ... | 'TCP_CPS' in ${TEST_TAGS} | Apply Tcp Cps Proto Overhead | ${bafs}
-| | ... | ELSE IF | ${is_tcp_tput} | Apply Tcp Tput Proto Overhead | ${bafs}
+| | ... | ${is_cps} | Apply Tcp Cps Proto Overhead | ${bafs}
+| | ... | ELSE IF | ${is_tput} | Apply Tcp Tput Proto Overhead | ${bafs}
 | | ... | ELSE | Set Variable | ${bafs} | ${bafs}
 | | ${max_overhead} = | Set Variable If | ${overhead} >= 0 | ${overhead} | ${0}
 | | ${mfs} = | Evaluate | ${bare_max_frame_size} + ${max_overhead}
