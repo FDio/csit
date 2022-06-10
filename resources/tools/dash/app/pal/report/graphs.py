@@ -60,7 +60,6 @@ _GRAPH_LAT_HDRH_DESC = {
     u"result_latency_forward_pdr_90_hdrh": u"High-load, 90% PDR.",
     u"result_latency_reverse_pdr_90_hdrh": u"High-load, 90% PDR."
 }
-REG_EX_VPP_VERSION = re.compile(r"^(\d{2}).(\d{2})-(rc0|rc1|rc2|release$)")
 
 
 def _get_color(idx: int) -> str:
@@ -83,10 +82,15 @@ def get_short_version(version: str, dut_type: str="vpp") -> str:
         return version
 
     s_version = str()
-    groups = re.search(pattern=REG_EX_VPP_VERSION, string=version)
+    groups = re.search(
+        pattern=re.compile(r"^(\d{2}).(\d{2})-(rc0|rc1|rc2|release$)"),
+        string=version
+    )
     if groups:
         try:
-            s_version = f"{groups.group(1)}.{groups.group(2)}_{groups.group(3)}"
+            s_version = \
+                f"{groups.group(1)}.{groups.group(2)}.{groups.group(3)}".\
+                    replace("release", "rls")
         except IndexError:
             pass
 
@@ -132,7 +136,8 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
         f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$"
     df = df[
         (df.job.str.endswith(f"{topo}-{arch}")) &
-        (df.dut_version.str.contains(itm["dutver"].replace("_", "-"))) &
+        (df.dut_version.str.contains(itm["dutver"].replace(".r", "-r").\
+            replace("rls", "release"))) &
         (df.test_id.str.contains(regex_test, regex=True))
     ]
 
@@ -151,8 +156,12 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
     lat_traces = list()
     y_lat_max = 0
     x_lat = list()
+    show_latency = False
+    show_tput = False
     for idx, itm in enumerate(sel):
         itm_data = select_iterative_data(data, itm)
+        if itm_data.empty:
+            continue
         if itm["testtype"] == "mrr":
             y_data = itm_data[_VALUE[itm["testtype"]]].to_list()[0]
             if y_data.size > 0:
@@ -178,8 +187,8 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
             marker=dict(color=_get_color(idx))
         )
         tput_traces.append(go.Box(**tput_kwargs))
+        show_tput = True
 
-        show_latency = False
         if itm["testtype"] == "pdr":
             y_lat = itm_data[_VALUE["pdr-lat"]].to_list()
             if y_lat:
@@ -204,12 +213,13 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
         else:
             lat_traces.append(go.Box())
 
-    pl_tput = deepcopy(layout["plot-throughput"])
-    pl_tput[u"xaxis"][u"tickvals"] = [i for i in range(len(sel))]
-    pl_tput[u"xaxis"][u"ticktext"] = [str(i + 1) for i in range(len(sel))]
-    if y_tput_max:
-        pl_tput[u"yaxis"][u"range"] = [0, (int(y_tput_max / 1e6) + 1) * 1e6]
-    fig_tput = go.Figure(data=tput_traces, layout=pl_tput)
+    if show_tput:
+        pl_tput = deepcopy(layout["plot-throughput"])
+        pl_tput[u"xaxis"][u"tickvals"] = [i for i in range(len(sel))]
+        pl_tput[u"xaxis"][u"ticktext"] = [str(i + 1) for i in range(len(sel))]
+        if y_tput_max:
+            pl_tput[u"yaxis"][u"range"] = [0, (int(y_tput_max / 1e6) + 1) * 1e6]
+        fig_tput = go.Figure(data=tput_traces, layout=pl_tput)
 
     if show_latency:
         pl_lat = deepcopy(layout["plot-latency"])

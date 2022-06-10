@@ -29,8 +29,6 @@ from copy import deepcopy
 from json import loads, JSONDecodeError
 from ast import literal_eval
 
-from pprint import pformat
-
 from ..data.data import Data
 from ..data.url_processing import url_decode, url_encode
 from .graphs import graph_iterative, table_comparison, get_short_version
@@ -102,10 +100,10 @@ class Layout:
         self._data = pd.DataFrame()
         for rls in releases:
             data_mrr = Data(self._data_spec_file, True).\
-                read_iterative_mrr(release=rls)
+                read_iterative_mrr(release=rls.replace("csit", "rls"))
             data_mrr["release"] = rls
             data_ndrpdr = Data(self._data_spec_file, True).\
-                read_iterative_ndrpdr(release=rls)
+                read_iterative_ndrpdr(release=rls.replace("csit", "rls"))
             data_ndrpdr["release"] = rls
             self._data = pd.concat(
                 [self._data, data_mrr, data_ndrpdr], ignore_index=True)
@@ -415,7 +413,7 @@ class Layout:
                             [
                                 dbc.InputGroupText(
                                     children=self._show_tooltip(
-                                        "help-release", "Release")
+                                        "help-release", "CSIT Release")
                                 ),
                                 dbc.Select(
                                     id="dd-ctrl-rls",
@@ -1003,7 +1001,7 @@ class Layout:
                     "cl-testtype-all-value": list(),
                     "cl-testtype-all-options": self.CL_ALL_DISABLED
                 })
-            if trigger_id == "dd-ctrl-dut":
+            elif trigger_id == "dd-ctrl-dut":
                 try:
                     rls = ctrl_panel.get("dd-rls-value")
                     dut = self.spec_tbs[rls][dd_dut]
