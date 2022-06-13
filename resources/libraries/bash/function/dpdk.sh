@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -245,6 +245,7 @@ function dpdk_l3fwd () {
     for attempt in {1..60}; do
         echo "Checking if l3fwd is alive, attempt nr ${attempt}"
         if fgrep "L3FWD: entering main loop on lcore" screenlog.0; then
+            cat screenlog.0
             exit 0
         fi
         sleep 1
@@ -252,6 +253,36 @@ function dpdk_l3fwd () {
     cat screenlog.0
 
     exit 1
+}
+
+function dpdk_l3fwd_check () {
+
+    # DPDK l3fwd check state.
+
+    set -exuo pipefail
+
+    for attempt in {1..480}; do
+        echo "Checking if l3fwd state is ok, attempt nr ${attempt}"
+        if fgrep "Port 0 Link up" screenlog.0 && \
+        fgrep "Port 1 Link up" screenlog.0; then
+            cat screenlog.0
+            dpdk_l3fwd_pid
+            exit 0
+        fi
+        sleep 1
+    done
+    cat screenlog.0
+
+    exit 1
+}
+
+function dpdk_l3fwd_pid () {
+    l3fwd_pid="$(pidof dpdk-l3fwd)"
+    if [ ! -z "${l3fwd_pid}" ]; then
+        echo "L3fwd process ID: ${l3fwd_pid}"
+    else
+        echo "L3fwd not running!"
+    fi
 }
 
 
@@ -299,13 +330,43 @@ function dpdk_testpmd () {
 
     for attempt in {1..60}; do
         echo "Checking if testpmd is alive, attempt nr ${attempt}"
-         if fgrep "Press enter to exit" screenlog.0; then
-             cat screenlog.0
-             exit 0
+        if fgrep "Press enter to exit" screenlog.0; then
+            cat screenlog.0
+            dpdk_testpmd_pid
+            exit 0
         fi
         sleep 1
     done
     cat screenlog.0
 
     exit 1
+}
+
+function dpdk_testpmd_check () {
+
+    # DPDK testpmd check links state.
+
+    set -exuo pipefail
+
+    for attempt in {1..480}; do
+        echo "Checking if testpmd links state changed, attempt nr ${attempt}"
+        if fgrep "Port 0: link state change event" screenlog.0 && \
+        fgrep "Port 1: link state change event" screenlog.0; then
+            cat screenlog.0
+            exit 0
+        fi
+        sleep 1
+    done
+    cat screenlog.0
+
+    exit 1
+}
+
+function dpdk_testpmd_pid () {
+    testpmd_pid="$(pidof dpdk-testpmd)"
+    if [ ! -z "${testpmd_pid}" ]; then
+        echo "Testpmd process ID: ${testpmd_pid}"
+    else
+        echo "Testpmd not running!"
+    fi
 }
