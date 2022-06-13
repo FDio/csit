@@ -174,9 +174,7 @@ def simple_burst(
         # Load the profile.
         client.load_profile(profile)
 
-        ports = [port_0]
-        if traffic_directions > 1:
-            ports.append(port_1)
+        ports = [port_0, port_1]
 
         # Clear the stats before injecting.
         lost_a = 0
@@ -197,9 +195,8 @@ def simple_burst(
             # For async stop, we need to export the current snapshot.
             xsnap0 = client.ports[port_0].get_xstats().reference_stats
             print(f"Xstats snapshot 0: {xsnap0!r}")
-            if traffic_directions > 1:
-                xsnap1 = client.ports[port_1].get_xstats().reference_stats
-                print(f"Xstats snapshot 1: {xsnap1!r}")
+            xsnap1 = client.ports[port_1].get_xstats().reference_stats
+            print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
             time.sleep(duration + delay)
             # Do not block yet, the existing transactions may take long time
@@ -228,8 +225,7 @@ def simple_burst(
             approximated_duration = list(sorted(stats.keys()))[-1]
             stats = stats[sorted(stats.keys())[-1]]
             lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
-            if traffic_directions > 1:
-                lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
+            lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
 
             # TODO: Latency measurement not used at this phase. This part will
             #  be aligned in another commit.
@@ -249,131 +245,126 @@ def simple_burst(
                         str(lat_obj[u"max_usec"]), u"-")
                     lat_b_hist = str(lat_obj[u"histogram"])
 
-            if traffic_directions > 1:
-                total_sent = \
-                    stats[port_0][u"opackets"] + stats[port_1][u"opackets"]
-                total_received = \
-                    stats[port_0][u"ipackets"] + stats[port_1][u"ipackets"]
-                client_sent = stats[port_0][u"opackets"]
-                client_received = stats[port_0][u"ipackets"]
-                client_stats = stats[u"traffic"][u"client"]
-                server_stats = stats[u"traffic"][u"server"]
-                # Some zero counters are not sent
-                # Active and established flows UDP/TCP
+            total_sent = \
+                stats[port_0][u"opackets"] + stats[port_1][u"opackets"]
+            total_received = \
+                stats[port_0][u"ipackets"] + stats[port_1][u"ipackets"]
+            client_sent = stats[port_0][u"opackets"]
+            client_received = stats[port_0][u"ipackets"]
+            client_stats = stats[u"traffic"][u"client"]
+            server_stats = stats[u"traffic"][u"server"]
+            # Some zero counters are not sent
+            # Active and established flows UDP/TCP
+            # Client
+            c_act_flows = client_stats[u"m_active_flows"]
+            c_est_flows = client_stats[u"m_est_flows"]
+            c_traffic_duration = client_stats.get(u"m_traffic_duration", 0)
+            l7_data = f"client_active_flows={c_act_flows}; "
+            l7_data += f"client_established_flows={c_est_flows}; "
+            l7_data += f"client_traffic_duration={c_traffic_duration}; "
+            # Possible errors
+            # Too many packets in NIC rx queue
+            c_err_rx_throttled = client_stats.get(u"err_rx_throttled", 0)
+            l7_data += f"client_err_rx_throttled={c_err_rx_throttled}; "
+            # Number of client side flows that were not opened
+            # due to flow-table overflow
+            c_err_nf_throttled = client_stats.get(u"err_c_nf_throttled", 0)
+            l7_data += f"client_err_nf_throttled={c_err_nf_throttled}; "
+            # Too many flows
+            c_err_flow_overflow = client_stats.get(u"err_flow_overflow", 0)
+            l7_data += f"client_err_flow_overflow={c_err_flow_overflow}; "
+            # Server
+            s_act_flows = server_stats[u"m_active_flows"]
+            s_est_flows = server_stats[u"m_est_flows"]
+            s_traffic_duration = server_stats.get(u"m_traffic_duration", 0)
+            l7_data += f"server_active_flows={s_act_flows}; "
+            l7_data += f"server_established_flows={s_est_flows}; "
+            l7_data += f"server_traffic_duration={s_traffic_duration}; "
+            # Possible errors
+            # Too many packets in NIC rx queue
+            s_err_rx_throttled = server_stats.get(u"err_rx_throttled", 0)
+            l7_data += f"client_err_rx_throttled={s_err_rx_throttled}; "
+            if u"udp" in profile_file:
                 # Client
-                c_act_flows = client_stats[u"m_active_flows"]
-                c_est_flows = client_stats[u"m_est_flows"]
-                c_traffic_duration = client_stats.get(u"m_traffic_duration", 0)
-                l7_data = f"client_active_flows={c_act_flows}; "
-                l7_data += f"client_established_flows={c_est_flows}; "
-                l7_data += f"client_traffic_duration={c_traffic_duration}; "
-                # Possible errors
-                # Too many packets in NIC rx queue
-                c_err_rx_throttled = client_stats.get(u"err_rx_throttled", 0)
-                l7_data += f"client_err_rx_throttled={c_err_rx_throttled}; "
-                # Number of client side flows that were not opened
-                # due to flow-table overflow
-                c_err_nf_throttled = client_stats.get(u"err_c_nf_throttled", 0)
-                l7_data += f"client_err_nf_throttled={c_err_nf_throttled}; "
-                # Too many flows
-                c_err_flow_overflow = client_stats.get(u"err_flow_overflow", 0)
-                l7_data += f"client_err_flow_overflow={c_err_flow_overflow}; "
+                # Established connections
+                c_udp_connects = client_stats.get(u"udps_connects", 0)
+                l7_data += f"client_udp_connects={c_udp_connects}; "
+                # Closed connections
+                c_udp_closed = client_stats.get(u"udps_closed", 0)
+                l7_data += f"client_udp_closed={c_udp_closed}; "
+                # Sent bytes
+                c_udp_sndbyte = client_stats.get(u"udps_sndbyte", 0)
+                l7_data += f"client_udp_tx_bytes={c_udp_sndbyte}; "
+                # Sent packets
+                c_udp_sndpkt = client_stats.get(u"udps_sndpkt", 0)
+                l7_data += f"client_udp_tx_packets={c_udp_sndpkt}; "
+                # Received bytes
+                c_udp_rcvbyte = client_stats.get(u"udps_rcvbyte", 0)
+                l7_data += f"client_udp_rx_bytes={c_udp_rcvbyte}; "
+                # Received packets
+                c_udp_rcvpkt = client_stats.get(u"udps_rcvpkt", 0)
+                l7_data += f"client_udp_rx_packets={c_udp_rcvpkt}; "
+                # Keep alive drops
+                c_udp_keepdrops = client_stats.get(u"udps_keepdrops", 0)
+                l7_data += f"client_udp_keep_drops={c_udp_keepdrops}; "
+                # Client without flow
+                c_err_cwf = client_stats.get(u"err_cwf", 0)
+                l7_data += f"client_err_cwf={c_err_cwf}; "
                 # Server
-                s_act_flows = server_stats[u"m_active_flows"]
-                s_est_flows = server_stats[u"m_est_flows"]
-                s_traffic_duration = server_stats.get(u"m_traffic_duration", 0)
-                l7_data += f"server_active_flows={s_act_flows}; "
-                l7_data += f"server_established_flows={s_est_flows}; "
-                l7_data += f"server_traffic_duration={s_traffic_duration}; "
-                # Possible errors
-                # Too many packets in NIC rx queue
-                s_err_rx_throttled = server_stats.get(u"err_rx_throttled", 0)
-                l7_data += f"client_err_rx_throttled={s_err_rx_throttled}; "
-                if u"udp" in profile_file:
-                    # Client
-                    # Established connections
-                    c_udp_connects = client_stats.get(u"udps_connects", 0)
-                    l7_data += f"client_udp_connects={c_udp_connects}; "
-                    # Closed connections
-                    c_udp_closed = client_stats.get(u"udps_closed", 0)
-                    l7_data += f"client_udp_closed={c_udp_closed}; "
-                    # Sent bytes
-                    c_udp_sndbyte = client_stats.get(u"udps_sndbyte", 0)
-                    l7_data += f"client_udp_tx_bytes={c_udp_sndbyte}; "
-                    # Sent packets
-                    c_udp_sndpkt = client_stats.get(u"udps_sndpkt", 0)
-                    l7_data += f"client_udp_tx_packets={c_udp_sndpkt}; "
-                    # Received bytes
-                    c_udp_rcvbyte = client_stats.get(u"udps_rcvbyte", 0)
-                    l7_data += f"client_udp_rx_bytes={c_udp_rcvbyte}; "
-                    # Received packets
-                    c_udp_rcvpkt = client_stats.get(u"udps_rcvpkt", 0)
-                    l7_data += f"client_udp_rx_packets={c_udp_rcvpkt}; "
-                    # Keep alive drops
-                    c_udp_keepdrops = client_stats.get(u"udps_keepdrops", 0)
-                    l7_data += f"client_udp_keep_drops={c_udp_keepdrops}; "
-                    # Client without flow
-                    c_err_cwf = client_stats.get(u"err_cwf", 0)
-                    l7_data += f"client_err_cwf={c_err_cwf}; "
-                    # Server
-                    # Accepted connections
-                    s_udp_accepts = server_stats.get(u"udps_accepts", 0)
-                    l7_data += f"server_udp_accepts={s_udp_accepts}; "
-                    # Closed connections
-                    s_udp_closed = server_stats.get(u"udps_closed", 0)
-                    l7_data += f"server_udp_closed={s_udp_closed}; "
-                    # Sent bytes
-                    s_udp_sndbyte = server_stats.get(u"udps_sndbyte", 0)
-                    l7_data += f"server_udp_tx_bytes={s_udp_sndbyte}; "
-                    # Sent packets
-                    s_udp_sndpkt = server_stats.get(u"udps_sndpkt", 0)
-                    l7_data += f"server_udp_tx_packets={s_udp_sndpkt}; "
-                    # Received bytes
-                    s_udp_rcvbyte = server_stats.get(u"udps_rcvbyte", 0)
-                    l7_data += f"server_udp_rx_bytes={s_udp_rcvbyte}; "
-                    # Received packets
-                    s_udp_rcvpkt = server_stats.get(u"udps_rcvpkt", 0)
-                    l7_data += f"server_udp_rx_packets={s_udp_rcvpkt}; "
-                elif u"tcp" in profile_file:
-                    # Client
-                    # Connection attempts
-                    c_tcp_connattempt = client_stats.get(u"tcps_connattempt", 0)
-                    l7_data += f"client_tcp_connattempt={c_tcp_connattempt}; "
-                    # Established connections
-                    c_tcp_connects = client_stats.get(u"tcps_connects", 0)
-                    l7_data += f"client_tcp_connects={c_tcp_connects}; "
-                    # Closed connections
-                    c_tcp_closed = client_stats.get(u"tcps_closed", 0)
-                    l7_data += f"client_tcp_closed={c_tcp_closed}; "
-                    # Send bytes
-                    c_tcp_sndbyte = client_stats.get(u"tcps_sndbyte", 0)
-                    l7_data += f"client_tcp_tx_bytes={c_tcp_sndbyte}; "
-                    # Received bytes
-                    c_tcp_rcvbyte = client_stats.get(u"tcps_rcvbyte", 0)
-                    l7_data += f"client_tcp_rx_bytes={c_tcp_rcvbyte}; "
-                    # Server
-                    # Accepted connections
-                    s_tcp_accepts = server_stats.get(u"tcps_accepts", 0)
-                    l7_data += f"server_tcp_accepts={s_tcp_accepts}; "
-                    # Established connections
-                    s_tcp_connects = server_stats.get(u"tcps_connects", 0)
-                    l7_data += f"server_tcp_connects={s_tcp_connects}; "
-                    # Closed connections
-                    s_tcp_closed = server_stats.get(u"tcps_closed", 0)
-                    l7_data += f"server_tcp_closed={s_tcp_closed}; "
-                    # Sent bytes
-                    s_tcp_sndbyte = server_stats.get(u"tcps_sndbyte", 0)
-                    l7_data += f"server_tcp_tx_bytes={s_tcp_sndbyte}; "
-                    # Received bytes
-                    s_tcp_rcvbyte = server_stats.get(u"tcps_rcvbyte", 0)
-                    l7_data += f"server_tcp_rx_bytes={s_tcp_rcvbyte}; "
-            else:
-                total_sent = stats[port_0][u"opackets"]
-                total_received = stats[port_1][u"ipackets"]
+                # Accepted connections
+                s_udp_accepts = server_stats.get(u"udps_accepts", 0)
+                l7_data += f"server_udp_accepts={s_udp_accepts}; "
+                # Closed connections
+                s_udp_closed = server_stats.get(u"udps_closed", 0)
+                l7_data += f"server_udp_closed={s_udp_closed}; "
+                # Sent bytes
+                s_udp_sndbyte = server_stats.get(u"udps_sndbyte", 0)
+                l7_data += f"server_udp_tx_bytes={s_udp_sndbyte}; "
+                # Sent packets
+                s_udp_sndpkt = server_stats.get(u"udps_sndpkt", 0)
+                l7_data += f"server_udp_tx_packets={s_udp_sndpkt}; "
+                # Received bytes
+                s_udp_rcvbyte = server_stats.get(u"udps_rcvbyte", 0)
+                l7_data += f"server_udp_rx_bytes={s_udp_rcvbyte}; "
+                # Received packets
+                s_udp_rcvpkt = server_stats.get(u"udps_rcvpkt", 0)
+                l7_data += f"server_udp_rx_packets={s_udp_rcvpkt}; "
+            elif u"tcp" in profile_file:
+                # Client
+                # Connection attempts
+                c_tcp_connattempt = client_stats.get(u"tcps_connattempt", 0)
+                l7_data += f"client_tcp_connattempt={c_tcp_connattempt}; "
+                # Established connections
+                c_tcp_connects = client_stats.get(u"tcps_connects", 0)
+                l7_data += f"client_tcp_connects={c_tcp_connects}; "
+                # Closed connections
+                c_tcp_closed = client_stats.get(u"tcps_closed", 0)
+                l7_data += f"client_tcp_closed={c_tcp_closed}; "
+                # Send bytes
+                c_tcp_sndbyte = client_stats.get(u"tcps_sndbyte", 0)
+                l7_data += f"client_tcp_tx_bytes={c_tcp_sndbyte}; "
+                # Received bytes
+                c_tcp_rcvbyte = client_stats.get(u"tcps_rcvbyte", 0)
+                l7_data += f"client_tcp_rx_bytes={c_tcp_rcvbyte}; "
+                # Server
+                # Accepted connections
+                s_tcp_accepts = server_stats.get(u"tcps_accepts", 0)
+                l7_data += f"server_tcp_accepts={s_tcp_accepts}; "
+                # Established connections
+                s_tcp_connects = server_stats.get(u"tcps_connects", 0)
+                l7_data += f"server_tcp_connects={s_tcp_connects}; "
+                # Closed connections
+                s_tcp_closed = server_stats.get(u"tcps_closed", 0)
+                l7_data += f"server_tcp_closed={s_tcp_closed}; "
+                # Sent bytes
+                s_tcp_sndbyte = server_stats.get(u"tcps_sndbyte", 0)
+                l7_data += f"server_tcp_tx_bytes={s_tcp_sndbyte}; "
+                # Received bytes
+                s_tcp_rcvbyte = server_stats.get(u"tcps_rcvbyte", 0)
+                l7_data += f"server_tcp_rx_bytes={s_tcp_rcvbyte}; "
 
             print(f"packets lost from {port_0} --> {port_1}: {lost_a} pkts")
-            if traffic_directions > 1:
-                print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
+            print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
 
     except TRexError:
         print(u"T-Rex ASTF runtime error!", file=sys.stderr)
