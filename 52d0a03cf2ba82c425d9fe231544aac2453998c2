@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35ed52a8_4ab8318a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-13T12:05:18Z",
+      "side": 1,
+      "message": "The reconf+unidir fix is extracted into a preceding change. I will retest this after testing that.",
+      "revId": "52d0a03cf2ba82c425d9fe231544aac2453998c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
