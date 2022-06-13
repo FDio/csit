@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fede9b43_2c1652c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-13T13:05:42Z",
+      "side": 1,
+      "message": "csit-2n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbaseNOTsoak nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4ipsec40tnlsw-1atnl-ip4base-int-aes256gcm-udir nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4udp-ip4base-h1024-p63-s64512-cpsNOTsoak",
+      "revId": "aa842f7aeb6dfb642f66185dd6c6aa49ca92d70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
