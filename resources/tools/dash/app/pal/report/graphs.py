@@ -51,14 +51,14 @@ _LAT_HDRH = (  # Do not change the order
 PERCENTILE_MAX = 99.999501
 
 _GRAPH_LAT_HDRH_DESC = {
-    u"result_latency_forward_pdr_0_hdrh": u"No-load.",
-    u"result_latency_reverse_pdr_0_hdrh": u"No-load.",
-    u"result_latency_forward_pdr_10_hdrh": u"Low-load, 10% PDR.",
-    u"result_latency_reverse_pdr_10_hdrh": u"Low-load, 10% PDR.",
-    u"result_latency_forward_pdr_50_hdrh": u"Mid-load, 50% PDR.",
-    u"result_latency_reverse_pdr_50_hdrh": u"Mid-load, 50% PDR.",
-    u"result_latency_forward_pdr_90_hdrh": u"High-load, 90% PDR.",
-    u"result_latency_reverse_pdr_90_hdrh": u"High-load, 90% PDR."
+    "result_latency_forward_pdr_0_hdrh": "No-load.",
+    "result_latency_reverse_pdr_0_hdrh": "No-load.",
+    "result_latency_forward_pdr_10_hdrh": "Low-load, 10% PDR.",
+    "result_latency_reverse_pdr_10_hdrh": "Low-load, 10% PDR.",
+    "result_latency_forward_pdr_50_hdrh": "Mid-load, 50% PDR.",
+    "result_latency_reverse_pdr_50_hdrh": "Mid-load, 50% PDR.",
+    "result_latency_forward_pdr_90_hdrh": "High-load, 90% PDR.",
+    "result_latency_reverse_pdr_90_hdrh": "High-load, 90% PDR."
 }
 
 
@@ -178,7 +178,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
             name=(
                 f"{idx + 1}. "
                 f"({nr_of_samples:02d} "
-                f"run{u's' if nr_of_samples > 1 else u''}) "
+                f"run{'s' if nr_of_samples > 1 else ''}) "
                 f"{itm['id']}"
             ),
             hoverinfo=u"y+name",
@@ -202,10 +202,9 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
                     f"run{u's' if nr_of_samples > 1 else u''}) "
                     f"{itm['id']}"
                 ),
-                hoverinfo=u"y+name",
+                hoverinfo="all",
                 boxpoints="all",
                 jitter=0.3,
-                marker=dict(color=_get_color(idx))
             )
             x_lat.append(idx + 1)
             lat_traces.append(go.Box(**lat_kwargs))
@@ -215,18 +214,18 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
 
     if show_tput:
         pl_tput = deepcopy(layout["plot-throughput"])
-        pl_tput[u"xaxis"][u"tickvals"] = [i for i in range(len(sel))]
-        pl_tput[u"xaxis"][u"ticktext"] = [str(i + 1) for i in range(len(sel))]
+        pl_tput["xaxis"]["tickvals"] = [i for i in range(len(sel))]
+        pl_tput["xaxis"]["ticktext"] = [str(i + 1) for i in range(len(sel))]
         if y_tput_max:
-            pl_tput[u"yaxis"][u"range"] = [0, (int(y_tput_max / 1e6) + 1) * 1e6]
+            pl_tput["yaxis"]["range"] = [0, (int(y_tput_max / 1e6) + 1) * 1e6]
         fig_tput = go.Figure(data=tput_traces, layout=pl_tput)
 
     if show_latency:
         pl_lat = deepcopy(layout["plot-latency"])
-        pl_lat[u"xaxis"][u"tickvals"] = [i for i in range(len(x_lat))]
-        pl_lat[u"xaxis"][u"ticktext"] = x_lat
+        pl_lat["xaxis"]["tickvals"] = [i for i in range(len(x_lat))]
+        pl_lat["xaxis"]["ticktext"] = x_lat
         if y_lat_max:
-            pl_lat[u"yaxis"][u"range"] = [0, (int(y_lat_max / 10) + 1) * 10]
+            pl_lat["yaxis"]["range"] = [0, (int(y_lat_max / 10) + 1) * 10]
         fig_lat = go.Figure(data=lat_traces, layout=pl_lat)
 
     return fig_tput, fig_lat
@@ -305,7 +304,7 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             yaxis.append(item.value_iterated_to)
             hovertext.append(
                 f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
-                f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
                 f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
                 f"Latency: {item.value_iterated_to}uSec"
             )
@@ -314,7 +313,7 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             yaxis.append(item.value_iterated_to)
             hovertext.append(
                 f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
-                f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
                 f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
                 f"Latency: {item.value_iterated_to}uSec"
             )
@@ -326,16 +325,16 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
                 x=xaxis,
                 y=yaxis,
                 name=_GRAPH_LAT_HDRH_DESC[lat_name],
-                mode=u"lines",
+                mode="lines",
                 legendgroup=_GRAPH_LAT_HDRH_DESC[lat_name],
                 showlegend=bool(idx % 2),
                 line=dict(
                     color=_get_color(int(idx/2)),
-                    dash=u"solid",
+                    dash="solid",
                     width=1 if idx % 2 else 2
                 ),
                 hovertext=hovertext,
-                hoverinfo=u"text"
+                hoverinfo="text"
             )
         )
     if traces:

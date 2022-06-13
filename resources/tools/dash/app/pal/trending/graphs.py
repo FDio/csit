@@ -27,28 +27,28 @@ from ..jumpavg import classify
 
 
 _ANOMALY_COLOR = {
-    u"regression": 0.0,
-    u"normal": 0.5,
-    u"progression": 1.0
+    "regression": 0.0,
+    "normal": 0.5,
+    "progression": 1.0
 }
 _COLORSCALE_TPUT = [
-    [0.00, u"red"],
-    [0.33, u"red"],
-    [0.33, u"white"],
-    [0.66, u"white"],
-    [0.66, u"green"],
-    [1.00, u"green"]
+    [0.00, "red"],
+    [0.33, "red"],
+    [0.33, "white"],
+    [0.66, "white"],
+    [0.66, "green"],
+    [1.00, "green"]
 ]
-_TICK_TEXT_TPUT = [u"Regression", u"Normal", u"Progression"]
+_TICK_TEXT_TPUT = ["Regression", "Normal", "Progression"]
 _COLORSCALE_LAT = [
-    [0.00, u"green"],
-    [0.33, u"green"],
-    [0.33, u"white"],
-    [0.66, u"white"],
-    [0.66, u"red"],
-    [1.00, u"red"]
+    [0.00, "green"],
+    [0.33, "green"],
+    [0.33, "white"],
+    [0.66, "white"],
+    [0.66, "red"],
+    [1.00, "red"]
 ]
-_TICK_TEXT_LAT = [u"Progression", u"Normal", u"Regression"]
+_TICK_TEXT_LAT = ["Progression", "Normal", "Regression"]
 _VALUE = {
     "mrr": "result_receive_rate_rate_avg",
     "ndr": "result_ndr_lower_rate_value",
@@ -76,14 +76,14 @@ _LAT_HDRH = (  # Do not change the order
 PERCENTILE_MAX = 99.999501
 
 _GRAPH_LAT_HDRH_DESC = {
-    u"result_latency_forward_pdr_0_hdrh": u"No-load.",
-    u"result_latency_reverse_pdr_0_hdrh": u"No-load.",
-    u"result_latency_forward_pdr_10_hdrh": u"Low-load, 10% PDR.",
-    u"result_latency_reverse_pdr_10_hdrh": u"Low-load, 10% PDR.",
-    u"result_latency_forward_pdr_50_hdrh": u"Mid-load, 50% PDR.",
-    u"result_latency_reverse_pdr_50_hdrh": u"Mid-load, 50% PDR.",
-    u"result_latency_forward_pdr_90_hdrh": u"High-load, 90% PDR.",
-    u"result_latency_reverse_pdr_90_hdrh": u"High-load, 90% PDR."
+    "result_latency_forward_pdr_0_hdrh": "No-load.",
+    "result_latency_reverse_pdr_0_hdrh": "No-load.",
+    "result_latency_forward_pdr_10_hdrh": "Low-load, 10% PDR.",
+    "result_latency_reverse_pdr_10_hdrh": "Low-load, 10% PDR.",
+    "result_latency_forward_pdr_50_hdrh": "Mid-load, 50% PDR.",
+    "result_latency_reverse_pdr_50_hdrh": "Mid-load, 50% PDR.",
+    "result_latency_forward_pdr_90_hdrh": "High-load, 90% PDR.",
+    "result_latency_reverse_pdr_90_hdrh": "High-load, 90% PDR."
 }
 
 
@@ -140,7 +140,7 @@ def _classify_anomalies(data):
     stdv = 0.0
     for sample in data.values():
         if isnan(sample):
-            classification.append(u"outlier")
+            classification.append("outlier")
             avgs.append(sample)
             stdevs.append(sample)
             continue
@@ -156,7 +156,7 @@ def _classify_anomalies(data):
             stdevs.append(stdv)
             values_left -= 1
             continue
-        classification.append(u"normal")
+        classification.append("normal")
         avgs.append(avg)
         stdevs.append(stdv)
         values_left -= 1
@@ -272,12 +272,12 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
             name=name,
             mode="markers",
             marker={
-                u"size": 5,
-                u"color": color,
-                u"symbol": u"circle",
+                "size": 5,
+                "color": color,
+                "symbol": "circle",
             },
             text=hover,
-            hoverinfo=u"text+name",
+            hoverinfo="text+name",
             showlegend=True,
             legendgroup=name,
             customdata=customdata
@@ -288,12 +288,12 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
             name=name,
             mode="lines",
             line={
-                u"shape": u"linear",
-                u"width": 1,
-                u"color": color,
+                "shape": "linear",
+                "width": 1,
+                "color": color,
             },
             text=hover_trend,
-            hoverinfo=u"text+name",
+            hoverinfo="text+name",
             showlegend=False,
             legendgroup=name,
         )
@@ -305,7 +305,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         anomaly_color = list()
         hover = list()
         for idx, anomaly in enumerate(anomalies):
-            if anomaly in (u"regression", u"progression"):
+            if anomaly in ("regression", "progression"):
                 anomaly_x.append(x_axis[idx])
                 anomaly_y.append(trend_avg[idx])
                 anomaly_color.append(_ANOMALY_COLOR[anomaly])
@@ -322,35 +322,35 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
             go.Scatter(
                 x=anomaly_x,
                 y=anomaly_y,
-                mode=u"markers",
+                mode="markers",
                 text=hover,
-                hoverinfo=u"text+name",
+                hoverinfo="text+name",
                 showlegend=False,
                 legendgroup=name,
                 name=name,
                 marker={
-                    u"size": 15,
-                    u"symbol": u"circle-open",
-                    u"color": anomaly_color,
-                    u"colorscale": _COLORSCALE_LAT \
+                    "size": 15,
+                    "symbol": "circle-open",
+                    "color": anomaly_color,
+                    "colorscale": _COLORSCALE_LAT \
                         if ttype == "pdr-lat" else _COLORSCALE_TPUT,
-                    u"showscale": True,
-                    u"line": {
-                        u"width": 2
+                    "showscale": True,
+                    "line": {
+                        "width": 2
                     },
-                    u"colorbar": {
-                        u"y": 0.5,
-                        u"len": 0.8,
-                        u"title": u"Circles Marking Data Classification",
-                        u"titleside": u"right",
-                        u"tickmode": u"array",
-                        u"tickvals": [0.167, 0.500, 0.833],
-                        u"ticktext": _TICK_TEXT_LAT \
+                    "colorbar": {
+                        "y": 0.5,
+                        "len": 0.8,
+                        "title": "Circles Marking Data Classification",
+                        "titleside": "right",
+                        "tickmode": "array",
+                        "tickvals": [0.167, 0.500, 0.833],
+                        "ticktext": _TICK_TEXT_LAT \
                             if ttype == "pdr-lat" else _TICK_TEXT_TPUT,
-                        u"ticks": u"",
-                        u"ticklen": 0,
-                        u"tickangle": -90,
-                        u"thickness": 10
+                        "ticks": "",
+                        "ticklen": 0,
+                        "tickangle": -90,
+                        "thickness": 10
                     }
                 }
             )
@@ -429,7 +429,7 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             yaxis.append(item.value_iterated_to)
             hovertext.append(
                 f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
-                f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
                 f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
                 f"Latency: {item.value_iterated_to}uSec"
             )
@@ -438,7 +438,7 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             yaxis.append(item.value_iterated_to)
             hovertext.append(
                 f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
-                f"Direction: {(u'W-E', u'E-W')[idx % 2]}<br>"
+                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
                 f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
                 f"Latency: {item.value_iterated_to}uSec"
             )
@@ -450,16 +450,16 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
                 x=xaxis,
                 y=yaxis,
                 name=_GRAPH_LAT_HDRH_DESC[lat_name],
-                mode=u"lines",
+                mode="lines",
                 legendgroup=_GRAPH_LAT_HDRH_DESC[lat_name],
                 showlegend=bool(idx % 2),
                 line=dict(
                     color=_get_color(int(idx/2)),
-                    dash=u"solid",
+                    dash="solid",
                     width=1 if idx % 2 else 2
                 ),
                 hovertext=hovertext,
-                hoverinfo=u"text"
+                hoverinfo="text"
             )
         )
     if traces:
