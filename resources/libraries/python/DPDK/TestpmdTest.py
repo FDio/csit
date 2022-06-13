@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -74,7 +74,7 @@ class TestpmdTest:
                 pmd_rxq=queue_nums,
                 pmd_txq=queue_nums,
                 pmd_nb_cores=nb_cores,
-                pmd_disable_link_check=True,
+                pmd_disable_link_check=False,
                 pmd_auto_start=True,
                 pmd_numa=True
             )
