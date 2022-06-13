@@ -301,6 +301,7 @@ function dpdk_testpmd () {
         echo "Checking if testpmd is alive, attempt nr ${attempt}"
          if fgrep "Press enter to exit" screenlog.0; then
              cat screenlog.0
+             dpdk_testpmd_pid()
              exit 0
         fi
         sleep 1
@@ -308,4 +309,13 @@ function dpdk_testpmd () {
     cat screenlog.0
 
     exit 1
+}
+
+function dpdk_testpmd_pid () {
+  testpmd_pid="$(pidof dpdk-testpmd)"
+  if [ ! -z "${testpmd_pid}" ]; then
+    echo "Testpmd process ID: ${testpmd_pid}"
+  else
+    echo "Testpmd not running!"
+  fi
 }
