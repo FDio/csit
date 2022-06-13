@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -299,13 +299,25 @@ function dpdk_testpmd () {
 
     for attempt in {1..60}; do
         echo "Checking if testpmd is alive, attempt nr ${attempt}"
-         if fgrep "Press enter to exit" screenlog.0; then
-             cat screenlog.0
-             exit 0
+	if fgrep "Press enter to exit" screenlog.0 && \
+            fgrep "Port 0: link state change event" screenlog.0 && \
+            fgrep "Port 1: link state change event" screenlog.0; then
+            cat screenlog.0
+            dpdk_testpmd_pid
+            exit 0
         fi
         sleep 1
     done
     cat screenlog.0
 
     exit 1
+}
+
+function dpdk_testpmd_pid () {
+    testpmd_pid="$(pidof dpdk-testpmd)"
+    if [ ! -z "${testpmd_pid}" ]; then
+        echo "Testpmd process ID: ${testpmd_pid}"
+    else
+        echo "Testpmd not running!"
+    fi
 }
