@@ -178,9 +178,8 @@ def simple_burst(
                 # Disable latency if NIC does not support requested stream type
                 print(u"##### FAILED to add latency streams #####")
                 latency = False
-        ports = [port_0]
-        if traffic_directions > 1:
-            ports.append(port_1)
+        # Even for unidir, both ports are needed to see both rx and tx.
+        ports = [port_0, port_1]
 
         # Clear the stats before injecting:
         client.clear_stats()
@@ -189,7 +188,7 @@ def simple_burst(
 
         # Choose rate and start traffic:
         client.start(
-            ports=ports,
+            ports=ports[:traffic_directions],
             mult=rate,
             duration=duration,
             force=force,
@@ -200,9 +199,8 @@ def simple_burst(
             # For async stop, we need to export the current snapshot.
             xsnap0 = client.ports[0].get_xstats().reference_stats
             print(f"Xstats snapshot 0: {xsnap0!r}")
-            if traffic_directions > 1:
-                xsnap1 = client.ports[1].get_xstats().reference_stats
-                print(f"Xstats snapshot 1: {xsnap1!r}")
+            xsnap1 = client.ports[1].get_xstats().reference_stats
+            print(f"Xstats snapshot 1: {xsnap1!r}")
         else:
             time_start = time.monotonic()
             # wait_on_traffic fails if duration stretches by 30 seconds or more.
@@ -223,8 +221,7 @@ def simple_burst(
             print(json.dumps(stats, indent=4, separators=(u",", u": ")))
 
             lost_a = stats[port_0][u"opackets"] - stats[port_1][u"ipackets"]
-            if traffic_directions > 1:
-                lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
+            lost_b = stats[port_1][u"opackets"] - stats[port_0][u"ipackets"]
 
             # Stats index is not a port number, but "pgid".
             if latency:
@@ -232,22 +229,18 @@ def simple_burst(
                 lat_a = fmt_latency(
                     str(lat_obj[u"total_min"]), str(lat_obj[u"average"]),
                     str(lat_obj[u"total_max"]), str(lat_obj[u"hdrh"]))
+                # Do not bother with the other dir latency if unidir.
                 if traffic_directions > 1:
                     lat_obj = stats[u"latency"][1][u"latency"]
                     lat_b = fmt_latency(
                         str(lat_obj[u"total_min"]), str(lat_obj[u"average"]),
                         str(lat_obj[u"total_max"]), str(lat_obj[u"hdrh"]))
 
-            if traffic_directions > 1:
-                total_sent = stats[0][u"opackets"] + stats[1][u"opackets"]
-                total_rcvd = stats[0][u"ipackets"] + stats[1][u"ipackets"]
-            else:
-                total_sent = stats[port_0][u"opackets"]
-                total_rcvd = stats[port_1][u"ipackets"]
+            total_sent = stats[0][u"opackets"] + stats[1][u"opackets"]
+            total_rcvd = stats[0][u"ipackets"] + stats[1][u"ipackets"]
 
             print(f"\npackets lost from {port_0} --> {port_1}: {lost_a} pkts")
-            if traffic_directions > 1:
-                print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
+            print(f"packets lost from {port_1} --> {port_0}: {lost_b} pkts")
 
     except STLError:
         print(u"T-Rex STL runtime error!", file=sys.stderr)
