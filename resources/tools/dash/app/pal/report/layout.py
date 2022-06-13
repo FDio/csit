@@ -660,7 +660,7 @@ class Layout:
                             id="cl-selected",
                             options=[],
                             inline=False,
-                            style={"max-height": "12em"},
+                            style={"max-height": "20em"},
                         )
                     ],
                 ),
@@ -1382,6 +1382,10 @@ class Layout:
         # def _show_metadata_from_graphs(graph_data: dict) -> tuple:
         #     """
         #     """
+
+        #     if not any(graph_data):
+        #         raise PreventUpdate
+
         #     try:
         #         trigger_id = loads(
         #             callback_context.triggered[0]["prop_id"].split(".")[0]

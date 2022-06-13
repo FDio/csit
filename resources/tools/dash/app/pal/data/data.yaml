@@ -152,42 +152,42 @@ iterative-ndrpdr:
     # - result_ndr_lower_bandwidth_unit
     # - result_ndr_lower_bandwidth_value
     # - result_latency_reverse_pdr_90_avg
-    - result_latency_reverse_pdr_90_hdrh
+    ## - result_latency_reverse_pdr_90_hdrh
     # - result_latency_reverse_pdr_90_max
     # - result_latency_reverse_pdr_90_min
     # - result_latency_reverse_pdr_90_unit
     # - result_latency_reverse_pdr_50_avg
-    - result_latency_reverse_pdr_50_hdrh
+    ## - result_latency_reverse_pdr_50_hdrh
     # - result_latency_reverse_pdr_50_max
     # - result_latency_reverse_pdr_50_min
     # - result_latency_reverse_pdr_50_unit
     # - result_latency_reverse_pdr_10_avg
-    - result_latency_reverse_pdr_10_hdrh
+    ## - result_latency_reverse_pdr_10_hdrh
     # - result_latency_reverse_pdr_10_max
     # - result_latency_reverse_pdr_10_min
     # - result_latency_reverse_pdr_10_unit
     # - result_latency_reverse_pdr_0_avg
-    - result_latency_reverse_pdr_0_hdrh
+    ## - result_latency_reverse_pdr_0_hdrh
     # - result_latency_reverse_pdr_0_max
     # - result_latency_reverse_pdr_0_min
     # - result_latency_reverse_pdr_0_unit
     # - result_latency_forward_pdr_90_avg
-    - result_latency_forward_pdr_90_hdrh
+    ## - result_latency_forward_pdr_90_hdrh
     # - result_latency_forward_pdr_90_max
     # - result_latency_forward_pdr_90_min
     # - result_latency_forward_pdr_90_unit
     - result_latency_forward_pdr_50_avg
-    - result_latency_forward_pdr_50_hdrh
+    ## - result_latency_forward_pdr_50_hdrh
     # - result_latency_forward_pdr_50_max
     # - result_latency_forward_pdr_50_min
     - result_latency_forward_pdr_50_unit
     # - result_latency_forward_pdr_10_avg
-    - result_latency_forward_pdr_10_hdrh
+    ## - result_latency_forward_pdr_10_hdrh
     # - result_latency_forward_pdr_10_max
     # - result_latency_forward_pdr_10_min
     # - result_latency_forward_pdr_10_unit
     # - result_latency_forward_pdr_0_avg
-    - result_latency_forward_pdr_0_hdrh
+    ## - result_latency_forward_pdr_0_hdrh
     # - result_latency_forward_pdr_0_max
     # - result_latency_forward_pdr_0_min
     # - result_latency_forward_pdr_0_unit
