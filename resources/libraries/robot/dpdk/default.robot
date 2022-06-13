@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,7 +15,9 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.DPDK.TestpmdTest
+| Library | resources.libraries.python.DPDK.TestpmdCheck
 | Library | resources.libraries.python.DPDK.L3fwdTest
+| Library | resources.libraries.python.DPDK.L3fwdCheck
 | Library | Collections
 
 *** Keywords ***
@@ -50,6 +52,9 @@
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf1}[0] | ${${dut}_pf2}[0]
 | | | ... | ${cpu_dp} | ${dp_count_int} | ${rxq_count_int} | ${jumbo_frames}
 | | | ... | ${nic_rxq_size} | ${nic_txq_size}
+| | FOR | ${dut} | IN | @{duts}
+| | | Check testpmd
+| | | ... | ${nodes['${dut}']}
 | | END
 
 | Start l3fwd on all DUTs
@@ -82,4 +87,7 @@
 | | | Start l3fwd
 | | | ... | ${nodes} | ${nodes['${dut}']} | ${${dut}_pf1}[0] | ${${dut}_pf2}[0]
 | | | ... | ${cpu_dp} | ${dp_count_int} | ${rxq_count_int} | ${jumbo_frames}
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keywoard If | not Check l3fwd | Start l3fwd
+| | | ... | ${nodes['${dut}']}
 | | END
