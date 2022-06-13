@@ -16,6 +16,23 @@
       "message": "csit-3n-alt-perftest mrrANDnic_intel-xl710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm",
       "revId": "08018007b69db4fa6a1fb70d130bf6b75052c527",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72a6ad47_c5f6329b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-13T13:37:05Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-alt/14/ : SUCCESS\n\nNow we have some statistics.\nBefore this (but after 36424): 2 out of 4 runs have bad ~0.8 Mpps MRR performance (#3 and #7).\nAfter this: All 10 runs have good ~3.4 Mpps MRR performance.",
+      "revId": "08018007b69db4fa6a1fb70d130bf6b75052c527",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
