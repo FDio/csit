@@ -1,0 +1,7 @@
+Verified+1: fd.io JJB <jobbuilder@projectrotterdam.info>
+Code-Review+2: Tibor Frank <tifrank@cisco.com>
+Submitted-by: Tibor Frank <tifrank@cisco.com>
+Submitted-at: Mon, 13 Jun 2022 05:59:39 +0000
+Reviewed-on: https://gerrit.fd.io/r/c/csit/+/36401
+Project: csit
+Branch: refs/heads/rls2206
