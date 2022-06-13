@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3c6a1b9_28416d12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-13T10:36:42Z",
+      "side": 1,
+      "message": "The behavior may have changed after the following merge, going to rebase this and retest.\n36424: feat(dpdk): Bump the version within VM | https://gerrit.fd.io/r/c/csit/+/36424",
+      "revId": "3efc1a0e279e1a9d1e330958c491966aa0b4b952",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
