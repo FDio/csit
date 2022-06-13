@@ -16,6 +16,23 @@
       "message": "csit-2n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4ipsec40tnlsw-1atnl-ip4base-int-aes256gcm-udir nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4udp-ip4base-h1024-p63-s64512-cps",
       "revId": "836497be716225bef84a946366d64dbd24d6037d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5ba2245_0acda21d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-13T09:16:04Z",
+      "side": 1,
+      "message": "Verify run shows errors.",
+      "revId": "836497be716225bef84a946366d64dbd24d6037d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
