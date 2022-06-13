@@ -16,6 +16,23 @@
       "message": "Comparison base for https://gerrit.fd.io/r/c/csit/+/35772\n\ncsit-3n-alt-perftest mrrANDnic_intel-xl710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm",
       "revId": "7e88ea8b9a31713be65587672f4fe22bccb5f386",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efc3a8d3_d278b098",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-13T12:07:24Z",
+      "side": 1,
+      "message": "Comparison base for 36425: fix(stl_traffic): track both ports on unidir | https://gerrit.fd.io/r/c/csit/+/36425\n\ncsit-2n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4ipsec40tnlsw-1atnl-ip4base-int-aes256gcm-udir",
+      "revId": "7e88ea8b9a31713be65587672f4fe22bccb5f386",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
