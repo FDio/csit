@@ -16,6 +16,23 @@
       "message": "csit-2n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4ipsec40tnlsw-1atnl-ip4base-int-aes256gcm-udir nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4udp-ip4base-h1024-p63-s64512-cpsNOTsoak",
       "revId": "543c2a6f045db14bc60052b50f7e7d053d5f7994",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e9b4a27_ea5bef38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-13T13:04:06Z",
+      "side": 1,
+      "message": "Finally this seems to work, but going to verify also other combinations.\n\ncsit-3n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4ipsec40tnlsw-1atnl-ip4base-int-aes256gcm ndrpdrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4ipsec40tnlsw-ip4base-int-aes256gcm ndrpdrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4-loadbalancer-maglev",
+      "revId": "543c2a6f045db14bc60052b50f7e7d053d5f7994",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
