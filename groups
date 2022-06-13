@@ -1,6 +1,6 @@
-# UUID                                                               	Group Name
+# UUID                                  	Group Name
 #
-0cf23ff5f02892ef250503ffd52a6d7958bf073d                             	Non-Interactive Users
-1b0d08159b442fd162f25583dd2ec2868f8a6531                             	GitHub Replication
-5f1d5b090e9673e9b0a9001993eb14a05e6b69ac                             	saml/fdio-gerrit-csit-committers
-global:Registered-Users                                              	Registered Users
+0cf23ff5f02892ef250503ffd52a6d7958bf073d	Service Users
+1b0d08159b442fd162f25583dd2ec2868f8a6531	GitHub Replication
+5f1d5b090e9673e9b0a9001993eb14a05e6b69ac	saml/fdio-gerrit-csit-committers
+global:Registered-Users                 	Registered Users
