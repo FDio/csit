@@ -33,6 +33,24 @@
       "message": "csit-3n-icx-perftest nic_intel-e810xxvANDip4fwdANDaes_256_gcmAND64bANDtnl_1000ANDipsecswANDdrv_vfio_pciANDndrpdr",
       "revId": "f4889cc15a838820fdf4de01bb3a3d780b8db9c7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c987261d_ce909733",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-14T02:59:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a49fef9_496cf995",
+      "revId": "f4889cc15a838820fdf4de01bb3a3d780b8db9c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
