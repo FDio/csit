@@ -23,10 +23,8 @@ from dash import dcc
 from dash import html
 from dash import callback_context, no_update, ALL
 from dash import Input, Output, State
-from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
 from copy import deepcopy
-from json import loads, JSONDecodeError
 from ast import literal_eval
 
 from ..data.data import Data
@@ -1371,81 +1369,6 @@ class Layout:
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
-
-        # @app.callback(
-        #     Output("metadata-tput-lat", "children"),
-        #     Output("metadata-hdrh-graph", "children"),
-        #     Output("offcanvas-metadata", "is_open"),
-        #     Input({"type": "graph", "index": ALL}, "clickData"),
-        #     prevent_initial_call=True
-        # )
-        # def _show_metadata_from_graphs(graph_data: dict) -> tuple:
-        #     """
-        #     """
-
-        #     if not any(graph_data):
-        #         raise PreventUpdate
-
-        #     try:
-        #         trigger_id = loads(
-        #             callback_context.triggered[0]["prop_id"].split(".")[0]
-        #         )["index"]
-        #         idx = 0 if trigger_id == "tput" else 1
-        #         graph_data = graph_data[idx]["points"][0]
-        #     except (JSONDecodeError, IndexError, KeyError, ValueError,
-        #             TypeError):
-        #         raise PreventUpdate
-
-        #     metadata = no_update
-        #     graph = list()
-
-        #     children = [
-        #         dbc.ListGroupItem(
-        #             [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
-        #         ) for x in graph_data.get("text", "").split("<br>")
-        #     ]
-        #     if trigger_id == "tput":
-        #         title = "Throughput"
-        #     elif trigger_id == "lat":
-        #         title = "Latency"
-        #         hdrh_data = graph_data.get("customdata", None)
-        #         if hdrh_data:
-        #             graph = [dbc.Card(
-        #                 class_name="gy-2 p-0",
-        #                 children=[
-        #                     dbc.CardHeader(hdrh_data.pop("name")),
-        #                     dbc.CardBody(children=[
-        #                         dcc.Graph(
-        #                             id="hdrh-latency-graph",
-        #                             figure=graph_hdrh_latency(
-        #                                 hdrh_data, self.layout
-        #                             )
-        #                         )
-        #                     ])
-        #                 ])
-        #             ]
-        #     metadata = [
-        #         dbc.Card(
-        #             class_name="gy-2 p-0",
-        #             children=[
-        #                 dbc.CardHeader(children=[
-        #                     dcc.Clipboard(
-        #                         target_id="tput-lat-metadata",
-        #                         title="Copy",
-        #                         style={"display": "inline-block"}
-        #                     ),
-        #                     title
-        #                 ]),
-        #                 dbc.CardBody(
-        #                     id="tput-lat-metadata",
-        #                     class_name="p-0",
-        #                     children=[dbc.ListGroup(children, flush=True), ]
-        #                 )
-        #             ]
-        #         )
-        #     ]
-
-        #     return metadata, graph, True
 
         # @app.callback(
         #     Output("download-data", "data"),

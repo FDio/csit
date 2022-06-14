@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Instantiate the Trending Dash applocation.
+"""Instantiate the Statistics Dash applocation.
 """
 import dash
 import dash_bootstrap_components as dbc
@@ -19,7 +19,7 @@ import dash_bootstrap_components as dbc
 from .layout import Layout
 
 
-def init_trending(server, time_period=None):
+def init_news(server):
     """Create a Plotly Dash dashboard.
 
     :param server: Flask server.
@@ -30,17 +30,15 @@ def init_trending(server, time_period=None):
 
     dash_app = dash.Dash(
         server=server,
-        routes_pathname_prefix=u"/trending/",
+        routes_pathname_prefix=u"/news/",
         external_stylesheets=[dbc.themes.LUX],
     )
 
     layout = Layout(
         app=dash_app,
-        html_layout_file="pal/templates/trending_layout.jinja2",
-        graph_layout_file="pal/trending/layout.yaml",
+        html_layout_file="pal/templates/news_layout.jinja2",
         data_spec_file="pal/data/data.yaml",
         tooltip_file="pal/data/tooltips.yaml",
-        time_period=time_period
     )
     dash_app.index_string = layout.html_layout
     dash_app.layout = layout.add_content()

@@ -34,7 +34,6 @@ def init_stats(server, time_period=None):
         external_stylesheets=[dbc.themes.LUX],
     )
 
-    # Custom HTML layout
     layout = Layout(
         app=dash_app,
         html_layout_file="pal/templates/stats_layout.jinja2",
