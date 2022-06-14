@@ -46,4 +46,3 @@ class Constants:
 
     # Could not detach BPF events
     err_linux_detach = 52
-

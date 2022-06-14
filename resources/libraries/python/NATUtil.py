@@ -63,9 +63,8 @@ class NATUtil:
 
     @staticmethod
     def enable_nat44_ed_plugin(
-        node, inside_vrf=0, outside_vrf=0, sessions=0, session_memory=0,
-        mode=u""
-    ):
+            node, inside_vrf=0, outside_vrf=0, sessions=0, session_memory=0,
+            mode=u""):
         """Enable NAT44 plugin.
 
         :param node: DUT node.

@@ -111,7 +111,7 @@ class BundleBpf:
                     if item[u"labels"][u"name"] == u"python3":
                         continue
                     if len(str(item[u'labels'][u'cpu'])) > max_len["cpu"]:
-                        max_len["cpu"]= len(str(item[u'labels'][u'cpu']))
+                        max_len["cpu"] = len(str(item[u'labels'][u'cpu']))
                     if len(str(item[u'labels'][u'pid'])) > max_len[u"pid"]:
                         max_len[u"pid"] = len(str(item[u'labels'][u'pid']))
                     if len(str(item[u'labels'][u'name'])) > max_len[u"name"]:
@@ -125,23 +125,23 @@ class BundleBpf:
         item_list = sorted(item_list, key=lambda x: x['labels']['cpu'])
         item_list = sorted(item_list, key=lambda x: x['name'])
 
-        for it in item_list:
-            if table_name != it[u"name"]:
-                table_name = it[u"name"]
+        for itl in item_list:
+            if table_name != itl[u"name"]:
+                table_name = itl[u"name"]
                 text += f"\n==={table_name}===\n" \
                         f"cpu {u' ' * (max_len[u'cpu'] - 3)} " \
                         f"pid {u' ' * (max_len[u'pid'] - 3)} " \
                         f"name {u' ' * (max_len[u'name'] - 4)} " \
                         f"value {u' ' * (max_len[u'value'] - 5)}\n"
             text += (
-                f"""{str(it[u'labels'][u'cpu']) + u' ' * 
-                     (max_len[u"cpu"] - len(str(it[u'labels'][u'cpu'])))}  """
-                f"""{str(it[u'labels'][u'pid']) + u' ' * 
-                     (max_len[u"pid"] - len(str(it[u'labels'][u'pid'])))}  """
-                f"""{str(it[u'labels'][u'name']) + u' ' * 
-                     (max_len[u"name"] - len(str(it[u'labels'][u'name'])))}  """
-                f"""{str(it[u'value']) + u' ' * 
-                     (max_len[u"value"] - len(str(it[u'value'])))}\n""")
+                f"""{str(itl[u'labels'][u'cpu']) + u' ' *
+                     (max_len[u"cpu"] - len(str(itl[u'labels'][u'cpu'])))} """
+                f"""{str(itl[u'labels'][u'pid']) + u' ' *
+                     (max_len[u"pid"] - len(str(itl[u'labels'][u'pid'])))} """
+                f"""{str(itl[u'labels'][u'name']) + u' ' *
+                     (max_len[u"name"] - len(str(itl[u'labels'][u'name'])))} """
+                f"""{str(itl[u'value']) + u' ' *
+                     (max_len[u"value"] - len(str(itl[u'value'])))}\n""")
         getLogger(u"console_stdout").info(text)
 
     def process_data(self):
