@@ -263,8 +263,8 @@ class BundleVpp:
         for command in zip(self.api_command_list, self.api_replies_list):
             self_fn = command[0][u"api_args"][u"cmd"].replace(u" ", u"_")
             self_method_list = [meth for meth in dir(self)
-                           if callable(getattr(self, meth)) and
-                           meth.startswith('__') is False]
+                                if callable(getattr(self, meth)) and
+                                meth.startswith('__') is False]
             if self_fn not in self_method_list:
                 continue
             try:
@@ -272,9 +272,9 @@ class BundleVpp:
                 self_fn(command[1].reply)
             except AttributeError:
                 pass
-            except (KeyError, ValueError, TypeError) as e:
+            except (KeyError, ValueError, TypeError) as exc:
                 getLogger("console_stderr").error(
-                    f"Failed when processing data. Error message {e}"
+                    f"Failed when processing data. Error message {exc}"
                 )
                 sys.exit(Constants.err_telemetry_process)
 
