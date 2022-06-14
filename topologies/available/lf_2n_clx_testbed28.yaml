@@ -143,7 +143,7 @@ nodes:
         pci_address: "0000:18:00.2"
         ip4_address: "172.16.30.1"
         driver: i40e
-        link: link3
+        link: link4
         model: Intel-X710
       port4:
         # s35-t28-sut1-c2/p4 - 10GE port4 on Intel NIC x710 4p10GE.
@@ -151,7 +151,7 @@ nodes:
         pci_address: "0000:18:00.3"
         ip4_address: "172.16.40.1"
         driver: i40e
-        link: link4
+        link: link3
         model: Intel-X710
       port5:
         # s35-t28-sut1-c2/p1 - 25GE port1 on Intel NIC xxv710 2p25GE.
