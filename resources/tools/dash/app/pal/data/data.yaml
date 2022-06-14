@@ -26,8 +26,8 @@ trending-mrr:
     - start_time
     - passed
     - test_id
-    - test_name_long
-    - test_name_short
+    # - test_name_long
+    # - test_name_short
     - version
     - result_receive_rate_rate_avg
     - result_receive_rate_rate_stdev
@@ -44,8 +44,8 @@ trending-ndrpdr:
     - start_time
     - passed
     - test_id
-    - test_name_long
-    - test_name_short
+    # - test_name_long
+    # - test_name_short
     - version
     # - result_pdr_upper_rate_unit
     # - result_pdr_upper_rate_value
@@ -114,8 +114,8 @@ iterative-mrr:
     - start_time
     - passed
     - test_id
-    - test_name_long
-    - test_name_short
+    # - test_name_long
+    # - test_name_short
     - version
     - result_receive_rate_rate_avg
     - result_receive_rate_rate_stdev
@@ -132,8 +132,8 @@ iterative-ndrpdr:
     - start_time
     - passed
     - test_id
-    - test_name_long
-    - test_name_short
+    # - test_name_long
+    # - test_name_short
     - version
     # - result_pdr_upper_rate_unit
     # - result_pdr_upper_rate_value

@@ -34,7 +34,6 @@ def init_report(server, releases):
         external_stylesheets=[dbc.themes.LUX],
     )
 
-    # Custom HTML layout
     layout = Layout(
         app=dash_app,
         releases=releases,
