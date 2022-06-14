@@ -178,6 +178,27 @@ class Data:
             )
         )
 
+    def read_news(self, days: int=None) -> tuple:
+        """Read Suite Result Analysis data partition from parquet.
+        """
+        l_mrr = lambda part: True if part["test_type"] == "mrr" else False
+        l_ndrpdr = lambda part: True if part["test_type"] == "ndrpdr" else False
+
+        return (
+            self._create_dataframe_from_parquet(
+                path=self._get_path("statistics-trending"),
+                partition_filter=l_mrr,
+                columns=self._get_columns("statistics-trending"),
+                days=days
+            ),
+            self._create_dataframe_from_parquet(
+                path=self._get_path("statistics-trending"),
+                partition_filter=l_ndrpdr,
+                columns=self._get_columns("statistics-trending"),
+                days=days
+            )
+        )
+
     def read_trending_mrr(self, days: int=None) -> DataFrame:
         """Read MRR data partition from parquet.
         """

@@ -20,12 +20,12 @@ from flask import Flask
 from flask_assets import Environment
 
 
-# Maximal value of TIME_PERIOD in days.
+# Maximal value of TIME_PERIOD for Trending in days.
 # Do not change without a good reason.
 MAX_TIME_PERIOD = 180
 
-# It defines the time period in days from now back to the past from which data
-# is read to dataframes.
+# It defines the time period for Trending in days from now back to the past from
+# which data is read to dataframes.
 # TIME_PERIOD = None means all data (max MAX_TIME_PERIOD days) is read.
 # TIME_PERIOD = MAX_TIME_PERIOD is the default value
 TIME_PERIOD = MAX_TIME_PERIOD  # [days]
@@ -63,14 +63,17 @@ def init_app():
             time_period = TIME_PERIOD
 
         # Import Dash applications.
-        from .stats.stats import init_stats
-        app = init_stats(app, time_period=time_period)
+        from .news.news import init_news
+        app = init_news(app)
 
-        from .trending.trending import init_trending
-        app = init_trending(app, time_period=time_period)
+        # from .stats.stats import init_stats
+        # app = init_stats(app, time_period=time_period)
 
-        from .report.report import init_report
-        app = init_report(app, releases=RELEASES)
+        # from .trending.trending import init_trending
+        # app = init_trending(app, time_period=time_period)
+
+        # from .report.report import init_report
+        # app = init_report(app, releases=RELEASES)
 
     return app
 
