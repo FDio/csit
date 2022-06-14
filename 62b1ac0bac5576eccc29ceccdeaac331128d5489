@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55967305_e0056302",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-14T10:51:12Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest vpp-mrr-00",
+      "revId": "62b1ac0bac5576eccc29ceccdeaac331128d5489",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
