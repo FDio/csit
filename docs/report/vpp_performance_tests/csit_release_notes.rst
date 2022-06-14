@@ -41,7 +41,7 @@ Changes in |csit-release|
 
 #. TEST FRAMEWORK
 
-   - **CSIT test environment** version has been updated to ver. 9, see
+   - **CSIT test environment** version has been updated to ver. 10, see
      :ref:`test_environment_versioning`.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, and

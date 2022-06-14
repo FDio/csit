@@ -111,3 +111,14 @@ Following is the list of CSIT versions to date:
 
   - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
     matrix.
+- Ver. 10 associated with CSIT rls2206 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2206>`_, `Linux
+  <https://s3-docs.fd.io/csit/rls2206/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  `TRex
+  <https://s3-docs.fd.io/csit/rls2206/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2206>`_).
+
+  - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
+    matrix.
+  - Mellanox 556A series firmware upgrade based on DPDK compatibility
+    matrix.
