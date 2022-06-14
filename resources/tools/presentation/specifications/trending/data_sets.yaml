@@ -75,7 +75,7 @@
     csit-trex-perf-ndrpdr-weekly-master-2n-skx:
       - "lastCompletedBuild"
 
-  # 3n-icx
+  # 3n-alt
   plot-performance-trending-vpp-3n-alt:
     csit-vpp-perf-mrr-daily-master-3n-alt:
       start: 2
