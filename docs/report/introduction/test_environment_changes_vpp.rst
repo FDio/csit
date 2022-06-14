@@ -17,8 +17,8 @@ topology types are used:
 - **2-Node Topology**: Consisting of one server acting as SUTs and one
   server as TG both connected in ring topology.
 
-Tested SUT servers are based on a range of processors including Intel
-Intel Xeon Skylake-SP, Intel Xeon Cascade Lake-SP, Arm,
+Tested SUT servers are based on a range of processors including
+Intel Xeon Icelake-SP, Intel Xeon Skylake-SP, Intel Xeon Cascade Lake-SP, Arm,
 Intel Atom. More detailed description is provided in
 :ref:`tested_physical_topologies`. Tested logical topologies are
 described in :ref:`tested_logical_topologies`.
