@@ -1298,7 +1298,7 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-alt"
   data: "plot-performance-trending-vpp-3n-alt"
-  filter: "'MRR' and '1t1c'"
+  filter: "'MRR' and '1T1C'"
   parameters:
     - "name"
     - "parent"
@@ -1312,7 +1312,7 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-alt"
   data: "plot-performance-trending-vpp-3n-alt"
-  filter: "'MRR' and '2t2c'"
+  filter: "'MRR' and '2T2C'"
   parameters:
     - "name"
     - "parent"
@@ -1326,7 +1326,7 @@
   output-file-ext: ".csv"
   output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-alt"
   data: "plot-performance-trending-vpp-3n-alt"
-  filter: "'MRR' and '4t4c'"
+  filter: "'MRR' and '4T4C'"
   parameters:
     - "name"
     - "parent"
