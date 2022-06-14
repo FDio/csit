@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d521197d_800ca0a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-14T10:39:46Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-2n-clx-perftest dpdk-mlr-00",
+      "revId": "094ffe413120c3c05d2dcbbc09ef6ff16e416534",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
