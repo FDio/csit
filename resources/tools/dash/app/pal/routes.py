@@ -18,13 +18,13 @@ from flask import current_app as app
 from flask import render_template
 
 
-@app.route(u"/")
+@app.route("/")
 def home():
     """Landing page.
     """
     return render_template(
-        u"index_layout.jinja2",
-        title=u"FD.io CSIT",
-        description=u"Performance Dashboard",
-        template=u"d-flex h-100 text-center text-white bg-dark"
+        "index_layout.jinja2",
+        title="FD.io CSIT",
+        description="Performance Dashboard",
+        template="d-flex h-100 text-center text-white bg-dark"
     )
