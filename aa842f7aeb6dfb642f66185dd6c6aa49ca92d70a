@@ -68,6 +68,24 @@
       "parentUuid": "65254cde_67c88fe3",
       "revId": "aa842f7aeb6dfb642f66185dd6c6aa49ca92d70a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac8ae96a_4fc4659f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-15T11:59:39Z",
+      "side": 1,
+      "message": "Done, #23 is chained after pylint upgrade, and the output looks much better.",
+      "parentUuid": "f1d626c2_2ae0cadd",
+      "revId": "aa842f7aeb6dfb642f66185dd6c6aa49ca92d70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
