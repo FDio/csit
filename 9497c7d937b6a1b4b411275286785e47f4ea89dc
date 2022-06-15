@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2da5c0c_44099467",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-15T12:00:40Z",
+      "side": 1,
+      "message": "Waiting for pylint upgrade to be merged, as some configuration values may change before that, perhaps requiring some edits here.",
+      "revId": "9497c7d937b6a1b4b411275286785e47f4ea89dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
