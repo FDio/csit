@@ -325,17 +325,17 @@ Name         | Comment
 10.30.50.75  | s65-t37-sut1
 10.30.50.76  | s66-t37-sut2
 10.30.50.77  | s67-t37-tg1
-10.30.50.78  | s68-t38-sut1
-10.30.50.79  | s69-t38-sut2
-10.30.50.80  | s70-t38-tg1
+10.30.50.78  | s78-t38-sut1
+10.30.50.79  | s79-t38-sut2
+10.30.50.80  | s80-t38-tg1
 10.30.50.81  | s71-t212-sut1
 10.30.50.82  | s72-t212-tg1
-10.30.50.83  | s73-t213-sut1
-10.30.50.84  | s74-t213-tg1
-10.30.50.85  | s75-t214-sut1
-10.30.50.86  | s76-t214-tg1
-10.30.50.87  | s77-t215-sut1
-10.30.50.88  | s78-t215-tg1
+10.30.50.83  | s83-t213-sut1
+10.30.50.84  | s84-t213-tg1
+10.30.50.85  | s85-t214-sut1
+10.30.50.86  | s86-t214-tg1
+10.30.50.87  | s87-t215-sut1
+10.30.50.88  | s88-t215-tg1
 10.30.50.89  | s89-t39t310-tg1
 10.30.50.90  | s90-t311t312-tg1
 10.30.50.91  | s58-nomad
@@ -421,17 +421,17 @@ Name         | Comment
 10.30.51.75  | s65-t37-sut1
 10.30.51.76  | s66-t37-sut2
 10.30.51.77  | s67-t37-tg1
-10.30.51.78  | s68-t38-sut1
-10.30.51.79  | s69-t38-sut2
-10.30.51.80  | s70-t38-tg1
+10.30.51.78  | s78-t38-sut1
+10.30.51.79  | s79-t38-sut2
+10.30.51.80  | s80-t38-tg1
 10.30.51.81  | s71-t212-sut1
 10.30.51.82  | s72-t212-tg1
-10.30.51.83  | s73-t213-sut1
-10.30.51.84  | s74-t213-tg1
-10.30.51.85  | s75-t214-sut1
-10.30.51.86  | s76-t214-tg1
-10.30.51.87  | s77-t215-sut1
-10.30.51.88  | s78-t215-tg1
+10.30.51.83  | s83-t213-sut1
+10.30.51.84  | s84-t213-tg1
+10.30.51.85  | s85-t214-sut1
+10.30.51.86  | s86-t214-tg1
+10.30.51.87  | s87-t215-sut1
+10.30.51.88  | s88-t215-tg1
 10.30.51.89  | s89-t39t310-tg1
 10.30.51.90  | s90-t311t312-tg1
 10.30.51.91  | s58-nomad
@@ -1439,94 +1439,94 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s72-t212-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - SUT [Server-Type-F1]:
     - testbedname: testbed213.
-    - hostname: s73-t213-sut1.
+    - hostname: s83-t213-sut1.
     - IPMI IP: 10.30.51.83
     - Host IP: 10.30.50.83
     - portnames:
-        - s73-t213-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s73-t213-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s73-t213-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s73-t213-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s73-t213-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s73-t213-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s73-t213-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s73-t213-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s83-t213-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s83-t213-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s83-t213-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s83-t213-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s83-t213-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s83-t213-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s83-t213-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s83-t213-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - TG [Server-Type-F2]:
     - testbedname: testbed213.
-    - hostname: s74-t213-tg1.
+    - hostname: s84-t213-tg1.
     - IPMI IP: 10.30.51.84
     - Host IP: 10.30.50.84
     - portnames:
-        - s74-t213-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s74-t213-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s74-t213-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s74-t213-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s74-t213-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s74-t213-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s74-t213-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s74-t213-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-        - s74-t213-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s74-t213-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s84-t213-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s84-t213-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s84-t213-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s84-t213-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s84-t213-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s84-t213-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s84-t213-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s84-t213-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s84-t213-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s84-t213-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - SUT [Server-Type-F1]:
     - testbedname: testbed214.
-    - hostname: s75-t214-sut1.
+    - hostname: s85-t214-sut1.
     - IPMI IP: 10.30.51.85
     - Host IP: 10.30.50.85
     - portnames:
-        - s75-t214-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s75-t214-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s75-t214-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s75-t214-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s75-t214-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s75-t214-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s75-t214-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s75-t214-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s85-t214-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s85-t214-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s85-t214-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s85-t214-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s85-t214-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s85-t214-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s85-t214-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s85-t214-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - TG [Server-Type-F2]:
     - testbedname: testbed214.
-    - hostname: s76-t214-tg1.
+    - hostname: s86-t214-tg1.
     - IPMI IP: 10.30.51.86
     - Host IP: 10.30.50.86
     - portnames:
-        - s76-t214-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s76-t214-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s76-t214-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s76-t214-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s76-t214-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s76-t214-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s76-t214-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s76-t214-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-        - s76-t214-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s76-t214-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s86-t214-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s86-t214-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s86-t214-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s86-t214-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s86-t214-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s86-t214-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s86-t214-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s86-t214-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s86-t214-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s86-t214-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - SUT [Server-Type-F1]:
     - testbedname: testbed215.
-    - hostname: s77-t215-sut1.
+    - hostname: s87-t215-sut1.
     - IPMI IP: 10.30.51.87
     - Host IP: 10.30.50.87
     - portnames:
-        - s77-t215-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s77-t215-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s77-t215-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s77-t215-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s77-t215-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s77-t215-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s77-t215-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s77-t215-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s87-t215-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s87-t215-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s87-t215-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s87-t215-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s87-t215-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s87-t215-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s87-t215-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s87-t215-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - TG [Server-Type-F2]:
     - testbedname: testbed215.
-    - hostname: s78-t215-tg1.
+    - hostname: s88-t215-tg1.
     - IPMI IP: 10.30.51.88
     - Host IP: 10.30.50.88
     - portnames:
-        - s78-t215-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s78-t215-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s78-t215-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s78-t215-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s78-t215-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s78-t215-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s78-t215-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s78-t215-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
-        - s78-t215-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s78-t215-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s88-t215-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s88-t215-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s88-t215-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s88-t215-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s88-t215-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s88-t215-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s88-t215-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s88-t215-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s88-t215-tg1-c6/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s88-t215-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 ```
 
 #### 3-Node-Skylake Servers (3n-skx) PROD
@@ -1800,46 +1800,46 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
         - s67-t37-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - ServerF1 [Server-Type-F1]:
     - testbedname: testbed38.
-    - hostname: s68-t38-sut1.
+    - hostname: s78-t38-sut1.
     - IPMI IP: 10.30.50.78
     - Host IP: 10.30.51.78
     - portnames:
-        - s68-t38-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s68-t38-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s68-t38-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s68-t38-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s68-t38-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s68-t38-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s68-t38-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s68-t38-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s78-t38-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s78-t38-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s78-t38-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s78-t38-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s78-t38-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s78-t38-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s78-t38-sut1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s78-t38-sut1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - ServerF1 [Server-Type-F1]:
     - testbedname: testbed38.
-    - hostname: s69-t38-sut2.
+    - hostname: s79-t38-sut2.
     - IPMI IP: 10.30.50.79
     - Host IP: 10.30.51.79
     - portnames:
-        - s69-t38-sut2-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s69-t38-sut2-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s69-t38-sut2-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s69-t38-sut2-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s69-t38-sut2-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s69-t38-sut2-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s69-t38-sut2-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s69-t38-sut2-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s79-t38-sut2-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s79-t38-sut2-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s79-t38-sut2-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s79-t38-sut2-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s79-t38-sut2-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s79-t38-sut2-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s79-t38-sut2-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s79-t38-sut2-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 - ServerF3 [Server-Type-F3]:
     - testbedname: testbed38.
-    - hostname: s70-t38-tg1.
+    - hostname: s80-t38-tg1.
     - IPMI IP: 10.30.50.80
     - Host IP: 10.30.51.80
     - portnames:
-        - s70-t38-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s70-t38-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s70-t38-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
-        - s70-t38-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
-        - s70-t38-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
-        - s70-t38-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
-        - s70-t38-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
-        - s70-t38-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s80-t38-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
+        - s80-t38-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s80-t38-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s80-t38-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s80-t38-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s80-t38-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s80-t38-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s80-t38-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 ```
 
 #### 3-Node-SnowRidge Servers (3n-snr) PROD
@@ -2117,49 +2117,49 @@ Note: Server64 (TG) is shared between testbed34 & testbed36
         - s72-t212-tg1-c6/p2 to s72-t212-tg1-c6/p1.
 - testbed213:
     - ring1 25GE-ports xxv710-DA2-2p25GE on SUT
-        - s74-t213-tg1-c2/p1 to s73-t213-sut1-c2/p1.
-        - s73-t213-sut1-c2/p2 to s74-t213-tg1-c2/p2.
+        - s84-t213-tg1-c2/p1 to s83-t213-sut1-c2/p1.
+        - s83-t213-sut1-c2/p2 to s84-t213-tg1-c2/p2.
     - ring2 25GE-ports e810-XXVDA4-2p25GE on SUT:
-        - s74-t213-tg1-c4/p1 to s73-t213-sut1-c4/p1.
-        - s73-t213-sut1-c4/p2 to s74-t213-tg1-c4/p2.
-        - s74-t213-tg1-c4/p3 to s73-t213-sut1-c4/p3.
-        - s73-t213-sut1-c4/p4 to s74-t213-tg1-c4/p4.
+        - s84-t213-tg1-c4/p1 to s83-t213-sut1-c4/p1.
+        - s83-t213-sut1-c4/p2 to s84-t213-tg1-c4/p2.
+        - s84-t213-tg1-c4/p3 to s83-t213-sut1-c4/p3.
+        - s83-t213-sut1-c4/p4 to s84-t213-tg1-c4/p4.
     - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT:
-        - s74-t213-tg1-c9/p1 to s73-t213-sut1-c9/p1.
-        - s73-t213-sut1-c9/p2 to s74-t213-tg1-c9/p2.
+        - s84-t213-tg1-c9/p1 to s83-t213-sut1-c9/p1.
+        - s83-t213-sut1-c9/p2 to s84-t213-tg1-c9/p2.
     - ring4 100GE-ports e810-2CQDA2-2p100GE on SUT:
-        - s74-t213-tg1-c6/p1 to s74-t213-tg1-c6/p2.
-        - s74-t213-tg1-c6/p2 to s74-t213-tg1-c6/p1.
+        - s84-t213-tg1-c6/p1 to s84-t213-tg1-c6/p2.
+        - s84-t213-tg1-c6/p2 to s84-t213-tg1-c6/p1.
 - testbed214:
     - ring1 25GE-ports xxv710-DA2-2p25GE on SUT
-        - s76-t214-tg1-c2/p1 to s75-t214-sut1-c2/p1.
-        - s75-t214-sut1-c2/p2 to s76-t214-tg1-c2/p2.
+        - s86-t214-tg1-c2/p1 to s85-t214-sut1-c2/p1.
+        - s85-t214-sut1-c2/p2 to s86-t214-tg1-c2/p2.
     - ring2 25GE-ports e810-XXVDA4-2p25GE on SUT:
-        - s76-t214-tg1-c4/p1 to s75-t214-sut1-c4/p1.
-        - s75-t214-sut1-c4/p2 to s76-t214-tg1-c4/p2.
-        - s76-t214-tg1-c4/p3 to s75-t214-sut1-c4/p3.
-        - s75-t214-sut1-c4/p4 to s76-t214-tg1-c4/p4.
+        - s86-t214-tg1-c4/p1 to s85-t214-sut1-c4/p1.
+        - s85-t214-sut1-c4/p2 to s86-t214-tg1-c4/p2.
+        - s86-t214-tg1-c4/p3 to s85-t214-sut1-c4/p3.
+        - s85-t214-sut1-c4/p4 to s86-t214-tg1-c4/p4.
     - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT:
-        - s76-t214-tg1-c9/p1 to s75-t214-sut1-c9/p1.
-        - s75-t214-sut1-c9/p2 to s76-t214-tg1-c9/p2.
+        - s86-t214-tg1-c9/p1 to s85-t214-sut1-c9/p1.
+        - s85-t214-sut1-c9/p2 to s86-t214-tg1-c9/p2.
     - ring4 100GE-ports e810-2CQDA2-2p100GE on SUT:
-        - s76-t214-tg1-c6/p1 to s76-t214-tg1-c6/p2.
-        - s76-t214-tg1-c6/p2 to s76-t214-tg1-c6/p1.
+        - s86-t214-tg1-c6/p1 to s86-t214-tg1-c6/p2.
+        - s86-t214-tg1-c6/p2 to s86-t214-tg1-c6/p1.
 - testbed215:
     - ring1 25GE-ports xxv710-DA2-2p25GE on SUT
-        - s78-t215-tg1-c2/p1 to s77-t215-sut1-c2/p1.
-        - s77-t215-sut1-c2/p2 to s78-t215-tg1-c2/p2.
+        - s88-t215-tg1-c2/p1 to s87-t215-sut1-c2/p1.
+        - s87-t215-sut1-c2/p2 to s88-t215-tg1-c2/p2.
     - ring2 25GE-ports e810-XXVDA4-2p25GE on SUT:
-        - s78-t215-tg1-c4/p1 to s77-t215-sut1-c4/p1.
-        - s77-t215-sut1-c4/p2 to s78-t215-tg1-c4/p2.
-        - s78-t215-tg1-c4/p3 to s77-t215-sut1-c4/p3.
-        - s77-t215-sut1-c4/p4 to s78-t215-tg1-c4/p4.
+        - s88-t215-tg1-c4/p1 to s87-t215-sut1-c4/p1.
+        - s87-t215-sut1-c4/p2 to s88-t215-tg1-c4/p2.
+        - s88-t215-tg1-c4/p3 to s87-t215-sut1-c4/p3.
+        - s87-t215-sut1-c4/p4 to s88-t215-tg1-c4/p4.
     - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT:
-        - s78-t215-tg1-c9/p1 to s77-t215-sut1-c9/p1.
-        - s77-t215-sut1-c9/p2 to s78-t215-tg1-c9/p2.
+        - s88-t215-tg1-c9/p1 to s87-t215-sut1-c9/p1.
+        - s87-t215-sut1-c9/p2 to s88-t215-tg1-c9/p2.
     - ring4 100GE-ports e810-2CQDA2-2p100GE on SUT:
-        - s78-t215-tg1-c6/p1 to s78-t215-tg1-c6/p2.
-        - s78-t215-tg1-c6/p2 to s78-t215-tg1-c6/p1.
+        - s88-t215-tg1-c6/p1 to s88-t215-tg1-c6/p2.
+        - s88-t215-tg1-c6/p2 to s88-t215-tg1-c6/p1.
 ```
 
 #### 3-Node-Skylake Wiring (3n-skx) PROD
@@ -2276,20 +2276,20 @@ To be completed.
         - s66-t37-sut2-c9/p1 to s67-t37-tg1-c9/p2.
 - testbed38:
     - ring1 25GE-ports xxv710-DA2-2p25GE on SUTs:
-        - s70-t38-tg1-c2/p1 to s68-t38-sut1-c2/p1.
-        - s68-t38-sut1-c2/p2 to s69-t38-sut2-c2/p2.
-        - s69-t38-sut2-c2/p1 to s70-t38-tg1-c2/p2.
+        - s80-t38-tg1-c2/p1 to s78-t38-sut1-c2/p1.
+        - s78-t38-sut1-c2/p2 to s79-t38-sut2-c2/p2.
+        - s79-t38-sut2-c2/p1 to s80-t38-tg1-c2/p2.
     - ring2 25GE-ports e810-XXVDA4-4p25GE on SUT:
-        - s70-t38-tg1-c4/p1 to s68-t38-sut1-c4/p1.
-        - s68-t38-sut1-c4/p2 to s69-t38-sut2-c4/p2.
-        - s69-t38-sut2-c4/p1 to s70-t38-tg1-c4/p2.
-        - s70-t38-tg1-c4/p3 to s68-t38-sut1-c4/p3.
-        - s68-t38-sut1-c4/p4 to s69-t38-sut2-c4/p4.
-        - s69-t38-sut2-c4/p3 to s70-t38-tg1-c4/p4.
+        - s80-t38-tg1-c4/p1 to s78-t38-sut1-c4/p1.
+        - s78-t38-sut1-c4/p2 to s79-t38-sut2-c4/p2.
+        - s79-t38-sut2-c4/p1 to s80-t38-tg1-c4/p2.
+        - s80-t38-tg1-c4/p3 to s78-t38-sut1-c4/p3.
+        - s78-t38-sut1-c4/p4 to s79-t38-sut2-c4/p4.
+        - s79-t38-sut2-c4/p3 to s80-t38-tg1-c4/p4.
     - ring3 100GE-ports e810-2CQDA2-2p100GE on SUT
-        - s70-t38-tg1-c9/p1 to s68-t38-sut1-c9/p1.
-        - s68-t38-sut1-c9/p2 to s69-t38-sut2-c9/p2.
-        - s69-t38-sut2-c9/p1 to s70-t38-tg1-c9/p2.
+        - s80-t38-tg1-c9/p1 to s78-t38-sut1-c9/p1.
+        - s78-t38-sut1-c9/p2 to s79-t38-sut2-c9/p2.
+        - s79-t38-sut2-c9/p1 to s80-t38-tg1-c9/p2.
 ```
 
 #### 3-Node-SnowRidge Wiring (3n-snr) PROD
