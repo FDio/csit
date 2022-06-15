@@ -195,8 +195,8 @@
 | | Check NDRPDR interval validity | ${result[1]}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result[0]}
-| | ${pdr} = | Set Variable | ${result[1].measured_low.target_tr}
-| | ${ndr} = | Set Variable | ${result[0].measured_low.target_tr}
+| | ${pdr} = | Set Variable | ${result[1].low_end.intended_load}
+| | ${ndr} = | Set Variable | ${result[0].low_end.intended_load}
 | | # We expect NDR and PDR to have different-looking stats.
 | | Set Test Variable | ${telemetry_rate} | pdr
 | | Set Test Variable | ${telemetry_export} | ${True}
@@ -283,7 +283,7 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Check NDRPDR interval validity | ${result[0]}
-| | Return From Keyword | ${result[0].measured_low.target_tr}
+| | Return From Keyword | ${result[0].low_end.intended_load}
 
 | Measure and show latency at specified rate
 | | [Documentation]
@@ -450,7 +450,8 @@
 | | | ... | ramp_up_rate=${ramp_up_rate}
 | | | # Out of several quantities for aborted traffic (duration stretching),
 | | | # the approximated receive rate is the best estimate we have.
-| | | ${value} = | Set Variable | ${result.approximated_receive_rate}
+| | | ${value} = | Evaluate
+| | | ... | ${result.forwarding_count} / ${result.offered_duration}
 | | | # TODO: Add correct bandwidth computation.
 | | | Append Mrr Value | ${value} | ${export_mrr_unit}
 | | | Append To List | ${results} | ${value}
