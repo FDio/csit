@@ -16,7 +16,7 @@ with open(path.join(here, u"README.rst"), encoding=u"utf-8") as f:
 
 setup(
     name=u"MLRsearch",
-    version=u"0.4.0",  # This is currently the only place listing the version.
+    version=u"1.0.0",  # This is currently the only place listing the version.
     description=u"Library for speeding up binary search using shorter measurements.",
     long_description=long_description,
     long_description_content_type=u"text/x-rst",
@@ -29,12 +29,12 @@ setup(
         u"Intended Audience :: Science/Research",
         u"Intended Audience :: Telecommunications Industry",
         u"License :: OSI Approved :: Apache Software License",
-        u"Programming Language :: Python :: 3.6",
+        u"Programming Language :: Python :: 3.8",
         u"Topic :: System :: Networking"
     ],
     keywords=u"binary search throughput networking",
     packages=find_packages(exclude=[]),
-    python_requires=u"~=3.6",
+    python_requires=u"~=3.8",
     install_requires=[],
     # TODO: Include simulator and tests.
     extras_require={
