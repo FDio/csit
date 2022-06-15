@@ -1,0 +1,9 @@
+Code-Review+1: Maciek Konstantynowicz <mkonstan@cisco.com>
+Code-Review+1: Tibor Frank <tifrank@cisco.com>
+Code-Review+2: Vratko Polak <vrpolak@cisco.com>
+Verified+1: fd.io JJB <jobbuilder@projectrotterdam.info>
+Submitted-by: Vratko Polak <vrpolak@cisco.com>
+Submitted-at: Wed, 15 Jun 2022 15:49:48 +0000
+Reviewed-on: https://gerrit.fd.io/r/c/csit/+/36342
+Project: csit
+Branch: refs/heads/master
