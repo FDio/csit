@@ -24,8 +24,20 @@ from binascii import Error as BinasciiErr
 
 
 def url_encode(params: dict) -> str:
+    """Encode the URL parameters and zip them and create the whole URL using
+    given data.
+
+    :param params: All data necessary to create the URL:
+        - scheme,
+        - network location,
+        - path,
+        - query,
+        - parameters.
+    :type params: dict
+    :returns: Encoded URL.
+    :rtype: str
     """
-    """
+
     url_params = params.get("params", None)
     if url_params:
         encoded_params = urlsafe_b64encode(
@@ -45,8 +57,14 @@ def url_encode(params: dict) -> str:
 
 
 def url_decode(url: str) -> dict:
+    """Parse the given URL and decode the parameters.
+
+    :param url: URL to be parsed and decoded.
+    :type url: str
+    :returns: Paresed URL.
+    :rtype: dict
     """
-    """
+
     try:
         parsed_url = urlparse(url)
     except ValueError as err:
