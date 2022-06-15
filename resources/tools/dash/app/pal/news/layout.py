@@ -31,20 +31,32 @@ from .tables import table_failed
 
 
 class Layout:
-    """
+    """The layout of the dash app and the callbacks.
     """
 
+    # The default job displayed when the page is loaded first time.
     DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
 
-    URL_STYLE = {
-        "background-color": "#d2ebf5",
-        "border-color": "#bce1f1",
-        "color": "#135d7c"
-    }
+    def __init__(self, app: Flask, html_layout_file: str, data_spec_file: str,
+        tooltip_file: str) -> None:
+        """Initialization:
+        - save the input parameters,
+        - read and pre-process the data,
+        - prepare data fro the control panel,
+        - read HTML layout file,
+        - read tooltips from the tooltip file.
 
-    def __init__(self, app: Flask, html_layout_file: str,
-        data_spec_file: str, tooltip_file: str) -> None:
-        """
+        :param app: Flask application running the dash application.
+        :param html_layout_file: Path and name of the file specifying the HTML
+            layout of the dash application.
+        :param data_spec_file: Path and name of the file specifying the data to
+            be read from parquets for this application.
+        :param tooltip_file: Path and name of the yaml file specifying the
+            tooltips.
+        :type app: Flask
+        :type html_layout_file: str
+        :type data_spec_file: str
+        :type tooltip_file: str
         """
 
         # Inputs
@@ -61,6 +73,7 @@ class Layout:
 
         df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
+        # Prepare information for the control panel:
         jobs = sorted(list(df_tst_info["job"].unique()))
         job_info = {
             "job": list(),
@@ -80,6 +93,7 @@ class Layout:
 
         self._default = self._set_job_params(self.DEFAULT_JOB)
 
+        # Pre-process the data:
         tst_info = {
             "job": list(),
             "build": list(),
@@ -118,7 +132,7 @@ class Layout:
         self._data = pd.DataFrame.from_dict(tst_info)
 
         # Read from files:
-        self._html_layout = ""
+        self._html_layout = str()
         self._tooltips = dict()
 
         try:
@@ -157,23 +171,41 @@ class Layout:
         return self._data
 
     @property
-    def default(self) -> any:
+    def default(self) -> dict:
         return self._default
 
     def _get_duts(self) -> list:
-        """
+        """Get the list of DUTs from the pre-processed information about jobs.
+
+        :returns: Alphabeticaly sorted list of DUTs.
+        :rtype: list
         """
         return sorted(list(self.df_job_info["dut"].unique()))
 
     def _get_ttypes(self, dut: str) -> list:
-        """
+        """Get the list of test types from the pre-processed information about
+        jobs.
+
+        :param dut: The DUT for which the list of test types will be populated.
+        :type dut: str
+        :returns: Alphabeticaly sorted list of test types.
+        :rtype: list
         """
         return sorted(list(self.df_job_info.loc[(
             self.df_job_info["dut"] == dut
         )]["ttype"].unique()))
 
     def _get_cadences(self, dut: str, ttype: str) -> list:
-        """
+        """Get the list of cadences from the pre-processed information about
+        jobs.
+
+        :param dut: The DUT for which the list of cadences will be populated.
+        :param ttype: The test type for which the list of cadences will be
+            populated.
+        :type dut: str
+        :type ttype: str
+        :returns: Alphabeticaly sorted list of cadences.
+        :rtype: list
         """
         return sorted(list(self.df_job_info.loc[(
             (self.df_job_info["dut"] == dut) &
@@ -181,7 +213,19 @@ class Layout:
         )]["cadence"].unique()))
 
     def _get_test_beds(self, dut: str, ttype: str, cadence: str) -> list:
-        """
+        """Get the list of test beds from the pre-processed information about
+        jobs.
+
+        :param dut: The DUT for which the list of test beds will be populated.
+        :param ttype: The test type for which the list of test beds will be
+            populated.
+        :param cadence: The cadence for which the list of test beds will be
+            populated.
+        :type dut: str
+        :type ttype: str
+        :type cadence: str
+        :returns: Alphabeticaly sorted list of test beds.
+        :rtype: list
         """
         return sorted(list(self.df_job_info.loc[(
             (self.df_job_info["dut"] == dut) &
@@ -190,9 +234,19 @@ class Layout:
         )]["tbed"].unique()))
 
     def _get_job(self, dut, ttype, cadence, testbed):
-        """Get the name of a job defined by dut, ttype, cadence, testbed.
+        """Get the name of a job defined by dut, ttype, cadence, test bed.
+        Input information comes from the control panel.
 
-        Input information comes from control panel.
+        :param dut: The DUT for which the job name will be created.
+        :param ttype: The test type for which the job name will be created.
+        :param cadence: The cadence for which the job name will be created.
+        :param testbed: The test bed for which the job name will be created.
+        :type dut: str
+        :type ttype: str
+        :type cadence: str
+        :type testbed: str
+        :returns: Job name.
+        :rtype: str
         """
         return self.df_job_info.loc[(
             (self.df_job_info["dut"] == dut) &
@@ -201,9 +255,30 @@ class Layout:
             (self.df_job_info["tbed"] == testbed)
         )]["job"].item()
 
+    @staticmethod
+    def _generate_options(opts: list) -> list:
+        """Return list of options for radio items in control panel. The items in
+        the list are dictionaries with keys "label" and "value".
+
+        :params opts: List of options (str) to be used for the generated list.
+        :type opts: list
+        :returns: List of options (dict).
+        :rtype: list
+        """
+        return [{"label": i, "value": i} for i in opts]
+
     def _set_job_params(self, job: str) -> dict:
+        """Create a dictionary with all options and values for (and from) the
+        given job.
+
+        :params job: The name of job for and from which the dictionary will be
+            created.
+        :type job: str
+        :returns: Dictionary with all options and values for (and from) the
+            given job.
+        :rtype: dict
         """
-        """
+
         lst_job = job.split("-")
         return {
             "job": job,
@@ -221,8 +296,22 @@ class Layout:
 
     def _show_tooltip(self, id: str, title: str,
             clipboard_id: str=None) -> list:
+        """Generate list of elements to display a text (e.g. a title) with a
+        tooltip and optionaly with Copy&Paste icon and the clipboard
+        functionality enabled.
+
+        :param id: Tooltip ID.
+        :param title: A text for which the tooltip will be displayed.
+        :param clipboard_id: If defined, a Copy&Paste icon is displayed and the
+            clipboard functionality is enabled.
+        :type id: str
+        :type title: str
+        :type clipboard_id: str
+        :returns: List of elements to display a text with a tooltip and
+            optionaly with Copy&Paste icon.
+        :rtype: list
         """
-        """
+
         return [
             dcc.Clipboard(target_id=clipboard_id, title="Copy URL") \
                 if clipboard_id else str(),
@@ -243,8 +332,19 @@ class Layout:
         ]
 
     def add_content(self):
+        """Top level method which generated the web page.
+
+        It generates:
+        - Store for user input data,
+        - Navigation bar,
+        - Main area with control panel and ploting area.
+
+        If no HTML layout is provided, an error message is displayed instead.
+
+        :returns: The HTML div with teh whole page.
+        :rtype: html.Div
         """
-        """
+
         if self.html_layout:
             return html.Div(
                 id="div-main",
@@ -282,7 +382,11 @@ class Layout:
 
     def _add_navbar(self):
         """Add nav element with navigation panel. It is placed on the top.
+
+        :returns: Navigation bar.
+        :rtype: dbc.NavbarSimple
         """
+
         return dbc.NavbarSimple(
             id="navbarsimple-main",
             children=[
@@ -303,8 +407,12 @@ class Layout:
         )
 
     def _add_ctrl_col(self) -> dbc.Col:
-        """Add column with controls. It is placed on the left side.
+        """Add column with control panel. It is placed on the left side.
+
+        :returns: Column with the control panel.
+        :rtype: dbc.col
         """
+
         return dbc.Col(
             id="col-controls",
             children=[
@@ -313,8 +421,12 @@ class Layout:
         )
 
     def _add_plotting_col(self) -> dbc.Col:
-        """Add column with plots and tables. It is placed on the right side.
+        """Add column with tables. It is placed on the right side.
+
+        :returns: Column with tables.
+        :rtype: dbc.col
         """
+
         return dbc.Col(
             id="col-plotting-area",
             children=[
@@ -328,7 +440,10 @@ class Layout:
         )
 
     def _add_ctrl_panel(self) -> dbc.Row:
-        """
+        """Add control panel.
+
+        :returns: Control panel.
+        :rtype: dbc.Row
         """
         return dbc.Row(
             id="row-ctrl-panel",
@@ -419,7 +534,13 @@ class Layout:
         )
 
     class ControlPanel:
+        """
+        """
+
         def __init__(self, panel: dict, default: dict) -> None:
+            """
+            """
+
             self._defaults = {
                 "ri-ttypes-options": default["ttypes"],
                 "ri-cadences-options": default["cadences"],
@@ -455,10 +576,6 @@ class Layout:
 
         def values(self) -> list:
             return list(self._panel.values())
-
-    @staticmethod
-    def _generate_options(opts: list) -> list:
-        return [{"label": i, "value": i} for i in opts]
 
     def callbacks(self, app):
 

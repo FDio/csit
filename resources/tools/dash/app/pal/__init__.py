@@ -57,6 +57,7 @@ def init_app():
         assets = Environment()
         assets.init_app(app)
 
+        # Set the time period for Trending
         if TIME_PERIOD is None or TIME_PERIOD > MAX_TIME_PERIOD:
             time_period = MAX_TIME_PERIOD
         else:

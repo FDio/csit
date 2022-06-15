@@ -11,7 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Prepare data for Plotly Dash."""
+"""Prepare data for Plotly Dash applications.
+"""
 
 import logging
 
@@ -27,11 +28,20 @@ from awswrangler.exceptions import EmptyDataFrame, NoFilesFound
 
 
 class Data:
-    """
+    """Gets the data from parquets and stores it for further use by dash
+    applications.
     """
 
     def __init__(self, data_spec_file: str, debug: bool=False) -> None:
-        """
+        """Initialize the Data object.
+
+        :param data_spec_file: Path to file specifying the data to be read from
+            parquets.
+        :param debug: If True, the debuf information is printed to stdout.
+        :type data_spec_file: str
+        :type debug: bool
+        :raises RuntimeError: if it is not possible to open data_spec_file or it
+            is not a valid yaml file.
         """
 
         # Inputs:
@@ -64,6 +74,17 @@ class Data:
         return self._data
 
     def _get_columns(self, parquet: str) -> list:
+        """Get the list of columns from the data specification file to be read
+        from parquets.
+
+        :param parquet: The parquet's name.
+        :type parquet: str
+        :raises RuntimeError: if the parquet is not defined in the data
+            specification file or it does not have any columns specified.
+        :returns: List of columns.
+        :rtype: list
+        """
+
         try:
             return self._data_spec[parquet]["columns"]
         except KeyError as err:
@@ -74,6 +95,17 @@ class Data:
             )
 
     def _get_path(self, parquet: str) -> str:
+        """Get the path from the data specification file to be read from
+        parquets.
+
+        :param parquet: The parquet's name.
+        :type parquet: str
+        :raises RuntimeError: if the parquet is not defined in the data
+            specification file or it does not have the path specified.
+        :returns: Path.
+        :rtype: str
+        """
+
         try:
             return self._data_spec[parquet]["path"]
         except KeyError as err:
@@ -84,9 +116,12 @@ class Data:
             )
 
     def _create_dataframe_from_parquet(self,
-        path, partition_filter=None, columns=None,
-        validate_schema=False, last_modified_begin=None,
-        last_modified_end=None, days=None) -> DataFrame:
+        path, partition_filter=None,
+        columns=None,
+        validate_schema=False,
+        last_modified_begin=None,
+        last_modified_end=None,
+        days=None) -> DataFrame:
         """Read parquet stored in S3 compatible storage and returns Pandas
         Dataframe.
 
@@ -151,8 +186,21 @@ class Data:
         return df
 
     def read_stats(self, days: int=None) -> tuple:
-        """Read Suite Result Analysis data partition from parquet.
+        """Read statistics from parquet.
+
+        It reads from:
+        - Suite Result Analysis (SRA) partition,
+        - NDRPDR trending partition,
+        - MRR trending partition.
+
+        :param days: Number of days back to the past for which the data will be
+            read.
+        :type days: int
+        :returns: tuple of pandas DataFrame-s with data read from specified
+            parquets.
+        :rtype: tuple of pandas DataFrame-s
         """
+
         l_stats = lambda part: True if part["stats_type"] == "sra" else False
         l_mrr = lambda part: True if part["test_type"] == "mrr" else False
         l_ndrpdr = lambda part: True if part["test_type"] == "ndrpdr" else False
@@ -180,7 +228,14 @@ class Data:
 
     def read_trending_mrr(self, days: int=None) -> DataFrame:
         """Read MRR data partition from parquet.
+
+        :param days: Number of days back to the past for which the data will be
+            read.
+        :type days: int
+        :returns: Pandas DataFrame with read data.
+        :rtype: DataFrame
         """
+
         lambda_f = lambda part: True if part["test_type"] == "mrr" else False
 
         return self._create_dataframe_from_parquet(
@@ -192,7 +247,14 @@ class Data:
 
     def read_trending_ndrpdr(self, days: int=None) -> DataFrame:
         """Read NDRPDR data partition from iterative parquet.
+
+        :param days: Number of days back to the past for which the data will be
+            read.
+        :type days: int
+        :returns: Pandas DataFrame with read data.
+        :rtype: DataFrame
         """
+
         lambda_f = lambda part: True if part["test_type"] == "ndrpdr" else False
 
         return self._create_dataframe_from_parquet(
@@ -204,7 +266,13 @@ class Data:
 
     def read_iterative_mrr(self, release: str) -> DataFrame:
         """Read MRR data partition from iterative parquet.
+
+        :param release: The CSIT release from which the data will be read.
+        :type release: str
+        :returns: Pandas DataFrame with read data.
+        :rtype: DataFrame
         """
+
         lambda_f = lambda part: True if part["test_type"] == "mrr" else False
 
         return self._create_dataframe_from_parquet(
@@ -215,7 +283,13 @@ class Data:
 
     def read_iterative_ndrpdr(self, release: str) -> DataFrame:
         """Read NDRPDR data partition from parquet.
+
+        :param release: The CSIT release from which the data will be read.
+        :type release: str
+        :returns: Pandas DataFrame with read data.
+        :rtype: DataFrame
         """
+
         lambda_f = lambda part: True if part["test_type"] == "ndrpdr" else False
 
         return self._create_dataframe_from_parquet(
