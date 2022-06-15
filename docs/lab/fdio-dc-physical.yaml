@@ -54,6 +54,48 @@ yul1:
         serial_number: C7470KK33P50220
         mgmt_ip4: 10.30.51.82
         lom_ip4: 10.30.50.82
+      - unit: 22..25
+        name: s83-t213-sut1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.83
+        lom_ip4: 10.30.50.83
+      - unit: 18..21
+        name: s84-t213-tg1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.84
+        lom_ip4: 10.30.50.84
+      - unit: 14..17
+        name: s85-t214-sut1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.85
+        lom_ip4: 10.30.50.85
+      - unit: 10..13
+        name: s86-t214-tg1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.86
+        lom_ip4: 10.30.50.86
+      - unit: 6..9
+        name: s87-t215-sut1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.87
+        lom_ip4: 10.30.50.87
+      - unit: 2..5
+        name: s88-t215-tg1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.88
+        lom_ip4: 10.30.50.88
     name: yul1-9
     facility_id: 3016.9
     tenant: Linux Foundation
@@ -320,6 +362,27 @@ yul1:
         serial_number: FCH2013V0J2
         mgmt_ip4: 10.30.51.29
         lom_ip4: 10.30.50.29
+      - unit: 31..34
+        name: s78-t38-sut1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.78
+        lom_ip4: 10.30.50.78
+      - unit: 27..30
+        name: s79-t38-sut2
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.79
+        lom_ip4: 10.30.50.79
+      - unit: 23..26
+        name: s80-t38-tg1
+        oper_status: production
+        device_type: SYS-740GP-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.80
+        lom_ip4: 10.30.50.80
       - unit: 19..20
         name: s42-nomad
         oper_status: production
