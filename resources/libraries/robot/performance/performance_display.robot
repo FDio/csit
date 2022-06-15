@@ -33,10 +33,10 @@
 | |
 | | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
 | |
-| | ${lower_bound} = | Set Variable | ${interval.measured_low}
+| | ${lower_bound} = | Set Variable | ${interval.low_end}
 | | ${lower_bound_lr} = | Set Variable | ${lower_bound.loss_ratio}
 | | Return From Keyword If | ${lower_bound_lr} <= ${packet_loss_ratio}
-| | Set Test Variable | \${rate_for_teardown} | ${lower_bound.target_tr}
+| | Set Test Variable | \${rate_for_teardown} | ${lower_bound.intended_load}
 | | ${message}= | Catenate | SEPARATOR=${SPACE}
 | | ... | Minimal rate loss ratio ${lower_bound_lr}
 | | ... | does not reach target ${packet_loss_ratio}.
@@ -87,7 +87,7 @@
 | | [Arguments] | ${result}
 | |
 | | ${ppta} = | Get Packets Per Transaction Aggregated
-| | ${packet_rate} = | Evaluate | ${result.target_tr} * ${ppta}
+| | ${packet_rate} = | Evaluate | ${result.intended_load} * ${ppta}
 | | ${packet_loss} = | Set Variable | ${result.loss_count}
 | | ${time_loss} = | Evaluate | ${packet_loss} / ${packet_rate}
 | | Set Test Message | Packets lost due to reconfig: ${packet_loss}
@@ -125,15 +125,15 @@
 | | [Arguments] | ${result}
 | |
 | | Display single bound | NDR_LOWER
-| | ... | ${result[0].measured_low.target_tr}
-| | ... | ${result[0].measured_low.latency}
+| | ... | ${result[0].low_end.intended_load}
+| | ... | ${result[0].low_end.original_result.latency}
 | | Display single bound | NDR_UPPER
-| | ... | ${result[0].measured_high.target_tr}
+| | ... | ${result[0].high_end.intended_load}
 | | Display single bound | PDR_LOWER
-| | ... | ${result[1].measured_low.target_tr}
-| | ... | ${result[1].measured_low.latency}
+| | ... | ${result[1].low_end.intended_load}
+| | ... | ${result[1].low_end.original_result.latency}
 | | Display single bound | PDR_UPPER
-| | ... | ${result[1].measured_high.target_tr}
+| | ... | ${result[1].high_end.intended_load}
 
 | Display result of soak search
 | | [Documentation]
