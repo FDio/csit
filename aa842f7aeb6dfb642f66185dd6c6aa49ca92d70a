@@ -50,6 +50,24 @@
       "message": "Check output from pylint.",
       "revId": "aa842f7aeb6dfb642f66185dd6c6aa49ca92d70a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1d626c2_2ae0cadd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-15T08:09:54Z",
+      "side": 1,
+      "message": "It seems our old version of pylint does not understand type hints (in combination with multiple line function arguments) nor dataclasses (in combination with properties). I will probably try an upgrade.",
+      "parentUuid": "65254cde_67c88fe3",
+      "revId": "aa842f7aeb6dfb642f66185dd6c6aa49ca92d70a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
