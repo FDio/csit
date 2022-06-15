@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f60bdc00_02c934ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-15T15:50:53Z",
+      "side": 1,
+      "message": "\u003e Patch Set 2 was rebased\n\nGerrit imagined a rebase is needed after parent\u0027s merge.",
+      "revId": "5d412da6bf08a042765eabfea91e9484a8daba11",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
