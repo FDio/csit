@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-2n-skx-perftest vpp-mlr-00",
       "revId": "1417225fcba041d89dcfe1a33b8ca3b443939e51",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "688bbc9a_37bb9cec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-16T10:32:58Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest vpp-mlr-00",
+      "revId": "1417225fcba041d89dcfe1a33b8ca3b443939e51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
