@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bedd24a9_c5b9ef83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-16T11:56:16Z",
+      "side": 1,
+      "message": "\u003e Uploaded patch set 24: New patch set was added with same tree, parent, and commit message as Patch Set 23.\n\nNot intended, just me not being careful enough when chaining methodology.\nStill waiting for pylint (which will probably wait for Ubuntu 22.04).",
+      "revId": "7c15d21d1461f8e1986c0898f33879a05b3d5124",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
