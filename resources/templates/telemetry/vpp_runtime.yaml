@@ -102,7 +102,7 @@ programs:
             - thread_lcore
     code: |
       clear runtime
-      wait {duration}
+      wait 100
       show runtime
   - name: bundle_vpp
     metrics:
