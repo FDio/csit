@@ -33,6 +33,23 @@
       "message": "csit-vpp-report-iter-2n-dnv-perftest vpp-mlr-00\ncsit-vpp-report-iter-3n-dnv-perftest vpp-mlr-00",
       "revId": "3caf09e284435fc57f5c5f252f1e284a747696df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4dcb2d0_83496717",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-16T08:47:38Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-zn2-perftest vpp-mlr-00\ncsit-vpp-report-iter-2n-tx2-perftest vpp-mlr-00\ncsit-vpp-report-iter-3n-icx-perftest vpp-mlr-00\ncsit-vpp-report-iter-3n-skx-perftest vpp-mlr-00\ncsit-vpp-report-iter-3n-tsh-perftest vpp-mlr-00",
+      "revId": "3caf09e284435fc57f5c5f252f1e284a747696df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
