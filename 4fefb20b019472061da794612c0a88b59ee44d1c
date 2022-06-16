@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ebd3c2f_4c6ec19c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-16T08:28:06Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest vsap-00",
+      "revId": "4fefb20b019472061da794612c0a88b59ee44d1c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
