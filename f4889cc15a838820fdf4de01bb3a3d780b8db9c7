@@ -68,6 +68,23 @@
       "message": "Hi Peter, Now FD.io 22.06 rc2 is coming, for flow rss config, we changed to use “PapiSocketExecutor.run_cli_cmd” since full PAPI is not ready in VPP,  please help review again, thanks.",
       "revId": "f4889cc15a838820fdf4de01bb3a3d780b8db9c7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a58ee0e3_30f8bf3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-17T09:15:27Z",
+      "side": 1,
+      "message": "Please do not forget to follow-up on a full PAPI coverage and also to include tests in a lists",
+      "revId": "f4889cc15a838820fdf4de01bb3a3d780b8db9c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
