@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8af82cff_287541ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-17T11:53:35Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest reconf-00\ncsit-vpp-report-iter-2n-skx-perftest reconf-00",
+      "revId": "8866f1deee0d923351717edcbd7af9f738059522",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
