@@ -18,6 +18,7 @@ from logging import getLogger
 from re import fullmatch, sub
 import struct
 import sys
+import time
 
 from vpp_papi.vpp_papi import VPPApiClient as vpp_class
 from .constants import Constants
@@ -236,8 +237,16 @@ class BundleVpp:
         for command in self.api_command_list:
             try:
                 papi_fn = getattr(self.obj.api, command[u"api_name"])
-                getLogger(__name__).info(command[u"api_args"][u"cmd"])
-                replies = papi_fn(**command[u"api_args"])
+                cmd = command[u"api_args"][u"cmd"]
+                if cmd.startswith(u"wait "):
+                    # Workaround needed, as VPP currently stops workers on wait.
+                    # Remove this workaround after two releases of fixed VPP.
+                    to_wait = float(cmd[5:])
+                    time.sleep(to_wait)
+                    replies = f"Slept {to_wait} seconds."
+                else:
+                    getLogger(__name__).info(command[u"api_args"][u"cmd"])
+                    replies = papi_fn(**command[u"api_args"])
             except (AssertionError, AttributeError, IOError, struct.error):
                 getLogger("console_stderr").error(
                     f"Failed when executing command: "
