@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "955d315f_29352815",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-17T11:48:40Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest nfv-density-mlr-00\ncsit-vpp-report-iter-2n-skx-perftest nfv-density-mlr-00",
+      "revId": "58c4958ccdb362b617226d90f133208c963d0317",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
