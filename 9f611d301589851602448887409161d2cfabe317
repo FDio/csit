@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98b56098_2804d2ae",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-20T09:57:49Z",
+      "side": 1,
+      "message": "The points listed in this section are impossible to follow without a basic understanding of what MLRsearch is, including the initial phase and the intermediate phases. Suggest an overview section is added, describing high-level workings of MLRsearch per current implementation in CSIT code.\nSomething similar to section 9 in the draft: \nhttps://datatracker.ietf.org/doc/html/draft-ietf-bmwg-mlrsearch-02#section-9\n\nThen this section can go into the algorithm highlights.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 20
+      },
+      "revId": "9f611d301589851602448887409161d2cfabe317",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12aeee69_8a4f2761",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.rst",
         "patchSetId": 2
