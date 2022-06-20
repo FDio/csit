@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d7202a_c74a0ebf",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-20T09:13:06Z",
+      "side": 1,
+      "message": "Check the length of lines.",
+      "revId": "9f611d301589851602448887409161d2cfabe317",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12aeee69_8a4f2761",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-20T09:13:06Z",
+      "side": 1,
+      "message": "Can you add a little bit more details?",
+      "range": {
+        "startLine": 64,
+        "startChar": 50,
+        "endLine": 64,
+        "endChar": 77
+      },
+      "revId": "9f611d301589851602448887409161d2cfabe317",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7a14e54_b1c4b468",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-20T09:13:06Z",
+      "side": 1,
+      "message": "On which condition(s)?",
+      "range": {
+        "startLine": 66,
+        "startChar": 35,
+        "endLine": 66,
+        "endChar": 46
+      },
+      "revId": "9f611d301589851602448887409161d2cfabe317",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4961ccd_6fd471ac",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mlrsearch_tests.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-20T09:13:06Z",
+      "side": 1,
+      "message": "What do you mean by \"external search\"?",
+      "range": {
+        "startLine": 76,
+        "startChar": 52,
+        "endLine": 76,
+        "endChar": 67
+      },
+      "revId": "9f611d301589851602448887409161d2cfabe317",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
