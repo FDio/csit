@@ -23,7 +23,7 @@
 | ... | ethip4-ip4base-l3fwd
 |
 | Suite Setup | Setup suite topology interfaces | performance | dpdk
-| Suite Teardown | Tear down suite | performance | dpdk
+| Suite Teardown | Tear down suite | performance
 | Test Setup | Start Test Export
 | Test Teardown | Finalize Test Export
 |
