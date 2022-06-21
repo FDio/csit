@@ -80,6 +80,30 @@ class DPDKTools:
             exec_cmd_no_error(node, command, timeout=1200, message=message)
 
     @staticmethod
+    def bring_interfaces_down(node, if1, if2):
+        """
+        Bring down the interfaces on the DUT node.
+
+        :param node: Will bring down the interfaces on this node.
+        :param if1: DUT first interface name.
+        :param if2: DUT second interface name.
+        :type node: dict
+        :type if1: str
+        :type if2: str
+        :raises RuntimeError: If it fails to bring down the interfaces.
+        """
+        if node[u"type"] == NodeType.DUT:
+            if_pci0_name = Topology.get_interface_name(node, if1)
+            if_pci1_name = Topology.get_interface_name(node, if2)
+
+            message = u"Could not bring down interface!" \
+                      u""
+            exec_cmd_no_error(node, f"ip link set dev {if_pci0_name} down",
+                              sudo=True, message=message)
+            exec_cmd_no_error(node, f"ip link set dev {if_pci1_name} down",
+                              sudo=True, message=message)
+
+    @staticmethod
     def get_dpdk_version(node):
         """Log and return the installed DPDK version.
 
