@@ -56,6 +56,12 @@ class TestpmdTest:
             if_pci0 = Topology.get_interface_pci_addr(node, if1)
             if_pci1 = Topology.get_interface_pci_addr(node, if2)
 
+            if_pci0_name = Topology.get_interface_name(node, if1)
+            if_pci1_name = Topology.get_interface_name(node, if2)
+
+            exec_cmd_no_error(node, f"sudo ifconfig {if_pci0_name} down")
+            exec_cmd_no_error(node, f"sudo ifconfig {if_pci1_name} down")
+
             pmd_max_pkt_len = u"9200" if jumbo_frames else u"1518"
             testpmd_args = DpdkUtil.get_testpmd_args(
                 eal_corelist=f"1,{lcores_list}",

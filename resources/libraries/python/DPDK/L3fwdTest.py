@@ -56,6 +56,12 @@ class L3fwdTest:
                 nodes, node, if1, if2
             )
 
+            if_pci0_name = Topology.get_interface_name(node, if1)
+            if_pci1_name = Topology.get_interface_name(node, if2)
+
+            exec_cmd_no_error(node, f"sudo ifconfig {if_pci0_name} down")
+            exec_cmd_no_error(node, f"sudo ifconfig {if_pci1_name} down")
+
             lcores = [int(item) for item in lcores_list.split(u",")]
 
             # prepare the port config param
