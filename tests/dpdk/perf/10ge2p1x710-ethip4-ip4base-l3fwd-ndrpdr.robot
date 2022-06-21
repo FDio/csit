@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,7 +23,7 @@
 | ... | ethip4-ip4base-l3fwd
 |
 | Suite Setup | Setup suite topology interfaces | performance | dpdk
-| Suite Teardown | Tear down suite | performance | dpdk
+| Suite Teardown | Tear down suite | performance
 | Test Setup | Start Test Export
 | Test Teardown | Finalize Test Export
 |
