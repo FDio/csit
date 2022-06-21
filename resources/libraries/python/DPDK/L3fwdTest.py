@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -55,6 +55,12 @@ class L3fwdTest:
             adj_mac0, adj_mac1, if_pci0, if_pci1 = L3fwdTest.get_adj_mac(
                 nodes, node, if1, if2
             )
+
+            if_pci0_name = Topology.get_interface_name(node, if1)
+            if_pci1_name = Topology.get_interface_name(node, if2)
+
+            exec_cmd_no_error(node, f"sudo ifconfig {if_pci0_name} down")
+            exec_cmd_no_error(node, f"sudo ifconfig {if_pci1_name} down")
 
             lcores = [int(item) for item in lcores_list.split(u",")]
 
