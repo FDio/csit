@@ -43,6 +43,14 @@
 | | ${dp_count_int} | Convert to Integer | ${phy_cores}
 | | ${dp_cores}= | Evaluate | ${cpu_count_int}+1
 | | FOR | ${dut} | IN | @{duts}
+| | | Cleanup DPDK Framework | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
+| | | Set Linux Interface State | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${state}=down
+| | | Set Linux Interface State | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}2}[0] | ${state}=down
+| | | Initialize DPDK Framework | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0] | ${nic_driver}
 | | | &{compute_resource_info}= | Get Affinity Vswitch
 | | | ... | ${nodes} | ${dut} | ${phy_cores} | rx_queues=${rx_queues}
 | | | ... | rxd=${rxd} | txd=${txd}
@@ -79,6 +87,14 @@
 | | ${dp_count_int} | Convert to Integer | ${phy_cores}
 | | ${dp_cores}= | Evaluate | ${cpu_count_int}+1
 | | FOR | ${dut} | IN | @{duts}
+| | | Cleanup DPDK Framework | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
+| | | Set Linux Interface State | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${state}=down
+| | | Set Linux Interface State | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}2}[0] | ${state}=down
+| | | Initialize DPDK Framework | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0] | ${nic_driver}
 | | | &{compute_resource_info}= | Get Affinity Vswitch
 | | | ... | ${nodes} | ${dut} | ${phy_cores} | rx_queues=${rx_queues}
 | | | ... | rxd=${rxd} | txd=${txd}
