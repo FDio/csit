@@ -5,7 +5,7 @@
 -------------------------
 
 Relative comparison of |dpdk-release| Testpmd and L3fwd packet
-throughput (NDR, PDR and MRR) is calculated for the same tests executed
+throughput (NDR, PDR) is calculated for the same tests executed
 on 3-Node Skylake (3n-skx) and 2-Node Skylake (2n-skx) physical testbed
 types, in 1-core, 2-core and 4-core configurations.
 
@@ -33,12 +33,3 @@ Comparison tables in ASCII and CSV formats:
 
   - `ASCII PDR comparison <../../_static/dpdk/performance-compare-topologies-3n-skx-2n-skx-pdr.txt>`_
   - `CSV PDR comparison <../../_static/dpdk/performance-compare-topologies-3n-skx-2n-skx-pdr.csv>`_
-
-..
-    MRR Comparison
-    ~~~~~~~~~~~~~~
-
-    Comparison tables in ASCII and CSV formats:
-
-      - `ASCII MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-skx-2n-skx-mrr.txt>`_
-      - `CSV MRR comparison <../../_static/dpdk/performance-compare-testbeds-3n-skx-2n-skx-mrr.csv>`_

@@ -1,7 +1,7 @@
 
 .. _vpp_compare_topologies_3n-skx_vs_3n-icx:
 
-3n-Skx vs 3n-Icx Testbeds
+3n-Icx vs 3n-Skx Testbeds
 -------------------------
 
 Relative comparison of |vpp-release| packet throughput (NDR, PDR and

@@ -1,8 +1,8 @@
-2n-Clx vs 2n-Icx Testbeds
+2n-Icx vs 2n-Clx Testbeds
 -------------------------
 
 Relative comparison of |dpdk-release| Testpmd and L3fwd packet
-throughput (NDR, PDR and MRR) is calculated for the same tests executed
+throughput (NDR, PDR) is calculated for the same tests executed
 on 2-Node Cascadelake (2n-clx) and 2-Node Ice Lake (2n-icx) physical testbed
 types, in 1-core, 2-core and 4-core configurations.
 
