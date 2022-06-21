@@ -19,7 +19,9 @@ from robot.libraries.BuiltIn import BuiltIn
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DpdkUtil import DpdkUtil
+from resources.libraries.python.DPDK.DPDKTools import DPDKTools
 from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -62,6 +64,26 @@ class TestpmdTest:
         dp_cores = cpu_count_int+1
         for node in nodes:
             if u"DUT" in node:
+                if1 = topology_info[f"{node}_pf1"][0]
+                if2 = topology_info[f"{node}_pf2"][0]
+                DPDKTools.cleanup_dpdk_framework(nodes[node], if1, if2)
+                exec_cmd_no_error(nodes[node], f"ip link set dev 0004:04:00.1"
+                                               f"down",
+                                  sudo=True,
+                                  message="Couldn't bring down interface")
+                exec_cmd_no_error(nodes[node], f"ip link set dev 0004:04:00.0"
+                                               f"down",
+                                  sudo=True,
+                                  message="Couldn't bring down interface")
+                # if1_pci = Topology.get_interface_pci_addr(nodes[node], if1)
+                # if2_pci = Topology.get_interface_pci_addr(nodes[node], if2)
+                # InterfaceUtil.set_interface_state_pci(nodes[node], if1_pci,
+                #                                       state="down")
+                # InterfaceUtil.set_interface_state_pci(nodes[node], if2_pci,
+                #                                       state="down")
+                DPDKTools.initialize_dpdk_framework(
+                    nodes[node], if1, if2, "vfio-pci"
+                )
                 compute_resource_info = CpuUtils.get_affinity_vswitch(
                     nodes, node, phy_cores, rx_queues=rx_queues,
                     rxd=rxd, txd=txd
@@ -76,8 +98,6 @@ class TestpmdTest:
 
                 cpu_dp = compute_resource_info[u"cpu_dp"]
                 rxq_count_int = compute_resource_info[u"rxq_count_int"]
-                if1 = topology_info[f"{node}_pf1"][0]
-                if2 = topology_info[f"{node}_pf2"][0]
                 TestpmdTest.start_testpmd(
                     nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
                     nb_cores=dp_count_int, queue_nums=rxq_count_int,
