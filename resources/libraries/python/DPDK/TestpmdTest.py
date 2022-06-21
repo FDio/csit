@@ -27,7 +27,6 @@ class TestpmdTest:
     """
     This class start testpmd on topology nodes and check if properly started.
     """
-    
     @staticmethod
     def start_testpmd_on_all_duts(
             nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
