@@ -3694,6 +3694,113 @@
         - "Tests.Vpp.Perf.Vts.2n1l-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-mrr.114B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-mrr"
       layout: "plot-cpta"
 
+    - title: "2n-clx-e810cq-64b-{core}-memif"
+      output-file-name: "2n-clx-e810cq-64b-{core}-memif"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-Mrr.64B-{core}-avf-eth-l2xcbase-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Mrr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Mrr.64B-{core}-avf-ethip4-ip4base-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Xcbase-Eth-2Memif-1Dcr-Mrr.64B-{core}-eth-l2xcbase-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Mrr.64B-{core}-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Mrr.64B-{core}-ethip4-ip4base-eth-2memif-1dcr-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-ip4-base-scale-avf"
+      output-file-name: "2n-clx-e810cq-64b-{core}-ip4-base-scale-avf"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Base-Mrr.64B-{core}-avf-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Scale20K-Mrr.64B-{core}-avf-ethip4-ip4scale20k-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Scale20K-Rnd-Mrr.64B-{core}-avf-ethip4-ip4scale20k-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-ip4-features-avf"
+      output-file-name: "2n-clx-e810cq-64b-{core}-ip4-features-avf"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Mrr.64B-{core}-avf-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Mrr.64B-{core}-avf-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Mrr.64B-{core}-avf-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-{core}-avf-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-ip4-base-scale-dpdk"
+      output-file-name: "2n-clx-e810cq-64b-{core}-ip4-base-scale-dpdk"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Base-Mrr.64B-{core}-ethip4-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Scale20K-Mrr.64B-{core}-ethip4-ip4scale20k-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Scale20K-Rnd-Mrr.64B-{core}-ethip4-ip4scale20k-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-ip4-features-dpdk"
+      output-file-name: "2n-clx-e810cq-64b-{core}-ip4-features-dpdk"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Mrr.64B-{core}-ethip4udp-ip4base-iacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Mrr.64B-{core}-ethip4udp-ip4base-iacl50sl-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Mrr.64B-{core}-ethip4udp-ip4base-oacl50sf-10kflows-mrr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-{core}-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-78B-{core}-ip6-base-scale"
+      output-file-name: "2n-clx-e810cq-78B-{core}-ip6-base-scale"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Avf-Ethip6-Ip6Base-Mrr.78B-{core}-avf-ethip6-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Avf-Ethip6-Ip6Scale20K-Mrr.78B-{core}-avf-ethip6-ip6scale20k-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Avf-Ethip6-Ip6Scale20K-Rnd-Mrr.78B-{core}-avf-ethip6-ip6scale20k-rnd-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Ethip6-Ip6Base-Mrr.78B-{core}-ethip6-ip6base-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Ethip6-Ip6Scale20K-Mrr.78B-{core}-ethip6-ip6scale20k-mrr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Ethip6-Ip6Scale20K-Rnd-Mrr.78B-{core}-ethip6-ip6scale20k-rnd-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-l2-base-scale-avf"
+      output-file-name: "2n-clx-e810cq-64b-{core}-l2-base-scale-avf"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Dot1Q-L2Bdbasemaclrn-Mrr.64B-{core}-avf-dot1q-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Patch-Mrr.64B-{core}-avf-eth-l2patch-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Mrr.64B-{core}-avf-eth-l2xcbase-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Mrr.64B-{core}-avf-eth-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdscale10Kmaclrn-Mrr.64B-{core}-avf-eth-l2bdscale10kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdscale100Kmaclrn-Mrr.64B-{core}-avf-eth-l2bdscale100kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdscale1Mmaclrn-Mrr.64B-{core}-avf-eth-l2bdscale1mmaclrn-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-l2-base-scale-dpdk"
+      output-file-name: "2n-clx-e810cq-64b-{core}-l2-base-scale-dpdk"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Dot1Q-L2Bdbasemaclrn-Mrr.64B-{core}-dot1q-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Patch-Mrr.64B-{core}-eth-l2patch-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Xcbase-Mrr.64B-{core}-eth-l2xcbase-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Mrr.64B-{core}-eth-l2bdbasemaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdscale10Kmaclrn-Mrr.64B-{core}-eth-l2bdscale10kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdscale100Kmaclrn-Mrr.64B-{core}-eth-l2bdscale100kmaclrn-mrr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdscale1Mmaclrn-Mrr.64B-{core}-eth-l2bdscale1mmaclrn-mrr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-vhost"
+      output-file-name: "2n-clx-e810cq-64b-{core}-vhost"
+      data: "plot-performance-trending-vpp-2n-clx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Mrr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Mrr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Mrr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-mrr"
+      layout: "plot-cpta"
+
     - title: "2n-skx-xxv710-64b-{core}-vhost-base-avf-testpmd"
       output-file-name: "2n-skx-xxv710-64b-{core}-vhost-base-avf-testpmd"
       data: "plot-performance-trending-vpp-2n-skx"
@@ -5600,6 +5707,122 @@
         - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermit-2Vhostvr1024-1Vm-Ndrpdr.114B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr"
         - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Aclpermitreflect-2Vhostvr1024-1Vm-Ndrpdr.114B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr"
         - "Tests.Vpp.Perf.Vts.2N1L-25Ge2P1Xxv710-Avf-Ethip4Vxlan-L2Bdbasemaclrn-Eth-Iacldstbase-Noacl-2Vhostvr1024-1Vm-Ndrpdr.114B-{core}-avf-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-memif-{test_type}"
+      output-file-name: "2n-clx-e810cq-64b-{core}-memif-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-avf-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Base-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-avf-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Xcbase-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+        - "Tests.Vpp.Perf.Container Memif.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Base-Eth-2Memif-1Dcr-ndrpdr.64B-{core}-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-ip4-base-scale-avf-{test_type}"
+      output-file-name: "2n-clx-e810cq-64b-{core}-ip4-base-scale-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Base-ndrpdr.64B-{core}-avf-ethip4-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Scale20K-ndrpdr.64B-{core}-avf-ethip4-ip4scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4-Ip4Scale20K-Rnd-ndrpdr.64B-{core}-avf-ethip4-ip4scale20k-rnd-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-ip4-features-avf-{test_type}"
+      output-file-name: "2n-clx-e810cq-64b-{core}-ip4-features-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Avf-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-ndrpdr.64B-{core}-avf-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-ip4-base-scale-dpdk-{test_type}"
+      output-file-name: "2n-clx-e810cq-64b-{core}-ip4-base-scale-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Base-ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Scale20K-ndrpdr.64B-{core}-ethip4-ip4scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4-Ip4Scale20K-Rnd-ndrpdr.64B-{core}-ethip4-ip4scale20k-rnd-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-ip4-features-dpdk-{test_type}"
+      output-file-name: "2n-clx-e810cq-64b-{core}-ip4-features-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-ndrpdr.64B-{core}-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-ndrpdr.64B-{core}-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-ndrpdr.64B-{core}-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-ndrpdr.64B-{core}-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-78B-{core}-ip6-base-scale-{test_type}"
+      output-file-name: "2n-clx-e810cq-78B-{core}-ip6-base-scale-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Avf-Ethip6-Ip6Base-ndrpdr.78B-{core}-avf-ethip6-ip6base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Avf-Ethip6-Ip6Scale20K-ndrpdr.78B-{core}-avf-ethip6-ip6scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Avf-Ethip6-Ip6Scale20K-Rnd-ndrpdr.78B-{core}-avf-ethip6-ip6scale20k-rnd-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Ethip6-Ip6Base-ndrpdr.78B-{core}-ethip6-ip6base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Ethip6-Ip6Scale20K-ndrpdr.78B-{core}-ethip6-ip6scale20k-ndrpdr"
+        - "Tests.Vpp.Perf.Ip6.2N1L-100Ge2P1E810Cq-Ethip6-Ip6Scale20K-Rnd-ndrpdr.78B-{core}-ethip6-ip6scale20k-rnd-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-l2-base-scale-avf-{test_type}"
+      output-file-name: "2n-clx-e810cq-64b-{core}-l2-base-scale-avf-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Dot1Q-L2Bdbasemaclrn-ndrpdr.64B-{core}-avf-dot1q-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Patch-ndrpdr.64B-{core}-avf-eth-l2patch-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Xcbase-ndrpdr.64B-{core}-avf-eth-l2xcbase-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdscale10Kmaclrn-ndrpdr.64B-{core}-avf-eth-l2bdscale10kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdscale100Kmaclrn-ndrpdr.64B-{core}-avf-eth-l2bdscale100kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdscale1Mmaclrn-ndrpdr.64B-{core}-avf-eth-l2bdscale1mmaclrn-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-l2-base-scale-dpdk-{test_type}"
+      output-file-name: "2n-clx-e810cq-64b-{core}-l2-base-scale-dpdk-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Dot1Q-L2Bdbasemaclrn-ndrpdr.64B-{core}-dot1q-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Patch-ndrpdr.64B-{core}-eth-l2patch-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Xcbase-ndrpdr.64B-{core}-eth-l2xcbase-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-ndrpdr.64B-{core}-eth-l2bdbasemaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdscale10Kmaclrn-ndrpdr.64B-{core}-eth-l2bdscale10kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdscale100Kmaclrn-ndrpdr.64B-{core}-eth-l2bdscale100kmaclrn-ndrpdr"
+        - "Tests.Vpp.Perf.L2.2N1L-100Ge2P1E810Cq-Eth-L2Bdscale1Mmaclrn-ndrpdr.64B-{core}-eth-l2bdscale1mmaclrn-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "2n-clx-e810cq-64b-{core}-vhost-{test_type}"
+      output-file-name: "2n-clx-e810cq-64b-{core}-vhost-{test_type}"
+      data: "plot-ndrpdr-comparison-2n-clx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Avf-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-ndrpdr.64B-{core}-avf-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
+        - "Tests.Vpp.Perf.Vm Vhost.2N1L-100Ge2P1E810Cq-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-ndrpdr.64B-{core}-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
       layout: "plot-cpta"
 
 # 2n-icx NDRPDR
