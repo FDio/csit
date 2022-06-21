@@ -1,4 +1,4 @@
-2n-Skx vs 2n-Clx Testbeds
+2n-Clx vs 2n-Skx Testbeds
 -------------------------
 
 Relative comparison of |vpp-release| packet throughput (NDR, PDR and

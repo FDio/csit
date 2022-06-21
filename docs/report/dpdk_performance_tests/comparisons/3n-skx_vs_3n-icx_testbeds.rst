@@ -1,8 +1,8 @@
-3n-Skx vs 3n-Icx Testbeds
+3n-Icx vs 3n-Skx Testbeds
 -------------------------
 
 Relative comparison of |dpdk-release| Testpmd and L3fwd packet
-throughput (NDR, PDR and MRR) is calculated for the same tests executed
+throughput (NDR, PDR) is calculated for the same tests executed
 on 3-Node Skylake (3n-skx) and 3-Node Ice Lake (3n-icx) physical testbed
 types, in 1-core, 2-core and 4-core configurations.
 

@@ -53,7 +53,7 @@ Comparison tables in ASCII and CSV formats:
   - `CSV 2t1c PDR comparison <../../_static/dpdk/performance-changes-3n-icx-2t1c-pdr.csv>`_
   - `CSV 4t2c PDR comparison <../../_static/dpdk/performance-changes-3n-icx-4t2c-pdr.csv>`_
 
-2n-skx-xxv710
+2n-icx-xxv710
 ~~~~~~~~~~~~~
 
 NDR Comparison

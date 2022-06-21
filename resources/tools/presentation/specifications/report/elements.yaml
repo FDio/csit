@@ -3702,7 +3702,7 @@
   filter: "'NIC_Intel-XXV710' and 'NDRPDR' and '2C'"
   columns:
     - title: "2n-clx xxv710"
-      data-set: "vpp-3n-skx-curr-iter"
+      data-set: "vpp-2n-clx-curr-iter"
     - title: "2n-icx xxv710"
       data-set: "vpp-2n-icx-curr-iter"
   comparisons:
@@ -3713,6 +3713,90 @@
     - ""
     - "2n-clx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
     - "Diff - difference between 2n-clx xxv710 and 2n-icx xxv710 testbeds."
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-icx 1c ndr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-icx 1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-icx-1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710' and 'NDRPDR' and '1C'"
+  columns:
+    - title: "2n-skx xxv710"
+      data-set: "vpp-2n-skx-curr-iter"
+    - title: "2n-icx xxv710"
+      data-set: "vpp-2n-icx-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "2n-skx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx xxv710 and 2n-icx xxv710 testbeds."
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-icx 2c ndr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-icx 2c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-icx-2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710' and 'NDRPDR' and '2C'"
+  columns:
+    - title: "2n-skx xxv710"
+      data-set: "vpp-2n-skx-curr-iter"
+    - title: "2n-icx xxv710"
+      data-set: "vpp-2n-icx-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "2n-skx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx xxv710 and 2n-icx xxv710 testbeds."
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-icx 1c pdr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-icx 1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-icx-1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710' and 'NDRPDR' and '1C'"
+  columns:
+    - title: "2n-skx xxv710"
+      data-set: "vpp-2n-skx-curr-iter"
+    - title: "2n-icx xxv710"
+      data-set: "vpp-2n-icx-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "2n-skx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx xxv710 and 2n-icx xxv710 testbeds."
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-icx 2c pdr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-icx 2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-icx-2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710' and 'NDRPDR' and '2C'"
+  columns:
+    - title: "2n-skx xxv710"
+      data-set: "vpp-2n-skx-curr-iter"
+    - title: "2n-icx xxv710"
+      data-set: "vpp-2n-icx-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "2n-skx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx xxv710 and 2n-icx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-skx to 3n-icx 1c ndr
 - type: "table"
@@ -5193,6 +5277,69 @@
     - ""
     - "2n-clx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
     - "Diff - difference between 2n-clx xxv710 and 2n-icx xxv710 testbeds."
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-icx 1c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-icx 1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-icx-1c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710' and 'MRR' and '1C'"
+  columns:
+    - title: "2n-skx xxv710"
+      data-set: "vpp-2n-skx-curr-iter-mrr"
+    - title: "2n-icx xxv710"
+      data-set: "vpp-2n-icx-curr-iter-mrr"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "2n-skx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx xxv710 and 2n-icx xxv710 testbeds."
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-icx 2c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-icx 2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-icx-2c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710' and 'MRR' and '2C'"
+  columns:
+    - title: "2n-skx xxv710"
+      data-set: "vpp-2n-skx-curr-iter-mrr"
+    - title: "2n-icx xxv710"
+      data-set: "vpp-2n-icx-curr-iter-mrr"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "2n-skx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx xxv710 and 2n-icx xxv710 testbeds."
+
+# VPP Comparison Across Testbeds 2n-skx to 2n-icx 4c mrr
+- type: "table"
+  title: "VPP Comparison Across Testbeds 2n-skx to 2n-icx 4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-2n-skx-2n-icx-4c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710' and 'MRR' and '4C'"
+  columns:
+    - title: "2n-skx xxv710"
+      data-set: "vpp-2n-skx-curr-iter-mrr"
+    - title: "2n-icx xxv710"
+      data-set: "vpp-2n-icx-curr-iter-mrr"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "2n-skx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx xxv710 and 2n-icx xxv710 testbeds."
 
 # VPP Comparison Across Testbeds 3n-skx to 3n-icx 1c mrr
 - type: "table"
@@ -7108,6 +7255,48 @@
     - ""
     - "2n-clx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
     - "Diff - difference between 2n-clx xxv710 and 2n-icx xxv710 testbeds."
+
+# DPDK Comparison Across Testbeds 2n-skx to 2n-icx ndr
+- type: "table"
+  title: "DPDK Comparison Across Testbeds 2n-skx to 2n-icx ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-icx-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710'"
+  columns:
+    - title: "2n-skx xxv710"
+      data-set: "dpdk-2n-skx-curr-iter"
+    - title: "2n-icx xxv710"
+      data-set: "dpdk-2n-icx-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "2n-skx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx xxv710 and 2n-icx xxv710 testbeds."
+
+# DPDK Comparison Across Testbeds 2n-skx to 2n-icx pdr
+- type: "table"
+  title: "DPDK Comparison Across Testbeds 2n-skx to 2n-icx pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-compare-testbeds-2n-skx-2n-icx-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NIC_Intel-XXV710'"
+  columns:
+    - title: "2n-skx xxv710"
+      data-set: "dpdk-2n-skx-curr-iter"
+    - title: "2n-icx xxv710"
+      data-set: "dpdk-2n-icx-curr-iter"
+  comparisons:
+    - title: "Diff"
+      reference: 1
+      compare: 2
+  legend:
+    - ""
+    - "2n-skx xxv710, 2n-icx xxv710 - testbeds and NICs tested."
+    - "Diff - difference between 2n-skx xxv710 and 2n-icx xxv710 testbeds."
 
 # DPDK Comparison Across Testbeds 3n-skx to 3n-icx ndr
 - type: "table"
