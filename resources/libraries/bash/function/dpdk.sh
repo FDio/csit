@@ -61,6 +61,10 @@ function dpdk_bind () {
 
     pushd "${DPDK_DIR}/" || die "Pushd failed"
 
+    sudo ./usertools/dpdk-devbind.py -u 0004:04:00.1 0004:04:00.0 || {
+        die "Unbind failed"
+    }
+
     sudo ./usertools/dpdk-devbind.py -b "${@}" || {
         die "Bind ${@} failed"
     }
