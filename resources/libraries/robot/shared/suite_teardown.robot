@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -60,10 +60,10 @@
 | | [Documentation]
 | | ... | Additional teardown for suites which uses dpdk.
 | |
-| | FOR | ${dut} | IN | @{duts}
-| | | Cleanup DPDK Framework
-| | | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
-| | END
+#| | FOR | ${dut} | IN | @{duts}
+#| | | Cleanup DPDK Framework
+#| | | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
+#| | END
 
 | Additional Suite Tear Down Action For hoststack
 | | [Documentation]
