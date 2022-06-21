@@ -14,6 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.CpuUtils
+| Library | resources.libraries.python.topology
 | Library | resources.libraries.python.DPDK.TestpmdTest
 | Library | resources.libraries.python.DPDK.TestpmdCheck
 | Library | resources.libraries.python.DPDK.L3fwdTest
@@ -43,6 +44,17 @@
 | | ${dp_count_int} | Convert to Integer | ${phy_cores}
 | | ${dp_cores}= | Evaluate | ${cpu_count_int}+1
 | | FOR | ${dut} | IN | @{duts}
+| | | Cleanup DPDK Framework | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
+| | | ${pci_addr1}= | Get Interface Pci Addr | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0]
+| | | ${pci_addr2}= | Get Interface Pci Addr | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}2}[0]
+| | | @{pci_addrs}= | Create List | ${pci_addr1} | ${pci_addr2}
+| | | Set Interface State Pci | ${nodes['${dut}']}
+| | | ... | ${pci_addrs} | state=down
+| | | Initialize DPDK Framework | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0] | ${nic_driver}
 | | | &{compute_resource_info}= | Get Affinity Vswitch
 | | | ... | ${nodes} | ${dut} | ${phy_cores} | rx_queues=${rx_queues}
 | | | ... | rxd=${rxd} | txd=${txd}
@@ -79,6 +91,17 @@
 | | ${dp_count_int} | Convert to Integer | ${phy_cores}
 | | ${dp_cores}= | Evaluate | ${cpu_count_int}+1
 | | FOR | ${dut} | IN | @{duts}
+| | | Cleanup DPDK Framework | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
+| | | ${pci_addr1}= | Get Interface Pci Addr | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0]
+| | | ${pci_addr2}= | Get Interface Pci Addr | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}2}[0]
+| | | @{pci_addrs}= | Create List | ${pci_addr1} | ${pci_addr2}
+| | | Set Interface State Pci | ${nodes['${dut}']}
+| | | ... | ${pci_addrs} | state=down
+| | | Initialize DPDK Framework | ${nodes['${dut}']}
+| | | ... | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0] | ${nic_driver}
 | | | &{compute_resource_info}= | Get Affinity Vswitch
 | | | ... | ${nodes} | ${dut} | ${phy_cores} | rx_queues=${rx_queues}
 | | | ... | rxd=${rxd} | txd=${txd}
@@ -87,7 +110,7 @@
 | | | Start l3fwd
 | | | ... | ${nodes} | ${nodes['${dut}']} | ${${dut}_pf1}[0] | ${${dut}_pf2}[0]
 | | | ... | ${cpu_dp} | ${dp_count_int} | ${rxq_count_int} | ${jumbo_frames}
-| | FOR | ${dut} | IN | @{duts}
-| | | Check l3fwd
-| | | ... | ${nodes['${dut}']}
-| | END
+#| | FOR | ${dut} | IN | @{duts}
+#| | | Check l3fwd
+#| | | ... | ${nodes['${dut}']}
+#| | END
