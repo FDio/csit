@@ -6,6 +6,7 @@ VMs vhost-user
     vhost-2n-icx-xxv710
     vhost-2n-clx-xxv710
     vhost-2n-clx-cx556a
+    vhost-2n-clx-e810cq
     vhost-2n-skx-xxv710
     vhost-3n-skx-xxv710
     vhost-3n-alt-xl710
