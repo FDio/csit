@@ -353,8 +353,7 @@ function dpdk_testpmd_check () {
 
     for attempt in {1..60}; do
         echo "Checking if testpmd links state changed, attempt nr ${attempt}"
-        if fgrep "Port 0: link state change event" screenlog.0 && \
-        fgrep "Port 1: link state change event" screenlog.0; then
+        if fgrep "RX Offloads=0x80000" screenlog.0; then
             cat screenlog.0
             exit 0
         fi
