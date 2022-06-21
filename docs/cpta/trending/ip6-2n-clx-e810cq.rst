@@ -1,8 +1,8 @@
 2n-clx-e810cq
 -------------
 
-78b-ip6routing-base-scale-rdma
-``````````````````````````````
+78b-ip6routing-base-scale
+`````````````````````````
 
 2t1c
 ::::
