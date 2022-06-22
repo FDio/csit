@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "860659de_f18fd949",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-06-22T08:41:30Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-skx-perftest ndrpdrANDnic_intel-x710ANDeth-l2xcbase-testpmdANDdrv_vfio_pciAND64b\ncsit-dpdk-3n-skx-perftest ndrpdrANDnic_intel-x710ANDethip4-ip4base-l3fwdANDdrv_vfio_pciAND64b",
+      "revId": "7f86959b33cb03d5336658f2f5b7b1ad0a86095b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
