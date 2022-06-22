@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "164727bf_76b1e1fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-22T05:54:06Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-skx-perftest hoststack-00",
+      "revId": "48b0a607bfcafcbb69418e6ac6adfcb25314418a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
