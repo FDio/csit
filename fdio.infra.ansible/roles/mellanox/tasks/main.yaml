@@ -29,7 +29,8 @@
   set_fact:
     ofed: "{{ mellanox_cx5_compatibility_matrix[mellanox_cx5_matrix]['ofed'] }}"
   when: >
-    mellanox_pcis is defined
+    mellanox_pcis.stdout_lines | length > 0 and
+    mellanox_cx5_matrix is defined
   tags:
     - mellanox-inst-drivers
 
