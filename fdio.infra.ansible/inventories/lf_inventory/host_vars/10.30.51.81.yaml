@@ -1,7 +1,7 @@
 ---
-# file: host_vars/10.30.51.82.yaml
+# file: host_vars/10.30.51.81.yaml
 
-hostname: "s72-t212-tg1"
+hostname: "s71-t212-sut1"
 grub:
   audit: "0"
   default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
@@ -26,7 +26,7 @@ sysctl:
     nr_hugepages: 32768
     max_map_count: 20000
 
-inventory_ipmi_hostname: "10.30.50.82"
+inventory_ipmi_hostname: "10.30.50.81"
 cpu_microarchitecture: "icelake"
 
 intel_700_matrix: "dpdk21.02"
