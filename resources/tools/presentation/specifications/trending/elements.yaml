@@ -3749,8 +3749,8 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Mrr.64B-{core}-ethip4udp-ip4base-oacl50sl-10kflows-mrr"
       layout: "plot-cpta"
 
-    - title: "2n-clx-e810cq-78B-{core}-ip6-base-scale"
-      output-file-name: "2n-clx-e810cq-78B-{core}-ip6-base-scale"
+    - title: "2n-clx-e810cq-78b-{core}-ip6-base-scale"
+      output-file-name: "2n-clx-e810cq-78b-{core}-ip6-base-scale"
       data: "plot-performance-trending-vpp-2n-clx"
       core: ["2t1c", "4t2c", "8t4c"]
       include:
@@ -5769,8 +5769,8 @@
         - "Tests.Vpp.Perf.Ip4.2N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-ndrpdr.64B-{core}-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
       layout: "plot-cpta"
 
-    - title: "2n-clx-e810cq-78B-{core}-ip6-base-scale-{test_type}"
-      output-file-name: "2n-clx-e810cq-78B-{core}-ip6-base-scale-{test_type}"
+    - title: "2n-clx-e810cq-78b-{core}-ip6-base-scale-{test_type}"
+      output-file-name: "2n-clx-e810cq-78b-{core}-ip6-base-scale-{test_type}"
       data: "plot-ndrpdr-comparison-2n-clx"
       core: ["2t1c", ]
       test-type: ["ndr", "pdr"]
