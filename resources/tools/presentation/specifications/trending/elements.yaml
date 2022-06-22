@@ -375,6 +375,19 @@
 # Last failed tests
 
 - type: "table"
+  title: "Last failed tests (last builds) VPP 3n-alt"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-vpp-3n-alt-mrr"
+  data: "table-last-failed-tests-3n-alt"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+    - "msg"
+
+- type: "table"
   title: "Last failed tests (last builds) VPP 2n-icx"
   algorithm: "table_last_failed_tests"
   output-file-ext: ".txt"
