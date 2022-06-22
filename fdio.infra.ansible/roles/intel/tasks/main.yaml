@@ -18,7 +18,7 @@
     - intel-inst-drivers
 
 - name: Inst - Check Presence of Intel Ethernet 700 Series
-  shell: "lspci -d 8086:1583; lspci -d 8086:1585; lspci -d 8086:1572"
+  shell: "lspci -d 8086:1583; lspci -d 8086:1585; lspci -d 8086:1572; lspci -d 8086:158a; lspci -d 8086:158b"
   register: intel_700_pcis
   failed_when: false
   changed_when: false
