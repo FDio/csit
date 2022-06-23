@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84616dec_aed7d228",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-23T13:22:49Z",
+      "side": 1,
+      "message": "PPS tests are removed now, but keeping wip as I plan to do one more read to fix typos.",
+      "revId": "c5a067cfa58ddd5e5a1645783c571d66862e23c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
