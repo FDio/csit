@@ -260,6 +260,10 @@ function common_dirs () {
 
 function compose_pybot_arguments () {
 
+    # This function is called by run_tests function.
+    # The reason is that some jobs (bisect) perform reservation multiple times,
+    # so WORKING_TOPOLOGY can be different each time.
+    #
     # Variables read:
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - DUT - CSIT test/ subdirectory, set while processing tags.
@@ -277,11 +281,13 @@ function compose_pybot_arguments () {
     PYBOT_ARGS=("--loglevel" "TRACE")
     PYBOT_ARGS+=("--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
 
+    # TODO: The rest does not need to be recomputed on each reservation.
+    #       Refactor TEST_CODE so this part can be called only once.
     case "${TEST_CODE}" in
         *"device"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.device")
             ;;
-        *"perf"*)
+        *"perf"* | *"bisect"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.perf")
             ;;
         *)
@@ -508,6 +514,8 @@ function get_test_tag_string () {
     # Variables set:
     # - TEST_TAG_STRING - The string following trigger word in gerrit comment.
     #   May be empty, or even not set on event types not adding comment.
+    # - GIT_BISECT_FROM - If bisecttest, the commit hash to bisect from.
+    #   Else not set.
     # Variables exported optionally:
     # - GRAPH_NODE_VARIANT - Node variant to test with, set if found in trigger.
 
@@ -517,6 +525,10 @@ function get_test_tag_string () {
 
     if [[ "${GERRIT_EVENT_TYPE-}" == "comment-added" ]]; then
         case "${TEST_CODE}" in
+            # Order matters, bisect job contains "perf" in its name.
+            *"bisect"*)
+                trigger="bisecttest"
+                ;;
             *"device"*)
                 trigger="devicetest"
                 ;;
@@ -541,6 +553,18 @@ function get_test_tag_string () {
             comment=$(base64 --decode <<< "${comment}" || true)
             comment=$(fgrep "${trigger}" <<< "${comment}" || true)
             TEST_TAG_STRING=$("${cmd[@]}" <<< "${comment}" || true)
+        fi
+        if [[ "${trigger}" == "bisecttest" ]]; then
+            # Intentionally without quotes, so spaces delimit elements.
+            test_tag_array=(${TEST_TAG_STRING}) || die "How could this fail?"
+            # First "argument" of bisecttest is a commit hash.
+            GIT_BISECT_FROM="${test_tag_array[0]}" || {
+                die "Bisect job requires commit hash."
+            }
+            # Update the tag string (tag expressions only, no commit hash).
+            TEST_TAG_STRING="${test_tag_array[@]:1}" || {
+                die "Bisect job needs a single test, no default."
+            }
         fi
         if [[ -n "${TEST_TAG_STRING-}" ]]; then
             test_tag_array=(${TEST_TAG_STRING})
@@ -765,12 +789,22 @@ function run_pybot () {
     # - ARCHIVE_DIR - Path to store robot result files in.
     # - PYBOT_ARGS, EXPANDED_TAGS - See compose_pybot_arguments.sh
     # - GENERATED_DIR - Tests are assumed to be generated under there.
+    # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
+    # - DUT - CSIT test/ subdirectory, set while processing tags.
+    # - TAGS - Array variable holding selected tag boolean expressions.
+    # - TOPOLOGIES_TAGS - Tag boolean expression filtering tests for topology.
+    # - TEST_CODE - The test selection string from environment or argument.
     # Variables set:
+    # - PYBOT_ARGS - String holding part of all arguments for pybot.
+    # - EXPANDED_TAGS - Array of strings pybot arguments compiled from tags.
     # - PYBOT_EXIT_STATUS - Exit status of most recent pybot invocation.
     # Functions called:
     # - die - Print to stderr and exit.
 
     set -exuo pipefail
+
+    # Recompute args, as we can have different reservation since the last call.
+    compose_pybot_arguments || die "Failed to compose robot arguments."
 
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
     all_options+=("${EXPANDED_TAGS[@]}")
@@ -1049,11 +1083,13 @@ function select_tags () {
     TAGS=()
     prefix=""
 
-    # Automatic limiting of NIC used if not specified.
-    if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
-        prefix=""
-    else
-        prefix="${default_nic}AND"
+    if [[ "${TEST_CODE}" != *"device"* ]]; then
+        # Automatic limiting of NIC used if not specified.
+        if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
+            prefix=""
+        else
+            prefix="${default_nic}AND"
+        fi
     fi
     set +x
     for tag in "${test_tag_array[@]}"; do
