@@ -1963,24 +1963,18 @@
       data-set: "vpp-2n-clx-hist-iter-vsap-new-env"
     - title: "2202.0-9"
       data-set: "vpp-2n-clx-curr-iter-vsap-old-env"
-    - title: "2022.0-10"
-      data-set: "vpp-2n-clx-curr-iter-vsap-new-env"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-curr-iter-vsap"
   comparisons:
-    - title: "2202.0-10 vs 2202.0-9"
+    - title: "2206.0-10 vs 2202.0-9"
       reference: 2
       compare: 3
-    - title: "2206.0-10 vs 2202.0-10"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:            Test cases executed for: VSAP on 2n-clx with cx556a.'
     - 'YYMM.V-E:             [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
     - 'YYMM.V-E vs YYMM.V-E: [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2202.0-10 vs 2202.0-9: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2206.0-10 vs 2202.0-10: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
 # VPP Performance Changes 3n-icx 2t1c pdr
 - type: "table"
