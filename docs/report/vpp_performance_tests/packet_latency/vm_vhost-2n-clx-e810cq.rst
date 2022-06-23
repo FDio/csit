@@ -77,7 +77,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="3" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1e810cq-.html"></iframe>
+    <iframe id="3" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1e810cq-64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm.html"></iframe>
     <p><br></p>
     </center>
 
@@ -86,8 +86,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-100ge2p1e810cq-}
-            \label{fig:hdrh-lat-percentile-2n-clx-100ge2p1e810cq-}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-100ge2p1e810cq-64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm}
+            \label{fig:hdrh-lat-percentile-2n-clx-100ge2p1e810cq-64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm}
     \end{figure}
 
 .. raw:: latex
@@ -97,7 +97,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="4" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1e810cq-.html"></iframe>
+    <iframe id="4" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1e810cq-64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc.html"></iframe>
     <p><br></p>
     </center>
 
@@ -106,6 +106,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-100ge2p1e810cq-}
-            \label{fig:hdrh-lat-percentile-2n-clx-100ge2p1e810cq-}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-100ge2p1e810cq-64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc}
+            \label{fig:hdrh-lat-percentile-2n-clx-100ge2p1e810cq-64b-2t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc}
     \end{figure}
