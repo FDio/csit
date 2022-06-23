@@ -13,7 +13,7 @@
 
 """DUT setup library."""
 
-from time import sleep
+from time import sleep, monotonic
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
@@ -678,10 +678,14 @@ class DUTSetup:
                 stdout, _ = exec_cmd_no_error(node, command)
 
                 if stdout.strip() == u"Ubuntu":
+                    time_start = monotonic()
                     exec_cmd_no_error(
                         node, u"apt-get purge -y '*vpp*' || true",
-                        timeout=120, sudo=True
+                        timeout=240, sudo=True
                     )
+                    timedelta = monotonic() - time_start
+                    if timedelta > 120.0:
+                        logger.warn(f"apt purge took {timedelta} seconds!")
                     # workaround to avoid installation of vpp-api-python
                     exec_cmd_no_error(
                         node, f"rm -f {vpp_pkg_dir}vpp-api-python.deb",
