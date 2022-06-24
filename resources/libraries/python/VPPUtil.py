@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -72,6 +72,8 @@ class VPPUtil:
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
         DUTSetup.restart_service(node, Constants.VPP_UNIT)
         if node_key:
+            Topology.add_new_socket(
+                node, SocketType.CLI, node_key, Constants.SOCKCLI_PATH)
             Topology.add_new_socket(
                 node, SocketType.PAPI, node_key, Constants.SOCKSVR_PATH)
             Topology.add_new_socket(

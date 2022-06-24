@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2022 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -51,7 +51,7 @@
 | ${dst_ip}= | 1011:2022:3033:4044:5055:6066:7077:8088
 | ${rxq}= | ${4}
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template
