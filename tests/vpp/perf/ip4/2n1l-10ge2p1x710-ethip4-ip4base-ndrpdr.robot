@@ -20,9 +20,9 @@
 | ... | ethip4-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance
-| Suite Teardown | Tear down suite | performance
+#| Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance
+#| Test Teardown | Tear down test | performance
 |
 | Test Template | Local Template
 |
@@ -89,11 +89,11 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
-| | Then Find NDR and PDR intervals using optimized search
+| | Then Traffic should pass with maximum rate
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | 64B-2c-ethip4-ip4base-ndrpdr
