@@ -20,10 +20,10 @@
 ecdsa==0.13.3
 paramiko==2.6.0
 pycrypto==2.6.1
-pypcap==1.2.3
+#pypcap==1.2.3
 PyYAML==5.1.1
 requests==2.25.1
-robotframework==3.1.2
+robotframework==3.2
 scapy==2.4.3
 scp==0.13.2
 
@@ -31,15 +31,15 @@ scp==0.13.2
 ansible==2.10.7
 
 # PLRsearch dependencies
-dill==0.3.3
-numpy==1.17.3
-scipy==1.5.4
+dill
+numpy
+scipy
 
 # PAL/DOC dependencies
 boto3==1.17.78
 botocore==1.20.78
 hdrhistogram==0.6.1
-pandas==0.25.3
+pandas
 plotly==4.1.1
 PTable==0.9.2
 Sphinx==3.5.4
@@ -61,7 +61,7 @@ arrow==1.2.1
 Babel==2.9.0
 bcrypt==3.1.7
 certifi==2020.12.5
-cffi==1.13.2
+cffi
 chardet==4.0.0
 cryptography==2.8
 docutils==0.16
