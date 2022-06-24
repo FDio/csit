@@ -68,7 +68,7 @@
 | ${tg_stream1_subnet}= | 10.0.0.0/18
 | ${tg_stream2_subnet}= | 20.0.0.0/18
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

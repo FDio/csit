@@ -58,7 +58,7 @@
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_functional
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

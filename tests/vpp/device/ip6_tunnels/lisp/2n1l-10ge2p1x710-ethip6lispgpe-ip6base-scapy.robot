@@ -59,7 +59,7 @@
 | ${overhead}= | ${54}
 | ${is_gpe}= | ${1}
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

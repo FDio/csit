@@ -67,7 +67,7 @@
 | ${trex_stream1_subnet}= | 10.10.10.0/24
 | ${trex_stream2_subnet}= | 20.20.20.0/24
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

@@ -62,7 +62,7 @@
 | ${tg_if1_ip}= | 2001:1::2
 | ${tg_if2_ip}= | 2001:2::2
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

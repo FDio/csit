@@ -63,7 +63,7 @@
 | ${ip6_plen}= | ${64}
 | ${ip6_plen_rt}= | ${128}
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

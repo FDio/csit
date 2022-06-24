@@ -56,7 +56,7 @@
 | ${eir}= | ${150}
 | ${dscp}= | AF22
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

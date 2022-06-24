@@ -61,17 +61,17 @@
 | ${nf_dtc} | ${1}
 | ${nf_dtcr} | ${1}
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | - **[Top]** TG=DUT=VM. 
+| | ... | - **[Top]** TG=DUT=VM.
 | | ... | - **[Enc]** Eth-IPv4.
 | | ... | - **[Cfg]** On DUT1 configure \
 | | ... | two L2BDs with MAC learning, each with vhost-user i/f to local \
 | | ... | VM and i/f to TG; configure VPP in VM to loop pkts back betwen its \
-| | ... | two virtio i/fs. 
+| | ... | two virtio i/fs.
 | | ... | - **[Ver]** Make TG verify IPv4 packets are switched \
 | | ... | thru DUT1 and VM in both directions and are correct on receive.
 | |

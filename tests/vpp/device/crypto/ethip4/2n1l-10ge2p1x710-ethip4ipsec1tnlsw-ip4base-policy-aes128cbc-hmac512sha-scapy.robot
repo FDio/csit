@@ -62,7 +62,7 @@
 | ${tg_host_ip4}= | 192.168.3.3
 | ${ip4_plen}= | ${24}
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

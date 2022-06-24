@@ -61,7 +61,7 @@
 | ${addr_range}= | ${24}
 | ${n_tunnels}= | ${11}
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

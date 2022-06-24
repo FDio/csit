@@ -82,7 +82,7 @@
 | ${out_net_end}= | 68.142.68.0
 | ${out_mask}= | ${32}
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

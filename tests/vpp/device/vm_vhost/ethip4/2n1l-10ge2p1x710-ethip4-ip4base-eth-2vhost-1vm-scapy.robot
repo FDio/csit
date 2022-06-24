@@ -62,7 +62,7 @@
 | ${tg_if1_ip}= | 10.10.10.2
 | ${tg_if2_ip}= | 20.20.20.2
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

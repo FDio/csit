@@ -51,7 +51,7 @@
 | ${dst_ip}= | 1011:2022:3033:4044:5055:6066:7077:8088
 | ${rxq}= | ${4}
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template
