@@ -99,7 +99,7 @@
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | 64B-2c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
