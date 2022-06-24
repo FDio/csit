@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "748a8e0c_c70f12d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-24T10:02:04Z",
+      "side": 1,
+      "message": "Looks better, add these tests (ndrpdr only) also to coverage tests. Consider reducing of number of added tests.",
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
