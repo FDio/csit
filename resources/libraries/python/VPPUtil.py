@@ -73,6 +73,8 @@ class VPPUtil:
         DUTSetup.restart_service(node, Constants.VPP_UNIT)
         if node_key:
             Topology.add_new_socket(
+                node, SocketType.CLI, node_key, Constants.SOCKCLI_PATH)
+            Topology.add_new_socket(
                 node, SocketType.PAPI, node_key, Constants.SOCKSVR_PATH)
             Topology.add_new_socket(
                 node, SocketType.STATS, node_key, Constants.SOCKSTAT_PATH)
