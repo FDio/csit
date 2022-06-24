@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b0d6e06_aedee28a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-24T07:15:55Z",
+      "side": 1,
+      "message": "Add these tests also to MRR and coverage job specs.",
+      "revId": "5e72f9809e7f09d8e1198ab3d4a025cb95745b82",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
