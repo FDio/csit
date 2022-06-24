@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -73,7 +73,7 @@
 | ... | local=1.1.1.2 | remote=1.1.1.1 | vni=${1}
 | ... | src_ip=10.128.1.0 | dst_ip=10.0.1.0 | ip_mask=${24} | if_ip=11.0.1.2
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template

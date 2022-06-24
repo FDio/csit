@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -67,7 +67,7 @@
 | ${trex_stream1_subnet}= | 10.10.10.0/24
 | ${trex_stream2_subnet}= | 20.20.20.0/24
 # Telemetry
-| ${telemetry_profile}= | vpp_test_teardown
+| ${telemetry_profile}= | vppctl_test_teardown
 
 *** Keywords ***
 | Local Template
