@@ -16,6 +16,144 @@
       "message": "Looks better, add these tests (ndrpdr only) also to coverage tests. Consider reducing of number of added tests.",
       "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0866fb93_39a2cfe8",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 1,
+      "message": "Clarification questions (non-blocking):\n- What is the meaning of \"fixtnlip\" here?\n- How are these tests different than ethip4ipsec10000tnlsw-ip4base-int-aes256gcm ?",
+      "range": {
+        "startLine": 128,
+        "startChar": 27,
+        "endLine": 128,
+        "endChar": 35
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2e778d3_97e67e07",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 1,
+      "message": "For crypto tests, as they are compute intensive and core bound due to volume of data and PPS, CSIT MRR daily trending covers IMIX and 1518B frames only.\n\nTesting more frame sizes inflates the number of tests and their execution time, putting it beyond available time budget.\n\nPlease remove, unless you can justify it in some specific way.",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 106
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07ce4ab7_f552bb33",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 1,
+      "message": "For crypto tests, as they are compute intensive and core bound due to volume of data and PPS, CSIT MRR daily trending covers IMIX and 1518B frames only.\n\nTesting more frame sizes inflates the number of tests and their execution time, putting it beyond available time budget.\n\nPlease remove, unless you can justify it in some specific way.",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 115
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46010010_02c445f6",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 1,
+      "message": "For crypto tests, as they are compute intensive and core bound due to volume of data and PPS, CSIT MRR daily trending covers IMIX and 1518B frames only.\n\nTesting more frame sizes inflates the number of tests and their execution time, putting it beyond available time budget.\n\nPlease remove, unless you can justify it in some specific way.",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 115
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1306c223_32292912",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 1,
+      "message": "For all non-crypto tests, CSIT MRR daily trending covers 64B frames only.\n\nTesting more frame sizes inflates the number of tests and their execution time, putting it beyond available time budget.\n\nPlease remove, unless you can justify it in some specific way.",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 73
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7b2e05c_d624bea3",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 1,
+      "message": "For all non-crypto tests, CSIT MRR daily trending covers 64B frames only.\n\nTesting more frame sizes inflates the number of tests and their execution time, putting it beyond available time budget.\n\nPlease remove, unless you can justify it in some specific way.",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 73
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }

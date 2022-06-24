@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac7b8089_613260e0",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 0,
+      "message": "Why are you removing these xxv710 avf gtpu tests?",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 69
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4bc356a_ae00d7fe",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 0,
+      "message": "Why are you removing these xxv710 i40e dpdk gtpu tests?",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 74
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b2bf3c_51099d3d",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 0,
+      "message": "Why are you removing these xxv710 avf gtpu tests?",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 66
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb639bdb_0561c004",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-24T10:12:01Z",
+      "side": 0,
+      "message": "Why are you removing these xxv710 i40e dpdk gtpu tests?",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 71
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
