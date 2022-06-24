@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -586,6 +586,12 @@ class ContainerEngine:
 
         topo_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.topology.Topology"
+        )
+        topo_instance.add_new_socket(
+            self.container.node,
+            SocketType.CLI,
+            self.container.name,
+            self.container.cli_socket,
         )
         topo_instance.add_new_socket(
             self.container.node,
@@ -1277,6 +1283,7 @@ class Container:
                 path = f"/tmp/vpp_sockets/{value}"
                 self.__dict__[u"socket_dir"] = path
                 self.__dict__[u"api_socket"] = f"{path}/api.sock"
+                self.__dict__[u"cli_socket"] = f"{path}/cli.sock"
                 self.__dict__[u"stats_socket"] = f"{path}/stats.sock"
             self.__dict__[attr] = value
         else:

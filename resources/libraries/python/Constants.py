@@ -246,6 +246,12 @@ class Constants:
     # Default path to VPP API socket.
     SOCKSVR_PATH = u"/run/vpp/api.sock"
 
+    # Default path to VPP CLI socket.
+    SOCKCLI_PATH = u"/run/vpp/cli.sock"
+
+    # Default path to VPP API Stats socket.
+    SOCKSTAT_PATH = u"/run/vpp/stats.sock"
+
     # Number of trials to execute in MRR test.
     PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
 
@@ -286,9 +292,6 @@ class Constants:
     # DUT1 docker in case of vpp-device test. ${EMPTY} value means that
     #  /tmp directory is inside the DUT1 docker.
     DUT1_UUID = get_str_from_env(u"DUT1_UUID", u"")
-
-    # Default path to VPP API Stats socket.
-    SOCKSTAT_PATH = u"/run/vpp/stats.sock"
 
     # Global "kill switch" for CRC checking during runtime.
     FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env(
