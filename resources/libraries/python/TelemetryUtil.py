@@ -133,7 +133,7 @@ class TelemetryUtil:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 try:
-                    for socket in node[u"sockets"][u"PAPI"].values():
+                    for socket in node[u"sockets"][u"CLI"].values():
                         TelemetryUtil.run_telemetry(
                             node, profile=profile, hook=socket
                         )
