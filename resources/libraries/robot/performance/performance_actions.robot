@@ -94,7 +94,7 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vpp_runtime.yaml
+| | ... | ${nodes} | profile=vppctl_runtime.yaml
 | | Stop traffic on tg
 
 | Additional Statistics Action For vpp-runtime-iperf3
@@ -119,7 +119,7 @@
 | | | ... | bind=${iperf_client_bind}
 | | | ... | affinity=${iperf_client_affinity}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vpp_runtime.yaml
+| | ... | ${nodes} | profile=vppctl_runtime.yaml
 | | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}
 
 | Additional Statistics Action For noop
@@ -133,7 +133,7 @@
 | | ... | Additional Statistics Action for clear VPP statistics.
 | |
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vpp_clear_stats.yaml
+| | ... | ${nodes} | profile=vppctl_clear_stats.yaml
 
 | Additional Statistics Action For vpp-enable-packettrace
 | | [Documentation]
@@ -154,4 +154,4 @@
 | | ... | Additional Statistics Action for show VPP statistics.
 | |
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vpp_show_stats.yaml
+| | ... | ${nodes} | profile=vppctl_show_stats.yaml
