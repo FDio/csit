@@ -246,6 +246,9 @@ class Constants:
     # Default path to VPP API socket.
     SOCKSVR_PATH = u"/run/vpp/api.sock"
 
+    # Default path to VPP CLI socket.
+    SOCKCLI_PATH = u"/run/vpp/cli.sock"
+
     # Number of trials to execute in MRR test.
     PERF_TRIAL_MULTIPLICITY = get_int_from_env(u"PERF_TRIAL_MULTIPLICITY", 10)
 
