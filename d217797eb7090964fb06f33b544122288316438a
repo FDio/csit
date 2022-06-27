@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "795fd412_419317bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-27T06:44:55Z",
+      "side": 1,
+      "message": "Add also coverage tests. E.g. create a file docs/job_specs/report_coverage/3n-icx/crypto-05.md Here you can add more tests than to iterative job spec, but not too many.",
+      "revId": "d217797eb7090964fb06f33b544122288316438a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
