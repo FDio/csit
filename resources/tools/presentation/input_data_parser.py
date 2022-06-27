@@ -1202,15 +1202,15 @@ class ExecutionChecker(ResultVisitor):
             if test.status == u"PASS":
                 test_result[u"throughput"], test_result[u"status"] = \
                     self._get_plr_throughput(test.message)
+        elif u"LDP_NGINX" in tags:
+            test_result[u"type"] = u"LDP_NGINX"
+            test_result[u"result"], test_result[u"status"] = \
+                self._get_vsap_data(test.message, tags)
         elif u"HOSTSTACK" in tags:
             test_result[u"type"] = u"HOSTSTACK"
             if test.status == u"PASS":
                 test_result[u"result"], test_result[u"status"] = \
                     self._get_hoststack_data(test.message, tags)
-        elif u"LDP_NGINX" in tags:
-            test_result[u"type"] = u"LDP_NGINX"
-            test_result[u"result"], test_result[u"status"] = \
-                self._get_vsap_data(test.message, tags)
         # elif u"TCP" in tags:  # This might be not used
         #     test_result[u"type"] = u"TCP"
         #     if test.status == u"PASS":
