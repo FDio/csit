@@ -48,6 +48,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bddd83f_27103448",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T04:06:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "1ed26b3b_3e30a01a",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 69
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4bc356a_ae00d7fe",
@@ -85,6 +109,30 @@
       "side": 0,
       "message": "The initial purpose is to make it run on e810xxv to reduce tests for GTPU. but after think it carefully, it is better to keep it for the comparison with the result of previous releases, so we will keep it in the updated patch.",
       "parentUuid": "b4bc356a_ae00d7fe",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 74
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05e41895_20f5ea9a",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T04:06:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "b64809da_7d699599",
       "range": {
         "startLine": 162,
         "startChar": 0,
@@ -142,6 +190,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45b075ba_4c40fb2d",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T04:06:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "20ba39f9_2e698ff3",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 66
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb639bdb_0561c004",
@@ -179,6 +251,30 @@
       "side": 0,
       "message": "this is mrr, same purpose as previous explanation in ndrpdr, we will keep it in the updated patch.",
       "parentUuid": "fb639bdb_0561c004",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 71
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c910e2e6_aae40427",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T04:06:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "ebdde565_46219552",
       "range": {
         "startLine": 163,
         "startChar": 0,
