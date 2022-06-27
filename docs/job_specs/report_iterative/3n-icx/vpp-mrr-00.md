@@ -196,6 +196,10 @@
 1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4gtpuhw-ip4base
 2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4gtpuhw-ip4base
 4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4gtpuhw-ip4base
+##### ethip4udpwireguard1tnlsw-ip4base
+1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4udpwireguard1tnlsw-ip4base
+2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4udpwireguard1tnlsw-ip4base
+4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4udpwireguard1tnlsw-ip4base
 ## ./ip6
 ### intel-xxv710
 #### avf
