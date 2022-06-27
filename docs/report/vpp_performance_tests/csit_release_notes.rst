@@ -71,6 +71,96 @@ ___
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
+|  1 | `CSIT-1827                              | 3n-icx, 3n-skx: all 1518B AVF crypto tests failed with no traffic, all IMIX AVF crypto with excessive     |
+|    | <https://jira.fd.io/browse/CSIT-1827>`_ | packet loss.                                                                                              |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  2 | `CSIT-1830                              | Tcp tput (and pps) tests are failing for small packets.                                                   |
+|    | <https://jira.fd.io/browse/CSIT-1830>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  3 | `CSIT-1831                              | (fixed) 2n-clx: Port 0 is down when running traffic profile.                                                      |
+|    | <https://jira.fd.io/browse/CSIT-1831>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  4 | `CSIT-1832                              | 3n-alt: NDR 1 packet lost on random tests.                                                                |
+|    | <https://jira.fd.io/browse/CSIT-1832>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  5 | `CSIT-1834                              | 2n-icx: sporadic AVF soak tests failing with Lower bound 6226.48 too small for unidir minimum 9001.0.     |
+|    | <https://jira.fd.io/browse/CSIT-1834>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  6 | `CSIT-1836                              | 2n-clx: hoststack cps tests failing with TCP_CPS tests are only supported for (nominal) 64B frames.       |
+|    | <https://jira.fd.io/browse/CSIT-1836>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  7 | `CSIT-1837                              | (fixed) 2n-clx: All E810Cq tests failing to set correct speed rate.                                               |
+|    | <https://jira.fd.io/browse/CSIT-1837>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  8 | `CSIT-1838                              | 3n-icx, 3n-skx: all IMIX AVF crypto tests failed with excessive packet loss.                              |
+|    | <https://jira.fd.io/browse/CSIT-1838>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  9 | `CSIT-1839                              | (fixed) 2n-clx: ALL VM vhost non Vppl2Xc failing to run NF on QEMU.                                               |
+|    | <https://jira.fd.io/browse/CSIT-1839>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 10 | `CSIT-1843                              | 3n-icx (Icelake): all L2 tests failing with no traffic.                                                   |
+|    | <https://jira.fd.io/browse/CSIT-1843>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+
+Previous
+________
+
+Issues reported in previous releases which still affect the current results.
+
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  # | JiraID                                  | Issue Description                                                                                         |
++====+=========================================+===========================================================================================================+
+|  1 | `CSIT-1802                              | AF-XDP - NDR tests failing from time to time.                                                             |
+|    | <https://jira.fd.io/browse/CSIT-1802>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  2 | `CSIT-1803                              | 3n-icx testbeds (Icelake): all IMIX aes128cbc-hmac512sha tests are failing due to excessive packet loss.  |
+|    | <https://jira.fd.io/browse/CSIT-1803>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  3 | `CSIT-1804                              | 3n-tsh testbed (Taishan): NDR tests failing from time to time.                                            |
+|    | <https://jira.fd.io/browse/CSIT-1804>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  4 | `CSIT-1805                              | 3n-skx testbeds (Skylake): all hoststack quic vppecho scale tests are failing.                            |
+|    | <https://jira.fd.io/browse/CSIT-1805>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  5 | `CSIT-1810                              | DPDK - performance regression with DPDK driver when Max Frame Size is set to less than 2023.              |
+|    | <https://jira.fd.io/browse/CSIT-1810>`_ |                                                                                                           |
+|    +-----------------------------------------+                                                                                                           |
+|    | `VPP-1876                               | Worse performance with DPDK driver when MTU is set to 2022 or less.                                       |
+|    | <https://jira.fd.io/browse/VPP-1876>`_  |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  6 | `CSIT-1811                              | All 9000B NAT44DET 64k 1m scale tests fail due to bps rate set to high on TRex.                           |
+|    | <https://jira.fd.io/browse/CSIT-1811>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  7 | `CSIT-1812                              | All IMIX NAT44DET 4m 16m scale tests fail due to not creating required session count.                     |
+|    | <https://jira.fd.io/browse/CSIT-1812>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  8 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
+|    | <https://jira.fd.io/browse/CSIT-1782>`_ | Frequency is reduced by CSIT workaround, but occasional failures do still happen.                         |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  9 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
+|    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
+|    +-----------------------------------------+ Currently, the time critical code uses VAT running large files with exec statements and CLI commands.     |
+|    | `VPP-1763                               | Still, we needed to reduce the number of scale tests run to keep overall duration reasonable.             |
+|    | <https://jira.fd.io/browse/VPP-1763>`_  | More improvements needed to achieve sufficient configuration speed.                                       |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 10 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
+|    | <https://jira.fd.io/browse/CSIT-1785>`_ | At least for max scale, in allotted time (limited by session 500s timeout) due to worse                   |
+|    +-----------------------------------------+ slow path performance than previously measured and calibrated for.                                        |
+|    | `VPP-1972                               | CSIT removed the max scale NAT tests to avoid this issue.                                                 |
+|    | <https://jira.fd.io/browse/VPP-1972>`_  |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 11 | `CSIT-1791                              | Performance regression in RDMA tests, due to CSIT environment changes.                                    |
+|    | <https://jira.fd.io/browse/CSIT-1791>`_ | Two symptoms: 1. 10-20% regression across most tests. 2. DUT performance cap just below 38 Mpps.          |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+
+Fixed
+_____
+
+Issues reported in previous releases which were fixed in this release:
+
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  # | JiraID                                  | Issue Description                                                                                         |
++====+=========================================+===========================================================================================================+
 |  1 | `CSIT-1799                              | All NAT44-ED 16M scale tests fail while setting NAT44 address range.                                      |
 |    | <https://jira.fd.io/browse/CSIT-1799>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
@@ -85,73 +175,6 @@ ___
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  5 | `CSIT-1809                              | All tests with 9000B payload frames not forwarded over vhostuser interfaces.                              |
 |    | <https://jira.fd.io/browse/CSIT-1809>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1802                              | AF-XDP - NDR tests failing from time to time.                                                             |
-|    | <https://jira.fd.io/browse/CSIT-1802>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1803                              | 3n-icx testbeds (Icelake): all IMIX aes128cbc-hmac512sha tests are failing due to excessive packet loss.  |
-|    | <https://jira.fd.io/browse/CSIT-1803>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  8 | `CSIT-1804                              | 3n-tsh testbed (Taishan): NDR tests failing from time to time.                                            |
-|    | <https://jira.fd.io/browse/CSIT-1804>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  9 | `CSIT-1805                              | 3n-skx testbeds (Skylake): all hoststack quic vppecho scale tests are failing.                            |
-|    | <https://jira.fd.io/browse/CSIT-1805>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 10 | `CSIT-1810                              | DPDK - performance regression with DPDK driver when Max Frame Size is set to less than 2023.              |
-|    | <https://jira.fd.io/browse/CSIT-1810>`_ |                                                                                                           |
-|    +-----------------------------------------+                                                                                                           |
-|    | `VPP-1876                               | Worse performance with DPDK driver when MTU is set to 2022 or less.                                       |
-|    | <https://jira.fd.io/browse/VPP-1876>`_  |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1811                              | All 9000B NAT44DET 64k 1m scale tests fail due to bps rate set to high on TRex.                           |
-|    | <https://jira.fd.io/browse/CSIT-1811>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1812                              | All IMIX NAT44DET 4m 16m scale tests fail due to not creating required session count.                     |
-|    | <https://jira.fd.io/browse/CSIT-1812>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-
-
-Previous
-________
-
-Issues reported in previous releases which still affect the current results.
-
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  # | JiraID                                  | Issue Description                                                                                         |
-+====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
-|    | <https://jira.fd.io/browse/CSIT-1782>`_ | Frequency is reduced by CSIT workaround, but occasional failures do still happen.                         |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  2 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
-|    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
-|    +-----------------------------------------+ Currently, the time critical code uses VAT running large files with exec statements and CLI commands.     |
-|    | `VPP-1763                               | Still, we needed to reduce the number of scale tests run to keep overall duration reasonable.             |
-|    | <https://jira.fd.io/browse/VPP-1763>`_  | More improvements needed to achieve sufficient configuration speed.                                       |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
-|    | <https://jira.fd.io/browse/CSIT-1785>`_ | At least for max scale, in allotted time (limited by session 500s timeout) due to worse                   |
-|    +-----------------------------------------+ slow path performance than previously measured and calibrated for.                                        |
-|    | `VPP-1972                               | CSIT removed the max scale NAT tests to avoid this issue.                                                 |
-|    | <https://jira.fd.io/browse/VPP-1972>`_  |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1791                              | Performance regression in RDMA tests, due to CSIT environment changes.                                    |
-|    | <https://jira.fd.io/browse/CSIT-1791>`_ | Two symptoms: 1. 10-20% regression across most tests. 2. DUT performance cap just below 38 Mpps.          |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-
-Fixed
-_____
-
-Issues reported in previous releases which were fixed in this release:
-
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  # | JiraID                                  | Issue Description                                                                                         |
-+====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1789                              | IPSEC SW async scheduler tests show bad behavior.                                                         |
-|    | <https://jira.fd.io/browse/CSIT-1789>`_ | VPP code is not behaving correctly when crypto workers are the bottleneck.                                |
-|    +-----------------------------------------+                                                                                                           |
-|    | `VPP-1998                               |                                                                                                           |
-|    | <https://jira.fd.io/browse/VPP-1998>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Root Cause Analysis for Performance Changes
