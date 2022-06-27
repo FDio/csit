@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea2386cb_7a7feea8",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 1,
+      "message": "1. \"fixtnlip\" means that to set up multi ipsec SA rules to use one tunnel src and dst ip addr, this is for test scenario that two private networks which communication was protected by ipsec.\n\n2. ethip4ipsec10000tnlsw-ip4base-int-aes256gcm is the test for ipip tunnel interface mode which explained in [1],  our new added test cases is for policy mode which also explained in [1].\n\n[1]. https://wiki.fd.io/view/VPP/IPSec#IPSec",
+      "parentUuid": "0866fb93_39a2cfe8",
+      "range": {
+        "startLine": 128,
+        "startChar": 27,
+        "endLine": 128,
+        "endChar": 35
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2e778d3_97e67e07",
         "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
         "patchSetId": 3
@@ -54,6 +78,30 @@
       "writtenOn": "2022-06-24T10:12:01Z",
       "side": 1,
       "message": "For crypto tests, as they are compute intensive and core bound due to volume of data and PPS, CSIT MRR daily trending covers IMIX and 1518B frames only.\n\nTesting more frame sizes inflates the number of tests and their execution time, putting it beyond available time budget.\n\nPlease remove, unless you can justify it in some specific way.",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 106
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cec439b_ee6cca25",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 1,
+      "message": "we can remove tests for 64B frame size.",
+      "parentUuid": "d2e778d3_97e67e07",
       "range": {
         "startLine": 129,
         "startChar": 0,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57b61ede_74df6303",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 1,
+      "message": "we can remove tests for 64B frame size.",
+      "parentUuid": "07ce4ab7_f552bb33",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 115
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46010010_02c445f6",
         "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
         "patchSetId": 3
@@ -100,6 +172,30 @@
       "writtenOn": "2022-06-24T10:12:01Z",
       "side": 1,
       "message": "For crypto tests, as they are compute intensive and core bound due to volume of data and PPS, CSIT MRR daily trending covers IMIX and 1518B frames only.\n\nTesting more frame sizes inflates the number of tests and their execution time, putting it beyond available time budget.\n\nPlease remove, unless you can justify it in some specific way.",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 115
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e95e92f4_30731471",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 1,
+      "message": "we can remove tests for 64B frame size.",
+      "parentUuid": "46010010_02c445f6",
       "range": {
         "startLine": 149,
         "startChar": 0,
@@ -135,6 +231,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "304c6cdf_08e968f9",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 1,
+      "message": "we can remove it in the updated patch",
+      "parentUuid": "1306c223_32292912",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 73
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7b2e05c_d624bea3",
         "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
         "patchSetId": 3
@@ -146,6 +266,30 @@
       "writtenOn": "2022-06-24T10:12:01Z",
       "side": 1,
       "message": "For all non-crypto tests, CSIT MRR daily trending covers 64B frames only.\n\nTesting more frame sizes inflates the number of tests and their execution time, putting it beyond available time budget.\n\nPlease remove, unless you can justify it in some specific way.",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 73
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15722d50_a7be5659",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 1,
+      "message": "we can remove it in the updated patch",
+      "parentUuid": "c7b2e05c_d624bea3",
       "range": {
         "startLine": 206,
         "startChar": 0,

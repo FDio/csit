@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ed26b3b_3e30a01a",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 0,
+      "message": "The initial purpose is to make it run on e810xxv to reduce tests for GTPU. but after think it carefully, it is better to keep it for the comparison with the result of previous releases, so we will keep it in the updated patch.",
+      "parentUuid": "ac7b8089_613260e0",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 69
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4bc356a_ae00d7fe",
         "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-24T10:12:01Z",
       "side": 0,
       "message": "Why are you removing these xxv710 i40e dpdk gtpu tests?",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 74
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b64809da_7d699599",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 0,
+      "message": "The initial purpose is to make it run on e810xxv to reduce tests for GTPU. but after think it carefully, it is better to keep it for the comparison with the result of previous releases, so we will keep it in the updated patch.",
+      "parentUuid": "b4bc356a_ae00d7fe",
       "range": {
         "startLine": 162,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20ba39f9_2e698ff3",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 0,
+      "message": "this is mrr, same purpose as previous explanation in ndrpdr, we will keep it in the updated patch.",
+      "parentUuid": "75b2bf3c_51099d3d",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 66
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fb639bdb_0561c004",
         "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
         "patchSetId": 3
@@ -83,6 +155,30 @@
       "writtenOn": "2022-06-24T10:12:01Z",
       "side": 0,
       "message": "Why are you removing these xxv710 i40e dpdk gtpu tests?",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 71
+      },
+      "revId": "50053fbdc3de57026b940242a445ed39b4be49f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebdde565_46219552",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-06-27T02:27:43Z",
+      "side": 0,
+      "message": "this is mrr, same purpose as previous explanation in ndrpdr, we will keep it in the updated patch.",
+      "parentUuid": "fb639bdb_0561c004",
       "range": {
         "startLine": 163,
         "startChar": 0,
