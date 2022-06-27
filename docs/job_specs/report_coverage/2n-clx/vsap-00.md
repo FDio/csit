@@ -1,18 +1,6 @@
 # 2n-clx
 ## ./container_memif
 ## ./crypto
-## ./ip4
-## ./ip4_tunnels
-## ./ip6
-## ./ip6_tunnels
-## ./l2
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
-## ./srv6
 ## ./hoststack
 ### mellanox-cx556a
 #### dpdk-vfio-pci
@@ -36,4 +24,16 @@
 1c AND 64b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
 1c AND 1024b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
 1c AND 2048b AND rps AND e810cq AND drv_vfio_pci AND eth-ip4tcphttp-ldpreload-nginx-1_15_0
+## ./ip4
+## ./ip4_tunnels
+## ./ip6
+## ./ip6_tunnels
+## ./l2
+## ./lb
+## ./nfv_density/dcr_memif/chain
+## ./nfv_density/dcr_memif/chain_ipsec
+## ./nfv_density/dcr_memif/pipeline
+## ./nfv_density/vm_vhost/chain
+## ./srv6
+## ./tcp
 ## ./vm_vhost
