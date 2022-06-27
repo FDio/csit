@@ -21,7 +21,8 @@
   import_tasks: turbo_boost.yaml
   when: >
     cpu_microarchitecture == "skylake" or
-    cpu_microarchitecture == "cascadelake"
+    cpu_microarchitecture == "cascadelake" or
+    cpu_microarchitecture == "icelake"
   tags:
     - perf-conf-turbo-boost
 
