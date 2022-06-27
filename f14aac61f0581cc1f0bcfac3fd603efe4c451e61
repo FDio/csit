@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c83c7bd_08b7f10d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-27T11:25:58Z",
+      "side": 1,
+      "message": "We need to reduce the number of tests for 2n-clx daily (mrr) and weekly (ndrpdr). Current status (before this patch) is:\n- MRR 10:30 to 11 hours (not bad); should be less than 12 hours\n- NDRPDR: 39 to 40 hours (very bad); should be less than 24 hours",
+      "revId": "f14aac61f0581cc1f0bcfac3fd603efe4c451e61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
