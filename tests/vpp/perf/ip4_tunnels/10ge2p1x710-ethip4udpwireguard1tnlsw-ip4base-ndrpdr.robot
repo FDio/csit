@@ -18,7 +18,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1
 | ... | IP4FWD |  NIC_Intel-X710 | WIREGUARD | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| ... | ethip4udpwireguard1tnlsw-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
