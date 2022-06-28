@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86fa15f1_4c356a62",
+        "filename": "docs/report/introduction/methodology_autogen.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T08:46:28Z",
+      "side": 1,
+      "message": "Consider using the full name as a chapter title. The name \"autogen\" is described later.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 7
+      },
+      "revId": "8014108019104152a4e355f8505d00deee736e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa0fcea1_8307bd8e",
+        "filename": "docs/report/introduction/methodology_autogen.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T08:46:28Z",
+      "side": 1,
+      "message": "text flow",
+      "range": {
+        "startLine": 6,
+        "startChar": 38,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "8014108019104152a4e355f8505d00deee736e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2f8b15f_825e7a8e",
+        "filename": "docs/report/introduction/methodology_autogen.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T08:46:28Z",
+      "side": 1,
+      "message": "Can you add more details? What \"more suites\" means?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "8014108019104152a4e355f8505d00deee736e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22f447b6_50270f48",
+        "filename": "docs/report/introduction/methodology_autogen.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T08:46:28Z",
+      "side": 1,
+      "message": "generated?",
+      "range": {
+        "startLine": 22,
+        "startChar": 59,
+        "endLine": 22,
+        "endChar": 70
+      },
+      "revId": "8014108019104152a4e355f8505d00deee736e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28c3e71c_bd7f4edc",
+        "filename": "docs/report/introduction/methodology_autogen.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T08:46:28Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 81
+      },
+      "revId": "8014108019104152a4e355f8505d00deee736e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f9514a4_4cb7e24b",
+        "filename": "docs/report/introduction/methodology_autogen.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T08:46:28Z",
+      "side": 1,
+      "message": "we have also 1-node",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "8014108019104152a4e355f8505d00deee736e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ae84b9a_9b7ae4e5",
+        "filename": "docs/report/introduction/methodology_autogen.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T08:46:28Z",
+      "side": 1,
+      "message": "we use \"2-node\"",
+      "range": {
+        "startLine": 99,
+        "startChar": 14,
+        "endLine": 99,
+        "endChar": 20
+      },
+      "revId": "8014108019104152a4e355f8505d00deee736e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4cc52d6_ae116db7",
+        "filename": "docs/report/introduction/methodology_autogen.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T08:46:28Z",
+      "side": 1,
+      "message": "suites",
+      "range": {
+        "startLine": 101,
+        "startChar": 30,
+        "endLine": 101,
+        "endChar": 36
+      },
+      "revId": "8014108019104152a4e355f8505d00deee736e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
