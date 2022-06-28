@@ -43,34 +43,37 @@ CSIT uses ASTF (Advanced STateFul mode).
 
 This mode is suitable for NAT44ED tests, as clients send packets from inside,
 and servers react to it, so they see the outside address and port to respond to.
-Also, they do not send traffic before NAT44ED has opened the sessions.
+Also, they do not send traffic before NAT44ED has created the corresponding
+translation entry.
 
 When possible, L2 counters (opackets, ipackets) are used.
 Some tests need L7 counters, which track protocol state (e.g. TCP),
-but the values are less than reliable on high loads.
+but those values are less than reliable on high loads.
 
 Traffic Continuity
 ~~~~~~~~~~~~~~~~~~
 
-Generated traffic is either continuous, or limited.
+Generated traffic is either continuous, or limited (by number of transactions).
 Both modes support both continuities in principle.
 
 Continuous traffic
 __________________
 
-Traffic is started without any size goal.
-Traffic is ended based on time duration as hinted by search algorithm.
+Traffic is started without any data size goal.
+Traffic is ended based on time duration, as hinted by search algorithm.
 This is useful when DUT behavior does not depend on the traffic duration.
 The default for stateless mode.
 
 Limited traffic
 _______________
 
-Traffic has defined size goal, duration is computed based on the goal.
+Traffic has defined data size goal (given as number of transactions),
+duration is computed based on this goal.
 Traffic is ended when the size goal is reached,
 or when the computed duration is reached.
 This is useful when DUT behavior depends on traffic size,
-e.g. target number of session, each to be hit once.
+e.g. target number of NAT translation entries, each to be hit exactly once
+per direction.
 This is used mainly for stateful mode.
 
 Traffic synchronicity
@@ -113,7 +116,9 @@ in CSIT called transaction templates. Traffic profiles also instruct
 TRex how to create a large number of transactions based on the templates.
 
 Continuous traffic loops over the generated transactions.
-Limited traffic usually executes each transaction once.
+Limited traffic usually executes each transaction once
+(typically as constant number of loops over source addresses,
+each loop with different source ports).
 
 Currently, ASTF profiles define one transaction template each.
 Number of packets expected per one transaction varies based on profile details,
@@ -163,11 +168,11 @@ for example the limit for TCP traffic depends on DUT packet loss.
 In CSIT we decided to use logic similar to asynchronous traffic.
 The traffic driver sleeps for a time, then stops the traffic explicitly.
 The library that parses counters into measurement results
-than usually treats unsent packets as lost.
+than usually treats unsent packets/transactions as lost/failed.
 
 We have added a IP4base tests for every NAT44ED test,
 so that users can compare results.
-Of the results are very similar, it is probable TRex was the bottleneck.
+If the results are very similar, it is probable TRex was the bottleneck.
 
 Startup delay
 _____________
@@ -184,7 +189,9 @@ Thus "sleep and stop" stategy is used, which needs a correction
 to the computed duration so traffic is stopped after the intended
 duration of real traffic. Luckily, it turns out this correction
 is not dependend on traffic profile nor CPU used by TRex,
-so a fixed constant (0.1115 seconds) works well.
+so a fixed constant (0.112 seconds) works well.
+Unfortunately, the constant may depend on TRex version,
+or execution environment (e.g. TRex in AWS).
 
 The result computations need a precise enough duration of the real traffic,
 luckily server side of TRex has precise enough counter for that.
@@ -201,3 +208,6 @@ If measurement of latency is requested, two more packet streams are
 created (one for each direction) with TRex flow_stats parameter set to
 STLFlowLatencyStats. In that case, returned statistics will also include
 min/avg/max latency values and encoded HDRHistogram data.
+
+..
+    TODO: Mention we have added TRex self-test suites.
