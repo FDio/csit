@@ -39,6 +39,9 @@ from pal_utils import mean, stdev, classify_anomalies, \
 
 
 REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)')
+REGEX_TOPO_ARCH = re.compile(r'^(\dn-.{3})')
+
+NORM_FREQ = 2.0  # [GHz]
 
 
 def generate_tables(spec, data):
@@ -51,31 +54,38 @@ def generate_tables(spec, data):
     """
 
     generator = {
-        u"table_merged_details": table_merged_details,
-        u"table_soak_vs_ndr": table_soak_vs_ndr,
-        u"table_perf_trending_dash": table_perf_trending_dash,
-        u"table_perf_trending_dash_html": table_perf_trending_dash_html,
-        u"table_last_failed_tests": table_last_failed_tests,
-        u"table_failed_tests": table_failed_tests,
-        u"table_failed_tests_html": table_failed_tests_html,
-        u"table_oper_data_html": table_oper_data_html,
-        u"table_comparison": table_comparison,
-        u"table_weekly_comparison": table_weekly_comparison,
-        u"table_job_spec_duration": table_job_spec_duration
+        "table_merged_details": table_merged_details,
+        "table_soak_vs_ndr": table_soak_vs_ndr,
+        "table_perf_trending_dash": table_perf_trending_dash,
+        "table_perf_trending_dash_html": table_perf_trending_dash_html,
+        "table_last_failed_tests": table_last_failed_tests,
+        "table_failed_tests": table_failed_tests,
+        "table_failed_tests_html": table_failed_tests_html,
+        "table_oper_data_html": table_oper_data_html,
+        "table_comparison": table_comparison,
+        "table_weekly_comparison": table_weekly_comparison,
+        "table_job_spec_duration": table_job_spec_duration
     }
 
     logging.info(u"Generating the tables ...")
+
+    norm_factor = dict()
+    for key, val in spec.environment.get("frequency", dict()).items():
+        norm_factor[key] = NORM_FREQ / val
+
     for table in spec.tables:
         try:
-            if table[u"algorithm"] == u"table_weekly_comparison":
-                table[u"testbeds"] = spec.environment.get(u"testbeds", None)
-            generator[table[u"algorithm"]](table, data)
+            if table["algorithm"] == "table_weekly_comparison":
+                table["testbeds"] = spec.environment.get("testbeds", None)
+            if table["algorithm"] == "table_comparison":
+                table["norm_factor"] = norm_factor
+            generator[table["algorithm"]](table, data)
         except NameError as err:
             logging.error(
-                f"Probably algorithm {table[u'algorithm']} is not defined: "
+                f"Probably algorithm {table['algorithm']} is not defined: "
                 f"{repr(err)}"
             )
-    logging.info(u"Done.")
+    logging.info("Done.")
 
 
 def table_job_spec_duration(table, input_data):
@@ -1722,81 +1732,83 @@ def table_comparison(table, input_data):
     :type table: pandas.Series
     :type input_data: InputData
     """
-    logging.info(f"  Generating the table {table.get(u'title', u'')} ...")
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     # Transform the data
     logging.info(
-        f"    Creating the data set for the {table.get(u'type', u'')} "
-        f"{table.get(u'title', u'')}."
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
     )
 
-    columns = table.get(u"columns", None)
+    normalize = table.get('normalize', False)
+
+    columns = table.get("columns", None)
     if not columns:
         logging.error(
-            f"No columns specified for {table.get(u'title', u'')}. Skipping."
+            f"No columns specified for {table.get('title', '')}. Skipping."
         )
         return
 
     cols = list()
     for idx, col in enumerate(columns):
-        if col.get(u"data-set", None) is None:
-            logging.warning(f"No data for column {col.get(u'title', u'')}")
+        if col.get("data-set", None) is None:
+            logging.warning(f"No data for column {col.get('title', '')}")
             continue
-        tag = col.get(u"tag", None)
+        tag = col.get("tag", None)
         data = input_data.filter_data(
             table,
             params=[
-                u"throughput",
-                u"result",
-                u"latency",
-                u"name",
-                u"parent",
-                u"tags"
+                "throughput",
+                "result",
+                "latency",
+                "name",
+                "parent",
+                "tags"
             ],
-            data=col[u"data-set"],
+            data=col["data-set"],
             continue_on_error=True
         )
         col_data = {
-            u"title": col.get(u"title", f"Column{idx}"),
-            u"data": dict()
+            "title": col.get("title", f"Column{idx}"),
+            "data": dict()
         }
         for builds in data.values:
             for build in builds:
                 for tst_name, tst_data in build.items():
-                    if tag and tag not in tst_data[u"tags"]:
+                    if tag and tag not in tst_data["tags"]:
                         continue
                     tst_name_mod = \
                         _tpc_modify_test_name(tst_name, ignore_nic=True).\
-                        replace(u"2n1l-", u"")
-                    if col_data[u"data"].get(tst_name_mod, None) is None:
-                        name = tst_data[u'name'].rsplit(u'-', 1)[0]
-                        if u"across testbeds" in table[u"title"].lower() or \
-                                u"across topologies" in table[u"title"].lower():
+                        replace("2n1l-", "")
+                    if col_data["data"].get(tst_name_mod, None) is None:
+                        name = tst_data['name'].rsplit('-', 1)[0]
+                        if "across testbeds" in table["title"].lower() or \
+                                "across topologies" in table["title"].lower():
                             name = _tpc_modify_displayed_test_name(name)
-                        col_data[u"data"][tst_name_mod] = {
-                            u"name": name,
-                            u"replace": True,
-                            u"data": list(),
-                            u"mean": None,
-                            u"stdev": None
+                        col_data["data"][tst_name_mod] = {
+                            "name": name,
+                            "replace": True,
+                            "data": list(),
+                            "mean": None,
+                            "stdev": None
                         }
                     _tpc_insert_data(
-                        target=col_data[u"data"][tst_name_mod],
+                        target=col_data["data"][tst_name_mod],
                         src=tst_data,
-                        include_tests=table[u"include-tests"]
+                        include_tests=table["include-tests"]
                     )
 
-        replacement = col.get(u"data-replacement", None)
+        replacement = col.get("data-replacement", None)
         if replacement:
             rpl_data = input_data.filter_data(
                 table,
                 params=[
-                    u"throughput",
-                    u"result",
-                    u"latency",
-                    u"name",
-                    u"parent",
-                    u"tags"
+                    "throughput",
+                    "result",
+                    "latency",
+                    "name",
+                    "parent",
+                    "tags"
                 ],
                 data=replacement,
                 continue_on_error=True
@@ -1804,74 +1816,82 @@ def table_comparison(table, input_data):
             for builds in rpl_data.values:
                 for build in builds:
                     for tst_name, tst_data in build.items():
-                        if tag and tag not in tst_data[u"tags"]:
+                        if tag and tag not in tst_data["tags"]:
                             continue
                         tst_name_mod = \
                             _tpc_modify_test_name(tst_name, ignore_nic=True).\
-                            replace(u"2n1l-", u"")
-                        if col_data[u"data"].get(tst_name_mod, None) is None:
-                            name = tst_data[u'name'].rsplit(u'-', 1)[0]
-                            if u"across testbeds" in table[u"title"].lower() \
-                                    or u"across topologies" in \
-                                    table[u"title"].lower():
+                            replace("2n1l-", "")
+                        if col_data["data"].get(tst_name_mod, None) is None:
+                            name = tst_data['name'].rsplit('-', 1)[0]
+                            if "across testbeds" in table["title"].lower() \
+                                    or "across topologies" in \
+                                    table["title"].lower():
                                 name = _tpc_modify_displayed_test_name(name)
-                            col_data[u"data"][tst_name_mod] = {
-                                u"name": name,
-                                u"replace": False,
-                                u"data": list(),
-                                u"mean": None,
-                                u"stdev": None
+                            col_data["data"][tst_name_mod] = {
+                                "name": name,
+                                "replace": False,
+                                "data": list(),
+                                "mean": None,
+                                "stdev": None
                             }
-                        if col_data[u"data"][tst_name_mod][u"replace"]:
-                            col_data[u"data"][tst_name_mod][u"replace"] = False
-                            col_data[u"data"][tst_name_mod][u"data"] = list()
+                        if col_data["data"][tst_name_mod]["replace"]:
+                            col_data["data"][tst_name_mod]["replace"] = False
+                            col_data["data"][tst_name_mod]["data"] = list()
                         _tpc_insert_data(
-                            target=col_data[u"data"][tst_name_mod],
+                            target=col_data["data"][tst_name_mod],
                             src=tst_data,
-                            include_tests=table[u"include-tests"]
+                            include_tests=table["include-tests"]
                         )
 
-        if table[u"include-tests"] in (u"NDR", u"PDR", u"hoststack", u"vsap") \
-                or u"latency" in table[u"include-tests"]:
-            for tst_name, tst_data in col_data[u"data"].items():
-                if tst_data[u"data"]:
-                    tst_data[u"mean"] = mean(tst_data[u"data"])
-                    tst_data[u"stdev"] = stdev(tst_data[u"data"])
+        if table["include-tests"] in ("NDR", "PDR", "hoststack", "vsap") \
+                or "latency" in table["include-tests"]:
+            for tst_name, tst_data in col_data["data"].items():
+                if tst_data["data"]:
+                    tst_data["mean"] = mean(tst_data["data"])
+                    tst_data["stdev"] = stdev(tst_data["data"])
 
         cols.append(col_data)
 
     tbl_dict = dict()
     for col in cols:
-        for tst_name, tst_data in col[u"data"].items():
+        for tst_name, tst_data in col["data"].items():
             if tbl_dict.get(tst_name, None) is None:
                 tbl_dict[tst_name] = {
-                    "name": tst_data[u"name"]
+                    "name": tst_data["name"]
                 }
-            tbl_dict[tst_name][col[u"title"]] = {
-                u"mean": tst_data[u"mean"],
-                u"stdev": tst_data[u"stdev"]
+            tbl_dict[tst_name][col["title"]] = {
+                "mean": tst_data["mean"],
+                "stdev": tst_data["stdev"]
             }
 
     if not tbl_dict:
-        logging.warning(f"No data for table {table.get(u'title', u'')}!")
+        logging.warning(f"No data for table {table.get('title', '')}!")
         return
 
     tbl_lst = list()
     for tst_data in tbl_dict.values():
         row = [tst_data[u"name"], ]
         for col in cols:
-            row.append(tst_data.get(col[u"title"], None))
+            row_data = tst_data.get(col["title"], None)
+            if normalize and row_data:
+                groups = re.search(REGEX_TOPO_ARCH, col["title"])
+                topo_arch = groups.group(0) if groups else ""
+                norm_factor = table["norm_factor"].get(topo_arch, 1.0)
+                row_data_norm = row_data * norm_factor
+            else:
+                row_data_norm = row_data
+            row.append(row_data_norm)
         tbl_lst.append(row)
 
-    comparisons = table.get(u"comparisons", None)
+    comparisons = table.get("comparisons", None)
     rcas = list()
     if comparisons and isinstance(comparisons, list):
         for idx, comp in enumerate(comparisons):
             try:
-                col_ref = int(comp[u"reference"])
-                col_cmp = int(comp[u"compare"])
+                col_ref = int(comp["reference"])
+                col_cmp = int(comp["compare"])
             except KeyError:
-                logging.warning(u"Comparison: No references defined! Skipping.")
+                logging.warning("Comparison: No references defined! Skipping.")
                 comparisons.pop(idx)
                 continue
             if not (0 < col_ref <= len(cols) and 0 < col_cmp <= len(cols) or
@@ -1880,14 +1900,14 @@ def table_comparison(table, input_data):
                                 f"and/or compare={col_cmp}. Skipping.")
                 comparisons.pop(idx)
                 continue
-            rca_file_name = comp.get(u"rca-file", None)
+            rca_file_name = comp.get("rca-file", None)
             if rca_file_name:
                 try:
-                    with open(rca_file_name, u"r") as file_handler:
+                    with open(rca_file_name, "r") as file_handler:
                         rcas.append(
                             {
-                                u"title": f"RCA{idx + 1}",
-                                u"data": load(file_handler, Loader=FullLoader)
+                                "title": f"RCA{idx + 1}",
+                                "data": load(file_handler, Loader=FullLoader)
                             }
                         )
                 except (YAMLError, IOError) as err:
@@ -1907,28 +1927,28 @@ def table_comparison(table, input_data):
         for row in tbl_lst:
             new_row = deepcopy(row)
             for comp in comparisons:
-                ref_itm = row[int(comp[u"reference"])]
+                ref_itm = row[int(comp["reference"])]
                 if ref_itm is None and \
-                        comp.get(u"reference-alt", None) is not None:
-                    ref_itm = row[int(comp[u"reference-alt"])]
+                        comp.get("reference-alt", None) is not None:
+                    ref_itm = row[int(comp["reference-alt"])]
                 cmp_itm = row[int(comp[u"compare"])]
                 if ref_itm is not None and cmp_itm is not None and \
-                        ref_itm[u"mean"] is not None and \
-                        cmp_itm[u"mean"] is not None and \
-                        ref_itm[u"stdev"] is not None and \
-                        cmp_itm[u"stdev"] is not None:
+                        ref_itm["mean"] is not None and \
+                        cmp_itm["mean"] is not None and \
+                        ref_itm["stdev"] is not None and \
+                        cmp_itm["stdev"] is not None:
                     try:
                         delta, d_stdev = relative_change_stdev(
-                            ref_itm[u"mean"], cmp_itm[u"mean"],
-                            ref_itm[u"stdev"], cmp_itm[u"stdev"]
+                            ref_itm["mean"], cmp_itm["mean"],
+                            ref_itm["stdev"], cmp_itm["stdev"]
                         )
                     except ZeroDivisionError:
                         break
                     if delta is None or math.isnan(delta):
                         break
                     new_row.append({
-                        u"mean": delta * 1e6,
-                        u"stdev": d_stdev * 1e6
+                        "mean": delta * 1e6,
+                        "stdev": d_stdev * 1e6
                     })
                 else:
                     break
@@ -1937,7 +1957,7 @@ def table_comparison(table, input_data):
 
     try:
         tbl_cmp_lst.sort(key=lambda rel: rel[0], reverse=False)
-        tbl_cmp_lst.sort(key=lambda rel: rel[-1][u'mean'], reverse=True)
+        tbl_cmp_lst.sort(key=lambda rel: rel[-1]['mean'], reverse=True)
     except TypeError as err:
         logging.warning(f"Empty data element in table\n{tbl_cmp_lst}\n{err}")
 
@@ -1946,62 +1966,62 @@ def table_comparison(table, input_data):
         row = [line[0], ]
         for idx, itm in enumerate(line[1:]):
             if itm is None or not isinstance(itm, dict) or\
-                    itm.get(u'mean', None) is None or \
-                    itm.get(u'stdev', None) is None:
-                row.append(u"NT")
-                row.append(u"NT")
+                    itm.get('mean', None) is None or \
+                    itm.get('stdev', None) is None:
+                row.append("NT")
+                row.append("NT")
             else:
-                row.append(round(float(itm[u'mean']) / 1e6, 3))
-                row.append(round(float(itm[u'stdev']) / 1e6, 3))
+                row.append(round(float(itm['mean']) / 1e6, 3))
+                row.append(round(float(itm['stdev']) / 1e6, 3))
         for rca in rcas:
             if rca is None:
                 continue
-            rca_nr = rca[u"data"].get(row[0], u"-")
-            row.append(f"[{rca_nr}]" if rca_nr != u"-" else u"-")
+            rca_nr = rca["data"].get(row[0], "-")
+            row.append(f"[{rca_nr}]" if rca_nr != "-" else "-")
         tbl_for_csv.append(row)
 
-    header_csv = [u"Test Case", ]
+    header_csv = ["Test Case", ]
     for col in cols:
-        header_csv.append(f"Avg({col[u'title']})")
-        header_csv.append(f"Stdev({col[u'title']})")
+        header_csv.append(f"Avg({col['title']})")
+        header_csv.append(f"Stdev({col['title']})")
     for comp in comparisons:
         header_csv.append(
-            f"Avg({comp.get(u'title', u'')})"
+            f"Avg({comp.get('title', '')})"
         )
         header_csv.append(
-            f"Stdev({comp.get(u'title', u'')})"
+            f"Stdev({comp.get('title', '')})"
         )
     for rca in rcas:
         if rca:
-            header_csv.append(rca[u"title"])
+            header_csv.append(rca["title"])
 
-    legend_lst = table.get(u"legend", None)
+    legend_lst = table.get("legend", None)
     if legend_lst is None:
-        legend = u""
+        legend = ""
     else:
-        legend = u"\n" + u"\n".join(legend_lst) + u"\n"
+        legend = "\n" + "\n".join(legend_lst) + "\n"
 
-    footnote = u""
+    footnote = ""
     if rcas and any(rcas):
-        footnote += u"\nRoot Cause Analysis:\n"
+        footnote += "\nRoot Cause Analysis:\n"
         for rca in rcas:
             if rca:
-                footnote += f"{rca[u'data'].get(u'footnote', u'')}\n"
+                footnote += f"{rca['data'].get('footnote', '')}\n"
 
-    csv_file_name = f"{table[u'output-file']}-csv.csv"
-    with open(csv_file_name, u"wt", encoding='utf-8') as file_handler:
+    csv_file_name = f"{table['output-file']}-csv.csv"
+    with open(csv_file_name, "wt", encoding='utf-8') as file_handler:
         file_handler.write(
-            u",".join([f'"{itm}"' for itm in header_csv]) + u"\n"
+            ",".join([f'"{itm}"' for itm in header_csv]) + "\n"
         )
         for test in tbl_for_csv:
             file_handler.write(
-                u",".join([f'"{item}"' for item in test]) + u"\n"
+                ",".join([f'"{item}"' for item in test]) + "\n"
             )
         if legend_lst:
             for item in legend_lst:
                 file_handler.write(f'"{item}"\n')
         if footnote:
-            for itm in footnote.split(u"\n"):
+            for itm in footnote.split("\n"):
                 file_handler.write(f'"{itm}"\n')
 
     tbl_tmp = list()
@@ -2010,77 +2030,77 @@ def table_comparison(table, input_data):
         row = [line[0], ]
         for idx, itm in enumerate(line[1:]):
             if itm is None or not isinstance(itm, dict) or \
-                    itm.get(u'mean', None) is None or \
-                    itm.get(u'stdev', None) is None:
-                new_itm = u"NT"
+                    itm.get('mean', None) is None or \
+                    itm.get('stdev', None) is None:
+                new_itm = "NT"
             else:
                 if idx < len(cols):
                     new_itm = (
-                        f"{round(float(itm[u'mean']) / 1e6, 2)} "
-                        f"\u00B1{round(float(itm[u'stdev']) / 1e6, 2)}".
-                        replace(u"nan", u"NaN")
+                        f"{round(float(itm['mean']) / 1e6, 2)} "
+                        f"\u00B1{round(float(itm['stdev']) / 1e6, 2)}".
+                        replace("nan", "NaN")
                     )
                 else:
                     new_itm = (
-                        f"{round(float(itm[u'mean']) / 1e6, 2):+} "
-                        f"\u00B1{round(float(itm[u'stdev']) / 1e6, 2)}".
-                        replace(u"nan", u"NaN")
+                        f"{round(float(itm['mean']) / 1e6, 2):+} "
+                        f"\u00B1{round(float(itm['stdev']) / 1e6, 2)}".
+                        replace("nan", "NaN")
                     )
-            if len(new_itm.rsplit(u" ", 1)[-1]) > max_lens[idx]:
-                max_lens[idx] = len(new_itm.rsplit(u" ", 1)[-1])
+            if len(new_itm.rsplit(" ", 1)[-1]) > max_lens[idx]:
+                max_lens[idx] = len(new_itm.rsplit(" ", 1)[-1])
             row.append(new_itm)
 
         tbl_tmp.append(row)
 
-    header = [u"Test Case", ]
-    header.extend([col[u"title"] for col in cols])
-    header.extend([comp.get(u"title", u"") for comp in comparisons])
+    header = ["Test Case", ]
+    header.extend([col["title"] for col in cols])
+    header.extend([comp.get("title", "") for comp in comparisons])
 
     tbl_final = list()
     for line in tbl_tmp:
         row = [line[0], ]
         for idx, itm in enumerate(line[1:]):
-            if itm in (u"NT", u"NaN"):
+            if itm in ("NT", "NaN"):
                 row.append(itm)
                 continue
-            itm_lst = itm.rsplit(u"\u00B1", 1)
+            itm_lst = itm.rsplit("\u00B1", 1)
             itm_lst[-1] = \
-                f"{u' ' * (max_lens[idx] - len(itm_lst[-1]))}{itm_lst[-1]}"
-            itm_str = u"\u00B1".join(itm_lst)
+                f"{' ' * (max_lens[idx] - len(itm_lst[-1]))}{itm_lst[-1]}"
+            itm_str = "\u00B1".join(itm_lst)
 
             if idx >= len(cols):
                 # Diffs
                 rca = rcas[idx - len(cols)]
                 if rca:
                     # Add rcas to diffs
-                    rca_nr = rca[u"data"].get(row[0], None)
+                    rca_nr = rca["data"].get(row[0], None)
                     if rca_nr:
                         hdr_len = len(header[idx + 1]) - 1
                         if hdr_len < 19:
                             hdr_len = 19
                         rca_nr = f"[{rca_nr}]"
                         itm_str = (
-                            f"{u' ' * (4 - len(rca_nr))}{rca_nr}"
-                            f"{u' ' * (hdr_len - 4 - len(itm_str))}"
+                            f"{' ' * (4 - len(rca_nr))}{rca_nr}"
+                            f"{' ' * (hdr_len - 4 - len(itm_str))}"
                             f"{itm_str}"
                         )
             row.append(itm_str)
         tbl_final.append(row)
 
     # Generate csv tables:
-    csv_file_name = f"{table[u'output-file']}.csv"
+    csv_file_name = f"{table['output-file']}.csv"
     logging.info(f"    Writing the file {csv_file_name}")
-    with open(csv_file_name, u"wt", encoding='utf-8') as file_handler:
-        file_handler.write(u";".join(header) + u"\n")
+    with open(csv_file_name, "wt", encoding='utf-8') as file_handler:
+        file_handler.write(";".join(header) + "\n")
         for test in tbl_final:
-            file_handler.write(u";".join([str(item) for item in test]) + u"\n")
+            file_handler.write(";".join([str(item) for item in test]) + "\n")
 
     # Generate txt table:
-    txt_file_name = f"{table[u'output-file']}.txt"
+    txt_file_name = f"{table['output-file']}.txt"
     logging.info(f"    Writing the file {txt_file_name}")
     convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u";")
 
-    with open(txt_file_name, u'a', encoding='utf-8') as file_handler:
+    with open(txt_file_name, 'a', encoding='utf-8') as file_handler:
         file_handler.write(legend)
         file_handler.write(footnote)
 
@@ -2088,11 +2108,11 @@ def table_comparison(table, input_data):
     _tpc_generate_html_table(
         header,
         tbl_final,
-        table[u'output-file'],
+        table['output-file'],
         legend=legend,
         footnote=footnote,
         sort_data=False,
-        title=table.get(u"title", u"")
+        title=table.get("title", "")
     )
 
 
