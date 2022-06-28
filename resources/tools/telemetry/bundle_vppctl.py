@@ -201,6 +201,7 @@ class BundleVppctl:
         """
         for command in self.cli_command_list:
             try:
+                getLogger(__name__).info(command)
                 replies = subprocess.getoutput(command)
             except (AssertionError, AttributeError):
                 getLogger("console_stderr").error(
