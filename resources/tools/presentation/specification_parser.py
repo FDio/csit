@@ -441,6 +441,9 @@ class Specification:
         self._specification[u"environment"][u"limits"] = \
             self._cfg_yaml[idx].get(u"limits", None)
 
+        self._specification[u"environment"][u"frequency"] = \
+            self._cfg_yaml[idx].get(u"frequency", dict())
+
         self._specification[u"environment"][u"urls"] = \
             self._cfg_yaml[idx].get(u"urls", None)
 
