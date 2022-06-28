@@ -16,6 +16,24 @@
       "message": "We need to reduce the number of tests for 2n-clx daily (mrr) and weekly (ndrpdr). Current status (before this patch) is:\n- MRR 10:30 to 11 hours (not bad); should be less than 12 hours\n- NDRPDR: 39 to 40 hours (very bad); should be less than 24 hours",
       "revId": "f14aac61f0581cc1f0bcfac3fd603efe4c451e61",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29955a3d_f68c6bb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-28T16:01:24Z",
+      "side": 1,
+      "message": "Is this the addition of e810cq 2p100Gbe NIC and associated dpdk and avf driver combinations that increased the test job execution? \n\n2n-clx have already been running x710-avf, x710-dpdk, xxv710-avf, xxv710-dpdk and cx556a-rdma-core combinations.\n\nBTW before this change vpp-mlr-00.md contains 442 tests, so 660min / 442 \u003d 1.5min avg time per test for MRR test job, 2400min / 442 \u003d 5.4min avg time per test for NDRPDR test job. Is this what you see for other testbeds?",
+      "parentUuid": "9c83c7bd_08b7f10d",
+      "revId": "f14aac61f0581cc1f0bcfac3fd603efe4c451e61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
