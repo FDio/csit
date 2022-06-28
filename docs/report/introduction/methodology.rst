@@ -28,4 +28,5 @@ Test Methodology
     methodology_lxc_drc_container_memif
     methodology_nfv_service_density
     methodology_vpp_device_functional
+    methodology_autogen
     methodology_aws/index
