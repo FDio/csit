@@ -1217,6 +1217,10 @@
       - 59  # rls2206.rc2 NDRPDR iter env 10
       - 60  # rls2206.rc2 NDRPDR iter env 10
       - 61  # rls2206.rc2 NDRPDR iter env 10
+      - 64  # rls2206.rc2 NDRPDR iter env 10
+      - 65  # rls2206.rc2 NDRPDR iter env 10
+      - 66  # rls2206.rc2 NDRPDR iter env 10
+      - 67  # rls2206.rc2 NDRPDR iter env 10
 
   vpp-2n-icx-curr-iter-best:
     csit-vpp-perf-report-iterative-2206-2n-icx:
