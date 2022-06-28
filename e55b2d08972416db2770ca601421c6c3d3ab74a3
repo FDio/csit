@@ -16,6 +16,115 @@
       "message": "Ready for review now.",
       "revId": "e55b2d08972416db2770ca601421c6c3d3ab74a3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60f60026_d55ab763",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T09:08:48Z",
+      "side": 1,
+      "message": "There are too many TODOs for me, is it possible to resolve at least some of them?",
+      "revId": "e55b2d08972416db2770ca601421c6c3d3ab74a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61918d61_99a415e2",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T09:08:48Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 55,
+        "startChar": 52,
+        "endLine": 55,
+        "endChar": 53
+      },
+      "revId": "e55b2d08972416db2770ca601421c6c3d3ab74a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ad5f651_25a9c8c4",
+        "filename": "docs/report/introduction/methodology_dut_state.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T09:08:48Z",
+      "side": 1,
+      "message": "not",
+      "range": {
+        "startLine": 57,
+        "startChar": 57,
+        "endLine": 57,
+        "endChar": 61
+      },
+      "revId": "e55b2d08972416db2770ca601421c6c3d3ab74a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31e3fbd7_8f9b39f7",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T09:08:48Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 82
+      },
+      "revId": "e55b2d08972416db2770ca601421c6c3d3ab74a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5cc1a05_c5a58b88",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-28T09:08:48Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 331,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 82
+      },
+      "revId": "e55b2d08972416db2770ca601421c6c3d3ab74a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
