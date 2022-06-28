@@ -1873,7 +1873,8 @@ def table_comparison(table, input_data):
         row = [tst_data[u"name"], ]
         for col in cols:
             row_data = tst_data.get(col["title"], None)
-            if normalize and row_data:
+            if normalize and row_data and row_data.get("mean", None) and \
+                    row_data.get("stdev", None):
                 groups = re.search(REGEX_TOPO_ARCH, col["title"])
                 topo_arch = groups.group(0) if groups else ""
                 norm_factor = table["norm_factor"].get(topo_arch, 1.0)
