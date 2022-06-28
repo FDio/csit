@@ -1877,7 +1877,10 @@ def table_comparison(table, input_data):
                 groups = re.search(REGEX_TOPO_ARCH, col["title"])
                 topo_arch = groups.group(0) if groups else ""
                 norm_factor = table["norm_factor"].get(topo_arch, 1.0)
-                row_data_norm = row_data * norm_factor
+                row_data_norm = {
+                    "mean": row_data["mean"] * norm_factor,
+                    "stdev": row_data["stdev"] * norm_factor
+                }
             else:
                 row_data_norm = row_data
             row.append(row_data_norm)
