@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest mrrANDethip4-ip4baseANDdrv_vfio_pciAND64bANDintel_xxv710",
       "revId": "b33b1461fe815b1a09267118644538a5b9351c60",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "138b367e_fb83e0f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-28T13:07:04Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest mrrANDethip4-ip4baseANDdrv_vfio_pciAND64bANDnic_intel-xxv710",
+      "revId": "b33b1461fe815b1a09267118644538a5b9351c60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
