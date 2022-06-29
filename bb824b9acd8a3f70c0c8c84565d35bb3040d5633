@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5d655c0_f225cc2e",
+        "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mlr-00.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-06-29T12:35:49Z",
+      "side": 1,
+      "message": "Thank you for clarifying. So this test \"ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-aes256gcm\" is testing performance of 1000 IPsec tunnels or 1 IPsec tunnel with 1000 IPsec SA rules?",
+      "parentUuid": "40c5917d_73be03de",
+      "range": {
+        "startLine": 128,
+        "startChar": 27,
+        "endLine": 128,
+        "endChar": 35
+      },
+      "revId": "bb824b9acd8a3f70c0c8c84565d35bb3040d5633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2e778d3_97e67e07",
         "filename": "docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md",
         "patchSetId": 3
