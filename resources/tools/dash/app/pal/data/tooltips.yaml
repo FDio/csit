@@ -19,6 +19,9 @@ help-framesize:
 help-infra:
   Infrastructure is defined by the toplology (number of nodes), processor
   architecture, NIC and driver.
+help-normalize:
+  Normalize the results to CPU frequency 2GHz. The results from AWS environment
+  are not normalized as we do not know the exact value of CPU frequency.
 help-release:
   The CSIT release.
 help-tbed:

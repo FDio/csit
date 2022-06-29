@@ -24,6 +24,22 @@ import hdrh.histogram
 import hdrh.codec
 
 
+_FREQURENCY = {  # [GHz]
+    "2n-aws": 1.000,
+    "2n-dnv": 2.000,
+    "2n-clx": 2.300,
+    "2n-icx": 2.600,
+    "2n-skx": 2.500,
+    "2n-tx2": 2.500,
+    "2n-zn2": 2.900,
+    "3n-alt": 3.000,
+    "3n-aws": 1.000,
+    "3n-dnv": 2.000,
+    "3n-icx": 2.600,
+    "3n-skx": 2.500,
+    "3n-tsh": 2.200
+}
+
 _VALUE = {
     "mrr": "result_receive_rate_rate_values",
     "ndr": "result_ndr_lower_rate_value",
@@ -144,7 +160,8 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
     return df
 
 
-def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
+def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
+        normalize: bool) -> tuple:
     """
     """
 
@@ -162,13 +179,18 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
         itm_data = select_iterative_data(data, itm)
         if itm_data.empty:
             continue
+        phy = itm["phy"].split("-")
+        topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
+        norm_factor = 2.0 / _FREQURENCY[topo_arch] if normalize else 1.0
         if itm["testtype"] == "mrr":
-            y_data = itm_data[_VALUE[itm["testtype"]]].to_list()[0]
-            if y_data.size > 0:
+            y_data_raw = itm_data[_VALUE[itm["testtype"]]].to_list()[0]
+            y_data = [y * norm_factor for y in y_data_raw]
+            if len(y_data) > 0:
                 y_tput_max = \
                     max(y_data) if max(y_data) > y_tput_max else y_tput_max
         else:
-            y_data = itm_data[_VALUE[itm["testtype"]]].to_list()
+            y_data_raw = itm_data[_VALUE[itm["testtype"]]].to_list()
+            y_data = [y * norm_factor for y in y_data_raw]
             if y_data:
                 y_tput_max = \
                     max(y_data) if max(y_data) > y_tput_max else y_tput_max
@@ -190,7 +212,8 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
         show_tput = True
 
         if itm["testtype"] == "pdr":
-            y_lat = itm_data[_VALUE["pdr-lat"]].to_list()
+            y_lat_row = itm_data[_VALUE["pdr-lat"]].to_list()
+            y_lat = [y * norm_factor for y in y_lat_row]
             if y_lat:
                 y_lat_max = max(y_lat) if max(y_lat) > y_lat_max else y_lat_max
             nr_of_samples = len(y_lat)
@@ -232,7 +255,8 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
     return fig_tput, fig_lat
 
 
-def table_comparison(data: pd.DataFrame, sel:dict) -> pd.DataFrame:
+def table_comparison(data: pd.DataFrame, sel:dict,
+        normalize: bool) -> pd.DataFrame:
     """
     """
     table = pd.DataFrame(
