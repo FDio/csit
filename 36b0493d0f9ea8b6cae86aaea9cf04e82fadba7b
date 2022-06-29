@@ -16,6 +16,23 @@
       "message": "csit-3n-alt-perftest mrrANDnic_intel-xl710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm",
       "revId": "36b0493d0f9ea8b6cae86aaea9cf04e82fadba7b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05000dd4_0541c333",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-29T13:46:52Z",
+      "side": 1,
+      "message": "It seems to work, I will trigger more runs to be sure the two-band structure is gone. I do not really like the result type (I would probably add Affinity class) but good enough for rls2206.",
+      "revId": "36b0493d0f9ea8b6cae86aaea9cf04e82fadba7b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
