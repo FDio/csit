@@ -315,22 +315,6 @@
 1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
-##### ethip4udp-ip4base-iacl50sf-10kflows
-1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-iacl50sf-10kflows
-2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-iacl50sf-10kflows
-4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-iacl50sf-10kflows
-##### ethip4udp-ip4base-iacl50sl-10kflows
-1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-iacl50sl-10kflows
-2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-iacl50sl-10kflows
-4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-iacl50sl-10kflows
-##### ethip4udp-ip4base-oacl50sf-10kflows
-1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sf-10kflows
-2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sf-10kflows
-4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sf-10kflows
-##### ethip4udp-ip4base-oacl50sl-10kflows
-1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sl-10kflows
-2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sl-10kflows
-4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND ethip4udp-ip4base-oacl50sl-10kflows
 ## ./ip4_tunnels
 ### intel-xxv710
 #### avf
@@ -612,10 +596,6 @@
 1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
-##### dot1q-l2bdbasemaclrn
-1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
-4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND dot1q-l2bdbasemaclrn
 ##### eth-l2xcbase
 1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2xcbase
