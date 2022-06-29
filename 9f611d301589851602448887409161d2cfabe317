@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7ac3367_f1832a51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-29T15:53:01Z",
+      "side": 1,
+      "message": "TODO: Make sure edits in the following are incorporated: https://gerrit.fd.io/r/c/csit/+/31239",
+      "revId": "9f611d301589851602448887409161d2cfabe317",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83d7202a_c74a0ebf",
