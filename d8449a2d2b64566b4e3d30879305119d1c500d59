@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "494e7c75_eaf4d842",
+        "filename": "tests/dpdk/perf/10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-29T11:06:16Z",
+      "side": 0,
+      "message": "I do not think I can accept removal. I want DPDK to cleanup itself after tests are over.",
+      "range": {
+        "startLine": 26,
+        "startChar": 48,
+        "endLine": 26,
+        "endChar": 55
+      },
+      "revId": "d8449a2d2b64566b4e3d30879305119d1c500d59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
