@@ -629,6 +629,30 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
+                    id="row-ctrl-normalize",
+                    class_name="gy-1",
+                    children=[
+                        dbc.Label(
+                            children=self._show_tooltip(
+                                "help-normalize", "Normalize"),
+                            class_name="p-0"
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-normalize",
+                                    options=[{
+                                        "value": "normalize",
+                                        "label": "Normalize"
+                                    }],
+                                    inline=True,
+                                    switch=False
+                                ),
+                            ]
+                        )
+                    ]
+                ),
+                dbc.Row(
                     class_name="gy-1 p-0",
                     children=[
                         dbc.ButtonGroup(
@@ -731,6 +755,7 @@ class Layout:
                 "cl-testtype-all-value": list(),
                 "cl-testtype-all-options": CL_ALL_DISABLED,
                 "btn-add-disabled": True,
+                "cl-normalize": False,
                 "cl-selected-options": list()
             }
 
@@ -898,6 +923,7 @@ class Layout:
             Output("cl-ctrl-testtype-all", "value"),
             Output("cl-ctrl-testtype-all", "options"),
             Output("btn-ctrl-add", "disabled"),
+            Output("cl-ctrl-normalize", "value"),
             Output("cl-selected", "options"),  # User selection
             State("control-panel", "data"),  # Store
             State("selected-tests", "data"),  # Store
@@ -914,6 +940,7 @@ class Layout:
             Input("cl-ctrl-framesize-all", "value"),
             Input("cl-ctrl-testtype", "value"),
             Input("cl-ctrl-testtype-all", "value"),
+            Input("cl-ctrl-normalize", "value"),
             Input("btn-ctrl-add", "n_clicks"),
             Input("btn-sel-remove", "n_clicks"),
             Input("btn-sel-remove-all", "n_clicks"),
@@ -923,8 +950,8 @@ class Layout:
             dd_rls: str, dd_dut: str, dd_dutver: str, dd_phy: str, dd_area: str,
             dd_test: str, cl_core: list, cl_core_all: list, cl_framesize: list,
             cl_framesize_all: list, cl_testtype: list, cl_testtype_all: list,
-            btn_add: int, btn_remove: int, btn_remove_all: int,
-            href: str) -> tuple:
+            cl_normalize: list, btn_add: int, btn_remove: int,
+            btn_remove_all: int, href: str) -> tuple:
             """
             """
 
@@ -1360,7 +1387,10 @@ class Layout:
                 disabled = False
             else:
                 disabled = True
-            ctrl_panel.set({"btn-add-disabled": disabled})
+            ctrl_panel.set({
+                "btn-add-disabled": disabled,
+                "cl-normalize": cl_normalize
+            })
 
             ret_val = [
                 ctrl_panel.panel, store_sel,
