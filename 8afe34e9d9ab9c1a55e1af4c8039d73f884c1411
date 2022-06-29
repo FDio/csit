@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4935dfb1_0bd5915c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-29T10:19:33Z",
+      "side": 1,
+      "message": "why we cannot run 1 node on 3 node? What if the TB has that capability (e.g trex tests)",
+      "range": {
+        "startLine": 1056,
+        "startChar": 30,
+        "endLine": 1056,
+        "endChar": 55
+      },
+      "revId": "8afe34e9d9ab9c1a55e1af4c8039d73f884c1411",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f200ec4_b1936712",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-29T10:19:33Z",
+      "side": 1,
+      "message": "so 1n-aws clearly cannot run there. that is broken",
+      "range": {
+        "startLine": 1060,
+        "startChar": 29,
+        "endLine": 1060,
+        "endChar": 55
+      },
+      "revId": "8afe34e9d9ab9c1a55e1af4c8039d73f884c1411",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20da6f01_91676487",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-29T10:19:33Z",
+      "side": 1,
+      "message": "here we are defining topologies.",
+      "range": {
+        "startLine": 1128,
+        "startChar": 12,
+        "endLine": 1128,
+        "endChar": 53
+      },
+      "revId": "8afe34e9d9ab9c1a55e1af4c8039d73f884c1411",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
