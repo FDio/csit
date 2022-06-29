@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3452d7b_44b1243a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-06-29T10:15:35Z",
+      "side": 1,
+      "message": "CSIT dir is not part of the beanstalk app.",
+      "revId": "a33d6c0c27a61e540934f6c34e88dccf34e0ca16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
