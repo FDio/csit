@@ -76,6 +76,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d286002d_f28027b2",
+        "filename": "resources/libraries/python/QemuManager.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-29T14:49:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e99e750b_5762bf1d",
+      "range": {
+        "startLine": 42,
+        "startChar": 7,
+        "endLine": 42,
+        "endChar": 50
+      },
+      "revId": "36b0493d0f9ea8b6cae86aaea9cf04e82fadba7b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d71be65_197b59d1",
@@ -89,6 +113,30 @@
       "writtenOn": "2022-06-29T14:02:06Z",
       "side": 1,
       "message": "Cut the sentence here. No links to external sources in code.",
+      "range": {
+        "startLine": 730,
+        "startChar": 36,
+        "endLine": 731,
+        "endChar": 63
+      },
+      "revId": "36b0493d0f9ea8b6cae86aaea9cf04e82fadba7b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71724093_9257c5c3",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-29T14:49:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d71be65_197b59d1",
       "range": {
         "startLine": 730,
         "startChar": 36,
