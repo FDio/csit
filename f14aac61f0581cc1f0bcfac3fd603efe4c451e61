@@ -69,6 +69,23 @@
       "message": "Proposal:\nWe should choose a new primary NIC instead of xxv710, e.g. e810cq, add more tests for e810cq (same set as for xxv710 now) and for xxv710 use the same set as we use for x710. Next step can be removing x710 from testing.\n\nCurrent status:\n\nx710:   21\nxxv710: 246\ncx556a: 66 + 8 VSAP\ne810cq: 132 + 8 VSAP\n--------------------\ntotal:  465 + 16 VSAP \u003d 481\n\n\nNew:\n\nx710:   21\nxxv710: 21\ncx556a: 66 + 8 VSAP\ne810cq: 246 + 8 VSAP\n--------------------\ntotal:  354 + 16 VSAP \u003d 370\n",
       "revId": "f14aac61f0581cc1f0bcfac3fd603efe4c451e61",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fc32cbf_623f1414",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-06-29T05:25:22Z",
+      "side": 1,
+      "message": "Execution time (aprox.):\n\nnow: 41h (incl VSAP)\nnew: 32h (incl VSAP)",
+      "revId": "f14aac61f0581cc1f0bcfac3fd603efe4c451e61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
