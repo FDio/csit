@@ -629,6 +629,34 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
+                    id="row-ctrl-normalize",
+                    class_name="gy-1",
+                    children=[
+                        dbc.Label(
+                            children=self._show_tooltip(
+                                "help-normalize", "Normalize"),
+                            class_name="p-0"
+                        ),
+                        dbc.Col(
+                            children=[
+                                dbc.Checklist(
+                                    id="cl-ctrl-normalize",
+                                    options=[{
+                                        "value": "normalize",
+                                        "label": (
+                                            "Normalize results to CPU"
+                                            "frequency 2GHz"
+                                        )
+                                    }],
+                                    value=[],
+                                    inline=True,
+                                    switch=False
+                                ),
+                            ]
+                        )
+                    ]
+                ),
+                dbc.Row(
                     class_name="gy-1 p-0",
                     children=[
                         dbc.ButtonGroup(
@@ -731,6 +759,7 @@ class Layout:
                 "cl-testtype-all-value": list(),
                 "cl-testtype-all-options": CL_ALL_DISABLED,
                 "btn-add-disabled": True,
+                "cl-normalize-value": list(),
                 "cl-selected-options": list()
             }
 
@@ -898,6 +927,7 @@ class Layout:
             Output("cl-ctrl-testtype-all", "value"),
             Output("cl-ctrl-testtype-all", "options"),
             Output("btn-ctrl-add", "disabled"),
+            Output("cl-ctrl-normalize", "value"),
             Output("cl-selected", "options"),  # User selection
             State("control-panel", "data"),  # Store
             State("selected-tests", "data"),  # Store
@@ -914,6 +944,7 @@ class Layout:
             Input("cl-ctrl-framesize-all", "value"),
             Input("cl-ctrl-testtype", "value"),
             Input("cl-ctrl-testtype-all", "value"),
+            Input("cl-ctrl-normalize", "value"),
             Input("btn-ctrl-add", "n_clicks"),
             Input("btn-sel-remove", "n_clicks"),
             Input("btn-sel-remove-all", "n_clicks"),
@@ -923,8 +954,8 @@ class Layout:
             dd_rls: str, dd_dut: str, dd_dutver: str, dd_phy: str, dd_area: str,
             dd_test: str, cl_core: list, cl_core_all: list, cl_framesize: list,
             cl_framesize_all: list, cl_testtype: list, cl_testtype_all: list,
-            btn_add: int, btn_remove: int, btn_remove_all: int,
-            href: str) -> tuple:
+            cl_normalize: list, btn_add: int, btn_remove: int,
+            btn_remove_all: int, href: str) -> tuple:
             """
             """
 
@@ -942,7 +973,6 @@ class Layout:
                 else:
                     new_url = str()
                 return new_url
-
 
             ctrl_panel = self.ControlPanel(cp_data)
 
@@ -1282,12 +1312,6 @@ class Layout:
                     ctrl_panel.set({
                         "cl-selected-options": self._list_tests(store_sel)
                     })
-                    row_fig_tput, row_fig_lat, row_table, row_btn_dwnld = \
-                        _generate_plotting_area(
-                            graph_iterative(self.data, store_sel, self.layout),
-                            table_comparison(self.data, store_sel),
-                            _gen_new_url(parsed_url, store_sel)
-                        )
             elif trigger_id == "btn-sel-remove-all":
                 _ = btn_remove_all
                 row_fig_tput = self.PLACEHOLDER
@@ -1306,11 +1330,28 @@ class Layout:
                         if item["id"] not in list_sel:
                             new_store_sel.append(item)
                     store_sel = new_store_sel
+            elif trigger_id == "url":
+                # TODO: Add verification
+                url_params = parsed_url["params"]
+                if url_params:
+                    store_sel = literal_eval(
+                        url_params.get("store_sel", list())[0])
+                    if store_sel:
+                        row_card_sel_tests = self.STYLE_ENABLED
+                        row_btns_sel_tests = self.STYLE_ENABLED
+
+            if trigger_id in ("btn-ctrl-add", "url", "btn-sel-remove-all",
+                    "btn-sel-remove", "cl-ctrl-normalize"):
                 if store_sel:
                     row_fig_tput, row_fig_lat, row_table, row_btn_dwnld = \
                         _generate_plotting_area(
-                            graph_iterative(self.data, store_sel, self.layout),
-                            table_comparison(self.data, store_sel),
+                            graph_iterative(
+                                self.data, store_sel, self.layout,
+                                bool(cl_normalize)
+                            ),
+                            table_comparison(
+                                self.data, store_sel, bool(cl_normalize)
+                            ),
                             _gen_new_url(parsed_url, store_sel)
                         )
                     ctrl_panel.set({
@@ -1325,34 +1366,6 @@ class Layout:
                     row_btns_sel_tests = self.STYLE_DISABLED
                     store_sel = list()
                     ctrl_panel.set({"cl-selected-options": list()})
-            elif trigger_id == "url":
-                # TODO: Add verification
-                url_params = parsed_url["params"]
-                if url_params:
-                    store_sel = literal_eval(
-                        url_params.get("store_sel", list())[0])
-                    if store_sel:
-                        row_fig_tput, row_fig_lat, row_table, row_btn_dwnld = \
-                            _generate_plotting_area(
-                                graph_iterative(self.data, store_sel,
-                                    self.layout),
-                                table_comparison(self.data, store_sel),
-                                _gen_new_url(parsed_url, store_sel)
-                            )
-                        row_card_sel_tests = self.STYLE_ENABLED
-                        row_btns_sel_tests = self.STYLE_ENABLED
-                        ctrl_panel.set({
-                            "cl-selected-options": self._list_tests(store_sel)
-                        })
-                    else:
-                        row_fig_tput = self.PLACEHOLDER
-                        row_fig_lat = self.PLACEHOLDER
-                        row_table = self.PLACEHOLDER
-                        row_btn_dwnld = self.PLACEHOLDER
-                        row_card_sel_tests = self.STYLE_DISABLED
-                        row_btns_sel_tests = self.STYLE_DISABLED
-                        store_sel = list()
-                        ctrl_panel.set({"cl-selected-options": list()})
 
             if ctrl_panel.get("cl-core-value") and \
                     ctrl_panel.get("cl-framesize-value") and \
@@ -1360,7 +1373,10 @@ class Layout:
                 disabled = False
             else:
                 disabled = True
-            ctrl_panel.set({"btn-add-disabled": disabled})
+            ctrl_panel.set({
+                "btn-add-disabled": disabled,
+                "cl-normalize-value": cl_normalize
+            })
 
             ret_val = [
                 ctrl_panel.panel, store_sel,
