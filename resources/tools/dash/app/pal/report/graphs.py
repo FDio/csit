@@ -205,6 +205,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict) -> tuple:
                 hoverinfo="all",
                 boxpoints="all",
                 jitter=0.3,
+                marker=dict(color=_get_color(idx))
             )
             x_lat.append(idx + 1)
             lat_traces.append(go.Box(**lat_kwargs))
