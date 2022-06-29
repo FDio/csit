@@ -39,7 +39,6 @@ from pal_utils import mean, stdev, classify_anomalies, \
 
 
 REGEX_NIC = re.compile(r'(\d*ge\dp\d\D*\d*[a-z]*)')
-REGEX_TOPO_ARCH = re.compile(r'^(\dn-.{3})')
 
 NORM_FREQ = 2.0  # [GHz]
 
@@ -1740,8 +1739,6 @@ def table_comparison(table, input_data):
         f"{table.get('title', '')}."
     )
 
-    normalize = table.get('normalize', False)
-
     columns = table.get("columns", None)
     if not columns:
         logging.error(
@@ -1872,19 +1869,7 @@ def table_comparison(table, input_data):
     for tst_data in tbl_dict.values():
         row = [tst_data[u"name"], ]
         for col in cols:
-            row_data = tst_data.get(col["title"], None)
-            if normalize and row_data and row_data.get("mean", None) and \
-                    row_data.get("stdev", None):
-                groups = re.search(REGEX_TOPO_ARCH, col["title"])
-                topo_arch = groups.group(0) if groups else ""
-                norm_factor = table["norm_factor"].get(topo_arch, 1.0)
-                row_data_norm = {
-                    "mean": row_data["mean"] * norm_factor,
-                    "stdev": row_data["stdev"] * norm_factor
-                }
-            else:
-                row_data_norm = row_data
-            row.append(row_data_norm)
+            row.append(tst_data.get(col[u"title"], None))
         tbl_lst.append(row)
 
     comparisons = table.get("comparisons", None)
@@ -1941,10 +1926,20 @@ def table_comparison(table, input_data):
                         cmp_itm["mean"] is not None and \
                         ref_itm["stdev"] is not None and \
                         cmp_itm["stdev"] is not None:
+                    norm_factor_ref = table["norm_factor"].get(
+                        comp.get("norm-ref", ""),
+                        1.0
+                    )
+                    norm_factor_cmp = table["norm_factor"].get(
+                        comp.get("norm-cmp", ""),
+                        1.0
+                    )
                     try:
                         delta, d_stdev = relative_change_stdev(
-                            ref_itm["mean"], cmp_itm["mean"],
-                            ref_itm["stdev"], cmp_itm["stdev"]
+                            ref_itm["mean"] * norm_factor_ref,
+                            cmp_itm["mean"] * norm_factor_cmp,
+                            ref_itm["stdev"] * norm_factor_ref,
+                            cmp_itm["stdev"] * norm_factor_cmp
                         )
                     except ZeroDivisionError:
                         break

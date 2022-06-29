@@ -14,6 +14,5 @@ VPP Performance
     hoststack_testing/index
     gso_testing/index
     comparisons/index
-    comparisons_norm/index
     throughput_trending
     test_environment

@@ -27,7 +27,6 @@ CSIT-2206
     vpp_performance_tests/hoststack_testing/index
     vpp_performance_tests/gso_testing/index
     vpp_performance_tests/comparisons/index
-    vpp_performance_tests/comparisons_norm/index
     vpp_performance_tests/throughput_trending
     vpp_performance_tests/test_environment
 
@@ -41,7 +40,6 @@ CSIT-2206
     dpdk_performance_tests/throughput_speedup_multi_core/index
     dpdk_performance_tests/packet_latency/index
     dpdk_performance_tests/comparisons/index
-    dpdk_performance_tests/comparisons_norm/index
     dpdk_performance_tests/throughput_trending
     dpdk_performance_tests/test_environment
 
