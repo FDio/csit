@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -39,6 +39,7 @@ class QemuManager:
         """Initialize QemuManager object."""
         self.machines = OrderedDict()
         self.machines_affinity = OrderedDict()
+        # Item is tuple of CPU list and numa node.
 
     def construct_vms_on_node(self, **kwargs):
         """Construct 1..Mx1..N VMs(s) on node with specified name.
@@ -113,10 +114,11 @@ class QemuManager:
                 zip(self.machines.values(), self.machines_affinity.values()):
             index = list(self.machines.values()).index(machine)
             name = list(self.machines.keys())[index]
-            self.nodes[name] = machine.qemu_start()
+            affinity = machine_affinity if pinning else None
+            self.nodes[name] = machine.qemu_start(affinity)
             if pinning:
-                machine.qemu_set_affinity(*machine_affinity)
-                cpus.extend(machine_affinity)
+                machine.qemu_set_affinity(machine_affinity)
+                cpus.extend(machine_affinity[0])
         return ",".join(str(cpu) for cpu in cpus)
 
     def kill_all_vms(self, force=False):
