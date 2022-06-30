@@ -1,0 +1,33 @@
+---
+# file: host_vars/10.30.51.93.yaml
+
+hostname: "s93-t39-sut1"
+grub:
+  audit: "0"
+  default_hugepagesz: "2M hugepagesz=1G hugepages=2 hugepagesz=2M hugepages=4096"
+  hpet: "disable"
+  intel_idle.max_cstate: "1"
+  intel_iommu: "on"
+  intel_pstate: "disable"
+  iommu: "pt"
+  isolcpus: "1-23"
+  mce: "off"
+  nmi_watchdog: "0"
+  nohz_full: "1-23"
+  nosoftlockup: true
+  numa_balancing: "disable"
+  processor.max_cstate: "1"
+  rcu_nocbs: "1-23"
+  tsc: "reliable"
+sysctl:
+  kernel:
+    watchdog_cpumask: "0"
+  vm:
+    nr_hugepages: 4096
+    max_map_count: 20000
+
+inventory_ipmi_hostname: "10.30.50.93"
+cpu_microarchitecture: "snowridge"
+
+intel_700_matrix: "dpdk21.02"
+intel_800_matrix: "dpdk21.02"
