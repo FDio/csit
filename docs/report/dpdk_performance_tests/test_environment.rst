@@ -59,6 +59,8 @@ Startup command template:
 
 .. include:: ../introduction/test_environment_sut_calib_dnv.rst
 
+.. include:: ../introduction/test_environment_sut_calib_alt.rst
+
 .. include:: ../introduction/test_environment_sut_calib_tsh.rst
 
 .. include:: ../introduction/test_environment_sut_calib_tx2.rst
