@@ -39,17 +39,18 @@ Graphs are split into sections as follows:
 
    - **testbed_type**:
 
+     - 2n-icx: 2-node Xeon Icelake
+     - 3n-icx: 3-node Xeon Icelake
+     - 2n-aws: 2-node AWS
      - 2n-skx: 2-node Xeon Skylake
      - 3n-skx: 3-node Xeon Skylake
      - 2n-clx: 2-node Xeon Cascade Lake
+     - 2n-zn2: 2-node AMD Zen2
+     - 3n-alt: 2-node Arm Altra
      - 3n-tsh: 3-node Arm TaiShan
      - 2n-tx2: 2-node Arm ThunderX2
-     - 2n zn2: 2-node AMD Zen2
      - 2n-dnv: 2-node Atom Denverton
      - 3n-dnv: 3-node Atom Denverton
-     - 2n-aws: 2-node AWS
-     - 2n-icx: 2-node Xeon Icelake
-     - 3n-icx: 3-node Xeon Icelake
 
    - **nic_model**:
 
@@ -135,6 +136,8 @@ Additional information about graph data:
 .. note::
 
     Test results are stored in
+    `build logs from FD.io vpp performance job 2n-icx`_,
+    `build logs from FD.io vpp performance job 3n-icx`_,
     `build logs from FD.io vpp performance job 2n-aws`_,
     `build logs from FD.io vpp performance job 2n-skx`_,
     `build logs from FD.io vpp performance job 3n-skx`_,
