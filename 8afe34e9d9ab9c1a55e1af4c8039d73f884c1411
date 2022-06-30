@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "991cbeee_ba2bb47d",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-30T11:48:30Z",
+      "side": 1,
+      "message": "We know it currently does not. Same principle as disallowing ipsechw on testbeds that do not currently have QAT.\nYes, we should have only one source of truth, but that is larger scope than just adding few more lines here.",
+      "parentUuid": "4935dfb1_0bd5915c",
+      "range": {
+        "startLine": 1056,
+        "startChar": 30,
+        "endLine": 1056,
+        "endChar": 55
+      },
+      "revId": "8afe34e9d9ab9c1a55e1af4c8039d73f884c1411",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f200ec4_b1936712",
@@ -47,6 +71,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25146105_cafd30cf",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-30T11:48:30Z",
+      "side": 1,
+      "message": "We currently have zero topology files for 1n-aws (nor 2n-aws), and there is no TG-TG link in 3n-aws topology template, so the code is technically correct, but I agree it is misleading.\n\nDone in next patch.",
+      "parentUuid": "8f200ec4_b1936712",
+      "range": {
+        "startLine": 1060,
+        "startChar": 29,
+        "endLine": 1060,
+        "endChar": 55
+      },
+      "revId": "8afe34e9d9ab9c1a55e1af4c8039d73f884c1411",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20da6f01_91676487",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-06-29T10:19:33Z",
       "side": 1,
       "message": "here we are defining topologies.",
+      "range": {
+        "startLine": 1128,
+        "startChar": 12,
+        "endLine": 1128,
+        "endChar": 53
+      },
+      "revId": "8afe34e9d9ab9c1a55e1af4c8039d73f884c1411",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b074ad7c_58234e67",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-30T11:48:30Z",
+      "side": 1,
+      "message": "Incorrect. Here we are defining robot tags for suite selection, and that has zero effect on TRex perf suites as they contain all 3 tags (1n 2n and 3n).",
+      "parentUuid": "20da6f01_91676487",
       "range": {
         "startLine": 1128,
         "startChar": 12,
