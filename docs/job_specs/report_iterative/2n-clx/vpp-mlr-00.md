@@ -588,14 +588,6 @@
 1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale10kmaclrn
 2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale10kmaclrn
 4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale10kmaclrn
-##### eth-l2bdscale100kmaclrn
-1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale100kmaclrn
-2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale100kmaclrn
-4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale100kmaclrn
-##### eth-l2bdscale1mmaclrn
-1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
-2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
-4c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2bdscale1mmaclrn
 ##### eth-l2xcbase
 1c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2xcbase
 2c AND 64b AND ndrpdr AND e810cq AND drv_vfio_pci AND eth-l2xcbase
