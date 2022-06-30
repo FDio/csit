@@ -982,10 +982,12 @@ function select_tags () {
             ;;
     esac
 
-    # Blacklisting certain tags per topology.
+    # Exclusion list of certain tag expressions per topology (and maybe NIC).
     #
-    # Reasons for blacklisting:
-    # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
+    # Reasons for excluding {tag} is because of the {limitation}:
+    # - ipsechw - No crypto hardware accelerator.
+    # - 3_node_double_link_topo - No two parallel DUT-DUT links of same NIC.
+    # - drv_avf - Old Intel NIC. 700 series is ok, 500 series is not.
     case "${TEST_CODE}" in
         *"1n-vbox"*)
             test_tag_array+=("!avf")
@@ -995,52 +997,38 @@ function select_tags () {
         *"1n_tx2"*)
             test_tag_array+=("!flow")
             ;;
-        *"2n-skx"*)
+        *"2n-dnv"* | *"3n-dnv"*)
+            test_tag_array+=("!memif")
+            test_tag_array+=("!srv6_proxy")
+            test_tag_array+=("!vhost")
+            test_tag_array+=("!vts")
+            test_tag_array+=("!drv_avf")
+            test_tag_array+=("!3_node_double_link_topo")
+            ;;
+        *"2n-skx"* | *"2n-clx"* | *"2n-icx"*)
             test_tag_array+=("!ipsechw")
             ;;
-        *"3n-skx"*)
+        *"3n-skx"* | *"3n-icx"*)
             test_tag_array+=("!ipsechw")
-            # Not enough nic_intel-xxv710 to support double link tests.
+            # Only Intel-X710 and Intel-E810XXV have two DUT-DUT links.
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
-            ;;
-        *"2n-clx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-icx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-icx"*)
-            test_tag_array+=("!ipsechw")
-            # Not enough nic_intel-xxv710 to support double link tests.
-            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            test_tag_array+=("!3_node_double_link_topoANDnic_intel-e810cq")
             ;;
         *"2n-zn2"*)
             test_tag_array+=("!ipsechw")
             ;;
-        *"2n-dnv"*)
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
-            test_tag_array+=("!drv_avf")
-            ;;
         *"2n-tx2"* | *"3n-alt"*)
             test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-dnv"*)
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
-            test_tag_array+=("!drv_avf")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
         *"3n-tsh"*)
-            # 3n-tsh only has x520 NICs which don't work with AVF
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
         *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_double_link_topo")
             ;;
     esac
 
