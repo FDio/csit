@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "743f47df_ce6fb250",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-30T14:26:03Z",
+      "side": 1,
+      "message": "Also, I think this is a duplicate, but I would have to find the other Change and determine which one is more outdated.",
+      "revId": "99613183774b955a688ea69977042573b5ef8f16",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
