@@ -9,6 +9,13 @@ Changes in |csit-release|
    - **CSIT test environment** version has been updated to ver. 8, see
      :ref:`test_environment_versioning`.
 
+#. DPDK PERFORMANCE TESTS
+
+   - **Arm Ampere Altra**: Performance test data for these platforms
+     is now provided by testbeds newly installed in FD.io CSIT labs.
+     For details about the physical setup see
+     :ref:`physical_testbeds_3n_alt`.
+
 #. DPDK RELEASE VERSION CHANGE
 
    - |csit-release| tested |dpdk-release|, as used by |vpp-release|.

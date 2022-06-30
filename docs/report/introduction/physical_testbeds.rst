@@ -402,6 +402,44 @@ TG NICs:
 
 #. NIC-1: x710-DA4 4p10GE Intel.
 
+.. _physical_testbeds_3n_alt:
+
+3-Node ARM Altra (3n-alt)
+---------------------------
+
+One 3n-tsh testbed is built with: i) one SuperMicro SYS-740GP-TNRT
+server acting as TG and equipped with two Intel Xeon Icelake Platinum
+8358 processors (80 MB Cache, 2.60 GHz, 32 cores), and ii) one Ampere
+Altra server acting as SUT and equipped with two Q80-30 processors
+(80* ARM Neoverse N1). 3n-alt physical topology is shown below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-3n-alt}
+                \label{fig:testbed-3n-alt}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: testbed-3n-alt.svg
+        :alt: testbed-3n-alt
+        :align: center
+
+SUT1 and SUT2 NICs:
+
+#. NIC-1: xl710-QDA2-2p40GE Intel.
+
+TG NICs:
+
+#. NIC-1: xxv710-DA2-2p25GE Intel.
+#. NIC-2: e810-XXVDA4-4p25GE Intel.
+#. NIC-3: e810-2CQDA2-2p100GE Intel.
+
 3-Node ARM TaiShan (3n-tsh)
 ---------------------------
 

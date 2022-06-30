@@ -30,6 +30,11 @@ Changes in |csit-release|
      :ref:`physical_testbeds_2n_icx` and
      :ref:`physical_testbeds_3n_icx`.
 
+   - **Arm Ampere Altra**: Performance test data for these platforms
+     is now provided by testbeds newly installed in FD.io CSIT labs.
+     For details about the physical setup see
+     :ref:`physical_testbeds_3n_alt`.
+
    - **Reduction of tests**: Removed certain test variations executed
      iteratively for the report (as well as in daily and weekly
      trending) due to physical testbeds overload.
