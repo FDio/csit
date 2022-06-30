@@ -50,6 +50,23 @@
       "message": "csit-2n-icx-perftest reconfANDnic_intel-e810*ANDdrv_avfAND1cAND64bANDdot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm2t-testpmd",
       "revId": "302ee2392fed504e617d631328442859daff11a5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fa778f9_7f75efbc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-06-30T09:20:55Z",
+      "side": 1,
+      "message": "Ah, frame size.\n\ncsit-2n-icx-perftest reconfANDnic_intel-e810*ANDdrv_avfAND1cAND118bANDdot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm2t-testpmd",
+      "revId": "302ee2392fed504e617d631328442859daff11a5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
