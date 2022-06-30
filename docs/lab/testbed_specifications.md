@@ -934,14 +934,14 @@ FD.io CSIT lab contains following server types:
         - IPMI and host management ports.
         - NIC ports connected into 3-node testbed topology.
     - Main HW configuration:
-        - Chassis: ?.
-        - Motherboard: ?.
-        - Processors: ?* Intel Atom P5362B 2.2 GHz.
-        - RAM Memory: ?* ?GB DDR4-2933.
+        - Chassis: Intel JACOBSVILLE SDP.
+        - Motherboard: Intel JACOBSVILLE E63448-400.
+        - Processors: 1* Intel Atom P5362B 2.2 GHz.
+        - RAM Memory: 2* 16GB DDR4-2933.
         - Disks: ?* ? SATA SSD.
     - NICs configuration:
         - Numa0: (x16, PCIe3.0 lane)
-            - PCIe Slot yy:00.xx: ?.
+            - PCIe BuiltIn ec:00.xx: e810-XXVDA4-4p25GE Intel.
 ```
 
 ### Naming Convention
@@ -1851,24 +1851,30 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
     - IPMI IP: 10.30.50.93
     - Host IP: 10.30.51.93
     - portnames:
-        - s93-t39-sut1-c1/p1 - 100GE-port1 e810-DA2-2p100GE.
-        - s93-t39-sut1-c1/p2 - 100GE-port2 e810-DA2-2p100GE.
+        - s93-t39-sut1-c1/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s93-t39-sut1-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s93-t39-sut1-c1/p2 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s93-t39-sut1-c1/p2 - 25GE-port4 e810-XXVDA4-4p25GE.
 - ServerG1 [Server-Type-G1]:
     - testbedname: testbed39.
     - hostname: s94-t39-sut2.
     - IPMI IP: 10.30.50.94
     - Host IP: 10.30.51.94
     - portnames:
-        - s94-t39-sut2-c1/p1 - 100GE-port1 e810-DA2-2p100GE.
-        - s94-t39-sut2-c1/p2 - 100GE-port1 e810-DA2-2p100GE.
+        - s94-t39-sut2-c1/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s94-t39-sut2-c1/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s94-t39-sut2-c1/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s94-t39-sut2-c1/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
 - ServerF4 [Server-Type-F4]:
     - testbedname: testbed39.
     - hostname: s89-t39t310-tg1.
     - IPMI IP: 10.30.50.89
     - Host IP: 10.30.51.89
     - portnames:
-        - s89-t39t310-tg1-c6/p1 - 100GE-port1 e810-DA2-2p100GE.
-        - s89-t39t310-tg1-c6/p2 - 100GE-port1 e810-DA2-2p100GE.
+        - s89-t39t310-tg1-c6/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s89-t39t310-tg1-c6/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s89-t39t310-tg1-c6/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s89-t39t310-tg1-c6/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
 ```
 
 ### Per Testbed Wiring
@@ -2292,10 +2298,13 @@ To be completed.
 
 ```
 - testbed39:
-    - ring1 100GE-ports e810-DA2-2p100GE on SUTs and TG:
+    - ring1 25GE-ports e810-XXVDA4-4p25GE on SUTs and TG:
         - s89-t39t310-tg1-c6/p1 to s93-t39-sut1-c1/p1.
         - s93-t39-sut1-c1/p2 to s94-t39-sut2-c1/p2.
         - s94-t39-sut2-c1/p1 to s89-t39t310-tg1-c6/p2.
+        - s89-t39t310-tg1-c6/p3 to s93-t39-sut1-c1/p3.
+        - s93-t39-sut1-c1/p4 to s94-t39-sut2-c1/p4.
+        - s94-t39-sut2-c1/p3 to s89-t39t310-tg1-c6/p4.
 ```
 
 ## Inventory
@@ -2372,15 +2381,13 @@ To be completed.
 
 ```
 1. 10GE NICs
-    - 14 * Intel® Ethernet Converged Network Adapter X710-DA4
-    - 6 * Intel® Ethernet Converged Network Adapter X710-DA2
-    - 6 * Intel® Ethernet Converged Network Adapter X520-DA2
+    - ?
 2. 25GE NICs
-    - 12 * Intel® Ethernet Network Adapter XXV710-DA2
+    - ?
 3. 40GE NICs
-    - 2 * Intel® Ethernet Converged Network Adapter XL710-QDA2
+    - ?
 4. 100GE NICs
-    - 4 * mcx556a-edat NICs (not on site yet, in transit)
+    - ?
 ```
 
 ### Pluggables and Cables
@@ -2389,27 +2396,26 @@ Pluggables:
 
 ```
 1. 10GE SFP+
-    - 16 * Intel E10GSFPSR Ethernet SFP+ SR Optics
-    - 80 * 10G SR optic (generic, "Intel" compatible branded)
+    - ?
 2. 25GE SFP28
-    - None
+    - ?
 3. 40GE QSFP+
-    - None
+    - ?
 4. 100GE
-    - 8 * mcp1600-c002 qsfp28 pluggables and cables (not on site yet, in transit)
+    - ?
 ```
 
 Standalone cables:
 
 ```
 1. 10GE
-    - None
+    - ?
 2. 25GE
-    - None
+    - ?
 3. 40GE QSFP+
-    - 20 * Intel XLDACBL5 40G QSFP+ Passive DAC Cable
+    - ?
 4. 100GE
-    - None
+    - ?
 ```
 
 ### Other Parts
