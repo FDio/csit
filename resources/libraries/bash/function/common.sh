@@ -988,6 +988,7 @@ function select_tags () {
     # - ipsechw - No crypto hardware accelerator.
     # - 3_node_double_link_topo - No two parallel DUT-DUT links of same NIC.
     # - drv_avf - Old Intel NIC. 700 series is ok, 500 series is not.
+    # - 1_node_single_link_topo - No direct TG-TG link for some NIC.
     case "${TEST_CODE}" in
         *"1n-vbox"*)
             test_tag_array+=("!avf")
@@ -996,6 +997,7 @@ function select_tags () {
             ;;
         *"1n_tx2"*)
             test_tag_array+=("!flow")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-dnv"* | *"3n-dnv"*)
             test_tag_array+=("!memif")
@@ -1004,31 +1006,46 @@ function select_tags () {
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!3_node_double_link_topo")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-skx"* | *"2n-clx"* | *"2n-icx"*)
             test_tag_array+=("!ipsechw")
+            # Only Intel-X710 and Intel-E810CQ have a TG-TG link.
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-xxv710")
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-e810xxv")
             ;;
         *"3n-skx"* | *"3n-icx"*)
             test_tag_array+=("!ipsechw")
             # Only Intel-X710 and Intel-E810XXV have two DUT-DUT links.
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-e810cq")
+            # Only Intel-X710 has a TG loopback link.
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-xxv710")
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-e810cq")
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-e810xxv")
             ;;
         *"2n-zn2"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-tx2"* | *"3n-alt"*)
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topo")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"3n-tsh"*)
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topo")
+            # There are two spare TG ports, but not on the same link.
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
-        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws"*)
+            test_tag_array+=("!ipsechw")
+        *"2n-aws"* | *"3n-aws"*)
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!3_node_double_link_topo")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
     esac
 
