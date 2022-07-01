@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8142f98_a2016435",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-07-01T19:25:16Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-alt-perftest vpp-mlr-00\ncsit-vpp-report-iter-2n-clx-perftest vpp-mlr-00\ncsit-vpp-report-iter-2n-skx-perftest vpp-mlr-00\ncsit-vpp-report-iter-3n-skx-perftest vpp-mlr-00\ncsit-vpp-report-iter-2n-icx-perftest vpp-mlr-00\ncsit-vpp-report-iter-2n-zn2-perftest vpp-mlr-00\ncsit-vpp-report-iter-2n-tx2-perftest vpp-mlr-00\ncsit-vpp-report-iter-3n-icx-perftest vpp-mlr-00\ncsit-vpp-report-iter-3n-tsh-perftest vpp-mlr-00\ncsit-vpp-report-iter-2n-dnv-perftest vpp-mlr-00\ncsit-vpp-report-iter-3n-dnv-perftest vpp-mlr-00",
+      "revId": "95454a20a75b314df9f7ee0cb8ab0cceef33d7fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
