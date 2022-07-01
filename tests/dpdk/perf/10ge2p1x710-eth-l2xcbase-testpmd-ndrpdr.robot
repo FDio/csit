@@ -13,8 +13,8 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/dpdk/default.robot
 | Library | resources.libraries.python.DPDK.DPDKTools
+| Library | resources/libraries/python/DPDK/TestpmdTest
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | PERFTEST | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | ETH | L2XCFWD | BASE
@@ -78,7 +78,8 @@
 | |
 | | Given Set Max Rate And Jumbo
 | | And Pre-initialize layer driver | ${nic_driver}
-| | When Start testpmd on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
+| | When Start testpmd on all DUTs | ${nodes} | ${topology_info}
+| | ... | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
