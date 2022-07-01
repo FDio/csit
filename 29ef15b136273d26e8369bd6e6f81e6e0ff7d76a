@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eca024b_4d9685d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-07-01T10:42:04Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-skx-perftest ndrpdrANDeth-l2xcbase-testpmdANDdrv_vfio_pci\ncsit-dpdk-3n-skx-perftest ndrpdrANDethip4-ip4base-l3fwdANDdrv_vfio_pci",
+      "revId": "29ef15b136273d26e8369bd6e6f81e6e0ff7d76a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
