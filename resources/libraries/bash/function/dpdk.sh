@@ -264,8 +264,7 @@ function dpdk_l3fwd_check () {
 
     for attempt in {1..60}; do
         echo "Checking if l3fwd state is ok, attempt nr ${attempt}"
-        if fgrep "Port 0 Link up" screenlog.0 && \
-        fgrep "Port 1 Link up" screenlog.0; then
+        if fgrep "Link up" screenlog.0; then
             cat screenlog.0
             dpdk_l3fwd_pid
             exit 0
@@ -353,8 +352,7 @@ function dpdk_testpmd_check () {
 
     for attempt in {1..60}; do
         echo "Checking if testpmd links state changed, attempt nr ${attempt}"
-        if fgrep "Port 0: link state change event" screenlog.0 && \
-        fgrep "Port 1: link state change event" screenlog.0; then
+        if fgrep "link state change event" screenlog.0; then
             cat screenlog.0
             exit 0
         fi
