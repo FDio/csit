@@ -11,6 +11,7 @@ packages_base:
   - "iperf3"
   - "linux-tools-common"
   - "ninja-build"
+  - "numactl"
   - "qemu-system"
   - "socat"
   - "unzip"
