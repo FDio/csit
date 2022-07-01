@@ -982,10 +982,15 @@ function select_tags () {
             ;;
     esac
 
-    # Blacklisting certain tags per topology.
+    # Exclusion list of certain tag expressions per topology (and maybe NIC).
     #
-    # Reasons for blacklisting:
-    # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
+    # Reasons for excluding {tag} is because of the {limitation}:
+    # - ipsechw - No crypto hardware accelerator.
+    # - 3_node_double_link_topo - No two parallel DUT-DUT links of same NIC.
+    # - drv_avf - Old Intel NIC. 700 series is ok, 500 series is not.
+    #
+    # NIC-independent single/double link is specified in select_topology,
+    # here are only NIC-related corrections.
     case "${TEST_CODE}" in
         *"1n-vbox"*)
             test_tag_array+=("!avf")
@@ -995,28 +1000,6 @@ function select_tags () {
         *"1n_tx2"*)
             test_tag_array+=("!flow")
             ;;
-        *"2n-skx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-skx"*)
-            test_tag_array+=("!ipsechw")
-            # Not enough nic_intel-xxv710 to support double link tests.
-            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
-            ;;
-        *"2n-clx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-icx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-icx"*)
-            test_tag_array+=("!ipsechw")
-            # Not enough nic_intel-xxv710 to support double link tests.
-            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
-            ;;
-        *"2n-zn2"*)
-            test_tag_array+=("!ipsechw")
-            ;;
         *"2n-dnv"*)
             test_tag_array+=("!memif")
             test_tag_array+=("!srv6_proxy")
@@ -1024,7 +1007,19 @@ function select_tags () {
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
             ;;
-        *"2n-tx2"* | *"3n-alt"*)
+        *"2n-skx"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-clx"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-icx"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-tx2"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-zn2"*)
             test_tag_array+=("!ipsechw")
             ;;
         *"3n-dnv"*)
@@ -1034,12 +1029,31 @@ function select_tags () {
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
             ;;
+        *"3n-skx"*)
+            test_tag_array+=("!ipsechw")
+            # Only Intel-X710 has two DUT-DUT links.
+            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            ;;
+        *"3n-icx"*)
+            test_tag_array+=("!ipsechw")
+            # Only Intel-E810XXV has two DUT-DUT links.
+            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            test_tag_array+=("!3_node_double_link_topoANDnic_intel-e810cq")
+            ;;
+        *"3n-alt"*)
+            test_tag_array+=("!ipsechw")
+            ;;
         *"3n-tsh"*)
-            # 3n-tsh only has x520 NICs which don't work with AVF
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
             ;;
-        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
+        *"1n-aws"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"2n-aws"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"3n-aws"*)
             test_tag_array+=("!ipsechw")
             ;;
     esac
@@ -1110,17 +1124,41 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "1n_skx" | "1n_tx2")
+        "1n_skx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "1n_tx2")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_dnv")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_dnv*.yaml )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         "2n_skx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_skx*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_clx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_icx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "2n_tx2")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         "2n_zn2")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_zn2*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "3n_dnv")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_dnv*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "3n_skx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_skx*.yaml )
@@ -1130,29 +1168,9 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
-        "2n_clx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "2n_icx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "2n_dnv")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_dnv*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "3n_dnv")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_dnv*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
         "3n_tsh")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
-            ;;
-        "2n_tx2")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_tx2*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
         "3n_alt")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_alt*.yaml )
