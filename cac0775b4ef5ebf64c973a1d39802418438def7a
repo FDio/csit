@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "989ae2de_c1b80d72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-07-01T05:17:17Z",
+      "side": 1,
+      "message": "Small reduction done in separate patches:\n36544: job-spec: Reduce number of iterative tests for 2n-clx | https://gerrit.fd.io/r/c/csit/+/36544\n36551: job-spec: Reduce number of iterative tests for 2n-clx | https://gerrit.fd.io/r/c/csit/+/36551\n\nNext reduction should be done after discussi0on in the next months (before 2210).\n",
+      "revId": "cac0775b4ef5ebf64c973a1d39802418438def7a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
