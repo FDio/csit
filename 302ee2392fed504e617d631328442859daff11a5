@@ -84,6 +84,24 @@
       "message": "Not all testbeds are ready:\n  sudo: numactl: command not found\n\nhttps://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-icx/8/log.html.gz#s1-s1-s1-s1-s1-s1-s1-t1-k2-k12-k6-k1\n",
       "revId": "302ee2392fed504e617d631328442859daff11a5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5a037b3_de60a6be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-07-01T08:10:07Z",
+      "side": 1,
+      "message": "unblocked",
+      "parentUuid": "a60907b8_94eb6c4b",
+      "revId": "302ee2392fed504e617d631328442859daff11a5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
