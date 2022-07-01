@@ -985,12 +985,15 @@ function select_tags () {
     # Exclusion list of certain tag expressions per topology (and maybe NIC).
     #
     # Reasons for excluding {tag} is because of the {limitation}:
-    # - ipsechw - No crypto hardware accelerator.
+    # - 1_node_single_link_topo - No direct TG-TG link for some NIC.
     # - 3_node_double_link_topo - No two parallel DUT-DUT links of same NIC.
     # - drv_avf - Old Intel NIC. 700 series is ok, 500 series is not.
+    # - ipsechw - No crypto hardware accelerator.
     #
     # NIC-independent single/double link is specified in select_topology,
     # here are only NIC-related corrections.
+    # It is currently not easily possible to disallow 1_node in select_topology,
+    # so it is done here (even when it is not NIC-dependent).
     case "${TEST_CODE}" in
         *"1n-vbox"*)
             test_tag_array+=("!avf")
@@ -1006,21 +1009,30 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
+            # Only Intel-X710 has a TG-TG link.
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-xxv710")
             ;;
         *"2n-clx"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-icx"*)
             test_tag_array+=("!ipsechw")
+            # Only Intel-E810CQ has a TG-TG link.
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-xxv710")
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-e810xxv")
             ;;
         *"2n-tx2"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"2n-zn2"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"3n-dnv"*)
             test_tag_array+=("!memif")
@@ -1028,33 +1040,42 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"3n-skx"*)
             test_tag_array+=("!ipsechw")
             # Only Intel-X710 has two DUT-DUT links.
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            # Only Intel-X710 has a TG-TG link.
+            test_tag_array+=("!1_node_single_link_topoANDnic_intel-xxv710")
             ;;
         *"3n-icx"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             # Only Intel-E810XXV has two DUT-DUT links.
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-e810cq")
             ;;
         *"3n-alt"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"3n-tsh"*)
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
+            # There are two spare TG ports, but not on the same link.
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"1n-aws"*)
             test_tag_array+=("!ipsechw")
             ;;
         *"2n-aws"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
         *"3n-aws"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!1_node_single_link_topo")
             ;;
     esac
 
