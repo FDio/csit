@@ -85,7 +85,7 @@ class Memif:
             return papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def _memif_create(node, mid, sid, rxq=1, txq=1, role=1):
+    def _memif_create(node, mid, sid, rxq=1, txq=1, role=0):
         """Create Memif interface on the given node, return its sw_if_index.
 
         :param node: Given node to create Memif interface on.
@@ -119,7 +119,7 @@ class Memif:
 
     @staticmethod
     def create_memif_interface(
-            node, filename, mid, sid, rxq=1, txq=1, role=u"SLAVE"):
+            node, filename, mid, sid, rxq=1, txq=1, role=u"MASTER"):
         """Create Memif interface on the given node.
 
         :param node: Given node to create Memif interface on.
