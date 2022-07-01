@@ -16,13 +16,82 @@ DUT nodes.
 """
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DpdkUtil import DpdkUtil
-from resources.libraries.python.ssh import exec_cmd_no_error
-from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
+from resources.libraries.python.topology import Topology
+from robot.libraries.BuiltIn import BuiltIn
 
 
 class TestpmdTest:
-    """Setup the DPDK for testpmd performance test."""
+    @staticmethod
+    def start_testpmd_on_all_duts(
+            nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
+            rxd=None, txd=None):
+        """
+        Start the testpmd with M worker threads and rxqueues N and jumbo
+        support frames on/off on all DUTs.
+
+        :param nodes: All the nodes info from the topology file.
+        :param topology_info: All the info from the topology file.
+        :param phy_cores: Number of physical cores to use.
+        :param rx_queues: Number of RX queues.
+        :param jumbo_frames: Jumbo frames on/off.
+        :param rxd: Number of RX descriptors.
+        :param txd: Number of TX descriptors.
+
+        :type nodes: dict
+        :type topology_info: dict
+        :type phy_cores: int
+        :type rx_queues: int
+        :type jumbo_frames: bool
+        :type rxd: int
+        :type txd: int
+        """
+
+        cpu_count_int = dp_count_int = int(phy_cores)
+        dp_cores = cpu_count_int+1
+        for node in nodes:
+            if u"DUT" in node:
+                compute_resource_info = CpuUtils.get_affinity_vswitch(
+                    nodes, node, phy_cores, rx_queues=rx_queues,
+                    rxd=rxd, txd=txd
+                )
+                if compute_resource_info[u"dp_count_int"] > 1:
+                    BuiltIn().Set_tags('MTHREAD')
+                else:
+                    BuiltIn().Set_tags('STHREAD')
+                BuiltIn().Set_tags(
+                    f"T{compute_resource_info[u'cpu_count_int']}C"
+                )
+
+                cpu_dp = compute_resource_info[u"cpu_dp"]
+                rxq_count_int = compute_resource_info[u"rxq_count_int"]
+                jumbo_frames = compute_resource_info[u"jumbo_frames"]
+                nic_rxq_size = compute_resource_info[u"nic_rxq_size"]
+                nic_txq_size = compute_resource_info[u"nic_txq_size"]
+                if1 = topology_info[f"{node}_pf1"]
+                if2 = topology_info[f"{node}_pf2"]
+                TestpmdTest.start_testpmd(
+                    node, if1=if1, if2=if2, lcores_list=cpu_dp,
+                    nb_cores=dp_count_int, queue_nums=rxq_count_int,
+                    jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
+                    txq_size=nic_txq_size
+                )
+        for node in nodes:
+            if u"DUT" in node:
+                testpmd_started = False
+                for i in range(3):
+                    testpmd_started = TestpmdTest.check_testpmd(node)
+                    if testpmd_started:
+                        break
+                    else:
+                        TestpmdTest.start_testpmd(
+                            node, if1=if1, if2=if2, lcores_list=cpu_dp,
+                            nb_cores=dp_count_int, queue_nums=rxq_count_int,
+                            jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
+                            txq_size=nic_txq_size
+                        )
 
     @staticmethod
     def start_testpmd(
@@ -52,7 +121,7 @@ class TestpmdTest:
         :type txq_size: int
         :raises RuntimeError: If the script "run_testpmd.sh" fails.
         """
-        if node[u"type"] == NodeType.DUT:
+        if u"DUT" in node:
             if_pci0 = Topology.get_interface_pci_addr(node, if1)
             if_pci1 = Topology.get_interface_pci_addr(node, if2)
 
@@ -83,3 +152,23 @@ class TestpmdTest:
                 f"/entry/run_testpmd.sh \"{testpmd_args}\""
             message = f"Failed to execute testpmd at node {node['host']}"
             exec_cmd_no_error(node, command, timeout=1800, message=message)
+
+    @staticmethod
+    def check_testpmd(node):
+        """
+        Execute the testpmd check on the DUT node.
+
+        :param node: DUT node.
+        :type node: dict
+        :raises RuntimeError: If the script "check_testpmd.sh" fails.
+        """
+        if u"DUT" in node:
+            command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
+                      f"/entry/check_testpmd.sh"
+            message = f"Failed to check testpmd state at node {node['host']}"
+            rc, _, _ = exec_cmd(node, command, timeout=1800, message=message)
+
+        if rc == 0:
+            return True
+        else:
+            return False
