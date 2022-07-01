@@ -51,6 +51,8 @@ Startup command template:
 
 .. include:: ../introduction/test_environment_pre_test_server_calib.rst
 
+.. include:: ../introduction/test_environment_sut_calib_icx.rst
+
 .. include:: ../introduction/test_environment_sut_calib_skx.rst
 
 .. include:: ../introduction/test_environment_sut_calib_clx.rst
