@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7c66657_46bc80ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-07-03T11:05:07Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-dnv-perftest l2-00",
+      "revId": "7cc85bf690bc786f36e4d38c27b9e3723e7c9e67",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
