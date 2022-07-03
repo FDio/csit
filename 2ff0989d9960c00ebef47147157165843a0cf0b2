@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba719559_f157d053",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-07-03T18:45:40Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-dnv-perftest ip6-00",
+      "revId": "2ff0989d9960c00ebef47147157165843a0cf0b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
