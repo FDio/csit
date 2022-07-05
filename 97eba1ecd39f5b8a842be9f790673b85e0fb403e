@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc01f4bd_a85d8389",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-05T11:02:24Z",
+      "side": 1,
+      "message": "We are proceeding with base frequency for the release 22.06, as with all other testbeds. This is an experiment to be done after the release, to see if we get performance fluctuations if the core frequency is just below all-core-turbo ...",
+      "revId": "97eba1ecd39f5b8a842be9f790673b85e0fb403e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
