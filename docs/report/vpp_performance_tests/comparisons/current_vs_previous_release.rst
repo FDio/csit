@@ -268,6 +268,15 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t1c PDR90, direction1, average value comparison <../../_static/vpp/latency-changes-3n-skx-xxv710-2t1c-pdr90-d1-avg-csv.csv>`_
   - `CSV 2t1c PDR90, direction1, max value comparison <../../_static/vpp/latency-changes-3n-skx-xxv710-2t1c-pdr90-d1-max-csv.csv>`_
 
+Hoststack
+`````````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML Hoststack comparison <performance-changes-3n-skx-hoststack.html>`_
+  - `ASCII Hoststack comparison <../../_static/vpp/performance-changes-3n-skx-hoststack.txt>`_
+  - `CSV Hoststack comparison <../../_static/vpp/performance-changes-3n-skx-hoststack-csv.csv>`_
+
 2n-clx-xxv710
 ~~~~~~~~~~~~~
 
@@ -324,6 +333,15 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t1c PDR50, direction1, average value comparison <../../_static/vpp/latency-changes-2n-clx-xxv710-2t1c-pdr50-d1-avg-csv.csv>`_
   - `CSV 2t1c PDR90, direction1, average value comparison <../../_static/vpp/latency-changes-2n-clx-xxv710-2t1c-pdr90-d1-avg-csv.csv>`_
   - `CSV 2t1c PDR90, direction1, max value comparison <../../_static/vpp/latency-changes-2n-clx-xxv710-2t1c-pdr90-d1-max-csv.csv>`_
+
+VSAP
+````
+
+Comparison tables in HTML, ASCII and CSV formats:
+
+  - `HTML Hoststack comparison <performance-changes-2n-clx-vsap.html>`_
+  - `ASCII Hoststack comparison <../../_static/vpp/performance-changes-2n-clx-vsap.txt>`_
+  - `CSV Hoststack comparison <../../_static/vpp/performance-changes-2n-clx-vsap-csv.csv>`_
 
 2n-clx-cx556a
 ~~~~~~~~~~~~~
