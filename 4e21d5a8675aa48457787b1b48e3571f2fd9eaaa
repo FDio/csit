@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "580d8d86_0ae61d51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-07-06T12:37:37Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest soak-00",
+      "revId": "4e21d5a8675aa48457787b1b48e3571f2fd9eaaa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
