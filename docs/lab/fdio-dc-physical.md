@@ -94,9 +94,9 @@ fdio-marvell-dev,up,N/A,dev,ThunderX-88XX,N/A,10.30.51.38,10.30.50.38,3016.11,u4
 s53-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.39,10.30.50.39,3016.11,u44
 s54-nomad,up,nomad-cluster1,nomad-client,ThunderX-88XX,N/A,10.30.51.40,10.30.50.40,3016.11,u43
 s56-t14-sut1,up,t14,1n-tx2,ThunderX2-9980,N/A,10.30.51.71,10.30.50.71,3016.11,u41-u42
-s41-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FQ,10.30.51.28,10.30.50.28,3016.11,u39-u40
+s20-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FQ,10.30.51.20,10.30.50.20,3016.11,u39-u40
 s40-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0HZ,10.30.51.30,10.30.50.30,3016.11,u37-u38
-s39-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0J2,10.30.51.29,10.30.50.29,3016.11,u35-u36
+s21-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0J2,10.30.51.21,10.30.50.21,3016.11,u35-u36
 s78-t38-sut1,up,t38,3n-icx,SYS-740GP-TNRT,C7470KL03P50450,10.30.51.78,10.30.50.78,3016.11,u31-u34
 s79-t38-sut2,up,t38,3n-icx,SYS-740GP-TNRT,C7470KL07P50297,10.30.51.79,10.30.50.79,3016.11,u27-u30
 s80-t38-tg1,up,t38,3n-icx,SYS-740GP-TNRT,C7470KL03P50454,10.30.51.80,10.30.50.80,3016.11,u23-u26
@@ -135,8 +135,3 @@ s35-t28-sut1,up,t28,2n-clx,SYS-7049GP-TRT,C7470KH37A30509,10.32.8.20,10.30.55.20
 s36-t28-tg1,up,t28,2n-clx,SYS-7049GP-TRT,C7470KH37A30511,10.32.8.21,10.30.55.21,3016.12,u10-u13
 s37-t29-sut1,up,t29,2n-clx,SYS-7049GP-TRT,C7470KH37A30566,10.32.8.22,10.30.55.22,3016.12,u6-u9
 s38-t29-tg1,up,t29,2n-clx,SYS-7049GP-TRT,C7470KH37A30506,10.32.8.23,10.30.55.23,3016.12,u2-u5
-
-Notes:
-
-- UCSC-C240-M4 EoL:
-  [End-of-Life Announcement for the Cisco Unified Computing System C-Series](https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-c-series-rack-servers/eos-eol-notice-c51-741235.html)
