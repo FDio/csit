@@ -15695,6 +15695,20 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 3n-icx-e810xxv-64b-{core}-ip4tunnel-gtpu-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-64b-{core}-ip4tunnel-gtpu-{test_type}"
+  data: "vpp-3n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Gtpuhw-Ip4Base-Ndrpdr.64B-{core}-ethip4gtpuhw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Gtpusw-Ip4Base-Ndrpdr.64B-{core}-ethip4gtpusw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.64B-{core}-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-icx-e810xxv-64b-{core}-ip4tunnel-gtpu-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 3n-icx-xxv710-78b-{core}-ip6routing-base-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-78b-{core}-ip6routing-base-{test_type}"
@@ -15904,6 +15918,19 @@
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Xcbase-ndrpdr.64B-.t.c-ethip4vxlan-l2xcbase-ndrpdr"
   layout:
     title: "3n-icx-xxv710-64b-ip4tunnel-base-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-icx-e810xxv-64b-ip4tunnel-gtpu-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-64b-ip4tunnel-gtpu-{test_type}-tsa"
+  data: "vpp-3n-icx-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Gtpuhw-Ip4Base-Ndrpdr.64B-.t.c-ethip4gtpuhw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Gtpusw-Ip4Base-Ndrpdr.64B-.t.c-ethip4gtpusw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.64B-.t.c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-icx-e810xxv-64b-ip4tunnel-gtpu-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
