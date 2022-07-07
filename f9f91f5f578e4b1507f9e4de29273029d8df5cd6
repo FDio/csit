@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2262a4cb_57bc1660",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-07T11:58:35Z",
+      "side": 1,
+      "message": "Now going to investigate CSIT-1846.",
+      "revId": "f9f91f5f578e4b1507f9e4de29273029d8df5cd6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
