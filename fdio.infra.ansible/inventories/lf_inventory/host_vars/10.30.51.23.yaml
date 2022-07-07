@@ -1,8 +1,8 @@
 ---
-# file: host_vars/10.32.8.17.yaml
+# file: host_vars/10.30.51.23.yaml
 
-hostname: "s57-nomad"
-inventory_ipmi_hostname: "10.30.55.17"
+hostname: "s23-nomad"
+inventory_ipmi_hostname: "10.30.50.23"
 
 # User management.
 users:
@@ -39,35 +39,35 @@ nomad_options:
   fingerprint.network.disallow_link_local: true
 nomad_service_mgr: "systemd"
 nomad_retry_servers:
-  - "10.32.8.14"
   - "10.32.8.15"
   - "10.32.8.16"
+  - "10.32.8.17"
 nomad_servers:
-  - "10.32.8.14:4647"
   - "10.32.8.15:4647"
   - "10.32.8.16:4647"
+  - "10.32.8.17:4647"
 nomad_volumes:
   - name: "prod-volume-data1-1"
     path: "/data"
     read_only: false
 
-# Consul settigs.
+# Consul settings.
 consul_nomad_integration: true
 consul_certificates:
   - src: "{{ file_consul_ca_pem }}"
     dest: "{{ consul_ca_file }}"
-  - src: "{{ file_consul_server_3_pem }}"
+  - src: "{{ file_consul_server_0_pem }}"
     dest: "{{ consul_cert_file }}"
-  - src: "{{ file_consul_server_3_key_pem }}"
+  - src: "{{ file_consul_server_0_key_pem }}"
     dest: "{{ consul_key_file }}"
 consul_datacenter: "yul1"
 consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 consul_node_name: "{{ hostname }}"
 consul_node_role: "both"
 consul_retry_servers:
-  - "10.32.8.14"
   - "10.32.8.15"
   - "10.32.8.16"
+  - "10.32.8.17"
 consul_service_mgr: "systemd"
 
 # Docker daemon settings.
