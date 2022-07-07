@@ -339,9 +339,9 @@ VSAP
 
 Comparison tables in HTML, ASCII and CSV formats:
 
-  - `HTML VSAP comparison <performance-changes-2n-clx-vsap.html>`_
-  - `ASCII VSAP comparison <../../_static/vpp/performance-changes-2n-clx-vsap.txt>`_
-  - `CSV VSAP comparison <../../_static/vpp/performance-changes-2n-clx-vsap-csv.csv>`_
+  - `HTML Hoststack comparison <performance-changes-2n-clx-vsap.html>`_
+  - `ASCII Hoststack comparison <../../_static/vpp/performance-changes-2n-clx-vsap.txt>`_
+  - `CSV Hoststack comparison <../../_static/vpp/performance-changes-2n-clx-vsap-csv.csv>`_
 
 2n-clx-cx556a
 ~~~~~~~~~~~~~

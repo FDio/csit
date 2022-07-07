@@ -356,12 +356,12 @@ yul1:
         mgmt_ip4: 10.30.51.30
         lom_ip4: 10.30.50.30
       - unit: 35..36
-        name: s39-nomad
+        name: s21-nomad
         oper_status: production
         device_type: UCSC-C240-M4SX
         serial_number: FCH2013V0J2
-        mgmt_ip4: 10.30.51.29
-        lom_ip4: 10.30.50.29
+        mgmt_ip4: 10.30.51.21
+        lom_ip4: 10.30.50.21
       - unit: 31..34
         name: s78-t38-sut1
         oper_status: production
