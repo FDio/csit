@@ -512,12 +512,10 @@ class FlowUtil:
         :returns: flow entry.
         :rtype: str
         """
-        cmd = u"vppctl show flow entry"
+        cmd = u"show flow entry"
 
-        err_msg = u"Failed to show flow on host {node[u'host']}"
-        stdout, _ = exec_cmd_no_error(
-            node, cmd, sudo=False, message=err_msg, retries=120
-            )
+        stdout = PapiSocketExecutor.run_cli_cmd(node, cmd)
+        flow_index = stdout.split()[1]
 
         return stdout.strip()
 
