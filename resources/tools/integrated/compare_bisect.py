@@ -42,6 +42,8 @@ def read_from_file(filename):
         for line in in_file:
             samples.extend(json.loads(line))
     print(f"Read {filename}: {samples!r}")
+    samples = [max(*samples)] if len(samples) > 2 else samples
+    print(f"Max: {samples!r}")
     stats = jumpavg.AvgStdevStats.for_runs(samples)
     print(f"Stats: {stats!r}")
     return samples, stats.avg
