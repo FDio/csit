@@ -16,7 +16,7 @@ packages_by_arch:
     - []
 
 # Package
-nomad_version: "{{ lookup('env','NOMAD_VERSION') | default('1.0.4', true) }}"
+nomad_version: "{{ lookup('env','NOMAD_VERSION') | default('1.3.1', true) }}"
 nomad_architecture_map:
   amd64: "amd64"
   x86_64: "amd64"
@@ -63,7 +63,7 @@ nomad_log_level: "INFO"
 nomad_syslog_enable: true
 nomad_iface: "{{ lookup('env','NOMAD_IFACE') | default(ansible_default_ipv4.interface, true) }}"
 nomad_node_name: "{{ inventory_hostname }}"
-nomad_node_role: "{{ lookup('env','NOMAD_NODE_ROLE') | default('client', true) }}"
+nomad_node_role: "{{ lookup('env','NOMAD_NODE_ROLE') | default('server', true) }}"
 nomad_leave_on_terminate: true
 nomad_leave_on_interrupt: false
 nomad_disable_update_check: true
@@ -172,9 +172,11 @@ nomad_docker_dmsetup: true
 
 # TLS
 nomad_tls_enable: true
-nomad_ca_file: "{{ nomad_ssl_dir }}/ca.pem"
+nomad_ca_file: "{{ nomad_ssl_dir }}/nomad-ca.pem"
 nomad_cert_file: "{{ nomad_ssl_dir }}/nomad.pem"
 nomad_key_file: "{{ nomad_ssl_dir }}/nomad-key.pem"
+nomad_cli_cert_file: "{{ nomad_ssl_dir }}/nomad-cli.pem"
+nomad_cli_key_file: "{{ nomad_ssl_dir }}/nomad-cli-key.pem"
 nomad_http: false
 nomad_rpc: false
 nomad_rpc_upgrade_mode: false

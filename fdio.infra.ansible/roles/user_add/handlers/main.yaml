@@ -2,6 +2,6 @@
 # file: roles/user_add/handlers/main.yaml
 
 - name: Restart SSHd
-  service:
+  ansible.builtin.service:
     name: sshd
     state: restarted
