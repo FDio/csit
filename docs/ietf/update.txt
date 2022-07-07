@@ -1,0 +1,101 @@
+
+There is a new Python implementation,
+https://gerrit.fd.io/r/c/csit/+/36061
+(marked as abandoned only while waiting for upgraded tooling)
+it includes multiple logic updates.
+
+Highlights:
+
++ Brand new APIs and more standardized terminology.
+  Example: "zero loss load" instead of "NDR" or "throughput".
+
++ Trial durations in inner cycle, loss ratios in outer cycle.
+  This means search for zero loss load (at final trial duration)
+  completes before search for non-zero loss load starts
+  (with initial trial duration).
+
++ Each loss ratio can have different width goal.
+
++ In uneven splits, the lower subinterval is the narrower one.
+
++ Additional ways to prevent wastefully narrow intervals.
+
++ Do as much math in integers as possible (to prevent rounding errors).
+  The previous way of "conservative rounding" cannot work
+  across more than one level of trial duration.
+
+
+There is no new draft version yet.
+Reasons are both practical and theoretical.
+
+Practical reasons come mainly from more complicated logic.
+Even though the actual Python coded is now more modular and readable
+compared to the previous version, the logic itself is more tightly coupled,
+thus it is harder to describe its abstractions.
+For example, a search phase focusing on one loss ratio goals
+has to be able to handle correctly surprising trial outcomes
+from a phase focused on another loss ratio goal.
+
+Theoretical reasons come from discrepancies (or at least grey areas)
+in RFC 1242 and RFC 2544. So let me talk about those in some detail here.
+
+The grey areas are related to a possibility of "loss inversion".
+This is a phenomenon when a trial conducted at a higher load
+has zero frame loss, but a trial conducted at a lower load
+has a non-zero frame loss.
+
+This is never seen when looking only at trial outcomes
+of one throuput search that uses simple bisection, because
+all trials subsequent after a zero loss are conducted at higher loads,
+and all trials subsequent after a non-zero loss are conducted
+at lower loads.
+
+RFC 2544 formulations such as "the rate of the offered stream is reduced"
+are perhaps aimed to prevent this phenomenon,
+but onle stronger phrases like "all subsequent rates of the offered stream
+shall be below" would achieve that goal.
+The fact that MLRsearch can search for multiple loss ratio goals
+means some trial outcomes can satisfy one ratio but not another,
+so loss inversion cannot be prevented by limiting all subsequent loads.
+
+The problematic occurences of loss inversion are those
+where the larger load zero loss outcome happened at final duration.
+The two sub-types of loss inversion are distinguished by the other trial
+being done at the final (or shorter, respecively) trial duration.
+
+The RFC 1242 motivation for througput is:
+    Since even the loss of one frame in a
+    data stream can cause significant delays while
+    waiting for the higher level protocols to time out,
+    it is useful to know the actual maximum data
+    rate that the device can support.
+
+It is not clear whether "the device can support" is supposed to mean
+"the device can always support" or "the device can sometimes support".
+
+The RFC 1242 definition of throughput is:
+    The maximum rate at which none of the offered frames are dropped by the device.
+
+As it mentions "the" offered frames, it probably refers to observed trial outcomes
+(not mere possibilities).
+
+RFC 2544 is more specific:
+    The throughput is the fastest rate at which the count of test frames
+    transmitted by the DUT is equal to the number of test frames sent to
+    it by the test equipment.
+
+That would mean maximizing over observed outcomes, and in case of loss inversion
+the higher load should be returned.
+MLRsearch instead searches below the smaller load,
+as its goal is to estimate the "device can always support" load.
+
+Regarding loss inversion when the lossy lower load is from shorter duration trial,
+RFC 2544 mentions "final determination" when mentioning shorter trial duration.
+For the "device can sometimes support" throughput, this is not an issue,
+but again, MLRsearch searches for "device can always support" load
+and currently it ignores lossy short trials (by re-measuring with longer duration),
+but strictly speaking the lossy short trial already disproves
+that load "device can always support".
+
+So The current MLRsearch implementation is not really consistent with either
+interpretation of throughput.
