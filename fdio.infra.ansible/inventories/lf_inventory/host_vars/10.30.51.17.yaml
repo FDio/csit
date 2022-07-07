@@ -1,8 +1,8 @@
 ---
-# file: host_vars/10.30.51.25.yaml
+# file: host_vars/10.30.51.17.yaml
 
-hostname: "s44-nomad"
-inventory_cimc_hostname: "10.30.50.25"
+hostname: "s17-nomad"
+inventory_cimc_hostname: "10.30.50.17"
 
 # User management.
 users:

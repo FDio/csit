@@ -342,12 +342,12 @@ yul1:
         mgmt_ip4: 10.30.51.71
         lom_ip4: 10.30.50.71
       - unit: 39..40
-        name: s41-nomad
+        name: s20-nomad
         oper_status: production
         device_type: UCSC-C240-M4SX
         serial_number: FCH1950V1FQ
-        mgmt_ip4: 10.30.51.28
-        lom_ip4: 10.30.50.28
+        mgmt_ip4: 10.30.51.20
+        lom_ip4: 10.30.50.20
       - unit: 37..38
         name: s40-nomad
         oper_status: production
@@ -356,12 +356,12 @@ yul1:
         mgmt_ip4: 10.30.51.30
         lom_ip4: 10.30.50.30
       - unit: 35..36
-        name: s39-nomad
+        name: s21-nomad
         oper_status: production
         device_type: UCSC-C240-M4SX
         serial_number: FCH2013V0J2
-        mgmt_ip4: 10.30.51.29
-        lom_ip4: 10.30.50.29
+        mgmt_ip4: 10.30.51.21
+        lom_ip4: 10.30.50.21
       - unit: 31..34
         name: s78-t38-sut1
         oper_status: production
@@ -523,12 +523,12 @@ yul1:
         mgmt_ip4: 10.30.51.92
         lom_ip4: 10.30.50.92
       - unit: 34
-        name: s46-nomad
+        name: s23-nomad
         oper_status: production
         device_type: SYS-1029P-WTRT
         serial_number: C1160LI12NM0256
-        mgmt_ip4: 10.32.8.14
-        lom_ip4: 10.30.55.14
+        mgmt_ip4: 10.30.51.23
+        lom_ip4: 10.30.51.23
       - unit: 33
         name: s47-nomad
         oper_status: production
