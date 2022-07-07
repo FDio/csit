@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8c04b7f_aa4d34bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-07-07T17:45:53Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest vpp-mlr-00",
+      "revId": "2593ad5eb034cbca40ff982a432934fc5ef4c2c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
