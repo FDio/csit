@@ -2,7 +2,7 @@
 # file roles/docker/handlers/main.yaml
 
 - name: Restart Docker
-  service:
+  ansible.builtin.service:
     name: "docker"
     state: "{{ docker_restart_handler_state }}"
   tags:

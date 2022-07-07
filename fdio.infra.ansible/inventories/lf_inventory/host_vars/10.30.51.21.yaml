@@ -1,7 +1,7 @@
 ---
 # file: host_vars/10.30.51.21.yaml
 
-hostname: "s2-nomad"
+hostname: "s21-nomad"
 inventory_cimc_hostname: "10.30.50.21"
 
 # User management.

@@ -14,13 +14,13 @@
     - cimc-handlers
 
 - name: Reboot server
-  reboot:
+  ansible.builtin.reboot:
     reboot_timeout: 3600
   tags:
     - reboot-server
 
 - name: Wait for server to restart
-  wait_for:
+  ansible.builtin.wait_for:
     host: "{{ inventory_hostname }}"
     search_regex: OpenSSH
     port: 22

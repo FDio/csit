@@ -24,7 +24,7 @@ consul_architecture_map:
   32-bit: "386"
   64-bit: "amd64"
 consul_architecture: "{{ consul_architecture_map[ansible_architecture] }}"
-consul_version: "1.9.5"
+consul_version: "1.12.2"
 consul_pkg: "consul_{{ consul_version }}_linux_{{ consul_architecture }}.zip"
 consul_zip_url: "https://releases.hashicorp.com/consul/{{ consul_version }}/{{ consul_pkg }}"
 consul_force_update: false
