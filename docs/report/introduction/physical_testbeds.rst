@@ -437,8 +437,9 @@ SUT1 and SUT2 NICs:
 TG NICs:
 
 #. NIC-1: xxv710-DA2-2p25GE Intel.
-#. NIC-2: e810-XXVDA4-4p25GE Intel.
-#. NIC-3: e810-2CQDA2-2p100GE Intel.
+#. NIC-2: xl710-QDA2-2p40GE Intel.
+#. NIC-3: e810-XXVDA4-4p25GE Intel.
+#. NIC-4: e810-2CQDA2-2p100GE Intel.
 
 3-Node ARM TaiShan (3n-tsh)
 ---------------------------
