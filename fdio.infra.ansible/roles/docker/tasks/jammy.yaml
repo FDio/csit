@@ -2,7 +2,7 @@
 # file: roles/docker/tasks/ubuntu_jammy.yaml
 
 - name: Inst - Dependencies
-  apt:
+  ansible.builtin.apt:
     name:
       - "apt-transport-https"
       - "ca-certificates"
@@ -15,14 +15,14 @@
     - docker-inst-dependencies
 
 - name: Conf - Add APT Key
-  apt_key:
+  ansible.builtin.apt_key:
     url: "{{ docker_apt_gpg_key }}"
     state: "{{ docker_apt_gpg_key_state }}"
   tags:
     - docker-conf-apt
 
 - name: Conf - Install APT Repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ docker_apt_repository }}"
     state: "{{ docker_apt_repository_state }}"
     update_cache: true

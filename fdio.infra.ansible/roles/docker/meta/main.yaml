@@ -1,4 +1,19 @@
 ---
-# file: roles/docker/meta/main.yaml
+# file: meta/main.yaml
 
 dependencies: []
+
+galaxy_info:
+  role_name: docker
+  author: fd.io
+  description: Docker-CE for Linux.
+  company: none
+  license: "license (Apache)"
+  min_ansible_version: 2.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+  galaxy_tags:
+    - docker

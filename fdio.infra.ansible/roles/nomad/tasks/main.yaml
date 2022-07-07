@@ -2,7 +2,7 @@
 # file: roles/nomad/tasks/main.yaml
 
 - name: Install Dependencies
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages | flatten(levels=1) }}"
     state: "present"
     cache_valid_time: 3600
@@ -13,14 +13,14 @@
     - nomad-inst-dependencies
 
 - name: Conf - Add Nomad Group
-  group:
+  ansible.builtin.group:
     name: "{{ nomad_group }}"
     state: "{{ nomad_user_state }}"
   tags:
     - nomad-conf-user
 
 - name: Conf - Add Nomad user
-  user:
+  ansible.builtin.user:
     name: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     state: "{{ nomad_group_state }}"
@@ -29,14 +29,14 @@
     - nomad-conf-user
 
 - name: Inst - Download Nomad
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ nomad_zip_url }}"
     dest: "{{ nomad_inst_dir }}/{{ nomad_pkg }}"
   tags:
     - nomad-inst-package
 
 - name: Inst - Clean Nomad
-  file:
+  ansible.builtin.file:
     path: "{{ nomad_inst_dir }}/nomad"
     state: "absent"
   when:
@@ -45,7 +45,7 @@
     - nomad-inst-package
 
 - name: Inst - Unarchive Nomad
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ nomad_inst_dir }}/{{ nomad_pkg }}"
     dest: "{{ nomad_inst_dir }}/"
     remote_src: true
@@ -53,7 +53,7 @@
     - nomad-inst-package
 
 - name: Inst - Nomad
-  copy:
+  ansible.builtin.copy:
     src: "{{ nomad_inst_dir }}/nomad"
     dest: "{{ nomad_bin_dir }}"
     owner: "{{ nomad_user }}"
@@ -65,7 +65,7 @@
     - nomad-inst-package
 
 - name: Conf - Create Directories "{{ nomad_data_dir }}"
-  file:
+  ansible.builtin.file:
     dest: "{{ nomad_data_dir }}"
     state: directory
     owner: "{{ nomad_user }}"
@@ -74,7 +74,7 @@
     - nomad-conf
 
 - name: Conf - Create Directories "{{ nomad_ssl_dir }}"
-  file:
+  ansible.builtin.file:
     dest: "{{ nomad_ssl_dir }}"
     state: directory
     owner: "{{ nomad_user }}"
@@ -83,7 +83,7 @@
     - nomad-conf
 
 - name: Conf - Create Config Directory
-  file:
+  ansible.builtin.file:
     dest: "{{ nomad_config_dir }}"
     state: directory
     owner: "{{ nomad_user }}"
@@ -93,7 +93,7 @@
     - nomad-conf
 
 - name: Conf - Base Configuration
-  template:
+  ansible.builtin.template:
     src: base.hcl.j2
     dest: "{{ nomad_config_dir }}/base.hcl"
     owner: "{{ nomad_user }}"
@@ -103,7 +103,7 @@
     - nomad-conf
 
 - name: Conf - Server Configuration
-  template:
+  ansible.builtin.template:
     src: server.hcl.j2
     dest: "{{ nomad_config_dir }}/server.hcl"
     owner: "{{ nomad_user }}"
@@ -115,7 +115,7 @@
     - nomad-conf
 
 - name: Conf - Client Configuration
-  template:
+  ansible.builtin.template:
     src: client.hcl.j2
     dest: "{{ nomad_config_dir }}/client.hcl"
     owner: "{{ nomad_user }}"
@@ -127,7 +127,7 @@
     - nomad-conf
 
 - name: Conf - TLS Configuration
-  template:
+  ansible.builtin.template:
     src: tls.hcl.j2
     dest: "{{ nomad_config_dir }}/tls.hcl"
     owner: "{{ nomad_user }}"
@@ -137,7 +137,7 @@
     - nomad-conf
 
 - name: Conf - Telemetry Configuration
-  template:
+  ansible.builtin.template:
     src: telemetry.hcl.j2
     dest: "{{ nomad_config_dir }}/telemetry.hcl"
     owner: "{{ nomad_user }}"
@@ -147,7 +147,7 @@
     - nomad-conf
 
 - name: Conf - Consul Configuration
-  template:
+  ansible.builtin.template:
     src: consul.hcl.j2
     dest: "{{ nomad_config_dir }}/consul.hcl"
     owner: "{{ nomad_user }}"
@@ -157,7 +157,7 @@
     - nomad-conf
 
 - name: Conf - Copy Certificates And Keys
-  copy:
+  ansible.builtin.copy:
     content: "{{ item.src }}"
     dest: "{{ item.dest }}"
     owner: "{{ nomad_user }}"
@@ -171,7 +171,7 @@
     - nomad-conf
 
 - name: Conf - System.d Script
-  template:
+  ansible.builtin.template:
     src: "nomad_systemd.service.j2"
     dest: "/lib/systemd/system/nomad.service"
     owner: "root"
