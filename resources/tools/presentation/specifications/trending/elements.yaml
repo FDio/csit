@@ -4772,6 +4772,16 @@
         - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Xcbase-Mrr.64B-{core}-ethip4vxlan-l2xcbase-mrr"
       layout: "plot-cpta"
 
+    - title: "3n-icx-e810xxv-64b-{core}-ip4tunnel-gtpu"
+      output-file-name: "3n-icx-e810xxv-64b-{core}-ip4tunnel-gtpu"
+      data: "plot-performance-trending-vpp-3n-icx"
+      core: ["2t1c", "4t2c", "8t4c"]
+      include:
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Gtpuhw-Ip4Base-mrr.64B-{core}-ethip4gtpuhw-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Gtpusw-Ip4Base-mrr.64B-{core}-ethip4gtpusw-ip4base-mrr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Udpwireguard1Tnlsw-Ip4Base-mrr.64B-{core}-ethip4udpwireguard1tnlsw-ip4base-mrr"
+      layout: "plot-cpta"
+
     - title: "3n-icx-xxv710-78b-{core}-ip6routing-base"
       output-file-name: "3n-icx-xxv710-78b-{core}-ip6-base"
       data: "plot-performance-trending-vpp-3n-icx"
@@ -6212,6 +6222,17 @@
         - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Gtpusw-Ip4Base-ndrpdr.64B-{core}-ethip4gtpusw-ip4base-ndrpdr"
         - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Bdbasemaclrn-ndrpdr.64B-{core}-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
         - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Vxlan-L2Xcbase-ndrpdr.64B-{core}-ethip4vxlan-l2xcbase-ndrpdr"
+      layout: "plot-cpta"
+
+    - title: "3n-icx-e810xxv-64b-{core}-ip4-tunnels-gtpu-{test_type}"
+      output-file-name: "3n-icx-e810xxv-64b-{core}-ip4-tunnels-gtpu-{test_type}"
+      data: "plot-ndrpdr-comparison-3n-icx"
+      core: ["2t1c", ]
+      test-type: ["ndr", "pdr"]
+      include:
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Gtpuhw-Ip4Base-ndrpdr.64B-{core}-ethip4gtpuhw-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Gtpusw-Ip4Base-ndrpdr.64B-{core}-ethip4gtpusw-ip4base-ndrpdr"
+        - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Udpwireguard1Tnlsw-Ip4Base-ndrpdr.64B-{core}-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
       layout: "plot-cpta"
 
     - title: "3n-icx-xxv710-78b-{core}-ip6-base-{test_type}"
