@@ -33,6 +33,23 @@
       "message": "csit-vpp-report-iter-2n-skx-perftest reconf-00",
       "revId": "4e21d5a8675aa48457787b1b48e3571f2fd9eaaa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ef759aa_77edc567",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-07-07T14:41:31Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-aws-perftest vpp-00",
+      "revId": "4e21d5a8675aa48457787b1b48e3571f2fd9eaaa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
