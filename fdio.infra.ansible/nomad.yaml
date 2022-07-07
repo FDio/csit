@@ -18,13 +18,13 @@
       tags: baremetal
     - role: docker
       tags: docker
-    - role: nomad
-      tags: nomad
-    - role: consul
-      tags: consul
-    - role: prometheus_exporter
-      tags: prometheus_exporter
-    - role: jenkins_job_health_exporter
-      tags: jenkins_job_health_exporter
-    - role: cleanup
-      tags: cleanup
+#    - role: nomad
+#      tags: nomad
+#    - role: consul
+#      tags: consul
+#    - role: prometheus_exporter
+#      tags: prometheus_exporter
+#    - role: jenkins_job_health_exporter
+#      tags: jenkins_job_health_exporter
+#    - role: cleanup
+#      tags: cleanup
