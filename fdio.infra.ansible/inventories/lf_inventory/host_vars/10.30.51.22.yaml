@@ -1,7 +1,7 @@
 ---
 # file: host_vars/10.30.51.22.yaml
 
-hostname: "s42-nomad"
+hostname: "s22-nomad"
 inventory_cimc_hostname: "10.30.50.22"
 
 # User management.
@@ -59,6 +59,7 @@ consul_retry_servers:
   - "10.32.8.16"
   - "10.32.8.17"
 consul_service_mgr: "systemd"
+
 
 # Docker daemon settings.
 docker_daemon:
