@@ -278,16 +278,13 @@ Name         | Comment
 10.30.50.13  | LF Reserved
 10.30.50.14  | LF Reserved
 10.30.50.15  | LF Reserved
-10.30.50.22  | s42-nomad
-10.30.50.24  | s43-nomad
-10.30.50.25  | s44-nomad
-10.30.50.26  | s45-nomad
-10.30.50.28  | s41-nomad
-10.30.50.29  | s39-nomad
-10.30.51.29  | s22-t35-sut1 screen -r /dev/ttyusb0
-10.30.50.30  | s40-nomad
-10.30.51.30  | s23-t35-sut2 screen -r /dev/ttyusb1
-10.30.51.30  | s24-t35-sut3 screen -r /dev/ttyusb2
+10.30.50.16  | s16-nomad
+10.30.50.17  | s17-nomad
+10.30.50.18  | s18-nomad
+10.30.50.19  | s19-nomad
+10.30.50.20  | s20-nomad
+10.30.50.21  | s21-nomad
+10.30.50.22  | s22-nomad
 10.30.50.36  | s17-t33-sut1
 10.30.50.37  | s18-t33-sut2
 10.30.50.38  | fdio-marvell-dev
@@ -377,13 +374,13 @@ Name         | Comment
 10.30.51.7   | LF Reserved
 10.30.51.8   | LF Reserved
 10.30.51.15  | LF Reserved
-10.30.51.22  | s42-nomad
-10.30.51.24  | s43-nomad
-10.30.51.25  | s44-nomad
-10.30.51.26  | s45-nomad
-10.30.51.28  | s41-nomad
-10.30.51.29  | s39-nomad
-10.30.51.30  | s40-nomad
+10.30.51.16  | s16-nomad
+10.30.51.17  | s17-nomad
+10.30.51.18  | s18-nomad
+10.30.51.19  | s19-nomad
+10.30.51.20  | s20-nomad
+10.30.51.21  | s21-nomad
+10.30.51.22  | s22-nomad
 10.30.51.36  | s17-t33-sut1
 10.30.51.37  | s18-t33-sut2
 10.30.51.38  | fdio-marvell-dev
