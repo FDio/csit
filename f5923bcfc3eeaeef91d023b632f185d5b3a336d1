@@ -203,6 +203,23 @@
       "message": "csit-vpp-report-cov-3n-skx-perftest l2-10",
       "revId": "f5923bcfc3eeaeef91d023b632f185d5b3a336d1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1710383d_217f1d62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-07-07T09:32:28Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-skx-perftest l2-00",
+      "revId": "f5923bcfc3eeaeef91d023b632f185d5b3a336d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
