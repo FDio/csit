@@ -2,7 +2,7 @@
 # file roles/nomad/handlers/main.yaml
 
 - name: Restart Nomad
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: true
     enabled: true
     name: "nomad"

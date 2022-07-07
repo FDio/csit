@@ -1,11 +1,6 @@
 ---
 # file: roles/nomad/meta/main.yaml
 
-# desc: Install nomad from repo and configure service.
-# inst: Nomad
-# conf: ?
-# info: 1.0 - added role
-
 dependencies: [docker]
 
 galaxy_info:
@@ -19,5 +14,6 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - focal
+        - jammy
   galaxy_tags:
     - nomad

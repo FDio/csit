@@ -1,14 +1,22 @@
 ---
 # file: roles/consul/tasks/main.yaml
 
-- name: Install Dependencies
+- name: Inst - Update Repositories Cache
+  apt:
+    update_cache: true
+  when:
+    - ansible_os_family == 'Debian'
+  tags:
+    - consul-inst-package
+
+- name: Inst - Dependencies
   apt:
     name: "{{ packages | flatten(levels=1) }}"
     state: "present"
     cache_valid_time: 3600
     install_recommends: false
   when:
-    - ansible_distribution|lower == 'ubuntu'
+    - ansible_os_family == 'Debian'
   tags:
     - consul-inst-dependencies
 
@@ -155,7 +163,7 @@
     name: "systemd-resolved"
     state: "{{ systemd_resolved_state }}"
   when:
-    - nomad_service_mgr == "systemd"
+    - consul_service_mgr == "systemd"
   tags:
     - consul-conf
 
@@ -170,8 +178,9 @@
     - "Restart Consul"
     - "Restart Nomad"
   when:
-    - nomad_service_mgr == "systemd"
+    - consul_service_mgr == "systemd"
   tags:
     - consul-conf
 
-- meta: flush_handlers
+- name: Meta - Flush handlers
+  meta: flush_handlers
