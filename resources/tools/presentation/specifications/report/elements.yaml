@@ -2994,7 +2994,7 @@
   legend:
     - ''
     - 'Test Case:             Test cases executed for: VSAP on 2n-clx with cx556a.'
-    - 'YYMM.V-E:              [cps/rps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
+    - 'YYMM.V-E:              [Mcps/Mrps +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "9" for CSIT rls2202, "10" for CSIT rls2206).'
     - 'YYMM.V-E vs YYMM.V-E:  [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2206.0-10 vs 2202.0-9: Compares VPP code current vs previous.'
 
