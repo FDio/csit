@@ -21,11 +21,11 @@ packages_by_arch:
 ne_image: "{{ ne_image_by_arch[ansible_machine] }}"
 
 ne_image_by_arch:
-  aarch64: "prom/node-exporter:v1.2.0"
-  x86_64: "prom/node-exporter:v1.2.0"
+  aarch64: "prom/node-exporter:v1.3.1"
+  x86_64: "prom/node-exporter:v1.3.1"
 
 be_image: "{{ be_image_by_arch[ansible_machine] }}"
 
 be_image_by_arch:
-  aarch64: "prom/blackbox-exporter:v0.19.0"
-  x86_64: "prom/blackbox-exporter:v0.19.0"
+  aarch64: "prom/blackbox-exporter:v0.21.1"
+  x86_64: "prom/blackbox-exporter:v0.21.1"
