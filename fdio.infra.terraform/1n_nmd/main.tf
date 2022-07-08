@@ -41,21 +41,6 @@ data "vault_generic_secret" "minio_creds" {
   path = "kv/secret/data/minio"
 }
 
-#module "nginx" {
-#  source = "./nginx"
-#  providers = {
-#    nomad = nomad.yul1
-#  }
-#
-#  # nomad
-#  nomad_datacenters = ["yul1"]
-#  nomad_host_volume = "prod-volume-data1-1"
-#
-#  # nginx
-#  nginx_job_name        = "prod-nginx"
-#  nginx_use_host_volume = true
-#}
-
 module "vpp_device" {
   source = "./vpp_device"
   providers = {
