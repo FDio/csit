@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64723dc6_cacdc42c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-08T08:11:10Z",
+      "side": 1,
+      "message": "I will probably update some descriptions when I see more data, but good enough for now.",
+      "revId": "3415ba7c44c9cd678334260f7011ed7c5db30838",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
