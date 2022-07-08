@@ -145,18 +145,6 @@
       file-name: "output_info.xml.gz"
       file-format: ".gz"
       enabled: True
-    - type: "xml"
-      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/archives/{filename}"
-      file-name: "output_info.xml.gz"
-      file-format: ".gz"
-      enabled: True
-    - type: "xml"
-      url: "https://logs.nginx.service.consul/vex-yul-rot-jenkins-1"
-      path: "{job}/{build}/{filename}"
-      file-name: "output_info.xml.gz"
-      file-format: ".gz"
-      enabled: True
     # XML from S3 docs
     - type: "xml-docs"
       url: "https://s3-docs.fd.io/csit"
