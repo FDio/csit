@@ -1,5 +1,5 @@
 variable "vault-name" {
-  default = "dynamic-aws-creds-vault-fdio"
+  default = "dynamic-aws-creds-vault-fdio-csit-jenkins"
 }
 
 variable "region" {
