@@ -2,7 +2,7 @@
 # file: roles/vault/tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
@@ -11,21 +11,21 @@
     - vault-inst-prerequisites
 
 - name: Inst - Prerequisites
-  package:
+  ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
     - vault-inst-prerequisites
 
 - name: Conf - Add Vault Group
-  group:
+  ansible.builtin.group:
     name: "{{ vault_group }}"
     state: "{{ vault_user_state }}"
   tags:
     - vault-conf-user
 
 - name: Conf - Add Vault user
-  user:
+  ansible.builtin.user:
     name: "{{ vault_user }}"
     group: "{{ vault_group }}"
     state: "{{ vault_group_state }}"
@@ -34,21 +34,21 @@
     - vault-conf-user
 
 - name: Inst - Clean Vault
-  file:
+  ansible.builtin.file:
     path: "{{ vault_inst_dir }}/vault"
     state: "absent"
   tags:
     - vault-inst-package
 
 - name: Inst - Download Vault
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ vault_zip_url }}"
     dest: "{{ vault_inst_dir }}/{{ vault_pkg }}"
   tags:
     - vault-inst-package
 
 - name: Inst - Unarchive Vault
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ vault_inst_dir }}/{{ vault_pkg }}"
     dest: "{{ vault_inst_dir }}/"
     creates: "{{ vault_inst_dir }}/vault"
@@ -57,7 +57,7 @@
     - vault-inst-package
 
 - name: Inst - Vault
-  copy:
+  ansible.builtin.copy:
     src: "{{ vault_inst_dir }}/vault"
     dest: "{{ vault_bin_dir }}"
     owner: "{{ vault_user }}"
@@ -69,7 +69,7 @@
     - vault-inst-package
 
 - name: Inst - Check Vault mlock capability
-  command: "setcap cap_ipc_lock=+ep {{ vault_bin_dir }}/vault"
+  ansible.builtin.command: "setcap cap_ipc_lock=+ep {{ vault_bin_dir }}/vault"
   changed_when: false  # read-only task
   ignore_errors: true
   register: vault_mlock_capability
@@ -77,13 +77,13 @@
     - vault-inst-package
 
 - name: Inst - Enable non root mlock capability
-  command: "setcap cap_ipc_lock=+ep {{ vault_bin_dir }}/vault"
+  ansible.builtin.command: "setcap cap_ipc_lock=+ep {{ vault_bin_dir }}/vault"
   when: vault_mlock_capability is failed
   tags:
     - vault-inst-package
 
 - name: Conf - Create directories
-  file:
+  ansible.builtin.file:
     dest: "{{ item }}"
     state: directory
     owner: "{{ vault_user }}"
@@ -97,7 +97,7 @@
     - vault-conf
 
 - name: Conf - Vault main configuration
-  template:
+  ansible.builtin.template:
     src: "{{ vault_main_configuration_template }}"
     dest: "{{ vault_main_config }}"
     owner: "{{ vault_user }}"
@@ -119,7 +119,7 @@
 #     - vault-conf
 
 - name: Conf - System.d Script
-  template:
+  ansible.builtin.template:
     src: "vault_systemd.service.j2"
     dest: "/lib/systemd/system/vault.service"
     owner: "root"

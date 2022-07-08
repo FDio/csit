@@ -2,7 +2,7 @@
 # file roles/vault/handlers/main.yaml
 
 - name: Restart Vault
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: true
     enabled: true
     name: "{{ vault_systemd_service_name }}"

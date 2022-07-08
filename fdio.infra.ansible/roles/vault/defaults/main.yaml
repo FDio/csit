@@ -16,7 +16,7 @@ packages_by_arch:
     - []
 
 # Inst - Vault Map.
-vault_version: "1.8.1"
+vault_version: "1.11.0"
 vault_architecture_map:
   amd64: "amd64"
   x86_64: "amd64"

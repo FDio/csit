@@ -1,11 +1,6 @@
 ---
 # file: roles/vault/meta/main.yaml
 
-# desc: Install vault from repo and configure service.
-# inst: Vault
-# conf: ?
-# info: 1.0 - added role
-
 dependencies: []
 
 galaxy_info:
@@ -19,5 +14,6 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - focal
+        - jammy
   galaxy_tags:
     - vault
