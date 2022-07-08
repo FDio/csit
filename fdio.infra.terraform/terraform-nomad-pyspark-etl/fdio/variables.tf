@@ -31,7 +31,7 @@ variable "nomad_provider_key_file" {
 variable "vault_provider_address" {
   description = "Vault cluster address."
   type        = string
-  default     = "http://10.30.51.28:8200"
+  default     = "http://vault.service.consul:8200"
 }
 
 variable "vault_provider_skip_tls_verify" {
