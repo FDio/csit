@@ -2,7 +2,7 @@
 # file roles/jenkins_job_health_exporter/handlers/main.yaml
 
 - name: Restart Jenkins Job Health Exporter
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: true
     enabled: true
     name: "jenkins-job-health-exporter"
