@@ -907,7 +907,7 @@
       - 29  # rls2206.rel MRR iter env 10
 
   vpp-3n-tsh-curr-cov:
-    # csit-vpp-perf-report-coverage-2206-3n-tsh:
+    csit-vpp-perf-report-coverage-2206-3n-tsh:
       - 1   # rls2206.rel NDRPDR cov env 10
       - 2   # rls2206.rel NDRPDR cov env 10
       - 3   # rls2206.rel NDRPDR cov env 10
@@ -1174,7 +1174,7 @@
       - 22  # rls2206.rel MRR iter env 10
 
   vpp-3n-dnv-curr-cov:
-    csit-vpp-perf-report-coverage-2202-3n-dnv:
+    csit-vpp-perf-report-coverage-2206-3n-dnv:
       - 1   # rls2206.rel NDRPDR cov env 10
       - 2   # rls2206.rel NDRPDR cov env 10
       - 3   # rls2206.rel NDRPDR cov env 10
@@ -1378,10 +1378,8 @@
   #     - 11  # rls2202.rel MRR iter env 9
 
   # vpp-3n-aws-curr-cov:
-  #   # csit-vpp-perf-report-coverage-2206-3n-aws:
-  #   # csit-vpp-perf-report-iterative-2206-3n-aws:
-  #   csit-vpp-perf-report-coverage-2202-3n-aws:
-  #     - 1   # rls2202.rel NDRPDR cov env 9
+  #   csit-vpp-perf-report-coverage-2206-3n-aws:
+  #     - 1   # rls2209.rel NDRPDR cov env 10
 
   # 2n-icx
 
