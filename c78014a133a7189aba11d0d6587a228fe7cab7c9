@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "550b43d2_77bd5362",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T10:35:50Z",
+      "side": 1,
+      "message": "Edit suggestion: No updated draft version yet.",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4daa2b35_c7d4b702",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T10:35:50Z",
+      "side": 1,
+      "message": "Suggestion: move this to after the next line.",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d53cd329_9cd18277",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T10:35:50Z",
+      "side": 1,
+      "message": "Edit suggestion: New open points about throughput rate search and related text of RFC 1242 and RFC 2544.",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd1d331b_73c55463",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T10:35:50Z",
+      "side": 1,
+      "message": "Edit suggestion: For those interested in evolving implementation, there is a new Python implementation, …",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "710cdb13_91aed82f",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T10:35:50Z",
+      "side": 1,
+      "message": "Edit suggestion: move the code related practical reason to the bottom of this note, in line with sequence in the short version preamble.",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "215c4998_74ae39af",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T10:35:50Z",
+      "side": 1,
+      "message": "Edit suggestion: .. of what I refer in this note as a “loss inversion”.",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc56477f_7ca429e4",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T10:35:50Z",
+      "side": 1,
+      "message": "Edit suggestion: It is a phenomenon ..",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9add714_c598f13f",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T10:35:50Z",
+      "side": 1,
+      "message": "This paragraph indicates a theoretical possibility of what may happen with binary search. It may be worth nothing that.",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
