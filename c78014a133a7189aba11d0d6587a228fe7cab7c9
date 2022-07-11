@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00140e70_0d4a92b5",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T17:19:26Z",
+      "side": 1,
+      "message": "Incomplete editing applied.",
+      "parentUuid": "3633ebfb_1fb99a50",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd1d331b_73c55463",
         "filename": "docs/ietf/update.txt",
         "patchSetId": 5
@@ -172,6 +190,24 @@
       "side": 1,
       "message": "Oh, I read this comment wrong, and instead made a different edit (moving this paragraph to the end of the document so I can refer to loss inversion).",
       "parentUuid": "710cdb13_91aed82f",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4648465_7b141cad",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-07-11T17:19:26Z",
+      "side": 1,
+      "message": "Per my comment, detail related to implementation should be move to the end of this note.",
+      "parentUuid": "b7607433_fcfad931",
       "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
