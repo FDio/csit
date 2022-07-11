@@ -85,8 +85,8 @@
 | ${n_hosts}= | ${1024}
 | ${n_ports}= | ${63}
 | ${n_sessions}= | ${${n_hosts} * ${n_ports}}
-| ${packets_per_transaction_and_direction}= | ${4 + ${ASTF_N_DATA_FRAMES}}
-| ${packets_per_transaction_aggregated}= | ${6 + 2 * ${ASTF_N_DATA_FRAMES}}
+| ${packets_per_transaction_and_direction}= | ${5 + ${ASTF_N_DATA_FRAMES}}
+| ${packets_per_transaction_aggregated}= | ${7 + 2 * ${ASTF_N_DATA_FRAMES}}
 | ${transaction_scale}= | ${n_sessions}
 # Ramp-up settings
 | ${ramp_up_rate}= | ${30000}
@@ -128,6 +128,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding for NAT44 in circular topology
 | | And Initialize NAT44 endpoint-dependent mode in circular topology
+| | Fail | Triggering "performance" teardown action.
 | | Then Send ramp-up traffic
 | | And Verify NAT44 TCP sessions number on DUT1 node
 | | And Find NDR and PDR intervals using optimized search
