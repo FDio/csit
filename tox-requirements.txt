@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -11,14 +11,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Bump regularly.
-tox==3.7.0
+# Tox dependencies.
+tox==3.25.1
 
-# Tox dependencies. Consult "pip freeze" after installing
-# bumped tox into an empty virtualenv.
-filelock==3.0.10
-pluggy==0.8.1
-py==1.7.0
-six==1.12.0
-toml==0.10.0
-virtualenv==16.4.0
+# Other PIP freeze dependencies.
+distlib==0.3.4
+filelock==3.7.1
+packaging==21.3
+platformdirs==2.5.2
+pluggy==1.0.0
+pyparsing==3.0.9
+py==1.11.0
+six==1.16.0
+toml==0.10.2
+virtualenv==20.15.1
