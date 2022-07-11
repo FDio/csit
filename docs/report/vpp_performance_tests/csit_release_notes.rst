@@ -39,11 +39,6 @@ Changes in |csit-release|
      iteratively for the report (as well as in daily and weekly
      trending) due to physical testbeds overload.
 
-   - **RC2 coverage test data is used for 2n-icx test bed**: There is only
-     one 2n-icx test bed and the amount of tests is large (same as 2n-skx with 4
-     test beds), so we decided to use test data already available from RC2
-     testing.
-
 #. TEST FRAMEWORK
 
    - **CSIT test environment** version has been updated to ver. 10, see
@@ -94,6 +89,9 @@ ___
 |  6 | `CSIT-1847                              | 2n-skx: all 10vm-1t test failed with half of packets dropped.                                             |
 |    | <https://jira.fd.io/browse/CSIT-1847>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  7 | `CSIT-1849                              | 2n-skx: UDP 16m tput tests fail to create all sessions.                                                   |
+|    | <https://jira.fd.io/browse/CSIT-1849>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Previous
 ________
@@ -115,7 +113,7 @@ Issues reported in previous releases which still affect the current results.
 |  4 | `CSIT-1803                              | 3n-icx testbeds (Icelake): all IMIX aes128cbc-hmac512sha tests are failing due to excessive packet loss.  |
 |    | <https://jira.fd.io/browse/CSIT-1803>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1804                              | 3n-tsh testbed (Taishan): NDR tests failing from time to time.                                            |
+|  5 | `CSIT-1804                              | 3n-tsh, 3n-alt testbed (Taishan, Altra): NDR tests failing from time to time.                             |
 |    | <https://jira.fd.io/browse/CSIT-1804>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  6 | `CSIT-1812                              | All IMIX NAT44DET 4m 16m scale tests fail due to not creating required session count.                     |
