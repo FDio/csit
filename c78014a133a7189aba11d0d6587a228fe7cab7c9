@@ -18,6 +18,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bf705de_fe41294c",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-11T16:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "550b43d2_77bd5362",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4daa2b35_c7d4b702",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-11T10:35:50Z",
       "side": 1,
       "message": "Suggestion: move this to after the next line.",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84ed4a69_389a778e",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-11T16:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4daa2b35_c7d4b702",
       "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
@@ -52,6 +88,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3633ebfb_1fb99a50",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-11T16:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d53cd329_9cd18277",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd1d331b_73c55463",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-07-11T10:35:50Z",
       "side": 1,
       "message": "Edit suggestion: For those interested in evolving implementation, there is a new Python implementation, …",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8c55ccb_027dbbfd",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-11T16:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd1d331b_73c55463",
       "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
@@ -86,6 +158,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7607433_fcfad931",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-11T16:26:56Z",
+      "side": 1,
+      "message": "Oh, I read this comment wrong, and instead made a different edit (moving this paragraph to the end of the document so I can refer to loss inversion).",
+      "parentUuid": "710cdb13_91aed82f",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "215c4998_74ae39af",
@@ -99,6 +189,24 @@
       "writtenOn": "2022-07-11T10:35:50Z",
       "side": 1,
       "message": "Edit suggestion: .. of what I refer in this note as a “loss inversion”.",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28f414cd_9d560e7c",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-11T16:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "215c4998_74ae39af",
       "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
@@ -120,6 +228,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb71d121_a5c98db3",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-11T16:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc56477f_7ca429e4",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9add714_c598f13f",
@@ -133,6 +259,24 @@
       "writtenOn": "2022-07-11T10:35:50Z",
       "side": 1,
       "message": "This paragraph indicates a theoretical possibility of what may happen with binary search. It may be worth nothing that.",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f985494a_ddd5aaf6",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-11T16:26:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9add714_c598f13f",
       "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
