@@ -39,11 +39,6 @@ Changes in |csit-release|
      iteratively for the report (as well as in daily and weekly
      trending) due to physical testbeds overload.
 
-   - **RC2 coverage test data is used for 2n-icx test bed**: There is only
-     one 2n-icx test bed and the amount of tests is large (same as 2n-skx with 4
-     test beds), so we decided to use test data already available from RC2
-     testing.
-
 #. TEST FRAMEWORK
 
    - **CSIT test environment** version has been updated to ver. 10, see
@@ -94,6 +89,9 @@ ___
 |  6 | `CSIT-1847                              | 2n-skx: all 10vm-1t test failed with half of packets dropped.                                             |
 |    | <https://jira.fd.io/browse/CSIT-1847>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  7 | `CSIT-1849                              | 2n-skx: UDP 16m tput tests fail to create all sessions.                                                   |
+|    | <https://jira.fd.io/browse/CSIT-1849>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Previous
 ________
@@ -115,7 +113,7 @@ Issues reported in previous releases which still affect the current results.
 |  4 | `CSIT-1803                              | 3n-icx testbeds (Icelake): all IMIX aes128cbc-hmac512sha tests are failing due to excessive packet loss.  |
 |    | <https://jira.fd.io/browse/CSIT-1803>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1804                              | 3n-tsh testbed (Taishan): NDR tests failing from time to time.                                            |
+|  5 | `CSIT-1804                              | 3n-tsh, 3n-alt testbed (Taishan, Altra): NDR tests failing from time to time.                             |
 |    | <https://jira.fd.io/browse/CSIT-1804>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  6 | `CSIT-1812                              | All IMIX NAT44DET 4m 16m scale tests fail due to not creating required session count.                     |
@@ -175,27 +173,3 @@ List of RCAs in |csit-release| for VPP performance changes:
 +----+-----------------------------------------+--------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                            |
 +====+=========================================+==============================================================+
-|  1 | `CSIT-1814                              | rls2202 regression: NAT44ED CPS larger scales.               |
-|    | <https://jira.fd.io/browse/CSIT-1814>`_ |                                                              |
-+----+-----------------------------------------+--------------------------------------------------------------+
-|  2 | `CSIT-1815                              | rls2202 regression: l2bdbasemaclrn around 2021-11-11.        |
-|    | <https://jira.fd.io/browse/CSIT-1815>`_ |                                                              |
-+----+-----------------------------------------+--------------------------------------------------------------+
-|  3 | `CSIT-1816                              | rls2202 regression: l2-input.                                |
-|    | <https://jira.fd.io/browse/CSIT-1816>`_ |                                                              |
-+----+-----------------------------------------+--------------------------------------------------------------+
-|  4 | `CSIT-1820                              | rls2202 regression: tx2 ip6base at dpdk upgrade.             |
-|    | <https://jira.fd.io/browse/CSIT-1820>`_ |                                                              |
-+----+-----------------------------------------+--------------------------------------------------------------+
-|  5 | `CSIT-1821                              | rls2202 regression: tx2 ip6base before dpdk upgrade.         |
-|    | <https://jira.fd.io/browse/CSIT-1821>`_ |                                                              |
-+----+-----------------------------------------+--------------------------------------------------------------+
-|  6 | `CSIT-1822                              | rls2202 regression: avf-ip4base around 2022-01-06.           |
-|    | <https://jira.fd.io/browse/CSIT-1822>`_ |                                                              |
-+----+-----------------------------------------+--------------------------------------------------------------+
-|  7 | `CSIT-1823                              | rls2202 regression: vxlan-l2xcbase on tsh around 2022-01-07. |
-|    | <https://jira.fd.io/browse/CSIT-1823>`_ |                                                              |
-+----+-----------------------------------------+--------------------------------------------------------------+
-|  8 | `CSIT-1824                              | rls2202 regression: SRv6.                                    |
-|    | <https://jira.fd.io/browse/CSIT-1824>`_ |                                                              |
-+----+-----------------------------------------+--------------------------------------------------------------+
