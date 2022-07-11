@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -128,7 +128,6 @@ def check_ip(pkt_recv, ip_layer, src_ip, dst_ip):
         )
 
 
-# TODO: Pylint says too-many-locals and too-many-statements. Refactor!
 def main():
     """Send and receive IPsec packet."""
 
@@ -152,16 +151,18 @@ def main():
     rx_dst_mac = args.get_arg(u"rx_dst_mac")
     src_ip = args.get_arg(u"src_ip")
     dst_ip = args.get_arg(u"dst_ip")
+    src_tun = args.get_arg(u"src_tun")
+    dst_tun = args.get_arg(u"dst_tun")
     crypto_alg = args.get_arg(u"crypto_alg")
     crypto_key = args.get_arg(u"crypto_key")
     integ_alg = args.get_arg(u"integ_alg")
     integ_key = args.get_arg(u"integ_key")
     l_spi = int(args.get_arg(u"l_spi"))
     r_spi = int(args.get_arg(u"r_spi"))
-    src_tun = args.get_arg(u"src_tun")
-    dst_tun = args.get_arg(u"dst_tun")
 
     ip_layer = IP if ip_address(src_ip).version == 4 else IPv6
+    ip_pkt = ip_layer(src=src_ip, dst=dst_ip, proto=61) if ip_layer == IP \
+        else ip_layer(src=src_ip, dst=dst_ip)
 
     tunnel_out = ip_layer(src=src_tun, dst=dst_tun) if src_tun and dst_tun \
         else None
@@ -183,16 +184,14 @@ def main():
         auth_key=integ_key.encode(encoding=u"utf-8"), tunnel_header=tunnel_out
     )
 
-    ip_pkt = ip_layer(src=src_ip, dst=dst_ip, proto=61) if ip_layer == IP \
-        else ip_layer(src=src_ip, dst=dst_ip)
-    ip_pkt = ip_layer(ip_pkt)
-
-    e_pkt = sa_out.encrypt(ip_pkt)
-    tx_pkt_send = (Ether(src=tx_src_mac, dst=tx_dst_mac) /
-                   e_pkt)
-
     sent_packets = list()
+    tx_pkt_send = (
+        Ether(src=tx_src_mac, dst=tx_dst_mac) / sa_out.encrypt(ip_pkt))
+
     tx_pkt_send /= Raw()
+    size_limit = 78 if ip_layer == IPv6 else 64
+    if len(tx_pkt_send) < (size_limit - 14):
+        tx_pkt_send[Raw].load += (b"\0" * (size_limit - 14 - len(tx_pkt_send)))
     sent_packets.append(tx_pkt_send)
     tx_txq.send(tx_pkt_send)
 
@@ -217,21 +216,24 @@ def main():
         # otherwise process the current packet
         break
 
-    check_ip(rx_pkt_recv, ip_layer, src_ip, dst_ip)
+    check_ip(
+        rx_pkt_recv, ip_layer, src_ip, dst_ip
+    )
 
     rx_ip_pkt = ip_layer(src=dst_ip, dst=src_ip, proto=61) if ip_layer == IP \
         else ip_layer(src=dst_ip, dst=src_ip)
-    rx_pkt_send = (Ether(src=rx_dst_mac, dst=rx_src_mac) /
-                   rx_ip_pkt)
-
+    rx_pkt_send = (
+        Ether(src=rx_dst_mac, dst=rx_src_mac) / rx_ip_pkt)
     rx_pkt_send /= Raw()
+    if len(rx_pkt_send) < size_limit:
+        rx_pkt_send[Raw].load += (b"\0" * (size_limit - len(rx_pkt_send)))
     rx_txq.send(rx_pkt_send)
 
     while True:
-        tx_pkt_recv = tx_rxq.recv(2, sent_packets)
+        tx_pkt_recv = tx_rxq.recv(2, ignore=sent_packets)
 
         if tx_pkt_recv is None:
-            raise RuntimeError(u"ESP packet Rx timeout")
+            raise RuntimeError(f"{ip_layer.name} packet Rx timeout")
 
         if tx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 #
 # SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 #
@@ -77,7 +77,7 @@ def check_ipsec(
 
     if not pkt_recv.haslayer(ip_layer):
         raise RuntimeError(
-            f"Not an {ip_layer.__name__} packet received: {pkt_recv!r}"
+            f"Not an {ip_layer.name} packet received: {pkt_recv!r}"
         )
 
     if pkt_recv[ip_layer].src != src_tun:
@@ -97,9 +97,6 @@ def check_ipsec(
 
     ip_pkt = pkt_recv[ip_layer]
     d_pkt = sa_in.decrypt(ip_pkt)
-    print(u"Decrypted packet:")
-    d_pkt.show2()
-    print()
 
     if d_pkt[ip_layer].dst != dst_ip:
         raise RuntimeError(
@@ -151,19 +148,19 @@ def check_ip(pkt_recv, ip_layer, src_mac, dst_mac, src_ip, dst_ip):
 
     if not pkt_recv.haslayer(ip_layer):
         raise RuntimeError(
-            f"Not an {ip_layer.__name__} packet received: {pkt_recv!r}"
+            f"Not an {ip_layer.name} packet received: {pkt_recv!r}"
         )
 
     if pkt_recv[ip_layer].dst != dst_ip:
         raise RuntimeError(
             f"Received packet has invalid destination address: "
-            f"{pkt_recv[ip_layer.__name__].dst} should be: {dst_ip}"
+            f"{pkt_recv[ip_layer.name].dst} should be: {dst_ip}"
         )
 
     if pkt_recv[ip_layer].src != src_ip:
         raise RuntimeError(
             f"Received packet has invalid destination address: "
-            f"{pkt_recv[ip_layer.__name__].dst} should be: {src_ip}"
+            f"{pkt_recv[ip_layer.name].dst} should be: {src_ip}"
         )
 
     if ip_layer == IP and pkt_recv[ip_layer].proto != 61:
@@ -214,19 +211,18 @@ def main():
     sa_in = SecurityAssociation(
         ESP, spi=l_spi, crypt_algo=crypto_alg,
         crypt_key=crypto_key.encode(encoding=u"utf-8"), auth_algo=integ_alg,
-        auth_key=integ_key.encode(encoding=u"utf-8"),
-        tunnel_header=tunnel_in
+        auth_key=integ_key.encode(encoding=u"utf-8"), tunnel_header=tunnel_in
     )
 
     sa_out = SecurityAssociation(
         ESP, spi=r_spi, crypt_algo=crypto_alg,
         crypt_key=crypto_key.encode(encoding=u"utf-8"), auth_algo=integ_alg,
-        auth_key=integ_key.encode(encoding=u"utf-8"),
-        tunnel_header=tunnel_out
+        auth_key=integ_key.encode(encoding=u"utf-8"), tunnel_header=tunnel_out
     )
 
     sent_packets = list()
-    tx_pkt_send = (Ether(src=tx_src_mac, dst=tx_dst_mac) / ip_pkt)
+    tx_pkt_send = (
+        Ether(src=tx_src_mac, dst=tx_dst_mac) / ip_pkt)
     tx_pkt_send /= Raw()
     size_limit = 78 if ip_layer == IPv6 else 64
     if len(tx_pkt_send) < size_limit:
@@ -238,7 +234,7 @@ def main():
         rx_pkt_recv = rx_rxq.recv(2)
 
         if rx_pkt_recv is None:
-            raise RuntimeError(f"{ip_layer.__name__} packet Rx timeout")
+            raise RuntimeError(f"{ip_layer.name} packet Rx timeout")
 
         if rx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
@@ -260,28 +256,23 @@ def main():
         dst_ip, sa_in
     )
 
-    ip_pkt = ip_layer(src=dst_ip, dst=src_ip, proto=61) if ip_layer == IP \
+    rx_ip_pkt = ip_layer(src=dst_ip, dst=src_ip, proto=61) if ip_layer == IP \
         else ip_layer(src=dst_ip, dst=src_ip)
-    ip_pkt /= Raw()
-    if len(ip_pkt) < (size_limit - 14):
-        ip_pkt[Raw].load += (b"\0" * (size_limit - 14 - len(ip_pkt)))
-    e_pkt = sa_out.encrypt(ip_pkt)
-    rx_pkt_send = (Ether(src=rx_dst_mac, dst=rx_src_mac) /
-                   e_pkt)
+    rx_ip_pkt /= Raw()
+    if len(rx_ip_pkt) < (size_limit - 14):
+        rx_ip_pkt[Raw].load += (b"\0" * (size_limit - 14 - len(rx_ip_pkt)))
+    rx_pkt_send = (
+        Ether(src=rx_dst_mac, dst=rx_src_mac) / sa_out.encrypt(rx_ip_pkt))
     rx_txq.send(rx_pkt_send)
 
     while True:
         tx_pkt_recv = tx_rxq.recv(2, ignore=sent_packets)
 
         if tx_pkt_recv is None:
-            raise RuntimeError(f"{ip_layer.__name__} packet Rx timeout")
+            raise RuntimeError(f"{ip_layer.name} packet Rx timeout")
 
         if tx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
-            continue
-        elif tx_pkt_recv.haslayer(ICMPv6MLReport2):
-            # read another packet in the queue if the current one is
-            # ICMPv6MLReport2
             continue
         elif tx_pkt_recv.haslayer(ICMPv6MLReport2):
             # read another packet in the queue if the current one is
@@ -292,7 +283,6 @@ def main():
             # ICMPv6ND_RA
             continue
 
-        # otherwise process the current packet
         break
 
     check_ip(tx_pkt_recv, ip_layer, tx_dst_mac, tx_src_mac, dst_ip, src_ip)
