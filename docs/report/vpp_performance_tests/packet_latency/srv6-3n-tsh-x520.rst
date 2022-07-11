@@ -34,25 +34,26 @@
 78b-1t1c-srv6-ip6routing-base-ixgbe
 -----------------------------------
 
-.. raw:: html
+..
+    .. raw:: html
 
-    <center>
-    <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid.html" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid}
-            \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid}
+                \label{fig:hdrh-lat-percentile-3n-tsh-10ge2p1x520-78b-1t1c-ethip6ip6-ip6base-srv6enc1sid}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
 .. raw:: html
 
