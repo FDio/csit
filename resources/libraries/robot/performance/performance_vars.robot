@@ -627,15 +627,15 @@
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | # Long float formula in 4 lines.
 | | ${numerator} = | Evaluate | ${bare_framesize} * ${ASTF_N_DATA_FRAMES}
-| | ${numerator} = | Evaluate | 78.0 * 1 + 70.0 * 3 + ${numerator}
-| | ${denominator} = | Evaluate | 1 + 3 + ${ASTF_N_DATA_FRAMES}
+| | ${numerator} = | Evaluate | 78.0 * 1 + 70.0 * 4 + ${numerator}
+| | ${denominator} = | Evaluate | 1 + 4 + ${ASTF_N_DATA_FRAMES}
 | | ${avg_dir_frame_size} = | Evaluate | ${numerator} / ${denominator}
 | | Run Keyword If | '${pptad}' != '${denominator}'
 | | ... | Fail | TCP TPUT with pptad '${pptad}' != '${denominator}'.
 | | # Long float formula in 4 lines.
 | | ${numerator} = | Evaluate | ${bare_framesize} * 2 * ${ASTF_N_DATA_FRAMES}
-| | ${numerator} = | Evaluate | 78.0 * 2 + 70.0 * 4 + ${numerator}
-| | ${denominator} = | Evaluate | 2 + 4 + 2 * ${ASTF_N_DATA_FRAMES}
+| | ${numerator} = | Evaluate | 78.0 * 2 + 70.0 * 5 + ${numerator}
+| | ${denominator} = | Evaluate | 2 + 5 + 2 * ${ASTF_N_DATA_FRAMES}
 | | ${avg_agg_frame_size} = | Evaluate | ${numerator} / ${denominator}
 | | Run Keyword If | '${ppta}' != '${denominator}'
 | | ... | Fail | TCP TPUT with ppta '${ppta}' != '${denominator}'.
