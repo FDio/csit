@@ -118,6 +118,9 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Ensure buffers are large enough so starting window works.
         globinfo.tcp.txbufsize = data_size
         globinfo.tcp.rxbufsize = data_size
+        # Set nodelay counter, otherwise superfluous ACKs appear at low load.
+        globinfo.tcp.no_delay_counter = data_size
+        globinfo.tcp.delay_ack_msec = 50000
         kwargs = dict(
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,
