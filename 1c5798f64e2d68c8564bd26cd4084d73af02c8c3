@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest reconfANDnic_intel-e810*ANDdrv_avfAND1cAND118bANDdot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm2t-testpmd",
       "revId": "1c5798f64e2d68c8564bd26cd4084d73af02c8c3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d1dcdd4_95eec5b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-11T12:59:13Z",
+      "side": 1,
+      "message": "Ok, the previous issue is solved, but 10vm fails also on master due to CSIT-1847.\n\ncsit-2n-icx-perftest reconfANDnic_intel-e810*ANDdrv_avfAND1cAND118bANDdot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm*",
+      "revId": "1c5798f64e2d68c8564bd26cd4084d73af02c8c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
