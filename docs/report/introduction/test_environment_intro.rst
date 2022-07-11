@@ -123,4 +123,4 @@ Following is the list of CSIT versions to date:
   - Mellanox 556A series firmware upgrade based on DPDK compatibility
     matrix.
   - Intel IceLake all core turbo frequency turned off. Current base frequency
-    is 2.6Ghz.
+    is 2.6GHz.
