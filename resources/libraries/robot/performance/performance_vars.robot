@@ -73,7 +73,7 @@
 | |
 | | ... | \| \${min_rate_hard} = \| Get Min Rate Hard \|
 | |
-| | Return From Keyword | ${9001.0}
+| | Return From Keyword | ${33.4}
 
 | Get Min Rate Soft
 | | [Documentation]
@@ -245,9 +245,10 @@
 | |
 | | ... | \| \${rate_for_teardown} = \| Get Rate For Teardown \|
 | |
+| | Run Keyword And Return | Get Min Rate Hard
 | | ${rate_for_teardown} = | Get Variable Value | \${rate_for_teardown} | ${0.0}
 | | Return From Keyword If | ${rate_for_teardown} | ${rate_for_teardown}
-| | Run Keyword And Return | Get Min Rate Soft
+| | Run Keyword And Return | Get Min Rate Hard
 
 | Get Resetter
 | | [Documentation]
@@ -627,15 +628,15 @@
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | # Long float formula in 4 lines.
 | | ${numerator} = | Evaluate | ${bare_framesize} * ${ASTF_N_DATA_FRAMES}
-| | ${numerator} = | Evaluate | 78.0 * 1 + 70.0 * 3 + ${numerator}
-| | ${denominator} = | Evaluate | 1 + 3 + ${ASTF_N_DATA_FRAMES}
+| | ${numerator} = | Evaluate | 78.0 * 1 + 70.0 * 4 + ${numerator}
+| | ${denominator} = | Evaluate | 1 + 4 + ${ASTF_N_DATA_FRAMES}
 | | ${avg_dir_frame_size} = | Evaluate | ${numerator} / ${denominator}
 | | Run Keyword If | '${pptad}' != '${denominator}'
 | | ... | Fail | TCP TPUT with pptad '${pptad}' != '${denominator}'.
 | | # Long float formula in 4 lines.
 | | ${numerator} = | Evaluate | ${bare_framesize} * 2 * ${ASTF_N_DATA_FRAMES}
-| | ${numerator} = | Evaluate | 78.0 * 2 + 70.0 * 4 + ${numerator}
-| | ${denominator} = | Evaluate | 2 + 4 + 2 * ${ASTF_N_DATA_FRAMES}
+| | ${numerator} = | Evaluate | 78.0 * 2 + 70.0 * 5 + ${numerator}
+| | ${denominator} = | Evaluate | 2 + 5 + 2 * ${ASTF_N_DATA_FRAMES}
 | | ${avg_agg_frame_size} = | Evaluate | ${numerator} / ${denominator}
 | | Run Keyword If | '${ppta}' != '${denominator}'
 | | ... | Fail | TCP TPUT with ppta '${ppta}' != '${denominator}'.
