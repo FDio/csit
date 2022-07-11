@@ -107,6 +107,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
 | | ... | 192.168.0.0 | 20.0.0.0 | ${22}
+| | Fail | Triggering "performance" teardown action.
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
