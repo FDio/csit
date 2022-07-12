@@ -694,8 +694,8 @@
       build: "10"
     - job-spec: "l2-03"
       build: "11"
-    # - job-spec: "l2-04"
-    #   build: "12"
+    - job-spec: "l2-04"
+      build: "12"
     # - job-spec: "memif-00"
     #   build: "13"
     # - job-spec: "srv6-00"
@@ -7881,7 +7881,7 @@
     - "{DIR[DTR,PERF,VPP,2N,DNV]}"
     - "{DIR[DTR,PERF,VPP,3N,DNV]}"
     - "{DIR[DTR,PERF,VPP,2N,AWS]}"
-    - "{DIR[DTR,PERF,VPP,3N,AWS]}"
+    # - "{DIR[DTR,PERF,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-cov"
     - "vpp-3n-skx-curr-cov"
@@ -7957,7 +7957,7 @@
     - "{DIR[DTC,PERF,VPP,2N,DNV]}"
     - "{DIR[DTC,PERF,VPP,3N,DNV]}"
     - "{DIR[DTC,PERF,VPP,2N,AWS]}"
-    - "{DIR[DTC,PERF,VPP,3N,AWS]}"
+    # - "{DIR[DTC,PERF,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-cov"
     - "vpp-3n-skx-curr-cov"
@@ -8033,7 +8033,7 @@
     - "{DIR[DTO,PERF,VPP,2N,DNV]}"
     - "{DIR[DTO,PERF,VPP,3N,DNV]}"
     - "{DIR[DTO,PERF,VPP,2N,AWS]}"
-    - "{DIR[DTO,PERF,VPP,3N,AWS]}"
+    # - "{DIR[DTO,PERF,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-cov"
     - "vpp-3n-skx-curr-cov"
@@ -8109,7 +8109,7 @@
     - "{DIR[DTR,MRR,VPP,2N,DNV]}"
     - "{DIR[DTR,MRR,VPP,3N,DNV]}"
     - "{DIR[DTR,MRR,VPP,2N,AWS]}"
-    - "{DIR[DTR,MRR,VPP,3N,AWS]}"
+    # - "{DIR[DTR,MRR,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-iter-mrr"
     - "vpp-3n-skx-curr-iter-mrr"
@@ -8185,7 +8185,7 @@
     - "{DIR[DTC,MRR,VPP,2N,DNV]}"
     - "{DIR[DTC,MRR,VPP,3N,DNV]}"
     - "{DIR[DTC,MRR,VPP,2N,AWS]}"
-    - "{DIR[DTC,MRR,VPP,3N,AWS]}"
+    # - "{DIR[DTC,MRR,VPP,3N,AWS]}"
   data:
     - "vpp-2n-skx-curr-iter-mrr"
     - "vpp-3n-skx-curr-iter-mrr"
