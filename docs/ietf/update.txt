@@ -1,0 +1,101 @@
+
+Loss inversion is a phenomenon related to observed trial results.
+At least three trials are needed, with the following relations:
+A trial with zero loss such that no trial with higher load has zero loss.
+This trial's load is called "high throughput".
+A trial with nonzero loss such that no trial with smaller load has nonzero loss.
+This trial's load is called "inversion point".
+A trial with zero loss such that no trial has load between this and inversion point.
+Tris trial's load is called "low throughput".
+In ideal case, inversion point is above high throughput,
+implying high throughput is the same as low throughput.
+The other case (called loss inversion) is when inversion point
+is below high throughput (so low throughput has to be below that).
+
+The usual binary search for throughput never runs into loss inversion.
+But when the search is for more than one loss ratio goals, possibility of
+loss inversion cannot be prevented.
+
+Reading RFC 1282 and RFC 2544 it is not clear whether low throughput
+or high throughput are intended to be "the throughput".
+
+The RFC 1242 motivation for througput is:
+    Since even the loss of one frame in a
+    data stream can cause significant delays while
+    waiting for the higher level protocols to time out,
+    it is useful to know the actual maximum data
+    rate that the device can support.
+
+The RFC 1242 definition of throughput is:
+    The maximum rate at which none of the offered frames are dropped by the device.
+
+RFC 2544 is more specific:
+    The throughput is the fastest rate at which the count of test frames
+    transmitted by the DUT is equal to the number of test frames sent to
+    it by the test equipment.
+
+RFC 2544 mentions the "final determination":
+    The tests that involve some form of "binary
+    search", for example the throughput test, to determine the exact
+    result MAY use a shorter trial duration to minimize the length of the
+    search procedure, but the final determination SHOULD be made with
+    full length trials.
+
+In the contect of minimal trial duration:
+    The aim of these tests is to determine the rate continuously
+    supportable by the DUT.  The actual duration of the test trials must
+    be a compromise between this aim and the duration of the benchmarking
+    test suite.  The duration of the test portion of each trial SHOULD be
+    at least 60 seconds.
+
+"Vratko thinks" section:
+Back in those days device's processing speed was quite constant,
+but devices used large buffers to deal with packet bursts.
+Long trial duration was needed to fill the buffer so apparent processing speed
+is closer to the real speed of the internal processor.
+That is also why there are long pauses between trials.
+Nowadays many devices use smalled buffers (to improve latency), and even
+not-so-small buffers fill quickly due to larger loads.
+But, the processing speed now varies more due to various transient effects
+and "noisy neighbor" issues.
+Also, modern protocols are less sensitive to occasional packet loss.
+End of "Vratko thinks" section.
+
+Searching for low throughput in a device affected by transient effects
+leads to highly varied results. Long trial with zero loss means no transient
+effect has lead to buffer becoming full, which means the more frequent less impact
+effects happened, but load was small enough, and less frequent high impact effects
+also did not happen, either because the load was extremely low, or because
+of luck (the effect did not happen), and this luck causes the variance.
+
+Searching for high throughput show less variance, because there are no effects
+causing large apparent performance. But occasional high impact effect
+can still lock the search into an interval is lower-than-usual loads.
+
+One strategy of making high impact effects less disruptive is to perform
+several shorter trials instead of one long trial.
+For search we need a clear classification criterion:
+Is this load too low or too high (can this load become a throughput)?
+If we used criterion of "every small trial has to have zero loss",
+we would have the same brittle behavior as with one long trial.
+Criterion "at least one small trial has to have zero loss" is better,
+but still somewhat susceptile to luck (it is the ETSI way).
+Criterion "at least half of small trials has to have zero loss" is expected
+to be the most stable. I will call this a "half zero" criterion.
+Several other criterions are possible,
+e.g. taking into account how much packets did a non-zero-loss trial lose.
+
+Another advantage of performing multiple shorter trials is that
+we can use trials from earlier iteration (before final determination)
+so if a load has to be "re-measured", the existing trial can be used,
+so less new trials have to be performed, which saves time
+(or if we decide to perform them it increases significance of the criterion).
+
+With improved result repeatibility of half-zero criterion,
+we can demand smaller overall duration per load, saving significant time.
+
+The downside of multiple small trials approach is susceptibility
+to overestimation for devices with large buffers.
+This is complicated by the fact "the throughput" needs to be known
+in order to reliably measure buffer size using back-to-back packet bursts
+according to RFC 9004.
