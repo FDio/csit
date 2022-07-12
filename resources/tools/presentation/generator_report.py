@@ -195,6 +195,9 @@ def generate_pdf_report(release, spec, report_week):
     plots.extend(
         get_files(spec.environment[u"paths"][u"DIR[STATIC,DPDK]"], u"html")
     )
+    plots.extend(
+        get_files(spec.environment[u"paths"][u"DIR[STATIC,TREX]"], u"html")
+    )
     pdf_plots = list()
     for plot in plots:
         file_name = f"{plot.rsplit(u'.', 1)[0]}.pdf"

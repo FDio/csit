@@ -31,10 +31,10 @@
 3n-icx-xxv710
 ~~~~~~~~~~~~~
 
-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf
-------------------------------------------------------
-
 ..
+    imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf
+    ------------------------------------------------------
+
     .. raw:: html
 
         <center>

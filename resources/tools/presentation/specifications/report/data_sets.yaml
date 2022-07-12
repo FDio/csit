@@ -101,7 +101,7 @@
     csit-vpp-perf-report-iterative-2202-3n-skx:
       - 29  # rls2202.rel hoststack iter env 9
       - 30  # rls2202.rel hoststack iter env 9
-      - 31  # rls2202.rel hoststack iter env 9,AWS]
+      - 31  # rls2202.rel hoststack iter env 9
       - 32  # rls2202.rel hoststack iter env 9
       - 34  # rls2202.rel hoststack iter env 9
       - 35  # rls2202.rel hoststack iter env 9
