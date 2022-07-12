@@ -124,6 +124,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a502b07_8c4bff02",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-12T12:47:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00140e70_0d4a92b5",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd1d331b_73c55463",
@@ -208,6 +226,24 @@
       "side": 1,
       "message": "Per my comment, detail related to implementation should be move to the end of this note.",
       "parentUuid": "b7607433_fcfad931",
+      "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "237b2e73_3723173d",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-12T12:47:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4648465_7b141cad",
       "revId": "c78014a133a7189aba11d0d6587a228fe7cab7c9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },

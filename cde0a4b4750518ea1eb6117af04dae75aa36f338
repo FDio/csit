@@ -18,6 +18,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7418e412_94095e9d",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-12T12:47:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15412bb8_29741b90",
+      "revId": "cde0a4b4750518ea1eb6117af04dae75aa36f338",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd25bae5_6cac2769",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-11T17:19:26Z",
       "side": 1,
       "message": "It may be worth re-emphasising that neither RFC 1242 nor RFC 2544 are consistent in  regards to this interpretation of throughput.\n\nAnd clarify what is the ask from BMWG.",
+      "revId": "cde0a4b4750518ea1eb6117af04dae75aa36f338",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c56c299a_77ddff35",
+        "filename": "docs/ietf/update.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-12T12:47:32Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "fd25bae5_6cac2769",
       "revId": "cde0a4b4750518ea1eb6117af04dae75aa36f338",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
