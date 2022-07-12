@@ -1,0 +1,91 @@
+
+>> The RFC 1242 motivation for througput is:
+>>     Since even the loss of one frame in a
+>>     data stream can cause significant delays while
+>>     waiting for the higher level protocols to time out,
+>>     it is useful to know the actual maximum data
+>>     rate that the device can support.
+>>
+>> It is not clear whether "the device can support" is supposed to mean
+>> "the device can always support" or "the device can sometimes support".
+
+In theory, there are absolute values (the highest load the device
+is guaranteed to not lose any packet withing a trial no matter what,
+and the lowest load the device is guaranteed to always lose at least one packet
+no matter what; both implicitly depend on trial duration).
+
+In practice, any finite collection of trial results only gives an upper bound
+for the former and the lower bound for the latter.
+So neither is a good "direct" quantity to search for.
+
+> I recalled there was a similar discussion at BMWG specifically for back-to-back
+> frame benchmark [0]. So I read that and few documents referenced there.
+> The most relevant is the ETSI one [1].
+> It divides the performance modes into steady-state and transient.
+
+Not very fitting names. Maybe in the language of SLA there are better names
+referring to good/lucky trials and bad/unlucky ones.
+
+> Transient was first mentioned in [2], but only as system errors SUT is able to
+> repair by itself (not as part of usual DUT operation such as timing out ARP/TCP).
+
+We should distinguish two points of view.
+First view is about "real" performance and various sources of "noise"
+which makes the trial result worse.
+Second view is about rarity and test speed. If bad performance happens only rarely,
+we do not want to spend time searching for it, but we want to spend some time
+trying to avoid it (if we do not avoid, it is either "real" or not rare enough).
+
+> [3] mentions soak tests (without enough implementation details) as the ones
+> aimed at exploring the transient performance, ETSI clause 12.4 gives more details.
+
+> As MLRsearch is supposed to be fast, it should focus on steady-state performance,
+> which means it should prefer the "device can sometimes support" meaning.
+> Perhaps even not doing single 30s/60s trial at the end, but 30x1s trials.
+
+With 1x30s and 30 packets lost we do not know if there was one rare event
+or whether DUT just cannot keep up even when lucky.
+With 30x1s we have better time visibility so we can decide.
+
+> The B2B rfc [0] also gives a model (single buffer before simgle processing head)
+> that illustrates the trade-off between trial duration and filling rate.
+> Ideally, we should run B2B test first to determine long enough trial duration
+> to trigger steady-state losses. I feel there is some math that can be done
+> to get both buffer size (in packets) and steady-state processing speed
+> (when buffer is close to full), but that is probably outside of MLRsearch scope.
+
+> For VPP, 1s trial duration is plenty time for the buffers to get full.
+
+> Anyway, the important aspect of "buffer+process" model is that we can imagine
+> the process is always either stopped entirely, or running at steady-state speed.
+
+Now I do not think that view is helpful.
+
+> The complicated part is that the two states are not independed,
+> it is more likely for the process to stop (and for longer time)
+> if it stopped recently.
+
+Now I think it is more helpful to imagine just a single period
+of stopped processing between each two periods of ideal (steady state) processing.
+
+When the distribution of "stopped duration" is skewed,
+the situation is complicated enough
+even if we consider the durations to be independent.
+
+The rest below needs to be updated.
+
+> My current plans/recommendations:
+> * Give an overview of buffer+process model, define steady state performance
+>   and troubles with qualifying "long tail" of transient performances.
+> * Mention soak tests are out of scope (maybe mention PLRsearch).
+> * Make it explicit that MLRsearch is for steady-state performance estimation.
+> * Use 60x1s trials for final phase (say 20x1s for CSIT).
+> * If one trial (can be from intermediate phase) has low loss,
+>   take it as a hard lower limit on corresponding loss ratio load.
+> * Still search from lower ratios (NDR before PDR).
+> * For CSIT, run soak in trending to cover transient losses.
+
+[0] https://datatracker.ietf.org/doc/html/rfc9004
+[1] https://www.etsi.org/deliver/etsi_gs/NFV-TST/001_099/009/03.04.01_60/gs_NFV-TST009v030401p.pdf
+[2] https://datatracker.ietf.org/doc/html/rfc8172#section-3.3
+[3] https://datatracker.ietf.org/doc/html/rfc8204#section-4
