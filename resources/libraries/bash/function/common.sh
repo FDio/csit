@@ -487,6 +487,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="dnv"
             ;;
+        *"3n-snr"*)
+            NODENESS="3n"
+            FLAVOR="snr"
+            ;;
         *"2n-tx2"*)
             NODENESS="2n"
             FLAVOR="tx2"
@@ -879,6 +883,9 @@ function select_tags () {
         *"3n-dnv"* | *"2n-dnv"*)
             default_nic="nic_intel-x553"
             ;;
+        *"3n-snr"*)
+            default_nic="nic_intel-e810xxv"
+            ;;
         *"3n-tsh"*)
             default_nic="nic_intel-x520-da2"
             ;;
@@ -1033,6 +1040,8 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
             test_tag_array+=("!drv_avf")
+            ;;
+        *"3n-snr"*)
             ;;
         *"3n-tsh"*)
             # 3n-tsh only has x520 NICs which don't work with AVF
