@@ -172,6 +172,14 @@ Root Cause Analysis for Performance Changes
 
 List of RCAs in |csit-release| for VPP performance changes:
 
-+----+-----------------------------------------+--------------------------------------------------------------+
-|  # | JiraID                                  | Issue Description                                            |
-+====+=========================================+==============================================================+
++----+-----------------------------------------+-------------------------------------------------------------------------------------+
+|  # | JiraID                                  | Issue Description                                                                   |
++====+=========================================+=====================================================================================+
+|  1 | `CSIT-1851                              | trending regression: various icelake tests around 2202-04-15                        |
+|    | <https://jira.fd.io/browse/CSIT-1851>`_ | Somewhat expected consequence of a VPP usability fix,                               |
+|    |                                         | the previous VPP compiler version was too new for the OS used.                      |
++----+-----------------------------------------+-------------------------------------------------------------------------------------+
+|  2 | `VPP-2030                               | regression: ip6base on ICX around 2022-03-23                                        |
+|    | <https://jira.fd.io/browse/VPP-2030>`_  | "Loads blocked due to overlapping with a preceding store that cannot be forwarded." |
+|    |                                         | started happening in ip6-lookup graph node.                                         |
++----+-----------------------------------------+-------------------------------------------------------------------------------------+
