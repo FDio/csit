@@ -148,7 +148,7 @@
 | | ${result} = | Perform optimized ndrpdr search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate_soft}
+| | ... | minimum_transmit_rate=${33.0}
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${packet_loss_ratio}
 | | ... | final_relative_width=${0.005}
@@ -235,7 +235,7 @@
 | | ${result} = | Perform optimized ndrpdr search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
-| | ... | minimum_transmit_rate=${min_rate_soft}
+| | ... | minimum_transmit_rate=${33.0}
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${0.0}
 | | ... | final_relative_width=${0.001}

@@ -118,6 +118,8 @@ class TrafficProfile(TrafficProfileBaseClass):
         # Ensure buffers are large enough so starting window works.
         globinfo.tcp.txbufsize = data_size
         globinfo.tcp.rxbufsize = data_size
+        # Set nodelay push, as TRex is not consistent enough with delayed ACKs.
+        globinfo.tcp.no_delay = 2
         kwargs = dict(
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,
