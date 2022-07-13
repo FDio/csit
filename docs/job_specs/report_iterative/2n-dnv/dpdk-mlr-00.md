@@ -1,9 +1,4 @@
 # 2n-dnv
-### tests 18
-### job hrs est. 1.25
-### job hrs real 1.25
-### test mins est. 3.13
-### test mins real 3.13
 ### intel-x553
 #### dpdk-vfio-pci
 ##### eth-l2xcbase-testpmd
