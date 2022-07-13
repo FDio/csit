@@ -61,6 +61,20 @@ available for download.
    - **Documentation**: Pointers to CSIT source code documentation for
      DPDK performance tests.
 
+#. TREX PERFORMANCE: TREX performance tests executed in physical
+   FD.io testbeds.
+
+   - **Overview**: Tested logical topologies, test coverage.
+   - **Release Notes**: Changes in |csit-release|, known issues.
+   - **Packet Throughput**: NDR, PDR throughput graphs based on results
+     from repeated same test job executions to verify repeatibility of
+     measurements.
+   - **Packet Latency**: Latency graphs based on results from test job
+     executions.
+   - **Throughput Trending**: References to regular TREX performance
+     trending.
+   - **Test Environment**: Performance test environment configuration.
+
 #. VPP DEVICE: VPP functional tests executed in physical FD.io
    testbeds using containers.
 
