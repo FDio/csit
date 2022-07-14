@@ -165,6 +165,8 @@ Issues reported in previous releases which were fixed in this release:
 |    | <https://jira.fd.io/browse/CSIT-1791>`_ | Two symptoms: 1. 10-20% regression across most tests. 2. DUT performance cap just below 38 Mpps.          |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
+.. _vpp_rca:
+
 Root Cause Analysis for Performance Changes
 -------------------------------------------
 
