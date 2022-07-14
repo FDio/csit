@@ -50,6 +50,75 @@
       "message": "csit-dpdk-3n-skx-perftest ndrpdrANDeth-l2xcbase-testpmdANDdrv_vfio_pci\ncsit-dpdk-3n-skx-perftest ndrpdrANDethip4-ip4base-l3fwdANDdrv_vfio_pci",
       "revId": "df13af332897a2e4745792afb0cbbefb9bb1802c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebe022e2_09c10aff",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-07-14T09:02:08Z",
+      "side": 1,
+      "message": "rxd is rxd and rxq is rxq, do not mix up",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 29
+      },
+      "revId": "df13af332897a2e4745792afb0cbbefb9bb1802c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cb9fa28_9c098482",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-07-14T09:02:08Z",
+      "side": 1,
+      "message": "do\n\n  try:\n  except ssh error:",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 25
+      },
+      "revId": "df13af332897a2e4745792afb0cbbefb9bb1802c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d164430a_698179f9",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-07-14T09:02:08Z",
+      "side": 1,
+      "message": "replace by exec_cmd_no_error(...)",
+      "range": {
+        "startLine": 170,
+        "startChar": 23,
+        "endLine": 175,
+        "endChar": 24
+      },
+      "revId": "df13af332897a2e4745792afb0cbbefb9bb1802c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
