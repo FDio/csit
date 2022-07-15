@@ -14,6 +14,7 @@
 """
 """
 
+import logging
 import plotly.graph_objects as go
 import pandas as pd
 
@@ -25,6 +26,23 @@ from numpy import isnan
 
 from ..jumpavg import classify
 
+
+_NORM_FREQUENCY = 2.0  # [GHz]
+_FREQURENCY = {  # [GHz]
+    "2n-aws": 1.000,
+    "2n-dnv": 2.000,
+    "2n-clx": 2.300,
+    "2n-icx": 2.600,
+    "2n-skx": 2.500,
+    "2n-tx2": 2.500,
+    "2n-zn2": 2.900,
+    "3n-alt": 3.000,
+    "3n-aws": 1.000,
+    "3n-dnv": 2.000,
+    "3n-icx": 2.600,
+    "3n-skx": 2.500,
+    "3n-tsh": 2.200
+}
 
 _ANOMALY_COLOR = {
     "regression": 0.0,
@@ -207,7 +225,7 @@ def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 
 
 def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
-    start: datetime, end: datetime, color: str) -> list:
+    start: datetime, end: datetime, color: str, norm_factor: float) -> list:
     """
     """
 
@@ -219,9 +237,10 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         return list()
 
     x_axis = df["start_time"].tolist()
+    y_data = [itm * norm_factor for itm in df[_VALUE[ttype]].tolist()]
 
     anomalies, trend_avg, trend_stdev = _classify_anomalies(
-        {k: v for k, v in zip(x_axis, df[_VALUE[ttype]])}
+        {k: v for k, v in zip(x_axis, y_data)}
     )
 
     hover = list()
@@ -268,7 +287,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     traces = [
         go.Scatter(  # Samples
             x=x_axis,
-            y=df[_VALUE[ttype]],
+            y=y_data,
             name=name,
             mode="markers",
             marker={
@@ -360,7 +379,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
 
 
 def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
-    start: datetime, end: datetime) -> tuple:
+    start: datetime, end: datetime, normalize: bool) -> tuple:
     """
     """
 
@@ -377,8 +396,15 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
 
         name = "-".join((itm["dut"], itm["phy"], itm["framesize"], itm["core"],
             itm["test"], itm["testtype"], ))
+        if normalize:
+            phy = itm["phy"].split("-")
+            topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
+            norm_factor = (_NORM_FREQUENCY / _FREQURENCY[topo_arch]) \
+                if topo_arch else 1.0
+        else:
+            norm_factor = 1.0
         traces = _generate_trending_traces(
-            itm["testtype"], name, df, start, end, _get_color(idx)
+            itm["testtype"], name, df, start, end, _get_color(idx), norm_factor
         )
         if traces:
             if not fig_tput:
@@ -387,7 +413,7 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
 
         if itm["testtype"] == "pdr":
             traces = _generate_trending_traces(
-                "pdr-lat", name, df, start, end, _get_color(idx)
+                "pdr-lat", name, df, start, end, _get_color(idx), norm_factor
             )
             if traces:
                 if not fig_lat:
