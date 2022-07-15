@@ -183,3 +183,11 @@ List of RCAs in |csit-release| for VPP performance changes:
 |    | <https://jira.fd.io/browse/VPP-2030>`_  | "Loads blocked due to overlapping with a preceding store that cannot be forwarded." |
 |    |                                         | started happening in ip6-lookup graph node.                                         |
 +----+-----------------------------------------+-------------------------------------------------------------------------------------+
+|  3 | `CSIT-1852                              | 2n-zn2 mellanox performance cap                                                     |
+|    | <https://jira.fd.io/browse/CSIT-1852>`_ | Old issue, only now distinguished from CSIT-1751.                                   |
+|    |                                         | This testbed+nic combination is capped below 28 Mpps, cause not identified yet.     |
++----+-----------------------------------------+-------------------------------------------------------------------------------------+
+|  4 | `CSIT-1853                              | trending regression: nat44ed cps around 2202-04-01                                  |
+|    | <https://jira.fd.io/browse/CSIT-1853>`_ | VPP change added more computation to slow path (in order to support multiple VRFs). |
+|    |                                         | Not clear if the VPP implementation is optimized enough.                            |
++----+-----------------------------------------+-------------------------------------------------------------------------------------+
