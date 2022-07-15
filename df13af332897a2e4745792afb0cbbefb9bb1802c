@@ -75,6 +75,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "449da790_e6e57950",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-07-15T07:15:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebe022e2_09c10aff",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 29
+      },
+      "revId": "df13af332897a2e4745792afb0cbbefb9bb1802c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cb9fa28_9c098482",
@@ -98,6 +122,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afaf3ddd_56cf85f1",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-07-15T07:15:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cb9fa28_9c098482",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 25
+      },
+      "revId": "df13af332897a2e4745792afb0cbbefb9bb1802c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d164430a_698179f9",
@@ -111,6 +159,30 @@
       "writtenOn": "2022-07-14T09:02:08Z",
       "side": 1,
       "message": "replace by exec_cmd_no_error(...)",
+      "range": {
+        "startLine": 170,
+        "startChar": 23,
+        "endLine": 175,
+        "endChar": 24
+      },
+      "revId": "df13af332897a2e4745792afb0cbbefb9bb1802c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8634e280_04783bf4",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-07-15T07:15:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d164430a_698179f9",
       "range": {
         "startLine": 170,
         "startChar": 23,
