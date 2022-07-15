@@ -1340,8 +1340,8 @@ class Layout:
                         row_card_sel_tests = self.STYLE_ENABLED
                         row_btns_sel_tests = self.STYLE_ENABLED
 
-            if trigger_id in ("btn-ctrl-add", "url", "btn-sel-remove-all",
-                    "btn-sel-remove", "cl-ctrl-normalize"):
+            if trigger_id in ("btn-ctrl-add", "url", "btn-sel-remove",
+                    "cl-ctrl-normalize"):
                 if store_sel:
                     row_fig_tput, row_fig_lat, row_table, row_btn_dwnld = \
                         _generate_plotting_area(

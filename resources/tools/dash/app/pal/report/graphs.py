@@ -24,6 +24,7 @@ import hdrh.histogram
 import hdrh.codec
 
 
+_NORM_FREQUENCY = 2.0  # [GHz]
 _FREQURENCY = {  # [GHz]
     "2n-aws": 1.000,
     "2n-dnv": 2.000,
@@ -181,7 +182,8 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             continue
         phy = itm["phy"].split("-")
         topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
-        norm_factor = 2.0 / _FREQURENCY[topo_arch] if normalize else 1.0
+        norm_factor = (_NORM_FREQUENCY / _FREQURENCY[topo_arch]) \
+            if normalize else 1.0
         if itm["testtype"] == "mrr":
             y_data_raw = itm_data[_VALUE[itm["testtype"]]].to_list()[0]
             y_data = [y * norm_factor for y in y_data_raw]
