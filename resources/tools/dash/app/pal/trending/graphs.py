@@ -237,7 +237,11 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         return list()
 
     x_axis = df["start_time"].tolist()
-    y_data = [itm * norm_factor for itm in df[_VALUE[ttype]].tolist()]
+    if ttype == "pdr-lat":
+        y_data = [(itm /
+         norm_factor) for itm in df[_VALUE[ttype]].tolist()]
+    else:
+        y_data = [(itm * norm_factor) for itm in df[_VALUE[ttype]].tolist()]
 
     anomalies, trend_avg, trend_stdev = _classify_anomalies(
         {k: v for k, v in zip(x_axis, y_data)}
@@ -245,11 +249,11 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
 
     hover = list()
     customdata = list()
-    for _, row in df.iterrows():
+    for idx, (_, row) in enumerate(df.iterrows()):
         d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
             f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
-            f"<prop> [{row[_UNIT[ttype]]}]: {row[_VALUE[ttype]]:,.0f}<br>"
+            f"<prop> [{row[_UNIT[ttype]]}]: {y_data[idx]:,.0f}<br>"
             f"<stdev>"
             f"{d_type}-ref: {row['dut_version']}<br>"
             f"csit-ref: {row['job']}/{row['build']}<br>"
