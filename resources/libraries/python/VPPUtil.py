@@ -17,7 +17,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.model.ExportResult import (
     export_dut_type_and_version
 )
