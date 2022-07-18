@@ -16,8 +16,8 @@
 from ipaddress import ip_address
 from socket import htonl
 
-from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class LoadBalancerUtil:
