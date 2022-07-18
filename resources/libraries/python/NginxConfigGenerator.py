@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2022 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,9 +14,9 @@
 """Nginx Configuration File Generator library.
 """
 
+from resources.libraries.python.NginxUtil import NginxUtil
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
-from resources.libraries.python.NginxUtil import NginxUtil
 
 __all__ = [u"NginxConfigGenerator"]
 
