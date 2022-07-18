@@ -213,15 +213,15 @@ class Data:
                 days=days
             ),
             self._create_dataframe_from_parquet(
-                path=self._get_path("statistics-trending"),
+                path=self._get_path("statistics-trending-mrr"),
                 partition_filter=l_mrr,
-                columns=self._get_columns("statistics-trending"),
+                columns=self._get_columns("statistics-trending-mrr"),
                 days=days
             ),
             self._create_dataframe_from_parquet(
-                path=self._get_path("statistics-trending"),
+                path=self._get_path("statistics-trending-ndrpdr"),
                 partition_filter=l_ndrpdr,
-                columns=self._get_columns("statistics-trending"),
+                columns=self._get_columns("statistics-trending-ndrpdr"),
                 days=days
             )
         )
