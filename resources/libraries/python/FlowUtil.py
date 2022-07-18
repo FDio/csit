@@ -18,7 +18,7 @@ from ipaddress import ip_address
 
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import exec_cmd_no_error
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 
 class FlowType(IntEnum):
     """Flow types."""

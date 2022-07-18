@@ -1,5 +1,5 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
-# Copyright (c) 2021 PANTHEON.tech s.r.o.
+# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2022 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,7 +25,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPAddress import IPAddress
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor

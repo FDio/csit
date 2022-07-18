@@ -21,7 +21,7 @@ from cryptography.hazmat.primitives.asymmetric.x25519 import \
 
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
 
 class WireGuardUtil:
     """This class defines the methods to set WireGuard."""
