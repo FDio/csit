@@ -33,6 +33,23 @@
       "message": "csit-2n-skx-perftest ndrpdrANDnic_intel-xxv710AND1cANDethip4tcp-*-h*-tput",
       "revId": "ce3c6f12fdc224c06193c6a54bfd740d5973fe8a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9064825_0cf448d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-18T08:39:12Z",
+      "side": 1,
+      "message": "csit-2n-skx-perftest ndrpdrANDnic_intel-xxv710AND1cANDethip4tcp-ip4base-h1024*-tputNOT9000b",
+      "revId": "ce3c6f12fdc224c06193c6a54bfd740d5973fe8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
