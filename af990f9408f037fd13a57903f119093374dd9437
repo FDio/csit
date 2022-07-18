@@ -33,6 +33,23 @@
       "message": "csit-2n-dnv-perftest ndrpdrANDnic_intel-x*ANDdrv_vfio_pciAND1cANDethip4tcp-*-h*-tput",
       "revId": "af990f9408f037fd13a57903f119093374dd9437",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da359d92_e8d6af89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-18T15:58:06Z",
+      "side": 1,
+      "message": "The failures are CSIT-1849 but we should not test 16M anyway. Denverton also had similar failures for jumbo, which we also do not test.\n\ncsit-2n-clx-perftest ndrpdrANDnic_intel-xxv710ANDdrv_vfio_pciANDethip4tcp-*-h*-tputNOT9000bNOT*h262144*",
+      "revId": "af990f9408f037fd13a57903f119093374dd9437",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
