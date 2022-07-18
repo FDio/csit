@@ -18,17 +18,30 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 
 
-def table_failed(data: pd.DataFrame, job: str) -> list:
+# Time period for regressions and progressions.
+TIME_PERIOD = 21  # [days]
+
+
+def table_news(data: pd.DataFrame, job: str) -> list:
     """
     """
 
     job_data = data.loc[(data["job"] == job)]
-    failed = job_data["lst_failed"].to_list()[0]
+    failed = job_data["failed"].to_list()[0]
+    regressions = {"Test Name": list(), "Last Regression": list()}
+    for itm in job_data["regressions"].to_list()[0]:
+        regressions["Test Name"].append(itm[0])
+        regressions["Last Regression"].append(itm[1].strftime('%Y-%m-%d %H:%M'))
+    progressions = {"Test Name": list(), "Last Progression": list()}
+    for itm in job_data["progressions"].to_list()[0]:
+        progressions["Test Name"].append(itm[0])
+        progressions["Last Progression"].append(
+            itm[1].strftime('%Y-%m-%d %H:%M'))
 
     return [
         dbc.Table.from_dataframe(pd.DataFrame.from_dict({
             "Job": job_data["job"],
-            "Build": job_data["build"],
+            "Last Build": job_data["build"],
             "Date": job_data["start"],
             "DUT": job_data["dut_type"],
             "DUT Version": job_data["dut_version"],
@@ -39,5 +52,27 @@ def table_failed(data: pd.DataFrame, job: str) -> list:
                 f"Last Failed Tests on "
                 f"{job_data['start'].values[0]} ({len(failed)})"
             ): failed
-        }), bordered=True, striped=True, hover=True, size="sm", color="light")
+        }), bordered=True, striped=True, hover=True, size="sm", color="light"),
+        dbc.Label(
+            class_name="p-0",
+            size="lg",
+            children=(
+                f"Regressions during the last {TIME_PERIOD} days "
+                f"({len(regressions['Test Name'])})"
+            )
+        ),
+        dbc.Table.from_dataframe(
+            pd.DataFrame.from_dict(regressions),
+            bordered=True, striped=True, hover=True, size="sm", color="light"),
+        dbc.Label(
+            class_name="p-0",
+            size="lg",
+            children=(
+                f"Progressions during the last {TIME_PERIOD} days "
+                f"({len(progressions['Test Name'])})"
+            )
+        ),
+        dbc.Table.from_dataframe(
+            pd.DataFrame.from_dict(progressions),
+            bordered=True, striped=True, hover=True, size="sm", color="light")
     ]

@@ -27,7 +27,8 @@ from yaml import load, FullLoader, YAMLError
 from copy import deepcopy
 
 from ..data.data import Data
-from .tables import table_failed
+from ..data.utils import classify_anomalies
+from .tables import table_news
 
 
 class Layout:
@@ -36,6 +37,9 @@ class Layout:
 
     # The default job displayed when the page is loaded first time.
     DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
+
+    # Time period for regressions and progressions.
+    TIME_PERIOD = 21  # [days]
 
     def __init__(self, app: Flask, html_layout_file: str, data_spec_file: str,
         tooltip_file: str) -> None:
@@ -69,7 +73,7 @@ class Layout:
         data_stats, data_mrr, data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_stats(days=10)  # To be sure
+        ).read_stats(days=self.TIME_PERIOD)
 
         df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
@@ -94,6 +98,16 @@ class Layout:
         self._default = self._set_job_params(self.DEFAULT_JOB)
 
         # Pre-process the data:
+
+        def _create_test_name(test: str) -> str:
+            lst_tst = test.split(".")
+            suite = lst_tst[-2].replace("2n1l-", "").replace("1n1l-", "").\
+                replace("2n-", "")
+            return f"{suite.split('-')[0]}-{lst_tst[-1]}"
+
+        def _get_rindex(array: list, itm: any) -> int:
+            return len(array) - 1 - array[::-1].index(itm)
+
         tst_info = {
             "job": list(),
             "build": list(),
@@ -101,9 +115,12 @@ class Layout:
             "dut_type": list(),
             "dut_version": list(),
             "hosts": list(),
-            "lst_failed": list()
+            "failed": list(),
+            "regressions": list(),
+            "progressions": list()
         }
         for job in jobs:
+            # Create lists of failed tests:
             df_job = df_tst_info.loc[(df_tst_info["job"] == job)]
             last_build = max(df_job["build"].unique())
             df_build = df_job.loc[(df_job["build"] == last_build)]
@@ -121,13 +138,95 @@ class Layout:
             l_failed = list()
             try:
                 for tst in failed_tests:
-                    lst_tst = tst.split(".")
-                    suite = lst_tst[-2].replace("2n1l-", "").\
-                        replace("1n1l-", "").replace("2n-", "")
-                    l_failed.append(f"{suite.split('-')[0]}-{lst_tst[-1]}")
+                    l_failed.append(_create_test_name(tst))
             except KeyError:
                 l_failed = list()
-            tst_info["lst_failed"].append(sorted(l_failed))
+            tst_info["failed"].append(sorted(l_failed))
+
+            # Create lists of regressions and progressions:
+            l_reg = list()
+            l_prog = list()
+
+            tests = df_job["test_id"].unique()
+            for test in tests:
+                tst_data = df_job.loc[df_job["test_id"] == test].sort_values(
+                    by="start_time", ignore_index=True)
+                x_axis = tst_data["start_time"].tolist()
+                if "-ndrpdr" in test:
+                    tst_data = tst_data.dropna(
+                        subset=["result_pdr_lower_rate_value", ]
+                    )
+                    if tst_data.empty:
+                        continue
+                    try:
+                        anomalies, _, _ = classify_anomalies({
+                            k: v for k, v in zip(
+                                x_axis,
+                                tst_data["result_ndr_lower_rate_value"].tolist()
+                            )
+                        })
+                    except ValueError:
+                        continue
+                    if "progression" in anomalies:
+                        l_prog.append((
+                            _create_test_name(test).replace("-ndrpdr", "-ndr"),
+                            x_axis[_get_rindex(anomalies, "progression")]
+                        ))
+                    if "regression" in anomalies:
+                        l_reg.append((
+                            _create_test_name(test).replace("-ndrpdr", "-ndr"),
+                            x_axis[_get_rindex(anomalies, "regression")]
+                        ))
+                    try:
+                        anomalies, _, _ = classify_anomalies({
+                            k: v for k, v in zip(
+                                x_axis,
+                                tst_data["result_pdr_lower_rate_value"].tolist()
+                            )
+                        })
+                    except ValueError:
+                        continue
+                    if "progression" in anomalies:
+                        l_prog.append((
+                            _create_test_name(test).replace("-ndrpdr", "-pdr"),
+                            x_axis[_get_rindex(anomalies, "progression")]
+                        ))
+                    if "regression" in anomalies:
+                        l_reg.append((
+                            _create_test_name(test).replace("-ndrpdr", "-pdr"),
+                            x_axis[_get_rindex(anomalies, "regression")]
+                        ))
+                else:  # mrr
+                    tst_data = tst_data.dropna(
+                        subset=["result_receive_rate_rate_avg", ]
+                    )
+                    if tst_data.empty:
+                        continue
+                    try:
+                        anomalies, _, _ = classify_anomalies({
+                            k: v for k, v in zip(
+                                x_axis,
+                                tst_data["result_receive_rate_rate_avg"].\
+                                    tolist()
+                            )
+                        })
+                    except ValueError:
+                        continue
+                    if "progression" in anomalies:
+                        l_prog.append((
+                            _create_test_name(test),
+                            x_axis[_get_rindex(anomalies, "progression")]
+                        ))
+                    if "regression" in anomalies:
+                        l_reg.append((
+                            _create_test_name(test),
+                            x_axis[_get_rindex(anomalies, "regression")]
+                        ))
+
+            tst_info["regressions"].append(
+                sorted(l_reg, key=lambda k: k[1], reverse=True))
+            tst_info["progressions"].append(
+                sorted(l_prog, key=lambda k: k[1], reverse=True))
 
         self._data = pd.DataFrame.from_dict(tst_info)
 
@@ -156,7 +255,7 @@ class Layout:
                 f"{self._tooltip_file}\n{err}"
             )
 
-        self._default_tab_failed = table_failed(self.data, self._default["job"])
+        self._default_tab_failed = table_news(self.data, self._default["job"])
 
         # Callbacks:
         if self._app is not None and hasattr(self, 'callbacks'):
@@ -659,7 +758,7 @@ class Layout:
                 ctrl_panel.get("dd-tbeds-value")
             )
             ctrl_panel.set({"al-job-children": job})
-            tab_failed = table_failed(self.data, job)
+            tab_failed = table_news(self.data, job)
 
             ret_val = [
                 ctrl_panel.panel,

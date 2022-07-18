@@ -14,7 +14,6 @@
 """
 """
 
-import logging
 import plotly.graph_objects as go
 import pandas as pd
 
@@ -22,10 +21,8 @@ import hdrh.histogram
 import hdrh.codec
 
 from datetime import datetime
-from numpy import isnan
 
-from ..jumpavg import classify
-
+from ..data.utils import classify_anomalies
 
 _NORM_FREQUENCY = 2.0  # [GHz]
 _FREQURENCY = {  # [GHz]
@@ -131,56 +128,6 @@ def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
     return latencies
 
 
-def _classify_anomalies(data):
-    """Process the data and return anomalies and trending values.
-
-    Gather data into groups with average as trend value.
-    Decorate values within groups to be normal,
-    the first value of changed average as a regression, or a progression.
-
-    :param data: Full data set with unavailable samples replaced by nan.
-    :type data: OrderedDict
-    :returns: Classification and trend values
-    :rtype: 3-tuple, list of strings, list of floats and list of floats
-    """
-    # NaN means something went wrong.
-    # Use 0.0 to cause that being reported as a severe regression.
-    bare_data = [0.0 if isnan(sample) else sample for sample in data.values()]
-    # TODO: Make BitCountingGroupList a subclass of list again?
-    group_list = classify(bare_data).group_list
-    group_list.reverse()  # Just to use .pop() for FIFO.
-    classification = list()
-    avgs = list()
-    stdevs = list()
-    active_group = None
-    values_left = 0
-    avg = 0.0
-    stdv = 0.0
-    for sample in data.values():
-        if isnan(sample):
-            classification.append("outlier")
-            avgs.append(sample)
-            stdevs.append(sample)
-            continue
-        if values_left < 1 or active_group is None:
-            values_left = 0
-            while values_left < 1:  # Ignore empty groups (should not happen).
-                active_group = group_list.pop()
-                values_left = len(active_group.run_list)
-            avg = active_group.stats.avg
-            stdv = active_group.stats.stdev
-            classification.append(active_group.comment)
-            avgs.append(avg)
-            stdevs.append(stdv)
-            values_left -= 1
-            continue
-        classification.append("normal")
-        avgs.append(avg)
-        stdevs.append(stdv)
-        values_left -= 1
-    return classification, avgs, stdevs
-
-
 def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
     """
     """
@@ -242,7 +189,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     else:
         y_data = [(itm * norm_factor) for itm in df[_VALUE[ttype]].tolist()]
 
-    anomalies, trend_avg, trend_stdev = _classify_anomalies(
+    anomalies, trend_avg, trend_stdev = classify_anomalies(
         {k: v for k, v in zip(x_axis, y_data)}
     )
 
