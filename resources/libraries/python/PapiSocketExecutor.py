@@ -40,6 +40,7 @@ from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 __all__ = [u"PapiSocketExecutor", u"Disconnector"]
 
 
+# TODO: CSIT-1633: Switch libraries to attribute access and remove dictization.
 def dictize(obj):
     """A helper method, to make namedtuple-like object accessible as dict.
 
@@ -247,12 +248,15 @@ class PapiSocketExecutor:
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
             vpp_class.apidir = cls.api_json_path
             # We need to create instance before removing from sys.path.
+            # Cannot use loglevel parameter, robot.api.logger lacks support.
+            # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
             vpp_instance = vpp_class(
                 use_socket=True, server_address=u"TBD", async_thread=False,
                 read_timeout=14, logger=FilteredLogger(logger, u"INFO")
             )
-            # Cannot use loglevel parameter, robot.api.logger lacks support.
-            # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
+#            # The following is needed to prevent union (e.g. Ip4) debug logging
+#            # of VPP part of PAPI from spamming robot logs.
+#            logging.getLogger("vpp_papi.vpp_serializer").setLevel(logging.INFO)
         finally:
             if sys.path[-1] == cls.api_package_path:
                 sys.path.pop()
@@ -456,7 +460,7 @@ class PapiSocketExecutor:
         # Everything is ready, set the local socket address and connect.
         vpp_instance.transport.server_address = api_socket
         try:
-            vpp_instance.connect_sync(u"csit_socket")
+            vpp_instance.connect(u"csit_socket", do_async=True)
         except (IOError, struct.error) as err:
             vpp_instance.disconnect()
             raising = RuntimeError(u"Failed to connect to VPP over a socket.")
@@ -795,6 +799,49 @@ class PapiSocketExecutor:
                         )
                 replies.append(dict_item)
         return replies
+
+    def _execute_sync(self, local_list, err_msg="Undefined error message"):
+        """Execute command waiting for replies one by one; return replies.
+        This implementation uses control ping to emulate sync PAPI calls.
+        Reliable, but slow. Required for dumps.
+        :param local_list: The list of PAPI commands to be executed on the node.
+        :param err_msg: The message used if the PAPI command(s) execution fails.
+        :type local_list: list of dict
+        :type err_msg: str
+        :returns: Papi responses parsed into a dict-like object,
+            with fields due to API (possibly including retval).
+        :rtype: list of dict
+        :raises RuntimeError: If the replies are not all correct.
+        """
+        vpp_instance = self.get_connected_client()
+        control_ping_fn = getattr(vpp_instance.api, u"control_ping")
+        ret_list = list()
+        for command in local_list:
+            api_name = command[u"api_name"]
+            papi_fn = getattr(vpp_instance.api, api_name)
+            replies = list()
+            try:
+                # Send the command followed by control ping.
+                main_context = papi_fn(**command[u"api_args"])
+                control_ping_fn()
+                # Receive the replies.
+                while 1:
+                    reply = vpp_instance.read_blocking()
+                    if reply.context != main_context:
+                        # TODO: Assert it is really control_ping_reply?
+                        break
+                    replies.append(reply)
+            except (AttributeError, IOError, struct.error) as err:
+                # TODO: Add retry if it is still needed.
+                raise AssertionError(err_msg) from err
+            # Process replies for this command.
+            for reply in replies:
+                # Request CRC was checked in add, here check CRC of each reply.
+                self.crc_checker.check_api_name(reply.__class__.__name__)
+                dictized_reply = dictize_and_check_retval(reply)
+                ret_list.append(dictized_reply)
+        return ret_list
+
 
 
 class Disconnector:
