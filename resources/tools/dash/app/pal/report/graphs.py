@@ -186,13 +186,13 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             if normalize else 1.0
         if itm["testtype"] == "mrr":
             y_data_raw = itm_data[_VALUE[itm["testtype"]]].to_list()[0]
-            y_data = [y * norm_factor for y in y_data_raw]
+            y_data = [(y * norm_factor) for y in y_data_raw]
             if len(y_data) > 0:
                 y_tput_max = \
                     max(y_data) if max(y_data) > y_tput_max else y_tput_max
         else:
             y_data_raw = itm_data[_VALUE[itm["testtype"]]].to_list()
-            y_data = [y * norm_factor for y in y_data_raw]
+            y_data = [(y * norm_factor) for y in y_data_raw]
             if y_data:
                 y_tput_max = \
                     max(y_data) if max(y_data) > y_tput_max else y_tput_max
@@ -215,7 +215,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
 
         if itm["testtype"] == "pdr":
             y_lat_row = itm_data[_VALUE["pdr-lat"]].to_list()
-            y_lat = [y * norm_factor for y in y_lat_row]
+            y_lat = [(y / norm_factor) for y in y_lat_row]
             if y_lat:
                 y_lat_max = max(y_lat) if max(y_lat) > y_lat_max else y_lat_max
             nr_of_samples = len(y_lat)
