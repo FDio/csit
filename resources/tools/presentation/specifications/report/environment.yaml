@@ -213,12 +213,15 @@
       pci-g3-x16: 148809523.81
 
   frequency:  # [GHz]
+    2n-aws: 1.000
     2n-dnv: 2.000
     2n-clx: 2.300
     2n-icx: 2.600
     2n-skx: 2.500
+    2n-tx2: 2.500
     2n-zn2: 2.900
     3n-alt: 3.000
+    3n-aws: 1.000
     3n-dnv: 2.000
     3n-icx: 2.600
     3n-skx: 2.500
