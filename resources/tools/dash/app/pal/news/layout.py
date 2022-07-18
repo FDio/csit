@@ -27,7 +27,7 @@ from yaml import load, FullLoader, YAMLError
 from copy import deepcopy
 
 from ..data.data import Data
-from .tables import table_failed
+from .tables import table_news
 
 
 class Layout:
@@ -69,7 +69,7 @@ class Layout:
         data_stats, data_mrr, data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_stats(days=10)  # To be sure
+        ).read_stats(days=14)  # We take into account only last 14 days.
 
         df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
@@ -101,7 +101,15 @@ class Layout:
             "dut_type": list(),
             "dut_version": list(),
             "hosts": list(),
-            "lst_failed": list()
+            "lst_failed": list(),
+        }
+        regressions = {
+            "job": list(),
+            "tests": list()
+        }
+        progressions = {
+            "job": list(),
+            "tests": list()
         }
         for job in jobs:
             df_job = df_tst_info.loc[(df_tst_info["job"] == job)]
@@ -156,7 +164,7 @@ class Layout:
                 f"{self._tooltip_file}\n{err}"
             )
 
-        self._default_tab_failed = table_failed(self.data, self._default["job"])
+        self._default_tab_failed = table_news(self.data, self._default["job"])
 
         # Callbacks:
         if self._app is not None and hasattr(self, 'callbacks'):
@@ -659,7 +667,7 @@ class Layout:
                 ctrl_panel.get("dd-tbeds-value")
             )
             ctrl_panel.set({"al-job-children": job})
-            tab_failed = table_failed(self.data, job)
+            tab_failed = table_news(self.data, job)
 
             ret_val = [
                 ctrl_panel.panel,
