@@ -416,6 +416,9 @@ TCP TPUT
 This profile uses a small transaction of "request-response" type,
 with some data amount to be transferred both ways.
 
+In CSIT release 22.06, TRex behavior changed, so we needed to edit
+the traffic profile. Let us describe the pre-22.06 profile first.
+
 Client connects, sends 5 data packets worth of data,
 receives 5 data packets worth of data and closes its side of the connection.
 Server accepts connection, reads 5 data packets worth of data,
@@ -448,6 +451,19 @@ ASTF programs finish eventually. This can lead to big duration stretching
 and somehow uneven rate of packets sent. This makes it hard to interpret
 MRR results (frequently MRR is below NDR for this reason),
 but NDR and PDR results tend to be stable enough.
+
+In 22.06, the "ACK from the receiving side" behavior changed,
+the receiving side started sending ACK sometimes
+also before receiving the full set of 5 data packets.
+If the previous profile is understood as a "single challenge, single response"
+where both challenge and response is sent as a burst of 5 data packets,
+the new profile uses "bursts" of 1 packet instead, but issues
+the challenge-response part 5 times sequentially
+(waiting for receiving the response before sending next challenge).
+This new profile happens to have the same overall packet count
+(when no re-transmissions are needed).
+Although it is possibly more taxing for TRex CPU,
+the results are comparable to the old traffic profile.
 
 Ip4base tests
 ^^^^^^^^^^^^^
