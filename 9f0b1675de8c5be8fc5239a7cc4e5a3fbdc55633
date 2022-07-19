@@ -16,6 +16,23 @@
       "message": "Device tests fail due to infra, but this does not affect device tests.",
       "revId": "9f0b1675de8c5be8fc5239a7cc4e5a3fbdc55633",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fbeffc1_ceef666c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-19T13:11:59Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "9f0b1675de8c5be8fc5239a7cc4e5a3fbdc55633",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
