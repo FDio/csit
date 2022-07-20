@@ -111,7 +111,8 @@ class Memif:
             tx_queues=int(txq),
             socket_id=int(sid),
             id=int(mid),
-            secret=u""
+            secret=u"",
+            no_zero_copy=True,
         )
 
         with PapiSocketExecutor(node) as papi_exec:
