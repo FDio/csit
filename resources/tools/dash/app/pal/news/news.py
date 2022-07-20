@@ -14,9 +14,9 @@
 """Instantiate the Statistics Dash applocation.
 """
 import dash
-import dash_bootstrap_components as dbc
 
 from .layout import Layout
+from ..utils.constants import Constants as C
 
 
 def init_news(server):
@@ -30,15 +30,15 @@ def init_news(server):
 
     dash_app = dash.Dash(
         server=server,
-        routes_pathname_prefix=u"/news/",
-        external_stylesheets=[dbc.themes.LUX],
+        routes_pathname_prefix=C.NEWS_ROUTES_PATHNAME_PREFIX,
+        external_stylesheets=C.EXTERNAL_STYLESHEETS
     )
 
     layout = Layout(
         app=dash_app,
-        html_layout_file="pal/templates/news_layout.jinja2",
-        data_spec_file="pal/data/data.yaml",
-        tooltip_file="pal/data/tooltips.yaml",
+        html_layout_file=C.NEWS_HTML_LAYOUT_FILE,
+        data_spec_file=C.DATA_SPEC_FILE,
+        tooltip_file=C.TOOLTIP_FILE,
     )
     dash_app.index_string = layout.html_layout
     dash_app.layout = layout.add_content()

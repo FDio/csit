@@ -29,21 +29,14 @@ from datetime import datetime, timedelta
 from copy import deepcopy
 
 from ..data.data import Data
-from ..data.url_processing import url_decode, url_encode
+from ..utils.constants import Constants as C
+from ..utils.url_processing import url_decode, url_encode
 from .graphs import graph_statistics, select_data
 
 
 class Layout:
     """
     """
-
-    DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
-
-    URL_STYLE = {
-        "background-color": "#d2ebf5",
-        "border-color": "#bce1f1",
-        "color": "#135d7c"
-    }
 
     def __init__(self, app: Flask, html_layout_file: str,
         graph_layout_file: str, data_spec_file: str, tooltip_file: str,
@@ -95,7 +88,7 @@ class Layout:
             job_info["tbed"].append("-".join(lst_job[-2:]))
         self.df_job_info = pd.DataFrame.from_dict(job_info)
 
-        self._default = self._set_job_params(self.DEFAULT_JOB)
+        self._default = self._set_job_params(C.STATS_DEFAULT_JOB)
 
         tst_info = {
             "job": list(),
@@ -431,7 +424,7 @@ class Layout:
                                     class_name="me-1",
                                     children=[
                                         dbc.InputGroupText(
-                                            style=self.URL_STYLE,
+                                            style=C.URL_STYLE,
                                             children=self._show_tooltip(
                                                 "help-url", "URL", "input-url")
                                         ),
@@ -439,7 +432,7 @@ class Layout:
                                             id="input-url",
                                             readonly=True,
                                             type="url",
-                                            style=self.URL_STYLE,
+                                            style=C.URL_STYLE,
                                             value=""
                                         )
                                     ]

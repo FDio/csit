@@ -22,96 +22,14 @@ import hdrh.codec
 
 from datetime import datetime
 
-from ..data.utils import classify_anomalies
-
-_NORM_FREQUENCY = 2.0  # [GHz]
-_FREQURENCY = {  # [GHz]
-    "2n-aws": 1.000,
-    "2n-dnv": 2.000,
-    "2n-clx": 2.300,
-    "2n-icx": 2.600,
-    "2n-skx": 2.500,
-    "2n-tx2": 2.500,
-    "2n-zn2": 2.900,
-    "3n-alt": 3.000,
-    "3n-aws": 1.000,
-    "3n-dnv": 2.000,
-    "3n-icx": 2.600,
-    "3n-skx": 2.500,
-    "3n-tsh": 2.200
-}
-
-_ANOMALY_COLOR = {
-    "regression": 0.0,
-    "normal": 0.5,
-    "progression": 1.0
-}
-_COLORSCALE_TPUT = [
-    [0.00, "red"],
-    [0.33, "red"],
-    [0.33, "white"],
-    [0.66, "white"],
-    [0.66, "green"],
-    [1.00, "green"]
-]
-_TICK_TEXT_TPUT = ["Regression", "Normal", "Progression"]
-_COLORSCALE_LAT = [
-    [0.00, "green"],
-    [0.33, "green"],
-    [0.33, "white"],
-    [0.66, "white"],
-    [0.66, "red"],
-    [1.00, "red"]
-]
-_TICK_TEXT_LAT = ["Progression", "Normal", "Regression"]
-_VALUE = {
-    "mrr": "result_receive_rate_rate_avg",
-    "ndr": "result_ndr_lower_rate_value",
-    "pdr": "result_pdr_lower_rate_value",
-    "pdr-lat": "result_latency_forward_pdr_50_avg"
-}
-_UNIT = {
-    "mrr": "result_receive_rate_rate_unit",
-    "ndr": "result_ndr_lower_rate_unit",
-    "pdr": "result_pdr_lower_rate_unit",
-    "pdr-lat": "result_latency_forward_pdr_50_unit"
-}
-_LAT_HDRH = (  # Do not change the order
-    "result_latency_forward_pdr_0_hdrh",
-    "result_latency_reverse_pdr_0_hdrh",
-    "result_latency_forward_pdr_10_hdrh",
-    "result_latency_reverse_pdr_10_hdrh",
-    "result_latency_forward_pdr_50_hdrh",
-    "result_latency_reverse_pdr_50_hdrh",
-    "result_latency_forward_pdr_90_hdrh",
-    "result_latency_reverse_pdr_90_hdrh",
-)
-# This value depends on latency stream rate (9001 pps) and duration (5s).
-# Keep it slightly higher to ensure rounding errors to not remove tick mark.
-PERCENTILE_MAX = 99.999501
-
-_GRAPH_LAT_HDRH_DESC = {
-    "result_latency_forward_pdr_0_hdrh": "No-load.",
-    "result_latency_reverse_pdr_0_hdrh": "No-load.",
-    "result_latency_forward_pdr_10_hdrh": "Low-load, 10% PDR.",
-    "result_latency_reverse_pdr_10_hdrh": "Low-load, 10% PDR.",
-    "result_latency_forward_pdr_50_hdrh": "Mid-load, 50% PDR.",
-    "result_latency_reverse_pdr_50_hdrh": "Mid-load, 50% PDR.",
-    "result_latency_forward_pdr_90_hdrh": "High-load, 90% PDR.",
-    "result_latency_reverse_pdr_90_hdrh": "High-load, 90% PDR."
-}
+from ..utils.constants import Constants as C
+from ..utils.utils import classify_anomalies
 
 
 def _get_color(idx: int) -> str:
     """
     """
-    _COLORS = (
-        "#1A1110", "#DA2647", "#214FC6", "#01786F", "#BD8260", "#FFD12A",
-        "#A6E7FF", "#738276", "#C95A49", "#FC5A8D", "#CEC8EF", "#391285",
-        "#6F2DA8", "#FF878D", "#45A27D", "#FFD0B9", "#FD5240", "#DB91EF",
-        "#44D7A8", "#4F86F7", "#84DE02", "#FFCFF1", "#614051"
-    )
-    return _COLORS[idx % len(_COLORS)]
+    return C.PLOT_COLORS[idx % len(C.PLOT_COLORS)]
 
 
 def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
@@ -119,7 +37,7 @@ def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
     """
 
     latencies = {"name": name}
-    for key in _LAT_HDRH:
+    for key in C.LAT_HDRH:
         try:
             latencies[key] = row[key]
         except KeyError:
@@ -176,7 +94,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     """
     """
 
-    df = df.dropna(subset=[_VALUE[ttype], ])
+    df = df.dropna(subset=[C.VALUE[ttype], ])
     if df.empty:
         return list()
     df = df.loc[((df["start_time"] >= start) & (df["start_time"] <= end))]
@@ -185,9 +103,9 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
 
     x_axis = df["start_time"].tolist()
     if ttype == "pdr-lat":
-        y_data = [(itm / norm_factor) for itm in df[_VALUE[ttype]].tolist()]
+        y_data = [(itm / norm_factor) for itm in df[C.VALUE[ttype]].tolist()]
     else:
-        y_data = [(itm * norm_factor) for itm in df[_VALUE[ttype]].tolist()]
+        y_data = [(itm * norm_factor) for itm in df[C.VALUE[ttype]].tolist()]
 
     anomalies, trend_avg, trend_stdev = classify_anomalies(
         {k: v for k, v in zip(x_axis, y_data)}
@@ -199,7 +117,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
             f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
-            f"<prop> [{row[_UNIT[ttype]]}]: {y_data[idx]:,.0f}<br>"
+            f"<prop> [{row[C.UNIT[ttype]]}]: {y_data[idx]:,.0f}<br>"
             f"<stdev>"
             f"{d_type}-ref: {row['dut_version']}<br>"
             f"csit-ref: {row['job']}/{row['build']}<br>"
@@ -277,7 +195,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
             if anomaly in ("regression", "progression"):
                 anomaly_x.append(x_axis[idx])
                 anomaly_y.append(trend_avg[idx])
-                anomaly_color.append(_ANOMALY_COLOR[anomaly])
+                anomaly_color.append(C.ANOMALY_COLOR[anomaly])
                 hover_itm = (
                     f"date: {x_axis[idx].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                     f"trend [pps]: {trend_avg[idx]:,.0f}<br>"
@@ -301,8 +219,8 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
                     "size": 15,
                     "symbol": "circle-open",
                     "color": anomaly_color,
-                    "colorscale": _COLORSCALE_LAT \
-                        if ttype == "pdr-lat" else _COLORSCALE_TPUT,
+                    "colorscale": C.COLORSCALE_LAT \
+                        if ttype == "pdr-lat" else C.COLORSCALE_TPUT,
                     "showscale": True,
                     "line": {
                         "width": 2
@@ -314,8 +232,8 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
                         "titleside": "right",
                         "tickmode": "array",
                         "tickvals": [0.167, 0.500, 0.833],
-                        "ticktext": _TICK_TEXT_LAT \
-                            if ttype == "pdr-lat" else _TICK_TEXT_TPUT,
+                        "ticktext": C.TICK_TEXT_LAT \
+                            if ttype == "pdr-lat" else C.TICK_TEXT_TPUT,
                         "ticks": "",
                         "ticklen": 0,
                         "tickangle": -90,
@@ -349,7 +267,7 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
         if normalize:
             phy = itm["phy"].split("-")
             topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
-            norm_factor = (_NORM_FREQUENCY / _FREQURENCY[topo_arch]) \
+            norm_factor = (C.NORM_FREQUENCY / C.FREQUENCY[topo_arch]) \
                 if topo_arch else 1.0
         else:
             norm_factor = 1.0
@@ -400,11 +318,11 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             # For 100%, we cut that down to "x_perc" to avoid
             # infinity.
             percentile = item.percentile_level_iterated_to
-            x_perc = min(percentile, PERCENTILE_MAX)
+            x_perc = min(percentile, C.PERCENTILE_MAX)
             xaxis.append(previous_x)
             yaxis.append(item.value_iterated_to)
             hovertext.append(
-                f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
+                f"<b>{C.GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
                 f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
                 f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
                 f"Latency: {item.value_iterated_to}uSec"
@@ -413,7 +331,7 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             xaxis.append(next_x)
             yaxis.append(item.value_iterated_to)
             hovertext.append(
-                f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
+                f"<b>{C.GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
                 f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
                 f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
                 f"Latency: {item.value_iterated_to}uSec"
@@ -425,9 +343,9 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             go.Scatter(
                 x=xaxis,
                 y=yaxis,
-                name=_GRAPH_LAT_HDRH_DESC[lat_name],
+                name=C.GRAPH_LAT_HDRH_DESC[lat_name],
                 mode="lines",
-                legendgroup=_GRAPH_LAT_HDRH_DESC[lat_name],
+                legendgroup=C.GRAPH_LAT_HDRH_DESC[lat_name],
                 showlegend=bool(idx % 2),
                 line=dict(
                     color=_get_color(int(idx/2)),

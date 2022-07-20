@@ -19,21 +19,8 @@ import logging
 from flask import Flask
 from flask_assets import Environment
 
+from .utils.constants import Constants as C
 
-# Maximal value of TIME_PERIOD for Trending in days.
-# Do not change without a good reason.
-MAX_TIME_PERIOD = 180
-
-# It defines the time period for Trending in days from now back to the past from
-# which data is read to dataframes.
-# TIME_PERIOD = None means all data (max MAX_TIME_PERIOD days) is read.
-# TIME_PERIOD = MAX_TIME_PERIOD is the default value
-TIME_PERIOD = MAX_TIME_PERIOD  # [days]
-
-# List of releases used for iterative data processing.
-# The releases MUST be in the order from the current (newest) to the last
-# (oldest).
-RELEASES=["csit2206", "csit2202", ]
 
 def init_app():
     """Construct core Flask application with embedded Dash app.
@@ -58,10 +45,10 @@ def init_app():
         assets.init_app(app)
 
         # Set the time period for Trending
-        if TIME_PERIOD is None or TIME_PERIOD > MAX_TIME_PERIOD:
-            time_period = MAX_TIME_PERIOD
+        if C.TIME_PERIOD is None or C.TIME_PERIOD > C.MAX_TIME_PERIOD:
+            time_period = C.MAX_TIME_PERIOD
         else:
-            time_period = TIME_PERIOD
+            time_period = C.TIME_PERIOD
 
         # Import Dash applications.
         from .news.news import init_news
@@ -74,7 +61,7 @@ def init_app():
         app = init_trending(app, time_period=time_period)
 
         from .report.report import init_report
-        app = init_report(app, releases=RELEASES)
+        app = init_report(app, releases=C.RELEASES)
 
     return app
 

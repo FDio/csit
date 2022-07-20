@@ -14,9 +14,9 @@
 """Instantiate the Trending Dash applocation.
 """
 import dash
-import dash_bootstrap_components as dbc
 
 from .layout import Layout
+from ..utils.constants import Constants as C
 
 
 def init_trending(server, time_period=None):
@@ -30,16 +30,16 @@ def init_trending(server, time_period=None):
 
     dash_app = dash.Dash(
         server=server,
-        routes_pathname_prefix=u"/trending/",
-        external_stylesheets=[dbc.themes.LUX],
+        routes_pathname_prefix=C.TREND_ROUTES_PATHNAME_PREFIX,
+        external_stylesheets=C.EXTERNAL_STYLESHEETS
     )
 
     layout = Layout(
         app=dash_app,
-        html_layout_file="pal/templates/trending_layout.jinja2",
-        graph_layout_file="pal/trending/layout.yaml",
-        data_spec_file="pal/data/data.yaml",
-        tooltip_file="pal/data/tooltips.yaml",
+        html_layout_file=C.TREND_HTML_LAYOUT_FILE,
+        graph_layout_file=C.TREND_GRAPH_LAYOUT_FILE,
+        data_spec_file=C.DATA_SPEC_FILE,
+        tooltip_file=C.TOOLTIP_FILE,
         time_period=time_period
     )
     dash_app.index_string = layout.html_layout

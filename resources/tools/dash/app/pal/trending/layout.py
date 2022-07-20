@@ -30,60 +30,16 @@ from copy import deepcopy
 from json import loads, JSONDecodeError
 from ast import literal_eval
 
-from ..data.data import Data
-from ..data.url_processing import url_decode, url_encode
 from .graphs import graph_trending, graph_hdrh_latency, \
     select_trending_data
+from ..data.data import Data
+from ..utils.url_processing import url_decode, url_encode
+from ..utils.constants import Constants as C
 
 
 class Layout:
     """
     """
-
-    # If True, clear all inputs in control panel when button "ADD SELECTED" is
-    # pressed.
-    CLEAR_ALL_INPUTS = False
-
-    STYLE_DISABLED = {"display": "none"}
-    STYLE_ENABLED = {"display": "inherit"}
-
-    CL_ALL_DISABLED = [{
-        "label": "All",
-        "value": "all",
-        "disabled": True
-    }]
-    CL_ALL_ENABLED = [{
-        "label": "All",
-        "value": "all",
-        "disabled": False
-    }]
-
-    PLACEHOLDER = html.Nobr("")
-
-    DRIVERS = ("avf", "af-xdp", "rdma", "dpdk")
-
-    LABELS = {
-        "dpdk": "DPDK",
-        "container_memif": "LXC/DRC Container Memif",
-        "crypto": "IPSec IPv4 Routing",
-        "ip4": "IPv4 Routing",
-        "ip6": "IPv6 Routing",
-        "ip4_tunnels": "IPv4 Tunnels",
-        "l2": "L2 Ethernet Switching",
-        "srv6": "SRv6 Routing",
-        "vm_vhost": "VMs vhost-user",
-        "nfv_density-dcr_memif-chain_ipsec": "CNF Service Chains Routing IPSec",
-        "nfv_density-vm_vhost-chain_dot1qip4vxlan":"VNF Service Chains Tunnels",
-        "nfv_density-vm_vhost-chain": "VNF Service Chains Routing",
-        "nfv_density-dcr_memif-pipeline": "CNF Service Pipelines Routing",
-        "nfv_density-dcr_memif-chain": "CNF Service Chains Routing",
-    }
-
-    URL_STYLE = {
-        "background-color": "#d2ebf5",
-        "border-color": "#bce1f1",
-        "color": "#135d7c"
-    }
 
     def __init__(self, app: Flask, html_layout_file: str,
         graph_layout_file: str, data_spec_file: str, tooltip_file: str,
@@ -135,7 +91,7 @@ class Layout:
                 replace("2n-", "")
             test = lst_test[-1]
             nic = suite.split("-")[0]
-            for drv in self.DRIVERS:
+            for drv in C.DRIVERS:
                 if drv in test:
                     if drv == "af-xdp":
                         driver = "af_xdp"
@@ -242,7 +198,7 @@ class Layout:
         return self._time_period
 
     def label(self, key: str) -> str:
-        return self.LABELS.get(key, key)
+        return C.LABELS.get(key, key)
 
     def _show_tooltip(self, id: str, title: str,
             clipboard_id: str=None) -> list:
@@ -364,21 +320,21 @@ class Layout:
                             id="row-graph-tput",
                             class_name="g-0 p-2",
                             children=[
-                                self.PLACEHOLDER
+                                C.PLACEHOLDER
                             ]
                         ),
                         dbc.Row(  # Latency
                             id="row-graph-lat",
                             class_name="g-0 p-2",
                             children=[
-                                self.PLACEHOLDER
+                                C.PLACEHOLDER
                             ]
                         ),
                         dbc.Row(  # Download
                             id="row-btn-download",
                             class_name="g-0 p-2",
                             children=[
-                                self.PLACEHOLDER
+                                C.PLACEHOLDER
                             ]
                         )
                     ]
@@ -497,7 +453,7 @@ class Layout:
                             children=[
                                 dbc.Checklist(
                                     id="cl-ctrl-framesize-all",
-                                    options=self.CL_ALL_DISABLED,
+                                    options=C.CL_ALL_DISABLED,
                                     inline=True,
                                     switch=False
                                 ),
@@ -528,7 +484,7 @@ class Layout:
                             children=[
                                 dbc.Checklist(
                                     id="cl-ctrl-core-all",
-                                    options=self.CL_ALL_DISABLED,
+                                    options=C.CL_ALL_DISABLED,
                                     inline=False,
                                     switch=False
                                 )
@@ -559,7 +515,7 @@ class Layout:
                             children=[
                                 dbc.Checklist(
                                     id="cl-ctrl-testtype-all",
-                                    options=self.CL_ALL_DISABLED,
+                                    options=C.CL_ALL_DISABLED,
                                     inline=True,
                                     switch=False
                                 ),
@@ -648,7 +604,7 @@ class Layout:
                 dbc.Row(
                     id="row-card-sel-tests",
                     class_name="gy-1",
-                    style=self.STYLE_DISABLED,
+                    style=C.STYLE_DISABLED,
                     children=[
                         dbc.Label(
                             "Selected tests",
@@ -665,7 +621,7 @@ class Layout:
                 ),
                 dbc.Row(
                     id="row-btns-sel-tests",
-                    style=self.STYLE_DISABLED,
+                    style=C.STYLE_DISABLED,
                     children=[
                         dbc.ButtonGroup(
                             class_name="gy-2",
@@ -695,12 +651,6 @@ class Layout:
     class ControlPanel:
         def __init__(self, panel: dict) -> None:
 
-            CL_ALL_DISABLED = [{
-                "label": "All",
-                "value": "all",
-                "disabled": True
-            }]
-
             # Defines also the order of keys
             self._defaults = {
                 "dd-ctrl-dut-value": str(),
@@ -716,15 +666,15 @@ class Layout:
                 "cl-ctrl-core-options": list(),
                 "cl-ctrl-core-value": list(),
                 "cl-ctrl-core-all-value": list(),
-                "cl-ctrl-core-all-options": CL_ALL_DISABLED,
+                "cl-ctrl-core-all-options": C.CL_ALL_DISABLED,
                 "cl-ctrl-framesize-options": list(),
                 "cl-ctrl-framesize-value": list(),
                 "cl-ctrl-framesize-all-value": list(),
-                "cl-ctrl-framesize-all-options": CL_ALL_DISABLED,
+                "cl-ctrl-framesize-all-options": C.CL_ALL_DISABLED,
                 "cl-ctrl-testtype-options": list(),
                 "cl-ctrl-testtype-value": list(),
                 "cl-ctrl-testtype-all-value": list(),
-                "cl-ctrl-testtype-all-options": CL_ALL_DISABLED,
+                "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
                 "btn-ctrl-add-disabled": True,
                 "cl-normalize-value": list(),
                 "cl-selected-options": list(),
@@ -788,9 +738,9 @@ class Layout:
 
             (fig_tput, fig_lat) = figs
 
-            row_fig_tput = self.PLACEHOLDER
-            row_fig_lat = self.PLACEHOLDER
-            row_btn_dwnld = self.PLACEHOLDER
+            row_fig_tput = C.PLACEHOLDER
+            row_fig_lat = C.PLACEHOLDER
+            row_btn_dwnld = C.PLACEHOLDER
 
             if fig_tput:
                 row_fig_tput = [
@@ -822,7 +772,7 @@ class Layout:
                                 class_name="me-1",
                                 children=[
                                     dbc.InputGroupText(
-                                        style=self.URL_STYLE,
+                                        style=C.URL_STYLE,
                                         children=self._show_tooltip(
                                             "help-url", "URL", "input-url")
                                     ),
@@ -830,7 +780,7 @@ class Layout:
                                         id="input-url",
                                         readonly=True,
                                         type="url",
-                                        style=self.URL_STYLE,
+                                        style=C.URL_STYLE,
                                         value=url
                                     )
                                 ]
@@ -971,15 +921,15 @@ class Layout:
                     "cl-ctrl-core-options": list(),
                     "cl-ctrl-core-value": list(),
                     "cl-ctrl-core-all-value": list(),
-                    "cl-ctrl-core-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-core-all-options": C.CL_ALL_DISABLED,
                     "cl-ctrl-framesize-options": list(),
                     "cl-ctrl-framesize-value": list(),
                     "cl-ctrl-framesize-all-value": list(),
-                    "cl-ctrl-framesize-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-framesize-all-options": C.CL_ALL_DISABLED,
                     "cl-ctrl-testtype-options": list(),
                     "cl-ctrl-testtype-value": list(),
                     "cl-ctrl-testtype-all-value": list(),
-                    "cl-ctrl-testtype-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
                 })
             elif trigger_id == "dd-ctrl-phy":
                 try:
@@ -1005,15 +955,15 @@ class Layout:
                     "cl-ctrl-core-options": list(),
                     "cl-ctrl-core-value": list(),
                     "cl-ctrl-core-all-value": list(),
-                    "cl-ctrl-core-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-core-all-options": C.CL_ALL_DISABLED,
                     "cl-ctrl-framesize-options": list(),
                     "cl-ctrl-framesize-value": list(),
                     "cl-ctrl-framesize-all-value": list(),
-                    "cl-ctrl-framesize-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-framesize-all-options": C.CL_ALL_DISABLED,
                     "cl-ctrl-testtype-options": list(),
                     "cl-ctrl-testtype-value": list(),
                     "cl-ctrl-testtype-all-value": list(),
-                    "cl-ctrl-testtype-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
                 })
             elif trigger_id == "dd-ctrl-area":
                 try:
@@ -1036,15 +986,15 @@ class Layout:
                     "cl-ctrl-core-options": list(),
                     "cl-ctrl-core-value": list(),
                     "cl-ctrl-core-all-value": list(),
-                    "cl-ctrl-core-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-core-all-options": C.CL_ALL_DISABLED,
                     "cl-ctrl-framesize-options": list(),
                     "cl-ctrl-framesize-value": list(),
                     "cl-ctrl-framesize-all-value": list(),
-                    "cl-ctrl-framesize-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-framesize-all-options": C.CL_ALL_DISABLED,
                     "cl-ctrl-testtype-options": list(),
                     "cl-ctrl-testtype-value": list(),
                     "cl-ctrl-testtype-all-value": list(),
-                    "cl-ctrl-testtype-all-options": self.CL_ALL_DISABLED,
+                    "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
                 })
             elif trigger_id == "dd-ctrl-test":
                 core_opts = list()
@@ -1069,15 +1019,15 @@ class Layout:
                         "cl-ctrl-core-options": core_opts,
                         "cl-ctrl-core-value": list(),
                         "cl-ctrl-core-all-value": list(),
-                        "cl-ctrl-core-all-options": self.CL_ALL_ENABLED,
+                        "cl-ctrl-core-all-options": C.CL_ALL_ENABLED,
                         "cl-ctrl-framesize-options": framesize_opts,
                         "cl-ctrl-framesize-value": list(),
                         "cl-ctrl-framesize-all-value": list(),
-                        "cl-ctrl-framesize-all-options": self.CL_ALL_ENABLED,
+                        "cl-ctrl-framesize-all-options": C.CL_ALL_ENABLED,
                         "cl-ctrl-testtype-options": testtype_opts,
                         "cl-ctrl-testtype-value": list(),
                         "cl-ctrl-testtype-all-value": list(),
-                        "cl-ctrl-testtype-all-options": self.CL_ALL_ENABLED,
+                        "cl-ctrl-testtype-all-options": C.CL_ALL_ENABLED,
                     })
             elif trigger_id == "cl-ctrl-core":
                 val_sel, val_all = self._sync_checklists(
@@ -1180,17 +1130,17 @@ class Layout:
                                         "testtype": ttype.lower()
                                     })
                     store_sel = sorted(store_sel, key=lambda d: d["id"])
-                    row_card_sel_tests = self.STYLE_ENABLED
-                    row_btns_sel_tests = self.STYLE_ENABLED
-                    if self.CLEAR_ALL_INPUTS:
+                    row_card_sel_tests = C.STYLE_ENABLED
+                    row_btns_sel_tests = C.STYLE_ENABLED
+                    if C.CLEAR_ALL_INPUTS:
                         ctrl_panel.set(ctrl_panel.defaults)
             elif trigger_id == "btn-sel-remove-all":
                 _ = btn_remove_all
-                row_fig_tput = self.PLACEHOLDER
-                row_fig_lat = self.PLACEHOLDER
-                row_btn_dwnld = self.PLACEHOLDER
-                row_card_sel_tests = self.STYLE_DISABLED
-                row_btns_sel_tests = self.STYLE_DISABLED
+                row_fig_tput = C.PLACEHOLDER
+                row_fig_lat = C.PLACEHOLDER
+                row_btn_dwnld = C.PLACEHOLDER
+                row_card_sel_tests = C.STYLE_DISABLED
+                row_btns_sel_tests = C.STYLE_DISABLED
                 store_sel = list()
                 ctrl_panel.set({"cl-selected-options": list()})
             elif trigger_id == "btn-sel-remove":
@@ -1210,8 +1160,8 @@ class Layout:
                     d_start = self._get_date(url_params.get("start", list())[0])
                     d_end = self._get_date(url_params.get("end", list())[0])
                     if store_sel:
-                        row_card_sel_tests = self.STYLE_ENABLED
-                        row_btns_sel_tests = self.STYLE_ENABLED
+                        row_card_sel_tests = C.STYLE_ENABLED
+                        row_btns_sel_tests = C.STYLE_ENABLED
 
             if trigger_id in ("btn-ctrl-add", "url", "dpr-period",
                     "btn-sel-remove", "cl-ctrl-normalize"):
@@ -1226,11 +1176,11 @@ class Layout:
                         "cl-selected-options": self._list_tests(store_sel)
                     })
                 else:
-                    row_fig_tput = self.PLACEHOLDER
-                    row_fig_lat = self.PLACEHOLDER
-                    row_btn_dwnld = self.PLACEHOLDER
-                    row_card_sel_tests = self.STYLE_DISABLED
-                    row_btns_sel_tests = self.STYLE_DISABLED
+                    row_fig_tput = C.PLACEHOLDER
+                    row_fig_lat = C.PLACEHOLDER
+                    row_btn_dwnld = C.PLACEHOLDER
+                    row_card_sel_tests = C.STYLE_DISABLED
+                    row_btns_sel_tests = C.STYLE_DISABLED
                     store_sel = list()
                     ctrl_panel.set({"cl-selected-options": list()})
 
