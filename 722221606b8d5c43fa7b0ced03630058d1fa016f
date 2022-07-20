@@ -56,6 +56,30 @@
       },
       "revId": "722221606b8d5c43fa7b0ced03630058d1fa016f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4ebcece_d0d3fed6",
+        "filename": "docs/report/introduction/methodology_nat44.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-20T08:18:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cfc63a2_fe83c846",
+      "range": {
+        "startLine": 459,
+        "startChar": 34,
+        "endLine": 459,
+        "endChar": 37
+      },
+      "revId": "722221606b8d5c43fa7b0ced03630058d1fa016f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
