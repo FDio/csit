@@ -14,8 +14,8 @@
 """Instantiate the Statistics Dash applocation.
 """
 import dash
-import dash_bootstrap_components as dbc
 
+from ..utils.constants import Constants as C
 from .layout import Layout
 
 
@@ -30,16 +30,16 @@ def init_stats(server, time_period=None):
 
     dash_app = dash.Dash(
         server=server,
-        routes_pathname_prefix=u"/stats/",
-        external_stylesheets=[dbc.themes.LUX],
+        routes_pathname_prefix=C.STATS_ROUTES_PATHNAME_PREFIX,
+        external_stylesheets=C.EXTERNAL_STYLESHEETS
     )
 
     layout = Layout(
         app=dash_app,
-        html_layout_file="pal/templates/stats_layout.jinja2",
-        graph_layout_file="pal/stats/layout.yaml",
-        data_spec_file="pal/data/data.yaml",
-        tooltip_file="pal/data/tooltips.yaml",
+        html_layout_file=C.STATS_HTML_LAYOUT_FILE,
+        graph_layout_file=C.STATS_GRAPH_LAYOUT_FILE,
+        data_spec_file=C.DATA_SPEC_FILE,
+        tooltip_file=C.TOOLTIP_FILE,
         time_period=time_period
     )
     dash_app.index_string = layout.html_layout

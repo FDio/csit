@@ -20,75 +20,13 @@ import pandas as pd
 
 from copy import deepcopy
 
-import hdrh.histogram
-import hdrh.codec
-
-
-_NORM_FREQUENCY = 2.0  # [GHz]
-_FREQURENCY = {  # [GHz]
-    "2n-aws": 1.000,
-    "2n-dnv": 2.000,
-    "2n-clx": 2.300,
-    "2n-icx": 2.600,
-    "2n-skx": 2.500,
-    "2n-tx2": 2.500,
-    "2n-zn2": 2.900,
-    "3n-alt": 3.000,
-    "3n-aws": 1.000,
-    "3n-dnv": 2.000,
-    "3n-icx": 2.600,
-    "3n-skx": 2.500,
-    "3n-tsh": 2.200
-}
-
-_VALUE = {
-    "mrr": "result_receive_rate_rate_values",
-    "ndr": "result_ndr_lower_rate_value",
-    "pdr": "result_pdr_lower_rate_value",
-    "pdr-lat": "result_latency_forward_pdr_50_avg"
-}
-_UNIT = {
-    "mrr": "result_receive_rate_rate_unit",
-    "ndr": "result_ndr_lower_rate_unit",
-    "pdr": "result_pdr_lower_rate_unit",
-    "pdr-lat": "result_latency_forward_pdr_50_unit"
-}
-_LAT_HDRH = (  # Do not change the order
-    "result_latency_forward_pdr_0_hdrh",
-    "result_latency_reverse_pdr_0_hdrh",
-    "result_latency_forward_pdr_10_hdrh",
-    "result_latency_reverse_pdr_10_hdrh",
-    "result_latency_forward_pdr_50_hdrh",
-    "result_latency_reverse_pdr_50_hdrh",
-    "result_latency_forward_pdr_90_hdrh",
-    "result_latency_reverse_pdr_90_hdrh",
-)
-# This value depends on latency stream rate (9001 pps) and duration (5s).
-# Keep it slightly higher to ensure rounding errors to not remove tick mark.
-PERCENTILE_MAX = 99.999501
-
-_GRAPH_LAT_HDRH_DESC = {
-    "result_latency_forward_pdr_0_hdrh": "No-load.",
-    "result_latency_reverse_pdr_0_hdrh": "No-load.",
-    "result_latency_forward_pdr_10_hdrh": "Low-load, 10% PDR.",
-    "result_latency_reverse_pdr_10_hdrh": "Low-load, 10% PDR.",
-    "result_latency_forward_pdr_50_hdrh": "Mid-load, 50% PDR.",
-    "result_latency_reverse_pdr_50_hdrh": "Mid-load, 50% PDR.",
-    "result_latency_forward_pdr_90_hdrh": "High-load, 90% PDR.",
-    "result_latency_reverse_pdr_90_hdrh": "High-load, 90% PDR."
-}
+from ..utils.constants import Constants as C
 
 
 def _get_color(idx: int) -> str:
     """
     """
-    _COLORS = (
-        "#1A1110", "#DA2647", "#214FC6", "#01786F", "#BD8260", "#FFD12A",
-        "#A6E7FF", "#738276", "#C95A49", "#FC5A8D", "#CEC8EF", "#391285",
-        "#6F2DA8", "#FF878D", "#45A27D", "#FFD0B9", "#FD5240", "#DB91EF",
-        "#44D7A8", "#4F86F7", "#84DE02", "#FFCFF1", "#614051"
-    )
-    return _COLORS[idx % len(_COLORS)]
+    return C.PLOT_COLORS[idx % len(C.PLOT_COLORS)]
 
 
 def get_short_version(version: str, dut_type: str="vpp") -> str:
@@ -182,16 +120,16 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             continue
         phy = itm["phy"].split("-")
         topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
-        norm_factor = (_NORM_FREQUENCY / _FREQURENCY[topo_arch]) \
+        norm_factor = (C.NORM_FREQUENCY / C.FREQUENCY[topo_arch]) \
             if normalize else 1.0
         if itm["testtype"] == "mrr":
-            y_data_raw = itm_data[_VALUE[itm["testtype"]]].to_list()[0]
+            y_data_raw = itm_data[C.VALUE_ITER[itm["testtype"]]].to_list()[0]
             y_data = [(y * norm_factor) for y in y_data_raw]
             if len(y_data) > 0:
                 y_tput_max = \
                     max(y_data) if max(y_data) > y_tput_max else y_tput_max
         else:
-            y_data_raw = itm_data[_VALUE[itm["testtype"]]].to_list()
+            y_data_raw = itm_data[C.VALUE_ITER[itm["testtype"]]].to_list()
             y_data = [(y * norm_factor) for y in y_data_raw]
             if y_data:
                 y_tput_max = \
@@ -214,7 +152,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
         show_tput = True
 
         if itm["testtype"] == "pdr":
-            y_lat_row = itm_data[_VALUE["pdr-lat"]].to_list()
+            y_lat_row = itm_data[C.VALUE_ITER["pdr-lat"]].to_list()
             y_lat = [(y / norm_factor) for y in y_lat_row]
             if y_lat:
                 y_lat_max = max(y_lat) if max(y_lat) > y_lat_max else y_lat_max
@@ -302,73 +240,3 @@ def table_comparison(data: pd.DataFrame, sel:dict,
     )
 
     return pd.DataFrame()  #table
-
-
-def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
-    """
-    """
-
-    fig = None
-
-    traces = list()
-    for idx, (lat_name, lat_hdrh) in enumerate(data.items()):
-        try:
-            decoded = hdrh.histogram.HdrHistogram.decode(lat_hdrh)
-        except (hdrh.codec.HdrLengthException, TypeError) as err:
-            continue
-        previous_x = 0.0
-        prev_perc = 0.0
-        xaxis = list()
-        yaxis = list()
-        hovertext = list()
-        for item in decoded.get_recorded_iterator():
-            # The real value is "percentile".
-            # For 100%, we cut that down to "x_perc" to avoid
-            # infinity.
-            percentile = item.percentile_level_iterated_to
-            x_perc = min(percentile, PERCENTILE_MAX)
-            xaxis.append(previous_x)
-            yaxis.append(item.value_iterated_to)
-            hovertext.append(
-                f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
-                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
-                f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
-                f"Latency: {item.value_iterated_to}uSec"
-            )
-            next_x = 100.0 / (100.0 - x_perc)
-            xaxis.append(next_x)
-            yaxis.append(item.value_iterated_to)
-            hovertext.append(
-                f"<b>{_GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
-                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
-                f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
-                f"Latency: {item.value_iterated_to}uSec"
-            )
-            previous_x = next_x
-            prev_perc = percentile
-
-        traces.append(
-            go.Scatter(
-                x=xaxis,
-                y=yaxis,
-                name=_GRAPH_LAT_HDRH_DESC[lat_name],
-                mode="lines",
-                legendgroup=_GRAPH_LAT_HDRH_DESC[lat_name],
-                showlegend=bool(idx % 2),
-                line=dict(
-                    color=_get_color(int(idx/2)),
-                    dash="solid",
-                    width=1 if idx % 2 else 2
-                ),
-                hovertext=hovertext,
-                hoverinfo="text"
-            )
-        )
-    if traces:
-        fig = go.Figure()
-        fig.add_traces(traces)
-        layout_hdrh = layout.get("plot-hdrh-latency", None)
-        if lat_hdrh:
-            fig.update_layout(layout_hdrh)
-
-    return fig
