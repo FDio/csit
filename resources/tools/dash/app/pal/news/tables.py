@@ -17,9 +17,7 @@
 import pandas as pd
 import dash_bootstrap_components as dbc
 
-
-# Time period for regressions and progressions.
-TIME_PERIOD = 21  # [days]
+from ..utils.constants import Constants as C
 
 
 def table_news(data: pd.DataFrame, job: str) -> list:
@@ -57,7 +55,7 @@ def table_news(data: pd.DataFrame, job: str) -> list:
             class_name="p-0",
             size="lg",
             children=(
-                f"Regressions during the last {TIME_PERIOD} days "
+                f"Regressions during the last {C.NEWS_TIME_PERIOD} days "
                 f"({len(regressions['Test Name'])})"
             )
         ),
@@ -68,7 +66,7 @@ def table_news(data: pd.DataFrame, job: str) -> list:
             class_name="p-0",
             size="lg",
             children=(
-                f"Progressions during the last {TIME_PERIOD} days "
+                f"Progressions during the last {C.NEWS_TIME_PERIOD} days "
                 f"({len(progressions['Test Name'])})"
             )
         ),

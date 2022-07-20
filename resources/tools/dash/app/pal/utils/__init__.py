@@ -10,23 +10,3 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-"""Routes for parent Flask app.
-"""
-
-from flask import current_app as app
-from flask import render_template
-
-from .utils.constants import Constants as C
-
-
-@app.route(C.APPLICATIN_ROOT)
-def home():
-    """Landing page.
-    """
-    return render_template(
-        C.MAIN_HTML_LAYOUT_FILE,
-        title=C.TITLE,
-        description=C.DESCRIPTION,
-        template=C.TEMPLATE
-    )

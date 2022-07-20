@@ -27,19 +27,15 @@ from yaml import load, FullLoader, YAMLError
 from copy import deepcopy
 
 from ..data.data import Data
-from ..data.utils import classify_anomalies
+from ..utils.constants import Constants as C
+from ..utils.utils import classify_anomalies
+from ..data.data import Data
 from .tables import table_news
 
 
 class Layout:
     """The layout of the dash app and the callbacks.
     """
-
-    # The default job displayed when the page is loaded first time.
-    DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
-
-    # Time period for regressions and progressions.
-    TIME_PERIOD = 21  # [days]
 
     def __init__(self, app: Flask, html_layout_file: str, data_spec_file: str,
         tooltip_file: str) -> None:
@@ -73,7 +69,7 @@ class Layout:
         data_stats, data_mrr, data_ndrpdr = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_stats(days=self.TIME_PERIOD)
+        ).read_stats(days=C.NEWS_TIME_PERIOD)
 
         df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
@@ -95,7 +91,7 @@ class Layout:
             job_info["tbed"].append("-".join(lst_job[-2:]))
         self.df_job_info = pd.DataFrame.from_dict(job_info)
 
-        self._default = self._set_job_params(self.DEFAULT_JOB)
+        self._default = self._set_job_params(C.NEWS_DEFAULT_JOB)
 
         # Pre-process the data:
 

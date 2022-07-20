@@ -15,15 +15,13 @@
 """
 
 import logging
+import awswrangler as wr
 
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 from time import time
 from pytz import UTC
 from pandas import DataFrame
-
-import awswrangler as wr
-
 from awswrangler.exceptions import EmptyDataFrame, NoFilesFound
 
 
