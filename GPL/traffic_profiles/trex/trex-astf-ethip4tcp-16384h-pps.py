@@ -73,14 +73,20 @@ class TrafficProfile(TrafficProfileBaseClass):
         # client commands
         prog_c = ASTFProgram()
         prog_c.connect()
-        prog_c.send(u"1" * data_size)
-        prog_c.recv(data_size)
+        prog_c.set_var(u"var1", self.n_data_frames)
+        prog_c.set_label(u"a1:")
+        prog_c.send(u"1" * real_mss)
+        prog_c.recv(real_mss)
+        prog_c.jmp_nz(u"var1", u"a1:")
 
         # server commands
         prog_s = ASTFProgram()
         prog_s.accept()
-        prog_s.recv(data_size)
-        prog_s.send(u"1" * data_size)
+        prog_s.set_var(u"var2", self.n_data_frames)
+        prog_s.set_label(u"a2:")
+        prog_s.recv(real_mss)
+        prog_s.send(u"1" * real_mss)
+        prog_s.jmp_nz(u"var2", u"a2:")
 
         # ip generators
         ip_gen_c = ASTFIPGenDist(
@@ -113,11 +119,8 @@ class TrafficProfile(TrafficProfileBaseClass):
         globinfo = ASTFGlobalInfo()
         # Ensure correct data frame size.
         globinfo.tcp.mss = trex_mss
-        # Ensure the whole transaction is a single burst (per direction).
-        globinfo.tcp.initwnd = self.n_data_frames
-        # Ensure buffers are large enough so starting window works.
-        globinfo.tcp.txbufsize = data_size
-        globinfo.tcp.rxbufsize = data_size
+        globinfo.tcp.txbufsize = trex_mss
+        globinfo.tcp.rxbufsize = trex_mss
         kwargs = dict(
             default_c_glob_info=globinfo,
             default_s_glob_info=globinfo,
