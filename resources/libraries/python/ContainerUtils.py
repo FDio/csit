@@ -393,10 +393,10 @@ class ContainerManager:
         instances = []
         for i in range(1, n_instances + 1):
             instances.append(
-                f"create interface memif id {i} socket-id 1 master\n"
+                f"create interface memif id {i} socket-id 1 slave\n"
                 f"set interface state memif1/{i} up\n"
                 f"set interface l2 bridge memif1/{i} 1\n"
-                f"create interface memif id {i} socket-id 2 master\n"
+                f"create interface memif id {i} socket-id 2 slave\n"
                 f"set interface state memif2/{i} up\n"
                 f"set interface l2 bridge memif2/{i} 2\n"
                 f"set ip neighbor memif2/{i} {tg_pf_ip4} {tg_pf_mac} "

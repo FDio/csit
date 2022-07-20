@@ -311,9 +311,11 @@
 | | | ${sock1}= | Set Variable | memif-${dut}_CNF
 | | | ${sock2}= | Set Variable | memif-${dut}_CNF
 | | | ${prev_index}= | Evaluate | ${number}-1
+| | | ${role}= | Set Variable If | "${number}" == "1" | MASTER | SLAVE
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
 | | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
+| | | ... | role=${role}
 | | | ${xconnect_if1}= | Set Variable If | ${number}==1
 | | | ... | ${${dut}_${int}1}[0] | ${${dut}-memif-${prev_index}-if2}
 | | | Configure L2XC | ${nodes['${dut}']} | ${xconnect_if1}
