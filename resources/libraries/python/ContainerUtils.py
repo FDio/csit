@@ -1192,8 +1192,12 @@ class Docker(ContainerEngine):
         """
         cmd = f"docker inspect {self.container.name}"
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
+        for _ in range(3):
+            ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+            if int(ret) == 0:
+                break
+            sleep(1)
+        else:
             raise RuntimeError(
                 f"Failed to get info about container {self.container.name}."
             )
