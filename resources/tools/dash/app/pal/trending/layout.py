@@ -31,7 +31,9 @@ from json import loads, JSONDecodeError
 from ast import literal_eval
 
 from ..utils.constants import Constants as C
-from ..utils.url_processing import url_decode, url_encode
+from ..utils.utils import show_tooltip, label, sync_checklists, list_tests, \
+    get_date, gen_new_url
+from ..utils.url_processing import url_decode
 from ..data.data import Data
 from .graphs import graph_trending, graph_hdrh_latency, \
     select_trending_data
@@ -197,32 +199,6 @@ class Layout:
     def time_period(self):
         return self._time_period
 
-    def label(self, key: str) -> str:
-        return C.LABELS.get(key, key)
-
-    def _show_tooltip(self, id: str, title: str,
-            clipboard_id: str=None) -> list:
-        """
-        """
-        return [
-            dcc.Clipboard(target_id=clipboard_id, title="Copy URL") \
-                if clipboard_id else str(),
-            f"{title} ",
-            dbc.Badge(
-                id=id,
-                children="?",
-                pill=True,
-                color="white",
-                text_color="info",
-                class_name="border ms-1",
-            ),
-            dbc.Tooltip(
-                children=self._tooltips.get(id, str()),
-                target=id,
-                placement="auto"
-            )
-        ]
-
     def add_content(self):
         """
         """
@@ -356,7 +332,7 @@ class Layout:
                         dbc.InputGroup(
                             [
                                 dbc.InputGroupText(
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-dut", "DUT")
                                 ),
                                 dbc.Select(
@@ -384,7 +360,7 @@ class Layout:
                         dbc.InputGroup(
                             [
                                 dbc.InputGroupText(
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-infra", "Infra")
                                 ),
                                 dbc.Select(
@@ -406,7 +382,7 @@ class Layout:
                         dbc.InputGroup(
                             [
                                 dbc.InputGroupText(
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-area", "Area")
                                 ),
                                 dbc.Select(
@@ -426,7 +402,7 @@ class Layout:
                         dbc.InputGroup(
                             [
                                 dbc.InputGroupText(
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-test", "Test")
                                 ),
                                 dbc.Select(
@@ -445,7 +421,7 @@ class Layout:
                     class_name="gy-1",
                     children=[
                         dbc.Label(
-                            children=self._show_tooltip(
+                            children=show_tooltip(self._tooltips,
                                 "help-framesize", "Frame Size"),
                             class_name="p-0"
                         ),
@@ -476,7 +452,7 @@ class Layout:
                     class_name="gy-1",
                     children=[
                         dbc.Label(
-                            children=self._show_tooltip(
+                            children=show_tooltip(self._tooltips,
                                 "help-cores", "Number of Cores"),
                             class_name="p-0"
                         ),
@@ -507,7 +483,7 @@ class Layout:
                     class_name="gy-1",
                     children=[
                         dbc.Label(
-                            children=self._show_tooltip(
+                            children=show_tooltip(self._tooltips,
                                 "help-ttype", "Test Type"),
                             class_name="p-0"
                         ),
@@ -538,7 +514,7 @@ class Layout:
                     class_name="gy-1",
                     children=[
                         dbc.Label(
-                            children=self._show_tooltip(
+                            children=show_tooltip(self._tooltips,
                                 "help-normalize", "Normalize"),
                             class_name="p-0"
                         ),
@@ -582,7 +558,7 @@ class Layout:
                     children=[
                         dbc.Label(
                             class_name="gy-1",
-                            children=self._show_tooltip(
+                            children=show_tooltip(self._tooltips,
                                 "help-time-period", "Time Period"),
                         ),
                         dcc.DatePickerRange(
@@ -706,30 +682,6 @@ class Layout:
         def values(self) -> tuple:
             return tuple(self._panel.values())
 
-    @staticmethod
-    def _sync_checklists(opt: list, sel: list, all: list, id: str) -> tuple:
-        """
-        """
-        options = {v["value"] for v in opt}
-        if id =="all":
-            sel = list(options) if all else list()
-        else:
-            all = ["all", ] if set(sel) == options else list()
-        return sel, all
-
-    @staticmethod
-    def _list_tests(selection: dict) -> list:
-        """Display selected tests with checkboxes
-        """
-        if selection:
-            return [{"label": v["id"], "value": v["id"]} for v in selection]
-        else:
-            return list()
-
-    @staticmethod
-    def _get_date(s_date: str) -> datetime:
-        return datetime(int(s_date[0:4]), int(s_date[5:7]), int(s_date[8:10]))
-
     def callbacks(self, app):
 
         def _generate_plotting_area(figs: tuple, url: str) -> tuple:
@@ -756,7 +708,7 @@ class Layout:
                             dcc.Loading(children=[
                                 dbc.Button(
                                     id="btn-download-data",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-download", "Download Data"),
                                     class_name="me-1",
                                     color="info"
@@ -773,7 +725,7 @@ class Layout:
                                 children=[
                                     dbc.InputGroupText(
                                         style=C.URL_STYLE,
-                                        children=self._show_tooltip(
+                                        children=show_tooltip(self._tooltips,
                                             "help-url", "URL", "input-url")
                                     ),
                                     dbc.Input(
@@ -861,29 +813,10 @@ class Layout:
             """
             """
 
-            def _gen_new_url(parsed_url: dict, store_sel: list,
-                    start: datetime, end: datetime) -> str:
-
-                if parsed_url:
-                    new_url = url_encode({
-                        "scheme": parsed_url["scheme"],
-                        "netloc": parsed_url["netloc"],
-                        "path": parsed_url["path"],
-                        "params": {
-                            "store_sel": store_sel,
-                            "start": start,
-                            "end": end
-                        }
-                    })
-                else:
-                    new_url = str()
-                return new_url
-
-
             ctrl_panel = self.ControlPanel(cp_data)
 
-            d_start = self._get_date(d_start)
-            d_end = self._get_date(d_end)
+            d_start = get_date(d_start)
+            d_end = get_date(d_end)
 
             # Parse the url:
             parsed_url = url_decode(href)
@@ -936,8 +869,7 @@ class Layout:
                     dut = ctrl_panel.get("dd-ctrl-dut-value")
                     phy = self.spec_tbs[dut][dd_phy]
                     options = sorted(
-                        [{"label": self.label(v), "value": v}
-                            for v in phy.keys()],
+                        [{"label": label(v), "value": v} for v in phy.keys()],
                         key=lambda d: d["label"]
                     )
                     disabled = False
@@ -1030,8 +962,8 @@ class Layout:
                         "cl-ctrl-testtype-all-options": C.CL_ALL_ENABLED,
                     })
             elif trigger_id == "cl-ctrl-core":
-                val_sel, val_all = self._sync_checklists(
-                    opt=ctrl_panel.get("cl-ctrl-core-options"),
+                val_sel, val_all = sync_checklists(
+                    options=ctrl_panel.get("cl-ctrl-core-options"),
                     sel=cl_core,
                     all=list(),
                     id=""
@@ -1041,8 +973,8 @@ class Layout:
                     "cl-ctrl-core-all-value": val_all,
                 })
             elif trigger_id == "cl-ctrl-core-all":
-                val_sel, val_all = self._sync_checklists(
-                    opt = ctrl_panel.get("cl-ctrl-core-options"),
+                val_sel, val_all = sync_checklists(
+                    options = ctrl_panel.get("cl-ctrl-core-options"),
                     sel=list(),
                     all=cl_core_all,
                     id="all"
@@ -1052,8 +984,8 @@ class Layout:
                     "cl-ctrl-core-all-value": val_all,
                 })
             elif trigger_id == "cl-ctrl-framesize":
-                val_sel, val_all = self._sync_checklists(
-                    opt = ctrl_panel.get("cl-ctrl-framesize-options"),
+                val_sel, val_all = sync_checklists(
+                    options = ctrl_panel.get("cl-ctrl-framesize-options"),
                     sel=cl_framesize,
                     all=list(),
                     id=""
@@ -1063,8 +995,8 @@ class Layout:
                     "cl-ctrl-framesize-all-value": val_all,
                 })
             elif trigger_id == "cl-ctrl-framesize-all":
-                val_sel, val_all = self._sync_checklists(
-                    opt = ctrl_panel.get("cl-ctrl-framesize-options"),
+                val_sel, val_all = sync_checklists(
+                    options = ctrl_panel.get("cl-ctrl-framesize-options"),
                     sel=list(),
                     all=cl_framesize_all,
                     id="all"
@@ -1074,8 +1006,8 @@ class Layout:
                     "cl-ctrl-framesize-all-value": val_all,
                 })
             elif trigger_id == "cl-ctrl-testtype":
-                val_sel, val_all = self._sync_checklists(
-                    opt = ctrl_panel.get("cl-ctrl-testtype-options"),
+                val_sel, val_all = sync_checklists(
+                    options = ctrl_panel.get("cl-ctrl-testtype-options"),
                     sel=cl_testtype,
                     all=list(),
                     id=""
@@ -1085,8 +1017,8 @@ class Layout:
                     "cl-ctrl-testtype-all-value": val_all,
                 })
             elif trigger_id == "cl-ctrl-testtype-all":
-                val_sel, val_all = self._sync_checklists(
-                    opt = ctrl_panel.get("cl-ctrl-testtype-options"),
+                val_sel, val_all = sync_checklists(
+                    options = ctrl_panel.get("cl-ctrl-testtype-options"),
                     sel=list(),
                     all=cl_testtype_all,
                     id="all"
@@ -1157,8 +1089,8 @@ class Layout:
                 if url_params:
                     store_sel = literal_eval(
                         url_params.get("store_sel", list())[0])
-                    d_start = self._get_date(url_params.get("start", list())[0])
-                    d_end = self._get_date(url_params.get("end", list())[0])
+                    d_start = get_date(url_params.get("start", list())[0])
+                    d_end = get_date(url_params.get("end", list())[0])
                     if store_sel:
                         row_card_sel_tests = C.STYLE_ENABLED
                         row_btns_sel_tests = C.STYLE_ENABLED
@@ -1170,10 +1102,17 @@ class Layout:
                         _generate_plotting_area(
                             graph_trending(self.data, store_sel, self.layout,
                                 d_start, d_end, bool(cl_normalize)),
-                            _gen_new_url(parsed_url, store_sel, d_start, d_end)
+                            gen_new_url(
+                                parsed_url,
+                                {
+                                    "store_sel": store_sel,
+                                    "start": d_start,
+                                    "end": d_end
+                                }
+                            )
                         )
                     ctrl_panel.set({
-                        "cl-selected-options": self._list_tests(store_sel)
+                        "cl-selected-options": list_tests(store_sel)
                     })
                 else:
                     row_fig_tput = C.PLACEHOLDER

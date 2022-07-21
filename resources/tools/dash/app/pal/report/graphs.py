@@ -21,12 +21,7 @@ import pandas as pd
 from copy import deepcopy
 
 from ..utils.constants import Constants as C
-
-
-def _get_color(idx: int) -> str:
-    """
-    """
-    return C.PLOT_COLORS[idx % len(C.PLOT_COLORS)]
+from ..utils.utils import get_color
 
 
 def get_short_version(version: str, dut_type: str="vpp") -> str:
@@ -146,7 +141,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             hoverinfo=u"y+name",
             boxpoints="all",
             jitter=0.3,
-            marker=dict(color=_get_color(idx))
+            marker=dict(color=get_color(idx))
         )
         tput_traces.append(go.Box(**tput_kwargs))
         show_tput = True
@@ -168,7 +163,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
                 hoverinfo="all",
                 boxpoints="all",
                 jitter=0.3,
-                marker=dict(color=_get_color(idx))
+                marker=dict(color=get_color(idx))
             )
             x_lat.append(idx + 1)
             lat_traces.append(go.Box(**lat_kwargs))

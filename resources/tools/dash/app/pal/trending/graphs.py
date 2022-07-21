@@ -23,13 +23,7 @@ import hdrh.codec
 from datetime import datetime
 
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies
-
-
-def _get_color(idx: int) -> str:
-    """
-    """
-    return C.PLOT_COLORS[idx % len(C.PLOT_COLORS)]
+from ..utils.utils import classify_anomalies, get_color
 
 
 def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
@@ -272,7 +266,7 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
         else:
             norm_factor = 1.0
         traces = _generate_trending_traces(
-            itm["testtype"], name, df, start, end, _get_color(idx), norm_factor
+            itm["testtype"], name, df, start, end, get_color(idx), norm_factor
         )
         if traces:
             if not fig_tput:
@@ -281,7 +275,7 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
 
         if itm["testtype"] == "pdr":
             traces = _generate_trending_traces(
-                "pdr-lat", name, df, start, end, _get_color(idx), norm_factor
+                "pdr-lat", name, df, start, end, get_color(idx), norm_factor
             )
             if traces:
                 if not fig_lat:
@@ -348,7 +342,7 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
                 legendgroup=C.GRAPH_LAT_HDRH_DESC[lat_name],
                 showlegend=bool(idx % 2),
                 line=dict(
-                    color=_get_color(int(idx/2)),
+                    color=get_color(int(idx/2)),
                     dash="solid",
                     width=1 if idx % 2 else 2
                 ),

@@ -28,7 +28,7 @@ from copy import deepcopy
 
 from ..data.data import Data
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies
+from ..utils.utils import classify_anomalies, show_tooltip
 from ..data.data import Data
 from .tables import table_news
 
@@ -389,43 +389,6 @@ class Layout:
                 lst_job[1], lst_job[3], lst_job[4]))
         }
 
-    def _show_tooltip(self, id: str, title: str,
-            clipboard_id: str=None) -> list:
-        """Generate list of elements to display a text (e.g. a title) with a
-        tooltip and optionaly with Copy&Paste icon and the clipboard
-        functionality enabled.
-
-        :param id: Tooltip ID.
-        :param title: A text for which the tooltip will be displayed.
-        :param clipboard_id: If defined, a Copy&Paste icon is displayed and the
-            clipboard functionality is enabled.
-        :type id: str
-        :type title: str
-        :type clipboard_id: str
-        :returns: List of elements to display a text with a tooltip and
-            optionaly with Copy&Paste icon.
-        :rtype: list
-        """
-
-        return [
-            dcc.Clipboard(target_id=clipboard_id, title="Copy URL") \
-                if clipboard_id else str(),
-            f"{title} ",
-            dbc.Badge(
-                id=id,
-                children="?",
-                pill=True,
-                color="white",
-                text_color="info",
-                class_name="border ms-1",
-            ),
-            dbc.Tooltip(
-                children=self._tooltips.get(id, str()),
-                target=id,
-                placement="auto"
-            )
-        ]
-
     def add_content(self):
         """Top level method which generated the web page.
 
@@ -552,7 +515,7 @@ class Layout:
                             children=[
                                 dbc.Label(
                                     class_name="p-0",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-dut", "Device under Test")
                                 ),
                                 dbc.Row(
@@ -570,7 +533,7 @@ class Layout:
                             children=[
                                 dbc.Label(
                                     class_name="p-0",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-ttype", "Test Type"),
                                 ),
                                 dbc.RadioItems(
@@ -586,7 +549,7 @@ class Layout:
                             children=[
                                 dbc.Label(
                                     class_name="p-0",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-cadence", "Cadence"),
                                 ),
                                 dbc.RadioItems(
@@ -602,7 +565,7 @@ class Layout:
                             children=[
                                 dbc.Label(
                                     class_name="p-0",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-tbed", "Test Bed"),
                                 ),
                                 dbc.Select(

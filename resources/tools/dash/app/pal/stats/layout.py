@@ -29,7 +29,8 @@ from datetime import datetime, timedelta
 from copy import deepcopy
 
 from ..utils.constants import Constants as C
-from ..utils.url_processing import url_decode, url_encode
+from ..utils.utils import show_tooltip, gen_new_url
+from ..utils.url_processing import url_decode
 from ..data.data import Data
 from .graphs import graph_statistics, select_data
 
@@ -261,29 +262,6 @@ class Layout:
                 lst_job[1], lst_job[3], lst_job[4]))
         }
 
-    def _show_tooltip(self, id: str, title: str,
-            clipboard_id: str=None) -> list:
-        """
-        """
-        return [
-            dcc.Clipboard(target_id=clipboard_id, title="Copy URL") \
-                if clipboard_id else str(),
-            f"{title} ",
-            dbc.Badge(
-                id=id,
-                children="?",
-                pill=True,
-                color="white",
-                text_color="info",
-                class_name="border ms-1",
-            ),
-            dbc.Tooltip(
-                children=self._tooltips.get(id, str()),
-                target=id,
-                placement="auto"
-            )
-        ]
-
     def add_content(self):
         """
         """
@@ -408,7 +386,7 @@ class Layout:
                                 dcc.Loading(children=[
                                     dbc.Button(
                                         id="btn-download-data",
-                                        children=self._show_tooltip(
+                                        children=show_tooltip(self._tooltips,
                                             "help-download", "Download Data"),
                                         class_name="me-1",
                                         color="info"
@@ -425,8 +403,11 @@ class Layout:
                                     children=[
                                         dbc.InputGroupText(
                                             style=C.URL_STYLE,
-                                            children=self._show_tooltip(
-                                                "help-url", "URL", "input-url")
+                                            children=show_tooltip(
+                                                self._tooltips,
+                                                "help-url", "URL",
+                                                "input-url"
+                                            )
                                         ),
                                         dbc.Input(
                                             id="input-url",
@@ -460,7 +441,7 @@ class Layout:
                             children=[
                                 dbc.Label(
                                     class_name="p-0",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-dut", "Device under Test")
                                 ),
                                 dbc.Row(
@@ -478,7 +459,7 @@ class Layout:
                             children=[
                                 dbc.Label(
                                     class_name="p-0",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-ttype", "Test Type"),
                                 ),
                                 dbc.RadioItems(
@@ -494,7 +475,7 @@ class Layout:
                             children=[
                                 dbc.Label(
                                     class_name="p-0",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-cadence", "Cadence"),
                                 ),
                                 dbc.RadioItems(
@@ -510,7 +491,7 @@ class Layout:
                             children=[
                                 dbc.Label(
                                     class_name="p-0",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-tbed", "Test Bed"),
                                 ),
                                 dbc.Select(
@@ -536,7 +517,7 @@ class Layout:
                             children=[
                                 dbc.Label(
                                     class_name="gy-1",
-                                    children=self._show_tooltip(
+                                    children=show_tooltip(self._tooltips,
                                         "help-time-period", "Time Period"),
                                 ),
                                 dcc.DatePickerRange(
@@ -729,25 +710,18 @@ class Layout:
             fig_passed, fig_duration = graph_statistics(self.data, job,
                 self.layout, start, end)
 
-            if parsed_url:
-                new_url = url_encode({
-                    "scheme": parsed_url["scheme"],
-                    "netloc": parsed_url["netloc"],
-                    "path": parsed_url["path"],
-                    "params": {
-                        "job": job,
-                        "start": start,
-                        "end": end
-                    }
-                })
-            else:
-                new_url = str()
-
             ret_val = [
                 ctrl_panel.panel,
                 fig_passed,
                 fig_duration,
-                new_url
+                gen_new_url(
+                    parsed_url,
+                    {
+                        "job": job,
+                        "start": start,
+                        "end": end
+                    }
+                )
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
