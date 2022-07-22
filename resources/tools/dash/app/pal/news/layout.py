@@ -28,7 +28,8 @@ from copy import deepcopy
 
 from ..data.data import Data
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies, show_tooltip
+from ..utils.utils import classify_anomalies, show_tooltip, gen_new_url
+from ..utils.url_processing import url_decode
 from ..data.data import Data
 from .tables import table_news
 
@@ -408,6 +409,7 @@ class Layout:
                 id="div-main",
                 children=[
                     dcc.Store(id="control-panel"),
+                    dcc.Location(id="url", refresh=False),
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
@@ -492,6 +494,33 @@ class Layout:
                     id="row-table-failed",
                     class_name="g-0 p-2",
                     children=self._default_tab_failed
+                ),
+                dbc.Row(
+                    class_name="g-0 p-2",
+                    align="center",
+                    justify="start",
+                    children=[
+                        dbc.InputGroup(
+                            class_name="me-1",
+                            children=[
+                                dbc.InputGroupText(
+                                    style=C.URL_STYLE,
+                                    children=show_tooltip(
+                                        self._tooltips,
+                                        "help-url", "URL",
+                                        "input-url"
+                                    )
+                                ),
+                                dbc.Input(
+                                    id="input-url",
+                                    readonly=True,
+                                    type="url",
+                                    style=C.URL_STYLE,
+                                    value=""
+                                )
+                            ]
+                        )
+                    ]
                 )
             ],
             width=9,
@@ -640,6 +669,7 @@ class Layout:
         @app.callback(
             Output("control-panel", "data"),  # Store
             Output("row-table-failed", "children"),
+            Output("input-url", "value"),
             Output("ri-ttypes", "options"),
             Output("ri-cadences", "options"),
             Output("dd-tbeds", "options"),
@@ -653,13 +683,21 @@ class Layout:
             Input("ri-ttypes", "value"),
             Input("ri-cadences", "value"),
             Input("dd-tbeds", "value"),
+            Input("url", "href")
         )
         def _update_ctrl_panel(cp_data: dict, dut:str, ttype: str, cadence:str,
-                tbed: str) -> tuple:
+                tbed: str, href: str) -> tuple:
             """
             """
 
             ctrl_panel = self.ControlPanel(cp_data, self.default)
+
+            # Parse the url:
+            parsed_url = url_decode(href)
+            if parsed_url:
+                url_params = parsed_url["params"]
+            else:
+                url_params = None
 
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
             if trigger_id == "ri-duts":
@@ -709,6 +747,21 @@ class Layout:
                 ctrl_panel.set({
                     "dd-tbeds-value": tbed
                 })
+            elif trigger_id == "url":
+                # TODO: Add verification
+                if url_params:
+                    new_job = url_params.get("job", list())[0]
+                    if new_job:
+                        job_params = self._set_job_params(new_job)
+                        ctrl_panel = self.ControlPanel(None, job_params)
+                else:
+                    ctrl_panel = self.ControlPanel(cp_data, self.default)
+                    job = self._get_job(
+                        ctrl_panel.get("ri-duts-value"),
+                        ctrl_panel.get("ri-ttypes-value"),
+                        ctrl_panel.get("ri-cadences-value"),
+                        ctrl_panel.get("dd-tbeds-value")
+                    )
 
             job = self._get_job(
                 ctrl_panel.get("ri-duts-value"),
@@ -721,7 +774,8 @@ class Layout:
 
             ret_val = [
                 ctrl_panel.panel,
-                tab_failed
+                tab_failed,
+                gen_new_url(parsed_url, {"job": job})
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val

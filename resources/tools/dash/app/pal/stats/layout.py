@@ -610,7 +610,6 @@ class Layout:
             Input("dpr-period", "start_date"),
             Input("dpr-period", "end_date"),
             Input("url", "href")
-            # prevent_initial_call=True
         )
         def _update_ctrl_panel(cp_data: dict, dut:str, ttype: str, cadence:str,
                 tbed: str, start: str, end: str, href: str) -> tuple:
