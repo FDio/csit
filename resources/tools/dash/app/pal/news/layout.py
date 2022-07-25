@@ -28,7 +28,9 @@ from copy import deepcopy
 
 from ..data.data import Data
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies, show_tooltip, gen_new_url
+from ..utils.utils import classify_anomalies, show_tooltip, gen_new_url, \
+    get_ttypes, get_cadences, get_test_beds, get_job, generate_options, \
+    set_job_params
 from ..utils.url_processing import url_decode
 from ..data.data import Data
 from .tables import table_news
@@ -43,7 +45,7 @@ class Layout:
         """Initialization:
         - save the input parameters,
         - read and pre-process the data,
-        - prepare data fro the control panel,
+        - prepare data for the control panel,
         - read HTML layout file,
         - read tooltips from the tooltip file.
 
@@ -76,7 +78,7 @@ class Layout:
 
         # Prepare information for the control panel:
         jobs = sorted(list(df_tst_info["job"].unique()))
-        job_info = {
+        d_job_info = {
             "job": list(),
             "dut": list(),
             "ttype": list(),
@@ -85,14 +87,14 @@ class Layout:
         }
         for job in jobs:
             lst_job = job.split("-")
-            job_info["job"].append(job)
-            job_info["dut"].append(lst_job[1])
-            job_info["ttype"].append(lst_job[3])
-            job_info["cadence"].append(lst_job[4])
-            job_info["tbed"].append("-".join(lst_job[-2:]))
-        self.df_job_info = pd.DataFrame.from_dict(job_info)
+            d_job_info["job"].append(job)
+            d_job_info["dut"].append(lst_job[1])
+            d_job_info["ttype"].append(lst_job[3])
+            d_job_info["cadence"].append(lst_job[4])
+            d_job_info["tbed"].append("-".join(lst_job[-2:]))
+        self.job_info = pd.DataFrame.from_dict(d_job_info)
 
-        self._default = self._set_job_params(C.NEWS_DEFAULT_JOB)
+        self._default = set_job_params(self.job_info, C.NEWS_DEFAULT_JOB)
 
         # Pre-process the data:
 
@@ -270,126 +272,6 @@ class Layout:
     def default(self) -> dict:
         return self._default
 
-    def _get_duts(self) -> list:
-        """Get the list of DUTs from the pre-processed information about jobs.
-
-        :returns: Alphabeticaly sorted list of DUTs.
-        :rtype: list
-        """
-        return sorted(list(self.df_job_info["dut"].unique()))
-
-    def _get_ttypes(self, dut: str) -> list:
-        """Get the list of test types from the pre-processed information about
-        jobs.
-
-        :param dut: The DUT for which the list of test types will be populated.
-        :type dut: str
-        :returns: Alphabeticaly sorted list of test types.
-        :rtype: list
-        """
-        return sorted(list(self.df_job_info.loc[(
-            self.df_job_info["dut"] == dut
-        )]["ttype"].unique()))
-
-    def _get_cadences(self, dut: str, ttype: str) -> list:
-        """Get the list of cadences from the pre-processed information about
-        jobs.
-
-        :param dut: The DUT for which the list of cadences will be populated.
-        :param ttype: The test type for which the list of cadences will be
-            populated.
-        :type dut: str
-        :type ttype: str
-        :returns: Alphabeticaly sorted list of cadences.
-        :rtype: list
-        """
-        return sorted(list(self.df_job_info.loc[(
-            (self.df_job_info["dut"] == dut) &
-            (self.df_job_info["ttype"] == ttype)
-        )]["cadence"].unique()))
-
-    def _get_test_beds(self, dut: str, ttype: str, cadence: str) -> list:
-        """Get the list of test beds from the pre-processed information about
-        jobs.
-
-        :param dut: The DUT for which the list of test beds will be populated.
-        :param ttype: The test type for which the list of test beds will be
-            populated.
-        :param cadence: The cadence for which the list of test beds will be
-            populated.
-        :type dut: str
-        :type ttype: str
-        :type cadence: str
-        :returns: Alphabeticaly sorted list of test beds.
-        :rtype: list
-        """
-        return sorted(list(self.df_job_info.loc[(
-            (self.df_job_info["dut"] == dut) &
-            (self.df_job_info["ttype"] == ttype) &
-            (self.df_job_info["cadence"] == cadence)
-        )]["tbed"].unique()))
-
-    def _get_job(self, dut, ttype, cadence, testbed):
-        """Get the name of a job defined by dut, ttype, cadence, test bed.
-        Input information comes from the control panel.
-
-        :param dut: The DUT for which the job name will be created.
-        :param ttype: The test type for which the job name will be created.
-        :param cadence: The cadence for which the job name will be created.
-        :param testbed: The test bed for which the job name will be created.
-        :type dut: str
-        :type ttype: str
-        :type cadence: str
-        :type testbed: str
-        :returns: Job name.
-        :rtype: str
-        """
-        return self.df_job_info.loc[(
-            (self.df_job_info["dut"] == dut) &
-            (self.df_job_info["ttype"] == ttype) &
-            (self.df_job_info["cadence"] == cadence) &
-            (self.df_job_info["tbed"] == testbed)
-        )]["job"].item()
-
-    @staticmethod
-    def _generate_options(opts: list) -> list:
-        """Return list of options for radio items in control panel. The items in
-        the list are dictionaries with keys "label" and "value".
-
-        :params opts: List of options (str) to be used for the generated list.
-        :type opts: list
-        :returns: List of options (dict).
-        :rtype: list
-        """
-        return [{"label": i, "value": i} for i in opts]
-
-    def _set_job_params(self, job: str) -> dict:
-        """Create a dictionary with all options and values for (and from) the
-        given job.
-
-        :params job: The name of job for and from which the dictionary will be
-            created.
-        :type job: str
-        :returns: Dictionary with all options and values for (and from) the
-            given job.
-        :rtype: dict
-        """
-
-        lst_job = job.split("-")
-        return {
-            "job": job,
-            "dut": lst_job[1],
-            "ttype": lst_job[3],
-            "cadence": lst_job[4],
-            "tbed": "-".join(lst_job[-2:]),
-            "duts": self._generate_options(self._get_duts()),
-            "ttypes": self._generate_options(self._get_ttypes(lst_job[1])),
-            "cadences": self._generate_options(self._get_cadences(
-                lst_job[1], lst_job[3])),
-            "tbeds": self._generate_options(self._get_test_beds(
-                lst_job[1], lst_job[3], lst_job[4]))
-        }
-
     def add_content(self):
         """Top level method which generated the web page.
 
@@ -470,7 +352,7 @@ class Layout:
         """Add column with control panel. It is placed on the left side.
 
         :returns: Column with the control panel.
-        :rtype: dbc.col
+        :rtype: dbc.Col
         """
 
         return dbc.Col(
@@ -484,7 +366,7 @@ class Layout:
         """Add column with tables. It is placed on the right side.
 
         :returns: Column with tables.
-        :rtype: dbc.col
+        :rtype: dbc.Col
         """
 
         return dbc.Col(
@@ -616,16 +498,23 @@ class Layout:
                             ]
                         )
                     ]
-                ),
+                )
             ]
         )
 
     class ControlPanel:
-        """
+        """A class representing the control panel.
         """
 
         def __init__(self, panel: dict, default: dict) -> None:
-            """
+            """Initialisation of the control pannel by default values. If
+            particular values are provided (parameter "panel") they are set
+            afterwards.
+
+            :param panel: Custom values to be set to the control panel.
+            :param default: Default values to be set to the control panel.
+            :type panel: dict
+            :type defaults: dict
             """
 
             self._defaults = {
@@ -644,6 +533,13 @@ class Layout:
                     self._panel[key] = panel[key]
 
         def set(self, kwargs: dict) -> None:
+            """Set the values of the Control panel.
+
+            :param kwargs: key - value pairs to be set.
+            :type kwargs: dict
+            :raises KeyError: If the key in kwargs is not present in the Control
+                panel.
+            """
             for key, val in kwargs.items():
                 if key in self._panel:
                     self._panel[key] = val
@@ -659,12 +555,31 @@ class Layout:
             return self._panel
 
         def get(self, key: str) -> any:
+            """Returns the value of a key from the Control panel.
+
+            :param key: The key which value should be returned.
+            :type key: str
+            :returns: The value of the key.
+            :rtype: any
+            :raises KeyError: If the key in kwargs is not present in the Control
+                panel.
+            """
             return self._panel[key]
 
         def values(self) -> list:
+            """Returns the values from the Control panel as a list.
+
+            :returns: The values from the Control panel.
+            :rtype: list
+            """
             return list(self._panel.values())
 
     def callbacks(self, app):
+        """Callbacks for the whole application.
+
+        :param app: The application.
+        :type app: Flask
+        """
 
         @app.callback(
             Output("control-panel", "data"),  # Store
@@ -685,9 +600,25 @@ class Layout:
             Input("dd-tbeds", "value"),
             Input("url", "href")
         )
-        def _update_ctrl_panel(cp_data: dict, dut:str, ttype: str, cadence:str,
-                tbed: str, href: str) -> tuple:
-            """
+        def _update_application(cp_data: dict, dut: str, ttype: str,
+                cadence:str, tbed: str, href: str) -> tuple:
+            """Update the application when the event is detected.
+
+            :param cp_data: Current status of the control panel stored in
+                browser.
+            :param dut: Input - DUT name.
+            :param ttype: Input - Test type.
+            :param cadence: Input - The cadence of the job.
+            :param tbed: Input - The test bed.
+            :param href: Input - The URL provided by the browser.
+            :type cp_data: dict
+            :type dut: str
+            :type ttype: str
+            :type cadence: str
+            :type tbed: str
+            :type href: str
+            :returns: New values for web page elements.
+            :rtype: tuple
             """
 
             ctrl_panel = self.ControlPanel(cp_data, self.default)
@@ -701,13 +632,13 @@ class Layout:
 
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
             if trigger_id == "ri-duts":
-                ttype_opts = self._generate_options(self._get_ttypes(dut))
+                ttype_opts = generate_options(get_ttypes(self.job_info, dut))
                 ttype_val = ttype_opts[0]["value"]
-                cad_opts = self._generate_options(
-                    self._get_cadences(dut, ttype_val))
+                cad_opts = generate_options(
+                    get_cadences(self.job_info, dut, ttype_val))
                 cad_val = cad_opts[0]["value"]
-                tbed_opts = self._generate_options(
-                    self._get_test_beds(dut, ttype_val, cad_val))
+                tbed_opts = generate_options(get_test_beds(
+                    self.job_info, dut, ttype_val, cad_val))
                 tbed_val = tbed_opts[0]["value"]
                 ctrl_panel.set({
                     "ri-duts-value": dut,
@@ -719,11 +650,11 @@ class Layout:
                     "dd-tbeds-value": tbed_val
                 })
             elif trigger_id == "ri-ttypes":
-                cad_opts = self._generate_options(
-                    self._get_cadences(ctrl_panel.get("ri-duts-value"), ttype))
+                cad_opts = generate_options(get_cadences(
+                    self.job_info, ctrl_panel.get("ri-duts-value"), ttype))
                 cad_val = cad_opts[0]["value"]
-                tbed_opts = self._generate_options(
-                    self._get_test_beds(ctrl_panel.get("ri-duts-value"),
+                tbed_opts = generate_options(get_test_beds(
+                    self.job_info, ctrl_panel.get("ri-duts-value"),
                     ttype, cad_val))
                 tbed_val = tbed_opts[0]["value"]
                 ctrl_panel.set({
@@ -734,8 +665,8 @@ class Layout:
                     "dd-tbeds-value": tbed_val
                 })
             elif trigger_id == "ri-cadences":
-                tbed_opts = self._generate_options(
-                    self._get_test_beds(ctrl_panel.get("ri-duts-value"),
+                tbed_opts = generate_options(get_test_beds(
+                    self.job_info, ctrl_panel.get("ri-duts-value"),
                     ctrl_panel.get("ri-ttypes-value"), cadence))
                 tbed_val = tbed_opts[0]["value"]
                 ctrl_panel.set({
@@ -752,18 +683,13 @@ class Layout:
                 if url_params:
                     new_job = url_params.get("job", list())[0]
                     if new_job:
-                        job_params = self._set_job_params(new_job)
+                        job_params = set_job_params(self.job_info, new_job)
                         ctrl_panel = self.ControlPanel(None, job_params)
                 else:
                     ctrl_panel = self.ControlPanel(cp_data, self.default)
-                    job = self._get_job(
-                        ctrl_panel.get("ri-duts-value"),
-                        ctrl_panel.get("ri-ttypes-value"),
-                        ctrl_panel.get("ri-cadences-value"),
-                        ctrl_panel.get("dd-tbeds-value")
-                    )
 
-            job = self._get_job(
+            job = get_job(
+                self.job_info,
                 ctrl_panel.get("ri-duts-value"),
                 ctrl_panel.get("ri-ttypes-value"),
                 ctrl_panel.get("ri-cadences-value"),
