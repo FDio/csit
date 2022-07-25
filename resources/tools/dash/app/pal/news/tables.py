@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
+"""The tables with news.
 """
 
 import pandas as pd
@@ -21,7 +21,16 @@ from ..utils.constants import Constants as C
 
 
 def table_news(data: pd.DataFrame, job: str) -> list:
-    """
+    """Generates the tables with news:
+    1. Falied tests from the last run
+    2. Regressions and progressions calculated from the last C.NEWS_TIME_PERIOD
+       days.
+
+    :param data: Trending data with calculated annomalies to be displayed in the
+        tables.
+    :param job: The job name.
+    :type data: pandas.DataFrame
+    :type job: str
     """
 
     job_data = data.loc[(data["job"] == job)]

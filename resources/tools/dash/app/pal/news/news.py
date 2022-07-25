@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Instantiate the Statistics Dash applocation.
+"""Instantiate the News Dash application.
 """
 import dash
 
