@@ -14,6 +14,7 @@
 """Function used by Dash applications.
 """
 
+import pandas as pd
 import dash_bootstrap_components as dbc
 
 from numpy import isnan
@@ -80,7 +81,7 @@ def get_color(idx: int) -> str:
     its index.
 
     :param idx: Index of the color.
-    :type idex: int
+    :type idx: int
     :returns: Color defined by hex code.
     :trype: str
     """
@@ -183,26 +184,161 @@ def get_date(s_date: str) -> datetime:
     return datetime(int(s_date[0:4]), int(s_date[5:7]), int(s_date[8:10]))
 
 
-def gen_new_url(parsed_url: dict, params: dict) -> str:
+def gen_new_url(url_components: dict, params: dict) -> str:
     """Generate a new URL with encoded parameters.
 
-    :param parsed_url: Dictionary with URL elements. It should contain "scheme",
-        "netloc" and "path".
-    :param params: URL parameters to be encoded to the URL.
+    :param url_components: Dictionary with URL elements. It should contain
+        "scheme", "netloc" and "path".
+    :param url_components: URL parameters to be encoded to the URL.
     :type parsed_url: dict
     :type params: dict
     :returns Encoded URL with parameters.
     :rtype: str
     """
 
-    if parsed_url:
+    if url_components:
         return url_encode(
             {
-                "scheme": parsed_url.get("scheme", ""),
-                "netloc": parsed_url.get("netloc", ""),
-                "path": parsed_url.get("path", ""),
+                "scheme": url_components.get("scheme", ""),
+                "netloc": url_components.get("netloc", ""),
+                "path": url_components.get("path", ""),
                 "params": params
             }
         )
     else:
         return str()
+
+
+def get_duts(df: pd.DataFrame) -> list:
+    """Get the list of DUTs from the pre-processed information about jobs.
+
+    :param df: DataFrame with information about jobs.
+    :type df: pandas.DataFrame
+    :returns: Alphabeticaly sorted list of DUTs.
+    :rtype: list
+    """
+    return sorted(list(df["dut"].unique()))
+
+
+def get_ttypes(df: pd.DataFrame, dut: str) -> list:
+    """Get the list of test types from the pre-processed information about
+    jobs.
+
+    :param df: DataFrame with information about jobs.
+    :param dut: The DUT for which the list of test types will be populated.
+    :type df: pandas.DataFrame
+    :type dut: str
+    :returns: Alphabeticaly sorted list of test types.
+    :rtype: list
+    """
+    return sorted(list(df.loc[(df["dut"] == dut)]["ttype"].unique()))
+
+
+def get_cadences(df: pd.DataFrame, dut: str, ttype: str) -> list:
+    """Get the list of cadences from the pre-processed information about
+    jobs.
+
+    :param df: DataFrame with information about jobs.
+    :param dut: The DUT for which the list of cadences will be populated.
+    :param ttype: The test type for which the list of cadences will be
+        populated.
+    :type df: pandas.DataFrame
+    :type dut: str
+    :type ttype: str
+    :returns: Alphabeticaly sorted list of cadences.
+    :rtype: list
+    """
+    return sorted(list(df.loc[(
+        (df["dut"] == dut) &
+        (df["ttype"] == ttype)
+    )]["cadence"].unique()))
+
+
+def get_test_beds(df: pd.DataFrame, dut: str, ttype: str, cadence: str) -> list:
+    """Get the list of test beds from the pre-processed information about
+    jobs.
+
+    :param df: DataFrame with information about jobs.
+    :param dut: The DUT for which the list of test beds will be populated.
+    :param ttype: The test type for which the list of test beds will be
+        populated.
+    :param cadence: The cadence for which the list of test beds will be
+        populated.
+    :type df: pandas.DataFrame
+    :type dut: str
+    :type ttype: str
+    :type cadence: str
+    :returns: Alphabeticaly sorted list of test beds.
+    :rtype: list
+    """
+    return sorted(list(df.loc[(
+        (df["dut"] == dut) &
+        (df["ttype"] == ttype) &
+        (df["cadence"] == cadence)
+    )]["tbed"].unique()))
+
+
+def get_job(df: pd.DataFrame, dut, ttype, cadence, testbed):
+    """Get the name of a job defined by dut, ttype, cadence, test bed.
+    Input information comes from the control panel.
+
+    :param df: DataFrame with information about jobs.
+    :param dut: The DUT for which the job name will be created.
+    :param ttype: The test type for which the job name will be created.
+    :param cadence: The cadence for which the job name will be created.
+    :param testbed: The test bed for which the job name will be created.
+    :type df: pandas.DataFrame
+    :type dut: str
+    :type ttype: str
+    :type cadence: str
+    :type testbed: str
+    :returns: Job name.
+    :rtype: str
+    """
+    return df.loc[(
+        (df["dut"] == dut) &
+        (df["ttype"] == ttype) &
+        (df["cadence"] == cadence) &
+        (df["tbed"] == testbed)
+    )]["job"].item()
+
+
+def generate_options(opts: list) -> list:
+    """Return list of options for radio items in control panel. The items in
+    the list are dictionaries with keys "label" and "value".
+
+    :params opts: List of options (str) to be used for the generated list.
+    :type opts: list
+    :returns: List of options (dict).
+    :rtype: list
+    """
+    return [{"label": i, "value": i} for i in opts]
+
+
+def set_job_params(df: pd.DataFrame, job: str) -> dict:
+    """Create a dictionary with all options and values for (and from) the
+    given job.
+
+    :param df: DataFrame with information about jobs.
+    :params job: The name of job for and from which the dictionary will be
+        created.
+    :type df: pandas.DataFrame
+    :type job: str
+    :returns: Dictionary with all options and values for (and from) the
+        given job.
+    :rtype: dict
+    """
+
+    l_job = job.split("-")
+    return {
+        "job": job,
+        "dut": l_job[1],
+        "ttype": l_job[3],
+        "cadence": l_job[4],
+        "tbed": "-".join(l_job[-2:]),
+        "duts": generate_options(get_duts(df)),
+        "ttypes": generate_options(get_ttypes(df, l_job[1])),
+        "cadences": generate_options(get_cadences(df, l_job[1], l_job[3])),
+        "tbeds": generate_options(
+            get_test_beds(df, l_job[1], l_job[3], l_job[4]))
+    }
