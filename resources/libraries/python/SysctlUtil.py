@@ -50,3 +50,17 @@ class SysctlUtil:
         message = f"Node {node[u'host']} failed to run: {command}"
 
         exec_cmd_no_error(node, command, sudo=True, message=message)
+
+    @staticmethod
+    def enable_userspace_access_to_perf_counters(node):
+        """Execute a sysctl command to grant access.
+
+        :param node: Node in the topology.
+        :type node: dict
+        """
+        message = f"Node {node[u'host']} failed to run: {command}"
+        command = u"uname -a"
+        exec_cmd(node, command, message=message)
+
+        command = u"sysctl kernel/perf_user_access=1"
+        exec_cmd(node, command, sudo=True, message=message)
