@@ -8,38 +8,17 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Regressions with DPDK drivers**: Change from DPDK v21.08 to DPDK
-     v21.11 introduced regression across all tests using dpdk
-     drivers (with dpdk_plugin loaded). Compared to previous VPP
-     release performance drop varies in the range of -15% to -6%,
-     depending on test. It is related to updated MTU checks within
-     DPDK code and associated VPP code changes. See
-     `VPP v2202 release notes <https://s3-docs.fd.io/vpp/22.02/aboutvpp/releasenotes/v22.02.html>`_
-     and :ref:`vpp_known_issues`.
-
-   - **Number of CSIT 9000B frame tests failing**: tests with higher
-     encapsulation overhead are failing due to exceeding default
-     Ethernet Maximum Frame Size value that has been reduced by MTU
-     related VPP code changes. See
-     `VPP v2202 release notes <https://s3-docs.fd.io/vpp/22.02/aboutvpp/releasenotes/v22.02.html>`_
-     and :ref:`vpp_known_issues`.
-
-   - **Intel Xeon Ice Lake**: Performance test data for these platforms
-     is now provided by testbeds newly installed in FD.io CSIT labs.
-     For details about the physical setup see
-     :ref:`physical_testbeds_2n_icx` and
-     :ref:`physical_testbeds_3n_icx`.
-
-   - **Arm Ampere Altra**: Performance test data for these platforms
-     is now provided by testbeds newly installed in FD.io CSIT labs.
-     For details about the physical setup see
-     :ref:`physical_testbeds_3n_alt`.
-
    - **Reduction of tests**: Removed certain test variations executed
      iteratively for the report (as well as in daily and weekly
      trending) due to physical testbeds overload.
 
 #. TEST FRAMEWORK
+
+   - **Removed ASTF PPS tests**: They provide no real benefit
+     compared to TPUT tests. The ip4base variants renamed to TPUT.
+
+   - **Changed TCP TPUT profiles**: The previous ones were found to be faulty.
+     The new ones do not use bursts of packets to avoid CSIT-1830 and CSIT-1846.
 
    - **CSIT test environment** version has been updated to ver. 10, see
      :ref:`test_environment_versioning`.

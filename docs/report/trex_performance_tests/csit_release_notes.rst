@@ -10,9 +10,6 @@ Changes in |csit-release|
 
 #. TEST FRAMEWORK
 
-   - **CSIT test environment** added support for running TRex nic to nic
-     loopback tests.
-
 #. TRex RELEASE VERSION
    - **TRex version used: 2.97**
 
