@@ -16,6 +16,23 @@
       "message": "Ok, rebase helped.\n\ncsit-3n-alt-perftest mrrANDnic_intel-xl710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm",
       "revId": "bb6f3d79a32388732463225e624f6eb567bc73d5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f452443_14107165",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-26T12:34:46Z",
+      "side": 1,
+      "message": "\"Interfaces still not in link-up state\" is a current known issue.\n\ncsit-3n-alt-perftest mrrANDnic_intel-xl710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm",
+      "revId": "bb6f3d79a32388732463225e624f6eb567bc73d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
