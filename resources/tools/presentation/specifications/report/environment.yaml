@@ -159,7 +159,7 @@
       file-format: ".gz"
       enabled: True
 
-  archive-inputs: False
+  archive-inputs: True
 
   mapping-file: ""
 

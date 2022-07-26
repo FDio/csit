@@ -69,3 +69,46 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-tput-avf-pdr}
             \label{fig:2n-skx-xxv710-64b-2t1c-nat44ed-ip4routing-udp-tput-avf-pdr}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+100b-nat44ed-ip4routing-udp-tput-avf
+------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="103n" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-100b-2t1c-nat44ed-ip4routing-udp-tput-avf-ndr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-100b-2t1c-nat44ed-ip4routing-udp-tput-avf-ndr}
+            \label{fig:2n-skx-xxv710-100b-2t1c-nat44ed-ip4routing-udp-tput-avf-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="103p" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-100b-2t1c-nat44ed-ip4routing-udp-tput-avf-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-100b-2t1c-nat44ed-ip4routing-udp-tput-avf-pdr}
+            \label{fig:2n-skx-xxv710-100b-2t1c-nat44ed-ip4routing-udp-tput-avf-pdr}
+    \end{figure}
