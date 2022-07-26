@@ -16,6 +16,23 @@
       "message": "csit-3n-alt-perftest mrrANDnic_intel-xl710ANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
       "revId": "2792f66dd8c5a740b6629997be32c74c4d3ff3da",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8381c041_a0b1e298",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-26T12:11:34Z",
+      "side": 1,
+      "message": "\u003e\u003e works only on Linux kernel versions of v5.17+\n\n\u003e return STDOUT Linux s62-t34-sut1 5.4.0-65-generic #73-Ubuntu SMP Mon Jan 18 17:27:25 UTC 2021 aarch64 aarch64 aarch64 GNU/Linux\n\nWaiting for Ubuntu 22.04.",
+      "revId": "2792f66dd8c5a740b6629997be32c74c4d3ff3da",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
