@@ -15,7 +15,7 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Library | resources.libraries.python.PapiHistory
+| Library | resources.libraries.python.papi.History
 | Library | resources.libraries.python.topology.Topology
 | Variables | resources/libraries/python/Constants.py
 |
