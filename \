@@ -1,0 +1,11 @@
+Report: NAT44 graphs
+
+Signed-off-by: Tibor Frank <tifrank@cisco.com>
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch report-conf
+# Changes to be committed:
+#	modified:   resources/tools/presentation/specifications/report/elements.yaml
+#
