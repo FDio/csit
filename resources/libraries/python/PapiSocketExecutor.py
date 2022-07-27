@@ -32,6 +32,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.papi.client import Clients
 from resources.libraries.python.ssh import (exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
@@ -148,23 +149,7 @@ class PapiSocketExecutor:
     """
 
     # Class cache for reuse between instances.
-    api_root_dir = None
-    """We copy .api json files and PAPI code from DUT to robot machine.
-    This class variable holds temporary directory once created.
-    When python exits, the directory is deleted, so no downloaded file leaks.
-    The value will be set to TemporaryDirectory class instance (not string path)
-    to ensure deletion at exit."""
-    api_json_path = None
-    """String path to .api.json files, a directory somewhere in api_root_dir."""
-    api_package_path = None
-    """String path to PAPI code, a different directory under api_root_dir."""
-    crc_checker = None
-    """Accesses .api.json files at creation, caching speeds up accessing it."""
-    reusable_vpp_client_list = list()
-    """Each connection needs a separate client instance,
-    and each client instance creation needs to parse all .api files,
-    which takes time. If a client instance disconnects, it is put here,
-    so on next connect we can reuse intead of creating new."""
+    clients = None
     conn_cache = dict()
     """Mapping from node key to connected client instance."""
 
@@ -180,83 +165,9 @@ class PapiSocketExecutor:
         self._remote_vpp_socket = remote_vpp_socket
         # The list of PAPI commands to be executed on the node.
         self._api_command_list = list()
-
-    def ensure_api_dirs(self):
-        """Copy files from DUT to local temporary directory.
-
-        If the directory is still there, do not copy again.
-        If copying, also initialize CRC checker (this also performs
-        static checks), and remember PAPI package path.
-        Do not add that to PATH yet.
-        """
         cls = self.__class__
-        if cls.api_package_path:
-            return
-        cls.api_root_dir = tempfile.TemporaryDirectory(dir=u"/tmp")
-        root_path = cls.api_root_dir.name
-        # Pack, copy and unpack Python part of VPP installation from _node.
-        # TODO: Use rsync or recursive version of ssh.scp_node instead?
-        node = self._node
-        exec_cmd_no_error(node, [u"rm", u"-rf", u"/tmp/papi.txz"])
-        # Papi python version depends on OS (and time).
-        # Python 2.7 or 3.4, site-packages or dist-packages.
-        installed_papi_glob = u"/usr/lib/python3*/*-packages/vpp_papi"
-        # We need to wrap this command in bash, in order to expand globs,
-        # and as ssh does join, the inner command has to be quoted.
-        inner_cmd = u" ".join([
-            u"tar", u"cJf", u"/tmp/papi.txz", u"--exclude=*.pyc",
-            installed_papi_glob, u"/usr/share/vpp/api"
-        ])
-        exec_cmd_no_error(node, [u"bash", u"-c", u"'" + inner_cmd + u"'"])
-        scp_node(node, root_path + u"/papi.txz", u"/tmp/papi.txz", get=True)
-        run([u"tar", u"xf", root_path + u"/papi.txz", u"-C", root_path])
-        cls.api_json_path = root_path + u"/usr/share/vpp/api"
-        # Perform initial checks before .api.json files are gone,
-        # by creating the checker instance.
-        cls.crc_checker = VppApiCrcChecker(cls.api_json_path)
-        # When present locally, we finally can find the installation path.
-        cls.api_package_path = glob.glob(root_path + installed_papi_glob)[0]
-        # Package path has to be one level above the vpp_papi directory.
-        cls.api_package_path = cls.api_package_path.rsplit(u"/", 1)[0]
-
-    def ensure_vpp_instance(self):
-        """Create or reuse a closed client instance, return it.
-
-        The instance is initialized for unix domain socket access,
-        it has initialized all the bindings, it is removed from the internal
-        list of disconnected instances, but it is not connected
-        (to a local socket) yet.
-
-        :returns: VPP client instance ready for connect.
-        :rtype: vpp_papi.VPPApiClient
-        """
-        self.ensure_api_dirs()
-        cls = self.__class__
-        if cls.reusable_vpp_client_list:
-            # Reuse in LIFO fashion.
-            *cls.reusable_vpp_client_list, ret = cls.reusable_vpp_client_list
-            return ret
-        # Creating an instance leads to dynamic imports from VPP PAPI code,
-        # so the package directory has to be present until the instance.
-        # But it is simpler to keep the package dir around.
-        try:
-            sys.path.append(cls.api_package_path)
-            # TODO: Pylint says import-outside-toplevel and import-error.
-            # It is right, we should refactor the code and move initialization
-            # of package outside.
-            from vpp_papi.vpp_papi import VPPApiClient as vpp_class
-            vpp_class.apidir = cls.api_json_path
-            # We need to create instance before removing from sys.path.
-            vpp_instance = vpp_class(
-                use_socket=True, server_address=u"TBD", async_thread=False,
-                read_timeout=14, logger=FilteredLogger(logger, u"INFO")
-            )
-            # Cannot use loglevel parameter, robot.api.logger lacks support.
-            # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
-        finally:
-            if sys.path[-1] == cls.api_package_path:
-                sys.path.pop()
-        return vpp_instance
+        if not cls.clients:
+            cls.clients = Clients(node)
 
     @classmethod
     def key_for_node_and_socket(cls, node, remote_socket):
@@ -370,24 +281,24 @@ class PapiSocketExecutor:
         :rtype: PapiSocketExecutor
         """
         # Do we have the connected instance in the cache?
-        vpp_instance = self.get_connected_client(check_connected=False)
-        if vpp_instance is not None:
+        vpp_client = self.get_connected_client(check_connected=False)
+        if vpp_client is not None:
             return self
         # No luck, create and connect a new instance.
         time_enter = time.time()
         node = self._node
         # Parsing takes longer than connecting, prepare instance before tunnel.
-        vpp_instance = self.ensure_vpp_instance()
+        vpp_client = self.clients.get_vpp_client()
         # Store into cache as soon as possible.
         # If connection fails, it is better to attempt disconnect anyway.
-        self.set_connected_client(vpp_instance)
+        self.set_connected_client(vpp_client)
         # Set additional attributes.
-        vpp_instance.csit_temp_dir = tempfile.TemporaryDirectory(dir=u"/tmp")
-        temp_path = vpp_instance.csit_temp_dir.name
+        vpp_client.csit_temp_dir = tempfile.TemporaryDirectory(dir=u"/tmp")
+        temp_path = vpp_client.csit_temp_dir.name
         api_socket = temp_path + u"/vpp-api.sock"
-        vpp_instance.csit_local_vpp_socket = api_socket
+        vpp_client.csit_local_vpp_socket = api_socket
         ssh_socket = temp_path + u"/ssh.sock"
-        vpp_instance.csit_control_socket = ssh_socket
+        vpp_client.csit_control_socket = ssh_socket
         # Cleanup possibilities.
         ret_code, _ = run([u"ls", ssh_socket], check=False)
         if ret_code != 2:
@@ -454,15 +365,15 @@ class PapiSocketExecutor:
             # Socket up means the key has been read. Delete file by closing it.
             key_file.close()
         # Everything is ready, set the local socket address and connect.
-        vpp_instance.transport.server_address = api_socket
+        vpp_client.transport.server_address = api_socket
         # It seems we can get read error even if every preceding check passed.
         # Single retry seems to help.
         for _ in range(2):
             try:
-                vpp_instance.connect_sync(u"csit_socket")
+                vpp_client.connect_sync(u"csit_socket")
             except (IOError, struct.error) as err:
                 logger.warn(f"Got initial connect error {err!r}")
-                vpp_instance.disconnect()
+                vpp_client.disconnect()
             else:
                 break
         else:
@@ -489,25 +400,25 @@ class PapiSocketExecutor:
         :param key: Tuple identifying the node (and socket).
         :type key: tuple of str
         """
-        client_instance = cls.conn_cache.get(key, None)
-        if client_instance is None:
+        vpp_client = cls.conn_cache.get(key, None)
+        if vpp_client is None:
             return
         logger.debug(f"Disconnecting by key: {key}")
-        client_instance.disconnect()
+        vpp_client.disconnect()
         run([
-            u"ssh", u"-S", client_instance.csit_control_socket, u"-O",
+            u"ssh", u"-S", vpp_client.csit_control_socket, u"-O",
             u"exit", u"0.0.0.0"
         ], check=False)
         # Temp dir has autoclean, but deleting explicitly
         # as an error can happen.
         try:
-            client_instance.csit_temp_dir.cleanup()
+            vpp_client.csit_temp_dir.cleanup()
         except FileNotFoundError:
             # There is a race condition with ssh removing its ssh.sock file.
             # Single retry should be enough to ensure the complete removal.
-            shutil.rmtree(client_instance.csit_temp_dir.name)
+            shutil.rmtree(vpp_client.csit_temp_dir.name)
         # Finally, put disconnected clients to reuse list.
-        cls.reusable_vpp_client_list.append(client_instance)
+        self.clients.recycle_client(vpp_client)
         # Invalidate cache last. Repeated errors are better than silent leaks.
         del cls.conn_cache[key]
 
@@ -762,24 +673,24 @@ class PapiSocketExecutor:
         :rtype: list of dict
         :raises RuntimeError: If the replies are not all correct.
         """
-        vpp_instance = self.get_connected_client()
+        vpp_client = self.get_connected_client()
         local_list = self._api_command_list
         # Clear first as execution may fail.
         self._api_command_list = list()
         replies = list()
         for command in local_list:
             api_name = command[u"api_name"]
-            papi_fn = getattr(vpp_instance.api, api_name)
+            papi_fn = getattr(vpp_client.api, api_name)
             try:
                 try:
                     reply = papi_fn(**command[u"api_args"])
                 except (IOError, struct.error) as err:
                     # Occasionally an error happens, try reconnect.
                     logger.warn(f"Reconnect after error: {err!r}")
-                    vpp_instance.disconnect()
+                    vpp_client.disconnect()
                     # Testing shows immediate reconnect fails.
                     time.sleep(1)
-                    vpp_instance.connect_sync(u"csit_socket")
+                    vpp_client.connect_sync(u"csit_socket")
                     logger.trace(u"Reconnected.")
                     reply = papi_fn(**command[u"api_args"])
             except (AttributeError, IOError, struct.error) as err:
