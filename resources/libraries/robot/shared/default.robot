@@ -13,7 +13,7 @@
 
 *** Settings ***
 | Variables | resources/libraries/python/topology.py
-| Variables | resources/libraries/python/PapiHistory.py
+| Variables | resources/libraries/python/papi/History.py
 | Variables | resources/libraries/python/Constants.py
 |
 | Library | Collections
@@ -34,7 +34,7 @@
 | Library | resources.libraries.python.model.export_json
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Namespaces
-| Library | resources.libraries.python.PapiHistory
+| Library | resources.libraries.python.papi.History
 | Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.Tap
 | Library | resources.libraries.python.Tap.TapFeatureMask

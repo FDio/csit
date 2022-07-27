@@ -14,7 +14,7 @@
 """Keywords used in test setups."""
 
 *** Settings ***
-| Library | resources.libraries.python.PapiHistory
+| Library | resources.libraries.python.papi.History
 |
 | Documentation | Test Setup keywords.
 
