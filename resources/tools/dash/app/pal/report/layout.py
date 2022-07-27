@@ -36,12 +36,34 @@ from .graphs import graph_iterative, table_comparison, get_short_version
 
 
 class Layout:
-    """
+    """The layout of the dash app and the callbacks.
     """
 
     def __init__(self, app: Flask, releases: list, html_layout_file: str,
         graph_layout_file: str, data_spec_file: str, tooltip_file: str) -> None:
-        """
+        """Initialization:
+        - save the input parameters,
+        - read and pre-process the data,
+        - prepare data for the control panel,
+        - read HTML layout file,
+        - read tooltips from the tooltip file.
+
+        :param app: Flask application running the dash application.
+        :param releases: Lis of releases to be displayed.
+        :param html_layout_file: Path and name of the file specifying the HTML
+            layout of the dash application.
+        :param graph_layout_file: Path and name of the file with layout of
+            plot.ly graphs.
+        :param data_spec_file: Path and name of the file specifying the data to
+            be read from parquets for this application.
+        :param tooltip_file: Path and name of the yaml file specifying the
+            tooltips.
+        :type app: Flask
+        :type releases: list
+        :type html_layout_file: str
+        :type graph_layout_file: str
+        :type data_spec_file: str
+        :type tooltip_file: str
         """
 
         # Inputs
@@ -192,8 +214,19 @@ class Layout:
         return self._graph_layout
 
     def add_content(self):
+        """Top level method which generated the web page.
+
+        It generates:
+        - Store for user input data,
+        - Navigation bar,
+        - Main area with control panel and ploting area.
+
+        If no HTML layout is provided, an error message is displayed instead.
+
+        :returns: The HTML div with the whole page.
+        :rtype: html.Div
         """
-        """
+
         if self.html_layout and self.spec_tbs:
             return html.Div(
                 id="div-main",
@@ -246,6 +279,9 @@ class Layout:
 
     def _add_navbar(self):
         """Add nav element with navigation panel. It is placed on the top.
+
+        :returns: Navigation bar.
+        :rtype: dbc.NavbarSimple
         """
         return dbc.NavbarSimple(
             id="navbarsimple-main",
@@ -268,6 +304,9 @@ class Layout:
 
     def _add_ctrl_col(self) -> dbc.Col:
         """Add column with controls. It is placed on the left side.
+
+        :returns: Column with the control panel.
+        :rtype: dbc.Col
         """
         return dbc.Col(
             id="col-controls",
@@ -278,6 +317,9 @@ class Layout:
 
     def _add_plotting_col(self) -> dbc.Col:
         """Add column with plots and tables. It is placed on the right side.
+
+        :returns: Column with tables.
+        :rtype: dbc.Col
         """
         return dbc.Col(
             id="col-plotting-area",
@@ -322,7 +364,10 @@ class Layout:
         )
 
     def _add_ctrl_panel(self) -> dbc.Row:
-        """
+        """Add control panel.
+
+        :returns: Control panel.
+        :rtype: dbc.Row
         """
         return dbc.Row(
             id="row-ctrl-panel",
@@ -644,7 +689,19 @@ class Layout:
         )
 
     class ControlPanel:
+        """A class representing the control panel.
+        """
+
         def __init__(self, panel: dict) -> None:
+            """Initialisation of the control pannel by default values. If
+            particular values are provided (parameter "panel") they are set
+            afterwards.
+
+            :param panel: Custom values to be set to the control panel.
+            :param default: Default values to be set to the control panel.
+            :type panel: dict
+            :type defaults: dict
+            """
 
             # Defines also the order of keys
             self._defaults = {
@@ -695,6 +752,13 @@ class Layout:
             return self._panel
 
         def set(self, kwargs: dict) -> None:
+            """Set the values of the Control panel.
+
+            :param kwargs: key - value pairs to be set.
+            :type kwargs: dict
+            :raises KeyError: If the key in kwargs is not present in the Control
+                panel.
+            """
             for key, val in kwargs.items():
                 if key in self._panel:
                     self._panel[key] = val
@@ -702,16 +766,47 @@ class Layout:
                     raise KeyError(f"The key {key} is not defined.")
 
         def get(self, key: str) -> any:
+            """Returns the value of a key from the Control panel.
+
+            :param key: The key which value should be returned.
+            :type key: str
+            :returns: The value of the key.
+            :rtype: any
+            :raises KeyError: If the key in kwargs is not present in the Control
+                panel.
+            """
             return self._panel[key]
 
         def values(self) -> tuple:
+            """Returns the values from the Control panel as a list.
+
+            :returns: The values from the Control panel.
+            :rtype: list
+            """
             return tuple(self._panel.values())
 
     def callbacks(self, app):
+        """Callbacks for the whole application.
+
+        :param app: The application.
+        :type app: Flask
+        """
 
         def _generate_plotting_area(figs: tuple, table: pd.DataFrame,
                 url: str) -> tuple:
-            """
+            """Generate the plotting area with all its content.
+
+            :param figs: Figures to be placed in the plotting area.
+            :param table: A table to be placed in the plotting area bellow the
+                figures.
+            :param utl: The URL to be placed in the plotting area bellow the
+                tables.
+            :type figs: tuple of plotly.graph_objects.Figure
+            :type table: pandas.DataFrame
+            :type url: str
+            :returns: tuple of elements to be shown in the plotting area.
+            :rtype: tuple
+                (dcc.Graph, dcc.Graph, dbc.Table, list(dbc.Col, dbc.Col))
             """
 
             (fig_tput, fig_lat) = figs
@@ -854,7 +949,53 @@ class Layout:
             cl_framesize_all: list, cl_testtype: list, cl_testtype_all: list,
             cl_normalize: list, btn_add: int, btn_remove: int,
             btn_remove_all: int, href: str) -> tuple:
-            """
+            """Update the application when the event is detected.
+
+            :param cp_data: Current status of the control panel stored in
+                browser.
+            :param store_sel: List of tests selected by user stored in the
+                browser.
+            :param list_sel: List of tests selected by the user shown in the
+                checklist.
+            :param dd_rls: Input - Releases.
+            :param dd_dut: Input - DUTs.
+            :param dd_dutver: Input - Version of DUT.
+            :param dd_phy: Input - topo- arch-nic-driver.
+            :param dd_area: Input - Tested area.
+            :param dd_test: Input - Test.
+            :param cl_core: Input - Number of cores.
+            :param cl_core_all: Input - All numbers of cores.
+            :param cl_framesize: Input - Frame sizes.
+            :param cl_framesize_all: Input - All frame sizes.
+            :param cl_testtype: Input - Test type (NDR, PDR, MRR).
+            :param cl_testtype_all: Input - All test types.
+            :param cl_normalize: Input - Normalize the results.
+            :param btn_add: Input - Button "Add Selected" tests.
+            :param btn_remove: Input - Button "Remove selected" tests.
+            :param btn_remove_all: Input - Button "Remove All" tests.
+            :param href: Input - The URL provided by the browser.
+            :type cp_data: dict
+            :type store_sel: list
+            :type list_sel: list
+            :type dd_rls: str
+            :type dd_dut: str
+            :type dd_dutver: str
+            :type dd_phy: str
+            :type dd_area: str
+            :type dd_test: str
+            :type cl_core: list
+            :type cl_core_all: list
+            :type cl_framesize: list
+            :type cl_framesize_all: list
+            :type cl_testtype: list
+            :type cl_testtype_all: list
+            :type cl_normalize: list
+            :type btn_add: int
+            :type btn_remove: int
+            :type btn_remove_all: int
+            :type href: str
+            :returns: New values for web page elements.
+            :rtype: tuple
             """
 
             ctrl_panel = self.ControlPanel(cp_data)
@@ -1267,28 +1408,3 @@ class Layout:
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
-
-        # @app.callback(
-        #     Output("download-data", "data"),
-        #     State("selected-tests", "data"),
-        #     Input("btn-download-data", "n_clicks"),
-        #     prevent_initial_call=True
-        # )
-        # def _download_data(store_sel, n_clicks):
-        #     """
-        #     """
-
-        #     if not n_clicks:
-        #         raise PreventUpdate
-
-        #     if not store_sel:
-        #         raise PreventUpdate
-
-        #     df = pd.DataFrame()
-        #     for itm in store_sel:
-        #         sel_data = select_trending_data(self.data, itm)
-        #         if sel_data is None:
-        #             continue
-        #         df = pd.concat([df, sel_data], ignore_index=True)
-
-        #     return dcc.send_data_frame(df.to_csv, "trending_data.csv")

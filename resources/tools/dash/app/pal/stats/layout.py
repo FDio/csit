@@ -237,7 +237,7 @@ class Layout:
 
         If no HTML layout is provided, an error message is displayed instead.
 
-        :returns: The HTML div with teh whole page.
+        :returns: The HTML div with the whole page.
         :rtype: html.Div
         """
 
