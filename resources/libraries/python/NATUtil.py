@@ -22,7 +22,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import Topology
 
 
@@ -100,7 +100,7 @@ class NATUtil:
             ).value
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     @staticmethod
@@ -124,7 +124,7 @@ class NATUtil:
             flags=getattr(NatConfigFlags, flag).value
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     @staticmethod
@@ -174,13 +174,13 @@ class NATUtil:
             flags=getattr(NatConfigFlags, flag).value
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
         # A closure, accessing the variables above.
         def resetter():
             """Delete and re-add the NAT range setting."""
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 args_in[u"is_add"] = False
                 papi_exec.add(cmd, **args_in)
                 args_in[u"is_add"] = True
@@ -199,7 +199,7 @@ class NATUtil:
         cmd = u"nat44_show_running_config"
         err_msg = f"Failed to get NAT44 configuration on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd).get_reply(err_msg)
 
         logger.debug(f"NAT44 Configuration:\n{pformat(reply)}")
@@ -213,7 +213,7 @@ class NATUtil:
         :returns: NAT44 summary data.
         :rtype: str
         """
-        return PapiSocketExecutor.run_cli_cmd(node, u"show nat44 summary")
+        return SocketExecutor.run_cli_cmd(node, u"show nat44 summary")
 
     @staticmethod
     def show_nat_base_data(node):
@@ -237,7 +237,7 @@ class NATUtil:
             u"nat44_static_mapping_dump",
             u"nat44_interface_dump",
         ]
-        PapiSocketExecutor.dump_and_log(node, cmds)
+        SocketExecutor.dump_and_log(node, cmds)
 
     @staticmethod
     def show_nat_user_data(node):
@@ -255,7 +255,7 @@ class NATUtil:
             u"nat44_user_dump",
             u"nat44_user_session_dump",
         ]
-        PapiSocketExecutor.dump_and_log(node, cmds)
+        SocketExecutor.dump_and_log(node, cmds)
 
     @staticmethod
     def compute_max_translations_per_thread(sessions, threads):
@@ -363,7 +363,7 @@ class NATUtil:
             outside_vrf=int(outside_vrf)
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     @staticmethod
@@ -387,7 +387,7 @@ class NATUtil:
             sw_if_index=Topology.get_interface_sw_index(node, if_key)
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     @staticmethod
@@ -419,13 +419,13 @@ class NATUtil:
             out_plen=int(subnet_out)
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
         # A closure, accessing the variables above.
         def resetter():
             """Delete and re-add the deterministic NAT mapping."""
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 args_in[u"is_add"] = False
                 papi_exec.add(cmd, **args_in)
                 args_in[u"is_add"] = True
@@ -447,7 +447,7 @@ class NATUtil:
         err_msg = f"Failed to get DET44 mapping data on the host " \
             f"{node[u'host']}!"
         args_in = dict()
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
         return details
@@ -482,4 +482,4 @@ class NATUtil:
             u"det44_map_dump",
             u"det44_session_dump",
         ]
-        PapiSocketExecutor.dump_and_log(node, cmds)
+        SocketExecutor.dump_and_log(node, cmds)

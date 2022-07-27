@@ -13,7 +13,7 @@
 
 """Packet trace library."""
 
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import NodeType
 
 
@@ -32,7 +32,7 @@ class Trace:
         max_opt = f"" if maximum is None else f" max {maximum}"
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+                SocketExecutor.run_cli_cmd_on_all_sockets(
                     node, f"show trace{max_opt}")
 
     @staticmethod
@@ -53,5 +53,5 @@ class Trace:
         :param node: Node where the packet trace will be cleared.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+        SocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"clear trace")

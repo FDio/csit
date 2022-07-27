@@ -21,7 +21,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 
 
 class SRv6Behavior(IntEnum):
@@ -148,7 +148,7 @@ class SRv6:
             cli_cmd = f"sr localsid address {local_sid} behavior {behavior} " \
                 f"{params}"
 
-            PapiSocketExecutor.run_cli_cmd(node, cli_cmd)
+            SocketExecutor.run_cli_cmd(node, cli_cmd)
             return
 
         cmd = u"sr_localsid_add_del"
@@ -196,7 +196,7 @@ class SRv6:
                 )
             args[u"fib_table"] = fib_table
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -207,7 +207,7 @@ class SRv6:
         :type node: dict
         """
         cmd = u"sr_localsids_dump"
-        PapiSocketExecutor.dump_and_log(node, (cmd,))
+        SocketExecutor.dump_and_log(node, (cmd,))
 
     @staticmethod
     def configure_sr_policy(node, bsid, sid_list, mode=u"encap"):
@@ -233,7 +233,7 @@ class SRv6:
         err_msg = f"Failed to add SR policy for BindingSID {bsid} " \
             f"on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -244,7 +244,7 @@ class SRv6:
         :type node: dict
         """
         cmd = u"sr_policies_dump"
-        PapiSocketExecutor.dump_and_log(node, (cmd,))
+        SocketExecutor.dump_and_log(node, (cmd,))
 
     @staticmethod
     def _get_sr_steer_policy_args(
@@ -342,7 +342,7 @@ class SRv6:
         err_msg = f"Failed to add SRv6 steering policy for BindingSID {bsid} " \
             f"on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -353,7 +353,7 @@ class SRv6:
         :type node: dict
         """
         cmd = u"sr_steering_pol_dump"
-        PapiSocketExecutor.dump_and_log(node, (cmd,))
+        SocketExecutor.dump_and_log(node, (cmd,))
 
     @staticmethod
     def set_sr_encaps_source_address(node, ip6_addr):
@@ -371,5 +371,5 @@ class SRv6:
         err_msg = f"Failed to set SRv6 encapsulation source address " \
             f"{ip6_addr} on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
