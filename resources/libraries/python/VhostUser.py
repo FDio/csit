@@ -19,7 +19,7 @@ from robot.api import logger
 
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -77,7 +77,7 @@ class VhostUser:
             enable_gso=bool(enable_gso)
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         # Update the Topology:
@@ -147,7 +147,7 @@ class VhostUser:
         cmd = u"sw_interface_vhost_user_dump"
         err_msg = f"Failed to get vhost-user dump on host {node['host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd).get_details(err_msg)
 
         logger.debug(f"Vhost-user details:\n{details}")

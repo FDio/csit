@@ -23,7 +23,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.L2Util import L2Util
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
@@ -228,7 +228,7 @@ class InterfaceUtil:
                 sw_if_index=int(sw_if_index),
                 flags=flags
             )
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         elif node[u"type"] == NodeType.TG or node[u"type"] == NodeType.VM:
             cmd = f"ip link set {iface_name} {state}"
@@ -354,7 +354,7 @@ class InterfaceUtil:
             mtu=int(mtu)
         )
         try:
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         except AssertionError as err:
             logger.debug(f"Setting MTU failed.\n{err}")
@@ -459,7 +459,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to get interface dump on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
         logger.debug(f"Received data:\n{details!r}")
 
@@ -546,7 +546,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to set MAC address of interface {interface}" \
             f"on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -801,7 +801,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to create VLAN sub-interface on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         if_key = Topology.add_new_port(node, u"vlan_subif")
@@ -845,7 +845,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to create VXLAN tunnel interface " \
             f"on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         if_key = Topology.add_new_port(node, u"vxlan_tunnel")
@@ -881,7 +881,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to set VXLAN bypass on interface " \
             f"on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_replies(err_msg)
 
     @staticmethod
@@ -922,7 +922,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to get VXLAN dump on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         data = list() if interface is None else dict()
@@ -990,7 +990,7 @@ class InterfaceUtil:
             inner_vlan_id=int(inner_vlan_id) if inner_vlan_id else 0
         )
         err_msg = f"Failed to create sub-interface on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         if_key = Topology.add_new_port(node, u"subinterface")
@@ -1029,7 +1029,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to create GRE tunnel interface " \
             f"on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         if_key = Topology.add_new_port(node, u"gre_tunnel")
@@ -1072,7 +1072,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to create GTPU tunnel interface " \
             f"on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         if_key = Topology.add_new_port(node, u"gtpu_tunnel")
@@ -1104,7 +1104,7 @@ class InterfaceUtil:
         )
 
         err_msg = f"Failed to enable GTPU offload RX on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -1127,7 +1127,7 @@ class InterfaceUtil:
             user_instance=0,
         )
         err_msg = f"Failed to create loopback interface on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         if_key = Topology.add_new_port(node, u"loopback")
@@ -1179,7 +1179,7 @@ class InterfaceUtil:
             enable_gso=gso
         )
         err_msg = f"Failed to create bond interface on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         InterfaceUtil.add_eth_interface(
@@ -1248,7 +1248,7 @@ class InterfaceUtil:
         :raises RuntimeError: If it is not possible to create AVF interface on
             the node.
         """
-        PapiSocketExecutor.run_cli_cmd(
+        SocketExecutor.run_cli_cmd(
             node, u"set logging class avf level debug"
         )
 
@@ -1265,7 +1265,7 @@ class InterfaceUtil:
 
         # FIXME: Remove once the fw/driver is upgraded.
         for _ in range(10):
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 try:
                     sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(
                         err_msg
@@ -1307,7 +1307,7 @@ class InterfaceUtil:
         :raises RuntimeError: If it is not possible to create AF_XDP interface
             on the node.
         """
-        PapiSocketExecutor.run_cli_cmd(
+        SocketExecutor.run_cli_cmd(
             node, u"set logging class af_xdp level debug"
         )
 
@@ -1322,7 +1322,7 @@ class InterfaceUtil:
             mode=getattr(AfXdpMode, f"AF_XDP_API_MODE_{mode.upper()}").value
         )
         err_msg = f"Failed to create AF_XDP interface on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         InterfaceUtil.vpp_set_interface_mac(
@@ -1359,7 +1359,7 @@ class InterfaceUtil:
         :raises RuntimeError: If it is not possible to create RDMA interface on
             the node.
         """
-        PapiSocketExecutor.run_cli_cmd(
+        SocketExecutor.run_cli_cmd(
             node, u"set logging class rdma level debug"
         )
 
@@ -1378,7 +1378,7 @@ class InterfaceUtil:
             # TODO: Apply desired RSS flags.
         )
         err_msg = f"Failed to create RDMA interface on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         InterfaceUtil.vpp_set_interface_mac(
@@ -1413,7 +1413,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to add member {interface} to bond interface " \
             f"{bond_if} on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -1429,7 +1429,7 @@ class InterfaceUtil:
         err_msg = f"Failed to get bond interface dump on host {node[u'host']}"
 
         data = f"Bond data on node {node[u'host']}:\n"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd).get_details(err_msg)
 
         for bond in details:
@@ -1475,7 +1475,7 @@ class InterfaceUtil:
         )
         err_msg = f"Failed to get slave dump on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         logger.debug(f"Member data:\n{details}")
@@ -1519,7 +1519,7 @@ class InterfaceUtil:
             else Constants.BITWISE_NON_ZERO,
             is_add=1)
         err_msg = f"Failed to enable input acl on interface {interface}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -1545,7 +1545,7 @@ class InterfaceUtil:
             sw_if_index=sw_if_index
         )
         err_msg = f"Failed to get classify table name by interface {interface}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         return reply
@@ -1610,7 +1610,7 @@ class InterfaceUtil:
             sw_if_index=sw_if_index
         )
         err_msg = f"Failed to get VXLAN-GPE dump on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         data = list() if interface_name is None else dict()
@@ -1644,7 +1644,7 @@ class InterfaceUtil:
             vrf_id=int(table_id)
         )
         err_msg = f"Failed to assign interface {interface} to FIB table"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -1901,7 +1901,7 @@ class InterfaceUtil:
         """
         cmd = u"sw_interface_rx_placement_dump"
         err_msg = f"Failed to run '{cmd}' PAPI command on host {node[u'host']}!"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             for ifc in node[u"interfaces"].values():
                 if ifc[u"vpp_sw_index"] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc[u"vpp_sw_index"])
@@ -1946,7 +1946,7 @@ class InterfaceUtil:
             worker_id=worker_id,
             is_main=False
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod

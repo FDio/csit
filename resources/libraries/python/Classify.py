@@ -22,7 +22,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 
 
 class Classify:
@@ -230,7 +230,7 @@ class Classify:
         )
         err_msg = f"Failed to create a classify table on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         return int(reply[u"new_table_index"]), int(reply[u"skip_n_vectors"]),\
@@ -293,7 +293,7 @@ class Classify:
         )
         err_msg = f"Failed to create a classify session on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -316,7 +316,7 @@ class Classify:
 
         err_msg = f"Failed to add MACIP ACL on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -343,7 +343,7 @@ class Classify:
         err_msg = f"Failed to set acl list for interface {sw_if_index} " \
             f"on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -369,7 +369,7 @@ class Classify:
 
         err_msg = f"Failed to add/replace ACLs on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -535,7 +535,7 @@ class Classify:
         args = dict(
             table_id=int(table_index)
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
         return reply
 
@@ -554,7 +554,7 @@ class Classify:
         args = dict(
             table_id=int(table_index)
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details()
 
         return details
@@ -568,7 +568,7 @@ class Classify:
         :returns: Classify tables verbose data.
         :rtype: str
         """
-        return PapiSocketExecutor.run_cli_cmd(
+        return SocketExecutor.run_cli_cmd(
             node, u"show classify tables verbose"
         )
 
@@ -580,7 +580,7 @@ class Classify:
         :param node: VPP node.
         :type node: dict
         """
-        PapiSocketExecutor.dump_and_log(node, [u"acl_dump", ])
+        SocketExecutor.dump_and_log(node, [u"acl_dump", ])
 
     @staticmethod
     def vpp_log_plugin_acl_interface_assignment(node):
@@ -590,7 +590,7 @@ class Classify:
         :param node: VPP node.
         :type node: dict
         """
-        PapiSocketExecutor.dump_and_log(node, [u"acl_interface_list_dump", ])
+        SocketExecutor.dump_and_log(node, [u"acl_interface_list_dump", ])
 
     @staticmethod
     def set_acl_list_for_interface(node, interface, acl_type, acl_idx=None):
@@ -738,7 +738,7 @@ class Classify:
         :param node: VPP node.
         :type node: dict
         """
-        PapiSocketExecutor.dump_and_log(node, [u"macip_acl_dump", ])
+        SocketExecutor.dump_and_log(node, [u"macip_acl_dump", ])
 
     @staticmethod
     def add_del_macip_acl_interface(node, interface, action, acl_idx):
@@ -761,7 +761,7 @@ class Classify:
             sw_if_index=int(InterfaceUtil.get_interface_index(node, interface)),
             acl_index=int(acl_idx)
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -773,6 +773,6 @@ class Classify:
         """
         cmd = u"macip_acl_interface_get"
         err_msg = f"Failed to get 'macip_acl_interface' on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd).get_reply(err_msg)
         logger.info(reply)
