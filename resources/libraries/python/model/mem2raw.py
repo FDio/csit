@@ -42,7 +42,7 @@ def _pre_serialize_recursive(data):
 
     Also, PAPI responses are namedtuples, which confuses
     the json.JSONEncoder method (so it does not recurse).
-    Dictization (see PapiSocketExecutor) helps somewhat, but it turns namedtuple
+    Dictization (see SocketExecutor) helps somewhat, but it turns namedtuple
     into a UserDict, which also confuses json.JSONEncoder.
     Therefore, we recursively convert any Mapping into an ordinary dict.
 
