@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbb157cd_ab810886",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-27T07:37:19Z",
+      "side": 0,
+      "message": "The fixer would replace this with 2022-2022 which is redundant.",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "1cd46e5b0125f405af0aa6c9aa715f543428f1d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
