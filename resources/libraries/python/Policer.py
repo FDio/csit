@@ -17,7 +17,7 @@ from enum import IntEnum
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.IPUtil import IpDscp
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import Topology
 
 
@@ -151,7 +151,7 @@ class Policer:
         err_msg = f"Failed to configure policer {policer_name} " \
             f"on host {node['host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         return reply[u"policer_index"]
@@ -196,7 +196,7 @@ class Policer:
         err_msg = f"Failed to set/unset policer classify interface " \
             f"{interface} on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod

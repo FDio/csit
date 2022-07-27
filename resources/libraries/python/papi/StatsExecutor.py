@@ -15,7 +15,7 @@
 
 This one does not use sockets.
 PapiNonsocketExecutor is a better name, but too long for import lines.
-PapiStatsExecutor name hints accessing stats segment needs this executor.
+StatsExecutor name hints accessing stats segment needs this executor.
 """
 
 import copy
@@ -24,14 +24,14 @@ import json
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.papi.History import History
 from resources.libraries.python.ssh import (SSH, SSHTimeout)
 
 
-__all__ = [u"PapiStatsExecutor"]
+__all__ = [u"StatsExecutor"]
 
 
-class PapiStatsExecutor:
+class StatsExecutor:
     """Contains methods for executing VPP Python API commands on DUTs.
 
     TODO: Remove .add step, make get_stats accept paths directly.
@@ -41,7 +41,7 @@ class PapiStatsExecutor:
     The recommended ways of use are (examples):
 
     path = ['^/if', '/err/ip4-input', '/sys/node/ip4-input']
-    with PapiStatsExecutor(node) as papi_exec:
+    with StatsExecutor(node) as papi_exec:
         stats = papi_exec.add(api_name='vpp-stats', path=path).get_stats()
 
     print('RX interface core 0, sw_if_index 0:\n{0}'.\
@@ -51,21 +51,21 @@ class PapiStatsExecutor:
 
     path_1 = ['^/if', ]
     path_2 = ['^/if', '/err/ip4-input', '/sys/node/ip4-input']
-    with PapiStatsExecutor(node) as papi_exec:
+    with StatsExecutor(node) as papi_exec:
         stats = papi_exec.add('vpp-stats', path=path_1).\
             add('vpp-stats', path=path_2).get_stats()
 
     print('RX interface core 0, sw_if_index 0:\n{0}'.\
         format(stats[1]['/if/rx'][0][0]))
 
-    Note: In this case, when PapiStatsExecutor method 'add' is used:
+    Note: In this case, when StatsExecutor method 'add' is used:
     - its parameter 'csit_papi_command' is used only to keep information
       that vpp-stats are requested. It is not further processed but it is
       included in the PAPI history this way:
       vpp-stats(path=['^/if', '/err/ip4-input', '/sys/node/ip4-input'])
       Always use csit_papi_command="vpp-stats" if the VPP PAPI method
       is "stats".
-    - the second parameter must be 'path' as it is used by PapiStatsExecutor
+    - the second parameter must be 'path' as it is used by StatsExecutor
       method 'add'.
     """
 
@@ -111,10 +111,10 @@ class PapiStatsExecutor:
         :type history: bool
         :type kwargs: dict
         :returns: self, so that method chaining is possible.
-        :rtype: PapiStatsExecutor
+        :rtype: StatsExecutor
         """
         if history:
-            PapiHistory.add_to_papi_history(
+            History.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs
             )
         # TODO: Add only just before executing,
