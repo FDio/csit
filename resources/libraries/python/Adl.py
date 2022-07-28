@@ -13,7 +13,7 @@
 
 """ADL utilities library."""
 
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import Topology
 
 
@@ -52,7 +52,7 @@ class Adl:
             default_adl=default_adl
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -81,5 +81,5 @@ class Adl:
             enable_disable=enable
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)

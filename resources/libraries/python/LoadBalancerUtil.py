@@ -16,7 +16,7 @@
 from ipaddress import ip_address
 from socket import htonl
 
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -66,7 +66,7 @@ class LoadBalancerUtil:
                 flow_timeout=flow_timeout
             )
 
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         else:
             raise ValueError(
@@ -130,7 +130,7 @@ class LoadBalancerUtil:
                 is_del=is_del
             )
 
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         else:
             raise ValueError(
@@ -183,7 +183,7 @@ class LoadBalancerUtil:
                 is_flush=is_flush
             )
 
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         else:
             raise ValueError(
@@ -217,7 +217,7 @@ class LoadBalancerUtil:
                 sw_if_index=sw_if_index
             )
 
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         else:
             raise ValueError(

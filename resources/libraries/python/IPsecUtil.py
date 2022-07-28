@@ -29,7 +29,7 @@ from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil, IpDscp, \
     MPLS_LABEL_INVALID, NetworkIncrement
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology, NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -310,7 +310,7 @@ class IPsecUtil:
             protocol=protocol,
             index=index
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -329,7 +329,7 @@ class IPsecUtil:
         args = dict(
             async_enable=async_enable
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -354,7 +354,7 @@ class IPsecUtil:
                 worker_index=worker - 1,
                 crypto_enable=crypto_enable
             )
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -466,7 +466,7 @@ class IPsecUtil:
             is_add=True,
             entry=sad_entry
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -591,7 +591,7 @@ class IPsecUtil:
             is_add=True,
             entry=sad_entry
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             for i in range(n_entries):
                 args[u"entry"][u"sad_id"] = int(sad_id) + i
                 args[u"entry"][u"spi"] = int(spi) + i
@@ -695,7 +695,7 @@ class IPsecUtil:
             else f"Failed to configure IP addresses and IP routes " \
                  f"on interface {interface} on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             for i in range(n_tunnels):
                 tunnel_dst_addr = tunnel_dst + i * addr_incr
                 args1[u"prefix"] = IPUtil.create_prefix_object(
@@ -740,7 +740,7 @@ class IPsecUtil:
             is_add=True,
             spd_id=int(spd_id)
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -762,7 +762,7 @@ class IPsecUtil:
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
             spd_id=int(spd_id)
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -969,7 +969,7 @@ class IPsecUtil:
             is_add=True,
             entry=spd_entry
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -1310,7 +1310,7 @@ class IPsecUtil:
         :type if1_key: str
         :type if2_key: str
         """
-        with PapiSocketExecutor(nodes[u"DUT1"]) as papi_exec:
+        with SocketExecutor(nodes[u"DUT1"]) as papi_exec:
             # Create loopback interface on DUT1, set it to up state
             cmd = u"create_loopback_instance"
             args = dict(
@@ -1415,7 +1415,7 @@ class IPsecUtil:
             loop_sw_if_idx = InterfaceUtil.vpp_get_interface_sw_index(
                 nodes[u"DUT1"], u"loop0"
             )
-        with PapiSocketExecutor(nodes[u"DUT1"]) as papi_exec:
+        with SocketExecutor(nodes[u"DUT1"]) as papi_exec:
             # Configure IP addresses on loop0 interface
             cmd = u"sw_interface_add_del_address"
             args = dict(
@@ -1658,7 +1658,7 @@ class IPsecUtil:
         :type spi_d: dict
         :type existing_tunnels: int
         """
-        with PapiSocketExecutor(nodes[u"DUT2"]) as papi_exec:
+        with SocketExecutor(nodes[u"DUT2"]) as papi_exec:
             if not existing_tunnels:
                 # Set IP address on VPP node 2 interface
                 cmd = u"sw_interface_add_del_address"
@@ -2269,7 +2269,7 @@ class IPsecUtil:
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show ipsec all")
+        SocketExecutor.run_cli_cmd(node, u"show ipsec all")
 
     @staticmethod
     def show_ipsec_security_association(node):
@@ -2281,7 +2281,7 @@ class IPsecUtil:
         cmds = [
             u"ipsec_sa_v3_dump"
         ]
-        PapiSocketExecutor.dump_and_log(node, cmds)
+        SocketExecutor.dump_and_log(node, cmds)
 
     @staticmethod
     def vpp_ipsec_flow_enale_rss(node, proto, type, function="default"):
@@ -2301,7 +2301,7 @@ class IPsecUtil:
         # TODO: to be fixed to use full PAPI when it is ready in VPP
         cmd = f"test flow add src-ip any proto {proto} rss function " \
             f"{function} rss types {type}"
-        stdout = PapiSocketExecutor.run_cli_cmd(node, cmd)
+        stdout = SocketExecutor.run_cli_cmd(node, cmd)
         flow_index = stdout.split()[1]
 
         return flow_index

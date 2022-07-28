@@ -15,7 +15,7 @@
 
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import NodeType
 
 
@@ -40,7 +40,7 @@ class IPv6Util:
         err_msg = f"Failed to disable sending ICMPv6 router-advertisement " \
             f"messages on interface {interface}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -63,7 +63,7 @@ class IPv6Util:
         err_msg = f"Failed to set router advertisement interval " \
             f"on interface {interface}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod

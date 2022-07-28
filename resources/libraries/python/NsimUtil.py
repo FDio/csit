@@ -14,7 +14,7 @@
 """VPP Network Simulator Plugin util library."""
 
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 
 
 class NsimUtil():
@@ -51,7 +51,7 @@ class NsimUtil():
             packets_per_reorder=vpp_nsim_attr.get(u"packets_per_reorder", 0)
         )
         err_msg = f"Failed to configure NSIM on host {host}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
         if vpp_nsim_attr[u"output_nsim_enable"]:
@@ -62,7 +62,7 @@ class NsimUtil():
             )
             err_msg = f"Failed to enable NSIM output feature on " \
                 f"host {host} interface {interface0}"
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
 
         elif vpp_nsim_attr[u"xc_nsim_enable"]:
@@ -76,5 +76,5 @@ class NsimUtil():
             )
             err_msg = f"Failed to enable NSIM output feature on " \
                 f"host {host} interface {interface0}"
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)

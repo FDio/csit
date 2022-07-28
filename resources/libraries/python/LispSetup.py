@@ -18,7 +18,7 @@ from enum import IntEnum
 from ipaddress import ip_address
 
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 
 
 class EidType(IntEnum):
@@ -91,7 +91,7 @@ class LispStatus:
         cmd = u"lisp_enable_disable"
         err_msg = f"Failed to set LISP status on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
 
@@ -133,7 +133,7 @@ class LispRemoteMapping:
         cmd = u"lisp_add_del_remote_mapping"
         err_msg = f"Failed to add remote mapping on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -169,7 +169,7 @@ class LispRemoteMapping:
         cmd = u"lisp_add_del_remote_mapping"
         err_msg = f"Failed to delete remote mapping on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
 
@@ -205,7 +205,7 @@ class LispAdjacency:
         cmd = u"lisp_add_del_adjacency"
         err_msg = f"Failed to add lisp adjacency on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -236,7 +236,7 @@ class LispAdjacency:
         cmd = u"lisp_add_del_adjacency"
         err_msg = f"Failed to delete lisp adjacency on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
 
@@ -256,7 +256,7 @@ class LispGpeStatus:
         cmd = u"gpe_enable_disable"
         err_msg = f"Failed to set LISP GPE status on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
 
@@ -288,7 +288,7 @@ class LispLocalEid:
         cmd = u"lisp_add_del_local_eid"
         err_msg = f"Failed to add local eid on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -316,7 +316,7 @@ class LispLocalEid:
         cmd = u"lisp_add_del_local_eid"
         err_msg = f"Failed to delete local eid on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
 
@@ -349,7 +349,7 @@ class LispLocator:
         cmd = u"lisp_add_del_locator"
         err_msg = f"Failed to add locator on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -377,7 +377,7 @@ class LispLocator:
         cmd = u"lisp_add_del_locator"
         err_msg = f"Failed to delete locator on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
 
@@ -402,7 +402,7 @@ class LispLocatorSet:
         cmd = u"lisp_add_del_locator_set"
         err_msg = f"Failed to add locator set on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -423,7 +423,7 @@ class LispLocatorSet:
         cmd = u"lisp_add_del_locator_set"
         err_msg = f"Failed to delete locator set on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
 
@@ -457,5 +457,5 @@ class LispEidTableMap:
             cmd = u"lisp_eid_table_add_del_map"
             err_msg = f"Failed to add eid table map on host {node[u'host']}"
 
-            with PapiSocketExecutor(node) as papi_exec:
+            with SocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)

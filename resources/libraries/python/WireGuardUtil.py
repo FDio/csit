@@ -21,7 +21,7 @@ from cryptography.hazmat.primitives.asymmetric.x25519 import \
 
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 
 class WireGuardUtil:
     """This class defines the methods to set WireGuard."""
@@ -89,7 +89,7 @@ class WireGuardUtil:
                 generate_key=False
             )
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             wg_sw_index = \
                 papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
             return wg_sw_index
@@ -135,7 +135,7 @@ class WireGuardUtil:
                 allowed_ips=allowed_ips
             )
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -198,7 +198,7 @@ class WireGuardUtil:
         )
         err_msg = f"Failed to set IP address on wg interface " \
             f"on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
         #Set route on VPP node as DUT wg interface
         for allowed_ip in peer_allowed_ips:

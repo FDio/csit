@@ -21,7 +21,7 @@ from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 
@@ -174,7 +174,7 @@ class TestConfig:
             vlan_id=None
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             for i in range(0, vxlan_count):
                 try:
                     src_ip = src_ip_start + i * ip_step
@@ -274,7 +274,7 @@ class TestConfig:
             flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             for i in range(0, vxlan_count):
                 vxlan_subif_key = Topology.add_new_port(node, u"vxlan_tunnel")
                 vxlan_subif_name = f"vxlan_tunnel{i}"
@@ -422,7 +422,7 @@ class TestConfig:
             enable=1
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             for i in range(0, vxlan_count):
                 args1[u"neighbor"][u"ip_address"] = \
                     str(dst_ip_start + i * ip_step)

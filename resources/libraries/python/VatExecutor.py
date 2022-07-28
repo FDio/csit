@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -23,7 +23,7 @@ from robot.api import logger
 import resources.libraries.python.DUTSetup as PidLib
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.papi.History import History
 from resources.libraries.python.ssh import SSH, SSHTimeout
 
 __all__ = [u"VatExecutor"]
@@ -115,7 +115,7 @@ class VatExecutor:
             if history:
                 with open(vat_name, u"rt") as vat_file:
                     for line in vat_file:
-                        PapiHistory.add_to_papi_history(
+                        History.add_to_papi_history(
                             node, line.replace(u"\n", u""), papi=False
                         )
         else:
@@ -298,7 +298,7 @@ class VatTerminal:
         :returns: Command output in python representation of JSON format or
             None if not in JSON mode.
         """
-        PapiHistory.add_to_papi_history(self._node, cmd, papi=False)
+        History.add_to_papi_history(self._node, cmd, papi=False)
         logger.debug(f"Executing command in VAT terminal: {cmd}")
         try:
             out = self._ssh.interactive_terminal_exec_command(

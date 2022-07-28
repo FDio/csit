@@ -20,7 +20,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.L2Util import L2Util
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import Topology
 
 
@@ -88,7 +88,7 @@ class Tap:
         err_msg = f"Failed to create tap interface {tap_name} " \
             f"on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         if_key = Topology.add_new_port(node, u"tap")
@@ -167,7 +167,7 @@ class Tap:
         cmd = u"sw_interface_tap_v2_dump"
         err_msg = f"Failed to get TAP dump on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd).get_details(err_msg)
 
         data = list() if name is None else dict()

@@ -16,7 +16,7 @@
 from enum import IntEnum
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import exec_cmd_no_error
 
@@ -127,7 +127,7 @@ class L2Util:
             bvi_mac=int(bvi_mac)
 
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -167,7 +167,7 @@ class L2Util:
             arp_term=arp_term,
             is_add=True
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -201,7 +201,7 @@ class L2Util:
             enable=True
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -253,7 +253,7 @@ class L2Util:
         err_msg = f"Failed to add L2 bridge domain with 2 interfaces " \
             f"on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd1, **args1).add(cmd2, **args2).add(cmd2, **args3)
             papi_exec.get_replies(err_msg)
 
@@ -292,7 +292,7 @@ class L2Util:
         err_msg = f"Failed to add L2 cross-connect between two interfaces " \
             f"on host {node['host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
 
     @staticmethod
@@ -330,7 +330,7 @@ class L2Util:
         err_msg = f"Failed to add L2 patch between two interfaces " \
             f"on host {node['host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
 
     @staticmethod
@@ -403,7 +403,7 @@ class L2Util:
         )
         err_msg = f"Failed to get L2FIB dump on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         retval = details if bd_id == Constants.BITWISE_NON_ZERO else None
@@ -457,7 +457,7 @@ class L2Util:
         )
         err_msg = f"Failed to set VLAN TAG rewrite on host {node['host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -477,7 +477,7 @@ class L2Util:
         )
         err_msg = f"Failed to get L2FIB dump on host {node['host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         for fib_item in details:

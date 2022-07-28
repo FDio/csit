@@ -17,7 +17,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.model.ExportResult import (
     export_dut_type_and_version
 )
@@ -69,7 +69,7 @@ class VPPUtil:
         :type node_key: str
         """
         # Containers have a separate lifecycle, but better be safe.
-        PapiSocketExecutor.disconnect_all_sockets_by_node(node)
+        SocketExecutor.disconnect_all_sockets_by_node(node)
         DUTSetup.restart_service(node, Constants.VPP_UNIT)
         if node_key:
             Topology.add_new_socket(
@@ -102,7 +102,7 @@ class VPPUtil:
         :type node_key: str
         """
         # Containers have a separate lifecycle, but better be safe.
-        PapiSocketExecutor.disconnect_all_sockets_by_node(node)
+        SocketExecutor.disconnect_all_sockets_by_node(node)
         DUTSetup.stop_service(node, Constants.VPP_UNIT)
         if node_key:
             Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
@@ -216,7 +216,7 @@ class VPPUtil:
         :raises AssertionError: If PAPI retcode is nonzero.
         """
         cmd = u"show_version"
-        with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
+        with SocketExecutor(node, remote_vpp_socket) as papi_exec:
             reply = papi_exec.add(cmd).get_reply()
         if log:
             logger.info(f"VPP version: {reply[u'version']}\n")
@@ -249,7 +249,7 @@ class VPPUtil:
             name_filter=u""
         )
         err_msg = f"Failed to get interface dump on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         for if_dump in details:
@@ -284,7 +284,7 @@ class VPPUtil:
 
         for cmd in cmds:
             try:
-                PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, cmd)
+                SocketExecutor.run_cli_cmd_on_all_sockets(node, cmd)
             except AssertionError:
                 if fail_on_error:
                     raise
@@ -311,11 +311,11 @@ class VPPUtil:
         :type node: dict
         """
         try:
-            PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            SocketExecutor.run_cli_cmd_on_all_sockets(
                 node, u"event-logger trace api cli barrier")
         except AssertionError:
             # Perhaps an older VPP build is tested.
-            PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            SocketExecutor.run_cli_cmd_on_all_sockets(
                 node, u"elog trace api cli barrier")
 
     @staticmethod
@@ -336,7 +336,7 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+        SocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"show event-logger")
 
     @staticmethod
@@ -357,7 +357,7 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show logging")
+        SocketExecutor.run_cli_cmd(node, u"show logging")
 
     @staticmethod
     def show_log_on_all_duts(nodes):
@@ -380,7 +380,7 @@ class VPPUtil:
         :rtype: list
         """
         cmd = u"show_threads"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd).get_reply()
 
         threads_data = reply[u"thread_data"]
@@ -406,7 +406,7 @@ class VPPUtil:
             node_name=graph_node_name,
             next_name=graph_next_name
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply()
 
         return reply[u"next_index"]

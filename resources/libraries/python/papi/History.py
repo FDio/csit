@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,13 +17,13 @@ from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, DICT__nodes
 
-__all__ = [u"DICT__DUTS_PAPI_HISTORY", u"PapiHistory"]
+__all__ = [u"DICT__DUTS_PAPI_HISTORY", u"History"]
 
 
 DICT__DUTS_PAPI_HISTORY = dict()
 
 
-class PapiHistory:
+class History:
     """Contains methods to set up DUT PAPI command history.
     """
 
@@ -45,7 +45,7 @@ class PapiHistory:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                PapiHistory.reset_papi_history(node)
+                History.reset_papi_history(node)
 
     @staticmethod
     def add_to_papi_history(node, csit_papi_command, papi=True, **kwargs):
@@ -117,7 +117,7 @@ class PapiHistory:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                PapiHistory.show_papi_history(node)
+                History.show_papi_history(node)
 
 
 # This module can be imported outside usual Robot test context,
@@ -125,4 +125,4 @@ class PapiHistory:
 # For the tools to work, we need to avoid processing
 # when DICT__nodes value is not usable.
 if DICT__nodes:
-    PapiHistory.reset_papi_history_on_all_duts(DICT__nodes)
+    History.reset_papi_history_on_all_duts(DICT__nodes)

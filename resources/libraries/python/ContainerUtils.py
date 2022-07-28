@@ -23,7 +23,7 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
@@ -162,7 +162,7 @@ class ContainerManager:
         are the only dangerous methods, and all are handled by ContainerManager.
         """
         for container_object in self.containers.values():
-            PapiSocketExecutor.disconnect_by_node_and_socket(
+            SocketExecutor.connector.disconnect(
                 container_object.node,
                 container_object.api_socket,
             )

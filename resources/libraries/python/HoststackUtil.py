@@ -20,7 +20,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 
 class HoststackUtil():
@@ -120,7 +120,7 @@ class HoststackUtil():
         :type fifo_size: str
         """
         cmd = f"quic set fifo-size {fifo_size}"
-        PapiSocketExecutor.run_cli_cmd(node, cmd)
+        SocketExecutor.run_cli_cmd(node, cmd)
 
     @staticmethod
     def set_hoststack_quic_crypto_engine(node, quic_crypto_engine,
@@ -148,7 +148,7 @@ class HoststackUtil():
 
         for cmd in cmds:
             try:
-                PapiSocketExecutor.run_cli_cmd(node, cmd)
+                SocketExecutor.run_cli_cmd(node, cmd)
             except AssertionError:
                 if fail_on_error:
                     raise
@@ -351,7 +351,7 @@ class HoststackUtil():
         # TODO: Incorporate show error stats into results analysis
         test_results += \
             f"\n{role} VPP 'show errors' on host {node[u'host']}:\n" \
-            f"{PapiSocketExecutor.run_cli_cmd(node, u'show error')}\n"
+            f"{SocketExecutor.run_cli_cmd(node, u'show error')}\n"
 
         if u"error" in program_stderr.lower():
             test_results += f"ERROR DETECTED:\n{program_stderr}"
@@ -408,5 +408,5 @@ class HoststackUtil():
         if node[u"type"] != u"DUT":
             raise RuntimeError(u"Node type is not a DUT!")
 
-        PapiSocketExecutor.run_cli_cmd(node, u"show error")
-        PapiSocketExecutor.run_cli_cmd(node, u"show interface")
+        SocketExecutor.run_cli_cmd(node, u"show error")
+        SocketExecutor.run_cli_cmd(node, u"show interface")

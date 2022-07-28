@@ -19,7 +19,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.topology import Topology
 
 
@@ -73,7 +73,7 @@ class GeneveUtil:
             l3_mode=l3_mode
         )
         err_msg = f"Failed to configure GENEVE tunnel on host {node[u'host']}!"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         if_key = Topology.add_new_port(node, u"geneve_tunnel")
@@ -111,7 +111,7 @@ class GeneveUtil:
             f"Failed to enable {u'ipv6' if is_ipv6 else u'ipv4'}-geneve-bypass "
             f"on interface {interface} on host {node[u'host']}!"
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -124,7 +124,7 @@ class GeneveUtil:
         cmds = [
             u"geneve_tunnel_dump",
         ]
-        PapiSocketExecutor.dump_and_log(node, cmds)
+        SocketExecutor.dump_and_log(node, cmds)
 
     @staticmethod
     def vpp_geneve_add_multiple_tunnels(

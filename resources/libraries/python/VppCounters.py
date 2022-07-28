@@ -17,8 +17,8 @@ from pprint import pformat
 
 from robot.api import logger
 
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
-from resources.libraries.python.PapiStatsExecutor import PapiStatsExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
+from resources.libraries.python.papi.StatsExecutor import StatsExecutor
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
 
@@ -35,7 +35,7 @@ class VppCounters:
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show errors")
+        SocketExecutor.run_cli_cmd_on_all_sockets(node, u"show errors")
 
     @staticmethod
     def vpp_show_errors_on_all_duts(nodes):
@@ -61,7 +61,7 @@ class VppCounters:
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.STATS)
         if sockets:
             for socket in sockets.values():
-                with PapiStatsExecutor(node) as papi_exec:
+                with StatsExecutor(node) as papi_exec:
                     stats = papi_exec.add(u"vpp-stats", **args).\
                         get_stats(socket=socket)[0]
 
@@ -113,7 +113,7 @@ class VppCounters:
                         f"{pformat(runtime_nz)}"
                     )
         # Run also the CLI command, the above sometimes misses some info.
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
+        SocketExecutor.run_cli_cmd_on_all_sockets(node, u"show runtime")
 
     @staticmethod
     def vpp_show_runtime_on_all_duts(nodes):
@@ -133,7 +133,7 @@ class VppCounters:
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+        SocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"show hardware verbose"
         )
 
@@ -146,7 +146,7 @@ class VppCounters:
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+        SocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"show memory verbose api-segment stats-segment main-heap"
         )
 
@@ -168,7 +168,7 @@ class VppCounters:
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+        SocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"clear runtime", log=False
         )
 
@@ -192,7 +192,7 @@ class VppCounters:
         :returns: Verified data from PAPI response.
         :rtype: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+        SocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"clear hardware", log=False
         )
 
@@ -214,7 +214,7 @@ class VppCounters:
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+        SocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"clear errors", log=False
         )
 

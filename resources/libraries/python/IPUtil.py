@@ -26,7 +26,7 @@ from resources.libraries.python.IncrementUtil import ObjIncrement
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.Namespaces import Namespaces
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
@@ -213,7 +213,7 @@ class IPUtil:
         )
         err_msg = f"Failed to get L2FIB dump on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         return details
@@ -225,10 +225,10 @@ class IPUtil:
         :param node: VPP node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show ip fib")
-        PapiSocketExecutor.run_cli_cmd(node, u"show ip fib summary")
-        PapiSocketExecutor.run_cli_cmd(node, u"show ip6 fib")
-        PapiSocketExecutor.run_cli_cmd(node, u"show ip6 fib summary")
+        SocketExecutor.run_cli_cmd(node, u"show ip fib")
+        SocketExecutor.run_cli_cmd(node, u"show ip fib summary")
+        SocketExecutor.run_cli_cmd(node, u"show ip6 fib")
+        SocketExecutor.run_cli_cmd(node, u"show ip6 fib summary")
 
     @staticmethod
     def vpp_get_ip_table_summary(node):
@@ -237,7 +237,7 @@ class IPUtil:
         :param node: VPP node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show ip fib summary")
+        SocketExecutor.run_cli_cmd(node, u"show ip fib summary")
 
     @staticmethod
     def vpp_get_ip_table(node):
@@ -246,7 +246,7 @@ class IPUtil:
         :param node: VPP node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show ip fib")
+        SocketExecutor.run_cli_cmd(node, u"show ip fib")
 
     @staticmethod
     def vpp_get_ip_tables_prefix(node, address):
@@ -260,7 +260,7 @@ class IPUtil:
         addr = ip_address(address)
         ip_ver = u"ip6" if addr.version == 6 else u"ip"
 
-        PapiSocketExecutor.run_cli_cmd(
+        SocketExecutor.run_cli_cmd(
             node, f"show {ip_ver} fib {addr}/{addr.max_prefixlen}"
         )
 
@@ -286,7 +286,7 @@ class IPUtil:
         )
         err_msg = f"Failed to get VRF id assigned to interface {interface}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         return reply[u"vrf_id"]
@@ -307,7 +307,7 @@ class IPUtil:
             loose=0
         )
         err_msg = f"Failed to enable source check on interface {if_name}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -328,7 +328,7 @@ class IPUtil:
         )
         err_msg = f"VPP ip probe {interface} {addr} failed on {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -568,7 +568,7 @@ class IPUtil:
         )
         err_msg = f"Failed to add IP address on interface {interface}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -617,7 +617,7 @@ class IPUtil:
         )
         err_msg = f"Failed to add IP neighbor on interface {iface_key}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -796,7 +796,7 @@ class IPUtil:
             ip_network(f"{network}/{prefix_len}", strict=strict),
             format=u"addr"
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, netiter.inc_fmt(), prefix_len, **kwargs
@@ -822,7 +822,7 @@ class IPUtil:
         )
         err_msg = f"Failed to flush IP address on interface {interface}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -847,5 +847,5 @@ class IPUtil:
         )
         err_msg = f"Failed to add FIB table on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
