@@ -26,7 +26,7 @@ class CpuUtils:
     """CPU utilities"""
 
     # Number of threads per core.
-    NR_OF_THREADS = 2
+    NR_OF_THREADS = 1
 
     @staticmethod
     def __str2int(string):
