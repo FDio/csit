@@ -14,7 +14,7 @@
 """DHCP utilities for VPP."""
 
 
-from resources.libraries.python.PapiSocketExecutor import PapiSocketExecutor
+from resources.libraries.python.papi.SocketExecutor import SocketExecutor
 
 
 class DhcpProxy:
@@ -35,7 +35,7 @@ class DhcpProxy:
         args = dict(is_ip6=1 if ip_version == u"ipv6" else 0)
         err_msg = f"Failed to get DHCP proxy dump on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with SocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         return details
