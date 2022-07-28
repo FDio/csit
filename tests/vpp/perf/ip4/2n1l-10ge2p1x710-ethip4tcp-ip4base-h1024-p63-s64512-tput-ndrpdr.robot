@@ -68,7 +68,7 @@
 | ${n_ports}= | ${63}
 | ${packets_per_transaction_and_direction}= | ${4 + ${ASTF_N_DATA_FRAMES}}
 | ${packets_per_transaction_aggregated}= | ${6 + 2 * ${ASTF_N_DATA_FRAMES}}
-| ${transaction_scale}= | ${${n_hosts} * ${n_ports}}
+| ${transaction_scale}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-astf-ethip4tcp-${n_hosts}h-pps
 | ${transaction_type}= | tcp_pps
@@ -107,6 +107,7 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
 | | ... | 192.168.0.0 | 20.0.0.0 | ${22}
+| | Fail | Triggering "performance" teardown action.
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
