@@ -16,6 +16,23 @@
       "message": "Ok, I do not expect to add more improvements anytime soon.",
       "revId": "222118ae36ef284e8431351822a78f8c23d4c71a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bce4c7f_1dfc6bcb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-07-29T07:16:18Z",
+      "side": 1,
+      "message": "we do not need 2 copyright scripts. merge to one or abandon the first one",
+      "revId": "222118ae36ef284e8431351822a78f8c23d4c71a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
