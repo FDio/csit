@@ -454,7 +454,7 @@ class FlowUtil:
             hw_if_index=int(sw_if_index)
         )
 
-        err_msg = u"Failed to enable flow on host {node[u'host']}"
+        err_msg = f"Failed to enable flow on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
