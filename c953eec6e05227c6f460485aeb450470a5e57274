@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b60894d_991957dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-29T09:54:08Z",
+      "side": 1,
+      "message": "csit-3n-skx-perftest mrrANDnic_intel-xxv*ANDdrv_vfio_pciAND1cAND64bAND*1000*256*NOT*fixtnl*NOT*-1ch-*",
+      "revId": "c953eec6e05227c6f460485aeb450470a5e57274",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
