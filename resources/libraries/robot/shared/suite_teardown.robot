@@ -60,10 +60,10 @@
 | | [Documentation]
 | | ... | Additional teardown for suites which uses dpdk.
 | |
-| | FOR | ${dut} | IN | @{duts}
-| | | Cleanup DPDK Framework
-| | | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
-| | END
+#| | FOR | ${dut} | IN | @{duts}
+#| | | Cleanup DPDK Framework
+#| | | ... | ${nodes['${dut}']} | ${${dut}_${int}1}[0] | ${${dut}_${int}2}[0]
+#| | END
 
 | Additional Suite Tear Down Action For hoststack
 | | [Documentation]
