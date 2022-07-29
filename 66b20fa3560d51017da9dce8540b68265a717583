@@ -16,6 +16,23 @@
       "message": "csit-3n-skx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4ipsec4tnlsw-l2bd-1ch-6mif-4dcr1c-vppip4-aes256gcm",
       "revId": "66b20fa3560d51017da9dce8540b68265a717583",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5b2473_8965ba5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-29T13:31:16Z",
+      "side": 1,
+      "message": "csit-3n-skx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4ipsec4tnlsw-l2bd-1ch-8mif-4dcr1c-vppip4-aes256gcm",
+      "revId": "66b20fa3560d51017da9dce8540b68265a717583",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
