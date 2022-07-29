@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1b2e692_30f874c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-29T14:33:33Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-skx-perftest ndrpdrANDnic_intel-xxv*AND1cAND64bANDeth-l2xcbase-testpmd",
+      "revId": "885be391c2c079894ec7e35d531a14b788a264e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
