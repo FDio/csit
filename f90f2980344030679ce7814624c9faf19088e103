@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-alt-perftest ndrpdrANDnic_intel-xl710AND1cAND64bANDeth-l2xcbase-testpmd",
       "revId": "f90f2980344030679ce7814624c9faf19088e103",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f32d696c_e1a6f168",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-29T12:54:23Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-skx-perftest ndrpdrANDnic_intel-xxv*AND1cAND64bANDeth-l2xcbase-testpmd",
+      "revId": "f90f2980344030679ce7814624c9faf19088e103",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
