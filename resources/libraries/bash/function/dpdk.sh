@@ -242,14 +242,16 @@ function dpdk_l3fwd () {
         die "Failed to start l3fwd"
     }
 
-    for attempt in {1..60}; do
-        echo "Checking if l3fwd is alive, attempt nr ${attempt}"
-        if fgrep "L3FWD: entering main loop on lcore" screenlog.0; then
-            cat screenlog.0
-            exit 0
-        fi
-        sleep 1
-    done
+    sleep 10
+
+#    for attempt in {1..60}; do
+#        echo "Checking if l3fwd is alive, attempt nr ${attempt}"
+#        if fgrep "L3FWD: entering main loop on lcore" screenlog.0; then
+#            cat screenlog.0
+#            exit 0
+#        fi
+#        sleep 1
+#    done
     cat screenlog.0
 
     exit 1
@@ -262,15 +264,15 @@ function dpdk_l3fwd_check () {
 
     set -exuo pipefail
 
-    for attempt in {1..60}; do
-        echo "Checking if l3fwd state is ok, attempt nr ${attempt}"
-        if fgrep "Link up" screenlog.0; then
-            cat screenlog.0
-            dpdk_l3fwd_pid
-            exit 0
-        fi
-        sleep 1
-    done
+#    for attempt in {1..60}; do
+#        echo "Checking if l3fwd state is ok, attempt nr ${attempt}"
+#        if fgrep "Link up" screenlog.0; then
+#            cat screenlog.0
+#            dpdk_l3fwd_pid
+#            exit 0
+#        fi
+#        sleep 1
+#    done
     cat screenlog.0
 
     exit 1
@@ -329,15 +331,17 @@ function dpdk_testpmd () {
         die "Failed to start testpmd"
     }
 
-    for attempt in {1..60}; do
-        echo "Checking if testpmd is alive, attempt nr ${attempt}"
-        if fgrep "Press enter to exit" screenlog.0; then
-            cat screenlog.0
-            dpdk_testpmd_pid
-            exit 0
-        fi
-        sleep 1
-    done
+    sleep 10
+
+#    for attempt in {1..60}; do
+#        echo "Checking if testpmd is alive, attempt nr ${attempt}"
+#        if fgrep "Press enter to exit" screenlog.0; then
+#            cat screenlog.0
+#            dpdk_testpmd_pid
+#            exit 0
+#        fi
+#        sleep 1
+#    done
     cat screenlog.0
 
     exit 1
@@ -350,14 +354,14 @@ function dpdk_testpmd_check () {
 
     set -exuo pipefail
 
-    for attempt in {1..60}; do
-        echo "Checking if testpmd links state changed, attempt nr ${attempt}"
-        if fgrep "link state change event" screenlog.0; then
-            cat screenlog.0
-            exit 0
-        fi
-        sleep 1
-    done
+#    for attempt in {1..60}; do
+#        echo "Checking if testpmd links state changed, attempt nr ${attempt}"
+#        if fgrep "link state change event" screenlog.0; then
+#            cat screenlog.0
+#            exit 0
+#        fi
+#        sleep 1
+#    done
     cat screenlog.0
 
     exit 1

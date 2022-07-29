@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.DPDK.TestpmdTest
 | Variables | resources/libraries/python/Constants.py
 |
 | Documentation | Test teardown keywords.
@@ -188,6 +189,11 @@
 | |
 | | Run Telemetry On All DUTs
 | | ... | ${nodes} | profile=${telemetry_profile}.yaml
+
+| Additional Test Tear Down Action For testpmd
+| | FOR | ${dut} | IN | @{duts}
+| | | Check Testpmd | ${nodes['${dut}']}
+| | END
 
 | Additional Test Tear Down Action For performance
 | | [Documentation]
