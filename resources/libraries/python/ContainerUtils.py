@@ -465,7 +465,7 @@ class ContainerManager:
             tnl_local_ip=tnl_local_ip,
             tnl_remote_ip=tnl_remote_ip,
             tnl_remote_mac=f"02:02:00:00:{r_mac:02X}:{(nf_instance - 1):02X}",
-            remote_ip=f"{remote_ip_base}.{nf_instance}"
+            remote_ip=f"{remote_ip_base}.{nf_instance + 10}"
         )
         self.engine.execute(
             f"cat {kwargs['guest_dir']}/ipsec_create_tunnel_cnf_"
