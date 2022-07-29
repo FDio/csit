@@ -16,6 +16,29 @@
       "message": "csit-dpdk-3n-alt-perftest ndrpdrANDnic_intel-xl710ANDeth-l2xcbase-testpmdANDdrv_vfio_pciAND64b\ncsit-dpdk-3n-alt-perftest ndrpdrANDnic_intel-xl710ANDethip4-ip4base-l3fwdANDdrv_vfio_pciAND64b",
       "revId": "cc6740631624f089e80a2ebf57822a2016dd3bbe",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2157acac_0f63187a",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-07-29T11:49:17Z",
+      "side": 1,
+      "message": "As the line 71 implies, move to line 95.",
+      "range": {
+        "startLine": 67,
+        "startChar": 39,
+        "endLine": 67,
+        "endChar": 46
+      },
+      "revId": "cc6740631624f089e80a2ebf57822a2016dd3bbe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
