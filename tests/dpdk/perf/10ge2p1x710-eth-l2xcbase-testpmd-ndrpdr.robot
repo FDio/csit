@@ -25,7 +25,7 @@
 | Suite Setup | Setup suite topology interfaces | performance | dpdk
 | Suite Teardown | Tear down suite | performance | dpdk
 | Test Setup | Start Test Export
-| Test Teardown | Finalize Test Export
+| Test Teardown | Tear down test raw | testpmd
 |
 | Test Template | Local Template
 |

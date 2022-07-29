@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.DPDK.TestpmdTest
 | Variables | resources/libraries/python/Constants.py
 |
 | Documentation | Test teardown keywords.
@@ -62,6 +63,10 @@
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
 | | Finalize Test Export
+
+| Additional Test Tear Down Action For testpmd
+| | FOR | ${node} | IN | @{nodes}
+| | | Check Testpmd | ${node}
 
 # Additional Test Tear Down Actions in alphabetical order
 | Additional Test Tear Down Action For acl
