@@ -775,6 +775,7 @@ class InterfaceUtil:
             elif node[u"type"] == NodeType.TG and not skip_tg:
                 InterfaceUtil.update_tg_interface_data_on_node(node)
             InterfaceUtil.iface_update_numa_node(node)
+        logger.debug(f"After update: {nodes}")
 
     @staticmethod
     def create_vlan_subinterface(node, interface, vlan):
