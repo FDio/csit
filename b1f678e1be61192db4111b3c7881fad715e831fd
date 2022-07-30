@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df787fb4_12a0fc24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-07-30T11:57:27Z",
+      "side": 1,
+      "message": "the question from my comment was not answered. why to keep fixers if we do not plan to run them?",
+      "revId": "b1f678e1be61192db4111b3c7881fad715e831fd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
