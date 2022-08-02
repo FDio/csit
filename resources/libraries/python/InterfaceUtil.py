@@ -1273,6 +1273,7 @@ class InterfaceUtil:
                     break
                 except AssertionError:
                     logger.error(err_msg)
+            sleep(0.2)
         else:
             raise AssertionError(err_msg)
 
