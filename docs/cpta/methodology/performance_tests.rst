@@ -1,5 +1,5 @@
 Performance Tests
------------------
+^^^^^^^^^^^^^^^^^
 
 Performance trending relies on Maximum Receive Rate (MRR) tests.
 MRR tests measure the packet forwarding rate, in multiple trials of set
@@ -10,24 +10,31 @@ size is set to the bi-directional link rate.
 Current parameters for performance trending MRR tests:
 
 - **Ethernet frame sizes**: 64B (78B for IPv6 tests) for all tests, IMIX for
-  selected tests (vhost, memif); all quoted sizes include frame CRC, but
-  exclude per frame transmission overhead of 20B (preamble, inter frame
-  gap).
-- **Maximum load offered**: 10GE and 40GE link (sub-)rates depending on NIC
-  tested, with the actual packet rate depending on frame size,
+  selected tests (IPSec), 100B for selected tests (NAT44 tput
+  tests), 1518B for IPSec tests;
+  all quoted sizes include frame CRC, but exclude per frame transmission
+  overhead of 20B (preamble, inter frame gap).
+- **Maximum load offered**: 10GE, 25GE, 40GEand 100GE link (sub-)rates depending
+  on NIC tested, with the actual packet rate depending on frame size,
   transmission overhead and traffic generator NIC forwarding capacity.
 
   - For 10GE NICs the maximum packet rate load is 2* 14.88 Mpps for 64B,
     a 10GE bi-directional link rate.
+  - For 25GE NICs the maximum packet rate load is 2* 29.00 Mpps for 64B,
+    a 25GE bi-directional link rate.
   - For 40GE NICs the maximum packet rate load is 2* 18.75 Mpps for 64B,
     a 40GE bi-directional link sub-rate limited by the packet forwarding
     capacity of 2-port 40GE NIC model (XL710) used on T-Rex Traffic
     Generator.
+  - For 100GE NICs the maximum packet rate load is 2* 58.5 Mpps for 64B,
+    a 100GE bi-directional link rate.
 
 - **Trial duration**: 1 sec.
 - **Number of trials per test**: 10.
-- **Test execution frequency**: twice a day, every 12 hrs (02:00,
-  14:00 UTC).
+- **Test execution frequency**:
+
+  - Daily: once a day, Sunday to Thursday, every 24 hrs (22:30UTC),
+  - Weekly: once a week, Saturday, 00:00UTC.
 
 Note: MRR tests should be reporting bi-directional link rate (or NIC
 rate, if lower) if tested VPP configuration can handle the packet rate

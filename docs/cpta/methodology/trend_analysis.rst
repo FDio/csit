@@ -11,65 +11,12 @@ is called a trend for the group.
 All the analysis is based on finding the right partition into groups
 and comparing their trends.
 
-Trend Compliance
-~~~~~~~~~~~~~~~~
-
-.. _Trend_Compliance:
-
-Trend compliance metrics are targeted to provide an indication of trend
-changes, and hint at their reliability (see Common Patterns below).
-
-There is a difference between compliance metric names used in this document,
-and column names used in :ref:`Dashboard` tables and Alerting emails.
-In cases of low user confusion risk, column names are shortened,
-e.g. Trend instead of Last Trend.
-In cases of high user confusion risk, column names are prolonged,
-e.g. Long-Term Change instead of Trend Change.
-(This document refers to a generic "trend",
-so the compliance metric name is prolonged to Last Trend to avoid confusion.)
-
-The definition of Reference for Trend Change is perhaps surprising.
-It was chosen to allow both positive difference on progression
-(if within last week), but also negative difference on progression
-(if performance was even better somewhere between 3 months and 1 week ago).
-
-In the table below, "trend at time <t>", shorthand "trend[t]"
-means "the group average of the group the sample at time <t> belongs to".
-Here, time is usually given as "last" or last with an offset,
-e.g. "last - 1week".
-Also, "runs[t]" is a shorthand for "number of samples in the group
-the sample at time <t> belongs to".
-
-The definitions of compliance metrics:
-
-+-------------------+-------------------+---------------------------------+-------------+-----------------------------------------------+
-| Compliance Metric | Legend Short Name | Formula                         | Value       | Reference                                     |
-+===================+===================+=================================+=============+===============================================+
-| Last Trend        | Trend             | trend[last]                     |             |                                               |
-+-------------------+-------------------+---------------------------------+-------------+-----------------------------------------------+
-| Number of runs    | Runs              | runs[last]                      |             |                                               |
-+-------------------+-------------------+---------------------------------+-------------+-----------------------------------------------+
-| Trend Change      | Long-Term Change  | (Value - Reference) / Reference | trend[last] | max(trend[last - 3mths]..trend[last - 1week]) |
-+-------------------+-------------------+---------------------------------+-------------+-----------------------------------------------+
-
-Caveats
--------
-
-Obviously, if the result history is too short, the true Trend[t] value
-may not by available. We use the earliest Trend available instead.
-
-The current implementation does not track time of the samples,
-it counts runs instead.
-For "- 1week" we use "10 runs ago, 5 runs for topo-arch with 1 TB",
-for "- 3mths" we use "180 days or 180 runs ago, whatever comes first".
-
 Anomalies in graphs
 ~~~~~~~~~~~~~~~~~~~
 
-In graphs, the start of the following group is marked
-as a regression (red circle) or progression (green circle),
-if the new trend is lower (or higher respectively)
-then the previous group's.
+In graphs, the start of the following group is marked as a regression (red
+circle) or progression (green circle), if the new trend is lower (or higher
+respectively) then the previous group's.
 
 Implementation details
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -77,18 +24,17 @@ Implementation details
 Partitioning into groups
 ------------------------
 
-While sometimes the samples within a group are far from being
-distributed normally, currently we do not have a better tractable model.
+While sometimes the samples within a group are far from being distributed
+normally, currently we do not have a better tractable model.
 
-Here, "sample" should be the result of single trial measurement,
-with group boundaries set only at test run granularity.
-But in order to avoid detecting causes unrelated to VPP performance,
-the current presentation takes average of all trials
-within the run as the sample.
-Effectively, this acts as a single trial with aggregate duration.
+Here, "sample" should be the result of single trial measurement, with group
+boundaries set only at test run granularity. But in order to avoid detecting
+causes unrelated to VPP performance, the current presentation takes average of
+all trials within the run as the sample. Effectively, this acts as a single
+trial with aggregate duration.
 
-Performance graphs show the run average as a dot
-(not all individual trial results).
+Performance graphs show the run average as a dot (not all individual trial
+results).
 
 The group boundaries are selected based on `Minimum Description Length`_.
 
