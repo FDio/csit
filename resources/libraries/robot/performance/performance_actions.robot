@@ -133,7 +133,7 @@
 | | ... | Additional Statistics Action for clear VPP statistics.
 | |
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vppctl_clear_stats.yaml
+| | ... | ${nodes} | profile=vpp_clear_stats.yaml
 
 | Additional Statistics Action For vpp-enable-packettrace
 | | [Documentation]
