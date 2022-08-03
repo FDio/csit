@@ -800,7 +800,8 @@ class Layout:
             data = select_data(self.data, job, get_date(start), get_date(end))
             data = data.drop(columns=["job", ])
 
-            return dcc.send_data_frame(data.T.to_csv, f"{job}-stats.csv")
+            return dcc.send_data_frame(
+                data.T.to_csv, f"{job}-{C.STATS_DOWNLOAD_FILE_NAME}")
 
         @app.callback(
             Output("row-metadata", "children"),
