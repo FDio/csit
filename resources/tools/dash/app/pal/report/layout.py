@@ -23,6 +23,7 @@ from dash import dcc
 from dash import html
 from dash import callback_context, no_update, ALL
 from dash import Input, Output, State
+from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
 from copy import deepcopy
 from ast import literal_eval
@@ -32,7 +33,8 @@ from ..utils.utils import show_tooltip, label, sync_checklists, list_tests, \
     gen_new_url
 from ..utils.url_processing import url_decode
 from ..data.data import Data
-from .graphs import graph_iterative, table_comparison, get_short_version
+from .graphs import graph_iterative, table_comparison, get_short_version, \
+    select_iterative_data
 
 
 class Layout:
@@ -1408,3 +1410,37 @@ class Layout:
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
+
+        @app.callback(
+            Output("download-data", "data"),
+            State("selected-tests", "data"),
+            Input("btn-download-data", "n_clicks"),
+            prevent_initial_call=True
+        )
+        def _download_data(store_sel, n_clicks):
+            """Download the data
+
+            :param store_sel: List of tests selected by user stored in the
+                browser.
+            :param n_clicks: Number of clicks on the button "Download".
+            :type store_sel: list
+            :type n_clicks: int
+            :returns: dict of data frame content (base64 encoded) and meta data
+                used by the Download component.
+            :rtype: dict
+            """
+
+            if not n_clicks:
+                raise PreventUpdate
+
+            if not store_sel:
+                raise PreventUpdate
+
+            df = pd.DataFrame()
+            for itm in store_sel:
+                sel_data = select_iterative_data(self.data, itm)
+                if sel_data is None:
+                    continue
+                df = pd.concat([df, sel_data], ignore_index=True)
+
+            return dcc.send_data_frame(df.to_csv, C.REPORT_DOWNLOAD_FILE_NAME)

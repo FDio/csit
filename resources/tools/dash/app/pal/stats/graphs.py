@@ -21,7 +21,19 @@ from datetime import datetime, timedelta
 
 def select_data(data: pd.DataFrame, itm:str, start: datetime,
         end: datetime) -> pd.DataFrame:
-    """
+    """Select the data for graphs from the provided data frame.
+
+    :param data: Data frame with data for graphs.
+    :param itm: Item (in this case job name) which data will be selected from
+        the input data frame.
+    :param start: The date (and time) when the selected data starts.
+    :param end: The date (and time) when the selected data ends.
+    :type data: pandas.DataFrame
+    :type itm: str
+    :type start: datetime.datetime
+    :type end: datetime.datetime
+    :returns: A data frame with selected data.
+    :rtype: pandas.DataFrame
     """
 
     df = data.loc[
@@ -36,7 +48,24 @@ def select_data(data: pd.DataFrame, itm:str, start: datetime,
 def graph_statistics(df: pd.DataFrame, job:str, layout: dict,
         start: datetime=datetime.utcnow()-timedelta(days=180),
         end: datetime=datetime.utcnow()) -> tuple:
-    """
+    """Generate graphs:
+    1. Passed / failed tests,
+    2. Job durations
+    with additional information shown in hover.
+
+    :param df: Data frame with input data.
+    :param job: The name of job which data will be presented in the graphs.
+    :param layout: Layout of plot.ly graph.
+    :param start: The date (and time) when the selected data starts.
+    :param end: The date (and time) when the selected data ends.
+    :type df: pandas.DataFrame
+    :type job: str
+    :type layout: dict
+    :type start: datetime.datetime
+    :type end: datetime.datetime
+    :returns: Tuple with two generated graphs (pased/failed tests and job
+        duration).
+    :rtype: tuple(plotly.graph_objects.Figure, plotly.graph_objects.Figure)
     """
 
     data = select_data(df, job, start, end)
