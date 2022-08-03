@@ -273,6 +273,9 @@ class Constants:
     # Layout of plot.ly graphs.
     REPORT_GRAPH_LAYOUT_FILE = "pal/report/layout.yaml"
 
+    # Default name of downloaded file with selected data.
+    REPORT_DOWNLOAD_FILE_NAME = "iterative_data.csv"
+
     ############################################################################
     # Statistics.
 
@@ -289,6 +292,9 @@ class Constants:
     # The default job displayed when the page is loaded first time.
     STATS_DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
 
+    # Default name of downloaded file with selected data.
+    STATS_DOWNLOAD_FILE_NAME = "stats.csv"
+
     ############################################################################
     # Trending.
 
@@ -301,3 +307,6 @@ class Constants:
 
     # Layout of plot.ly graphs.
     TREND_GRAPH_LAYOUT_FILE = "pal/trending/layout.yaml"
+
+    # Default name of downloaded file with selected data.
+    TREND_DOWNLOAD_FILE_NAME = "trending_data.csv"

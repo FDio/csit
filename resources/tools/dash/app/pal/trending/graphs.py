@@ -27,7 +27,14 @@ from ..utils.utils import classify_anomalies, get_color
 
 
 def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
-    """
+    """Get the HDRH latencies from the test data.
+
+    :param row: A row fron the data frame with test data.
+    :param name: The test name to be displayed as the graph title.
+    :type row: pandas.Series
+    :type name: str
+    :returns: Dictionary with HDRH latencies.
+    :rtype: dict
     """
 
     latencies = {"name": name}
@@ -41,7 +48,15 @@ def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
 
 
 def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
-    """
+    """Select the data for graphs from the provided data frame.
+
+    :param data: Data frame with data for graphs.
+    :param itm: Item (in this case job name) which data will be selected from
+        the input data frame.
+    :type data: pandas.DataFrame
+    :type itm: str
+    :returns: A data frame with selected data.
+    :rtype: pandas.DataFrame
     """
 
     phy = itm["phy"].split("-")
@@ -85,7 +100,25 @@ def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 
 def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     start: datetime, end: datetime, color: str, norm_factor: float) -> list:
-    """
+    """Generate the trending traces for the trending graph.
+
+    :param ttype: Test type (MRR, NDR, PDR).
+    :param name: The test name to be displayed as the graph title.
+    :param df: Data frame with test data.
+    :param start: The date (and time) when the selected data starts.
+    :param end: The date (and time) when the selected data ends.
+    :param color: The color of the trace (samples and trend line).
+    :param norm_factor: The factor used for normalization of the results to CPU
+        frequency set to Constants.NORM_FREQUENCY.
+    :type ttype: str
+    :type name: str
+    :type df: pandas.DataFrame
+    :type start: datetime.datetime
+    :type end: datetime.datetime
+    :type color: str
+    :type norm_factor: float
+    :returns: Traces (samples, trending line, anomalies)
+    :rtype: list
     """
 
     df = df.dropna(subset=[C.VALUE[ttype], ])
@@ -242,7 +275,24 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
 
 def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
     start: datetime, end: datetime, normalize: bool) -> tuple:
-    """
+    """Generate the trending graph(s) - MRR, NDR, PDR and for PDR also Latences
+    (result_latency_forward_pdr_50_avg).
+
+    :param data: Data frame with test results.
+    :param sel: Selected tests.
+    :param layout: Layout of plot.ly graph.
+    :param start: The date (and time) when the selected data starts.
+    :param end: The date (and time) when the selected data ends.
+    :param normalize: If True, the data is normalized to CPU frquency
+        Constants.NORM_FREQUENCY.
+    :type data: pandas.DataFrame
+    :type sel: dict
+    :type layout: dict
+    :type start: datetime.datetime
+    :type end: datetype.datetype
+    :type normalize: bool
+    :returns: Trending graph(s)
+    :rtype: tuple(plotly.graph_objects.Figure, plotly.graph_objects.Figure)
     """
 
     if not sel:
@@ -291,7 +341,14 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
 
 
 def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
-    """
+    """Generate HDR Latency histogram graphs.
+
+    :param data: HDRH data.
+    :param layout: Layout of plot.ly graph.
+    :type data: dict
+    :type layout: dict
+    :returns: HDR latency Histogram.
+    :rtype: plotly.graph_objects.Figure
     """
 
     fig = None
