@@ -39,13 +39,13 @@ nomad_options:
   fingerprint.network.disallow_link_local: true
 nomad_service_mgr: "systemd"
 nomad_retry_servers:
-  - "10.32.8.15"
-  - "10.32.8.16"
-  - "10.32.8.17"
+  - "10.30.51.26"
+  - "10.30.51.24"
+  - "10.30.51.25"
 nomad_servers:
-  - "10.32.8.15:4647"
-  - "10.32.8.16:4647"
-  - "10.32.8.17:4647"
+  - "10.30.51.26:4647"
+  - "10.30.51.24:4647"
+  - "10.30.51.25:4647"
 nomad_volumes:
   - name: "prod-volume-data1-1"
     path: "/data"
@@ -65,9 +65,9 @@ consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 consul_node_name: "{{ hostname }}"
 consul_node_role: "both"
 consul_retry_servers:
-  - "10.32.8.15"
-  - "10.32.8.16"
-  - "10.32.8.17"
+  - "10.30.51.26"
+  - "10.30.51.24"
+  - "10.30.51.25"
 consul_service_mgr: "systemd"
 
 # Docker daemon settings.

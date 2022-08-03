@@ -186,10 +186,10 @@
     line: "{{ item }}"
     create: true
   loop:
-    - "export NOMAD_ADDR=https://nomad.service.consul:4646"
+    - "export NOMAD_ADDR=http://nomad.service.consul:4646"
     - "export NOMAD_CACERT={{ nomad_ca_file }}"
-    - "export NOMAD_CLIENT_CERT={{ nomad_cli_cert_file }}"
-    - "export NOMAD_CLIENT_KEY={{ nomad_cli_key_file }}"
+#    - "export NOMAD_CLIENT_CERT={{ nomad_cli_cert_file }}"
+#    - "export NOMAD_CLIENT_KEY={{ nomad_cli_key_file }}"
   tags:
     - nomad-conf
 

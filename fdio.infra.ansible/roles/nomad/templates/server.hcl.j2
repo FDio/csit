@@ -4,6 +4,7 @@ server {
     {% if nomad_node_server | bool -%}
         bootstrap_expect = {{ nomad_bootstrap_expect }}
     {%- endif %}
+
     {% if nomad_node_server | bool -%}
         raft_protocol = 3
     {%- endif %}
