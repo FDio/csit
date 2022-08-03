@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3789743_01bb7e8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-08-03T10:18:03Z",
+      "side": 1,
+      "message": "csit-2n-skx-perftest mrrANDnic_intel-xxv710AND64bANDethip4-ip4scale2m-rndANDdrv_vfio_pci\ncsit-2n-skx-perftest mrrANDnic_intel-xxv710AND78bANDethip6-ip6scale2m-rndANDdrv_vfio_pci\ncsit-2n-clx-perftest mrrANDnic_intel-xxv710AND64bANDethip4-ip4scale2m-rndANDdrv_vfio_pci\ncsit-2n-clx-perftest mrrANDnic_intel-xxv710AND78bANDethip6-ip6scale2m-rndANDdrv_vfio_pci",
+      "revId": "c0c8cd4c10961db62207dcbcd157b51247297b3c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
