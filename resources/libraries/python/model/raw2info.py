@@ -214,6 +214,27 @@ def _convert_to_info_in_memory(data):
         result_node[u"time_loss"] = result_node[u"packet_loss"] / packet_rate
         return data
 
+    # Add success flag for hoststack iperf3 result.
+    if result_type == u"hoststack_iperf3":
+        object_node = result_node[u"object"]
+        if u"output_text" in object_node:
+            result_node[u"success"] = False
+            # Extract reason for hoststack iperf3 fail result.
+            reason = object_node[u"output_text"].split(u"\n", 1)[0]
+            object_node[u"reason"] = reason
+        else:
+            result_node[u"success"] = True
+        return data
+
+    # Extract reasons for any hoststack vpp echo failed output item.
+    if result_type == u"hoststack_vpp_echo":
+        for output_item in result_node[u"outputs"]:
+            if output_item[u"success"]:
+                continue
+            reason = output_item[u"object"][u"output_text"].split(u"\n", 1)[0]
+            output_item[u"object"][u"reason"] = reason
+        return data
+
     # Multiple processing steps for ndrpdr.
     if result_type != u"ndrpdr":
         return data
