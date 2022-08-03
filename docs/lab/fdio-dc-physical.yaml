@@ -320,20 +320,6 @@ yul1:
         serial_number: N/A
         mgmt_ip4: 10.30.51.38
         lom_ip4: 10.30.50.38
-      - unit: 44
-        name: s53-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.39
-        lom_ip4: 10.30.50.39
-      - unit: 43
-        name: s54-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.40
-        lom_ip4: 10.30.50.40
       - unit: 41..42
         name: s56-t14-sut1
         oper_status: production
@@ -383,34 +369,6 @@ yul1:
         serial_number: C7470KL03P50454
         mgmt_ip4: 10.30.51.80
         lom_ip4: 10.30.50.80
-      - unit: 21..22
-        name: s52-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.65
-        lom_ip4: 10.30.50.65
-      - unit: 21..22
-        name: s51-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.66
-        lom_ip4: 10.30.50.66
-      - unit: 21..22
-        name: s49-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.67
-        lom_ip4: 10.30.50.67
-      - unit: 21..22
-        name: s50-nomad
-        oper_status: production
-        device_type: ThunderX-88XX
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.68
-        lom_ip4: 10.30.50.68
       - unit: 19..20
         name: s42-nomad
         oper_status: production
