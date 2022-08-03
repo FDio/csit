@@ -25,7 +25,14 @@ from ..utils.utils import get_color
 
 
 def get_short_version(version: str, dut_type: str="vpp") -> str:
-    """
+    """Returns the short version of DUT without build number.
+
+    :param version: original version string.
+    :param dut_type: DUT type.
+    :type version: str
+    :type dut_type: str
+    :returns: Short verion string.
+    :rtype: str
     """
 
     if dut_type in ("trex", "dpdk"):
@@ -48,7 +55,15 @@ def get_short_version(version: str, dut_type: str="vpp") -> str:
 
 
 def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
-    """
+    """Select the data for graphs and tables from the provided data frame.
+
+    :param data: Data frame with data for graphs and tables.
+    :param itm: Item (in this case job name) which data will be selected from
+        the input data frame.
+    :type data: pandas.DataFrame
+    :type itm: str
+    :returns: A data frame with selected data.
+    :rtype: pandas.DataFrame
     """
 
     phy = itm["phy"].split("-")
@@ -96,7 +111,20 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 
 def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
         normalize: bool) -> tuple:
-    """
+    """Generate the statistical box graph with iterative data (MRR, NDR and PDR,
+    for PDR also Latencies).
+
+    :param data: Data frame with iterative data.
+    :param sel: Selected tests.
+    :param layout: Layout of plot.ly graph.
+    :param normalize: If True, the data is normalized to CPU frquency
+        Constants.NORM_FREQUENCY.
+    :param data: pandas.DataFrame
+    :param sel: dict
+    :param layout: dict
+    :param normalize: bool
+    :returns: Tuple of graphs - throughput and latency.
+    :rtype: tuple(plotly.graph_objects.Figure, plotly.graph_objects.Figure)
     """
 
     fig_tput = None
@@ -192,46 +220,56 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
 
 def table_comparison(data: pd.DataFrame, sel:dict,
         normalize: bool) -> pd.DataFrame:
-    """
+    """Generate the comparison table with selected tests.
+
+    :param data: Data frame with iterative data.
+    :param sel: Selected tests.
+    :param normalize: If True, the data is normalized to CPU frquency
+        Constants.NORM_FREQUENCY.
+    :param data: pandas.DataFrame
+    :param sel: dict
+    :param normalize: bool
+    :returns: Comparison table.
+    :rtype: pandas.DataFrame
     """
     table = pd.DataFrame(
-        {
-            "Test Case": [
-                "64b-2t1c-avf-eth-l2xcbase-eth-2memif-1dcr",
-                "64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
-                "64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows",
-                "78b-2t1c-avf-ethip6-ip6scale2m-rnd "],
-            "2106.0-8": [
-                "14.45 +- 0.08",
-                "9.63 +- 0.05",
-                "9.7 +- 0.02",
-                "8.95 +- 0.06"],
-            "2110.0-8": [
-                "14.45 +- 0.08",
-                "9.63 +- 0.05",
-                "9.7 +- 0.02",
-                "8.95 +- 0.06"],
-            "2110.0-9": [
-                "14.45 +- 0.08",
-                "9.63 +- 0.05",
-                "9.7 +- 0.02",
-                "8.95 +- 0.06"],
-            "2202.0-9": [
-                "14.45 +- 0.08",
-                "9.63 +- 0.05",
-                "9.7 +- 0.02",
-                "8.95 +- 0.06"],
-            "2110.0-9 vs 2110.0-8": [
-                "-0.23 +-  0.62",
-                "-1.37 +-   1.3",
-                "+0.08 +-   0.2",
-                "-2.16 +-  0.83"],
-            "2202.0-9 vs 2110.0-9": [
-                "+6.95 +-  0.72",
-                "+5.35 +-  1.26",
-                "+4.48 +-  1.48",
-                "+4.09 +-  0.95"]
-        }
+        # {
+        #     "Test Case": [
+        #         "64b-2t1c-avf-eth-l2xcbase-eth-2memif-1dcr",
+        #         "64b-2t1c-avf-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
+        #         "64b-2t1c-avf-ethip4udp-ip4base-iacl50sl-10kflows",
+        #         "78b-2t1c-avf-ethip6-ip6scale2m-rnd "],
+        #     "2106.0-8": [
+        #         "14.45 +- 0.08",
+        #         "9.63 +- 0.05",
+        #         "9.7 +- 0.02",
+        #         "8.95 +- 0.06"],
+        #     "2110.0-8": [
+        #         "14.45 +- 0.08",
+        #         "9.63 +- 0.05",
+        #         "9.7 +- 0.02",
+        #         "8.95 +- 0.06"],
+        #     "2110.0-9": [
+        #         "14.45 +- 0.08",
+        #         "9.63 +- 0.05",
+        #         "9.7 +- 0.02",
+        #         "8.95 +- 0.06"],
+        #     "2202.0-9": [
+        #         "14.45 +- 0.08",
+        #         "9.63 +- 0.05",
+        #         "9.7 +- 0.02",
+        #         "8.95 +- 0.06"],
+        #     "2110.0-9 vs 2110.0-8": [
+        #         "-0.23 +-  0.62",
+        #         "-1.37 +-   1.3",
+        #         "+0.08 +-   0.2",
+        #         "-2.16 +-  0.83"],
+        #     "2202.0-9 vs 2110.0-9": [
+        #         "+6.95 +-  0.72",
+        #         "+5.35 +-  1.26",
+        #         "+4.48 +-  1.48",
+        #         "+4.09 +-  0.95"]
+        # }
     )
 
-    return pd.DataFrame()  #table
+    return table

@@ -1390,4 +1390,4 @@ class Layout:
                     continue
                 df = pd.concat([df, sel_data], ignore_index=True)
 
-            return dcc.send_data_frame(df.to_csv, "trending_data.csv")
+            return dcc.send_data_frame(df.to_csv, C.TREND_DOWNLOAD_FILE_NAME)
