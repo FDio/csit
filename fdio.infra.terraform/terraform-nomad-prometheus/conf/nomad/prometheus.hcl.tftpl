@@ -466,61 +466,26 @@ scrape_configs:
 
   - job_name: 'Consul Cluster'
     static_configs:
+      - targets: [ '10.30.51.16:8500' ]
+      - targets: [ '10.30.51.17:8500' ]
+      - targets: [ '10.30.51.18:8500' ]
+      - targets: [ '10.30.51.19:8500' ]
+      - targets: [ '10.30.51.20:8500' ]
+      - targets: [ '10.30.51.21:8500' ]
       - targets: [ '10.30.51.22:8500' ]
+      - targets: [ '10.30.51.23:8500' ]
       - targets: [ '10.30.51.24:8500' ]
       - targets: [ '10.30.51.25:8500' ]
       - targets: [ '10.30.51.26:8500' ]
-      - targets: [ '10.30.51.28:8500' ]
-      - targets: [ '10.30.51.29:8500' ]
-      - targets: [ '10.30.51.30:8500' ]
-      - targets: [ '10.30.51.39:8500' ]
-      - targets: [ '10.30.51.40:8500' ]
       - targets: [ '10.30.51.50:8500' ]
       - targets: [ '10.30.51.51:8500' ]
-      - targets: [ '10.30.51.65:8500' ]
-      - targets: [ '10.30.51.66:8500' ]
-      - targets: [ '10.30.51.67:8500' ]
-      - targets: [ '10.30.51.68:8500' ]
       - targets: [ '10.30.51.70:8500' ]
       - targets: [ '10.30.51.71:8500' ]
-      - targets: [ '10.32.8.14:8500' ]
-      - targets: [ '10.32.8.15:8500' ]
-      - targets: [ '10.32.8.16:8500' ]
-      - targets: [ '10.32.8.17:8500' ]
+      - targets: [ '10.30.51.91:8500' ]
+      - targets: [ '10.30.51.92:8500' ]
     metrics_path: /v1/agent/metrics
     params:
       format: [ 'prometheus' ]
-
-  - job_name: 'Blackbox Exporter (icmp)'
-    static_configs:
-      - targets: [ 'gerrit.fd.io' ]
-      - targets: [ 'jenkins.fd.io' ]
-      - targets: [ '10.32.8.17' ]
-    params:
-      module: [ 'icmp_v4' ]
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: localhost:9115
-    metrics_path: /probe
-
-  - job_name: 'Blackbox Exporter (http)'
-    static_configs:
-      - targets: [ 'gerrit.fd.io' ]
-      - targets: [ 'jenkins.fd.io' ]
-    params:
-      module: [ 'http_2xx' ]
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: localhost:9115
-    metrics_path: /probe
 
   - job_name: 'Jenkins Job Health Exporter'
     static_configs:
@@ -538,27 +503,23 @@ scrape_configs:
 
   - job_name: 'Node Exporter'
     static_configs:
+      - targets: [ '10.30.51.16:9100' ]
+      - targets: [ '10.30.51.17:9100' ]
+      - targets: [ '10.30.51.18:9100' ]
+      - targets: [ '10.30.51.19:9100' ]
+      - targets: [ '10.30.51.20:9100' ]
+      - targets: [ '10.30.51.21:9100' ]
       - targets: [ '10.30.51.22:9100' ]
+      - targets: [ '10.30.51.23:9100' ]
       - targets: [ '10.30.51.24:9100' ]
       - targets: [ '10.30.51.25:9100' ]
       - targets: [ '10.30.51.26:9100' ]
-      - targets: [ '10.30.51.28:9100' ]
-      - targets: [ '10.30.51.29:9100' ]
-      - targets: [ '10.30.51.30:9100' ]
-      - targets: [ '10.30.51.39:9100' ]
-      - targets: [ '10.30.51.40:9100' ]
       - targets: [ '10.30.51.50:9100' ]
       - targets: [ '10.30.51.51:9100' ]
-      - targets: [ '10.30.51.65:9100' ]
-      - targets: [ '10.30.51.66:9100' ]
-      - targets: [ '10.30.51.67:9100' ]
-      - targets: [ '10.30.51.68:9100' ]
       - targets: [ '10.30.51.70:9100' ]
       - targets: [ '10.30.51.71:9100' ]
-      - targets: [ '10.32.8.14:9100' ]
-      - targets: [ '10.32.8.15:9100' ]
-      - targets: [ '10.32.8.16:9100' ]
-      - targets: [ '10.32.8.17:9100' ]
+      - targets: [ '10.30.51.91:9100' ]
+      - targets: [ '10.30.51.92:9100' ]
 
   - job_name: 'Alertmanager'
     consul_sd_configs:
