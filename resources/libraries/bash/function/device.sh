@@ -495,7 +495,7 @@ function get_csit_model () {
             "0x1572"|"0x154c")
                 MODEL="Intel-X710"
                 ;;
-            "*")
+            *)
                 MODEL="virtual"
         esac
     fi
