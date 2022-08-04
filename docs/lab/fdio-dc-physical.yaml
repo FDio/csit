@@ -467,14 +467,14 @@ yul1:
         mgmt_ip4: 10.32.8.10
         lom_ip4: 10.30.55.10
       - unit: 36
-        name: s58-nomad
+        name: s91-nomad
         oper_status:
         device_type: R152-P30-00
         serial_number: GLG4P9912A0016
         mgmt_ip4: 10.30.51.91
         lom_ip4: 10.30.50.91
       - unit: 35
-        name: s59-nomad
+        name: s92-nomad
         oper_status:
         device_type: R152-P30-00
         serial_number: GLG4P9912A0004
