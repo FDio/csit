@@ -335,12 +335,12 @@ yul1:
         mgmt_ip4: 10.30.51.20
         lom_ip4: 10.30.50.20
       - unit: 37..38
-        name: s40-nomad
+        name: s22-nomad
         oper_status: production
         device_type: UCSC-C240-M4SX
         serial_number: FCH2013V0HZ
-        mgmt_ip4: 10.30.51.30
-        lom_ip4: 10.30.50.30
+        mgmt_ip4: 10.30.51.22
+        lom_ip4: 10.30.50.22
       - unit: 35..36
         name: s21-nomad
         oper_status: production
@@ -370,33 +370,33 @@ yul1:
         mgmt_ip4: 10.30.51.80
         lom_ip4: 10.30.50.80
       - unit: 19..20
-        name: s42-nomad
+        name: s16-nomad
         oper_status: production
         device_type: UCSC-C240-M4S
         serial_number: FCH1950V1FN
-        mgmt_ip4: 10.30.51.22
-        lom_ip4: 10.30.50.22
+        mgmt_ip4: 10.30.51.16
+        lom_ip4: 10.30.50.16
       - unit: 17..18
-        name: s43-nomad
+        name: s17-nomad
         oper_status: production
         device_type: UCSC-C240-M4S
         serial_number: FCH1950V1H5
-        mgmt_ip4: 10.30.51.24
-        lom_ip4: 10.30.50.24
+        mgmt_ip4: 10.30.51.17
+        lom_ip4: 10.30.50.17
       - unit: 15..16
-        name: s44-nomad
+        name: s18-nomad
         oper_status: production
         device_type: UCSC-C240-M4S
         serial_number: FCH1950V1FS
-        mgmt_ip4: 10.30.51.25
-        lom_ip4: 10.30.50.25
+        mgmt_ip4: 10.30.51.18
+        lom_ip4: 10.30.50.18
       - unit: 13..14
-        name: s45-nomad
+        name: s19-nomad
         oper_status: production
         device_type: UCSC-C240-M4S
         serial_number: FCH1950V1FL
-        mgmt_ip4: 10.30.51.26
-        lom_ip4: 10.30.50.26
+        mgmt_ip4: 10.30.51.19
+        lom_ip4: 10.30.50.19
       - unit: 11..12
         name: s55-t13-sut1
         oper_status: production
@@ -467,14 +467,14 @@ yul1:
         mgmt_ip4: 10.32.8.10
         lom_ip4: 10.30.55.10
       - unit: 36
-        name: s91-nomad
+        name: s58-nomad
         oper_status:
         device_type: R152-P30-00
         serial_number: GLG4P9912A0016
         mgmt_ip4: 10.30.51.91
         lom_ip4: 10.30.50.91
       - unit: 35
-        name: s92-nomad
+        name: s59-nomad
         oper_status:
         device_type: R152-P30-00
         serial_number: GLG4P9912A0004
