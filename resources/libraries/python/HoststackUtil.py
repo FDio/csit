@@ -367,7 +367,7 @@ class HoststackUtil():
             return (True, test_results, None)
         if program[u"name"] == u"vpp_echo":
             if u"JSON stats" in program_stdout and \
-                    u'"has_failed": "0"' in program_stdout:
+                    u'"has_failed": "-1"' in program_stdout:
                 json_start = program_stdout.find(u"{")
                 #TODO: Fix parsing once vpp_echo produces valid
                 # JSON output. Truncate for now.
