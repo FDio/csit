@@ -30,6 +30,12 @@ statistics-trending-mrr:
     - passed
     - test_id
     - result_receive_rate_rate_avg
+trending:
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  columns:
+    - job
+    - build
+    - start_time
 trending-mrr:
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
   columns:
