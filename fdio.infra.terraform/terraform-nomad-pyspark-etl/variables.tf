@@ -27,7 +27,7 @@ variable "aws_default_region" {
 variable "cpu" {
   description = "Specifies the CPU required to run this task in MHz."
   type        = number
-  default     = 10000
+  default     = 20000
 }
 
 variable "cron" {
@@ -57,7 +57,7 @@ variable "job_name" {
 variable "memory" {
   description = "Specifies the memory required in MB."
   type        = number
-  default     = 20000
+  default     = 60000
 }
 
 variable "out_aws_access_key_id" {

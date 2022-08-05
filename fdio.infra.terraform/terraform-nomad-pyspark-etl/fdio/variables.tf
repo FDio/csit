@@ -7,7 +7,7 @@ variable "nomad_acl" {
 variable "nomad_provider_address" {
   description = "FD.io Nomad cluster address."
   type        = string
-  default     = "http://10.32.8.14:4646"
+  default     = "http://nomad.service.consul:4646"
 }
 
 variable "nomad_provider_ca_file" {
