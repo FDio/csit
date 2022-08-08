@@ -94,7 +94,7 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vppctl_runtime.yaml
+| | ... | ${nodes} | profile=vpp_runtime.yaml
 | | Stop traffic on tg
 
 | Additional Statistics Action For vpp-runtime-iperf3
@@ -133,7 +133,7 @@
 | | ... | Additional Statistics Action for clear VPP statistics.
 | |
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vppctl_clear_stats.yaml
+| | ... | ${nodes} | profile=vpp_clear_stats.yaml
 
 | Additional Statistics Action For vpp-enable-packettrace
 | | [Documentation]
@@ -154,4 +154,4 @@
 | | ... | Additional Statistics Action for show VPP statistics.
 | |
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vppctl_show_stats.yaml
+| | ... | ${nodes} | profile=vpp_show_stats.yaml
