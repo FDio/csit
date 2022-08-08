@@ -479,3 +479,22 @@ programs:
       sleep {duration}
       vppctl -s {socket} perfmon stop
       vppctl -s {socket} show perfmon statistics
+  - name: bundle_vppctl
+    metrics: {}
+    code: |
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
+      vppctl -s {socket} wait 0.2
