@@ -1,4 +1,9 @@
-# 3n-icx
+# 3n-skx
+### tests 8
+### job hrs est. 0.25
+### job hrs real ?
+### test mins est. 1.88
+### test mins real ?
 ## ./container_memif
 ## ./crypto
 ## ./ip4
