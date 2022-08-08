@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b17e3dc7_200112af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-08T11:50:23Z",
+      "side": 1,
+      "message": "csit-2n-tx2-perftest mrrANDnic_intel-x*ANDdrv_vfio_pciAND4cAND64bANDeth-l2xcbase-eth-2memif-1dcr",
+      "revId": "7bf9731b67c08ef18aa0786a8b5af575858a6b04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
