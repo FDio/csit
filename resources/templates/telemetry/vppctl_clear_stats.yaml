@@ -216,3 +216,14 @@ programs:
             - thread_id
     code: |
       vppctl -s {socket} perfmon reset
+  - name: bundle_vppctl
+    metrics: {}
+    code: |
+      vppctl -s {socket} wait 1
+      vppctl -s {socket} wait 1
+      vppctl -s {socket} wait 1
+      vppctl -s {socket} wait 1
+      vppctl -s {socket} wait 1
+      vppctl -s {socket} wait 1
+      vppctl -s {socket} wait 1
+      vppctl -s {socket} wait 1
