@@ -13,7 +13,7 @@
 
 ---
 
-$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.2
+$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.1.0
 $schema: https://json-schema.org/draft/2020-12/schema
 description: >-
     Schema for info output of test case.
@@ -96,6 +96,7 @@ allOf:
                 -   $ref: "#/$defs/mrr_result"
                 -   $ref: "#/$defs/ndrpdr_result"
                 -   $ref: "#/$defs/soak_result"
+                -   $ref: "#/$defs/reconf_result"
         start_time:
             description: >-
                 UTC date and time in RFC 3339 format, specifying calendar time
@@ -185,7 +186,7 @@ allOf:
                 CSIT model version (semver format)
                 the exporting code adhered to.
             type: string
-            const: 1.0.2
+            const: 1.1.0
     required:
     -   duration
     -   dut_type
@@ -259,10 +260,11 @@ $defs:
             may allow more units.
         enum:
         -   bps
-    value_with_unit:
+    float_value_with_unit:
         description: >-
             Reusable composite type, value together with its
-            unit of measurement.
+            unit of measurement. Integer values are still shown as floats.
+            Cannot be negative.
         type: object
         additionalProperties: false
         properties:
@@ -279,11 +281,63 @@ $defs:
         required:
         -   value
         -   unit
+    integer_value_with_unit:
+        description: >-
+            Reusable composite type, value together with its
+            unit of measurement. Cannot be non-integer. Cannot be negative.
+        type: object
+        additionalProperties: false
+        properties:
+            value:
+                description: >-
+                    Numeric value, context specified elsewhere.
+                    The assumption is that value is integer and not negative.
+                $ref: "#/$defs/nonnegative_integer"
+            unit:
+                description: >-
+                    Unit of measurement for the value.
+                    Context and allowed values are specified elsewhere.
+                type: string
+        required:
+        -   value
+        -   unit
+    count_quantity:
+        description: >-
+            Reusable type, for various count quantites.
+        allOf:
+        -   $ref: "#/$defs/integer_value_with_unit"
+        -   properties:
+                value:
+                    description: >-
+                        Unless specified otherwise,
+                        this is a count of events (e.g. packets).
+                unit:
+                    description: >-
+                        Only one unit is supported for count quantities.
+                    enum:
+                    -   each
+    time_quantity:
+        description: >-
+            Reusable type, for various time quantites.
+            Historically, some durations are expressed differently,
+            e.g. latencies are in ms which is specified across multiple values.
+        allOf:
+        -   $ref: "#/$defs/float_value_with_unit"
+        -   properties:
+                value:
+                    description: >-
+                        Unless specified otherwise,
+                        this is a duration betwee two events.
+                unit:
+                    description: >-
+                        Only second is supported for count quantities.
+                    enum:
+                    -   s
     rate_without_bandwidth:
         description: >-
             Reusable type, for various rate quantites.
         allOf:
-        -   $ref: "#/$defs/value_with_unit"
+        -   $ref: "#/$defs/float_value_with_unit"
         -   properties:
                 value:
                     description: >-
@@ -302,7 +356,7 @@ $defs:
         description: >-
             Reusable type, for various bandwidth quantites.
         allOf:
-        -   $ref: "#/$defs/value_with_unit"
+        -   $ref: "#/$defs/float_value_with_unit"
         -   properties:
                 value:
                     description: >-
@@ -625,3 +679,34 @@ $defs:
                 $ref: "#/$defs/lower_and_upper_rate"
         required:
         -   critical_rate
+    reconf_result:
+        description: >-
+            Sub-schema for RECONF result type.
+        additionalProperties: false
+        properties:
+            type:
+                const: reconf
+            packet_rate:
+                description: >-
+                    Load used when reconfiguring,
+                    found as NDR lower bound.
+                    This is aggregate (bidirectional) rate.
+                    Note that packets the Traffic Generator
+                    did not send are also counted as lost packets.
+                $ref: "#/$defs/rate_with_bandwidth"
+            packet_loss:
+                description: >-
+                    Number of packets lost during reconfiguration.
+                $ref: "#/$defs/count_quantity"
+            time_loss:
+                description: >-
+                    A derived quantity, present only in info files.
+                    Packet loss divided by packet rate.
+                    If the DUT keeps dropping packets for this long
+                    (while forwarding with no losses otherwise),
+                    it results in the same number of packets lost.
+                $ref: "#/$defs/time_quantity"
+        required:
+        -   packet_loss
+        -   packet_rate
+        -   time_loss
