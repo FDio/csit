@@ -37,6 +37,25 @@ scheduler:
   duration: 1
 programs:
   - name: bundle_vppctl
+    metrics: {}
+    code: |
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+      vppctl -s {socket} wait 0.1
+  - name: bundle_vppctl
     metrics:
       info:
         - name: version
