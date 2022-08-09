@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,9 +13,12 @@
 
 """Module holding AvgStdevStats class."""
 
+import dataclasses
 import math
+import typing
 
 
+@dataclasses.dataclass
 class AvgStdevStats:
     """Class for statistics which include average and stdev of a group.
 
@@ -25,45 +28,18 @@ class AvgStdevStats:
     Instances are only statistics, the data itself is stored elsewhere.
     """
 
-    def __init__(self, size=0, avg=0.0, stdev=0.0):
-        """Construct the stats object by storing the values needed.
-
-        Each value has to be numeric.
-        The values are not sanitized depending on size, wrong initialization
-        can cause delayed math errors.
-
-        :param size: Number of values participating in this group.
-        :param avg: Population average of the participating sample values.
-        :param stdev: Population standard deviation of the sample values.
-        :type size: int
-        :type avg: float
-        :type stdev: float
-        """
-        self.size = size
-        self.avg = avg
-        self.stdev = stdev
-
-    def __str__(self):
-        """Return string with human readable description of the group.
-
-        :returns: Readable description.
-        :rtype: str
-        """
-        return f"size={self.size} avg={self.avg} stdev={self.stdev}"
-
-    def __repr__(self):
-        """Return string executable as Python constructor call.
-
-        :returns: Executable constructor call.
-        :rtype: str
-        """
-        return (
-            f"AvgStdevStats(size={self.size!r},avg={self.avg!r}"
-            f",stdev={self.stdev!r})"
-        )
+    size: int = 0
+    """Number of scalar values (samples) participating in this group."""
+    avg: float = 0.0
+    """Population average of the participating sample values."""
+    stdev: float = 0.0
+    """Population standard deviation of the sample values."""
 
     @classmethod
-    def for_runs(cls, runs):
+    def for_runs(
+        cls,
+        runs: typing.Iterable[typing.Union[float, "AvgStdevStats"]],
+    ) -> "AvgStdevStats":
         """Return new stats instance describing the sequence of runs.
 
         If you want to append data to existing stats object,
@@ -72,8 +48,8 @@ class AvgStdevStats:
         Instead of a verb, "for" is used to start this method name,
         to signify the result contains less information than the input data.
 
-        Here, Run is a hypothetical abstract class, an union of float and cls.
-        Defining that as a real abstract class in Python 2 is too much hassle.
+        Here, run is a hypothetical abstract class, an union of float and cls.
+        Defining that as a real abstract class in Python is too much hassle.
 
         :param runs: Sequence of data to describe by the new metadata.
         :type runs: Iterable[Union[float, cls]]
