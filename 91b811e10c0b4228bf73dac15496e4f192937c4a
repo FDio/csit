@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3056d09_9206d56c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-09T12:28:49Z",
+      "side": 1,
+      "message": "Local testing with pseudorandom samples shows the number of groups and information content remain the same.\nUnless verify jobs find an issue, this is ready.",
+      "revId": "91b811e10c0b4228bf73dac15496e4f192937c4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
