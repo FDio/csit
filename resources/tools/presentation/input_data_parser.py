@@ -1538,11 +1538,11 @@ class InputData:
         result.visit(checker)
 
         checker.data[u"metadata"][u"tests_total"] = \
-            result.statistics.total.all.total
+            result.statistics.total.total
         checker.data[u"metadata"][u"tests_passed"] = \
-            result.statistics.total.all.passed
+            result.statistics.total.passed
         checker.data[u"metadata"][u"tests_failed"] = \
-            result.statistics.total.all.failed
+            result.statistics.total.failed
         checker.data[u"metadata"][u"elapsedtime"] = result.suite.elapsedtime
         checker.data[u"metadata"][u"generated"] = result.suite.endtime[:14]
 
