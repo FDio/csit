@@ -16,7 +16,7 @@ with open(path.join(here, u"README.rst"), encoding=u"utf-8") as f:
 
 setup(
     name=u"jumpavg",
-    version=u"0.2.0",  # This is currently the only place listing the version.
+    version=u"0.3.0",  # This is currently the only place listing the version.
     description=(
         u"Library for locating changes in time series by grouping results."
     ),
@@ -36,12 +36,12 @@ setup(
         u"License :: OSI Approved :: Apache Software License",
         u"Natural Language :: English",
         # TODO: Test which Python versions is the code compatible with.
-        u"Programming Language :: Python :: 2.7",
+        u"Programming Language :: Python :: 3.8",
         u"Topic :: Scientific/Engineering :: Information Analysis"
     ],
     keywords=u"progression regression anomaly detection statistics bits",
     packages=find_packages(exclude=[]),
-    python_requires="~=3.6",
+    python_requires="~=3.8",
     install_requires=[],
     # TODO: Include simulator and tests.
     extras_require={
