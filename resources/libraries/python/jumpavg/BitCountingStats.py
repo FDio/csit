@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,11 +13,14 @@
 
 """Module holding BitCountingStats class."""
 
+import dataclasses
 import math
+import typing
 
 from .AvgStdevStats import AvgStdevStats
 
 
+@dataclasses.dataclass
 class BitCountingStats(AvgStdevStats):
     """Class for statistics which include information content of a group.
 
@@ -33,11 +36,20 @@ class BitCountingStats(AvgStdevStats):
     Only for_runs method calls the parent implementation, without using super().
     """
 
-    def __init__(
-            self, size=0, avg=None, stdev=0.0, max_value=None, prev_avg=None):
-        """Construct the stats object by computing from the values needed.
+    max_value: float = None
+    """Maximal sample value (real or estimated).
+    Default value is there just for argument ordering reasons,
+    leaving None leads to exceptions."""
+    prev_avg: typing.Optional[float] = None
+    """Population average of the previous group (if any)."""
+    bits: float = None
+    """The computed information content of the group.
+    It is formally an argument to init function, just to keep repr string
+    a valid call. ut the init value is ignored and always recomputed.
+    """
 
-        The values are not sanitized, faulty callers can cause math errors.
+    def __post_init__(self):
+        """Construct the stats object by computing from the values needed.
 
         The None values are allowed for stats for zero size data,
         but such stats can report arbitrary avg and max_value.
@@ -54,91 +66,54 @@ class BitCountingStats(AvgStdevStats):
         (but not with floating point mechanic).
         The hope is the difference will have
         no real impact on the classification procedure.
-
-        :param size: Number of values participating in this group.
-        :param avg: Population average of the participating sample values.
-        :param stdev: Population standard deviation of the sample values.
-        :param max_value: Maximal expected value.
-            TODO: This might be more optimal,
-            but max-invariant algorithm will be nicer.
-        :param prev_avg: Population average of the previous group.
-            If None, no previous average is taken into account.
-            If not None, the given previous average is used to discourage
-            consecutive groups with similar averages
-            (opposite triangle distribution is assumed).
-        :type avg: float
-        :type size: int
-        :type stdev: float
-        :type max_value: Union[float, NoneType]
-        :type prev_avg: Union[float, NoneType]
         """
-        self.avg = avg
-        self.size = size
-        self.stdev = stdev
-        self.max_value = max_value
-        self.prev_avg = prev_avg
         # Zero size should in principle have non-zero bits (coding zero size),
         # but zero allows users to add empty groups without affecting bits.
         self.bits = 0.0
         if self.size < 1:
             return
-        if avg is None:
-            raise ValueError(f"Avg is None: {self!r}")
-        if max_value is None or max_value <= 0.0:
+        if self.max_value <= 0.0:
             raise ValueError(f"Invalid max value: {self!r}")
         # Length of the sequence must be also counted in bits,
         # otherwise the message would not be decodable.
         # Model: probability of k samples is 1/k - 1/(k+1) == 1/k/(k+1)
         # This is compatible with zero size leading to zero bits.
-        self.bits += math.log(size * (size + 1), 2)
-        if prev_avg is None:
+        self.bits += math.log(self.size * (self.size + 1), 2)
+        if self.prev_avg is None:
             # Avg is considered to be uniformly distributed
             # from zero to max_value.
-            self.bits += math.log(max_value + 1.0, 2)
+            self.bits += math.log(self.max_value + 1.0, 2)
         else:
             # Opposite triangle distribution with minimum.
             self.bits += math.log(
-                max_value * (max_value + 1) / (abs(avg - prev_avg) + 1), 2)
+                (self.max_value * (self.max_value + 1))
+                / (abs(self.avg - self.prev_avg) + 1),
+                2,
+            )
         if self.size < 2:
             return
         # Stdev is considered to be uniformly distributed
         # from zero to max_value. That is quite a bad expectation,
         # but resilient to negative samples etc.
-        self.bits += math.log(max_value + 1.0, 2)
+        self.bits += math.log(self.max_value + 1.0, 2)
         # Now we know the samples lie on sphere in size-1 dimensions.
         # So it is (size-2)-sphere, with radius^2 == stdev^2 * size.
         # https://en.wikipedia.org/wiki/N-sphere
-        sphere_area_ln = math.log(2) + math.log(math.pi) * ((size - 1) / 2.0)
-        sphere_area_ln -= math.lgamma((size - 1) / 2.0)
-        sphere_area_ln += math.log(stdev + 1.0) * (size - 2)
-        sphere_area_ln += math.log(size) * ((size - 2) / 2.0)
+        sphere_area_ln = math.log(2)
+        sphere_area_ln += math.log(math.pi) * ((self.size - 1) / 2.0)
+        sphere_area_ln -= math.lgamma((self.size - 1) / 2.0)
+        sphere_area_ln += math.log(self.stdev + 1.0) * (self.size - 2)
+        sphere_area_ln += math.log(self.size) * ((self.size - 2) / 2.0)
         self.bits += sphere_area_ln / math.log(2)
 
-    def __str__(self):
-        """Return string with human readable description of the group.
-
-        :returns: Readable description.
-        :rtype: str
-        """
-        return (
-            f"size={self.size} avg={self.avg} stdev={self.stdev}"
-            f" bits={self.bits}"
-        )
-
-    def __repr__(self):
-        """Return string executable as Python constructor call.
-
-        :returns: Executable constructor call.
-        :rtype: str
-        """
-        return (
-            f"BitCountingStats(size={self.size!r},avg={self.avg!r}"
-            f",stdev={self.stdev!r},max_value={self.max_value!r}"
-            f",prev_avg={self.prev_avg!r})"
-        )
-
+    # TODO: Rename, so pylint stops complaining about signature change.
     @classmethod
-    def for_runs(cls, runs, max_value=None, prev_avg=None):
+    def for_runs(
+        cls,
+        runs: typing.Iterable[typing.Union[float, AvgStdevStats]],
+        max_value: float,
+        prev_avg: typing.Optional[float] = None,
+    ):
         """Return new stats instance describing the sequence of runs.
 
         If you want to append data to existing stats object,
@@ -164,6 +139,11 @@ class BitCountingStats(AvgStdevStats):
         :rtype: cls
         """
         asd = AvgStdevStats.for_runs(runs)
-        ret_obj = cls(size=asd.size, avg=asd.avg, stdev=asd.stdev,
-                      max_value=max_value, prev_avg=prev_avg)
+        ret_obj = cls(
+            size=asd.size,
+            avg=asd.avg,
+            stdev=asd.stdev,
+            max_value=max_value,
+            prev_avg=prev_avg,
+        )
         return ret_obj
