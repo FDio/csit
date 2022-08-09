@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,15 +20,20 @@ for grouping results into the list of groups,
 assuming each group is a population of different Gaussian distribution.
 """
 
+import typing
+
 from .AvgStdevStats import AvgStdevStats
 from .BitCountingGroupList import BitCountingGroupList
 
 
-def classify(values):
+def classify(
+    values: typing.Iterable[typing.Union[float, typing.Iterable[float]]]
+) -> BitCountingGroupList:
     """Return the values in groups of optimal bit count.
 
     Here, a value is either a float, or an iterable of floats.
     Such iterables represent an undivisible sequence of floats.
+    Int is accepted anywhere instead of float.
 
     Internally, such sequence is replaced by AvgStdevStats
     after maximal value is found.
@@ -50,22 +55,21 @@ def classify(values):
                 if subvalue > max_value:
                     max_value = subvalue
             processed_values.append(AvgStdevStats.for_runs(value))
-    open_at = list()
-    closed_before = [BitCountingGroupList(max_value=max_value)]
-    for index, value in enumerate(processed_values):
-        newly_open = closed_before[index].copy()
-        newly_open.append_group_of_runs([value])
-        open_at.append(newly_open)
-        record_group_list = newly_open
-        for previous_index, old_open in enumerate(open_at[:index]):
-            new_open = old_open.copy().append_run_to_to_last_group(value)
-            open_at[previous_index] = new_open
-            if new_open.bits < record_group_list.bits:
-                record_group_list = new_open
-        closed_before.append(record_group_list)
-    partition = closed_before[-1]
-    previous_average = partition[0].stats.avg
-    for group in partition:
+    # Glist means group list (BitCountingGroupList).
+    open_glists = list()
+    closed_glist = BitCountingGroupList(max_value=max_value)
+    for value in processed_values:
+        new_open_glist = closed_glist.copy_fast()
+        new_open_glist.append_group_of_runs([value])
+        record_glist = new_open_glist
+        for old_open_glist in open_glists:
+            old_open_glist.append_run_to_to_last_group(value)
+            if old_open_glist.bits < record_glist.bits:
+                record_glist = old_open_glist
+        closed_glist = record_glist
+        open_glists.append(new_open_glist)
+    previous_average = record_glist[-1].stats.avg
+    for group in record_glist:
         if group.stats.avg == previous_average:
             group.comment = u"normal"
         elif group.stats.avg < previous_average:
@@ -73,4 +77,4 @@ def classify(values):
         elif group.stats.avg > previous_average:
             group.comment = u"progression"
         previous_average = group.stats.avg
-    return partition
+    return record_glist
