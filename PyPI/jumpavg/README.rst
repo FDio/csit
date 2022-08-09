@@ -25,6 +25,11 @@ Change log
 
 TODO: Move into separate file?
 
+0.3.0: Considerable speedup by avoiding unneeded copy. Dataclasses used.
+       Mostly API compatible, but repr looks different.
+
+0.2.0: API incompatible changes. Targeted to Python 3 now.
+
 0.1.3: Changed stdev computation to avoid negative variance due to rounding errors.
 
 0.1.2: First version published in PyPI.
