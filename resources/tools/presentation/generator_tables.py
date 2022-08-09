@@ -2265,7 +2265,19 @@ def table_weekly_comparison(table, in_data):
 
     txt_file_name = f"{table[u'output-file']}.txt"
     logging.info(f"    Writing the file {txt_file_name}")
-    convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u",")
+    try:
+        convert_csv_to_pretty_txt(csv_file_name, txt_file_name, delimiter=u",")
+    except Exception as err:
+        logging.error(repr(err))
+        for hdr in header:
+            logging.info(",".join(hdr))
+        for test in tbl_lst:
+            logging.info(",".join(
+                [
+                    str(item).replace(u"None", u"-").replace(u"nan", u"-").
+                    replace(u"null", u"-") for item in test
+                ]
+            ))
 
     # Reorganize header in txt table
     txt_table = list()
