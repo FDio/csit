@@ -13,13 +13,15 @@
 
 """Module holding BitCountingGroupList class."""
 
-import copy
+import collections
+import dataclasses
+import typing
 
 from .BitCountingGroup import BitCountingGroup
 
 
-class BitCountingGroupList:
-    # TODO: Inherit from collections.abc.Sequence in Python 3.
+@dataclasses.dataclass
+class BitCountingGroupList(collections.abc.Sequence):
     """List of data groups which tracks overall bit count.
 
     The Sequence-like access is related to the list of groups,
@@ -41,53 +43,25 @@ class BitCountingGroupList:
     recalculations if the bit count is not needed.
     """
 
-    def __init__(self, group_list=None, bits_except_last=0.0, max_value=None):
-        """Set the internal state without any calculations.
+    max_value: float
+    """Maximal sample value to base bits computation on."""
+    group_list: typing.List[BitCountingGroup] = None
+    """List of groups to compose this group list.
+    Init also accepts None standing for an empty list.
+    This class takes ownership of the list,
+    so caller of init should clone their copy to avoid unexpected mutations.
+    """
+    bits_except_last: float = 0.0
+    """Partial sum of all but one group bits."""
 
-        The group list argument is copied deeply, so it is not a problem
-        if the value object is mutated afterwards.
-
-        A "group" stands for an Iterable of runs, where "run" is either
-        a float value, or a stats-like object (only size, avg and stdev
-        are accessed). Run is a hypothetical abstract class,
-        defining it in Python 2 is too much hassle.
+    def __post_init__(self):
+        """Turn possible None into an empty list.
 
         It is not verified whether the user provided values are valid,
-        e.g. whether the cached bits values make sense.
-
-        The max_value is required and immutable,
-        it is recommended the callers find their maximum beforehand.
-
-        :param group_list: List of groups to compose this group list (or empty).
-        :param bits_except_last: Partial sum of all but one group bits.
-        :param max_value: Maximal sample value to base bits computation on.
-        :type group_list: Iterable[BitCountingGroup]
-        :type bits_except_last: float
-        :type max_value: float
+        e.g. whether the cached bits values (and bits_except_last) make sense.
         """
-        self.group_list = copy.deepcopy(group_list) if group_list else list()
-        self.bits_except_last = bits_except_last
-        self.max_value = max_value
-
-    def __str__(self):
-        """Return string with human readable description of the group list.
-
-        :returns: Readable description.
-        :rtype: str
-        """
-        return f"group_list={self.group_list} bits={self.bits}"
-
-    def __repr__(self):
-        """Return string executable as Python constructor call.
-
-        :returns: Executable constructor call.
-        :rtype: str
-        """
-        return (
-            f"BitCountingGroupList(group_list={self.group_list!r}"
-            f",bits_except_last={self.bits_except_last!r}"
-            f",max_value={self.max_value!r})"
-        )
+        if self.group_list is None:
+            self.group_list = list()
 
     def __getitem__(self, index):
         """Return the group at the index.
@@ -114,8 +88,28 @@ class BitCountingGroupList:
         :rtype: BitCountingGroupList
         """
         return self.__class__(
-            group_list=self.group_list, bits_except_last=self.bits_except_last,
-            max_value=self.max_value
+            max_value=self.max_value,
+            group_list=[group.copy() for group in self.group_list],
+            bits_except_last=self.bits_except_last,
+        )
+
+    def copy_fast(self):
+        """Return a new instance with minimaly copied internal state.
+
+        The assumption here is that only the last group will ever be mutated
+        (in self, probably never in the return value),
+        so all the previous groups can be "copied by reference".
+
+        :returns: The copied instance.
+        :rtype: BitCountingGroupList
+        """
+        group_list = list(self.group_list)
+        if group_list:
+            group_list[-1] = group_list[-1].copy()
+        return self.__class__(
+            max_value=self.max_value,
+            group_list=group_list,
+            bits_except_last=self.bits_except_last,
         )
 
     @property
@@ -133,8 +127,9 @@ class BitCountingGroupList:
     def append_group_of_runs(self, runs):
         """Mutate to add a new group based on the runs, return self.
 
-        The argument is copied before adding to the group list,
-        so further edits do not affect the grup list.
+        The argument is NOT copied before adding to the group list,
+        so further edits MAY not affect the grup list.
+
         The argument can also be a group, only runs from it are used.
 
         :param runs: Runs to form the next group to be appended to self.
@@ -151,7 +146,8 @@ class BitCountingGroupList:
             new_group.cached_bits = None
         else:
             new_group = BitCountingGroup(
-                run_list=runs, max_value=self.max_value, prev_avg=prev_avg)
+                run_list=runs, max_value=self.max_value, prev_avg=prev_avg
+            )
         self.bits_except_last = self.bits
         self.group_list.append(new_group)
         return self
