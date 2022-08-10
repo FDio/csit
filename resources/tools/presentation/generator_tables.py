@@ -2176,6 +2176,7 @@ def table_weekly_comparison(table, in_data):
             header[1].insert(
                 1, in_data.metadata(job_name, build_nr).get(u"generated", u"")
             )
+            logging.info(in_data.metadata(job_name, build_nr).get(u"version", u"ERROR"))
             header[0].insert(
                 1, in_data.metadata(job_name, build_nr).get(u"version", u"")
             )
@@ -2219,9 +2220,7 @@ def table_weekly_comparison(table, in_data):
             if ref_data is None or cmp_data is None:
                 cmp_dict[tst_name].append(float(u'nan'))
             else:
-                cmp_dict[tst_name].append(
-                    relative_change(ref_data, cmp_data)
-                )
+                cmp_dict[tst_name].append(relative_change(ref_data, cmp_data))
 
     tbl_lst_none = list()
     tbl_lst = list()
