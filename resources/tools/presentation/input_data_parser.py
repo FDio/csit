@@ -263,7 +263,7 @@ class ExecutionChecker(ResultVisitor):
     )
 
     REGEX_VERSION_VPP = re.compile(
-        r"VPP Version:\s*|VPP version:\s*)(.*)"
+        r"(VPP Version:\s*|VPP version:\s*)(.*)"
     )
     REGEX_VERSION_DPDK = re.compile(
         r"(DPDK version:\s*|DPDK Version:\s*)(.*)"
