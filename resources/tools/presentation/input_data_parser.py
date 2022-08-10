@@ -263,7 +263,6 @@ class ExecutionChecker(ResultVisitor):
     )
 
     REGEX_VERSION_VPP = re.compile(
-        r"(return STDOUT Version:\s*|"
         r"VPP Version:\s*|VPP version:\s*)(.*)"
     )
     REGEX_VERSION_DPDK = re.compile(
@@ -592,9 +591,8 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count(u"return STDOUT Version:") or \
-                msg.message.count(u"VPP Version:") or \
-                msg.message.count(u"VPP version:"):
+        if msg.message.count(u"VPP version:") or \
+                msg.message.count(u"VPP Version:"):
             self._version = str(
                 re.search(self.REGEX_VERSION_VPP, msg.message).group(2)
             )
@@ -1323,7 +1321,7 @@ class ExecutionChecker(ResultVisitor):
         :type setup_kw: Keyword
         :returns: Nothing.
         """
-        for keyword in setup_kw.body:
+        for keyword in setup_kw.setup:
             if self.start_setup_kw(keyword) is not False:
                 self.visit_setup_kw(keyword)
                 self.end_setup_kw(keyword)
