@@ -1043,6 +1043,8 @@ class ExecutionChecker(ResultVisitor):
                               }
 
         suite.setup.visit(self)
+        suite.body.visit(self)
+        suite.teardown.visit(self)
 
     def end_suite(self, suite):
         """Called when suite ends.
@@ -1060,7 +1062,9 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
         if self.start_test(test) is not False:
+            test.setup.visit(self)
             test.body.visit(self)
+            test.teardown.visit(self)
             self.end_test(test)
 
     def start_test(self, test):
@@ -1254,9 +1258,9 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
         try:
-            if keyword.type == u"setup":
+            if keyword.type in ("setup", "SETUP"):
                 self.visit_setup_kw(keyword)
-            elif keyword.type == u"teardown":
+            elif keyword.type in ("teardown", "TEARDOWN"):
                 self.visit_teardown_kw(keyword)
             else:
                 self.visit_test_kw(keyword)
@@ -1322,6 +1326,10 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
         for keyword in setup_kw.setup:
+            if self.start_setup_kw(keyword) is not False:
+                self.visit_setup_kw(keyword)
+                self.end_setup_kw(keyword)
+        for keyword in setup_kw.body:
             if self.start_setup_kw(keyword) is not False:
                 self.visit_setup_kw(keyword)
                 self.end_setup_kw(keyword)
