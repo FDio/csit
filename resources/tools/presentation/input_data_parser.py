@@ -1043,7 +1043,6 @@ class ExecutionChecker(ResultVisitor):
                               }
 
         suite.setup.visit(self)
-        suite.body.visit(self)
         suite.teardown.visit(self)
 
     def end_suite(self, suite):
