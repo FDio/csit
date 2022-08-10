@@ -600,6 +600,7 @@ class ExecutionChecker(ResultVisitor):
             )
             self._data[u"metadata"][u"version"] = self._version
             self._msg_type = None
+            logging.info(self._version)
 
     def _get_dpdk_version(self, msg):
         """Called when extraction of DPDK version is required.
@@ -1450,7 +1451,7 @@ class InputData:
         self._for_output = for_output
 
         # Data store:
-        self._input_data = pd.Series(dtype="object")
+        self._input_data = pd.Series(dtype="float64")
 
     @property
     def data(self):
@@ -1665,7 +1666,7 @@ class InputData:
                     })
 
                     if self._input_data.get(job, None) is None:
-                        self._input_data[job] = pd.Series(dtype="object")
+                        self._input_data[job] = pd.Series(dtype="float64")
                     self._input_data[job][str(build_nr)] = build_data
                     self._cfg.set_input_file_name(
                         job, build_nr, result[u"build"][u"file-name"]
@@ -1744,7 +1745,7 @@ class InputData:
         })
 
         if self._input_data.get(job, None) is None:
-            self._input_data[job] = pd.Series(dtype="object")
+            self._input_data[job] = pd.Series(dtype="float64")
         self._input_data[job][str(build_nr)] = build_data
 
         self._cfg.set_input_state(job, build_nr, u"processed")
@@ -1901,12 +1902,12 @@ class InputData:
                 params.extend((u"type", u"status"))
 
         data_to_filter = data if data else element[u"data"]
-        data = pd.Series(dtype="object")
+        data = pd.Series(dtype="float64")
         try:
             for job, builds in data_to_filter.items():
-                data[job] = pd.Series(dtype="object")
+                data[job] = pd.Series(dtype="float64")
                 for build in builds:
-                    data[job][str(build)] = pd.Series(dtype="object")
+                    data[job][str(build)] = pd.Series(dtype="float64")
                     try:
                         data_dict = dict(
                             self.data[job][str(build)][data_set].items())
@@ -1918,7 +1919,7 @@ class InputData:
                     for test_id, test_data in data_dict.items():
                         if eval(cond, {u"tags": test_data.get(u"tags", u"")}):
                             data[job][str(build)][test_id] = \
-                                pd.Series(dtype="object")
+                                pd.Series(dtype="float64")
                             if params is None:
                                 for param, val in test_data.items():
                                     data[job][str(build)][test_id][param] = val
@@ -2002,12 +2003,12 @@ class InputData:
         else:
             tests = include
 
-        data = pd.Series(dtype="object")
+        data = pd.Series(dtype="float64")
         try:
             for job, builds in element[u"data"].items():
-                data[job] = pd.Series(dtype="object")
+                data[job] = pd.Series(dtype="float64")
                 for build in builds:
-                    data[job][str(build)] = pd.Series(dtype="object")
+                    data[job][str(build)] = pd.Series(dtype="float64")
                     for test in tests:
                         try:
                             reg_ex = re.compile(str(test).lower())
@@ -2017,7 +2018,7 @@ class InputData:
                                     test_data = self.data[job][
                                         str(build)][data_set][test_id]
                                     data[job][str(build)][test_id] = \
-                                        pd.Series(dtype="object")
+                                        pd.Series(dtype="float64")
                                     if params is None:
                                         for param, val in test_data.items():
                                             data[job][str(build)][test_id]\
@@ -2072,7 +2073,7 @@ class InputData:
 
         logging.info(u"    Merging data ...")
 
-        merged_data = pd.Series(dtype="object")
+        merged_data = pd.Series(dtype="float64")
         for builds in data.values:
             for item in builds.values:
                 for item_id, item_data in item.items():
