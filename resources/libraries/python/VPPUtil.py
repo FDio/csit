@@ -173,7 +173,7 @@ class VPPUtil:
         :type node: dict
         :raises RuntimeError: If VPP service fails to start.
         """
-        DUTSetup.verify_program_installed(node, 'vpp')
+        DUTSetup.verify_program_installed(node, 'vpp_dbg')
         try:
             # Verify responsiveness of vppctl.
             VPPUtil.verify_vpp_started(node)

@@ -685,7 +685,7 @@ class DUTSetup:
                         timeout=120, sudo=True
                     )
                     exec_cmd_no_error(
-                        node, f"dpkg -i --force-all {vpp_pkg_dir}*.deb",
+                        node, f"ls {vpp_pkg_dir}*.deb | fgrep -v /vpp_2 | xargs sudo dpkg -i --force-all",
                         timeout=120, sudo=True, message=message
                     )
                     exec_cmd_no_error(node, u"dpkg -l | grep vpp", sudo=True)
