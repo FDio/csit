@@ -293,7 +293,9 @@ class L2Util:
             f"on host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
+            # Not using get_replies, it triggers VPP-2033.
+            papi_exec.add(cmd, **args1).get_reply(err_msg)
+            papi_exec.add(cmd, **args2).get_reply(err_msg)
 
     @staticmethod
     def vpp_setup_bidirectional_l2_patch(node, interface1, interface2):

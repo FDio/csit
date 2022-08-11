@@ -34,6 +34,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.spying_socket import SpyingSocket
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType
@@ -504,6 +505,7 @@ class PapiSocketExecutor:
                 break
         else:
             raise RuntimeError(u"Failed to connect to VPP over a socket.")
+        vpp_instance.transport.socket = SpyingSocket(vpp_instance.transport.socket)
         logger.trace(
             f"Establishing socket connection took {time.time()-time_enter}s"
         )
@@ -896,10 +898,13 @@ class PapiSocketExecutor:
             replies = list()
             try:
                 # Send the command followed by control ping.
+                logger.trace(f"calling: {command}")
                 main_context = papi_fn(**command[u"api_args"])
                 if single_reply:
+                    logger.trace(u"not pinging")
                     replies.append(PapiSocketExecutor._read(vpp_instance))
                 else:
+                    logger.trace(u"pinging")
                     ping_context = control_ping_fn()
                     # Receive the replies.
                     while 1:
