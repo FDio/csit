@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70b64d7d_6d7b1f65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-11T08:46:34Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest mrrANDnic_intel-xxv710ANDdrv_avfAND64bAND*-2memif-1dcr",
+      "revId": "74dadef65eb27646051f1465ca39026f3a0886d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
