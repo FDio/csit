@@ -2176,9 +2176,10 @@ def table_weekly_comparison(table, in_data):
             header[1].insert(
                 1, in_data.metadata(job_name, build_nr).get(u"generated", u"")
             )
-            logging.info(in_data.metadata(job_name, build_nr).get(u"version", u"ERROR"))
+            logging.info(
+                in_data.metadata(job_name, build_nr).get(u"version", u"ERROR"))
             header[0].insert(
-                1, in_data.metadata(job_name, build_nr).get(u"version", u"")
+                1, in_data.metadata(job_name, build_nr).get("version", build_nr)
             )
 
             for tst_name, tst_data in build.items():
@@ -2280,13 +2281,15 @@ def table_weekly_comparison(table, in_data):
 
     # Reorganize header in txt table
     txt_table = list()
-    with open(txt_file_name, u"rt", encoding='utf-8') as file_handler:
-        for line in list(file_handler):
-            txt_table.append(line)
     try:
+        with open(txt_file_name, u"rt", encoding='utf-8') as file_handler:
+            for line in list(file_handler):
+                txt_table.append(line)
         txt_table.insert(5, txt_table.pop(2))
         with open(txt_file_name, u"wt", encoding='utf-8') as file_handler:
             file_handler.writelines(txt_table)
+    except FileNotFoundError as err:
+        logging.error(repr(err))
     except IndexError:
         pass
 
