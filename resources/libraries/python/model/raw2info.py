@@ -219,6 +219,43 @@ def _convert_to_info_in_memory(data):
             result_node[u"packet_rate"][u"bandwidth"][u"unit"] = u"bps"
         return data
 
+    # Add missing units to AB result.
+    if result_type == u"ab_cps" or result_type == u"ab_rps":
+        result_node[u"completed_requests"][u"unit"] = u"requests"
+        result_node[u"failed_requests"][u"unit"] = u"requests"
+        result_node[u"total_bytes"][u"unit"] = u"bytes"
+        # Convert transfer rate to bps.
+        rate_node = result_node[u"trasfer_rate"]
+        unit = rate_node[u"unit"]
+        if unit == u"Kbytes/sec":
+            rate_node[u"value"] = 1000 * rate_node[u"value"]
+        else:
+            raise RuntimeError(f"Unexpected rate unit: {unit}")
+        rate_node[u"unit"] = u"bps"
+
+    # Add missing units to iperf hoststack results.
+    if result_type == u"iperf_udp" or result_type == u"iperf_tcp":
+        for endpoint in (result_node[u"client"], result_node[u"server"]):
+            for item in endpoint[u"streams"] + [endpoint[u"sum"]]
+                item[u"duration"][u"unit"] = u"s"
+                item[u"total_bytes"][u"unit"] = u"bytes"
+                item[u"transfer_rate"][u"unit"] = u"bps"
+                if u"packets" in item:
+                    item[u"packets"][u"unit"] = u"packets"
+                if u"retransmits" in item:
+                    item[u"retransmits"][u"unit"] = u"packets"
+        return data
+
+    # Add missing units to vpp_echo result.
+    if result_type == u"vpp_echo":
+        for program in (u"client", u"server"):
+            program_node = result_node[program]
+            program_node[u"duration"][u"unit"] = u"s"
+            program_node[u"rx_data"][u"unit"] = u"bytes"
+            program_node[u"tx_data"][u"unit"] = u"bytes"
+            program_node[u"rx_rate"][u"unit"] = u"bps"
+            program_node[u"tx_rate"][u"unit"] = u"bps"
+
     # Multiple processing steps for ndrpdr.
     if result_type != u"ndrpdr":
         return data
