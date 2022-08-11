@@ -33,6 +33,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.spying_socket import SpyingSocket
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
 from resources.libraries.python.topology import Topology, SocketType
@@ -473,6 +474,7 @@ class PapiSocketExecutor:
                 break
         else:
             raise RuntimeError(u"Failed to connect to VPP over a socket.")
+        vpp_instance.transport.socket = SpyingSocket(vpp_instance.transport.socket)
         logger.trace(
             f"Establishing socket connection took {time.time()-time_enter}s"
         )
