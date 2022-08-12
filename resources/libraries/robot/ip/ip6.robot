@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -84,17 +84,17 @@
 | | ... | Vpp Route Add | ${dut2} | 2001:1::0 | 64 | gateway=2001:3::1
 | | ... | interface=${DUT2_${int}1}[0]
 | |
-| | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
+| | Run Keyword If | '${remote_host1_ip}' != '${NONE}'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 128
 | | ... | gateway=2001:1::2 | interface=${DUT1_${int}1}[0]
-| | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
+| | Run Keyword If | '${remote_host2_ip}' != '${NONE}'
 | | ... | Vpp Route Add | ${dut} | ${remote_host2_ip} | 128
 | | ... | gateway=2001:2::2 | interface=${dut_if2}
-| | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
+| | Run Keyword If | '${remote_host1_ip}' != '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 128
 | | ... | gateway=2001:3::2 | interface=${DUT1_${int}2}[0]
-| | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
+| | Run Keyword If | '${remote_host2_ip}' != '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | 128
 | | ... | gateway=2001:3::1 | interface=${DUT2_${int}1}[0]
