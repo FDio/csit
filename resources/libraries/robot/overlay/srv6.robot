@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -263,7 +263,7 @@
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6}
 | | ... | ${DUT2_${int}1_mac}[0]
-| | Run Keyword Unless | ${dut2_status}
+| | Run Keyword If | not ${dut2_status}
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6} | ${TG_pf2_mac}[0]
 | | Run Keyword If | ${dut2_status}
@@ -405,7 +405,7 @@
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6}
 | | ... | ${DUT2_${int}1_mac}[0]
-| | Run Keyword Unless | ${dut2_status}
+| | Run Keyword If | not ${dut2_status}
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6} | ${TG_pf2_mac}[0]
 | | Run Keyword If | ${dut2_status}

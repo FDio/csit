@@ -330,7 +330,7 @@
 | | ... | \| Send ramp-up traffic \|
 | |
 | | ${ramp_up_rate} = | Get Ramp Up Rate
-| | Run Keyword Unless | ${ramp_up_rate} > 0.0 | Fail | Ramp up rate missing!
+| | Run Keyword If | ${ramp_up_rate} <= 0.0 | Fail | Ramp up rate missing!
 | | ${ramp_up_duration} = | Get Ramp Up Duration
 | | ${ppta} = | Get Packets Per Transaction Aggregated
 | | ${traffic_directions} = | Get Traffic Directions

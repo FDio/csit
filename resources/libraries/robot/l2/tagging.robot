@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -82,24 +82,24 @@
 | | ... | \| ${dut1_if2} \| 10 \|
 | |
 | | Set Interface State | ${DUT1} | ${INT1} | up
-| | Run Keyword Unless | ${DUT2} == ${None}
+| | Run Keyword If | ${DUT2} != ${None}
 | | ... | Set Interface State | ${DUT2} | ${INT2} | up
 | | ${INT1_NAME}= | Get interface name | ${DUT1} | ${INT1}
-| | ${INT2_NAME}= | Run Keyword Unless | ${DUT2} == ${None}
+| | ${INT2_NAME}= | Run Keyword If | ${DUT2} != ${None}
 | | ... | Get interface name | ${DUT2} | ${INT2}
 | | ${subif_name_1} | ${subif_index_1}= | Create Vlan Subinterface
 | | ... | ${DUT1} | ${INT1_NAME} | ${SUB_ID}
 | | ${subif_name_2} | ${subif_index_2}=
-| | ... | Run Keyword Unless | ${DUT2} == ${None}
+| | ... | Run Keyword If | ${DUT2} != ${None}
 | | ... | Create Vlan Subinterface | ${DUT2} | ${INT2_NAME} | ${SUB_ID}
 | | Set Interface State | ${DUT1} | ${subif_index_1} | up
-| | Run Keyword Unless | ${DUT2} == ${None}
+| | Run Keyword If | ${DUT2} != ${None}
 | | ... | Set Interface State | ${DUT2} | ${subif_index_2} | up
 | | Set Test Variable | ${subif_name_1}
 | | Set Test Variable | ${subif_index_1}
-| | Run Keyword Unless | ${DUT2} == ${None}
+| | Run Keyword If | ${DUT2} != ${None}
 | | ... | Set Test Variable | ${subif_name_2}
-| | Run Keyword Unless | ${DUT2} == ${None}
+| | Run Keyword If | ${DUT2} != ${None}
 | | ... | Set Test Variable | ${subif_index_2}
 
 | Configure L2 tag rewrite method on interfaces
@@ -115,7 +115,7 @@
 | | ... | - TAG_REWRITE_METHOD - Method of tag rewrite.
 | |
 | | L2 Vlan tag rewrite | ${DUT1} | ${SUB_INT1} | ${TAG_REWRITE_METHOD}
-| | Run Keyword Unless | ${DUT2} == ${None}
+| | Run Keyword If | ${DUT2} != ${None}
 | | ... | L2 Vlan tag rewrite | ${DUT2} | ${SUB_INT2} | ${TAG_REWRITE_METHOD}
 
 | Configure L2 tag rewrite method on interface

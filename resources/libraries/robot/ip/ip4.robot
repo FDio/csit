@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -83,17 +83,17 @@
 | | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
 | | ... | interface=${DUT2_${int}1}[0]
 | |
-| | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
+| | Run Keyword If | '${remote_host1_ip}' != '${NONE}'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | ${remote_host_mask}
 | | ... | gateway=10.10.10.2 | interface=${DUT1_${int}1}[0]
-| | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
+| | Run Keyword If | '${remote_host2_ip}' != '${NONE}'
 | | ... | Vpp Route Add | ${dut} | ${remote_host2_ip} | ${remote_host_mask}
 | | ... | gateway=20.20.20.2 | interface=${dut_if2}
-| | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
+| | Run Keyword If | '${remote_host1_ip}' != '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | ${remote_host_mask}
 | | ... | gateway=1.1.1.2 | interface=${DUT1_${int}2}[0]
-| | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
+| | Run Keyword If | '${remote_host2_ip}' != '${NONE}'
 | | ... | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | ${remote_host_mask}
 | | ... | gateway=1.1.1.1 | interface=${DUT2_${int}1}[0]
@@ -267,7 +267,7 @@
 | | | ${memif2}= | Set Variable | ${${dut}-memif-${number}-if2}
 | | | ${fib_table_1}= | Evaluate | ${fib_table_1} + ${1}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1} + ${1}
-| | | Run Keyword Unless | ${number} == ${count}
+| | | Run Keyword If | ${number} != ${count}
 | | | ... | Add Fib Table | ${nodes['${dut}']} | ${fib_table_2}
 | | | Assign Interface To Fib Table | ${nodes['${dut}']}
 | | | ... | ${memif1} | ${fib_table_1}
@@ -375,10 +375,10 @@
 | | | ... | ${dut1} | ${dut1-vhost-${number}-if1} | 1.1.1.2 | 30
 | | | VPP Interface Set IP Address
 | | | ... | ${dut1} | ${dut1-vhost-${number}-if2} | 1.1.2.2 | 30
-| | | Run Keyword Unless | ${testpmd_mac}
+| | | Run Keyword If | not ${testpmd_mac}
 | | | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=1.1.1.1
 | | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
-| | | Run Keyword Unless | ${testpmd_mac}
+| | | Run Keyword If | not ${testpmd_mac}
 | | | ... | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=1.1.2.1
 | | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
 | | | Run Keyword If | ${testpmd_mac}
@@ -494,16 +494,16 @@
 | | | ... | ${dut2} | ${dut2-vhost-${number}-if1} | 1.1.1.2 | 30
 | | | VPP Interface Set IP Address
 | | | ... | ${dut2} | ${dut2-vhost-${number}-if2} | 1.1.2.2 | 30
-| | | Run Keyword Unless | ${testpmd_mac}
+| | | Run Keyword If | not ${testpmd_mac}
 | | | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=1.1.1.1
 | | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
-| | | Run Keyword Unless | ${testpmd_mac}
+| | | Run Keyword If | not ${testpmd_mac}
 | | | ... | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=1.1.2.1
 | | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
-| | | Run Keyword Unless | ${testpmd_mac}
+| | | Run Keyword If | not ${testpmd_mac}
 | | | ... | Vpp Route Add | ${dut2} | 20.0.0.0 | 8 | gateway=1.1.1.1
 | | | ... | interface=${dut2-vhost-${number}-if1} | vrf=${fib_table_1}
-| | | Run Keyword Unless | ${testpmd_mac}
+| | | Run Keyword If | not ${testpmd_mac}
 | | | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 8 | gateway=1.1.2.1
 | | | ... | interface=${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
 | | | Run Keyword If | ${testpmd_mac}
