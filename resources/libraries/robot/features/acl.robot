@@ -100,10 +100,10 @@
 | | Add Macip Acl Multi Entries | ${dut} | rules=${acl0}
 | | Add Macip Acl Multi Entries | ${dut} | rules=${acl1}
 | | ${acl_idx}= | Set Variable | 0
-| | Run Keyword Unless | '${dut_if1}' == '${NONE}'
+| | Run Keyword If | '${dut_if1}' != '${NONE}'
 | | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if1} | add | ${acl_idx}
 | | ${acl_idx}= | Set Variable | 1
-| | Run Keyword Unless | '${dut_if2}' == '${NONE}'
+| | Run Keyword If | '${dut_if2}' != '${NONE}'
 | | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if2} | add | ${acl_idx}
 
 | Configure IPv4 ACLs
