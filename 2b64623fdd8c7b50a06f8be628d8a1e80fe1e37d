@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1b706cd_47afcfa3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 43
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-12T14:44:48Z",
+      "side": 1,
+      "message": "csit-3n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciANDeth-ip4tcpbase-ldpreload-iperf3 nic_intel-xxv710ANDdrv_vfio_pciANDeth-ip4udpbase-ldpreload-iperf3 nic_intel-xxv710ANDdrv_vfio_pciANDeth-ip4udpquicbase-vppecho",
+      "revId": "2b64623fdd8c7b50a06f8be628d8a1e80fe1e37d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
