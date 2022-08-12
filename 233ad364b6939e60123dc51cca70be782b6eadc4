@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8ed1f50_a60907eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-12T12:13:14Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest ndrpdrANDnic_Intel-E810XXVANDdrv_vfo_pciAND1cAND64bAND2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm*",
+      "revId": "233ad364b6939e60123dc51cca70be782b6eadc4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
