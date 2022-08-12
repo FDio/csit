@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e70891a8_12e62ba5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 44
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-12T14:56:07Z",
+      "side": 1,
+      "message": "csit-2n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciAND1cAND1024bANDeth-ip4tcphttp-ldpreload-nginx-1_15_0",
+      "revId": "f2b91f7f4824f855e900eee987841ade5bae9a8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
