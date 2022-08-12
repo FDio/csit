@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -51,7 +51,7 @@ def get_validators():
     :rtype: Mapping[str, jsonschema.validators.Validator]
     :raises RuntimeError: If schemas are not readable or not valid.
     """
-    relative_path = u"docs/model/current/schema/test_case.info.schema.json"
+    relative_path = u"docs/model/schema/test_case.info.schema.json"
     # Robot is always started when CWD is CSIT_DIR.
     validator = _get_validator(relative_path)
     return dict(tc_info=validator)

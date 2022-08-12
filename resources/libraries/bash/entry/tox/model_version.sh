@@ -33,7 +33,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 
 impl_log="edited_files.log"
 git diff --name-only HEAD~ > "${impl_log}"
-if ! grep -q '^docs/model/current/schema/.*\.schema\.json' "${impl_log}"; then
+if ! grep -q '^docs/model/schema/.*\.schema\.json' "${impl_log}"; then
     # Failing grep means no model edits.
     warn "No model implementation edits detected."
     warn
@@ -50,7 +50,7 @@ if ! grep -q '^\+    MODEL_VERSION = ' "${const_log}"; then
     exit 1
 fi
 doc_log="docs_edits.log"
-git diff -U0 HEAD~ -- "docs/model/current/top.rst" > "${doc_log}"
+git diff -U0 HEAD~ -- "docs/model/top.rst" > "${doc_log}"
 if ! grep -q '^\+This document is valid for CSIT model' "${doc_log}"; then
     warn "Model implementation edits without documentation update detected!"
     warn "See ${impl_log}, ${const_log} and ${doc_log} for what was detected."

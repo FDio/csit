@@ -1,5 +1,5 @@
 
-Add description with link to methodology for MRR, NDRPDR and SOAK.
+Add description with link to methodology for MRR, NDRPDR, SOAK and RECONF.
 
 Add multiplicity field to MRR result, so PAL can detect incomplete samples.
 
