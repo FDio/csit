@@ -73,3 +73,4 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Kill Program | ${nodes['${dut}']} | iperf3
 | | | Kill Program | ${nodes['${dut}']} | vpp_echo
+| | END
