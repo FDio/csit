@@ -16,6 +16,23 @@
       "message": "csit-2n-dnv-perftest mrrANDnic_intel-x*ANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
       "revId": "a9dc95ea78ec10cf47ccd63382dc4a95e27cb12e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d568b7d_c8c49c0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-12T12:33:31Z",
+      "side": 1,
+      "message": "csit-2n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciAND1cAND1024bANDeth-ip4tcphttp-ldpreload-nginx-1_15_0",
+      "revId": "a9dc95ea78ec10cf47ccd63382dc4a95e27cb12e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
