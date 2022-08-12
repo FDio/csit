@@ -247,7 +247,7 @@
 | | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | ${_even}= | Evaluate | ${pf} % 2
-| | | Run Keyword Unless | ${even}
+| | | Run Keyword If | not ${even}
 | | | ... | VPP Add Bond Member
 | | | ... | ${dut1} | ${DUT1_${int}${pf}}[0] | ${dut1_eth_bond_if1}
 | | END

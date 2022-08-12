@@ -263,7 +263,7 @@
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6}
 | | ... | ${DUT2_${int}1_mac}[0]
-| | Run Keyword Unless | ${dut2_status}
+| | Run Keyword If | not ${dut2_status}
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6} | ${TG_pf2_mac}[0]
 | | Run Keyword If | ${dut2_status}
@@ -405,7 +405,7 @@
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6}
 | | ... | ${DUT2_${int}1_mac}[0]
-| | Run Keyword Unless | ${dut2_status}
+| | Run Keyword If | not ${dut2_status}
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${DUT1_${int}2}[0] | ${dut2_if1_ip6} | ${TG_pf2_mac}[0]
 | | Run Keyword If | ${dut2_status}
