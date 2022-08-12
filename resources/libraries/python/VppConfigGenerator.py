@@ -479,8 +479,9 @@ class VppConfigGenerator:
 
     def add_dpdk_no_multi_seg(self):
         """Add DPDK no-multi-seg configuration."""
-        path = [u"dpdk", u"no-multi-seg"]
-        self.add_config_item(self._nodeconfig, u"", path)
+        pass
+        # path = [u"dpdk", u"no-multi-seg"]
+        # self.add_config_item(self._nodeconfig, u"", path)
 
     def add_dpdk_no_tx_checksum_offload(self):
         """Add DPDK no-tx-checksum-offload configuration."""
