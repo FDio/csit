@@ -159,10 +159,6 @@ class ExecutionChecker(ResultVisitor):
         :type process_oper: bool
         """
 
-        # Save the provided metadata
-        for key, val in metadata.items():
-            self._data["metadata"][key] = val
-
         # Mapping of TCs long names
         self._mapping = mapping
 
@@ -204,6 +200,10 @@ class ExecutionChecker(ResultVisitor):
             "suites": dict(),
             "tests": dict()
         }
+
+        # Save the provided metadata
+        for key, val in metadata.items():
+            self._data["metadata"][key] = val
 
     @property
     def data(self):
