@@ -479,6 +479,7 @@ class VppConfigGenerator:
 
     def add_dpdk_no_multi_seg(self):
         """Add DPDK no-multi-seg configuration."""
+        pass
         path = [u"dpdk", u"no-multi-seg"]
         self.add_config_item(self._nodeconfig, u"", path)
 
