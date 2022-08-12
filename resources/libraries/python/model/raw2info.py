@@ -208,6 +208,17 @@ def _convert_to_info_in_memory(data):
         rate_node[u"stdev"] = stats.stdev
         return data
 
+    # Compute time loss for reconf and add missing units.
+    if result_type == u"reconf":
+        packet_rate = result_node[u"packet_rate"][u"rate"][u"value"]
+        time_loss = result_node[u"packet_loss"][u"value"] / packet_rate
+        result_node[u"time_loss"] = dict(value=time_loss, unit=u"s")
+        result_node[u"packet_rate"][u"rate"][u"unit"] = u"pps"
+        result_node[u"packet_loss"][u"unit"] = u"packets"
+        if u"bandwidth" in result_node[u"packet_rate"]:
+            result_node[u"packet_rate"][u"bandwidth"][u"unit"] = u"bps"
+        return data
+
     # Multiple processing steps for ndrpdr.
     if result_type != u"ndrpdr":
         return data
