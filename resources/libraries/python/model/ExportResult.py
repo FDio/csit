@@ -230,3 +230,211 @@ def export_reconf_result(packet_rate, packet_loss, bandwidth=None):
     result_node[u"packet_loss"] = dict(value=int(packet_loss))
     if bandwidth:
         result_node[u"packet_rate"][u"bandwidth"] = dict(value=float(bandwidth))
+
+
+def export_hoststack_ab_result(orig_result):
+    """Add test result coming from AB test tool.
+
+    Test type is set to HOSTSTACK_AB.
+    This function supports both CPS and RPS results.
+
+    TODO: Do we need more checks for the exported values (as ABTools passed)?
+
+    :param orig_result: Resulting values as parsed by ABTools.
+    :type orig_result: Mapping[str, Union[str, float, int]]
+    """
+    result_node = get_export_data()[u"result"]
+    result_node.update(dict(latency=dict(), transfer_rate=dict(), rate=dict()))
+    for key, value in orig_result.items():
+        if key == u"latency_unit":
+            result_node[u"latency"][u"unit"] = value
+        elif key == u"latency_value":
+            result_node[u"latency"][u"value"] = value
+        elif key == u"transfer_unit":
+            result_node[u"transfer_rate"][u"unit"] = value
+            # To be converted when creating .info.
+        elif key == u"transfer_rate":
+            result_node[u"transfer_rate"][u"value"] = value
+        elif key == u"quantity":
+            result_node[u"rate"][u"unit"] = value
+            result_node[u"type"] = f"ab_{value}"
+        elif key == u"rate":
+            result_node[u"rate"][u"value"] = value
+        elif key == u"protocol":
+            result_node[key] = value
+        else:
+            # The rest are values, units will be added to .info.
+            result_node[key] = dict(value=value)
+
+
+def _check_key_type(mapping, key, type_, do_raise=True):
+    """If the key is missing, or value type is wrong, produce an error.
+
+    Produce means either raise or return, controlled by do_raise argument.
+    Numeric values additionally cannot be negative.
+    If all is good, return None.
+
+    This is heavily used for checking deserialized JSON data
+    from hoststack client or server programs.
+    Intended for string keys, but the implementation works also for other.
+
+    Not raising is useful when the constraint is for one of two keys to work.
+
+    :param mapping: Mapping to check.
+    :param key: The key of the entry to check.
+    :param type_: Type or list of types the value has to belong to.
+    :param do_raise: Whether to raise or return whena check fails.
+    :type mapping: Mapping[str, object]
+    :type key: str
+    :type type_: Union[type, Iterable[type]]
+    :type do_raise: bool
+    :returns: None or (if do_raise is false) exception to raise.
+    :rtype: Optional[Union[KeyError, TypeError]]
+    :raises KeyError: If key is missing and do_raise is true.
+    :raises TypeError: If value is wrong type and do_raise is true.
+    :raises ValueError: If a numeric value is negative.
+    """
+    if key not in mapping:
+        error = KeyError(f"Key {key} missing in {mapping}")
+        if do_raise:
+            raise error
+        return error
+    value = mapping[key]
+    if not isinstance(value, type_):
+        error = TypeError("Value {value} not type {type_} in {mapping}")
+        if do_raise:
+            raise error
+        return error
+    if isinstance(value, (int, float)) and value < 0:
+        error = ValueError("Value {value} negative in {mapping}")
+        if do_raise:
+            raise error
+        return error
+    return None
+
+
+IPERF_KEYS = set((
+    u"duration", u"omitted", u"packets", u"retransmits", u"sender",
+    u"total_bytes", u"transfer_rate"
+))
+
+
+def _process_iperf_item(item):
+    """Perform edits in-place as required by model.
+
+    Common for both UDP and TCP items.
+    Units will be added when converting to .info.
+
+    :param item: Part of output from iperf tool, deserialized.
+    :type output: Mapping[str, object]
+    """
+    item[u"duration"] = dict(value=item.pop(u"seconds"))
+    item[u"total_bytes"] = dict(value=item.pop(u"bytes"))
+    item[u"transfer_rate"] = dict(value=item.pop(u"bits_per_second"))
+    if u"packets" in item:
+        item[u"packets"] = dict(value=item.pop(u"packets"))
+    if u"retransmits" in item:
+        item[u"retransmits"] = dict(value=item.pop(u"retransmits"))
+    for key in set(item) - IPERF_KEYS:
+        del item[key]
+
+
+def export_hoststack_iperf_result(parsed_output):
+    """Add hoststack_iperf result for successful program.
+
+    The parsed output is processed as needed, without explicit checking.
+
+    Test type is set to an iperf variant (udp or tcp).
+
+    TODO: Check nsim tests also work (they already fail on master).
+
+    :param parsed_output: JSON-deserialized output, as parsed in HoststackUtil.
+    :type parsed_output: dict
+    :raises ValueError: If the parse output does not conform to UTI model.
+    """
+    client_object = parsed_output.pop(u"intervals")
+    server_object = parsed_output.pop(u"server_output_json").pop(u"intervals")
+    for endpoint_object in (client_object, server_object):
+        for interval in endpoint_object:
+            for stream in interval[u"streams"]:
+                _process_iperf_item(stream)
+            _process_iperf_item(interval[u"sum"])
+    result_node = get_export_data()[u"result"]
+    result_node[u"client"] = dict(intervals=client_object)
+    result_node[u"server"] = dict(intervals=server_object)
+    item = client_object[0][u"sum"]
+    proto = u"udp" if u"packets" in item else u"tcp"
+    result_node[u"type"] = f"iperf_{proto}"
+
+
+def _check_hoststack_vpp_echo_output(output):
+    """Raise if incompatibility with model documentation is detected.
+
+    As callers do not convert some values from string, it is done here,
+    which means the output is modified in-place.
+
+    :param output: Output from vpp_echo tool, deserialized.
+    :type output: MutableMapping[str, object]
+    :raises KeyError: If the output is missing a required key.
+    :raises TypeError: If a value is not of (one of) the expected type(s).
+    :raises ValueError: If a numeric value is negative.
+    """
+    _check_key_type(output, u"role", str)
+    _check_key_type(output, u"time", (str, float))
+    output[u"time"] = float(output[u"time"])
+    _check_key_type(output, u"time", float)
+    _check_key_type(output, u"start_evt", str)
+    _check_key_type(output, u"start_evt_missing", (str, bool))
+    output[u"start_evt_missing"] = bool(output[u"start_evt_missing"])
+    _check_key_type(output, u"end_evt", str)
+    _check_key_type(output, u"end_evt_missing", (str, bool))
+    output[u"end_evt_missing"] = bool(output[u"end_evt_missing"])
+    _check_key_type(output, u"rx_data", int)
+    _check_key_type(output, u"tx_data", int)
+    _check_key_type(output, u"rx_bits_per_second", float)
+    _check_key_type(output, u"tx_bits_per_second", float)
+    # TODO: Add checks for string and bool values.
+
+
+VPP_ECHO_KEYS = set((
+    u"duration", u"end_evt", u"end_evt_missing", u"role", u"rx_rate",
+    u"rx_data", u"start_evt", u"start_evt_missing", u"tx_rate", u"tx_data",
+))
+
+
+def export_hoststack_vpp_echo_result(parsed_output):
+    """Add vpp_echo_result item for successful program.
+
+    We export parsed_output, mostly without checking of the entries present.
+    This is intentional, as we support multiple client and server programs,
+    with slightly different entries in their output.
+    The only requirement is at least one of entry keys has to contain
+    "bits_per_second", as that is (converted to) what PAL looks for.
+
+    Call this function twice, separately for client and resrver results.
+
+    TODO: Turn into fail result if a required key is missing?
+
+    :param parsed_output: JSON-serializable output, otherwise arbitrary.
+    :type parsed_output: dict
+    :raises ValueError: If no key contains "bits_per_second".
+    """
+    _check_hoststack_vpp_echo_output(parsed_output)
+    # Rename and restructure according to model.
+    # Units will be added when converting into .info.
+    parsed_output[u"rx_data"] = dict(value=parsed_output.pop(u"rx_data"))
+    parsed_output[u"tx_data"] = dict(value=parsed_output.pop(u"tx_data"))
+    parsed_output[u"rx_rate"] = dict(
+        value=parsed_output.pop(u"rx_bits_per_second")
+    )
+    parsed_output[u"tx_rate"] = dict(
+        value=parsed_output.pop(u"tx_bits_per_second")
+    )
+    parsed_output[u"duration"] = dict(value=parsed_output.pop(u"time"))
+    # Prune unneeded fields.
+    for key in set(parsed_output) - VPP_ECHO_KEYS:
+        del parsed_output[key]
+    # Put to results.
+    result_node = get_export_data()[u"result"]
+    result_node[u"type"] = u"vpp_echo"
+    result_node[parsed_output[u"role"]] = parsed_output

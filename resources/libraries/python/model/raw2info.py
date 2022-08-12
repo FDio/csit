@@ -146,6 +146,121 @@ def _detect_test_type(data):
     return test_type
 
 
+# Series of small blocks, too many to fit into a single function.
+def _process_mrr_result(result_node):
+    """Compute avg and stdev for mrr.
+
+    :param result_node: Result part of Python data to edit in-place.
+    :type result_node: dict
+    """
+    rate_node = result_node[u"receive_rate"][u"rate"]
+    stats = AvgStdevStats.for_runs(rate_node[u"values"])
+    rate_node[u"avg"] = stats.avg
+    rate_node[u"stdev"] = stats.stdev
+
+
+def _process_reconf_result(result_node):
+    """Compute time loss for reconf and add missing units.
+
+    :param result_node: Result part of Python data to edit in-place.
+    :type result_node: dict
+    """
+    packet_rate = result_node[u"packet_rate"][u"rate"][u"value"]
+    time_loss = result_node[u"packet_loss"][u"value"] / packet_rate
+    result_node[u"time_loss"] = dict(value=time_loss, unit=u"s")
+    result_node[u"packet_rate"][u"rate"][u"unit"] = u"pps"
+    result_node[u"packet_loss"][u"unit"] = u"packets"
+    if u"bandwidth" in result_node[u"packet_rate"]:
+        result_node[u"packet_rate"][u"bandwidth"][u"unit"] = u"bps"
+
+
+def _process_ab_result(result_node):
+    """Add missing units to AB result.
+
+    :param result_node: Result part of Python data to edit in-place.
+    :type result_node: dict
+    """
+    result_node[u"completed_requests"][u"unit"] = u"requests"
+    result_node[u"failed_requests"][u"unit"] = u"requests"
+    result_node[u"total_bytes"][u"unit"] = u"bytes"
+    # Convert transfer rate to bps.
+    rate_node = result_node[u"transfer_rate"]
+    unit = rate_node[u"unit"]
+    if unit == u"Kbytes/sec":
+        rate_node[u"value"] = 1000 * rate_node[u"value"]
+    else:
+        raise RuntimeError(f"Unexpected rate unit: {unit}")
+    rate_node[u"unit"] = u"bps"
+
+
+def _process_iperf_result(result_node):
+    """Add missing units to iperf hoststack results.
+
+    :param result_node: Result part of Python data to edit in-place.
+    :type result_node: dict
+    """
+    for endpoint in (result_node[u"client"], result_node[u"server"]):
+        for interval in endpoint[u"intervals"]:
+            for item in interval[u"streams"] + [interval[u"sum"]]:
+                item[u"duration"][u"unit"] = u"s"
+                item[u"total_bytes"][u"unit"] = u"bytes"
+                item[u"transfer_rate"][u"unit"] = u"bps"
+                if u"packets" in item:
+                    item[u"packets"][u"unit"] = u"packets"
+                if u"retransmits" in item:
+                    item[u"retransmits"][u"unit"] = u"packets"
+
+
+def _process_vpp_echo_result(result_node):
+    """Add missing units to vpp_echo result.
+
+    :param result_node: Result part of Python data to edit in-place.
+    :type result_node: dict
+    """
+    for program in (u"client", u"server"):
+        program_node = result_node[program]
+        program_node[u"duration"][u"unit"] = u"s"
+        program_node[u"rx_data"][u"unit"] = u"bytes"
+        program_node[u"tx_data"][u"unit"] = u"bytes"
+        program_node[u"rx_rate"][u"unit"] = u"bps"
+        program_node[u"tx_rate"][u"unit"] = u"bps"
+
+
+def _process_ndrpdr_result(result_node):
+    """Filter out invalid latencies.
+
+    :param result_node: Result part of Python data to edit in-place.
+    :type result_node: dict
+    """
+    for which_key in (u"latency_forward", u"latency_reverse"):
+        if which_key not in result_node:
+            # Probably just an unidir test.
+            continue
+        for load in (u"pdr_0", u"pdr_10", u"pdr_50", u"pdr_90"):
+            if result_node[which_key][load][u"max"] <= 0:
+                # One invalid number is enough to remove all loads.
+                break
+        else:
+            # No break means all numbers are ok, nothing to do here.
+            continue
+        # Break happened, something is invalid, remove all loads.
+        result_node.pop(which_key)
+
+
+PROCESS_BY_RESULT_TYPE = dict(
+    # Using lambda to avoid pylint complaints about unused argument.
+    unknown=lambda result_node: None,
+    mrr=_process_mrr_result,
+    ndrpdr=_process_ndrpdr_result,
+    reconf=_process_reconf_result,
+    ab_cps=_process_ab_result,
+    ab_rps=_process_ab_result,
+    iperf_udp=_process_iperf_result,
+    iperf_tcp=_process_iperf_result,
+    vpp_echo=_process_vpp_echo_result,
+)
+
+
 def _convert_to_info_in_memory(data):
     """Perform all changes needed for processing of data, return new data.
 
@@ -153,6 +268,8 @@ def _convert_to_info_in_memory(data):
     The original argument object is not edited,
     a new copy is created for edits and returned,
     because there is no easy way to sort keys in-place.
+
+    Common processing directly, result_type specific by calling functions.
 
     :param data: The whole composite object to filter and enhance.
     :type data: dict
@@ -194,48 +311,8 @@ def _convert_to_info_in_memory(data):
         return data
     result_node = data[u"result"]
     result_type = result_node[u"type"]
-    if result_type == u"unknown":
-        # Device or something else not supported.
-        return data
+    PROCESS_BY_RESULT_TYPE[result_type](result_node)
 
-    # More processing depending on result type. TODO: Separate functions?
-
-    # Compute avg and stdev for mrr.
-    if result_type == u"mrr":
-        rate_node = result_node[u"receive_rate"][u"rate"]
-        stats = AvgStdevStats.for_runs(rate_node[u"values"])
-        rate_node[u"avg"] = stats.avg
-        rate_node[u"stdev"] = stats.stdev
-        return data
-
-    # Compute time loss for reconf and add missing units.
-    if result_type == u"reconf":
-        packet_rate = result_node[u"packet_rate"][u"rate"][u"value"]
-        time_loss = result_node[u"packet_loss"][u"value"] / packet_rate
-        result_node[u"time_loss"] = dict(value=time_loss, unit=u"s")
-        result_node[u"packet_rate"][u"rate"][u"unit"] = u"pps"
-        result_node[u"packet_loss"][u"unit"] = u"packets"
-        if u"bandwidth" in result_node[u"packet_rate"]:
-            result_node[u"packet_rate"][u"bandwidth"][u"unit"] = u"bps"
-        return data
-
-    # Multiple processing steps for ndrpdr.
-    if result_type != u"ndrpdr":
-        return data
-    # Filter out invalid latencies.
-    for which_key in (u"latency_forward", u"latency_reverse"):
-        if which_key not in result_node:
-            # Probably just an unidir test.
-            continue
-        for load in (u"pdr_0", u"pdr_10", u"pdr_50", u"pdr_90"):
-            if result_node[which_key][load][u"max"] <= 0:
-                # One invalid number is enough to remove all loads.
-                break
-        else:
-            # No break means all numbers are ok, nothing to do here.
-            continue
-        # Break happened, something is invalid, remove all loads.
-        result_node.pop(which_key)
     return data
 
 
