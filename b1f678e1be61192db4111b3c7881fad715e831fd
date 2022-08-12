@@ -16,6 +16,24 @@
       "message": "the question from my comment was not answered. why to keep fixers if we do not plan to run them?",
       "revId": "b1f678e1be61192db4111b3c7881fad715e831fd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea317c2c_b52dd9d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-12T15:09:10Z",
+      "side": 1,
+      "message": "\u003e why to keep fixers if we do not plan to run them?\n\nFixers will be run, just manually; basically everytime I get -1 from checker in otherwise ready patch.\nThey will not run on every patch, and I want human eyes to confirm the machine edits are good.\n\nMaybe I can move the bash part out of resources/libraries/ (so it does not look like being used by Robot jobs), perhaps to resources/tools/manual/. But tox is still the easiest way to execute them regardless of the current worker directory and script location.",
+      "parentUuid": "df787fb4_12a0fc24",
+      "revId": "b1f678e1be61192db4111b3c7881fad715e831fd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
