@@ -253,12 +253,8 @@ class Constants:
     # The default job displayed when the page is loaded first time.
     NEWS_DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
 
-    # Time period for regressions and progressions. Be CAREFULL with this
-    # number. Setting it too high causes long processing time during the
-    # application start-up.
-    # If NEWS_TIME_PERIOD = 180, it takes approx. 35 minutes to calculate
-    # annomalies for all tests.
-    NEWS_TIME_PERIOD = 21  # [days]
+    # Time period for regressions and progressions.
+    NEWS_TIME_PERIOD = TIME_PERIOD  # [days]
 
     ############################################################################
     # Report.
