@@ -200,18 +200,23 @@ class PapiSocketExecutor:
     conn_cache = dict()
     """Mapping from node key to connected client instance."""
 
-    def __init__(self, node, remote_vpp_socket=Constants.SOCKSVR_PATH):
+    def __init__(
+        self, node, remote_vpp_socket=Constants.SOCKSVR_PATH, do_async=False
+    ):
         """Store the given arguments, declare managed variables.
 
         :param node: Node to connect to and forward unix domain socket from.
         :param remote_vpp_socket: Path to remote socket to tunnel to.
+        :param do_async: Scale calls (get_replies) need true, all other false.
         :type node: dict
         :type remote_vpp_socket: str
+        :type do_async: bool
         """
         self._node = node
         self._remote_vpp_socket = remote_vpp_socket
         # The list of PAPI commands to be executed on the node.
         self._api_command_list = list()
+        self.do_async = do_async
 
     def ensure_api_dirs(self):
         """Copy files from DUT to local temporary directory.
@@ -387,6 +392,10 @@ class PapiSocketExecutor:
 
         Only at this point a local socket names are created
         in a temporary directory, as CSIT can connect to multiple VPPs.
+
+        Connection is always created for async mode,
+        but sync operations are emulated by blocking and/or control ping.
+        That way the connection is reusable between sync and async contexts.
 
         The following attributes are added to the client instance
         to simplify caching and cleanup:
@@ -637,13 +646,21 @@ class PapiSocketExecutor:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs
             )
-        self.crc_checker.check_api_name(csit_papi_command)
+        if not self.do_async:
+            self.crc_checker.check_api_name(csit_papi_command)
+        # Remember commands for both modes, even async can use that for lgging.
         self._api_command_list.append(
             dict(
                 api_name=csit_papi_command,
                 api_args=copy.deepcopy(kwargs)
             )
         )
+        if self.do_async:
+            # Start executing immediately.
+            vpp_instance = self.get_connected_client()
+            api_object = vpp_instance.api
+            func = getattr(api_object, csit_papi_command)
+            func(**kwargs)
         return self
 
     def get_replies(self, err_msg="Failed to get replies."):
@@ -854,6 +871,10 @@ class PapiSocketExecutor:
         - get_sw_if_index()
         - get_details()
 
+        The do_async argument is set by those higher level methods,
+        it may be different from self.do_async.
+        TODO: Move checks earlies so that only one flag is needed.
+
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :param do_async: If true, assume one reply per command and do not wait
             for each reply before sending next request.
@@ -900,6 +921,11 @@ class PapiSocketExecutor:
         :raises RuntimeError: If the replies are not all correct.
         """
         vpp_instance = self.get_connected_client()
+        if self.do_async:
+            msg = f"{err_msg}"
+            msg += u"\nSync execute in async call; expect unhandled replies."
+            PapiSocketExecutor._drain(vpp_instance, msg)
+            raise RuntimeError(msg)
         control_ping_fn = getattr(vpp_instance.api, u"control_ping")
         ret_list = list()
         for command in local_list:
@@ -964,13 +990,11 @@ class PapiSocketExecutor:
         :rtype: None or list of dict
         :raises RuntimeError: If the replies are not all correct.
         """
+        if not self.do_async:
+            msg = f"{err_msg}\nAsync execute in sync call; nothing executed."
+            raise RuntimeError(msg)
         vpp_instance = self.get_connected_client()
-        api_object = vpp_instance.api
-        # Send all commands.
-        for command in local_list:
-            func = getattr(api_object, command[u"api_name"])
-            func(**command[u"api_args"])
-        # Read all replies.
+        # Commands are already sent, read all replies.
         ret_list = list()
         try:
             for index, command in enumerate(local_list):

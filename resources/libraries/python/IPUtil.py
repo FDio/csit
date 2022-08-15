@@ -750,7 +750,7 @@ class IPUtil:
             ip_network(f"{network}/{prefix_len}", strict=strict),
             format=u"addr"
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
             for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, netiter.inc_fmt(), prefix_len, **kwargs
