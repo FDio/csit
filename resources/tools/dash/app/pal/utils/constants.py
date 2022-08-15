@@ -258,7 +258,7 @@ class Constants:
     # application start-up.
     # If NEWS_TIME_PERIOD = 180, it takes approx. 35 minutes to calculate
     # annomalies for all tests.
-    NEWS_TIME_PERIOD = 21  # [days]
+    NEWS_TIME_PERIOD = TIME_PERIOD  # [days]
 
     ############################################################################
     # Report.
