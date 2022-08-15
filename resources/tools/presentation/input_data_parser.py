@@ -1098,11 +1098,13 @@ class ExecutionChecker(ResultVisitor):
         if self._kw_name is None:
             return
         elif self._kw_name.count("Run Telemetry On All Duts"):
-            self._telemetry_kw_counter += 1
-            self._get_telemetry(msg)
+            if self._process_oper:
+                self._telemetry_kw_counter += 1
+                self._get_telemetry(msg)
         elif self._kw_name.count("Show Runtime On All Duts"):
-            self._sh_run_counter += 1
-            self._get_show_run(msg)
+            if self._process_oper:
+                self._sh_run_counter += 1
+                self._get_show_run(msg)
         elif self._kw_name.count("Show Vpp Version On All Duts"):
             if not self._version:
                 self._get_vpp_version(msg)
