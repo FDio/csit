@@ -566,7 +566,7 @@ class IPsecUtil:
             is_add=True,
             entry=sad_entry
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
             for i in range(n_entries):
                 args[u"entry"][u"sad_id"] = int(sad_id) + i
                 args[u"entry"][u"spi"] = int(spi) + i
@@ -643,7 +643,7 @@ class IPsecUtil:
             else f"Failed to configure IP addresses and IP routes " \
                  f"on interface {interface} on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
             for i in range(n_tunnels):
                 tunnel_dst_addr = tunnel_dst + i * addr_incr
                 args1[u"prefix"] = IPUtil.create_prefix_object(
@@ -963,7 +963,7 @@ class IPsecUtil:
         """
         err_msg = f"Failed to add entry to Security Policy Database " \
                   f"{spd_id} on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
             IPsecUtil._vpp_ipsec_add_spd_entry_internal(
                 papi_exec, spd_id, priority, action, inbound, sa_id, proto,
                 laddr_range, raddr_range, lport_range, rport_range, is_ipv6
@@ -1032,7 +1032,7 @@ class IPsecUtil:
 
         err_msg = f"Failed to add entry to Security Policy Database " \
                   f"{spd_id} on host {node[u'host']}"
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
             for _ in range(n_entries):
                 IPsecUtil._vpp_ipsec_add_spd_entry_internal(
                     papi_exec, spd_id, next(priority), action, inbound,
@@ -1164,7 +1164,7 @@ class IPsecUtil:
             loop_sw_if_idx = InterfaceUtil.vpp_get_interface_sw_index(
                 nodes[u"DUT1"], u"loop0"
             )
-        with PapiSocketExecutor(nodes[u"DUT1"]) as papi_exec:
+        with PapiSocketExecutor(nodes[u"DUT1"], do_async=True) as papi_exec:
             # Configure IP addresses on loop0 interface
             cmd = u"sw_interface_add_del_address"
             args = dict(
@@ -1407,7 +1407,7 @@ class IPsecUtil:
         :type spi_d: dict
         :type existing_tunnels: int
         """
-        with PapiSocketExecutor(nodes[u"DUT2"]) as papi_exec:
+        with PapiSocketExecutor(nodes[u"DUT2"], do_async=True) as papi_exec:
             if not existing_tunnels:
                 # Set IP address on VPP node 2 interface
                 cmd = u"sw_interface_add_del_address"
@@ -1424,7 +1424,8 @@ class IPsecUtil:
                 )
                 err_msg = f"Failed to set IP address on interface {if2_key} " \
                     f"on host {nodes[u'DUT2'][u'host']}"
-                papi_exec.add(cmd, **args).get_reply(err_msg)
+                # Single reply, but we are in async mode.
+                papi_exec.add(cmd, **args).get_replies(err_msg)
             # Configure IPIP tunnel interfaces
             cmd = u"ipip_add_tunnel"
             ipip_tunnel = dict(
