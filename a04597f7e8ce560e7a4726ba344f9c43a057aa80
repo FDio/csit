@@ -33,6 +33,23 @@
       "message": "csit-2n-skx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND78bANDethip6-ip6scale2m",
       "revId": "a04597f7e8ce560e7a4726ba344f9c43a057aa80",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "951a1d5b_285cf9fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-16T11:00:08Z",
+      "side": 1,
+      "message": "The duration has roughly the same (oer perhaps somewhat worse) average but significant stdev, so this makes time predictions worse.",
+      "revId": "a04597f7e8ce560e7a4726ba344f9c43a057aa80",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
