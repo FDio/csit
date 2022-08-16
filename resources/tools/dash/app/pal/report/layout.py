@@ -30,7 +30,7 @@ from ast import literal_eval
 
 from ..utils.constants import Constants as C
 from ..utils.utils import show_tooltip, label, sync_checklists, list_tests, \
-    gen_new_url
+    gen_new_url, generate_options
 from ..utils.url_processing import url_decode
 from ..data.data import Data
 from .graphs import graph_iterative, table_comparison, get_short_version, \
@@ -1001,9 +1001,14 @@ class Layout:
             """
 
             ctrl_panel = self.ControlPanel(cp_data)
+            norm = cl_normalize
 
             # Parse the url:
             parsed_url = url_decode(href)
+            if parsed_url:
+                url_params = parsed_url["params"]
+            else:
+                url_params = None
 
             row_fig_tput = no_update
             row_fig_lat = no_update
@@ -1016,11 +1021,8 @@ class Layout:
 
             if trigger_id == "dd-ctrl-rls":
                 try:
-                    rls = self.spec_tbs[dd_rls]
-                    options = sorted(
-                        [{"label": v, "value": v} for v in rls.keys()],
-                        key=lambda d: d["label"]
-                    )
+                    options = \
+                        generate_options(sorted(self.spec_tbs[dd_rls].keys()))
                     disabled = False
                 except KeyError:
                     options = list()
@@ -1059,10 +1061,7 @@ class Layout:
                 try:
                     rls = ctrl_panel.get("dd-rls-value")
                     dut = self.spec_tbs[rls][dd_dut]
-                    options = sorted(
-                        [{"label": v, "value": v} for v in dut.keys()],
-                        key=lambda d: d["label"]
-                    )
+                    options = generate_options(sorted(dut.keys()))
                     disabled = False
                 except KeyError:
                     options = list()
@@ -1099,10 +1098,7 @@ class Layout:
                     rls = ctrl_panel.get("dd-rls-value")
                     dut = ctrl_panel.get("dd-dut-value")
                     dutver = self.spec_tbs[rls][dut][dd_dutver]
-                    options = sorted(
-                        [{"label": v, "value": v} for v in dutver.keys()],
-                        key=lambda d: d["label"]
-                    )
+                    options = generate_options(sorted(dutver.keys()))
                     disabled = False
                 except KeyError:
                     options = list()
@@ -1137,10 +1133,8 @@ class Layout:
                     dut = ctrl_panel.get("dd-dut-value")
                     dutver = ctrl_panel.get("dd-dutver-value")
                     phy = self.spec_tbs[rls][dut][dutver][dd_phy]
-                    options = sorted(
-                        [{"label": label(v), "value": v} for v in phy.keys()],
-                        key=lambda d: d["label"]
-                    )
+                    options = [{"label": label(v), "value": v} \
+                        for v in sorted(phy.keys())]
                     disabled = False
                 except KeyError:
                     options = list()
@@ -1173,10 +1167,7 @@ class Layout:
                     dutver = ctrl_panel.get("dd-dutver-value")
                     phy = ctrl_panel.get("dd-phy-value")
                     area = self.spec_tbs[rls][dut][dutver][phy][dd_area]
-                    options = sorted(
-                        [{"label": v, "value": v} for v in area.keys()],
-                        key=lambda d: d["label"]
-                    )
+                    options = generate_options(sorted(area.keys()))
                     disabled = False
                 except KeyError:
                     options = list()
@@ -1205,22 +1196,22 @@ class Layout:
                 dutver = ctrl_panel.get("dd-dutver-value")
                 phy = ctrl_panel.get("dd-phy-value")
                 area = ctrl_panel.get("dd-area-value")
-                test = self.spec_tbs[rls][dut][dutver][phy][area][dd_test]
-                if dut and phy and area and dd_test:
+                if all((rls, dut, dutver, phy, area, dd_test, )):
+                    test = self.spec_tbs[rls][dut][dutver][phy][area][dd_test]
                     ctrl_panel.set({
                         "dd-test-value": dd_test,
-                        "cl-core-options": [{"label": v, "value": v}
-                            for v in sorted(test["core"])],
+                        "cl-core-options": \
+                            generate_options(sorted(test["core"])),
                         "cl-core-value": list(),
                         "cl-core-all-value": list(),
                         "cl-core-all-options": C.CL_ALL_ENABLED,
-                        "cl-framesize-options": [{"label": v, "value": v}
-                            for v in sorted(test["frame-size"])],
+                        "cl-framesize-options": \
+                            generate_options(sorted(test["frame-size"])),
                         "cl-framesize-value": list(),
                         "cl-framesize-all-value": list(),
                         "cl-framesize-all-options": C.CL_ALL_ENABLED,
-                        "cl-testtype-options": [{"label": v, "value": v}
-                            for v in sorted(test["test-type"])],
+                        "cl-testtype-options": \
+                            generate_options(sorted(test["test-type"])),
                         "cl-testtype-value": list(),
                         "cl-testtype-all-value": list(),
                         "cl-testtype-all-options": C.CL_ALL_ENABLED,
@@ -1356,14 +1347,70 @@ class Layout:
                             new_store_sel.append(item)
                     store_sel = new_store_sel
             elif trigger_id == "url":
-                # TODO: Add verification
-                url_params = parsed_url["params"]
                 if url_params:
-                    store_sel = literal_eval(
-                        url_params.get("store_sel", list())[0])
+                    try:
+                        store_sel = literal_eval(url_params["store_sel"][0])
+                        norm = literal_eval(url_params["norm"][0])
+                    except (KeyError, IndexError):
+                        pass
                     if store_sel:
                         row_card_sel_tests = C.STYLE_ENABLED
                         row_btns_sel_tests = C.STYLE_ENABLED
+                        last_test = store_sel[-1]
+                        test = self.spec_tbs[last_test["rls"]]\
+                            [last_test["dut"]][last_test["dutver"]]\
+                                [last_test["phy"]][last_test["area"]]\
+                                    [last_test["test"]]
+                        ctrl_panel.set({
+                            "dd-rls-value": last_test["rls"],
+                            "dd-dut-value": last_test["dut"],
+                            "dd-dut-options": generate_options(sorted(
+                                self.spec_tbs[last_test["rls"]].keys())),
+                            "dd-dut-disabled": False,
+                            "dd-dutver-value": last_test["dutver"],
+                            "dd-dutver-options": generate_options(sorted(
+                                self.spec_tbs[last_test["rls"]]\
+                                    [last_test["dut"]].keys())),
+                            "dd-dutver-disabled": False,
+                            "dd-phy-value": last_test["phy"],
+                            "dd-phy-options": generate_options(sorted(
+                                self.spec_tbs[last_test["rls"]]\
+                                    [last_test["dut"]]\
+                                        [last_test["dutver"]].keys())),
+                            "dd-phy-disabled": False,
+                            "dd-area-value": last_test["area"],
+                            "dd-area-options": [
+                                {"label": label(v), "value": v} for v in \
+                                    sorted(self.spec_tbs[last_test["rls"]]\
+                                        [last_test["dut"]][last_test["dutver"]]\
+                                            [last_test["phy"]].keys())
+                            ],
+                            "dd-area-disabled": False,
+                            "dd-test-value": last_test["test"],
+                            "dd-test-options": generate_options(sorted(
+                                self.spec_tbs[last_test["rls"]]\
+                                    [last_test["dut"]][last_test["dutver"]]\
+                                        [last_test["phy"]]\
+                                            [last_test["area"]].keys())),
+                            "dd-test-disabled": False,
+                            "cl-core-options": generate_options(sorted(
+                                test["core"])),
+                            "cl-core-value": [last_test["core"].upper(), ],
+                            "cl-core-all-value": list(),
+                            "cl-core-all-options": C.CL_ALL_ENABLED,
+                            "cl-framesize-options": generate_options(
+                                sorted(test["frame-size"])),
+                            "cl-framesize-value": \
+                                [last_test["framesize"].upper(), ],
+                            "cl-framesize-all-value": list(),
+                            "cl-framesize-all-options": C.CL_ALL_ENABLED,
+                            "cl-testtype-options": generate_options(sorted(
+                                test["test-type"])),
+                            "cl-testtype-value": \
+                                [last_test["testtype"].upper(), ],
+                            "cl-testtype-all-value": list(),
+                            "cl-testtype-all-options": C.CL_ALL_ENABLED
+                        })
 
             if trigger_id in ("btn-ctrl-add", "url", "btn-sel-remove",
                     "cl-ctrl-normalize"):
@@ -1371,13 +1418,15 @@ class Layout:
                     row_fig_tput, row_fig_lat, row_table, row_btn_dwnld = \
                         _generate_plotting_area(
                             graph_iterative(
-                                self.data, store_sel, self.layout,
-                                bool(cl_normalize)
+                                self.data, store_sel, self.layout, bool(norm)
                             ),
                             table_comparison(
-                                self.data, store_sel, bool(cl_normalize)
+                                self.data, store_sel, bool(norm)
                             ),
-                            gen_new_url(parsed_url, {"store_sel": store_sel})
+                            gen_new_url(
+                                parsed_url,
+                                {"store_sel": store_sel, "norm": norm}
+                            )
                         )
                     ctrl_panel.set({
                         "cl-selected-options": list_tests(store_sel)
@@ -1400,7 +1449,7 @@ class Layout:
                 disabled = True
             ctrl_panel.set({
                 "btn-add-disabled": disabled,
-                "cl-normalize-value": cl_normalize
+                "cl-normalize-value": norm
             })
 
             ret_val = [
