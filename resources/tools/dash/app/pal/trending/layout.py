@@ -14,6 +14,7 @@
 """Plotly Dash HTML layout override.
 """
 
+from locale import normalize
 import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
@@ -32,7 +33,7 @@ from ast import literal_eval
 
 from ..utils.constants import Constants as C
 from ..utils.utils import show_tooltip, label, sync_checklists, list_tests, \
-    get_date, gen_new_url
+    get_date, gen_new_url, generate_options
 from ..utils.url_processing import url_decode
 from ..data.data import Data
 from .graphs import graph_trending, graph_hdrh_latency, \
@@ -952,6 +953,7 @@ class Layout:
             """
 
             ctrl_panel = self.ControlPanel(cp_data)
+            norm = cl_normalize
 
             d_start = get_date(d_start)
             d_end = get_date(d_end)
@@ -1067,34 +1069,25 @@ class Layout:
                     "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
                 })
             elif trigger_id == "dd-ctrl-test":
-                core_opts = list()
-                framesize_opts = list()
-                testtype_opts = list()
                 dut = ctrl_panel.get("dd-ctrl-dut-value")
                 phy = ctrl_panel.get("dd-ctrl-phy-value")
                 area = ctrl_panel.get("dd-ctrl-area-value")
-                test = self.spec_tbs[dut][phy][area][dd_test]
-                cores = test["core"]
-                fsizes = test["frame-size"]
-                ttypes = test["test-type"]
-                if dut and phy and area and dd_test:
-                    core_opts = [{"label": v, "value": v}
-                        for v in sorted(cores)]
-                    framesize_opts = [{"label": v, "value": v}
-                        for v in sorted(fsizes)]
-                    testtype_opts = [{"label": v, "value": v}
-                        for v in sorted(ttypes)]
+                if all((dut, phy, area, dd_test, )):
+                    test = self.spec_tbs[dut][phy][area][dd_test]
                     ctrl_panel.set({
                         "dd-ctrl-test-value": dd_test,
-                        "cl-ctrl-core-options": core_opts,
+                        "cl-ctrl-core-options": \
+                            generate_options(sorted(test["core"])),
                         "cl-ctrl-core-value": list(),
                         "cl-ctrl-core-all-value": list(),
                         "cl-ctrl-core-all-options": C.CL_ALL_ENABLED,
-                        "cl-ctrl-framesize-options": framesize_opts,
+                        "cl-ctrl-framesize-options": \
+                            generate_options(sorted(test["frame-size"])),
                         "cl-ctrl-framesize-value": list(),
                         "cl-ctrl-framesize-all-value": list(),
                         "cl-ctrl-framesize-all-options": C.CL_ALL_ENABLED,
-                        "cl-ctrl-testtype-options": testtype_opts,
+                        "cl-ctrl-testtype-options": \
+                            generate_options(sorted(test["test-type"])),
                         "cl-ctrl-testtype-value": list(),
                         "cl-ctrl-testtype-all-value": list(),
                         "cl-ctrl-testtype-all-options": C.CL_ALL_ENABLED,
@@ -1229,9 +1222,41 @@ class Layout:
                         url_params.get("store_sel", list())[0])
                     d_start = get_date(url_params.get("start", list())[0])
                     d_end = get_date(url_params.get("end", list())[0])
+                    norm = literal_eval(url_params.get("norm", list())[0])
                     if store_sel:
                         row_card_sel_tests = C.STYLE_ENABLED
                         row_btns_sel_tests = C.STYLE_ENABLED
+                        last_test = store_sel[-1]
+                        test = self.spec_tbs[last_test["dut"]][last_test["phy"]][last_test["area"]][last_test["test"]]
+                        cores = test["core"]
+                        fsizes = test["frame-size"]
+                        ttypes = test["test-type"]
+                        ctrl_panel.set({
+                            "dd-ctrl-dut-value": last_test["dut"],
+                            "dd-ctrl-phy-value": last_test["phy"],
+                            # "dd-ctrl-phy-options": sorted([{"label": v, "value": v} for v in self.spec_tbs[last_test["dut"]].keys()], key=lambda d: d["label"]),
+                            "dd-ctrl-phy-options": generate_options(
+                                sorted(self.spec_tbs[last_test["dut"]].keys())),
+                            "dd-ctrl-phy-disabled": False,
+                            "dd-ctrl-area-value": last_test["area"],
+                            "dd-ctrl-area-options": sorted([{"label": label(v), "value": v} for v in self.spec_tbs[last_test["dut"]][last_test["phy"]].keys()], key=lambda d: d["label"]),
+                            "dd-ctrl-area-disabled": False,
+                            "dd-ctrl-test-value": last_test["test"],
+                            "dd-ctrl-test-options": sorted([{"label": v, "value": v} for v in self.spec_tbs[last_test["dut"]][last_test["phy"]][last_test["area"]].keys()], key=lambda d: d["label"]),
+                            "dd-ctrl-test-disabled": False,
+                            "cl-ctrl-core-options": [{"label": v.upper(), "value": v.upper()} for v in sorted(cores)],
+                            "cl-ctrl-core-value": [last_test["core"].upper(), ],
+                            "cl-ctrl-core-all-value": list(),
+                            "cl-ctrl-core-all-options": C.CL_ALL_ENABLED,
+                            "cl-ctrl-framesize-options": [{"label": v.upper(), "value": v.upper()} for v in sorted(fsizes)],
+                            "cl-ctrl-framesize-value": [last_test["framesize"].upper(), ],
+                            "cl-ctrl-framesize-all-value": list(),
+                            "cl-ctrl-framesize-all-options": C.CL_ALL_ENABLED,
+                            "cl-ctrl-testtype-options": [{"label": v.upper(), "value": v.upper()} for v in sorted(ttypes)],
+                            "cl-ctrl-testtype-value": [last_test["testtype"].upper(), ],
+                            "cl-ctrl-testtype-all-value": list(),
+                            "cl-ctrl-testtype-all-options": C.CL_ALL_ENABLED,
+                        })
 
             if trigger_id in ("btn-ctrl-add", "url", "dpr-period",
                     "btn-sel-remove", "cl-ctrl-normalize"):
@@ -1239,13 +1264,14 @@ class Layout:
                     row_fig_tput, row_fig_lat, row_btn_dwnld = \
                         _generate_plotting_area(
                             graph_trending(self.data, store_sel, self.layout,
-                                d_start, d_end, bool(cl_normalize)),
+                                d_start, d_end, bool(norm)),
                             gen_new_url(
                                 parsed_url,
                                 {
                                     "store_sel": store_sel,
                                     "start": d_start,
-                                    "end": d_end
+                                    "end": d_end,
+                                    "norm": norm
                                 }
                             )
                         )
@@ -1269,7 +1295,7 @@ class Layout:
                 disabled = True
             ctrl_panel.set({
                 "btn-ctrl-add-disabled": disabled,
-                "cl-normalize-value": cl_normalize
+                "cl-normalize-value": norm
             })
 
             ret_val = [
