@@ -2,7 +2,7 @@
 # file: roles/intel/tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
@@ -11,14 +11,14 @@
     - intel-inst-drivers
 
 - name: Inst - Prerequisites
-  package:
+  ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
     - intel-inst-drivers
 
 - name: Inst - Check Presence of Intel Ethernet 700 Series
-  shell: "lspci -d 8086:1583; lspci -d 8086:1585; lspci -d 8086:1572; lspci -d 8086:158a; lspci -d 8086:158b"
+  ansible.builtin.shell: "lspci -d 8086:1583; lspci -d 8086:1585; lspci -d 8086:1572; lspci -d 8086:158a; lspci -d 8086:158b"
   register: intel_700_pcis
   failed_when: false
   changed_when: false
@@ -26,7 +26,7 @@
     - intel-inst-drivers
 
 - name: Inst - Check Presence of Intel Ethernet 800 Series
-  shell: "lspci -d 8086:1592; lspci -d 8086:1891"
+  ansible.builtin.shell: "lspci -d 8086:1592; lspci -d 8086:1891"
   register: intel_800_pcis
   failed_when: false
   changed_when: false
@@ -34,7 +34,7 @@
     - intel-inst-drivers
 
 - name: Inst - Get Intel Ethernet 700 Series driver versions
-  set_fact:
+  ansible.builtin.set_fact:
     i40e: "{{ intel_700_compatibility_matrix[intel_700_matrix]['i40e'] }}"
     iavf: "{{ intel_700_compatibility_matrix[intel_700_matrix]['iavf'] }}"
     nvm: "{{ intel_700_compatibility_matrix[intel_700_matrix]['nvm'] }}"
@@ -44,7 +44,7 @@
     - intel-inst-drivers
 
 - name: Inst - Get Intel Ethernet 800 Series driver versions
-  set_fact:
+  ansible.builtin.set_fact:
     ice: "{{ intel_800_compatibility_matrix[intel_800_matrix]['ice'] }}"
     ddp: "{{ intel_800_compatibility_matrix[intel_800_matrix]['ddp'] }}"
     iavf: "{{ intel_800_compatibility_matrix[intel_800_matrix]['iavf'] }}"

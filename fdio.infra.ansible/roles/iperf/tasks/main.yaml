@@ -2,7 +2,7 @@
 # file: roles/iperf/tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
@@ -11,14 +11,14 @@
     - iperf-inst-prerequisites
 
 - name: Inst - Prerequisites
-  package:
+  ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
     - iperf-inst-prerequisites
 
 - name: Get Release Archive
-  get_url:
+  ansible.builtin.get_url:
     url: "https://downloads.es.net/pub/iperf/iperf-{{ item }}.tar.gz"
     dest: "{{ iperf_target_dir }}/iperf-{{ item }}.tar.gz"
     validate_certs: false
@@ -28,7 +28,7 @@
     - iperf-inst
 
 - name: Extract Release Archive
-  unarchive:
+  ansible.builtin.unarchive:
     remote_src: true
     src: "{{ iperf_target_dir }}/iperf-{{ item }}.tar.gz"
     dest: "{{ iperf_target_dir }}/"
@@ -38,7 +38,7 @@
     - iperf-inst
 
 - name: Compile Release I
-  command: "./configure"
+  ansible.builtin.command: "./configure"
   args:
     chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
   loop: "{{ iperf_version }}"
@@ -46,7 +46,7 @@
     - iperf-inst
 
 - name: Compile Release II
-  command: "make"
+  ansible.builtin.command: "make"
   args:
     chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
   loop: "{{ iperf_version }}"
@@ -54,7 +54,7 @@
     - iperf-inst
 
 - name: Compile Release III
-  command: "make install"
+  ansible.builtin.command: "make install"
   args:
     chdir: "{{ iperf_target_dir }}/iperf-{{ item }}/"
   loop: "{{ iperf_version }}"

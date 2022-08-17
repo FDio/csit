@@ -2,7 +2,7 @@
 # file: roles/kernel_vm/tasks/main.yaml
 
 - name: Inst - Backup remote initramfs modules
-  copy:
+  ansible.builtin.copy:
     src: "/etc/initramfs-tools/modules"
     dest: "/tmp/initramfs_modules.bkp"
     remote_src: true
@@ -12,7 +12,7 @@
     - kernel-inst-image
 
 - name: Inst - Backup remote initramfs resume config
-  copy:
+  ansible.builtin.copy:
     src: "/etc/initramfs-tools/conf.d/resume"
     dest: "/tmp/initramfs-resume.bkp"
     remote_src: true
@@ -22,33 +22,33 @@
     - kernel-inst-image
 
 - name: Inst - Update remote initramfs modules
-  copy:
+  ansible.builtin.copy:
     src: "../files/initramfs_modules"
     dest: "/etc/initramfs-tools/modules"
   tags:
     - kernel-inst-image
 
 - name: Inst - Update remote initramfs resume config
-  copy:
+  ansible.builtin.copy:
     src: "../files/initramfs_resume"
     dest: "/etc/initramfs-tools/conf.d/resume"
   tags:
     - kernel-inst-image
 
 - name: Inst - Create target kernel dir
-  file:
+  ansible.builtin.file:
     path: "/opt/boot"
     state: "directory"
   tags:
     - kernel-inst-image
 
 - name: Inst - Build initrd image
-  shell: "update-initramfs -k {{ ansible_kernel }} -c -b /opt/boot"
+  ansible.builtin.shell: "update-initramfs -k {{ ansible_kernel }} -c -b /opt/boot"
   tags:
     - kernel-inst-image
 
 - name: Inst - Copy corresponding kernel img
-  copy:
+  ansible.builtin.copy:
     src: "/boot/vmlinuz-{{ ansible_kernel }}"
     dest: "/opt/boot/vmlinuz-{{ ansible_kernel }}"
     remote_src: true
@@ -56,7 +56,7 @@
     - kernel-inst-image
 
 - name: Inst - Restore remote initramfs modules
-  copy:
+  ansible.builtin.copy:
     src: "/tmp/initramfs_modules.bkp"
     dest: "/etc/initramfs-tools/modules"
     remote_src: true
@@ -66,7 +66,7 @@
     - kernel-inst-image
 
 - name: Inst - Remove remote backup initramfs modules
-  file:
+  ansible.builtin.file:
     path: "/tmp/initramfs_modules.bkp"
     state: "absent"
   when: __initramfs_modules_backuped
@@ -74,7 +74,7 @@
     - kernel-inst-image
 
 - name: Inst - Restore remote initramfs resume config
-  copy:
+  ansible.builtin.copy:
     src: "/tmp/initramfs-resume.bkp"
     dest: "/etc/initramfs-tools/conf.d/resume"
     remote_src: true
@@ -84,7 +84,7 @@
     - kernel-inst-image
 
 - name: Inst - Remove remote backup initramfs resume config
-  file:
+  ansible.builtin.file:
     path: "/tmp/initramfs-resume.bkp"
     state: "absent"
   when: __initramfs_resume_backuped

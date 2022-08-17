@@ -6,21 +6,13 @@ kernel_version: "{{ kernel_version_by_distro[ansible_distribution|lower][ansible
 
 kernel_version_by_distro:
   ubuntu:
-    focal:
-      - "5.4.0-65"
     jammy:
-      - "4.15.0-72"
+      - "5.15.0-46"
 
 kernel_packages: "{{ kernel_packages_by_distro[ansible_distribution|lower][ansible_distribution_release] | flatten(levels=1) }}"
 
 kernel_packages_by_distro:
   ubuntu:
-    focal:
-      - "linux-image"
-      - "linux-headers"
-      - "linux-modules"
-      - "linux-modules-extra"
-      - "linux-tools"
     jammy:
       - "linux-image"
       - "linux-headers"
@@ -33,10 +25,6 @@ absent_packages: "{{ absent_packages_by_distro[ansible_distribution|lower][ansib
 
 absent_packages_by_distro:
   ubuntu:
-    focal:
-      - "amd64-microcode"
-      - "intel-microcode"
-      - "iucode-tool"
     jammy:
       - "amd64-microcode"
       - "intel-microcode"

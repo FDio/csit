@@ -4,7 +4,7 @@
 - name: Clean Docker Images
   block:
   - name: Clean Images - Prefetch Docker Images
-    cron:
+    ansible.builtin.cron:
       name: "Prefetch docker image {{ item }}"
       minute: "10"
       hour: "7"
@@ -15,7 +15,7 @@
       - prefetch-docker-images
 
   - name: Clean Images - Remove Dangling Docker Images
-    cron:
+    ansible.builtin.cron:
       name: "Remove dangling docker images"
       minute: "10"
       hour: "5"

@@ -2,12 +2,12 @@
 # file roles/performance_tuning/handlers/main.yaml
 
 - name: Update GRUB
-  command: update-grub
+  ansible.builtin.command: update-grub
   tags:
     - update-grub
 
 - name: Reboot server
-  reboot:
+  ansible.builtin.reboot:
     reboot_timeout: 3600
   tags:
     - reboot-server

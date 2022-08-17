@@ -8,19 +8,10 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    focal:
-      - "build-essential"
-      - "libmnl-dev"
-      - "libnuma-dev"
-      - "libpcap-dev"
-      - "librdmacm-dev"
-      - "librdmacm1"
-      - "libssl-dev"
-      - "pciutils"
-      - "python3-pip"
-      - "zlib1g-dev"
     jammy:
       - "build-essential"
+      - "gcc-9"
+      - "g++-9"
       - "libmnl-dev"
       - "libnuma-dev"
       - "libpcap-dev"
@@ -40,6 +31,4 @@ packages_by_arch:
 trex_target_dir: "/opt"
 trex_url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 trex_version:
-  # master // ubuntu 20.04
-  - "2.88"
   - "2.97"

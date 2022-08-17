@@ -2,14 +2,14 @@
 # file: roles/cleanup/tasks/remove_package.yaml
 
 - name: Remove Package - Fix Corrupted APT
-  shell: "dpkg --configure -a"
+  ansible.builtin.shell: "dpkg --configure -a"
   when:
     - ansible_distribution == 'Ubuntu'
   tags:
     - remove-package
 
 - name: Remove Package - {{ package }}
-  apt:
+  ansible.builtin.apt:
     name: "{{ package }}"
     force: true
     purge: true

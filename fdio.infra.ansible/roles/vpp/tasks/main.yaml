@@ -2,7 +2,7 @@
 # file: roles/vpp/tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
@@ -11,14 +11,14 @@
     - vpp-inst-prerequisites
 
 - name: Inst - Prerequisites
-  package:
+  ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
     - vpp-inst-prerequisites
 
 - name: Conf - sysctl
-  file:
+  ansible.builtin.file:
     src: "/dev/null"
     dest: "/etc/sysctl.d/80-vpp.conf"
     state: "link"

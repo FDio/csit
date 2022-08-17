@@ -13,7 +13,7 @@
 - name: Inst - Prerequisites
   package:
     name: "{{ packages | flatten(levels=1) }}"
-    state: latest
+    state: "latest"
   tags:
     - mellanox-inst-drivers
 
