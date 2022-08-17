@@ -1,0 +1,7 @@
+Code-Review+2: Vratko Polak <vrpolak@cisco.com>
+Verified+1: fd.io JJB <jobbuilder@projectrotterdam.info>
+Submitted-by: Vratko Polak <vrpolak@cisco.com>
+Submitted-at: Wed, 17 Aug 2022 10:22:07 +0000
+Reviewed-on: https://gerrit.fd.io/r/c/csit/+/36801
+Project: csit
+Branch: refs/heads/master
