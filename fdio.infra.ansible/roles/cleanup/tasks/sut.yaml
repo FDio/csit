@@ -46,7 +46,7 @@
         - kill-process
 
     - name: Find File Or Dir - Core Zip File
-      find:
+      ansible.builtin.find:
         paths: "/tmp/"
         patterns: "*tar.lzo.lrz.xz*"
       register: files_to_delete
@@ -54,7 +54,7 @@
         - remove-file-dir
 
     - name: Remove File Or Dir - Core Zip File
-      file:
+      ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
       with_items: "{{ files_to_delete.files }}"
@@ -62,7 +62,7 @@
         - remove-file-dir
 
     - name: Find File Or Dir - Core Dump File
-      find:
+      ansible.builtin.find:
         paths: "/tmp/"
         patterns: "*core*"
       register: files_to_delete
@@ -70,7 +70,7 @@
         - remove-file-dir
 
     - name: Remove File Or Dir - Core Dump File
-      file:
+      ansible.builtin.file:
         path: "{{ item.path }}"
         state: absent
       with_items: "{{ files_to_delete.files }}"

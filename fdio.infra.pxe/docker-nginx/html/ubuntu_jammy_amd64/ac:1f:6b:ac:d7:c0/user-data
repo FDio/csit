@@ -10,7 +10,7 @@ autoinstall:
     - arches: [default]
       uri: http://ports.ubuntu.com/ubuntu-ports
   identity:
-    hostname: s28-t26t35-tg1
+    hostname: s35-t28-sut1
     password: $6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0
     realname: testuser
     username: testuser
@@ -22,7 +22,7 @@ autoinstall:
   network:
     ethernets:
       eno1:
-        addresses: [ 10.32.8.10/24 ]
+        addresses: [ 10.32.8.20/24 ]
         dhcp4: false
         gateway4: 10.32.8.1
         nameservers:

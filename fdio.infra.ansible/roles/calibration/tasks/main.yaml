@@ -2,7 +2,7 @@
 # file: roles/calibration/tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
@@ -11,21 +11,21 @@
     - calibration-inst-prerequisites
 
 - name: Inst - Prerequisites
-  package:
+  ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
     - calibration-inst-prerequisites
 
 - name: Check CPU Power States
-  shell: "lscpu"
+  ansible.builtin.shell: "lscpu"
   register: current_lscpu
   changed_when: false
   tags:
     - check-cpu-frequency
 
 - name: Check CPU Power States
-  assert:
+  ansible.builtin.assert:
     that:
       - "'CPU min MHz' not in current_lscpu.stdout or 'Intel(R) Xeon(R)' not in ansible_processor"
     fail_msg: "CPU configuration!"
@@ -34,7 +34,7 @@
     - check-cpu-frequency
 
 - name: Check Kernel Parameters
-  assert:
+  ansible.builtin.assert:
     that:
       - item in ansible_cmdline
     fail_msg: "Kernel parameters!"
@@ -46,7 +46,7 @@
     - check-kernel-params
 
 - name: Check Kernel Version
-  assert:
+  ansible.builtin.assert:
     that:
       - ansible_kernel not in kernel_version_by_distro_by_arch
     fail_msg: "Kernel version!"
@@ -55,14 +55,14 @@
     - check-kernel-version
 
 - name: Spectre Meltdown Checker Status
-  stat:
+  ansible.builtin.stat:
     path: "/opt/spectre-meltdown-checker.sh"
   register: spectre_meltdown_status
   tags:
     - check-spectre-meltdown
 
 - name: Get Spectre Meltdown Checker
-  get_url:
+  ansible.builtin.get_url:
     url: "https://meltdown.ovh"
     dest: "/opt/spectre-meltdown-checker.sh"
     mode: "744"
@@ -72,7 +72,7 @@
     - check-spectre-meltdown
 
 - name: Run Spectre Meltdown Checker
-  shell: "/opt/spectre-meltdown-checker.sh --no-color --sysfs-only || true"
+  ansible.builtin.shell: "/opt/spectre-meltdown-checker.sh --no-color --sysfs-only || true"
   ignore_errors: true
   register: spectre_meltdown_sync
   tags:

@@ -2,7 +2,7 @@
 # file roles/kernel/handlers/main.yaml
 
 - name: Reboot Server
-  reboot:
+  ansible.builtin.reboot:
     reboot_timeout: 3600
   tags:
     - reboot-server

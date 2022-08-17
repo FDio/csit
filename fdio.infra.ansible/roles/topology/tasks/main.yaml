@@ -2,21 +2,21 @@
 # file: roles/topology/tasks/main.yaml
 
 - name: Create Topology File
-  template:
+  ansible.builtin.template:
     src: "templates/topology-{{ cloud_topology }}.j2"
     dest: "../topologies/available/{{ cloud_topology }}-{{ testbed_name }}.yaml"
   tags:
     - create-topology-file
 
 - name: Create Inventory Folder
-  file:
+  ansible.builtin.file:
     path: "./inventories/cloud_inventory/"
     state: directory
   tags:
     - create-inventory-folder-cloud
 
 - name: Create Hosts File
-  template:
+  ansible.builtin.template:
     src: "templates/hosts.j2"
     dest: "./inventories/cloud_inventory/hosts"
   tags:

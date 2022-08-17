@@ -2,7 +2,7 @@
 # file: roles/tg/handlers/main.yaml
 
 - name: Start csit-initialize-docker-tg.service
-  systemd:
+  ansible.builtin.systemd:
     enabled: true
     state: "started"
     name: "csit-initialize-docker-tg.service"
