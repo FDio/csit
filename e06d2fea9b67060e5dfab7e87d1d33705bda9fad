@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest mrrANDnic_intel-xxv710AND1cAND64bANDeth-l2patch",
       "revId": "e06d2fea9b67060e5dfab7e87d1d33705bda9fad",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad79d784_e2147221",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-17T14:33:02Z",
+      "side": 1,
+      "message": "csit-2n-zn2-perftest mrrANDnic_Mellanox-CX556AAND1cAND64bANDeth-l2patch",
+      "revId": "e06d2fea9b67060e5dfab7e87d1d33705bda9fad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
