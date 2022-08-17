@@ -2,19 +2,19 @@
 # file: roles/calibration/tasks/x86_64.yaml
 
 - name: Calibration - Clone PMA Tool
-  git:
+  ansible.builtin.git:
     repo: "https://gerrit.fd.io/r/pma_tools"
     dest: "{{ pma_directory }}"
   tags:
     - check-jitter-tool
 
 - name: Calibration - Compile PMA Tool
-  raw: "cd {{ pma_directory }}/jitter && make"
+  ansible.builtin.raw: "cd {{ pma_directory }}/jitter && make"
   tags:
     - check-jitter-tool
 
 - name: Calibration - Run Jitter Tool
-  shell: "{{ pma_directory }}/jitter/jitter -c {{ jitter_core }} -i {{ jitter_iterations }} -f"
+  ansible.builtin.shell: "{{ pma_directory }}/jitter/jitter -c {{ jitter_core }} -i {{ jitter_iterations }} -f"
   become: true
   async: 60
   poll: 0
@@ -24,12 +24,12 @@
     - check-jitter-tool
 
 - name: Check sync status
-  async_status:
+  ansible.builtin.async_status:
     jid: "{{ jitter_async.ansible_job_id }}"
   register: "jitter_poll_results"
   until: jitter_poll_results.finished
   retries: 30
 
-- debug: var=jitter_poll_results.stdout_lines
+- ansible.builtin.debug: var=jitter_poll_results.stdout_lines
   tags:
     - check-jitter-tool

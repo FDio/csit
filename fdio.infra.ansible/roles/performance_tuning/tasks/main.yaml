@@ -2,7 +2,7 @@
 # file: roles/performance_tuning/tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
@@ -11,7 +11,7 @@
     - perf-inst-prerequisites
 
 - name: Inst - Machine Prerequisites
-  package:
+  ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
@@ -36,7 +36,7 @@
   # programs, particularly malloc debuggers, may consume lots of them,
   # e.g., up to one or two maps per allocation.
   # must be greater than or equal to (2 * vm.nr_hugepages).
-  sysctl:
+  ansible.builtin.sysctl:
     name: "vm.max_map_count"
     value: "{{ sysctl.vm.nr_hugepages * 4  }}"
     state: "present"
@@ -48,7 +48,7 @@
 - name: Conf - Adjust hugetlb_shm_group
   # hugetlb_shm_group contains group id that is allowed to create sysv
   # shared memory segment using hugetlb page.
-  sysctl:
+  ansible.builtin.sysctl:
     name: "vm.hugetlb_shm_group"
     value: "1000"
     state: "present"
@@ -63,7 +63,7 @@
   # decrease the amount of swap.  a value of 0 instructs the kernel not to
   # initiate swap until the amount of free and file-backed pages is less
   # than the high water mark in a zone.
-  sysctl:
+  ansible.builtin.sysctl:
     name: "vm.swappiness"
     value: "0"
     state: "present"
@@ -78,7 +78,7 @@
   # if the existing kernel.shmmax setting (cat /sys/proc/kernel/shmmax)
   # is greater than the calculated totalhugepagesize then set this parameter
   # to current shmmax value.
-  sysctl:
+  ansible.builtin.sysctl:
     name: "kernel.shmmax"
     value: "{{ sysctl.vm.nr_hugepages * 2 * 1024 * 1024 }}"
     state: "present"
@@ -98,7 +98,7 @@
   # typically this value would only be touched in the nohz_full case
   # to re-enable cores that by default were not running the watchdog,
   # if a kernel lockup was suspected on those cores.
-  sysctl:
+  ansible.builtin.sysctl:
     name: "kernel.watchdog_cpumask"
     value: "{{ sysctl.kernel.watchdog_cpumask }}"
     state: "present"
@@ -114,7 +114,7 @@
   # 0 - turn the process address space randomization off.  this is the
   #     default for architectures that do not support this feature anyways,
   #     and kernels that are booted with the "norandmaps" parameter.
-  sysctl:
+  ansible.builtin.sysctl:
     name: "kernel.randomize_va_space"
     value: "0"
     state: "present"
@@ -134,7 +134,7 @@
     - perf-conf-cpufrequtils
 
 - name: Conf - Irqbalance
-  template:
+  ansible.builtin.template:
     src: "files/irqbalance"
     dest: "/etc/default/irqbalance"
     owner: "root"
@@ -144,14 +144,14 @@
     - perf-conf-irqbalance
 
 - name: Conf - Set Ondemand Service To Disable
-  service:
+  ansible.builtin.service:
     name: "ondemand"
     enabled: "no"
   tags:
     - perf-conf-ondemand
 
 - name: Conf - Kernel Parameters
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/default/grub"
     state: "present"
     regexp: "^GRUB_CMDLINE_LINUX="
@@ -164,7 +164,7 @@
 - meta: flush_handlers
 
 - name: Conf - Load Kernel Modules By Default
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/modules"
     state: "present"
     line: "{{ item }}"
@@ -176,7 +176,7 @@
     - perf-conf-load-kernel-modules
 
 - name: Conf - Create a directory for 1G HugeTLBs hugepages
-  file:
+  ansible.builtin.file:
     path: "/dev/hugepages1G"
     state: "directory"
     mode: 0755
@@ -184,7 +184,7 @@
     - perf-conf-hugepages-1g
 
 - name: Conf - Mount 1G HugeTLBs hugepages
-  mount:
+  ansible.builtin.mount:
     path: "/dev/hugepages1G"
     src: "hugetlbfs"
     opts: "pagesize=1G"
@@ -195,7 +195,7 @@
     - perf-conf-hugepages-1g
 
 - name: Create a directory if it does not exist
-  file:
+  ansible.builtin.file:
     path: "/dev/hugepages2M"
     state: "directory"
     mode: 0755
@@ -203,7 +203,7 @@
     - perf-conf-hugepages-2m
 
 - name: Conf - Create a directory for 2M HugeTLBs hugepages
-  mount:
+  ansible.builtin.mount:
     path: "/dev/hugepages2M"
     src: "hugetlbfs"
     opts: "pagesize=2M"

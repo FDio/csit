@@ -1,5 +1,5 @@
 ---
-# file: roles/common/defaults/main.yaml
+# file: roles/python_env/defaults/main.yaml
 
 packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
 
@@ -8,15 +8,6 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    focal:
-      - "python3-all"
-      - "python3-apt"
-      - "python3-cffi"
-      - "python3-cffi-backend"
-      - "python3-dev"
-      - "python3-pip"
-      - "python3-pyelftools"
-      - "python3-setuptools"
     jammy:
       - "python3-all"
       - "python3-apt"

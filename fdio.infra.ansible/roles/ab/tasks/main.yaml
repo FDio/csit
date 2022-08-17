@@ -2,7 +2,7 @@
 # file: roles/ab/tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
@@ -11,7 +11,7 @@
     - ab-inst-prerequisites
 
 - name: Inst - Apache ab tools
-  package:
+  ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: present
   tags:

@@ -2,7 +2,7 @@
 # file: roles/trex/tasks/deploy_block.yaml
 
 - name: Get Release {{ item }}
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ trex_url }}/v{{ item }}.tar.gz"
     dest: "{{ trex_target_dir }}/trex-core-{{ item }}.tar.gz"
     validate_certs: false
@@ -10,12 +10,12 @@
   register: trex_downloaded
 
 - name: Create Directory {{ item }}
-  file:
+  ansible.builtin.file:
     path: "{{ trex_target_dir }}/trex-core-{{ item }}"
     state: "directory"
 
 - name: Extract Release {{ item }}
-  unarchive:
+  ansible.builtin.unarchive:
     remote_src: true
     src: "{{ trex_target_dir }}/trex-core-{{ item }}.tar.gz"
     dest: "{{ trex_target_dir }}/"
@@ -23,7 +23,7 @@
   register: trex_extracted
 
 - name: Patch Azure
-  patch:
+  ansible.builtin.patch:
     src: "files/t-rex.patch"
     basedir: "{{ trex_target_dir }}/trex-core-{{ item }}"
     strip: 1
@@ -31,25 +31,25 @@
     - azure is defined and item == "2.73"
 
 - name: Compile Release {{ item }} Part I
-  command: "./b configure"
+  ansible.builtin.command: "./b configure"
   args:
     chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
   when: trex_extracted.changed
 
 - name: Compile Release {{ item }} Part II
-  command: "./b build"
+  ansible.builtin.command: "./b build"
   args:
     chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
   when: trex_extracted.changed
 
 - name: Compile Release {{ item }} Part III
-  command: "make -j 16"
+  ansible.builtin.command: "make -j 16"
   args:
     chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
   when: trex_extracted.changed
 
 - name: Compile Release {{ item }} Part IV
-  command: "make install"
+  ansible.builtin.command: "make install"
   args:
     chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
   when: trex_extracted.changed

@@ -2,7 +2,7 @@
 # file: roles/intel/tasks/i40e.yaml
 
 - name: Inst - Get i40e Network Adapter Driver
-  uri:
+  ansible.builtin.uri:
     url: "{{ intel_sourceforge_download_url }}/{{ intel_i40e_url[i40e] }}"
     follow_redirects: "all"
     force: true
@@ -13,7 +13,7 @@
     - intel-inst
 
 - name: Inst - Extract i40e Network Adapter Driver
-  unarchive:
+  ansible.builtin.unarchive:
     remote_src: true
     src: "{{ intel_extract_dir }}/i40e-{{ i40e }}.tar.gz"
     dest: "{{ intel_extract_dir }}/"
@@ -23,7 +23,7 @@
     - intel-inst
 
 - name: Inst - i40e Network Adapter Driver
-  command: "{{ item }}"
+  ansible.builtin.command: "{{ item }}"
   args:
     chdir: "{{ intel_extract_dir }}/i40e-{{ i40e }}/src"
   become: true

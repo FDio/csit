@@ -2,7 +2,7 @@
 # file: roles/csit_sut_image/tasks/main.yaml
 
 - name: Create a directory if it does not exist
-  file:
+  ansible.builtin.file:
     path: "/opt/csit-sut/"
     state: "directory"
     mode: 0755
@@ -10,7 +10,7 @@
     - csit-sut-image
 
 - name: Copy Build Items
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "/opt/csit-sut/"
     owner: "root"
@@ -23,7 +23,7 @@
     - csit-sut-image
 
 - name: Build CSIT SUT Docker Image
-  shell: "docker build -t csit_sut-ubuntu2004:local ."
+  ansible.builtin.shell: "docker build -t csit_sut-ubuntu2004:local ."
   args:
     chdir: "/opt/csit-sut"
   tags:
