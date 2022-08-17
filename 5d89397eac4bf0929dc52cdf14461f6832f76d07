@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a66a64a3_1c9e8a14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-17T09:39:42Z",
+      "side": 1,
+      "message": "\u003e The tox copyright year checker detected an out of date copyright statement.\n\nI am going to fix that.",
+      "revId": "5d89397eac4bf0929dc52cdf14461f6832f76d07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
