@@ -67,6 +67,23 @@
       "message": "csit-2n-skx-perftest mrrANDnic_intel-xxv710AND64bANDethip4-ip4baseANDdrv_avf",
       "revId": "01ac9c3407cfa5916f649bf4a3068e2e84e31385",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9062ac53_38fecb6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-08-17T10:52:25Z",
+      "side": 1,
+      "message": "csit-2n-skx-perftest mrrANDnic_intel-xxv710AND64bANDethip4-ip4scale2m-rndANDdrv_avf\ncsit-2n-skx-perftest mrrANDnic_intel-xxv710AND78bANDethip6-ip6scale2m-rndANDdrv_avf",
+      "revId": "01ac9c3407cfa5916f649bf4a3068e2e84e31385",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
