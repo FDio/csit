@@ -185,7 +185,7 @@ programs:
             - name
             - index
     code: |
-      vppctl -s {socket} show hardware verbose
+      vppctl -s {socket} show hardware-interface
   - name: bundle_vppctl
     metrics:
       counter:
