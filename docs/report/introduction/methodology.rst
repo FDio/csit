@@ -30,3 +30,4 @@ Test Methodology
     methodology_vpp_device_functional
     methodology_autogen
     methodology_aws/index
+    methodology_rca/index
