@@ -185,7 +185,7 @@ programs:
             - name
             - index
     code: |
-      show hardware verbose
+      show hardware-interfaces
   - name: bundle_vpp
     metrics:
       counter:
