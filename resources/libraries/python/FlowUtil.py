@@ -400,7 +400,7 @@ class FlowUtil:
         :rtype: int
         :raises ValueError: If action type is not supported.
         """
-        cmd = u"flow_add"
+        cmd = u"flow_add_v2"
 
         if action == u"redirect-to-queue":
             flow_rule = {
