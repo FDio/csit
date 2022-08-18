@@ -552,7 +552,10 @@ class Layout:
                 "ri-ttypes-value": default["ttype"],
                 "ri-cadences-value": default["cadence"],
                 "dd-tbeds-value": default["tbed"],
-                "al-job-children": default["job"]
+                "al-job-children": default["job"],
+                "dpr-start-date": datetime.utcnow() - \
+                    timedelta(days=C.TIME_PERIOD),
+                "dpr-end-date": datetime.utcnow()
             }
             self._panel = deepcopy(self._defaults)
             if panel:
@@ -622,6 +625,8 @@ class Layout:
             Output("ri-cadences", "value"),
             Output("dd-tbeds", "value"),
             Output("al-job", "children"),
+            Output("dpr-period", "start_date"),
+            Output("dpr-period", "end_date"),
             State("control-panel", "data"),  # Store
             Input("ri-duts", "value"),
             Input("ri-ttypes", "value"),
@@ -719,7 +724,6 @@ class Layout:
             elif trigger_id == "dpr-period":
                 pass
             elif trigger_id == "url":
-                # TODO: Add verification
                 if url_params:
                     new_job = url_params.get("job", list())[0]
                     new_start = url_params.get("start", list())[0]
@@ -740,7 +744,11 @@ class Layout:
                 ctrl_panel.get("dd-tbeds-value")
             )
 
-            ctrl_panel.set({"al-job-children": job})
+            ctrl_panel.set({
+                "al-job-children": job,
+                "dpr-start-date": start,
+                "dpr-end-date": end
+            })
             fig_passed, fig_duration = graph_statistics(self.data, job,
                 self.layout, start, end)
 
