@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05016ea9_e717bf31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-18T13:13:24Z",
+      "side": 1,
+      "message": "Device test forced CRC update on all requests (responses are usually identical except name), so there should be no surprises on perf test.",
+      "revId": "d92086e8ee964d2d5700046ef85c6b681844288a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
