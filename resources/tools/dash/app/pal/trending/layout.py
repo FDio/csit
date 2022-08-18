@@ -712,6 +712,9 @@ class Layout:
                 "btn-ctrl-add-disabled": True,
                 "cl-normalize-value": list(),
                 "cl-selected-options": list(),
+                "dpr-start-date": datetime.utcnow() - \
+                    timedelta(days=C.TIME_PERIOD),
+                "dpr-end-date": datetime.utcnow()
             }
 
             self._panel = deepcopy(self._defaults)
@@ -875,6 +878,8 @@ class Layout:
             Output("btn-ctrl-add", "disabled"),
             Output("cl-ctrl-normalize", "value"),
             Output("cl-selected", "options"),  # User selection
+            Output("dpr-period", "start_date"),
+            Output("dpr-period", "end_date"),
             State("control-panel", "data"),  # Store
             State("selected-tests", "data"),  # Store
             State("cl-selected", "value"),  # User selection
@@ -1282,7 +1287,9 @@ class Layout:
                             )
                         )
                     ctrl_panel.set({
-                        "cl-selected-options": list_tests(store_sel)
+                        "cl-selected-options": list_tests(store_sel),
+                        "dpr-start-date": d_start,
+                        "dpr-end-date": d_end
                     })
                 else:
                     row_fig_tput = C.PLACEHOLDER
