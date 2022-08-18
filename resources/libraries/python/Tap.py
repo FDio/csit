@@ -64,7 +64,7 @@ class Tap:
         :returns: Returns a interface index.
         :rtype: int
         """
-        cmd = u"tap_create_v2"
+        cmd = u"tap_create_v3"
         args = dict(
             id=Constants.BITWISE_NON_ZERO,
             use_random_mac=bool(mac is None),
