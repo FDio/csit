@@ -438,7 +438,7 @@ class IPsecUtil:
             src_addr = u""
             dst_addr = u""
 
-        cmd = u"ipsec_sad_entry_add_del_v3"
+        cmd = u"ipsec_sad_entry_add"
         err_msg = f"Failed to add Security Association Database entry " \
             f"on host {node[u'host']}"
         sad_entry = dict(
@@ -462,10 +462,7 @@ class IPsecUtil:
             udp_src_port=4500,  # default value in api
             udp_dst_port=4500  # default value in api
         )
-        args = dict(
-            is_add=True,
-            entry=sad_entry
-        )
+        args = dict(entry=sad_entry)
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
@@ -562,7 +559,7 @@ class IPsecUtil:
                     IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL_V6
                 )
 
-        cmd = u"ipsec_sad_entry_add_del_v3"
+        cmd = u"ipsec_sad_entry_add"
         err_msg = f"Failed to add Security Association Database entry " \
             f"on host {node[u'host']}"
 
@@ -585,12 +582,9 @@ class IPsecUtil:
             ),
             protocol=int(IPsecProto.IPSEC_API_PROTO_ESP),
             udp_src_port=4500,  # default value in api
-            udp_dst_port=4500  # default value in api
+            udp_dst_port=4500,  # default value in api
         )
-        args = dict(
-            is_add=True,
-            entry=sad_entry
-        )
+        args = dict(entry=sad_entry)
         with PapiSocketExecutor(node) as papi_exec:
             for i in range(n_entries):
                 args[u"entry"][u"sad_id"] = int(sad_id) + i
@@ -1471,7 +1465,7 @@ class IPsecUtil:
             # Configure IPSec SAD entries
             ckeys = [bytes()] * existing_tunnels
             ikeys = [bytes()] * existing_tunnels
-            cmd = u"ipsec_sad_entry_add_del_v3"
+            cmd = u"ipsec_sad_entry_add"
             c_key = dict(
                 length=0,
                 data=None
@@ -1502,10 +1496,7 @@ class IPsecUtil:
                 udp_src_port=IPSEC_UDP_PORT_NONE,
                 udp_dst_port=IPSEC_UDP_PORT_NONE,
             )
-            args = dict(
-                is_add=True,
-                entry=sad_entry
-            )
+            args = dict(entry=sad_entry)
             for i in range(existing_tunnels, n_tunnels):
                 ckeys.append(
                     gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
@@ -1713,7 +1704,7 @@ class IPsecUtil:
                 ]
             )
             # Configure IPSec SAD entries
-            cmd = u"ipsec_sad_entry_add_del_v3"
+            cmd = u"ipsec_sad_entry_add"
             c_key = dict(
                 length=0,
                 data=None
@@ -1744,10 +1735,7 @@ class IPsecUtil:
                 udp_src_port=IPSEC_UDP_PORT_NONE,
                 udp_dst_port=IPSEC_UDP_PORT_NONE,
             )
-            args = dict(
-                is_add=True,
-                entry=sad_entry
-            )
+            args = dict(entry=sad_entry)
             for i in range(existing_tunnels, n_tunnels):
                 ckeys.append(
                     gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
