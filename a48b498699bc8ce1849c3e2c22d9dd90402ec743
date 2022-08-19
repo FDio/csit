@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b6497ee_501c09a3",
+        "filename": "fdio.infra.ansible/inventories/lf_inventory/host_vars/10.30.51.71.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-08-19T11:16:27Z",
+      "side": 1,
+      "message": "this one will not work afaik? only 22.07",
+      "range": {
+        "startLine": 13,
+        "startChar": 19,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "a48b498699bc8ce1849c3e2c22d9dd90402ec743",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6422be5c_74bb3263",
+        "filename": "fdio.infra.ansible/roles/vpp_device/tasks/thunderx2.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-08-19T11:16:27Z",
+      "side": 1,
+      "message": "ansible.builtin.lineinfile",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 12
+      },
+      "revId": "a48b498699bc8ce1849c3e2c22d9dd90402ec743",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
