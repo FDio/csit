@@ -17,7 +17,7 @@
 does not need to be hard coded here, but can be read from environment variables.
 """
 
-
+import logging
 import dash_bootstrap_components as dbc
 
 from dash import html
@@ -29,6 +29,11 @@ class Constants:
 
     ############################################################################
     # General, application wide constants.
+
+    # Logging settings.
+    LOG_LEVEL = logging.INFO
+    LOG_FORMAT = "%(asctime)s: %(levelname)s: %(message)s"
+    LOG_DATE_FORMAT = "%Y/%m/%d %H:%M:%S"
 
     # The application title.
     TITLE = "FD.io CSIT"
@@ -255,6 +260,9 @@ class Constants:
 
     # Time period for regressions and progressions.
     NEWS_TIME_PERIOD = TIME_PERIOD  # [days]
+
+    # Time period for summary tables.
+    NEWS_SUMMARY_PERIOD = 7  # [days]
 
     ############################################################################
     # Report.

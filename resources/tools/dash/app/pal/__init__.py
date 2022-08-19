@@ -27,9 +27,9 @@ def init_app():
     """
 
     logging.basicConfig(
-        format=u"%(asctime)s: %(levelname)s: %(message)s",
-        datefmt=u"%Y/%m/%d %H:%M:%S",
-        level=logging.INFO
+        format=C.LOG_FORMAT,
+        datefmt=C.LOG_DATE_FORMAT,
+        level=C.LOG_LEVEL
     )
 
     logging.info("Application started.")
