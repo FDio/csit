@@ -98,7 +98,7 @@
 ### intel-x710
 #### avf
 ##### ethip4-l2bdbasemaclrn
-0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-l2bdbasemaclrn
+#0c AND 64b AND scapy AND x710 AND drv_avf AND ethip4-l2bdbasemaclrn
 #### dpdk-vfio-pci
 ##### ethip4-l2bdbasemaclrn
 0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn
