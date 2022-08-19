@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33c46b47_65425716",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-08-19T11:30:41Z",
+      "side": 1,
+      "message": "I do not really see a reason why we cannot do it symmetric for TG as well.",
+      "revId": "6a929a9593ee502af0e834c72fb43b265e71d684",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
