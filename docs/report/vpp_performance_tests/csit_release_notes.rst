@@ -101,25 +101,19 @@ Issues reported in previous releases which still affect the current results.
 |  7 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
 |    | <https://jira.fd.io/browse/CSIT-1782>`_ | Frequency is reduced by CSIT workaround, but occasional failures do still happen.                         |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  8 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
-|    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
-|    +-----------------------------------------+ Currently, the time critical code uses VAT running large files with exec statements and CLI commands.     |
-|    | `VPP-1763                               | Still, we needed to reduce the number of scale tests run to keep overall duration reasonable.             |
-|    | <https://jira.fd.io/browse/VPP-1763>`_  | More improvements needed to achieve sufficient configuration speed.                                       |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  9 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
+|  8 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
 |    | <https://jira.fd.io/browse/CSIT-1785>`_ | At least for max scale, in allotted time (limited by session 500s timeout) due to worse                   |
 |    +-----------------------------------------+ slow path performance than previously measured and calibrated for.                                        |
 |    | `VPP-1972                               | CSIT removed the max scale NAT tests to avoid this issue.                                                 |
 |    | <https://jira.fd.io/browse/VPP-1972>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 10 | `CSIT-1801                              | 9000B payload frames not forwarded over tunnels due to violating supported Max Frame Size (VxLAN, LISP,   |
+|  9 | `CSIT-1801                              | 9000B payload frames not forwarded over tunnels due to violating supported Max Frame Size (VxLAN, LISP,   |
 |    | <https://jira.fd.io/browse/CSIT-1801>`_ | SRv6).                                                                                                    |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1808                              | All tests with 9000B payload frames not forwarded over memif interfaces.                                  |
+| 10 | `CSIT-1808                              | All tests with 9000B payload frames not forwarded over memif interfaces.                                  |
 |    | <https://jira.fd.io/browse/CSIT-1808>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1809                              | All tests with 9000B payload frames not forwarded over vhostuser interfaces.                              |
+| 11 | `CSIT-1809                              | All tests with 9000B payload frames not forwarded over vhostuser interfaces.                              |
 |    | <https://jira.fd.io/browse/CSIT-1809>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
