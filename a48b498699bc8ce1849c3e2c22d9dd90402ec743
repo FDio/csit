@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdc0c2f6_a54321c3",
+        "filename": "fdio.infra.ansible/inventories/lf_inventory/host_vars/10.30.51.71.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-08-19T14:23:22Z",
+      "side": 1,
+      "message": "I used this some time ago when that was the latest. I\u0027ll update it.",
+      "parentUuid": "7b6497ee_501c09a3",
+      "range": {
+        "startLine": 13,
+        "startChar": 19,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "a48b498699bc8ce1849c3e2c22d9dd90402ec743",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6422be5c_74bb3263",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-19T11:16:27Z",
       "side": 1,
       "message": "ansible.builtin.lineinfile",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 12
+      },
+      "revId": "a48b498699bc8ce1849c3e2c22d9dd90402ec743",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cbd450e_336f0a96",
+        "filename": "fdio.infra.ansible/roles/vpp_device/tasks/thunderx2.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-08-19T14:23:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6422be5c_74bb3263",
       "range": {
         "startLine": 5,
         "startChar": 2,
