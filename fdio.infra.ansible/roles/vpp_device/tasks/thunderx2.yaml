@@ -1,0 +1,23 @@
+---
+# file: roles/vpp_device/tasks/thunderx2.yaml
+
+- name: Load Kernel Modules On Startup (vfio-pci)
+  lineinfile:
+    path: "/etc/modules"
+    state: "present"
+    line: "{{ item }}"
+  with_items:
+    - "vfio-pci"
+  tags:
+    - load-kernel-modules
+
+- name: Disable Kernel Modules On Startup (cppc_cpufreq)
+  lineinfile:
+    path: "/etc/modprobe.d/blacklist-cppc_cpufreq.conf"
+    state: "present"
+    line: "{{ item }}"
+    create: "yes"
+  with_items:
+    - "blacklist cppc_cpufreq"
+  tags:
+    - disable-kernel-modules
