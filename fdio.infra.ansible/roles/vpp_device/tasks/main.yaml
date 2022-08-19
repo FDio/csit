@@ -1,17 +1,12 @@
 ---
 # file: roles/vpp_device/tasks/main.yaml
 
-- name: Load Kernel Modules By Default
-  lineinfile:
-    path: "/etc/modules"
-    state: "present"
-    line: "{{ item }}"
-  with_items:
-    - "vfio-pci"
+- name: ThunderX2 Kernel Modules Config
+  import_tasks: thunderx2.yaml
   when:
     - cpu_microarchitecture == "thunderx2"
   tags:
-    - load-kernel-modules
+    - conf-kernel-modules
 
 - name: Disable IPv6 Router Advertisement
   sysctl:

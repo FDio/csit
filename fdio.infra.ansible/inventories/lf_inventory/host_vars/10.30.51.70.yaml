@@ -10,6 +10,8 @@ grub:
   iommu.passthrough: "1"
 cpu_microarchitecture: "thunderx2"
 
+intel_700_matrix: "dpdk22.07"
+
 # User management.
 users:
   - username: localadmin
@@ -45,13 +47,13 @@ nomad_options:
   driver.whitelist: "docker,raw_exec,exec"
 nomad_service_mgr: "systemd"
 nomad_retry_servers:
-  - "10.32.8.15"
-  - "10.32.8.16"
-  - "10.32.8.17"
+  - "10.30.51.23"
+  - "10.30.51.24"
+  - "10.30.51.25"
 nomad_servers:
-  - "10.32.8.15:4647"
-  - "10.32.8.16:4647"
-  - "10.32.8.17:4647"
+  - "10.30.51.23:4647"
+  - "10.30.51.24:4647"
+  - "10.30.51.25:4647"
 nomad_cpu_total_compute: "40000"
 
 # Consul settigs.
@@ -64,9 +66,9 @@ consul_encrypt: "Y4T+5JGx1C3l2NFBBvkTWQ=="
 consul_node_name: "{{ hostname }}"
 consul_node_role: "client"
 consul_retry_servers:
-  - "10.32.8.15"
-  - "10.32.8.16"
-  - "10.32.8.17"
+  - "10.30.51.23"
+  - "10.30.51.24"
+  - "10.30.51.25"
 consul_service_mgr: "systemd"
 
 # Docker settings.
