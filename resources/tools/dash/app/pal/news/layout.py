@@ -33,7 +33,7 @@ from ..utils.utils import classify_anomalies, show_tooltip, gen_new_url, \
     set_job_params
 from ..utils.url_processing import url_decode
 from ..data.data import Data
-from .tables import table_news
+from .tables import table_news, table_summary
 
 
 class Layout:
@@ -77,7 +77,7 @@ class Layout:
         df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
 
         # Prepare information for the control panel:
-        jobs = sorted(list(df_tst_info["job"].unique()))
+        self._jobs = sorted(list(df_tst_info["job"].unique()))
         d_job_info = {
             "job": list(),
             "dut": list(),
@@ -85,7 +85,7 @@ class Layout:
             "cadence": list(),
             "tbed": list()
         }
-        for job in jobs:
+        for job in self._jobs:
             lst_job = job.split("-")
             d_job_info["job"].append(job)
             d_job_info["dut"].append(lst_job[1])
@@ -118,7 +118,9 @@ class Layout:
             "regressions": list(),
             "progressions": list()
         }
-        for job in jobs:
+        logging.debug("Processing jobs ...")
+        for job in self._jobs:
+            logging.debug(f"+ {job}")
             # Create lists of failed tests:
             df_job = df_tst_info.loc[(df_tst_info["job"] == job)]
             last_build = max(df_job["build"].unique())
@@ -254,7 +256,8 @@ class Layout:
                 f"{self._tooltip_file}\n{err}"
             )
 
-        self._default_tab_failed = table_news(self.data, self._default["job"])
+        self._default_tab_failed = \
+            table_news(self.data, self._default["job"], C.NEWS_TIME_PERIOD)
 
         # Callbacks:
         if self._app is not None and hasattr(self, 'callbacks'):
@@ -488,6 +491,25 @@ class Layout:
                             ]
                         ),
                         dbc.Row(
+                            class_name="gy-1 p-0",
+                            children=[
+                                dbc.ButtonGroup(
+                                    [
+                                        dbc.Button(
+                                            id="btn-summary",
+                                            children=(
+                                                f"Show Summary from the last "
+                                                f"{C.NEWS_SUMMARY_PERIOD} Days"
+                                            ),
+                                            class_name="me-1",
+                                            color="info"
+                                        )
+                                    ],
+                                    size="md",
+                                )
+                            ]
+                        ),
+                        dbc.Row(
                             class_name="gy-1",
                             children=[
                                 dbc.Alert(
@@ -598,10 +620,11 @@ class Layout:
             Input("ri-ttypes", "value"),
             Input("ri-cadences", "value"),
             Input("dd-tbeds", "value"),
-            Input("url", "href")
+            Input("url", "href"),
+            Input("btn-summary", "n_clicks")
         )
         def _update_application(cp_data: dict, dut: str, ttype: str,
-                cadence:str, tbed: str, href: str) -> tuple:
+                cadence:str, tbed: str, href: str, btn_all: int) -> tuple:
             """Update the application when the event is detected.
 
             :param cp_data: Current status of the control panel stored in
@@ -629,6 +652,8 @@ class Layout:
                 url_params = parsed_url["params"]
             else:
                 url_params = None
+
+            show_summary = False
 
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
             if trigger_id == "ri-duts":
@@ -682,25 +707,37 @@ class Layout:
                 # TODO: Add verification
                 if url_params:
                     new_job = url_params.get("job", list())[0]
-                    if new_job:
+                    if new_job and new_job != "all":
                         job_params = set_job_params(self.job_info, new_job)
                         ctrl_panel = self.ControlPanel(None, job_params)
+                    if new_job and new_job == "all":
+                        show_summary = True
                 else:
                     ctrl_panel = self.ControlPanel(cp_data, self.default)
+            elif trigger_id == "btn-summary":
+                show_summary = True
 
-            job = get_job(
-                self.job_info,
-                ctrl_panel.get("ri-duts-value"),
-                ctrl_panel.get("ri-ttypes-value"),
-                ctrl_panel.get("ri-cadences-value"),
-                ctrl_panel.get("dd-tbeds-value")
-            )
-            ctrl_panel.set({"al-job-children": job})
-            tab_failed = table_news(self.data, job)
+            if show_summary:
+                ctrl_panel.set({
+                    "al-job-children": \
+                        f"Summary from the last {C.NEWS_SUMMARY_PERIOD} days"
+                })
+                job = "all"
+                tables = table_summary(self.data, self._jobs)
+            else:
+                job = get_job(
+                    self.job_info,
+                    ctrl_panel.get("ri-duts-value"),
+                    ctrl_panel.get("ri-ttypes-value"),
+                    ctrl_panel.get("ri-cadences-value"),
+                    ctrl_panel.get("dd-tbeds-value")
+                )
+                ctrl_panel.set({"al-job-children": job})
+                tables = table_news(self.data, job, C.NEWS_TIME_PERIOD)
 
             ret_val = [
                 ctrl_panel.panel,
-                tab_failed,
+                tables,
                 gen_new_url(parsed_url, {"job": job})
             ]
             ret_val.extend(ctrl_panel.values())
