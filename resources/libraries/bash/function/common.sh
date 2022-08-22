@@ -883,7 +883,7 @@ function select_tags () {
             default_nic="nic_intel-x553"
             ;;
         *"3n-snr"*)
-            default_nic="nic_intel-e810xxv"
+            default_nic="nic_intel-e822cq"
             ;;
         *"3n-tsh"*)
             default_nic="nic_intel-x520-da2"
@@ -1152,6 +1152,10 @@ function select_topology () {
             ;;
         "3n_dnv")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_dnv*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
+            ;;
+        "3n_snr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snrh*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "3n_tsh")
