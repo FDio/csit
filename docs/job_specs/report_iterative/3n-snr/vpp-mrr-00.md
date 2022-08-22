@@ -1,111 +1,111 @@
 # 3n-snr
 ## ./container_memif
 ## ./crypto
-### intel-e810xxv
+### intel-e822cq
 #### dpdk-vfio-pci
 ##### ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha
 ##### ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-1c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+1c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+1c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec4tnlsw-ip4base-int-aes256gcm
 ##### ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-1c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+1c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha
 ##### ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-1c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-1c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+1c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+1c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1000tnlsw-ip4base-int-aes256gcm
 ##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-2c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-3c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-4c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-2c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-3c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
-4c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+3c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+2c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+3c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
+4c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha
 ##### ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND 1518b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-2c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-3c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
-4c AND imix AND mrr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+3c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND 1518b AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+2c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+3c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
+4c AND imix AND mrr AND e822cq AND drv_vfio_pci AND ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm
 ## ./ip4
-### intel-e810xxv
+### intel-e822cq
 #### dpdk-vfio-pci
 ##### ethip4-ip4base
-1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4-ip4base
-2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4-ip4base
-4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4-ip4base
+1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4-ip4base
+2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4-ip4base
+4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4-ip4base
 ##### ethip4-ip4scale20k
-1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4-ip4scale20k
-2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4-ip4scale20k
-4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4-ip4scale20k
+1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4-ip4scale20k
+2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4-ip4scale20k
+4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4-ip4scale20k
 ##### ethip4-ip4scale20k-rnd
-1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
-2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
-4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
+1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
+2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
+4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 ## ./ip4_tunnels
-### intel-e810xxv
+### intel-e822cq
 #### dpdk-vfio-pci
 ##### ethip4vxlan-l2bdbasemaclrn
-1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn
-2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn
-4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn
+1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn
+2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn
+4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4vxlan-l2bdbasemaclrn
 ##### ethip4vxlan-l2xcbase
-1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4vxlan-l2xcbase
-2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4vxlan-l2xcbase
-4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND ethip4vxlan-l2xcbase
+1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4vxlan-l2xcbase
+2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4vxlan-l2xcbase
+4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND ethip4vxlan-l2xcbase
 ## ./ip6
-### intel-e810xxv
+### intel-e822cq
 #### dpdk-vfio-pci
 ##### ethip6-ip6base
-1c AND 78b AND mrr AND e810xxv AND drv_vfio_pci AND ethip6-ip6base
-2c AND 78b AND mrr AND e810xxv AND drv_vfio_pci AND ethip6-ip6base
-4c AND 78b AND mrr AND e810xxv AND drv_vfio_pci AND ethip6-ip6base
+1c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6base
+2c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6base
+4c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6base
 ##### ethip6-ip6scale20k
-1c AND 78b AND mrr AND e810xxv AND drv_vfio_pci AND ethip6-ip6scale20k
-2c AND 78b AND mrr AND e810xxv AND drv_vfio_pci AND ethip6-ip6scale20k
-4c AND 78b AND mrr AND e810xxv AND drv_vfio_pci AND ethip6-ip6scale20k
+1c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6scale20k
+2c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6scale20k
+4c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6scale20k
 ##### ethip6-ip6scale20k-rnd
-1c AND 78b AND mrr AND e810xxv AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
-2c AND 78b AND mrr AND e810xxv AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
-4c AND 78b AND mrr AND e810xxv AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
+1c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
+2c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
+4c AND 78b AND mrr AND e822cq AND drv_vfio_pci AND ethip6-ip6scale20k-rnd
 ## ./ip6_tunnels
 ## ./l2
-### intel-e810xxv
+### intel-e822cq
 #### dpdk-vfio-pci
 ##### eth-l2bdbasemaclrn
-1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2bdbasemaclrn
-2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2bdbasemaclrn
-4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2bdbasemaclrn
+1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2bdbasemaclrn
+2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2bdbasemaclrn
+4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2bdbasemaclrn
 ##### eth-l2bdscale10kmaclrn
-1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2bdscale10kmaclrn
-2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2bdscale10kmaclrn
-4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2bdscale10kmaclrn
+1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2bdscale10kmaclrn
+2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2bdscale10kmaclrn
+4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2bdscale10kmaclrn
 ##### eth-l2xcbase
-1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2xcbase
-2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2xcbase
-4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2xcbase
+1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2xcbase
+2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2xcbase
+4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2xcbase
 ##### eth-l2patch
-1c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2patch
-2c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2patch
-4c AND 64b AND mrr AND e810xxv AND drv_vfio_pci AND eth-l2patch
+1c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2patch
+2c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2patch
+4c AND 64b AND mrr AND e822cq AND drv_vfio_pci AND eth-l2patch
 ## ./lb
 ## ./nfv_density/dcr_memif/chain
 ## ./nfv_density/dcr_memif/chain_ipsec
