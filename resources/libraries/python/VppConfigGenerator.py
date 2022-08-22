@@ -438,6 +438,24 @@ class VppConfigGenerator:
         path = [u"ipsec", u"ipv4-outbound-spd-flow-cache"]
         self.add_config_item(self._nodeconfig, "on", path)
 
+    def add_ipsec_spd_fast_path_ipv4_outbound(self, value):
+        """Add IPsec spd fast path for IP4 outbound.
+
+        :param value: "on" to enable spd fast path.
+        :type value: str
+        """
+        path = [u"ipsec", u"ipv4-outbound-spd-fast-path"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_ipsec_spd_fast_path_num_buckets(self, value):
+        """Add num buckets for IPsec spd fast path.
+
+        :param value: Number of buckets.
+        :type value: int
+        """
+        path = [u"ipsec", u"spd-fast-path-num-buckets"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_statseg_size(self, value):
         """Add Stats Heap Size configuration.
 
