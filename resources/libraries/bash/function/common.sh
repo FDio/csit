@@ -1155,7 +1155,7 @@ function select_topology () {
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "3n_snr")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snrh*.yaml )
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "3n_tsh")
