@@ -13,7 +13,7 @@ nodes:
     host: "10.30.51.89"
     arch: x86_64
     port: 22
-    username: root
+    username: testuser
     password: Csit1234
     interfaces:
       port1:
