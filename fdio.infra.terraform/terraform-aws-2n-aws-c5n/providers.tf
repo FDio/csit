@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 provider "vault" {
-  address         = "http://vault.service.consul:8200"
+  address         = "http://10.30.51.24:8200"
   skip_tls_verify = true
   token           = "s.4z5PsufFwV3sHbCzK9Y2Cojd"
 }
