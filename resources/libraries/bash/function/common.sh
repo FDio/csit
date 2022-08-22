@@ -455,14 +455,6 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="aws"
             ;;
-        *"2n-skx"*)
-            NODENESS="2n"
-            FLAVOR="skx"
-            ;;
-        *"3n-skx"*)
-            NODENESS="3n"
-            FLAVOR="skx"
-            ;;
         *"2n-zn2"*)
             NODENESS="2n"
             FLAVOR="zn2"
@@ -891,7 +883,7 @@ function select_tags () {
         *"3n-icx"* | *"2n-icx"*)
             default_nic="nic_intel-xxv710"
             ;;
-        *"3n-skx"* | *"2n-skx"* | *"2n-clx"* | *"2n-zn2"*)
+        *"2n-clx"* | *"2n-zn2"*)
             default_nic="nic_intel-xxv710"
             ;;
         *"2n-tx2"* | *"3n-alt"* | *"mrr-daily-master")
@@ -1000,14 +992,6 @@ function select_tags () {
             ;;
         *"1n_tx2"*)
             test_tag_array+=("!flow")
-            ;;
-        *"2n-skx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-skx"*)
-            test_tag_array+=("!ipsechw")
-            # Not enough nic_intel-xxv710 to support double link tests.
-            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             ;;
         *"2n-clx"*)
             test_tag_array+=("!ipsechw")

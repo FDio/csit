@@ -6,14 +6,12 @@
    1. [1-Node-Skylake Xeon Intel (1n-skx)](#1-node-skylake-xeon-intel-1n-skx)
    1. [1-Node-ThunderX2 Arm Marvell (1n-tx2)](#1-node-thunderx2-arm-marvell-1n-tx2)
    1. [1-Node-Cascadelake Xeon Intel (1n-clx)](#1-node-cascadelake-xeon-intel-1n-clx)
-   1. [2-Node-Skylake Xeon Intel (2n-skx)](#2-node-skylake-xeon-intel-2n-skx)
    1. [2-Node-Denverton Atom Intel (2n-dnv)](#2-node-denverton-atom-intel-2n-dnv)
    1. [2-Node-IxiaPS1L47 Ixia PSOne L47 (2n-ps1)](#2-node-ixiaps1l47-ixia-psone-l47-2n-ps1)
    1. [2-Node-Cascadelake Xeon Intel (2n-clx)](#2-node-cascadelake-xeon-intel-2n-clx)
    1. [2-Node-Zen2 EPYC AMD (2n-zn2)](#2-node-zen2-epyc-amd-2n-zn)
    1. [2-Node-ThunderX2 Arm Marvell (2x-tx2)](#2-node-thunderx2-arm-marvell-2n-tx2)
    1. [2-Node-Icelake Xeon Intel (2n-icx)](#2-node-icelake-xeon-intel-2n-icx)
-   1. [3-Node-Skylake Xeon Intel (3n-skx)](#3-node-skylake-xeon-intel-3n-skx)
    1. [3-Node-Rangeley Atom Testbeds](#3-node-rangeley-atom-testbeds)
    1. [3-Node-TaiShan Arm Huawei (3n-tsh)](#3-node-taishan-arm-huawei-3n-tsh)
    1. [3-Node-Altra Arm Ampere (3n-alt)](#3-node-altra-arm-armpere-3n-alt)
@@ -32,14 +30,12 @@
       1. [1-Node-Skylake Servers (1n-skx) PROD](#1-node-skylake-servers-1n-skx-prod)
       1. [1-Node-ThunderX2 Servers (1n-tx2) PROD](#1-node-thunderx2-servers-1n-tx2-prod)
       1. [1-Node-Cascadelake Servers (1n-clx) PROD](#1-node-cascadelake-servers-1n-clx-prod)
-      1. [2-Node-Skylake Servers (2n-skx) PROD](#2-node-skylake-servers-2n-skx-prod)
       1. [2-Node-Denverton Servers (2n-dnv) PROD](#2-node-denverton-servers-2n-dnv-prod)
       1. [2-Node-IxiaPS1L47 Servers (2n-ps1) VERIFY](#2-node-ixiaps1l47-servers-2n-ps1-verify)
       1. [2-Node-Cascadelake Servers (2n-clx) PROD](#2-node-cascadelake-servers-2n-clx-prod)
       1. [2-Node-Zen2 Servers (2n-zn2) PROD](#2-node-zen2-servers-2n-zn2-prod])
       1. [2-Node-ThunderX2 Servers (2n-tx2) PROD](#2-node-thunderx2-servers-2n-tx2-prod)
       1. [2-Node-Icelake Servers (2n-icx) PROD](#2-node-icelake-servers-2n-icx-prod)
-      1. [3-Node-Skylake Servers (3n-skx) PROD](#3-node-skylake-servers-3n-skx-prod)
       1. [3-Node-Rangeley Servers (3n-rng) VERIFY](#3-node-rangeley-servers-3n-rng-verify)
       1. [3-Node-Taishan Servers (3n-tsh) PROD](#3-node-taishan-servers-3n-tsh-prod)
       1. [3-Node-Altra Servers (3n-alt) PROD](#3-node-altra-servers-3n-alt-prod)
@@ -49,14 +45,12 @@
       1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
       1. [1-Node-ThunderX2 Wiring (1n-tx2) PROD](#1-node-thunderx2-wiring-1n-tx2-prod)
       1. [1-Node-Cascadelake Wiring (1n-clx) PROD](#1-node-cascadelake-wiring-1n-clx-prod)
-      1. [2-Node-Skylake Wiring (2n-skx) PROD](#2-node-skylake-wiring-2n-skx-prod)
       1. [2-Node-Denverton Wiring (2n-dnv) PROD](#2-node-denverton-wiring-2n-dnv-prod)
       1. [2-Node-IxiaPS1L47 Wiring (2n-ps1) VERIFY](#2-node-ixiaps1l47-wiring-2n-ps1-verify)
       1. [2-Node-Cascadelake Wiring (2n-clx) PROD](#2-node-cascadelake-wiring-2n-clx-prod)
       1. [2-Node-Zen2 Wiring (2n-zn2) PROD](#2-node-zen2-wiring-2n-zn2-prod])
       1. [2-Node-ThunderX2 Wiring (2n-tx2) PROD](#2-node-thunderx2-wiring-2n-tx2-prod)
       1. [2-Node-Icelake Servers (2n-icx) PROD](#2-node-icelake-servers-2n-icx-prod)
-      1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
       1. [3-Node-Rangeley Wiring (3n-rng) VERIFY](#3-node-rangeley-wiring-3n-rng-todo)
       1. [3-Node-Taishan Wiring (3n-tsh) PROD](#3-node-taishan-wiring-3n-tsh-prod)
       1. [3-Node-Altra Wiring (3n-alt) PROD](#3-node-altra-wiring-3n-alt-prod)
@@ -122,13 +116,6 @@ NIC ports connected back-to-back ([Server Types](#server-types)).
 
 Used for FD.io VPP_Device functional driver tests.
 
-### 2-Node-Skylake Xeon Intel (2n-skx)
-
-Each 2-Node-Skylake testbed includes one SUT (Server-Type-B1) and one TG
-(Server-Type-B2) connected in a 2-node circular topology
-([Server Types](#server-types)).
-Used for FD.io performance tests.
-
 ### 2-Node-Denverton Atom Intel (2n-dnv)
 
 Each 2-Node-Skylake testbed includes one SUT (Server-Type-B10) and one
@@ -176,12 +163,6 @@ Used for FD.io performance tests.
 Each 3-Node-Haswell testbed includes two SUTs (Server-Type-A1) and one
 TG (Server-Type-A2) connected in a 3-node circular topology
 ([Server Types](#server-types)).
-Used for FD.io performance tests.
-
-### 3-Node-Skylake Xeon Intel (3n-skx)
-
-Each 3-Node-Skylake testbed includes two SUTs (Server-Type-B1) and one
-TG (Server-Type-B2) connected in a 3-node circular topology.
 Used for FD.io performance tests.
 
 ### 3-Node-Rangeley Atom Testbeds
@@ -1039,123 +1020,6 @@ connectivity and wiring across defined CSIT testbeds:
         - s32-t14-sut1-c4/p4 - 10GE-port4 x710-4p10GE.
 ```
 
-#### 2-Node-Skylake Servers (2n-skx) PROD
-
-```
-- SUT [Server-Type-B1]:
-    - testbedname: testbed21.
-    - hostname: s3-t21-sut1.
-    - IPMI IP: 10.30.50.41
-    - Host IP: 10.30.51.44
-    - portnames:
-        - s3-t21-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s3-t21-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s3-t21-sut1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s3-t21-sut1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s3-t21-sut1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s3-t21-sut1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-- TG [Server-Type-B2]:
-    - testbedname: testbed21.
-    - hostname: s4-t21-tg1.
-    - IPMI IP: 10.30.50.42
-    - Host IP: 10.30.51.45
-    - portnames:
-        - s4-t21-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s4-t21-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s4-t21-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s4-t21-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s4-t21-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s4-t21-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s3-t21-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
-        - s3-t21-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
-        - s3-t21-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
-        - s3-t21-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
-- SUT [Server-Type-B1]:
-    - testbedname: testbed22.
-    - hostname: s5-t22-sut1.
-    - IPMI IP: 10.30.50.49
-    - Host IP: 10.30.51.52
-    - portnames:
-        - s5-t22-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s5-t22-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s5-t22-sut1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s5-t22-sut1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s5-t22-sut1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s5-t22-sut1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-- TG [Server-Type-B2]:
-    - testbedname: testbed22.
-    - hostname: s6-t22-tg1.
-    - IPMI IP: 10.30.50.50
-    - Host IP: 10.30.51.53
-    - portnames:
-        - s6-t22-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s6-t22-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s6-t22-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s6-t22-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s6-t22-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s6-t22-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s6-t22-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
-        - s6-t22-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
-        - s6-t22-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
-        - s6-t22-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
-- SUT [Server-Type-B1]:
-    - testbedname: testbed23.
-    - hostname: s7-t23-sut1.
-    - IPMI IP: 10.30.50.51
-    - Host IP: 10.30.51.54
-    - portnames:
-        - s7-t23-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s7-t23-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s7-t23-sut1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s7-t23-sut1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s7-t23-sut1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s7-t23-sut1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-- TG [Server-Type-B2]:
-    - testbedname: testbed23.
-    - hostname: s8-t23-tg1.
-    - IPMI IP: 10.30.50.52
-    - Host IP: 10.30.51.55
-    - portnames:
-        - s8-t23-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s8-t23-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s8-t23-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s8-t23-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s8-t23-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s8-t23-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s8-t23-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
-        - s8-t23-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
-        - s8-t23-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
-        - s8-t23-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
-- SUT [Server-Type-B1]:
-    - testbedname: testbed24.
-    - hostname: s9-t24-sut1.
-    - IPMI IP: 10.30.50.53
-    - Host IP: 10.30.51.56
-    - portnames:
-        - s9-t24-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s9-t24-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s9-t24-sut1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s9-t24-sut1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s9-t24-sut1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s9-t24-sut1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-- TG [Server-Type-B2]:
-    - testbedname: testbed24.
-    - hostname: s10-t24-tg1.
-    - IPMI IP: 10.30.50.54
-    - Host IP: 10.30.51.57
-    - portnames:
-        - s10-t24-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s10-t24-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s10-t24-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s10-t24-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s10-t24-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s10-t24-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s10-t24-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
-        - s10-t24-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
-        - s10-t24-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
-        - s10-t24-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
-```
-
 #### 2-Node-Denverton Servers (2n-dnv) PROD
 
 Note: ServerB28 (TG) is shared between testbed26 & testbed35
@@ -1512,91 +1376,6 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s88-t215-tg1-c6/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 ```
 
-#### 3-Node-Skylake Servers (3n-skx) PROD
-
-```
-- ServerB11 [Server-Type-B1]:
-    - testbedname: testbed31.
-    - hostname: s11-t31-sut1.
-    - IPMI IP: 10.30.50.43
-    - Host IP: 10.30.51.46
-    - portnames:
-        - s11-t31-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s11-t31-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s11-t31-sut1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s11-t31-sut1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s11-t31-sut1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s11-t31-sut1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-- ServerB12 [Server-Type-B1]:
-    - testbedname: testbed31.
-    - hostname: s12-t31-sut2.
-    - IPMI IP: 10.30.50.44
-    - Host IP: 10.30.51.47
-    - portnames:
-        - s12-t31-sut2-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s12-t31-sut2-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s12-t31-sut2-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s12-t31-sut2-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s12-t31-sut2-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s12-t31-sut2-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-- ServerB13 [Server-Type-B2]:
-    - testbedname: testbed31.
-    - hostname: s13-t31-tg1.
-    - IPMI IP: 10.30.50.45
-    - Host IP: 10.30.51.48
-    - portnames:
-        - s13-t31-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s13-t31-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s13-t31-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s13-t31-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s13-t31-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s13-t31-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s13-t31-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
-        - s13-t31-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
-        - s13-t31-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
-        - s13-t31-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
-- ServerB14 [Server-Type-B1]:
-    - testbedname: testbed32.
-    - hostname: s14-t32-sut1.
-    - IPMI IP: 10.30.50.55
-    - Host IP: 10.30.51.58
-    - portnames:
-        - s14-t32-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s14-t32-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s14-t32-sut1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s14-t32-sut1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s14-t32-sut1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s14-t32-sut1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-- ServerB15 [Server-Type-B1]:
-    - testbedname: testbed32.
-    - hostname: s15-t32-sut2.
-    - IPMI IP: 10.30.50.56
-    - Host IP: 10.30.51.59
-    - portnames:
-        - s15-t32-sut2-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s15-t32-sut2-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s15-t32-sut2-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s15-t32-sut2-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s15-t32-sut2-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s15-t32-sut2-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-- ServerB16 [Server-Type-B2]:
-    - testbedname: testbed32.
-    - hostname: s16-t32-tg1.
-    - IPMI IP: 10.30.50.57
-    - Host IP: 10.30.51.60
-    - portnames:
-        - s16-t32-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
-        - s16-t32-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
-        - s16-t32-tg1-c2/p3 - 10GE-port3 x710-4p10GE.
-        - s16-t32-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
-        - s16-t32-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
-        - s16-t32-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
-        - s16-t32-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
-        - s16-t32-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
-        - s16-t32-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
-        - s16-t32-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
-```
-
 #### 3-Node-Rangeley Servers (3n-rng) VERIFY
 
 Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
@@ -1919,63 +1698,6 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s56-t14-sut1-c8/p2 - s56-t14-sut1-c26/p2.
 ```
 
-#### 2-Node-Skylake Wiring (2n-skx) PROD
-
-```
-- testbed21:
-    - ring1 10GE-ports x710-4p10GE on SUT:
-        - s4-t21-tg1-c2/p1 to s3-t21-sut1-c2/p1.
-        - s3-t21-sut1-c2/p2 to s4-t21-tg1-c2/p2.
-    - ring2 10GE-ports x710-4p10GE on SUT:
-        - s4-t21-tg1-c2/p3 to s3-t21-sut1-c2/p3.
-        - s3-t21-sut1-c2/p4 to s4-t21-tg1-c2/p4.
-    - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
-        - s4-t21-tg1-c4/p1 to s3-t21-sut1-c4/p1.
-        - s3-t21-sut1-c4/p2 to s4-t21-tg1-c4/p2.
-    - ring4 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
-        - s4-t21-tg1-c10/p1 to s4-t21-tg1-c10/p2.
-        - s4-t21-tg1-c10/p3 to s4-t21-tg1-c10/p4.
-- testbed22:
-    - ring1 10GE-ports x710-4p10GE on SUT:
-        - s6-t22-tg1-c2/p1 to s5-t22-sut1-c2/p1.
-        - s5-t22-sut1-c2/p2 to s6-t22-tg1-c2/p2.
-    - ring2 10GE-ports x710-4p10GE on SUT:
-        - s6-t22-tg1-c2/p3 to s5-t22-sut1-c2/p3.
-        - s5-t22-sut1-c2/p4 to s6-t22-tg1-c2/p4.
-    - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
-        - s6-t22-tg1-c4/p1 to s5-t22-sut1-c4/p1.
-        - s5-t22-sut1-c4/p2 to s6-t22-tg1-c4/p2.
-    - ring4 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
-        - s6-t22-tg1-c10/p1 to s6-t22-tg1-c10/p2.
-        - s6-t22-tg1-c10/p3 to s6-t22-tg1-c10/p4.
-- testbed23:
-    - ring1 10GE-ports x710-4p10GE on SUT:
-        - s8-t23-tg1-c2/p1 to s7-t23-sut1-c2/p1.
-        - s7-t23-sut1-c2/p2 to s8-t23-tg1-c2/p2.
-    - ring2 10GE-ports x710-4p10GE on SUT:
-        - s8-t23-tg1-c2/p3 to s7-t23-sut1-c2/p3.
-        - s7-t23-sut1-c2/p4 to s8-t23-tg1-c2/p4.
-    - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
-        - s8-t23-tg1-c4/p1 to s7-t23-sut1-c4/p1.
-        - s7-t23-sut1-c4/p2 to s8-t23-tg1-c4/p2.
-    - ring4 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
-        - s8-t23-tg1-c10/p1 to s8-t23-tg1-c10/p2.
-        - s8-t23-tg1-c10/p3 to s8-t23-tg1-c10/p4.
-- testbed24:
-    - ring1 10GE-ports x710-4p10GE on SUT:
-        - s10-t24-tg1-c2/p1 to s9-t24-sut1-c2/p1.
-        - s9-t24-sut1-c2/p2 to s10-t24-tg1-c2/p2.
-    - ring2 10GE-ports x710-4p10GE on SUT:
-        - s10-t24-tg1-c2/p3 to s9-t24-sut1-c2/p3.
-        - s9-t24-sut1-c2/p4 to s10-t24-tg1-c2/p4.
-    - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
-        - s10-t24-tg1-c4/p1 to s9-t24-sut1-c4/p1.
-        - s9-t24-sut1-c4/p2 to s10-t24-tg1-c4/p2.
-    - ring4 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
-        - s10-t24-tg1-c10/p1 to s10-t24-tg1-c10/p2.
-        - s10-t24-tg1-c10/p3 to s10-t24-tg1-c10/p4.
-```
-
 #### 2-Node-Denverton Wiring (2n-dnv) PROD
 
 ```
@@ -2151,51 +1873,6 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
     - ring4 100GE-ports e810-2CQDA2-2p100GE on SUT:
         - s88-t215-tg1-c6/p1 to s88-t215-tg1-c6/p2.
         - s88-t215-tg1-c6/p2 to s88-t215-tg1-c6/p1.
-```
-
-#### 3-Node-Skylake Wiring (3n-skx) PROD
-
-```
-- testbed31:
-    - ring1 10GE-ports x710-4p10GE on SUTs:
-        - s13-t31-tg1-c2/p1 to s11-t31-sut1-c2/p1.
-        - s11-t31-sut1-c2/p2 to s12-t31-sut2-c2/p2.
-        - s12-t31-sut2-c2/p1 to s13-t31-tg1-c2/p2.
-    - ring2 10GE-ports x710-4p10GE on SUT:
-        - s13-t31-tg1-c2/p3 to s11-t31-sut1-c2/p3.
-        - s11-t31-sut1-c2/p4 to s12-t31-sut2-c2/p4.
-        - s12-t31-sut2-c2/p3 to s13-t31-tg1-c2/p4.
-    - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
-        - s13-t31-tg1-c4/p1 to s11-t31-sut1-c4/p1.
-        - s11-t31-sut1-c4/p2 to s12-t31-sut2-c4/p2.
-        - s12-t31-sut2-c4/p1 to s13-t31-tg1-c4/p2.
-    - FUTURE ring4 100GE-ports ConnectX5-2p100GE on SUT:
-        - s13-t31-tg1-c9/p1 to s11-t31-sut1-c9/p1.
-        - s11-t31-sut1-c9/p2 to s12-t31-sut2-c9/p2.
-        - s12-t31-sut2-c9/p1 to s13-t31-tg1-c9/p2.
-    - ring5 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
-        - s13-t31-tg1-c10/p1 to s13-t31-tg1-c10/p2.
-        - s13-t31-tg1-c10/p3 to s13-t31-tg1-c10/p4.
-- testbed32:
-    - ring1 10GE-ports x710-4p10GE on SUTs:
-        - s16-t32-tg1-c2/p1 to s14-t32-sut1-c2/p1.
-        - s14-t32-sut1-c2/p2 to s15-t32-sut2-c2/p2.
-        - s15-t32-sut2-c2/p1 to s16-t32-tg1-c2/p2.
-    - ring2 10GE-ports x710-4p10GE on SUT:
-        - s16-t32-tg1-c2/p3 to s14-t32-sut1-c2/p3.
-        - s14-t32-sut1-c2/p4 to s15-t32-sut2-c2/p4.
-        - s15-t32-sut2-c2/p3 to s16-t32-tg1-c2/p4.
-    - ring3 25GE-ports xxv710-DA2-2p25GE on SUT
-        - s16-t32-tg1-c4/p1 to s14-t32-sut1-c4/p1.
-        - s14-t32-sut1-c4/p2 to s15-t32-sut2-c4/p2.
-        - s15-t32-sut2-c4/p1 to s16-t32-tg1-c4/p2.
-    - FUTURE ring4 100GE-ports ConnectX5-2p100GE on SUT:
-        - s16-t32-tg1-c9/p1 to s14-t32-sut1-c9/p1.
-        - s14-t32-sut1-c9/p2 to s15-t32-sut2-c9/p2.
-        - s15-t32-sut2-c9/p1 to s16-t32-tg1-c9/p2.
-    - ring5 10GE-ports x710-4p10GE loopbacks on TG for self-tests:
-        - s16-t32-tg1-c10/p1 to s16-t32-tg1-c10/p2.
-        - s16-t32-tg1-c10/p3 to s16-t32-tg1-c10/p4.
 ```
 
 #### 3-Node-Rangeley Wiring (3n-rng) VERIFY
