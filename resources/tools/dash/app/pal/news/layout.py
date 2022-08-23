@@ -118,12 +118,10 @@ class Layout:
             "regressions": list(),
             "progressions": list()
         }
-        logging.debug("Processing jobs ...")
         for job in self._jobs:
-            logging.debug(f"+ {job}")
             # Create lists of failed tests:
             df_job = df_tst_info.loc[(df_tst_info["job"] == job)]
-            last_build = max(df_job["build"].unique())
+            last_build = str(max(pd.to_numeric(df_job["build"].unique())))
             df_build = df_job.loc[(df_job["build"] == last_build)]
             tst_info["job"].append(job)
             tst_info["build"].append(last_build)
