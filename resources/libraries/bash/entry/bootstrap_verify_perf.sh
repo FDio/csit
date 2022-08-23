@@ -41,11 +41,11 @@ select_arch_os || die
 gather_build || die
 check_download_dir || die
 activate_virtualenv || die
-generate_tests || die
-archive_tests || die
 prepare_topology || die
 select_topology || die
 reserve_and_cleanup_testbed || die
+generate_tests || die
+archive_tests || die
 select_tags || die
 compose_pybot_arguments || die
 set_environment_variables || die
