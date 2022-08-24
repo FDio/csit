@@ -140,6 +140,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
 
     hover = list()
     customdata = list()
+    customdata_samples = list()
     for idx, (_, row) in enumerate(df.iterrows()):
         d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
         hover_itm = (
@@ -162,7 +163,11 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         ).replace("<stdev>", stdev)
         hover.append(hover_itm)
         if ttype == "pdr-lat":
-            customdata.append(_get_hdrh_latencies(row, name))
+            customdata_samples.append(_get_hdrh_latencies(row, name))
+            customdata.append({"name": name})
+        else:
+            customdata_samples.append({"name": name, "show_telemetry": True})
+            customdata.append({"name": name})
 
     hover_trend = list()
     for avg, stdev, (_, row) in zip(trend_avg, trend_stdev, df.iterrows()):
@@ -194,7 +199,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
             hoverinfo="text+name",
             showlegend=True,
             legendgroup=name,
-            customdata=customdata
+            customdata=customdata_samples
         ),
         go.Scatter(  # Trend line
             x=x_axis,
@@ -210,6 +215,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
             hoverinfo="text+name",
             showlegend=False,
             legendgroup=name,
+            customdata=customdata
         )
     ]
 
@@ -242,6 +248,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
                 showlegend=False,
                 legendgroup=name,
                 name=name,
+                customdata=customdata,
                 marker={
                     "size": 15,
                     "symbol": "circle-open",
@@ -306,8 +313,6 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
         if df is None or df.empty:
             continue
 
-        name = "-".join((itm["dut"], itm["phy"], itm["framesize"], itm["core"],
-            itm["test"], itm["testtype"], ))
         if normalize:
             phy = itm["phy"].split("-")
             topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
@@ -315,18 +320,16 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
                 if topo_arch else 1.0
         else:
             norm_factor = 1.0
-        traces = _generate_trending_traces(
-            itm["testtype"], name, df, start, end, get_color(idx), norm_factor
-        )
+        traces = _generate_trending_traces(itm["testtype"], itm["id"], df,
+            start, end, get_color(idx), norm_factor)
         if traces:
             if not fig_tput:
                 fig_tput = go.Figure()
             fig_tput.add_traces(traces)
 
         if itm["testtype"] == "pdr":
-            traces = _generate_trending_traces(
-                "pdr-lat", name, df, start, end, get_color(idx), norm_factor
-            )
+            traces = _generate_trending_traces("pdr-lat", itm["id"], df, start,
+                end, get_color(idx), norm_factor)
             if traces:
                 if not fig_lat:
                     fig_lat = go.Figure()

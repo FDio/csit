@@ -249,7 +249,7 @@ class Layout:
                     ),
                     dcc.Loading(
                         dbc.Offcanvas(
-                            class_name="w-50",
+                            class_name="w-75",
                             id="offcanvas-metadata",
                             title="Throughput And Latency",
                             placement="end",
@@ -1322,6 +1322,7 @@ class Layout:
         @app.callback(
             Output("metadata-tput-lat", "children"),
             Output("metadata-hdrh-graph", "children"),
+            Output("offcanvas-metadata", "class_name"),
             Output("offcanvas-metadata", "is_open"),
             Input({"type": "graph", "index": ALL}, "clickData"),
             prevent_initial_call=True
@@ -1336,6 +1337,9 @@ class Layout:
                 information to show the offcanvas.
             :rtype: tuple(list, list, bool)
             """
+
+            offcanvas_class_name = "w-50"
+
             try:
                 trigger_id = loads(
                     callback_context.triggered[0]["prop_id"].split(".")[0]
@@ -1349,13 +1353,44 @@ class Layout:
             metadata = no_update
             graph = list()
 
-            children = [
+            test_name = graph_data.get("customdata", dict()).get("name", "")
+            if test_name:
+                badges = [dbc.ListGroupItem([dbc.Badge("test name"),test_name])]
+            else:
+                badges = list()
+            badges.extend([
                 dbc.ListGroupItem(
                     [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
                 ) for x in graph_data.get("text", "").split("<br>")
-            ]
+            ])
             if trigger_id == "tput":
                 title = "Throughput"
+                if graph_data.get("customdata", dict()).\
+                        get("show_telemetry", False):
+                    graph = [dbc.Accordion(
+                        children=[
+                            dbc.AccordionItem(
+                                title="Runtime",
+                                children=_table_runtime(graph_data)
+                            ),
+                            dbc.AccordionItem(
+                                title="Interfaces",
+                                children=_table_interface(graph_data)
+                            ),
+                            dbc.AccordionItem(
+                                title="Instructions and clocks",
+                                children=_table_instructions(graph_data)
+                            ),
+                            dbc.AccordionItem(
+                                title="Cache",
+                                children=_table_cache(graph_data)
+                            )
+                        ],
+                        class_name="gy-2 p-0",
+                        start_collapsed=True,
+                        always_open=True
+                    )]
+                    offcanvas_class_name = "w-75"
             elif trigger_id == "lat":
                 title = "Latency"
                 hdrh_data = graph_data.get("customdata", None)
@@ -1389,13 +1424,130 @@ class Layout:
                         dbc.CardBody(
                             id="tput-lat-metadata",
                             class_name="p-0",
-                            children=[dbc.ListGroup(children, flush=True), ]
+                            children=[dbc.ListGroup(badges, flush=True), ]
                         )
                     ]
                 )
             ]
 
-            return metadata, graph, True
+            return metadata, graph, offcanvas_class_name, True
+
+
+        def _generate_table(tbl_data: dict) -> dbc.Table:
+            """
+            """
+            return dbc.Table.from_dataframe(
+                pd.DataFrame(tbl_data),
+                bordered=True,
+                striped=True,
+                hover=True,
+                size="sm",
+                color="info"
+            )
+
+
+        def _table_runtime(graph_data: dict) -> list:
+            """
+            """
+            table = {  # Dummy table
+                "Name": ["avf-0/3b/2/0-output", "avf-0/3b/2/0-tx",
+                    "avf-0/3b/a/0-output", "avf-0/3b/a/0-tx", "avf-input",
+                    "ethernet-input", "ip4-input-no-checksum", "ip4-lookup",
+                    "ip4-rewrite"],
+                "State": ["active", "active", "active", "active", "polling",
+                    "active", "active", "active", "active"],
+                "Calls": [21080, 21080, 21080, 21080, 21080, 42160, 42160,
+                    42160, 42160],
+                "Vectors": [5396480, 5396480, 5396480, 5396480, 10792960,
+                    10792960, 10792960, 10792960, 10792960],
+                "Suspends": [1, 21, 1, 21, 1, 1, 1, 1, 1],
+                "Clocks": [10.4, 27.2, 10.5, 26.7, 23.9, 25.6, 37.7, 45.3,43.2],
+                "Vectors/Call": [256.00, 256.00, 256.00, 256.00, 512.00, 256.00,
+                    256.00, 256.00, 256.00]
+            }
+
+            return [
+                "Thread 1 vpp_wk_0",
+                _generate_table(table),
+                "Thread 2 vpp_wk_1",
+                _generate_table(table),
+            ]
+
+
+        def _table_interface(graph_data: dict) -> list:
+            """
+            """
+            table = {  # Dummy table
+                "Name": ["avf-0/3b/2/0", "", "", "", "",
+                    "avf-0/3b/a/0", "", "", "", ""],
+                "Counter": ["rx packets", "rx bytes", "tx packets", "tx bytes",
+                    "ip4", "rx packets", "rx bytes", "tx packets", "tx bytes",
+                    "ip4"],
+                "Count": [10803200, 648192000, 10802688, 648161280, 10803200,
+                    10803200, 648192000, 10802688, 648161280, 10803200]
+            }
+
+            return [_generate_table(table), ]
+
+
+        def _table_instructions(graph_data: dict) -> list:
+            """
+            """
+            table = {  # Dummy table
+                "Name": ["avf-input", "ip4-input-no-checksum", "ip4-rewrite",
+                    "ip4-lookup", "ethernet-input", "avf-0/3b/2/0-tx",
+                    "avf-0/3b/2/0-output", "avf-0/3b/a/0-tx",
+                    "avf-0/3b/a/0-output"],
+                "Calls": [20770, 41539, 41540, 41539, 41540, 20770, 20770,
+                    20770, 20770],
+                "Packets": [10634240, 10633984, 10634240, 10633984, 10634240,
+                    5317120, 5317120, 5317120, 5317120],
+                "Packets/Call": [512.00, 256.00, 256.00, 256.00, 256.00, 256.00,
+                    256.00, 256.00, 256.00],
+                "Clocks/Packet": [23.69, 37.14, 42.59, 44.89, 24.31, 25.83,
+                    9.88, 26.51, 10.01],
+                "Instructions/Packet": [33.28, 64.83, 67.44, 67.08, 26.04,
+                    42.16, 14.10, 42.53, 14.10],
+                "IPC": [1.40, 1.75, 1.58, 1.49, 1.07, 1.63, 1.43, 1.60, 1.41]
+            }
+
+            return [
+                "Thread 1 vpp_wk_0",
+                _generate_table(table),
+                "Thread 2 vpp_wk_1",
+                _generate_table(table),
+            ]
+
+
+        def _table_cache(graph_data: dict) -> list:
+            """
+            """
+            table = {  # Dummy table
+                "Name": ["avf-input", "ip4-input-no-checksum", "ip4-rewrite",
+                    "ip4-lookup", "ethernet-input", "avf-0/3b/2/0-tx",
+                    "avf-0/3b/2/0-output", "avf-0/3b/a/0-tx",
+                    "avf-0/3b/a/0-output"],
+                "L1 hit/pkt": [10.17, 22.20, 28.73, 34.59, 10.23, 10.52, 6.87,
+                    10.52, 6.81],
+                "L1 miss/pkt": [0.33, 0.23, 1.14, 0.19, 0.42, 0.27, 0.17, 0.29,
+                    0.14],
+                "L2 hit/pkt": [0.32, 0.23, 1.14, 0.19, 0.36, 0.27, 0.17, 0.29,
+                    0.14],
+                "L2 miss/pkt": [0.00, 0.00, 0.00, 0.00, 0.06, 0.00, 0.00, 0.00,
+                    0.00],
+                "L3 hit/pkt": [0.00, 0.00, 0.00, 0.00, 0.06, 0.00, 0.00, 0.00,
+                    0.00],
+                "L3 miss/pkt": [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+                    0.00],
+            }
+
+            return [
+                "Thread 1 vpp_wk_0",
+                _generate_table(table),
+                "Thread 2 vpp_wk_1",
+                _generate_table(table),
+            ]
+
 
         @app.callback(
             Output("download-data", "data"),
