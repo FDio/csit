@@ -628,6 +628,15 @@ class VppConfigGenerator:
         path = [u"session", u"local-endpoints-table-memory"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_ipsec_outbound_spd_fast_path(self, value):
+        """"Add ipsec outbound fast path.
+
+        :param value: "on" to enable outbound fast path.
+        :type value: str
+        """
+        path = [u"ipsec", u"ipv4-outbound-spd-fast-path"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def write_config(self, filename=None):
         """Generate and write VPP startup configuration to file.
 
