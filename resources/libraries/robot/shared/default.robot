@@ -184,6 +184,7 @@
 | | | Run Keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
 | | | Run Keyword | ${dut}.Add IP6 Hash Buckets | 2000000
 | | | Run Keyword | ${dut}.Add IP6 Heap Size | 4G
+| | | Run Keyword | ${dut}.Add Ipsec Outbound Spd Fast Path | on
 | | | Run Keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
 | | END
 
