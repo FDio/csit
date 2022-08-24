@@ -163,6 +163,8 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
         hover.append(hover_itm)
         if ttype == "pdr-lat":
             customdata.append(_get_hdrh_latencies(row, name))
+        else:
+            customdata.append({"name": name})
 
     hover_trend = list()
     for avg, stdev, (_, row) in zip(trend_avg, trend_stdev, df.iterrows()):
@@ -306,8 +308,6 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
         if df is None or df.empty:
             continue
 
-        name = "-".join((itm["dut"], itm["phy"], itm["framesize"], itm["core"],
-            itm["test"], itm["testtype"], ))
         if normalize:
             phy = itm["phy"].split("-")
             topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
@@ -315,18 +315,16 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
                 if topo_arch else 1.0
         else:
             norm_factor = 1.0
-        traces = _generate_trending_traces(
-            itm["testtype"], name, df, start, end, get_color(idx), norm_factor
-        )
+        traces = _generate_trending_traces(itm["testtype"], itm["id"], df,
+            start, end, get_color(idx), norm_factor)
         if traces:
             if not fig_tput:
                 fig_tput = go.Figure()
             fig_tput.add_traces(traces)
 
         if itm["testtype"] == "pdr":
-            traces = _generate_trending_traces(
-                "pdr-lat", name, df, start, end, get_color(idx), norm_factor
-            )
+            traces = _generate_trending_traces("pdr-lat", itm["id"], df, start,
+                end, get_color(idx), norm_factor)
             if traces:
                 if not fig_lat:
                     fig_lat = go.Figure()
