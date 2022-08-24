@@ -55,9 +55,9 @@ set_perpatch_dut || die
 select_topology || die
 select_arch_os || die
 activate_virtualenv "${VPP_DIR}" || die
+reserve_and_cleanup_testbed || die
 generate_tests || die
 archive_tests || die
-reserve_and_cleanup_testbed || die
 select_tags || die
 compose_pybot_arguments || die
 # Support for interleaved measurements is kept for future.
