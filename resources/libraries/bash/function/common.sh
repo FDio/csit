@@ -387,6 +387,10 @@ function generate_tests () {
     # This is a separate function, because this code is called
     # both by autogen checker and entries calling run_pybot.
 
+    # Variables read:
+    # - TEST_CODE - The test selection string from environment or argument.
+    #   Usually jenkins job name, affects which suites are skipped.
+    # - WORKING_TOPOLOGY - Path to YAML with reserved perf testbed, if any.
     # Directories read:
     # - ${CSIT_DIR}/tests - Used as templates for the generated tests.
     # Directories replaced:
@@ -405,7 +409,13 @@ function generate_tests () {
         directory="$(dirname "${gen}")" || die
         filename="$(basename "${gen}")" || die
         pushd "${directory}" || die
-        ./"${filename}" || die
+        bash -c "# Just to avoid line length issues.
+            set -exuo pipefail
+            # The sub-shell does not have the env vars yet.
+            export TEST_CODE='${TEST_CODE}'
+            export WORKING_TOPOLOGY='${WORKING_TOPOLOGY-}'
+            ./'${filename}' || die
+        " || die
         popd || die
     done
 }
