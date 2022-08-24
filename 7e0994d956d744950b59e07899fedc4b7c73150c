@@ -67,6 +67,23 @@
       "message": "csit-3n-icx-perftest nic_intel-xxv710ANDipsecswANDtnl_100000ANDdrv_vfio_pciANDndrpdrAND64bAND4c",
       "revId": "7e0994d956d744950b59e07899fedc4b7c73150c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f6cb50b_bca3ff43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2022-08-24T03:23:42Z",
+      "side": 1,
+      "message": "csit-3n-skx-perftest nic_intel-xxv710ANDipsecswANDtnl_100000ANDdrv_vfio_pciANDndrpdrAND64bAND4c",
+      "revId": "7e0994d956d744950b59e07899fedc4b7c73150c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
