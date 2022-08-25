@@ -1,5 +1,5 @@
 {
-  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.1.0",
+  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.2.0",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Schema for info output of test case.",
   "allOf": [
@@ -78,6 +78,21 @@
                 },
                 {
                   "$ref": "#/$defs/reconf_result"
+                },
+                {
+                  "$ref": "#/$defs/ab_cps_result"
+                },
+                {
+                  "$ref": "#/$defs/ab_rps_result"
+                },
+                {
+                  "$ref": "#/$defs/iperf_udp_result"
+                },
+                {
+                  "$ref": "#/$defs/iperf_tcp_result"
+                },
+                {
+                  "$ref": "#/$defs/vpp_echo_result"
                 }
               ]
             }
@@ -139,7 +154,7 @@
         "version": {
           "description": "CSIT model version (semver format) the exporting code adhered to.",
           "type": "string",
-          "const": "1.1.0"
+          "const": "1.2.0"
         }
       },
       "required": [
@@ -270,6 +285,69 @@
         "unit"
       ]
     },
+    "count_bytes": {
+      "description": "Type, for counting bytes.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/integer_value_with_unit"
+        },
+        {
+          "properties": {
+            "value": {
+              "description": "A number of bytes of interest (e.g. transferred)."
+            },
+            "unit": {
+              "description": "Unit suitable for displaying counts of bytes.",
+              "enum": [
+                "bytes"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "count_connections": {
+      "description": "Type, for counting connections.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/integer_value_with_unit"
+        },
+        {
+          "properties": {
+            "value": {
+              "description": "A number of connections of interest."
+            },
+            "unit": {
+              "description": "Unit suitable for displaying connection counts.",
+              "enum": [
+                "connections"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "count_requests": {
+      "description": "Type, for counting requests.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/integer_value_with_unit"
+        },
+        {
+          "properties": {
+            "value": {
+              "description": "A number of (probably http) requests of interest."
+            },
+            "unit": {
+              "description": "Unit suitable for displaying request counts.",
+              "enum": [
+                "requests"
+              ]
+            }
+          }
+        }
+      ]
+    },
     "count_packets": {
       "description": "Type, for counting packets.",
       "allOf": [
@@ -332,7 +410,7 @@
       ]
     },
     "bandwidth": {
-      "description": "Reusable type, for various bandwidth quantites.",
+      "description": "Reusable type, for various bandwidth quantites. This can be used also for other similar quantities, e.g. goodput.",
       "allOf": [
         {
           "$ref": "#/$defs/float_value_with_unit"
@@ -340,7 +418,7 @@
         {
           "properties": {
             "value": {
-              "description": "Bandwidth value computed from the corresponding rate."
+              "description": "Bandwidth value computed from the corresponding packet rate."
             },
             "unit": {
               "$ref": "#/$defs/bandwidth_unit"
@@ -635,6 +713,456 @@
         "packet_loss",
         "packet_rate",
         "time_loss"
+      ]
+    },
+    "ab_cps_or_rps": {
+      "description": "Sub-schema for part of AB result. This is used for VSAP tests which use AB as a client and NGINX as a server.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "ab_cps",
+            "ab_rps"
+          ]
+        },
+        "completed_requests": {
+          "description": "How many HTTP requests were completed.",
+          "$ref": "#/$defs/count_requests"
+        },
+        "failed_requests": {
+          "description": "How many HTTP requests failed. Request failures do not cause overall test failure, especially for CPS test.",
+          "$ref": "#/$defs/count_requests"
+        },
+        "latency": {
+          "description": "Vaue and unit of latency as reported by AB.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/float_value_with_unit"
+            },
+            {
+              "properties": {
+                "value": {
+                  "description": "Latency value as reported by AB, probably the HTTP response delay averaged over all HTTP requests.",
+                  "$ref": "#/$defs/positive_float"
+                },
+                "unit": {
+                  "description": "Unit of measurement for AB latency.",
+                  "enum": [
+                    "ms"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "protocol": {
+          "description": "Protocol used by AB to transport requests.",
+          "enum": [
+            "HTTP",
+            "HTTPS"
+          ]
+        },
+        "rate": {
+          "description": "RPS or CPS rate, with corresponding unit, as reported by AB.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/float_value_with_unit"
+            },
+            {
+              "properties": {
+                "unit": {
+                  "description": "Allowed unit, cps or rps.",
+                  "enum": [
+                    "cps",
+                    "rps"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "total_bytes": {
+          "description": "How many bytes were transferred.",
+          "$ref": "#/$defs/count_bytes"
+        },
+        "transfer_rate": {
+          "description": "Goodput measured in bits per second.",
+          "$ref": "#/$defs/bandwidth"
+        }
+      },
+      "required": [
+        "completed_requests",
+        "failed_requests",
+        "latency",
+        "protocol",
+        "rate",
+        "total_bytes",
+        "transfer_rate"
+      ]
+    },
+    "ab_cps_result": {
+      "description": "The CPS (connections per second) variant of AB result. In these tests, connections are closed and reopened after each response.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/ab_cps_or_rps"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "ab_cps"
+            },
+            "rate": {
+              "properties": {
+                "unit": {
+                  "const": "cps"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ab_rps_result": {
+      "description": "The RPS (requests per second) variant of AB result. In these tests, each client worker reuses its connection without closing it between requests.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/ab_cps_or_rps"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "ab_rps"
+            },
+            "rate": {
+              "properties": {
+                "unit": {
+                  "const": "rps"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "iperf_tcp_or_udp": {
+      "description": "Sub-schema for part of iperf result. Client or server, stream item or sum, tcp or udp.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "duration": {
+          "description": "The relative time difference (in seconds) between program start and end.",
+          "$ref": "#/$defs/time_quantity"
+        },
+        "omitted": {
+          "description": "False in well-behaved tests.",
+          "type": "boolean"
+        },
+        "packets": {
+          "description": "The number of packets transmitted by iperf acting as UDP endpoint.",
+          "$ref": "#/$defs/count_packets"
+        },
+        "retransmits": {
+          "description": "The number of packets retransmitted by iperf acting as TCP endpoint. It is zero in well-behaved tests.",
+          "$ref": "#/$defs/count_packets"
+        },
+        "sender": {
+          "description": "Whether this endpoind was transferring (false if receiving).",
+          "type": "boolean"
+        },
+        "total_bytes": {
+          "description": "How many bytes were transferred.",
+          "$ref": "#/$defs/count_bytes"
+        },
+        "transfer_rate": {
+          "description": "The main performance result, goodput presented as bandwidth.",
+          "$ref": "#/$defs/bandwidth"
+        }
+      },
+      "required": [
+        "duration",
+        "omitted",
+        "sender",
+        "total_bytes",
+        "transfer_rate"
+      ]
+    },
+    "iperf_item_tcp": {
+      "description": "This sub-schema matches only TCP result item. Client or server, stream item or sum. The \"retransmit\" field can be missing on server side, this schema does not distinguish role to keep things simple.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/iperf_tcp_or_udp"
+        },
+        {
+          "not": {
+            "required": [
+              "packets"
+            ]
+          }
+        }
+      ]
+    },
+    "iperf_item_udp": {
+      "description": "This sub-schema matches only UDP result item. Client or server, stream item or sum.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/iperf_tcp_or_udp"
+        },
+        {
+          "required": [
+            "packets"
+          ]
+        }
+      ]
+    },
+    "iperf_udp_client_or_server": {
+      "description": "This sub-schema matches full UDP endpoint output, client or server.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "streams": {
+          "description": "Processed output of one iperf stream.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/iperf_item_udp"
+          }
+        },
+        "sum": {
+          "description": "Sum of stream outputs.",
+          "$ref": "#/$defs/iperf_item_udp"
+        }
+      },
+      "required": [
+        "streams",
+        "sum"
+      ]
+    },
+    "iperf_tcp_client_or_server": {
+      "description": "This sub-schema matches full TCP endpoint output, client or server.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "streams": {
+          "description": "Processed output of one iperf stream.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/iperf_item_tcp"
+          }
+        },
+        "sum": {
+          "description": "Sum of stream outputs.",
+          "$ref": "#/$defs/iperf_item_tcp"
+        }
+      },
+      "required": [
+        "streams",
+        "sum"
+      ]
+    },
+    "iperf_udp_result": {
+      "description": "Subschema for whole iperf UDP result, includes client and server.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "iperf_udp"
+        },
+        "client": {
+          "description": "Output from client.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "intervals": {
+              "description": "List of outputs for partial results. Most test end within the first time interval.",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/iperf_udp_client_or_server"
+              }
+            }
+          },
+          "required": [
+            "intervals"
+          ]
+        },
+        "server": {
+          "description": "Output from server.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "intervals": {
+              "description": "List of outputs for partial results. Most test end within the first time interval.",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/iperf_udp_client_or_server"
+              }
+            }
+          },
+          "required": [
+            "intervals"
+          ]
+        }
+      },
+      "required": [
+        "client"
+      ]
+    },
+    "iperf_tcp_result": {
+      "description": "Subschema for whole iperf TCP result, includes client and server.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "iperf_tcp"
+        },
+        "client": {
+          "description": "Output from client.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "intervals": {
+              "description": "List of outputs for partial results. Most test end within the first time interval.",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/iperf_tcp_client_or_server"
+              }
+            }
+          },
+          "required": [
+            "intervals"
+          ]
+        },
+        "server": {
+          "description": "Output from server.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "intervals": {
+              "description": "List of outputs for partial results. Most test end within the first time interval.",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/iperf_tcp_client_or_server"
+              }
+            }
+          },
+          "required": [
+            "intervals"
+          ]
+        }
+      },
+      "required": [
+        "client"
+      ]
+    },
+    "vpp_echo_client_or_server": {
+      "description": "Sub-schema for vpp_echo hoststack result item, for one program.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "duration": {
+          "description": "The relative time difference (in seconds) between program start and end, more specificaly between the start event and the end event.",
+          "$ref": "#/$defs/time_quantity"
+        },
+        "end_evt": {
+          "description": "The name of the event which stops the program timer. In the current udpquic tests, both server and client programs have the same value.",
+          "const": "lastbyte"
+        },
+        "end_evt_missing": {
+          "description": "Tells whether the end event happened at all (false) or not (true). Well behaved test have false value, but true value is also seen in passing tests.",
+          "type": "boolean"
+        },
+        "role": {
+          "description": "Describing whether this result item comes from server or client program.",
+          "enum": [
+            "client",
+            "server"
+          ]
+        },
+        "rx_rate": {
+          "description": "The aggregate speed of data received by this role over its session(s), expressed in bits per second. Can be zero in unidirectional tests.",
+          "$ref": "#/$defs/bandwidth"
+        },
+        "rx_data": {
+          "description": "The aggregate number of bytes received by this role over its session(s). Can be zero in unidirectional tests.",
+          "$ref": "#/$defs/count_bytes"
+        },
+        "start_evt": {
+          "description": "The name of the event which starts the program timer. In the current udpquic tests, both server and client programs have the same value.",
+          "const": "sconnect"
+        },
+        "start_evt_missing": {
+          "description": "Tells whether the start event happened at all (false) or not (true). Well behaved test have false value, but true value is also seen in passing tests.",
+          "type": "boolean"
+        },
+        "tx_rate": {
+          "description": "The aggregate speed of data transmitted by this role over its session(s), expressed in bits per second. Can be zero in unidirectional tests.",
+          "$ref": "#/$defs/bandwidth"
+        },
+        "tx_data": {
+          "description": "The aggregate number of bytes transmitted by this role over its session(s). Can be zero in unidirectional tests.",
+          "$ref": "#/$defs/count_bytes"
+        }
+      },
+      "required": [
+        "duration",
+        "end_evt",
+        "end_evt_missing",
+        "role",
+        "rx_rate",
+        "rx_data",
+        "start_evt",
+        "start_evt_missing",
+        "tx_rate",
+        "tx_data"
+      ]
+    },
+    "vpp_echo_result": {
+      "description": "Sub-schema for vpp_echo hoststack result, for all programs.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "vpp_echo"
+        },
+        "client": {
+          "description": "Result items from the client vpp_echo output.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/vpp_echo_client_or_server"
+            },
+            {
+              "properties": {
+                "role": {
+                  "const": "client"
+                }
+              }
+            }
+          ]
+        },
+        "server": {
+          "description": "Result items from the server vpp_echo output.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/vpp_echo_client_or_server"
+            },
+            {
+              "properties": {
+                "role": {
+                  "const": "server"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "client",
+        "server"
       ]
     }
   }
