@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -73,7 +73,7 @@ def main():
     for filename in glob(u"*.robot"):
         if u"__init__" in filename:
             continue
-        with open(filename, u"rt") as file_in:
+        with open(filename, u"rt", encoding="utf8") as file_in:
             text_in = file_in.read()
         dash_split = filename.split(u"-", 1)
         if len(dash_split[0]) <= 4:
@@ -82,7 +82,7 @@ def main():
         suite_id = dash_split[1].split(u".", 1)[0]
         suite_tag = suite_id.rsplit(u"-", 1)[0]
         text_out = edit(text_in, suite_tag)
-        with open(filename, u"wt") as file_out:
+        with open(filename, u"wt", encoding="utf8") as file_out:
             file_out.write(text_out)
     return 0
 
