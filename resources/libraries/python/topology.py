@@ -40,7 +40,7 @@ def load_topo_from_yaml():
         return ''
 
     with open(topo_path) as work_file:
-        return safe_load(work_file.read())[u"nodes"]
+        return safe_load(work_file)[u"nodes"]
 
 
 class NodeType:
