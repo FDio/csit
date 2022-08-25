@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -11,8 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM ubuntu:20.04
-LABEL Description="CSIT vpp-device ubuntu 20.04 SUT image"
+FROM ubuntu:22.04
+LABEL Description="CSIT vpp-device ubuntu 22.04 SUT image"
 LABEL Version="master"
 
 # Setup the environment
@@ -47,9 +47,9 @@ RUN apt-get -q update \
         libblas-dev \
         libffi-dev \
         liblapack-dev \
-        libmbedcrypto3 \
-        libmbedtls12 \
-        libmbedx509-0 \
+        libmbedcrypto7 \
+        libmbedtls14 \
+        libmbedx509-1 \
         libnuma1 \
         libnuma-dev \
         libpcap-dev \
@@ -96,62 +96,69 @@ RUN mkdir -p /tmp/dumps \
 
 # CSIT PIP pre-cache
 RUN pip3 install \
-        ecdsa==0.13.3 \
-        paramiko==2.6.0 \
+        ecdsa==0.18.0 \
+        paramiko==2.9.3 \
         pycrypto==2.6.1 \
-        pypcap==1.2.3 \
-        PyYAML==5.1.1 \
-        requests==2.22.0 \
-        robotframework==3.1.2 \
-        scapy==2.4.3 \
-        scp==0.13.2 \
-        ansible==2.10.7 \
-        dill==0.2.8.2 \
-        numpy==1.17.3 \
+        PyYAML==5.4.1 \
+        requests==2.25.1 \
+        robotframework==5.0.1 \
+        scapy==2.4.5 \
+        scp==0.14.4 \
+        ansible==5.10.0 \
+        ansible-core==2.12.7 \
+        dill==0.3.5.1 \
+        numpy==1.22.4 \
+        scipy==1.8.1 \
+        boto3==1.17.78 \
+        botocore==1.20.78 \
         hdrhistogram==0.6.1 \
+        pandas==1.4.2 \
         plotly==4.1.1 \
         PTable==0.9.2 \
-        Sphinx==2.2.1 \
-        sphinx-rtd-theme==0.4.0 \
-        sphinxcontrib-programoutput==0.15 \
-        sphinxcontrib-robotdoc==0.11.0 \
-        ply==3.11 \
-        alabaster==0.7.12 \
-        Babel==2.7.0 \
-        bcrypt==3.1.7 \
-        certifi==2019.9.11 \
-        cffi==1.13.2 \
-        chardet==3.0.4 \
-        cryptography==2.8 \
-        docutils==0.15.2 \
-        future==0.18.2 \
-        idna==2.8 \
-        imagesize==1.1.0 \
-        Jinja2==2.10.3 \
-        MarkupSafe==1.1.1 \
-        packaging==19.2 \
-        pbr==5.4.3 \
-        pycparser==2.19 \
-        Pygments==2.4.2 \
-        PyNaCl==1.3.0 \
-        pyparsing==2.4.4 \
-        python-dateutil==2.8.2 \
-        pytz==2019.3 \
-        retrying==1.3.3 \
-        six==1.13.0 \
-        snowballstemmer==2.0.0 \
-        sphinxcontrib-applehelp==1.0.1 \
-        sphinxcontrib-devhelp==1.0.1 \
-        sphinxcontrib-htmlhelp==1.0.2 \
+        Sphinx==3.5.4 \
+        sphinx-rtd-theme==0.5.2 \
+        sphinxcontrib-applehelp==1.0.2 \
+        sphinxcontrib-devhelp==1.0.2 \
+        sphinxcontrib-htmlhelp==2.0.0 \
         sphinxcontrib-jsmath==1.0.1 \
-        sphinxcontrib-qthelp==1.0.2 \
-        sphinxcontrib-serializinghtml==1.1.3 \
-        urllib3==1.25.6
-
-# ARM workaround
-RUN pip3 install \
-        pandas==0.25.3 \
-        scipy==1.5.4
+        sphinxcontrib-programoutput==0.17 \
+        sphinxcontrib-qthelp==1.0.3 \
+        sphinxcontrib-robotdoc==0.11.0 \
+        sphinxcontrib-serializinghtml==1.1.5 \
+        ply==3.11 \
+        jsonschema==4.1.0 \
+        rfc3339-validator==0.1.4 \
+        rfc3987==1.3.8 \
+        alabaster==0.7.12 \
+        attrs==21.4.0 \
+        Babel==2.10.3 \
+        bcrypt==3.2.2 \
+        certifi==2022.6.15 \
+        cffi==1.15.1 \
+        chardet==4.0.0 \
+        cryptography==36.0.2 \
+        docutils==0.16 \
+        future==0.18.2 \
+        idna==2.10 \
+        imagesize==1.4.1 \
+        Jinja2==3.0.3 \
+        jmespath==0.10.0 \
+        MarkupSafe==2.1.1 \
+        packaging==21.3 \
+        pbr==5.9.0 \
+        pycparser==2.21 \
+        Pygments==2.12.0 \
+        PyNaCl==1.5.0 \
+        pyparsing==3.0.9 \
+        pyrsistent==0.18.1 \
+        python-dateutil==2.8.2 \
+        pytz==2022.1 \
+        resolvelib==0.5.4 \
+        retrying==1.3.3 \
+        s3transfer==0.4.2 \
+        six==1.16.0 \
+        snowballstemmer==2.2.0 \
+        urllib3==1.26.10
 
 # SSH settings
 RUN echo 'root:Csit1234' | chpasswd \
