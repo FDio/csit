@@ -806,6 +806,11 @@ function select_arch_os () {
                     VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_FOCAL"
                     PKG_SUFFIX="deb"
                     ;;
+                *"LTS (Jammy Jellyfish)"*)
+                    IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU_JAMMY"
+                    VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_JAMMY"
+                    PKG_SUFFIX="deb"
+                    ;;
                 *)
                     die "Unsupported Ubuntu version!"
                     ;;
