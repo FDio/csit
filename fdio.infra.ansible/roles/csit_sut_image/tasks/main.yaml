@@ -23,7 +23,7 @@
     - csit-sut-image
 
 - name: Build CSIT SUT Docker Image
-  ansible.builtin.shell: "docker build -t csit_sut-ubuntu2004:local ."
+  ansible.builtin.shell: "docker build -t csit_sut-ubuntu2204:local ."
   args:
     chdir: "/opt/csit-sut"
   tags:
