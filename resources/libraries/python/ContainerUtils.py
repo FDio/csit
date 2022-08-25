@@ -863,7 +863,7 @@ class LXC(ContainerEngine):
             else u"amd64"
 
         image = self.container.image if self.container.image \
-            else f"-d ubuntu -r focal -a {target_arch}"
+            else f"-d ubuntu -r jammy -a {target_arch}"
 
         cmd = f"lxc-create -t download --name {self.container.name} " \
             f"-- {image} --no-validate"
@@ -1093,8 +1093,8 @@ class Docker(ContainerEngine):
                     f"Failed to create container {self.container.name}."
                 )
 
-        if self.container.cpuset_cpus:
-            self._configure_cgroup(u"docker")
+        #if self.container.cpuset_cpus:
+        #    self._configure_cgroup(u"docker")
 
     def build(self):
         """Build container (compile)."""
