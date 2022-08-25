@@ -69,3 +69,7 @@
   args:
     chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/scripts/ko/src"
   when: trex_extracted.changed
+
+- name: Link libc.a to liblibc.a
+  ansible.builtin.command: "ln -s -f /usr/lib/x86_64-linux-gnu/libc.a /usr/lib/x86_64-linux-gnu/liblibc.a"
+  when: trex_extracted.changed
