@@ -363,7 +363,7 @@ class Constants:
     }
 
     # Not each driver is supported by each NIC.
-    NIC_NAME_TO_DRIVER = {
+    NIC_NAME_TO_DRIVERS = {
         u"Intel-X520-DA2": [u"vfio-pci", u"af_xdp"],
         u"Intel-X553": [u"vfio-pci", u"af_xdp"],
         u"Intel-X710": [u"vfio-pci", u"avf", u"af_xdp"],
@@ -409,7 +409,7 @@ class Constants:
     }
 
     # Not each driver is supported by each NIC.
-    DPDK_NIC_NAME_TO_DRIVER = {
+    DPDK_NIC_NAME_TO_DRIVERS = {
         u"Intel-X520-DA2": [u"vfio-pci"],
         u"Intel-X553": [u"vfio-pci"],
         u"Intel-X710": [u"vfio-pci"],
