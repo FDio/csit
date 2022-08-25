@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -258,7 +258,7 @@ class QemuUtils:
             logger.debug(u"Jumbo frames temporarily disabled!")
         self._params.add_with_value(
             u"chardev", f"socket,id=char{self._nic_id},"
-            f"path={socket}{u',server' if server is True else u''}"
+            f"path={socket}{u',server=on' if server is True else u''}"
         )
         self._params.add_with_value(
             u"netdev", f"vhost-user,id=vhost{self._nic_id},"

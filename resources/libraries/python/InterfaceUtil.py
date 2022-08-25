@@ -1865,9 +1865,9 @@ class InterfaceUtil:
             InterfaceUtil.set_linux_interface_mac(
                 node, pf_dev, vf_mac_addr, vf_id=vf_id
             )
-            InterfaceUtil.set_linux_interface_state(
-                node, pf_dev, state=u"up"
-            )
+            #InterfaceUtil.set_linux_interface_state(
+            #    node, pf_dev, state=u"up"
+            #)
 
             DUTSetup.pci_vf_driver_unbind(node, pf_pci_addr, vf_id)
             DUTSetup.pci_vf_driver_bind(node, pf_pci_addr, vf_id, uio_driver)
