@@ -808,31 +808,19 @@ class ContainerEngine:
         :raises RuntimeError: If applying cgroup settings via cgset failed.
         """
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            u"cgset -r cpuset.cpu_exclusive=0 /"
-        )
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to apply cgroup settings.")
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            u"cgset -r cpuset.mem_exclusive=0 /"
-        )
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to apply cgroup settings.")
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(
             f"cgcreate -g cpuset:/{name}"
         )
         if int(ret) != 0:
             raise RuntimeError(u"Failed to copy cgroup settings from root.")
 
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            f"cgset -r cpuset.cpu_exclusive=0 /{name}"
+            f"cgset -r cpuset.cpus=0 /{name}"
         )
         if int(ret) != 0:
             raise RuntimeError(u"Failed to apply cgroup settings.")
 
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            f"cgset -r cpuset.mem_exclusive=0 /{name}"
+            f"cgset -r cpuset.mems=0 /{name}"
         )
         if int(ret) != 0:
             raise RuntimeError(u"Failed to apply cgroup settings.")
@@ -863,7 +851,7 @@ class LXC(ContainerEngine):
             else u"amd64"
 
         image = self.container.image if self.container.image \
-            else f"-d ubuntu -r focal -a {target_arch}"
+            else f"-d ubuntu -r jammy -a {target_arch}"
 
         cmd = f"lxc-create -t download --name {self.container.name} " \
             f"-- {image} --no-validate"
@@ -1093,8 +1081,8 @@ class Docker(ContainerEngine):
                     f"Failed to create container {self.container.name}."
                 )
 
-        if self.container.cpuset_cpus:
-            self._configure_cgroup(u"docker")
+        #if self.container.cpuset_cpus:
+        #    self._configure_cgroup(u"docker")
 
     def build(self):
         """Build container (compile)."""
