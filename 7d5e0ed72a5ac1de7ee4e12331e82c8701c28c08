@@ -16,6 +16,23 @@
       "message": "csit-trex-1n-aws-perftest mrrANDnic_*AND64bANDethip4-ip4scale2m-tg",
       "revId": "7d5e0ed72a5ac1de7ee4e12331e82c8701c28c08",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b4bc73_154a9067",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-08-26T13:29:26Z",
+      "side": 1,
+      "message": "Ready for review and merge. From the triggered jobs I see everything as expected (e.g. only one NIC got 2-link bonding suites).\nTRex on 2n (or 3n) testbed was not tested (only tested on 1n-aws) as skx is gone and clx is busy.",
+      "revId": "7d5e0ed72a5ac1de7ee4e12331e82c8701c28c08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
