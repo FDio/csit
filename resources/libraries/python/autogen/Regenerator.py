@@ -13,6 +13,9 @@
 
 """Module defining utilities for test directory regeneration.
 
+Most of selection logic is present in Filt.py,
+but parts are still here (e.g. detecting ipsechw suites).
+
 TODO: How can we check each suite id is unique,
       when currently the suite generation is run on each directory separately?
 """
@@ -22,11 +25,12 @@ import sys
 
 from glob import glob
 from io import open
-from os import getcwd
+from os import getcwd, remove
 
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.autogen.Testcase import Testcase
+from resources.libraries.python.autogen.Filt import Filt
 
 
 PROTOCOL_TO_MIN_FRAME_SIZE = {
@@ -245,7 +249,7 @@ def add_trex_testcases(testcase, suite_id, file_out, tc_kwargs_list):
             file_out.write(testcase.generate(**kwargs))
 
 
-def write_default_files(in_filename, in_prolog, kwargs_list):
+def write_default_files(in_filename, in_prolog, kwargs_list, filt):
     """Using given filename and prolog, write all generated suites.
 
     :param in_filename: Template filename to derive real filenames from.
@@ -287,6 +291,8 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_name in Constants.NIC_NAME_TO_CODE:
+            if filt.skip_by_nic_name(nic_name):
+                continue
             tmp2_filename = replace_defensively(
                 tmp_filename, u"10ge2p1x710",
                 Constants.NIC_NAME_TO_CODE[nic_name], 1,
@@ -298,19 +304,18 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                 in_filename
             )
             if tmp2_prolog.count(u"HW_") == 2:
-                # TODO CSIT-1481: Crypto HW should be read
-                #      from topology file instead.
-                if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW:
-                    tmp2_prolog = replace_defensively(
-                        tmp2_prolog, u"HW_DH895xcc",
-                        Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
-                        u"HW crypto name should appear.", in_filename
-                    )
+                if filt.skip_by_crypto_hw():
+                    continue
+                tmp2_prolog = replace_defensively(
+                    tmp2_prolog, u"HW_DH895xcc",
+                    filt.get_crypto_hw(), 1,
+                    u"HW crypto name should appear.", in_filename
+                )
             iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
                 tmp2_filename
             )
             if u"DPDK" in in_prolog:
-                for driver in Constants.DPDK_NIC_NAME_TO_DRIVER[nic_name]:
+                for driver in Constants.DPDK_NIC_NAME_TO_DRIVERS[nic_name]:
                     out_filename = replace_defensively(
                         tmp2_filename, old_suite_id,
                         Constants.DPDK_NIC_DRIVER_TO_SUITE_PREFIX[driver] \
@@ -338,15 +343,17 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                         in_filename
                     )
                     check_suite_tag(suite_tag, out_prolog)
+                    if filt.skip_by_prolog(out_prolog):
+                        continue
                     # TODO: Reorder loops so suite_id is finalized sooner.
                     testcase = Testcase.default(suite_id)
-                    with open(out_filename, u"wt") as file_out:
+                    with open(out_filename, u"wt", encoding="utf8") as file_out:
                         file_out.write(out_prolog)
                         add_default_testcases(
                             testcase, iface, suite_id, file_out, kwargs_list
                         )
                 continue
-            for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+            for driver in Constants.NIC_NAME_TO_DRIVERS[nic_name]:
                 out_filename = replace_defensively(
                     tmp2_filename, old_suite_id,
                     Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
@@ -382,16 +389,18 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     in_filename
                 )
                 check_suite_tag(suite_tag, out_prolog)
+                if filt.skip_by_prolog(out_prolog):
+                    continue
                 # TODO: Reorder loops so suite_id is finalized sooner.
                 testcase = Testcase.default(suite_id)
-                with open(out_filename, u"wt") as file_out:
+                with open(out_filename, u"wt", encoding="utf8") as file_out:
                     file_out.write(out_prolog)
                     add_default_testcases(
                         testcase, iface, suite_id, file_out, kwargs_list
                     )
 
 
-def write_reconf_files(in_filename, in_prolog, kwargs_list):
+def write_reconf_files(in_filename, in_prolog, kwargs_list, filt):
     """Using given filename and prolog, write all generated reconf suites.
 
     Use this for suite type reconf, as its local template
@@ -408,6 +417,8 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, _ = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.default(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
+        if filt.skip_by_nic_name(nic_name):
+            continue
         tmp_filename = replace_defensively(
             in_filename, u"10ge2p1x710",
             Constants.NIC_NAME_TO_CODE[nic_name], 1,
@@ -419,18 +430,17 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
             in_filename
         )
         if tmp_prolog.count(u"HW_") == 2:
-            # TODO CSIT-1481: Crypto HW should be read
-            #      from topology file instead.
-            if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW.keys():
-                tmp_prolog = replace_defensively(
-                    tmp_prolog, u"HW_DH895xcc",
-                    Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
-                    u"HW crypto name should appear.", in_filename
-                )
+            if filt.skip_by_crypto_hw():
+                continue
+            tmp2_prolog = replace_defensively(
+                tmp2_prolog, u"HW_DH895xcc",
+                filt.get_crypto_hw(), 1,
+                u"HW crypto name should appear.", in_filename
+            )
         iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
             tmp_filename
         )
-        for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+        for driver in Constants.NIC_NAME_TO_DRIVERS[nic_name]:
             out_filename = replace_defensively(
                 tmp_filename, old_suite_id,
                 Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
@@ -461,16 +471,18 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
                 u"Perf suite tag should appear once.", in_filename
             )
             check_suite_tag(suite_tag, out_prolog)
+            if filt.skip_by_prolog(out_prolog):
+                continue
             # TODO: Reorder loops so suite_id is finalized sooner.
             testcase = Testcase.default(suite_id)
-            with open(out_filename, u"wt") as file_out:
+            with open(out_filename, u"wt", encoding="utf8") as file_out:
                 file_out.write(out_prolog)
                 add_default_testcases(
                     testcase, iface, suite_id, file_out, kwargs_list
                 )
 
 
-def write_tcp_files(in_filename, in_prolog, kwargs_list):
+def write_tcp_files(in_filename, in_prolog, kwargs_list, filt):
     """Using given filename and prolog, write all generated tcp suites.
 
     :param in_filename: Template filename to derive real filenames from.
@@ -484,6 +496,8 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.tcp(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
+        if filt.skip_by_nic_name(nic_name):
+            continue
         tmp_filename = replace_defensively(
             in_filename, u"10ge2p1x710",
             Constants.NIC_NAME_TO_CODE[nic_name], 1,
@@ -494,10 +508,10 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
             u"NIC name should appear twice (tag and variable).",
             in_filename
         )
-        iface, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
+        _, old_suite_id, old_suite_tag = get_iface_and_suite_ids(
             tmp_filename
         )
-        for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+        for driver in Constants.NIC_NAME_TO_DRIVERS[nic_name]:
             out_filename = replace_defensively(
                 tmp_filename, old_suite_id,
                 Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
@@ -522,19 +536,21 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
                 Constants.NIC_DRIVER_TO_VFS[driver], 1,
                 u"NIC VFs argument should appear once.", in_filename
             )
-            iface, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
+            _, suite_id, suite_tag = get_iface_and_suite_ids(out_filename)
             out_prolog = replace_defensively(
                 out_prolog, old_suite_tag, suite_tag, 1,
                 u"Perf suite tag should appear once.", in_filename
             )
             check_suite_tag(suite_tag, out_prolog)
+            if filt.skip_by_prolog(out_prolog):
+                continue
             testcase = Testcase.tcp(suite_id)
-            with open(out_filename, u"wt") as file_out:
+            with open(out_filename, u"wt", encoding="utf8") as file_out:
                 file_out.write(out_prolog)
                 add_tcp_testcases(testcase, file_out, kwargs_list)
 
 
-def write_iperf3_files(in_filename, in_prolog, kwargs_list):
+def write_iperf3_files(in_filename, in_prolog, kwargs_list, filt):
     """Using given filename and prolog, write all generated iperf3 suites.
 
     :param in_filename: Template filename to derive real filenames from.
@@ -547,6 +563,8 @@ def write_iperf3_files(in_filename, in_prolog, kwargs_list):
     _, suite_id, suite_tag = get_iface_and_suite_ids(in_filename)
     testcase = Testcase.iperf3(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
+        if filt.skip_by_nic_name(nic_name):
+            continue
         out_filename = replace_defensively(
             in_filename, u"10ge2p1x710",
             Constants.NIC_NAME_TO_CODE[nic_name], 1,
@@ -558,12 +576,14 @@ def write_iperf3_files(in_filename, in_prolog, kwargs_list):
             in_filename
         )
         check_suite_tag(suite_tag, out_prolog)
-        with open(out_filename, u"wt") as file_out:
+        if filt.skip_by_prolog(out_prolog):
+            continue
+        with open(out_filename, u"wt", encoding="utf8") as file_out:
             file_out.write(out_prolog)
             add_iperf3_testcases(testcase, file_out, kwargs_list)
 
 
-def write_trex_files(in_filename, in_prolog, kwargs_list):
+def write_trex_files(in_filename, in_prolog, kwargs_list, filt):
     """Using given filename and prolog, write all generated trex suites.
 
     :param in_filename: Template filename to derive real filenames from.
@@ -605,6 +625,8 @@ def write_trex_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, suite_tag = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.trex(suite_id)
         for nic_name in Constants.NIC_NAME_TO_CODE:
+            if filt.skip_by_trex_nic_name(nic_name):
+                continue
             out_filename = replace_defensively(
                 tmp_filename, u"10ge2p1x710",
                 Constants.NIC_NAME_TO_CODE[nic_name], 1,
@@ -616,12 +638,14 @@ def write_trex_files(in_filename, in_prolog, kwargs_list):
                 in_filename
             )
             check_suite_tag(suite_tag, out_prolog)
-            with open(out_filename, u"wt") as file_out:
+            if filt.skip_by_prolog(out_prolog):
+                continue
+            with open(out_filename, u"wt", encoding="utf8") as file_out:
                 file_out.write(out_prolog)
                 add_trex_testcases(testcase, suite_id, file_out, kwargs_list)
 
 
-def write_device_files(in_filename, in_prolog, kwargs_list):
+def write_device_files(in_filename, in_prolog, kwargs_list, filt):
     """Using given filename and prolog, write all generated suites.
 
     :param in_filename: Template filename to derive real filenames from.
@@ -639,6 +663,8 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
         _, suite_id, _ = get_iface_and_suite_ids(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_name in Constants.NIC_NAME_TO_CODE:
+            if filt.skip_by_nic_name(nic_name):
+                continue
             tmp2_filename = replace_defensively(
                 tmp_filename, u"10ge2p1x710",
                 Constants.NIC_NAME_TO_CODE[nic_name], 1,
@@ -652,7 +678,7 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
             iface, old_suite_id, _ = get_iface_and_suite_ids(
                 tmp2_filename
             )
-            for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+            for driver in Constants.NIC_NAME_TO_DRIVERS[nic_name]:
                 out_filename = replace_defensively(
                     tmp2_filename, old_suite_id,
                     Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
@@ -681,9 +707,11 @@ def write_device_files(in_filename, in_prolog, kwargs_list):
                     out_filename
                 )
                 check_suite_tag(suite_tag, out_prolog)
+                if filt.skip_by_prolog(out_prolog):
+                    continue
                 # TODO: Reorder loops so suite_id is finalized sooner.
                 testcase = Testcase.default(suite_id)
-                with open(out_filename, u"wt") as file_out:
+                with open(out_filename, u"wt", encoding="utf8") as file_out:
                     file_out.write(out_prolog)
                     add_default_testcases(
                         testcase, iface, suite_id, file_out, kwargs_list
@@ -711,7 +739,7 @@ class Regenerator:
 
         Log-like prints are emitted to sys.stderr.
 
-        :param pattern: Glob pattern to select files. Example: \*-ndrpdr.robot
+        :param pattern: Glob pattern to select files. Example: \\*-ndrpdr.robot
         :param protocol: String determining minimal frame size. Default: "ip4"
         :type pattern: str
         :type protocol: str
@@ -785,6 +813,7 @@ class Regenerator:
             {u"frame_size": u"IMIX_v4_1"}
         ]
 
+        filt = Filt()
         for in_filename in glob(pattern):
             if not self.quiet:
                 print(
@@ -800,36 +829,52 @@ class Regenerator:
                     raise RuntimeError(
                         f"Error in {in_filename}: non-primary driver found."
                     )
-            with open(in_filename, u"rt") as file_in:
+            with open(in_filename, u"rt", encoding="utf8") as file_in:
                 in_prolog = u"".join(
                     file_in.read().partition(u"*** Test Cases ***")[:-1]
                 )
+            # There may be deeper reason for kipping the template suite.
+            remove(in_filename)
+            if filt.skip_by_filename(in_filename):
+                if not self.quiet:
+                    print(
+                        u"Skipping in_filename:", in_filename, file=sys.stderr
+                    )
+                continue
             if "-tg" in in_filename:
-                write_trex_files(in_filename, in_prolog, trex_kwargs_list)
+                write_trex_files(in_filename, in_prolog, trex_kwargs_list, filt)
                 continue
             if in_filename.endswith(u"-ndrpdr.robot"):
                 if u"scheduler" in in_filename:
                     write_default_files(
-                        in_filename, in_prolog, dp1_kwargs_list
+                        in_filename, in_prolog, dp1_kwargs_list, filt
                     )
                 else:
                     write_default_files(
-                        in_filename, in_prolog, default_kwargs_list
+                        in_filename, in_prolog, default_kwargs_list, filt
                     )
             elif in_filename.endswith(u"-reconf.robot"):
-                write_reconf_files(in_filename, in_prolog, default_kwargs_list)
+                write_reconf_files(
+                    in_filename, in_prolog, default_kwargs_list, filt
+                )
             elif in_filename.endswith(u"-rps.robot") \
                     or in_filename.endswith(u"-cps.robot"):
-                write_tcp_files(in_filename, in_prolog, http_kwargs_list)
+                write_tcp_files(in_filename, in_prolog, http_kwargs_list, filt)
             elif in_filename.endswith(u"-bps.robot"):
                 hoststack_kwargs_list = \
                     hs_quic_kwargs_list if u"quic" in in_filename \
                     else hs_bps_kwargs_list
-                write_tcp_files(in_filename, in_prolog, hoststack_kwargs_list)
+                write_tcp_files(
+                    in_filename, in_prolog, hoststack_kwargs_list, filt
+                )
             elif in_filename.endswith(u"-iperf3-mrr.robot"):
-                write_iperf3_files(in_filename, in_prolog, iperf3_kwargs_list)
+                write_iperf3_files(
+                    in_filename, in_prolog, iperf3_kwargs_list, filt
+                )
             elif in_filename.endswith(u"-scapy.robot"):
-                write_device_files(in_filename, in_prolog, device_kwargs_list)
+                write_device_files(
+                    in_filename, in_prolog, device_kwargs_list, filt
+                )
             else:
                 raise RuntimeError(
                     f"Error in {in_filename}: non-primary suite type found."

@@ -387,6 +387,10 @@ function generate_tests () {
     # This is a separate function, because this code is called
     # both by autogen checker and entries calling run_pybot.
 
+    # Variables read:
+    # - TEST_CODE - The test selection string from environment or argument.
+    #   Usually jenkins job name, affects which suites are skipped.
+    # - WORKING_TOPOLOGY - Path to YAML with reserved perf testbed, if any.
     # Directories read:
     # - ${CSIT_DIR}/tests - Used as templates for the generated tests.
     # Directories replaced:
@@ -405,7 +409,13 @@ function generate_tests () {
         directory="$(dirname "${gen}")" || die
         filename="$(basename "${gen}")" || die
         pushd "${directory}" || die
-        ./"${filename}" || die
+        bash -c "# Just to avoid line length issues.
+            set -exuo pipefail
+            # The sub-shell does not have the env vars yet.
+            export TEST_CODE='${TEST_CODE-}'
+            export WORKING_TOPOLOGY='${WORKING_TOPOLOGY-}'
+            ./'${filename}' || die
+        " || die
         popd || die
     done
 }
@@ -851,29 +861,6 @@ function select_tags () {
 
     set -exuo pipefail
 
-    # NIC SELECTION
-    case "${TEST_CODE}" in
-        *"1n-aws"*)
-            start_pattern='^  SUT:'
-            ;;
-        *)
-            start_pattern='^  TG:'
-            ;;
-    esac
-    end_pattern='^ \? \?[A-Za-z0-9]\+:'
-    # Remove the sections from topology file
-    sed_command="/${start_pattern}/,/${end_pattern}/d"
-    # All topologies NICs
-    available=$(sed "${sed_command}" "${TOPOLOGIES_DIR}"/* \
-                | grep -hoP "model: \K.*" | sort -u)
-    # Selected topology NICs
-    reserved=$(sed "${sed_command}" "${WORKING_TOPOLOGY}" \
-               | grep -hoP "model: \K.*" | sort -u)
-    # All topologies NICs - Selected topology NICs
-    exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}"))) || {
-        die "Computation of excluded NICs failed."
-    }
-
     # Select default NIC tag.
     case "${TEST_CODE}" in
         *"3n-dnv"* | *"2n-dnv"*)
@@ -984,65 +971,6 @@ function select_tags () {
             SELECTION_MODE="--include"
             ;;
     esac
-
-    # Blacklisting certain tags per topology.
-    #
-    # Reasons for blacklisting:
-    # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
-    case "${TEST_CODE}" in
-        *"1n-vbox"*)
-            test_tag_array+=("!avf")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!flow")
-            ;;
-        *"1n_tx2"*)
-            test_tag_array+=("!flow")
-            ;;
-        *"2n-clx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-icx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-icx"*)
-            test_tag_array+=("!ipsechw")
-            # Not enough nic_intel-xxv710 to support double link tests.
-            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
-            ;;
-        *"2n-zn2"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"2n-dnv"*)
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
-            test_tag_array+=("!drv_avf")
-            ;;
-        *"2n-tx2"* | *"3n-alt"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-dnv"*)
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
-            test_tag_array+=("!drv_avf")
-            ;;
-        *"3n-snr"*)
-            ;;
-        *"3n-tsh"*)
-            # 3n-tsh only has x520 NICs which don't work with AVF
-            test_tag_array+=("!drv_avf")
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-    esac
-
-    # We will add excluded NICs.
-    test_tag_array+=("${exclude_nics[@]/#/!NIC_}")
 
     TAGS=()
     prefix=""
