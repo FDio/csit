@@ -16,6 +16,24 @@
       "message": "I do not really see a reason why we cannot do it symmetric for TG as well.",
       "revId": "6a929a9593ee502af0e834c72fb43b265e71d684",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "825cfad4_e7d0e333",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-08-26T08:16:44Z",
+      "side": 1,
+      "message": "For illustration, here\u0027s what we currently do (i.e. without the patch):\n08:08:41 ++ docker run --detach\u003dtrue --privileged --publish-all --rm --shm-size 2G --mount type\u003dtmpfs,destination\u003d/sys/bus/pci/devices --device /dev/vfio/151 --device /dev/vfio/152 --volume /dev/null:/etc/sysctl.d/80-vpp.conf --volume /var/run/docker.sock:/var/run/docker.sock --volume /opt/boot/:/opt/boot/ --volume /dev/hugepages/:/dev/hugepages/ --sysctl net.ipv6.conf.all.disable_ipv6\u003d1 --sysctl net.ipv6.conf.default.disable_ipv6\u003d1 --name csit-tg-b4c146ee-1c16-408b-ac9d-819ddb5d0549 csit_sut-ubuntu2004:local\n\n08:08:43 ++ docker run --detach\u003dtrue --privileged --publish-all --rm --shm-size 2G --mount type\u003dtmpfs,destination\u003d/sys/bus/pci/devices --device /dev/vfio/151 --device /dev/vfio/152 --volume /dev/null:/etc/sysctl.d/80-vpp.conf --volume /var/run/docker.sock:/var/run/docker.sock --volume /opt/boot/:/opt/boot/ --volume /dev/hugepages/:/dev/hugepages/ --sysctl net.ipv6.conf.all.disable_ipv6\u003d1 --sysctl net.ipv6.conf.default.disable_ipv6\u003d1 --name csit-dut1-9e9f941e-cb4b-451d-9d46-609dd3fc4b84 csit_sut-ubuntu2004:local\n\nBoth containers are getting  --device /dev/vfio/151 --device /dev/vfio/152, but the TG container doesn\u0027t use those (as it uses the interface on the other side of 151 and 152).\n\nI originally thought this could be why we\u0027re seeing some of the arm VPP device failures in the past, but that wasn\u0027t the case. The current version works just fine, so this is just an improvement (I\u0027ll have to change to commit message). Feel free to abandon the patch if you don\u0027t want the improvement.",
+      "parentUuid": "33c46b47_65425716",
+      "revId": "6a929a9593ee502af0e834c72fb43b265e71d684",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
