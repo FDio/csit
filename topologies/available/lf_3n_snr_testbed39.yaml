@@ -55,6 +55,7 @@ nodes:
     port: 22
     username: testuser
     password: Csit1234
+    cryptodev: "0000:f4:00.0"
     uio_driver: vfio-pci
     interfaces:
       port1:
@@ -96,6 +97,7 @@ nodes:
     port: 22
     username: testuser
     password: Csit1234
+    cryptodev: "0000:f4:00.0"
     uio_driver: vfio-pci
     interfaces:
       port1:
