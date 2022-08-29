@@ -278,6 +278,7 @@
 | | ${numvfs}= | Set Variable If
 | | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
 | | ... | '${crypto_type}' == 'HW_C3xxx' | ${16}
+| | ... | '${crypto_type}' == 'HW_C4xxx' | ${128}
 | | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
 | | ... | force_init=${True}
 | | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
