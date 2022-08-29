@@ -1,5 +1,5 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2022 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -22,7 +22,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec1000tnlhwasync-ip4base-int-aes256gcm
 |
-| Suite Setup | Setup suite topology interfaces | performance | ipsechw
+| Suite Setup | Setup suite topology interfaces | performance | cryptohw
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | ipsec_sa
