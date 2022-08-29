@@ -139,6 +139,23 @@ class WireGuardUtil:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
+    def vpp_wireguard_set_async_mode(node, async_enable=1):
+        """Set wireguard async mode on or off.
+
+        :param node: VPP node to set wireguard async mode.
+        :param async_enable: Async mode on or off.
+        :type node: dict
+        :type async_enable: int
+        """
+        cmd = u"wg_set_async_mode"
+        err_msg = f"Failed to set wireguard async mode on host {node[u'host']}"
+        args = dict(
+            async_enable=async_enable
+        )
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
     def _wireguard_create_tunnel_interface_on_dut(
             node, if1_key, if2_mac_addr, src_ip, peer_endpoint_ip,
             peer_allowed_ips, peer_n_allowed_ips, dut_wg_ip, port,
