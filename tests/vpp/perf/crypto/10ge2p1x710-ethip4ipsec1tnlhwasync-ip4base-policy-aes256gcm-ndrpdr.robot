@@ -22,7 +22,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec1tnlhwasync-ip4base-policy-aes256gcm
 |
-| Suite Setup | Setup suite topology interfaces | performance | ipsechw
+| Suite Setup | Setup suite topology interfaces | performance | cryptohw
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | ipsec_all
