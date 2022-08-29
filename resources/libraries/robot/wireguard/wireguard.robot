@@ -56,3 +56,11 @@
 | | ... | interface=${DUT1_${int}1}[0]
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
 | | ... | interface=${DUT2_${int}2}[0]
+
+| VPP Enable Wireguard Async Mode on all VPP DUTs
+| | [Documentation]
+| | ... | Enable wireguard async mode on all DUT nodes.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | VPP Wireguard Set Async Mode | ${nodes['${dut}']}
+| | END
