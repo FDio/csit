@@ -146,13 +146,13 @@
 ### intel-x710
 #### dpdk-vfio-pci
 ##### ethip4-ip4base-eth-2vhost-1vm
-0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-ip4base-eth-2vhost-1vm
+#0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-ip4base-eth-2vhost-1vm
 ##### ethip4-l2bdbasemaclrn-eth-2vhost-1vm
-0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-eth-2vhost-1vm
+#0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2bdbasemaclrn-eth-2vhost-1vm
 ##### ethip4-l2xcbase-eth-2vhost-1vm
-0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2xcbase-eth-2vhost-1vm
+#0c AND 64b AND scapy AND x710 AND drv_vfio_pci AND ethip4-l2xcbase-eth-2vhost-1vm
 ## ./vm/ethip6
 ### intel-x710
 #### dpdk-vfio-pci
 ##### ethip6-ip6base-eth-2vhost-1vm
-0c AND 78b AND scapy AND x710 AND drv_vfio_pci AND ethip6-ip6base-eth-2vhost-1vm
+#0c AND 78b AND scapy AND x710 AND drv_vfio_pci AND ethip6-ip6base-eth-2vhost-1vm
