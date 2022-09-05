@@ -1271,8 +1271,8 @@ class InterfaceUtil:
                         err_msg
                     )
                     break
-                except AssertionError:
-                    logger.error(err_msg)
+                except AssertionError as err:
+                    logger.error(f"{err_msg}\n{err}")
         else:
             raise AssertionError(err_msg)
 
