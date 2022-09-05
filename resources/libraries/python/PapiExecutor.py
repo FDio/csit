@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -11,8 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Python API executor library.
-"""
+"""Python API executor library."""
 
 import copy
 import glob
@@ -34,7 +33,11 @@ from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
-    SSH, SSHTimeout, exec_cmd_no_error, scp_node)
+    SSH,
+    SSHTimeout,
+    exec_cmd_no_error,
+    scp_node,
+)
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
@@ -209,10 +212,16 @@ class PapiSocketExecutor:
         installed_papi_glob = u"/usr/lib/python3*/*-packages/vpp_papi"
         # We need to wrap this command in bash, in order to expand globs,
         # and as ssh does join, the inner command has to be quoted.
-        inner_cmd = u" ".join([
-            u"tar", u"cJf", u"/tmp/papi.txz", u"--exclude=*.pyc",
-            installed_papi_glob, u"/usr/share/vpp/api"
-        ])
+        inner_cmd = u" ".join(
+            [
+                u"tar",
+                u"cJf",
+                u"/tmp/papi.txz",
+                u"--exclude=*.pyc",
+                installed_papi_glob,
+                u"/usr/share/vpp/api",
+            ]
+        )
         exec_cmd_no_error(node, [u"bash", u"-c", u"'" + inner_cmd + u"'"])
         scp_node(node, root_path + u"/papi.txz", u"/tmp/papi.txz", get=True)
         run([u"tar", u"xf", root_path + u"/papi.txz", u"-C", root_path])
@@ -251,11 +260,15 @@ class PapiSocketExecutor:
             # It is right, we should refactor the code and move initialization
             # of package outside.
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+
             vpp_class.apidir = cls.api_json_path
             # We need to create instance before removing from sys.path.
             vpp_instance = vpp_class(
-                use_socket=True, server_address=u"TBD", async_thread=False,
-                read_timeout=14, logger=FilteredLogger(logger, u"INFO")
+                use_socket=True,
+                server_address=u"TBD",
+                async_thread=False,
+                read_timeout=14,
+                logger=FilteredLogger(logger, u"INFO"),
             )
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
@@ -302,7 +315,8 @@ class PapiSocketExecutor:
         :rtype: tuple of str
         """
         return self.__class__.key_for_node_and_socket(
-            self._node, self._remote_vpp_socket,
+            self._node,
+            self._remote_vpp_socket,
         )
 
     def set_connected_client(self, client):
@@ -401,7 +415,8 @@ class PapiSocketExecutor:
             # but may be useful when testing manually.
             run(
                 [u"ssh", u"-S", ssh_socket, u"-O", u"exit", u"0.0.0.0"],
-                check=False, log=True
+                check=False,
+                log=True,
             )
             # TODO: Is any sleep necessary? How to prove if not?
             run([u"sleep", u"0.1"])
@@ -415,15 +430,25 @@ class PapiSocketExecutor:
         # the ssh connection is closed again (via control socket).
         # The log level is to suppress "Warning: Permanently added" messages.
         ssh_cmd = [
-            u"ssh", u"-S", ssh_socket, u"-M", u"-L",
+            u"ssh",
+            u"-S",
+            ssh_socket,
+            u"-M",
+            u"-L",
             api_socket + u":" + self._remote_vpp_socket,
-            u"-p", str(node[u"port"]),
-            u"-o", u"LogLevel=ERROR",
-            u"-o", u"UserKnownHostsFile=/dev/null",
-            u"-o", u"StrictHostKeyChecking=no",
-            u"-o", u"ExitOnForwardFailure=yes",
+            u"-p",
+            str(node[u"port"]),
+            u"-o",
+            u"LogLevel=ERROR",
+            u"-o",
+            u"UserKnownHostsFile=/dev/null",
+            u"-o",
+            u"StrictHostKeyChecking=no",
+            u"-o",
+            u"ExitOnForwardFailure=yes",
             node[u"username"] + u"@" + node[u"host"],
-            u"sleep", u"30"
+            u"sleep",
+            u"30",
         ]
         priv_key = node.get(u"priv_key")
         if priv_key:
@@ -448,9 +473,7 @@ class PapiSocketExecutor:
         # Check socket presence on local side.
         while time.time() < time_stop:
             # It can take a moment for ssh to create the socket file.
-            ret_code, _ = run(
-                [u"ls", u"-l", api_socket], check=False
-            )
+            ret_code, _ = run([u"ls", u"-l", api_socket], check=False)
             if not ret_code:
                 break
             time.sleep(0.1)
@@ -500,10 +523,17 @@ class PapiSocketExecutor:
             return
         logger.debug(f"Disconnecting by key: {key}")
         client_instance.disconnect()
-        run([
-            u"ssh", u"-S", client_instance.csit_control_socket, u"-O",
-            u"exit", u"0.0.0.0"
-        ], check=False)
+        run(
+            [
+                u"ssh",
+                u"-S",
+                client_instance.csit_control_socket,
+                u"-O",
+                u"exit",
+                u"0.0.0.0",
+            ],
+            check=False,
+        )
         # Temp dir has autoclean, but deleting explicitly
         # as an error can happen.
         try:
@@ -519,8 +549,8 @@ class PapiSocketExecutor:
 
     @classmethod
     def disconnect_by_node_and_socket(
-            cls, node, remote_socket=Constants.SOCKSVR_PATH
-        ):
+        cls, node, remote_socket=Constants.SOCKSVR_PATH
+    ):
         """Disconnect a connected client instance, noop it not connected.
 
         Also remove the local sockets by deleting the temporary directory.
@@ -608,14 +638,11 @@ class PapiSocketExecutor:
             )
         self.crc_checker.check_api_name(csit_papi_command)
         self._api_command_list.append(
-            dict(
-                api_name=csit_papi_command,
-                api_args=copy.deepcopy(kwargs)
-            )
+            dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs))
         )
         return self
 
-    def get_replies(self, err_msg="Failed to get replies."):
+    def get_replies(self, err_msg=u"Failed to get replies."):
         """Get replies from VPP Python API.
 
         The replies are parsed into dict-like objects,
@@ -666,7 +693,7 @@ class PapiSocketExecutor:
         logger.trace(f"Getting index from {reply!r}")
         return reply[u"sw_if_index"]
 
-    def get_details(self, err_msg="Failed to get dump details."):
+    def get_details(self, err_msg=u"Failed to get dump details."):
         """Get dump details from VPP Python API.
 
         The details are parsed into dict-like objects.
@@ -685,7 +712,8 @@ class PapiSocketExecutor:
 
     @staticmethod
     def run_cli_cmd(
-            node, cli_cmd, log=True, remote_vpp_socket=Constants.SOCKSVR_PATH):
+        node, cli_cmd, log=True, remote_vpp_socket=Constants.SOCKSVR_PATH
+    ):
         """Run a CLI command as cli_inband, return the "reply" field of reply.
 
         Optionally, log the field value.
@@ -702,14 +730,14 @@ class PapiSocketExecutor:
         :rtype: str
         """
         cmd = u"cli_inband"
-        args = dict(
-            cmd=cli_cmd
+        args = dict(cmd=cli_cmd)
+        err_msg = (
+            f"Failed to run 'cli_inband {cli_cmd}' PAPI command"
+            f" on host {node[u'host']}"
         )
-        err_msg = f"Failed to run 'cli_inband {cli_cmd}' PAPI command " \
-            f"on host {node[u'host']}"
 
         with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
-            reply = papi_exec.add(cmd, **args).get_reply(err_msg)["reply"]
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)[u"reply"]
         if log:
             logger.info(
                 f"{cli_cmd} ({node[u'host']} - {remote_vpp_socket}):\n"
@@ -802,9 +830,9 @@ class PapiSocketExecutor:
                     retval = dict_item[u"retval"]
                     if retval != exp_rv:
                         raise AssertionError(
-                            f"Retval {retval!r} does not match expected "
-                            f"retval {exp_rv!r} in message {message_name} "
-                            f"for command {command}."
+                            f"Retval {retval!r} does not match expected"
+                            f" retval {exp_rv!r} in message {message_name}"
+                            f" for command {command}."
                         )
                 replies.append(dict_item)
         return replies
@@ -896,8 +924,8 @@ class PapiExecutor:
             self._ssh.connect(self._node)
         except IOError:
             raise RuntimeError(
-                f"Cannot open SSH connection to host {self._node[u'host']} "
-                f"to execute PAPI command(s)"
+                f"Cannot open SSH connection to host {self._node[u'host']}"
+                f" to execute PAPI command(s)"
             )
         return self
 
@@ -926,15 +954,16 @@ class PapiExecutor:
                 self._node, csit_papi_command, **kwargs
             )
         self._api_command_list.append(
-            dict(
-                api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)
-            )
+            dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs))
         )
         return self
 
     def get_stats(
-            self, err_msg=u"Failed to get statistics.", timeout=120,
-            socket=Constants.SOCKSTAT_PATH):
+        self,
+        err_msg=u"Failed to get statistics.",
+        timeout=120,
+        socket=Constants.SOCKSTAT_PATH,
+    ):
         """Get VPP Stats from VPP Python API.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
@@ -950,8 +979,11 @@ class PapiExecutor:
         self._api_command_list = list()
 
         stdout = self._execute_papi(
-            paths, method=u"stats", err_msg=err_msg, timeout=timeout,
-            socket=socket
+            paths,
+            method=u"stats",
+            err_msg=err_msg,
+            timeout=timeout,
+            socket=socket,
         )
 
         return json.loads(stdout)
@@ -994,16 +1026,13 @@ class PapiExecutor:
             for a_k, a_v in api[u"api_args"].items():
                 api_args_processed[str(a_k)] = process_value(a_v)
             api_data_processed.append(
-                dict(
-                    api_name=api[u"api_name"],
-                    api_args=api_args_processed
-                )
+                dict(api_name=api[u"api_name"], api_args=api_args_processed)
             )
         return api_data_processed
 
     def _execute_papi(
-            self, api_data, method=u"request", err_msg=u"", timeout=120,
-            socket=None):
+        self, api_data, method=u"request", err_msg=u"", timeout=120, socket=None
+    ):
         """Execute PAPI command(s) on remote node and store the result.
 
         :param api_data: List of APIs with their arguments.
@@ -1024,13 +1053,17 @@ class PapiExecutor:
         if not api_data:
             raise RuntimeError(u"No API data provided.")
 
-        json_data = json.dumps(api_data) \
-            if method in (u"stats", u"stats_request") \
+        json_data = (
+            json.dumps(api_data)
+            if method in (u"stats", u"stats_request")
             else json.dumps(self._process_api_data(api_data))
+        )
 
         sock = f" --socket {socket}" if socket else u""
-        cmd = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_PAPI_PROVIDER}" \
+        cmd = (
+            f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_PAPI_PROVIDER}"
             f" --method {method} --data '{json_data}'{sock}"
+        )
         try:
             ret_code, stdout, _ = self._ssh.exec_command_sudo(
                 cmd=cmd, timeout=timeout, log_stdout_err=False
@@ -1038,14 +1071,14 @@ class PapiExecutor:
         # TODO: Fail on non-empty stderr?
         except SSHTimeout:
             logger.error(
-                f"PAPI command(s) execution timeout on host "
-                f"{self._node[u'host']}:\n{api_data}"
+                f"PAPI command(s) execution timeout on host"
+                f" {self._node[u'host']}:\n{api_data}"
             )
             raise
         except Exception as exc:
             raise RuntimeError(
-                f"PAPI command(s) execution on host {self._node[u'host']} "
-                f"failed: {api_data}"
+                f"PAPI command(s) execution on host {self._node[u'host']}"
+                f" failed: {api_data}"
             ) from exc
         if ret_code != 0:
             raise AssertionError(err_msg)
