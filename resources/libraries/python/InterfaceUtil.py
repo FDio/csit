@@ -882,7 +882,7 @@ class InterfaceUtil:
         err_msg = f"Failed to set VXLAN bypass on interface " \
             f"on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vxlan_dump(node, interface=None):
