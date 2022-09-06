@@ -11,8 +11,8 @@ RUN apt update \
 
 ENV ISO_JAMMY_AMD64 https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso
 ENV ISO_JAMMY_ARM64 https://cdimage.ubuntu.com/releases/22.04/release/ubuntu-22.04.1-live-server-arm64.iso
-ENV EFI_JAMMY_AMD64 http://archive.ubuntu.com/ubuntu/dists/focal/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
-ENV EFI_JAMMY_ARM64 http://ports.ubuntu.com/ubuntu-ports/dists/focal/main/uefi/grub2-arm64/current/grubnetaa64.efi.signed
+ENV EFI_JAMMY_AMD64 http://archive.ubuntu.com/ubuntu/dists/jammy/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
+ENV EFI_JAMMY_ARM64 http://ports.ubuntu.com/ubuntu-ports/dists/jammy/main/uefi/grub2-arm64/current/grubnetaa64.efi.signed
 
 RUN echo "Preparing Grub EFI Binary" \
  && wget $EFI_JAMMY_AMD64 -O /var/lib/tftpboot/grub/grubnetx64.efi.signed \
