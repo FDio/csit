@@ -357,6 +357,7 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
         PapiSocketExecutor.run_cli_cmd(node, u"show logging")
 
     @staticmethod
