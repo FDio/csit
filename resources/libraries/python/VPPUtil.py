@@ -357,6 +357,7 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        exec_cmd(node, "tail -50 /var/log/syslog")
         PapiSocketExecutor.run_cli_cmd(node, u"show logging")
 
     @staticmethod
