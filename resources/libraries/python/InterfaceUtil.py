@@ -1262,19 +1262,18 @@ class InterfaceUtil:
             txq_size=txq_size
         )
         err_msg = f"Failed to create AVF interface on host {node[u'host']}"
+        cmd2 = u"avf_delete"
+        args2 = dict(
+            sw_if_index=0
+        )
 
-        # FIXME: Remove once the fw/driver is upgraded.
-        for _ in range(10):
-            with PapiSocketExecutor(node) as papi_exec:
-                try:
-                    sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(
-                        err_msg
-                    )
-                    break
-                except AssertionError:
-                    logger.error(err_msg)
-        else:
-            raise AssertionError(err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+            for _ in range(99):
+                args2[u"sw_if_index"] = sw_if_index
+                papi_exec.add(cmd2, **args2).get_reply(err_msg)
+                sleep(0.5)
+                sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         InterfaceUtil.add_eth_interface(
             node, sw_if_index=sw_if_index, ifc_pfx=u"eth_avf",
