@@ -50,6 +50,8 @@
     af_xdp_create_v2_reply: '0x5383d31f'  # dev
     avf_create: '0xdaab8ae2'  # dev
     avf_create_reply: '0x5383d31f'  # dev
+    avf_delete: '0xf9e6675e'
+    avf_delete_reply: '0xe8d4e804'
     bond_add_member: '0xe7d14948'  # perf
     bond_add_member_reply: '0xe8d4e804'  # perf
     bond_create2: '0x912fda76'  # perf
