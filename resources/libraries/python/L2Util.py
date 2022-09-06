@@ -332,6 +332,14 @@ class L2Util:
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
+            # Increase probability of VPP-2033.
+            for _ in range(99):
+                args1[u"is_add"] = False
+                args2[u"is_add"] = False
+                papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
+                args1[u"is_add"] = True
+                args2[u"is_add"] = True
+                papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
 
     @staticmethod
     def linux_add_bridge(node, br_name, if_1, if_2, set_up=True):
