@@ -247,19 +247,6 @@ class Layout:
                             self._add_navbar(),
                         ]
                     ),
-                    dcc.Loading(
-                        dbc.Offcanvas(
-                            class_name="w-50",
-                            id="offcanvas-metadata",
-                            title="Throughput And Latency",
-                            placement="end",
-                            is_open=False,
-                            children=[
-                                dbc.Row(id="metadata-tput-lat"),
-                                dbc.Row(id="metadata-hdrh-graph"),
-                            ]
-                        )
-                    ),
                     dbc.Row(
                         id="row-main",
                         class_name="g-0",
@@ -338,23 +325,27 @@ class Layout:
                         dbc.Row(  # Throughput
                             id="row-graph-tput",
                             class_name="g-0 p-2",
-                            children=[
-                                C.PLACEHOLDER
-                            ]
+                            children=[C.PLACEHOLDER, ]
                         ),
                         dbc.Row(  # Latency
                             id="row-graph-lat",
                             class_name="g-0 p-2",
-                            children=[
-                                C.PLACEHOLDER
-                            ]
+                            children=[C.PLACEHOLDER, ]
                         ),
                         dbc.Row(  # Download
                             id="row-btn-download",
                             class_name="g-0 p-2",
-                            children=[
-                                C.PLACEHOLDER
-                            ]
+                            children=[C.PLACEHOLDER, ]
+                        ),
+                        dbc.Row(  # Metadata
+                            id="row-metadata",
+                            class_name="g-0 p-2",
+                            children=[C.PLACEHOLDER, ]
+                        ),
+                        dbc.Row(  # Telemetry
+                            id="row-telemetry",
+                            class_name="g-0 p-2",
+                            children=[C.PLACEHOLDER, ]
                         )
                     ]
                 )
@@ -783,17 +774,15 @@ class Layout:
             :rtype: tuple(dcc.Graph, dcc.Graph, list(dbc.Col, dbc.Col))
             """
 
-            (fig_tput, fig_lat) = figs
-
             row_fig_tput = C.PLACEHOLDER
             row_fig_lat = C.PLACEHOLDER
             row_btn_dwnld = C.PLACEHOLDER
 
-            if fig_tput:
+            if figs[0]:  # Tput
                 row_fig_tput = [
                     dcc.Graph(
                         id={"type": "graph", "index": "tput"},
-                        figure=fig_tput
+                        figure=figs[0]
                     )
                 ]
                 row_btn_dwnld = [
@@ -835,15 +824,15 @@ class Layout:
                         ]
                     )
                 ]
-            if fig_lat:
+            if figs[1]:  # Latency
                 row_fig_lat = [
                     dcc.Graph(
                         id={"type": "graph", "index": "lat"},
-                        figure=fig_lat
+                        figure=figs[1]
                     )
                 ]
 
-            return row_fig_tput, row_fig_lat, row_btn_dwnld
+            return (row_fig_tput, row_fig_lat, row_btn_dwnld)
 
         @app.callback(
             Output("control-panel", "data"),  # Store
@@ -851,6 +840,8 @@ class Layout:
             Output("row-graph-tput", "children"),
             Output("row-graph-lat", "children"),
             Output("row-btn-download", "children"),
+            Output("row-metadata", "children"),
+            Output("row-telemetry", "children"),
             Output("row-card-sel-tests", "style"),
             Output("row-btns-sel-tests", "style"),
             Output("dd-ctrl-dut", "value"),
@@ -899,14 +890,15 @@ class Layout:
             Input("dpr-period", "end_date"),
             Input("btn-sel-remove", "n_clicks"),
             Input("btn-sel-remove-all", "n_clicks"),
-            Input("url", "href")
+            Input("url", "href"),
+            Input({"type": "graph", "index": ALL}, "clickData")
         )
         def _update_ctrl_panel(cp_data: dict, store_sel: list, list_sel: list,
             dd_dut: str, dd_phy: str, dd_area: str, dd_test: str, cl_core: list,
             cl_core_all: list, cl_framesize: list, cl_framesize_all: list,
             cl_testtype: list, cl_testtype_all: list, cl_normalize: list,
             btn_add: int, d_start: str, d_end: str, btn_remove: int,
-            btn_remove_all: int, href: str) -> tuple:
+            btn_remove_all: int, href: str, graph_data: dict) -> tuple:
             """Update the application when the event is detected.
 
             :param cp_data: Current status of the control panel stored in
@@ -972,10 +964,18 @@ class Layout:
             row_fig_tput = no_update
             row_fig_lat = no_update
             row_btn_dwnld = no_update
+            row_metadata = no_update
+            row_telemetry = no_update
             row_card_sel_tests = no_update
             row_btns_sel_tests = no_update
 
-            trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
+            try:
+                trigger_id = loads(
+                    callback_context.triggered[0]["prop_id"].split(".")[0])\
+                        ["index"]
+            except (JSONDecodeError, IndexError, KeyError):
+                trigger_id = \
+                    callback_context.triggered[0]["prop_id"].split(".")[0]
 
             if trigger_id == "dd-ctrl-dut":
                 try:
@@ -1268,6 +1268,14 @@ class Layout:
                             "cl-ctrl-testtype-all-value": list(),
                             "cl-ctrl-testtype-all-options": C.CL_ALL_ENABLED
                         })
+            elif trigger_id in ("tput", "lat"):
+                try:
+                    idx = 0 if trigger_id == "tput" else 1
+                    graph_data = graph_data[idx]["points"][0]
+                    row_metadata = _generate_metadata(trigger_id, graph_data)
+                    row_telemetry = _generate_telemetry(graph_data)
+                except TypeError:
+                    pass
 
             if trigger_id in ("btn-ctrl-add", "url", "dpr-period",
                     "btn-sel-remove", "cl-ctrl-normalize"):
@@ -1295,6 +1303,8 @@ class Layout:
                     row_fig_tput = C.PLACEHOLDER
                     row_fig_lat = C.PLACEHOLDER
                     row_btn_dwnld = C.PLACEHOLDER
+                    row_metadata = C.PLACEHOLDER
+                    row_telemetry = C.PLACEHOLDER
                     row_card_sel_tests = C.STYLE_DISABLED
                     row_btns_sel_tests = C.STYLE_DISABLED
                     store_sel = list()
@@ -1314,50 +1324,35 @@ class Layout:
             ret_val = [
                 ctrl_panel.panel, store_sel,
                 row_fig_tput, row_fig_lat, row_btn_dwnld,
+                row_metadata, row_telemetry,
                 row_card_sel_tests, row_btns_sel_tests
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
 
-        @app.callback(
-            Output("metadata-tput-lat", "children"),
-            Output("metadata-hdrh-graph", "children"),
-            Output("offcanvas-metadata", "is_open"),
-            Input({"type": "graph", "index": ALL}, "clickData"),
-            prevent_initial_call=True
-        )
-        def _show_metadata_from_graphs(graph_data: dict) -> tuple:
-            """Generates the data for the offcanvas displayed when a particular
-            point in a graph is clicked on.
 
+        def _generate_metadata(trigger_id: str, graph_data: dict) -> list:
+            """Generates the metadata and optionaly HDRH graph for latency when
+            a particular point in a graph is clicked on.
+
+            :param trigger_id: Trigger ID.
             :param graph_data: The data from the clicked point in the graph.
             :type graph_data: dict
-            :returns: The data to be displayed on the offcanvas and the
-                information to show the offcanvas.
-            :rtype: tuple(list, list, bool)
+            :type trigger_id: str
+            :returns: The data to be displayed.
+            :rtype: list(list, list)
             """
-            try:
-                trigger_id = loads(
-                    callback_context.triggered[0]["prop_id"].split(".")[0]
-                )["index"]
-                idx = 0 if trigger_id == "tput" else 1
-                graph_data = graph_data[idx]["points"][0]
-            except (JSONDecodeError, IndexError, KeyError, ValueError,
-                    TypeError):
-                raise PreventUpdate
 
-            metadata = no_update
-            graph = list()
+            metadata = None
+            graph = None
+            row_meta = list()
 
-            children = [
-                dbc.ListGroupItem(
-                    [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
-                ) for x in graph_data.get("text", "").split("<br>")
-            ]
             if trigger_id == "tput":
                 title = "Throughput"
+                size = 12
             elif trigger_id == "lat":
                 title = "Latency"
+                size = 5
                 hdrh_data = graph_data.get("customdata", None)
                 if hdrh_data:
                     graph = [dbc.Card(
@@ -1374,6 +1369,17 @@ class Layout:
                             ])
                         ])
                     ]
+
+            test_name = graph_data.get("customdata", dict()).get("name", "")
+            if test_name:
+                badges = [dbc.ListGroupItem([dbc.Badge("test name"),test_name])]
+            else:
+                badges = list()
+            badges.extend([
+                dbc.ListGroupItem(
+                    [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
+                ) for x in graph_data.get("text", "").split("<br>")
+            ])
             metadata = [
                 dbc.Card(
                     class_name="gy-2 p-0",
@@ -1389,13 +1395,61 @@ class Layout:
                         dbc.CardBody(
                             id="tput-lat-metadata",
                             class_name="p-0",
-                            children=[dbc.ListGroup(children, flush=True), ]
+                            children=[dbc.ListGroup(badges, flush=True)]
                         )
                     ]
                 )
             ]
 
-            return metadata, graph, True
+            if metadata:
+                row_meta.append(dbc.Col(metadata, width=size))
+            if graph:
+                row_meta.append(dbc.Col(graph))
+
+            return row_meta
+
+
+        def _generate_telemetry(graph_data: dict) -> list:
+            """Generates the tables with telemetry data when
+            a particular point in a graph is clicked on.
+
+            :param graph_data: The data from the clicked point in the graph.
+            :type graph_data: dict
+            :returns: List of tables.
+            :rtype: list
+            """
+
+            tables = None
+            row_tele = list()
+            if graph_data.get("customdata", {}).get("show_telemetry", False):
+                tables = [dbc.Accordion(
+                    children=[
+                        dbc.AccordionItem(
+                            title="Runtime",
+                            children=_table_runtime(graph_data)
+                        ),
+                        dbc.AccordionItem(
+                            title="Interfaces",
+                            children=_table_interface(graph_data)
+                        ),
+                        dbc.AccordionItem(
+                            title="Instructions and clocks",
+                            children=_table_instructions(graph_data)
+                        ),
+                        dbc.AccordionItem(
+                            title="Cache",
+                            children=_table_cache(graph_data)
+                        )
+                    ],
+                    class_name="gy-2 p-0",
+                    start_collapsed=True,
+                    always_open=True
+                )]
+
+            if tables:
+                row_tele.append(dbc.Col(tables, width=12))
+            return row_tele
+
 
         @app.callback(
             Output("download-data", "data"),
@@ -1430,3 +1484,121 @@ class Layout:
                 df = pd.concat([df, sel_data], ignore_index=True)
 
             return dcc.send_data_frame(df.to_csv, C.TREND_DOWNLOAD_FILE_NAME)
+
+
+# Dummy functions with dummy data:
+
+        def _generate_table(tbl_data: dict) -> dbc.Table:
+            """
+            """
+            return dbc.Table.from_dataframe(
+                pd.DataFrame(tbl_data),
+                bordered=True,
+                striped=True,
+                hover=True,
+                size="sm",
+                color="info"
+            )
+
+
+        def _table_runtime(graph_data: dict) -> list:
+            """
+            """
+            table = {  # Dummy table
+                "Name": ["avf-0/3b/2/0-output", "avf-0/3b/2/0-tx",
+                    "avf-0/3b/a/0-output", "avf-0/3b/a/0-tx", "avf-input",
+                    "ethernet-input", "ip4-input-no-checksum", "ip4-lookup",
+                    "ip4-rewrite"],
+                "State": ["active", "active", "active", "active", "polling",
+                    "active", "active", "active", "active"],
+                "Calls": [21080, 21080, 21080, 21080, 21080, 42160, 42160,
+                    42160, 42160],
+                "Vectors": [5396480, 5396480, 5396480, 5396480, 10792960,
+                    10792960, 10792960, 10792960, 10792960],
+                "Suspends": [1, 21, 1, 21, 1, 1, 1, 1, 1],
+                "Clocks": [10.4, 27.2, 10.5, 26.7, 23.9, 25.6, 37.7, 45.3,43.2],
+                "Vectors/Call": [256.00, 256.00, 256.00, 256.00, 512.00, 256.00,
+                    256.00, 256.00, 256.00]
+            }
+
+            return [
+                "Thread 1 vpp_wk_0",
+                _generate_table(table),
+                "Thread 2 vpp_wk_1",
+                _generate_table(table),
+            ]
+
+
+        def _table_interface(graph_data: dict) -> list:
+            """
+            """
+            table = {  # Dummy table
+                "Name": ["avf-0/3b/2/0", "", "", "", "",
+                    "avf-0/3b/a/0", "", "", "", ""],
+                "Counter": ["rx packets", "rx bytes", "tx packets", "tx bytes",
+                    "ip4", "rx packets", "rx bytes", "tx packets", "tx bytes",
+                    "ip4"],
+                "Count": [10803200, 648192000, 10802688, 648161280, 10803200,
+                    10803200, 648192000, 10802688, 648161280, 10803200]
+            }
+
+            return [_generate_table(table), ]
+
+
+        def _table_instructions(graph_data: dict) -> list:
+            """
+            """
+            table = {  # Dummy table
+                "Name": ["avf-input", "ip4-input-no-checksum", "ip4-rewrite",
+                    "ip4-lookup", "ethernet-input", "avf-0/3b/2/0-tx",
+                    "avf-0/3b/2/0-output", "avf-0/3b/a/0-tx",
+                    "avf-0/3b/a/0-output"],
+                "Calls": [20770, 41539, 41540, 41539, 41540, 20770, 20770,
+                    20770, 20770],
+                "Packets": [10634240, 10633984, 10634240, 10633984, 10634240,
+                    5317120, 5317120, 5317120, 5317120],
+                "Packets/Call": [512.00, 256.00, 256.00, 256.00, 256.00, 256.00,
+                    256.00, 256.00, 256.00],
+                "Clocks/Packet": [23.69, 37.14, 42.59, 44.89, 24.31, 25.83,
+                    9.88, 26.51, 10.01],
+                "Instructions/Packet": [33.28, 64.83, 67.44, 67.08, 26.04,
+                    42.16, 14.10, 42.53, 14.10],
+                "IPC": [1.40, 1.75, 1.58, 1.49, 1.07, 1.63, 1.43, 1.60, 1.41]
+            }
+
+            return [
+                "Thread 1 vpp_wk_0",
+                _generate_table(table),
+                "Thread 2 vpp_wk_1",
+                _generate_table(table),
+            ]
+
+
+        def _table_cache(graph_data: dict) -> list:
+            """
+            """
+            table = {  # Dummy table
+                "Name": ["avf-input", "ip4-input-no-checksum", "ip4-rewrite",
+                    "ip4-lookup", "ethernet-input", "avf-0/3b/2/0-tx",
+                    "avf-0/3b/2/0-output", "avf-0/3b/a/0-tx",
+                    "avf-0/3b/a/0-output"],
+                "L1 hit/pkt": [10.17, 22.20, 28.73, 34.59, 10.23, 10.52, 6.87,
+                    10.52, 6.81],
+                "L1 miss/pkt": [0.33, 0.23, 1.14, 0.19, 0.42, 0.27, 0.17, 0.29,
+                    0.14],
+                "L2 hit/pkt": [0.32, 0.23, 1.14, 0.19, 0.36, 0.27, 0.17, 0.29,
+                    0.14],
+                "L2 miss/pkt": [0.00, 0.00, 0.00, 0.00, 0.06, 0.00, 0.00, 0.00,
+                    0.00],
+                "L3 hit/pkt": [0.00, 0.00, 0.00, 0.00, 0.06, 0.00, 0.00, 0.00,
+                    0.00],
+                "L3 miss/pkt": [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00,
+                    0.00],
+            }
+
+            return [
+                "Thread 1 vpp_wk_0",
+                _generate_table(table),
+                "Thread 2 vpp_wk_1",
+                _generate_table(table),
+            ]
