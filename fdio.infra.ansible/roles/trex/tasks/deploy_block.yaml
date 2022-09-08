@@ -30,6 +30,14 @@
   when:
     - azure is defined and item == "2.73"
 
+- name: Reset gcc-9
+  ansible.builtin.command: "update-alternatives --remove-all gcc"
+  when: trex_extracted.changed
+
+- name: Reset g++-9
+  ansible.builtin.command: "update-alternatives --remove-all g++"
+  when: trex_extracted.changed
+
 - name: Switch to gcc-9
   ansible.builtin.command: "update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9"
   when: trex_extracted.changed
