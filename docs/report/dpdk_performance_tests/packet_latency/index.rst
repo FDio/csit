@@ -8,8 +8,8 @@ Packet Latency
 
 DPDK Testpmd and L3fwd latency results are generated based on the test
 data obtained from |csit-release| NDR-PDR throughput tests executed
-across physical testbeds hosted in LF FD.io labs: 2n-icx, 3n-icx, 2n-skx,
-3n-skx, 2n-clx, 2n-zn2, 3n-alt, 3n-tsh, 2n-tx2.
+across physical testbeds hosted in LF FD.io labs: 2n-icx, 3n-icx,
+2n-clx, 2n-zn2, 3n-alt, 3n-tsh, 2n-tx2.
 
 Latency by percentile distribution plots are used to show packet latency
 percentiles at different packet rate load levels: i) No-Load latency
@@ -37,8 +37,6 @@ Additional information about graph data:
     Test results are stored in
     `build logs from FD.io dpdk performance job 2n-icx`_,
     `build logs from FD.io dpdk performance job 3n-icx`_,
-    `build logs from FD.io dpdk performance job 2n-skx`_,
-    `build logs from FD.io dpdk performance job 3n-skx`_,
     `build logs from FD.io dpdk performance job 2n-clx`_,
     `build logs from FD.io dpdk performance job 2n-zn2`_,
     `build logs from FD.io dpdk performance job 3n-alt`_,
@@ -52,8 +50,6 @@ Additional information about graph data:
 
     2n-icx-xxv710
     3n-icx-xxv710
-    2n-skx-xxv710
-    3n-skx-xxv710
     2n-clx-xxv710
     2n-zn2-xxv710
     3n-alt-xl710

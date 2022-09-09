@@ -26,7 +26,7 @@ Multi-core Tests
 |csit-release| multi-core tests are executed in the following VPP worker
 thread and physical core configurations:
 
-#. Intel Xeon Skylake and Cascadelake testbeds (2n-skx, 3n-skx, 2n-clx)
+#. Intel Xeon Icelake and Cascadelake testbeds (2n-icx, 3n-icx, 2n-clx)
    with Intel HT enabled (2 logical CPU cores per each physical core):
 
   #. 2t1c - 2 VPP worker threads on 1 physical core.

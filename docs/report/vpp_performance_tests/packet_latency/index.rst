@@ -9,7 +9,7 @@ Packet Latency
 
 VPP latency results are generated based on the test data obtained from
 |csit-release| NDR-PDR throughput tests executed across physical
-testbeds hosted in LF FD.io labs: 2n-icx, 3n-icx, 2n-aws, 2n-skx, 3n-skx,
+testbeds hosted in LF FD.io labs: 2n-icx, 3n-icx, 2n-aws,
 2n-clx, 2n-zn2, 3n-alt, 3n-tsh, 2n-tx2.
 
 Latency by percentile distribution plots are used to show packet latency
@@ -39,8 +39,6 @@ Additional information about graph data:
     `build logs from FD.io vpp performance job 2n-icx`_,
     `build logs from FD.io vpp performance job 3n-icx`_,
     `build logs from FD.io vpp performance job 2n-aws`_,
-    `build logs from FD.io vpp performance job 2n-skx`_,
-    `build logs from FD.io vpp performance job 3n-skx`_,
     `build logs from FD.io vpp performance job 2n-clx`_,
     `build logs from FD.io vpp performance job 2n-zn2`_,
     `build logs from FD.io vpp performance job 3n-alt`_,

@@ -11,7 +11,6 @@ in 1-core configurations.
 
     Test results are stored in
     `build logs from FD.io vpp performance job 2n-icx`_,
-    `build logs from FD.io vpp performance job 2n-skx`_,
     `build logs from FD.io vpp performance job 2n-clx`_
     with RF result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
@@ -23,12 +22,6 @@ Comparison tables in ASCII and CSV formats:
 
   - `ASCII Soak vs NDR comparison <../../_static/vpp/soak-vs-ndr-2n-icx.txt>`_
   - `CSV Soak vs NDR comparison <../../_static/vpp/soak-vs-ndr-2n-icx.csv>`_
-
-2n-skx
-~~~~~~
-
-  - `ASCII Soak vs NDR comparison <../../_static/vpp/soak-vs-ndr-2n-skx.txt>`_
-  - `CSV Soak vs NDR comparison <../../_static/vpp/soak-vs-ndr-2n-skx.csv>`_
 
 2n-clx
 ~~~~~~

@@ -7,8 +7,8 @@ Current vs Previous Release
 Relative comparison of DPDK Testpmd and L3fwd packet throughput (NDR,
 PDR and MRR) between |dpdk-release| and |dpdk-release-1| (measured for
 |csit-release| and |csit-release-1| respectively) is calculated from
-results of tests running on 3n-skx, 2n-skx, 2n-clx, 2n-zn2 testbeds
-in 1-core and 2-core configurations.
+results of tests running on 3n-icx, 2n-ics, 2n-clx, 2n-zn2, 3n-tsh, 2n-tx2
+testbeds in 1-core and 2-core configurations.
 
 Listed mean and standard deviation values are computed based on a series
 of the same tests executed against respective DPDK releases to verify
@@ -20,8 +20,6 @@ values.
     Test results are stored in
     `build logs from FD.io dpdk performance job 3n-icx`_,
     `build logs from FD.io dpdk performance job 2n-icx`_,
-    `build logs from FD.io dpdk performance job 3n-skx`_,
-    `build logs from FD.io dpdk performance job 2n-skx`_,
     `build logs from FD.io dpdk performance job 2n-clx`_,
     `build logs from FD.io dpdk performance job 2n-zn2`_,
     `build logs from FD.io dpdk performance job 3n-tsh`_,
@@ -75,52 +73,6 @@ Comparison tables in ASCII and CSV formats:
   - `ASCII 4t2c PDR comparison <../../_static/dpdk/performance-changes-2n-icx-4t2c-pdr.txt>`_
   - `CSV 2t1c PDR comparison <../../_static/dpdk/performance-changes-2n-icx-2t1c-pdr.csv>`_
   - `CSV 4t2c PDR comparison <../../_static/dpdk/performance-changes-2n-icx-4t2c-pdr.csv>`_
-
-3n-skx-xxv710
-~~~~~~~~~~~~~
-
-NDR Comparison
-``````````````
-
-Comparison tables in ASCII and CSV formats:
-
-  - `ASCII 2t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-ndr.txt>`_
-  - `ASCII 4t2c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-ndr.txt>`_
-  - `CSV 2t1c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-ndr.csv>`_
-  - `CSV 4t2c NDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-ndr.csv>`_
-
-PDR Comparison
-``````````````
-
-Comparison tables in ASCII and CSV formats:
-
-  - `ASCII 2t1c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-pdr.txt>`_
-  - `ASCII 4t2c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-pdr.txt>`_
-  - `CSV 2t1c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-2t1c-pdr.csv>`_
-  - `CSV 4t2c PDR comparison <../../_static/dpdk/performance-changes-3n-skx-4t2c-pdr.csv>`_
-
-2n-skx-xxv710
-~~~~~~~~~~~~~
-
-NDR Comparison
-``````````````
-
-Comparison tables in ASCII and CSV formats:
-
-  - `ASCII 2t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-2t1c-ndr.txt>`_
-  - `ASCII 4t2c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-4t2c-ndr.txt>`_
-  - `CSV 2t1c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-2t1c-ndr.csv>`_
-  - `CSV 4t2c NDR comparison <../../_static/dpdk/performance-changes-2n-skx-4t2c-ndr.csv>`_
-
-PDR Comparison
-``````````````
-
-Comparison tables in ASCII and CSV formats:
-
-  - `ASCII 2t1c PDR comparison <../../_static/dpdk/performance-changes-2n-skx-2t1c-pdr.txt>`_
-  - `ASCII 4t2c PDR comparison <../../_static/dpdk/performance-changes-2n-skx-4t2c-pdr.txt>`_
-  - `CSV 2t1c PDR comparison <../../_static/dpdk/performance-changes-2n-skx-2t1c-pdr.csv>`_
-  - `CSV 4t2c PDR comparison <../../_static/dpdk/performance-changes-2n-skx-4t2c-pdr.csv>`_
 
 2n-clx-xxv710
 ~~~~~~~~~~~~~

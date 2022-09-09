@@ -24,7 +24,7 @@ on VPP native crypto (`crypto_native` plugin):
 +-------------------+------------------+----------------+------------------+
 
 VPP IPsec with SW crypto are executed in both tunnel and policy modes,
-with tests running on 3-node testbeds: 3n-skx, 3n-tsh.
+with tests running on 3-node testbeds: 3n-icx, 3n-tsh.
 
 IPsec with Intel QAT HW
 ^^^^^^^^^^^^^^^^^^^^^^^

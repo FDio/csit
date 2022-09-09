@@ -53,8 +53,6 @@ Startup command template:
 
 .. include:: ../introduction/test_environment_sut_calib_icx.rst
 
-.. include:: ../introduction/test_environment_sut_calib_skx.rst
-
 .. include:: ../introduction/test_environment_sut_calib_clx.rst
 
 .. include:: ../introduction/test_environment_sut_calib_hsw.rst

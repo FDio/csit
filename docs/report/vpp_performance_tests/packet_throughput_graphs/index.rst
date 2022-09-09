@@ -42,8 +42,6 @@ Graphs are split into sections as follows:
      - 2n-icx: 2-node Xeon Icelake
      - 3n-icx: 3-node Xeon Icelake
      - 2n-aws: 2-node AWS
-     - 2n-skx: 2-node Xeon Skylake
-     - 3n-skx: 3-node Xeon Skylake
      - 2n-clx: 2-node Xeon Cascade Lake
      - 2n-zn2: 2-node AMD Zen2
      - 3n-alt: 2-node Arm Altra
@@ -139,8 +137,6 @@ Additional information about graph data:
     `build logs from FD.io vpp performance job 2n-icx`_,
     `build logs from FD.io vpp performance job 3n-icx`_,
     `build logs from FD.io vpp performance job 2n-aws`_,
-    `build logs from FD.io vpp performance job 2n-skx`_,
-    `build logs from FD.io vpp performance job 3n-skx`_,
     `build logs from FD.io vpp performance job 2n-clx`_,
     `build logs from FD.io vpp performance job 2n-zn2`_,
     `build logs from FD.io vpp performance job 3n-alt`_,
