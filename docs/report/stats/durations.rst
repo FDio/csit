@@ -25,12 +25,6 @@ Job Durations
   - `ASCII Iterative jobs <../_static/vpp/job-spec-duration-2n-dnv-iter.txt>`_
   - `ASCII Coverage jobs <../_static/vpp/job-spec-duration-2n-dnv-cov.txt>`_
 
-2n-skx
-------
-
-  - `ASCII Iterative jobs <../_static/vpp/job-spec-duration-2n-skx-iter.txt>`_
-  - `ASCII Coverage jobs <../_static/vpp/job-spec-duration-2n-skx-cov.txt>`_
-
 2n-tx2
 ------
 
@@ -54,12 +48,6 @@ Job Durations
 
   - `ASCII Iterative jobs <../_static/vpp/job-spec-duration-3n-dnv-iter.txt>`_
   - `ASCII Coverage jobs <../_static/vpp/job-spec-duration-3n-dnv-cov.txt>`_
-
-3n-skx
-------
-
-  - `ASCII Iterative jobs <../_static/vpp/job-spec-duration-3n-skx-iter.txt>`_
-  - `ASCII Coverage jobs <../_static/vpp/job-spec-duration-3n-skx-cov.txt>`_
 
 3n-tsh
 ------

@@ -73,7 +73,6 @@ Additional information about graph data:
 
     Test results are stored in
     `build logs from FD.io vpp performance job 2n-icx`_,
-    `build logs from FD.io vpp performance job 2n-skx`_,
     `build logs from FD.io vpp performance job 2n-clx`_ with RF
     result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
@@ -145,75 +144,6 @@ imix-8t4c-dot1qip4vxlan-l2bd
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf}
             \label{fig:2n-icx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-2n-skx-xxv710
-~~~~~~~~~~~~~
-
-imix-2t1c-dot1qip4vxlan-l2bd
-----------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf.html"></iframe>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf}
-            \label{fig:2n-skx-xxv710-imix-2t1c-dot1qip4vxlan-l2bd-reconf}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-imix-4t2c-dot1qip4vxlan-l2bd
-----------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf.html"></iframe>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf}
-            \label{fig:2n-skx-xxv710-imix-4t2c-dot1qip4vxlan-l2bd-reconf}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-imix-8t4c-dot1qip4vxlan-l2bd
-----------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf.html"></iframe>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf}
-            \label{fig:2n-skx-xxv710-imix-8t4c-dot1qip4vxlan-l2bd-reconf}
     \end{figure}
 
 .. raw:: latex

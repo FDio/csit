@@ -18,7 +18,7 @@ There are jobs available for multiple types of testbeds,
 based on various processors.
 Their Gerrit triggers words are of the form "perftest-{node_arch}"
 where the node_arch combinations currently supported are:
-2n-clx, 2n-dnv, 2n-skx, 2n-tx2, 2n-zn2, 3n-dnv, 3n-skx, 3n-tsh.
+2n-clx, 2n-dnv, 2n-tx2, 2n-zn2, 3n-dnv, 3n-tsh.
 
 Test selection
 --------------
@@ -47,12 +47,12 @@ to trigger more runs for the same job, until Gerrit is done waiting.
 After Gerrit is done waiting, it becames possible to trigger
 the same job again.
 
-Example. User triggers one set of tests on 2n-skx and immediately
-also triggers other set of tests on 3n-skx. Then the user notices
-2n-skx run end early because of a typo in tag expression.
-When the user tries to re-trigger 2n-skx (with fixed tag expression),
+Example. User triggers one set of tests on 2n-icx and immediately
+also triggers other set of tests on 3n-icx. Then the user notices
+2n-icx run end early because of a typo in tag expression.
+When the user tries to re-trigger 2n-icx (with fixed tag expression),
 that comment gets ignored by Jenkins.
-Only when 3n-skx job finishes, the user can trigger 2n-skx.
+Only when 3n-icx job finishes, the user can trigger 2n-icx.
 
 One comment many jobs
 _____________________
@@ -73,7 +73,7 @@ so the OR operator is not very useful. It is recommended
 to use space instead of OR operator.
 
 Example template:
-perftest-2n-skx {tag_expression_1} {tag_expression_2}
+perftest-2n-icx {tag_expression_1} {tag_expression_2}
 
 See below for more concrete examples.
 
@@ -124,7 +124,7 @@ and more for dot1q and other encapsulated traffic;
 As there are more test cases than CSIT can periodically test,
 it is possible to encounter an old test case that currently fails.
 To avoid that, you can look at "job spec" files we use for periodic testing,
-for example `this one <https://github.com/FDio/csit/blob/master/docs/job_specs/report_iterative/2n-skx/vpp-mrr-00.md>`_.
+for example `this one <https://github.com/FDio/csit/blob/master/docs/job_specs/report_iterative/2n-icx/vpp-mrr-00.md>`_.
 
 ..
     TODO: Explain why "periodic" job spec link lands at report_iterative.
@@ -164,10 +164,10 @@ available (1 or 2).
 
 As not all NICs and testbeds offer enogh ports for 2 parallel DUT-DUT links,
 the user looks at `testbed specifications <https://github.com/FDio/csit/tree/master/topologies/available>`_
-and finds that only x710 NIC on 3n-skx testbed matches the requirements.
+and finds that only xxv710 NIC on 3n-icx testbed matches the requirements.
 Quick look into the suites confirm the smallest frame size is 64 bytes
 (despite DOT1Q robot tag, as the encapsulation does not happen on TG-DUT links).
-It is ok to use just 1 physical core, as 3n-skx has hyperthreading enabled,
+It is ok to use just 1 physical core, as 3n-icx has hyperthreading enabled,
 so VPP vswitch will use 2 worker threads.
 
 The user decides the vswitch forwarding mode is not important
@@ -176,7 +176,7 @@ but wants to test both NIC drivers (not AF_XDP), both apps in VM,
 and both 1 and 2 parallel links.
 
 After shortening, this is the trigger comment fianlly used:
-perftest-3n-skx mrrANDnic_intel-x710AND1cAND64bAND?lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm*NOTdrv_af_xdp
+perftest-3n-icx mrrANDnic_intel-x710AND1cAND64bAND?lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm*NOTdrv_af_xdp
 
 Basic operation
 ```````````````

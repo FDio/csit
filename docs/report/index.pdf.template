@@ -7,6 +7,8 @@ CSIT-2206
     introduction/index
     vpp_performance_tests/index
     dpdk_performance_tests/index
-    trex_performance_tests/index
     vpp_device_tests/index
     csit_framework_documentation/index
+
+..
+    trex_performance_tests/index

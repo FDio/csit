@@ -10,4 +10,3 @@ ED UDP TPUT
 
     nat44-ed-udp-tput-2n-icx
     nat44-ed-udp-tput-2n-clx
-    nat44-ed-udp-tput-2n-skx
