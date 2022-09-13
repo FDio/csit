@@ -255,14 +255,13 @@ class Constants:
     # application.
     NEWS_HTML_LAYOUT_FILE = "pal/templates/news_layout.jinja2"
 
-    # The default job displayed when the page is loaded first time.
-    NEWS_DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
-
     # Time period for regressions and progressions.
     NEWS_TIME_PERIOD = TIME_PERIOD  # [days]
 
-    # Time period for summary tables.
-    NEWS_SUMMARY_PERIOD = 7  # [days]
+    # Time periods for summary tables.
+    NEWS_LAST = 1  # [days]
+    NEWS_SHORT = 7  # [days]
+    NEWS_LONG = NEWS_TIME_PERIOD  # [days]
 
     ############################################################################
     # Report.

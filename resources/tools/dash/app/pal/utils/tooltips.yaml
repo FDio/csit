@@ -24,6 +24,8 @@ help-normalize:
   are not normalized as we do not know the exact value of CPU frequency.
 help-release:
   The CSIT release.
+help-summary-period:
+  Choose the number of runs for summary tables.
 help-tbed:
   The test bed is defined by toplology (number of nodes) and processor
   architecture.
