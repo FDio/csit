@@ -18,9 +18,6 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 
 from datetime import datetime, timedelta
-from dash import html
-
-from ..utils.constants import Constants as C
 
 
 def _table_info(job_data: pd.DataFrame) -> dbc.Table:
@@ -149,22 +146,31 @@ def table_news(data: pd.DataFrame, job: str, period: int) -> list:
     return r_list
 
 
-def table_summary(data: pd.DataFrame, jobs: list) -> list:
+def table_summary(data: pd.DataFrame, jobs: list, period: int) -> list:
     """Generates summary (failed tests, regressions and progressions) from the
     last week.
 
     :param data: Trending data with calculated annomalies to be displayed in the
         tables.
     :param jobs: List of jobs.
+    :params period: The time period for the summary table.
     :type data: pandas.DataFrame
     :type job: str
+    :type period: int
     :returns: List of tables.
     :rtype: list
     """
 
-    r_list = list()
-    for job in jobs:
-        r_list.extend(table_news(data, job, C.NEWS_SUMMARY_PERIOD))
-        r_list.append(html.Div(html.P(" ")))
-
-    return r_list
+    return [
+        dbc.Accordion(
+            children=[
+                dbc.AccordionItem(
+                    title=job,
+                    children=table_news(data, job, period)
+                ) for job in jobs
+            ],
+            class_name="gy-2 p-0",
+            start_collapsed=True,
+            always_open=True
+        )
+    ]
