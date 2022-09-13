@@ -26,5 +26,18 @@
   ansible.builtin.shell: "docker build -t csit_sut-ubuntu2204:local ."
   args:
     chdir: "/opt/csit-sut"
+  async: 3000
+  poll: 0
+  register: docker_built
+  tags:
+    - csit-sut-image
+
+- name: Check if CSIT SUT Docker Image is Built
+  async_status:
+    jid: "{{ docker_built.ansible_job_id }}"
+  register: docker_built
+  until: docker_built.finished
+  delay: 10
+  retries: 300
   tags:
     - csit-sut-image
