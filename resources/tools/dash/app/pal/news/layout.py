@@ -22,18 +22,15 @@ from flask import Flask
 from dash import dcc
 from dash import html
 from dash import callback_context
-from dash import Input, Output, State
+from dash import Input, Output
 from yaml import load, FullLoader, YAMLError
-from copy import deepcopy
 
 from ..data.data import Data
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies, show_tooltip, gen_new_url, \
-    get_ttypes, get_cadences, get_test_beds, get_job, generate_options, \
-    set_job_params
+from ..utils.utils import classify_anomalies, show_tooltip, gen_new_url
 from ..utils.url_processing import url_decode
 from ..data.data import Data
-from .tables import table_news, table_summary
+from .tables import table_summary
 
 
 class Layout:
@@ -93,8 +90,6 @@ class Layout:
             d_job_info["cadence"].append(lst_job[4])
             d_job_info["tbed"].append("-".join(lst_job[-2:]))
         self.job_info = pd.DataFrame.from_dict(d_job_info)
-
-        self._default = set_job_params(self.job_info, C.NEWS_DEFAULT_JOB)
 
         # Pre-process the data:
 
@@ -254,8 +249,10 @@ class Layout:
                 f"{self._tooltip_file}\n{err}"
             )
 
-        self._default_tab_failed = \
-            table_news(self.data, self._default["job"], C.NEWS_TIME_PERIOD)
+        self._default_period = C.NEWS_SHORT
+        self._default_active = (False, True, False)
+        self._default_table = \
+            table_summary(self._data, self._jobs, self._default_period)
 
         # Callbacks:
         if self._app is not None and hasattr(self, 'callbacks'):
@@ -264,14 +261,6 @@ class Layout:
     @property
     def html_layout(self) -> dict:
         return self._html_layout
-
-    @property
-    def data(self) -> pd.DataFrame:
-        return self._data
-
-    @property
-    def default(self) -> dict:
-        return self._default
 
     def add_content(self):
         """Top level method which generated the web page.
@@ -287,11 +276,10 @@ class Layout:
         :rtype: html.Div
         """
 
-        if self.html_layout:
+        if self._html_layout:
             return html.Div(
                 id="div-main",
                 children=[
-                    dcc.Store(id="control-panel"),
                     dcc.Location(id="url", refresh=False),
                     dbc.Row(
                         id="row-navbar",
@@ -373,33 +361,37 @@ class Layout:
         return dbc.Col(
             id="col-plotting-area",
             children=[
-                dbc.Row(  # Failed tests
-                    id="row-table-failed",
-                    class_name="g-0 p-2",
-                    children=self._default_tab_failed
-                ),
-                dbc.Row(
-                    class_name="g-0 p-2",
-                    align="center",
-                    justify="start",
+                dcc.Loading(
                     children=[
-                        dbc.InputGroup(
-                            class_name="me-1",
+                        dbc.Row(  # Failed tests
+                            id="row-table",
+                            class_name="g-0 p-2",
+                            children=self._default_table
+                        ),
+                        dbc.Row(
+                            class_name="g-0 p-2",
+                            align="center",
+                            justify="start",
                             children=[
-                                dbc.InputGroupText(
-                                    style=C.URL_STYLE,
-                                    children=show_tooltip(
-                                        self._tooltips,
-                                        "help-url", "URL",
-                                        "input-url"
-                                    )
-                                ),
-                                dbc.Input(
-                                    id="input-url",
-                                    readonly=True,
-                                    type="url",
-                                    style=C.URL_STYLE,
-                                    value=""
+                                dbc.InputGroup(
+                                    class_name="me-1",
+                                    children=[
+                                        dbc.InputGroupText(
+                                            style=C.URL_STYLE,
+                                            children=show_tooltip(
+                                                self._tooltips,
+                                                "help-url", "URL",
+                                                "input-url"
+                                            )
+                                        ),
+                                        dbc.Input(
+                                            id="input-url",
+                                            readonly=True,
+                                            type="url",
+                                            style=C.URL_STYLE,
+                                            value=""
+                                        )
+                                    ]
                                 )
                             ]
                         )
@@ -423,97 +415,43 @@ class Layout:
                     class_name="g-0 p-2",
                     children=[
                         dbc.Row(
-                            class_name="gy-1",
+                            class_name="g-0",
                             children=[
                                 dbc.Label(
-                                    class_name="p-0",
+                                    class_name="g-0",
                                     children=show_tooltip(self._tooltips,
-                                        "help-dut", "Device under Test")
+                                        "help-summary-period", "Window")
                                 ),
                                 dbc.Row(
-                                    dbc.RadioItems(
-                                        id="ri-duts",
-                                        inline=True,
-                                        value=self.default["dut"],
-                                        options=self.default["duts"]
-                                    )
-                                )
-                            ]
-                        ),
-                        dbc.Row(
-                            class_name="gy-1",
-                            children=[
-                                dbc.Label(
-                                    class_name="p-0",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-ttype", "Test Type"),
-                                ),
-                                dbc.RadioItems(
-                                    id="ri-ttypes",
-                                    inline=True,
-                                    value=self.default["ttype"],
-                                    options=self.default["ttypes"]
-                                )
-                            ]
-                        ),
-                        dbc.Row(
-                            class_name="gy-1",
-                            children=[
-                                dbc.Label(
-                                    class_name="p-0",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-cadence", "Cadence"),
-                                ),
-                                dbc.RadioItems(
-                                    id="ri-cadences",
-                                    inline=True,
-                                    value=self.default["cadence"],
-                                    options=self.default["cadences"]
-                                )
-                            ]
-                        ),
-                        dbc.Row(
-                            class_name="gy-1",
-                            children=[
-                                dbc.Label(
-                                    class_name="p-0",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-tbed", "Test Bed"),
-                                ),
-                                dbc.Select(
-                                    id="dd-tbeds",
-                                    placeholder="Select a test bed...",
-                                    value=self.default["tbed"],
-                                    options=self.default["tbeds"]
-                                )
-                            ]
-                        ),
-                        dbc.Row(
-                            class_name="gy-1 p-0",
-                            children=[
-                                dbc.ButtonGroup(
-                                    [
-                                        dbc.Button(
-                                            id="btn-summary",
-                                            children=(
-                                                f"Show Summary from the last "
-                                                f"{C.NEWS_SUMMARY_PERIOD} Days"
+                                    dbc.ButtonGroup(
+                                        id="bg-time-period",
+                                        class_name="g-0",
+                                        children=[
+                                            dbc.Button(
+                                                id="period-last",
+                                                children="Last Run",
+                                                className="me-1",
+                                                outline=True,
+                                                color="info"
                                             ),
-                                            class_name="me-1",
-                                            color="info"
-                                        )
-                                    ],
-                                    size="md",
-                                )
-                            ]
-                        ),
-                        dbc.Row(
-                            class_name="gy-1",
-                            children=[
-                                dbc.Alert(
-                                    id="al-job",
-                                    color="info",
-                                    children=self.default["job"]
+                                            dbc.Button(
+                                                id="period-short",
+                                                children=\
+                                                    f"Last {C.NEWS_SHORT} Runs",
+                                                className="me-1",
+                                                outline=True,
+                                                active=True,
+                                                color="info"
+                                            ),
+                                            dbc.Button(
+                                                id="period-long",
+                                                children="All Runs",
+                                                className="me-1",
+                                                outline=True,
+                                                color="info"
+                                            )
+                                        ]
+                                    )
                                 )
                             ]
                         )
@@ -521,78 +459,6 @@ class Layout:
                 )
             ]
         )
-
-    class ControlPanel:
-        """A class representing the control panel.
-        """
-
-        def __init__(self, panel: dict, default: dict) -> None:
-            """Initialisation of the control pannel by default values. If
-            particular values are provided (parameter "panel") they are set
-            afterwards.
-
-            :param panel: Custom values to be set to the control panel.
-            :param default: Default values to be set to the control panel.
-            :type panel: dict
-            :type defaults: dict
-            """
-
-            self._defaults = {
-                "ri-ttypes-options": default["ttypes"],
-                "ri-cadences-options": default["cadences"],
-                "dd-tbeds-options": default["tbeds"],
-                "ri-duts-value": default["dut"],
-                "ri-ttypes-value": default["ttype"],
-                "ri-cadences-value": default["cadence"],
-                "dd-tbeds-value": default["tbed"],
-                "al-job-children": default["job"]
-            }
-            self._panel = deepcopy(self._defaults)
-            if panel:
-                for key in self._defaults:
-                    self._panel[key] = panel[key]
-
-        def set(self, kwargs: dict) -> None:
-            """Set the values of the Control panel.
-
-            :param kwargs: key - value pairs to be set.
-            :type kwargs: dict
-            :raises KeyError: If the key in kwargs is not present in the Control
-                panel.
-            """
-            for key, val in kwargs.items():
-                if key in self._panel:
-                    self._panel[key] = val
-                else:
-                    raise KeyError(f"The key {key} is not defined.")
-
-        @property
-        def defaults(self) -> dict:
-            return self._defaults
-
-        @property
-        def panel(self) -> dict:
-            return self._panel
-
-        def get(self, key: str) -> any:
-            """Returns the value of a key from the Control panel.
-
-            :param key: The key which value should be returned.
-            :type key: str
-            :returns: The value of the key.
-            :rtype: any
-            :raises KeyError: If the key in kwargs is not present in the Control
-                panel.
-            """
-            return self._panel[key]
-
-        def values(self) -> list:
-            """Returns the values from the Control panel as a list.
-
-            :returns: The values from the Control panel.
-            :rtype: list
-            """
-            return list(self._panel.values())
 
     def callbacks(self, app):
         """Callbacks for the whole application.
@@ -602,47 +468,36 @@ class Layout:
         """
 
         @app.callback(
-            Output("control-panel", "data"),  # Store
-            Output("row-table-failed", "children"),
+            Output("row-table", "children"),
             Output("input-url", "value"),
-            Output("ri-ttypes", "options"),
-            Output("ri-cadences", "options"),
-            Output("dd-tbeds", "options"),
-            Output("ri-duts", "value"),
-            Output("ri-ttypes", "value"),
-            Output("ri-cadences", "value"),
-            Output("dd-tbeds", "value"),
-            Output("al-job", "children"),
-            State("control-panel", "data"),  # Store
-            Input("ri-duts", "value"),
-            Input("ri-ttypes", "value"),
-            Input("ri-cadences", "value"),
-            Input("dd-tbeds", "value"),
-            Input("url", "href"),
-            Input("btn-summary", "n_clicks")
+            Output("period-last", "active"),
+            Output("period-short", "active"),
+            Output("period-long", "active"),
+            Input("period-last", "n_clicks"),
+            Input("period-short", "n_clicks"),
+            Input("period-long", "n_clicks"),
+            Input("url", "href")
         )
-        def _update_application(cp_data: dict, dut: str, ttype: str,
-                cadence:str, tbed: str, href: str, btn_all: int) -> tuple:
+        def _update_application(btn_last: int, btn_short: int, btn_long: int,
+            href: str) -> tuple:
             """Update the application when the event is detected.
 
-            :param cp_data: Current status of the control panel stored in
-                browser.
-            :param dut: Input - DUT name.
-            :param ttype: Input - Test type.
-            :param cadence: Input - The cadence of the job.
-            :param tbed: Input - The test bed.
-            :param href: Input - The URL provided by the browser.
-            :type cp_data: dict
-            :type dut: str
-            :type ttype: str
-            :type cadence: str
-            :type tbed: str
-            :type href: str
             :returns: New values for web page elements.
             :rtype: tuple
             """
 
-            ctrl_panel = self.ControlPanel(cp_data, self.default)
+            _, _, _ = btn_last, btn_short, btn_long
+
+            periods = {
+                "period-last": C.NEWS_LAST,
+                "period-short": C.NEWS_SHORT,
+                "period-long": C.NEWS_LONG
+            }
+            actives = {
+                "period-last": (True, False, False),
+                "period-short": (False, True, False),
+                "period-long": (False, False, True)
+            }
 
             # Parse the url:
             parsed_url = url_decode(href)
@@ -651,92 +506,16 @@ class Layout:
             else:
                 url_params = None
 
-            show_summary = False
-
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
-            if trigger_id == "ri-duts":
-                ttype_opts = generate_options(get_ttypes(self.job_info, dut))
-                ttype_val = ttype_opts[0]["value"]
-                cad_opts = generate_options(
-                    get_cadences(self.job_info, dut, ttype_val))
-                cad_val = cad_opts[0]["value"]
-                tbed_opts = generate_options(get_test_beds(
-                    self.job_info, dut, ttype_val, cad_val))
-                tbed_val = tbed_opts[0]["value"]
-                ctrl_panel.set({
-                    "ri-duts-value": dut,
-                    "ri-ttypes-options": ttype_opts,
-                    "ri-ttypes-value": ttype_val,
-                    "ri-cadences-options": cad_opts,
-                    "ri-cadences-value": cad_val,
-                    "dd-tbeds-options": tbed_opts,
-                    "dd-tbeds-value": tbed_val
-                })
-            elif trigger_id == "ri-ttypes":
-                cad_opts = generate_options(get_cadences(
-                    self.job_info, ctrl_panel.get("ri-duts-value"), ttype))
-                cad_val = cad_opts[0]["value"]
-                tbed_opts = generate_options(get_test_beds(
-                    self.job_info, ctrl_panel.get("ri-duts-value"),
-                    ttype, cad_val))
-                tbed_val = tbed_opts[0]["value"]
-                ctrl_panel.set({
-                    "ri-ttypes-value": ttype,
-                    "ri-cadences-options": cad_opts,
-                    "ri-cadences-value": cad_val,
-                    "dd-tbeds-options": tbed_opts,
-                    "dd-tbeds-value": tbed_val
-                })
-            elif trigger_id == "ri-cadences":
-                tbed_opts = generate_options(get_test_beds(
-                    self.job_info, ctrl_panel.get("ri-duts-value"),
-                    ctrl_panel.get("ri-ttypes-value"), cadence))
-                tbed_val = tbed_opts[0]["value"]
-                ctrl_panel.set({
-                    "ri-cadences-value": cadence,
-                    "dd-tbeds-options": tbed_opts,
-                    "dd-tbeds-value": tbed_val
-                })
-            elif trigger_id == "dd-tbeds":
-                ctrl_panel.set({
-                    "dd-tbeds-value": tbed
-                })
-            elif trigger_id == "url":
-                # TODO: Add verification
-                if url_params:
-                    new_job = url_params.get("job", list())[0]
-                    if new_job and new_job != "all":
-                        job_params = set_job_params(self.job_info, new_job)
-                        ctrl_panel = self.ControlPanel(None, job_params)
-                    if new_job and new_job == "all":
-                        show_summary = True
-                else:
-                    ctrl_panel = self.ControlPanel(cp_data, self.default)
-            elif trigger_id == "btn-summary":
-                show_summary = True
+            if trigger_id == "url" and url_params:
+                trigger_id = url_params.get("period", list())[0]
 
-            if show_summary:
-                ctrl_panel.set({
-                    "al-job-children": \
-                        f"Summary from the last {C.NEWS_SUMMARY_PERIOD} days"
-                })
-                job = "all"
-                tables = table_summary(self.data, self._jobs)
-            else:
-                job = get_job(
-                    self.job_info,
-                    ctrl_panel.get("ri-duts-value"),
-                    ctrl_panel.get("ri-ttypes-value"),
-                    ctrl_panel.get("ri-cadences-value"),
-                    ctrl_panel.get("dd-tbeds-value")
-                )
-                ctrl_panel.set({"al-job-children": job})
-                tables = table_news(self.data, job, C.NEWS_TIME_PERIOD)
+            period = periods.get(trigger_id, self._default_period)
+            active = actives.get(trigger_id, self._default_active)
 
             ret_val = [
-                ctrl_panel.panel,
-                tables,
-                gen_new_url(parsed_url, {"job": job})
+                table_summary(self._data, self._jobs, period),
+                gen_new_url(parsed_url, {"period": trigger_id})
             ]
-            ret_val.extend(ctrl_panel.values())
+            ret_val.extend(active)
             return ret_val
