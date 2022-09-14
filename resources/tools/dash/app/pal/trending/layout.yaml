@@ -28,33 +28,6 @@ plot-trending-tput:
     tickcolor: "rgb(238, 238, 238)"
     tickmode: "auto"
     tickformat: "%m%d"
-    rangeselector:
-      buttons:
-      - count: 14
-        label: "2w"
-        step: "day"
-        stepmode: "backward"
-      - count: 1
-        label: "1m"
-        step: "month"
-        stepmode: "backward"
-      - count: 2
-        label: "2m"
-        step: "month"
-        stepmode: "backward"
-      - count: 3
-        label: "3m"
-        step: "month"
-        stepmode: "backward"
-      - count: 4
-        label: "4m"
-        step: "month"
-        stepmode: "backward"
-      - count: 5
-        label: "5m"
-        step: "month"
-        stepmode: "backward"
-      - step: "all"
   margin:
     r: 20
     b: 0
@@ -101,33 +74,6 @@ plot-trending-lat:
     tickcolor: "rgb(238, 238, 238)"
     tickmode: "auto"
     tickformat: "%m%d"
-    rangeselector:
-      buttons:
-      - count: 14
-        label: "2w"
-        step: "day"
-        stepmode: "backward"
-      - count: 1
-        label: "1m"
-        step: "month"
-        stepmode: "backward"
-      - count: 2
-        label: "2m"
-        step: "month"
-        stepmode: "backward"
-      - count: 3
-        label: "3m"
-        step: "month"
-        stepmode: "backward"
-      - count: 4
-        label: "4m"
-        step: "month"
-        stepmode: "backward"
-      - count: 5
-        label: "5m"
-        step: "month"
-        stepmode: "backward"
-      - step: "all"
   margin:
     r: 20
     b: 0

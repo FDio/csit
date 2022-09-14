@@ -25,14 +25,14 @@ from dash import callback_context, no_update, ALL
 from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
-from datetime import datetime, timedelta
+from datetime import datetime
 from copy import deepcopy
 from json import loads, JSONDecodeError
 from ast import literal_eval
 
 from ..utils.constants import Constants as C
 from ..utils.utils import show_tooltip, label, sync_checklists, list_tests, \
-    get_date, gen_new_url, generate_options
+    gen_new_url, generate_options
 from ..utils.url_processing import url_decode
 from ..data.data import Data
 from .graphs import graph_trending, graph_hdrh_latency, \
@@ -239,6 +239,7 @@ class Layout:
         if self.html_layout and self.spec_tbs:
             return html.Div(
                 id="div-main",
+                className="small",
                 children=[
                     dbc.Row(
                         id="row-navbar",
@@ -594,32 +595,7 @@ class Layout:
                                     class_name="me-1",
                                     color="info"
                                 )
-                            ],
-                            size="md",
-                        )
-                    ]
-                ),
-                dbc.Row(
-                    class_name="gy-1",
-                    children=[
-                        dbc.Label(
-                            class_name="gy-1",
-                            children=show_tooltip(self._tooltips,
-                                "help-time-period", "Time Period"),
-                        ),
-                        dcc.DatePickerRange(
-                            id="dpr-period",
-                            className="d-flex justify-content-center",
-                            min_date_allowed=\
-                                datetime.utcnow() - timedelta(
-                                    days=self.time_period),
-                            max_date_allowed=datetime.utcnow(),
-                            initial_visible_month=datetime.utcnow(),
-                            start_date=\
-                                datetime.utcnow() - timedelta(
-                                    days=self.time_period),
-                            end_date=datetime.utcnow(),
-                            display_format="D MMM YY"
+                            ]
                         )
                     ]
                 ),
@@ -662,8 +638,7 @@ class Layout:
                                     color="info",
                                     disabled=False
                                 ),
-                            ],
-                            size="md",
+                            ]
                         )
                     ]
                 ),
@@ -711,10 +686,7 @@ class Layout:
                 "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
                 "btn-ctrl-add-disabled": True,
                 "cl-normalize-value": list(),
-                "cl-selected-options": list(),
-                "dpr-start-date": datetime.utcnow() - \
-                    timedelta(days=C.TIME_PERIOD),
-                "dpr-end-date": datetime.utcnow()
+                "cl-selected-options": list()
             }
 
             self._panel = deepcopy(self._defaults)
@@ -878,8 +850,6 @@ class Layout:
             Output("btn-ctrl-add", "disabled"),
             Output("cl-ctrl-normalize", "value"),
             Output("cl-selected", "options"),  # User selection
-            Output("dpr-period", "start_date"),
-            Output("dpr-period", "end_date"),
             State("control-panel", "data"),  # Store
             State("selected-tests", "data"),  # Store
             State("cl-selected", "value"),  # User selection
@@ -895,8 +865,6 @@ class Layout:
             Input("cl-ctrl-testtype-all", "value"),
             Input("cl-ctrl-normalize", "value"),
             Input("btn-ctrl-add", "n_clicks"),
-            Input("dpr-period", "start_date"),
-            Input("dpr-period", "end_date"),
             Input("btn-sel-remove", "n_clicks"),
             Input("btn-sel-remove-all", "n_clicks"),
             Input("url", "href")
@@ -905,7 +873,7 @@ class Layout:
             dd_dut: str, dd_phy: str, dd_area: str, dd_test: str, cl_core: list,
             cl_core_all: list, cl_framesize: list, cl_framesize_all: list,
             cl_testtype: list, cl_testtype_all: list, cl_normalize: list,
-            btn_add: int, d_start: str, d_end: str, btn_remove: int,
+            btn_add: int, btn_remove: int,
             btn_remove_all: int, href: str) -> tuple:
             """Update the application when the event is detected.
 
@@ -927,8 +895,6 @@ class Layout:
             :param cl_testtype_all: Input - All test types.
             :param cl_normalize: Input - Normalize the results.
             :param btn_add: Input - Button "Add Selected" tests.
-            :param d_start: Date and time where the data processing starts.
-            :param d_end: Date and time where the data processing ends.
             :param btn_remove: Input - Button "Remove selected" tests.
             :param btn_remove_all: Input - Button "Remove All" tests.
             :param href: Input - The URL provided by the browser.
@@ -947,8 +913,6 @@ class Layout:
             :type cl_testtype_all: list
             :type cl_normalize: list
             :type btn_add: int
-            :type d_start: str
-            :type d_end: str
             :type btn_remove: int
             :type btn_remove_all: int
             :type href: str
@@ -958,9 +922,6 @@ class Layout:
 
             ctrl_panel = self.ControlPanel(cp_data)
             norm = cl_normalize
-
-            d_start = get_date(d_start)
-            d_end = get_date(d_end)
 
             # Parse the url:
             parsed_url = url_decode(href)
@@ -1218,8 +1179,6 @@ class Layout:
                 if url_params:
                     try:
                         store_sel = literal_eval(url_params["store_sel"][0])
-                        d_start = get_date(url_params["start"][0])
-                        d_end = get_date(url_params["end"][0])
                         norm = literal_eval(url_params["norm"][0])
                     except (KeyError, IndexError):
                         pass
@@ -1269,27 +1228,23 @@ class Layout:
                             "cl-ctrl-testtype-all-options": C.CL_ALL_ENABLED
                         })
 
-            if trigger_id in ("btn-ctrl-add", "url", "dpr-period",
-                    "btn-sel-remove", "cl-ctrl-normalize"):
+            if trigger_id in ("btn-ctrl-add", "url", "btn-sel-remove",
+                    "cl-ctrl-normalize"):
                 if store_sel:
                     row_fig_tput, row_fig_lat, row_btn_dwnld = \
                         _generate_plotting_area(
                             graph_trending(self.data, store_sel, self.layout,
-                                d_start, d_end, bool(norm)),
+                                bool(norm)),
                             gen_new_url(
                                 parsed_url,
                                 {
                                     "store_sel": store_sel,
-                                    "start": d_start,
-                                    "end": d_end,
                                     "norm": norm
                                 }
                             )
                         )
                     ctrl_panel.set({
-                        "cl-selected-options": list_tests(store_sel),
-                        "dpr-start-date": d_start,
-                        "dpr-end-date": d_end
+                        "cl-selected-options": list_tests(store_sel)
                     })
                 else:
                     row_fig_tput = C.PLACEHOLDER

@@ -232,6 +232,7 @@ class Layout:
         if self.html_layout and self.spec_tbs:
             return html.Div(
                 id="div-main",
+                className="small",
                 children=[
                     dbc.Row(
                         id="row-navbar",
@@ -638,8 +639,7 @@ class Layout:
                                     class_name="me-1",
                                     color="info"
                                 )
-                            ],
-                            size="md",
+                            ]
                         )
                     ]
                 ),
@@ -682,8 +682,7 @@ class Layout:
                                     color="info",
                                     disabled=False
                                 ),
-                            ],
-                            size="md",
+                            ]
                         )
                     ]
                 ),

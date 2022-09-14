@@ -99,22 +99,18 @@ def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
 
 
 def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
-    start: datetime, end: datetime, color: str, norm_factor: float) -> list:
+    color: str, norm_factor: float) -> list:
     """Generate the trending traces for the trending graph.
 
     :param ttype: Test type (MRR, NDR, PDR).
     :param name: The test name to be displayed as the graph title.
     :param df: Data frame with test data.
-    :param start: The date (and time) when the selected data starts.
-    :param end: The date (and time) when the selected data ends.
     :param color: The color of the trace (samples and trend line).
     :param norm_factor: The factor used for normalization of the results to CPU
         frequency set to Constants.NORM_FREQUENCY.
     :type ttype: str
     :type name: str
     :type df: pandas.DataFrame
-    :type start: datetime.datetime
-    :type end: datetime.datetime
     :type color: str
     :type norm_factor: float
     :returns: Traces (samples, trending line, anomalies)
@@ -124,7 +120,6 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     df = df.dropna(subset=[C.VALUE[ttype], ])
     if df.empty:
         return list()
-    df = df.loc[((df["start_time"] >= start) & (df["start_time"] <= end))]
     if df.empty:
         return list()
 
@@ -274,22 +269,18 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
 
 
 def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
-    start: datetime, end: datetime, normalize: bool) -> tuple:
+    normalize: bool) -> tuple:
     """Generate the trending graph(s) - MRR, NDR, PDR and for PDR also Latences
     (result_latency_forward_pdr_50_avg).
 
     :param data: Data frame with test results.
     :param sel: Selected tests.
     :param layout: Layout of plot.ly graph.
-    :param start: The date (and time) when the selected data starts.
-    :param end: The date (and time) when the selected data ends.
     :param normalize: If True, the data is normalized to CPU frquency
         Constants.NORM_FREQUENCY.
     :type data: pandas.DataFrame
     :type sel: dict
     :type layout: dict
-    :type start: datetime.datetime
-    :type end: datetype.datetype
     :type normalize: bool
     :returns: Trending graph(s)
     :rtype: tuple(plotly.graph_objects.Figure, plotly.graph_objects.Figure)
@@ -316,7 +307,7 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
         else:
             norm_factor = 1.0
         traces = _generate_trending_traces(
-            itm["testtype"], name, df, start, end, get_color(idx), norm_factor
+            itm["testtype"], name, df, get_color(idx), norm_factor
         )
         if traces:
             if not fig_tput:
@@ -325,7 +316,7 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
 
         if itm["testtype"] == "pdr":
             traces = _generate_trending_traces(
-                "pdr-lat", name, df, start, end, get_color(idx), norm_factor
+                "pdr-lat", name, df, get_color(idx), norm_factor
             )
             if traces:
                 if not fig_lat:

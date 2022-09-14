@@ -279,6 +279,7 @@ class Layout:
         if self.html_layout:
             return html.Div(
                 id="div-main",
+                className="small",
                 children=[
                     dcc.Location(id="url", refresh=False),
                     dbc.Row(

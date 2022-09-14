@@ -25,12 +25,12 @@ from dash import callback_context, no_update
 from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
-from datetime import datetime, timedelta
+from datetime import datetime
 from copy import deepcopy
 
 from ..utils.constants import Constants as C
-from ..utils.utils import show_tooltip, gen_new_url, get_date, get_ttypes, \
-    get_cadences, get_test_beds, get_job, generate_options, set_job_params
+from ..utils.utils import show_tooltip, gen_new_url, get_ttypes, get_cadences, \
+    get_test_beds, get_job, generate_options, set_job_params
 from ..utils.url_processing import url_decode
 from ..data.data import Data
 from .graphs import graph_statistics, select_data
@@ -244,6 +244,7 @@ class Layout:
         if self.html_layout:
             return html.Div(
                 id="div-main",
+                className="small",
                 children=[
                     dcc.Store(id="control-panel"),
                     dcc.Location(id="url", refresh=False),
@@ -499,30 +500,6 @@ class Layout:
                                     children=self.default["job"]
                                 )
                             ]
-                        ),
-                        dbc.Row(
-                            class_name="g-0 p-2",
-                            children=[
-                                dbc.Label(
-                                    class_name="gy-1",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-time-period", "Time Period"),
-                                ),
-                                dcc.DatePickerRange(
-                                    id="dpr-period",
-                                    className="d-flex justify-content-center",
-                                    min_date_allowed=\
-                                        datetime.utcnow() - timedelta(
-                                            days=self.time_period),
-                                    max_date_allowed=datetime.utcnow(),
-                                    initial_visible_month=datetime.utcnow(),
-                                    start_date=\
-                                        datetime.utcnow() - timedelta(
-                                            days=self.time_period),
-                                    end_date=datetime.utcnow(),
-                                    display_format="D MMM YY"
-                                )
-                            ]
                         )
                     ]
                 ),
@@ -552,10 +529,7 @@ class Layout:
                 "ri-ttypes-value": default["ttype"],
                 "ri-cadences-value": default["cadence"],
                 "dd-tbeds-value": default["tbed"],
-                "al-job-children": default["job"],
-                "dpr-start-date": datetime.utcnow() - \
-                    timedelta(days=C.TIME_PERIOD),
-                "dpr-end-date": datetime.utcnow()
+                "al-job-children": default["job"]
             }
             self._panel = deepcopy(self._defaults)
             if panel:
@@ -625,19 +599,15 @@ class Layout:
             Output("ri-cadences", "value"),
             Output("dd-tbeds", "value"),
             Output("al-job", "children"),
-            Output("dpr-period", "start_date"),
-            Output("dpr-period", "end_date"),
             State("control-panel", "data"),  # Store
             Input("ri-duts", "value"),
             Input("ri-ttypes", "value"),
             Input("ri-cadences", "value"),
             Input("dd-tbeds", "value"),
-            Input("dpr-period", "start_date"),
-            Input("dpr-period", "end_date"),
             Input("url", "href")
         )
         def _update_ctrl_panel(cp_data: dict, dut: str, ttype: str, cadence:str,
-                tbed: str, start: str, end: str, href: str) -> tuple:
+                tbed: str, href: str) -> tuple:
             """Update the application when the event is detected.
 
             :param cp_data: Current status of the control panel stored in
@@ -646,25 +616,18 @@ class Layout:
             :param ttype: Input - Test type.
             :param cadence: Input - The cadence of the job.
             :param tbed: Input - The test bed.
-            :param start: Date and time where the data processing starts.
-            :param end: Date and time where the data processing ends.
             :param href: Input - The URL provided by the browser.
             :type cp_data: dict
             :type dut: str
             :type ttype: str
             :type cadence: str
             :type tbed: str
-            :type start: str
-            :type end: str
             :type href: str
             :returns: New values for web page elements.
             :rtype: tuple
             """
 
             ctrl_panel = self.ControlPanel(cp_data, self.default)
-
-            start = get_date(start)
-            end = get_date(end)
 
             # Parse the url:
             parsed_url = url_decode(href)
@@ -721,16 +684,10 @@ class Layout:
                 ctrl_panel.set({
                     "dd-tbeds-value": tbed
                 })
-            elif trigger_id == "dpr-period":
-                pass
             elif trigger_id == "url":
                 if url_params:
                     new_job = url_params.get("job", list())[0]
-                    new_start = url_params.get("start", list())[0]
-                    new_end = url_params.get("end", list())[0]
-                    if new_job and new_start and new_end:
-                        start = get_date(new_start)
-                        end = get_date(new_end)
+                    if new_job:
                         job_params = set_job_params(self.job_info, new_job)
                         ctrl_panel = self.ControlPanel(None, job_params)
                 else:
@@ -744,26 +701,15 @@ class Layout:
                 ctrl_panel.get("dd-tbeds-value")
             )
 
-            ctrl_panel.set({
-                "al-job-children": job,
-                "dpr-start-date": start,
-                "dpr-end-date": end
-            })
-            fig_passed, fig_duration = graph_statistics(self.data, job,
-                self.layout, start, end)
+            ctrl_panel.set({"al-job-children": job})
+            fig_passed, fig_duration = \
+                graph_statistics(self.data, job, self.layout)
 
             ret_val = [
                 ctrl_panel.panel,
                 fig_passed,
                 fig_duration,
-                gen_new_url(
-                    parsed_url,
-                    {
-                        "job": job,
-                        "start": start,
-                        "end": end
-                    }
-                )
+                gen_new_url(parsed_url, {"job": job})
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
@@ -771,22 +717,16 @@ class Layout:
         @app.callback(
             Output("download-data", "data"),
             State("control-panel", "data"),  # Store
-            State("dpr-period", "start_date"),
-            State("dpr-period", "end_date"),
             Input("btn-download-data", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_data(cp_data: dict, start: str, end: str, n_clicks: int):
+        def _download_data(cp_data: dict, n_clicks: int):
             """Download the data
 
             :param cp_data: Current status of the control panel stored in
                 browser.
-            :param start: Date and time where the data processing starts.
-            :param end: Date and time where the data processing ends.
             :param n_clicks: Number of clicks on the button "Download".
             :type cp_data: dict
-            :type start: str
-            :type end: str
             :type n_clicks: int
             :returns: dict of data frame content (base64 encoded) and meta data
                 used by the Download component.
@@ -805,7 +745,7 @@ class Layout:
                 ctrl_panel.get("dd-tbeds-value")
             )
 
-            data = select_data(self.data, job, get_date(start), get_date(end))
+            data = select_data(self.data, job)
             data = data.drop(columns=["job", ])
 
             return dcc.send_data_frame(
