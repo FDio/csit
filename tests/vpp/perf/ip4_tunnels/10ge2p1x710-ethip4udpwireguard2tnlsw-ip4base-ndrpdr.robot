@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/wireguard/wireguard.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_2
 | ... | IP4FWD |  NIC_Intel-X710 | WIREGUARD | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4udpwireguard1tnlsw-ip4base
+| ... | ethip4udpwireguard2tnlsw-ip4base
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -36,7 +36,7 @@
 | ... | Eth-IPv4-UDP-WireGuard on DUT1-DUT2.
 | ... |
 | ... | - **[Cfg] DUT configuration:** DUT1 and DUT2 are configured with \
-| ... | single WireGuard tunnels between them. DUTs get IPv4 traffic from TG, \
+| ... | multiple WireGuard tunnels between them. DUTs get IPv4 traffic from TG, \
 | ... | and send to another DUT, where packets are decrypted and sent back \
 | ... | to TG.
 | ... |
@@ -52,8 +52,8 @@
 | ... | number of WireGuard tunnels) with all packets \
 | ... | containing Ethernet header, IPv4 header with IP protocol=61 and \
 | ... | static payload. MAC addresses are matching MAC addresses of the TG \
-| ... | node interfaces. Incrementing of IP.dst (IPv4 destination address) \
-| ... | is applied to both streams.
+| ... | node interfaces. Incrementing of IP.src and IP.dst \
+| ... | are applied to both streams.
 | ... |
 | ... | - **[Ref] Applicable standard specifications:** RFC4303 and RFC2544.
 
@@ -81,7 +81,7 @@
 | ${wg_if2_ip4}= | 1.0.0.2
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
-| ${n_tunnels}= | ${1}
+| ${n_tunnels}= | ${2}
 | ${listen_port}= | ${51820}
 | ${keepalive_time}= | ${256}
 # Traffic profile:
@@ -90,7 +90,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | - **[Cfg]** DUT runs wireguard TUNNEL. \
+| | ... | - **[Cfg]** DUT runs wireguard tunnel config. \
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
 | |
@@ -120,50 +120,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| 64B-1c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| 64B-2c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| 64B-4c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| 1518B-1c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| 1518B-2c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| 1518B-4c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| 9000B-1c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| 9000B-2c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| 9000B-4c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| IMIX-1c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| IMIX-2c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr
+| IMIX-4c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
