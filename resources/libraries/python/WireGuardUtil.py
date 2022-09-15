@@ -68,7 +68,7 @@ class WireGuardUtil:
 
         :param node: VPP node to add config on.
         :param listen_port: WireGuard interface listen port.
-        :param wg_src: WireGuard srouce IPv4.
+        :param wg_src: WireGuard source IPv4.
         :param private_key: WireGuard interface private key
         :type node: dict
         :type listen_port: int
@@ -118,12 +118,9 @@ class WireGuardUtil:
         :type keepalive_time: int
         """
         endpoint_ip = ip_address(endpoint_ip)
-        wg_name = InterfaceUtil.vpp_get_interface_name(
-            node, sw_if_index=interface
-        )
         cmd = u"wireguard_peer_add"
-        err_msg = f"Failed to add wireguard interface" \
-            f"{wg_name} peer on host {node[u'host']}"
+        err_msg = f"Failed to add peer of wireguard interface" \
+            f"{interface} on host {node[u'host']}"
         args = dict(
             peer=dict(
                 public_key=peer_pubkey,
@@ -134,6 +131,23 @@ class WireGuardUtil:
                 n_allowed_ips=int(n_allowed_ips),
                 allowed_ips=allowed_ips
             )
+        )
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
+
+    @staticmethod
+    def vpp_wireguard_set_async_mode(node, async_enable=1):
+        """Set wireguard async mode on or off.
+
+        :param node: VPP node to set wireguard async mode.
+        :param async_enable: Async mode on or off.
+        :type node: dict
+        :type async_enable: int
+        """
+        cmd = u"wg_set_async_mode"
+        err_msg = f"Failed to set wireguard async mode on host {node[u'host']}"
+        args = dict(
+            async_enable=async_enable
         )
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -162,11 +176,11 @@ class WireGuardUtil:
         :type nodes: dict
         :type if1_key: str
         :type if2_mac_addr: str
-        :type src_ip: src
-        :type peer_endpoint_ip: src
+        :type src_ip: str
+        :type peer_endpoint_ip: str
         :type peer_allowed_ips: list
         :type peer_n_allowed_ips: int
-        :type dut_wg_ip: src
+        :type dut_wg_ip: str
         :type port: int
         :type keepalive_time: int
         :type dut_private_key: bytes
@@ -213,10 +227,10 @@ class WireGuardUtil:
             )
 
     @staticmethod
-    def vpp_wireguard_create_tunnel_interface_on_duts(
+    def vpp_wireguard_create_tunnel_interfaces_on_duts(
             nodes, if1_key, if2_key, if1_ip_addr, if2_ip_addr,
             if1_mac_addr, if2_mac_addr, wg_if1_ip_addr, wg_if2_ip_addr,
-            n_allowed_ips, port, keepalive_time, raddr_ip1, raddr_ip2):
+            n_tunnels, port, keepalive_time, raddr_ip1, raddr_ip2):
         """Create WireGuard tunnel interfaces between two VPP nodes.
 
         :param nodes: VPP nodes to create tunnel interfaces.
@@ -229,8 +243,7 @@ class WireGuardUtil:
         :param if2_mac_addr: VPP node2 interface mac address.
         :param wg_if1_ip_addr: VPP node 1 WireGuard interface IPv4 address.
         :param wg_if2_ip_addr: VPP node 2 WireGuard interface IPv4 address.
-        :param allowed_ips: WireGuard interface allowed ip list.
-        :param n_allowed_ips: Number of allowed ips.
+        :param n_tunnels: Number of wireguard tunnels.
         :param port: WireGuard interface listen port or
             Peer interface destination port.
         :param keepalive_time: WireGuard persistent keepalive time.
@@ -247,32 +260,39 @@ class WireGuardUtil:
         :type if2_mac_addr: str
         :type wg_if1_ip_addr: str
         :type wg_if2_ip_addr: str
-        :type allowed_ips: str
-        :type n_allowed_ips: int
+        :type n_tunnels: int
         :type port: int
         :type keepalive_time: int
         :type raddr_ip1: str
         :type raddr_ip2: str
         """
-        dut1_privatekey, dut1_pubkey = \
-            WireGuardUtil.generate_wireguard_privatekey_and_pubkey()
-        dut2_privatekey, dut2_pubkey = \
-            WireGuardUtil.generate_wireguard_privatekey_and_pubkey()
-        raddr_ip1 = ip_address(raddr_ip1)
-        raddr_ip2 = ip_address(raddr_ip2)
-        dut1_allowed_ips = \
-            [IPUtil.create_prefix_object(raddr_ip2, 24),]
-        dut2_allowed_ips = \
-            [IPUtil.create_prefix_object(raddr_ip1, 24),]
-        #Configure WireGuard interface on DUT1
-        WireGuardUtil._wireguard_create_tunnel_interface_on_dut(
-            nodes[u'DUT1'], if1_key, if2_mac_addr, if1_ip_addr, if2_ip_addr,
-            dut1_allowed_ips, n_allowed_ips, wg_if1_ip_addr, port,
-            keepalive_time, dut1_privatekey, dut2_pubkey
-        )
-        #Configure WireGuard interface on DUT2
-        WireGuardUtil._wireguard_create_tunnel_interface_on_dut(
-            nodes[u'DUT2'], if2_key, if1_mac_addr, if2_ip_addr, if1_ip_addr,
-            dut2_allowed_ips, n_allowed_ips, wg_if2_ip_addr, port,
-            keepalive_time, dut2_privatekey, dut1_pubkey
-        )
+        for i in range(n_tunnels):
+            if1_ipaddr = str(ip_address(if1_ip_addr) + i*256)
+            if2_ipaddr = str(ip_address(if2_ip_addr) + i*256)
+            wg_if1_ipaddr = str(ip_address(wg_if1_ip_addr) + i*256)
+            wg_if2_ipaddr = str(ip_address(wg_if2_ip_addr) + i*256)
+
+            allowed_ipaddr1 = ip_address(raddr_ip1) + i*256
+            allowed_ipaddr2 = ip_address(raddr_ip2) + i*256
+            dut1_allowed_ips = \
+                [IPUtil.create_prefix_object(allowed_ipaddr2, 24),]
+            dut2_allowed_ips = \
+                [IPUtil.create_prefix_object(allowed_ipaddr1, 24),]
+
+            dut1_privatekey, dut1_pubkey = \
+                WireGuardUtil.generate_wireguard_privatekey_and_pubkey()
+            dut2_privatekey, dut2_pubkey = \
+                WireGuardUtil.generate_wireguard_privatekey_and_pubkey()
+
+            #Configure WireGuard interface on DUT1
+            WireGuardUtil._wireguard_create_tunnel_interface_on_dut(
+                nodes[u'DUT1'], if1_key, if2_mac_addr, if1_ipaddr, if2_ipaddr,
+                dut1_allowed_ips, 1, wg_if1_ipaddr, port,
+                keepalive_time, dut1_privatekey, dut2_pubkey
+            )
+            #Configure WireGuard interface on DUT2
+            WireGuardUtil._wireguard_create_tunnel_interface_on_dut(
+                nodes[u'DUT2'], if2_key, if1_mac_addr, if2_ipaddr, if1_ipaddr,
+                dut2_allowed_ips, 1, wg_if2_ipaddr, port,
+                keepalive_time, dut2_privatekey, dut1_pubkey
+            )
