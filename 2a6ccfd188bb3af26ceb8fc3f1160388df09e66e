@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4643078c_56088276",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-16T12:09:01Z",
+      "side": 1,
+      "message": "On Sandbox, 2n-clx daily took 13:40:19.326 but that includes some TRex failures. I will retry when those are fixed.",
+      "revId": "2a6ccfd188bb3af26ceb8fc3f1160388df09e66e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
