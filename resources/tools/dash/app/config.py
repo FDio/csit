@@ -16,12 +16,15 @@
 class Config:
     """Flask configuration variables.
     """
-
     # General Config
     FLASK_APP = "wsgi.py"
     FLASK_ENV = "production"
 
+    # Assets
+    ASSETS_DEBUG = False
+    ASSETS_AUTO_BUILD = True
+
     # Static Assets
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
-    COMPRESSOR_DEBUG ="True"
+    COMPRESSOR_DEBUG = "True"

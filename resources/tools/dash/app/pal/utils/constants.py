@@ -42,7 +42,7 @@ class Constants:
     DESCRIPTION = "Performance Dashboard"
 
     # External stylesheets.
-    EXTERNAL_STYLESHEETS = [dbc.themes.LUX, ]
+    EXTERNAL_STYLESHEETS = [ "/static/dist/css/bootstrap.css" ]
 
     # Top level template for all pages.
     TEMPLATE = "d-flex h-100 text-center text-white bg-dark"

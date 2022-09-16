@@ -28,3 +28,5 @@ report.html
 .vscode
 *.raw.json
 *.info.json
+.webassets-cache
+bootstrap.css

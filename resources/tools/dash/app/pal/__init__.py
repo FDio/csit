@@ -17,7 +17,7 @@
 import logging
 
 from flask import Flask
-from flask_assets import Environment
+from flask_assets import Environment, Bundle
 
 from .utils.constants import Constants as C
 
@@ -25,7 +25,6 @@ from .utils.constants import Constants as C
 def init_app():
     """Construct core Flask application with embedded Dash app.
     """
-
     logging.basicConfig(
         format=C.LOG_FORMAT,
         datefmt=C.LOG_DATE_FORMAT,
@@ -35,7 +34,7 @@ def init_app():
     logging.info("Application started.")
 
     app = Flask(__name__, instance_relative_config=False)
-    app.config.from_object(u"config.Config")
+    app.config.from_object("config.Config")
 
     with app.app_context():
         # Import parts of our core Flask app.
@@ -43,6 +42,19 @@ def init_app():
 
         assets = Environment()
         assets.init_app(app)
+
+        # Compile static assets.
+        sass_bundle = Bundle(
+            "sass/lux.scss",
+            filters="libsass",
+            output="dist/css/bootstrap.css",
+            depends="**/*.scss",
+            extra={
+                "rel": "stylesheet"
+            }
+        )
+        assets.register("sass_all", sass_bundle)
+        sass_bundle.build()
 
         # Set the time period for Trending
         if C.TIME_PERIOD is None or C.TIME_PERIOD > C.MAX_TIME_PERIOD:
