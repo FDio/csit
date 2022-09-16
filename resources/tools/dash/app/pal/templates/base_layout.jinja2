@@ -12,7 +12,9 @@
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/bootstrap.min.css') }}" crossorigin="anonymous" />
+{% assets "sass_all" %}
+  <link rel="stylesheet" href="{{ ASSET_URL }}" /></script>
+{% endassets %}
   <!-- Favicons -->
   <link rel="shortcut icon" href="{{ url_for('static', filename='dist/img/favicon.svg') }}" type="image/x-icon" />
 </head>

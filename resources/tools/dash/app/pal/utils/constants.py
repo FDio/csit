@@ -42,7 +42,7 @@ class Constants:
     DESCRIPTION = "Performance Dashboard"
 
     # External stylesheets.
-    EXTERNAL_STYLESHEETS = [dbc.themes.LUX, ]
+    EXTERNAL_STYLESHEETS = [ "/static/dist/css/bootstrap.css" ]
 
     # Top level template for all pages.
     TEMPLATE = "d-flex h-100 text-center text-white bg-dark"
@@ -62,7 +62,7 @@ class Constants:
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
-    MAX_TIME_PERIOD = 180
+    MAX_TIME_PERIOD = 20
 
     # It defines the time period for data read from the parquets in days from
     # now back to the past.
