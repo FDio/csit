@@ -303,7 +303,7 @@ def get_job(df: pd.DataFrame, dut, ttype, cadence, testbed):
     )]["job"].item()
 
 
-def generate_options(opts: list) -> list:
+def generate_options(opts: list, sort: bool=True) -> list:
     """Return list of options for radio items in control panel. The items in
     the list are dictionaries with keys "label" and "value".
 
@@ -312,6 +312,8 @@ def generate_options(opts: list) -> list:
     :returns: List of options (dict).
     :rtype: list
     """
+    if sort:
+        opts = sorted(opts)
     return [{"label": i, "value": i} for i in opts]
 
 
@@ -342,3 +344,31 @@ def set_job_params(df: pd.DataFrame, job: str) -> dict:
         "tbeds": generate_options(
             get_test_beds(df, l_job[1], l_job[3], l_job[4]))
     }
+
+
+def get_list_group_items(tests: list) -> list:
+    """Generate list of ListGroupItems with checkboxes with selected tests.
+
+    :param tests: List of tests to be displayed in the ListGroup.
+    :type tests: list
+    :returns: List of ListGroupItems with checkboxes with selected tests.
+    :rtype: list
+    """
+    return [
+        dbc.ListGroupItem(
+            children=[
+                dbc.Checkbox(
+                    id={"type": "sel-cl", "index": i},
+                    label=l["id"],
+                    value=False,
+                    label_class_name="m-0 p-0",
+                    label_style={
+                        "font-size": ".875em",
+                        "color": get_color(i)
+                    },
+                    input_class_name="border-danger bg-danger"
+                )
+            ],
+            class_name="p-0"
+        ) for i, l in enumerate(tests)
+    ]

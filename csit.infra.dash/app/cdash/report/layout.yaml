@@ -31,11 +31,7 @@ plot-throughput:
     b: 0
     l: 80
     r: 20
-  showlegend: True
-  legend:
-    orientation: "h"
-    font:
-      size: 10
+  showlegend: False
   width: 700
   height: 900
   paper_bgcolor: "#fff"
@@ -76,11 +72,7 @@ plot-latency:
     b: 0
     l: 80
     r: 20
-  showlegend: True
-  legend:
-    orientation: "h"
-    font:
-      size: 10
+  showlegend: False
   width: 700
   height: 900
   paper_bgcolor: "#fff"
