@@ -20,6 +20,7 @@ import dash_bootstrap_components as dbc
 from numpy import isnan
 from dash import dcc
 from datetime import datetime
+from json import loads, JSONDecodeError
 
 from ..jumpavg import classify
 from ..utils.constants import Constants as C
@@ -342,3 +343,31 @@ def set_job_params(df: pd.DataFrame, job: str) -> dict:
         "tbeds": generate_options(
             get_test_beds(df, l_job[1], l_job[3], l_job[4]))
     }
+
+
+class Trigger:
+    """
+    """
+    def __init__(self, trigger) -> None:
+        """
+        """
+        self._id = trigger[0]["prop_id"].split(".")
+        self._param = self._id[1]
+        try:
+            self._id = loads(self._id[0])
+        except (JSONDecodeError, TypeError):
+            # It is a string
+            self._id = {"type": self._id[0], "index": None}
+        self._val = trigger[0]["value"]
+
+    @property
+    def id(self) -> dict:
+        return self._id
+    
+    @property
+    def parameter(self) -> str:
+        return self._param
+
+    @property
+    def value(self) -> any:
+        return self._val
