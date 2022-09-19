@@ -11,6 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 """Plotly Dash HTML layout override.
 """
 
@@ -25,18 +26,45 @@ from dash import callback_context, no_update, ALL
 from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
-from datetime import datetime
-from copy import deepcopy
-from json import loads, JSONDecodeError
 from ast import literal_eval
 
 from ..utils.constants import Constants as C
-from ..utils.utils import show_tooltip, label, sync_checklists, list_tests, \
+from ..utils.control_panel import ControlPanel
+from ..utils.trigger import Trigger
+from ..utils.utils import get_color, show_tooltip, label, sync_checklists, \
     gen_new_url, generate_options
 from ..utils.url_processing import url_decode
 from ..data.data import Data
-from .graphs import graph_trending, graph_hdrh_latency, \
-    select_trending_data
+from .graphs import graph_trending, graph_hdrh_latency, select_trending_data
+
+
+# Control panel partameters and their default values.
+CP_PARAMS = {
+    "dd-dut-val": str(),
+    "dd-phy-opt": list(),
+    "dd-phy-dis": True,
+    "dd-phy-val": str(),
+    "dd-area-opt": list(),
+    "dd-area-dis": True,
+    "dd-area-val": str(),
+    "dd-test-opt": list(),
+    "dd-test-dis": True,
+    "dd-test-val": str(),
+    "cl-core-opt": list(),
+    "cl-core-val": list(),
+    "cl-core-all-val": list(),
+    "cl-core-all-opt": C.CL_ALL_DISABLED,
+    "cl-frmsize-opt": list(),
+    "cl-frmsize-val": list(),
+    "cl-frmsize-all-val": list(),
+    "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+    "cl-tsttype-opt": list(),
+    "cl-tsttype-val": list(),
+    "cl-tsttype-all-val": list(),
+    "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+    "btn-add-dis": True,
+    "cl-normalize-val": list()
+}
 
 
 class Layout:
@@ -92,12 +120,6 @@ class Layout:
         ).read_trending_ndrpdr(days=self._time_period)
 
         self._data = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
-
-        data_time_period = \
-            (datetime.utcnow() - self._data["start_time"].min()).days
-        if self._time_period > data_time_period:
-            self._time_period = data_time_period
-
 
         # Get structure of tests:
         tbs = dict()
@@ -159,7 +181,7 @@ class Layout:
         self._spec_tbs = tbs
 
         # Read from files:
-        self._html_layout = ""
+        self._html_layout = str()
         self._graph_layout = None
         self._tooltips = dict()
 
@@ -199,28 +221,12 @@ class Layout:
             )
 
         # Callbacks:
-        if self._app is not None and hasattr(self, 'callbacks'):
+        if self._app is not None and hasattr(self, "callbacks"):
             self.callbacks(self._app)
 
     @property
     def html_layout(self):
         return self._html_layout
-
-    @property
-    def spec_tbs(self):
-        return self._spec_tbs
-
-    @property
-    def data(self):
-        return self._data
-
-    @property
-    def layout(self):
-        return self._graph_layout
-
-    @property
-    def time_period(self):
-        return self._time_period
 
     def add_content(self):
         """Top level method which generated the web page.
@@ -236,7 +242,7 @@ class Layout:
         :rtype: html.Div
         """
 
-        if self.html_layout and self.spec_tbs:
+        if self.html_layout and self._spec_tbs:
             return html.Div(
                 id="div-main",
                 className="small",
@@ -265,8 +271,8 @@ class Layout:
                         id="row-main",
                         class_name="g-0",
                         children=[
-                            dcc.Store(id="selected-tests"),
-                            dcc.Store(id="control-panel"),
+                            dcc.Store(id="store-selected-tests"),
+                            dcc.Store(id="store-control-panel"),
                             dcc.Location(id="url", refresh=False),
                             self._add_ctrl_col(),
                             self._add_plotting_col(),
@@ -336,23 +342,9 @@ class Layout:
             children=[
                 dcc.Loading(
                     children=[
-                        dbc.Row(  # Throughput
-                            id="row-graph-tput",
-                            class_name="g-0 p-2",
-                            children=[
-                                C.PLACEHOLDER
-                            ]
-                        ),
-                        dbc.Row(  # Latency
-                            id="row-graph-lat",
-                            class_name="g-0 p-2",
-                            children=[
-                                C.PLACEHOLDER
-                            ]
-                        ),
-                        dbc.Row(  # Download
-                            id="row-btn-download",
-                            class_name="g-0 p-2",
+                        dbc.Row(
+                            id="plotting-area",
+                            class_name="g-0 p-0",
                             children=[
                                 C.PLACEHOLDER
                             ]
@@ -363,11 +355,11 @@ class Layout:
             width=9,
         )
 
-    def _add_ctrl_panel(self) -> dbc.Row:
+    def _add_ctrl_panel(self) -> list:
         """Add control panel.
 
         :returns: Control panel.
-        :rtype: dbc.Row
+        :rtype: list
         """
         return [
             dbc.Row(
@@ -376,25 +368,26 @@ class Layout:
                     dbc.InputGroup(
                         [
                             dbc.InputGroupText(
-                                children=show_tooltip(self._tooltips,
-                                    "help-dut", "DUT")
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-dut",
+                                    "DUT"
+                                )
                             ),
                             dbc.Select(
-                                id="dd-ctrl-dut",
-                                placeholder=(
-                                    "Select a Device under Test..."
-                                ),
+                                id={"type": "ctrl-dd", "index": "dut"},
+                                placeholder="Select a Device under Test...",
                                 options=sorted(
                                     [
                                         {"label": k, "value": k} \
-                                            for k in self.spec_tbs.keys()
+                                            for k in self._spec_tbs.keys()
                                     ],
                                     key=lambda d: d["label"]
                                 )
                             )
                         ],
-                        size="sm",
-                    ),
+                        size="sm"
+                    )
                 ]
             ),
             dbc.Row(
@@ -403,19 +396,20 @@ class Layout:
                     dbc.InputGroup(
                         [
                             dbc.InputGroupText(
-                                children=show_tooltip(self._tooltips,
-                                    "help-infra", "Infra")
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-infra",
+                                    "Infra"
+                                )
                             ),
                             dbc.Select(
-                                id="dd-ctrl-phy",
-                                placeholder=(
-                                    "Select a Physical Test Bed "
-                                    "Topology..."
-                                )
+                                id={"type": "ctrl-dd", "index": "phy"},
+                                placeholder=\
+                                    "Select a Physical Test Bed Topology..."
                             )
                         ],
-                        size="sm",
-                    ),
+                        size="sm"
+                    )
                 ]
             ),
             dbc.Row(
@@ -424,17 +418,19 @@ class Layout:
                     dbc.InputGroup(
                         [
                             dbc.InputGroupText(
-                                children=show_tooltip(self._tooltips,
-                                    "help-area", "Area")
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-area",
+                                    "Area"
+                                )
                             ),
                             dbc.Select(
-                                id="dd-ctrl-area",
-                                placeholder="Select an Area...",
-                                disabled=True,
-                            ),
+                                id={"type": "ctrl-dd", "index": "area"},
+                                placeholder="Select an Area..."
+                            )
                         ],
-                        size="sm",
-                    ),
+                        size="sm"
+                    )
                 ]
             ),
             dbc.Row(
@@ -443,43 +439,50 @@ class Layout:
                     dbc.InputGroup(
                         [
                             dbc.InputGroupText(
-                                children=show_tooltip(self._tooltips,
-                                    "help-test", "Test")
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-test",
+                                    "Test"
+                                )
                             ),
                             dbc.Select(
-                                id="dd-ctrl-test",
-                                placeholder="Select a Test...",
-                                disabled=True,
-                            ),
+                                id={"type": "ctrl-dd", "index": "test"},
+                                placeholder="Select a Test..."
+                            )
                         ],
-                        size="sm",
-                    ),
+                        size="sm"
+                    )
                 ]
             ),
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
                     dbc.Label(
-                        children=show_tooltip(self._tooltips,
-                            "help-framesize", "Frame Size"),
+                        children=show_tooltip(
+                            self._tooltips,
+                            "help-framesize",
+                            "Frame Size"
+                        )
                     ),
                     dbc.Col(
                         children=[
                             dbc.Checklist(
-                                id="cl-ctrl-framesize-all",
+                                id={"type": "ctrl-cl", "index": "frmsize-all"},
                                 options=C.CL_ALL_DISABLED,
                                 inline=True,
-                                switch=False
-                            ),
+                                switch=False,
+                                input_class_name="border-info bg-info"
+                            )
                         ],
                         width=3
                     ),
                     dbc.Col(
                         children=[
                             dbc.Checklist(
-                                id="cl-ctrl-framesize",
+                                id={"type": "ctrl-cl", "index": "frmsize"},
                                 inline=True,
-                                switch=False
+                                switch=False,
+                                input_class_name="border-info bg-info"
                             )
                         ]
                     )
@@ -489,16 +492,20 @@ class Layout:
                 class_name="g-0 p-1",
                 children=[
                     dbc.Label(
-                        children=show_tooltip(self._tooltips,
-                            "help-cores", "Number of Cores"),
+                        children=show_tooltip(
+                            self._tooltips,
+                            "help-cores",
+                            "Number of Cores"
+                        )
                     ),
                     dbc.Col(
                         children=[
                             dbc.Checklist(
-                                id="cl-ctrl-core-all",
+                                id={"type": "ctrl-cl", "index": "core-all"},
                                 options=C.CL_ALL_DISABLED,
                                 inline=False,
-                                switch=False
+                                switch=False,
+                                input_class_name="border-info bg-info"
                             )
                         ],
                         width=3
@@ -506,9 +513,10 @@ class Layout:
                     dbc.Col(
                         children=[
                             dbc.Checklist(
-                                id="cl-ctrl-core",
+                                id={"type": "ctrl-cl", "index": "core"},
                                 inline=True,
-                                switch=False
+                                switch=False,
+                                input_class_name="border-info bg-info"
                             )
                         ]
                     )
@@ -518,26 +526,31 @@ class Layout:
                 class_name="g-0 p-1",
                 children=[
                     dbc.Label(
-                        children=show_tooltip(self._tooltips,
-                            "help-ttype", "Test Type"),
+                        children=show_tooltip(
+                            self._tooltips,
+                            "help-ttype",
+                            "Test Type"
+                        )
                     ),
                     dbc.Col(
                         children=[
                             dbc.Checklist(
-                                id="cl-ctrl-testtype-all",
+                                id={"type": "ctrl-cl", "index": "tsttype-all"},
                                 options=C.CL_ALL_DISABLED,
                                 inline=True,
-                                switch=False
-                            ),
+                                switch=False,
+                                input_class_name="border-info bg-info"
+                            )
                         ],
                         width=3
                     ),
                     dbc.Col(
                         children=[
                             dbc.Checklist(
-                                id="cl-ctrl-testtype",
+                                id={"type": "ctrl-cl", "index": "tsttype"},
                                 inline=True,
-                                switch=False
+                                switch=False,
+                                input_class_name="border-info bg-info"
                             )
                         ]
                     )
@@ -547,24 +560,30 @@ class Layout:
                 class_name="g-0 p-1",
                 children=[
                     dbc.Label(
-                        children=show_tooltip(self._tooltips,
-                            "help-normalize", "Normalize"),
+                        children=show_tooltip(
+                            self._tooltips,
+                            "help-normalize",
+                            "Normalize"
+                        )
                     ),
                     dbc.Col(
                         children=[
                             dbc.Checklist(
-                                id="cl-ctrl-normalize",
-                                options=[{
-                                    "value": "normalize",
-                                    "label": (
-                                        "Normalize results to CPU "
-                                        "frequency 2GHz"
-                                    )
-                                }],
+                                id="normalize",
+                                options=[
+                                    {
+                                        "value": "normalize",
+                                        "label": (
+                                            "Normalize results to CPU "
+                                            "frequency 2GHz"
+                                        )
+                                    }
+                                ],
                                 value=[],
                                 inline=True,
-                                switch=False
-                            ),
+                                switch=False,
+                                input_class_name="border-info bg-info"
+                            )
                         ]
                     )
                 ]
@@ -572,14 +591,10 @@ class Layout:
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
-                    dbc.ButtonGroup(
-                        [
-                            dbc.Button(
-                                id="btn-ctrl-add",
-                                children="Add Selected",
-                                color="info"
-                            )
-                        ]
+                    dbc.Button(
+                        id={"type": "ctrl-btn", "index": "add-test"},
+                        children="Add Selected",
+                        color="info"
                     )
                 ]
             ),
@@ -588,15 +603,14 @@ class Layout:
                 class_name="g-0 p-1",
                 style=C.STYLE_DISABLED,
                 children=[
-                    dbc.Label("Selected tests"),
-                    dbc.Checklist(
-                        class_name="overflow-auto",
-                        id="cl-selected",
-                        options=[],
-                        inline=False,
-                        style={"max-height": "12em"},
+                    dbc.ListGroup(
+                        class_name="overflow-auto p-0",
+                        id="lg-selected",
+                        children=[],
+                        style={"max-height": "14em"},
+                        flush=True
                     )
-                ],
+                ]
             ),
             dbc.Row(
                 id="row-btns-sel-tests",
@@ -606,115 +620,179 @@ class Layout:
                     dbc.ButtonGroup(
                         children=[
                             dbc.Button(
-                                id="btn-sel-remove",
+                                id={"type": "ctrl-btn", "index": "rm-test"},
                                 children="Remove Selected",
                                 class_name="w-100",
                                 color="info",
                                 disabled=False
                             ),
                             dbc.Button(
-                                id="btn-sel-remove-all",
+                                id={"type": "ctrl-btn", "index": "rm-test-all"},
                                 children="Remove All",
                                 class_name="w-100",
                                 color="info",
                                 disabled=False
-                            ),
+                            )
                         ]
                     )
                 ]
-            ),
+            )
         ]
 
-    class ControlPanel:
-        """A class representing the control panel.
+    @staticmethod
+    def _get_list_group_items(tests: list) -> list:
         """
+        """
+        return [
+            dbc.ListGroupItem(
+                children=[
+                    dbc.Checkbox(
+                        id={"type": "sel-cl", "index": i},
+                        label=l["id"],
+                        value=False,
+                        label_class_name="m-0 p-0",
+                        label_style={
+                            "font-size": ".875em",
+                            "color": get_color(i)
+                        },
+                        input_class_name="border-danger bg-danger"
+                    )
+                ],
+                class_name="p-0"
+            ) for i, l in enumerate(tests)
+        ]
 
-        def __init__(self, panel: dict) -> None:
-            """Initialisation of the control pannel by default values. If
-            particular values are provided (parameter "panel") they are set
-            afterwards.
+    def _get_plotting_area(
+            self,
+            tests: list,
+            normalize: bool,
+            url: str
+        ) -> list:
+        """Generate the plotting area with all its content.
+        """
+        if not tests:
+            return C.PLACEHOLDER
 
-            :param panel: Custom values to be set to the control panel.
-            :param default: Default values to be set to the control panel.
-            :type panel: dict
-            :type defaults: dict
-            """
+        figs = graph_trending(self._data, tests, self._graph_layout, normalize)
 
-            # Defines also the order of keys
-            self._defaults = {
-                "dd-ctrl-dut-value": str(),
-                "dd-ctrl-phy-options": list(),
-                "dd-ctrl-phy-disabled": True,
-                "dd-ctrl-phy-value": str(),
-                "dd-ctrl-area-options": list(),
-                "dd-ctrl-area-disabled": True,
-                "dd-ctrl-area-value": str(),
-                "dd-ctrl-test-options": list(),
-                "dd-ctrl-test-disabled": True,
-                "dd-ctrl-test-value": str(),
-                "cl-ctrl-core-options": list(),
-                "cl-ctrl-core-value": list(),
-                "cl-ctrl-core-all-value": list(),
-                "cl-ctrl-core-all-options": C.CL_ALL_DISABLED,
-                "cl-ctrl-framesize-options": list(),
-                "cl-ctrl-framesize-value": list(),
-                "cl-ctrl-framesize-all-value": list(),
-                "cl-ctrl-framesize-all-options": C.CL_ALL_DISABLED,
-                "cl-ctrl-testtype-options": list(),
-                "cl-ctrl-testtype-value": list(),
-                "cl-ctrl-testtype-all-value": list(),
-                "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
-                "btn-ctrl-add-disabled": True,
-                "cl-normalize-value": list(),
-                "cl-selected-options": list()
-            }
+        if not figs[0]:
+            return C.PLACEHOLDER
 
-            self._panel = deepcopy(self._defaults)
-            if panel:
-                for key in self._defaults:
-                    self._panel[key] = panel[key]
+        tab_items = [
+            dbc.Tab(
+                children=dcc.Graph(
+                    id={"type": "graph", "index": "tput"},
+                    figure=figs[0]
+                ),
+                label="Throughput",
+                tab_id="tab-tput"
+            )
+        ]
 
-        @property
-        def defaults(self) -> dict:
-            return self._defaults
+        if figs[1]:
+            tab_items.append(
+                dbc.Tab(
+                    children=dcc.Graph(
+                        id={"type": "graph", "index": "lat"},
+                        figure=figs[1]
+                    ),
+                    label="Latency",
+                    tab_id="tab-lat"
+                )
+            )
 
-        @property
-        def panel(self) -> dict:
-            return self._panel
+        trending = [
+            dbc.Row(
+                children=dbc.Tabs(
+                    children=tab_items,
+                    id="tabs",
+                    active_tab="tab-tput",
+                )
+            ),
+            dbc.Row(
+                [
+                    dbc.Col([html.Div(
+                        [
+                            dbc.Button(
+                                id="plot-btn-url",
+                                children="URL",
+                                class_name="me-1",
+                                color="info",
+                                style={
+                                    "text-transform": "none",
+                                    "padding": "0rem 1rem"
+                                }
+                            ),
+                            dbc.Modal(
+                                [
+                                    dbc.ModalHeader(dbc.ModalTitle("URL")),
+                                    dbc.ModalBody(url)
+                                ],
+                                id="plot-mod-url",
+                                size="xl",
+                                is_open=False,
+                                scrollable=True
+                            ),
+                            dbc.Button(
+                                id="plot-btn-download",
+                                children="Download Data",
+                                class_name="me-1",
+                                color="info",
+                                style={
+                                    "text-transform": "none",
+                                    "padding": "0rem 1rem"
+                                }
+                            ),
+                            dcc.Download(id="download-trending-data")
+                        ],
+                        className=\
+                            "d-grid gap-0 d-md-flex justify-content-md-end"
+                    )])
+                ],
+                class_name="g-0 p-0"
+            )
+        ]
 
-        def set(self, kwargs: dict) -> None:
-            """Set the values of the Control panel.
+        acc_items = [
+            dbc.AccordionItem(
+                title="Trending",
+                children=trending
+            )
+        ]
 
-            :param kwargs: key - value pairs to be set.
-            :type kwargs: dict
-            :raises KeyError: If the key in kwargs is not present in the Control
-                panel.
-            """
-            for key, val in kwargs.items():
-                if key in self._panel:
-                    self._panel[key] = val
-                else:
-                    raise KeyError(f"The key {key} is not defined.")
-
-        def get(self, key: str) -> any:
-            """Returns the value of a key from the Control panel.
-
-            :param key: The key which value should be returned.
-            :type key: str
-            :returns: The value of the key.
-            :rtype: any
-            :raises KeyError: If the key in kwargs is not present in the Control
-                panel.
-            """
-            return self._panel[key]
-
-        def values(self) -> tuple:
-            """Returns the values from the Control panel as a list.
-
-            :returns: The values from the Control panel.
-            :rtype: list
-            """
-            return tuple(self._panel.values())
+        return dbc.Col(
+            children=[
+                dbc.Row(
+                    dbc.Accordion(
+                        children=acc_items,
+                        class_name="g-0 p-1",
+                        start_collapsed=False,
+                        always_open=True,
+                        active_item=[f"item-{i}" for i in range(len(acc_items))]
+                    ),
+                    class_name="g-0 p-0",
+                ),
+                # dbc.Row(
+                #     dbc.Col([html.Div(
+                #         [
+                #             dbc.Button(
+                #                 id="btn-add-telemetry",
+                #                 children="Add Panel with Telemetry",
+                #                 class_name="me-1",
+                #                 color="info",
+                #                 style={
+                #                     "text-transform": "none",
+                #                     "padding": "0rem 1rem"
+                #                 }
+                #             )
+                #         ],
+                #         className=\
+                #             "d-grid gap-0 d-md-flex justify-content-md-end"
+                #     )]),
+                #     class_name="g-0 p-0"
+                # )
+            ]
+        )
 
     def callbacks(self, app):
         """Callbacks for the whole application.
@@ -722,186 +800,68 @@ class Layout:
         :param app: The application.
         :type app: Flask
         """
-
-        def _generate_plotting_area(figs: tuple, url: str) -> tuple:
-            """Generate the plotting area with all its content.
-
-            :param figs: Figures to be placed in the plotting area.
-            :param utl: The URL to be placed in the plotting area bellow the
-                tables.
-            :type figs: tuple of plotly.graph_objects.Figure
-            :type url: str
-            :returns: tuple of elements to be shown in the plotting area.
-            :rtype: tuple(dcc.Graph, dcc.Graph, list(dbc.Col, dbc.Col))
-            """
-
-            (fig_tput, fig_lat) = figs
-
-            row_fig_tput = C.PLACEHOLDER
-            row_fig_lat = C.PLACEHOLDER
-            row_btn_dwnld = C.PLACEHOLDER
-
-            if fig_tput:
-                row_fig_tput = [
-                    dcc.Graph(
-                        id={"type": "graph", "index": "tput"},
-                        figure=fig_tput
-                    )
-                ]
-                row_btn_dwnld = [
-                    dbc.Col(  # Download
-                        width=2,
-                        children=[
-                            dcc.Loading(children=[
-                                dbc.Button(
-                                    id="btn-download-data",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-download", "Download Data"),
-                                    class_name="me-1",
-                                    color="info"
-                                ),
-                                dcc.Download(id="download-data")
-                            ]),
-                        ]
-                    ),
-                    dbc.Col(  # Show URL
-                        width=10,
-                        children=[
-                            dbc.InputGroup(
-                                class_name="me-1",
-                                children=[
-                                    dbc.InputGroupText(
-                                        style=C.URL_STYLE,
-                                        children=show_tooltip(self._tooltips,
-                                            "help-url", "URL", "input-url")
-                                    ),
-                                    dbc.Input(
-                                        id="input-url",
-                                        readonly=True,
-                                        type="url",
-                                        style=C.URL_STYLE,
-                                        value=url
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                ]
-            if fig_lat:
-                row_fig_lat = [
-                    dcc.Graph(
-                        id={"type": "graph", "index": "lat"},
-                        figure=fig_lat
-                    )
-                ]
-
-            return row_fig_tput, row_fig_lat, row_btn_dwnld
-
+        
         @app.callback(
-            Output("control-panel", "data"),  # Store
-            Output("selected-tests", "data"),  # Store
-            Output("row-graph-tput", "children"),
-            Output("row-graph-lat", "children"),
-            Output("row-btn-download", "children"),
-            Output("row-card-sel-tests", "style"),
-            Output("row-btns-sel-tests", "style"),
-            Output("dd-ctrl-dut", "value"),
-            Output("dd-ctrl-phy", "options"),
-            Output("dd-ctrl-phy", "disabled"),
-            Output("dd-ctrl-phy", "value"),
-            Output("dd-ctrl-area", "options"),
-            Output("dd-ctrl-area", "disabled"),
-            Output("dd-ctrl-area", "value"),
-            Output("dd-ctrl-test", "options"),
-            Output("dd-ctrl-test", "disabled"),
-            Output("dd-ctrl-test", "value"),
-            Output("cl-ctrl-core", "options"),
-            Output("cl-ctrl-core", "value"),
-            Output("cl-ctrl-core-all", "value"),
-            Output("cl-ctrl-core-all", "options"),
-            Output("cl-ctrl-framesize", "options"),
-            Output("cl-ctrl-framesize", "value"),
-            Output("cl-ctrl-framesize-all", "value"),
-            Output("cl-ctrl-framesize-all", "options"),
-            Output("cl-ctrl-testtype", "options"),
-            Output("cl-ctrl-testtype", "value"),
-            Output("cl-ctrl-testtype-all", "value"),
-            Output("cl-ctrl-testtype-all", "options"),
-            Output("btn-ctrl-add", "disabled"),
-            Output("cl-ctrl-normalize", "value"),
-            Output("cl-selected", "options"),  # User selection
-            State("control-panel", "data"),  # Store
-            State("selected-tests", "data"),  # Store
-            State("cl-selected", "value"),  # User selection
-            Input("dd-ctrl-dut", "value"),
-            Input("dd-ctrl-phy", "value"),
-            Input("dd-ctrl-area", "value"),
-            Input("dd-ctrl-test", "value"),
-            Input("cl-ctrl-core", "value"),
-            Input("cl-ctrl-core-all", "value"),
-            Input("cl-ctrl-framesize", "value"),
-            Input("cl-ctrl-framesize-all", "value"),
-            Input("cl-ctrl-testtype", "value"),
-            Input("cl-ctrl-testtype-all", "value"),
-            Input("cl-ctrl-normalize", "value"),
-            Input("btn-ctrl-add", "n_clicks"),
-            Input("btn-sel-remove", "n_clicks"),
-            Input("btn-sel-remove-all", "n_clicks"),
-            Input("url", "href")
-        )
-        def _update_ctrl_panel(cp_data: dict, store_sel: list, list_sel: list,
-            dd_dut: str, dd_phy: str, dd_area: str, dd_test: str, cl_core: list,
-            cl_core_all: list, cl_framesize: list, cl_framesize_all: list,
-            cl_testtype: list, cl_testtype_all: list, cl_normalize: list,
-            btn_add: int, btn_remove: int,
-            btn_remove_all: int, href: str) -> tuple:
-            """Update the application when the event is detected.
+            [
+                Output("store-control-panel", "data"),
+                Output("store-selected-tests", "data"),
+                Output("plotting-area", "children"),
+                Output("row-card-sel-tests", "style"),
+                Output("row-btns-sel-tests", "style"),
+                Output("lg-selected", "children"),
 
-            :param cp_data: Current status of the control panel stored in
-                browser.
-            :param store_sel: List of tests selected by user stored in the
-                browser.
-            :param list_sel: List of tests selected by the user shown in the
-                checklist.
-            :param dd_dut: Input - DUTs.
-            :param dd_phy: Input - topo- arch-nic-driver.
-            :param dd_area: Input - Tested area.
-            :param dd_test: Input - Test.
-            :param cl_core: Input - Number of cores.
-            :param cl_core_all: Input - All numbers of cores.
-            :param cl_framesize: Input - Frame sizes.
-            :param cl_framesize_all: Input - All frame sizes.
-            :param cl_testtype: Input - Test type (NDR, PDR, MRR).
-            :param cl_testtype_all: Input - All test types.
-            :param cl_normalize: Input - Normalize the results.
-            :param btn_add: Input - Button "Add Selected" tests.
-            :param btn_remove: Input - Button "Remove selected" tests.
-            :param btn_remove_all: Input - Button "Remove All" tests.
-            :param href: Input - The URL provided by the browser.
-            :type cp_data: dict
-            :type store_sel: list
-            :type list_sel: list
-            :type dd_dut: str
-            :type dd_phy: str
-            :type dd_area: str
-            :type dd_test: str
-            :type cl_core: list
-            :type cl_core_all: list
-            :type cl_framesize: list
-            :type cl_framesize_all: list
-            :type cl_testtype: list
-            :type cl_testtype_all: list
-            :type cl_normalize: list
-            :type btn_add: int
-            :type btn_remove: int
-            :type btn_remove_all: int
-            :type href: str
-            :returns: New values for web page elements.
-            :rtype: tuple
+                Output({"type": "ctrl-dd", "index": "dut"}, "value"),
+                Output({"type": "ctrl-dd", "index": "phy"}, "options"),
+                Output({"type": "ctrl-dd", "index": "phy"}, "disabled"),
+                Output({"type": "ctrl-dd", "index": "phy"}, "value"),
+                Output({"type": "ctrl-dd", "index": "area"}, "options"),
+                Output({"type": "ctrl-dd", "index": "area"}, "disabled"),
+                Output({"type": "ctrl-dd", "index": "area"}, "value"),
+                Output({"type": "ctrl-dd", "index": "test"}, "options"),
+                Output({"type": "ctrl-dd", "index": "test"}, "disabled"),
+                Output({"type": "ctrl-dd", "index": "test"}, "value"),
+                Output({"type": "ctrl-cl", "index": "core"}, "options"),
+                Output({"type": "ctrl-cl", "index": "core"}, "value"),
+                Output({"type": "ctrl-cl", "index": "core-all"}, "value"),
+                Output({"type": "ctrl-cl", "index": "core-all"}, "options"),
+                Output({"type": "ctrl-cl", "index": "frmsize"}, "options"),
+                Output({"type": "ctrl-cl", "index": "frmsize"}, "value"),
+                Output({"type": "ctrl-cl", "index": "frmsize-all"}, "value"),
+                Output({"type": "ctrl-cl", "index": "frmsize-all"}, "options"),
+                Output({"type": "ctrl-cl", "index": "tsttype"}, "options"),
+                Output({"type": "ctrl-cl", "index": "tsttype"}, "value"),
+                Output({"type": "ctrl-cl", "index": "tsttype-all"}, "value"),
+                Output({"type": "ctrl-cl", "index": "tsttype-all"}, "options"),
+                Output({"type": "ctrl-btn", "index": "add-test"}, "disabled"),
+                Output("normalize", "value")
+            ],
+            [
+                State("store-control-panel", "data"),
+                State("store-selected-tests", "data"),
+                State({"type": "sel-cl", "index": ALL}, "value")
+            ],
+            [
+                Input("url", "href"),
+                Input("normalize", "value"),
+
+                Input({"type": "ctrl-dd", "index": ALL}, "value"),
+                Input({"type": "ctrl-cl", "index": ALL}, "value"),
+                Input({"type": "ctrl-btn", "index": ALL}, "n_clicks")
+            ]
+        )
+        def _update_application(
+                control_panel: dict,
+                store_sel: list,
+                lst_sel: list,
+                href: str,
+                normalize: list,
+                *_
+            ) -> tuple:
+            """Update the application when the event is detected.
             """
 
-            ctrl_panel = self.ControlPanel(cp_data)
-            norm = cl_normalize
+            ctrl_panel = ControlPanel(CP_PARAMS, control_panel)
+            on_draw = False
 
             # Parse the url:
             parsed_url = url_decode(href)
@@ -910,219 +870,230 @@ class Layout:
             else:
                 url_params = None
 
-            row_fig_tput = no_update
-            row_fig_lat = no_update
-            row_btn_dwnld = no_update
+            plotting_area = no_update
             row_card_sel_tests = no_update
             row_btns_sel_tests = no_update
+            lg_selected = no_update
 
-            trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
+            trigger = Trigger(callback_context.triggered)
 
-            if trigger_id == "dd-ctrl-dut":
+            if trigger.type == "url" and url_params:
                 try:
-                    options = \
-                        generate_options(sorted(self.spec_tbs[dd_dut].keys()))
-                    disabled = False
-                except KeyError:
-                    options = list()
-                    disabled = True
-                ctrl_panel.set({
-                    "dd-ctrl-dut-value": dd_dut,
-                    "dd-ctrl-phy-value": str(),
-                    "dd-ctrl-phy-options": options,
-                    "dd-ctrl-phy-disabled": disabled,
-                    "dd-ctrl-area-value": str(),
-                    "dd-ctrl-area-options": list(),
-                    "dd-ctrl-area-disabled": True,
-                    "dd-ctrl-test-value": str(),
-                    "dd-ctrl-test-options": list(),
-                    "dd-ctrl-test-disabled": True,
-                    "cl-ctrl-core-options": list(),
-                    "cl-ctrl-core-value": list(),
-                    "cl-ctrl-core-all-value": list(),
-                    "cl-ctrl-core-all-options": C.CL_ALL_DISABLED,
-                    "cl-ctrl-framesize-options": list(),
-                    "cl-ctrl-framesize-value": list(),
-                    "cl-ctrl-framesize-all-value": list(),
-                    "cl-ctrl-framesize-all-options": C.CL_ALL_DISABLED,
-                    "cl-ctrl-testtype-options": list(),
-                    "cl-ctrl-testtype-value": list(),
-                    "cl-ctrl-testtype-all-value": list(),
-                    "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
-                })
-            elif trigger_id == "dd-ctrl-phy":
-                try:
-                    dut = ctrl_panel.get("dd-ctrl-dut-value")
-                    phy = self.spec_tbs[dut][dd_phy]
-                    options = [{"label": label(v), "value": v} \
-                        for v in sorted(phy.keys())]
-                    disabled = False
-                except KeyError:
-                    options = list()
-                    disabled = True
-                ctrl_panel.set({
-                    "dd-ctrl-phy-value": dd_phy,
-                    "dd-ctrl-area-value": str(),
-                    "dd-ctrl-area-options": options,
-                    "dd-ctrl-area-disabled": disabled,
-                    "dd-ctrl-test-value": str(),
-                    "dd-ctrl-test-options": list(),
-                    "dd-ctrl-test-disabled": True,
-                    "cl-ctrl-core-options": list(),
-                    "cl-ctrl-core-value": list(),
-                    "cl-ctrl-core-all-value": list(),
-                    "cl-ctrl-core-all-options": C.CL_ALL_DISABLED,
-                    "cl-ctrl-framesize-options": list(),
-                    "cl-ctrl-framesize-value": list(),
-                    "cl-ctrl-framesize-all-value": list(),
-                    "cl-ctrl-framesize-all-options": C.CL_ALL_DISABLED,
-                    "cl-ctrl-testtype-options": list(),
-                    "cl-ctrl-testtype-value": list(),
-                    "cl-ctrl-testtype-all-value": list(),
-                    "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
-                })
-            elif trigger_id == "dd-ctrl-area":
-                try:
-                    dut = ctrl_panel.get("dd-ctrl-dut-value")
-                    phy = ctrl_panel.get("dd-ctrl-phy-value")
-                    area = self.spec_tbs[dut][phy][dd_area]
-                    options = generate_options(sorted(area.keys()))
-                    disabled = False
-                except KeyError:
-                    options = list()
-                    disabled = True
-                ctrl_panel.set({
-                    "dd-ctrl-area-value": dd_area,
-                    "dd-ctrl-test-value": str(),
-                    "dd-ctrl-test-options": options,
-                    "dd-ctrl-test-disabled": disabled,
-                    "cl-ctrl-core-options": list(),
-                    "cl-ctrl-core-value": list(),
-                    "cl-ctrl-core-all-value": list(),
-                    "cl-ctrl-core-all-options": C.CL_ALL_DISABLED,
-                    "cl-ctrl-framesize-options": list(),
-                    "cl-ctrl-framesize-value": list(),
-                    "cl-ctrl-framesize-all-value": list(),
-                    "cl-ctrl-framesize-all-options": C.CL_ALL_DISABLED,
-                    "cl-ctrl-testtype-options": list(),
-                    "cl-ctrl-testtype-value": list(),
-                    "cl-ctrl-testtype-all-value": list(),
-                    "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
-                })
-            elif trigger_id == "dd-ctrl-test":
-                dut = ctrl_panel.get("dd-ctrl-dut-value")
-                phy = ctrl_panel.get("dd-ctrl-phy-value")
-                area = ctrl_panel.get("dd-ctrl-area-value")
-                if all((dut, phy, area, dd_test, )):
-                    test = self.spec_tbs[dut][phy][area][dd_test]
+                    store_sel = literal_eval(url_params["store_sel"][0])
+                    normalize = literal_eval(url_params["norm"][0])
+                except (KeyError, IndexError):
+                    pass
+                if store_sel:
+                    last_test = store_sel[-1]
+                    test = self._spec_tbs[last_test["dut"]][last_test["phy"]]\
+                        [last_test["area"]][last_test["test"]]
                     ctrl_panel.set({
-                        "dd-ctrl-test-value": dd_test,
-                        "cl-ctrl-core-options": \
-                            generate_options(sorted(test["core"])),
-                        "cl-ctrl-core-value": list(),
-                        "cl-ctrl-core-all-value": list(),
-                        "cl-ctrl-core-all-options": C.CL_ALL_ENABLED,
-                        "cl-ctrl-framesize-options": \
-                            generate_options(sorted(test["frame-size"])),
-                        "cl-ctrl-framesize-value": list(),
-                        "cl-ctrl-framesize-all-value": list(),
-                        "cl-ctrl-framesize-all-options": C.CL_ALL_ENABLED,
-                        "cl-ctrl-testtype-options": \
-                            generate_options(sorted(test["test-type"])),
-                        "cl-ctrl-testtype-value": list(),
-                        "cl-ctrl-testtype-all-value": list(),
-                        "cl-ctrl-testtype-all-options": C.CL_ALL_ENABLED,
+                        "dd-dut-val": last_test["dut"],
+                        "dd-phy-val": last_test["phy"],
+                        "dd-phy-opt": generate_options(
+                            self._spec_tbs[last_test["dut"]].keys()
+                        ),
+                        "dd-phy-dis": False,
+                        "dd-area-val": last_test["area"],
+                        "dd-area-opt": [
+                            {"label": label(v), "value": v} for v in sorted(
+                                self._spec_tbs[last_test["dut"]]\
+                                    [last_test["phy"]].keys()
+                            )
+                        ],
+                        "dd-area-dis": False,
+                        "dd-test-val": last_test["test"],
+                        "dd-test-opt": generate_options(
+                            self._spec_tbs[last_test["dut"]][last_test["phy"]]\
+                                [last_test["area"]].keys()
+                        ),
+                        "dd-test-dis": False,
+                        "cl-core-opt": generate_options(test["core"]),
+                        "cl-core-val": [last_test["core"].upper(), ],
+                        "cl-core-all-val": list(),
+                        "cl-core-all-opt": C.CL_ALL_ENABLED,
+                        "cl-frmsize-opt": generate_options(test["frame-size"]),
+                        "cl-frmsize-val": [last_test["framesize"].upper(), ],
+                        "cl-frmsize-all-val": list(),
+                        "cl-frmsize-all-opt": C.CL_ALL_ENABLED,
+                        "cl-tsttype-opt": generate_options(test["test-type"]),
+                        "cl-tsttype-val": [last_test["testtype"].upper(), ],
+                        "cl-tsttype-all-val": list(),
+                        "cl-tsttype-all-opt": C.CL_ALL_ENABLED,
+                        "cl-normalize-val": normalize,
+                        "btn-add-dis": False
                     })
-            elif trigger_id == "cl-ctrl-core":
+                    on_draw = True
+            elif trigger.type == "normalize":
+                ctrl_panel.set({"cl-normalize-val": normalize})
+                on_draw = True
+            elif trigger.type == "ctrl-dd":
+                if trigger.idx == "dut":
+                    try:
+                        options = generate_options(
+                            self._spec_tbs[trigger.value].keys()
+                        )
+                        disabled = False
+                    except KeyError:
+                        options = list()
+                        disabled = True
+                    ctrl_panel.set({
+                        "dd-dut-val": trigger.value,
+                        "dd-phy-val": str(),
+                        "dd-phy-opt": options,
+                        "dd-phy-dis": disabled,
+                        "dd-area-val": str(),
+                        "dd-area-opt": list(),
+                        "dd-area-dis": True,
+                        "dd-test-val": str(),
+                        "dd-test-opt": list(),
+                        "dd-test-dis": True,
+                        "cl-core-opt": list(),
+                        "cl-core-val": list(),
+                        "cl-core-all-val": list(),
+                        "cl-core-all-opt": C.CL_ALL_DISABLED,
+                        "cl-frmsize-opt": list(),
+                        "cl-frmsize-val": list(),
+                        "cl-frmsize-all-val": list(),
+                        "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                        "cl-tsttype-opt": list(),
+                        "cl-tsttype-val": list(),
+                        "cl-tsttype-all-val": list(),
+                        "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+                        "btn-add-dis": True
+                    })
+                elif trigger.idx == "phy":
+                    try:
+                        dut = ctrl_panel.get("dd-dut-val")
+                        phy = self._spec_tbs[dut][trigger.value]
+                        options = [{"label": label(v), "value": v} \
+                            for v in sorted(phy.keys())]
+                        disabled = False
+                    except KeyError:
+                        options = list()
+                        disabled = True
+                    ctrl_panel.set({
+                        "dd-phy-val": trigger.value,
+                        "dd-area-val": str(),
+                        "dd-area-opt": options,
+                        "dd-area-dis": disabled,
+                        "dd-test-val": str(),
+                        "dd-test-opt": list(),
+                        "dd-test-dis": True,
+                        "cl-core-opt": list(),
+                        "cl-core-val": list(),
+                        "cl-core-all-val": list(),
+                        "cl-core-all-opt": C.CL_ALL_DISABLED,
+                        "cl-frmsize-opt": list(),
+                        "cl-frmsize-val": list(),
+                        "cl-frmsize-all-val": list(),
+                        "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                        "cl-tsttype-opt": list(),
+                        "cl-tsttype-val": list(),
+                        "cl-tsttype-all-val": list(),
+                        "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+                        "btn-add-dis": True
+                    })  
+                elif trigger.idx == "area":
+                    try:
+                        dut = ctrl_panel.get("dd-dut-val")
+                        phy = ctrl_panel.get("dd-phy-val")
+                        area = self._spec_tbs[dut][phy][trigger.value]
+                        options = generate_options(area.keys())
+                        disabled = False
+                    except KeyError:
+                        options = list()
+                        disabled = True
+                    ctrl_panel.set({
+                        "dd-area-val": trigger.value,
+                        "dd-test-val": str(),
+                        "dd-test-opt": options,
+                        "dd-test-dis": disabled,
+                        "cl-core-opt": list(),
+                        "cl-core-val": list(),
+                        "cl-core-all-val": list(),
+                        "cl-core-all-opt": C.CL_ALL_DISABLED,
+                        "cl-frmsize-opt": list(),
+                        "cl-frmsize-val": list(),
+                        "cl-frmsize-all-val": list(),
+                        "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                        "cl-tsttype-opt": list(),
+                        "cl-tsttype-val": list(),
+                        "cl-tsttype-all-val": list(),
+                        "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+                        "btn-add-dis": True
+                    })
+                elif trigger.idx == "test":
+                    dut = ctrl_panel.get("dd-dut-val")
+                    phy = ctrl_panel.get("dd-phy-val")
+                    area = ctrl_panel.get("dd-area-val")
+                    if all((dut, phy, area, trigger.value, )):
+                        test = self._spec_tbs[dut][phy][area][trigger.value]
+                        ctrl_panel.set({
+                            "dd-test-val": trigger.value,
+                            "cl-core-opt": generate_options(test["core"]),
+                            "cl-core-val": list(),
+                            "cl-core-all-val": list(),
+                            "cl-core-all-opt": C.CL_ALL_ENABLED,
+                            "cl-frmsize-opt": \
+                                generate_options(test["frame-size"]),
+                            "cl-frmsize-val": list(),
+                            "cl-frmsize-all-val": list(),
+                            "cl-frmsize-all-opt": C.CL_ALL_ENABLED,
+                            "cl-tsttype-opt": \
+                                generate_options(test["test-type"]),
+                            "cl-tsttype-val": list(),
+                            "cl-tsttype-all-val": list(),
+                            "cl-tsttype-all-opt": C.CL_ALL_ENABLED,
+                            "btn-add-dis": True
+                        })
+            elif trigger.type == "ctrl-cl":
+                param = trigger.idx.split("-")[0]
+                if "-all" in trigger.idx:
+                    c_sel, c_all, c_id = list(), trigger.value, "all"
+                else:
+                    c_sel, c_all, c_id = trigger.value, list(), str()
                 val_sel, val_all = sync_checklists(
-                    options=ctrl_panel.get("cl-ctrl-core-options"),
-                    sel=cl_core,
-                    all=list(),
-                    id=""
+                    options=ctrl_panel.get(f"cl-{param}-opt"),
+                    sel=c_sel,
+                    all=c_all,
+                    id=c_id
                 )
                 ctrl_panel.set({
-                    "cl-ctrl-core-value": val_sel,
-                    "cl-ctrl-core-all-value": val_all,
+                    f"cl-{param}-val": val_sel,
+                    f"cl-{param}-all-val": val_all,
                 })
-            elif trigger_id == "cl-ctrl-core-all":
-                val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-ctrl-core-options"),
-                    sel=list(),
-                    all=cl_core_all,
-                    id="all"
-                )
-                ctrl_panel.set({
-                    "cl-ctrl-core-value": val_sel,
-                    "cl-ctrl-core-all-value": val_all,
-                })
-            elif trigger_id == "cl-ctrl-framesize":
-                val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-ctrl-framesize-options"),
-                    sel=cl_framesize,
-                    all=list(),
-                    id=""
-                )
-                ctrl_panel.set({
-                    "cl-ctrl-framesize-value": val_sel,
-                    "cl-ctrl-framesize-all-value": val_all,
-                })
-            elif trigger_id == "cl-ctrl-framesize-all":
-                val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-ctrl-framesize-options"),
-                    sel=list(),
-                    all=cl_framesize_all,
-                    id="all"
-                )
-                ctrl_panel.set({
-                    "cl-ctrl-framesize-value": val_sel,
-                    "cl-ctrl-framesize-all-value": val_all,
-                })
-            elif trigger_id == "cl-ctrl-testtype":
-                val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-ctrl-testtype-options"),
-                    sel=cl_testtype,
-                    all=list(),
-                    id=""
-                )
-                ctrl_panel.set({
-                    "cl-ctrl-testtype-value": val_sel,
-                    "cl-ctrl-testtype-all-value": val_all,
-                })
-            elif trigger_id == "cl-ctrl-testtype-all":
-                val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-ctrl-testtype-options"),
-                    sel=list(),
-                    all=cl_testtype_all,
-                    id="all"
-                )
-                ctrl_panel.set({
-                    "cl-ctrl-testtype-value": val_sel,
-                    "cl-ctrl-testtype-all-value": val_all,
-                })
-            elif trigger_id == "btn-ctrl-add":
-                _ = btn_add
-                dut = ctrl_panel.get("dd-ctrl-dut-value")
-                phy = ctrl_panel.get("dd-ctrl-phy-value")
-                area = ctrl_panel.get("dd-ctrl-area-value")
-                test = ctrl_panel.get("dd-ctrl-test-value")
-                cores = ctrl_panel.get("cl-ctrl-core-value")
-                framesizes = ctrl_panel.get("cl-ctrl-framesize-value")
-                testtypes = ctrl_panel.get("cl-ctrl-testtype-value")
-                # Add selected test to the list of tests in store:
-                if all((dut, phy, area, test, cores, framesizes, testtypes)):
+                if all((ctrl_panel.get("cl-core-val"), 
+                        ctrl_panel.get("cl-frmsize-val"),
+                        ctrl_panel.get("cl-tsttype-val"), )):
+                    ctrl_panel.set({"btn-add-dis": False})
+                else:
+                    ctrl_panel.set({"btn-add-dis": True})
+            elif trigger.type == "ctrl-btn":
+                on_draw = True
+                if trigger.idx == "add-test":
+                    dut = ctrl_panel.get("dd-dut-val")
+                    phy = ctrl_panel.get("dd-phy-val")
+                    area = ctrl_panel.get("dd-area-val")
+                    test = ctrl_panel.get("dd-test-val")
+                    # Add selected test(s) to the list of tests in store:
                     if store_sel is None:
                         store_sel = list()
-                    for core in cores:
-                        for framesize in framesizes:
-                            for ttype in testtypes:
+                    for core in ctrl_panel.get("cl-core-val"):
+                        for framesize in ctrl_panel.get("cl-frmsize-val"):
+                            for ttype in ctrl_panel.get("cl-tsttype-val"):
                                 if dut == "trex":
                                     core = str()
                                 tid = "-".join((
-                                    dut, phy.replace('af_xdp', 'af-xdp'), area,
-                                    framesize.lower(), core.lower(), test,
+                                    dut,
+                                    phy.replace('af_xdp', 'af-xdp'),
+                                    area,
+                                    framesize.lower(),
+                                    core.lower(),
+                                    test,
                                     ttype.lower()
                                 ))
-                                if tid not in [itm["id"] for itm in store_sel]:
+                                if tid not in [i["id"] for i in store_sel]:
                                     store_sel.append({
                                         "id": tid,
                                         "dut": dut,
@@ -1134,125 +1105,56 @@ class Layout:
                                         "testtype": ttype.lower()
                                     })
                     store_sel = sorted(store_sel, key=lambda d: d["id"])
-                    row_card_sel_tests = C.STYLE_ENABLED
-                    row_btns_sel_tests = C.STYLE_ENABLED
                     if C.CLEAR_ALL_INPUTS:
                         ctrl_panel.set(ctrl_panel.defaults)
-            elif trigger_id == "btn-sel-remove-all":
-                _ = btn_remove_all
-                row_fig_tput = C.PLACEHOLDER
-                row_fig_lat = C.PLACEHOLDER
-                row_btn_dwnld = C.PLACEHOLDER
-                row_card_sel_tests = C.STYLE_DISABLED
-                row_btns_sel_tests = C.STYLE_DISABLED
-                store_sel = list()
-                ctrl_panel.set({"cl-selected-options": list()})
-            elif trigger_id == "btn-sel-remove":
-                _ = btn_remove
-                if list_sel:
+                elif trigger.idx == "rm-test" and lst_sel:
                     new_store_sel = list()
-                    for item in store_sel:
-                        if item["id"] not in list_sel:
+                    for idx, item in enumerate(store_sel):
+                        if not lst_sel[idx]:
                             new_store_sel.append(item)
                     store_sel = new_store_sel
-            elif trigger_id == "url":
-                if url_params:
-                    try:
-                        store_sel = literal_eval(url_params["store_sel"][0])
-                        norm = literal_eval(url_params["norm"][0])
-                    except (KeyError, IndexError):
-                        pass
-                    if store_sel:
-                        row_card_sel_tests = C.STYLE_ENABLED
-                        row_btns_sel_tests = C.STYLE_ENABLED
-                        last_test = store_sel[-1]
-                        test = self.spec_tbs[last_test["dut"]]\
-                            [last_test["phy"]][last_test["area"]]\
-                                [last_test["test"]]
-                        ctrl_panel.set({
-                            "dd-ctrl-dut-value": last_test["dut"],
-                            "dd-ctrl-phy-value": last_test["phy"],
-                            "dd-ctrl-phy-options": generate_options(sorted(
-                                self.spec_tbs[last_test["dut"]].keys())),
-                            "dd-ctrl-phy-disabled": False,
-                            "dd-ctrl-area-value": last_test["area"],
-                            "dd-ctrl-area-options": [
-                                {"label": label(v), "value": v} \
-                                    for v in sorted(
-                                        self.spec_tbs[last_test["dut"]]\
-                                            [last_test["phy"]].keys())
-                            ],
-                            "dd-ctrl-area-disabled": False,
-                            "dd-ctrl-test-value": last_test["test"],
-                            "dd-ctrl-test-options": generate_options(sorted(
-                                self.spec_tbs[last_test["dut"]]\
-                                    [last_test["phy"]]\
-                                        [last_test["area"]].keys())),
-                            "dd-ctrl-test-disabled": False,
-                            "cl-ctrl-core-options": generate_options(sorted(
-                                test["core"])),
-                            "cl-ctrl-core-value": [last_test["core"].upper(), ],
-                            "cl-ctrl-core-all-value": list(),
-                            "cl-ctrl-core-all-options": C.CL_ALL_ENABLED,
-                            "cl-ctrl-framesize-options": generate_options(
-                                sorted(test["frame-size"])),
-                            "cl-ctrl-framesize-value": \
-                                [last_test["framesize"].upper(), ],
-                            "cl-ctrl-framesize-all-value": list(),
-                            "cl-ctrl-framesize-all-options": C.CL_ALL_ENABLED,
-                            "cl-ctrl-testtype-options": generate_options(sorted(
-                                test["test-type"])),
-                            "cl-ctrl-testtype-value": \
-                                [last_test["testtype"].upper(), ],
-                            "cl-ctrl-testtype-all-value": list(),
-                            "cl-ctrl-testtype-all-options": C.CL_ALL_ENABLED
-                        })
-
-            if trigger_id in ("btn-ctrl-add", "url", "btn-sel-remove",
-                    "cl-ctrl-normalize"):
+                elif trigger.idx == "rm-test-all":
+                    store_sel = list()
+                
+            if on_draw:
                 if store_sel:
-                    row_fig_tput, row_fig_lat, row_btn_dwnld = \
-                        _generate_plotting_area(
-                            graph_trending(self.data, store_sel, self.layout,
-                                bool(norm)),
-                            gen_new_url(
-                                parsed_url,
-                                {
-                                    "store_sel": store_sel,
-                                    "norm": norm
-                                }
-                            )
+                    lg_selected = self._get_list_group_items(store_sel)
+                    plotting_area = self._get_plotting_area(
+                        store_sel,
+                        bool(normalize),
+                        gen_new_url(
+                            parsed_url,
+                            {"store_sel": store_sel, "norm": normalize}
                         )
-                    ctrl_panel.set({
-                        "cl-selected-options": list_tests(store_sel)
-                    })
+                    )
+                    row_card_sel_tests = C.STYLE_ENABLED
+                    row_btns_sel_tests = C.STYLE_ENABLED
                 else:
-                    row_fig_tput = C.PLACEHOLDER
-                    row_fig_lat = C.PLACEHOLDER
-                    row_btn_dwnld = C.PLACEHOLDER
+                    plotting_area = C.PLACEHOLDER
                     row_card_sel_tests = C.STYLE_DISABLED
                     row_btns_sel_tests = C.STYLE_DISABLED
                     store_sel = list()
-                    ctrl_panel.set({"cl-selected-options": list()})
-
-            if ctrl_panel.get("cl-ctrl-core-value") and \
-                    ctrl_panel.get("cl-ctrl-framesize-value") and \
-                    ctrl_panel.get("cl-ctrl-testtype-value"):
-                disabled = False
-            else:
-                disabled = True
-            ctrl_panel.set({
-                "btn-ctrl-add-disabled": disabled,
-                "cl-normalize-value": norm
-            })
 
             ret_val = [
-                ctrl_panel.panel, store_sel,
-                row_fig_tput, row_fig_lat, row_btn_dwnld,
-                row_card_sel_tests, row_btns_sel_tests
+                ctrl_panel.panel,
+                store_sel,
+                plotting_area,
+                row_card_sel_tests,
+                row_btns_sel_tests,
+                lg_selected
             ]
-            ret_val.extend(ctrl_panel.values())
+            ret_val.extend(ctrl_panel.values)
             return ret_val
+
+        @app.callback(
+            Output("plot-mod-url", "is_open"),
+            [Input("plot-btn-url", "n_clicks")],
+            [State("plot-mod-url", "is_open")],
+        )
+        def toggle_plot_mod_url(n, is_open):
+            if n:
+                return not is_open
+            return is_open
 
         @app.callback(
             Output("metadata-tput-lat", "children"),
@@ -1271,14 +1173,13 @@ class Layout:
                 information to show the offcanvas.
             :rtype: tuple(list, list, bool)
             """
+
+            trigger = Trigger(callback_context.triggered)
+
             try:
-                trigger_id = loads(
-                    callback_context.triggered[0]["prop_id"].split(".")[0]
-                )["index"]
-                idx = 0 if trigger_id == "tput" else 1
+                idx = 0 if trigger.idx == "tput" else 1
                 graph_data = graph_data[idx]["points"][0]
-            except (JSONDecodeError, IndexError, KeyError, ValueError,
-                    TypeError):
+            except (IndexError, KeyError, ValueError, TypeError):
                 raise PreventUpdate
 
             metadata = no_update
@@ -1289,9 +1190,9 @@ class Layout:
                     [dbc.Badge(x.split(":")[0]), x.split(": ")[1]]
                 ) for x in graph_data.get("text", "").split("<br>")
             ]
-            if trigger_id == "tput":
+            if trigger.idx == "tput":
                 title = "Throughput"
-            elif trigger_id == "lat":
+            elif trigger.idx == "lat":
                 title = "Latency"
                 hdrh_data = graph_data.get("customdata", None)
                 if hdrh_data:
@@ -1303,12 +1204,15 @@ class Layout:
                                 dcc.Graph(
                                     id="hdrh-latency-graph",
                                     figure=graph_hdrh_latency(
-                                        hdrh_data, self.layout
+                                        hdrh_data, self._graph_layout
                                     )
                                 )
                             ])
                         ])
                     ]
+            else:
+                raise PreventUpdate
+
             metadata = [
                 dbc.Card(
                     class_name="gy-2 p-0",
@@ -1333,33 +1237,28 @@ class Layout:
             return metadata, graph, True
 
         @app.callback(
-            Output("download-data", "data"),
-            State("selected-tests", "data"),
-            Input("btn-download-data", "n_clicks"),
+            Output("download-trending-data", "data"),
+            State("store-selected-tests", "data"),
+            Input("plot-btn-download", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_data(store_sel, n_clicks):
+        def _download_trending_data(store_sel, _):
             """Download the data
 
             :param store_sel: List of tests selected by user stored in the
                 browser.
-            :param n_clicks: Number of clicks on the button "Download".
             :type store_sel: list
-            :type n_clicks: int
             :returns: dict of data frame content (base64 encoded) and meta data
                 used by the Download component.
             :rtype: dict
             """
-
-            if not n_clicks:
-                raise PreventUpdate
 
             if not store_sel:
                 raise PreventUpdate
 
             df = pd.DataFrame()
             for itm in store_sel:
-                sel_data = select_trending_data(self.data, itm)
+                sel_data = select_trending_data(self._data, itm)
                 if sel_data is None:
                     continue
                 df = pd.concat([df, sel_data], ignore_index=True)

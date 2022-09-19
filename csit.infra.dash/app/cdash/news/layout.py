@@ -22,7 +22,7 @@ from flask import Flask
 from dash import dcc
 from dash import html
 from dash import callback_context
-from dash import Input, Output
+from dash import Input, Output, State
 from yaml import load, FullLoader, YAMLError
 
 from ..data.data import Data
@@ -251,8 +251,6 @@ class Layout:
 
         self._default_period = C.NEWS_SHORT
         self._default_active = (False, True, False)
-        self._default_table = \
-            table_summary(self._data, self._jobs, self._default_period)
 
         # Callbacks:
         if self._app is not None and hasattr(self, 'callbacks'):
@@ -286,7 +284,7 @@ class Layout:
                         id="row-navbar",
                         class_name="g-0",
                         children=[
-                            self._add_navbar(),
+                            self._add_navbar()
                         ]
                     ),
                     dbc.Row(
@@ -294,7 +292,7 @@ class Layout:
                         class_name="g-0",
                         children=[
                             self._add_ctrl_col(),
-                            self._add_plotting_col(),
+                            self._add_plotting_col()
                         ]
                     )
                 ]
@@ -305,10 +303,10 @@ class Layout:
                 children=[
                     dbc.Alert(
                         [
-                            "An Error Occured",
+                            "An Error Occured"
                         ],
-                        color="danger",
-                    ),
+                        color="danger"
+                    )
                 ]
             )
 
@@ -335,7 +333,7 @@ class Layout:
             brand_href="/",
             brand_external_link=True,
             class_name="p-2",
-            fluid=True,
+            fluid=True
         )
 
     def _add_ctrl_col(self) -> dbc.Col:
@@ -357,48 +355,22 @@ class Layout:
         :returns: Column with tables.
         :rtype: dbc.Col
         """
-
         return dbc.Col(
             id="col-plotting-area",
             children=[
                 dcc.Loading(
                     children=[
-                        dbc.Row(  # Failed tests
-                            id="row-table",
-                            class_name="g-0 p-2",
-                            children=self._default_table
-                        ),
                         dbc.Row(
-                            class_name="g-0 p-2",
-                            align="center",
-                            justify="start",
+                            id="plotting-area",
+                            class_name="g-0 p-0",
                             children=[
-                                dbc.InputGroup(
-                                    class_name="me-1",
-                                    children=[
-                                        dbc.InputGroupText(
-                                            style=C.URL_STYLE,
-                                            children=show_tooltip(
-                                                self._tooltips,
-                                                "help-url", "URL",
-                                                "input-url"
-                                            )
-                                        ),
-                                        dbc.Input(
-                                            id="input-url",
-                                            readonly=True,
-                                            type="url",
-                                            style=C.URL_STYLE,
-                                            value=""
-                                        )
-                                    ]
-                                )
+                                C.PLACEHOLDER
                             ]
                         )
                     ]
                 )
             ],
-            width=9,
+            width=9
         )
 
     def _add_ctrl_panel(self) -> dbc.Row:
@@ -410,8 +382,11 @@ class Layout:
         return [
             dbc.Label(
                 class_name="g-0 p-1",
-                children=show_tooltip(self._tooltips,
-                    "help-summary-period", "Window")
+                children=show_tooltip(
+                    self._tooltips,
+                    "help-summary-period",
+                    "Window"
+                )
             ),
             dbc.Row(
                 class_name="g-0 p-1",
@@ -447,6 +422,53 @@ class Layout:
             )
         ]
 
+    def _get_plotting_area(
+            self,
+            period: int,
+            url: str
+        ) -> list:
+        """Generate the plotting area with all its content.
+        """
+
+        return [
+            dbc.Row(
+                id="row-table",
+                class_name="g-0 p-1",
+                children=table_summary(self._data, self._jobs, period)
+            ),
+            dbc.Row(
+                [
+                    dbc.Col([html.Div(
+                        [
+                            dbc.Button(
+                                id="plot-btn-url",
+                                children="URL",
+                                class_name="me-1",
+                                color="info",
+                                style={
+                                    "text-transform": "none",
+                                    "padding": "0rem 1rem"
+                                }
+                            ),
+                            dbc.Modal(
+                                [
+                                    dbc.ModalHeader(dbc.ModalTitle("URL")),
+                                    dbc.ModalBody(url)
+                                ],
+                                id="plot-mod-url",
+                                size="xl",
+                                is_open=False,
+                                scrollable=True
+                            )
+                        ],
+                        className=\
+                            "d-grid gap-0 d-md-flex justify-content-md-end"
+                    )])
+                ],
+                class_name="g-0 p-0"
+            )
+        ]
+
     def callbacks(self, app):
         """Callbacks for the whole application.
 
@@ -455,25 +477,21 @@ class Layout:
         """
 
         @app.callback(
-            Output("row-table", "children"),
-            Output("input-url", "value"),
+            Output("plotting-area", "children"),
             Output("period-last", "active"),
             Output("period-short", "active"),
             Output("period-long", "active"),
+            Input("url", "href"),
             Input("period-last", "n_clicks"),
             Input("period-short", "n_clicks"),
-            Input("period-long", "n_clicks"),
-            Input("url", "href")
+            Input("period-long", "n_clicks")
         )
-        def _update_application(btn_last: int, btn_short: int, btn_long: int,
-            href: str) -> tuple:
+        def _update_application(href: str, *_) -> tuple:
             """Update the application when the event is detected.
 
             :returns: New values for web page elements.
             :rtype: tuple
             """
-
-            _, _, _ = btn_last, btn_short, btn_long
 
             periods = {
                 "period-last": C.NEWS_LAST,
@@ -497,12 +515,21 @@ class Layout:
             if trigger_id == "url" and url_params:
                 trigger_id = url_params.get("period", list())[0]
 
-            period = periods.get(trigger_id, self._default_period)
-            active = actives.get(trigger_id, self._default_active)
-
             ret_val = [
-                table_summary(self._data, self._jobs, period),
-                gen_new_url(parsed_url, {"period": trigger_id})
+                self._get_plotting_area(
+                    periods.get(trigger_id, self._default_period),
+                    gen_new_url(parsed_url, {"period": trigger_id})
+                )
             ]
-            ret_val.extend(active)
+            ret_val.extend(actives.get(trigger_id, self._default_active))
             return ret_val
+
+        @app.callback(
+            Output("plot-mod-url", "is_open"),
+            [Input("plot-btn-url", "n_clicks")],
+            [State("plot-mod-url", "is_open")],
+        )
+        def toggle_plot_mod_url(n, is_open):
+            if n:
+                return not is_open
+            return is_open
