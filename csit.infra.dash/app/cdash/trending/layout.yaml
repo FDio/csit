@@ -1,6 +1,6 @@
 plot-trending-tput:
   autosize: True
-  showlegend: True
+  showlegend: False
   yaxis:
     showticklabels: True
     tickformat: ".3s"
@@ -33,12 +33,6 @@ plot-trending-tput:
     b: 0
     t: 5
     l: 70
-  legend:
-    orientation: "h"
-    y: -0.18
-    xanchor: "auto"
-    traceorder: "normal"
-    bordercolor: "rgb(238, 238, 238)"
   paper_bgcolor: "#fff"
   plot_bgcolor: "#fff"
   hoverlabel:
@@ -46,7 +40,7 @@ plot-trending-tput:
 
 plot-trending-lat:
   autosize: True
-  showlegend: True
+  showlegend: False
   yaxis:
     showticklabels: True
     tickformat: ".3s"
@@ -79,12 +73,6 @@ plot-trending-lat:
     b: 0
     t: 5
     l: 70
-  legend:
-    orientation: "h"
-    y: -0.18
-    xanchor: "auto"
-    traceorder: "normal"
-    bordercolor: "rgb(238, 238, 238)"
   paper_bgcolor: "#fff"
   plot_bgcolor: "#fff"
   hoverlabel:
