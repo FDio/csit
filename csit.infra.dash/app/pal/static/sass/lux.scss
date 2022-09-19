@@ -1,6 +1,9 @@
 // Your variable overrides go here, e.g.:
 // $h1-font-size: 3rem;
 
+$accordion-padding-y:                     0.5rem;
+$accordion-padding-x:                     0.65rem;
+
 @import "variables";
 @import "bootstrap/bootstrap";
 @import "bootswatch";
