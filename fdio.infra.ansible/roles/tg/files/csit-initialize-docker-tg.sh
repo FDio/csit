@@ -24,7 +24,7 @@ case "${1:-start}" in
             docker network create --driver bridge csit-nw-tg${cnt} || true
             # If the IMAGE is not already loaded then docker run will pull the
             # IMAGE, and all image dependencies, before it starts the container.
-            dcr_image="csit_sut-ubuntu2004:local"
+            dcr_image="csit_sut-ubuntu2204:local"
             # Run the container in the background and print the new container
             # ID.
             dcr_stc_params="--detach=true "
