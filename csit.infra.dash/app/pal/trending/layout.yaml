@@ -1,6 +1,6 @@
 plot-trending-tput:
   autosize: True
-  showlegend: True
+  showlegend: False
   yaxis:
     showticklabels: True
     tickformat: ".3s"
@@ -46,7 +46,7 @@ plot-trending-tput:
 
 plot-trending-lat:
   autosize: True
-  showlegend: True
+  showlegend: False
   yaxis:
     showticklabels: True
     tickformat: ".3s"
