@@ -39,7 +39,7 @@ class Constants:
     BRAND = "CSIT-Dash"
 
     # The application description.
-    DESCRIPTION = 'Performance Dashboard "CSIT-Dash"'
+    DESCRIPTION = "Performance Dashboard"
 
     # External stylesheets.
     EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
@@ -72,12 +72,12 @@ class Constants:
     # now back to the past.
     # TIME_PERIOD = None - means all data (max MAX_TIME_PERIOD days) is read.
     # TIME_PERIOD = MAX_TIME_PERIOD - is the default value
-    TIME_PERIOD = MAX_TIME_PERIOD  # [days]
+    TIME_PERIOD = 20  # MAX_TIME_PERIOD  # [days]
 
     # List of releases used for iterative data processing.
     # The releases MUST be in the order from the current (newest) to the last
     # (oldest).
-    RELEASES = ["csit2210", "csit2206", "csit2202", ]
+    RELEASES = ["csit2210", ]  #"csit2206", "csit2202", ]
 
     ############################################################################
     # General, application wide, layout affecting constants.
@@ -253,7 +253,7 @@ class Constants:
     # News.
 
     # The title.
-    NEWS_TITLE = "CI TEST FAILURE AND ANOMALY STATISTICS"
+    NEWS_TITLE = "Failures and Anomalies"
 
     # The pathname prefix for the application.
     NEWS_ROUTES_PATHNAME_PREFIX = "/news/"
@@ -270,7 +270,7 @@ class Constants:
     # Report.
 
     # The title.
-    REPORT_TITLE = "PER RELEASE PERFORMANCE RESULTS"
+    REPORT_TITLE = "Per Release Performance"
 
     # The pathname prefix for the application.
     REPORT_ROUTES_PATHNAME_PREFIX = "/report/"
@@ -285,7 +285,7 @@ class Constants:
     # Statistics.
 
     # The title.
-    STATS_TITLE = "CI JOB EXECUTION STATISTICS"
+    STATS_TITLE = "Test Job Statistics"
 
     # The pathname prefix for the application.
     STATS_ROUTES_PATHNAME_PREFIX = "/stats/"
@@ -303,7 +303,7 @@ class Constants:
     # Trending.
 
     # The title.
-    TREND_TITLE = "PERFORMANCE TRENDING (DAILY, WEEKLY)"
+    TREND_TITLE = "Performance Trending"
 
     # The pathname prefix for the application.
     TREND_ROUTES_PATHNAME_PREFIX = "/trending/"
