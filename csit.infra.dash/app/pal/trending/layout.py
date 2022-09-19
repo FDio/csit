@@ -31,7 +31,7 @@ from json import loads, JSONDecodeError
 from ast import literal_eval
 
 from ..utils.constants import Constants as C
-from ..utils.utils import show_tooltip, label, sync_checklists, list_tests, \
+from ..utils.utils import get_color, show_tooltip, label, sync_checklists, list_tests, \
     gen_new_url, generate_options
 from ..utils.url_processing import url_decode
 from ..data.data import Data
@@ -336,23 +336,9 @@ class Layout:
             children=[
                 dcc.Loading(
                     children=[
-                        dbc.Row(  # Throughput
-                            id="row-graph-tput",
-                            class_name="g-0 p-2",
-                            children=[
-                                C.PLACEHOLDER
-                            ]
-                        ),
-                        dbc.Row(  # Latency
-                            id="row-graph-lat",
-                            class_name="g-0 p-2",
-                            children=[
-                                C.PLACEHOLDER
-                            ]
-                        ),
-                        dbc.Row(  # Download
-                            id="row-btn-download",
-                            class_name="g-0 p-2",
+                        dbc.Row(
+                            id="plotting-area",
+                            class_name="g-0 p-0",
                             children=[
                                 C.PLACEHOLDER
                             ]
@@ -600,48 +586,35 @@ class Layout:
                     ]
                 ),
                 dbc.Row(
-                    id="row-card-sel-tests",
-                    class_name="gy-1",
-                    style=C.STYLE_DISABLED,
-                    children=[
-                        dbc.Label(
-                            "Selected tests",
-                            class_name="p-0"
-                        ),
-                        dbc.Checklist(
-                            class_name="overflow-auto",
-                            id="cl-selected",
-                            options=[],
-                            inline=False,
-                            style={"max-height": "12em"},
-                        )
-                    ],
-                ),
-                dbc.Row(
-                    id="row-btns-sel-tests",
-                    style=C.STYLE_DISABLED,
+                    class_name="gy-1 p-0",
                     children=[
                         dbc.ButtonGroup(
-                            class_name="gy-2",
-                            children=[
+                            [
                                 dbc.Button(
-                                    id="btn-sel-remove",
-                                    children="Remove Selected",
-                                    class_name="w-100 me-1",
-                                    color="info",
-                                    disabled=False
-                                ),
-                                dbc.Button(
-                                    id="btn-sel-remove-all",
+                                    id="btn-ctrl-remove-all",
                                     children="Remove All",
-                                    class_name="w-100 me-1",
-                                    color="info",
-                                    disabled=False
-                                ),
+                                    class_name="me-1",
+                                    color="info"
+                                )
                             ]
                         )
                     ]
                 ),
+                dbc.Row(
+                    class_name="gy-1 p-0",
+                    children=[
+                        dbc.ButtonGroup(
+                            [
+                                dbc.Button(
+                                    id="btn-ctrl-download",
+                                    children="Download Data",
+                                    class_name="me-1",
+                                    color="info"
+                                )
+                            ]
+                        )
+                    ]
+                )
             ]
         )
 
@@ -686,7 +659,6 @@ class Layout:
                 "cl-ctrl-testtype-all-options": C.CL_ALL_DISABLED,
                 "btn-ctrl-add-disabled": True,
                 "cl-normalize-value": list(),
-                "cl-selected-options": list()
             }
 
             self._panel = deepcopy(self._defaults)
@@ -743,88 +715,118 @@ class Layout:
         :type app: Flask
         """
 
-        def _generate_plotting_area(figs: tuple, url: str) -> tuple:
+        def _generate_plotting_area(tests: list, normalize: bool) -> list:
             """Generate the plotting area with all its content.
-
-            :param figs: Figures to be placed in the plotting area.
-            :param utl: The URL to be placed in the plotting area bellow the
-                tables.
-            :type figs: tuple of plotly.graph_objects.Figure
-            :type url: str
-            :returns: tuple of elements to be shown in the plotting area.
-            :rtype: tuple(dcc.Graph, dcc.Graph, list(dbc.Col, dbc.Col))
             """
 
-            (fig_tput, fig_lat) = figs
+            if not tests:
+                return C.PLACEHOLDER
 
-            row_fig_tput = C.PLACEHOLDER
-            row_fig_lat = C.PLACEHOLDER
-            row_btn_dwnld = C.PLACEHOLDER
+            figs = graph_trending(self.data, tests, self.layout, normalize)
+            tput = dcc.Graph(figure=figs[0])
+            lat = dcc.Graph(figure=figs[1])
 
-            if fig_tput:
-                row_fig_tput = [
-                    dcc.Graph(
-                        id={"type": "graph", "index": "tput"},
-                        figure=fig_tput
-                    )
-                ]
-                row_btn_dwnld = [
-                    dbc.Col(  # Download
-                        width=2,
-                        children=[
-                            dcc.Loading(children=[
-                                dbc.Button(
-                                    id="btn-download-data",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-download", "Download Data"),
-                                    class_name="me-1",
-                                    color="info"
+            accordion_items = [
+                dbc.AccordionItem(
+                    title="Trending",
+                    children=[
+                        dbc.Tabs(
+                            [
+                                dbc.Tab(
+                                    children=tput,
+                                    label="Throughput",
+                                    tab_id="tab-tput"
                                 ),
-                                dcc.Download(id="download-data")
-                            ]),
-                        ]
-                    ),
-                    dbc.Col(  # Show URL
-                        width=10,
-                        children=[
-                            dbc.InputGroup(
-                                class_name="me-1",
-                                children=[
-                                    dbc.InputGroupText(
-                                        style=C.URL_STYLE,
-                                        children=show_tooltip(self._tooltips,
-                                            "help-url", "URL", "input-url")
-                                    ),
-                                    dbc.Input(
-                                        id="input-url",
-                                        readonly=True,
-                                        type="url",
-                                        style=C.URL_STYLE,
-                                        value=url
-                                    )
-                                ]
-                            )
-                        ]
+                                dbc.Tab(
+                                    children=lat,
+                                    label="Latency",
+                                    tab_id="tab-lat"
+                                ),
+                            ],
+                            id="tabs",
+                            active_tab="tab-tput",
+                        )
+                    ]
+                )
+            ]
+            for idx, test in enumerate(tests):
+                accordion_items.append(
+                    dbc.AccordionItem(
+                        title=test["id"],
+                        children=[lat, ],
+                        style={"accordion-button-color": get_color(idx)}
                     )
-                ]
-            if fig_lat:
-                row_fig_lat = [
-                    dcc.Graph(
-                        id={"type": "graph", "index": "lat"},
-                        figure=fig_lat
-                    )
-                ]
+                )
 
-            return row_fig_tput, row_fig_lat, row_btn_dwnld
+            return [dbc.Accordion(
+                children=accordion_items,
+                class_name="gy-2 p-0",
+                start_collapsed=False,
+                always_open=True
+            )]
+
+
+
+#             if fig_tput:
+#                 row_fig_tput = [
+#                     dcc.Graph(
+#                         id={"type": "graph", "index": "tput"},
+#                         figure=fig_tput
+#                     )
+#                 ]
+#                 row_btn_dwnld = [
+#                     dbc.Col(  # Download
+#                         width=2,
+#                         children=[
+#                             dcc.Loading(children=[
+#                                 dbc.Button(
+#                                     id="btn-download-data",
+#                                     children=show_tooltip(self._tooltips,
+#                                         "help-download", "Download Data"),
+#                                     class_name="me-1",
+#                                     color="info"
+#                                 ),
+#                                 dcc.Download(id="download-data")
+#                             ]),
+#                         ]
+#                     ),
+#                     dbc.Col(  # Show URL
+#                         width=10,
+#                         children=[
+#                             dbc.InputGroup(
+#                                 class_name="me-1",
+#                                 children=[
+#                                     dbc.InputGroupText(
+#                                         style=C.URL_STYLE,
+#                                         children=show_tooltip(self._tooltips,
+#                                             "help-url", "URL", "input-url")
+#                                     ),
+#                                     dbc.Input(
+#                                         id="input-url",
+#                                         readonly=True,
+#                                         type="url",
+#                                         style=C.URL_STYLE,
+#                                         value=url
+#                                     )
+#                                 ]
+#                             )
+#                         ]
+#                     )
+#                 ]
+#             if fig_lat:
+#                 row_fig_lat = [
+#                     dcc.Graph(
+#                         id={"type": "graph", "index": "lat"},
+#                         figure=fig_lat
+#                     )
+#                 ]
+
+#             return row_fig_tput, row_fig_lat, row_btn_dwnld`
 
         @app.callback(
             Output("control-panel", "data"),  # Store
             Output("selected-tests", "data"),  # Store
-            Output("row-graph-tput", "children"),
-            Output("row-graph-lat", "children"),
-            Output("row-btn-download", "children"),
-            Output("row-card-sel-tests", "style"),
-            Output("row-btns-sel-tests", "style"),
+            Output("plotting-area", "children"),
             Output("dd-ctrl-dut", "value"),
             Output("dd-ctrl-phy", "options"),
             Output("dd-ctrl-phy", "disabled"),
@@ -849,10 +851,8 @@ class Layout:
             Output("cl-ctrl-testtype-all", "options"),
             Output("btn-ctrl-add", "disabled"),
             Output("cl-ctrl-normalize", "value"),
-            Output("cl-selected", "options"),  # User selection
             State("control-panel", "data"),  # Store
             State("selected-tests", "data"),  # Store
-            State("cl-selected", "value"),  # User selection
             Input("dd-ctrl-dut", "value"),
             Input("dd-ctrl-phy", "value"),
             Input("dd-ctrl-area", "value"),
@@ -865,16 +865,13 @@ class Layout:
             Input("cl-ctrl-testtype-all", "value"),
             Input("cl-ctrl-normalize", "value"),
             Input("btn-ctrl-add", "n_clicks"),
-            Input("btn-sel-remove", "n_clicks"),
-            Input("btn-sel-remove-all", "n_clicks"),
             Input("url", "href")
         )
-        def _update_ctrl_panel(cp_data: dict, store_sel: list, list_sel: list,
+        def _update_ctrl_panel(cp_data: dict, store_sel: list,
             dd_dut: str, dd_phy: str, dd_area: str, dd_test: str, cl_core: list,
             cl_core_all: list, cl_framesize: list, cl_framesize_all: list,
             cl_testtype: list, cl_testtype_all: list, cl_normalize: list,
-            btn_add: int, btn_remove: int,
-            btn_remove_all: int, href: str) -> tuple:
+            btn_add: int, href: str) -> tuple:
             """Update the application when the event is detected.
 
             :param cp_data: Current status of the control panel stored in
@@ -930,11 +927,7 @@ class Layout:
             else:
                 url_params = None
 
-            row_fig_tput = no_update
-            row_fig_lat = no_update
-            row_btn_dwnld = no_update
-            row_card_sel_tests = no_update
-            row_btns_sel_tests = no_update
+            plotting_area = no_update
 
             trigger_id = callback_context.triggered[0]["prop_id"].split(".")[0]
 
@@ -1158,23 +1151,6 @@ class Layout:
                     row_btns_sel_tests = C.STYLE_ENABLED
                     if C.CLEAR_ALL_INPUTS:
                         ctrl_panel.set(ctrl_panel.defaults)
-            elif trigger_id == "btn-sel-remove-all":
-                _ = btn_remove_all
-                row_fig_tput = C.PLACEHOLDER
-                row_fig_lat = C.PLACEHOLDER
-                row_btn_dwnld = C.PLACEHOLDER
-                row_card_sel_tests = C.STYLE_DISABLED
-                row_btns_sel_tests = C.STYLE_DISABLED
-                store_sel = list()
-                ctrl_panel.set({"cl-selected-options": list()})
-            elif trigger_id == "btn-sel-remove":
-                _ = btn_remove
-                if list_sel:
-                    new_store_sel = list()
-                    for item in store_sel:
-                        if item["id"] not in list_sel:
-                            new_store_sel.append(item)
-                    store_sel = new_store_sel
             elif trigger_id == "url":
                 if url_params:
                     try:
@@ -1228,32 +1204,12 @@ class Layout:
                             "cl-ctrl-testtype-all-options": C.CL_ALL_ENABLED
                         })
 
-            if trigger_id in ("btn-ctrl-add", "url", "btn-sel-remove",
-                    "cl-ctrl-normalize"):
+            if trigger_id in ("btn-ctrl-add", "url", "cl-ctrl-normalize"):
                 if store_sel:
-                    row_fig_tput, row_fig_lat, row_btn_dwnld = \
-                        _generate_plotting_area(
-                            graph_trending(self.data, store_sel, self.layout,
-                                bool(norm)),
-                            gen_new_url(
-                                parsed_url,
-                                {
-                                    "store_sel": store_sel,
-                                    "norm": norm
-                                }
-                            )
-                        )
-                    ctrl_panel.set({
-                        "cl-selected-options": list_tests(store_sel)
-                    })
+                    plotting_area = _generate_plotting_area(store_sel, bool(norm))
                 else:
-                    row_fig_tput = C.PLACEHOLDER
-                    row_fig_lat = C.PLACEHOLDER
-                    row_btn_dwnld = C.PLACEHOLDER
-                    row_card_sel_tests = C.STYLE_DISABLED
-                    row_btns_sel_tests = C.STYLE_DISABLED
+                    plotting_area = C.PLACEHOLDER
                     store_sel = list()
-                    ctrl_panel.set({"cl-selected-options": list()})
 
             if ctrl_panel.get("cl-ctrl-core-value") and \
                     ctrl_panel.get("cl-ctrl-framesize-value") and \
@@ -1268,8 +1224,7 @@ class Layout:
 
             ret_val = [
                 ctrl_panel.panel, store_sel,
-                row_fig_tput, row_fig_lat, row_btn_dwnld,
-                row_card_sel_tests, row_btns_sel_tests
+                plotting_area
             ]
             ret_val.extend(ctrl_panel.values())
             return ret_val
