@@ -684,37 +684,37 @@ class Layout:
 
             # Defines also the order of keys
             self._defaults = {
-                "dd-rls-value": str(),
-                "dd-dut-options": list(),
-                "dd-dut-disabled": True,
-                "dd-dut-value": str(),
-                "dd-dutver-options": list(),
-                "dd-dutver-disabled": True,
-                "dd-dutver-value": str(),
-                "dd-phy-options": list(),
-                "dd-phy-disabled": True,
-                "dd-phy-value": str(),
-                "dd-area-options": list(),
-                "dd-area-disabled": True,
-                "dd-area-value": str(),
-                "dd-test-options": list(),
-                "dd-test-disabled": True,
-                "dd-test-value": str(),
-                "cl-core-options": list(),
-                "cl-core-value": list(),
-                "cl-core-all-value": list(),
-                "cl-core-all-options": C.CL_ALL_DISABLED,
-                "cl-framesize-options": list(),
-                "cl-framesize-value": list(),
-                "cl-framesize-all-value": list(),
-                "cl-framesize-all-options": C.CL_ALL_DISABLED,
-                "cl-testtype-options": list(),
-                "cl-testtype-value": list(),
-                "cl-testtype-all-value": list(),
-                "cl-testtype-all-options": C.CL_ALL_DISABLED,
-                "btn-add-disabled": True,
-                "cl-normalize-value": list(),
-                "cl-selected-options": list()
+                "dd-rls-val": str(),
+                "dd-dut-opt": list(),
+                "dd-dut-dis": True,
+                "dd-dut-val": str(),
+                "dd-dutver-opt": list(),
+                "dd-dutver-dis": True,
+                "dd-dutver-val": str(),
+                "dd-phy-opt": list(),
+                "dd-phy-dis": True,
+                "dd-phy-val": str(),
+                "dd-area-opt": list(),
+                "dd-area-dis": True,
+                "dd-area-val": str(),
+                "dd-test-opt": list(),
+                "dd-test-dis": True,
+                "dd-test-val": str(),
+                "cl-core-opt": list(),
+                "cl-core-val": list(),
+                "cl-core-all-val": list(),
+                "cl-core-all-opt": C.CL_ALL_DISABLED,
+                "cl-frmsize-opt": list(),
+                "cl-frmsize-val": list(),
+                "cl-frmsize-all-val": list(),
+                "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                "cl-tsttype-opt": list(),
+                "cl-tsttype-val": list(),
+                "cl-tsttype-all-val": list(),
+                "cl-tsttype-all-opt": C.CL_ALL_DISABLED,
+                "btn-add-dis": True,
+                "cl-normalize-val": list(),
+                "cl-selected-opt": list()
             }
 
             self._panel = deepcopy(self._defaults)
@@ -998,117 +998,116 @@ class Layout:
 
             if trigger_id == "dd-ctrl-rls":
                 try:
-                    options = \
-                        generate_options(sorted(self.spec_tbs[dd_rls].keys()))
+                    options = generate_options(self.spec_tbs[dd_rls].keys())
                     disabled = False
                 except KeyError:
                     options = list()
                     disabled = True
                 ctrl_panel.set({
-                    "dd-rls-value": dd_rls,
-                    "dd-dut-value": str(),
-                    "dd-dut-options": options,
-                    "dd-dut-disabled": disabled,
-                    "dd-dutver-value": str(),
-                    "dd-dutver-options": list(),
-                    "dd-dutver-disabled": True,
-                    "dd-phy-value": str(),
-                    "dd-phy-options": list(),
-                    "dd-phy-disabled": True,
-                    "dd-area-value": str(),
-                    "dd-area-options": list(),
-                    "dd-area-disabled": True,
-                    "dd-test-value": str(),
-                    "dd-test-options": list(),
-                    "dd-test-disabled": True,
-                    "cl-core-options": list(),
-                    "cl-core-value": list(),
-                    "cl-core-all-value": list(),
-                    "cl-core-all-options": C.CL_ALL_DISABLED,
-                    "cl-framesize-options": list(),
-                    "cl-framesize-value": list(),
-                    "cl-framesize-all-value": list(),
-                    "cl-framesize-all-options": C.CL_ALL_DISABLED,
-                    "cl-testtype-options": list(),
-                    "cl-testtype-value": list(),
-                    "cl-testtype-all-value": list(),
-                    "cl-testtype-all-options": C.CL_ALL_DISABLED
+                    "dd-rls-val": dd_rls,
+                    "dd-dut-val": str(),
+                    "dd-dut-opt": options,
+                    "dd-dut-dis": disabled,
+                    "dd-dutver-val": str(),
+                    "dd-dutver-opt": list(),
+                    "dd-dutver-dis": True,
+                    "dd-phy-val": str(),
+                    "dd-phy-opt": list(),
+                    "dd-phy-dis": True,
+                    "dd-area-val": str(),
+                    "dd-area-opt": list(),
+                    "dd-area-dis": True,
+                    "dd-test-val": str(),
+                    "dd-test-opt": list(),
+                    "dd-test-dis": True,
+                    "cl-core-opt": list(),
+                    "cl-core-val": list(),
+                    "cl-core-all-val": list(),
+                    "cl-core-all-opt": C.CL_ALL_DISABLED,
+                    "cl-frmsize-opt": list(),
+                    "cl-frmsize-val": list(),
+                    "cl-frmsize-all-val": list(),
+                    "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                    "cl-tsttype-opt": list(),
+                    "cl-tsttype-val": list(),
+                    "cl-tsttype-all-val": list(),
+                    "cl-tsttype-all-opt": C.CL_ALL_DISABLED
                 })
             elif trigger_id == "dd-ctrl-dut":
                 try:
-                    rls = ctrl_panel.get("dd-rls-value")
+                    rls = ctrl_panel.get("dd-rls-val")
                     dut = self.spec_tbs[rls][dd_dut]
-                    options = generate_options(sorted(dut.keys()))
+                    options = generate_options(dut.keys())
                     disabled = False
                 except KeyError:
                     options = list()
                     disabled = True
                 ctrl_panel.set({
-                    "dd-dut-value": dd_dut,
-                    "dd-dutver-value": str(),
-                    "dd-dutver-options": options,
-                    "dd-dutver-disabled": disabled,
-                    "dd-phy-value": str(),
-                    "dd-phy-options": list(),
-                    "dd-phy-disabled": True,
-                    "dd-area-value": str(),
-                    "dd-area-options": list(),
-                    "dd-area-disabled": True,
-                    "dd-test-value": str(),
-                    "dd-test-options": list(),
-                    "dd-test-disabled": True,
-                    "cl-core-options": list(),
-                    "cl-core-value": list(),
-                    "cl-core-all-value": list(),
-                    "cl-core-all-options": C.CL_ALL_DISABLED,
-                    "cl-framesize-options": list(),
-                    "cl-framesize-value": list(),
-                    "cl-framesize-all-value": list(),
-                    "cl-framesize-all-options": C.CL_ALL_DISABLED,
-                    "cl-testtype-options": list(),
-                    "cl-testtype-value": list(),
-                    "cl-testtype-all-value": list(),
-                    "cl-testtype-all-options": C.CL_ALL_DISABLED
+                    "dd-dut-val": dd_dut,
+                    "dd-dutver-val": str(),
+                    "dd-dutver-opt": options,
+                    "dd-dutver-dis": disabled,
+                    "dd-phy-val": str(),
+                    "dd-phy-opt": list(),
+                    "dd-phy-dis": True,
+                    "dd-area-val": str(),
+                    "dd-area-opt": list(),
+                    "dd-area-dis": True,
+                    "dd-test-val": str(),
+                    "dd-test-opt": list(),
+                    "dd-test-dis": True,
+                    "cl-core-opt": list(),
+                    "cl-core-val": list(),
+                    "cl-core-all-val": list(),
+                    "cl-core-all-opt": C.CL_ALL_DISABLED,
+                    "cl-frmsize-opt": list(),
+                    "cl-frmsize-val": list(),
+                    "cl-frmsize-all-val": list(),
+                    "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                    "cl-tsttype-opt": list(),
+                    "cl-tsttype-val": list(),
+                    "cl-tsttype-all-val": list(),
+                    "cl-tsttype-all-opt": C.CL_ALL_DISABLED
                 })
             elif trigger_id == "dd-ctrl-dutver":
                 try:
-                    rls = ctrl_panel.get("dd-rls-value")
-                    dut = ctrl_panel.get("dd-dut-value")
+                    rls = ctrl_panel.get("dd-rls-val")
+                    dut = ctrl_panel.get("dd-dut-val")
                     dutver = self.spec_tbs[rls][dut][dd_dutver]
-                    options = generate_options(sorted(dutver.keys()))
+                    options = generate_options(dutver.keys())
                     disabled = False
                 except KeyError:
                     options = list()
                     disabled = True
                 ctrl_panel.set({
-                    "dd-dutver-value": dd_dutver,
-                    "dd-phy-value": str(),
-                    "dd-phy-options": options,
-                    "dd-phy-disabled": disabled,
-                    "dd-area-value": str(),
-                    "dd-area-options": list(),
-                    "dd-area-disabled": True,
-                    "dd-test-value": str(),
-                    "dd-test-options": list(),
-                    "dd-test-disabled": True,
-                    "cl-core-options": list(),
-                    "cl-core-value": list(),
-                    "cl-core-all-value": list(),
-                    "cl-core-all-options": C.CL_ALL_DISABLED,
-                    "cl-framesize-options": list(),
-                    "cl-framesize-value": list(),
-                    "cl-framesize-all-value": list(),
-                    "cl-framesize-all-options": C.CL_ALL_DISABLED,
-                    "cl-testtype-options": list(),
-                    "cl-testtype-value": list(),
-                    "cl-testtype-all-value": list(),
-                    "cl-testtype-all-options": C.CL_ALL_DISABLED
+                    "dd-dutver-val": dd_dutver,
+                    "dd-phy-val": str(),
+                    "dd-phy-opt": options,
+                    "dd-phy-dis": disabled,
+                    "dd-area-val": str(),
+                    "dd-area-opt": list(),
+                    "dd-area-dis": True,
+                    "dd-test-val": str(),
+                    "dd-test-opt": list(),
+                    "dd-test-dis": True,
+                    "cl-core-opt": list(),
+                    "cl-core-val": list(),
+                    "cl-core-all-val": list(),
+                    "cl-core-all-opt": C.CL_ALL_DISABLED,
+                    "cl-frmsize-opt": list(),
+                    "cl-frmsize-val": list(),
+                    "cl-frmsize-all-val": list(),
+                    "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                    "cl-tsttype-opt": list(),
+                    "cl-tsttype-val": list(),
+                    "cl-tsttype-all-val": list(),
+                    "cl-tsttype-all-opt": C.CL_ALL_DISABLED
                 })
             elif trigger_id == "dd-ctrl-phy":
                 try:
-                    rls = ctrl_panel.get("dd-rls-value")
-                    dut = ctrl_panel.get("dd-dut-value")
-                    dutver = ctrl_panel.get("dd-dutver-value")
+                    rls = ctrl_panel.get("dd-rls-val")
+                    dut = ctrl_panel.get("dd-dut-val")
+                    dutver = ctrl_panel.get("dd-dutver-val")
                     phy = self.spec_tbs[rls][dut][dutver][dd_phy]
                     options = [{"label": label(v), "value": v} \
                         for v in sorted(phy.keys())]
@@ -1117,159 +1116,158 @@ class Layout:
                     options = list()
                     disabled = True
                 ctrl_panel.set({
-                    "dd-phy-value": dd_phy,
-                    "dd-area-value": str(),
-                    "dd-area-options": options,
-                    "dd-area-disabled": disabled,
-                    "dd-test-value": str(),
-                    "dd-test-options": list(),
-                    "dd-test-disabled": True,
-                    "cl-core-options": list(),
-                    "cl-core-value": list(),
-                    "cl-core-all-value": list(),
-                    "cl-core-all-options": C.CL_ALL_DISABLED,
-                    "cl-framesize-options": list(),
-                    "cl-framesize-value": list(),
-                    "cl-framesize-all-value": list(),
-                    "cl-framesize-all-options": C.CL_ALL_DISABLED,
-                    "cl-testtype-options": list(),
-                    "cl-testtype-value": list(),
-                    "cl-testtype-all-value": list(),
-                    "cl-testtype-all-options": C.CL_ALL_DISABLED
+                    "dd-phy-val": dd_phy,
+                    "dd-area-val": str(),
+                    "dd-area-opt": options,
+                    "dd-area-dis": disabled,
+                    "dd-test-val": str(),
+                    "dd-test-opt": list(),
+                    "dd-test-dis": True,
+                    "cl-core-opt": list(),
+                    "cl-core-val": list(),
+                    "cl-core-all-val": list(),
+                    "cl-core-all-opt": C.CL_ALL_DISABLED,
+                    "cl-frmsize-opt": list(),
+                    "cl-frmsize-val": list(),
+                    "cl-frmsize-all-val": list(),
+                    "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                    "cl-tsttype-opt": list(),
+                    "cl-tsttype-val": list(),
+                    "cl-tsttype-all-val": list(),
+                    "cl-tsttype-all-opt": C.CL_ALL_DISABLED
                 })
             elif trigger_id == "dd-ctrl-area":
                 try:
-                    rls = ctrl_panel.get("dd-rls-value")
-                    dut = ctrl_panel.get("dd-dut-value")
-                    dutver = ctrl_panel.get("dd-dutver-value")
-                    phy = ctrl_panel.get("dd-phy-value")
+                    rls = ctrl_panel.get("dd-rls-val")
+                    dut = ctrl_panel.get("dd-dut-val")
+                    dutver = ctrl_panel.get("dd-dutver-val")
+                    phy = ctrl_panel.get("dd-phy-val")
                     area = self.spec_tbs[rls][dut][dutver][phy][dd_area]
-                    options = generate_options(sorted(area.keys()))
+                    options = generate_options(area.keys())
                     disabled = False
                 except KeyError:
                     options = list()
                     disabled = True
                 ctrl_panel.set({
-                    "dd-area-value": dd_area,
-                    "dd-test-value": str(),
-                    "dd-test-options": options,
-                    "dd-test-disabled": disabled,
-                    "cl-core-options": list(),
-                    "cl-core-value": list(),
-                    "cl-core-all-value": list(),
-                    "cl-core-all-options": C.CL_ALL_DISABLED,
-                    "cl-framesize-options": list(),
-                    "cl-framesize-value": list(),
-                    "cl-framesize-all-value": list(),
-                    "cl-framesize-all-options": C.CL_ALL_DISABLED,
-                    "cl-testtype-options": list(),
-                    "cl-testtype-value": list(),
-                    "cl-testtype-all-value": list(),
-                    "cl-testtype-all-options": C.CL_ALL_DISABLED
+                    "dd-area-val": dd_area,
+                    "dd-test-val": str(),
+                    "dd-test-opt": options,
+                    "dd-test-dis": disabled,
+                    "cl-core-opt": list(),
+                    "cl-core-val": list(),
+                    "cl-core-all-val": list(),
+                    "cl-core-all-opt": C.CL_ALL_DISABLED,
+                    "cl-frmsize-opt": list(),
+                    "cl-frmsize-val": list(),
+                    "cl-frmsize-all-val": list(),
+                    "cl-frmsize-all-opt": C.CL_ALL_DISABLED,
+                    "cl-tsttype-opt": list(),
+                    "cl-tsttype-val": list(),
+                    "cl-tsttype-all-val": list(),
+                    "cl-tsttype-all-opt": C.CL_ALL_DISABLED
                 })
             elif trigger_id == "dd-ctrl-test":
-                rls = ctrl_panel.get("dd-rls-value")
-                dut = ctrl_panel.get("dd-dut-value")
-                dutver = ctrl_panel.get("dd-dutver-value")
-                phy = ctrl_panel.get("dd-phy-value")
-                area = ctrl_panel.get("dd-area-value")
+                rls = ctrl_panel.get("dd-rls-val")
+                dut = ctrl_panel.get("dd-dut-val")
+                dutver = ctrl_panel.get("dd-dutver-val")
+                phy = ctrl_panel.get("dd-phy-val")
+                area = ctrl_panel.get("dd-area-val")
                 if all((rls, dut, dutver, phy, area, dd_test, )):
                     test = self.spec_tbs[rls][dut][dutver][phy][area][dd_test]
                     ctrl_panel.set({
-                        "dd-test-value": dd_test,
-                        "cl-core-options": \
-                            generate_options(sorted(test["core"])),
-                        "cl-core-value": list(),
-                        "cl-core-all-value": list(),
-                        "cl-core-all-options": C.CL_ALL_ENABLED,
-                        "cl-framesize-options": \
-                            generate_options(sorted(test["frame-size"])),
-                        "cl-framesize-value": list(),
-                        "cl-framesize-all-value": list(),
-                        "cl-framesize-all-options": C.CL_ALL_ENABLED,
-                        "cl-testtype-options": \
-                            generate_options(sorted(test["test-type"])),
-                        "cl-testtype-value": list(),
-                        "cl-testtype-all-value": list(),
-                        "cl-testtype-all-options": C.CL_ALL_ENABLED,
+                        "dd-test-val": dd_test,
+                        "cl-core-opt": generate_options(test["core"]),
+                        "cl-core-val": list(),
+                        "cl-core-all-val": list(),
+                        "cl-core-all-opt": C.CL_ALL_ENABLED,
+                        "cl-frmsize-opt": \
+                            generate_options(test["frame-size"]),
+                        "cl-frmsize-val": list(),
+                        "cl-frmsize-all-val": list(),
+                        "cl-frmsize-all-opt": C.CL_ALL_ENABLED,
+                        "cl-tsttype-opt": \
+                            generate_options(test["test-type"]),
+                        "cl-tsttype-val": list(),
+                        "cl-tsttype-all-val": list(),
+                        "cl-tsttype-all-opt": C.CL_ALL_ENABLED,
                     })
             elif trigger_id == "cl-ctrl-core":
                 val_sel, val_all = sync_checklists(
-                    options=ctrl_panel.get("cl-core-options"),
+                    options=ctrl_panel.get("cl-core-opt"),
                     sel=cl_core,
                     all=list(),
                     id=""
                 )
                 ctrl_panel.set({
-                    "cl-core-value": val_sel,
-                    "cl-core-all-value": val_all,
+                    "cl-core-val": val_sel,
+                    "cl-core-all-val": val_all,
                 })
             elif trigger_id == "cl-ctrl-core-all":
                 val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-core-options"),
+                    options = ctrl_panel.get("cl-core-opt"),
                     sel=list(),
                     all=cl_core_all,
                     id="all"
                 )
                 ctrl_panel.set({
-                    "cl-core-value": val_sel,
-                    "cl-core-all-value": val_all,
+                    "cl-core-val": val_sel,
+                    "cl-core-all-val": val_all,
                 })
             elif trigger_id == "cl-ctrl-framesize":
                 val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-framesize-options"),
+                    options = ctrl_panel.get("cl-frmsize-opt"),
                     sel=cl_framesize,
                     all=list(),
                     id=""
                 )
                 ctrl_panel.set({
-                    "cl-framesize-value": val_sel,
-                    "cl-framesize-all-value": val_all,
+                    "cl-frmsize-val": val_sel,
+                    "cl-frmsize-all-val": val_all,
                 })
             elif trigger_id == "cl-ctrl-framesize-all":
                 val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-framesize-options"),
+                    options = ctrl_panel.get("cl-frmsize-opt"),
                     sel=list(),
                     all=cl_framesize_all,
                     id="all"
                 )
                 ctrl_panel.set({
-                    "cl-framesize-value": val_sel,
-                    "cl-framesize-all-value": val_all,
+                    "cl-frmsize-val": val_sel,
+                    "cl-frmsize-all-val": val_all,
                 })
             elif trigger_id == "cl-ctrl-testtype":
                 val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-testtype-options"),
+                    options = ctrl_panel.get("cl-tsttype-opt"),
                     sel=cl_testtype,
                     all=list(),
                     id=""
                 )
                 ctrl_panel.set({
-                    "cl-testtype-value": val_sel,
-                    "cl-testtype-all-value": val_all,
+                    "cl-tsttype-val": val_sel,
+                    "cl-tsttype-all-val": val_all,
                 })
             elif trigger_id == "cl-ctrl-testtype-all":
                 val_sel, val_all = sync_checklists(
-                    options = ctrl_panel.get("cl-testtype-options"),
+                    options = ctrl_panel.get("cl-tsttype-opt"),
                     sel=list(),
                     all=cl_testtype_all,
                     id="all"
                 )
                 ctrl_panel.set({
-                    "cl-testtype-value": val_sel,
-                    "cl-testtype-all-value": val_all,
+                    "cl-tsttype-val": val_sel,
+                    "cl-tsttype-all-val": val_all,
                 })
             elif trigger_id == "btn-ctrl-add":
                 _ = btn_add
-                rls = ctrl_panel.get("dd-rls-value")
-                dut = ctrl_panel.get("dd-dut-value")
-                dutver = ctrl_panel.get("dd-dutver-value")
-                phy = ctrl_panel.get("dd-phy-value")
-                area = ctrl_panel.get("dd-area-value")
-                test = ctrl_panel.get("dd-test-value")
-                cores = ctrl_panel.get("cl-core-value")
-                framesizes = ctrl_panel.get("cl-framesize-value")
-                testtypes = ctrl_panel.get("cl-testtype-value")
+                rls = ctrl_panel.get("dd-rls-val")
+                dut = ctrl_panel.get("dd-dut-val")
+                dutver = ctrl_panel.get("dd-dutver-val")
+                phy = ctrl_panel.get("dd-phy-val")
+                area = ctrl_panel.get("dd-area-val")
+                test = ctrl_panel.get("dd-test-val")
+                cores = ctrl_panel.get("cl-core-val")
+                framesizes = ctrl_panel.get("cl-frmsize-val")
+                testtypes = ctrl_panel.get("cl-tsttype-val")
                 # Add selected test to the list of tests in store:
                 if all((rls, dut, dutver, phy, area, test, cores, framesizes,
                         testtypes)):
@@ -1303,7 +1301,7 @@ class Layout:
                     if C.CLEAR_ALL_INPUTS:
                         ctrl_panel.set(ctrl_panel.defaults)
                     ctrl_panel.set({
-                        "cl-selected-options": list_tests(store_sel)
+                        "cl-selected-opt": list_tests(store_sel)
                     })
             elif trigger_id == "btn-sel-remove-all":
                 _ = btn_remove_all
@@ -1314,7 +1312,7 @@ class Layout:
                 row_card_sel_tests = C.STYLE_DISABLED
                 row_btns_sel_tests = C.STYLE_DISABLED
                 store_sel = list()
-                ctrl_panel.set({"cl-selected-options": list()})
+                ctrl_panel.set({"cl-selected-opt": list()})
             elif trigger_id == "btn-sel-remove":
                 _ = btn_remove
                 if list_sel:
@@ -1339,54 +1337,53 @@ class Layout:
                                 [last_test["phy"]][last_test["area"]]\
                                     [last_test["test"]]
                         ctrl_panel.set({
-                            "dd-rls-value": last_test["rls"],
-                            "dd-dut-value": last_test["dut"],
-                            "dd-dut-options": generate_options(sorted(
-                                self.spec_tbs[last_test["rls"]].keys())),
-                            "dd-dut-disabled": False,
-                            "dd-dutver-value": last_test["dutver"],
-                            "dd-dutver-options": generate_options(sorted(
+                            "dd-rls-val": last_test["rls"],
+                            "dd-dut-val": last_test["dut"],
+                            "dd-dut-opt": generate_options(
+                                self.spec_tbs[last_test["rls"]].keys()),
+                            "dd-dut-dis": False,
+                            "dd-dutver-val": last_test["dutver"],
+                            "dd-dutver-opt": generate_options(
                                 self.spec_tbs[last_test["rls"]]\
-                                    [last_test["dut"]].keys())),
-                            "dd-dutver-disabled": False,
-                            "dd-phy-value": last_test["phy"],
-                            "dd-phy-options": generate_options(sorted(
+                                    [last_test["dut"]].keys()),
+                            "dd-dutver-dis": False,
+                            "dd-phy-val": last_test["phy"],
+                            "dd-phy-opt": generate_options(
                                 self.spec_tbs[last_test["rls"]]\
                                     [last_test["dut"]]\
-                                        [last_test["dutver"]].keys())),
-                            "dd-phy-disabled": False,
-                            "dd-area-value": last_test["area"],
-                            "dd-area-options": [
+                                        [last_test["dutver"]].keys()),
+                            "dd-phy-dis": False,
+                            "dd-area-val": last_test["area"],
+                            "dd-area-opt": [
                                 {"label": label(v), "value": v} for v in \
                                     sorted(self.spec_tbs[last_test["rls"]]\
                                         [last_test["dut"]][last_test["dutver"]]\
                                             [last_test["phy"]].keys())
                             ],
-                            "dd-area-disabled": False,
-                            "dd-test-value": last_test["test"],
-                            "dd-test-options": generate_options(sorted(
+                            "dd-area-dis": False,
+                            "dd-test-val": last_test["test"],
+                            "dd-test-opt": generate_options(
                                 self.spec_tbs[last_test["rls"]]\
                                     [last_test["dut"]][last_test["dutver"]]\
                                         [last_test["phy"]]\
-                                            [last_test["area"]].keys())),
-                            "dd-test-disabled": False,
-                            "cl-core-options": generate_options(sorted(
-                                test["core"])),
-                            "cl-core-value": [last_test["core"].upper(), ],
-                            "cl-core-all-value": list(),
-                            "cl-core-all-options": C.CL_ALL_ENABLED,
-                            "cl-framesize-options": generate_options(
-                                sorted(test["frame-size"])),
-                            "cl-framesize-value": \
+                                            [last_test["area"]].keys()),
+                            "dd-test-dis": False,
+                            "cl-core-opt": generate_options(test["core"]),
+                            "cl-core-val": [last_test["core"].upper(), ],
+                            "cl-core-all-val": list(),
+                            "cl-core-all-opt": C.CL_ALL_ENABLED,
+                            "cl-frmsize-opt": generate_options(
+                                test["frame-size"]),
+                            "cl-frmsize-val": \
                                 [last_test["framesize"].upper(), ],
-                            "cl-framesize-all-value": list(),
-                            "cl-framesize-all-options": C.CL_ALL_ENABLED,
-                            "cl-testtype-options": generate_options(sorted(
-                                test["test-type"])),
-                            "cl-testtype-value": \
+                            "cl-frmsize-all-val": list(),
+                            "cl-frmsize-all-opt": C.CL_ALL_ENABLED,
+                            "cl-tsttype-opt": generate_options(
+                                test["test-type"]),
+                            "cl-tsttype-val": \
                                 [last_test["testtype"].upper(), ],
-                            "cl-testtype-all-value": list(),
-                            "cl-testtype-all-options": C.CL_ALL_ENABLED
+                            "cl-tsttype-all-val": list(),
+                            "cl-tsttype-all-opt": C.CL_ALL_ENABLED
                         })
 
             if trigger_id in ("btn-ctrl-add", "url", "btn-sel-remove",
@@ -1406,7 +1403,7 @@ class Layout:
                             )
                         )
                     ctrl_panel.set({
-                        "cl-selected-options": list_tests(store_sel)
+                        "cl-selected-opt": list_tests(store_sel)
                     })
                 else:
                     row_fig_tput = C.PLACEHOLDER
@@ -1416,17 +1413,17 @@ class Layout:
                     row_card_sel_tests = C.STYLE_DISABLED
                     row_btns_sel_tests = C.STYLE_DISABLED
                     store_sel = list()
-                    ctrl_panel.set({"cl-selected-options": list()})
+                    ctrl_panel.set({"cl-selected-opt": list()})
 
-            if ctrl_panel.get("cl-core-value") and \
-                    ctrl_panel.get("cl-framesize-value") and \
-                    ctrl_panel.get("cl-testtype-value"):
+            if ctrl_panel.get("cl-core-val") and \
+                    ctrl_panel.get("cl-frmsize-val") and \
+                    ctrl_panel.get("cl-tsttype-val"):
                 disabled = False
             else:
                 disabled = True
             ctrl_panel.set({
-                "btn-add-disabled": disabled,
-                "cl-normalize-value": norm
+                "btn-add-dis": disabled,
+                "cl-normalize-val": norm
             })
 
             ret_val = [

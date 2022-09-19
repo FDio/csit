@@ -303,7 +303,7 @@ def get_job(df: pd.DataFrame, dut, ttype, cadence, testbed):
     )]["job"].item()
 
 
-def generate_options(opts: list) -> list:
+def generate_options(opts: list, sort: bool=True) -> list:
     """Return list of options for radio items in control panel. The items in
     the list are dictionaries with keys "label" and "value".
 
@@ -312,6 +312,8 @@ def generate_options(opts: list) -> list:
     :returns: List of options (dict).
     :rtype: list
     """
+    if sort:
+        opts = sorted(opts)
     return [{"label": i, "value": i} for i in opts]
 
 
