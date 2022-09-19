@@ -63,17 +63,17 @@ def init_app():
             time_period = C.TIME_PERIOD
 
         # Import Dash applications.
-        from .news.news import init_news
-        app = init_news(app)
+        # from .news.news import init_news
+        # app = init_news(app)
 
-        from .stats.stats import init_stats
-        app = init_stats(app, time_period=time_period)
+        # from .stats.stats import init_stats
+        # app = init_stats(app, time_period=time_period)
 
         from .trending.trending import init_trending
         app = init_trending(app, time_period=time_period)
 
-        from .report.report import init_report
-        app = init_report(app, releases=C.RELEASES)
+        # from .report.report import init_report
+        # app = init_report(app, releases=C.RELEASES)
 
     return app
 
