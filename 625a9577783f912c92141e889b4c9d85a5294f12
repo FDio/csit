@@ -33,6 +33,23 @@
       "message": "csit-3n-snr-perftest nic_intel-e822cqANDipsecANDtnl_10000ANDdrv_vfio_pciANDndrpdrAND64bAND4c",
       "revId": "625a9577783f912c92141e889b4c9d85a5294f12",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "729740dc_90ee4a5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2247
+      },
+      "writtenOn": "2022-09-20T01:23:53Z",
+      "side": 1,
+      "message": "csit-3n-dnv-perftest nic_intel-x553ANDipsecANDtnl_10000ANDdrv_vfio_pciANDndrpdrAND64bAND4c",
+      "revId": "625a9577783f912c92141e889b4c9d85a5294f12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
