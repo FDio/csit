@@ -46,8 +46,8 @@ source_suffix = [u'.rst', u'.md']
 master_doc = u'index'
 
 # General information about the project.
-report_week = u'31'
-project = u'FD.io CSIT-2206.{week}'.format(week=report_week)
+report_week = u'39'
+project = u'FD.io CSIT-2210.{week}'.format(week=report_week)
 copyright = u'2022, FD.io'
 author = u'FD.io CSIT'
 
@@ -79,7 +79,7 @@ rst_epilog = u"""
 .. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Cascade Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_clx_hw_bios_cfg.md?h={release}
 .. _Ansible inventory - hosts: https://git.fd.io/csit/tree/fdio.infra.ansible/inventories/lf_inventory/host_vars?h={release}
-.. _build logs from FD.io trex performance job 2n-skx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-trex-perf-report-iterative-{srelease}-2n-skx
+.. _build logs from FD.io trex performance job 2n-aws: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-trex-perf-report-iterative-{srelease}-2n-aws
 .. _build logs from FD.io dpdk performance job 2n-icx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-icx
 .. _build logs from FD.io dpdk performance job 3n-icx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-3n-icx
 .. _build logs from FD.io dpdk performance job 2n-clx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-iterative-{srelease}-2n-clx
@@ -109,7 +109,7 @@ rst_epilog = u"""
 .. _build logs from FD.io dpdk coverage job 3n-tsh: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-coverage-{srelease}-3n-tsh
 .. _build logs from FD.io dpdk coverage job 2n-tx2: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-coverage-{srelease}-2n-tx2
 .. _build logs from FD.io dpdk coverage job 2n-zn2: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-coverage-{srelease}-2n-zn2
-.. _build logs from FD.io trex coverage job 2n-skx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-trex-perf-report-coverage-{srelease}-2n-skx
+.. _build logs from FD.io trex coverage job 2n-aws: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-trex-perf-report-coverage-{srelease}-2n-aws
 .. _build logs from FD.io vpp coverage job 3n-alt: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-3n-alt
 .. _build logs from FD.io vpp coverage job 3n-tsh: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-3n-tsh
 .. _build logs from FD.io vpp coverage job 2n-tx2: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-2n-tx2
@@ -125,17 +125,17 @@ rst_epilog = u"""
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu2004-x86_64/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/fdio.infra.ansible?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
-""".format(release=u'rls2206',
+""".format(release=u'rls2210',
            report_week=report_week,
-           prev_release=u'rls2202',
-           srelease=u'2206',
-           csitrelease=u'2206',
-           csit_prev_release=u'2202',
-           vpprelease=u'22.06',
-           vpp_prev_release=u'22.02',
-           dpdkrelease=u'22.03',
-           dpdk_prev_release=u'21.11',
-           sdpdkrelease=u'22.03',
+           prev_release=u'rls2206',
+           srelease=u'2210',
+           csitrelease=u'2210',
+           csit_prev_release=u'2206',
+           vpprelease=u'22.10',
+           vpp_prev_release=u'22.06',
+           dpdkrelease=u'22.07',
+           dpdk_prev_release=u'22.03',
+           sdpdkrelease=u'22.07',
            trex_version=u'v2.97',
            vpp_release_commit_id=u'0d352a97c5e3ad1f5f6eab18a978a14b0b9e06a8')
 
