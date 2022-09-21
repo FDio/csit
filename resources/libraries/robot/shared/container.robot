@@ -256,6 +256,12 @@
 | |
 | | Run Keyword | ${group}.Destroy all containers
 
+| Cat log in all '${group}' containers
+| | [Documentation] | Cat log in all container(s) in specific container group on
+| | ... | all DUT nodes.
+| |
+| | Run Keyword | ${group}.Cat log in all containers
+
 | Verify VPP in all '${group}' containers
 | | [Documentation] | Verify that VPP is running inside containers in specific
 | | ... | container group on all DUT nodes. Does 120 retries with one second
