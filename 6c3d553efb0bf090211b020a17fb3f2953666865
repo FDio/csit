@@ -33,6 +33,23 @@
       "message": "csit-3n-alt-perftest mrrANDnic_*ANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
       "revId": "6c3d553efb0bf090211b020a17fb3f2953666865",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eb91a39_201e13a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2022-09-21T09:20:41Z",
+      "side": 1,
+      "message": "The arm failures are caused by a change in kernel [0].\nThere is a fix in new kernel version [1].\n\nThere is a way to address this in VPP and the Arm community is currently working on providing a VPP patch.\n\n[0] https://github.com/torvalds/linux/commit/e130242dc351f1cfa2bbeb6766a1486ce936ef88\n[1] https://github.com/torvalds/linux/commit/000eca5d044d1ee23b4ca311793cf3fc528da6c6",
+      "revId": "6c3d553efb0bf090211b020a17fb3f2953666865",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
