@@ -141,8 +141,8 @@ class L3fwdTest:
                 l3fwd_args = DpdkUtil.get_l3fwd_args(
                     eal_corelist=f"1,{lcores_list}",
                     eal_driver=False,
-                    eal_pci_whitelist0=if_pci0,
-                    eal_pci_whitelist1=if_pci1,
+                    eal_pci_whitelist0=if_pci1,
+                    eal_pci_whitelist1=if_pci0,
                     eal_in_memory=True,
                     pmd_config=f"\\\"{port_config.rstrip(u',')}\\\"",
                     pmd_eth_dest_0=f"\\\"0,{adj_mac0}\\\"",
@@ -154,8 +154,8 @@ class L3fwdTest:
                 l3fwd_args = DpdkUtil.get_l3fwd_args(
                     eal_corelist=f"1,{lcores_list}",
                     eal_driver=False,
-                    eal_pci_whitelist0=if_pci0,
-                    eal_pci_whitelist1=if_pci1,
+                    eal_pci_whitelist0=if_pci1,
+                    eal_pci_whitelist1=if_pci0,
                     eal_in_memory=True,
                     pmd_config=f"\\\"{port_config.rstrip(u',')}\\\"",
                     pmd_eth_dest_0=f"\\\"0,{adj_mac0}\\\"",
