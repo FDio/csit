@@ -430,7 +430,7 @@ class ContainerManager:
 
         if dut == u"DUT1":
             tnl_local_ip = f"{local_ip_base}.{nf_instance + 100}"
-            tnl_remote_ip = f"{local_ip_base}.{nf_instance}"
+            tnl_remote_ip = f"{local_ip_base}.{nf_instance + 100}"
             remote_ip_base = kwargs[u"dut1_if1_ip4"].rsplit(u".", 1)[0]
             tg_pf_ip4 = kwargs[u"tg_pf1_ip4"]
             tg_pf_mac = kwargs[u"tg_pf1_mac"]
@@ -439,7 +439,7 @@ class ContainerManager:
             l_mac2 = 18
             r_mac = 1
         else:
-            tnl_local_ip = f"{local_ip_base}.{nf_instance}"
+            tnl_local_ip = f"{local_ip_base}.{nf_instance + 100}"
             tnl_remote_ip = f"{local_ip_base}.{nf_instance + 100}"
             remote_ip_base = kwargs[u"dut2_if2_ip4"].rsplit(u".", 1)[0]
             tg_pf_ip4 = kwargs[u"tg_pf2_ip4"]
@@ -465,12 +465,13 @@ class ContainerManager:
             tnl_local_ip=tnl_local_ip,
             tnl_remote_ip=tnl_remote_ip,
             tnl_remote_mac=f"02:02:00:00:{r_mac:02X}:{(nf_instance - 1):02X}",
-            remote_ip=f"{remote_ip_base}.{nf_instance}"
+            remote_ip=f"{remote_ip_base}.{nf_instance + 10}"
         )
         self.engine.execute(
             f"cat {kwargs['guest_dir']}/ipsec_create_tunnel_cnf_"
             f"{dut}_{nf_instance}.config >> /tmp/running.exec"
         )
+        self.engine.execute(f"cat /tmp/running.exec")
 
     def _configure_vpp_pipeline_ip4(self, **kwargs):
         """Configure VPP in pipeline topology with ip4.

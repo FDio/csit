@@ -2047,13 +2047,9 @@ class IPsecUtil:
 
         for tnl in range(0, n_tunnels):
             cnf = tnl % n_instances
-            ckey = getattr(
-                gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)), u"hex"
-            )
+            ckey = gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)).hex()
             integ = u""
-            ikey = getattr(
-                gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)), u"hex"
-            )
+            ikey = gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)).hex()
             if integ_alg:
                 integ = (
                     f"integ-alg {integ_alg.alg_name} "
@@ -2063,18 +2059,24 @@ class IPsecUtil:
             # Configure tunnel end point(s) on left side
             dut1_scripts[cnf].write(
                 u"set interface ip address loop0 "
-                f"{ip_address(if1_ip_addr) + tnl * addr_incr}/32\n"
-                f"create ipsec tunnel "
-                f"local-ip {ip_address(if1_ip_addr) + tnl * addr_incr} "
-                f"local-spi {spi_1 + tnl} "
-                f"remote-ip {ip_address(if2_ip_addr) + cnf} "
-                f"remote-spi {spi_2 + tnl} "
-                f"crypto-alg {crypto_alg.alg_name} "
-                f"local-crypto-key {ckey} "
-                f"remote-crypto-key {ckey} "
-                f"instance {tnl // n_instances} "
-                f"salt 0x0 "
-                f"{integ} \n"
+                f"{ip_address(if1_ip_addr) + tnl * addr_incr}/32"
+                u"\n"
+                u"create ipip tunnel"
+                f" src {ip_address(if1_ip_addr) + tnl * addr_incr}"
+                f" dst {ip_address(if2_ip_addr) + cnf}"
+                u"\n"
+                f"ipsec sa add 20 spi {spi_1 + tnl}"
+                f" crypto-key {ckey}"
+                f" crypto-alg {crypto_alg.alg_name}"
+                u"\n"
+                f"ipsec sa add 30 spi {spi_2 + tnl}"
+                f" crypto-key {ckey}"
+                f" crypto-alg {crypto_alg.alg_name}"
+                u"\n"
+                f"ipsec tunnel protect ipip{tnl // n_instances}"
+                u" sa-in 20 sa-out 30"
+                u"\n"
+
                 f"set interface unnumbered ipip{tnl // n_instances} use loop0\n"
                 f"set interface state ipip{tnl // n_instances} up\n"
                 f"ip route add {ip_address(raddr_ip2)+tnl}/32 "
