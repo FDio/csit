@@ -2047,13 +2047,9 @@ class IPsecUtil:
 
         for tnl in range(0, n_tunnels):
             cnf = tnl % n_instances
-            ckey = getattr(
-                gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)), u"hex"
-            )
+            ckey = gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)).hex()
             integ = u""
-            ikey = getattr(
-                gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)), u"hex"
-            )
+            ikey = gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)).hex()
             if integ_alg:
                 integ = (
                     f"integ-alg {integ_alg.alg_name} "
