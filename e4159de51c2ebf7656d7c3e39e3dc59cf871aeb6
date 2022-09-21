@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-alt-perftest 64bANDndrpdrANDnic_intel-xl710ANDeth-l2xcbase-testpmdANDdrv_vfio_pci",
       "revId": "e4159de51c2ebf7656d7c3e39e3dc59cf871aeb6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b52216_c880faa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-09-21T06:42:15Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-alt-perftest 64bANDndrpdrANDnic_intel-xl710ANDeth-l2xcbase-testpmdANDdrv_vfio_pci",
+      "revId": "e4159de51c2ebf7656d7c3e39e3dc59cf871aeb6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
