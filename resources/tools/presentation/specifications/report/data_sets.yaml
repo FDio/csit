@@ -500,7 +500,7 @@
     csit-vpp-perf-report-iterative-2206-2n-tx2:
       - 38  # rls2206.rel NDRPDR iter env 10
 
-  vpp-2n-tx2-prev-iter-mrr-new-env:
+  vpp-2n-tx2-hist-iter-mrr:
     csit-vpp-perf-report-iterative-2206-2n-tx2:
       - 3   # rls2202.rel MRR iter env 10
 
