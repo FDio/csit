@@ -85,6 +85,7 @@
 | | ... | Additional teardown for tests which uses containers.
 | |
 | | FOR | ${container_group} | IN | @{container_groups}
+| | | Cat log in all '${container_group}' containers
 | | | Destroy all '${container_group}' containers
 | | END
 
