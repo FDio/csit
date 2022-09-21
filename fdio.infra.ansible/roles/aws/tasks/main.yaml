@@ -7,7 +7,7 @@
     - aws-edit-repo
 
 - name: Get vfio-pci With WC Patcher
-  get_url:
+  ansible.builtin.get_url:
     url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/get-vfio-with-wc.sh"
     dest: "/opt/get-vfio-with-wc.sh"
     mode: "744"
@@ -15,35 +15,46 @@
     - aws-vfio-patch
 
 - name: Create vfio-pci Patch Directory
-  file:
+  ansible.builtin.file:
     path: "/opt/patches/"
     state: "directory"
   tags:
     - aws-vfio-patch
 
-- name: Get vfio-pci WC Patch >=4.10
-  get_url:
-    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/patches/linux-4.10-vfio-wc.patch"
-    dest: "/opt/patches/linux-4.10-vfio-wc.patch"
+- name: Get vfio-pci WC Patch >=5.15
+  ansible.builtin.get_url:
+    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/patches/linux-5.15-vfio-wc.patch"
+    dest: "/opt/patches/linux-5.15-vfio-wc.patch"
     mode: "744"
   tags:
     - aws-vfio-patch
 
-- name: Get vfio-pci WC Patch >=5.8
-  get_url:
-    url: "https://github.com/amzn/amzn-drivers/raw/master/userspace/dpdk/enav2-vfio-patch/patches/linux-5.8-vfio-wc.patch"
-    dest: "/opt/patches/linux-5.8-vfio-wc.patch"
-    mode: "744"
+- name: Patch WC Patch Script
+  ansible.builtin.lineinfile:
+    path: "/opt/get-vfio-with-wc.sh"
+    regexp: '^	rm -f linux-'
+    line: "	rm -f linux-*.dsc linux-*.gz linux-*.xz"
   tags:
     - aws-vfio-patch
 
-- name: Compile vfio-pci With WC Patch
-  shell: "/bin/bash /opt/get-vfio-with-wc.sh"
+- name: Patch WC Patch Script II
+  ansible.builtin.replace:
+    path: "/opt/get-vfio-with-wc.sh"
+    regexp: 'linux-image-'
+    replace: 'linux-image-unsigned-'
   tags:
     - aws-vfio-patch
+
+#- name: Compile vfio-pci With WC Patch
+#  ansible.builtin.shell: "/bin/bash /opt/get-vfio-with-wc.sh"
+#  environment:
+#    DEBIAN_FRONTEND: "noninteractive"
+#    TERM: "vt100"
+#  tags:
+#    - aws-vfio-patch
 
 - name: Load Kernel Modules By Default
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/modules"
     state: "present"
     line: "{{ item }}"
@@ -54,7 +65,7 @@
     - aws-load-kernel-modules
 
 - name: Add Kernel Modules Options (igb_uio)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/modprobe.d/igb_uio.conf"
     state: "present"
     line: "{{ item }}"
@@ -65,7 +76,7 @@
     - aws-load-kernel-modules
 
 - name: Add Kernel Modules Options (vfio-pci)
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/modprobe.d/vfio-noiommu.conf"
     state: "present"
     line: "{{ item }}"
@@ -76,14 +87,14 @@
     - aws-load-kernel-modules
 
 - name: Reload systemd-modules
-  systemd:
+  ansible.builtin.systemd:
     name: "systemd-modules-load"
     state: "restarted"
   tags:
     - aws-reload-systemd-modules
 
 - name: Adjust nr_hugepages
-  sysctl:
+  ansible.builtin.sysctl:
     name: "vm.nr_hugepages"
     value: "8192"
     state: "present"
@@ -93,6 +104,6 @@
     - aws-set-hugepages
 
 - name: Shutdown host with delay
-  command: "/sbin/shutdown -P +720"
+  ansible.builtin.command: "/sbin/shutdown -P +720"
   tags:
     - aws-set-self-terminate

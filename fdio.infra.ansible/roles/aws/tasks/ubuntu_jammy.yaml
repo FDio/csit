@@ -1,8 +1,8 @@
 ---
-# file: roles/aws/tasks/ubuntu_jammy.yaml.yaml
+# file: roles/aws/tasks/ubuntu_jammy.yaml
 
 - name: Enable deb-src APT Repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb-src http://archive.ubuntu.com/ubuntu jammy main"
     state: "present"
     update_cache: true
