@@ -55,6 +55,7 @@ class L3fwdTest:
         """
         cpu_count_int = dp_count_int = int(phy_cores)
         dp_cores = cpu_count_int+1
+        tg_flip = topology_info[f"tg_if1_pci"] > topology_info[f"tg_if2_pci"]
         for node in nodes:
             if u"DUT" in node:
                 compute_resource_info = CpuUtils.get_affinity_vswitch(
@@ -73,13 +74,16 @@ class L3fwdTest:
                 rxq_count_int = compute_resource_info[u"rxq_count_int"]
                 if1 = topology_info[f"{node}_pf1"][0]
                 if2 = topology_info[f"{node}_pf2"][0]
+                dut = f"{node}".lower()
+                if1_pci = topology_info[f"{dut}_if1_pci"]
+                if2_pci = topology_info[f"{dut}_if2_pci"]
+                dut_flip = if1_pci > if2_pci
+                flip = (tg_flip != dut_flip)
                 L3fwdTest.start_l3fwd(
                     nodes, nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
                     nb_cores=dp_count_int, queue_nums=rxq_count_int,
-                    jumbo_frames=jumbo_frames
+                    jumbo_frames=jumbo_frames, flip=flip
                 )
-        for node in nodes:
-            if u"DUT" in node:
                 for i in range(3):
                     try:
                         L3fwdTest.check_l3fwd(nodes[node])
@@ -88,7 +92,8 @@ class L3fwdTest:
                         L3fwdTest.start_l3fwd(
                             nodes, nodes[node], if1=if1, if2=if2,
                             lcores_list=cpu_dp, nb_cores=dp_count_int,
-                            queue_nums=rxq_count_int, jumbo_frames=jumbo_frames
+                            queue_nums=rxq_count_int, jumbo_frames=jumbo_frames,
+                            flip=flip
                         )
                 else:
                     message = f"Failed to start l3fwd at node {node}"
@@ -97,9 +102,14 @@ class L3fwdTest:
     @staticmethod
     def start_l3fwd(
             nodes, node, if1, if2, lcores_list, nb_cores, queue_nums,
-            jumbo_frames):
+            jumbo_frames, flip):
         """
         Execute the l3fwd on the dut_node.
+
+        L3fwd uses default IP forwarding table, but sorts ports by API address.
+        When that does not match the traffic profile (depends on topology),
+        the only way to fix is is to latch and recompile l3fwd app.
+        The caller signals this via "flip" argument.
 
         :param nodes: All the nodes info in the topology file.
         :param node: DUT node.
@@ -110,6 +120,7 @@ class L3fwdTest:
         :param queue_nums: The queues number for the NIC
         :param jumbo_frames: Indication if the jumbo frames are used (True) or
                              not (False).
+        :param flip: Whether l3fwd should be recompiled to switch port order.
         :type nodes: dict
         :type node: dict
         :type if1: str
@@ -118,10 +129,11 @@ class L3fwdTest:
         :type nb_cores: str
         :type queue_nums: str
         :type jumbo_frames: bool
+        :type flip: bool
         """
         if node[u"type"] == NodeType.DUT:
             adj_mac0, adj_mac1, if_pci0, if_pci1 = L3fwdTest.get_adj_mac(
-                nodes, node, if1, if2
+                nodes, node, if1, if2, flip
             )
 
             lcores = [int(item) for item in lcores_list.split(u",")]
@@ -184,18 +196,24 @@ class L3fwdTest:
             exec_cmd_no_error(node, command, timeout=1800, message=message)
 
     @staticmethod
-    def get_adj_mac(nodes, node, if1, if2):
+    def get_adj_mac(nodes, node, if1, if2, flip):
         """
         Get adjacency MAC addresses of the DUT node.
+
+        Interfaces are re-ordered according to PCI address,
+        but the need to patch and recompile also depends on TG port order,
+        that is why caller signals the need to recompile via "flip" argument.
 
         :param nodes: All the nodes info in the topology file.
         :param node: DUT node.
         :param if1: The test link interface 1.
         :param if2: The test link interface 2.
+        :param flip: Whether l3fwd should be recompiled to switch port order.
         :type nodes: dict
         :type node: dict
         :type if1: str
         :type if2: str
+        :type flip: bool
         :returns: Returns MAC addresses of adjacency DUT nodes and PCI
             addresses.
         :rtype: str
@@ -208,6 +226,8 @@ class L3fwdTest:
         # Detect which is the port 0.
         if min(if_pci0, if_pci1) != if_pci0:
             if_key0, if_key1 = if_key1, if_key0
+
+        if flip:
             L3fwdTest.patch_l3fwd(node, u"patch_l3fwd_flip_routes")
 
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
