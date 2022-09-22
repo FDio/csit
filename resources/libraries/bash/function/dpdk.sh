@@ -96,17 +96,6 @@ function dpdk_compile () {
     # Configure generic build - the same used by VPP
     meson_options="${meson_options} -Dplatform=generic"
 
-    # Patch L3FWD.
-    sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128"
-    sed_rxd+="/#define RTE_TEST_RX_DESC_DEFAULT 1024/g"
-    sed_txd="s/^#define RTE_TEST_TX_DESC_DEFAULT 512"
-    sed_txd+="/#define RTE_TEST_TX_DESC_DEFAULT 1024/g"
-    sed_file="./main.c"
-    pushd examples/l3fwd || die "Pushd failed"
-    sed -i "${sed_rxd}" "${sed_file}" || die "Patch failed"
-    sed -i "${sed_txd}" "${sed_file}" || die "Patch failed"
-    popd || die "Popd failed"
-
     # Compile using Meson and Ninja.
     meson ${meson_options} build || {
         die "Failed to compile DPDK!"
@@ -201,7 +190,6 @@ function dpdk_l3fwd_compile () {
     #
     # Variables read:
     # - DPDK_DIR - Path to DPDK framework.
-    # - CSIT_DIR - Path to CSIT framework.
     # Functions called:
     # - die - Print to stderr and exit.
 
@@ -209,14 +197,7 @@ function dpdk_l3fwd_compile () {
 
     pushd "${DPDK_DIR}" || die "Pushd failed"
     # Patch L3FWD.
-    sed_rxd="s/^#define RTE_TEST_RX_DESC_DEFAULT 128"
-    sed_rxd+="/#define RTE_TEST_RX_DESC_DEFAULT 2048/g"
-    sed_txd="s/^#define RTE_TEST_TX_DESC_DEFAULT 512"
-    sed_txd+="/#define RTE_TEST_TX_DESC_DEFAULT 2048/g"
-    sed_file="./main.c"
     pushd examples/l3fwd || die "Pushd failed"
-    sed -i "${sed_rxd}" "${sed_file}" || die "Patch failed"
-    sed -i "${sed_txd}" "${sed_file}" || die "Patch failed"
     chmod +x ${1} && source ${1} || die "Patch failed"
     popd || die "Popd failed"
 
