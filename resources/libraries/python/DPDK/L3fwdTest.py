@@ -184,31 +184,22 @@ class L3fwdTest:
             exec_cmd_no_error(node, command, timeout=1800, message=message)
 
     @staticmethod
-    def get_adj_mac(nodes, node, if1, if2):
+    def get_adj_mac(nodes, node, if_key0, if_key1):
         """
         Get adjacency MAC addresses of the DUT node.
 
         :param nodes: All the nodes info in the topology file.
         :param node: DUT node.
-        :param if1: The test link interface 1.
-        :param if2: The test link interface 2.
+        :param if_key0: The test link interface 1.
+        :param if_key1: The test link interface 2.
         :type nodes: dict
         :type node: dict
-        :type if1: str
-        :type if2: str
+        :type if_key0: str
+        :type if_key1: str
         :returns: Returns MAC addresses of adjacency DUT nodes and PCI
             addresses.
         :rtype: str
         """
-        if_key0 = if1
-        if_key1 = if2
-        if_pci0 = Topology.get_interface_pci_addr(node, if_key0)
-        if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
-
-        # Detect which is the port 0.
-        if min(if_pci0, if_pci1) != if_pci0:
-            if_key0, if_key1 = if_key1, if_key0
-            L3fwdTest.patch_l3fwd(node, u"patch_l3fwd_flip_routes")
 
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
             nodes, node, if_key0
