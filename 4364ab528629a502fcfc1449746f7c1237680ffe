@@ -33,6 +33,23 @@
       "message": "csit-dpdk-3n-icx-perftest ndrpdrANDnic_intel-xxv710ANDethip4-ip4base-l3fwdANDdrv_vfio_pciAND64bAND1c",
       "revId": "4364ab528629a502fcfc1449746f7c1237680ffe",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "780b89ec_d446be87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-22T15:16:36Z",
+      "side": 1,
+      "message": "Fixes only 3n-alt packet flow, not 3n-icx. I have to look at topologies again.",
+      "revId": "4364ab528629a502fcfc1449746f7c1237680ffe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
