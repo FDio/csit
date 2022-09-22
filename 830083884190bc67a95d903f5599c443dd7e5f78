@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc3df542_cb253db9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-22T14:22:53Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-alt-perftest ndrpdrANDnic_intel-xl710ANDethip4-ip4base-l3fwdANDdrv_vfio_pciAND64bAND1c",
+      "revId": "830083884190bc67a95d903f5599c443dd7e5f78",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
