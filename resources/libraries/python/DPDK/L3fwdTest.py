@@ -200,26 +200,21 @@ class L3fwdTest:
             addresses.
         :rtype: str
         """
-        if_key0 = if1
-        if_key1 = if2
-        if_pci0 = Topology.get_interface_pci_addr(node, if_key0)
-        if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
 
         # Detect which is the port 0.
-        if min(if_pci0, if_pci1) != if_pci0:
-            if_key0, if_key1 = if_key1, if_key0
-            L3fwdTest.patch_l3fwd(node, u"patch_l3fwd_flip_routes")
+        if if1 > if2:
+            if1, if2 = if2, if1
 
-        adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
-            nodes, node, if_key0
+        adj_node0, adj_if1 = Topology.get_adjacent_node_and_interface(
+            nodes, node, if1
         )
-        adj_node1, adj_if_key1 = Topology.get_adjacent_node_and_interface(
-            nodes, node, if_key1
+        adj_node1, adj_if2 = Topology.get_adjacent_node_and_interface(
+            nodes, node, if2
         )
-        if_pci0 = Topology.get_interface_pci_addr(node, if_key0)
-        if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
-        adj_mac0 = Topology.get_interface_mac(adj_node0, adj_if_key0)
-        adj_mac1 = Topology.get_interface_mac(adj_node1, adj_if_key1)
+        if_pci0 = Topology.get_interface_pci_addr(node, if1)
+        if_pci1 = Topology.get_interface_pci_addr(node, if2)
+        adj_mac0 = Topology.get_interface_mac(adj_node0, adj_if1)
+        adj_mac1 = Topology.get_interface_mac(adj_node1, adj_if2)
 
         return adj_mac0, adj_mac1, if_pci0, if_pci1
 
