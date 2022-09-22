@@ -84,9 +84,11 @@
 | | [Documentation]
 | | ... | Additional teardown for tests which uses containers.
 | |
-| | FOR | ${container_group} | IN | @{container_groups}
-| | | Destroy all '${container_group}' containers
-| | END
+| | ${is_defined}= | Get Variable Value | @{container_groups} | "default"
+| | IF | ${is_defined} != "default"
+| | | FOR | ${container_group} | IN | @{container_groups}
+| | | | Destroy all '${container_group}' containers
+| | | END
 
 | Additional Test Tear Down Action For nginx
 | | [Documentation]
