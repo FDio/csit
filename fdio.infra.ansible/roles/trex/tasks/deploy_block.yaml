@@ -61,7 +61,7 @@
   register: trex_built
   when: trex_extracted.changed
 
-- name: Check if T-Rex is compiled
+- name: Check if T-Rex is Compiled
   async_status:
     jid: "{{ trex_built.ansible_job_id }}"
   register: trex_built

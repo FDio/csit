@@ -1,0 +1,43 @@
+---
+# file: roles/dpdk/tasks/deploy_block.yaml
+
+- name: Download Release {{ item }}
+  ansible.builtin.get_url:
+    url: "{{ dpdk_url }}/dpdk-{{ item }}.tar.xz"
+    dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
+    mode: 0644
+  register: dpdk_downloaded
+
+- name: Extract Release {{ item }}
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
+    dest: "{{ dpdk_target_dir }}/"
+    creates: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
+  when: dpdk_downloaded
+  register: dpdk_extracted
+
+- name: Compile Release I
+  ansible.builtin.command: "meson -Dexamples=l3fwd build"
+  args:
+    chdir: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
+  environment:
+    CFLAGS: "-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
+  register: dpdk_compiled
+
+- name: Compile Release II
+  ansible.builtin.command: "ninja -C build"
+  args:
+    chdir: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
+  environment:
+    CFLAGS: "-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
+  async: 3000
+  poll: 0
+  register: dpdk_built
+
+- name: Check if DPDK is Built
+  ansible.builtin.async_status:
+    jid: "{{ dpdk_built.ansible_job_id }}"
+  until: dpdk_built.finished
+  delay: 10
+  retries: 300
