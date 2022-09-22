@@ -1,8 +1,8 @@
 ---
 # file: roles/dpdk/tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
-  apt:
+- name: Update Package Cache (APT)
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   when:
@@ -10,53 +10,15 @@
   tags:
     - dpdk-inst-prerequisites
 
-- name: Inst - Prerequisites
-  package:
+- name: Prerequisites
+  ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: "latest"
   tags:
     - dpdk-inst-prerequisites
 
-- name: Inst - Download Release Archive
-  get_url:
-    url: "{{ dpdk_url }}/dpdk-{{ item }}.tar.xz"
-    dest: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
-    mode: 0644
+- name: Multiple DPDK Versions
+  include_tasks: deploy_block.yaml
   loop: "{{ dpdk_version }}"
-  register: "dpdk_downloaded"
-  tags:
-    - dpdk-inst
-
-- name: Inst - Extract Release Archive
-  unarchive:
-    remote_src: true
-    src: "{{ dpdk_target_dir }}/dpdk-{{ item }}.tar.xz"
-    dest: "{{ dpdk_target_dir }}/"
-    creates: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
-  loop: "{{ dpdk_version }}"
-  when: "dpdk_downloaded"
-  register: "dpdk_extracted"
-  tags:
-    - dpdk-inst
-
-- name: Inst - Compile Release I
-  command: "meson -Dexamples=l3fwd build"
-  args:
-    chdir: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
-  environment:
-    CFLAGS: "-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
-  loop: "{{ dpdk_version }}"
-  register: "dpdk_compiled"
-  tags:
-    - dpdk-inst
-
-- name: Inst - Compile Release II
-  command: "ninja -C build"
-  args:
-    chdir: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
-  environment:
-    CFLAGS: "-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
-  loop: "{{ dpdk_version }}"
-  register: "dpdk_compiled"
   tags:
     - dpdk-inst

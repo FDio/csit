@@ -1,11 +1,6 @@
 ---
 # file: roles/dpdk/meta/main.yaml
 
-# desc: Install DPDK from stable branch and configure service.
-# inst: DPDK
-# conf: ?
-# info: 1.0 - added role
-
 dependencies: []
 
 galaxy_info:
@@ -18,7 +13,6 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - focal
         - jammy
   galaxy_tags:
     - dpdk

@@ -1,7 +1,7 @@
 ---
 # file: roles/trex/tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
+- name: Update Package Cache (APT)
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
@@ -10,14 +10,14 @@
   tags:
     - trex-inst-prerequisites
 
-- name: Inst - Prerequisites
+- name: Prerequisites
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
     - trex-inst-prerequisites
 
-- name: Inst - Multiple T-Rex Versions
+- name: Multiple T-Rex Versions
   include_tasks: deploy_block.yaml
   loop: "{{ trex_version }}"
   tags:
