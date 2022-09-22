@@ -241,11 +241,17 @@ def _merge_into_suite_info_file(teardown_info_path):
     """
     # Manual right replace: https://stackoverflow.com/a/9943875
     setup_info_path = u"setup".join(teardown_info_path.rsplit(u"teardown", 1))
-    with open(teardown_info_path, u"rt", encoding="utf-8") as file_in:
-        teardown_data = json.load(file_in)
+    try:
+        with open(teardown_info_path, u"rt", encoding="utf-8") as file_in:
+            teardown_data = json.load(file_in)
+    except FileNotFoundError:
+        sys.exit(f"teardown.info.json file does not exists.")
     # Transforming setup data into suite data.
-    with open(setup_info_path, u"rt", encoding="utf-8") as file_in:
-        suite_data = json.load(file_in)
+    try:
+        with open(setup_info_path, u"rt", encoding="utf-8") as file_in:
+            suite_data = json.load(file_in)
+    except FileNotFoundError:
+        sys.exit(f"setup.info.json file does not exists.")
 
     end_time = teardown_data[u"end_time"]
     suite_data[u"end_time"] = end_time
