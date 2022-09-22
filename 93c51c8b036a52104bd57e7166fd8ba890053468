@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-2n-aws-perftest vpp-mrr-00",
       "revId": "93c51c8b036a52104bd57e7166fd8ba890053468",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8eca6e6_989212a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-09-22T12:47:23Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-aws-perftest vpp-mrr-00",
+      "revId": "93c51c8b036a52104bd57e7166fd8ba890053468",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
