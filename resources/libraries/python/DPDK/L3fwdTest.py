@@ -73,6 +73,8 @@ class L3fwdTest:
                 rxq_count_int = compute_resource_info[u"rxq_count_int"]
                 if1 = topology_info[f"{node}_pf1"][0]
                 if2 = topology_info[f"{node}_pf2"][0]
+                # if min(if1, if2) != if1:
+                #     if1, if2 = if2, if1
                 L3fwdTest.start_l3fwd(
                     nodes, nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
                     nb_cores=dp_count_int, queue_nums=rxq_count_int,
@@ -202,13 +204,13 @@ class L3fwdTest:
         """
         if_key0 = if1
         if_key1 = if2
-        if_pci0 = Topology.get_interface_pci_addr(node, if_key0)
-        if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
+        # if_pci0 = Topology.get_interface_pci_addr(node, if_key0)
+        # if_pci1 = Topology.get_interface_pci_addr(node, if_key1)
 
         # Detect which is the port 0.
-        if min(if_pci0, if_pci1) != if_pci0:
-            if_key0, if_key1 = if_key1, if_key0
-            L3fwdTest.patch_l3fwd(node, u"patch_l3fwd_flip_routes")
+        # if min(if_pci0, if_pci1) != if_pci0:
+        #     if_key0, if_key1 = if_key1, if_key0
+        #     L3fwdTest.patch_l3fwd(node, u"patch_l3fwd_flip_routes")
 
         adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
             nodes, node, if_key0
