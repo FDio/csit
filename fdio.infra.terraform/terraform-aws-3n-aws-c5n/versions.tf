@@ -6,14 +6,14 @@ terraform {
     }
     null = {
       source  = "hashicorp/null"
-      version = "~> 3.1.0"
+      version = ">= 3.1.1"
     }
     tls = {
       source  = "hashicorp/tls"
-      version = "~> 3.1.0"
+      version = ">= 4.0.3"
     }
     vault = {
-      version = ">=2.22.1"
+      version = ">= 2.22.1"
     }
   }
   required_version = ">= 1.0.4"
