@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bab2db85_7c6681f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-09-23T07:06:45Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-aws-perftest vpp-mlr-00",
+      "revId": "227748794c991ff56b00dc61976f9679a19900fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
