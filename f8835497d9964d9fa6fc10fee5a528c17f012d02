@@ -16,6 +16,23 @@
       "message": "csit-devicetest",
       "revId": "f8835497d9964d9fa6fc10fee5a528c17f012d02",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27411a3f_af120933",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-09-23T05:34:36Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest soak-00\ncsit-vpp-report-iter-2n-clx-perftest soak-00",
+      "revId": "f8835497d9964d9fa6fc10fee5a528c17f012d02",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
