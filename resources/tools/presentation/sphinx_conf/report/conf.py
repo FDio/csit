@@ -168,25 +168,25 @@ html_theme = u'sphinx_rtd_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {
-    u'canonical_url': u'',
-    u'analytics_id': u'',
-    u'logo_only': False,
-    u'display_version': True,
-    u'prev_next_buttons_location': u'bottom',
-    u'style_external_links': False,
-    # Toc options
-    u'collapse_navigation': True,
-    u'sticky_navigation': True,
-    u'navigation_depth': 3,
-    u'includehidden': True,
-    u'titles_only': False
-}
+#html_theme_options = {
+    #u'canonical_url': u'',
+    #u'analytics_id': u'',
+    #u'logo_only': False,
+    #u'display_version': True,
+    #u'prev_next_buttons_location': u'bottom',
+    #u'style_external_links': False,
+    ## Toc options
+    #u'collapse_navigation': True,
+    #u'sticky_navigation': True,
+    #u'navigation_depth': 3,
+    #u'includehidden': True,
+    #u'titles_only': False
+#}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_theme_path = [u'env/lib/python3.8/site-packages/sphinx_rtd_theme']
+html_theme_path = [u'env/lib/python3.10/site-packages/sphinx_rtd_theme']
 
 # html_static_path = ['_build/_static']
 html_static_path = [u'_tmp/src/_static']
