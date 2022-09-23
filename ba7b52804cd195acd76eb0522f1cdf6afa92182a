@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c22beda_54f7bc6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-09-23T10:21:19Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_intel-x710AND64bANDethip4-ip4base",
+      "revId": "ba7b52804cd195acd76eb0522f1cdf6afa92182a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
