@@ -148,32 +148,32 @@ def main():
 
         prepare_static_content(spec)
 
-        data = InputData(spec, spec.output[u"output"])
-        if args.input_file:
-            data.process_local_file(args.input_file)
-        elif args.input_directory:
-            data.process_local_directory(args.input_directory)
-        else:
-            data.download_and_parse_data(repeat=1)
+        #data = InputData(spec, spec.output[u"output"])
+        #if args.input_file:
+            #data.process_local_file(args.input_file)
+        #elif args.input_directory:
+            #data.process_local_directory(args.input_directory)
+        #else:
+            #data.download_and_parse_data(repeat=1)
 
-        if args.print_all_oper_data:
-            data.print_all_oper_data()
+        #if args.print_all_oper_data:
+            #data.print_all_oper_data()
 
-        generate_tables(spec, data)
-        generate_plots(spec, data)
-        generate_files(spec, data)
+        #generate_tables(spec, data)
+        #generate_plots(spec, data)
+        #generate_files(spec, data)
 
         if spec.output[u"output"] == u"report":
             generate_report(args.release, spec, args.week)
-        elif spec.output[u"output"] == u"trending":
-            sys.stdout.write(generate_cpta(spec, data))
-            try:
-                alert = Alerting(spec)
-                alert.generate_alerts()
-            except AlertingError as err:
-                logging.warning(repr(err))
-        elif spec.output[u"output"] == u"convert-xml-to-json":
-            convert_xml_to_json(spec, data)
+        #elif spec.output[u"output"] == u"trending":
+            #sys.stdout.write(generate_cpta(spec, data))
+            #try:
+                #alert = Alerting(spec)
+                #alert.generate_alerts()
+            #except AlertingError as err:
+                #logging.warning(repr(err))
+        #elif spec.output[u"output"] == u"convert-xml-to-json":
+            #convert_xml_to_json(spec, data)
         else:
             logging.info("No output will be generated.")
 
