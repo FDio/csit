@@ -24,19 +24,7 @@ variable "testbed_name" {
 variable "private_key_algorithm" {
   description = "The name of the algorithm to use for the key."
   type        = string
-  default     = "RSA"
-}
-
-variable "private_key_ecdsa_curve" {
-  description = "When algorithm is ECDSA, the name of the elliptic curve to use."
-  type        = string
-  default     = "P521"
-}
-
-variable "private_key_rsa_bits" {
-  description = "When algorithm is RSA, the size of the generated RSA key in bits."
-  type        = number
-  default     = 4096
+  default     = "ED25519"
 }
 
 # Variables for Placement Group
