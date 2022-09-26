@@ -472,10 +472,12 @@ class PLRsearch:
             log_avg_abs_loss_per_trial = log_avg_rel_loss_per_second + math.log(
                 result.transmit_count / result.target_tr
             )
-            # Geometric probability computation for logarithms.
-            log_trial_likelihood = log_plus(0.0, -log_avg_abs_loss_per_trial)
-            log_trial_likelihood *= -result.loss_count
-            log_trial_likelihood -= log_plus(0.0, +log_avg_abs_loss_per_trial)
+            # Poisson probability computation works nice for logarithms.
+            log_trial_likelihood = (
+                result.loss_count * log_avg_abs_loss_per_trial
+                - math.exp(log_avg_abs_loss_per_trial)
+            )
+            log_trial_likelihood -= math.lgamma(1 + result.loss_count)
             log_likelihood += log_trial_likelihood
             trace(u"avg_loss_per_trial", math.exp(log_avg_abs_loss_per_trial))
             trace(u"log_trial_likelihood", log_trial_likelihood)
