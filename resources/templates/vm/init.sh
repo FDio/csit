@@ -1,6 +1,7 @@
 #!/bin/bash
 mkdir /dev/pts
 mkdir /dev/hugepages
+mkdir /dev/shm
 mount -t devpts -o "rw,noexec,nosuid,gid=5,mode=0620" devpts /dev/pts || true
 mount -t tmpfs -o "rw,noexec,nosuid,size=10%,mode=0755" tmpfs /run
 mount -t tmpfs -o "rw,noexec,nosuid,size=10%,mode=0755" tmpfs /tmp
