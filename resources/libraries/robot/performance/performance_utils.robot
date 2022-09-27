@@ -73,6 +73,13 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | Set Test Variable | \${runtime_rate} | ${max_rate}
+| | FOR | ${action} | IN | @{stat_runtime}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
+| | FOR | ${action} | IN | @{stat_pre_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${average} | ${stdev} = | Perform soak search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
@@ -92,6 +99,9 @@
 | | ... | use_latency=${use_latency}
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
+| | FOR | ${action} | IN | @{stat_post_trial}
+| | | Run Keyword | Additional Statistics Action For ${action}
+| | END
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Set Test Variable | \${rate for teardown} | ${lower}
