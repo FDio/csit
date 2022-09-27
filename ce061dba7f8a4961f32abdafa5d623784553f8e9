@@ -16,6 +16,23 @@
       "message": "csit-perftest-2n-zn2 soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND78bANDethip6-ip6base soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4-ip4base soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn-eth-2memif-1dcr soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm",
       "revId": "ce061dba7f8a4961f32abdafa5d623784553f8e9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d3eb7e6_19538dbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-27T12:30:18Z",
+      "side": 1,
+      "message": "csit-2n-zn2-perftest soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND78bANDethip6-ip6base soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4-ip4base soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn-eth-2memif-1dcr soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm",
+      "revId": "ce061dba7f8a4961f32abdafa5d623784553f8e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
