@@ -141,31 +141,30 @@ paths = wr.s3.list_objects(
     ignore_empty=True
 )
 
-filtered_paths = [path for path in paths if "report-iterative-2206" in path]
+filtered_paths = [path for path in paths if "report-iterative-2210" in path]
 
-for schema_name in ["mrr", "ndrpdr", "soak"]:
-    out_sdf = process_json_to_dataframe(schema_name, filtered_paths)
-    out_sdf.printSchema()
-    out_sdf = out_sdf \
-        .withColumn("year", lit(datetime.now().year)) \
-        .withColumn("month", lit(datetime.now().month)) \
-        .withColumn("day", lit(datetime.now().day)) \
-        .repartition(1)
+out_sdf = process_json_to_dataframe("ndrpdr", filtered_paths)
+out_sdf.printSchema()
+out_sdf = out_sdf \
+    .withColumn("year", lit(datetime.now().year)) \
+    .withColumn("month", lit(datetime.now().month)) \
+    .withColumn("day", lit(datetime.now().day)) \
+    .repartition(1)
 
-    try:
-        wr.s3.to_parquet(
-            df=out_sdf.toPandas(),
-            path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/iterative_rls2206",
-            dataset=True,
-            partition_cols=["test_type", "year", "month", "day"],
-            compression="snappy",
-            use_threads=True,
-            mode="overwrite_partitions",
-            boto3_session=session.Session(
-                aws_access_key_id=environ["OUT_AWS_ACCESS_KEY_ID"],
-                aws_secret_access_key=environ["OUT_AWS_SECRET_ACCESS_KEY"],
-                region_name=environ["OUT_AWS_DEFAULT_REGION"]
-            )
+try:
+    wr.s3.to_parquet(
+        df=out_sdf.toPandas(),
+        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/iterative_rls2210",
+        dataset=True,
+        partition_cols=["test_type", "year", "month", "day"],
+        compression="snappy",
+        use_threads=True,
+        mode="overwrite_partitions",
+        boto3_session=session.Session(
+            aws_access_key_id=environ["OUT_AWS_ACCESS_KEY_ID"],
+            aws_secret_access_key=environ["OUT_AWS_SECRET_ACCESS_KEY"],
+            region_name=environ["OUT_AWS_DEFAULT_REGION"]
         )
-    except EmptyDataFrame:
-        pass
+    )
+except EmptyDataFrame:
+    pass
