@@ -1,87 +1,30 @@
 job "${job_name}" {
-  # The "datacenters" parameter specifies the list of datacenters which should
-  # be considered when placing this task. This must be provided.
   datacenters = "${datacenters}"
-
-  # The "type" parameter controls the type of job, which impacts the scheduler's
-  # decision on placement. For a full list of job types and their differences,
-  # please see the online documentation.
-  #
-  #     https://www.nomadproject.io/docs/jobspec/schedulers
-  #
   type        = "${type}"
-
-  # The periodic stanza allows a job to run at fixed times, dates, or intervals.
-  # The easiest way to think about the periodic scheduler is "Nomad cron" or
-  # "distributed cron".
-  #
-  #     https://www.nomadproject.io/docs/job-specification/periodic
-  #
   periodic {
     cron             = "${cron}"
     prohibit_overlap = "${prohibit_overlap}"
     time_zone        = "${time_zone}"
   }
-
-  # The "group" stanza defines a series of tasks that should be co-located on
-  # the same Nomad client. Any task within a group will be placed on the same
-  # client.
-  #
-  #     https://www.nomadproject.io/docs/job-specification/group
-  #
   group "${job_name}-master" {
-    # The restart stanza configures a tasks's behavior on task failure. Restarts
-    # happen on the client that is running the task.
-    #
-    # https://www.nomadproject.io/docs/job-specification/restart
-    #
     restart {
       mode = "fail"
     }
-
-    # The constraint allows restricting the set of eligible nodes. Constraints
-    # may filter on attributes or client metadata.
-    #
-    # For more information and examples on the "volume" stanza, please see
-    # the online documentation at:
-    #
-    #     https://www.nomadproject.io/docs/job-specification/constraint
-    #
     constraint {
       attribute       = "$${attr.cpu.arch}"
       operator        = "!="
       value           = "arm64"
     }
-
     constraint {
       attribute      = "$${node.class}"
       value          = "builder"
     }
-
-    # The "task" stanza creates an individual unit of work, such as a Docker
-    # container, web application, or batch processing.
-    #
-    #     https://www.nomadproject.io/docs/job-specification/task.html
-    #
     task "${job_name}-trending" {
-      # The artifact stanza instructs Nomad to fetch and unpack a remote
-      # resource, such as a file, tarball, or binary.
-      #
-      #     https://www.nomadproject.io/docs/job-specification/artifact
-      #
       artifact {
         source      = "git::https://github.com/FDio/csit"
         destination = "local/csit"
       }
-
-      # The "driver" parameter specifies the task driver that should be used to
-      # run the task.
       driver = "docker"
-
-      # The "config" stanza specifies the driver configuration, which is passed
-      # directly to the driver to start the task. The details of configurations
-      # are specific to each driver, so please see specific driver
-      # documentation for more information.
       config {
         image   = "${image}"
         command = "gluesparksubmit"
@@ -92,9 +35,6 @@ job "${job_name}" {
         ]
         work_dir = "/local/csit/csit.infra.etl"
       }
-
-      # The env stanza configures a list of environment variables to populate
-      # the task's environment before starting.
       env {
         AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
         AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
@@ -104,38 +44,17 @@ job "${job_name}" {
         OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
         ${ envs }
       }
-
-      # The "resources" stanza describes the requirements a task needs to
-      # execute. Resource requirements include memory, network, cpu, and more.
-      # This ensures the task will execute on a machine that contains enough
-      # resource capacity.
-      #
-      #     https://www.nomadproject.io/docs/job-specification/resources
-      #
       resources {
         cpu    = ${cpu}
         memory = ${memory}
       }
     }
     task "${job_name}-stats" {
-      # The artifact stanza instructs Nomad to fetch and unpack a remote
-      # resource, such as a file, tarball, or binary.
-      #
-      #     https://www.nomadproject.io/docs/job-specification/artifact
-      #
       artifact {
         source      = "git::https://github.com/FDio/csit"
         destination = "local/csit"
       }
-
-      # The "driver" parameter specifies the task driver that should be used to
-      # run the task.
       driver = "docker"
-
-      # The "config" stanza specifies the driver configuration, which is passed
-      # directly to the driver to start the task. The details of configurations
-      # are specific to each driver, so please see specific driver
-      # documentation for more information.
       config {
         image   = "${image}"
         command = "gluesparksubmit"
@@ -146,9 +65,6 @@ job "${job_name}" {
         ]
         work_dir = "/local/csit/csit.infra.etl"
       }
-
-      # The env stanza configures a list of environment variables to populate
-      # the task's environment before starting.
       env {
         AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
         AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
@@ -158,165 +74,248 @@ job "${job_name}" {
         OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
         ${ envs }
       }
-
-      # The "resources" stanza describes the requirements a task needs to
-      # execute. Resource requirements include memory, network, cpu, and more.
-      # This ensures the task will execute on a machine that contains enough
-      # resource capacity.
-      #
-      #     https://www.nomadproject.io/docs/job-specification/resources
-      #
       resources {
         cpu    = ${cpu}
         memory = ${memory}
       }
     }
   }
-#  group "${job_name}-rls2206" {
-#    # The restart stanza configures a tasks's behavior on task failure. Restarts
-#    # happen on the client that is running the task.
-#    #
-#    # https://www.nomadproject.io/docs/job-specification/restart
-#    #
-#    restart {
-#      mode = "fail"
-#    }
-#
-#    # The constraint allows restricting the set of eligible nodes. Constraints
-#    # may filter on attributes or client metadata.
-#    #
-#    # For more information and examples on the "volume" stanza, please see
-#    # the online documentation at:
-#    #
-#    #     https://www.nomadproject.io/docs/job-specification/constraint
-#    #
-#    constraint {
-#      attribute       = "$${attr.cpu.arch}"
-#      operator        = "!="
-#      value           = "arm64"
-#    }
-#
-#    constraint {
-#      attribute      = "$${node.class}"
-#      value          = "builder"
-#    }
-#
-#    # The "task" stanza creates an individual unit of work, such as a Docker
-#    # container, web application, or batch processing.
-#    #
-#    #     https://www.nomadproject.io/docs/job-specification/task.html
-#    #
-#    task "${job_name}-coverage" {
-#      # The artifact stanza instructs Nomad to fetch and unpack a remote
-#      # resource, such as a file, tarball, or binary.
-#      #
-#      #     https://www.nomadproject.io/docs/job-specification/artifact
-#      #
-#      artifact {
-#        source      = "git::https://github.com/FDio/csit"
-#        destination = "local/csit"
-#      }
-#
-#      # The "driver" parameter specifies the task driver that should be used to
-#      # run the task.
-#      driver = "docker"
-#
-#      # The "config" stanza specifies the driver configuration, which is passed
-#      # directly to the driver to start the task. The details of configurations
-#      # are specific to each driver, so please see specific driver
-#      # documentation for more information.
-#      config {
-#        image   = "${image}"
-#        command = "gluesparksubmit"
-#        args = [
-#          "--driver-memory", "20g",
-#          "--executor-memory", "20g",
-#          "--executor-cores", "2",
-#          "--master", "local[2]",
-#          "coverage_rls2206.py"
-#        ]
-#        work_dir = "/local/csit/csit.infra.etl"
-#      }
-#
-#      # The env stanza configures a list of environment variables to populate
-#      # the task's environment before starting.
-#      env {
-#        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
-#        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
-#        AWS_DEFAULT_REGION        = "${aws_default_region}"
-#        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
-#        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
-#        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
-#        ${ envs }
-#      }
-#
-#      # The "resources" stanza describes the requirements a task needs to
-#      # execute. Resource requirements include memory, network, cpu, and more.
-#      # This ensures the task will execute on a machine that contains enough
-#      # resource capacity.
-#      #
-#      #     https://www.nomadproject.io/docs/job-specification/resources
-#      #
-#      resources {
-#        cpu    = ${cpu}
-#        memory = ${memory}
-#      }
-#    }
-#    task "${job_name}-iterative" {
-#      # The artifact stanza instructs Nomad to fetch and unpack a remote
-#      # resource, such as a file, tarball, or binary.
-#      #
-#      #     https://www.nomadproject.io/docs/job-specification/artifact
-#      #
-#      artifact {
-#        source      = "git::https://github.com/FDio/csit"
-#        destination = "local/csit"
-#      }
-#
-#      # The "driver" parameter specifies the task driver that should be used to
-#      # run the task.
-#      driver = "docker"
-#
-#      # The "config" stanza specifies the driver configuration, which is passed
-#      # directly to the driver to start the task. The details of configurations
-#      # are specific to each driver, so please see specific driver
-#      # documentation for more information.
-#      config {
-#        image   = "${image}"
-#        command = "gluesparksubmit"
-#        args = [
-#          "--driver-memory", "20g",
-#          "--executor-memory", "20g",
-#          "--executor-cores", "2",
-#          "--master", "local[2]",
-#          "iterative_rls2206.py"
-#        ]
-#        work_dir = "/local/csit/csit.infra.etl"
-#      }
-#
-#      # The env stanza configures a list of environment variables to populate
-#      # the task's environment before starting.
-#      env {
-#        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
-#        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
-#        AWS_DEFAULT_REGION        = "${aws_default_region}"
-#        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
-#        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
-#        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
-#        ${ envs }
-#      }
-#
-#      # The "resources" stanza describes the requirements a task needs to
-#      # execute. Resource requirements include memory, network, cpu, and more.
-#      # This ensures the task will execute on a machine that contains enough
-#      # resource capacity.
-#      #
-#      #     https://www.nomadproject.io/docs/job-specification/resources
-#      #
-#      resources {
-#        cpu    = ${cpu}
-#        memory = ${memory}
-#      }
-#    }
-#  }
+  group "${job_name}-rls2210" {
+    restart {
+      mode = "fail"
+    }
+    constraint {
+      attribute = "$${attr.cpu.arch}"
+      operator  = "!="
+      value     = "arm64"
+    }
+    constraint {
+      attribute = "$${node.class}"
+      value     = "builder"
+    }
+    task "${job_name}-coverage-device" {
+      artifact {
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
+      }
+      driver = "docker"
+      config {
+        image   = "${image}"
+        command = "gluesparksubmit"
+        args = [
+          "--driver-memory", "20g",
+          "--executor-memory", "20g",
+          "--executor-cores", "2",
+          "--master", "local[2]",
+          "coverage_device_rls2210.py"
+        ]
+        work_dir = "/local/csit/csit.infra.etl"
+      }
+      env {
+        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
+        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
+        AWS_DEFAULT_REGION        = "${aws_default_region}"
+        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
+        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
+        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
+        ${ envs }
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
+    task "${job_name}-coverage-mrr" {
+      artifact {
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
+      }
+      driver = "docker"
+      config {
+        image   = "${image}"
+        command = "gluesparksubmit"
+        args = [
+          "--driver-memory", "20g",
+          "--executor-memory", "20g",
+          "--executor-cores", "2",
+          "--master", "local[2]",
+          "coverage_mrr_rls2210.py"
+        ]
+        work_dir = "/local/csit/csit.infra.etl"
+      }
+      env {
+        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
+        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
+        AWS_DEFAULT_REGION        = "${aws_default_region}"
+        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
+        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
+        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
+        ${ envs }
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
+    task "${job_name}-coverage-ndrpdr" {
+      artifact {
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
+      }
+      driver = "docker"
+      config {
+        image   = "${image}"
+        command = "gluesparksubmit"
+        args = [
+          "--driver-memory", "20g",
+          "--executor-memory", "20g",
+          "--executor-cores", "2",
+          "--master", "local[2]",
+          "coverage_ndrpdr_rls2210.py"
+        ]
+        work_dir = "/local/csit/csit.infra.etl"
+      }
+      env {
+        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
+        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
+        AWS_DEFAULT_REGION        = "${aws_default_region}"
+        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
+        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
+        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
+        ${ envs }
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
+    task "${job_name}-coverage-soak" {
+      artifact {
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
+      }
+      driver = "docker"
+      config {
+        image   = "${image}"
+        command = "gluesparksubmit"
+        args = [
+          "--driver-memory", "20g",
+          "--executor-memory", "20g",
+          "--executor-cores", "2",
+          "--master", "local[2]",
+          "coverage_soak_rls2210.py"
+        ]
+        work_dir = "/local/csit/csit.infra.etl"
+      }
+      env {
+        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
+        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
+        AWS_DEFAULT_REGION        = "${aws_default_region}"
+        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
+        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
+        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
+        ${ envs }
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
+    task "${job_name}-iterative-mrr" {
+      artifact {
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
+      }
+      driver = "docker"
+      config {
+        image   = "${image}"
+        command = "gluesparksubmit"
+        args = [
+          "--driver-memory", "20g",
+          "--executor-memory", "20g",
+          "--executor-cores", "2",
+          "--master", "local[2]",
+          "iterative_mrr_rls2210.py"
+        ]
+        work_dir = "/local/csit/csit.infra.etl"
+      }
+      env {
+        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
+        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
+        AWS_DEFAULT_REGION        = "${aws_default_region}"
+        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
+        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
+        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
+        ${ envs }
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
+    task "${job_name}-iterative-ndrpdr" {
+      artifact {
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
+      }
+      driver = "docker"
+      config {
+        image   = "${image}"
+        command = "gluesparksubmit"
+        args = [
+          "--driver-memory", "20g",
+          "--executor-memory", "20g",
+          "--executor-cores", "2",
+          "--master", "local[2]",
+          "iterative_ndrpdr_rls2210.py"
+        ]
+        work_dir = "/local/csit/csit.infra.etl"
+      }
+      env {
+        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
+        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
+        AWS_DEFAULT_REGION        = "${aws_default_region}"
+        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
+        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
+        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
+        ${ envs }
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
+    task "${job_name}-iterative-soak" {
+      artifact {
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
+      }
+      driver = "docker"
+      config {
+        image   = "${image}"
+        command = "gluesparksubmit"
+        args = [
+          "--driver-memory", "20g",
+          "--executor-memory", "20g",
+          "--executor-cores", "2",
+          "--master", "local[2]",
+          "iterative_soak_rls2210.py"
+        ]
+        work_dir = "/local/csit/csit.infra.etl"
+      }
+      env {
+        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
+        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
+        AWS_DEFAULT_REGION        = "${aws_default_region}"
+        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
+        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
+        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
+        ${ envs }
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
+  }
 }
