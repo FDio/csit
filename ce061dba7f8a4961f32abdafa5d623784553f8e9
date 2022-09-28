@@ -50,6 +50,23 @@
       "message": "csit-2n-dnv-perftest soakANDnic_intel-x*ANDdrv_vfio_pciAND1cAND78bANDethip6-ip6base soakANDnic_intel-x*ANDdrv_vfio_pciAND1cAND64bANDethip4-ip4base soakANDnic_intel-x*ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase soakANDnic_intel-x*ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn",
       "revId": "ce061dba7f8a4961f32abdafa5d623784553f8e9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29fa1631_982a0d56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-28T08:27:42Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "ce061dba7f8a4961f32abdafa5d623784553f8e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
