@@ -253,7 +253,7 @@ def estimate_nd(communication_pipe, scale_coeff=8.0, trace_enabled=False):
         )
         # The code above looked at weight (not importance).
         # The code below looks at importance (not weight).
-        log_rarity = param_distance / 2.0
+        log_rarity = param_distance / 2.0 / scale_coeff
         trace(u"log_rarity", log_rarity)
         log_importance = log_weight + log_rarity
         trace(u"log_importance", log_importance)
