@@ -572,7 +572,7 @@ class PLRsearch:
             # See https://stackoverflow.com/questions/15137292/large-objects-and-multiprocessing-pipes-and-send
             worker = multiprocessing.Process(
                 target=Integrator.try_estimate_nd,
-                args=(worker_pipe_end, 10.0, self.trace_enabled)
+                args=(worker_pipe_end, 2.0, self.trace_enabled)
             )
             worker.daemon = True
             worker.start()
