@@ -33,6 +33,29 @@
       "message": "This patch breaks the compatibility with Metric naming conventions. This must be fixed. It also does not follow best practices for metric design and create repetition of data and inflating overall size of captured data.",
       "revId": "a2182abd2665aa9264464a99ad77718e2c7bbe18",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "208aae73_e0ad29a3",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-28T13:06:04Z",
+      "side": 1,
+      "message": "Is this block just a remnant from debugging? We do not want to execute this everytime run_telemetry is called (e.g. in [0]) as profile\u003dvppctl_runtime.yaml already explicitly does that (with correct export) where we want it.\n\n[0] https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-icx/70/log.html.gz#s1-s1-s1-s1-s1-t1-k2-k9-k7-k14-k1-k1-k1-k1",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 126,
+        "endChar": 36
+      },
+      "revId": "a2182abd2665aa9264464a99ad77718e2c7bbe18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
