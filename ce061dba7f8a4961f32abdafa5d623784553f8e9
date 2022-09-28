@@ -67,6 +67,23 @@
       "message": "recheck",
       "revId": "ce061dba7f8a4961f32abdafa5d623784553f8e9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61dc6998_ed2da21b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-28T10:17:36Z",
+      "side": 1,
+      "message": "\u003e csit-vpp-perf-verify-master-2n-dnv/335/ : FAILURE\n\nThe failures were due to VPP-2010. Otherwise this works as intended.\nI noticed some numerical instabilities in the log, but they do not seem to affect the overall result much (maybe just increasing stdev but it is still quite low).",
+      "revId": "ce061dba7f8a4961f32abdafa5d623784553f8e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
