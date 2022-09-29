@@ -87,10 +87,10 @@
       - 55  # rls2206.rel NDRPDR iter env 10
       - 56  # rls2206.rel NDRPDR iter env 10
 
-  vpp-2n-zn2-prev-iter-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-zn2:
-    csit-vpp-perf-report-iterative-2206-2n-zn2:
-      - 47  # rls2206.rel NDRPDR iter env 10
+  # vpp-2n-zn2-prev-iter-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-zn2:
+  #   csit-vpp-perf-report-iterative-2206-2n-zn2:
+  #     - 47  # rls2206.rel NDRPDR iter env 10
 
   vpp-2n-zn2-curr-iter:
     # csit-vpp-perf-report-iterative-2210-2n-zn2:
@@ -110,10 +110,10 @@
     csit-vpp-perf-report-iterative-2206-2n-zn2:
       - 43  # rls2202.rel MRR iter env 10
 
-  vpp-2n-zn2-prev-iter-mrr-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-zn2:
-    csit-vpp-perf-report-iterative-2206-2n-zn2:
-      - 43  # rls2202.rel MRR iter env 10
+  # vpp-2n-zn2-prev-iter-mrr-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-zn2:
+  #   csit-vpp-perf-report-iterative-2206-2n-zn2:
+  #     - 43  # rls2202.rel MRR iter env 10
 
   vpp-2n-zn2-curr-iter-mrr:
     # csit-vpp-perf-report-iterative-2210-2n-zn2:
@@ -214,10 +214,10 @@
       - 158 # rls2206.rel NDRPDR iter env 10 NAT44
       - 159 # rls2206.rel NDRPDR iter env 10 NAT44
 
-  vpp-2n-clx-prev-iter-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-clx:
-    csit-vpp-perf-report-iterative-2206-2n-clx:
-      - 44  # rls2202.rel NDRPDR iter env 10
+  # vpp-2n-clx-prev-iter-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-clx:
+  #   csit-vpp-perf-report-iterative-2206-2n-clx:
+  #     - 44  # rls2202.rel NDRPDR iter env 10
 
   vpp-2n-clx-curr-iter:
     # csit-vpp-perf-report-iterative-2210-2n-clx:
@@ -239,10 +239,10 @@
       - 97  # rls2206.rel MRR iter env 10
       - 149 # rls2206.rel MRR iter env 10 NAT44
 
-  vpp-2n-clx-prev-iter-mrr-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-clx:
-    csit-vpp-perf-report-iterative-2206-2n-clx:
-      - 43  # rls2202.rel MRR iter env 10
+  # vpp-2n-clx-prev-iter-mrr-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-clx:
+  #   csit-vpp-perf-report-iterative-2206-2n-clx:
+  #     - 43  # rls2202.rel MRR iter env 10
 
   vpp-2n-clx-curr-iter-mrr:
     # csit-vpp-perf-report-iterative-2210-2n-clx:
@@ -254,7 +254,7 @@
     csit-vpp-perf-report-iterative-2206-2n-clx:
       - 108  # rls2206.rel MRR GSO iter env 10
 
-  vpp-2n-clx-hist-iter-vsap-new-env:
+  vpp-2n-clx-hist-iter-vsap:
     csit-vpp-perf-report-iterative-2202-2n-clx:
       - 55  # rls2202.rel VSAP iter env 9
       - 56  # rls2202.rel VSAP iter env 9
@@ -267,7 +267,7 @@
       - 70  # rls2202.rel VSAP iter env 9
       - 85  # rls2202.rel VSAP iter env 9
 
-  vpp-2n-clx-curr-iter-vsap-old-env:
+  vpp-2n-clx-prev-iter-vsap:
     csit-vpp-perf-report-iterative-2206-2n-clx:
       - 104 # rls2206.rel VSAP iter env 10
       - 112 # rls2206.rel VSAP iter env 10
@@ -383,10 +383,10 @@
       - 45  # rls2206.rel NDRPDR iter env 10
       - 46  # rls2206.rel NDRPDR iter env 10
 
-  vpp-3n-tsh-prev-iter-new-env:
-    # csit-vpp-perf-report-iterative-2210-3n-tsh:
-    csit-vpp-perf-report-iterative-2206-3n-tsh:
-      - 4   # rls2202.rel NDRPDR iter env 10
+  # vpp-3n-tsh-prev-iter-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-3n-tsh:
+  #   csit-vpp-perf-report-iterative-2206-3n-tsh:
+  #     - 4   # rls2202.rel NDRPDR iter env 10
 
   vpp-3n-tsh-curr-iter:
     # csit-vpp-perf-report-iterative-2210-3n-tsh:
@@ -406,10 +406,10 @@
     csit-vpp-perf-report-iterative-2206-3n-tsh:
       - 29  # rls2206.rel MRR iter env 10
 
-  vpp-3n-tsh-prev-iter-mrr-new-env:
-    # csit-vpp-perf-report-iterative-2210-3n-tsh:
-    csit-vpp-perf-report-iterative-2206-3n-tsh:
-      - 3   # rls2202.rel MRR iter env 10
+  # vpp-3n-tsh-prev-iter-mrr-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-3n-tsh:
+  #   csit-vpp-perf-report-iterative-2206-3n-tsh:
+  #     - 3   # rls2202.rel MRR iter env 10
 
   vpp-3n-tsh-curr-iter-mrr:
     # csit-vpp-perf-report-iterative-2210-3n-tsh:
@@ -485,10 +485,10 @@
       - 46  # rls2206.rel NDRPDR iter env 10
       - 47  # rls2206.rel NDRPDR iter env 10
 
-  vpp-2n-tx2-prev-iter-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-tx2:
-    csit-vpp-perf-report-iterative-2206-2n-tx2:
-      - 4   # rls2202.rel NDRPDR iter env 10
+  # vpp-2n-tx2-prev-iter-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-tx2:
+  #   csit-vpp-perf-report-iterative-2206-2n-tx2:
+  #     - 4   # rls2202.rel NDRPDR iter env 10
 
   vpp-2n-tx2-curr-iter:
     # csit-vpp-perf-report-iterative-2210-2n-tx2:
@@ -508,10 +508,10 @@
     csit-vpp-perf-report-iterative-2206-2n-tx2:
       - 29  # rls2206.rel MRR iter env 10
 
-  vpp-2n-tx2-prev-iter-mrr-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-tx2:
-    csit-vpp-perf-report-iterative-2206-2n-tx2:
-      - 3   # rls2202.rel MRR iter env 10
+  # vpp-2n-tx2-prev-iter-mrr-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-tx2:
+  #   csit-vpp-perf-report-iterative-2206-2n-tx2:
+  #     - 3   # rls2202.rel MRR iter env 10
 
   vpp-2n-tx2-curr-iter-mrr:
     # csit-vpp-perf-report-iterative-2210-2n-tx2:
@@ -587,10 +587,10 @@
       - 39  # rls2206.rel NDRPDR iter env 10
       - 40  # rls2206.rel NDRPDR iter env 10
 
-  vpp-3n-dnv-prev-iter-new-env:
-    # csit-vpp-perf-report-iterative-2210-3n-dnv:
-    csit-vpp-perf-report-iterative-2206-3n-dnv:
-      - 4   # rls2202.rel NDRPDR iter env 10
+  # vpp-3n-dnv-prev-iter-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-3n-dnv:
+  #   csit-vpp-perf-report-iterative-2206-3n-dnv:
+  #     - 4   # rls2202.rel NDRPDR iter env 10
 
   vpp-3n-dnv-curr-iter:
     # csit-vpp-perf-report-iterative-2210-3n-dnv:
@@ -605,10 +605,10 @@
     csit-vpp-perf-report-iterative-2206-3n-dnv:
       - 22  # rls2206.rel MRR iter env 10
 
-  vpp-3n-dnv-prev-iter-mrr-new-env:
-    # csit-vpp-perf-report-iterative-2210-3n-dnv:
-    csit-vpp-perf-report-iterative-2206-3n-dnv:
-      - 3   # rls2202.rel MRR iter env 10
+  # vpp-3n-dnv-prev-iter-mrr-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-3n-dnv:
+  #   csit-vpp-perf-report-iterative-2206-3n-dnv:
+  #     - 3   # rls2202.rel MRR iter env 10
 
   vpp-3n-dnv-curr-iter-mrr:
     # csit-vpp-perf-report-iterative-2210-3n-dnv:
@@ -648,10 +648,10 @@
       - 38  # rls2206.rel NDRPDR iter env 10
       - 39  # rls2206.rel NDRPDR iter env 10
 
-  vpp-2n-dnv-prev-iter-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-dnv:
-    csit-vpp-perf-report-iterative-2206-2n-dnv:
-      - 4   # rls2202.rel NDRPDR iter env 10
+  # vpp-2n-dnv-prev-iter-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-dnv:
+  #   csit-vpp-perf-report-iterative-2206-2n-dnv:
+  #     - 4   # rls2202.rel NDRPDR iter env 10
 
   vpp-2n-dnv-curr-iter:
     # csit-vpp-perf-report-iterative-2210-2n-dnv:
@@ -666,10 +666,10 @@
     csit-vpp-perf-report-iterative-2206-2n-dnv:
       - 20  # rls2206.rel MRR iter env 10
 
-  vpp-2n-dnv-prev-iter-mrr-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-dnv:
-    csit-vpp-perf-report-iterative-2206-2n-dnv:
-      - 3   # rls2202.rel MRR iter env 10
+  # vpp-2n-dnv-prev-iter-mrr-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-dnv:
+  #   csit-vpp-perf-report-iterative-2206-2n-dnv:
+  #     - 3   # rls2202.rel MRR iter env 10
 
   vpp-2n-dnv-curr-iter-mrr:
     # csit-vpp-perf-report-iterative-2210-2n-dnv:
@@ -785,10 +785,10 @@
       - 126 # rls2206.rel NDRPDR iter env 10 NAT44
       - 127 # rls2206.rel NDRPDR iter env 10 NAT44
 
-  vpp-2n-icx-prev-iter-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-icx:
-    csit-vpp-perf-report-iterative-2206-2n-icx:
-      - 107 # rls2202.rel NDRPDR iter env 10
+  # vpp-2n-icx-prev-iter-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-icx:
+  #   csit-vpp-perf-report-iterative-2206-2n-icx:
+  #     - 107 # rls2202.rel NDRPDR iter env 10
 
   vpp-2n-icx-curr-iter:
     # csit-vpp-perf-report-iterative-2210-2n-icx:
@@ -810,10 +810,10 @@
       - 68  # rls2206.rel MRR iter env 10
       - 117 # rls2206.rel MRR iter env 10 NAT44
 
-  vpp-2n-icx-prev-iter-mrr-new-env:
-    # csit-vpp-perf-report-iterative-2210-2n-icx:
-    csit-vpp-perf-report-iterative-2206-2n-icx:
-      - 106 # rls2202.rel MRR iter env 10
+  # vpp-2n-icx-prev-iter-mrr-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-2n-icx:
+  #   csit-vpp-perf-report-iterative-2206-2n-icx:
+  #     - 106 # rls2202.rel MRR iter env 10
 
   vpp-2n-icx-curr-iter-mrr:
     # csit-vpp-perf-report-iterative-2210-2n-icx:
@@ -923,10 +923,10 @@
       - 57  # rls2206.rel NDRPDR iter env 10
       - 58  # rls2206.rel NDRPDR iter env 10
 
-  vpp-3n-icx-prev-iter-new-env:
-    # csit-vpp-perf-report-iterative-2210-3n-icx:
-    csit-vpp-perf-report-iterative-2206-3n-icx:
-      - 60  # rls2202.rel NDRPDR iter env 10
+  # vpp-3n-icx-prev-iter-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-3n-icx:
+  #   csit-vpp-perf-report-iterative-2206-3n-icx:
+  #     - 60  # rls2202.rel NDRPDR iter env 10
 
   vpp-3n-icx-curr-iter:
     # csit-vpp-perf-report-iterative-2210-3n-icx:
@@ -946,10 +946,10 @@
     csit-vpp-perf-report-iterative-2206-3n-icx:
       - 39  # rls2206.rel MRR iter env 10
 
-  vpp-3n-icx-prev-iter-mrr-new-env:
-    # csit-vpp-perf-report-iterative-2210-3n-icx:
-    csit-vpp-perf-report-iterative-2206-3n-icx:
-      - 59  # rls2202.rel MRR iter env 10
+  # vpp-3n-icx-prev-iter-mrr-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-3n-icx:
+  #   csit-vpp-perf-report-iterative-2206-3n-icx:
+  #     - 59  # rls2202.rel MRR iter env 10
 
   vpp-3n-icx-curr-iter-mrr:
     # csit-vpp-perf-report-iterative-2210-3n-icx:
@@ -1013,10 +1013,10 @@
       - 28  # rls2206.rel NDRPDR iter env 10
       - 29  # rls2206.rel NDRPDR iter env 10
 
-  vpp-3n-alt-prev-iter-new-env:
-    # csit-vpp-perf-report-iterative-2210-3n-alt:
-    csit-vpp-perf-report-iterative-2206-3n-alt:
-      - 20  # rls2206.rel NDRPDR iter env 10
+  # vpp-3n-alt-prev-iter-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-3n-alt:
+  #   csit-vpp-perf-report-iterative-2206-3n-alt:
+  #     - 20  # rls2206.rel NDRPDR iter env 10
 
   vpp-3n-alt-curr-iter:
     # csit-vpp-perf-report-iterative-2210-3n-alt:
@@ -1032,10 +1032,10 @@
     csit-vpp-perf-report-iterative-2206-3n-alt:
       - 12  # rls2206.rel MRR iter env 10
 
-  vpp-3n-alt-prev-iter-mrr-new-env:
-    # csit-vpp-perf-report-iterative-2210-3n-alt:
-    csit-vpp-perf-report-iterative-2206-3n-alt:
-      - 12  # rls2206.rel MRR iter env 10
+  # vpp-3n-alt-prev-iter-mrr-new-env:
+  #   # csit-vpp-perf-report-iterative-2210-3n-alt:
+  #   csit-vpp-perf-report-iterative-2206-3n-alt:
+  #     - 12  # rls2206.rel MRR iter env 10
 
   vpp-3n-alt-curr-iter-mrr:
     # csit-vpp-perf-report-iterative-2210-3n-alt:
