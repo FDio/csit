@@ -792,24 +792,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-clx 2t1c
 - type: "table"
@@ -823,24 +827,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-clx 2t1c
 - type: "table"
@@ -854,24 +862,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-clx 2t1c
 - type: "table"
@@ -885,24 +897,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-clx 2t1c
 - type: "table"
@@ -916,24 +932,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-clx 2t1c
 - type: "table"
@@ -947,24 +967,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-zn2 2t1c
 - type: "table"
@@ -978,24 +1002,28 @@
       data-set: "vpp-2n-zn2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-zn2 2t1c
 - type: "table"
@@ -1009,24 +1037,27 @@
       data-set: "vpp-2n-zn2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
-  legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-zn2 2t1c
 - type: "table"
@@ -1040,24 +1071,28 @@
       data-set: "vpp-2n-zn2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-tx2 1t1c
 - type: "table"
@@ -1071,24 +1106,28 @@
       data-set: "vpp-2n-tx2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-tx2 1t1c
 - type: "table"
@@ -1102,24 +1141,28 @@
       data-set: "vpp-2n-tx2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-tx2 1t1c
 - type: "table"
@@ -1133,24 +1176,28 @@
       data-set: "vpp-2n-tx2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 3n-tsh 1t1c
 - type: "table"
@@ -1164,24 +1211,28 @@
       data-set: "vpp-3n-tsh-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.''
 
 # VPP Latency Changes 3n-tsh 1t1c
 - type: "table"
@@ -1195,24 +1246,28 @@
       data-set: "vpp-3n-tsh-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 3n-tsh 1t1c
 - type: "table"
@@ -1226,24 +1281,28 @@
       data-set: "vpp-3n-tsh-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 3n-icx 2t1c
 - type: "table"
@@ -1257,24 +1316,28 @@
       data-set: "vpp-3n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 3n-icx 2t1c
 - type: "table"
@@ -1288,24 +1351,28 @@
       data-set: "vpp-3n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 3n-icx 2t1c
 - type: "table"
@@ -1319,24 +1386,28 @@
       data-set: "vpp-3n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-icx 2t1c
 - type: "table"
@@ -1350,24 +1421,28 @@
       data-set: "vpp-2n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-icx 2t1c
 - type: "table"
@@ -1381,24 +1456,28 @@
       data-set: "vpp-2n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 2n-icx 2t1c
 - type: "table"
@@ -1412,24 +1491,28 @@
       data-set: "vpp-2n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Soak vs NDR - 2n-icx
 - type: "table"
@@ -1483,9 +1566,9 @@
   filter: "all"
   columns:
     - title: "2202.0-9"
-      data-set: "vpp-2n-clx-hist-iter-vsap-new-env"
+      data-set: "vpp-2n-clx-hist-iter-vsap"
     - title: "2206.0-10"
-      data-set: "vpp-2n-clx-curr-iter-vsap-old-env"
+      data-set: "vpp-2n-clx-prev-iter-vsap"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter-vsap"
   comparisons:
@@ -1511,24 +1594,28 @@
       data-set: "vpp-3n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-icx 4t2c pdr
 - type: "table"
@@ -1542,24 +1629,28 @@
       data-set: "vpp-3n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-icx 2t1c ndr
 - type: "table"
@@ -1573,24 +1664,28 @@
       data-set: "vpp-3n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-icx 4t2c ndr
 - type: "table"
@@ -1604,24 +1699,28 @@
       data-set: "vpp-3n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-icx 2t1c pdr
 - type: "table"
@@ -1635,24 +1734,28 @@
       data-set: "vpp-2n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-icx 4t2c pdr
 - type: "table"
@@ -1666,24 +1769,28 @@
       data-set: "vpp-2n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-icx 2t1c ndr
 - type: "table"
@@ -1697,24 +1804,28 @@
       data-set: "vpp-2n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-icx 4t2c ndr
 - type: "table"
@@ -1728,24 +1839,28 @@
       data-set: "vpp-2n-icx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 2t1c pdr
 - type: "table"
@@ -1759,24 +1874,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 4t2c pdr
 - type: "table"
@@ -1790,24 +1909,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 2t1c ndr
 - type: "table"
@@ -1821,24 +1944,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 4t2c ndr
 - type: "table"
@@ -1852,24 +1979,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-cx556a 2t1c pdr
 - type: "table"
@@ -1883,24 +2014,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-cx556a 4t2c pdr
 - type: "table"
@@ -1914,24 +2049,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-cx556a 2t1c ndr
 - type: "table"
@@ -1945,24 +2084,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-cx556a 4t2c ndr
 - type: "table"
@@ -1976,24 +2119,28 @@
       data-set: "vpp-2n-clx-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-zn2-xxv710 2t1c pdr
 - type: "table"
@@ -2007,24 +2154,28 @@
       data-set: "vpp-2n-zn2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-zn2-xxv710 4t2c pdr
 - type: "table"
@@ -2038,24 +2189,28 @@
       data-set: "vpp-2n-zn2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-zn2-xxv710 2t1c ndr
 - type: "table"
@@ -2069,24 +2224,28 @@
       data-set: "vpp-2n-zn2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-zn2-xxv710 4t2c ndr
 - type: "table"
@@ -2100,24 +2259,28 @@
       data-set: "vpp-2n-zn2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-dnv 1t1c pdr
 - type: "table"
@@ -2131,24 +2294,28 @@
       data-set: "vpp-2n-dnv-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-dnv-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-dnv-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-dnv-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-dnv-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-dnv 2t2c pdr
 - type: "table"
@@ -2162,24 +2329,28 @@
       data-set: "vpp-2n-dnv-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-dnv-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-dnv-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-dnv-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-dnv-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-dnv 1t1c ndr
 - type: "table"
@@ -2193,24 +2364,28 @@
       data-set: "vpp-2n-dnv-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-dnv-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-dnv-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-dnv-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-dnv-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-dnv 2t2c ndr
 - type: "table"
@@ -2224,24 +2399,28 @@
       data-set: "vpp-2n-dnv-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-dnv-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-dnv-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-dnv-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-dnv-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-dnv 1t1c pdr
 - type: "table"
@@ -2255,24 +2434,28 @@
       data-set: "vpp-3n-dnv-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-dnv-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-dnv-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-dnv-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-dnv-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-dnv 2t2c pdr
 - type: "table"
@@ -2286,24 +2469,28 @@
       data-set: "vpp-3n-dnv-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-dnv-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-dnv-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-dnv-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-dnv-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-dnv 1t1c ndr
 - type: "table"
@@ -2317,24 +2504,28 @@
       data-set: "vpp-3n-dnv-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-dnv-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-dnv-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-dnv-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-dnv-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 3n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-dnv 2t2c ndr
 - type: "table"
@@ -2348,24 +2539,28 @@
       data-set: "vpp-3n-dnv-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-dnv-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-dnv-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-dnv-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-dnv-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 3n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 1t1c pdr
 - type: "table"
@@ -2379,24 +2574,28 @@
       data-set: "vpp-3n-tsh-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 2t2c pdr
 - type: "table"
@@ -2410,24 +2609,28 @@
       data-set: "vpp-3n-tsh-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 1t1c ndr
 - type: "table"
@@ -2441,24 +2644,28 @@
       data-set: "vpp-3n-tsh-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 2t2c ndr
 - type: "table"
@@ -2472,24 +2679,28 @@
       data-set: "vpp-3n-tsh-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-tx2 1t1c pdr
 - type: "table"
@@ -2503,24 +2714,28 @@
       data-set: "vpp-2n-tx2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-tx2 2t2c pdr
 - type: "table"
@@ -2534,24 +2749,28 @@
       data-set: "vpp-2n-tx2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-tx2 1t1c ndr
 - type: "table"
@@ -2565,24 +2784,28 @@
       data-set: "vpp-2n-tx2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-tx2 2t2c ndr
 - type: "table"
@@ -2596,24 +2819,28 @@
       data-set: "vpp-2n-tx2-hist-iter"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-aws 2t1c pdr
 - type: "table"
@@ -2727,24 +2954,28 @@
       data-set: "vpp-3n-icx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-icx 4t2c mrr
 - type: "table"
@@ -2758,24 +2989,28 @@
       data-set: "vpp-3n-icx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-icx 8t4c mrr
 - type: "table"
@@ -2789,24 +3024,28 @@
       data-set: "vpp-3n-icx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-3n-icx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-icx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-icx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-icx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 3n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-icx 2t1c mrr
 - type: "table"
@@ -2820,24 +3059,28 @@
       data-set: "vpp-2n-icx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-icx 4t2c mrr
 - type: "table"
@@ -2851,24 +3094,28 @@
       data-set: "vpp-2n-icx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-icx 8t4c mrr
 - type: "table"
@@ -2882,24 +3129,28 @@
       data-set: "vpp-2n-icx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-icx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-icx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-icx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-icx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-icx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 2t1c mrr
 - type: "table"
@@ -2913,24 +3164,28 @@
       data-set: "vpp-2n-clx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 4t2c mrr
 - type: "table"
@@ -2944,24 +3199,28 @@
       data-set: "vpp-2n-clx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-xxv710 8t4c mrr
 - type: "table"
@@ -2975,24 +3234,28 @@
       data-set: "vpp-2n-clx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-clx with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-cx556a 2t1c mrr
 - type: "table"
@@ -3006,24 +3269,28 @@
       data-set: "vpp-2n-clx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-cx556a 4t2c mrr
 - type: "table"
@@ -3037,24 +3304,28 @@
       data-set: "vpp-2n-clx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-clx-cx556a 8t4c mrr
 - type: "table"
@@ -3068,24 +3339,28 @@
       data-set: "vpp-2n-clx-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-clx-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-clx-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-clx-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-clx with cx556a.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-zn2-xxv710 2t1c mrr
 - type: "table"
@@ -3099,24 +3374,28 @@
       data-set: "vpp-2n-zn2-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-zn2-xxv710 4t2c mrr
 - type: "table"
@@ -3130,24 +3409,28 @@
       data-set: "vpp-2n-zn2-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-zn2-xxv710 8t4c mrr
 - type: "table"
@@ -3161,24 +3444,28 @@
       data-set: "vpp-2n-zn2-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-zn2-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-zn2-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-zn2-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-zn2-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-zn2 with xxv710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-dnv 1t1c mrr
 - type: "table"
@@ -3192,24 +3479,28 @@
       data-set: "vpp-2n-dnv-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-dnv-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-dnv-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-dnv-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-dnv-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-dnv 2t2c mrr
 - type: "table"
@@ -3223,24 +3514,28 @@
       data-set: "vpp-2n-dnv-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-dnv-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-dnv-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-dnv-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-dnv-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-dnv 4t4c mrr
 - type: "table"
@@ -3254,24 +3549,28 @@
       data-set: "vpp-2n-dnv-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-dnv-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-dnv-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-dnv-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-dnv-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-dnv 1t1c mrr
 - type: "table"
@@ -3285,24 +3584,28 @@
       data-set: "vpp-3n-dnv-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-3n-dnv-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-dnv-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-dnv-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-dnv-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 3n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-dnv 2t2c mrr
 - type: "table"
@@ -3316,24 +3619,28 @@
       data-set: "vpp-3n-dnv-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-3n-dnv-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-dnv-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-dnv-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-dnv-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 3n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-dnv 4t4c mrr
 - type: "table"
@@ -3347,24 +3654,28 @@
       data-set: "vpp-3n-dnv-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-3n-dnv-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-dnv-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-dnv-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-dnv-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 3n-dnv with x553.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 1t1c mrr
 - type: "table"
@@ -3378,24 +3689,28 @@
       data-set: "vpp-3n-tsh-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 2t2c mrr
 - type: "table"
@@ -3409,24 +3724,28 @@
       data-set: "vpp-3n-tsh-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 3n-tsh 4t4c mrr
 - type: "table"
@@ -3440,24 +3759,28 @@
       data-set: "vpp-3n-tsh-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-3n-tsh-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-3n-tsh-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-tsh-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-3n-tsh-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 3n-tsh with x520.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-tx2 1t1c mrr
 - type: "table"
@@ -3471,24 +3794,28 @@
       data-set: "vpp-2n-tx2-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-tx2 2t2c mrr
 - type: "table"
@@ -3502,24 +3829,28 @@
       data-set: "vpp-2n-tx2-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-tx2 4t4c mrr
 - type: "table"
@@ -3533,24 +3864,28 @@
       data-set: "vpp-2n-tx2-hist-iter-mrr"
     - title: "2206.0-10"
       data-set: "vpp-2n-tx2-prev-iter-mrr-old-env"
-    - title: "2206.0-11"
-      data-set: "vpp-2n-tx2-prev-iter-mrr-new-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-2n-tx2-prev-iter-mrr-new-env"
     - title: "2210.0-11"
       data-set: "vpp-2n-tx2-curr-iter-mrr"
   comparisons:
-    - title: "2206.0-11 vs 2206.0-10"
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
       reference: 2
       compare: 3
-    - title: "2210.0-11 vs 2206.0-11"
-      reference: 3
-      compare: 4
   legend:
     - ''
     - 'Test Case:              Test cases executed for: MRR throughput on 2n-tx2 with xl710.'
     - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
-    - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
-    - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Performance Changes 2n-aws 2t1c mrr
 - type: "table"
