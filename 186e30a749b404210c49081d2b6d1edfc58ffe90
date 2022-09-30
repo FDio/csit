@@ -16,6 +16,23 @@
       "message": "\u003e Not an improvement.\n\nValue 2.0 was bad at leaving old average, but 5.0 is better than 10.0.\n\ncsit-2n-icx-perftest soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm",
       "revId": "186e30a749b404210c49081d2b6d1edfc58ffe90",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb269cf5_a0491dad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-30T14:47:30Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm",
+      "revId": "186e30a749b404210c49081d2b6d1edfc58ffe90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
