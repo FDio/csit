@@ -107,6 +107,30 @@
       },
       "revId": "625a9577783f912c92141e889b4c9d85a5294f12",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98e4fe84_66d0a03d",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2022-09-30T12:54:39Z",
+      "side": 1,
+      "message": "Fixed in patchset 4, Thanks Peter.",
+      "parentUuid": "cb32ba23_af2c294f",
+      "range": {
+        "startLine": 442,
+        "startChar": 8,
+        "endLine": 442,
+        "endChar": 12
+      },
+      "revId": "625a9577783f912c92141e889b4c9d85a5294f12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
