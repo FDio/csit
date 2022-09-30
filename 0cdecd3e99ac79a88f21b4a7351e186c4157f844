@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm",
       "revId": "0cdecd3e99ac79a88f21b4a7351e186c4157f844",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "759789a2_e69f3a33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-30T13:26:29Z",
+      "side": 1,
+      "message": "Testing with simulator so far suggests the issue is with leaving a plateau quickly enough.",
+      "revId": "0cdecd3e99ac79a88f21b4a7351e186c4157f844",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
