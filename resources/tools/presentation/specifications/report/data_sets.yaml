@@ -254,35 +254,35 @@
     csit-vpp-perf-report-iterative-2210-2n-clx:
       - 4   # rls2210.rc1 MRR GSO iter env 11
 
-  vpp-2n-clx-hist-iter-vsap:
-    csit-vpp-perf-report-iterative-2202-2n-clx:
-      - 55  # rls2202.rel VSAP iter env 9
-      - 56  # rls2202.rel VSAP iter env 9
-      - 57  # rls2202.rel VSAP iter env 9
-      - 58  # rls2202.rel VSAP iter env 9
-      - 59  # rls2202.rel VSAP iter env 9
-      - 60  # rls2202.rel VSAP iter env 9
-      - 68  # rls2202.rel VSAP iter env 9
-      - 69  # rls2202.rel VSAP iter env 9
-      - 70  # rls2202.rel VSAP iter env 9
-      - 85  # rls2202.rel VSAP iter env 9
+  # vpp-2n-clx-hist-iter-vsap:
+  #   csit-vpp-perf-report-iterative-2202-2n-clx:
+  #     - 55  # rls2202.rel VSAP iter env 9
+  #     - 56  # rls2202.rel VSAP iter env 9
+  #     - 57  # rls2202.rel VSAP iter env 9
+  #     - 58  # rls2202.rel VSAP iter env 9
+  #     - 59  # rls2202.rel VSAP iter env 9
+  #     - 60  # rls2202.rel VSAP iter env 9
+  #     - 68  # rls2202.rel VSAP iter env 9
+  #     - 69  # rls2202.rel VSAP iter env 9
+  #     - 70  # rls2202.rel VSAP iter env 9
+  #     - 85  # rls2202.rel VSAP iter env 9
 
-  vpp-2n-clx-prev-iter-vsap:
-    csit-vpp-perf-report-iterative-2206-2n-clx:
-      - 104 # rls2206.rel VSAP iter env 10
-      - 112 # rls2206.rel VSAP iter env 10
-      - 125 # rls2206.rel VSAP iter env 10
-      - 128 # rls2206.rel VSAP iter env 10
-      - 135 # rls2206.rel VSAP iter env 10
-      - 144 # rls2206.rel VSAP iter env 10
-      - 145 # rls2206.rel VSAP iter env 10
-      - 146 # rls2206.rel VSAP iter env 10
-      - 147 # rls2206.rel VSAP iter env 10
-      - 148 # rls2206.rel VSAP iter env 10
+  # vpp-2n-clx-prev-iter-vsap:
+  #   csit-vpp-perf-report-iterative-2206-2n-clx:
+  #     - 104 # rls2206.rel VSAP iter env 10
+  #     - 112 # rls2206.rel VSAP iter env 10
+  #     - 125 # rls2206.rel VSAP iter env 10
+  #     - 128 # rls2206.rel VSAP iter env 10
+  #     - 135 # rls2206.rel VSAP iter env 10
+  #     - 144 # rls2206.rel VSAP iter env 10
+  #     - 145 # rls2206.rel VSAP iter env 10
+  #     - 146 # rls2206.rel VSAP iter env 10
+  #     - 147 # rls2206.rel VSAP iter env 10
+  #     - 148 # rls2206.rel VSAP iter env 10
 
-  vpp-2n-clx-curr-iter-vsap:
-    csit-vpp-perf-report-iterative-2206-2n-clx:
-      - 11  # rls2210.rc1 VSAP iter env 11
+  # vpp-2n-clx-curr-iter-vsap:
+  #   csit-vpp-perf-report-iterative-2206-2n-clx:
+  #     - 11  # rls2210.rc1 VSAP iter env 11
 
   vpp-2n-clx-curr-nfv-ndrpdr:
     csit-vpp-perf-report-iterative-2210-2n-clx:
