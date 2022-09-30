@@ -33,6 +33,23 @@
       "message": "csit-2n-icx-perftest soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm",
       "revId": "186e30a749b404210c49081d2b6d1edfc58ffe90",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "635dbe01_b252cca7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-09-30T15:35:29Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest soakANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
+      "revId": "186e30a749b404210c49081d2b6d1edfc58ffe90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
