@@ -1233,7 +1233,7 @@
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
     # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
-    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.''
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # VPP Latency Changes 3n-tsh 1t1c
 - type: "table"
