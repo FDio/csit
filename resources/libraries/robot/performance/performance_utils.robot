@@ -73,6 +73,23 @@
 | | ${transaction_scale} = | Get Transaction Scale
 | | ${transaction_type} = | Get Transaction Type
 | | ${use_latency} = | Get Use Latency
+| | # TRex needs a warmup to avoid unsent packets at half-max rate.
+| | Send traffic on tg
+| | ... | duration=1.0
+| | ... | rate=${max_rate}
+| | ... | frame_size=${frame_size}
+| | ... | traffic_profile=${traffic_profile}
+| | ... | async_call=${False}
+| | ... | duration_limit=${1.0}
+| | ... | ppta=${ppta}
+| | ... | traffic_directions=${traffic_directions}
+| | ... | transaction_duration=${transaction_duration}
+| | ... | transaction_scale=${transaction_scale}
+| | ... | transaction_type=${transaction_type}
+| | ... | use_latency=False
+| | ... | ramp_up_duration=${0.0}
+| | ... | ramp_up_rate=${0.0}
+| | # Ready for main search.
 | | ${average} | ${stdev} = | Perform soak search
 | | ... | frame_size=${frame_size}
 | | ... | traffic_profile=${traffic_profile}
@@ -95,6 +112,13 @@
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Set Test Variable | \${rate for teardown} | ${lower}
+| | # Stats at the discovered critical rate.
+| | Send traffic at specified rate
+| | ... | rate=${lower}
+| | ... | trial_duration=${1.0}
+| | ... | trial_multiplicity=${1}
+| | ... | use_latency=${use_latency}
+| | ... | duration_limit=${1.0}
 | | Should Not Be True | 1.1 * ${min_rate_soft} > ${lower}
 | | ... | Lower bound ${lower} too small for unidir minimum ${min_rate_soft}.
 
