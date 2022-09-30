@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7930bb29_ba26f2e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-09-30T10:49:24Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest mrrANDnic_intel-e822cqANDdrv_vfio_pciAND1cAND64bANDethip4-ip4base",
+      "revId": "4e5d530099efed0c77d531a06d505c73c80ea71e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
