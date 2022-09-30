@@ -22,7 +22,7 @@ nodes:
         pci_address: "0000:ca:00.0"
         ip4_address: "172.16.10.1"
         driver: ice
-        link: link1
+        link: disabled1
         model: Intel-E810XXV
       port2:
         # s89-t39t310-tg1-c4/p2 - 25GE port2 Intel E810-XXVDA4 4p25GE.
@@ -38,7 +38,7 @@ nodes:
         pci_address: "0000:ca:00.2"
         ip4_address: "172.16.50.1"
         driver: ice
-        link: link5
+        link: disabled2
         model: Intel-E810XXV
       port4:
         # s89-t39t310-tg1-c4/p4 - 25GE port4 Intel E810-XXVDA4 4p25GE.
@@ -46,7 +46,7 @@ nodes:
         pci_address: "0000:ca:00.3"
         ip4_address: "172.16.60.1"
         driver: ice
-        link: link6
+        link: link5
         model: Intel-E810XXV
   DUT1:
     type: DUT
@@ -63,7 +63,7 @@ nodes:
         pci_address: "0000:ec:00.0"
         ip4_address: "172.16.10.2"
         driver: ice
-        link: link1
+        link: link2
         model: Intel-E822CQ
       port2:
         # s93-t39-sut1-c1/p2 - 25GE port2 Intel E822-CQDA4 4p25GE.
@@ -71,7 +71,7 @@ nodes:
         pci_address: "0000:ec:00.1"
         ip4_address: "172.16.20.2"
         driver: ice
-        link: link2
+        link: disabled3
         model: Intel-E822CQ
       port3:
         # s93-t39-sut1-c1/p3 - 25GE port3 Intel E822-CQDA4 4p25GE.
@@ -104,7 +104,7 @@ nodes:
         pci_address: "0000:ec:00.0"
         ip4_address: "172.16.30.2"
         driver: ice
-        link: link3
+        link: link5
         model: Intel-E822CQ
       port2:
         # s94-t39-sut2-c1/p2 - 25GE port2 Intel E822-CQDA4 4p25GE.
@@ -112,7 +112,7 @@ nodes:
         pci_address: "0000:ec:00.1"
         ip4_address: "172.16.40.2"
         driver: ice
-        link: link4
+        link: disabled4
         model: Intel-E822CQ
       port3:
         # s94-t39-sut2-c1/p3 - 25GE port3 Intel E822-CQDA4 4p25GE.
@@ -120,7 +120,7 @@ nodes:
         pci_address: "0000:ec:00.2"
         ip4_address: "172.16.50.2"
         driver: ice
-        link: link5
+        link: link3
         model: Intel-E822CQ
       port4:
         # s94-t39-sut2-c1/p4 - 25GE port4 Intel E822-CQDA4 4p25GE.
@@ -128,5 +128,5 @@ nodes:
         pci_address: "0000:ec:00.3"
         ip4_address: "172.16.60.2"
         driver: ice
-        link: link6
+        link: link4
         model: Intel-E822CQ
