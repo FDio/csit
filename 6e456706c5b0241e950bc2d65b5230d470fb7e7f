@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdb3e846_409382ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-09-30T12:01:12Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-3n-snr-perftest dpdk-mlr-00",
+      "revId": "6e456706c5b0241e950bc2d65b5230d470fb7e7f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
