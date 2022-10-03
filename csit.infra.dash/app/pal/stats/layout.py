@@ -308,7 +308,7 @@ class Layout:
                     )
                 )
             ],
-            brand="Dashboard",
+            brand=C.BRAND,
             brand_href="/",
             brand_external_link=True,
             class_name="p-2",
@@ -321,12 +321,12 @@ class Layout:
         :returns: Column with the control panel.
         :rtype: dbc.Col
         """
-        return dbc.Col(
-            id="col-controls",
-            children=[
-                self._add_ctrl_panel(),
-            ],
-        )
+        return dbc.Col([
+            html.Div(
+                children=self._add_ctrl_panel(),
+                className="sticky-top"
+            )
+        ])
 
     def _add_plotting_col(self) -> dbc.Col:
         """Add column with plots and tables. It is placed on the right side.
@@ -418,93 +418,78 @@ class Layout:
         :returns: Control panel.
         :rtype: dbc.Row
         """
-        return dbc.Row(
-            id="row-ctrl-panel",
-            class_name="g-0",
-            children=[
-                dbc.Row(
-                    class_name="g-0 p-2",
-                    children=[
-                        dbc.Row(
-                            class_name="gy-1",
-                            children=[
-                                dbc.Label(
-                                    class_name="p-0",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-dut", "Device under Test")
-                                ),
-                                dbc.Row(
-                                    dbc.RadioItems(
-                                        id="ri-duts",
-                                        inline=True,
-                                        value=self.default["dut"],
-                                        options=self.default["duts"]
-                                    )
-                                )
-                            ]
-                        ),
-                        dbc.Row(
-                            class_name="gy-1",
-                            children=[
-                                dbc.Label(
-                                    class_name="p-0",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-ttype", "Test Type"),
-                                ),
-                                dbc.RadioItems(
-                                    id="ri-ttypes",
-                                    inline=True,
-                                    value=self.default["ttype"],
-                                    options=self.default["ttypes"]
-                                )
-                            ]
-                        ),
-                        dbc.Row(
-                            class_name="gy-1",
-                            children=[
-                                dbc.Label(
-                                    class_name="p-0",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-cadence", "Cadence"),
-                                ),
-                                dbc.RadioItems(
-                                    id="ri-cadences",
-                                    inline=True,
-                                    value=self.default["cadence"],
-                                    options=self.default["cadences"]
-                                )
-                            ]
-                        ),
-                        dbc.Row(
-                            class_name="gy-1",
-                            children=[
-                                dbc.Label(
-                                    class_name="p-0",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-tbed", "Test Bed"),
-                                ),
-                                dbc.Select(
-                                    id="dd-tbeds",
-                                    placeholder="Select a test bed...",
-                                    value=self.default["tbed"],
-                                    options=self.default["tbeds"]
-                                )
-                            ]
-                        ),
-                        dbc.Row(
-                            class_name="gy-1",
-                            children=[
-                                dbc.Alert(
-                                    id="al-job",
-                                    color="info",
-                                    children=self.default["job"]
-                                )
-                            ]
-                        )
-                    ]
-                ),
-            ]
-        )
+        return [
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Label(
+                        children=show_tooltip(self._tooltips,
+                            "help-dut", "Device under Test")
+                    ),
+                    dbc.RadioItems(
+                        id="ri-duts",
+                        inline=True,
+                        value=self.default["dut"],
+                        options=self.default["duts"]
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Label(
+                        children=show_tooltip(self._tooltips,
+                            "help-ttype", "Test Type"),
+                    ),
+                    dbc.RadioItems(
+                        id="ri-ttypes",
+                        inline=True,
+                        value=self.default["ttype"],
+                        options=self.default["ttypes"]
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Label(
+                        children=show_tooltip(self._tooltips,
+                            "help-cadence", "Cadence"),
+                    ),
+                    dbc.RadioItems(
+                        id="ri-cadences",
+                        inline=True,
+                        value=self.default["cadence"],
+                        options=self.default["cadences"]
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Label(
+                        children=show_tooltip(self._tooltips,
+                            "help-tbed", "Test Bed"),
+                    ),
+                    dbc.Select(
+                        id="dd-tbeds",
+                        placeholder="Select a test bed...",
+                        value=self.default["tbed"],
+                        options=self.default["tbeds"]
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Alert(
+                        id="al-job",
+                        color="info",
+                        children=self.default["job"]
+                    )
+                ]
+            )
+        ]
 
     class ControlPanel:
         """A class representing the control panel.

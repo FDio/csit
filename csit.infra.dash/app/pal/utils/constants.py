@@ -18,7 +18,6 @@ does not need to be hard coded here, but can be read from environment variables.
 """
 
 import logging
-import dash_bootstrap_components as dbc
 
 from dash import html
 
@@ -36,13 +35,14 @@ class Constants:
     LOG_DATE_FORMAT = "%Y/%m/%d %H:%M:%S"
 
     # The application title.
-    TITLE = "FD.io CSIT"
+    TITLE = "FD.io CDash"
+    BRAND = "CDash"
 
     # The application description.
     DESCRIPTION = "Performance Dashboard"
 
     # External stylesheets.
-    EXTERNAL_STYLESHEETS = [ "/static/dist/css/bootstrap.css" ]
+    EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
 
     # Top level template for all pages.
     TEMPLATE = "d-flex h-100 text-center text-white bg-dark"
