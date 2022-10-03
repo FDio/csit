@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffbcdd56_0bc9d933",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-03T18:02:03Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest ndrpdrANDnic_*ANDdrv_vfio_pciAND78bANDethip6-ip6base",
+      "revId": "7d7bb560f75206bb47224efe1f6444b52a919084",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
