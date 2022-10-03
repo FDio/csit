@@ -331,7 +331,7 @@ class Layout:
                     )
                 )
             ],
-            brand="Dashboard",
+            brand=C.BRAND,
             brand_href="/",
             brand_external_link=True,
             class_name="p-2",
@@ -344,13 +344,12 @@ class Layout:
         :returns: Column with the control panel.
         :rtype: dbc.Col
         """
-
-        return dbc.Col(
-            id="col-controls",
-            children=[
-                self._add_ctrl_panel(),
-            ],
-        )
+        return dbc.Col([
+            html.Div(
+                children=self._add_ctrl_panel(),
+                className="sticky-top"
+            )
+        ])
 
     def _add_plotting_col(self) -> dbc.Col:
         """Add column with tables. It is placed on the right side.
@@ -408,58 +407,45 @@ class Layout:
         :returns: Control panel.
         :rtype: dbc.Row
         """
-        return dbc.Row(
-            id="row-ctrl-panel",
-            class_name="g-0",
-            children=[
-                dbc.Row(
-                    class_name="g-0 p-2",
-                    children=[
-                        dbc.Row(
-                            class_name="g-0",
-                            children=[
-                                dbc.Label(
-                                    class_name="g-0",
-                                    children=show_tooltip(self._tooltips,
-                                        "help-summary-period", "Window")
-                                ),
-                                dbc.Row(
-                                    dbc.ButtonGroup(
-                                        id="bg-time-period",
-                                        class_name="g-0",
-                                        children=[
-                                            dbc.Button(
-                                                id="period-last",
-                                                children="Last Run",
-                                                className="me-1",
-                                                outline=True,
-                                                color="info"
-                                            ),
-                                            dbc.Button(
-                                                id="period-short",
-                                                children=\
-                                                    f"Last {C.NEWS_SHORT} Runs",
-                                                className="me-1",
-                                                outline=True,
-                                                active=True,
-                                                color="info"
-                                            ),
-                                            dbc.Button(
-                                                id="period-long",
-                                                children="All Runs",
-                                                className="me-1",
-                                                outline=True,
-                                                color="info"
-                                            )
-                                        ]
-                                    )
-                                )
-                            ]
-                        )
-                    ]
-                )
-            ]
-        )
+        return [
+            dbc.Label(
+                class_name="g-0 p-1",
+                children=show_tooltip(self._tooltips,
+                    "help-summary-period", "Window")
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.ButtonGroup(
+                        id="bg-time-period",
+                        children=[
+                            dbc.Button(
+                                id="period-last",
+                                children="Last Run",
+                                className="me-1",
+                                outline=True,
+                                color="info"
+                            ),
+                            dbc.Button(
+                                id="period-short",
+                                children=f"Last {C.NEWS_SHORT} Runs",
+                                className="me-1",
+                                outline=True,
+                                active=True,
+                                color="info"
+                            ),
+                            dbc.Button(
+                                id="period-long",
+                                children="All Runs",
+                                className="me-1",
+                                outline=True,
+                                color="info"
+                            )
+                        ]
+                    )
+                ]
+            )
+        ]
 
     def callbacks(self, app):
         """Callbacks for the whole application.

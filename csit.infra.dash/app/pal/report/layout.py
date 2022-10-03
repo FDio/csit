@@ -298,7 +298,7 @@ class Layout:
                     )
                 )
             ],
-            brand="Dashboard",
+            brand=C.BRAND,
             brand_href="/",
             brand_external_link=True,
             class_name="p-2",
@@ -311,12 +311,12 @@ class Layout:
         :returns: Column with the control panel.
         :rtype: dbc.Col
         """
-        return dbc.Col(
-            id="col-controls",
-            children=[
-                self._add_ctrl_panel(),
-            ],
-        )
+        return dbc.Col([
+            html.Div(
+                children=self._add_ctrl_panel(),
+                className="sticky-top"
+            )
+        ])
 
     def _add_plotting_col(self) -> dbc.Col:
         """Add column with plots and tables. It is placed on the right side.
@@ -372,322 +372,300 @@ class Layout:
         :returns: Control panel.
         :rtype: dbc.Row
         """
-        return dbc.Row(
-            id="row-ctrl-panel",
-            class_name="g-0 p-2",
-            children=[
-                dbc.Row(
-                    class_name="g-0",
-                    children=[
-                        dbc.InputGroup(
-                            [
-                                dbc.InputGroupText(
-                                    children=show_tooltip(self._tooltips,
-                                        "help-release", "CSIT Release")
-                                ),
-                                dbc.Select(
-                                    id="dd-ctrl-rls",
-                                    placeholder=("Select a Release..."),
-                                    options=sorted(
-                                        [
-                                            {"label": k, "value": k} \
-                                                for k in self.spec_tbs.keys()
-                                        ],
-                                        key=lambda d: d["label"]
+        return [
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(self._tooltips,
+                                    "help-release", "CSIT Release")
+                            ),
+                            dbc.Select(
+                                id="dd-ctrl-rls",
+                                placeholder=("Select a Release..."),
+                                options=sorted(
+                                    [
+                                        {"label": k, "value": k} \
+                                            for k in self.spec_tbs.keys()
+                                    ],
+                                    key=lambda d: d["label"]
+                                )
+                            )
+                        ],
+                        size="sm",
+                    ),
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(self._tooltips,
+                                    "help-dut", "DUT")
+                            ),
+                            dbc.Select(
+                                id="dd-ctrl-dut",
+                                placeholder=(
+                                    "Select a Device under Test..."
+                                )
+                            )
+                        ],
+                        size="sm",
+                    ),
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(self._tooltips,
+                                    "help-dut-ver", "DUT Version")
+                            ),
+                            dbc.Select(
+                                id="dd-ctrl-dutver",
+                                placeholder=(
+                                    "Select a Version of "
+                                    "Device under Test..."
+                                )
+                            )
+                        ],
+                        size="sm",
+                    ),
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(self._tooltips,
+                                    "help-infra", "Infra")
+                            ),
+                            dbc.Select(
+                                id="dd-ctrl-phy",
+                                placeholder=(
+                                    "Select a Physical Test Bed "
+                                    "Topology..."
+                                )
+                            )
+                        ],
+                        size="sm",
+                    ),
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(self._tooltips,
+                                    "help-area", "Area")
+                            ),
+                            dbc.Select(
+                                id="dd-ctrl-area",
+                                placeholder="Select an Area...",
+                                disabled=True,
+                            ),
+                        ],
+                        size="sm",
+                    ),
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(self._tooltips,
+                                    "help-test", "Test")
+                            ),
+                            dbc.Select(
+                                id="dd-ctrl-test",
+                                placeholder="Select a Test...",
+                                disabled=True,
+                            ),
+                        ],
+                        size="sm",
+                    ),
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Label(
+                        children=show_tooltip(self._tooltips,
+                            "help-framesize", "Frame Size"),
+                    ),
+                    dbc.Col(
+                        children=[
+                            dbc.Checklist(
+                                id="cl-ctrl-framesize-all",
+                                options=C.CL_ALL_DISABLED,
+                                inline=True,
+                                switch=False
+                            ),
+                        ],
+                        width=3
+                    ),
+                    dbc.Col(
+                        children=[
+                            dbc.Checklist(
+                                id="cl-ctrl-framesize",
+                                inline=True,
+                                switch=False
+                            )
+                        ]
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Label(
+                        children=show_tooltip(self._tooltips,
+                            "help-cores", "Number of Cores"),
+                    ),
+                    dbc.Col(
+                        children=[
+                            dbc.Checklist(
+                                id="cl-ctrl-core-all",
+                                options=C.CL_ALL_DISABLED,
+                                inline=False,
+                                switch=False
+                            )
+                        ],
+                        width=3
+                    ),
+                    dbc.Col(
+                        children=[
+                            dbc.Checklist(
+                                id="cl-ctrl-core",
+                                inline=True,
+                                switch=False
+                            )
+                        ]
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Label(
+                        children=show_tooltip(self._tooltips,
+                            "help-ttype", "Test Type"),
+                    ),
+                    dbc.Col(
+                        children=[
+                            dbc.Checklist(
+                                id="cl-ctrl-testtype-all",
+                                options=C.CL_ALL_DISABLED,
+                                inline=True,
+                                switch=False
+                            ),
+                        ],
+                        width=3
+                    ),
+                    dbc.Col(
+                        children=[
+                            dbc.Checklist(
+                                id="cl-ctrl-testtype",
+                                inline=True,
+                                switch=False
+                            )
+                        ]
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Label(
+                        children=show_tooltip(self._tooltips,
+                            "help-normalize", "Normalize"),
+                    ),
+                    dbc.Col(
+                        children=[
+                            dbc.Checklist(
+                                id="cl-ctrl-normalize",
+                                options=[{
+                                    "value": "normalize",
+                                    "label": (
+                                        "Normalize results to CPU "
+                                        "frequency 2GHz"
                                     )
-                                )
-                            ],
-                            class_name="mb-3",
-                            size="sm",
-                        ),
-                    ]
-                ),
-                dbc.Row(
-                    class_name="g-0",
-                    children=[
-                        dbc.InputGroup(
-                            [
-                                dbc.InputGroupText(
-                                    children=show_tooltip(self._tooltips,
-                                        "help-dut", "DUT")
-                                ),
-                                dbc.Select(
-                                    id="dd-ctrl-dut",
-                                    placeholder=(
-                                        "Select a Device under Test..."
-                                    )
-                                )
-                            ],
-                            class_name="mb-3",
-                            size="sm",
-                        ),
-                    ]
-                ),
-                dbc.Row(
-                    class_name="g-0",
-                    children=[
-                        dbc.InputGroup(
-                            [
-                                dbc.InputGroupText(
-                                    children=show_tooltip(self._tooltips,
-                                        "help-dut-ver", "DUT Version")
-                                ),
-                                dbc.Select(
-                                    id="dd-ctrl-dutver",
-                                    placeholder=(
-                                        "Select a Version of "
-                                        "Device under Test..."
-                                    )
-                                )
-                            ],
-                            class_name="mb-3",
-                            size="sm",
-                        ),
-                    ]
-                ),
-                dbc.Row(
-                    class_name="g-0",
-                    children=[
-                        dbc.InputGroup(
-                            [
-                                dbc.InputGroupText(
-                                    children=show_tooltip(self._tooltips,
-                                        "help-infra", "Infra")
-                                ),
-                                dbc.Select(
-                                    id="dd-ctrl-phy",
-                                    placeholder=(
-                                        "Select a Physical Test Bed "
-                                        "Topology..."
-                                    )
-                                )
-                            ],
-                            class_name="mb-3",
-                            size="sm",
-                        ),
-                    ]
-                ),
-                dbc.Row(
-                    class_name="g-0",
-                    children=[
-                        dbc.InputGroup(
-                            [
-                                dbc.InputGroupText(
-                                    children=show_tooltip(self._tooltips,
-                                        "help-area", "Area")
-                                ),
-                                dbc.Select(
-                                    id="dd-ctrl-area",
-                                    placeholder="Select an Area...",
-                                    disabled=True,
-                                ),
-                            ],
-                            class_name="mb-3",
-                            size="sm",
-                        ),
-                    ]
-                ),
-                dbc.Row(
-                    class_name="g-0",
-                    children=[
-                        dbc.InputGroup(
-                            [
-                                dbc.InputGroupText(
-                                    children=show_tooltip(self._tooltips,
-                                        "help-test", "Test")
-                                ),
-                                dbc.Select(
-                                    id="dd-ctrl-test",
-                                    placeholder="Select a Test...",
-                                    disabled=True,
-                                ),
-                            ],
-                            class_name="mb-3",
-                            size="sm",
-                        ),
-                    ]
-                ),
-                dbc.Row(
-                    id="row-ctrl-framesize",
-                    class_name="gy-1",
-                    children=[
-                        dbc.Label(
-                            children=show_tooltip(self._tooltips,
-                                "help-framesize", "Frame Size"),
-                            class_name="p-0"
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-framesize-all",
-                                    options=C.CL_ALL_DISABLED,
-                                    inline=True,
-                                    switch=False
-                                ),
-                            ],
-                            width=3
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-framesize",
-                                    inline=True,
-                                    switch=False
-                                )
-                            ]
-                        )
-                    ]
-                ),
-                dbc.Row(
-                    id="row-ctrl-core",
-                    class_name="gy-1",
-                    children=[
-                        dbc.Label(
-                            children=show_tooltip(self._tooltips,
-                                "help-cores", "Number of Cores"),
-                            class_name="p-0"
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-core-all",
-                                    options=C.CL_ALL_DISABLED,
-                                    inline=False,
-                                    switch=False
-                                )
-                            ],
-                            width=3
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-core",
-                                    inline=True,
-                                    switch=False
-                                )
-                            ]
-                        )
-                    ]
-                ),
-                dbc.Row(
-                    id="row-ctrl-testtype",
-                    class_name="gy-1",
-                    children=[
-                        dbc.Label(
-                            children=show_tooltip(self._tooltips,
-                                "help-ttype", "Test Type"),
-                            class_name="p-0"
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-testtype-all",
-                                    options=C.CL_ALL_DISABLED,
-                                    inline=True,
-                                    switch=False
-                                ),
-                            ],
-                            width=3
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-testtype",
-                                    inline=True,
-                                    switch=False
-                                )
-                            ]
-                        )
-                    ]
-                ),
-                dbc.Row(
-                    id="row-ctrl-normalize",
-                    class_name="gy-1",
-                    children=[
-                        dbc.Label(
-                            children=show_tooltip(self._tooltips,
-                                "help-normalize", "Normalize"),
-                            class_name="p-0"
-                        ),
-                        dbc.Col(
-                            children=[
-                                dbc.Checklist(
-                                    id="cl-ctrl-normalize",
-                                    options=[{
-                                        "value": "normalize",
-                                        "label": (
-                                            "Normalize results to CPU"
-                                            "frequency 2GHz"
-                                        )
-                                    }],
-                                    value=[],
-                                    inline=True,
-                                    switch=False
-                                ),
-                            ]
-                        )
-                    ]
-                ),
-                dbc.Row(
-                    class_name="gy-1 p-0",
-                    children=[
-                        dbc.ButtonGroup(
-                            [
-                                dbc.Button(
-                                    id="btn-ctrl-add",
-                                    children="Add Selected",
-                                    class_name="me-1",
-                                    color="info"
-                                )
-                            ]
-                        )
-                    ]
-                ),
-                dbc.Row(
-                    id="row-card-sel-tests",
-                    class_name="gy-1",
-                    style=C.STYLE_DISABLED,
-                    children=[
-                        dbc.Label(
-                            "Selected tests",
-                            class_name="p-0"
-                        ),
-                        dbc.Checklist(
-                            class_name="overflow-auto",
-                            id="cl-selected",
-                            options=[],
-                            inline=False,
-                            style={"max-height": "20em"},
-                        )
-                    ],
-                ),
-                dbc.Row(
-                    id="row-btns-sel-tests",
-                    style=C.STYLE_DISABLED,
-                    children=[
-                        dbc.ButtonGroup(
-                            class_name="gy-2",
-                            children=[
-                                dbc.Button(
-                                    id="btn-sel-remove",
-                                    children="Remove Selected",
-                                    class_name="w-100 me-1",
-                                    color="info",
-                                    disabled=False
-                                ),
-                                dbc.Button(
-                                    id="btn-sel-remove-all",
-                                    children="Remove All",
-                                    class_name="w-100 me-1",
-                                    color="info",
-                                    disabled=False
-                                ),
-                            ]
-                        )
-                    ]
-                ),
-            ]
-        )
+                                }],
+                                value=[],
+                                inline=True,
+                                switch=False
+                            ),
+                        ]
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.ButtonGroup(
+                        [
+                            dbc.Button(
+                                id="btn-ctrl-add",
+                                children="Add Selected",
+                                color="info"
+                            )
+                        ]
+                    )
+                ]
+            ),
+            dbc.Row(
+                id="row-card-sel-tests",
+                class_name="g-0 p-1",
+                style=C.STYLE_DISABLED,
+                children=[
+                    dbc.Label("Selected tests"),
+                    dbc.Checklist(
+                        class_name="overflow-auto",
+                        id="cl-selected",
+                        options=[],
+                        inline=False,
+                        style={"max-height": "20em"},
+                    )
+                ],
+            ),
+            dbc.Row(
+                id="row-btns-sel-tests",
+                class_name="g-0 p-1",
+                style=C.STYLE_DISABLED,
+                children=[
+                    dbc.ButtonGroup(
+                        children=[
+                            dbc.Button(
+                                id="btn-sel-remove",
+                                children="Remove Selected",
+                                class_name="w-100",
+                                color="info",
+                                disabled=False
+                            ),
+                            dbc.Button(
+                                id="btn-sel-remove-all",
+                                children="Remove All",
+                                class_name="w-100",
+                                color="info",
+                                disabled=False
+                            ),
+                        ]
+                    )
+                ]
+            ),
+        ]
 
     class ControlPanel:
         """A class representing the control panel.
