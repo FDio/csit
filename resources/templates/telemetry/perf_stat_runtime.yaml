@@ -1,0 +1,137 @@
+<<<<<<< HEAD   (2c46cb job-spec: Add wireguard test to regression)
+=======
+---
+logging:
+  version: 1
+  formatters:
+    console_stdout:
+      format: '%(asctime)s - %(name)s - %(message)s'
+    console_stderr:
+      format: '%(message)s'
+    prom:
+      format: '%(message)s'
+  handlers:
+    console_stdout:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: console_stdout
+      stream: ext://sys.stdout
+    console_stderr:
+      class: logging.StreamHandler
+      level: ERROR
+      formatter: console_stderr
+      stream: ext://sys.stderr
+    prom:
+      class: logging.handlers.RotatingFileHandler
+      level: INFO
+      formatter: prom
+      filename: /tmp/metric.prom
+      mode: w
+  loggers:
+    prom:
+      handlers: [prom]
+      level: INFO
+      propagate: False
+  root:
+    level: INFO
+    handlers: [console_stdout, console_stderr]
+scheduler:
+  duration: 1
+programs:
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: cpu_cycles
+          documentation: Cycles processed by CPUs
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events:
+      - eventcode: 0x3C # cpu-cycles
+        umask: 0x00
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: instructions
+          documentation: Instructions retired by CPUs
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events:
+      - eventcode: 0xC0 # instructions
+        umask: 0x00
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: mem_load_uops_retired_l1_hit
+          documentation: L1 Hit
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events:
+      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L1_HIT
+        umask: 0x01
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: mem_load_uops_retired_l2_hit
+          documentation: L2 Hit
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events:
+      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L2_HIT
+        umask: 0x02
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: mem_load_uops_retired_l3_hit
+          documentation: L3 Hit
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events:
+      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L3_HIT
+        umask: 0x04
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: mem_load_uops_retired_l1_miss
+          documentation: L1 Miss
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events:
+      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L1_MISS
+        umask: 0x08
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: mem_load_uops_retired_l2_miss
+          documentation: L2 Miss
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events:
+      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L2_MISS
+        umask: 0x10
+  - name: bundle_perf_stat
+    metrics:
+      counter:
+        - name: mem_load_uops_retired_l3_miss
+          documentation: L3 Miss
+          namespace: perf_stat
+          labelnames:
+            - thread
+            - pid
+    events:
+      - eventcode: 0xD1 # MEM_LOAD_UOPS_RETIRED.L3_MISS
+        umask: 0x20
+>>>>>>> CHANGE (5cd951 telemetry: small fixes)
