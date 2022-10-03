@@ -29,18 +29,11 @@ versions and SW source code, within a specific CSIT version. Components
 included in the CSIT environment versioning include:
 
 - **HW** Server hardware firmware and BIOS (motherboard, processsor,
-  NIC(s), accelerator card(s)), tracked in CSIT branch in
-  :file:`./docs/lab/<server_platform_name>_hw_bios_cfg.md`, e.g. `Xeon
-  Skylake servers
-  <https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md#n556>`_.
+  NIC(s), accelerator card(s)), tracked in CSIT branch.
 - **Linux** Server Linux OS version and configuration, tracked in CSIT
-  Reports in `SUT Settings
-  <https://s3-docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_
-  and `Pre-Test Server Calibration
-  <https://s3-docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#id21>`_.
+  Reports.
 - **TRex** TRex Traffic Generator version, drivers and configuration
-  tracked in `TG Settings
-  <https://s3-docs.fd.io/csit/master/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_.
+  tracked in TG Settings.
 - **CSIT** CSIT framework code tracked in CSIT release branches.
 
 Following is the list of CSIT versions to date:
@@ -124,3 +117,16 @@ Following is the list of CSIT versions to date:
     matrix.
   - Intel IceLake all core turbo frequency turned off. Current base frequency
     is 2.6GHz.
+
+- Ver. 11 associated with CSIT rls2210 branch (`HW
+  <https://git.fd.io/csit/tree/docs/lab?h=rls2210>`_, `Linux
+  <https://s3-docs.fd.io/csit/rls2210/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
+  `TRex
+  <https://s3-docs.fd.io/csit/rls2210/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
+  `CSIT <https://git.fd.io/csit/tree/?h=rls2210>`_).
+
+  - Intel NIC 700/800 series firmware upgrade based on DPDK compatibility
+    matrix.
+  - Mellanox 556A series firmware upgrade based on DPDK compatibility
+    matrix.
+  - Ubuntu 22.04 LTS upgrade.

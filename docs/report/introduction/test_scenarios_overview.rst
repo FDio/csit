@@ -11,9 +11,7 @@ Brief overview of test scenarios covered in this report:
 
 #. **VPP Performance**: VPP performance tests are executed in physical
    FD.io testbeds, focusing on VPP network data plane performance in
-   NIC-to-NIC switching topologies. Tested across Intel Cascadelake
-   and Skylake servers, ARM, Denverton, range of NICs (10GE, 25GE, 40GE, 100GE)
-   and multi-thread/multi-core configurations. VPP application runs in
+   NIC-to-NIC switching topologies. VPP application runs in
    bare-metal host user-mode handling NICs. TRex is used as a traffic generator.
 
 #. **VPP Vhostuser Performance with KVM VMs**: VPP VM service switching
@@ -44,8 +42,7 @@ Brief overview of test scenarios covered in this report:
 
 #. **T-Rex Performance**: T-Rex perfomance tests are executed in physical
    FD.io testbeds, focusing on T-Rex data plane performance in NIC-to-NIC
-   loopback topologies. Tested across Intel Skylake servers, range of NICs
-   (10GE) and selected traffic profiles. TRex is used as a traffic generator.
+   loopback topologies.
 
 #. **VPP Functional**: VPP functional tests are executed in virtual
    FD.io testbeds, focusing on VPP packet processing functionality,

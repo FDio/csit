@@ -33,10 +33,6 @@
 VNF Service Chains Tunnels
 ==========================
 
-.. todo::
-
-    Add introduction.
-
 Additional information about graph data:
 
 #. **Graph Title**: describes tested packet path including VNF workload

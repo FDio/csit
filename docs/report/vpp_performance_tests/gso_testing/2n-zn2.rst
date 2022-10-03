@@ -31,9 +31,6 @@
 2n-zn2
 ~~~~~~
 
-.. todo::
-    Add introduction
-
 .. raw:: latex
 
     \clearpage
