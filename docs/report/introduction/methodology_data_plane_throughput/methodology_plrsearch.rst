@@ -1,7 +1,7 @@
 .. _plrsearch:
 
 PLRsearch
-^^^^^^^^^
+---------
 
 Motivation for PLRsearch
 ~~~~~~~~~~~~~~~~~~~~~~~~

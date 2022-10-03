@@ -113,7 +113,5 @@ available for download.
 
    - **Design**: Framework modular design hierarchy.
    - **Test naming**: Test naming convention.
-   - **Presentation and Analytics Layer**: Description of PAL CSIT
-     analytics module.
    - **CSIT RF Tags Descriptions**: CSIT RF Tags used for test suite and
      test case grouping and selection.

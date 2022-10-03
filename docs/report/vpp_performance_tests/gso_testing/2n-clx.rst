@@ -31,9 +31,6 @@
 2n-clx
 ~~~~~~
 
-.. todo::
-    Add introduction
-
 .. raw:: latex
 
     \clearpage

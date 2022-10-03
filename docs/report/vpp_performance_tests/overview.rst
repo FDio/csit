@@ -269,10 +269,6 @@ topologies and configurations:
   size is set to the bi-directional link rate, unless there is a known
   limitation preventing Traffic Generator from achieving the line rate.
 
-.. todo::
-
-   - Connections per second (CPS): TODO
-
 |csit-release| includes following VPP data plane functionality
 performance tested across a range of NIC drivers and NIC models:
 
@@ -371,7 +367,7 @@ Performance Tests Naming
 ------------------------
 
 FD.io |csit-release| follows a common structured naming convention for
-all performance and system functional tests, introduced in CSIT-17.01.
+all performance and system functional tests.
 
 The naming should be intuitive for majority of the tests. Complete
 description of FD.io CSIT test naming convention is provided on

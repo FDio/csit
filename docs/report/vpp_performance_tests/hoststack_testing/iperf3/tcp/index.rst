@@ -30,9 +30,6 @@
 TCP/IP with iperf3
 ~~~~~~~~~~~~~~~~~~
 
-.. todo::
-    Add introduction
-
 .. raw:: latex
 
     \clearpage

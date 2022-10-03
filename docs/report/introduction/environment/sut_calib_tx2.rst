@@ -20,6 +20,3 @@ Linux uname
 
     $ uname -a
     Linux 5.4.0-65-generic #73-Ubuntu SMP Mon Jan 18 17:25:17 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
-
-
-.. include:: ../introduction/test_environment_sut_meltspec_tx2.rst
