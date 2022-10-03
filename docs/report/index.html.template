@@ -10,7 +10,7 @@ CSIT-2210
     introduction/test_scenarios_overview
     introduction/physical_testbeds
     introduction/methodology
-    introduction/documentation/index
+    introduction/documentation
 
 .. toctree::
     :maxdepth: 2
@@ -93,11 +93,4 @@ CSIT-2210
 
     csit_framework_documentation/csit_design
     csit_framework_documentation/csit_test_naming
-    csit_framework_documentation/pal_lld
     csit_framework_documentation/csit_tag_description
-
-.. toctree::
-    :maxdepth: 2
-    :caption: Statistics
-
-    stats/durations

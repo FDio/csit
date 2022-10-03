@@ -26,9 +26,9 @@ Two physical server topology types are used:
 Current FD.io production testbeds are built with SUT servers based on
 the following processor architectures:
 
-- Intel Xeon: Skylake Platinum 8180, Cascadelake 6252N, Icelake 8358.
-- Intel Atom: Denverton C3858.
-- Arm: TaiShan 2280, hip07-d05.
+- Intel Xeon: Cascadelake 6252N, Icelake 8358.
+- Intel Atom: Denverton C3858, Snowridge P5362.
+- Arm: TaiShan 2280, hip07-d05, Neoverse N1.
 - AMD EPYC: Zen2 7532.
 
 Server SUT performance depends on server and processor type, hence
@@ -56,6 +56,13 @@ VPP is performance tested on SUTs with the following NICs and drivers:
    - DPDK PMD.
    - AVF in PMD mode.
    - AF_XDP in PMD mode.
+#. 4p25GE: xxv710-DA4 Intel (codename Fortville, FVL)
+   - DPDK PMD.
+   - AVF in PMD mode.
+   - AF_XDP in PMD mode.
+#. 4p25GE: E822-CQDA4 Intel (codename Columbiaville, CVL)
+   - DPDK PMD.
+   - AVF in PMD mode.
 #. 2p100GE: cx556a-edat Mellanox ConnectX5
    - RDMA_core in PMD mode.
 #. 2p100GE: E810-2CQDA2 Intel (codename Columbiaville, CVL)
@@ -72,6 +79,8 @@ running on TGs and using Linux drivers for all NICs.
 
 For more information see :ref:`vpp_test_environment`
 and :ref:`dpdk_test_environment`.
+
+.. _physical_testbeds_2n_zn2:
 
 2-Node AMD EPYC Zen2 (2n-zn2)
 -----------------------------
@@ -112,6 +121,8 @@ TG NICs:
 
 All AMD EPYC Zen2 7532 servers run with AMD SMT enabled, doubling the
 number of logical cores exposed to Linux.
+
+.. _physical_testbeds_2n_clx:
 
 2-Node Xeon Cascadelake (2n-clx)
 --------------------------------
@@ -230,6 +241,8 @@ SUT and TG NICs:
 All Intel Xeon Icelake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux.
 
+.. _physical_testbeds_2n_dnv:
+
 2-Node Atom Denverton (2n-dnv)
 ------------------------------
 
@@ -271,6 +284,8 @@ TG NICs:
 #. NIC-4: x520-DA2 2p10GE Intel.
 
 The 2n-dnv testbed is in operation in Intel SH labs.
+
+.. _physical_testbeds_3n_dnv:
 
 3-Node Atom Denverton (3n-dnv)
 ------------------------------
@@ -347,6 +362,8 @@ TG NICs:
 #. NIC-3: e810-XXVDA4-4p25GE Intel.
 #. NIC-4: e810-2CQDA2-2p100GE Intel.
 
+.. _physical_testbeds_3n_tsh:
+
 3-Node ARM TaiShan (3n-tsh)
 ---------------------------
 
@@ -384,6 +401,8 @@ TG NICs:
 #. NIC-2: xxv710-DA2 2p25GE Intel.
 #. NIC-3: xl710-QDA2 2p40GE Intel.
 
+.. _physical_testbeds_2n_tx2:
+
 2-Node ARM ThunderX2 (2n-tx2)
 -----------------------------
 
@@ -418,3 +437,39 @@ SUT NICs:
 TG NICs:
 
 #. NIC-1: xl710-QDA2 2p40GE Intel.
+
+.. _physical_testbeds_3n_snr:
+
+3-Node Atom Snowridge (3n-snr)
+------------------------------
+
+One 3n-snr testbed is built with: i) one SuperMicro SYS-740GP-TNRT
+server acting as TG and equipped with two Intel Xeon Icelake Platinum
+8358 processors (48 MB Cache, 2.60 GHz, 32 cores), and ii) SUT equipped with
+one Intel Atom P5362 processor (27 MB Cache, 2.20 GHz, 24 cores). 3n-snr
+physical topology is shown below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{testbed-3n-snr}
+                \label{fig:testbed-3n-snr}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: testbed-3n-snr.svg
+        :alt: testbed-3n-snr
+        :align: center
+
+SUT1 and SUT2 NICs:
+
+#. NIC-1: e822cq-DA4 4p25GE fiber Intel.
+
+TG NICs:
+
+#. NIC-1: e810xxv-DA4 4p25GE Intel.

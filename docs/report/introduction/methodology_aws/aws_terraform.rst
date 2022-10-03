@@ -4,9 +4,7 @@ AWS Deployments
 CSIT performance testbed deployments in AWS rely on
 Infrastructure-as-a-C (IaaC) Terraform AWS providers. Terraform
 providers specified in CSIT interact with resources provided by AWS to
-orchestrate virtual environment for running CSIT performance tests. For
-more information, see
-`Terraform Registry aws <https://registry.terraform.io/providers/hashicorp/aws/latest/>`_.
+orchestrate virtual environment for running CSIT performance tests.
 
 Compatibility
 ~~~~~~~~~~~~~

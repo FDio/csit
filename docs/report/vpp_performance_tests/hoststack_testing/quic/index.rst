@@ -31,9 +31,6 @@
 QUIC/UDP/IP with vpp_echo
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. todo::
-    Add introduction
-
 .. raw:: latex
 
     \clearpage

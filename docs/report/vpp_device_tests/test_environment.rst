@@ -98,9 +98,6 @@ NIC interfaces are shared using Linux vfio_pci and VPP VF drivers:
 
 Provided Intel x710-da4 4p10GE NICs support 32 VFs per interface, 128 per NIC.
 
-Complete 1n-skx testbeds specification is available on `CSIT LF Testbeds
-<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom.>`_ wiki page.
-
 Total of two 1n-skx testbeds are in operation in FD.io labs.
 
 1-Node Virtualbox (1n-vbox)

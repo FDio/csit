@@ -80,7 +80,10 @@ rst_epilog = """
 .. _TRex driver: https://git.fd.io/csit/tree/GPL/tools/trex/trex_stl_profile.py?h={release}
 .. _CSIT Performance Tests Documentation: https://s3-docs.fd.io/csit/{release}/docs/index.html
 .. _VPP test framework documentation: https://docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
-.. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_skx_hw_bios_cfg.md?h={release}
+.. _FD.io CSIT testbeds - Atom Snowridge: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_snr_hw_bios_cfg.md?h={release}
+.. _FD.io CSIT testbeds - Atom Denverton: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_dnv_hw_bios_cfg.md?h={release}
+.. _FD.io CSIT testbeds - EPYC Zen2: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_zn2_hw_bios_cfg.md?h={release}
+.. _FD.io CSIT testbeds - Xeon Ice Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_icx_hw_bios_cfg.md?h={release}
 .. _FD.io CSIT testbeds - Xeon Cascade Lake: https://git.fd.io/csit/tree/docs/lab/testbeds_sm_clx_hw_bios_cfg.md?h={release}
 .. _Ansible inventory - hosts: https://git.fd.io/csit/tree/fdio.infra.ansible/inventories/lf_inventory/host_vars?h={release}
 .. _build logs from FD.io trex performance job 2n-aws: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-trex-perf-report-iterative-{srelease}-2n-aws

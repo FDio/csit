@@ -11,15 +11,50 @@ made public in 2018. Script is available on `Spectre & Meltdown Checker Github
   Spectre and Meltdown mitigation detection tool v0.45
 
   Checking for vulnerabilities on current system
-  Kernel is Linux 5.4.0-65-generic #73-Ubuntu SMP Mon Jan 18 17:27:25 UTC 2021 aarch64
-  CPU is ARM v8 model 0xd0c
+  Kernel is Linux 5.15.0-46-generic #49-Ubuntu SMP Thu Aug 4 18:03:25 UTC 2022 x86_64
+  CPU is Intel Atom(R) P5362 processor
 
   Hardware check
+  * Hardware support (CPU microcode) for mitigation techniques
+    * Indirect Branch Restricted Speculation (IBRS)
+      * SPEC_CTRL MSR is available: YES
+      * CPU indicates IBRS capability: YES (SPEC_CTRL feature bit)
+    * Indirect Branch Prediction Barrier (IBPB)
+      * CPU indicates IBPB capability: YES (SPEC_CTRL feature bit)
+    * Single Thread Indirect Branch Predictors (STIBP)
+      * SPEC_CTRL MSR is available: YES
+      * CPU indicates STIBP capability: YES (Intel STIBP feature bit)
+    * Speculative Store Bypass Disable (SSBD)
+      * CPU indicates SSBD capability: YES (Intel SSBD)
+    * L1 data cache invalidation
+      * CPU indicates L1D flush capability: YES (L1D flush feature bit)
+    * Microarchitectural Data Sampling
+      * VERW instruction is available: YES (MD_CLEAR feature bit)
+    * Indirect Branch Predictor Controls
+      * Indirect Predictor Disable feature is available: NO
+      * Bottomless RSB Disable feature is available: NO
+      * BHB-Focused Indirect Predictor Disable feature is available: NO
+    * Enhanced IBRS (IBRS_ALL)
+      * CPU indicates ARCH_CAPABILITIES MSR availability: YES
+      * ARCH_CAPABILITIES MSR advertises IBRS_ALL capability: YES
+    * CPU explicitly indicates not being affected by Meltdown/L1TF (RDCL_NO): YES
+    * CPU explicitly indicates not being affected by Variant 4 (SSB_NO): NO
+    * CPU/Hypervisor indicates L1D flushing is not necessary on this system: YES
+    * Hypervisor indicates host CPU might be affected by RSB underflow (RSBA): NO
+    * CPU explicitly indicates not being affected by Microarchitectural Data Sampling (MDS_NO): YES
+    * CPU explicitly indicates not being affected by TSX Asynchronous Abort (TAA_NO): NO
+    * CPU explicitly indicates not being affected by iTLB Multihit (PSCHANGE_MSC_NO): YES
+    * CPU explicitly indicates having MSR for TSX control (TSX_CTRL_MSR): NO
+    * CPU supports Transactional Synchronization Extensions (TSX): NO
+    * CPU supports Software Guard Extensions (SGX): NO
+    * CPU supports Special Register Buffer Data Sampling (SRBDS): NO
+    * CPU microcode is known to cause stability problems: NO (family 0x6 model 0x86 stepping 0x7 ucode 0x4c000019 cpuid 0x80667)
+    * CPU microcode is the latest known available version: UNKNOWN (latest microcode version for your CPU model is unknown)
   * CPU vulnerability to the speculative execution attack variants
     * Affected by CVE-2017-5753 (Spectre Variant 1, bounds check bypass): YES
-    * Affected by CVE-2017-5715 (Spectre Variant 2, branch target injection): NO
+    * Affected by CVE-2017-5715 (Spectre Variant 2, branch target injection): YES
     * Affected by CVE-2017-5754 (Variant 3, Meltdown, rogue data cache load): NO
-    * Affected by CVE-2018-3640 (Variant 3a, rogue system register read): NO
+    * Affected by CVE-2018-3640 (Variant 3a, rogue system register read): YES
     * Affected by CVE-2018-3639 (Variant 4, speculative store bypass): YES
     * Affected by CVE-2018-3615 (Foreshadow (SGX), L1 terminal fault): NO
     * Affected by CVE-2018-3620 (Foreshadow-NG (OS), L1 terminal fault): NO
@@ -29,16 +64,16 @@ made public in 2018. Script is available on `Spectre & Meltdown Checker Github
     * Affected by CVE-2018-12127 (RIDL, microarchitectural load port data sampling (MLPDS)): NO
     * Affected by CVE-2019-11091 (RIDL, microarchitectural data sampling uncacheable memory (MDSUM)): NO
     * Affected by CVE-2019-11135 (ZombieLoad V2, TSX Asynchronous Abort (TAA)): NO
-    * Affected by CVE-2018-12207 (No eXcuses, iTLB Multihit, machine check exception on page size changes (MCEPSC)): NO
+    * Affected by CVE-2018-12207 (No eXcuses, iTLB Multihit, machine check exception on page size changes (MCEPSC)): YES
     * Affected by CVE-2020-0543 (Special Register Buffer Data Sampling (SRBDS)): NO
 
   CVE-2017-5753 aka Spectre Variant 1, bounds check bypass
-  * Mitigated according to the /sys interface: YES (Mitigation: __user pointer sanitization)
-  > STATUS: UNKNOWN (/sys vulnerability interface use forced, but it's not available!)
+  * Mitigated according to the /sys interface: YES (Mitigation: usercopy/swapgs barriers and __user pointer sanitization)
+  > STATUS: UNKNOWN (/sys vulnerability interface use forced, but its not available!)
 
   CVE-2017-5715 aka Spectre Variant 2, branch target injection
-  * Mitigated according to the /sys interface: YES (Not affected)
-  > STATUS: NOT VULNERABLE (your CPU vendor reported your CPU model as not affected)
+  * Mitigated according to the /sys interface: YES (Mitigation: Enhanced IBRS, IBPB: conditional, RSB filling)
+  > STATUS: VULNERABLE (IBRS+IBPB or retpoline+IBPB is needed to mitigate the vulnerability)
 
   CVE-2017-5754 aka Variant 3, Meltdown, rogue data cache load
   * Mitigated according to the /sys interface: YES (Not affected)
@@ -46,12 +81,12 @@ made public in 2018. Script is available on `Spectre & Meltdown Checker Github
   > STATUS: NOT VULNERABLE (your CPU vendor reported your CPU model as not affected)
 
   CVE-2018-3640 aka Variant 3a, rogue system register read
-  * CPU microcode mitigates the vulnerability: NO
-  > STATUS: NOT VULNERABLE (your CPU vendor reported your CPU model as not affected)
+  * CPU microcode mitigates the vulnerability: YES
+  > STATUS: NOT VULNERABLE (your CPU microcode mitigates the vulnerability)
 
   CVE-2018-3639 aka Variant 4, speculative store bypass
-  * Mitigated according to the /sys interface: YES (Mitigation: Speculative Store Bypass disabled via prctl)
-  > STATUS: NOT VULNERABLE (Mitigation: Speculative Store Bypass disabled via prctl)
+  * Mitigated according to the /sys interface: YES (Mitigation: Speculative Store Bypass disabled via prctl and seccomp)
+  > STATUS: NOT VULNERABLE (Mitigation: Speculative Store Bypass disabled via prctl and seccomp)
 
   CVE-2018-3615 aka Foreshadow (SGX), L1 terminal fault
   * CPU microcode mitigates the vulnerability: N/A
@@ -87,10 +122,10 @@ made public in 2018. Script is available on `Spectre & Meltdown Checker Github
 
   CVE-2018-12207 aka No eXcuses, iTLB Multihit, machine check exception on page size changes (MCEPSC)
   * Mitigated according to the /sys interface: YES (Not affected)
-  > STATUS: NOT VULNERABLE (your CPU vendor reported your CPU model as not affected)
+  > STATUS: NOT VULNERABLE (Not affected)
 
   CVE-2020-0543 aka Special Register Buffer Data Sampling (SRBDS)
   * Mitigated according to the /sys interface: YES (Not affected)
   > STATUS: NOT VULNERABLE (your CPU vendor reported your CPU model as not affected)
 
-  > SUMMARY: CVE-2017-5753:?? CVE-2017-5715:OK CVE-2017-5754:OK CVE-2018-3640:OK CVE-2018-3639:OK CVE-2018-3615:OK CVE-2018-3620:OK CVE-2018-3646:OK CVE-2018-12126:OK CVE-2018-12130:OK CVE-2018-12127:OK CVE-2019-11091:OK CVE-2019-11135:OK CVE-2018-12207:OK CVE-2020-0543:OK
+  > SUMMARY: CVE-2017-5753:?? CVE-2017-5715:KO CVE-2017-5754:OK CVE-2018-3640:OK CVE-2018-3639:OK CVE-2018-3615:OK CVE-2018-3620:OK CVE-2018-3646:OK CVE-2018-12126:OK CVE-2018-12130:OK CVE-2018-12127:OK CVE-2019-11091:OK CVE-2019-11135:OK CVE-2018-12207:OK CVE-2020-0543:OK
