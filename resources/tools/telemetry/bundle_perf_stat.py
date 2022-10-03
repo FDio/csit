@@ -50,48 +50,45 @@ class BundlePerfStat:
                :param duration: Time how long perf stat is collecting data (in
                seconds). Default value is 1 second.
                :type duration: int
-               EventCode, UMask, EdgeDetect, AnyThread, Invert, CounterMask
                """
         try:
             self.serializer.create(metrics=self.metrics)
-            for event in self.events:
-                text = subprocess.getoutput(
-                    f"""sudo perf stat -x\; -e\
-                    '{{cpu/event={hex(event[u"EventCode"])},\
-                    umask={hex(event[u"UMask"])}/u}}'\
-                    -a --per-thread\
-                    sleep {duration}"""
-                )
-
-                if text == u"":
-                    getLogger("console_stdout").info(event[u"name"])
-                    continue
-                if u";" not in text:
-                    getLogger("console_stdout").info(
-                        f"Could not get counters for event \"{event[u'name']}\""
-                        f". Is it supported by CPU?"
-                    )
-                    continue
-
-                for line in text.splitlines():
-                    item = dict()
-                    labels = dict()
-                    item[u"name"] = event[u"name"]
-                    item[u"value"] = line.split(";")[1]
-                    labels["thread"] = u"-".join(
-                        line.split(";")[0].split("-")[0:-1]
-                    )
-                    labels["pid"] = line.split(";")[0].split("-")[-1]
-                    labels["name"] = item[u"name"]
-                    item[u"labels"] = labels
-
-                    getLogger("console_stdout").info(item)
-                    self.api_replies_list.append(item)
-
-        except AttributeError:
+            event = self.events[0]
+            text = subprocess.getoutput(
+                f"""sudo perf stat -x\; -e\
+                '{{cpu/event={hex(event[u"eventcode"])},\
+                umask={hex(event[u"umask"])}/u}}'\
+                -a --per-thread\
+                sleep {duration}"""
+            )
+        except subprocess.CalledProcessError:
             getLogger("console_stderr").error(f"Could not successfully run "
                                               f"perf stat command.")
             sys.exit(Constants.err_linux_perf_stat)
+
+        if text == u"":
+            getLogger("console_stdout").info(event[u"eventcode"])
+        elif text.count(u";") < 6:
+            getLogger("console_stdout").info(
+                f"Could not get counters for event "\
+                f"{event[u'eventcode']}. "\
+                f"Is it supported by CPU?"
+            )
+        else:
+            for line in text.splitlines():
+                item = dict()
+                labels = dict()
+                item[u"name"] = self.metrics['counter'][0]['name']
+                item[u"value"] = line.split(";")[1]
+                labels["thread"] = u"-".join(
+                    line.split(";")[0].split("-")[0:-1]
+                )
+                labels["pid"] = line.split(";")[0].split("-")[-1]
+                item[u"labels"] = labels
+
+                getLogger("console_stdout").info(item)
+                self.api_replies_list.append(item)
+
 
     def detach(self):
         pass
