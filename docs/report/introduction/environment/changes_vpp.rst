@@ -17,10 +17,8 @@ topology types are used:
 - **2-Node Topology**: Consisting of one server acting as SUTs and one
   server as TG both connected in ring topology.
 
-Tested SUT servers are based on a range of processors including
-Intel Xeon Icelake-SP, Intel Xeon Skylake-SP, Intel Xeon Cascade Lake-SP, Arm,
-Intel Atom. More detailed description is provided in
-:ref:`tested_physical_topologies`. Tested logical topologies are
+Tested SUT servers are based on a range of processors. More detailed description
+is provided in :ref:`tested_physical_topologies`. Tested logical topologies are
 described in :ref:`tested_logical_topologies`.
 
 Server Specifications
@@ -29,4 +27,7 @@ Server Specifications
 Complete technical specifications of compute servers used in CSIT
 physical testbeds are maintained in FD.io CSIT repository:
 `FD.io CSIT testbeds - Xeon Cascade Lake`_,
-`FD.io CSIT testbeds - Xeon Skylake, Arm, Atom`_.
+`FD.io CSIT testbeds - Xeon Ice Lake`_,
+`FD.io CSIT testbeds - EPYC Zen2`_,
+`FD.io CSIT testbeds - Atom Denverton`_,
+`FD.io CSIT testbeds - Atom Snowridge`_.

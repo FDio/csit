@@ -16,7 +16,7 @@ with zero packet loss, PLR=0) and Partial Drop Rate (PDR, with packet
 loss rate not greater than the configured non-zero PLR, currently 0.5%).
 
 MLRsearch discovers all the rates in a single pass, reducing required time
-duration compared to separate `binary search`_es for each rate. Overall
+duration compared to separate `binary search`_ for each rate. Overall
 search time is reduced even further by relying on shorter trial
 durations of intermediate steps, with only the final measurements
 conducted at the specified final trial duration. This results in the

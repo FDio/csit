@@ -5,9 +5,9 @@
 
 .. _dpdk_test_environment:
 
-.. include:: ../introduction/test_environment_intro.rst
+.. include:: ../introduction/environment/intro.rst
 
-.. include:: ../introduction/test_environment_sut_conf_1.rst
+.. include:: ../introduction/environment/sut_conf_1.rst
 
 
 DUT Settings - DPDK
@@ -47,20 +47,30 @@ Startup command template:
 
     l3fwd -v -l $$CORE_LIST -w $$INT1 -w $$INT2 --master-lcore 0 --in-memory -- --parse-ptype --eth-dest="0,${adj_mac0}" --eth-dest="1,${adj_mac1}" --config="${port_config}" [--enable-jumbo] -P -L -p 0x3
 
-.. include:: ../introduction/test_environment_tg.rst
+.. include:: ../introduction/environment/tg.rst
 
-.. include:: ../introduction/test_environment_pre_test_server_calib.rst
+.. include:: ../introduction/environment/pre_test_server_calib.rst
 
-.. include:: ../introduction/test_environment_sut_calib_icx.rst
+.. include:: ../introduction/environment/sut_calib_icx.rst
+.. include:: ../introduction/environment/sut_meltspec_icx.rst
 
-.. include:: ../introduction/test_environment_sut_calib_clx.rst
+.. include:: ../introduction/environment/sut_calib_clx.rst
+.. include:: ../introduction/environment/sut_meltspec_clx.rst
 
-.. include:: ../introduction/test_environment_sut_calib_hsw.rst
+.. include:: ../introduction/environment/sut_calib_zn2.rst
+.. include:: ../introduction/environment/sut_meltspec_zn2.rst
 
-.. include:: ../introduction/test_environment_sut_calib_dnv.rst
+.. include:: ../introduction/environment/sut_calib_dnv.rst
+.. include:: ../introduction/environment/sut_meltspec_dnv.rst
 
-.. include:: ../introduction/test_environment_sut_calib_alt.rst
+.. include:: ../introduction/environment/sut_calib_snr.rst
+.. include:: ../introduction/environment/sut_meltspec_snr.rst
 
-.. include:: ../introduction/test_environment_sut_calib_tsh.rst
+.. include:: ../introduction/environment/sut_calib_alt.rst
+.. include:: ../introduction/environment/sut_meltspec_alt.rst
 
-.. include:: ../introduction/test_environment_sut_calib_tx2.rst
+.. include:: ../introduction/environment/sut_calib_tsh.rst
+.. include:: ../introduction/environment/sut_meltspec_tsh.rst
+
+.. include:: ../introduction/environment/sut_calib_tx2.rst
+.. include:: ../introduction/environment/sut_meltspec_tx2.rst

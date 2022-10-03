@@ -5,7 +5,7 @@ NICs Comparison
 ---------------
 
 Relative comparison of VPP packet throughput (NDR, PDR and MRR) between
-NICs (measured for |csit-release) is calculated from results of tests
+NICs (measured for |csit-release|) is calculated from results of tests
 running on 3n-skx, 2n-skx testbeds.
 
 Listed mean and standard deviation values are computed based on a series

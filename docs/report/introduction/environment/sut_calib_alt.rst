@@ -20,6 +20,3 @@ Linux uname
 
     $ uname -a
     Linux s62-t34-sut1 5.4.0-65-generic #73-Ubuntu SMP Mon Jan 18 17:27:25 UTC 2021 aarch64 aarch64 aarch64 GNU/Linux
-
-
-.. include:: ../introduction/test_environment_sut_meltspec_alt.rst

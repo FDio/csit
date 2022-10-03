@@ -2,11 +2,7 @@ Ice Lake
 ~~~~~~~~
 
 Following sections include sample calibration data measured on
-s71-t212-sut1 server running in one of the Intel Xeon Ice Lake testbeds as
-specified in `FD.io CSIT testbeds - Xeon Ice Lake`_.
-
-Calibration data obtained from all other servers in Ice Lake testbeds
-shows the same or similar values.
+s71-t212-sut1 server running in one of the Intel Xeon Ice Lake testbeds.
 
 
 Linux cmdline
@@ -69,5 +65,3 @@ System-level Core Jitter
     126082,133332,7250,126094,126082,137850,3321757696,2524158804,18
     126082,133234,7152,126092,126082,137850,1270743040,2524174400,19
     126082,152552,26470,126094,126082,152552,3514695680,2524857280,20
-
-.. include:: ../introduction/test_environment_sut_meltspec_icx.rst

@@ -2,8 +2,7 @@ EPYC Zen2
 ~~~~~~~~~
 
 Following sections include sample calibration data measured on
-s60-t210-sut1 server running in one of the AMD EPYC testbeds as
-specified in `FD.io CSIT testbeds - EPYC Zen2`_.
+s60-t210-sut1 server running in one of the AMD EPYC testbeds.
 
 
 Linux cmdline
@@ -67,52 +66,3 @@ System-level Core Jitter
     116376,145848,29472,116400,116376,145848,3420061696,2365215576,18
     116376,145848,29472,116400,116376,145848,4179230720,2349971088,19
     116376,145848,29472,116400,116376,145848,643432448,2339421384,20"
-
-
-Memory Bandwidth
-^^^^^^^^^^^^^^^^
-
-::
-
-    $ sudo /home/testuser/mlc --bandwidth_matrix
-    TBC
-
-::
-
-    $ sudo /home/testuser/mlc --peak_injection_bandwidth
-    TBC
-
-::
-
-    $ sudo /home/testuser/mlc --max_bandwidth
-    TBC
-
-
-Memory Latency
-^^^^^^^^^^^^^^
-
-::
-
-    $ sudo /home/testuser/mlc --latency_matrix
-    TBC
-
-::
-
-    $ sudo /home/testuser/mlc --idle_latency
-    TBC
-
-::
-
-    $ sudo /home/testuser/mlc --loaded_latency
-    TBC
-
-
-L1/L2/LLC Latency
-^^^^^^^^^^^^^^^^^
-
-::
-
-    $ sudo /home/testuser/mlc --c2c_latency
-    TBC
-
-.. include:: ../introduction/test_environment_sut_meltspec_zn2.rst
