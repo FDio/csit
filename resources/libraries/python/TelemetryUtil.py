@@ -121,10 +121,6 @@ class TelemetryUtil:
             f"{stdout}"
         )
 
-        VppCounters.vpp_clear_runtime(node)
-        sleep(1)
-        VppCounters.vpp_show_runtime(node)
-
     @staticmethod
     def run_telemetry_on_all_duts(nodes, profile):
         """Get telemetry stat read on all DUTs.
