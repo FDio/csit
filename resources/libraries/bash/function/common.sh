@@ -429,6 +429,7 @@ function get_test_code () {
     if [[ -z "${TEST_CODE}" ]]; then
         TEST_CODE="${JOB_NAME-}" || die "Reading job name failed, somehow."
     fi
+    export TEST_CODE
 
     case "${TEST_CODE}" in
         *"1n-vbox"*)

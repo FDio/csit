@@ -269,6 +269,10 @@ class Constants:
     # This constant [s] allows longer wait, without affecting
     # the approximate duration. For example, use 0.098 for AWS.
     PERF_TRIAL_STL_DELAY = get_float_from_env(u"PERF_TRIAL_STL_DELAY", 0.0)
+    TEST_CODE = get_str_from_env(u"TEST_CODE", "")
+    PERF_TRIAL_STL_DELAY_SNR = get_float_from_env(
+        u"PERF_TRIAL_STL_DELAY_SNR", PERF_TRIAL_STL_DELAY + 0.2
+    )
 
     # ASTF usually needs a different value for the delay.
     PERF_TRIAL_ASTF_DELAY = get_float_from_env(

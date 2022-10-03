@@ -815,7 +815,13 @@ class TrafficGenerator(AbstractMeasurer):
         command_line.add_if(u"async_start", async_call)
         command_line.add_if(u"latency", self.use_latency)
         command_line.add_if(u"force", Constants.TREX_SEND_FORCE)
-        command_line.add_with_value(u"delay", Constants.PERF_TRIAL_STL_DELAY)
+        if not Constants.TEST_CODE:
+            raise RuntimeError("Test code not known.")
+        if u"snr" in Constants.TEST_CODE:
+            delay = Constants.PERF_TRIAL_STL_DELAY_SNR
+        else:
+            delay = Constants.PERF_TRIAL_STL_DELAY
+        command_line.add_with_value(u"delay", delay)
 
         # TODO: This is ugly. Handle parsing better.
         self._start_time = time.monotonic()
