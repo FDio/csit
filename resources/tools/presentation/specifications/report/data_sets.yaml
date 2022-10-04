@@ -298,14 +298,14 @@
 
   vpp-2n-clx-curr-soak:
     csit-vpp-perf-report-iterative-2210-2n-clx:
-      - 20  # rls2210.rc1 soak env 11
+      - 21  # rls2210.rc1 soak env 11
   vpp-soak-vs-ndr-2n-clx-ref:
     csit-vpp-perf-report-iterative-2210-2n-clx:
       - 15  # rls2210.rc1 NDRPDR iter env 11
   vpp-soak-vs-ndr-2n-clx:
     csit-vpp-perf-report-iterative-2210-2n-clx:
       - 15  # rls2210.rc1 NDRPDR iter env 11
-      - 20  # rls2210.rc1 soak env 11
+      - 21  # rls2210.rc1 soak env 11
 
   vpp-2n-clx-curr-cov:
     # csit-vpp-perf-report-coverage-2210-2n-clx:
@@ -824,14 +824,14 @@
 
   vpp-2n-icx-curr-soak:
     csit-vpp-perf-report-iterative-2210-2n-icx:
-      - 24  # rls2210.rc1 soak env 11
+      - 25  # rls2210.rc1 soak env 11
   vpp-soak-vs-ndr-2n-icx-ref:
     csit-vpp-perf-report-iterative-2210-2n-icx:
       - 19  # rls2210.rc1 NDRPDR iter env 11
   vpp-soak-vs-ndr-2n-icx:
     csit-vpp-perf-report-iterative-2210-2n-icx:
       - 19  # rls2210.rc1 NDRPDR iter env 11
-      - 24  # rls2210.rc1 soak env 11
+      - 25  # rls2210.rc1 soak env 11
 
   vpp-2n-icx-curr-iter-gso:
     csit-vpp-perf-report-iterative-2210-2n-icx:
