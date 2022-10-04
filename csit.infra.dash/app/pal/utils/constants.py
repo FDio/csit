@@ -35,18 +35,11 @@ class Constants:
     LOG_DATE_FORMAT = "%Y/%m/%d %H:%M:%S"
 
     # The application title.
-    TITLE = "FD.io CSIT"
-    BRAND = "CSIT-Dash"
+    TITLE = "FD.io CDash"
+    BRAND = "CDash"
 
     # The application description.
-    DESCRIPTION = 'Performance Dashboard "CSIT-Dash"'
-
-    # Copyright statement.
-    COPYRIGHT = (
-        'Copyright © 2016-2022 '
-        '<a href="https://fd.io" class="text-white">The Fast Data Project</a>, '
-        'a series of LF Projects, LLC.'
-    )
+    DESCRIPTION = "Performance Dashboard"
 
     # External stylesheets.
     EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
@@ -80,7 +73,7 @@ class Constants:
     # List of releases used for iterative data processing.
     # The releases MUST be in the order from the current (newest) to the last
     # (oldest).
-    RELEASES = ["csit2210", "csit2206", "csit2202", ]
+    RELEASES = ["csit2206", "csit2202", ]
 
     ############################################################################
     # General, application wide, layout affecting constants.
@@ -255,9 +248,6 @@ class Constants:
     ############################################################################
     # News.
 
-    # The title.
-    NEWS_TITLE = "CI TEST FAILURE AND ANOMALY STATISTICS"
-
     # The pathname prefix for the application.
     NEWS_ROUTES_PATHNAME_PREFIX = "/news/"
 
@@ -276,9 +266,6 @@ class Constants:
     ############################################################################
     # Report.
 
-    # The title.
-    REPORT_TITLE = "PER RELEASE PERFORMANCE RESULTS"
-
     # The pathname prefix for the application.
     REPORT_ROUTES_PATHNAME_PREFIX = "/report/"
 
@@ -294,9 +281,6 @@ class Constants:
 
     ############################################################################
     # Statistics.
-
-    # The title.
-    STATS_TITLE = "CI JOB EXECUTION STATISTICS"
 
     # The pathname prefix for the application.
     STATS_ROUTES_PATHNAME_PREFIX = "/stats/"
@@ -316,9 +300,6 @@ class Constants:
 
     ############################################################################
     # Trending.
-
-    # The title.
-    TREND_TITLE = "PERFORMANCE TRENDING (DAILY, WEEKLY)"
 
     # The pathname prefix for the application.
     TREND_ROUTES_PATHNAME_PREFIX = "/trending/"
