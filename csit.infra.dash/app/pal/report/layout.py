@@ -291,7 +291,7 @@ class Layout:
             children=[
                 dbc.NavItem(
                     dbc.NavLink(
-                        "Iterative Test Runs",
+                        C.REPORT_TITLE,
                         disabled=True,
                         external_link=True,
                         href="#"
