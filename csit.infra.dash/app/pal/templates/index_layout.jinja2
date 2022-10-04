@@ -5,7 +5,7 @@
 
   <header class="mb-auto">
     <div>
-      <h3 class="float-md-start mb-0 text-white">CDash</h3>
+      <h3 class="float-md-start mb-0 text-white">CSIT-Dash</h3>
     </div>
   </header>
 
@@ -14,21 +14,21 @@
     <h1 class="text-white">{{ title }}</h1>
     <p class="lead">{{ description }}</p>
     <p class="lead">
-      <a href="/trending/" class="btn btn-primary fw-bold">Performance Trending</a>
+      <a href="/trending/" class="btn btn-primary fw-bold">{{ trending_title }}</a>
     </p>
     <p class="lead">
-      <a href="/report/" class="btn btn-primary fw-bold">Iterative Test Runs</a>
+      <a href="/report/" class="btn btn-primary fw-bold">{{ report_title }}</a>
     </p>
     <p class="lead">
-      <a href="/stats/" class="btn btn-primary fw-bold">Job Statistics</a>
+      <a href="/stats/" class="btn btn-primary fw-bold">{{ stats_title }}</a>
     </p>
     <p class="lead">
-      <a href="/news/" class="btn btn-primary fw-bold">News</a>
+      <a href="/news/" class="btn btn-primary fw-bold">{{ news_title }}</a>
     </p>
   </main>
 
   <footer class="mt-auto text-white-50">
-    <p>Copyright © 2016-2022 <a href="https://fd.io" class="text-white">The Fast Data Project</a>, a series of LF Projects, LLC.</p>
+    <p>{{ copyright }}</p>
   </footer>
 </div>
 {% endblock %}
