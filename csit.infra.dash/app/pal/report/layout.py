@@ -162,8 +162,7 @@ class Layout:
 
         try:
             with open(self._html_layout_file, "r") as file_read:
-                self._html_layout = file_read.read().\
-                    replace("_title_", C.REPORT_TITLE)
+                self._html_layout = file_read.read()
         except IOError as err:
             raise RuntimeError(
                 f"Not possible to open the file {self._html_layout_file}\n{err}"
@@ -292,7 +291,7 @@ class Layout:
             children=[
                 dbc.NavItem(
                     dbc.NavLink(
-                        C.REPORT_TITLE,
+                        "Iterative Test Runs",
                         disabled=True,
                         external_link=True,
                         href="#"
