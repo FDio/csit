@@ -1,26 +1,25 @@
 ---
 # file: roles/trex/defaults/main.yaml
 
-packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower][ansible_distribution_release] + packages_by_arch[ansible_machine] }}"
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower] + packages_by_arch[ansible_machine] }}"
 
 packages_base:
   - []
 
 packages_by_distro:
   ubuntu:
-    jammy:
-      - "build-essential"
-      - "gcc-9"
-      - "g++-9"
-      - "libmnl-dev"
-      - "libnuma-dev"
-      - "libpcap-dev"
-      - "librdmacm-dev"
-      - "librdmacm1"
-      - "libssl-dev"
-      - "pciutils"
-      - "python3-pip"
-      - "zlib1g-dev"
+    - "build-essential"
+    - "gcc-9"
+    - "g++-9"
+    - "libmnl-dev"
+    - "libnuma-dev"
+    - "libpcap-dev"
+    - "librdmacm-dev"
+    - "librdmacm1"
+    - "libssl-dev"
+    - "pciutils"
+    - "python3-pip"
+    - "zlib1g-dev"
 
 packages_by_arch:
   aarch64:
@@ -31,4 +30,4 @@ packages_by_arch:
 trex_target_dir: "/opt"
 trex_url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 trex_version:
-  - "2.97"
+  - "3.00"

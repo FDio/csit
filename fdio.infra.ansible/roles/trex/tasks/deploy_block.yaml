@@ -32,10 +32,12 @@
 
 - name: Reset gcc-9
   ansible.builtin.command: "update-alternatives --remove-all gcc"
+  ignore_errors: true
   when: trex_extracted.changed
 
 - name: Reset g++-9
   ansible.builtin.command: "update-alternatives --remove-all g++"
+  ignore_errors: true
   when: trex_extracted.changed
 
 - name: Switch to gcc-9
