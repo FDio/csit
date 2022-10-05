@@ -6058,8 +6058,8 @@
   data: "vpp-2n-icx-curr-soak"
   include:
     - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Soak.64B-2t1c-avf-eth-l2xcbase-soak"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-soak"
     - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Soak.64B-2t1c-eth-l2xcbase-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-soak"
     - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-eth-l2bdbasemaclrn-soak"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Soak.64B-2t1c-avf-ethip4-ip4base-soak"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Soak.64B-2t1c-ethip4-ip4base-soak"
@@ -6094,8 +6094,8 @@
   data: "vpp-2n-clx-curr-soak"
   include:
     - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Xcbase-Soak.64B-2t1c-avf-eth-l2xcbase-soak"
-    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-soak"
     - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Soak.64B-2t1c-eth-l2xcbase-soak"
+    - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Avf-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-avf-eth-l2bdbasemaclrn-soak"
     - "Tests.Vpp.Perf.L2.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Soak.64B-2t1c-eth-l2bdbasemaclrn-soak"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Soak.64B-2t1c-avf-ethip4-ip4base-soak"
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Soak.64B-2t1c-ethip4-ip4base-soak"
