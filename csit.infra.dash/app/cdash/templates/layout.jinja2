@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>{{ title }}</title>
+  <meta property="og:site_name" content="{{ title }}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="{{ title }}"/>
+  <meta property="og:description" content="{{ description }}"/>
+  <meta property="og:url" content="https://csit.fd.io/"/>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- Bootstrap core CSS -->
+{% assets "sass_all" %}
+  <link rel="stylesheet" href="{{ ASSET_URL }}" /></script>
+{% endassets %}
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='dist/img/favicon.svg') }}" type="image/x-icon" />
+</head>
+<body class="{{template}}">
+	{% block content %}{% endblock %}
+</body>
+</html>

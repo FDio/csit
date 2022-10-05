@@ -290,10 +290,6 @@ class Constants:
     # The pathname prefix for the application.
     STATS_ROUTES_PATHNAME_PREFIX = "/stats/"
 
-    # Path and name of the file specifying the HTML layout of the dash
-    # application.
-    STATS_HTML_LAYOUT_FILE = "cdash/templates/stats_layout.jinja2"
-
     # Layout of plot.ly graphs.
     STATS_GRAPH_LAYOUT_FILE = "cdash/stats/layout.yaml"
 
@@ -311,10 +307,6 @@ class Constants:
 
     # The pathname prefix for the application.
     TREND_ROUTES_PATHNAME_PREFIX = "/trending/"
-
-    # Path and name of the file specifying the HTML layout of the dash
-    # application.
-    TREND_HTML_LAYOUT_FILE = "cdash/templates/trending_layout.jinja2"
 
     # Layout of plot.ly graphs.
     TREND_GRAPH_LAYOUT_FILE = "cdash/trending/layout.yaml"
