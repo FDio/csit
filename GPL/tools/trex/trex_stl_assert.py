@@ -38,7 +38,7 @@ Functionality:
 import sys
 
 sys.path.insert(
-    0, u"/opt/trex-core-2.97/scripts/automation/trex_control_plane/interactive/"
+    0, u"/opt/trex-core-3.00/scripts/automation/trex_control_plane/interactive/"
 )
 from trex.stl.api import STLClient, STLError
 
