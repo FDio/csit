@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-icx-perftest ndrpdrANDnic_intel-xxv710ANDethip4-ip4base-l3fwdANDdrv_vfio_pciAND64bAND1c",
       "revId": "820a6b884ab6130a55937fb8e6bec7ef5a01c47f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "190494ee_3172bcf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-10-05T08:07:10Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-alt-perftest ndrpdrANDnic_intel-xl710ANDethip4-ip4base-l3fwdANDdrv_vfio_pciAND64bAND1c",
+      "revId": "820a6b884ab6130a55937fb8e6bec7ef5a01c47f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
