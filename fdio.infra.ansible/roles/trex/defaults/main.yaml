@@ -31,4 +31,4 @@ packages_by_arch:
 trex_target_dir: "/opt"
 trex_url: "https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 trex_version:
-  - "2.97"
+  - "3.00"
