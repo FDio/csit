@@ -31,7 +31,8 @@ def init_report(server, releases):
     dash_app = dash.Dash(
         server=server,
         routes_pathname_prefix=C.REPORT_ROUTES_PATHNAME_PREFIX,
-        external_stylesheets=C.EXTERNAL_STYLESHEETS
+        external_stylesheets=C.EXTERNAL_STYLESHEETS,
+        title=C.REPORT_TITLE
     )
 
     layout = Layout(

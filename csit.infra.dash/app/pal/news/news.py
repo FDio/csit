@@ -31,7 +31,8 @@ def init_news(server):
     dash_app = dash.Dash(
         server=server,
         routes_pathname_prefix=C.NEWS_ROUTES_PATHNAME_PREFIX,
-        external_stylesheets=C.EXTERNAL_STYLESHEETS
+        external_stylesheets=C.EXTERNAL_STYLESHEETS,
+        title=C.NEWS_TITLE
     )
 
     layout = Layout(

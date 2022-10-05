@@ -298,7 +298,7 @@ class Layout:
             children=[
                 dbc.NavItem(
                     dbc.NavLink(
-                        "Continuous Performance Trending",
+                        C.TREND_TITLE,
                         disabled=True,
                         external_link=True,
                         href="#"

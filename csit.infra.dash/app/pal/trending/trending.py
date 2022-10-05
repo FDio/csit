@@ -31,7 +31,8 @@ def init_trending(server, time_period=None):
     dash_app = dash.Dash(
         server=server,
         routes_pathname_prefix=C.TREND_ROUTES_PATHNAME_PREFIX,
-        external_stylesheets=C.EXTERNAL_STYLESHEETS
+        external_stylesheets=C.EXTERNAL_STYLESHEETS,
+        title=C.TREND_TITLE
     )
 
     layout = Layout(
