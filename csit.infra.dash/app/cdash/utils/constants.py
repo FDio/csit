@@ -49,7 +49,7 @@ class Constants:
 
     # Path and name of the file specifying the HTML layout of the dash
     # application.
-    MAIN_HTML_LAYOUT_FILE = "index_layout.jinja2"
+    MAIN_HTML_LAYOUT_FILE = "base_layout.jinja2"
 
     # Path and name of the file specifying the HTML layout of the dash
     # application.
