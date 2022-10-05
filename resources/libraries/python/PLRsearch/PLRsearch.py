@@ -628,7 +628,7 @@ class PLRsearch:
             )
             return boss_pipe_end
 
-        erf_pipe = start_computing(self.lfit_erf, erf_focus_tracker)
+#        erf_pipe = start_computing(self.lfit_erf, erf_focus_tracker)
         stretch_pipe = start_computing(self.lfit_stretch, stretch_focus_tracker)
 
         # Measurement phase.
@@ -683,8 +683,8 @@ class PLRsearch:
             return _PartialResult(value_tracker, focus_tracker, sampls)
 
         stretch_result = stop_computing(u"stretch", stretch_pipe)
-        erf_result = stop_computing(u"erf", erf_pipe)
-        result = PLRsearch._get_result(measurement, stretch_result, erf_result)
+#        erf_result = stop_computing(u"erf", erf_pipe)
+        result = PLRsearch._get_result(measurement, stretch_result, stretch_result)
         logging.info(
             f"measure_and_compute finished with trial result "
             f"{result.measurement!r} avg {result.avg!r} stdev {result.stdev!r} "
