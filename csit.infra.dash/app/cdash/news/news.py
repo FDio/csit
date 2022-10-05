@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Instantiate the Statistics Dash application.
+"""Instantiate the News Dash application.
 """
 import dash
 
@@ -19,7 +19,7 @@ from ..utils.constants import Constants as C
 from .layout import Layout
 
 
-def init_stats(server, time_period=None):
+def init_news(server):
     """Create a Plotly Dash dashboard.
 
     :param server: Flask server.
@@ -30,18 +30,16 @@ def init_stats(server, time_period=None):
 
     dash_app = dash.Dash(
         server=server,
-        routes_pathname_prefix=C.STATS_ROUTES_PATHNAME_PREFIX,
+        routes_pathname_prefix=C.NEWS_ROUTES_PATHNAME_PREFIX,
         external_stylesheets=C.EXTERNAL_STYLESHEETS,
-        title=C.STATS_TITLE
+        title=C.NEWS_TITLE
     )
 
     layout = Layout(
         app=dash_app,
-        html_layout_file=C.STATS_HTML_LAYOUT_FILE,
-        graph_layout_file=C.STATS_GRAPH_LAYOUT_FILE,
+        html_layout_file=C.HTML_LAYOUT_FILE,
         data_spec_file=C.DATA_SPEC_FILE,
         tooltip_file=C.TOOLTIP_FILE,
-        time_period=time_period
     )
     dash_app.index_string = layout.html_layout
     dash_app.layout = layout.add_content()

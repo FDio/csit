@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Constants used in Dash PAL.
+"""Constants used in CDash.
 
 "Constant" means a value that keeps its value since initialization. The value
 does not need to be hard coded here, but can be read from environment variables.
@@ -23,7 +23,7 @@ from dash import html
 
 
 class Constants:
-    """Constants used in Dash PAL.
+    """Constants used in CDash.
     """
 
     ############################################################################
@@ -41,13 +41,6 @@ class Constants:
     # The application description.
     DESCRIPTION = 'Performance Dashboard "CSIT-Dash"'
 
-    # Copyright statement.
-    COPYRIGHT = (
-        'Copyright © 2016-2022 '
-        '<a href="https://fd.io" class="text-white">The Fast Data Project</a>, '
-        'a series of LF Projects, LLC.'
-    )
-
     # External stylesheets.
     EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
 
@@ -58,14 +51,18 @@ class Constants:
     # application.
     MAIN_HTML_LAYOUT_FILE = "index_layout.jinja2"
 
+    # Path and name of the file specifying the HTML layout of the dash
+    # application.
+    HTML_LAYOUT_FILE = "cdash/templates/dash_layout.jinja2"
+
     # Application root.
     APPLICATIN_ROOT = "/"
 
     # Data to be downloaded from the parquets specification file.
-    DATA_SPEC_FILE = "pal/data/data.yaml"
+    DATA_SPEC_FILE = "cdash/data/data.yaml"
 
     # The file with tooltips.
-    TOOLTIP_FILE = "pal/utils/tooltips.yaml"
+    TOOLTIP_FILE = "cdash/utils/tooltips.yaml"
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
@@ -261,10 +258,6 @@ class Constants:
     # The pathname prefix for the application.
     NEWS_ROUTES_PATHNAME_PREFIX = "/news/"
 
-    # Path and name of the file specifying the HTML layout of the dash
-    # application.
-    NEWS_HTML_LAYOUT_FILE = "pal/templates/news_layout.jinja2"
-
     # Time period for regressions and progressions.
     NEWS_TIME_PERIOD = TIME_PERIOD  # [days]
 
@@ -282,12 +275,8 @@ class Constants:
     # The pathname prefix for the application.
     REPORT_ROUTES_PATHNAME_PREFIX = "/report/"
 
-    # Path and name of the file specifying the HTML layout of the dash
-    # application.
-    REPORT_HTML_LAYOUT_FILE = "pal/templates/report_layout.jinja2"
-
     # Layout of plot.ly graphs.
-    REPORT_GRAPH_LAYOUT_FILE = "pal/report/layout.yaml"
+    REPORT_GRAPH_LAYOUT_FILE = "cdash/report/layout.yaml"
 
     # Default name of downloaded file with selected data.
     REPORT_DOWNLOAD_FILE_NAME = "iterative_data.csv"
@@ -303,10 +292,10 @@ class Constants:
 
     # Path and name of the file specifying the HTML layout of the dash
     # application.
-    STATS_HTML_LAYOUT_FILE = "pal/templates/stats_layout.jinja2"
+    STATS_HTML_LAYOUT_FILE = "cdash/templates/stats_layout.jinja2"
 
     # Layout of plot.ly graphs.
-    STATS_GRAPH_LAYOUT_FILE = "pal/stats/layout.yaml"
+    STATS_GRAPH_LAYOUT_FILE = "cdash/stats/layout.yaml"
 
     # The default job displayed when the page is loaded first time.
     STATS_DEFAULT_JOB = "csit-vpp-perf-mrr-daily-master-2n-icx"
@@ -325,10 +314,10 @@ class Constants:
 
     # Path and name of the file specifying the HTML layout of the dash
     # application.
-    TREND_HTML_LAYOUT_FILE = "pal/templates/trending_layout.jinja2"
+    TREND_HTML_LAYOUT_FILE = "cdash/templates/trending_layout.jinja2"
 
     # Layout of plot.ly graphs.
-    TREND_GRAPH_LAYOUT_FILE = "pal/trending/layout.yaml"
+    TREND_GRAPH_LAYOUT_FILE = "cdash/trending/layout.yaml"
 
     # Default name of downloaded file with selected data.
     TREND_DOWNLOAD_FILE_NAME = "trending_data.csv"

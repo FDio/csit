@@ -12,7 +12,7 @@
 # limitations under the License.
 
 
-from pal import app
+from cdash import app
 
 
 if __name__ == "__main__":
