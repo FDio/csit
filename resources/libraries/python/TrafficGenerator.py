@@ -344,7 +344,7 @@ class TrafficGenerator(AbstractMeasurer):
                 if1[u"adj_addr"] = tg_if1_dst_mac
                 if2[u"adj_addr"] = tg_if2_dst_mac
 
-            if min(if1[u"pci"], if2[u"pci"]) != if1[u"pci"]:
+            if min(if1[u"pci"], if2[u"pci"]) == if1[u"pci"]:
                 if1, if2 = if2, if1
                 self._ifaces_reordered = True
 
