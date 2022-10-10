@@ -16,6 +16,23 @@
       "message": "csit-3n-snr-perftest mrrANDnic_intel-e822cqANDdrv_vfio_pci",
       "revId": "495ba84784080e9e8106e7b83f8e8efe377aa3f6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbf05c47_0204c549",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-10-10T13:08:02Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-snr-perftest vpp-mrr-00",
+      "revId": "495ba84784080e9e8106e7b83f8e8efe377aa3f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
