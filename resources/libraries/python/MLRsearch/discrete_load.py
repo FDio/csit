@@ -27,7 +27,6 @@ class DiscreteLoad:
     """Structure to store load value together with its rounded integer form.
 
     LoadRounding instance is needed to enable conversion between two forms.
-    (BaseLoadRounding would suffice, but LoadRounding is more convenient.)
     Conversion methods and factories are added for convenience.
 
     In general, the int form is allowed to differ from conversion from int.
@@ -56,7 +55,7 @@ class DiscreteLoad:
         based on its additional information.
         """
         if self.float_load is None and self.int_load is None:
-            raise RuntimeError(u"Float or int value is needed.")
+            raise RuntimeError("Float or int value is needed.")
         if self.float_load is None:
             self.int_load = int(self.int_load)
             self.float_load = self.rounding.int2float(self.int_load)
@@ -99,6 +98,7 @@ class DiscreteLoad:
         :returns: Factory to use when converting from int.
         :rtype: Callable[[int], DiscreteLoad]
         """
+
         def factory_int(int_load: int) -> DiscreteLoad:
             """Use rounding and int load to create discrete load.
 
@@ -108,6 +108,7 @@ class DiscreteLoad:
             :rtype: DiscreteLoad
             """
             return DiscreteLoad(rounding=rounding, int_load=int_load)
+
         return factory_int
 
     @staticmethod
@@ -119,6 +120,7 @@ class DiscreteLoad:
         :returns: Factory to use when converting from float.
         :rtype: Callable[[float], DiscreteLoad]
         """
+
         def factory_float(float_load: float) -> DiscreteLoad:
             """Use rounding and float load to create discrete load.
 
@@ -128,6 +130,7 @@ class DiscreteLoad:
             :rtype: DiscreteLoad
             """
             return DiscreteLoad(rounding=rounding, float_load=float_load)
+
         return factory_float
 
     def __add__(self, width: DiscreteWidth) -> DiscreteLoad:
