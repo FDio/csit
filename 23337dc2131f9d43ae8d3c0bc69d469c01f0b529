@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b185a44e_ea0f2a8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-10-14T13:02:05Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest soak-00\ncsit-vpp-report-iter-2n-clx-perftest soak-00",
+      "revId": "23337dc2131f9d43ae8d3c0bc69d469c01f0b529",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
