@@ -89,8 +89,8 @@ class MeasurementResult:
             self.offered_duration = float(self.offered_duration)
         self.intended_load = float(self.intended_load)
         if self.forwarding_count is None:
-            self.forwarding_count = (
-                int(self.offered_count) - int(self.loss_count)
+            self.forwarding_count = int(self.offered_count) - int(
+                self.loss_count
             )
         else:
             self.forwarding_count = int(self.forwarding_count)
