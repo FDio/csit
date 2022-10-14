@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cc53988_dd40caaf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-14T14:21:48Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest ndrpdrANDnic_intel-xxv710ANDdrv_avfAND4cAND64bANDeth-l2bdbasemaclrn-eth-2memif-1dcr ndrpdrANDnic_intel-xxv710ANDdrv_avfAND4cAND100bANDethip4tcp-nat44ed-h65536-p63-s4128768-tput ndrpdrANDnic_intel-xxv710ANDdrv_avfAND1cAND64bANDethip4udp-nat44det-h65536-p63-s4128758 ndrpdrANDnic_intel-xxv710ANDdrv_avfAND2cAND64bANDethip4-ip4scale20k ndrpdrANDnic_intel-xxv710ANDdrv_avfAND2cAND78bANDethip6-ip6scale2m-rnd ndrpdrANDnic_intel-xxv710ANDdrv_avfAND2cAND64bANDeth-l2bdscale100kmaclrn ndrpdrANDnic_intel-xxv710ANDdrv_avfAND2cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
+      "revId": "aa65a3ba26ea7ec3b07aa0102b7ee3f68f6c8903",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
