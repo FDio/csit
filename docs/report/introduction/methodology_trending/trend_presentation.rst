@@ -8,7 +8,7 @@ The Failed tests tables list the tests which failed during the last test run.
 Separate tables are generated for each testbed.
 
 Regressions and progressions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 These tables list tests which encountered a regression or progression during the
 specified time period, which is currently set to the last 21 days.

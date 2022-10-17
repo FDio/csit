@@ -22,7 +22,7 @@ Implementation details
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Partitioning into groups
-------------------------
+````````````````````````
 
 While sometimes the samples within a group are far from being distributed
 normally, currently we do not have a better tractable model.
@@ -39,7 +39,7 @@ results).
 The group boundaries are selected based on `Minimum Description Length`_.
 
 Minimum Description Length
---------------------------
+``````````````````````````
 
 `Minimum Description Length`_ (MDL) is a particular formalization
 of `Occam's razor`_ principle.
@@ -103,7 +103,7 @@ We are going to describe the behaviors,
 as they motivate our choice of trend compliance metrics.
 
 Sample time and analysis time
------------------------------
+`````````````````````````````
 
 But first we need to distinguish two roles time plays in analysis,
 so it is more clear which role we are referring to.
@@ -132,7 +132,7 @@ so the values reported there are likely to be different
 from the later analysis time results shown in dashboard and graphs.
 
 Ordinary regression
--------------------
+```````````````````
 
 The real performance changes from previously stable value
 into a new stable value.
@@ -143,7 +143,7 @@ is enough for anomaly detection to mark this regression.
 Ordinary progressions are detected in the same way.
 
 Small regression
-----------------
+````````````````
 
 The real performance changes from previously stable value
 into a new stable value, but the difference is small.
@@ -162,7 +162,7 @@ is still not enough for the detection).
 Small progressions have the same behavior.
 
 Reverted regression
--------------------
+```````````````````
 
 This pattern can have two different causes.
 We would like to distinguish them, but that is usually
@@ -196,7 +196,7 @@ to increase performance, the opposite (temporary progression)
 almost never happens.
 
 Summary
--------
+```````
 
 There is a trade-off between detecting small regressions
 and not reporting the same old regressions for a long time.

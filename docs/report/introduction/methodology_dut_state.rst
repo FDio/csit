@@ -1,5 +1,5 @@
 DUT state considerations
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 This page discusses considerations for Device Under Test (DUT) state.
 DUTs such as VPP require configuration, to be provided before the aplication
@@ -42,7 +42,7 @@ As the performance is different, each test has to choose which traffic
 it wants to test, and manipulate the DUT state to achieve the intended impact.
 
 Ramp-up trial
-_____________
+`````````````
 
 Tests aiming at sustain performance need to make sure DUT state is created.
 We achieve this via a ramp-up trial, specific purpose of which
@@ -67,7 +67,7 @@ it has been created as expected.
 Test fails if the state is not (completely) created.
 
 State Reset
-___________
+```````````
 
 Tests aiming at ramp-up performance do not use ramp-up trial,
 and they need to reset the DUT state before each trial measurement.
@@ -94,7 +94,7 @@ If neither were used, DUT will show different performance in subsequent trials,
 violating assumptions of search algorithms.
 
 DUT versus protocol ramp-up
-___________________________
+```````````````````````````
 
 There are at least three different causes for bandwidth possibly increasing
 within a single measurement trial.

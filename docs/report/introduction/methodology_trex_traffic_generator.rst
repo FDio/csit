@@ -1,5 +1,5 @@
 TRex Traffic Generator
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 Usage
 ~~~~~
@@ -18,7 +18,7 @@ Traffic modes
 TRex is primarily used in two (mutually incompatible) modes.
 
 Stateless mode
-______________
+``````````````
 
 Sometimes abbreviated as STL.
 A mode with high performance, which is unable to react to incoming traffic.
@@ -32,7 +32,7 @@ Measurement results are based on simple L2 counters
 (opackets, ipackets) for each traffic direction.
 
 Stateful mode
-_____________
+`````````````
 
 A mode capable of reacting to incoming traffic.
 Contrary to the stateless mode, only UDP and TCP is supported
@@ -57,7 +57,7 @@ Generated traffic is either continuous, or limited (by number of transactions).
 Both modes support both continuities in principle.
 
 Continuous traffic
-__________________
+``````````````````
 
 Traffic is started without any data size goal.
 Traffic is ended based on time duration, as hinted by search algorithm.
@@ -65,7 +65,7 @@ This is useful when DUT behavior does not depend on the traffic duration.
 The default for stateless mode.
 
 Limited traffic
-_______________
+```````````````
 
 Traffic has defined data size goal (given as number of transactions),
 duration is computed based on this goal.
@@ -83,14 +83,14 @@ Traffic can be generated synchronously (test waits for duration)
 or asynchronously (test operates during traffic and stops traffic explicitly).
 
 Synchronous traffic
-___________________
+```````````````````
 
 Trial measurement is driven by given (or precomputed) duration,
 no activity from test driver during the traffic.
 Used for most trials.
 
 Asynchronous traffic
-____________________
+````````````````````
 
 Traffic is started, but then the test driver is free to perform
 other actions, before stopping the traffic explicitly.
@@ -109,7 +109,7 @@ Search algorithms are intentionally unaware of the traffic mode used,
 so CSIT defines some terms to use instead of mode-specific TRex terms.
 
 Transactions
-____________
+````````````
 
 TRex traffic profile defines a small number of behaviors,
 in CSIT called transaction templates. Traffic profiles also instruct
@@ -130,7 +130,7 @@ Thus unidirectional stateless profiles define one transaction template,
 bidirectional stateless profiles define two transaction templates.
 
 TPS multiplier
-______________
+``````````````
 
 TRex aims to open transaction specified by the profile at a steady rate.
 While TRex allows the transaction template to define its intended "cps" value,
@@ -145,7 +145,7 @@ set "packets per transaction" value to 2, just to keep the TPS semantics
 as a unidirectional input value.
 
 Duration stretching
-___________________
+```````````````````
 
 TRex can be IO-bound, CPU-bound, or have any other reason
 why it is not able to generate the traffic at the requested TPS.
@@ -175,7 +175,7 @@ so that users can compare results.
 If the results are very similar, it is probable TRex was the bottleneck.
 
 Startup delay
-_____________
+`````````````
 
 By investigating TRex behavior, it was found that TRex does not start
 the traffic in ASTF mode immediately. There is a delay of zero traffic,
