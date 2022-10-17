@@ -1,7 +1,7 @@
 .. _reconf_tests:
 
 Reconfiguration Tests
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 .. important::
 

@@ -1,7 +1,7 @@
 .. _plrsearch:
 
 PLRsearch
----------
+^^^^^^^^^
 
 Motivation for PLRsearch
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -25,7 +25,7 @@ draft `draft-vpolak-bmwg-plrsearch-02`_ that is in the process
 of being standardized in the IETF Benchmarking Methodology Working Group (BMWG).
 
 Terms
------
+`````
 
 The rest of this page assumes the reader is familiar with the following terms
 defined in the IETF draft:
@@ -319,7 +319,7 @@ low quality estimate at first sight, but a more detailed look
 reveals the quality is good (considering the measurement results).
 
 L2 patch
---------
+________
 
 Both fitting functions give similar estimates, the graph shows
 "stochasticity" of measurements (estimates increase and decrease
@@ -356,7 +356,7 @@ the performance stays constant.
         :align: center
 
 Vhost
------
+_____
 
 This test case shows what looks like a quite broad estimation interval,
 compared to other test cases with similarly looking zero loss frequencies.
@@ -390,7 +390,7 @@ agrees that the interval should be wider than that.
         :align: center
 
 Summary
--------
+_______
 
 The two graphs show the behavior of PLRsearch algorithm applied to soaking test
 when some of PLRsearch assumptions do not hold:

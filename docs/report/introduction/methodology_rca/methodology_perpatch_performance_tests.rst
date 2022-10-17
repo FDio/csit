@@ -8,7 +8,7 @@ before a DUT code change is merged. This can act as a verify job to disallow
 changes which would decrease performance without a good reason.
 
 Existing jobs
-`````````````
+~~~~~~~~~~~~~
 
 VPP is the only project currently using such jobs.
 They are not started automatically, must be triggered on demand.
@@ -21,7 +21,7 @@ where the node_arch combinations currently supported are:
 2n-clx, 2n-dnv, 2n-tx2, 2n-zn2, 3n-dnv, 3n-tsh.
 
 Test selection
---------------
+~~~~~~~~~~~~~~
 
 ..
     TODO: Majority of this section is also useful for CSIT verify jobs. Move it somewhere.
@@ -37,7 +37,7 @@ What follows is a list of explanations and recommendations
 to help users to select the minimal set of tests cases.
 
 Verify cycles
-_____________
+`````````````
 
 When Gerrit schedules multiple jobs to run for the same patch set,
 it waits until all runs are complete.
@@ -55,7 +55,7 @@ that comment gets ignored by Jenkins.
 Only when 3n-icx job finishes, the user can trigger 2n-icx.
 
 One comment many jobs
-_____________________
+`````````````````````
 
 In the past, the CSIT code which parses for perftest trigger comments
 was buggy, which lead to bad behavior (as in selection all performance test,
@@ -66,7 +66,7 @@ The worst bugs were fixed since then, but it is still recommended
 to use just one trigger word per Gerrit comment, just to be safe.
 
 Multiple test cases in run
-__________________________
+``````````````````````````
 
 While Robot supports OR operator, it does not support parentheses,
 so the OR operator is not very useful. It is recommended
@@ -78,7 +78,7 @@ perftest-2n-icx {tag_expression_1} {tag_expression_2}
 See below for more concrete examples.
 
 Suite tags
-__________
+``````````
 
 Traditionally, CSIT maintains broad Robot tags that can be used to select tests,
 for details on existing tags, see
@@ -101,7 +101,7 @@ and user still probably wants to narrow down
 to a single test case within a suite.
 
 Fully specified tag expressions
-_______________________________
+```````````````````````````````
 
 Here is one template to select a single test case:
 {test_type}AND{nic_model}AND{nic_driver}AND{cores}AND{frame_size}AND{suite_tag}
@@ -130,7 +130,7 @@ for example `this one <https://github.com/FDio/csit/blob/master/docs/job_specs/r
     TODO: Explain why "periodic" job spec link lands at report_iterative.
 
 Shortening triggers
-___________________
+```````````````````
 
 Advanced users may use the following tricks to avoid writing long trigger comments.
 
@@ -151,7 +151,7 @@ will fail, as the default nic_model is nic_intel-xxv710
 which does not support RDMA core driver.
 
 Complete example
-________________
+````````````````
 
 A user wants to test a VPP change which may affect load balance whith bonding.
 Searching tag documentation for "bonding" finds LBOND tag and its variants.
@@ -179,7 +179,7 @@ After shortening, this is the trigger comment fianlly used:
 perftest-3n-icx mrrANDnic_intel-x710AND1cAND64bAND?lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm*NOTdrv_af_xdp
 
 Basic operation
-```````````````
+~~~~~~~~~~~~~~~
 
 The job builds VPP .deb packages for both the patch under test
 (called "current") and its parent patch (called "parent").
@@ -199,7 +199,7 @@ The whole job fails (giving -1) if some trial measurement failed,
 or if any test was declared a regression.
 
 Temporary specifics
-```````````````````
+~~~~~~~~~~~~~~~~~~~
 
 The Minimal Description Length analysis is performed by
 CSIT code equivalent to jumpavg-0.1.3 library available on PyPI.
@@ -216,7 +216,7 @@ This decreases sensitivity to regressions, but also decreases
 probability of false positives.
 
 Console output
-``````````````
+~~~~~~~~~~~~~~
 
 The following information as visible towards the end of Jenkins console output,
 repeated for each analyzed test.

@@ -1,7 +1,7 @@
 .. _mrr_throughput:
 
 MRR Throughput
---------------
+^^^^^^^^^^^^^^
 
 Maximum Receive Rate (MRR) tests are complementary to MLRsearch tests,
 as they provide a maximum "raw" throughput benchmark for development and

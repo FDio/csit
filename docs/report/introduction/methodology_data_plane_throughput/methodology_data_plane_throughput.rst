@@ -1,7 +1,7 @@
 .. _data_plane_throughput:
 
 Data Plane Throughput Tests
----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Network data plane throughput is measured using multiple test methods in
 order to obtain representative and repeatable results across the large
@@ -21,10 +21,10 @@ Description of each test method is followed by generic test properties
 shared by all methods.
 
 MLRsearch Tests
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 Description
-~~~~~~~~~~~
+```````````
 
 Multiple Loss Ratio search (MLRsearch) tests discover multiple packet
 throughput rates in a single search, reducing the overall test execution
@@ -35,7 +35,7 @@ and Partial Drop Rate (PDR, with PLR<0.5%). MLRsearch is compliant with
 :rfc:`2544`.
 
 Usage
-~~~~~
+`````
 
 MLRsearch tests are run to discover NDR and PDR rates for each VPP and
 DPDK release covered by CSIT report. Results for small frame sizes
@@ -50,17 +50,17 @@ all frame sizes and for all tests are presented in detailed results
 tables.
 
 Details
-~~~~~~~
+```````
 
 See :ref:`mlrsearch_algorithm` section for more detail. MLRsearch is
 being standardized in IETF in `draft-ietf-bmwg-mlrsearch
 <https://datatracker.ietf.org/doc/html/draft-ietf-bmwg-mlrsearch-01>`_.
 
 MRR Tests
-^^^^^^^^^
+~~~~~~~~~
 
 Description
-~~~~~~~~~~~
+```````````
 
 Maximum Receive Rate (MRR) tests are complementary to MLRsearch tests,
 as they provide a maximum “raw” throughput benchmark for development and
@@ -72,7 +72,7 @@ a set trial duration, regardless of packet loss. Maximum load for
 specified Ethernet frame size is set to the bi-directional link rate.
 
 Usage
-~~~~~
+`````
 
 MRR tests are much faster than MLRsearch as they rely on a single trial
 or a small set of trials with very short duration. It is this property
@@ -86,7 +86,7 @@ comparisons between releases and test environments. Small frame sizes
 only (64b/78B, IMIX).
 
 Details
-~~~~~~~
+```````
 
 See :ref:`mrr_throughput` section for more detail about MRR tests
 configuration.
@@ -98,10 +98,10 @@ and `VPP per patch tests
 <https://s3-docs.fd.io/csit/master/trending/methodology/perpatch_performance_tests.html>`_.
 
 PLRsearch Tests
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 Description
-~~~~~~~~~~~
+```````````
 
 Probabilistic Loss Ratio search (PLRsearch) tests discovers a packet
 throughput rate associated with configured Packet Loss Ratio (PLR)
@@ -110,7 +110,7 @@ testing. PLRsearch assumes that system under test is probabilistic in
 nature, and not deterministic.
 
 Usage
-~~~~~
+`````
 
 PLRsearch are run to discover a sustained throughput for PLR=10^-7
 (close to NDR) for VPP release covered by CSIT report. Results for small
@@ -121,14 +121,14 @@ Each soak test lasts 30 minutes and is executed at least twice. Results are
 compared against NDR and PDR rates discovered with MLRsearch.
 
 Details
-~~~~~~~
+```````
 
 See :ref:`plrsearch` methodology section for more detail. PLRsearch is
 being standardized in IETF in `draft-vpolak-bmwg-plrsearch
 <https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch>`_.
 
 Generic Test Properties
-^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~
 
 All data plane throughput test methodologies share following generic
 properties:

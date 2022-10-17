@@ -1,5 +1,5 @@
 Trending Methodology
-====================
+--------------------
 
 .. toctree::
 

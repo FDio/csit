@@ -1,10 +1,10 @@
 .. _nat44_methodology:
 
 Network Address Translation IPv4 to IPv4
-----------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 NAT44 Prefix Bindings
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 NAT44 prefix bindings should be representative to target applications,
 where a number of private IPv4 addresses from the range defined by
@@ -67,7 +67,7 @@ Private address ranges to be used in tests:
   - Used in tests for up to 1 048 576 inside addresses (inside hosts).
 
 NAT44 Session Scale
-~~~~~~~~~~~~~~~~~~~
+```````````````````
 
 NAT44 session scale tested is govern by the following logic:
 
@@ -95,7 +95,7 @@ NAT44 session scale tested is govern by the following logic:
 +---+---------+------------+
 
 NAT44 Deterministic
-^^^^^^^^^^^^^^^^^^^
+```````````````````
 
 NAT44det performance tests are using TRex STL (Stateless) API and traffic
 profiles, similar to all other stateless packet forwarding tests like
@@ -134,7 +134,7 @@ NAT44det scenario tested:
     TODO: Make traffic profile names resemble suite names more closely.
 
 NAT44 Endpoint-Dependent
-^^^^^^^^^^^^^^^^^^^^^^^^
+````````````````````````
 
 In order to excercise NAT44ed ability to translate based on both
 source and destination address and port, the inside-to-outside traffic
@@ -200,13 +200,13 @@ NAT44det case tested:
   - [mrr|ndrpdr|soak], bidirectional stateful tests MRR, NDRPDR, or SOAK.
 
 Stateful traffic profiles
-^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are several important details which distinguish ASTF profiles
 from stateless profiles.
 
 General considerations
-~~~~~~~~~~~~~~~~~~~~~~
+``````````````````````
 
 Protocols
 _________
@@ -347,7 +347,7 @@ does not match the transactions as defined by ASTF programs.
 See TCP TPUT profile below.
 
 UDP CPS
-~~~~~~~
+```````
 
 This profile uses a minimalistic transaction to verify NAT44ed session has been
 created and it allows outside-to-inside traffic.
@@ -362,7 +362,7 @@ Transaction counts as attempted when opackets counter increases on client side.
 Transaction counts as successful when ipackets counter increases on client side.
 
 TCP CPS
-~~~~~~~
+```````
 
 This profile uses a minimalistic transaction to verify NAT44ed session has been
 created and it allows outside-to-inside traffic.
@@ -386,7 +386,7 @@ Transaction counts as successful when tcps_connects counter increases
 on client side.
 
 UDP TPUT
-~~~~~~~~
+````````
 
 This profile uses a small transaction of "request-response" type,
 with several packets simulating data payload.
@@ -411,7 +411,7 @@ in the reading phase. This probably decreases TRex performance,
 but it leads to more stable results then alternatives.
 
 TCP TPUT
-~~~~~~~~
+````````
 
 This profile uses a small transaction of "request-response" type,
 with some data amount to be transferred both ways.
@@ -466,7 +466,7 @@ Although it is possibly more taxing for TRex CPU,
 the results are comparable to the old traffic profile.
 
 Ip4base tests
-^^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 Contrary to stateless traffic profiles, we do not have a simple limit
 that would guarantee TRex is able to send traffic at specified load.
