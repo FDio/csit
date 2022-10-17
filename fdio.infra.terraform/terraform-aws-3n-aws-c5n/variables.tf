@@ -25,6 +25,7 @@ variable "private_key_algorithm" {
   description = "The name of the algorithm to use for the key."
   type        = string
   default     = "ED25519"
+}
 
 # Variables for Placement Group
 variable "placement_group_strategy" {
@@ -37,7 +38,7 @@ variable "placement_group_strategy" {
 variable "tg_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-01d1d62914ef00b25"
+  default     = "ami-0efad29ce9816d10f"
 }
 
 variable "tg_associate_public_ip_address" {
@@ -109,7 +110,7 @@ variable "sut1_source_dest_check" {
 variable "sut2_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-05ea90e57d2df4368"
+  default     = "ami-07898402cb1fd6561"
 }
 
 variable "sut2_associate_public_ip_address" {
