@@ -419,6 +419,47 @@
 #       build: "10"
 
 - type: "table"
+  title: "Job Specification Duration: 3n-snr-iterative"
+  algorithm: "table_job_spec_duration"
+  output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-snr-iter"
+  jb-type: "iterative"
+  lines:
+    - job-spec: "vpp-mrr-00"
+      data-set: "vpp-3n-snr-curr-iter-mrr"
+    - job-spec: "vpp-mlr-00"
+      data-set: "vpp-3n-snr-curr-iter"
+    - job-spec: "dpdk-mlr-00"
+      data-set: "dpdk-3n-snr-curr-iter"
+
+# - type: "table"
+#   title: "Job Specification Duration: 3n-snr-coverage"
+#   algorithm: "table_job_spec_duration"
+#   output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-snr-cov"
+#   jb-type: "coverage"
+#   data: "vpp-3n-snr-curr-cov"
+#   lines:
+#     - job-spec: "crypto-00"
+#       build: "1"
+#     - job-spec: "crypto-01"
+#       build: "2"
+#     - job-spec: "crypto-02"
+#       build: "3"
+#     - job-spec: "ip4-00"
+#       build: "4"
+#     - job-spec: "ip4-01"
+#       build: "5"
+#     - job-spec: "ip4tun-00"
+#       build: "6"
+#     - job-spec: "ip6-00"
+#       build: "7"
+#     - job-spec: "ip6-01"
+#       build: "8"
+#     - job-spec: "l2-00"
+#       build: "9"
+#     - job-spec: "l2-01"
+#       build: "10"
+
+- type: "table"
   title: "Job Specification Duration: 3n-tsh-iterative"
   algorithm: "table_job_spec_duration"
   output-file: "{DIR[STATIC,VPP]}/job-spec-duration-3n-tsh-iter"
@@ -4069,6 +4110,23 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP Performance Results 3n-snr
+- type: "table"
+  title: "Detailed Test Results - VPP Performance Results 3n-snr"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,VPP,3N,SNR]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "vpp-3n-snr-curr-cov"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
 # Detailed Test Results - VPP Performance Results 2n-aws
 - type: "table"
   title: "Detailed Test Results - VPP Performance Results 2n-aws"
@@ -4241,6 +4299,23 @@
   - "name"
   - "conf-history"
 
+# Test configuration - VPP Performance Test Configs 3n-snr
+- type: "table"
+  title: "Test configuration - VPP Performance Test Configs 3n-snr"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,PERF,VPP,3N,SNR]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-3n-snr-curr-cov"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
 # Test configuration - VPP Performance Test Configs 2n-aws
 - type: "table"
   title: "Test configuration - VPP Performance Test Configs 2n-aws"
@@ -4328,6 +4403,14 @@
   algorithm: "table_oper_data_html"
   output-file: "{DIR[DTO,PERF,VPP,2N,DNV]}/"
   data: "vpp-2n-dnv-curr-cov"
+  filter: "all"
+
+# Test Operational Data - VPP Performance Operational Data 3n-snr
+- type: "table"
+  title: "Test Operational Data - VPP Performance Operational Data 3n-snr"
+  algorithm: "table_oper_data_html"
+  output-file: "{DIR[DTO,PERF,VPP,3N,SNR]}/"
+  data: "vpp-3n-snr-curr-cov"
   filter: "all"
 
 # Test Operational Data - VPP Performance Operational Data 2n-aws
@@ -4485,6 +4568,23 @@
     - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
       data: "data msg"
   data: "vpp-2n-dnv-curr-iter-mrr"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - VPP MRR Results 3n-snr
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 3n-snr"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,MRR,VPP,3N,SNR]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Maximum Receive Rate trial [Mpps] |preout| "
+      data: "data msg"
+  data: "vpp-3n-snr-curr-iter-mrr"
   filter: "all"
   parameters:
   - "name"
@@ -4655,6 +4755,23 @@
     - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
       data: "data conf-history"
   data: "vpp-2n-dnv-curr-iter-mrr"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP MRR Test Configs 3n-snr
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 3n-snr"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,MRR,VPP,3N,SNR]}/"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-3n-snr-curr-iter-mrr"
   filter: "all"
   parameters:
   - "parent"
@@ -5394,6 +5511,23 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - DPDK Performance Results 3n-snr
+- type: "table"
+  title: "Detailed Test Results - DPDK Performance Results 3n-snr"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,DPDK,3N,SNR]}/dpdk_performance_results_3n_snr"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "dpdk-3n-snr-curr-iter-best"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
 # Detailed Test Results - DPDK Performance Results 2n-tx2
 - type: "table"
   title: "Detailed Test Results - DPDK Performance Results 2n-tx2"
@@ -5431,6 +5565,7 @@
     - "{DIR[DTR,PERF,VPP,2N,DNV]}"
     - "{DIR[DTR,PERF,VPP,3N,DNV]}"
     - "{DIR[DTR,PERF,VPP,2N,AWS]}"
+    - "{DIR[DTR,PERF,VPP,3N,SNR]}"
   data:
     - "vpp-2n-clx-curr-cov"
     - "vpp-2n-icx-curr-cov"
@@ -5442,6 +5577,7 @@
     - "vpp-2n-dnv-curr-cov"
     - "vpp-3n-dnv-curr-cov"
     - "vpp-2n-aws-curr-cov"
+    - "vpp-3n-snr-curr-cov"
   filter: "'NDRPDR'"
   data-start-level: 4
   order-chapters:
@@ -5470,6 +5606,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
+      - "3n-snr"
     level-3:
       - "xl710"
       - "x520"
@@ -5498,6 +5635,7 @@
     - "{DIR[DTC,PERF,VPP,2N,DNV]}"
     - "{DIR[DTC,PERF,VPP,3N,DNV]}"
     - "{DIR[DTC,PERF,VPP,2N,AWS]}"
+    - "{DIR[DTC,PERF,VPP,3N,SNR]}"
   data:
     - "vpp-2n-clx-curr-cov"
     - "vpp-2n-icx-curr-cov"
@@ -5509,6 +5647,7 @@
     - "vpp-2n-dnv-curr-cov"
     - "vpp-3n-dnv-curr-cov"
     - "vpp-2n-aws-curr-cov"
+    - "vpp-3n-snr-curr-cov"
   filter: "'NDRPDR'"
   data-start-level: 4
   order-chapters:
@@ -5537,6 +5676,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
+      - "3n-snr"
     level-3:
       - "xl710"
       - "x520"
@@ -5565,6 +5705,7 @@
     - "{DIR[DTO,PERF,VPP,2N,DNV]}"
     - "{DIR[DTO,PERF,VPP,3N,DNV]}"
     - "{DIR[DTO,PERF,VPP,2N,AWS]}"
+    - "{DIR[DTO,PERF,VPP,3N,SNR]}"
   data:
     - "vpp-2n-clx-curr-cov"
     - "vpp-2n-icx-curr-cov"
@@ -5576,6 +5717,7 @@
     - "vpp-2n-dnv-curr-cov"
     - "vpp-3n-dnv-curr-cov"
     - "vpp-2n-aws-curr-cov"
+    - "vpp-3n-snr-curr-cov"
   filter: "'NDRPDR'"
   data-start-level: 4
   order-chapters:
@@ -5604,6 +5746,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
+      - "3n-snr"
     level-3:
       - "xl710"
       - "x520"
@@ -5632,6 +5775,7 @@
     - "{DIR[DTR,MRR,VPP,2N,DNV]}"
     - "{DIR[DTR,MRR,VPP,3N,DNV]}"
     - "{DIR[DTR,MRR,VPP,2N,AWS]}"
+    - "{DIR[DTR,MRR,VPP,3N,SNR]}"
   data:
     - "vpp-2n-clx-curr-iter-mrr"
     - "vpp-2n-icx-curr-iter-mrr"
@@ -5643,6 +5787,7 @@
     - "vpp-2n-dnv-curr-iter-mrr"
     - "vpp-3n-dnv-curr-iter-mrr"
     - "vpp-2n-aws-curr-iter-mrr"
+    - "vpp-3n-snr-curr-iter-mrr"
   filter: "'MRR'"
   data-start-level: 4
   order-chapters:
@@ -5671,6 +5816,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
+      - "3n-snr"
     level-3:
       - "xl710"
       - "x520"
@@ -5699,6 +5845,7 @@
     - "{DIR[DTC,MRR,VPP,2N,DNV]}"
     - "{DIR[DTC,MRR,VPP,3N,DNV]}"
     - "{DIR[DTC,MRR,VPP,2N,AWS]}"
+    - "{DIR[DTC,MRR,VPP,3N,SNR]}"
   data:
     - "vpp-2n-clx-curr-iter-mrr"
     - "vpp-2n-icx-curr-iter-mrr"
@@ -5710,6 +5857,7 @@
     - "vpp-2n-dnv-curr-iter-mrr"
     - "vpp-3n-dnv-curr-iter-mrr"
     - "vpp-2n-aws-curr-iter-mrr"
+    - "vpp-3n-snr-curr-iter-mrr"
   filter: "'MRR'"
   data-start-level: 4
   order-chapters:
@@ -5738,6 +5886,7 @@
       - "2n-dnv"
       - "3n-dnv"
       - "2n-aws"
+      - "3n-snr"
     level-3:
       - "xl710"
       - "x520"
@@ -5827,6 +5976,16 @@
   output-file: "{DIR[DTR,PERF,DPDK,3N,ALT]}"
   dir-tables: "{DIR[DTR,PERF,DPDK,3N,ALT]}"
   data: "dpdk-3n-alt-curr-iter-best"
+  filter: "all"
+  data-start-level: 4
+
+# DPDK Performance Results 3n-snr
+- type: "file"
+  title: "DPDK Performance Results 3n-snr"
+  algorithm: "file_test_results"
+  output-file: "{DIR[DTR,PERF,DPDK,3N,SNR]}"
+  dir-tables: "{DIR[DTR,PERF,DPDK,3N,SNR]}"
+  data: "dpdk-3n-snr-curr-iter-best"
   filter: "all"
   data-start-level: 4
 
@@ -7667,20 +7826,6 @@
   layout:
     title: "3n-dnv-x553-64b-features-l2switching-base-ixgbe-{test_type}"
     layout: "plot-throughput-speedup-analysis"
-
-#- type: "plot"
-#  title: "Speedup: 3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-{test_type}-tsa"
-#  algorithm: "plot_tsa_name"
-#  output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-{test_type}-tsa"
-#  data: "vpp-3n-dnv-curr-iter"
-#  test-type: ["ndr", "pdr"]
-#  include:
-#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Ip6-Ip6Base-Srv6Enc1Sid-Ndrpdr.78B-.t.c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr"
-#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr"
-#    - "Tests.Vpp.Perf.Srv6.10Ge2P1X553-Ethip6Srhip6-Ip6Base-Srv6Enc2Sids-Nodecaps-Ndrpdr.78B-.t.c-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr"
-#  layout:
-#    title: "3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-{test_type}"
-#    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 2n-tx2-xl710-64b-ipsec-base-scale-sw-policy-dpdk-{test_type}-tsa"
@@ -11491,6 +11636,217 @@
     - "Tests.Vpp.Perf.Srv6.25Ge2P1Xxv710-Avf-Ethip6Srhip6-Ip6Base-Srv6Proxy-Stat-ndrpdr.78B-.t.c-avf-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr"
   layout:
     title: "3n-icx-xxv710-78b-srv6-ip6routing-base-avf-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+# 3n-snr Packet Throughput
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e820cq-64b-{core}-ip4routing-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e820cq-64b-{core}-ip4routing-base-scale-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1E822Cq-Ethip4-Ip4Base-Ndrpdr.64B-{core}-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1E822Cq-Ethip4-Ip4Scale20K-Ndrpdr.64B-{core}-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1E822Cq-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-{core}-ethip4-ip4scale20k-rnd-ndrpdr"
+  layout:
+    title: "3n-snr-e820cq-64b-{core}-ip4routing-base-scale-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e820cq-64b-{core}-ip4tunnel-base-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e820cq-64b-{core}-ip4tunnel-base-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-{core}-ethip4vxlan-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-{core}-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "3n-snr-e820cq-64b-{core}-ip4tunnel-base-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e820cq-78b-{core}-ip6routing-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e820cq-78b-{core}-ip6routing-base-scale-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip6.25Ge2P1E822Cq-Ethip6-Ip6Base-Ndrpdr.78B-{core}-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.25Ge2P1E822Cq-Ethip6-Ip6Scale20K-Ndrpdr.78B-{core}-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.25Ge2P1E822Cq-Ethip6-Ip6Scale20K-Rnd-Ndrpdr.78B-{core}-ethip6-ip6scale20k-rnd-ndrpdr"
+  layout:
+    title: "3n-snr-e820cq-78b-{core}-ip6routing-base-scale-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e820cq-64b-{core}-l2switching-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e820cq-64b-{core}-l2switching-base-scale-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1E822Cq-Eth-L2Patch-Ndrpdr.64B-{core}-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1E822Cq-Eth-L2Xcbase-Ndrpdr.64B-{core}-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1E822Cq-Eth-L2Bdbasemaclrn-Ndrpdr.64B-{core}-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1E822Cq-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-{core}-eth-l2bdscale10kmaclrn-ndrpdr"
+  layout:
+    title: "3n-snr-e820cq-64b-{core}-l2switching-base-scale-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e820cq-imix-{core}-ipsec-ip4routing-scale-sw-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e820cq-imix-{core}-ipsec-ip4routing-scale-sw-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-{core}-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-{core}-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-snr-e820cq-imix-{core}-ipsec-ip4routing-scale-sw-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e820cq-1518b-{core}-ipsec-ip4routing-scale-sw-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e820cq-1518b-{core}-ipsec-ip4routing-scale-sw-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518B-{core}-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518B-{core}-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518B-{core}-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-snr-e820cq-1518b-{core}-ipsec-ip4routing-scale-sw-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e820cq-imix-{core}-ipsec-ip4routing-scale-scheduler-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e820cq-imix-{core}-ipsec-ip4routing-scale-scheduler-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t2c", ]
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518B-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518B-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-snr-e820cq-imix-{core}-ipsec-ip4routing-scale-scheduler-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e820cq-1518b-{core}-ipsec-ip4routing-scale-scheduler-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e820cq-1518b-{core}-ipsec-ip4routing-scale-scheduler-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t2c", ]
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-snr-e820cq-1518b-{core}-ipsec-ip4routing-scale-scheduler-{test_type}"
+    layout: "plot-throughput"
+
+# 3n-snr Speedup
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-64b-ip4routing-base-scale-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-64b-ip4routing-base-scale-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1E822Cq-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1E822Cq-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.25Ge2P1E822Cq-Ethip4-Ip4Scale20K-Rnd-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-rnd-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-64b-ip4routing-base-scale-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-64b-ip4tunnel-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-64b-ip4tunnel-base-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Vxlan-L2Xcbase-Ndrpdr.64B-.t.c-ethip4vxlan-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-64b-ip4tunnel-base-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-78b-ip6routing-base-scale-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-78b-ip6routing-base-scale-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+    - "Tests.Vpp.Perf.Ip6.25Ge2P1E822Cq-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.25Ge2P1E822Cq-Ethip6-Ip6Scale20K-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.25Ge2P1E822Cq-Ethip6-Ip6Scale20K-Rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-rnd-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-78b-ip6routing-base-scale-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-64b-l2switching-base-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-64b-l2switching-base-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.L2.25Ge2P1E822Cq-Eth-L2Patch-Ndrpdr.64B-.t.c-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1E822Cq-Eth-L2Xcbase-Ndrpdr.64B-.t.c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1E822Cq-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.25Ge2P1E822Cq-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale10kmaclrn-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-64b-l2switching-base-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-1518b-ipsec-ip4routing-scale-sw-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-1518b-ipsec-ip4routing-scale-sw-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518B-.t.c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518B-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518B-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-1518b-ipsec-ip4routing-scale-sw-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-imix-ipsec-ip4routing-scale-sw-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-imix-ipsec-ip4routing-scale-sw-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-imix-ipsec-ip4routing-scale-sw-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-1518b-ipsec-ip4routing-scale-scheduler-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-1518b-ipsec-ip4routing-scale-scheduler-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518B-.t.c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518B-.t.c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-1518b-ipsec-ip4routing-scale-scheduler-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-imix-ipsec-ip4routing-scale-scheduler-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-imix-ipsec-ip4routing-scale-scheduler-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-imix-ipsec-ip4routing-scale-scheduler-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################

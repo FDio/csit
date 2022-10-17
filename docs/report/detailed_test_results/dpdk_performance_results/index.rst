@@ -9,6 +9,7 @@ DPDK Throughput
     ../dpdk_performance_results_3n_alt/index
     ../dpdk_performance_results_3n_tsh/index
     ../dpdk_performance_results_2n_tx2/index
+    ../dpdk_performance_results_3n_snr/index
 
 ..
     ../dpdk_performance_results_2n_dnv/index
