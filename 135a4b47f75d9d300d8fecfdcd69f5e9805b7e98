@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest ndrpdrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase",
       "revId": "135a4b47f75d9d300d8fecfdcd69f5e9805b7e98",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e17ddde8_fc3c43fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-17T15:58:43Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest ndrpdrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4-ip4scale2m",
+      "revId": "135a4b47f75d9d300d8fecfdcd69f5e9805b7e98",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
