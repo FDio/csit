@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f52028c_e4a45b2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-17T10:29:46Z",
+      "side": 1,
+      "message": "ndrpdrANDnic_intel-xxv710ANDdrv_avfAND1cAND64bANDethip4udp-nat44det-h65536-p63-s4128758",
+      "revId": "7b87b7eca5f3af13b520577e6aee68a7b087fd29",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
