@@ -27,3 +27,4 @@ CSIT source code for the test cases used for plots can be found in
     ip4_tunnels-3n-alt-xl710
     ip4_tunnels-3n-tsh-x520
     ip4_tunnels-3n-dnv-x553
+    ip4_tunnels-3n-snr-e822cq
