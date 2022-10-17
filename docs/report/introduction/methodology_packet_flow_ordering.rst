@@ -11,7 +11,7 @@ altered, in some cases two fields (e.g. IPv4 destination address and UDP
 destination port) are altered.
 
 Incremental Ordering
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 This case is simpler to implement and offers greater control.
 
@@ -24,7 +24,7 @@ combinations once before the "carry" field also wraps around.
 It is possible to use increments other than 1.
 
 Randomized Ordering
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 This case chooses each field value at random (from the allowed range).
 In case of two fields, they are treated independently.

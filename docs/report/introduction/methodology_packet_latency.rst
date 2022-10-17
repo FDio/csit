@@ -1,7 +1,7 @@
 .. _latency_methodology:
 
 Packet Latency
---------------
+^^^^^^^^^^^^^^
 
 TRex Traffic Generator (TG) is used for measuring one-way latency in
 2-Node and 3-Node physical testbed topologies. TRex integrates `High
