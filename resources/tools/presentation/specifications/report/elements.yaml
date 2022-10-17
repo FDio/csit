@@ -11782,6 +11782,7 @@
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-78b-ip6routing-base-scale-{test_type}-tsa"
   data: "vpp-3n-snr-curr-iter"
+  include:
     - "Tests.Vpp.Perf.Ip6.25Ge2P1E822Cq-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.25Ge2P1E822Cq-Ethip6-Ip6Scale20K-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip6.25Ge2P1E822Cq-Ethip6-Ip6Scale20K-Rnd-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-rnd-ndrpdr"
@@ -11808,6 +11809,7 @@
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-1518b-ipsec-ip4routing-scale-sw-{test_type}-tsa"
   data: "vpp-3n-snr-curr-iter"
+  include:
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518B-.t.c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518B-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518B-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
@@ -11820,6 +11822,7 @@
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-imix-ipsec-ip4routing-scale-sw-{test_type}-tsa"
   data: "vpp-3n-snr-curr-iter"
+  include:
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec4Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1000Tnlsw-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
@@ -11832,6 +11835,7 @@
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-1518b-ipsec-ip4routing-scale-scheduler-{test_type}-tsa"
   data: "vpp-3n-snr-curr-iter"
+  include:
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.1518B-.t.c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-Ndrpdr.1518B-.t.c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
   layout:
@@ -11843,6 +11847,7 @@
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-imix-ipsec-ip4routing-scale-scheduler-{test_type}-tsa"
   data: "vpp-3n-snr-curr-iter"
+  include:
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-Ndrpdr.IMIX-.t.c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1E822Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
   layout:
