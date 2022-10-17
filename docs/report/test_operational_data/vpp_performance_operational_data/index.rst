@@ -18,6 +18,7 @@ at 100% PDR.
     `build logs from FD.io vpp coverage job 2n-tx2`_,
     `build logs from FD.io vpp coverage job 2n-dnv`_,
     `build logs from FD.io vpp coverage job 3n-dnv`_,
+    `build logs from FD.io vpp coverage job 3n-snr`_,
     `build logs from FD.io vpp coverage job 2n-aws`_,
     ii) archived FD.io jobs test results
     `output files <../../_static/archive/>`_.
