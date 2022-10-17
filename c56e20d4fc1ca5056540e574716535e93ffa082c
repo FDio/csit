@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79909718_32716fb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-10-17T08:16:39Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-3n-icx-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-2n-icx-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-2n-clx-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-2n-zn2-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-3n-snr-perftest dpdk-mlr-00",
+      "revId": "c56e20d4fc1ca5056540e574716535e93ffa082c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
