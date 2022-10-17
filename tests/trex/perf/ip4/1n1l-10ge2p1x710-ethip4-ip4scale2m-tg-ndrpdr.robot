@@ -16,8 +16,8 @@
 |
 | Force Tags | 1_NODE_SINGLE_LINK_TOPO | 2_NODE_SINGLE_LINK_TOPO
 | ... | 3_NODE_SINGLE_LINK_TOPO
-| ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | IP4SCALE2M
-| ... | N2N | SCALE | TG_DRV_IGB_UIO
+| ... | PERFTEST | HW_ENV | NDRPDR | NIC_Intel-X710 | TREX | ETH | N2N
+| ... | SCALE | IP4SCALE2M | TG_DRV_IGB_UIO
 | ... | ethip4-ip4scale2m-tg
 |
 | Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
