@@ -31,4 +31,5 @@ CSIT source code for the test cases used for plots can be found in
     ip4-2n-tx2-xl710
     ip4-2n-dnv-x553
     ip4-3n-dnv-x553
+    ip4-3n-snr-e822cq
     ip4-2n-aws-nitro50g
