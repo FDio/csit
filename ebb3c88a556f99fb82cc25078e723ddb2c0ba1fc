@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d362b4f_a352b083",
+        "filename": "tests/trex/perf/ip4/1n1l-10ge2p1x710-ethip4tcp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-18T12:01:08Z",
+      "side": 1,
+      "message": "It would look better if you moved this to the end of the previous line in all suites.",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 11
+      },
+      "revId": "ebb3c88a556f99fb82cc25078e723ddb2c0ba1fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
