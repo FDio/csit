@@ -151,14 +151,15 @@ Comparison tables in HTML, ASCII and CSV formats:
   - `CSV 2t1c PDR90, direction1, average value comparison <../../_static/vpp/latency-changes-3n-icx-xxv710-2t1c-pdr90-d1-avg-csv.csv>`_
   - `CSV 2t1c PDR90, direction1, max value comparison <../../_static/vpp/latency-changes-3n-icx-xxv710-2t1c-pdr90-d1-max-csv.csv>`_
 
-Hoststack
-`````````
+..
+  Hoststack
+  `````````
 
-Comparison tables in HTML, ASCII and CSV formats:
+  Comparison tables in HTML, ASCII and CSV formats:
 
-  - `HTML Hoststack comparison <performance-changes-3n-skx-hoststack.html>`_
-  - `ASCII Hoststack comparison <../../_static/vpp/performance-changes-3n-skx-hoststack.txt>`_
-  - `CSV Hoststack comparison <../../_static/vpp/performance-changes-3n-skx-hoststack-csv.csv>`_
+    - `HTML Hoststack comparison <performance-changes-3n-icx-hoststack.html>`_
+    - `ASCII Hoststack comparison <../../_static/vpp/performance-changes-3n-icx-hoststack.txt>`_
+    - `CSV Hoststack comparison <../../_static/vpp/performance-changes-3n-icx-hoststack-csv.csv>`_
 
 2n-clx-xxv710
 ~~~~~~~~~~~~~
