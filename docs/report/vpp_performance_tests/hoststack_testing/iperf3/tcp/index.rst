@@ -34,18 +34,18 @@ TCP/IP with iperf3
 
     \clearpage
 
-1460b-2t1c-xxv710-ip4tcp-base-scale
------------------------------------
+1460b-2t1c-e810xxv-ip4tcp-base-scale
+------------------------------------
 
 .. raw:: html
 
-    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../../_static/vpp/3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps.html"></iframe>
+    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../../_static/vpp/3n-icx-e810xxv-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps.html"></iframe>
 
 .. raw:: latex
 
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps}
-            \label{fig:3n-skx-xxv710-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810xxv-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps}
+            \label{fig:3n-icx-e810xxv-1460b-2t1c-eth-ip4tcp-ldpreload-iperf3-bps}
     \end{figure}

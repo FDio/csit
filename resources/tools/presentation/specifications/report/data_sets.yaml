@@ -974,6 +974,19 @@
     csit-vpp-perf-report-iterative-2210-3n-icx:
       - 12  # rls2210.rc2 MRR iter env 11
 
+  # vpp-3n-icx-hist-iter-hoststack-new-env:
+  #   csit-vpp-perf-report-iterative-2110-3n-icx:
+  #     - 40  # rls2110.rel NDRPDR iter env 8
+
+  # vpp-3n-icx-prev-iter-hoststack-old-env:
+  #   csit-vpp-perf-report-iterative-2202-3n-icx:
+  #     - 29  # rls2202.rel hoststack iter env 9
+
+  vpp-3n-icx-curr-iter-hoststack:
+    csit-vpp-perf-report-iterative-2210-3n-icx:
+      - 17  # rls2210.rc2 hoststack iter env 11
+      - 21  # rls2210.rc2 hoststack iter env 11
+
   vpp-3n-icx-curr-cov:
     # csit-vpp-perf-report-coverage-2210-3n-icx:
     csit-vpp-perf-report-coverage-2206-3n-icx:
