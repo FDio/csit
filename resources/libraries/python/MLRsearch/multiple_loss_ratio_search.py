@@ -20,21 +20,24 @@ from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Optional, Union
 
 from .config import Config
-from .comparable_measurement_result import ComparableMeasurementResult as Result
+from .criterion import Criterion
 from .discrete_load import DiscreteLoad
 from .discrete_width import DiscreteWidth
 from .discrete_interval import DiscreteInterval
 from .duration_and_width_scaling import DurationAndWidthScaling
 from .load_rounding import LoadRounding
+from .load_stat import LoadStat
 from .measurement_database import MeasurementDatabase
-from .measurement_interval import MeasurementInterval
 from .relevant_bounds import RelevantBounds
 from .selection_info import SelectionInfo
 from .trial_measurement.abstract_measurer import AbstractMeasurer
+from .trial_measurement.measurement_result import MeasurementResult
 
 
 SECONDARY_FIELD = field(default=None, init=False, repr=False)
 """A shorthand for a frequently used value, a field not to be set in init."""
+
+MaybeLoad = Union[None, DiscreteLoad, LoadStat]
 
 
 @dataclass
@@ -120,7 +123,7 @@ class MultipleLossRatioSearch:
     """Min load converted to discrete load."""
     discrete_max_load: DiscreteLoad = SECONDARY_FIELD
     """Max load converted to discrete load."""
-    scaling: Dict[float, DurationAndWidthScaling] = SECONDARY_FIELD
+    scaling: Dict[Criterion, DurationAndWidthScaling] = SECONDARY_FIELD
     """Scaling to use with corresponding target loss ratio."""
     stop_time: float = SECONDARY_FIELD
     """Monotonic time value at which the search should end with failure."""
@@ -131,7 +134,7 @@ class MultipleLossRatioSearch:
         self,
         measurer: AbstractMeasurer,
         debug: Optional[Callable[[str], None]] = None,
-    ) -> List[MeasurementInterval]:
+    ) -> List[DiscreteInterval]:
         """Perform initial phase, create state object, proceed with next phases.
 
         Stateful arguments (measurer and debug) are stored.
@@ -143,7 +146,7 @@ class MultipleLossRatioSearch:
             and their measurements.
         :type measurer: AbstractMeasurer
         :type debug: Optional[Callable[[str], None]]
-        :rtype: List[MeasurementInterval]
+        :rtype: List[DiscreteInterval]
         :raises RuntimeError: If total duration is larger than timeout.
         """
         self.measurer = measurer
@@ -151,29 +154,30 @@ class MultipleLossRatioSearch:
         self.rounding = LoadRounding(
             min_load=self.config.min_load,
             max_load=self.config.max_load,
-            float_goals=self.config.final_relative_widths,
+            float_goals=[crit.relative_width for crit in self.config.criteria],
         )
         self.from_int = DiscreteLoad.int_conver(self.rounding)
         self.from_float = DiscreteLoad.float_conver(self.rounding)
         self.discrete_min_load = self.from_float(self.config.min_load)
         self.discrete_max_load = self.from_float(self.config.max_load)
-        self.scaling = dict()  # Dataclass did't create this since init=False.
-        for index, ratio in enumerate(self.config.target_loss_ratios):
-            self.scaling[ratio] = DurationAndWidthScaling(
-                intermediate_phases=self.config.number_of_intermediate_phases,
-                initial_duration=self.config.initial_trial_duration,
-                final_duration=self.config.final_trial_duration,
-                final_width=self.rounding.discrete_goals[index],
+        self.scaling = dict()
+        for criterion in self.config.criteria:
+            self.scaling[criterion] = DurationAndWidthScaling(
+                criterion=criterion,
+                rounding=self.rounding,
             )
         self.stop_time = time.monotonic() + self.config.max_search_duration
-        self.database = MeasurementDatabase(self.do_initial_measurements())
+        self.database = None  # Initialized via the next line.
+        self.do_initial_measurements()
         self.ndrpdr_root()
-        return self.database.get_intervals(
-            ratio_list=self.config.target_loss_ratios,
-            duration=self.config.final_trial_duration,
-        )
+        return self.database.get_intervals(self.config.single_trial_duration)
 
-    def measure(self, duration: float, discrete_load: DiscreteLoad) -> Result:
+    def measure(
+        self,
+        duration: float,
+        load: DiscreteLoad,
+        criterion: Criterion,
+    ) -> List[MeasurementResult]:
         """Call measurer and cast the result to be comparable.
 
         :param duration: Trial duration [s].
@@ -186,16 +190,26 @@ class MultipleLossRatioSearch:
         """
         if not isinstance(duration, float):
             raise RuntimeError(f"Duration has to be float: {duration!r}")
-        if not isinstance(discrete_load, DiscreteLoad):
-            raise RuntimeError(f"Load has to be discrete: {discrete_load!r}")
-        if not discrete_load.is_round:
-            raise RuntimeError(f"Told to measure unrounded: {discrete_load!r}")
-        result = self.measurer.measure(
-            intended_duration=duration, intended_load=float(discrete_load)
-        )
-        return Result.construct(result=result, discrete_load=discrete_load)
+        if not isinstance(load, DiscreteLoad):
+            raise RuntimeError(f"Load has to be discrete: {load!r}")
+        if not load.is_round:
+            raise RuntimeError(f"Told to measure unrounded: {load!r}")
+        min_duration = min(duration, self.config.single_trial_duration)
+        load_stat = self.database.stat_for(load, min_duration)
+        ret_list = list()
+        while not load_stat.determined(criterion, duration):
+            result = self.measurer.measure(
+                intended_duration=load_stat.intended_duration,
+                intended_load=float(load_stat),
+            )
+            ret_list.append(result)
+            load_stat.add(result)
+            self.debug(f"Updated stat: {load_stat}")
+        self.debug("Enough trials for this stat.")
+        self.database.update(load_stat)
+        return ret_list
 
-    def do_initial_measurements(self) -> List[Result]:
+    def do_initial_measurements(self):
         """Perform measurements to get enough data for full logic.
 
         Measurements are done with first intermediate phase in mind,
@@ -211,71 +225,57 @@ class MultipleLossRatioSearch:
         :returns: Measurement results to consider next.
         :rtype: List[ComparableMeasurementResult]
         """
-        ratio = self.config.target_loss_ratios[0]
-        duration = self.scaling[ratio].duration(phase=0)
-        width_goal = self.scaling[ratio].width_goal(phase=0)
         max_load = self.discrete_max_load
-        measurements = list()
+        criterion = self.config.criteria.criteria[0]
+        ratio = criterion.loss_ratio
+        duration = self.scaling[criterion].duration(phase=0)
+        width_goal = self.scaling[criterion].width_goal(phase=0)
+        self.debug(f"Init ratio {ratio} duration {duration} width {width_goal}")
+        if self.config.warmup_duration:
+            self.debug("Warmup trial.")
+            self.database = MeasurementDatabase(self.config.criteria)
+            self.measure(self.config.warmup_duration, max_load, criterion)
+        self.database = MeasurementDatabase(self.config.criteria)
         self.debug(f"First measurement at max rate: {max_load}")
-        measured = self.measure(duration=duration, discrete_load=max_load)
-        measurements.append(measured)
-        rfr = self.from_float(measured.relative_forwarding_rate)
-        corrected_rfr = rfr / (1.0 - ratio)
+        results = self.measure(duration, max_load, criterion)
+        rfr = min(result.relative_forwarding_rate for result in results)
+        corrected_rfr = self.from_float(rfr) / (1.0 - ratio)
         if corrected_rfr >= max_load:
-            self.debug(u"Small loss, no other initial measurements are needed.")
-            return measurements
+            self.debug("Small loss, no other initial measurements are needed.")
+            return
         mrr = self.handle_load_limits(corrected_rfr, width_goal, None, max_load)
         if not mrr:
-            self.debug(u"Warning: limits too close or goal too wide?")
-            return measurements
+            self.debug("Warning: limits too close or goal too wide?")
+            return
         self.debug(f"Second measurement at (corrected) mrr: {mrr}")
-        measured = self.measure(duration=duration, discrete_load=mrr)
-        measurements.append(measured)
+        results = self.measure(duration, mrr, criterion)
         # Attempt to get narrower width.
-        if measured.loss_ratio > ratio:
-            rfr2 = self.from_float(measured.relative_forwarding_rate)
-            corrected_rfr2 = rfr2 / (1.0 - ratio)
-            mrr2 = self.handle_load_limits(
-                corrected_rfr2, width_goal, None, mrr
-            )
+        result_ratio = max(result.loss_ratio for result in results)
+        if result_ratio > ratio:
+            rfr2 = min(result.relative_forwarding_rate for result in results)
+            crfr2 = self.from_float(rfr2) / (1.0 - ratio)
+            mrr2 = self.handle_load_limits(crfr2, width_goal, None, mrr)
         else:
             mrr2 = mrr + width_goal
-            # With size limited traffic profiles (signaled by zero phases),
-            # the first ever measurement acts as a warmup and is not guaranteed
-            # a re-measurement (final trial duration can be equal to initial).
-            # We can allow re-measurement at max rate by not setting
-            # current upper bound to the load handler function.
-            chi = max_load if self.scaling[ratio].intermediate_phases else None
-            mrr2 = self.handle_load_limits(mrr2, width_goal, mrr, chi)
+            mrr2 = self.handle_load_limits(mrr2, width_goal, mrr, max_load)
         if not mrr2:
-            self.debug(u"Good mrr, measuring at mrr2 is not needed.")
-            return measurements
+            self.debug("Good mrr, measuring at mrr2 is not needed.")
+            return
         self.debug(f"Third measurement at (corrected) mrr2: {mrr2}")
-        measured = self.measure(duration=duration, discrete_load=mrr2)
-        measurements.append(measured)
-        # If mrr2 > mrr and mrr2 got zero loss,
-        # it is better to do external search from mrr2 up.
-        # To prevent bisection between mrr2 and max_load,
-        # we simply remove the max_load measurement.
-        # Similar logic applies to higher loss ratio goals.
-        # Overall, with mrr2 measurement done, we never need
-        # the first measurement (the one done at max rate).
-        measurements = measurements[1:]
-        return measurements
+        self.measure(duration, mrr2, criterion)
 
     def ndrpdr_root(self) -> None:
         """Iterate search over ratios and phases.
 
         :raises RuntimeError: If total duration is larger than timeout.
         """
-        for ratio in self.config.target_loss_ratios:
-            self.debug(f"Focusing on ratio {ratio} now.")
-            scaling = self.scaling[ratio]
-            for phase in range(scaling.intermediate_phases + 1):
-                self.ndrpdr_iteration(ratio, phase)
-        self.debug(u"All ratios done.")
+        for criterion in self.config.criteria:
+            self.debug(f"Focusing on criterion {criterion} now.")
+            for phase in range(criterion.intermediate_phases + 1):
+                self.ndrpdr_iteration(criterion, phase)
+        self.debug("All criteria done.")
 
-    def ndrpdr_iteration(self, ratio: float, phase: int) -> None:
+    def ndrpdr_iteration(self, criterion: Criterion, phase: int) -> None:
         """Search for narrow enough bounds for this ratio at this phase.
 
         :param ratio: Target loss ratio the bounds should encompass.
@@ -283,48 +283,51 @@ class MultipleLossRatioSearch:
         :type ratio: float
         :type phase: int
         """
-        scaling = self.scaling[ratio]
+        scaling = self.scaling[criterion]
         width_goal = scaling.width_goal(phase)
         current_duration = scaling.duration(phase)
         previous_duration = scaling.duration(phase - 1) if phase else None
         self.debug(
-            f"Starting phase for ratio {ratio} with duration {current_duration}"
+            f"Starting phase for criterion {criterion}"
+            f" with duration {current_duration}"
             f" and relative width goal {width_goal}."
         )
         selection = SelectionInfo(halve=True, remeasure=True)
         while time.monotonic() < self.stop_time:
             bounds = RelevantBounds.from_database(
-                self.database, ratio, current_duration, previous_duration
+                database=self.database,
+                criterion=criterion,
+                current_duration=current_duration,
+                previous_duration=previous_duration,
+                trial_duration=self.config.single_trial_duration,
             )
-            selection = self.select_load(bounds, width_goal, selection)
+            selection = self.select_load(
+                bounds, width_goal, criterion, selection
+            )
             load = selection.load
             if selection.handle:
                 load = self.handle_load_limits(
                     load, width_goal, bounds.clo1, bounds.chi1
                 )
             if not load:
-                self.debug(u"Phase done.")
+                self.debug("Phase done.")
                 break
             # We have a new intended load to measure with.
             # We do not check duration versus stop_time here,
             # as some measurers can be unpredictably faster
             # than their intended duration suggests.
-            measurement = self.measure(
-                duration=current_duration,
-                discrete_load=load,
-            )
-            self.database.add(measurement)
+            self.measure(current_duration, load, criterion)
         else:
             # Time is up.
-            raise RuntimeError(u"Optimized search takes too long.")
+            raise RuntimeError("Optimized search takes too long.")
 
     def handle_load_limits(
         self,
-        load: Optional[DiscreteLoad],
+        load: MaybeLoad,
         width_goal: DiscreteWidth,
-        clo: Optional[Union[DiscreteLoad, Result]],
-        chi: Optional[Union[DiscreteLoad, Result]],
-    ) -> Optional[DiscreteLoad]:
+        clo: MaybeLoad,
+        chi: MaybeLoad,
+    ) -> Optional[MaybeLoad]:
         """Return new intended load after considering limits and bounds.
 
         Not only we want to avoid measuring outside minmax interval,
@@ -354,16 +357,13 @@ class MultipleLossRatioSearch:
         :raises RuntimeError: If unsupported corner case is detected.
         """
         if not load:
-            raise RuntimeError(u"Got None load to handle.")
+            raise RuntimeError("Got None load to handle.")
+        if not load.is_round:
+            load = DiscreteLoad(rounding=load.rounding, int_load=int(load))
         min_load, max_load = self.discrete_min_load, self.discrete_max_load
-        if hasattr(clo, u"discrete_load"):
-            clo = clo.discrete_load
-        if hasattr(chi, u"discrete_load"):
-            chi = chi.discrete_load
         if not clo and not chi:
             load = self._handle_load_with_excludes(
-                load, width_goal, min_load, max_load,
-                min_ex=False, max_ex=False
+                load, width_goal, min_load, max_load, min_ex=False, max_ex=False
             )
             return load
         if not clo:
@@ -371,7 +371,7 @@ class MultipleLossRatioSearch:
                 # Expected when hitting the min load.
                 return None
             if load >= chi:
-                raise RuntimeError(u"Lower load expected.")
+                raise RuntimeError("Lower load expected.")
             load = self._handle_load_with_excludes(
                 load, width_goal, min_load, chi, min_ex=False, max_ex=True
             )
@@ -381,15 +381,15 @@ class MultipleLossRatioSearch:
                 # Expected when hitting the max load.
                 return None
             if load <= clo:
-                raise RuntimeError(u"Higher load expected.")
+                raise RuntimeError("Higher load expected.")
             load = self._handle_load_with_excludes(
                 load, width_goal, clo, max_load, min_ex=True, max_ex=False
             )
             return load
         if load <= clo:
-            raise RuntimeError(u"Higher load expected.")
+            raise RuntimeError("Higher load expected.")
         if load >= chi:
-            raise RuntimeError(u"Lower load expected.")
+            raise RuntimeError("Lower load expected.")
         load = self._handle_load_with_excludes(
             load, width_goal, clo, chi, min_ex=True, max_ex=True
         )
@@ -434,35 +434,35 @@ class MultipleLossRatioSearch:
         """
         load = self.from_int(int(load))
         if not minimum <= load <= maximum:
-            raise RuntimeError(u"Please do not call with irrelevant load.")
+            raise RuntimeError("Please do not call with irrelevant load.")
         width = maximum - minimum
         if width_goal >= width:
-            self.debug(u"Warning: Handling called with wide goal.")
+            self.debug("Warning: Handling called with wide goal.")
             if not min_ex:
-                self.debug(u"Minimum not excluded, rounding to it.")
+                self.debug("Minimum not excluded, rounding to it.")
                 return minimum
             if not max_ex:
-                self.debug(u"Maximum not excluded, rounding to it.")
+                self.debug("Maximum not excluded, rounding to it.")
                 return maximum
-            self.debug(u"Both limits excluded, narrow enough.")
+            self.debug("Both limits excluded, narrow enough.")
             return None
         soft_min = minimum + width_goal
         soft_max = maximum - width_goal
         if soft_min > soft_max:
-            self.debug(u"Whole interval is less than two goals.")
+            self.debug("Whole interval is less than two goals.")
             middle = DiscreteInterval(minimum, maximum).middle(width_goal)
             soft_min = soft_max = middle
         if load < soft_min:
             if min_ex:
-                self.debug(u"Min excluded, rounding to soft min.")
+                self.debug("Min excluded, rounding to soft min.")
                 return soft_min
-            self.debug(u"Min not excluded, rounding to minimum.")
+            self.debug("Min not excluded, rounding to minimum.")
             return minimum
         if load > soft_max:
             if max_ex:
-                self.debug(u"Max excluded, rounding to soft max.")
+                self.debug("Max excluded, rounding to soft max.")
                 return soft_max
-            self.debug(u"Max not excluded, rounding to maximum.")
+            self.debug("Max not excluded, rounding to maximum.")
             return maximum
         # Far enough from limits, no additional rounding is needed.
         return load
@@ -471,6 +471,7 @@ class MultipleLossRatioSearch:
         self,
         bounds: RelevantBounds,
         width_goal: DiscreteWidth,
+        criterion: Criterion,
         selection: SelectionInfo,
     ) -> SelectionInfo:
         """Return updated selection info with new load to measure at.
@@ -511,20 +512,20 @@ class MultipleLossRatioSearch:
         if selection.remeasure:
             # Previous ratio could have left interval too narrow for halving.
             # Allow two re-measurements in those cases.
-            # This is case one, when one bound is alread remeasured
+            # This is case one, when one bound is already remeasured
             # (e.g. from previous ratio search).
             if load := self._lo_remea_load(bounds, width_goal):
                 return SelectionInfo(load=load, remeasure=selection.halve)
             if load := self._hi_remea_load(bounds, width_goal):
                 return SelectionInfo(load=load)
         if not bounds.clo1:
-            if load := self._extend_down(bounds, width_goal):
+            if load := self._extend_down(bounds, width_goal, criterion):
                 self.debug(f"No current lower bound, extending down: {load}")
                 return SelectionInfo(load=load, handle=True)
             # Hitting min load.
             return SelectionInfo(load=None)
         if not bounds.chi1:
-            load = self._extend_up(bounds, width_goal)
+            load = self._extend_up(bounds, width_goal, criterion)
             return SelectionInfo(load=load, handle=load is not None)
         if not (bisect_load := self._bisect(bounds, width_goal)):
             return SelectionInfo(load=None)
@@ -532,7 +533,9 @@ class MultipleLossRatioSearch:
             self.debug(f"Not extending down, so doing bisect: {bisect_load}")
             return SelectionInfo(load=bisect_load)
         # Not hitting min load, so extend_load cannot be None.
-        if (extend_load := self._extend_down(bounds, width_goal)) > bisect_load:
+        if (
+            extend_load := self._extend_down(bounds, width_goal, criterion)
+        ) > bisect_load:
             # This can happen when:
             # Previous ratio ended up way below these (chi1) loads,
             # and current ratio phase-2 wandered here,
@@ -553,7 +556,7 @@ class MultipleLossRatioSearch:
         :rtype: Optional[DiscreteLoad]
         """
         if bounds.phi1:
-            if (load := self.discrete_min_load) == bounds.phi1.discrete_load:
+            if (load := self.discrete_min_load) == bounds.phi1:
                 self.debug(f"Min load remeasurement available: {load}")
                 return load
         return None
@@ -567,7 +570,7 @@ class MultipleLossRatioSearch:
         :rtype: Optional[DiscreteLoad]
         """
         if bounds.plo1:
-            if (load := self.discrete_max_load) == bounds.plo1.discrete_load:
+            if (load := self.discrete_max_load) == bounds.plo1:
                 self.debug(f"Max load remeasurement available: {load}")
                 return load
         return None
@@ -607,10 +610,10 @@ class MultipleLossRatioSearch:
             self.debug(f"Halving available: {load}")
             return load
         if not bounds.clo1 and not bounds.chi1:
-            self.debug(u"Warning: too narrow to halve, trigger re-measurement.")
+            self.debug("Warning: too narrow to halve, trigger re-measurement.")
             # This is case two, when both bounds need re-measurement.
             # Caller will allow a second re-measurement as this mimics halving.
-            return tlo.discrete_load
+            return tlo
         return None
 
     def _lo_remea_load(
@@ -630,13 +633,13 @@ class MultipleLossRatioSearch:
         if bounds.clo1:
             interval = DiscreteInterval(bounds.clo1, bounds.chi1)
             if interval.width_in_goals(width_goal) <= 1.0:
-                self.debug(u"Not re-measuring low when narrow alrady.")
+                self.debug("Not re-measuring low when narrow alrady.")
                 return None
         interval = DiscreteInterval(bounds.plo1, bounds.chi1)
         if interval.width_in_goals(width_goal) > 1.0:
             # The previous phase tightest bound would not be this far.
             return None
-        load = bounds.plo1.discrete_load
+        load = bounds.plo1
         self.debug(f"Lowerbound re-measurement available: {load}")
         return load
 
@@ -657,18 +660,21 @@ class MultipleLossRatioSearch:
         if bounds.chi1:
             interval = DiscreteInterval(bounds.clo1, bounds.chi1)
             if interval.width_in_goals(width_goal) <= 1.0:
-                self.debug(u"Not re-measureng high when narrow alrady.")
+                self.debug("Not re-measureng high when narrow alrady.")
                 return None
         interval = DiscreteInterval(bounds.clo1, bounds.phi1)
         if interval.width_in_goals(width_goal) > 1.0:
             # The previous phase tightest bound would not be this far.
             return None
-        load = bounds.phi1.discrete_load
+        load = bounds.phi1
         self.debug(f"Upperbound remeasurement available: {load}")
         return load
 
     def _extend_down(
-        self, bounds: RelevantBounds, width_goal: DiscreteWidth
+        self,
+        bounds: RelevantBounds,
+        width_goal: DiscreteWidth,
+        criterion: Criterion,
     ) -> Optional[DiscreteLoad]:
         """Return extended width below.
 
@@ -682,26 +688,29 @@ class MultipleLossRatioSearch:
         :rtype: Optional[DiscreteLoad]
         :raises RuntimeError: If algorithm inconsistency is detected.
         """
-        if bounds.chi1.discrete_load <= self.discrete_min_load:
-            self.debug(u"Hitting min load, exit early.")
+        if bounds.chi1 <= self.discrete_min_load:
+            self.debug("Hitting min load, exit early.")
             return None
         if not bounds.chi2:
-            if bounds.chi1.discrete_load < self.discrete_max_load:
+            if bounds.chi1 < self.discrete_max_load:
                 raise RuntimeError(f"Extending down without chi2: {bounds!r}")
-            load = bounds.chi1.discrete_load - width_goal
+            load = bounds.chi1 - width_goal
             self.debug(f"Max load re-measured high, extending down: {load}")
             return load
         # Old (phi1) values are not reliable enough to slow down the expansion.
         old_width = DiscreteInterval(bounds.chi1, bounds.chi2).discrete_width
         # Some width mismatch is expected, only one half is aligned to goal.
         old_width = max(old_width, width_goal)
-        new_width = old_width * self.config.expansion_coefficient
-        load = bounds.chi1.discrete_load - new_width
+        new_width = old_width * criterion.expansion_coefficient
+        load = bounds.chi1 - new_width
         # Not emitting a comment to debug here, caller knows two cases.
         return load
 
     def _extend_up(
-        self, bounds: RelevantBounds, width_goal: DiscreteWidth
+        self,
+        bounds: RelevantBounds,
+        width_goal: DiscreteWidth,
+        criterion: Criterion,
     ) -> Optional[DiscreteLoad]:
         """Return extended width above.
 
@@ -713,21 +722,21 @@ class MultipleLossRatioSearch:
         :rtype: Optional[DiscreteLoad]
         :raises RuntimeError: If algorithm inconsistency is detected.
         """
-        if bounds.clo1.discrete_load >= self.discrete_max_load:
-            self.debug(u"Hitting max rate, we can exit.")
+        if bounds.clo1 >= self.discrete_max_load:
+            self.debug("Hitting max rate, we can exit.")
             return None
         if not bounds.clo2:
-            if bounds.clo1.discrete_load > self.discrete_min_load:
+            if bounds.clo1 > self.discrete_min_load:
                 raise RuntimeError(f"Extending up without clo2: {bounds!r}")
-            load = bounds.clo1.discrete_load + width_goal
+            load = bounds.clo1 + width_goal
             self.debug(f"Min load re-measured low, extending down: {load}")
             return load
         # Old (plo1) values are not reliable enough to slow down the expansion.
         old_width = DiscreteInterval(bounds.clo2, bounds.clo1).discrete_width
         # Some width mismatch is expected, only one half is aligned to goal.
         old_width = max(old_width, width_goal)
-        new_width = old_width * self.config.expansion_coefficient
-        load = bounds.clo1.discrete_load + new_width
+        new_width = old_width * criterion.expansion_coefficient
+        load = bounds.clo1 + new_width
         self.debug(f"No current upper bound, extending up: {load}")
         return load
 
