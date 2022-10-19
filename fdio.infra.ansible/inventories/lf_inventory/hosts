@@ -26,7 +26,7 @@ all:
         10.30.51.76: #s66-t37-sut2 - icelake
         10.30.51.78: #s78-t38-sut1 - icelake
         10.30.51.79: #s79-t38-sut2 - icelake
-        10.30.51.81: #s71-t212-sut1 - icelake
+        10.30.51.81: #s81-t212-sut1 - icelake
         10.30.51.83: #s83-t213-sut1 - icelake
         10.30.51.85: #s85-t214-sut1 - icelake
         10.30.51.87: #s87-t215-sut1 - icelake
