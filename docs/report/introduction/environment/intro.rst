@@ -82,10 +82,8 @@ Following is the list of CSIT versions to date:
   <https://s3-docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
   `CSIT <https://git.fd.io/csit/tree/?h=rls2106>`_).
 
-  - TRex version upgrade:
-    `increase from 2.86 to 2.88 <https://gerrit.fd.io/r/c/csit/+/31652>`_.
-  - Ubuntu upgrade:
-    `upgrade from 18.04 LTS to 20.04.2 LTS <https://gerrit.fd.io/r/c/csit/+/31290>`_.
+  - TRex version upgrade: `increase from 2.86 to 2.88`_.
+  - Ubuntu upgrade: `upgrade from 18.04 LTS to 20.04.2 LTS`_.
 - Ver. 8 associated with CSIT rls2110 branch (`HW
   <https://git.fd.io/csit/tree/docs/lab?h=rls2110>`_, `Linux
   <https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
@@ -129,4 +127,5 @@ Following is the list of CSIT versions to date:
     matrix.
   - Mellanox 556A series firmware upgrade based on DPDK compatibility
     matrix.
-  - Ubuntu 22.04 LTS upgrade.
+  - Ubuntu upgrade: `upgrade from 20.04.2 LTS to 22.04.1 LTS`_.
+  - TRex version upgrade: `increase from 2.97 to 3.00`_.
