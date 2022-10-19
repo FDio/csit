@@ -95,7 +95,7 @@
   vpp-2n-zn2-curr-iter:
     csit-vpp-perf-report-iterative-2210-2n-zn2:
       - 9   # rls2210.rc2 NDRPDR iter env 11
-      # - 11  # rls2210.rc2 NDRPDR iter env 11
+      - 11  # rls2210.rc2 NDRPDR iter env 11
       - 12  # rls2210.rc2 NDRPDR iter env 11
       - 13  # rls2210.rc2 NDRPDR iter env 11
       - 14  # rls2210.rc2 NDRPDR iter env 11
@@ -166,7 +166,7 @@
       - 16  # rls2210 NDRPDR iter env 11
       - 17  # rls2210 NDRPDR iter env 11
       - 18  # rls2210 NDRPDR iter env 11
-      # - 19  # rls2210 NDRPDR iter env 11
+      - 19  # rls2210 NDRPDR iter env 11
       - 20  # rls2210 NDRPDR iter env 11
 
   dpdk-2n-zn2-curr-iter-best:
@@ -284,6 +284,7 @@
   vpp-2n-clx-curr-soak:
     csit-vpp-perf-report-iterative-2210-2n-clx:
       - 31  # rls2210.rc2 soak env 11
+      - 44  # rls2210.rc2 soak env 11
   vpp-soak-vs-ndr-2n-clx-ref:
     csit-vpp-perf-report-iterative-2210-2n-clx:
       - 26  # rls2210.rc2 NDRPDR iter env 11
@@ -299,6 +300,7 @@
       - 34  # rls2210.rc2 NDRPDR iter env 11
       - 40  # rls2210.rc2 NDRPDR iter env 11
       - 31  # rls2210.rc2 soak env 11
+      - 44  # rls2210.rc2 soak env 11
 
   vpp-2n-clx-curr-cov:
     # csit-vpp-perf-report-coverage-2210-2n-clx:
@@ -987,7 +989,8 @@
       - 17  # rls2210.rc2 hoststack iter env 11
       - 21  # rls2210.rc2 hoststack iter env 11
       - 22  # rls2210.rc2 hoststack iter env 11
-      # - 23  # rls2210.rc2 hoststack iter env 11
+      - 23  # rls2210.rc2 hoststack iter env 11
+      - 24  # rls2210.rc2 hoststack iter env 11
 
   vpp-3n-icx-curr-cov:
     # csit-vpp-perf-report-coverage-2210-3n-icx:
@@ -1024,11 +1027,11 @@
   dpdk-3n-icx-curr-iter:
     csit-dpdk-perf-report-iterative-2210-3n-icx:
       - 11  # rls2210 NDRPDR iter env 11
-      # - 12  # rls2210 NDRPDR iter env 11
+      - 12  # rls2210 NDRPDR iter env 11
       - 13  # rls2210 NDRPDR iter env 11
       - 14  # rls2210 NDRPDR iter env 11
       - 15  # rls2210 NDRPDR iter env 11
-      # - 16  # rls2210 NDRPDR iter env 11
+      - 16  # rls2210 NDRPDR iter env 11
       - 17  # rls2210 NDRPDR iter env 11
       - 18  # rls2210 NDRPDR iter env 11
       - 19  # rls2210 NDRPDR iter env 11
