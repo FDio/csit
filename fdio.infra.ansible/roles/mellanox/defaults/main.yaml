@@ -22,9 +22,9 @@ mellanox_download_url: "http://content.mellanox.com/ofed"
 mellanox_extract_dir: "/opt"
 
 mellanox_cx5_compatibility_matrix:
-  dpdk21.02:
-    # https://doc.dpdk.org/guides/rel_notes/release_21_02.html
-    ofed: "5.3-1.0.5.0"
+  dpdk22.03:
+    # https://doc.dpdk.org/guides/rel_notes/release_22_03.html
+    ofed: "5.6-1.0.3.3"
   dpdk22.07:
     # https://doc.dpdk.org/guides/rel_notes/release_22_07.html
     ofed: "5.6-1.0.3.3"
