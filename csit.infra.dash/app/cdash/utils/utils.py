@@ -366,7 +366,7 @@ def get_list_group_items(tests: list) -> list:
                         "font-size": ".875em",
                         "color": get_color(i)
                     },
-                    input_class_name="border-danger bg-danger"
+                    class_name="info"
                 )
             ],
             class_name="p-0"
