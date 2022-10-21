@@ -353,75 +353,95 @@ class Layout:
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
-                    dbc.Label(
-                        children=show_tooltip(
-                            self._tooltips,
-                            "help-dut",
-                            "Device under Test"
-                        )
-                    ),
-                    dbc.RadioItems(
-                        id="ri-duts",
-                        inline=True,
-                        value=self._default["dut"],
-                        options=self._default["duts"],
-                        input_class_name="border-info bg-info"
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-dut",
+                                    "DUT"
+                                )
+                            ),
+                            dbc.RadioItems(
+                                id="ri-duts",
+                                inline=True,
+                                value=self._default["dut"],
+                                options=self._default["duts"],
+                                class_name="form-control"
+                            )
+                        ],
+                        size="sm"
                     )
                 ]
             ),
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
-                    dbc.Label(
-                        children=show_tooltip(
-                            self._tooltips,
-                            "help-ttype",
-                            "Test Type"
-                        )
-                    ),
-                    dbc.RadioItems(
-                        id="ri-ttypes",
-                        inline=True,
-                        value=self._default["ttype"],
-                        options=self._default["ttypes"],
-                        input_class_name="border-info bg-info"
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-ttype",
+                                    "Test Type"
+                                )
+                            ),
+                            dbc.RadioItems(
+                                id="ri-ttypes",
+                                inline=True,
+                                value=self._default["ttype"],
+                                options=self._default["ttypes"],
+                                class_name="form-control"
+                            )
+                        ],
+                        size="sm"
                     )
                 ]
             ),
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
-                    dbc.Label(
-                        children=show_tooltip(
-                            self._tooltips,
-                            "help-cadence",
-                            "Cadence"
-                        )
-                    ),
-                    dbc.RadioItems(
-                        id="ri-cadences",
-                        inline=True,
-                        value=self._default["cadence"],
-                        options=self._default["cadences"],
-                        input_class_name="border-info bg-info"
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-cadence",
+                                    "Cadence"
+                                )
+                            ),
+                            dbc.RadioItems(
+                                id="ri-cadences",
+                                inline=True,
+                                value=self._default["cadence"],
+                                options=self._default["cadences"],
+                                class_name="form-control"
+                            )
+                        ],
+                        size="sm"
                     )
                 ]
             ),
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
-                    dbc.Label(
-                        children=show_tooltip(
-                            self._tooltips,
-                            "help-tbed",
-                            "Test Bed"
-                        )
-                    ),
-                    dbc.Select(
-                        id="dd-tbeds",
-                        placeholder="Select a test bed...",
-                        value=self._default["tbed"],
-                        options=self._default["tbeds"]
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-tbed",
+                                    "Test Bed"
+                                )
+                            ),
+                            dbc.Select(
+                                id="dd-tbeds",
+                                placeholder="Select a test bed...",
+                                value=self._default["tbed"],
+                                options=self._default["tbeds"]
+                            )
+                        ],
+                        size="sm"
                     )
                 ]
             ),
@@ -485,7 +505,7 @@ class Layout:
                         [
                             dbc.Button(
                                 id="plot-btn-url",
-                                children="URL",
+                                children="Show URL",
                                 class_name="me-1",
                                 color="info",
                                 style={

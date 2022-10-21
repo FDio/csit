@@ -380,14 +380,6 @@ class Layout:
         :rtype: list
         """
         return [
-            dbc.Label(
-                class_name="g-0 p-1",
-                children=show_tooltip(
-                    self._tooltips,
-                    "help-summary-period",
-                    "Window"
-                )
-            ),
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
@@ -448,7 +440,7 @@ class Layout:
                         [
                             dbc.Button(
                                 id="plot-btn-url",
-                                children="URL",
+                                children="Show URL",
                                 class_name="me-1",
                                 color="info",
                                 style={

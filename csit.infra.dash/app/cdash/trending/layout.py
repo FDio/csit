@@ -459,134 +459,164 @@ class Layout:
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[
-                    dbc.Label(
-                        children=show_tooltip(
-                            self._tooltips,
-                            "help-framesize",
-                            "Frame Size"
-                        )
-                    ),
-                    dbc.Col(
-                        children=[
-                            dbc.Checklist(
-                                id={"type": "ctrl-cl", "index": "frmsize-all"},
-                                options=C.CL_ALL_DISABLED,
-                                inline=True,
-                                switch=False,
-                                input_class_name="border-info bg-info"
-                            )
-                        ],
-                        width=3
-                    ),
-                    dbc.Col(
-                        children=[
-                            dbc.Checklist(
-                                id={"type": "ctrl-cl", "index": "frmsize"},
-                                inline=True,
-                                switch=False,
-                                input_class_name="border-info bg-info"
-                            )
-                        ]
-                    )
-                ]
-            ),
-            dbc.Row(
-                class_name="g-0 p-1",
-                children=[
-                    dbc.Label(
-                        children=show_tooltip(
-                            self._tooltips,
-                            "help-cores",
-                            "Number of Cores"
-                        )
-                    ),
-                    dbc.Col(
-                        children=[
-                            dbc.Checklist(
-                                id={"type": "ctrl-cl", "index": "core-all"},
-                                options=C.CL_ALL_DISABLED,
-                                inline=False,
-                                switch=False,
-                                input_class_name="border-info bg-info"
-                            )
-                        ],
-                        width=3
-                    ),
-                    dbc.Col(
-                        children=[
-                            dbc.Checklist(
-                                id={"type": "ctrl-cl", "index": "core"},
-                                inline=True,
-                                switch=False,
-                                input_class_name="border-info bg-info"
-                            )
-                        ]
-                    )
-                ]
-            ),
-            dbc.Row(
-                class_name="g-0 p-1",
-                children=[
-                    dbc.Label(
-                        children=show_tooltip(
-                            self._tooltips,
-                            "help-ttype",
-                            "Test Type"
-                        )
-                    ),
-                    dbc.Col(
-                        children=[
-                            dbc.Checklist(
-                                id={"type": "ctrl-cl", "index": "tsttype-all"},
-                                options=C.CL_ALL_DISABLED,
-                                inline=True,
-                                switch=False,
-                                input_class_name="border-info bg-info"
-                            )
-                        ],
-                        width=3
-                    ),
-                    dbc.Col(
-                        children=[
-                            dbc.Checklist(
-                                id={"type": "ctrl-cl", "index": "tsttype"},
-                                inline=True,
-                                switch=False,
-                                input_class_name="border-info bg-info"
-                            )
-                        ]
-                    )
-                ]
-            ),
-            dbc.Row(
-                class_name="g-0 p-1",
-                children=[
-                    dbc.Label(
-                        children=show_tooltip(
-                            self._tooltips,
-                            "help-normalize",
-                            "Normalize"
-                        )
-                    ),
-                    dbc.Col(
-                        children=[
-                            dbc.Checklist(
-                                id="normalize",
-                                options=[
-                                    {
-                                        "value": "normalize",
-                                        "label": (
-                                            "Normalize results to CPU "
-                                            "frequency 2GHz"
-                                        )
-                                    }
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-framesize",
+                                    "Frame Size"
+                                )
+                            ),
+                            dbc.Col(
+                                children=[
+                                    dbc.Checklist(
+                                        id={
+                                            "type": "ctrl-cl",
+                                            "index": "frmsize-all"
+                                        },
+                                        options=C.CL_ALL_DISABLED,
+                                        inline=True,
+                                        class_name="ms-2"
+                                    )
                                 ],
-                                value=[],
-                                inline=True,
-                                switch=False,
-                                input_class_name="border-info bg-info"
+                                width=2
+                            ),
+                            dbc.Col(
+                                children=[
+                                    dbc.Checklist(
+                                        id={
+                                            "type": "ctrl-cl",
+                                            "index": "frmsize"
+                                        },
+                                        inline=True
+                                    )
+                                ]
                             )
-                        ]
+                        ],
+                        style={"align-items": "center"},
+                        size="sm"
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-cores",
+                                    "Number of Cores"
+                                )
+                            ),
+                            dbc.Col(
+                                children=[
+                                    dbc.Checklist(
+                                        id={
+                                            "type": "ctrl-cl",
+                                            "index": "core-all"
+                                        },
+                                        options=C.CL_ALL_DISABLED,
+                                        inline=True,
+                                        class_name="ms-2"
+                                    )
+                                ],
+                                width=2
+                            ),
+                            dbc.Col(
+                                children=[
+                                    dbc.Checklist(
+                                        id={
+                                            "type": "ctrl-cl",
+                                            "index": "core"
+                                        },
+                                        inline=True
+                                    )
+                                ]
+                            )
+                        ],
+                        style={"align-items": "center"},
+                        size="sm"
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-ttype",
+                                    "Test Type"
+                                )
+                            ),
+                            dbc.Col(
+                                children=[
+                                    dbc.Checklist(
+                                        id={
+                                            "type": "ctrl-cl",
+                                            "index": "tsttype-all"
+                                        },
+                                        options=C.CL_ALL_DISABLED,
+                                        inline=True,
+                                        class_name="ms-2"
+                                    )
+                                ],
+                                width=2
+                            ),
+                            dbc.Col(
+                                children=[
+                                    dbc.Checklist(
+                                        id={
+                                            "type": "ctrl-cl",
+                                            "index": "tsttype"
+                                        },
+                                        inline=True
+                                    )
+                                ]
+                            )
+                        ],
+                        style={"align-items": "center"},
+                        size="sm"
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText(
+                                children=show_tooltip(
+                                    self._tooltips,
+                                    "help-normalize",
+                                    "Normalization"
+                                )
+                            ),
+                            dbc.Col(
+                                children=[
+                                    dbc.Checklist(
+                                        id="normalize",
+                                        options=[{
+                                            "value": "normalize",
+                                            "label": (
+                                                "Normalize to CPU frequency "
+                                                "2GHz"
+                                            )
+                                        }],
+                                        value=[],
+                                        inline=True,
+                                        class_name="ms-2"
+                                    )
+                                ]
+                            )
+                        ],
+                        style={"align-items": "center"},
+                        size="sm"
                     )
                 ]
             ),
@@ -694,7 +724,7 @@ class Layout:
                         [
                             dbc.Button(
                                 id="plot-btn-url",
-                                children="URL",
+                                children="Show URL",
                                 class_name="me-1",
                                 color="info",
                                 style={
