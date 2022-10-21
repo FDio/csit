@@ -517,7 +517,7 @@ class Layout:
                                 options=C.CL_ALL_DISABLED,
                                 inline=True,
                                 switch=False,
-                                input_class_name="border-info bg-info"
+                                class_name="info"
                             )
                         ],
                         width=3
@@ -528,7 +528,7 @@ class Layout:
                                 id={"type": "ctrl-cl", "index": "frmsize"},
                                 inline=True,
                                 switch=False,
-                                input_class_name="border-info bg-info"
+                                class_name="info"
                             )
                         ]
                     )
@@ -551,7 +551,7 @@ class Layout:
                                 options=C.CL_ALL_DISABLED,
                                 inline=False,
                                 switch=False,
-                                input_class_name="border-info bg-info"
+                                class_name="info"
                             )
                         ],
                         width=3
@@ -562,7 +562,7 @@ class Layout:
                                 id={"type": "ctrl-cl", "index": "core"},
                                 inline=True,
                                 switch=False,
-                                input_class_name="border-info bg-info"
+                                class_name="info"
                             )
                         ]
                     )
@@ -585,7 +585,7 @@ class Layout:
                                 options=C.CL_ALL_DISABLED,
                                 inline=True,
                                 switch=False,
-                                input_class_name="border-info bg-info"
+                                class_name="info"
                             )
                         ],
                         width=3
@@ -596,7 +596,7 @@ class Layout:
                                 id={"type": "ctrl-cl", "index": "tsttype"},
                                 inline=True,
                                 switch=False,
-                                input_class_name="border-info bg-info"
+                                class_name="info"
                             )
                         ]
                     )
@@ -626,7 +626,7 @@ class Layout:
                                 value=[],
                                 inline=True,
                                 switch=False,
-                                input_class_name="border-info bg-info"
+                                class_name="info"
                             ),
                         ]
                     )

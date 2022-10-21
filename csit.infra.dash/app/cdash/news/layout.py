@@ -380,14 +380,14 @@ class Layout:
         :rtype: list
         """
         return [
-            dbc.Label(
-                class_name="g-0 p-1",
-                children=show_tooltip(
-                    self._tooltips,
-                    "help-summary-period",
-                    "Window"
-                )
-            ),
+            # dbc.Label(
+            #     class_name="g-0 p-1",
+            #     children=show_tooltip(
+            #         self._tooltips,
+            #         "help-summary-period",
+            #         "Window"
+            #     )
+            # ),
             dbc.Row(
                 class_name="g-0 p-1",
                 children=[

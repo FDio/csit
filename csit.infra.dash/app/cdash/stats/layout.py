@@ -365,7 +365,7 @@ class Layout:
                         inline=True,
                         value=self._default["dut"],
                         options=self._default["duts"],
-                        input_class_name="border-info bg-info"
+                        class_name="info"
                     )
                 ]
             ),
@@ -384,7 +384,7 @@ class Layout:
                         inline=True,
                         value=self._default["ttype"],
                         options=self._default["ttypes"],
-                        input_class_name="border-info bg-info"
+                        class_name="info"
                     )
                 ]
             ),
@@ -403,7 +403,7 @@ class Layout:
                         inline=True,
                         value=self._default["cadence"],
                         options=self._default["cadences"],
-                        input_class_name="border-info bg-info"
+                        class_name="info"
                     )
                 ]
             ),
