@@ -407,9 +407,8 @@
   #     - 3   # rls2202.rel MRR iter env 10
 
   vpp-3n-tsh-curr-iter-mrr:
-    # csit-vpp-perf-report-iterative-2210-3n-tsh:
-    csit-vpp-perf-report-iterative-2206-3n-tsh:
-      - 29  # rls2206.rel MRR iter env 10
+    csit-vpp-perf-report-iterative-2210-3n-tsh:
+      - 3   # rls2210.rc2 MRR iter env 11
 
   vpp-3n-tsh-curr-cov:
     # csit-vpp-perf-report-coverage-2210-3n-tsh:
@@ -509,9 +508,8 @@
   #     - 3   # rls2202.rel MRR iter env 10
 
   vpp-2n-tx2-curr-iter-mrr:
-    # csit-vpp-perf-report-iterative-2210-2n-tx2:
-    csit-vpp-perf-report-iterative-2206-2n-tx2:
-      - 29  # rls2206.rel MRR iter env 10
+    csit-vpp-perf-report-iterative-2210-2n-tx2:
+      - 4   # rls2210.rc2 MRR iter env 11
 
   vpp-2n-tx2-curr-cov:
     # csit-vpp-perf-report-coverage-2210-2n-tx2:
@@ -1081,9 +1079,8 @@
   #     - 12  # rls2206.rel MRR iter env 10
 
   vpp-3n-alt-curr-iter-mrr:
-    # csit-vpp-perf-report-iterative-2210-3n-alt:
-    csit-vpp-perf-report-iterative-2206-3n-alt:
-      - 12  # rls2206.rel MRR iter env 10
+    csit-vpp-perf-report-iterative-2210-3n-alt:
+      - 2   # rls2210.rc2 MRR iter env 11
 
   vpp-3n-alt-curr-cov:
     # csit-vpp-perf-report-coverage-2210-3n-alt:
