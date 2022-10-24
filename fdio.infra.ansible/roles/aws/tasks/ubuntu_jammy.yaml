@@ -8,3 +8,28 @@
     update_cache: true
   tags:
     - aws-enable-src-repo
+
+- name: Enable deb-src APT Repository Focal
+  ansible.builtin.apt_repository:
+    repo: "deb http://archive.ubuntu.com/ubuntu focal main"
+    state: "present"
+    update_cache: true
+  tags:
+    - aws-enable-src-repo
+
+- name: Enable deb-src APT Repository Focal Src
+  ansible.builtin.apt_repository:
+    repo: "deb-src http://archive.ubuntu.com/ubuntu focal main"
+    state: "present"
+    update_cache: true
+  tags:
+    - aws-enable-src-repo
+
+- name: Update Package Cache (APT)
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  when:
+    - ansible_distribution == 'Ubuntu'
+  tags:
+    - aws-enable-src-repo
