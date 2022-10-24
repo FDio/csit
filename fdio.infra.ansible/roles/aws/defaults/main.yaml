@@ -1,2 +1,19 @@
 ---
 # file: roles/aws/defaults/main.yaml
+
+packages: "{{ packages_base + packages_by_distro[ansible_distribution|lower] + packages_by_arch[ansible_machine] }}"
+
+packages_base:
+  - []
+
+packages_by_distro:
+  ubuntu:
+    - "linux-image-5.4.0-1060-aws"
+    - "linux-headers-5.4.0-1060-aws"
+    - "linux-tools-5.4.0-1060-aws"
+
+packages_by_arch:
+  aarch64:
+    - []
+  x86_64:
+    - []

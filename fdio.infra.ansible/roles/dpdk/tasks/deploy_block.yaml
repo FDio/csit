@@ -31,13 +31,13 @@
     chdir: "{{ dpdk_target_dir }}/dpdk-{{ item }}"
   environment:
     CFLAGS: "-DRTE_LIBRTE_I40E_16BYTE_RX_DESC=y"
-  async: 3000
-  poll: 0
-  register: dpdk_built
-
-- name: Check if DPDK is Built
-  ansible.builtin.async_status:
-    jid: "{{ dpdk_built.ansible_job_id }}"
-  until: dpdk_built.finished
-  delay: 10
-  retries: 300
+#  async: 3000
+#  poll: 0
+#  register: dpdk_built
+#
+#- name: Check if DPDK is Built
+#  ansible.builtin.async_status:
+#    jid: "{{ dpdk_built.ansible_job_id }}"
+#  until: dpdk_built.finished
+#  delay: 10
+#  retries: 300
