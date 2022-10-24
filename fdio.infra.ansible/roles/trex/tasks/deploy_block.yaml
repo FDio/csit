@@ -58,19 +58,19 @@
   ansible.builtin.command: "./b build"
   args:
     chdir: "{{ trex_target_dir }}/trex-core-{{ item }}/linux_dpdk/"
-  async: 3000
-  poll: 0
-  register: trex_built
+#  async: 3000
+#  poll: 0
+#  register: trex_built
   when: trex_extracted.changed
 
-- name: Check if T-Rex is Compiled
-  async_status:
-    jid: "{{ trex_built.ansible_job_id }}"
-  register: trex_built
-  until: trex_built.finished
-  delay: 10
-  retries: 300
-  when: trex_extracted.changed
+#- name: Check if T-Rex is Compiled
+#  async_status:
+#    jid: "{{ trex_built.ansible_job_id }}"
+#  register: trex_built
+#  until: trex_built.finished
+#  delay: 10
+#  retries: 300
+#  when: trex_extracted.changed
 
 - name: Switch to gcc-11
   ansible.builtin.command: "update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 11"
