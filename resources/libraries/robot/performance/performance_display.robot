@@ -125,10 +125,26 @@
 | |
 | | [Arguments] | ${result}
 | |
-| | Display single bound | NDR_LOWER | ${result[0].low_end}
-| | Display single bound | NDR_UPPER | ${result[0].high_end}
-| | Display single bound | PDR_LOWER | ${result[1].low_end}
-| | Display single bound | PDR_UPPER | ${result[1].high_end}
+| | Display single bound | 00_LOWER | ${result[0].low_end}
+| | Display single bound | 00_UPPER | ${result[0].high_end}
+| | Display single bound | 11_LOWER | ${result[1].low_end}
+| | Display single bound | 11_UPPER | ${result[1].high_end}
+| | Display single bound | 22_LOWER | ${result[2].low_end}
+| | Display single bound | 22_UPPER | ${result[2].high_end}
+| | Display single bound | 33_LOWER | ${result[3].low_end}
+| | Display single bound | 33_UPPER | ${result[3].high_end}
+| | Display single bound | 44_LOWER | ${result[4].low_end}
+| | Display single bound | 44_UPPER | ${result[4].high_end}
+| | Display single bound | 55_LOWER | ${result[5].low_end}
+| | Display single bound | 55_UPPER | ${result[5].high_end}
+| | Display single bound | 66_LOWER | ${result[6].low_end}
+| | Display single bound | 66_UPPER | ${result[6].high_end}
+| | Display single bound | 77_LOWER | ${result[7].low_end}
+| | Display single bound | 77_UPPER | ${result[7].high_end}
+| | Display single bound | 88_LOWER | ${result[8].low_end}
+| | Display single bound | 88_UPPER | ${result[8].high_end}
+| | Display single bound | 99_LOWER | ${result[9].low_end}
+| | Display single bound | 99_UPPER | ${result[9].high_end}
 
 | Display result of soak search
 | | [Documentation]

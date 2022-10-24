@@ -1632,25 +1632,30 @@ class OptimizedSearch:
             state_timeout=state_timeout,
         )
         if packet_loss_ratio:
-            loss_ratios = [0.0, packet_loss_ratio]
-            bad_ratio = 0.5
+#            loss_ratios = [0.0, packet_loss_ratio]
+            bad_ratios = [0.00, 0.11, 0.22, 0.33, 0.44, 0.55, 0.66, 0.77, 0.88, 0.99]
         else:
             # Happens in reconf tests.
-            loss_ratios = [packet_loss_ratio]
-            bad_ratio = 0.0
+#            loss_ratios = [packet_loss_ratio]
+            bad_ratios = [0.0]
         criterion = Criterion(
-            bad_ratio=bad_ratio, trials_duration=final_trial_duration,
+            loss_ratio=0.0,
+            bad_ratio=0.0,
+            trials_duration=final_trial_duration,
+            intermediate_phases=number_of_intermediate_phases,
+            relative_width=final_relative_width,
+            expansion_coefficient=expansion_coefficient,
         )
         criteria = (
-            dataclasses.replace(criterion, loss_ratio=ratio)
-            for ratio in loss_ratios
+            dataclasses.replace(criterion, bad_ratio=ratio)
+            for ratio in bad_ratios
         )
         config = Config()
         config.criteria = Criteria(criteria)
         config.min_load = minimum_transmit_rate
         config.max_load = maximum_transmit_rate
         config.min_trial_duration = initial_trial_duration
-        config.single_trial_duration = final_trial_duration
+        config.single_trial_duration = initial_trial_duration
         config.max_search_duration = timeout
         config.warmup_duration = 1.0
         algorithm = MultipleLossRatioSearch(config)
