@@ -1,15 +1,20 @@
 ---
 # file: roles/aws/handlers/main.yaml
 
-- name: Reboot server
-  reboot:
-    reboot_timeout: 3600
-  tags:
-    - reboot-server
-
-- name: AWS - Reload systemd-modules
+- name: Reload systemd-modules
   systemd:
     name: "systemd-modules-load"
     state: "restarted"
   tags:
     - reload-systemd-modules
+
+- name: Update GRUB
+  ansible.builtin.command: update-grub
+  tags:
+    - update-grub
+
+- name: Reboot Server
+  ansible.builtin.reboot:
+    reboot_timeout: 3600
+  tags:
+    - reboot-server
