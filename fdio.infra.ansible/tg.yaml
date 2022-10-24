@@ -68,12 +68,12 @@
       tags: tg
     - role: iperf
       tags: iperf
+    - role: aws
+      tags: aws
     - role: trex
       tags: trex
     - role: ab
       tags: ab
-    - role: aws
-      tags: aws
     - role: cleanup
       tags: cleanup
     - role: calibration

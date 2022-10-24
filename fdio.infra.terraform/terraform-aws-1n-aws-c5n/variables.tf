@@ -38,7 +38,7 @@ variable "placement_group_strategy" {
 variable "tg_ami" {
   description = "AMI to use for the instance."
   type        = string
-  default     = "ami-0efad29ce9816d10f"
+  default     = "ami-095fecdfcd0bf387d"
 }
 
 variable "tg_associate_public_ip_address" {
