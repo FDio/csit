@@ -176,9 +176,9 @@
 | | ... | maximum_transmit_rate=${max_rate}
 | | ... | packet_loss_ratio=${packet_loss_ratio}
 | | ... | final_relative_width=${0.005}
-| | ... | final_trial_duration=${30.0}
+| | ... | final_trial_duration=${150.0}
 | | ... | initial_trial_duration=${1.0}
-| | ... | number_of_intermediate_phases=${2}
+| | ... | number_of_intermediate_phases=${3}
 | | ... | timeout=${1200.0}
 | | ... | ppta=${ppta}
 | | ... | resetter=${resetter}
@@ -190,6 +190,7 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Display result of NDRPDR search | ${result}
+| | Return From Keyword
 | | Check NDRPDR interval validity | ${result[1]}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result[0]}
