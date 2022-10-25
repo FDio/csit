@@ -346,29 +346,34 @@ def set_job_params(df: pd.DataFrame, job: str) -> dict:
     }
 
 
-def get_list_group_items(tests: list) -> list:
-    """Generate list of ListGroupItems with checkboxes with selected tests.
+def get_list_group_items(items: list, type: str, colorize: bool=True) -> list:
+    """Generate list of ListGroupItems with checkboxes with selected items.
 
-    :param tests: List of tests to be displayed in the ListGroup.
-    :type tests: list
-    :returns: List of ListGroupItems with checkboxes with selected tests.
+    :param items: List of items to be displayed in the ListGroup.
+    :param type: The type part of an element ID.
+    :param colorize: If True, the color of labels is set, otherwise the default
+        color is used.
+    :type items: list
+    :type type: str
+    :type colorize: bool
+    :returns: List of ListGroupItems with checkboxes with selected items.
     :rtype: list
     """
     return [
         dbc.ListGroupItem(
             children=[
                 dbc.Checkbox(
-                    id={"type": "sel-cl", "index": i},
-                    label=l["id"],
+                    id={"type": type, "index": i},
+                    label=l["id"] if isinstance(l, dict) else l,
                     value=False,
                     label_class_name="m-0 p-0",
                     label_style={
                         "font-size": ".875em",
-                        "color": get_color(i)
+                        "color": get_color(i) if colorize else "#55595c"
                     },
                     class_name="info"
                 )
             ],
             class_name="p-0"
-        ) for i, l in enumerate(tests)
+        ) for i, l in enumerate(items)
     ]
