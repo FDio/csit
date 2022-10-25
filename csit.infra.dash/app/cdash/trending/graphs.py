@@ -14,6 +14,7 @@
 """
 """
 
+import logging
 import plotly.graph_objects as go
 import pandas as pd
 
@@ -45,14 +46,14 @@ def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
     return latencies
 
 
-def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
+def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
     """Select the data for graphs from the provided data frame.
 
     :param data: Data frame with data for graphs.
     :param itm: Item (in this case job name) which data will be selected from
         the input data frame.
     :type data: pandas.DataFrame
-    :type itm: str
+    :type itm: dict
     :returns: A data frame with selected data.
     :rtype: pandas.DataFrame
     """
@@ -259,8 +260,12 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     return traces
 
 
-def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
-    normalize: bool) -> tuple:
+def graph_trending(
+        data: pd.DataFrame,
+        sel: dict,
+        layout: dict,
+        normalize: bool
+    ) -> tuple:
     """Generate the trending graph(s) - MRR, NDR, PDR and for PDR also Latences
     (result_latency_forward_pdr_50_avg).
 
@@ -283,7 +288,6 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
     fig_tput = None
     fig_lat = None
     for idx, itm in enumerate(sel):
-
         df = select_trending_data(data, itm)
         if df is None or df.empty:
             continue
@@ -393,3 +397,37 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             fig.update_layout(layout_hdrh)
 
     return fig
+
+
+def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
+    """Generates one graph per test, each graph includes all selected metrics.
+    """
+
+    def _generate_graph(data: pd.DataFrame, layout: dict) -> go.Figure:
+        """
+        """
+        graph = None
+
+        for metric in data.tm_metric.unique():
+            logging.info(metric)
+
+
+        return graph
+
+
+    tm_trending_graphs = list()
+
+    if data.empty:
+        return tm_trending_graphs
+
+    for test in data.test_name.unique():
+        logging.info(test)
+        df = data.loc[(data["test_name"] == test)]
+        tm_trending_graphs.append((
+            _generate_graph(df, layout),
+            {
+                "test_name": test
+            }
+        ))
+
+    return tm_trending_graphs

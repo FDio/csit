@@ -27,15 +27,18 @@ from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
 from ast import literal_eval
+from copy import deepcopy
 
 from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
+from ..utils.telemetry_data import TelemetryData
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
     generate_options, get_list_group_items
 from ..utils.url_processing import url_decode
 from ..data.data import Data
-from .graphs import graph_trending, graph_hdrh_latency, select_trending_data
+from .graphs import graph_trending, graph_hdrh_latency, select_trending_data, \
+    graph_tm_trending
 
 
 # Control panel partameters and their default values.
@@ -249,6 +252,11 @@ class Layout:
                 id="div-main",
                 className="small",
                 children=[
+                    dcc.Store(id="store-selected-tests"),
+                    dcc.Store(id="store-control-panel"),
+                    dcc.Store(id="store-telemetry-data"),
+                    dcc.Store(id="store-telemetry-user"),
+                    dcc.Location(id="url", refresh=False),
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
@@ -256,7 +264,15 @@ class Layout:
                             self._add_navbar()
                         ]
                     ),
-                    dcc.Loading(
+                    dbc.Row(
+                        id="row-main",
+                        class_name="g-0",
+                        children=[
+                            self._add_ctrl_col(),
+                            self._add_plotting_col()
+                        ]
+                    ),
+                    dbc.Spinner(
                         dbc.Offcanvas(
                             class_name="w-50",
                             id="offcanvas-metadata",
@@ -268,17 +284,6 @@ class Layout:
                                 dbc.Row(id="metadata-hdrh-graph")
                             ]
                         )
-                    ),
-                    dbc.Row(
-                        id="row-main",
-                        class_name="g-0",
-                        children=[
-                            dcc.Store(id="store-selected-tests"),
-                            dcc.Store(id="store-control-panel"),
-                            dcc.Location(id="url", refresh=False),
-                            self._add_ctrl_col(),
-                            self._add_plotting_col()
-                        ]
                     )
                 ]
             )
@@ -342,14 +347,12 @@ class Layout:
         return dbc.Col(
             id="col-plotting-area",
             children=[
-                dcc.Loading(
+                dbc.Spinner(
                     children=[
                         dbc.Row(
                             id="plotting-area",
                             class_name="g-0 p-0",
-                            children=[
-                                C.PLACEHOLDER
-                            ]
+                            children=[C.PLACEHOLDER, ]
                         )
                     ]
                 )
@@ -711,13 +714,13 @@ class Layout:
             )
 
         trending = [
-            dbc.Row(
-                children=dbc.Tabs(
+            dbc.Row(children=[
+                dbc.Tabs(
                     children=tab_items,
                     id="tabs",
                     active_tab="tab-tput",
                 )
-            ),
+            ]),
             dbc.Row(
                 [
                     dbc.Col([html.Div(
@@ -769,6 +772,8 @@ class Layout:
             )
         ]
 
+        # Add panel with telemetry to 'acc_items'
+
         return dbc.Col(
             children=[
                 dbc.Row(
@@ -781,27 +786,171 @@ class Layout:
                     ),
                     class_name="g-0 p-0",
                 ),
-                # dbc.Row(
-                #     dbc.Col([html.Div(
-                #         [
-                #             dbc.Button(
-                #                 id="btn-add-telemetry",
-                #                 children="Add Panel with Telemetry",
-                #                 class_name="me-1",
-                #                 color="info",
-                #                 style={
-                #                     "text-transform": "none",
-                #                     "padding": "0rem 1rem"
-                #                 }
-                #             )
-                #         ],
-                #         className=\
-                #             "d-grid gap-0 d-md-flex justify-content-md-end"
-                #     )]),
-                #     class_name="g-0 p-0"
-                # )
+                dbc.Row(
+                    dbc.Col([html.Div(
+                        [
+                            dbc.Button(
+                                id={"type": "telemetry-btn", "index": "open"},
+                                children="Add Panel with Telemetry",
+                                class_name="me-1",
+                                color="info",
+                                style={
+                                    "text-transform": "none",
+                                    "padding": "0rem 1rem"
+                                }
+                            ),
+                            dbc.Modal(
+                                [
+                                    dbc.ModalHeader(
+                                        dbc.ModalTitle(
+                                            "Select a Metric"
+                                        ),
+                                        close_button=False
+                                    ),
+                                    dbc.ModalBody(
+                                        id="plot-mod-telemetry-body-1",
+                                        children=self._get_telemetry_step_1()
+                                    ),
+                                    dbc.ModalFooter([
+                                        dbc.Button(
+                                            "Select",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "select"
+                                            },
+                                            disabled=True
+                                        ),
+                                        dbc.Button(
+                                            "Cancel",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "cancel"
+                                            },
+                                            disabled=False
+                                        )
+                                    ])
+                                ],
+                                id="plot-mod-telemetry-1",
+                                size="lg",
+                                is_open=False,
+                                scrollable=False,
+                                backdrop="static",
+                                keyboard=False
+                            ),
+                            dbc.Modal(
+                                [
+                                    dbc.ModalHeader(
+                                        dbc.ModalTitle(
+                                            "Select Labels"
+                                        ),
+                                        close_button=False
+                                    ),
+                                    dbc.ModalBody(
+                                        id="plot-mod-telemetry-body-2",
+                                        children=self._get_telemetry_step_2()
+                                    ),
+                                    dbc.ModalFooter([
+                                        dbc.Button(
+                                            "Back",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "back"
+                                            },
+                                            disabled=False
+                                        ),
+                                        dbc.Button(
+                                            "Add Telemetry",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "add"
+                                            },
+                                            disabled=True
+                                        ),
+                                        dbc.Button(
+                                            "Cancel",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "cancel"
+                                            },
+                                            disabled=False
+                                        )
+                                    ])
+                                ],
+                                id="plot-mod-telemetry-2",
+                                size="xl",
+                                is_open=False,
+                                scrollable=False,
+                                backdrop="static",
+                                keyboard=False
+                            )
+                        ],
+                        className=\
+                            "d-grid gap-0 d-md-flex justify-content-md-end"
+                    )]),
+                    class_name="g-0 p-0"
+                )
             ]
         )
+
+    def _get_telemetry_step_1(self) -> list:
+        """Return the content of the modal window used in the step 1 of metrics
+        selection.
+
+        :returns: A list of dbc rows with 'input' and 'search output'.
+        :rtype: list
+        """
+        return [
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Input(
+                        id="telemetry-search-in",
+                        placeholder="Start typing a metric name...",
+                        type="text"
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.ListGroup(
+                        class_name="overflow-auto p-0",
+                        id="telemetry-search-out",
+                        children=[],
+                        style={"max-height": "14em"},
+                        flush=True
+                    )
+                ]
+            )
+        ]
+
+    def _get_telemetry_step_2(self) -> list:
+        """Return the content of the modal window used in the step 2 of metrics
+        selection.
+
+        :returns: A list of dbc rows with 'container with dynamic dropdowns' and
+            'search output'.
+        :rtype: list
+        """
+        return [
+            dbc.Row(
+                id="telemetry-dd",
+                class_name="g-0 p-1",
+                children=["Add content here."]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Textarea(
+                        id="telemetry-list-metrics",
+                        rows=20,
+                        size="sm",
+                        wrap="off",
+                        readonly=True
+                    )
+                ]
+            )
+        ]
 
     def callbacks(self, app):
         """Callbacks for the whole application.
@@ -809,7 +958,7 @@ class Layout:
         :param app: The application.
         :type app: Flask
         """
-        
+
         @app.callback(
             [
                 Output("store-control-panel", "data"),
@@ -878,11 +1027,6 @@ class Layout:
                 url_params = parsed_url["params"]
             else:
                 url_params = None
-
-            plotting_area = no_update
-            row_card_sel_tests = no_update
-            row_btns_sel_tests = no_update
-            lg_selected = no_update
 
             trigger = Trigger(callback_context.triggered)
 
@@ -1124,10 +1268,10 @@ class Layout:
                     store_sel = new_store_sel
                 elif trigger.idx == "rm-test-all":
                     store_sel = list()
-                
+
             if on_draw:
                 if store_sel:
-                    lg_selected = get_list_group_items(store_sel)
+                    lg_selected = get_list_group_items(store_sel, "sel-cl")
                     plotting_area = self._get_plotting_area(
                         store_sel,
                         bool(normalize),
@@ -1142,7 +1286,13 @@ class Layout:
                     plotting_area = C.PLACEHOLDER
                     row_card_sel_tests = C.STYLE_DISABLED
                     row_btns_sel_tests = C.STYLE_DISABLED
+                    lg_selected = no_update
                     store_sel = list()
+            else:
+                plotting_area = no_update
+                row_card_sel_tests = no_update
+                row_btns_sel_tests = no_update
+                lg_selected = no_update
 
             ret_val = [
                 ctrl_panel.panel,
@@ -1157,8 +1307,8 @@ class Layout:
 
         @app.callback(
             Output("plot-mod-url", "is_open"),
-            [Input("plot-btn-url", "n_clicks")],
-            [State("plot-mod-url", "is_open")],
+            Input("plot-btn-url", "n_clicks"),
+            State("plot-mod-url", "is_open")
         )
         def toggle_plot_mod_url(n, is_open):
             """Toggle the modal window with url.
@@ -1166,6 +1316,289 @@ class Layout:
             if n:
                 return not is_open
             return is_open
+
+        @app.callback(
+            Output("store-telemetry-data", "data"),
+            Output("store-telemetry-user", "data"),
+            Output("telemetry-search-in", "value"),
+            Output("telemetry-search-out", "children"),
+            Output("telemetry-list-metrics", "value"),
+            Output("telemetry-dd", "children"),
+            Output("plot-mod-telemetry-1", "is_open"),
+            Output("plot-mod-telemetry-2", "is_open"),
+            Output({"type": "telemetry-btn", "index": "select"}, "disabled"),
+            Output({"type": "telemetry-btn", "index": "add"}, "disabled"),
+
+            State("store-telemetry-data", "data"),
+            State("store-telemetry-user", "data"),
+            State("store-selected-tests", "data"),
+            Input({"type": "tele-cl", "index": ALL}, "value"),
+            Input("telemetry-search-in", "value"),
+            Input({"type": "telemetry-btn", "index": ALL}, "n_clicks"),
+            Input({"type": "tm-dd", "index": ALL}, "value"),
+
+            prevent_initial_call=True
+        )
+        def _update_plot_mod_telemetry(
+                tm_data: dict,
+                tm_user: dict,
+                store_sel: list,
+                cl_metrics: list,
+                search_in: str,
+                n_clicks: list,
+                tm_dd_in: list
+            ) -> tuple:
+            """Toggle the modal window with telemetry.
+            """
+
+            if not any(n_clicks):
+                raise PreventUpdate
+
+            if tm_user is None:
+                # Telemetry user data
+                # The data provided by user or result of user action
+                tm_user = {
+                    # List of unique metrics:
+                    "unique_metrics": list(),
+                    # List of metrics selected by user:
+                    "selected_metrics": list(),
+                    # Labels from metrics selected by user (key: label name,
+                    # value: list of all possible values):
+                    "unique_labels": dict(),
+                    # Labels selected by the user (subset of 'unique_labels'):
+                    "selected_labels": dict(),
+                    # All unique metrics with labels (output from the step 1)
+                    # converted from pandas dataframe to dictionary.
+                    "unique_metrics_with_labels": dict(),
+                    # Metrics with labels selected by the user using dropdowns.
+                    "selected_metrics_with_labels": dict()
+                }
+
+            tm = TelemetryData(tests=store_sel)
+            tm_json = no_update
+            search_out = no_update
+            list_metrics = no_update
+            tm_dd = no_update
+            is_open = (False, False)
+            is_btn_disabled = (True, True)
+
+            trigger = Trigger(callback_context.triggered)
+            if trigger.type == "telemetry-btn":
+                if trigger.idx in ("open", "back"):
+                    tm.from_dataframe(self._data)
+                    tm_json = tm.to_json()
+                    tm_user["unique_metrics"] = tm.unique_metrics
+                    tm_user["selected_metrics"] = list()
+                    tm_user["unique_labels"] = dict()
+                    tm_user["selected_labels"] = dict()
+                    search_in = str()
+                    search_out = get_list_group_items(
+                        tm_user["unique_metrics"],
+                        "tele-cl",
+                        False
+                    )
+                    is_open = (True, False)
+                elif trigger.idx == "select":
+                    tm.from_json(tm_data)
+                    if any(cl_metrics):
+                        if not tm_user["selected_metrics"]:
+                            tm_user["selected_metrics"] = \
+                                tm_user["unique_metrics"]
+                        metrics = [a for a, b in \
+                            zip(tm_user["selected_metrics"], cl_metrics) if b]
+                        tm_user["selected_metrics"] = metrics
+                        tm_user["unique_labels"] = \
+                            tm.get_selected_labels(metrics)
+                        tm_user["unique_metrics_with_labels"] = \
+                            tm.unique_metrics_with_labels
+                        list_metrics = tm.str_metrics
+                        tm_dd = _get_dd_container(tm_user["unique_labels"])
+                        if list_metrics:
+                            is_btn_disabled = (True, False)
+                        is_open = (False, True)
+                    else:
+                        tm_user = None
+                        is_open = (False, False)
+                elif trigger.idx == "add":
+                    tm.from_json(tm_data)
+                    selected_data = tm.select_tm_trending_data(tm_user["selected_metrics_with_labels"])
+
+                    graphs = graph_tm_trending(selected_data, self._graph_layout)
+
+
+
+
+
+                    tm_user = None
+                    is_open = (False, False)
+                elif trigger.idx == "cancel":
+                    tm_user = None
+                    is_open = (False, False)
+            elif trigger.type == "telemetry-search-in":
+                tm.from_metrics(tm_user["unique_metrics"])
+                tm_user["selected_metrics"] = \
+                    tm.search_unique_metrics(search_in)
+                search_out = get_list_group_items(
+                    tm_user["selected_metrics"],
+                    type="tele-cl",
+                    colorize=False
+                )
+                is_open = (True, False)
+            elif trigger.type == "tele-cl":
+                if any(cl_metrics):
+                    is_btn_disabled = (False, True)
+                is_open = (True, False)
+            elif trigger.type == "tm-dd":
+                tm.from_metrics_with_labels(
+                    tm_user["unique_metrics_with_labels"]
+                )
+                selected = dict()
+                previous_itm = None
+                for itm in tm_dd_in:
+                    if itm is None:
+                        show_new = True
+                    elif isinstance(itm, str):
+                        show_new = False
+                        selected[itm] = list()
+                    elif isinstance(itm, list):
+                        if previous_itm is not None:
+                            selected[previous_itm] = itm
+                        show_new = True
+                    previous_itm = itm
+
+                tm_dd = _get_dd_container(
+                    tm_user["unique_labels"],
+                    selected,
+                    show_new
+                )
+                sel_metrics = tm.filter_selected_metrics_by_labels(selected)
+                tm_user["selected_metrics_with_labels"] = sel_metrics.to_dict()
+                if not sel_metrics.empty:
+                    list_metrics = tm.metrics_to_str(sel_metrics)
+                else:
+                    list_metrics = str()
+                if list_metrics:
+                    is_btn_disabled = (True, False)
+                is_open = (False, True)
+
+            # Return values:
+            ret_val = [
+                tm_json,
+                tm_user,
+                search_in,
+                search_out,
+                list_metrics,
+                tm_dd
+            ]
+            ret_val.extend(is_open)
+            ret_val.extend(is_btn_disabled)
+            return ret_val
+
+        def _get_dd_container(
+                all_labels: dict,
+                selected_labels: dict=dict(),
+                show_new=True
+            ) -> list:
+            """Generate a container with dropdown selection boxes depenting on
+            the input data.
+
+            :param all_labels: A dictionary with unique labels and their
+                possible values.
+            :param selected_labels: A dictionalry with user selected lables and
+                their values.
+            :param show_new: If True, a dropdown selection box to add a new
+                label is displayed.
+            :type all_labels: dict
+            :type selected_labels: dict
+            :type show_new: bool
+            :returns: A list of dbc rows with dropdown selection boxes.
+            :rtype: list
+            """
+
+            def _row(
+                    id: str,
+                    lopts: list=list(),
+                    lval: str=str(),
+                    vopts: list=list(),
+                    vvals: list=list()
+                ) -> dbc.Row:
+                """Generates a dbc row with dropdown boxes.
+
+                :param id: A string added to the dropdown ID.
+                :param lopts: A list of options for 'label' dropdown.
+                :param lval: Value of 'label' dropdown.
+                :param vopts: A list of options for 'value' dropdown.
+                :param vvals: A list of values for 'value' dropdown.
+                :type id: str
+                :type lopts: list
+                :type lval: str
+                :type vopts: list
+                :type vvals: list
+                :returns: dbc row with dropdown boxes.
+                :rtype: dbc.Row
+                """
+                children = list()
+                if lopts:
+                    children.append(
+                        dbc.Col(
+                            width=6,
+                            children=[
+                                dcc.Dropdown(
+                                    id={
+                                        "type": "tm-dd",
+                                        "index": f"label-{id}"
+                                    },
+                                    placeholder="Select a label...",
+                                    optionHeight=20,
+                                    multi=False,
+                                    options=lopts,
+                                    value=lval if lval else None
+                                )
+                            ]
+                        )
+                    )
+                    if vopts:
+                        children.append(
+                            dbc.Col(
+                                width=6,
+                                children=[
+                                    dcc.Dropdown(
+                                        id={
+                                            "type": "tm-dd",
+                                            "index": f"value-{id}"
+                                        },
+                                        placeholder="Select a value...",
+                                        optionHeight=20,
+                                        multi=True,
+                                        options=vopts,
+                                        value=vvals if vvals else None
+                                    )
+                                ]
+                            )
+                        )
+
+                return dbc.Row(class_name="g-0 p-1", children=children)
+
+            container = list()
+
+            # Display rows with items in 'selected_labels'; label on the left,
+            # values on the right:
+            keys_left = list(all_labels.keys())
+            for idx, label in enumerate(selected_labels.keys()):
+                container.append(_row(
+                    id=idx,
+                    lopts=deepcopy(keys_left),
+                    lval=label,
+                    vopts=all_labels[label],
+                    vvals=selected_labels[label]
+                ))
+                keys_left.remove(label)
+
+            # Display row with dd with labels on the left, right side is empty:
+            if show_new and keys_left:
+                container.append(_row(id="new", lopts=keys_left))
+
+            return container
 
         @app.callback(
             Output("metadata-tput-lat", "children"),
@@ -1253,7 +1686,7 @@ class Layout:
             Input("plot-btn-download", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_trending_data(store_sel, _):
+        def _download_trending_data(store_sel: list, _) -> dict:
             """Download the data
 
             :param store_sel: List of tests selected by user stored in the
