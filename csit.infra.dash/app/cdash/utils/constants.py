@@ -63,7 +63,7 @@ class Constants:
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
-    MAX_TIME_PERIOD = 180
+    MAX_TIME_PERIOD = 150  # 180
 
     # It defines the time period for data read from the parquets in days from
     # now back to the past.
@@ -78,6 +78,9 @@ class Constants:
 
     ############################################################################
     # General, application wide, layout affecting constants.
+
+    # Add a time delay (in ms) to the spinner being shown
+    SPINNER_DELAY = 500
 
     # If True, clear all inputs in control panel when button "ADD SELECTED" is
     # pressed.
