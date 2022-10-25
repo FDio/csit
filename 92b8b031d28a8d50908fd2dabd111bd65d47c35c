@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6aa9564_928600f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-25T12:15:37Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest ndrpdrANDnic_intel-e*ANDdrv_avfAND1cAND64bANDeth-l2patch",
+      "revId": "92b8b031d28a8d50908fd2dabd111bd65d47c35c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
