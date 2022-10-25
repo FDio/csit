@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf24ce70_ef71b4f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-25T12:38:21Z",
+      "side": 1,
+      "message": "Now I noticed HOSTS_ tags are inconsistent (sometimes in separate line, sometimes at the end of the previous line), but they are also inconsistent in Base so not need to fix here.",
+      "revId": "95a94ccfd23ff0d1c0af3d210c803d44426e578d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
