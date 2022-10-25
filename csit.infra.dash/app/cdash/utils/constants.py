@@ -69,7 +69,7 @@ class Constants:
     # now back to the past.
     # TIME_PERIOD = None - means all data (max MAX_TIME_PERIOD days) is read.
     # TIME_PERIOD = MAX_TIME_PERIOD - is the default value
-    TIME_PERIOD = MAX_TIME_PERIOD  # [days]
+    TIME_PERIOD = 20  # MAX_TIME_PERIOD  # [days]
 
     # List of releases used for iterative data processing.
     # The releases MUST be in the order from the current (newest) to the last
@@ -78,6 +78,9 @@ class Constants:
 
     ############################################################################
     # General, application wide, layout affecting constants.
+
+    # Add a time delay (in ms) to the spinner being shown
+    SPINNER_DELAY = 500
 
     # If True, clear all inputs in control panel when button "ADD SELECTED" is
     # pressed.

@@ -115,3 +115,48 @@ plot-hdrh-latency:
   autosize: True
   paper_bgcolor: "white"
   plot_bgcolor: "white"
+
+plot-trending-telemetry:
+  autosize: True
+  showlegend: True
+  yaxis:
+    showticklabels: True
+    tickformat: ".3s"
+    title: "Metric"
+    hoverformat: ".5s"
+    gridcolor: "rgb(238, 238, 238)"
+    linecolor: "rgb(238, 238, 238)"
+    showline: True
+    zeroline: False
+    tickcolor: "rgb(238, 238, 238)"
+    linewidth: 1
+    showgrid: True
+  xaxis:
+    title: 'Date [MMDD]'
+    type: "date"
+    autorange: True
+    fixedrange: False
+    showgrid: True
+    gridcolor: "rgb(238, 238, 238)"
+    showline: True
+    linecolor: "rgb(238, 238, 238)"
+    zeroline: False
+    linewidth: 1
+    showticklabels: True
+    tickcolor: "rgb(238, 238, 238)"
+    tickmode: "auto"
+    tickformat: "%m%d"
+  margin:
+    r: 20
+    b: 0
+    t: 5
+    l: 70
+  paper_bgcolor: "#fff"
+  plot_bgcolor: "#fff"
+  hoverlabel:
+    namelength: 50
+  legend:
+    orientation: "h"
+    y: -0.2
+    font:
+      size: 12
