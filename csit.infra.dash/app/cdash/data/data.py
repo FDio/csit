@@ -25,6 +25,11 @@ from pandas import DataFrame
 from awswrangler.exceptions import EmptyDataFrame, NoFilesFound
 
 
+ADD_DUMMY_TELEMETRY_DATA = True
+PATH_DUMMY_TELEMETRY_MRR = "cdash/data/vpp_runtime_mrr.json"
+PATH_DUMMY_TELEMETRY_NDRPDR = "cdash/data/vpp_runtime_ndrpdr.json"
+
+
 class Data:
     """Gets the data from parquets and stores it for further use by dash
     applications.
@@ -66,6 +71,28 @@ class Data:
                 f"{self._data_spec_file,}\n"
                 f"{err}"
             )
+
+        # Read dummy telemetry data:
+        if ADD_DUMMY_TELEMETRY_DATA:
+            import json
+            try:
+                with open(PATH_DUMMY_TELEMETRY_MRR, "r") as fr:
+                    self._tele_mrr = json.load(fr)["telemetry"]
+            except (IOError, json.JSONDecodeError, KeyError) as err:
+                logging.warning(
+                    f"It is not possible to read or decode the file with dummy "
+                    f"telemetry data {PATH_DUMMY_TELEMETRY_MRR}\n{err}"
+                )
+                self._tele_mrr = list()
+            try:
+                with open(PATH_DUMMY_TELEMETRY_NDRPDR, "r") as fr:
+                    self._tele_ndrpdr = json.load(fr)["telemetry"]
+            except (IOError, json.JSONDecodeError, KeyError) as err:
+                logging.warning(
+                    f"It is not possible to read or decode the file with dummy "
+                    f"telemetry data {PATH_DUMMY_TELEMETRY_NDRPDR}\n{err}"
+                )
+                self._tele_ndrpdr = list()
 
     @property
     def data(self):
@@ -135,8 +162,9 @@ class Data:
         :type last_modified_end: datetime, optional
         :type days: integer, optional
         :returns: List of file names.
-        :rtype: List
+        :rtype: list
         """
+        file_list = list()
         if days:
             last_modified_begin = datetime.now(tz=UTC) - timedelta(days=days)
         try:
@@ -154,6 +182,39 @@ class Data:
             logging.error(f"No data.\n{err}")
 
         return file_list
+
+    def _get_dummy_telemetry_data(self, df: DataFrame) -> list:
+        """Return the list with dummy telemetry data depending on the test type.
+        """
+
+        if df["test_type"] == "mrr":
+            return self._tele_mrr
+        elif df["test_type"] == "ndrpdr":
+            return self._tele_ndrpdr
+        else:
+            return list()
+
+    def _add_dummy_telemetry_data(self, df: DataFrame) -> DataFrame:
+        """Add dummy telemetry data to a dataframe.
+
+        This method adds the column "telemetry" to provided pandas dataframe
+        and fills it with dummy telemetry data. It supports ndrpdr amd mrr
+        tests.
+        The dummy telemetry data is read from json files with the structure:
+        {
+            "telemetry": [
+                "list of strings, each string is a telemetry data item in open
+                metrics format"
+            ]
+        }
+
+        :param df: A pandas dataframe to be filled with dummy telemetry data.
+        :type df: pandas.DataFrame
+        :returns: A pandas dataframe with "telemetry" column.
+        :rtype: pandas.DataFrame
+        """
+        df["telemetry"] = df.apply(self._get_dummy_telemetry_data, axis=1)
+        return df
 
     def _create_dataframe_from_parquet(self,
         path, partition_filter=None,
@@ -213,7 +274,7 @@ class Data:
                 last_modified_end=last_modified_end
             )
             if self._debug:
-                df.info(verbose=True, memory_usage='deep')
+                # df.info(verbose=True, memory_usage='deep')
                 logging.info(
                     u"\n"
                     f"Creation of dataframe {path} took: {time() - start}"
@@ -223,6 +284,12 @@ class Data:
             logging.error(f"No parquets found.\n{err}")
         except EmptyDataFrame as err:
             logging.error(f"No data.\n{err}")
+
+        # Add dummy telemetry data:
+        if ADD_DUMMY_TELEMETRY_DATA:
+            df = self._add_dummy_telemetry_data(df)
+            if self._debug:
+                df.info(verbose=True, memory_usage='deep')
 
         self._data = df
         return df
