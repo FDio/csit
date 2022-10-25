@@ -79,6 +79,9 @@ class Constants:
     ############################################################################
     # General, application wide, layout affecting constants.
 
+    # Add a time delay (in ms) to the spinner being shown
+    SPINNER_DELAY = 500
+
     # If True, clear all inputs in control panel when button "ADD SELECTED" is
     # pressed.
     CLEAR_ALL_INPUTS = False
