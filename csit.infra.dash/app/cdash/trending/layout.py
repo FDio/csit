@@ -781,27 +781,69 @@ class Layout:
                     ),
                     class_name="g-0 p-0",
                 ),
-                # dbc.Row(
-                #     dbc.Col([html.Div(
-                #         [
-                #             dbc.Button(
-                #                 id="btn-add-telemetry",
-                #                 children="Add Panel with Telemetry",
-                #                 class_name="me-1",
-                #                 color="info",
-                #                 style={
-                #                     "text-transform": "none",
-                #                     "padding": "0rem 1rem"
-                #                 }
-                #             )
-                #         ],
-                #         className=\
-                #             "d-grid gap-0 d-md-flex justify-content-md-end"
-                #     )]),
-                #     class_name="g-0 p-0"
-                # )
+                dbc.Row(
+                    dbc.Col([html.Div(
+                        [
+                            dbc.Button(
+                                id={"type": "telemetry-btn", "index": "open"},
+                                children="Add Panel with Telemetry",
+                                class_name="me-1",
+                                color="info",
+                                style={
+                                    "text-transform": "none",
+                                    "padding": "0rem 1rem"
+                                }
+                            ),
+                            dbc.Modal(
+                                [
+                                    dbc.ModalHeader(
+                                        dbc.ModalTitle(
+                                            "Add Panel with Telemetry"
+                                        ),
+                                        close_button=False
+                                    ),
+                                    dbc.ModalBody(
+                                        id="plot-mod-telemetry-body",
+                                        children=self._get_telemetry_panel()
+                                    ),
+                                    dbc.ModalFooter([
+                                        dbc.Button(
+                                            "Add Telemetry",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "add"
+                                            },
+                                            disabled=True
+                                        ),
+                                        dbc.Button(
+                                            "Cancel",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "cancel"
+                                            },
+                                            disabled=False
+                                        )
+                                    ])
+                                ],
+                                id="plot-mod-telemetry",
+                                size="lg",
+                                is_open=False,
+                                scrollable=False,
+                                backdrop="static"
+                            )
+                        ],
+                        className=\
+                            "d-grid gap-0 d-md-flex justify-content-md-end"
+                    )]),
+                    class_name="g-0 p-0"
+                )
             ]
         )
+
+    def _get_telemetry_panel(self):
+        """
+        """
+        return "Add content here."
 
     def callbacks(self, app):
         """Callbacks for the whole application.
@@ -1156,16 +1198,30 @@ class Layout:
             return ret_val
 
         @app.callback(
-            Output("plot-mod-url", "is_open"),
-            [Input("plot-btn-url", "n_clicks")],
-            [State("plot-mod-url", "is_open")],
+            [
+                Output("plot-mod-telemetry", "is_open")
+            ],
+            [
+                Input({"type": "telemetry-btn", "index": ALL}, "n_clicks")
+            ],
+            prevent_initial_call=True
         )
-        def toggle_plot_mod_url(n, is_open):
-            """Toggle the modal window with url.
+        def _update_plot_mod_telemetry(*_):
+            """Toggle the modal window with telemetry.
             """
-            if n:
-                return not is_open
-            return is_open
+
+            is_open = True
+            trigger = Trigger(callback_context.triggered)
+
+            if trigger.type == "telemetry-btn":
+                if trigger.idx == "open":
+                    is_open = True
+                elif trigger.idx == "add":
+                    is_open = False
+                elif trigger.idx == "cancel":
+                    is_open = False
+
+            return (is_open, )
 
         @app.callback(
             Output("metadata-tput-lat", "children"),
