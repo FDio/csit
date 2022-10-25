@@ -45,14 +45,14 @@ def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
     return latencies
 
 
-def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
+def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
     """Select the data for graphs from the provided data frame.
 
     :param data: Data frame with data for graphs.
     :param itm: Item (in this case job name) which data will be selected from
         the input data frame.
     :type data: pandas.DataFrame
-    :type itm: str
+    :type itm: dict
     :returns: A data frame with selected data.
     :rtype: pandas.DataFrame
     """
