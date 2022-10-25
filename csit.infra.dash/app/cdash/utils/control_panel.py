@@ -15,7 +15,7 @@
 """
 
 from copy import deepcopy
-
+from typing import Any
 
 class ControlPanel:
     """A class representing the control panel.
@@ -74,7 +74,7 @@ class ControlPanel:
             else:
                 raise KeyError(f"The key {key} is not defined.")
 
-    def get(self, key: str) -> any:
+    def get(self, key: str) -> Any:
         """Returns the value of a key from the Control panel.
 
         :param key: The key which value should be returned.

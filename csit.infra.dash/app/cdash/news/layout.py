@@ -71,7 +71,11 @@ class Layout:
             debug=True
         ).read_stats(days=C.NEWS_TIME_PERIOD)
 
-        df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
+        df_tst_info = pd.concat(
+            [data_mrr, data_ndrpdr],
+            ignore_index=True,
+            copy=False
+        )
 
         # Prepare information for the control panel:
         self._jobs = sorted(list(df_tst_info["job"].unique()))

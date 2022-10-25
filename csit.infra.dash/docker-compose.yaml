@@ -2,11 +2,11 @@ version: "3.7"
 services:
   cdash:
     build: "."
-    command: "uwsgi --ini app.ini --workers 2"
+    command: "uwsgi --ini app.ini --workers 1"
     environment:
       FLASK_DEBUG: 1
       FLASK_ENV: "development"
-    mem_limit: "2g"
+    mem_limit: "6g"
     ports:
       - "5000:5000"
     user: "${UID}:${GID}"
