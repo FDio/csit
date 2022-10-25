@@ -14,6 +14,8 @@
 """A module implementing the processing of a trigger.
 """
 
+from typing import Any
+
 from json import loads, JSONDecodeError
 
 
@@ -51,7 +53,7 @@ class Trigger:
         return self._id["type"]
 
     @property
-    def idx(self) -> any:
+    def idx(self) -> Any:
         return self._id["index"]
 
     @property
@@ -59,5 +61,5 @@ class Trigger:
         return self._param
 
     @property
-    def value(self) -> any:
+    def value(self) -> Any:
         return self._val
