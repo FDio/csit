@@ -51,6 +51,7 @@ trending-mrr:
     - result_receive_rate_rate_avg
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
+    - telemetry
 trending-ndrpdr:
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
   columns:
@@ -77,6 +78,7 @@ trending-ndrpdr:
     - result_latency_forward_pdr_50_unit
     - result_latency_forward_pdr_10_hdrh
     - result_latency_forward_pdr_0_hdrh
+    - telemetry
 iterative-mrr:
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_{release}
   columns:

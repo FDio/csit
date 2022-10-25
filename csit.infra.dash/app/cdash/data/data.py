@@ -135,8 +135,9 @@ class Data:
         :type last_modified_end: datetime, optional
         :type days: integer, optional
         :returns: List of file names.
-        :rtype: List
+        :rtype: list
         """
+        file_list = list()
         if days:
             last_modified_begin = datetime.now(tz=UTC) - timedelta(days=days)
         try:
@@ -215,9 +216,7 @@ class Data:
             if self._debug:
                 df.info(verbose=True, memory_usage='deep')
                 logging.info(
-                    u"\n"
-                    f"Creation of dataframe {path} took: {time() - start}"
-                    u"\n"
+                    f"\nCreation of dataframe {path} took: {time() - start}\n"
                 )
         except NoFilesFound as err:
             logging.error(f"No parquets found.\n{err}")
