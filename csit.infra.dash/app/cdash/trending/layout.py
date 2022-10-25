@@ -781,27 +781,62 @@ class Layout:
                     ),
                     class_name="g-0 p-0",
                 ),
-                # dbc.Row(
-                #     dbc.Col([html.Div(
-                #         [
-                #             dbc.Button(
-                #                 id="btn-add-telemetry",
-                #                 children="Add Panel with Telemetry",
-                #                 class_name="me-1",
-                #                 color="info",
-                #                 style={
-                #                     "text-transform": "none",
-                #                     "padding": "0rem 1rem"
-                #                 }
-                #             )
-                #         ],
-                #         className=\
-                #             "d-grid gap-0 d-md-flex justify-content-md-end"
-                #     )]),
-                #     class_name="g-0 p-0"
-                # )
+                dbc.Row(
+                    dbc.Col([html.Div(
+                        [
+                            dbc.Button(
+                                id="btn-telemetry-open",
+                                children="Add Panel with Telemetry",
+                                class_name="me-1",
+                                color="info",
+                                style={
+                                    "text-transform": "none",
+                                    "padding": "0rem 1rem"
+                                }
+                            ),
+                            dbc.Modal(
+                                [
+                                    dbc.ModalHeader(
+                                        dbc.ModalTitle(
+                                            "Add Panel with Telemetry"
+                                        ),
+                                        close_button=False
+                                    ),
+                                    dbc.ModalBody(
+                                        self._get_add_telemetry_panel()
+                                    ),
+                                    dbc.ModalFooter([
+                                        dbc.Button(
+                                            "Add Telemetry",
+                                            id="btn-telemetry-add",
+                                            disabled=True
+                                        ),
+                                        dbc.Button(
+                                            "Cancel",
+                                            id="btn-telemetry-cancel",
+                                            disabled=False
+                                        )
+                                ])
+                                ],
+                                id="plot-mod-telemetry",
+                                size="lg",
+                                is_open=False,
+                                scrollable=True,
+                                backdrop="static"
+                            )
+                        ],
+                        className=\
+                            "d-grid gap-0 d-md-flex justify-content-md-end"
+                    )]),
+                    class_name="g-0 p-0"
+                )
             ]
         )
+
+    def _get_add_telemetry_panel(self):
+        """
+        """
+        return "Add content here."
 
     def callbacks(self, app):
         """Callbacks for the whole application.
@@ -1162,6 +1197,18 @@ class Layout:
         )
         def toggle_plot_mod_url(n, is_open):
             """Toggle the modal window with url.
+            """
+            if n:
+                return not is_open
+            return is_open
+
+        @app.callback(
+            Output("plot-mod-telemetry", "is_open"),
+            [Input("btn-telemetry-open", "n_clicks")],
+            [State("plot-mod-telemetry", "is_open")],
+        )
+        def toggle_plot_mod_telemetry(n, is_open):
+            """Toggle the modal window with telemetry.
             """
             if n:
                 return not is_open
