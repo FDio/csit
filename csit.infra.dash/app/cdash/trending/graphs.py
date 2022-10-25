@@ -14,6 +14,7 @@
 """
 """
 
+import logging
 import plotly.graph_objects as go
 import pandas as pd
 
@@ -45,14 +46,14 @@ def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
     return latencies
 
 
-def select_trending_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
+def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
     """Select the data for graphs from the provided data frame.
 
     :param data: Data frame with data for graphs.
     :param itm: Item (in this case job name) which data will be selected from
         the input data frame.
     :type data: pandas.DataFrame
-    :type itm: str
+    :type itm: dict
     :returns: A data frame with selected data.
     :rtype: pandas.DataFrame
     """
@@ -259,8 +260,12 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     return traces
 
 
-def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
-    normalize: bool) -> tuple:
+def graph_trending(
+        data: pd.DataFrame,
+        sel: dict,
+        layout: dict,
+        normalize: bool
+    ) -> tuple:
     """Generate the trending graph(s) - MRR, NDR, PDR and for PDR also Latences
     (result_latency_forward_pdr_50_avg).
 
@@ -283,7 +288,6 @@ def graph_trending(data: pd.DataFrame, sel:dict, layout: dict,
     fig_tput = None
     fig_lat = None
     for idx, itm in enumerate(sel):
-
         df = select_trending_data(data, itm)
         if df is None or df.empty:
             continue
@@ -393,3 +397,140 @@ def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
             fig.update_layout(layout_hdrh)
 
     return fig
+
+
+def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
+    """Generates one graph per test, each graph includes all selected metrics.
+    """
+
+    def _generate_graph(data: pd.DataFrame, test: str, layout: dict) -> go.Figure:
+        """
+        """
+        graph = None
+        traces = list()
+        for idx, metric in enumerate(data.tm_metric.unique()):
+            if "-pdr" in test and "='pdr'" not in metric:
+                continue
+            if "-ndr" in test and "='ndr'" not in metric:
+                continue
+
+            df = data.loc[(data["tm_metric"] == metric)]
+            x_axis = df["start_time"].tolist()
+            y_data = [float(itm) for itm in df["tm_value"].tolist()]
+            if any(y_data):
+                anomalies, trend_avg, trend_stdev = classify_anomalies(
+                    {k: v for k, v in zip(x_axis, y_data)}
+                )
+            else:
+                anomalies = None
+            color = get_color(idx)
+            traces.append(
+                go.Scatter(  # Samples
+                    x=x_axis,
+                    y=y_data,
+                    name=metric,
+                    mode="markers",
+                    marker={
+                        "size": 5,
+                        "color": color,
+                        "symbol": "circle",
+                    },
+                    # text=hover,
+                    # hoverinfo="text+name",
+                    showlegend=True,
+                    legendgroup=metric,
+                    # customdata=customdata_samples
+                )
+            )
+            if anomalies:
+                traces.append(
+                    go.Scatter(  # Trend line
+                        x=x_axis,
+                        y=trend_avg,
+                        name=metric,
+                        mode="lines",
+                        line={
+                            "shape": "linear",
+                            "width": 1,
+                            "color": color,
+                        },
+                        # text=hover_trend,
+                        # hoverinfo="text+name",
+                        showlegend=False,
+                        legendgroup=metric,
+                        # customdata=customdata
+                    )
+                )
+
+                anomaly_x = list()
+                anomaly_y = list()
+                anomaly_color = list()
+                hover = list()
+                for idx, anomaly in enumerate(anomalies):
+                    if anomaly in ("regression", "progression"):
+                        anomaly_x.append(x_axis[idx])
+                        anomaly_y.append(trend_avg[idx])
+                        anomaly_color.append(C.ANOMALY_COLOR[anomaly])
+                        hover_itm = (
+                            f"date: {x_axis[idx].strftime('%Y-%m-%d %H:%M:%S')}"
+                            f"<br>trend: {trend_avg[idx]:,.0f}"
+                            "<br>classification: {anomaly}"
+                        )
+                        hover.append(hover_itm)
+                anomaly_color.extend([0.0, 0.5, 1.0])
+                traces.append(
+                    go.Scatter(
+                        x=anomaly_x,
+                        y=anomaly_y,
+                        mode="markers",
+                        text=hover,
+                        hoverinfo="text+name",
+                        showlegend=False,
+                        legendgroup=metric,
+                        name=metric,
+                        # customdata=customdata,
+                        marker={
+                            "size": 15,
+                            "symbol": "circle-open",
+                            "color": anomaly_color,
+                            "colorscale": C.COLORSCALE_TPUT,
+                            "showscale": True,
+                            "line": {
+                                "width": 2
+                            },
+                            "colorbar": {
+                                "y": 0.5,
+                                "len": 0.8,
+                                "title": "Circles Marking Data Classification",
+                                "titleside": "right",
+                                "tickmode": "array",
+                                "tickvals": [0.167, 0.500, 0.833],
+                                "ticktext": C.TICK_TEXT_TPUT,
+                                "ticks": "",
+                                "ticklen": 0,
+                                "tickangle": -90,
+                                "thickness": 10
+                            }
+                        }
+                    )
+                )
+
+        if traces:
+            graph = go.Figure()
+            graph.add_traces(traces)
+            graph.update_layout(layout.get("plot-trending-telemetry", dict()))
+
+        return graph
+
+    tm_trending_graphs = list()
+
+    if data.empty:
+        return tm_trending_graphs
+
+    for test in data.test_name.unique():
+        df = data.loc[(data["test_name"] == test)]
+        graph = _generate_graph(df, test, layout)
+        if graph:
+            tm_trending_graphs.append((graph, test, ))
+
+    return tm_trending_graphs
