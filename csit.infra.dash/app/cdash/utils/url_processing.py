@@ -69,7 +69,7 @@ def url_decode(url: str) -> dict:
         parsed_url = urlparse(url)
     except ValueError as err:
         logging.warning(f"\nThe url {url} is not valid, ignoring.\n{repr(err)}")
-        return None
+        return dict()
 
     if parsed_url.fragment:
         try:
@@ -85,7 +85,7 @@ def url_decode(url: str) -> dict:
                 f"\nEncoded parameters: '{parsed_url.fragment}'"
                 f"\n{repr(err)}"
             )
-            return None
+            return dict()
     else:
         params = None
 

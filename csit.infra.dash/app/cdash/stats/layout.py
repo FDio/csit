@@ -83,7 +83,11 @@ class Layout:
             debug=True
         ).read_stats(days=self._time_period)
 
-        df_tst_info = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
+        df_tst_info = pd.concat(
+            [data_mrr, data_ndrpdr],
+            ignore_index=True,
+            copy=False
+        )
 
         # Pre-process the data:
         data_stats = data_stats[~data_stats.job.str.contains("-verify-")]
