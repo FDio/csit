@@ -31,6 +31,7 @@ from ast import literal_eval
 from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
+from ..utils.telemetry_data import TelemetryData
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
     generate_options, get_list_group_items
 from ..utils.url_processing import url_decode
@@ -275,6 +276,8 @@ class Layout:
                         children=[
                             dcc.Store(id="store-selected-tests"),
                             dcc.Store(id="store-control-panel"),
+                            dcc.Store(id="store-telemetry"),
+                            dcc.Store(id="store-set-metrics"),
                             dcc.Location(id="url", refresh=False),
                             self._add_ctrl_col(),
                             self._add_plotting_col()
@@ -781,27 +784,157 @@ class Layout:
                     ),
                     class_name="g-0 p-0",
                 ),
-                # dbc.Row(
-                #     dbc.Col([html.Div(
-                #         [
-                #             dbc.Button(
-                #                 id="btn-add-telemetry",
-                #                 children="Add Panel with Telemetry",
-                #                 class_name="me-1",
-                #                 color="info",
-                #                 style={
-                #                     "text-transform": "none",
-                #                     "padding": "0rem 1rem"
-                #                 }
-                #             )
-                #         ],
-                #         className=\
-                #             "d-grid gap-0 d-md-flex justify-content-md-end"
-                #     )]),
-                #     class_name="g-0 p-0"
-                # )
+                dbc.Row(
+                    dbc.Col([html.Div(
+                        [
+                            dbc.Button(
+                                id={"type": "telemetry-btn", "index": "open"},
+                                children="Add Panel with Telemetry",
+                                class_name="me-1",
+                                color="info",
+                                style={
+                                    "text-transform": "none",
+                                    "padding": "0rem 1rem"
+                                }
+                            ),
+                            dbc.Modal(
+                                [
+                                    dbc.ModalHeader(
+                                        dbc.ModalTitle(
+                                            "Select a Metric"
+                                        ),
+                                        close_button=False
+                                    ),
+                                    dbc.ModalBody(
+                                        id="plot-mod-telemetry-body-1",
+                                        children=self._get_telemetry_step_1()
+                                    ),
+                                    dbc.ModalFooter([
+                                        dbc.Button(
+                                            "Select",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "select"
+                                            },
+                                            disabled=False
+                                        ),
+                                        dbc.Button(
+                                            "Cancel",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "cancel"
+                                            },
+                                            disabled=False
+                                        )
+                                    ])
+                                ],
+                                id="plot-mod-telemetry-1",
+                                size="lg",
+                                is_open=False,
+                                scrollable=False,
+                                backdrop="static",
+                                keyboard=False
+                            ),
+                            dbc.Modal(
+                                [
+                                    dbc.ModalHeader(
+                                        dbc.ModalTitle(
+                                            "Select Labels"
+                                        ),
+                                        close_button=False
+                                    ),
+                                    dbc.ModalBody(
+                                        id="plot-mod-telemetry-body-2",
+                                        children=self._get_telemetry_step_2()
+                                    ),
+                                    dbc.ModalFooter([
+                                        dbc.Button(
+                                            "Add Telemetry",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "add"
+                                            },
+                                            disabled=False
+                                        ),
+                                        dbc.Button(
+                                            "Cancel",
+                                            id={
+                                                "type": "telemetry-btn",
+                                                "index": "cancel"
+                                            },
+                                            disabled=False
+                                        )
+                                    ])
+                                ],
+                                id="plot-mod-telemetry-2",
+                                size="lg",
+                                is_open=False,
+                                scrollable=False,
+                                backdrop="static",
+                                keyboard=False
+                            )
+                        ],
+                        className=\
+                            "d-grid gap-0 d-md-flex justify-content-md-end"
+                    )]),
+                    class_name="g-0 p-0"
+                )
             ]
         )
+
+    def _get_telemetry_step_1(self):
+        """
+        """
+        return [
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.Input(
+                        id="telemetry-search-in",
+                        placeholder="Start typing a metrics name...",
+                        type="text"
+                    )
+                ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.ListGroup(
+                        class_name="overflow-auto p-0",
+                        id="telemetry-search-out",
+                        children=[],
+                        style={"max-height": "14em"},
+                        flush=True
+                    )
+                ]
+            )
+        ]
+
+    def _get_telemetry_step_2(self):
+        """
+        """
+        return [
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=["Add content here."]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[]
+            )
+        ]
 
     def callbacks(self, app):
         """Callbacks for the whole application.
@@ -809,7 +942,7 @@ class Layout:
         :param app: The application.
         :type app: Flask
         """
-        
+
         @app.callback(
             [
                 Output("store-control-panel", "data"),
@@ -1124,10 +1257,10 @@ class Layout:
                     store_sel = new_store_sel
                 elif trigger.idx == "rm-test-all":
                     store_sel = list()
-                
+
             if on_draw:
                 if store_sel:
-                    lg_selected = get_list_group_items(store_sel)
+                    lg_selected = get_list_group_items(store_sel, "sel-cl")
                     plotting_area = self._get_plotting_area(
                         store_sel,
                         bool(normalize),
@@ -1157,8 +1290,8 @@ class Layout:
 
         @app.callback(
             Output("plot-mod-url", "is_open"),
-            [Input("plot-btn-url", "n_clicks")],
-            [State("plot-mod-url", "is_open")],
+            Input("plot-btn-url", "n_clicks"),
+            State("plot-mod-url", "is_open")
         )
         def toggle_plot_mod_url(n, is_open):
             """Toggle the modal window with url.
@@ -1166,6 +1299,89 @@ class Layout:
             if n:
                 return not is_open
             return is_open
+
+        @app.callback(
+            Output("store-telemetry", "data"),
+            Output("store-set-metrics", "data"),
+            Output("telemetry-search-in", "value"),
+            Output("telemetry-search-out", "children"),
+            Output("plot-mod-telemetry-1", "is_open"),
+            Output("plot-mod-telemetry-2", "is_open"),
+
+            State("store-telemetry", "data"),
+            State("store-selected-tests", "data"),
+            State("store-set-metrics", "data"),
+            State({"type": "tele-cl", "index": ALL}, "value"),
+            Input("telemetry-search-in", "value"),
+            Input({"type": "telemetry-btn", "index": ALL}, "n_clicks"),
+
+            prevent_initial_call=True
+        )
+        def _update_plot_mod_telemetry(
+                tele_data: dict,
+                store_sel: list,
+                metrics: dict,
+                cl_metrics: list,
+                search_in: str,
+                n_clicks: list
+            ) -> tuple:
+            """Toggle the modal window with telemetry.
+
+            :param store_sel: List of tests selected by user stored in the
+                browser.
+            :type store_sel: list
+            """
+
+            if not any(n_clicks):
+                raise PreventUpdate
+
+            telemetry_json = dict()
+            search_out = str()
+            is_open = (False, False)
+
+            trigger = Trigger(callback_context.triggered)
+            if trigger.type == "telemetry-btn":
+                if trigger.idx == "open":
+                    telemetry = TelemetryData(
+                        in_data=self._data,
+                        data_type="dataframe",
+                        tests=store_sel
+                    )
+                    telemetry_json = telemetry.to_json()
+                    metrics = telemetry.unique_metrics
+                    search_out = get_list_group_items(metrics, "tele-cl", False)
+                    is_open = (True, False)
+                elif trigger.idx == "select":
+                    telemetry = TelemetryData(
+                        in_data=tele_data,
+                        data_type="json",
+                        tests=store_sel
+                    )
+                    metrics = [a for a, b in zip(metrics, cl_metrics) if b]
+                    telemetry_json = no_update
+                    search_in = str()
+                    is_open = (False, True) if metrics else (False, False)
+                elif trigger.idx == "add":
+                    is_open = (False, False)
+                elif trigger.idx == "cancel":
+                    search_in = str()
+                    is_open = (False, False)
+            elif trigger.type == "telemetry-search-in":
+                telemetry = TelemetryData(
+                    in_data=metrics,
+                    data_type="metrics",
+                    tests=store_sel
+                )
+                metrics = telemetry.search_unique_metrics(search_in)
+                search_out = get_list_group_items(
+                    metrics,
+                    type="tele-cl",
+                    colorize=False
+                )
+                telemetry_json = no_update
+                is_open = (True, False)
+
+            return telemetry_json, metrics, search_in, search_out, *is_open
 
         @app.callback(
             Output("metadata-tput-lat", "children"),
@@ -1253,7 +1469,7 @@ class Layout:
             Input("plot-btn-download", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_trending_data(store_sel, _):
+        def _download_trending_data(store_sel: list, _) -> dict:
             """Download the data
 
             :param store_sel: List of tests selected by user stored in the
