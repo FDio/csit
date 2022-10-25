@@ -1251,7 +1251,7 @@ class Layout:
 
             if on_draw:
                 if store_sel:
-                    lg_selected = get_list_group_items(store_sel)
+                    lg_selected = get_list_group_items(store_sel, "sel-cl")
                     plotting_area = self._get_plotting_area(
                         store_sel,
                         bool(normalize),
