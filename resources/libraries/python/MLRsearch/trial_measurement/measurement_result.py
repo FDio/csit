@@ -72,6 +72,8 @@ class MeasurementResult:
     # Optional primary quantities.
     offered_duration: float = None
     """Estimate of the time [s] the trial was actually transmitting traffic."""
+    duration_with_overheads: float = None
+    """Estimate of the time [s] it took to get the trial result since its start."""
     intended_count: int = None
     """Expected number of packets to transmit."""
 
@@ -87,10 +89,14 @@ class MeasurementResult:
             self.offered_duration = self.intended_duration
         else:
             self.offered_duration = float(self.offered_duration)
+        if self.duration_with_overheads is None:
+            self.duration_with_overheads = self.offered_duration
+        else:
+            self.duration_with_overheads = float(self.duration_with_overheads)
         self.intended_load = float(self.intended_load)
         if self.forwarding_count is None:
-            self.forwarding_count = (
-                int(self.offered_count) - int(self.loss_count)
+            self.forwarding_count = int(self.offered_count) - int(
+                self.loss_count
             )
         else:
             self.forwarding_count = int(self.forwarding_count)
