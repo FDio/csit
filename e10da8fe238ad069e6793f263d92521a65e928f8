@@ -16,6 +16,24 @@
       "message": "Old input: https://docs.fd.io/csit/master/report/_static/vpp/soak-vs-ndr-2n-icx.txt",
       "revId": "e10da8fe238ad069e6793f263d92521a65e928f8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e20c969_b0f71628",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-26T14:43:00Z",
+      "side": 1,
+      "message": "*output",
+      "parentUuid": "69bfc1e1_39aef01f",
+      "revId": "e10da8fe238ad069e6793f263d92521a65e928f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
