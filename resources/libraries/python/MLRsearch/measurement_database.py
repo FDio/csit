@@ -14,14 +14,16 @@
 """Module defining MeasurementDatabase class."""
 
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
+from typing import Dict, Optional, Tuple
 
-from .comparable_measurement_result import ComparableMeasurementResult as Result
-from .measurement_interval import MeasurementInterval
+from .criteria import Criteria
+from .criterion import Criterion
+from .discrete_load import DiscreteLoad
+from .discrete_interval import DiscreteInterval
+from .load_stat import LoadStat
 
 
-MaybeResult = Optional[Result]
-"""Just to make the 4-tuple type fit into a single line."""
+MaybeLoad = Optional[LoadStat]
 
 
 @dataclass
@@ -37,12 +39,15 @@ class MeasurementDatabase:
     the measurement results afterwards.
     """
 
-    measurements: List[Result]
-    """The measurement results to store, kept in normalized form."""
+    criteria: Criteria
+    """FIXME"""
+    load_to_stat: Dict[int, LoadStat] = None
+    """FIXME"""
 
     def __post_init__(self) -> None:
         """Store (shallow copy of) measurement results and normalize them."""
-        self.measurements = list(self.measurements)
+        if not self.load_to_stat:
+            self.load_to_stat = dict()
         self._normalize()
 
     def _normalize(self) -> None:
@@ -77,59 +82,29 @@ class MeasurementDatabase:
         Keeping the list of results sorted allows all the points to be applied
         quickly by iterating in the correct direction.
         """
-        self.measurements.sort()
-        # Remove obsolete result, override conflicting loss ratios.
-        last_by_duration = dict()
-        new_reversed_measurements = list()
-        for measurement in reversed(self.measurements):
-            duration = measurement.intended_duration
-            # Old overrides may be too aggressive, recompute.
-            measurement.overridden_loss_ratio = measurement.loss_ratio
-            for other_duration, other_measurement in last_by_duration.items():
-                if other_duration < duration:
-                    # Fine, keep comparing with others.
-                    continue
-                if other_measurement.intended_load == measurement.intended_load:
-                    # Obsoleted, do not keep.
-                    break
-                ratio_override = other_measurement.overridden_loss_ratio
-                if (
-                    other_duration > measurement.intended_duration
-                    and ratio_override < measurement.overridden_loss_ratio
-                ):
-                    # We cannot remove the measurement,
-                    # as it can be the latest one, but we have to override.
-                    measurement.overridden_loss_ratio = ratio_override
-                    # Continue, there may be a stricter override.
-            else:
-                new_reversed_measurements.append(measurement)
-                last_by_duration[duration] = measurement
-        self.measurements = new_reversed_measurements
-        self.measurements.reverse()
-        # Update effective ratios.
-        ratio_previous = None
-        for measurement in self.measurements:
-            if ratio_previous is None:
-                ratio_previous = measurement.overridden_loss_ratio
-                measurement.effective_loss_ratio = ratio_previous
-                continue
-            ratio_previous = max(
-                ratio_previous, measurement.overridden_loss_ratio
-            )
-            measurement.effective_loss_ratio = ratio_previous
+        self.load_to_stat = dict(sorted(self.load_to_stat.items()))
 
-    def add(self, measurement: Result) -> None:
+    def update(self, load_stat: LoadStat) -> None:
         """Add measurement and normalize.
 
         :param measurement: Measurement result to add to the database.
         :type measurement: MeasurementResult
         """
-        self.measurements.append(measurement)
+        self.load_to_stat[int(load_stat)] = load_stat
         self._normalize()
 
+    def stat_for(self, load: DiscreteLoad, subtrial_duration: float):
+        """FIXME"""
+        int_load = int(load)
+        if int_load in self.load_to_stat:
+            stat = self.load_to_stat[int_load]
+            if stat.subtrial_duration >= subtrial_duration:
+                return stat
+        return LoadStat.new_empty(load, subtrial_duration, self.criteria)
+
     def get_valid_bounds(
-        self, ratio: float, min_duration: float
-    ) -> Tuple[MaybeResult, MaybeResult, MaybeResult, MaybeResult]:
+        self, criterion, min_duration, subtrial_duration, phi=None,
+    ) -> Tuple[MaybeLoad, MaybeLoad, MaybeLoad, MaybeLoad]:
         """Return None or a valid measurement for two tightest bounds.
 
         Measurement results with smaller duration are ignored.
@@ -148,52 +123,28 @@ class MeasurementDatabase:
             second tightest lower bound, second tightest upper bound.
         :rtype: 4-tuple of Optional[ComparableMeasurementResult]
         """
+        subtrial_duration = min(subtrial_duration, min_duration)
         lower_1, upper_1, lower_2, upper_2 = None, None, None, None
-        for measurement in self.measurements:
-            if measurement.intended_duration < min_duration:
+        for load_stat in self.load_to_stat.values():
+            if load_stat.subtrial_duration < subtrial_duration:
                 continue
-            if measurement.effective_loss_ratio > ratio:
+            opt, pes = load_stat.satisfies(criterion, min_duration)
+            if opt != pes:
+                continue
+            if not opt:
                 if upper_1 is None:
-                    upper_1 = measurement
+                    upper_1 = load_stat
                     continue
-                upper_2 = measurement
+                upper_2 = load_stat
                 break
-            lower_1, lower_2 = measurement, lower_1
+            if upper_1 is None:
+                if phi is None or load_stat < phi:
+                    lower_1, lower_2 = load_stat, lower_1
         return lower_1, upper_1, lower_2, upper_2
 
-    def smallest_load_measurement(self, min_duration: float) -> Result:
-        """Return measurement with smallest load and large enough duration.
-
-        :param min_duration: Consider results with at least this duration [s].
-        :type min_duration: float
-        :returns: Measurement in this with smallest intended_load.
-        :rtype: ComparableMeasurementResult
-        :raises RuntimeError: If no results at requested duration.
-        """
-        for measurement in self.measurements:
-            if measurement.intended_duration < min_duration:
-                continue
-            return measurement
-        raise RuntimeError(f"No smallest duration {min_duration}: {self!r}")
-
-    def largest_load_measurement(self, min_duration: float) -> Result:
-        """Return measurement with largest load and large enough duration.
-
-        :param min_duration: Consider results with at least this duration [s].
-        :type min_duration: float
-        :returns: Measurement in this with largest intended_load.
-        :rtype: ComparableMeasurementResult
-        :raises RuntimeError: If no results at requested duration.
-        """
-        for measurement in reversed(self.measurements):
-            if measurement.intended_duration < min_duration:
-                continue
-            return measurement
-        raise RuntimeError(f"No largest duration {min_duration}: {self!r}")
-
     def get_intervals(
-        self, ratio_list: List[float], duration: float
-    ) -> List[MeasurementInterval]:
+        self, subtrial_duration
+    ) -> Dict[Criterion, DiscreteInterval]:
         """Return list of intervals for given ratios, at the duration.
 
         This assumes no trial had larger duration.
@@ -206,15 +157,19 @@ class MeasurementDatabase:
         :param ratio_list: Ratios to create intervals for.
         :type ratio_list: Iterable[float]
         :returns: List of intervals.
-        :rtype: List[MeasurementInterval]
+        :rtype: List[DiscreteInterval]
         """
-        ret_list = list()
-        for ratio in ratio_list:
-            bounds = self.get_valid_bounds(ratio=ratio, min_duration=duration)
+        ret_dict = dict()
+        for criterion in self.criteria:
+            bounds = self.get_valid_bounds(
+                criterion=criterion,
+                min_duration=criterion.trials_duration,
+                subtrial_duration=subtrial_duration,
+            )
             lower_bound, upper_bound, _, _ = bounds
             if lower_bound is None:
-                lower_bound = self.smallest_load_measurement(duration)
+                lower_bound = list(self.load_to_stat.values())[0]
             if upper_bound is None:
-                upper_bound = self.largest_load_measurement(duration)
-            ret_list.append(MeasurementInterval(lower_bound, upper_bound))
-        return ret_list
+                upper_bound = list(self.load_to_stat.values())[-1]
+            ret_dict[criterion] = DiscreteInterval(lower_bound, upper_bound)
+        return ret_dict
