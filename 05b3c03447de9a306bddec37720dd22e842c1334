@@ -50,6 +50,23 @@
       "message": "csit-dpdk-report-iter-3n-alt-perftest dpdk-mlr-00",
       "revId": "05b3c03447de9a306bddec37720dd22e842c1334",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce257a90_9c58a6bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-10-26T12:34:40Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-3n-tsh-perftest dpdk-mlr-00",
+      "revId": "05b3c03447de9a306bddec37720dd22e842c1334",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
