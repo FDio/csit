@@ -915,8 +915,8 @@ def table_soak_vs_ndr(table, input_data):
             else:
                 data_c_mean = mean(data_c)
                 data_c_stdev = stdev(data_c)
-            item.append(round(data_c_mean / 1e6, 1))
-            item.append(round(data_c_stdev / 1e6, 1))
+            item.append(round(data_c_mean / 1e6, 2))
+            item.append(round(data_c_stdev / 1e6, 2))
         else:
             data_c_mean = None
             data_c_stdev = None
@@ -925,11 +925,11 @@ def table_soak_vs_ndr(table, input_data):
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev)
             try:
-                item.append(round(delta))
+                item.append(round(delta, 2))
             except ValueError:
                 item.append(delta)
             try:
-                item.append(round(d_stdev))
+                item.append(round(d_stdev, 2))
             except ValueError:
                 item.append(d_stdev)
             tbl_lst.append(item)
