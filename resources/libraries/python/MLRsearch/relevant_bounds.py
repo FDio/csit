@@ -18,7 +18,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional
 
-from .comparable_measurement_result import ComparableMeasurementResult
+from .criterion import Criterion
+from .discrete_load import DiscreteLoad
 from .measurement_database import MeasurementDatabase
 
 
@@ -29,25 +30,29 @@ class RelevantBounds:
     Nothing special in the fields, the added value is the factory.
     """
 
-    clo1: Optional[ComparableMeasurementResult]
+    clo1: Optional[DiscreteLoad]
     """Tightest valid lower bound at current duration or longer."""
-    chi1: Optional[ComparableMeasurementResult]
+    chi1: Optional[DiscreteLoad]
     """Tightest valid upper bound at current duration or longer."""
-    plo1: Optional[ComparableMeasurementResult]
-    """Tightest valid lower bound at previous duration or longer."""
-    phi1: Optional[ComparableMeasurementResult]
-    """Tightest valid upper bound at previous duration or longer."""
-    clo2: Optional[ComparableMeasurementResult]
+    clo2: Optional[DiscreteLoad]
     """Second tightest lower bound at current duration or longer."""
-    chi2: Optional[ComparableMeasurementResult]
+    chi2: Optional[DiscreteLoad]
     """Second tightest upper bound at current duration or longer."""
+    plo1: Optional[DiscreteLoad]
+    """Tightest valid lower bound (below chi1) at previous duration or longer.
+    None if it is clo1 or clo2, so non-None means load is higher than cl1."""
+    phi1: Optional[DiscreteLoad]
+    """Tightest valid upper bound (above clo1) at previous duration or longer.
+    None if it is chi1 or chi2, so non-None means load is higher than cl1.
+    Search for this ignores any upper bounds belowe clo1."""
 
     @staticmethod
     def from_database(
         database: MeasurementDatabase,
-        ratio_goal: float,
+        criterion: Criterion,
         current_duration: float,
-        previous_duration: float,
+        previous_duration: Optional[float],
+        subtrial_duration: float,
     ) -> RelevantBounds:
         """Create instance by getting and processing bounds from database.
 
@@ -66,16 +71,21 @@ class RelevantBounds:
         :returns: New instance holding the processed values.
         :rtype: RelevantBounds
         """
-        bounds = database.get_valid_bounds(ratio_goal, current_duration)
+        bounds = database.get_valid_bounds(
+            criterion, current_duration, subtrial_duration
+        )
         plo1, phi1, clo1, chi1, clo2, chi2 = None, None, *bounds
         if previous_duration is not None:
-            bounds = database.get_valid_bounds(ratio_goal, previous_duration)
+            bounds = database.get_valid_bounds(
+                criterion, previous_duration, subtrial_duration, clo1, chi1
+            )
             plo1, phi1, _, _ = bounds
             if plo1 and plo1 in [clo1, clo2]:
-                # Possible as plo1 can have current duration.
+                # Possible as plo1 can have current count.
                 plo1 = None
             if phi1 and phi1 in [chi1, chi2]:
                 phi1 = None
-        return RelevantBounds(
+        ret = RelevantBounds(
             clo1=clo1, chi1=chi1, clo2=clo2, chi2=chi2, plo1=plo1, phi1=phi1
         )
+        return ret

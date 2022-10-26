@@ -16,7 +16,9 @@
 from dataclasses import dataclass, field
 from typing import Dict
 
+from .criterion import Criterion
 from .discrete_width import DiscreteWidth
+from .load_rounding import LoadRounding
 
 
 @dataclass
@@ -37,14 +39,12 @@ class DurationAndWidthScaling:
     in that case initial duration is ignored (as the only phase is final).
     """
 
-    intermediate_phases: int
-    """Number of intermediate phases, at least 1."""
-    initial_duration: float
-    """Duration [s] for first intermediate phase."""
-    final_duration: float
-    """Duration [s] for the final phase."""
-    final_width: DiscreteWidth
-    """Relative width goal for the final phase, in discrete form."""
+    min_duration: float
+    """FIXME"""
+    criterion: Criterion
+    """FIXME"""
+    rounding: LoadRounding
+    """FIXME"""
     # Secondary private quantities.
     _duration_by_phase: Dict[int, float] = field(init=False, repr=False)
     """Durations computed for phase number."""
@@ -56,31 +56,31 @@ class DurationAndWidthScaling:
 
         :raises RuntimeError: If an unsupported argument value is detected.
         """
-        self.intermediate_phases = int(self.intermediate_phases)
-        self.initial_duration = float(self.initial_duration)
-        self.final_duration = float(self.final_duration)
-        if not isinstance(self.final_width, DiscreteWidth):
-            raise RuntimeError(f"Not discrete width: {self.final_width!r}")
+        final_width = DiscreteWidth(
+            rounding=self.rounding,
+            float_width=self.criterion.relative_width,
+        )
         self._width_by_phase = dict()
-        width = self.final_width
-        for phase in range(self.intermediate_phases, -1, -1):
+        width = final_width
+        for phase in range(self.criterion.intermediate_phases, -1, -1):
             self._width_by_phase[phase] = width
             width *= 2
         self._duration_by_phase = dict()
-        if not self.intermediate_phases:
+        if not self.criterion.intermediate_phases:
             # Avoid possible division by zero.
-            self._duration_by_phase[0] = self.final_duration
+            self._duration_by_phase[0] = self.criterion.trials_duration
             return
         multiplier = pow(
-            self.final_duration / self.initial_duration,
-            1.0 / self.intermediate_phases
+            self.criterion.trials_duration / self.min_duration,
+            1.0 / self.criterion.intermediate_phases,
         )
-        duration = self.initial_duration
-        for phase in range(self.intermediate_phases + 1):
+        duration = self.min_duration
+        for phase in range(self.criterion.intermediate_phases + 1):
             self._duration_by_phase[phase] = duration
             duration *= multiplier
+            # TODO: Use reliable rounding if final phase is not noised by overheads.
 
-    def duration(self, phase: int) -> float:
+    def duration(self, phase: int) -> int:
         """Return the trial duration for this phase.
 
         :param phase: Number of phase, 0 is the first intermediate one.
