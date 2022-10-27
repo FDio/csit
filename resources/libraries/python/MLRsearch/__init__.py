@@ -20,3 +20,9 @@ __init__ file for Python package "MLRsearch".
 # without affecting the current CSIT global "resources" package root.
 # Probably it can be done by specifying multiple directories
 # in PYTHONPATH used throughout CSIT.
+
+# Import user-facing (API) stuff, so useds do not need to know submodules.
+from .config import Config
+from .criteria import Criteria
+from .criterion import Criterion
+from .multiple_loss_ratio_search import MultipleLossRatioSearch
