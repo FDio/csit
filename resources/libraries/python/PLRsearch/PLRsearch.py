@@ -177,7 +177,7 @@ class PLRsearch:
             f"max_rate {max_rate!r}"
         )
         trial_result_list = list()
-        trial_number = self.trial_number_offset
+        trial_number = 0  # self.trial_number_offset
         focus_trackers = (None, None)
         transmit_rate = (min_rate + max_rate) / 2.0
         lossy_loads = [max_rate]
@@ -186,7 +186,7 @@ class PLRsearch:
             trial_number += 1
             logging.info(f"Trial {trial_number!r}")
             results = self.measure_and_compute(
-                self.trial_duration_per_trial * trial_number, transmit_rate,
+                pow(2.0, trial_number), transmit_rate,
                 trial_result_list, min_rate, max_rate, focus_trackers
             )
             measurement, average, stdev, avg1, avg2, focus_trackers = results
