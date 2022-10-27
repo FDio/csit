@@ -13,6 +13,7 @@
 
 """Performance testing traffic generator library."""
 
+import dataclasses
 import math
 import time
 
@@ -22,8 +23,7 @@ from robot.libraries.BuiltIn import BuiltIn
 from .Constants import Constants
 from .CpuUtils import CpuUtils
 from .DropRateSearch import DropRateSearch
-from .MLRsearch.config import Config as MLRconfig
-from .MLRsearch.multiple_loss_ratio_search import MultipleLossRatioSearch
+from .MLRsearch import (Config, Criterion, Criteria, MultipleLossRatioSearch)
 from .MLRsearch.trial_measurement.abstract_measurer import AbstractMeasurer
 from .MLRsearch.trial_measurement.measurement_result import MeasurementResult
 from .PLRsearch.PLRsearch import PLRsearch
@@ -1276,6 +1276,7 @@ class TrafficGenerator(AbstractMeasurer):
         :returns: Structure containing the result of the measurement.
         :rtype: MeasurementResult
         """
+        duration_with_overheads = time.monotonic() - self._start_time
         try:
             # Client duration seems to include a setup period
             # where TRex does not send any packets yet.
@@ -1372,6 +1373,7 @@ class TrafficGenerator(AbstractMeasurer):
             offered_count=expected_attempt_count,
             loss_count=fail_count,
             offered_duration=approximated_duration,
+            duration_with_overheads=duration_with_overheads,
             intended_count=partial_attempt_count,
         )
         measurement.latency = self.get_latency_int()
@@ -1609,10 +1611,10 @@ class OptimizedSearch:
         # TODO: Move to robot code? We have two call sites, so this saves space,
         #       even though this is surprising for log readers.
         if transaction_scale:
-            initial_trial_duration = 1.0
-            final_trial_duration = 1.0
-            number_of_intermediate_phases = 0
-            # TODO: Move the value to Constants.py?
+#            initial_trial_duration = 1.0
+#            final_trial_duration = 1.0
+#            number_of_intermediate_phases = 0
+#            # TODO: Move the value to Constants.py?
             timeout += transaction_scale * 3e-4
         tg_instance.set_rate_provider_defaults(
             frame_size=frame_size,
@@ -1630,23 +1632,30 @@ class OptimizedSearch:
             state_timeout=state_timeout,
         )
         if packet_loss_ratio:
-            packet_loss_ratios = [0.0, packet_loss_ratio]
+            loss_ratios = [0.0, packet_loss_ratio]
+            bad_ratio = 0.5
         else:
             # Happens in reconf tests.
-            packet_loss_ratios = [packet_loss_ratio]
-        config = MLRconfig()
+            loss_ratios = [packet_loss_ratio]
+            bad_ratio = 0.0
+        criterion = Criterion(
+            bad_ratio=bad_ratio, trials_duration=final_trial_duration,
+        )
+        criteria = (
+            dataclasses.replace(criterion, loss_ratio=ratio)
+            for ratio in loss_ratios
+        )
+        config = Config()
+        config.criteria = Criteria(criteria)
         config.min_load = minimum_transmit_rate
         config.max_load = maximum_transmit_rate
-        config.target_loss_ratios = packet_loss_ratios
-        config.initial_trial_duration = initial_trial_duration
-        config.final_trial_duration = final_trial_duration
-        config.final_relative_width = final_relative_width
-        config.number_of_intermediate_phases = number_of_intermediate_phases
-        config.expansion_coefficient = expansion_coefficient
+        config.min_trial_duration = initial_trial_duration
+        config.subtrial_duration = final_trial_duration
         config.max_search_duration = timeout
+        config.warmup_duration = 1.0
         algorithm = MultipleLossRatioSearch(config)
         results = algorithm.search(measurer=tg_instance, debug=logger.debug)
-        return results
+        return list(results.values())
 
     @staticmethod
     def perform_soak_search(

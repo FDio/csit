@@ -51,10 +51,11 @@ from inspect import stack
 from typing import Callable, Optional, TypeVar, Union
 
 
-Self = TypeVar(u"Self")
+Self = TypeVar("Self")
 """Type for the dataclass instances being created using properties."""
-Value = TypeVar(u"Value")
+Value = TypeVar("Value")
 """Type for the value the property (getter, setter) handles."""
+
 
 def _calling_scope_variable(name: str) -> Value:
     """Get a variable from a higher scope.
@@ -142,6 +143,7 @@ class dataclass_property(property):
         """
         if fset is None:
             return super().setter(fset)
+
         @wraps(fset)
         def wrapped(sel_: Self, val: Union[Value, dataclass_property]) -> None:
             """Extract default from getter if needed, call the user setter.
@@ -158,4 +160,5 @@ class dataclass_property(property):
             if isinstance(val, dataclass_property):
                 val = val.fget.default_value
             fset(sel_, val)
+
         return super().setter(wrapped)
