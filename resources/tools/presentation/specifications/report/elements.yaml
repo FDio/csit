@@ -11910,16 +11910,27 @@
 
 ################################################################################
 
-# - type: "plot"
-#   title: "Latency by percentile: TRex 2n-skx"
-#   algorithm: "plot_hdrh_lat_by_percentile_x_log"
-#   output-file: "{DIR[STATIC,TREX]}/hdrh-lat-percentile-2n-skx"
-#   output-file-links: "{DIR[LAT,TREX]}/2n_skx.rst"
-#   target-links: "../../_static/trex"
-#   data: "trex-2n-skx-curr-iter-best"
-#   filter: "'NIC_Intel-X710'"
-#   layout:
-#     layout: "plot-hdrh-latency-percentile-x-log"
+- type: "plot"
+  title: "Latency by percentile: TRex 2n-icx"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,TREX]}/hdrh-lat-percentile-2n-icx"
+  output-file-links: "{DIR[LAT,TREX]}/2n_icx.rst"
+  target-links: "../../_static/trex"
+  data: "trex-2n-icx-curr-iter-best"
+  filter: "'NIC_Intel-E810CQ'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
+
+- type: "plot"
+  title: "Latency by percentile: TRex 1n-aws"
+  algorithm: "plot_hdrh_lat_by_percentile_x_log"
+  output-file: "{DIR[STATIC,TREX]}/hdrh-lat-percentile-1n-aws"
+  output-file-links: "{DIR[LAT,TREX]}/1n_aws.rst"
+  target-links: "../../_static/trex"
+  data: "trex-1n-aws-curr-iter-best"
+  filter: "'2T1C'"
+  layout:
+    layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
   title: "Latency by percentile: 2n-zn2"
@@ -12201,72 +12212,100 @@
 
 ###############################################################################
 
-# TRex 2n-skx
+# TRex 2n-icx
 
-# - type: "plot"
-#   title: "Throughput: 2n-skx-x710-64b--ip4-base-scale-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/2n-skx-x710-64b--ip4-base-scale-{test_type}"
-#   data: "trex-2n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4-Ip4Base-Tg-Ndrpdr.64B--ethip4-ip4base-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4-Ip4Scale2M-Tg-Ndrpdr.64B--ethip4-ip4scale2m-tg-ndrpdr"
-#   layout:
-#     title: "2n-skx-x710-64b--ip4-base-scale-{test_type}"
-#     layout: "plot-throughput"
+- type: "plot"
+  title: "Throughput: 2n-icx-e810cq-64b--ip4-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,TREX]}/2n-icx-e810cq-64b--ip4-base-scale-{test_type}"
+  data: "trex-2n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4-Ip4Base-Tg-Ndrpdr.64B--ethip4-ip4base-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4-Ip4Scale2M-Tg-Ndrpdr.64B--ethip4-ip4scale2m-tg-ndrpdr"
+  layout:
+    title: "2n-icx-e810cq-64b--ip4-base-scale-{test_type}"
+    layout: "plot-throughput"
 
-# - type: "plot"
-#   title: "Throughput: 2n-skx-x710-64b--ip4routing-stf-cps-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/2n-skx-x710-64b--ip4routing-stf-cps-{test_type}"
-#   data: "trex-2n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Cps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-Cps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H1024-P63-S64512-Cps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H262144-P63-S16515072-Cps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h262144-p63-s16515072-cps-tg-ndrpdr"
-#   layout:
-#     title: "2n-skx-x710-64b--ip4routing-stf-cps-{test_type}"
-#     layout: "plot-throughput"
+- type: "plot"
+  title: "Throughput: 2n-icx-e810cq-64b--ip4routing-stf-cps-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,TREX]}/2n-icx-e810cq-64b--ip4routing-stf-cps-{test_type}"
+  data: "trex-2n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Cps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-Cps-Tg-Ndrpdr.64B--ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-H1024-P63-S64512-Cps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h1024-p63-s64512-cps-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-H262144-P63-S16515072-Cps-Tg-Ndrpdr.64B--ethip4udp-ip4base-h262144-p63-s16515072-cps-tg-ndrpdr"
+  layout:
+    title: "2n-icx-e810cq-64b--ip4routing-stf-cps-{test_type}"
+    layout: "plot-throughput"
 
-# - type: "plot"
-#   title: "Throughput: 2n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/2n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
-#   data: "trex-2n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.100B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.100B--ethip4tcp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.100B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip4.1N1L-10Ge2P1X710-Ethip4Udp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.100B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
-#   layout:
-#     title: "2n-skx-x710-64b--ip4routing-stf-pps-{test_type}"
-#     layout: "plot-throughput"
+- type: "plot"
+  title: "Throughput: 2n-icx-e810cq-64b--ip4routing-stf-pps-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,TREX]}/2n-icx-e810cq-64b--ip4routing-stf-pps-{test_type}"
+  data: "trex-2n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Tcp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.100B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.100B--ethip4tcp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.100B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.100B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
+  layout:
+    title: "2n-icx-e810cq-64b--ip4routing-stf-pps-{test_type}"
+    layout: "plot-throughput"
 
-# - type: "plot"
-#   title: "Throughput: 2n-skx-x710-78b--ip6-base-scale-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/2n-skx-x710-78b--ip6-base-scale-{test_type}"
-#   data: "trex-2n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.Ip6.1N1L-10Ge2P1X710-Ethip6-Ip6Base-Tg-Ndrpdr.78B--ethip6-ip6base-tg-ndrpdr"
-#     - "Tests.Trex.Perf.Ip6.1N1L-10Ge2P1X710-Ethip6-Ip6Scale2M-Tg-Ndrpdr.78B--ethip6-ip6scale2m-tg-ndrpdr"
-#   layout:
-#     title: "2n-skx-x710-78b--ip6-base-scale-{test_type}"
-#     layout: "plot-throughput"
+- type: "plot"
+  title: "Throughput: 2n-icx-e810cq-78b--ip6-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,TREX]}/2n-icx-e810cq-78b--ip6-base-scale-{test_type}"
+  data: "trex-2n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Trex.Perf.Ip6.1N1L-100Ge2P1E810Cq-Ethip6-Ip6Base-Tg-Ndrpdr.78B--ethip6-ip6base-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip6.1N1L-100Ge2P1E810Cq-Ethip6-Ip6Scale2M-Tg-Ndrpdr.78B--ethip6-ip6scale2m-tg-ndrpdr"
+  layout:
+    title: "2n-icx-e810cq-78b--ip6-base-scale-{test_type}"
+    layout: "plot-throughput"
 
-# - type: "plot"
-#   title: "Throughput: 2n-skx-x710-64b--l2-scale-{test_type}"
-#   algorithm: "plot_ndrpdr_box_name"
-#   output-file: "{DIR[STATIC,TREX]}/2n-skx-x710-64b--l2-scale-{test_type}"
-#   data: "trex-2n-skx-curr-iter"
-#   core: ["2t1c", ]
-#   include:
-#     - "Tests.Trex.Perf.L2.1N1L-10Ge2P1X710-Eth-L2Bdscale1Mmaclrn-Tg-Ndrpdr.64B--eth-l2bdscale1mmaclrn-tg-ndrpdr"
-#   layout:
-#     title: "2n-skx-x710-64b--l2-scale-{test_type}"
-#     layout: "plot-throughput"
+- type: "plot"
+  title: "Throughput: 2n-icx-e810cq-64b--l2-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,TREX]}/2n-icx-e810cq-64b--l2-scale-{test_type}"
+  data: "trex-2n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Trex.Perf.L2.1N1L-100Ge2P1E810Cq-Eth-L2Bdscale1Mmaclrn-Tg-Ndrpdr.64B--eth-l2bdscale1mmaclrn-tg-ndrpdr"
+  layout:
+    title: "2n-icx-e810cq-64b--l2-scale-{test_type}"
+    layout: "plot-throughput"
+
+# TRex 1n-aws
+
+- type: "plot"
+  title: "Throughput: 1n-aws-nitro50g-64b--ip4-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,TREX]}/1n-aws-nitro50g-64b--ip4-base-scale-{test_type}"
+  data: "trex-1n-aws-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Trex.Perf.Ip4.1N1L-50Ge1P1Ena-Ethip4-Ip4Base-Tg-Ndrpdr.64B--ethip4-ip4base-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-50Ge1P1Ena-Ethip4-Ip4Scale2M-Tg-Ndrpdr.64B--ethip4-ip4scale2m-tg-ndrpdr"
+  layout:
+    title: "1n-aws-nitro50g-64b--ip4-base-scale-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 1n-aws-nitro50g-78b--ip6-base-scale-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,TREX]}/1n-aws-nitro50g-78b--ip6-base-scale-{test_type}"
+  data: "trex-1n-aws-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Trex.Perf.Ip6.1N1L-50Ge1P1Ena-Ethip6-Ip6Base-Tg-Ndrpdr.78B--ethip6-ip6base-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip6.1N1L-50Ge1P1Ena-Ethip6-Ip6Scale2M-Tg-Ndrpdr.78B--ethip6-ip6scale2m-tg-ndrpdr"
+  layout:
+    title: "1n-aws-nitro50g-78b--ip6-base-scale-{test_type}"
+    layout: "plot-throughput"
