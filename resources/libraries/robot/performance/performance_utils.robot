@@ -195,8 +195,8 @@
 | | Check NDRPDR interval validity | ${result[1]}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result[0]}
-| | ${pdr} = | Set Variable | ${result[1].low_end.intended_load}
-| | ${ndr} = | Set Variable | ${result[0].low_end.intended_load}
+| | ${pdr} = | Convert To Number | ${result[1].low_end}
+| | ${ndr} = | Convert To Number | ${result[0].low_end}
 | | # We expect NDR and PDR to have different-looking stats.
 | | Set Test Variable | ${telemetry_rate} | pdr
 | | Set Test Variable | ${telemetry_export} | ${True}
@@ -283,7 +283,8 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Check NDRPDR interval validity | ${result[0]}
-| | Return From Keyword | ${result[0].low_end.intended_load}
+| | ${ret} = | Convert To Number | ${result[0].low_end}
+| | Return From Keyword | ${ret}
 
 | Measure and show latency at specified rate
 | | [Documentation]

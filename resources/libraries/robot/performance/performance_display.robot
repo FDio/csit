@@ -33,7 +33,8 @@
 | |
 | | [Arguments] | ${interval} | ${packet_loss_ratio}=${0.0}
 | |
-| | ${lower_bound} = | Set Variable | ${interval.low_end}
+| | ${lower_bound} = | Convert To Number | ${interval.low_end}
+| | Return From Keyword | FIXME
 | | ${lower_bound_lr} = | Set Variable | ${lower_bound.loss_ratio}
 | | Return From Keyword If | ${lower_bound_lr} <= ${packet_loss_ratio}
 | | Set Test Variable | \${rate_for_teardown} | ${lower_bound.intended_load}
@@ -124,16 +125,10 @@
 | |
 | | [Arguments] | ${result}
 | |
-| | Display single bound | NDR_LOWER
-| | ... | ${result[0].low_end.intended_load}
-| | ... | ${result[0].low_end.original_result.latency}
-| | Display single bound | NDR_UPPER
-| | ... | ${result[0].high_end.intended_load}
-| | Display single bound | PDR_LOWER
-| | ... | ${result[1].low_end.intended_load}
-| | ... | ${result[1].low_end.original_result.latency}
-| | Display single bound | PDR_UPPER
-| | ... | ${result[1].high_end.intended_load}
+| | Display single bound | NDR_LOWER | ${result[0].low_end}
+| | Display single bound | NDR_UPPER | ${result[0].high_end}
+| | Display single bound | PDR_LOWER | ${result[1].low_end}
+| | Display single bound | PDR_UPPER | ${result[1].high_end}
 
 | Display result of soak search
 | | [Documentation]
@@ -200,6 +195,8 @@
 | | [Arguments] | ${text} | ${tps} | ${latency}=${EMPTY}
 | |
 | | ${transaction_type} = | Get Transaction Type
+| | # Convert from LoadStat.
+| | ${tps} = | Convert To Number | ${tps}
 | | Run Keyword And Return If | """_cps""" in """${transaction_type}"""
 | | ... | Display Single CPS Bound | ${text} | ${tps} | ${latency}
 | | Display Single PPS Bound | ${text} | ${tps} | ${latency}
