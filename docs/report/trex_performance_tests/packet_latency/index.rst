@@ -34,9 +34,10 @@ Additional information about graph data:
 .. note::
 
     Test results are stored in
-    `build logs from FD.io trex performance job 2n-skx`_.
+    `build logs from FD.io trex performance job 2n-icx`_.
 
 .. toctree::
     :maxdepth: 3
 
-    2n-skx-x710
+    2n-icx-e810cq
+    1n-aws-nitro50g
