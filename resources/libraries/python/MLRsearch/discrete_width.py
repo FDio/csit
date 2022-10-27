@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from .base_load_rounding import BaseLoadRounding
+from .load_rounding import LoadRounding
 
 
 @dataclass(order=True)
@@ -27,7 +27,7 @@ class DiscreteWidth:
     The width has to be positive, i.e. the computed integer width
     has to be larger than zero.
 
-    BaseLoadRounding instance is needed to enable conversion between two forms.
+    LoadRounding instance is needed to enable conversion between two forms.
     In practice, LoadRounding instances will be used by callers,
     but LoadRounding definition depends on DiscreteWidth,
     hence two rounding classes to avoid circular type hints.
@@ -38,7 +38,7 @@ class DiscreteWidth:
     """
 
     # For most debugs, rounding in repr just takes space.
-    rounding: BaseLoadRounding = field(compare=False, repr=False)
+    rounding: LoadRounding = field(compare=False, repr=False)
     """Rounding instance to use for conversion."""
     int_width: int = field(default=None, compare=False)
     """Integer form, difference of integer loads.
@@ -60,11 +60,11 @@ class DiscreteWidth:
         :raises RuntimeError: Is int width is not positive.
         """
         if self.float_width is None and self.int_width is None:
-            raise RuntimeError(u"Float or int value is needed.")
+            raise RuntimeError("Float or int value is needed.")
         if self.float_width is None:
             self.int_width = int(self.int_width)
-            if self.int_width <= 0:
-                raise RuntimeError(f"Got non-positive iwidth: {self.int_width}")
+            # if self.int_width <= 0:
+            #     raise RuntimeError(f"Got non-positive iwidth: {self.int_width}")
             min_load = self.rounding.int2float(0)
             increased_load = self.rounding.int2float(self.int_width)
             self.float_width = (increased_load - min_load) / increased_load
@@ -77,8 +77,8 @@ class DiscreteWidth:
         if verify_load > increased_load:
             int_load -= 1
         self.int_width = int_load
-        if self.int_width <= 0:
-            raise RuntimeError(f"Got non-positive iwidth: {self.int_width}")
+        if self.int_width < 0:
+            raise RuntimeError(f"Got negative iwidth: {self.int_width}")
 
     def __int__(self) -> int:
         """Return the integer form.
