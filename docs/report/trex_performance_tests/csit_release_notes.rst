@@ -11,7 +11,7 @@ Changes in |csit-release|
 #. TEST FRAMEWORK
 
 #. TRex RELEASE VERSION
-   - **TRex version used: 2.97**
+   - **TRex version used: 3.00**
 
 
 .. _trex_known_issues:
