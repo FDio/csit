@@ -56,7 +56,7 @@
 | ... | - **[Ref] Applicable standard specifications:** RFC2544, RFC7348.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | vxlan_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
