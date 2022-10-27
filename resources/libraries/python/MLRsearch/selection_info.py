@@ -33,6 +33,8 @@ class SelectionInfo:
     """Whether the subsequent load selections can attempt initial halving."""
     remeasure: bool = False
     """Whether the subsequent load selection can attempt re-measurement."""
+    as_upper_only: bool = False
+    """FIXME"""
     handle: bool = False
     """Whether the load should be handled with respect to load limits.
 
