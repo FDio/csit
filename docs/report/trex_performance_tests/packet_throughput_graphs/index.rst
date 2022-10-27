@@ -52,4 +52,5 @@ Additional information about graph data:
 .. toctree::
     :maxdepth: 3
 
-    2n-skx-x710
+    2n-icx-e810cq
+    1n-aws-ena

@@ -28,8 +28,8 @@
 
     </script>
 
-2n-skx-x710
-~~~~~~~~~~~
+2n-icx-e810cq
+~~~~~~~~~~~~~
 
 Following sections include summary graphs of Phy-to-Phy performance with
 packet routed forwarding, including NDR throughput (zero packet loss)
@@ -48,7 +48,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-64b--ip4-base-scale-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4-base-scale-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -57,8 +57,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b--ip4-base-scale-ndr}
-            \label{fig:2n-skx-x710-64b--ip4-base-scale-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4-base-scale-ndr}
+            \label{fig:2n-icx-e810cq-64b--ip4-base-scale-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -68,7 +68,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-64b--ip4-base-scale-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4-base-scale-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -77,8 +77,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b--ip4-base-scale-pdr}
-            \label{fig:2n-skx-x710-64b--ip4-base-scale-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4-base-scale-pdr}
+            \label{fig:2n-icx-e810cq-64b--ip4-base-scale-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -91,7 +91,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-64b--ip4routing-stf-cps-ndr.html"></iframe>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4routing-stf-cps-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -100,8 +100,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b--ip4routing-stf-cps-ndr}
-            \label{fig:2n-skx-x710-64b--ip4routing-stf-cps-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4routing-stf-cps-ndr}
+            \label{fig:2n-icx-e810cq-64b--ip4routing-stf-cps-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -111,7 +111,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-64b--ip4routing-stf-cps-pdr.html"></iframe>
+    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4routing-stf-cps-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -120,8 +120,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b--ip4routing-stf-cps-pdr}
-            \label{fig:2n-skx-x710-64b--ip4routing-stf-cps-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4routing-stf-cps-pdr}
+            \label{fig:2n-icx-e810cq-64b--ip4routing-stf-cps-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -134,7 +134,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-64b--ip4routing-stf-pps-ndr.html"></iframe>
+    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4routing-stf-pps-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -143,8 +143,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b--ip4routing-stf-pps-ndr}
-            \label{fig:2n-skx-x710-64b--ip4routing-stf-pps-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4routing-stf-pps-ndr}
+            \label{fig:2n-icx-e810cq-64b--ip4routing-stf-pps-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -154,7 +154,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-64b--ip4routing-stf-pps-pdr.html"></iframe>
+    <iframe id="06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4routing-stf-pps-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -163,8 +163,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b--ip4routing-stf-pps-pdr}
-            \label{fig:2n-skx-x710-64b--ip4routing-stf-pps-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4routing-stf-pps-pdr}
+            \label{fig:2n-icx-e810cq-64b--ip4routing-stf-pps-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -177,7 +177,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-78b--ip6-base-scale-ndr.html"></iframe>
+    <iframe id="07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-78b--ip6-base-scale-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -186,8 +186,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b--ip6-base-scale-ndr}
-            \label{fig:2n-skx-x710-78b--ip6-base-scale-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-78b--ip6-base-scale-ndr}
+            \label{fig:2n-icx-e810cq-78b--ip6-base-scale-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -197,7 +197,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-78b--ip6-base-scale-pdr.html"></iframe>
+    <iframe id="08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-78b--ip6-base-scale-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -206,8 +206,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b--ip6-base-scale-pdr}
-            \label{fig:2n-skx-x710-78b--ip6-base-scale-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-78b--ip6-base-scale-pdr}
+            \label{fig:2n-icx-e810cq-78b--ip6-base-scale-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -220,7 +220,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-64b--l2-scale-ndr.html"></iframe>
+    <iframe id="09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--l2-scale-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -229,8 +229,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b--l2-scale-ndr}
-            \label{fig:2n-skx-x710-64b--l2-scale-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--l2-scale-ndr}
+            \label{fig:2n-icx-e810cq-64b--l2-scale-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -240,7 +240,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-skx-x710-64b--l2-scale-pdr.html"></iframe>
+    <iframe id="10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--l2-scale-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -249,10 +249,6 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b--l2-scale-pdr}
-            \label{fig:2n-skx-x710-64b--l2-scale-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--l2-scale-pdr}
+            \label{fig:2n-icx-e810cq-64b--l2-scale-pdr}
     \end{figure}
-
-.. raw:: latex
-
-    \clearpage
