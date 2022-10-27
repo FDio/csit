@@ -43,17 +43,16 @@ CSIT-2210
     dpdk_performance_tests/throughput_trending
     dpdk_performance_tests/test_environment
 
-..
-    .. toctree::
-        :maxdepth: 2
-        :caption: TRex Performance
+.. toctree::
+    :maxdepth: 2
+    :caption: TRex Performance
 
-        trex_performance_tests/overview
-        trex_performance_tests/csit_release_notes
-        trex_performance_tests/packet_throughput_graphs/index
-        trex_performance_tests/packet_latency/index
-        trex_performance_tests/throughput_trending
-        trex_performance_tests/test_environment
+    trex_performance_tests/overview
+    trex_performance_tests/csit_release_notes
+    trex_performance_tests/packet_throughput_graphs/index
+    trex_performance_tests/packet_latency/index
+    trex_performance_tests/throughput_trending
+    trex_performance_tests/test_environment
 
 .. toctree::
     :maxdepth: 2

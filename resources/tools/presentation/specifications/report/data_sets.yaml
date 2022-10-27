@@ -10,54 +10,51 @@
 
 ################################################################################
 
-  # TRex 2n-skx
+  # TRex 2n-icx
 
-  # trex-2n-skx-hist-iter:
-  #   csit-trex-perf-report-iterative-2110-2n-skx:
+  # trex-2n-icx-hist-iter:
+  #   csit-trex-perf-report-iterative-2110-2n-icx:
   #     - 8   # rls2110.rel NDRPDR iter env 8
-  #     - 9   # rls2110.rel NDRPDR iter env 8
-  #     - 10  # rls2110.rel NDRPDR iter env 8
-  #     - 11  # rls2110.rel NDRPDR iter env 8
-  #     - 12  # rls2110.rel NDRPDR iter env 8
-  #     - 13  # rls2110.rel NDRPDR iter env 8
-  #     - 14  # rls2110.rel NDRPDR iter env 8
-  #     - 15  # rls2110.rel NDRPDR iter env 8
-  #     - 16  # rls2110.rel NDRPDR iter env 8
-  #     - 17  # rls2110.rel NDRPDR iter env 8
 
-  # trex-2n-skx-prev-iter:
-  #   csit-trex-perf-report-iterative-2202-2n-skx:
+  # trex-2n-icx-prev-iter:
+  #   csit-trex-perf-report-iterative-2202-2n-icx:
   #     - 1   # rls2202.rel NDRPDR iter env 9
-  #     - 2   # rls2202.rel NDRPDR iter env 9
-  #     - 3   # rls2202.rel NDRPDR iter env 9
-  #     - 4   # rls2202.rel NDRPDR iter env 9
-  #     - 5   # rls2202.rel NDRPDR iter env 9
-  #     - 6   # rls2202.rel NDRPDR iter env 9
-  #     - 7   # rls2202.rel NDRPDR iter env 9
-  #     - 8   # rls2202.rel NDRPDR iter env 9
-  #     - 9   # rls2202.rel NDRPDR iter env 9
-  #     - 10  # rls2202.rel NDRPDR iter env 9
 
-  # trex-2n-skx-curr-iter:
-  #   csit-trex-perf-report-iterative-2206-2n-skx:
-  #     - 1   # rls2206.rel NDRPDR iter env 10
-  #     - 2   # rls2206.rel NDRPDR iter env 10
-  #     - 3   # rls2206.rel NDRPDR iter env 10
-  #     - 4   # rls2206.rel NDRPDR iter env 10
-  #     - 5   # rls2206.rel NDRPDR iter env 10
-  #     - 6   # rls2206.rel NDRPDR iter env 10
-  #     - 7   # rls2206.rel NDRPDR iter env 10
-  #     - 8   # rls2206.rel NDRPDR iter env 10
-  #     - 9   # rls2206.rel NDRPDR iter env 10
-  #     - 10  # rls2206.rel NDRPDR iter env 10
+  trex-2n-icx-curr-iter:
+    csit-trex-perf-report-iterative-2206-2n-icx:
+      - 1   # rls2206.rel NDRPDR iter env 10
 
-  # trex-2n-skx-curr-iter-best:
-  #   csit-trex-perf-report-iterative-2206-2n-skx:
-  #     - 1   # rls2206.rel NDRPDR iter env 10
+  trex-2n-icx-curr-iter-best:
+    csit-trex-perf-report-iterative-2206-2n-icx:
+      - 1   # rls2206.rel NDRPDR iter env 10
 
-  # trex-2n-skx-curr-cov:
-  #   csit-trex-perf-report-coverage-2206-2n-skx:
-  #     - 1   # rls2206.rel NDRPDR cov env 10
+  trex-2n-icx-curr-cov:
+    # csit-trex-perf-report-coverage-2210-2n-icx:
+    csit-trex-perf-report-coverage-2206-2n-icx:
+      - 1   # rls2206.rel NDRPDR cov env 10
+
+  # TRex 1n-aws
+
+  # trex-1n-aws-hist-iter:
+  #   csit-trex-perf-report-iterative-2110-1n-aws:
+  #     - 8   # rls2110.rel NDRPDR iter env 8
+
+  # trex-1n-aws-prev-iter:
+  #   csit-trex-perf-report-iterative-2202-1n-aws:
+  #     - 1   # rls2202.rel NDRPDR iter env 9
+
+  trex-1n-aws-curr-iter:
+    csit-trex-perf-report-iterative-2206-1n-aws:
+      - 1   # rls2206.rel NDRPDR iter env 10
+
+  trex-1n-aws-curr-iter-best:
+    csit-trex-perf-report-iterative-2206-1n-aws:
+      - 1   # rls2206.rel NDRPDR iter env 10
+
+  trex-1n-aws-curr-cov:
+    # csit-trex-perf-report-coverage-2210-1n-aws:
+    csit-trex-perf-report-coverage-2206-1n-aws:
+      - 1   # rls2206.rel NDRPDR cov env 10
 
   # 2n-zn2
 
