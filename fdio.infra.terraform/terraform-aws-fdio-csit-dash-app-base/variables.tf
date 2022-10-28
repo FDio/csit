@@ -7,7 +7,7 @@ variable "region" {
 variable "vault_provider_address" {
   description = "Vault cluster address."
   type        = string
-  default     = "http://vault.service.consul:8200"
+  default     = "http://10.30.51.24:8200"
 }
 
 variable "vault_provider_skip_tls_verify" {
@@ -30,5 +30,5 @@ variable "vault_name" {
 variable "version" {
   description = "Application version string."
   type        = number
-  default     = 1
+  default     = 39
 }
