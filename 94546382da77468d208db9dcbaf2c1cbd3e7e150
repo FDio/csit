@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8129a31d_8941b22d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-10-28T09:37:31Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-2n-clx-perftest ip4-01",
+      "revId": "94546382da77468d208db9dcbaf2c1cbd3e7e150",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
