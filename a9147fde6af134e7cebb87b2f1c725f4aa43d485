@@ -33,6 +33,23 @@
       "message": "csit-vpp-report-iter-2n-icx-perftest nfv-density-mlr-00",
       "revId": "a9147fde6af134e7cebb87b2f1c725f4aa43d485",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c8675db_ef9901d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-10-28T19:45:57Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest nfv-density-mlr-00",
+      "revId": "a9147fde6af134e7cebb87b2f1c725f4aa43d485",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
