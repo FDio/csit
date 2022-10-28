@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-2n-icx-perftest reconf-00\ncsit-vpp-report-iter-2n-clx-perftest reconf-00",
       "revId": "22002734542d77220e0ba573fc0831b24bd57604",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95d88556_aebffe98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-10-28T19:47:33Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest reconf-00",
+      "revId": "22002734542d77220e0ba573fc0831b24bd57604",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
