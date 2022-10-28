@@ -1,6 +1,6 @@
 terraform {
   backend "consul" {
-    address = "10.32.8.14:8500"
+    address = "10.30.51.24:8500"
     scheme  = "http"
     path    = "terraform/app-base"
   }
