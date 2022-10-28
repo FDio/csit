@@ -47,7 +47,7 @@
 | ... | - **[Ref] Applicable standard specifications:** RFC792
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | vhost_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci

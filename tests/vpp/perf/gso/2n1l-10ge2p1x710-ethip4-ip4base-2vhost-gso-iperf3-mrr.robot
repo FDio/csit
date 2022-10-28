@@ -41,7 +41,7 @@
 | ... | - **[Ref] Applicable standard specifications:** RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | ping_plugin.so | perfmon_plugin.so
+| @{plugins_to_enable}= | ping_plugin.so | perfmon_plugin.so | vhost_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vhost
