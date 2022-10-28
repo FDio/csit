@@ -152,6 +152,23 @@
       "message": "csit-vpp-report-cov-3n-snr-perftest crypto-01",
       "revId": "b247e7a05e79b4fa342cd2db3f6899c908bce39f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08746663_ad7e8223",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-10-28T09:36:34Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-icx-perftest crypto-01",
+      "revId": "b247e7a05e79b4fa342cd2db3f6899c908bce39f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
