@@ -118,6 +118,23 @@
       "message": "csit-vpp-report-cov-2n-dnv-perftest ip4-00",
       "revId": "2c957eb562df9ad081ce9573d7fecb5f48f3f4cb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b85efa2_c91dd834",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-10-28T09:01:18Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-dnv-perftest crypto-00",
+      "revId": "2c957eb562df9ad081ce9573d7fecb5f48f3f4cb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
