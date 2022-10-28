@@ -31,6 +31,5 @@ def home():
         trending_title=C.TREND_TITLE,
         report_title=C.REPORT_TITLE,
         stats_title=C.STATS_TITLE,
-        news_title=C.NEWS_TITLE,
-        template=C.TEMPLATE
+        news_title=C.NEWS_TITLE
     )

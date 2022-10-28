@@ -34,7 +34,7 @@ from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
     generate_options, get_list_group_items
 from ..utils.url_processing import url_decode
 from ..data.data import Data
-from .graphs import graph_iterative, get_short_version, select_iterative_data
+from .graphs import graph_iterative, select_iterative_data
 
 
 # Control panel partameters and their default values.
@@ -115,10 +115,10 @@ class Layout:
         self._data = pd.DataFrame()
         for rls in releases:
             data_mrr = Data(self._data_spec_file, True).\
-                read_iterative_mrr(release=rls.replace("csit", "rls"))
+                read_iterative_mrr(release=rls)
             data_mrr["release"] = rls
             data_ndrpdr = Data(self._data_spec_file, True).\
-                read_iterative_ndrpdr(release=rls.replace("csit", "rls"))
+                read_iterative_ndrpdr(release=rls)
             data_ndrpdr["release"] = rls
             self._data = pd.concat(
                 [self._data, data_mrr, data_ndrpdr],
@@ -133,7 +133,7 @@ class Layout:
             ttype = row["test_type"]
             lst_job = row["job"].split("-")
             dut = lst_job[1]
-            d_ver = get_short_version(row["dut_version"], dut)
+            d_ver = row["dut_version"]
             tbed = "-".join(lst_job[-2:])
             lst_test_id = row["test_id"].split(".")
             if dut == "dpdk":
@@ -1190,7 +1190,7 @@ class Layout:
                     f"cl-{param}-val": val_sel,
                     f"cl-{param}-all-val": val_all,
                 })
-                if all((ctrl_panel.get("cl-core-val"), 
+                if all((ctrl_panel.get("cl-core-val"),
                         ctrl_panel.get("cl-frmsize-val"),
                         ctrl_panel.get("cl-tsttype-val"), )):
                     ctrl_panel.set({"btn-add-dis": False})

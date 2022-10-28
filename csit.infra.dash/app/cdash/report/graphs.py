@@ -24,36 +24,6 @@ from ..utils.constants import Constants as C
 from ..utils.utils import get_color
 
 
-def get_short_version(version: str, dut_type: str="vpp") -> str:
-    """Returns the short version of DUT without build number.
-
-    :param version: Original version string.
-    :param dut_type: DUT type.
-    :type version: str
-    :type dut_type: str
-    :returns: Short verion string.
-    :rtype: str
-    """
-
-    if dut_type in ("trex", "dpdk"):
-        return version
-
-    s_version = str()
-    groups = re.search(
-        pattern=re.compile(r"^(\d{2}).(\d{2})-(rc0|rc1|rc2|release$)"),
-        string=version
-    )
-    if groups:
-        try:
-            s_version = \
-                f"{groups.group(1)}.{groups.group(2)}.{groups.group(3)}".\
-                    replace("release", "rls")
-        except IndexError:
-            pass
-
-    return s_version
-
-
 def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
     """Select the data for graphs and tables from the provided data frame.
 

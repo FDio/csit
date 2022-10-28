@@ -44,9 +44,6 @@ class Constants:
     # External stylesheets.
     EXTERNAL_STYLESHEETS = ["/static/dist/css/bootstrap.css", ]
 
-    # Top level template for all pages.
-    TEMPLATE = "d-flex h-100 text-center text-white bg-dark"
-
     # Path and name of the file specifying the HTML layout of the dash
     # application.
     MAIN_HTML_LAYOUT_FILE = "base_layout.jinja2"
@@ -77,7 +74,7 @@ class Constants:
     # List of releases used for iterative data processing.
     # The releases MUST be in the order from the current (newest) to the last
     # (oldest).
-    RELEASES = ["csit2210", "csit2206", "csit2202", ]
+    RELEASES = ["rls2210", "rls2206", "rls2202", ]
 
     ############################################################################
     # General, application wide, layout affecting constants.
