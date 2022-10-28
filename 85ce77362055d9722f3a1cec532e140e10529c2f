@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "623e598a_8527fbd9",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-28T08:36:02Z",
+      "side": 1,
+      "message": "Also effectively composite SUT in https://www.rfc-editor.org/rfc/rfc2544#section-19\nThe point is, any search algorithm can only directly measure SUT, so any DUT specific properties can be only inferred. Basically, DUT alone would not be slower than SUT, DUT is probably the bottleneck, affected by noise, but it is not clear what noise comes from DUT itself (as opposed to the rest of SUT).",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 15
+      },
+      "revId": "85ce77362055d9722f3a1cec532e140e10529c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4469bd33_6360b903",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-28T08:36:02Z",
+      "side": 1,
+      "message": "Once again, there are two kinds of interested parties. One party is \"DUT developer\", preferring artificial traffic, minimal noise, not interested in noisy neighbor. The other party is \"real user\", preferring realistic traffic, realistic noise and is quite interested in noisy neighbor effects.\nRaw SUT results are useful for \"real user\", inferred DUT results are useful for \"DUT developer\".",
+      "range": {
+        "startLine": 166,
+        "startChar": 50,
+        "endLine": 166,
+        "endChar": 60
+      },
+      "revId": "85ce77362055d9722f3a1cec532e140e10529c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b9f5e59_359c9918",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-28T08:36:02Z",
+      "side": 1,
+      "message": "We are not introducing anything new, we are re-using definitions from https://www.rfc-editor.org/rfc/rfc2285#section-3.1\nwhile specifying just some components (software with minimal CPU, memory, PCI allocations) as DUT, while other components of the same machine (the rest of allocations and other hardware such as NIC) belonging to the rest of SUT.",
+      "range": {
+        "startLine": 171,
+        "startChar": 49,
+        "endLine": 171,
+        "endChar": 61
+      },
+      "revId": "85ce77362055d9722f3a1cec532e140e10529c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0151fe5_a0055887",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-28T08:36:02Z",
+      "side": 1,
+      "message": "Sounds like a \"DUT developer\" problem. The \"real user\" will not be happy with solutions like multiple sub-trials: \"Ok, the first trial had a huge loss, but the second trial was fine so throughput can be higher.\"",
+      "range": {
+        "startLine": 183,
+        "startChar": 16,
+        "endLine": 183,
+        "endChar": 20
+      },
+      "revId": "85ce77362055d9722f3a1cec532e140e10529c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
