@@ -135,6 +135,23 @@
       "message": "csit-vpp-report-cov-3n-tsh-perftest ip6-00",
       "revId": "4c44d61a1733e7aa285b6d9cf0649b00f918b424",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eebfaa10_e3aeae6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-10-29T20:17:04Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-alt-perftest l2-01",
+      "revId": "4c44d61a1733e7aa285b6d9cf0649b00f918b424",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
