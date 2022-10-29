@@ -373,6 +373,23 @@
       "message": "csit-vpp-report-cov-2n-tx2-perftest ip4-06",
       "revId": "b247e7a05e79b4fa342cd2db3f6899c908bce39f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "946bb701_28dbaf9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-10-29T20:43:59Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-clx-perftest nfv-density-mrr-00",
+      "revId": "b247e7a05e79b4fa342cd2db3f6899c908bce39f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
