@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e32a6668_de8772f4",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-31T12:46:40Z",
+      "side": 1,
+      "message": "I repeat, my philosophical stance is \"there is no such thing as DUT performance\". Hopefully my edits will be readable for both stances.",
+      "range": {
+        "startLine": 209,
+        "startChar": 5,
+        "endLine": 209,
+        "endChar": 20
+      },
+      "revId": "b0d9a22774c77ddfbdb394afb9c25cb7567283f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0ad2c8a_bd5a966e",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-31T12:46:40Z",
+      "side": 1,
+      "message": "Renamed to \"DUT fluctuations\" with a comment on them not being random. Regardless of which term we will end up using, I still think the notion is important.",
+      "range": {
+        "startLine": 229,
+        "startChar": 55,
+        "endLine": 229,
+        "endChar": 66
+      },
+      "revId": "b0d9a22774c77ddfbdb394afb9c25cb7567283f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b50e555_166b625f",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-31T12:46:40Z",
+      "side": 1,
+      "message": "I changed the wording. Rarity is the only important feature here.",
+      "range": {
+        "startLine": 249,
+        "startChar": 37,
+        "endLine": 249,
+        "endChar": 69
+      },
+      "revId": "b0d9a22774c77ddfbdb394afb9c25cb7567283f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7933711b_d670023a",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-31T12:46:40Z",
+      "side": 1,
+      "message": "Removed the latency, but kept soak (in parenthesis).",
+      "range": {
+        "startLine": 278,
+        "startChar": 19,
+        "endLine": 278,
+        "endChar": 25
+      },
+      "revId": "b0d9a22774c77ddfbdb394afb9c25cb7567283f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1bad2f8_185b8416",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-31T12:46:40Z",
+      "side": 1,
+      "message": "The complete problem is how to decompose the observed SUT trial performance into noiseless performance, SUT noise and DUT fluctuations. Separating noiseless performance from the rest is the easier part, distinguishing SUT noise from DUT fluctuations is the harder part.\nAfter edits I mention only the easier part, calling that a \"DUT or SUT problem\", even though a better name would be \"noiseless problem\" or \"baseline problem\" or similar.",
+      "range": {
+        "startLine": 295,
+        "startChar": 45,
+        "endLine": 295,
+        "endChar": 68
+      },
+      "revId": "b0d9a22774c77ddfbdb394afb9c25cb7567283f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ac6ee12_f089b7ff",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 34
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-10-31T12:46:40Z",
+      "side": 1,
+      "message": "Some problems are best described as a lack of good enough solution. :)\nI tried to add a sentence about what the problem is to each subsection.",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 432,
+        "endChar": 14
+      },
+      "revId": "b0d9a22774c77ddfbdb394afb9c25cb7567283f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
