@@ -50,7 +50,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-report_week = '42'
+report_week = '45'
 project = 'FD.io CSIT-2210.{week}'.format(week=report_week)
 copyright = '2022, FD.io'
 author = 'FD.io CSIT'
