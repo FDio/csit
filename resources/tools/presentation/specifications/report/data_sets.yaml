@@ -49,6 +49,9 @@
       - 5   # rls2210.rel NDRPDR iter env 11
       - 6   # rls2210.rel NDRPDR iter env 11
       - 7   # rls2210.rel NDRPDR iter env 11
+      - 11  # rls2210.rel NDRPDR iter env 11
+      - 12  # rls2210.rel NDRPDR iter env 11
+      - 13  # rls2210.rel NDRPDR iter env 11
 
   trex-1n-aws-curr-iter-best:
     csit-trex-perf-report-iterative-2210-1n-aws:
@@ -95,10 +98,11 @@
   vpp-2n-zn2-curr-iter:
     csit-vpp-perf-report-iterative-2210-2n-zn2:
       - 16  # rls2210.rel NDRPDR iter env 11
+      - 20  # rls2210.rel NDRPDR iter env 11
 
   vpp-2n-zn2-curr-iter-best:
     csit-vpp-perf-report-iterative-2210-2n-zn2:
-      - 16  # rls2210.rel NDRPDR iter env 11
+      - 20  # rls2210.rel NDRPDR iter env 11
 
   vpp-2n-zn2-hist-iter-mrr:
     csit-vpp-perf-report-iterative-2206-2n-zn2:
@@ -239,11 +243,12 @@
       - 46  # rls2210.rel NDRPDR iter env 11
       - 71  # rls2210.rel NDRPDR iter env 11
       - 72  # rls2210.rel NDRPDR iter env 11
+      - 73  # rls2210.rel NDRPDR iter env 11
       - 74  # rls2210.rel NDRPDR iter env 11
 
   vpp-2n-clx-curr-iter-best:
     csit-vpp-perf-report-iterative-2210-2n-clx:
-      - 74  # rls2210.rel NDRPDR iter env 11
+      - 73  # rls2210.rel NDRPDR iter env 11
 
   vpp-2n-clx-hist-iter-mrr:
     csit-vpp-perf-report-iterative-2206-2n-clx:
@@ -306,12 +311,14 @@
       - 46  # rls2210.rel NDRPDR iter env 11
       - 71  # rls2210.rel NDRPDR iter env 11
       - 72  # rls2210.rel NDRPDR iter env 11
+      - 73  # rls2210.rel NDRPDR iter env 11
       - 74  # rls2210.rel NDRPDR iter env 11
   vpp-soak-vs-ndr-2n-clx:
     csit-vpp-perf-report-iterative-2210-2n-clx:
       - 46  # rls2210.rel NDRPDR iter env 11
       - 71  # rls2210.rel NDRPDR iter env 11
       - 72  # rls2210.rel NDRPDR iter env 11
+      - 73  # rls2210.rel NDRPDR iter env 11
       - 74  # rls2210.rel NDRPDR iter env 11
       - 61  # rls2210.rel soak env 11
 
@@ -325,8 +332,12 @@
       - 7   # rls2210.rel NDRPDR cov env 11
       - 9   # rls2210.rel NDRPDR cov env 11
       - 10  # rls2210.rel NDRPDR cov env 11
+      - 11  # rls2210.rel NDRPDR cov env 11
       - 12  # rls2210.rel NDRPDR cov env 11
+      - 13  # rls2210.rel NDRPDR cov env 11
+      - 14  # rls2210.rel NDRPDR cov env 11
       - 15  # rls2210.rel NDRPDR cov env 11
+      - 16  # rls2210.rel NDRPDR cov env 11
 
   dpdk-2n-clx-hist-iter:
     csit-dpdk-perf-report-iterative-2202-2n-clx:
@@ -784,6 +795,9 @@
   vpp-2n-aws-curr-iter:
     csit-vpp-perf-report-iterative-2210-2n-aws:
       - 16  # rls2210.rel NDRPDR iter env 11
+      - 21  # rls2210.rel NDRPDR iter env 11
+      - 22  # rls2210.rel NDRPDR iter env 11
+      - 23  # rls2210.rel NDRPDR iter env 11
 
   vpp-2n-aws-curr-iter-best:
     csit-vpp-perf-report-iterative-2210-2n-aws:
@@ -934,8 +948,11 @@
       - 5   # rls2210.rel NDRPDR cov env 11
       - 6   # rls2210.rel NDRPDR cov env 11
       - 7   # rls2210.rel NDRPDR cov env 11
-      # - 8   # rls2210.rel NDRPDR cov env 11
+      - 8   # rls2210.rel NDRPDR cov env 11
       - 10  # rls2210.rel NDRPDR cov env 11
+      - 14  # rls2210.rel NDRPDR cov env 11
+      - 15  # rls2210.rel NDRPDR cov env 11
+      - 16  # rls2210.rel NDRPDR cov env 11
 
   dpdk-2n-icx-hist-iter:
     csit-dpdk-perf-report-iterative-2202-2n-icx:
@@ -1126,6 +1143,7 @@
   vpp-3n-alt-curr-iter:
     csit-vpp-perf-report-iterative-2210-3n-alt:
       - 9   # rls2210.rel NDRPDR iter env 11
+      - 10  # rls2210.rel NDRPDR iter env 11
 
   vpp-3n-alt-curr-iter-best:
     csit-vpp-perf-report-iterative-2210-3n-alt:
