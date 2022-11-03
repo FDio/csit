@@ -798,6 +798,23 @@
       "message": "csit-trex-report-iter-1n-aws-perftest trex-mlr-00",
       "revId": "2c957eb562df9ad081ce9573d7fecb5f48f3f4cb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a82a521_25f94e22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-03T12:11:31Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest vpp-mlr-00",
+      "revId": "2c957eb562df9ad081ce9573d7fecb5f48f3f4cb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
