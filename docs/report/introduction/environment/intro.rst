@@ -128,4 +128,5 @@ Following is the list of CSIT versions to date:
   - Mellanox 556A series firmware upgrade based on DPDK compatibility
     matrix.
   - Ubuntu upgrade: `upgrade from 20.04.2 LTS to 22.04.1 LTS`_.
+    (2n-dnv and 3n-dnv keeps the Ubuntu 20.04.2LTS as a part of decomission).
   - TRex version upgrade: `increase from 2.97 to 3.00`_.
