@@ -6,7 +6,8 @@ Changes in |csit-release|
 
 #. TEST FRAMEWORK
 
-   - No updates
+   - **CSIT test environment** version has been updated to ver. 11, see
+     :ref:`test_environment_versioning`.
 
 Known Issues
 ------------
