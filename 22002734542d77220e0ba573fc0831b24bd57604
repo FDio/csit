@@ -118,6 +118,23 @@
       "message": "csit-vpp-report-iter-3n-tsh-perftest vpp-mlr-00",
       "revId": "22002734542d77220e0ba573fc0831b24bd57604",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2ea57c4_c80415d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-04T07:22:05Z",
+      "side": 1,
+      "message": "csit-trex-report-iter-2n-icx-perftest trex-mlr-00",
+      "revId": "22002734542d77220e0ba573fc0831b24bd57604",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
