@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd427c1a_73310833",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-07T19:48:50Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-tsh-perftest vpp-mlr-00",
+      "revId": "28d10b010cab323d1440cbbbabdf507b8ce8a423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
