@@ -1,0 +1,55 @@
+
+The python code went through multiple updates,
+but many of them can be ignored from IETF point of view
+(e.g. adding support for ASTF where
+offered trial duration can be way different
+from intended duration).
+
+But some of code updates require changes in IETF draft,
+and we now have multiple code changes prepared or planned
+so here will be a table tracking them.
+
++----------+---------+-------+-------+
+| Goals    | IOrder  | Track | trial |
++==========+=========+=======+=======+
+| NDR+PDR  | GiP     | 2pG   | 1     |
++----------+---------+-------+-------+ 30954
+| Multiple | GiP     | AFS   | 1     |
++----------+---------+-------+-------+ 36061
+| Multiple | PiG     | AFS   | 1     |
++----------+---------+-------+-------+ 37418
+| Multiple | PiG     | AFS   | n     |
++----------+---------+-------+-------+ (none yet)
+| Multiple | PiG     | 2     | n     |
++----------+---------+-------+-------+
+
+Legend:
++ Goals: How many loss ratio goals are supported.
+ + NDR+PDR: Unconditional NDR goal, optional configurable PDR goal.
+ + Multiple: One or more goals, sorted from low to high loss.
++ IOrder: Iteration order of phases.
+ + GiP: Goal in phase, meaning all goals at 1s are bounded before 5s.
+ + PiG: Phase in goal, meaning first goal to 30s before second goal starts.
++ Track: How much data from shorter load results is tracked.
+ + 2pG: Uper/lower bound from previus phase is tracked for each goal separately.
+ + AFS: All results are tracked, but Forgetting Short if a load is re-measured.
+ + 2: Only upper and lower bound from immediately preceding phase is tracked.
++ Trial: Whether "sub-trials" are suppoerted.
+ + 1: No. Load time is always spent in a single trial.
+ + n: Yes. Multiple trials are added (behaves as "1" if load time is short).
+
+Comments to Track:
+
+In other words, the Track column describes what are the starting two values
+when a phase starts, and whether older short results are seen
+during external search.
+With 2 or 2pG, two values come directly from a previous phase, other values
+are not seen during external search.
+With AFS, the whole result database is searched for the best fit
+for starting values, but other values are seen during external search.
+
+With AFS, there can be multiple "maybe does not satisfy" loads from earlier phases
+which currently need adding more trials to see if they are a real upper bound.
+That is conservative, but maybe too conservative (when acceptance ratio
+is 50% and higher). Tracking only 2 bounds (and not seeing old shor results
+in external) will simplify the code and may lead to faster search overall.
