@@ -4,6 +4,11 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
+#. TEST FRAMEWORK
+
+   - **CSIT test environment** version has been updated to ver. 11, see
+     :ref:`test_environment_versioning`.
+
 #. TREX PERFORMANCE TESTS
 
    - No updates

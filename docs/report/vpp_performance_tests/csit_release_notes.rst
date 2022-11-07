@@ -8,19 +8,15 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Reduction of tests**: Removed certain test variations executed
-     iteratively for the report (as well as in daily and weekly
-     trending) due to physical testbeds overload.
+   - **Tweaks to test selection**:
+     - Removed 2n-skx and 3n-skx as testbeds are decommisioned.
+     - Added 3n-snr as an officially supported testbed.
+     - Added wireguard tests.
+     - Added TRex tests to 2n-icx and 1n-aws.
 
 #. TEST FRAMEWORK
 
-   - **Removed ASTF PPS tests**: They provide no real benefit
-     compared to TPUT tests. The ip4base variants renamed to TPUT.
-
-   - **Changed TCP TPUT profiles**: The previous ones were found to be faulty.
-     The new ones do not use bursts of packets to avoid CSIT-1830 and CSIT-1846.
-
-   - **CSIT test environment** version has been updated to ver. 10, see
+   - **CSIT test environment** version has been updated to ver. 11, see
      :ref:`test_environment_versioning`.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, and
