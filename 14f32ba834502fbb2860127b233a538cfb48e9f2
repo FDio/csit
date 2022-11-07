@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5af7760_5c9437b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-07T10:10:19Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest nfv-density-mlr-00",
+      "revId": "14f32ba834502fbb2860127b233a538cfb48e9f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
