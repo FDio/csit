@@ -6,22 +6,21 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
-#. VPP PERFORMANCE TESTS
-
-   - **Reduction of tests**: Removed certain test variations executed
-     iteratively for the report (as well as in daily and weekly
-     trending) due to physical testbeds overload.
-
 #. TEST FRAMEWORK
 
-   - **Removed ASTF PPS tests**: They provide no real benefit
-     compared to TPUT tests. The ip4base variants renamed to TPUT.
+   - **Ubuntu 22.04** now used as an operating system on performance testbeds.
+     - Except Denverton which we kept at the previous (Ubuntu 20.04) version.
+     - Usual consequences on CSIT environment (e.g. NIC firmware upgrade).
+     - New TRex version (v3.00).
+     - VPP built with a different compiler is now tested (affects performance).
+     - No 2206 VPP build for this OS, so comparison tables cannot distinguish
+       the performance impact of environment from the impact of VPP code.
 
-   - **Changed TCP TPUT profiles**: The previous ones were found to be faulty.
-     The new ones do not use bursts of packets to avoid CSIT-1830 and CSIT-1846.
-
-   - **CSIT test environment** version has been updated to ver. 10, see
+   - **CSIT test environment** version has been updated to ver. 11, see
      :ref:`test_environment_versioning`.
+
+   - **TCP tput profiles** have to be changed, as newer TRex versions
+     are not deterministic enough when deciding when to send an ACK.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, and
      deprecation of VAT, VPP CLI is used in CSIT for many VPP scale
