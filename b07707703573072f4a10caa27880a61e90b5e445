@@ -3,6 +3,190 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efe946fd_018b43a3",
+        "filename": "docs/report/trex_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-07T14:31:28Z",
+      "side": 1,
+      "message": "Add: TRex performance tests in 2n-icx (e810 2p100GE) and 2n-aws.",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9bf09f4_443476ae",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-07T14:31:28Z",
+      "side": 1,
+      "message": "Add: new performance testbed 3n-snr (3 Node SnowRidge, with Intel Atom processors), to replace 3n-dnv and 2n-dnv (3 and 2 Node Denverton) testbeds.",
+      "range": {
+        "startLine": 9,
+        "startChar": 3,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6776cbf8_ff956ee3",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-07T14:31:28Z",
+      "side": 1,
+      "message": "Add: gtpu HW offload tests added for e810 4p25ge NICs in 2n-icx testbeds",
+      "range": {
+        "startLine": 9,
+        "startChar": 3,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1458a52c_17f26982",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-07T14:31:28Z",
+      "side": 1,
+      "message": "No reduction of tests in this release, unless I missed it.\nIf so this can be removed.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41184532_aa462298",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-07T14:31:28Z",
+      "side": 1,
+      "message": "Believe this is old content. ASTF PPS tests we removed in the previous release.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 66
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edc2f59e_29f6f5ad",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-07T14:31:28Z",
+      "side": 1,
+      "message": "I believe there were changes to TCP TPUT profiles due to the change of behaviour in newer version of TRex that introduced Cubic as default congestion management algo vs previous NewReno.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 80
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a1dbebe_bfddfcf0",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-07T14:31:28Z",
+      "side": 1,
+      "message": "updated to ver. 11",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 66
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3f0731d_b5461add",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-07T14:31:28Z",
+      "side": 1,
+      "message": "Add: csit.fd.io performance dashboard got updated UI and updated backend increasing its performance and robustness (Could we add a bit more detail here about the work done?)",
+      "range": {
+        "startLine": 33,
+        "startChar": 3,
+        "endLine": 33,
+        "endChar": 35
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58b14ed2_3f5a5050",
         "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
         "patchSetId": 1
