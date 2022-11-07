@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-2n-icx-perftest nfv-density-mlr-00",
       "revId": "14f32ba834502fbb2860127b233a538cfb48e9f2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2061e43_2e8280d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-07T11:18:18Z",
+      "side": 1,
+      "message": "csit-trex-report-cov-1n-aws-perftest trex-00",
+      "revId": "14f32ba834502fbb2860127b233a538cfb48e9f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
