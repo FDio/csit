@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58b14ed2_3f5a5050",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-07T13:22:31Z",
+      "side": 1,
+      "message": "I believe this no longer happens after https://gerrit.fd.io/r/c/csit/+/37316 got merged.",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 17
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
