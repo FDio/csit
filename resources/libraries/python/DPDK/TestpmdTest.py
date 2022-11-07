@@ -84,8 +84,6 @@ class TestpmdTest:
                     jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
                     txq_size=nic_txq_size
                 )
-        for node in nodes:
-            if u"DUT" in node:
                 for i in range(3):
                     try:
                         TestpmdTest.check_testpmd(nodes[node])
