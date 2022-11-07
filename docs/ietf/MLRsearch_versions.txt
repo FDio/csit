@@ -1,0 +1,26 @@
+
+The python code went through multiple updates,
+but many of them can be ignored from IETF point of view
+(e.g. adding support for ASTF where
+offered trial duration can be way different
+from intended duration).
+
+But some of code updates require changes in IETF draft,
+and we now have multiple code changes prepared or planned
+so here will be a table tracking them.
+
++---------+---------+-----------+-------+
+| Goals   | IOrder  | Track     | trial |
++=========+=========+===========+=======+
+| NDR+PDR | GiP     | 2pG       | 1     |
++---------+---------+-----------+-------+
+| Many    | GiP     | AFS       | 1     |
++---------+---------+-----------+-------+
+| Many    | PiG     | AFS       | 1     |
++---------+---------+-----------+-------+
+| Many    | PiG     | AFS       | n     |
++---------+---------+-----------+-------+
+| Many    | PiG     | 2         | n     |
++---------+---------+-----------+-------+
+
+Legend
