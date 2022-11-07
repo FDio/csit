@@ -84,13 +84,14 @@ class TestpmdTest:
                     jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
                     txq_size=nic_txq_size
                 )
-        for node in nodes:
-            if u"DUT" in node:
-                for i in range(3):
+        for i in range(3):
+            okay = True
+            for node in nodes:
+                if u"DUT" in node:
                     try:
                         TestpmdTest.check_testpmd(nodes[node])
-                        break
                     except RuntimeError:
+                        okay = False
                         TestpmdTest.start_testpmd(
                             nodes[node], if1=if1, if2=if2,
                             lcores_list=cpu_dp, nb_cores=dp_count_int,
@@ -98,9 +99,11 @@ class TestpmdTest:
                             jumbo_frames=jumbo_frames,
                             rxq_size=nic_rxq_size, txq_size=nic_txq_size
                         )
-                else:
-                    message = f"Failed to start testpmd at node {node}"
-                    raise RuntimeError(message)
+            if okay:
+                break
+        else:
+            message = f"Failed to start testpmd at node {node}"
+            raise RuntimeError(message)
 
     @staticmethod
     def start_testpmd(
