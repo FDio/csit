@@ -22,6 +22,30 @@
       },
       "revId": "b4d37bb763d1e9d3d8141919a5e9005ed3d53682",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f8033c5_3cf2c731",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-08T13:44:52Z",
+      "side": 1,
+      "message": "Which thoughts are faulty?\n\nVPP builds for Ubuntu 20.04 (both VPP 2206 and VPP 2210 releases) use Clang-10. VPP build for Ubuntu 22.04 (VPP 2210 release only) uses Clang-14.\nPerformance can be different, that is why CSIT-1851 is now marked as fixed (that was a regression down from Clang-11 affecting Ubuntu 20.04 builds, but not visible on Denverton).\n\nThere are \"hard\" ways of getting a VPP build of 2206 release for Ubuntu 22.04, for example using vpp-csit perf verify jobs, even harder if we want to test ARM (it needs at least 37457 applied to work). I will probably do some of that harder testing when doing RCA for ARM regressions, just not this week.\n\nHere are some links and line parts to prove my Clang version claims:\n\nhttps://s3-logs.fd.io/vex-yul-rot-jenkins-1/vpp-merge-2206-ubuntu2004-x86_64/17/console.log.gz\n  C compiler          : /usr/bin/clang (Clang 10.0.0)\n  + package_cloud push fdio/2206/ubuntu/focal/main/ ./build-root/libvppinfra_22.06-release_amd64.deb\n\nhttps://s3-logs.fd.io/vex-yul-rot-jenkins-1/vpp-merge-2210-ubuntu2004-x86_64/17/console.log.gz\n  C compiler          : /usr/bin/clang (Clang 10.0.0)\n  + package_cloud push fdio/2210/ubuntu/focal/main/ ./build-root/vpp-plugin-devtools_22.10-release_amd64.deb\n\nhttps://s3-logs.fd.io/vex-yul-rot-jenkins-1/vpp-merge-2210-ubuntu2204-x86_64/17/console.log.gz\n  C compiler          : /usr/lib/ccache/clang (Clang 14.0.0)\n  + package_cloud push fdio/2210/ubuntu/jammy/main/ ./build-root/vpp-plugin-devtools_22.10-release_amd64.deb\n\nhttps://s3-logs.fd.io/vex-yul-rot-jenkins-1/vpp-merge-2210-ubuntu2204-aarch64/17/console.log.gz\n  C compiler          : /usr/lib/ccache/clang (Clang 14.0.0)\n  + package_cloud push fdio/2210/ubuntu/jammy/main/ ./build-root/python3-vpp-api_22.10-release_arm64.deb",
+      "parentUuid": "0210699d_cb7908fb",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "b4d37bb763d1e9d3d8141919a5e9005ed3d53682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
