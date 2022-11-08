@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91753e55_105182f7",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-08T09:31:05Z",
+      "side": 0,
+      "message": "I see GTPU HW only in 3n-icx job specs, and they were tested in rls 2206 already:\nhttp://csit.fd.io/report/#eNrtl8FugzAMhp-GXaZMxQ1llx3a8R4VJV5BgzRKAqN7-oUKyaBth6KKXHKBiN-OHX_KL2HsRePRYP0WJYcoPUSQVsI9ou3-2b10bQA2O9YpxQBe3EpjjblBtpWsKnoGyRlBxfgab_q-Y0KJT1YpfrStlFgbtuMnFhcMbem-nq1qy69BPw1bNFoPleB9rPSrLKmitaS6ZmZKh5rEWZcUpsorxfzfOyXkGnPKmByJQiyaSVd_HZFiP3TeoKm-kRLcaEgvHAaS4mJexV7VRB3nlma3iHWZSRGYLWE2zs0LMxWYLWKmVmAGwRvvZAbevRGCNz6UmfR4z4I3LmO2hjfy4I13MuPevZEHb3woM-nxngVvXMaMvDHJnuRFN7d_a8fSLfN6rJFkP5nxUg0",
+      "range": {
+        "startLine": 15,
+        "startChar": 67,
+        "endLine": 15,
+        "endChar": 73
+      },
+      "revId": "3abe52278e7060cd46676491bce84f6cc6abc7db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
