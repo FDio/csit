@@ -33,6 +33,23 @@
       "message": "csit-vpp-report-iter-3n-snr-perftest vpp-mrr-00",
       "revId": "ff48e421cb622acf1b3058073c6a22edc7b5e8e3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffa2bfaa_72cfb998",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-08T19:54:26Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-icx-perftest crypto-04",
+      "revId": "ff48e421cb622acf1b3058073c6a22edc7b5e8e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
