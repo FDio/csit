@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83fbe806_e5a797f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-08T15:00:55Z",
+      "side": 1,
+      "message": "pls consider proposed updated text",
+      "revId": "8cb7e575c8e5df47653df43cf889a33258f330b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5cfc6a5_c144e044",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-08T15:00:55Z",
+      "side": 1,
+      "message": "This should be listed as a separate bullet point and not under environment change.\n\nProposed edited text:\nCSIT-2210 performance test execution environment has moved to Ubuntu\n22.04 and all VPP v22.10 performance tests are executed with VPP\nubuntu2204 images produced by vpp project with updated vpp build system\nusing Clang 14.0.0 (ubuntu2004 images were using Clang 10.0.0). VPP\nv22.06 has not be re-tested in CSIT-2210 as no Ubuntu 22.04 images are\navailable.",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "8cb7e575c8e5df47653df43cf889a33258f330b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
