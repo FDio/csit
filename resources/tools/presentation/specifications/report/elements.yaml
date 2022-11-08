@@ -27,7 +27,7 @@
     - job-spec: "dpdk-mlr-00"
       data-set: "dpdk-2n-icx-curr-iter"
     - job-spec: "trex-mlr-00"
-      data-set: "trex-2n-icx-curr-iter
+      data-set: "trex-2n-icx-curr-iter"
 
 # - type: "table"
 #   title: "Job Specification Duration: 2n-icx-coverage"
