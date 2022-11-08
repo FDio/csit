@@ -39,6 +39,30 @@
       },
       "revId": "8cb7e575c8e5df47653df43cf889a33258f330b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67e7bf11_3872ba17",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-08T16:10:54Z",
+      "side": 1,
+      "message": "Done, with some additional edits.",
+      "parentUuid": "a5cfc6a5_c144e044",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "8cb7e575c8e5df47653df43cf889a33258f330b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
