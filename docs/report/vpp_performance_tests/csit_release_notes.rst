@@ -12,9 +12,6 @@ Changes in |csit-release|
      Atom processors), to later replace 3n-dnv and 2n-dnv (3 and 2 Node
      Denverton) testbeds.
 
-   - **Added GTPU HW offload tests** for Intel e810 4p25ge NICs on 2n-icx
-     testbeds.
-
    - **Added Wireguard tests** using VPP software crypto (3n-icx, 3n-snr
      testbeds) and using built-in hardware crypto QAT device (3n-snr testbed
      only).
@@ -25,10 +22,20 @@ Changes in |csit-release|
 
 #. TEST FRAMEWORK
 
+   - CSIT-2210 executes all VPP v22.10 performance tests using vpp ubuntu2204
+     images, due to CSIT execution environment change as noted below. This
+     applies to all performance testbeds except Denverton. Consequently, VPP
+     v22.06 has not been re-tested in CSIT-2210 environment, as no ubuntu204
+     images are available for that VPP version. Performance comparison
+     between VPP v22.10 (current version) vs VPP v22.06 (previous version)
+     may be impacted by VPP build environment change (ubuntu2004 to ubuntu
+     2204) change and CSIT environment change. See :ref:`vpp_rca` for
+     details.
+
    - **CSIT test environment** version has been updated to ver. 11, see
      :ref:`test_environment_versioning`.
 
-   - **TCP tput profiles** have to be changed, as newer TRex versions
+   - **TCP TPUT profiles** had to be changed, as newer TRex versions
      are not deterministic enough when deciding when to send an ACK.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, and
