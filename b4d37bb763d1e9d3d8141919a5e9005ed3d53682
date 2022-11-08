@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0210699d_cb7908fb",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-08T09:46:43Z",
+      "side": 1,
+      "message": "Do not put your faulty thoughts into release changes. Make a Jira ticket and put link into Known Issues table as RCA.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 53
+      },
+      "revId": "b4d37bb763d1e9d3d8141919a5e9005ed3d53682",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
