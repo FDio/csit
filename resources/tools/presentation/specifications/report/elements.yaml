@@ -1558,6 +1558,111 @@
     # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
     - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
+# VPP Latency Changes 3n-alt 1t1c
+- type: "table"
+  title: "VPP Latency Changes 3n-alt 1t1c PDR50-direction1-avg"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/latency-changes-3n-alt-xl710-1t1c-pdr50-d1-avg"
+  include-tests: "latency-PDR50-direction1-avg"
+  filter: "'1T1C' and 'NDRPDR'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: PDR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# VPP Latency Changes 3n-alt 1t1c
+- type: "table"
+  title: "VPP Latency Changes 3n-alt 1t1c PDR90-direction1-avg"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/latency-changes-3n-alt-xl710-1t1c-pdr90-d1-avg"
+  include-tests: "latency-PDR90-direction1-avg"
+  filter: "'1T1C' and 'NDRPDR'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: PDR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# VPP Latency Changes 3n-alt 1t1c
+- type: "table"
+  title: "VPP Latency Changes 3n-alt 1t1c PDR90-direction1-max"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/latency-changes-3n-alt-xl710-1t1c-pdr90-d1-max"
+  include-tests: "latency-PDR90-direction1-max"
+  filter: "'1T1C' and 'NDRPDR'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter""
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: PDR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
 # VPP Soak vs NDR - 2n-icx
 - type: "table"
   title: "VPP Soak vs NDR 2n-icx"
@@ -2986,6 +3091,146 @@
     - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2210.0-11 vs 2206.0-10: Compares VPP code current vs previous.'
 
+# VPP Performance Changes 3n-alt 1t1c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-alt 1t1c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-alt-1t1c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: PDR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# VPP Performance Changes 3n-alt 2t2c pdr
+- type: "table"
+  title: "VPP Performance Changes 3n-alt 2t2c pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-alt-2t2c-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: PDR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# VPP Performance Changes 3n-alt 1t1c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-alt 1t1c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-alt-1t1c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: NDR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# VPP Performance Changes 3n-alt 2t2c ndr
+- type: "table"
+  title: "VPP Performance Changes 3n-alt 2t2c ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-alt-2t2c-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: NDR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
 # VPP Performance Changes 3n-icx 2t1c mrr
 - type: "table"
   title: "VPP Performance Changes 3n-icx 2t1c mrr"
@@ -3980,6 +4225,111 @@
     - 'YYMM.V-E:                [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
     - 'YYMM.V-E vs YYMM.V-E:    [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
     - '2210.0-11 vs 2206.0-10:  Compares VPP code current vs previous.'
+
+# VPP Performance Changes 3n-alt 1t1c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-alt 1t1c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-alt-1t1c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'1T1C'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter-mrr"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-mrr-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-mrr-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter-mrr"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: MRR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# VPP Performance Changes 3n-alt 2t2c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-alt 2t2c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-alt-2t2c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T2C'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter-mrr"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-mrr-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-mrr-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter-mrr"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: MRR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# VPP Performance Changes 3n-alt 4t4c mrr
+- type: "table"
+  title: "VPP Performance Changes 3n-alt 4t4c mrr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-alt-4t4c-mrr"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T4C'"
+  columns:
+    # - title: "2202.0-10"
+    #   data-set: "vpp-3n-alt-hist-iter-mrr"
+    - title: "2206.0-10"
+      data-set: "vpp-3n-alt-prev-iter-mrr-old-env"
+    # - title: "2206.0-11"
+    #   data-set: "vpp-3n-alt-prev-iter-mrr-new-env"
+    - title: "2210.0-11"
+      data-set: "vpp-3n-alt-curr-iter-mrr"
+  comparisons:
+    # - title: "2206.0-11 vs 2206.0-10"
+    #   reference: 2
+    #   compare: 3
+    # - title: "2210.0-11 vs 2206.0-11"
+    #   reference: 3
+    #   compare: 4
+    - title: "2210.0-11 vs 2206.0-10"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: MRR throughput on 3n-alt with xl710.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    # - '2206.0-11 vs 2206.0-10: Compares CSIT environment current vs previous with previous VPP code.'
+    # - '2210.0-11 vs 2206.0-11: Compares VPP code current vs previous in the current CSIT environment.'
+    - '2210.0-11 vs 2206.0-10: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 # Detailed Test Results - VPP Performance Results 2n-zn2
 - type: "table"
