@@ -26,6 +26,8 @@
       data-set: "vpp-2n-icx-curr-nfv-reconf"
     - job-spec: "dpdk-mlr-00"
       data-set: "dpdk-2n-icx-curr-iter"
+    - job-spec: "trex-mlr-00"
+      data-set: "trex-2n-icx-curr-iter
 
 # - type: "table"
 #   title: "Job Specification Duration: 2n-icx-coverage"
@@ -176,8 +178,6 @@
       data-set: "vpp-2n-clx-curr-iter-gso"
     - job-spec: "soak-00"
       data-set: "vpp-2n-clx-curr-soak"
-    # - job-spec: "vsap-00"
-    #   data-set: "vpp-2n-clx-curr-iter-vsap"
     - job-spec: "nfv-density-mrr-00"
       data-set: "vpp-2n-clx-curr-nfv-mrr"
     - job-spec: "nfv-density-mlr-00"
@@ -5917,6 +5917,42 @@
       data: "data msg"
   data: "dpdk-2n-tx2-curr-iter-best"
   filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - TRex Performance Results 2n-icx
+- type: "table"
+  title: "Detailed Test Results - TRex Performance Results 2n-icx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,TREX,2N,ICX]}/trex_performance_results_2n_icx"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "trex-2n-icx-curr-cov"
+  filter: "all"
+  remove-ndr: False
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - TRex Performance Results 1n-aws
+- type: "table"
+  title: "Detailed Test Results - TRex Performance Results 1n-aws"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTR,PERF,TREX,1N,AWS]}/trex_performance_results_1n_aws"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Throughput: |br| 1.  Mpps       Gbps (NDR) |br| 2.  Mpps       Gbps (PDR) |br| |br| One-Way Latency Percentiles in uSec at %PDR load, |br| one set per each direction: |br| 3.  P50  P90  P99       P50  P90  P99 (10% PDR) |br| 4.  P50  P90  P99       P50  P90  P99 (50% PDR) |br| 5.  P50  P90  P99       P50  P90  P99 (90% PDR) |preout| "
+      data: "data msg"
+  data: "trex-1n-aws-curr-cov"
+  filter: "all"
+  remove-ndr: False
   parameters:
   - "name"
   - "parent"
