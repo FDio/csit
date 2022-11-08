@@ -1,15 +1,35 @@
-version: "3"
+version: "3.7"
 services:
   dash:
     build: "."
     command: "uwsgi --ini app.ini --workers 1"
+    depends_on:
+      - "minio"
     environment:
       AWS_ACCESS_KEY_ID: ""
       AWS_SECRET_ACCESS_KEY: ""
     ports:
-      - "5000:5000"
+      - "5000"
+    mem_limit: "4g"
     volumes:
-      - "./app/:/app"
-      - "../resources/libraries/python/jumpavg/:/app/cdash/jumpavg"
-      - "/home/vagrant/.aws:/root/.aws"
-    working_dir: "/app"
+      - "${PWD}/app/:/app"
+      - "${PWD}/../resources/libraries/python/jumpavg/:/app/cdash/jumpavg"
+      - "${HOME}/.aws:/.aws"
+  minio:
+    image: "quay.io/minio/minio:RELEASE.2022-11-08T05-27-07Z"
+    command: server --console-address ":9001" /data
+    expose:
+      - "9000"
+      - "9001"
+    environment:
+      MINIO_ROOT_USER: "minioadmin"
+      MINIO_ROOT_PASSWORD: "minioadmin"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: "30s"
+      timeout: "20s"
+      retries: 3
+    volumes:
+      - "data:/data"
+volumes:
+  data:
