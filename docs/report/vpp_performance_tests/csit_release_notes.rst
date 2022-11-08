@@ -54,7 +54,17 @@ ___
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|    |                                         |                                                                                                           |
+|  1 | `CSIT-1850                              | 2n-dnv: sporadic 1518B tput tests failing to establish required sessions.                                 |
+|    | <https://jira.fd.io/browse/CSIT-1850>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  2 | `CSIT-1864                              | 2n-clx: half of the packets lost on PDR tests.                                                            |
+|    | <https://jira.fd.io/browse/CSIT-1864>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  3 | `CSIT-1871                              | 3n-snr: 25Ge Interface goes down randomly.                                                                |
+|    | <https://jira.fd.io/browse/CSIT-1871>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  4 | `CSIT-1877                              | 3n-alt, 3n-tsh: VM tests failing to boot VM.                                                              |
+|    | <https://jira.fd.io/browse/CSIT-1877>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Previous
@@ -92,37 +102,19 @@ Issues reported in previous releases which still affect the current results.
 |  7 | `CSIT-1802                              | AF-XDP - NDR tests failing from time to time.                                                             |
 |    | <https://jira.fd.io/browse/CSIT-1802>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  8 | `CSIT-1803                              | 3n-icx testbeds (Icelake): all IMIX aes128cbc-hmac512sha tests are failing due to excessive packet loss.  |
-|    | <https://jira.fd.io/browse/CSIT-1803>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  9 | `CSIT-1804                              | 3n-tsh, 3n-alt testbed (Taishan, Altra): NDR tests failing from time to time.                             |
+|  8 | `CSIT-1804                              | All testbeds: NDR tests failing from time to time.                                                        |
 |    | <https://jira.fd.io/browse/CSIT-1804>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 10 | `CSIT-1808                              | All tests with 9000B payload frames not forwarded over memif interfaces.                                  |
+|  9 | `CSIT-1808                              | All tests with 9000B payload frames not forwarded over memif interfaces.                                  |
 |    | <https://jira.fd.io/browse/CSIT-1808>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1809                              | All tests with 9000B payload frames not forwarded over vhostuser interfaces.                              |
-|    | <https://jira.fd.io/browse/CSIT-1809>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1812                              | All IMIX NAT44DET 4m 16m scale tests fail due to not creating required session count.                     |
-|    | <https://jira.fd.io/browse/CSIT-1812>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 13 | `CSIT-1827                              | 3n-icx, 3n-skx: all AVF crypto tests sporadically fail. 1518B with no traffic, IMIX with excessive        |
+| 10 | `CSIT-1827                              | 3n-icx, 3n-skx: all AVF crypto tests sporadically fail. 1518B with no traffic, IMIX with excessive        |
 |    | <https://jira.fd.io/browse/CSIT-1827>`_ | packet loss.                                                                                              |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 14 | `CSIT-1830                              | All testbeds: All TCP tput (and pps) tests are failing for small packets.                                 |
-|    | <https://jira.fd.io/browse/CSIT-1830>`_ |                                                                                                           |
+| 11 | `CSIT-1835                              | 3n-icx: vppecho BPS tests failing on timeout when checking hoststack finished.                            |
+|    | <https://jira.fd.io/browse/CSIT-1835>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 15 | `CSIT-1832                              | 3n-alt: NDR 1 packet lost on random tests.                                                                |
-|    | <https://jira.fd.io/browse/CSIT-1832>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 16 | `CSIT-1834                              | 2n-icx, 2n-skx: sporadic AVF soak tests failing to find critical load with PLRsearch.                     |
-|    | <https://jira.fd.io/browse/CSIT-1834>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 17 | `CSIT-1847                              | 2n-skx: all 10vm-1t test failed with half of packets dropped.                                             |
-|    | <https://jira.fd.io/browse/CSIT-1847>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 18 | `CSIT-1849                              | 2n-skx: UDP 16m tput tests fail to create all sessions.                                                   |
+| 12 | `CSIT-1849                              | 2n-skx, 2n-clx: UDP 16m tput tests fail to create all sessions.                                           |
 |    | <https://jira.fd.io/browse/CSIT-1849>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
@@ -134,13 +126,13 @@ Issues reported in previous releases which were fixed in this release:
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-| 16 | `CSIT-1834                              | 2n-icx, 2n-skx: sporadic AVF soak tests failing to find critical load with PLRsearch.                     |
+|  1 | `CSIT-1834                              | 2n-icx, 2n-skx: sporadic AVF soak tests failing to find critical load with PLRsearch.                     |
 |    | <https://jira.fd.io/browse/CSIT-1834>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  1 | `CSIT-1846                              | 2n-skx, 2n-clx, 2n-icx: ALL 1518B TCP tput tests failing with big packet loss.                            |
+|  2 | `CSIT-1846                              | 2n-skx, 2n-clx, 2n-icx: ALL 1518B TCP tput tests failing with big packet loss.                            |
 |    | <https://jira.fd.io/browse/CSIT-1846>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  2 | `CSIT-1851                              | trending regression: various icelake tests around 2202-04-15                                              |
+|  3 | `CSIT-1851                              | trending regression: various icelake tests around 2202-04-15                                              |
 |    | <https://jira.fd.io/browse/CSIT-1851>`_ | Somewhat expected consequence of a VPP usability fix,                                                     |
 |    |                                         | the previous VPP compiler version was too new for the OS used.                                            |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
