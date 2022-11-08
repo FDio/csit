@@ -12,9 +12,6 @@ Changes in |csit-release|
      Atom processors), to later replace 3n-dnv and 2n-dnv (3 and 2 Node
      Denverton) testbeds.
 
-   - **Added GTPU HW offload tests** for Intel e810 4p25ge NICs on 2n-icx
-     testbeds.
-
    - **Reduction of tests**: Removed certain test variations executed
      iteratively for the report (as well as in daily and weekly
      trending) due to physical testbeds overload.
@@ -24,7 +21,11 @@ Changes in |csit-release|
    - **CSIT test environment** version has been updated to ver. 11, see
      :ref:`test_environment_versioning`.
 
-   - **TCP tput profiles** have to be changed, as newer TRex versions
+     - As a consequence of Ubuntu upgrade, most testbeds are testing VPP build
+       compiled with newer version of clang, and there is no easy way
+       to test VPP 22.06 on CSIT environment ver. 11.
+
+   - **TCP TPUT profiles** had to be changed, as newer TRex versions
      are not deterministic enough when deciding when to send an ACK.
 
    - **CSIT PAPI support**: Due to issues with PAPI performance, and
