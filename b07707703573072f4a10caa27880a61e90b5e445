@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f415285e_d8343889",
+        "filename": "docs/report/trex_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-08T05:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efe946fd_018b43a3",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9bf09f4_443476ae",
@@ -70,6 +94,54 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13aab876_e7de3dff",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-08T05:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9bf09f4_443476ae",
+      "range": {
+        "startLine": 9,
+        "startChar": 3,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "635abcdf_eb83b3a1",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-08T05:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6776cbf8_ff956ee3",
+      "range": {
+        "startLine": 9,
+        "startChar": 3,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1458a52c_17f26982",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-07T14:31:28Z",
       "side": 1,
       "message": "No reduction of tests in this release, unless I missed it.\nIf so this can be removed.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "212a123a_5b1573b1",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-08T05:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1458a52c_17f26982",
       "range": {
         "startLine": 11,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8025bf6e_14f33c98",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-08T05:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41184532_aa462298",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 66
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edc2f59e_29f6f5ad",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-11-07T14:31:28Z",
       "side": 1,
       "message": "I believe there were changes to TCP TPUT profiles due to the change of behaviour in newer version of TRex that introduced Cubic as default congestion management algo vs previous NewReno.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 80
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3939bae1_c35f1bd8",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-08T05:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edc2f59e_29f6f5ad",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -162,6 +306,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "543cb801_15fd146c",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-08T05:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a1dbebe_bfddfcf0",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 66
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3f0731d_b5461add",
@@ -185,6 +353,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b79a8a8_48569905",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-08T05:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3f0731d_b5461add",
+      "range": {
+        "startLine": 33,
+        "startChar": 3,
+        "endLine": 33,
+        "endChar": 35
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58b14ed2_3f5a5050",
@@ -198,6 +390,30 @@
       "writtenOn": "2022-11-07T13:22:31Z",
       "side": 1,
       "message": "I believe this no longer happens after https://gerrit.fd.io/r/c/csit/+/37316 got merged.",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 17
+      },
+      "revId": "b07707703573072f4a10caa27880a61e90b5e445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15364267_519c6741",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-08T05:50:34Z",
+      "side": 1,
+      "message": "So close the jira ticket: https://jira.fd.io/browse/CSIT-1834",
+      "parentUuid": "58b14ed2_3f5a5050",
       "range": {
         "startLine": 115,
         "startChar": 8,
