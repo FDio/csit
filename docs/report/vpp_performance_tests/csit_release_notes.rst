@@ -36,7 +36,7 @@ Changes in |csit-release|
 
 #. PRESENTATION AND ANALYTICS LAYER
 
-   - **`C-Dash <http://csit.fd.io/>`** performance dashboard got updated UI and
+   - **C-Dash** `performance dashboard <http://csit.fd.io/>`_ got updated UI and
      updated backend increasing its performance and robustness.
 
 .. raw:: latex
