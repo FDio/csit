@@ -46,6 +46,30 @@
       },
       "revId": "49adc99f1e9f7a7e22cedae67d792531a8531d24",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a6d13b7_a088320f",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-09T11:23:29Z",
+      "side": 1,
+      "message": "I actually don\u0027t like calling out changes specific changes in vpp build system as part of their move to ubuntu2204. But I do agree that what belongs to csit rls notes is highlighting the change of vpp build and csit test execution environment that may impact performance results, that in turn should be tracked in RCA section.\n\nIf folks agree with my take above, what about the following text:\n\nCSIT-2210 executes all VPP v22.10 performance tests using vpp ubuntu2204\nimages, due to CSIT execution environment change as noted below. This\napplies to all performance testbeds except Denverton. Consequently, VPP\nv22.06 has not been re-tested in CSIT-2210 environment, as no ubuntu204\nimages are available for that VPP version. Any performance impacts of\nVPP build change and CSIT environment change are to be noted\nin :ref:`vpp_rca`.",
+      "parentUuid": "f5dc4b9d_a1bf6cd3",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 66
+      },
+      "revId": "49adc99f1e9f7a7e22cedae67d792531a8531d24",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
