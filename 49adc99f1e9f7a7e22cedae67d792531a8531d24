@@ -22,6 +22,30 @@
       },
       "revId": "49adc99f1e9f7a7e22cedae67d792531a8531d24",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5dc4b9d_a1bf6cd3",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-09T09:57:09Z",
+      "side": 1,
+      "message": "\u003e CLANG should be part of VPP release notes\n\nSince [0], VPP does not force any particular compiler version (as long as it is not too old), and \"make install-dep\" will usually install \"clang\" package in whatever version the current machine\u0027s distro offers. That also applies for Ubuntu 22.04 [1]. The reasoning is that a user should be able to build VPP using compiler versions available natively in the machine\u0027s distro, without the need to manually install a different version (as was the case before [0] as clang-11 is not available by default on Ubuntu 20.04). I agree there should be some VPP documentation warning users that the performance of their build may depend directly on compiler used, so indirectly on their distro.\n\nAnyway, CSIT chooses which VPP artifacts to test, e.g. whether to download from jammy/main or focal/main within https://packagecloud.io/fdio/release/ubuntu (which makes sense, as we do not expect a VPP to work if built for a different distro version). All I am saying is that this is not a \"VPP environment\" change, as Ubuntu 20.04 build for VPP 2210 is also available, still built using clang-10.\nThe situation is similar to CSIT environment upgrade (e.g. new NIC firmware due to new DPDK version and its compatibility requirements). We ugrade testbeds, we expect a performance jump. Usually this would be nicely distinguished in comparison tables by two diff columns. But this release we only have one diff column, hence the need to note something.\n\nMaybe we can move the CSIT environment and clang items out of TEST FRAMEWORK section to some new section, such as INFRASTRUCTURE. But \"CSIT environment\" encompasses both code changes and testbed changes, so I am not sure.\n\n[0] https://gerrit.fd.io/r/c/vpp/+/35967\n[1] https://gerrit.fd.io/r/c/vpp/+/36422",
+      "parentUuid": "ae4cebcb_8bc67c67",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 66
+      },
+      "revId": "49adc99f1e9f7a7e22cedae67d792531a8531d24",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
