@@ -48,6 +48,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b52aae_1ceb6285",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-09T13:53:14Z",
+      "side": 1,
+      "message": "It\u0027s a composite SUT, yes, but different from examples given in rfc2544, that are focusing on connecting devices in a series. See updated text, i removed any references to black-box, used SUT instead, patch30.",
+      "parentUuid": "623e598a_8527fbd9",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 15
+      },
+      "revId": "85ce77362055d9722f3a1cec532e140e10529c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4469bd33_6360b903",
@@ -84,6 +108,30 @@
       "writtenOn": "2022-10-28T16:16:49Z",
       "side": 1,
       "message": "Agree to not mention any parties.",
+      "parentUuid": "4469bd33_6360b903",
+      "range": {
+        "startLine": 166,
+        "startChar": 50,
+        "endLine": 166,
+        "endChar": 60
+      },
+      "revId": "85ce77362055d9722f3a1cec532e140e10529c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "428b0058_2421655b",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-09T13:53:14Z",
+      "side": 1,
+      "message": "I don\u0027t like the \"DUT developer\" and \"real user\" roles/personas. Suggest we don\u0027t use those references. Instead focus on DUT and SUT performance.",
       "parentUuid": "4469bd33_6360b903",
       "range": {
         "startLine": 166,
@@ -142,6 +190,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40e8da75_66646d83",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-09T13:53:14Z",
+      "side": 1,
+      "message": "Yes, thank you for remind me about the SUT definition in rfc2285. Added it now to updated text, patch30.",
+      "parentUuid": "4b9f5e59_359c9918",
+      "range": {
+        "startLine": 171,
+        "startChar": 49,
+        "endLine": 171,
+        "endChar": 61
+      },
+      "revId": "85ce77362055d9722f3a1cec532e140e10529c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0151fe5_a0055887",
@@ -178,6 +250,30 @@
       "writtenOn": "2022-10-28T16:16:49Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "a0151fe5_a0055887",
+      "range": {
+        "startLine": 183,
+        "startChar": 16,
+        "endLine": 183,
+        "endChar": 20
+      },
+      "revId": "85ce77362055d9722f3a1cec532e140e10529c2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "773a3f86_4ba65ce3",
+        "filename": "docs/ietf/draft-ietf-bmwg-mlrsearch-03.md",
+        "patchSetId": 29
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-09T13:53:14Z",
+      "side": 1,
+      "message": "We somehow need to capture the point about interpretation of SUT results with specific mmlrsearch+ settings, to enable the tester/developer/user to infer the DUT performance.",
       "parentUuid": "a0151fe5_a0055887",
       "range": {
         "startLine": 183,
