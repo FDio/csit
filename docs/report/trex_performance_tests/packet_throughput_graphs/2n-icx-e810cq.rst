@@ -128,13 +128,13 @@ CSIT source code for the test cases used for plots can be found in
 
     \clearpage
 
-64b-ip4routing-[udp|tcp]-stf-pps
---------------------------------
+64b-ip4routing-[udp|tcp]-stf-tput
+---------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4routing-stf-pps-ndr.html"></iframe>
+    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4routing-stf-tput-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -143,8 +143,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4routing-stf-pps-ndr}
-            \label{fig:2n-icx-e810cq-64b--ip4routing-stf-pps-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4routing-stf-tput-ndr}
+            \label{fig:2n-icx-e810cq-64b--ip4routing-stf-tput-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -154,7 +154,7 @@ CSIT source code for the test cases used for plots can be found in
 .. raw:: html
 
     <center>
-    <iframe id="06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4routing-stf-pps-pdr.html"></iframe>
+    <iframe id="06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/trex/2n-icx-e810cq-64b--ip4routing-stf-tput-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -163,8 +163,8 @@ CSIT source code for the test cases used for plots can be found in
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/trex/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4routing-stf-pps-pdr}
-            \label{fig:2n-icx-e810cq-64b--ip4routing-stf-pps-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b--ip4routing-stf-tput-pdr}
+            \label{fig:2n-icx-e810cq-64b--ip4routing-stf-tput-pdr}
     \end{figure}
 
 .. raw:: latex
