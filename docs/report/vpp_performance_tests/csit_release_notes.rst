@@ -15,8 +15,8 @@ Changes in |csit-release|
    - **Added GTPU HW offload tests** for Intel e810 4p25ge NICs on 2n-icx
      testbeds.
 
-   - **Added Wireguard tests** for VPP software path (3n-icx, 3n-snr
-     testbeds) and with built-in HW crypto QAT device (3n-snr testbed
+   - **Added Wireguard tests** using VPP software crypto (3n-icx, 3n-snr
+     testbeds) and using built-in hardware crypto QAT device (3n-snr testbed
      only).
 
    - **Reduction of tests**: Removed certain test variations executed
