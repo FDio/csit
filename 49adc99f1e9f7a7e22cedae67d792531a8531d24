@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae4cebcb_8bc67c67",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-09T08:12:02Z",
+      "side": 1,
+      "message": "\u003e CSIT-2210 performance test execution environment has moved to Ubuntu 22.04 (except on Denverton testbeds),\n\nalready covered in test environment 11\n\nCLANG should be part of VPP release notes, not CSIT or CSIT-test release notes. WE (CSIT) did not introduce CLANG directly in our framework. Our framework is not dependent on it (example you named in that we can still run Ubuntu 20.04). We are referencing in our environment section to compile job so it is accurate and up to date.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 66
+      },
+      "revId": "49adc99f1e9f7a7e22cedae67d792531a8531d24",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
