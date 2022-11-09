@@ -70,6 +70,30 @@
       },
       "revId": "49adc99f1e9f7a7e22cedae67d792531a8531d24",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d394e948_95d8d65a",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-09T11:42:50Z",
+      "side": 1,
+      "message": "Another propose version:\n\nCSIT-2210 executes all VPP v22.10 performance tests using vpp ubuntu2204\nimages, due to CSIT execution environment change as noted below. This\napplies to all performance testbeds except Denverton. Consequently, VPP\nv22.06 has not been re-tested in CSIT-2210 environment, as no ubuntu2004\nimages are available for that VPP version. Performance comparison\nbetween VPP v22.10 (current version) vs VPP v22.06 (previous version)\nmay be impacted by VPP build environment change (ubuntu2004 to ubuntu\n2204) change and CSIT environment change. See :ref:`vpp_rca` for\ndetails.",
+      "parentUuid": "2a6d13b7_a088320f",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 66
+      },
+      "revId": "49adc99f1e9f7a7e22cedae67d792531a8531d24",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
