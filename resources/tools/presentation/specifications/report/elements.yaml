@@ -6412,6 +6412,26 @@
   filter: "all"
   data-start-level: 4
 
+# TRex Performance Results 2n-icx
+- type: "file"
+  title: "TRex Performance Results 2n-icx"
+  algorithm: "file_test_results"
+  output-file: "{DIR[DTR,PERF,TREX,2N,ICX]}"
+  dir-tables: "{DIR[DTR,PERF,TREX,2N,ICX]}"
+  data: "trex-2n-icx-curr-cov"
+  filter: "all"
+  data-start-level: 4
+
+# TRex Performance Results 1n-aws
+- type: "file"
+  title: "TRex Performance Results 1n-aws"
+  algorithm: "file_test_results"
+  output-file: "{DIR[DTR,PERF,TREX,1N,AWS]}"
+  dir-tables: "{DIR[DTR,PERF,TREX,1N,AWS]}"
+  data: "trex-1n-aws-curr-cov"
+  filter: "all"
+  data-start-level: 4
+
 ################################################################################
 ###                                P L O T S                                 ###
 ################################################################################
@@ -10435,7 +10455,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-icx-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-icx-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -10462,7 +10482,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/3n-icx-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-3n-icx-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "1t2c"]
   include:
     - "tests.dpdk.perf.25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -10489,7 +10509,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-clx-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-clx-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -10502,7 +10522,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-clx-x710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-clx-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -11544,7 +11564,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-zn2-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-zn2-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -11557,7 +11577,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-zn2-x710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-zn2-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -12307,16 +12327,16 @@
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
-- type: "plot"
-  title: "Latency by percentile: TRex 1n-aws"
-  algorithm: "plot_hdrh_lat_by_percentile_x_log"
-  output-file: "{DIR[STATIC,TREX]}/hdrh-lat-percentile-1n-aws"
-  output-file-links: "{DIR[LAT,TREX]}/1n_aws.rst"
-  target-links: "../../_static/trex"
-  data: "trex-1n-aws-curr-iter-best"
-  filter: "'2T1C'"
-  layout:
-    layout: "plot-hdrh-latency-percentile-x-log"
+# - type: "plot"
+#   title: "Latency by percentile: TRex 1n-aws"
+#   algorithm: "plot_hdrh_lat_by_percentile_x_log"
+#   output-file: "{DIR[STATIC,TREX]}/hdrh-lat-percentile-1n-aws"
+#   output-file-links: "{DIR[LAT,TREX]}/1n_aws.rst"
+#   target-links: "../../_static/trex"
+#   data: "trex-1n-aws-curr-iter-best"
+#   filter: "'2T1C'"
+#   layout:
+#     layout: "plot-hdrh-latency-percentile-x-log"
 
 - type: "plot"
   title: "Latency by percentile: 2n-zn2"
@@ -12435,7 +12455,7 @@
   output-file-links: "{DIR[LAT,DPDK]}/2n_icx.rst"
   target-links: "../../_static/dpdk"
   data: "dpdk-2n-icx-curr-iter-best"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  filter: "'1T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
@@ -12446,7 +12466,7 @@
   output-file-links: "{DIR[LAT,DPDK]}/3n_icx.rst"
   target-links: "../../_static/dpdk"
   data: "dpdk-3n-icx-curr-iter-best"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  filter: "'1T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
@@ -12457,7 +12477,7 @@
   output-file-links: "{DIR[LAT,DPDK]}/2n_clx.rst"
   target-links: "../../_static/dpdk"
   data: "dpdk-2n-clx-curr-iter-best"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  filter: "'1T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
@@ -12468,7 +12488,7 @@
   output-file-links: "{DIR[LAT,DPDK]}/2n_zn2.rst"
   target-links: "../../_static/dpdk"
   data: "dpdk-2n-zn2-curr-iter-best"
-  filter: "'2T1C' and 'NIC_Intel-XXV710'"
+  filter: "'1T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
@@ -12629,18 +12649,18 @@
     layout: "plot-throughput"
 
 - type: "plot"
-  title: "Throughput: 2n-icx-e810cq-64b--ip4routing-stf-pps-{test_type}"
+  title: "Throughput: 2n-icx-e810cq-64b--ip4routing-stf-tput-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
-  output-file: "{DIR[STATIC,TREX]}/2n-icx-e810cq-64b--ip4routing-stf-pps-{test_type}"
+  output-file: "{DIR[STATIC,TREX]}/2n-icx-e810cq-64b--ip4routing-stf-tput-{test_type}"
   data: "trex-2n-icx-curr-iter"
   core: ["2t1c", ]
   include:
-    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Tcp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.100B--ethip4tcp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
-    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.100B--ethip4tcp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
-    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-H1024-P63-S64512-pps-Tg-Ndrpdr.100B--ethip4udp-ip4base-h1024-p63-s64512-pps-tg-ndrpdr"
-    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-H262144-P63-S16515072-pps-Tg-Ndrpdr.100B--ethip4udp-ip4base-h262144-p63-s16515072-pps-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Tcp-Ip4Base-H1024-P63-S64512-tput-Tg-Ndrpdr.100B--ethip4tcp-ip4base-h1024-p63-s64512-tput-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Tcp-Ip4Base-H262144-P63-S16515072-tput-Tg-Ndrpdr.100B--ethip4tcp-ip4base-h262144-p63-s16515072-tput-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-H1024-P63-S64512-tput-Tg-Ndrpdr.100B--ethip4udp-ip4base-h1024-p63-s64512-tput-tg-ndrpdr"
+    - "Tests.Trex.Perf.Ip4.1N1L-100Ge2P1E810Cq-Ethip4Udp-Ip4Base-H262144-P63-S16515072-tput-Tg-Ndrpdr.100B--ethip4udp-ip4base-h262144-p63-s16515072-tput-tg-ndrpdr"
   layout:
-    title: "2n-icx-e810cq-64b--ip4routing-stf-pps-{test_type}"
+    title: "2n-icx-e810cq-64b--ip4routing-stf-tput-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
