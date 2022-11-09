@@ -70,6 +70,15 @@ ___
 |  4 | `CSIT-1877                              | 3n-alt, 3n-tsh: VM tests failing to boot VM.                                                              |
 |    | <https://jira.fd.io/browse/CSIT-1877>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  5 | `CSIT-1883                              | 3n-snr: All hwasync wireguard tests failing when trying to verify device.                                 |
+|    | <https://jira.fd.io/browse/CSIT-1883>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  6 | `CSIT-1884                              | 2n-clx, 2n-icx: All NDR PDR IMIX over 1M sessions BIDIR tests failing to create enough sessions.          |
+|    | <https://jira.fd.io/browse/CSIT-1884>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  7 | `CSIT-1885                              | 3n-icx: 9000b ip4 NDRPDR tests are failing to forward traffic.                                            |
+|    | <https://jira.fd.io/browse/CSIT-1885>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Previous
 ________
@@ -94,7 +103,7 @@ Issues reported in previous releases which still affect the current results.
 |    | `VPP-1972                               | CSIT removed the max scale NAT tests to avoid this issue.                                                 |
 |    | <https://jira.fd.io/browse/VPP-1972>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1799                              | All NAT44-ED 16M scale tests fail while setting NAT44 address range.                                      |
+|  4 | `CSIT-1799                              | All NAT44-ED 16M sessions CPS scale tests fail while setting NAT44 address range.                         |
 |    | <https://jira.fd.io/browse/CSIT-1799>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  5 | `CSIT-1800                              | All Geneve L3 mode scale tests (1024 tunnels) are failing.                                                |
@@ -118,7 +127,7 @@ Issues reported in previous releases which still affect the current results.
 | 11 | `CSIT-1835                              | 3n-icx: vppecho BPS tests failing on timeout when checking hoststack finished.                            |
 |    | <https://jira.fd.io/browse/CSIT-1835>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1849                              | 2n-skx, 2n-clx: UDP 16m tput tests fail to create all sessions.                                           |
+| 12 | `CSIT-1849                              | 2n-skx, 2n-clx, 2n-icx: UDP 16m TPUT tests fail to create all sessions.                                   |
 |    | <https://jira.fd.io/browse/CSIT-1849>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
