@@ -1217,6 +1217,8 @@ def plot_tsa_name(plot, input_data):
                 limit = plot[u"limits"][u"nic"][u"e810cq"]
             elif u"e810xxv" in test_name:
                 limit = plot[u"limits"][u"nic"][u"e810xxv"]
+            elif u"e822cq" in test_name:
+                limit = plot[u"limits"][u"nic"][u"e822cq"]
             else:
                 limit = 0
             if limit > nic_limit:
