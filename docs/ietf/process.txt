@@ -19,4 +19,6 @@ $ kdrfc --version
 $ sudo gem install kramdown-rfc2629
 
 Main:
-$ kdrfc draft-ietf-bmwg-mlrsearch-02.md
+$ kdrfc draft-ietf-bmwg-mlrsearch-03.md
+
+If that complains, do it manually at https://author-tools.ietf.org/
