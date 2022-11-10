@@ -33,6 +33,23 @@
       "message": "csit-vpp-report-iter-3n-snr-perftest vpp-mlr-wireguard",
       "revId": "bd4e3b7425af8f1a0a0da3505d04a4ee31567f3c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cede485_ad8d8b99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-10T08:40:14Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-icx-perftest vpp-mlr-wireguard",
+      "revId": "bd4e3b7425af8f1a0a0da3505d04a4ee31567f3c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
