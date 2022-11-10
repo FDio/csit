@@ -37,7 +37,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810xxv-64b-ip4tunnel-gtpu-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810xxv-64b-ip4tunnel-gtpu-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810xxv-64b-ip4tunnel-gtpu-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810xxv-64b-ip4tunnel-gtpu-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -68,4 +68,47 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810xxv-64b-ip4tunnel-gtpu-pdr-tsa}
             \label{fig:3n-icx-e810xxv-64b-ip4tunnel-gtpu-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-ip4tunnel-wireguard
+-----------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810xxv-64b-ip4tunnel-wireguard-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810xxv-64b-ip4tunnel-wireguard-ndr-tsa}
+            \label{fig:3n-icx-e810xxv-64b-ip4tunnel-wireguard-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-e810xxv-64b-ip4tunnel-wireguard-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810xxv-64b-ip4tunnel-wireguard-pdr-tsa}
+            \label{fig:3n-icx-e810xxv-64b-ip4tunnel-wireguard-pdr-tsa}
     \end{figure}
