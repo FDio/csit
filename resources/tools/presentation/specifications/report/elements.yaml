@@ -11788,6 +11788,52 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 3n-icx-xxv710-1518b-{core}-ip4tunnel-wireguard-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-1518b-{core}-ip4tunnel-wireguard-{test_type}"
+  data: "vpp-3n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard2Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard2tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard4Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard4tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard8Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard8tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard100Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard100tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard1000Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard1000tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-icx-xxv710-1518b-{core}-ip4tunnel-wireguard-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-icx-xxv710-imix-{core}-ip4tunnel-wireguard-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-imix-{core}-ip4tunnel-wireguard-{test_type}"
+  data: "vpp-3n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard2Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard2tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard4Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard4tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard8Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard8tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard100Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard100tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard1000Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard1000tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-icx-xxv710-imix-{core}-ip4tunnel-wireguard-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-icx-e810xxv-64b-{core}-ip4tunnel-wireguard-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-64b-{core}-ip4tunnel-wireguard-{test_type}"
+  data: "vpp-3n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.64B-{core}-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-icx-e810xxv-64b-{core}-ip4tunnel-wireguard-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 3n-icx-e810xxv-64b-{core}-ip4tunnel-gtpu-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-64b-{core}-ip4tunnel-gtpu-{test_type}"
@@ -12027,6 +12073,49 @@
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
+  title: "Speedup: 3n-icx-xxv710-1518b-ip4tunnel-wireguard-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-1518b-ip4tunnel-wireguard-{test_type}-tsa"
+  data: "vpp-3n-icx-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard2Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard4Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard4tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard8Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard8tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard100Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard100tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard1000Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard1000tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-icx-xxv710-1518b-ip4tunnel-wireguard-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-icx-xxv710-imix-ip4tunnel-wireguard-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-imix-ip4tunnel-wireguard-{test_type}-tsa"
+  data: "vpp-3n-icx-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard2Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard4Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard4tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard8Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard8tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard100Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard100tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1Xxv710-Ethip4Udpwireguard1000Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard1000tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-icx-xxv710-imix-ip4tunnel-wireguard-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-icx-e810xxv-64b-ip4tunnel-wireguard-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-64b-ip4tunnel-wireguard-{test_type}-tsa"
+  data: "vpp-3n-icx-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E810Xxv-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.64B-.t.c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-icx-e810xxv-64b-ip4tunnel-wireguard-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
   title: "Speedup: 3n-icx-xxv710-78b-ip6routing-base-{test_type}-tsa"
   algorithm: "plot_tsa_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-78b-ip6routing-base-{test_type}-tsa"
@@ -12098,6 +12187,40 @@
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-{core}-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
   layout:
     title: "3n-snr-e822cq-64b-{core}-ip4tunnel-base-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e822cq-1518b-{core}-ip4tunnel-wireguard-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-1518b-{core}-ip4tunnel-wireguard-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard2Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard2tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard4Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard4tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard8Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard8tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard100Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard100tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard1000Tnlsw-Ip4Base-Ndrpdr.1518B-{core}-ethip4udpwireguard1000tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-1518b-{core}-ip4tunnel-wireguard-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-snr-e822cq-imix-{core}-ip4tunnel-wireguard-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-imix-{core}-ip4tunnel-wireguard-{test_type}"
+  data: "vpp-3n-snr-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard2Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard2tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard4Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard4tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard8Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard8tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard100Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard100tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard1000Tnlsw-Ip4Base-Ndrpdr.imix-{core}-ethip4udpwireguard1000tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-imix-{core}-ip4tunnel-wireguard-{test_type}"
     layout: "plot-throughput"
 
 - type: "plot"
@@ -12208,6 +12331,38 @@
     - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Vxlan-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-ethip4vxlan-l2bdbasemaclrn-ndrpdr"
   layout:
     title: "3n-snr-e822cq-64b-ip4tunnel-base-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-1518b-ip4tunnel-wireguard-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-1518b-ip4tunnel-wireguard-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard2Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard4Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard4tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard8Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard8tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard100Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard100tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard1000Tnlsw-Ip4Base-Ndrpdr.1518B-.t.c-ethip4udpwireguard1000tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-1518b-ip4tunnel-wireguard-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-snr-e822cq-imix-ip4tunnel-wireguard-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-snr-e822cq-imix-ip4tunnel-wireguard-{test_type}-tsa"
+  data: "vpp-3n-snr-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard1Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard1tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard2Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard2tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard4Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard4tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard8Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard8tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard100Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard100tnlsw-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4 Tunnels.25Ge2P1E822Cq-Ethip4Udpwireguard1000Tnlsw-Ip4Base-Ndrpdr.imix-.t.c-ethip4udpwireguard1000tnlsw-ip4base-ndrpdr"
+  layout:
+    title: "3n-snr-e822cq-imix-ip4tunnel-wireguard-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"

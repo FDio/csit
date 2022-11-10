@@ -37,7 +37,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="101" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-ip4tunnel-base-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-ip4tunnel-base-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="102" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-ip4tunnel-base-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-64b-ip4tunnel-base-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -68,4 +68,90 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-64b-ip4tunnel-base-pdr-tsa}
             \label{fig:3n-icx-xxv710-64b-ip4tunnel-base-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+1518b-ip4tunnel-wireguard
+-------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-ip4tunnel-wireguard-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-ip4tunnel-wireguard-ndr-tsa}
+            \label{fig:3n-icx-xxv710-1518b-ip4tunnel-wireguard-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-ip4tunnel-wireguard-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-ip4tunnel-wireguard-pdr-tsa}
+            \label{fig:3n-icx-xxv710-1518b-ip4tunnel-wireguard-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+imix-ip4tunnel-wireguard
+------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-ip4tunnel-wireguard-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-ip4tunnel-wireguard-ndr-tsa}
+            \label{fig:3n-icx-xxv710-imix-ip4tunnel-wireguard-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-ip4tunnel-wireguard-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-ip4tunnel-wireguard-pdr-tsa}
+            \label{fig:3n-icx-xxv710-imix-ip4tunnel-wireguard-pdr-tsa}
     \end{figure}
