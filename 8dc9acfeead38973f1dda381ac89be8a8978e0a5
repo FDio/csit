@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fb2ee55_107d589a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-11T12:09:15Z",
+      "side": 1,
+      "message": "csit-2n-tx2-perftest ndrpdrANDnic_*ANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
+      "revId": "8dc9acfeead38973f1dda381ac89be8a8978e0a5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
