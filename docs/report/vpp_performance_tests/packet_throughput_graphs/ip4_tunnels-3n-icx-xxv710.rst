@@ -74,9 +74,6 @@
 
     \clearpage
 
-3n-icx-xxv710
-~~~~~~~~~~~~~
-
 1518b-2t1c-ip4tunnel-wireguard
 ------------------------------
 
@@ -119,9 +116,6 @@
 .. raw:: latex
 
     \clearpage
-
-3n-icx-xxv710
-~~~~~~~~~~~~~
 
 imix-2t1c-ip4tunnel-wireguard
 -----------------------------
