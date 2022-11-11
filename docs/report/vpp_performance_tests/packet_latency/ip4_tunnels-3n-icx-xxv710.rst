@@ -151,3 +151,122 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-25ge2p1xxv710-64b-2t1c-ethip4vxlan-l2xcbase}
             \label{fig:hdrh-lat-percentile-3n-icx-25ge2p1xxv710-64b-2t1c--ethip4vxlan-l2xcbase}
     \end{figure}
+
+64b-2t1c-ip4tunnel-wireguard
+----------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="7" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard1tnlsw-ip4base.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard1tnlsw-ip4base}
+            \label{fig:hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard1tnlsw-ip4base}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="8" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard2tnlsw-ip4base.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard2tnlsw-ip4base}
+            \label{fig:hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard2tnlsw-ip4base}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="9" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard4tnlsw-ip4base.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard4tnlsw-ip4base}
+            \label{fig:hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard4tnlsw-ip4base}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard8tnlsw-ip4base.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard8tnlsw-ip4base}
+            \label{fig:hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard8tnlsw-ip4base}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard100tnlsw-ip4base.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard100tnlsw-ip4base}
+            \label{fig:hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard100tnlsw-ip4base}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard1000tnlsw-ip4base.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard1000tnlsw-ip4base}
+            \label{fig:hdrh-lat-percentile-3n-icx-25ge2p1xxv710-1518b-2t1c-ethip4udpwireguard1000tnlsw-ip4base}
+    \end{figure}
