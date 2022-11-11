@@ -13,18 +13,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from os import environ
+
 class Config:
     """Flask configuration variables.
     """
     # General Config
     FLASK_APP = "wsgi.py"
-    FLASK_ENV = "production"
+    FLASK_ENV = environ.get("FLASK_ENV", "production")
 
     # Assets
-    ASSETS_DEBUG = False
-    ASSETS_AUTO_BUILD = True
+    ASSETS_DEBUG = environ.get("ASSETS_DEBUG", False)
+    ASSETS_AUTO_BUILD = environ.get("ASSETS_AUTO_BUILD", True)
 
     # Static Assets
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
-    COMPRESSOR_DEBUG = "True"
+    COMPRESSOR_DEBUG = environ.get("COMPRESSOR_DEBUG", False)
