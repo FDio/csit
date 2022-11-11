@@ -30,7 +30,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
-source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
+source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 source "${BASH_FUNCTION_DIR}/terraform.sh" || die "Source failed."
 common_dirs || die
@@ -38,7 +38,20 @@ check_prerequisites || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 select_arch_os || die
-gather_build || die
+set_perpatch_dut || die
+git clone "${GIT_URL}/vpp" --branch "stable/2206" --no-single-branch || die
+VPP_DIR="${CSIT_DIR}/vpp"
+pushd "${VPP_DIR}" || die
+git status || die
+git tag || die
+git checkout "v22.06" || die
+git cherry-pick fecb2524ab71b105422a9a4377429c1871220234 || die
+git cherry-pick 738eaa6f4965956a592392834bd1b6fcd0a20633 || die
+git tag -a "v22.06.ubuntu2204" -m "v22.06.0 with fixes for ubuntu 2204" || die
+build_vpp_ubuntu_amd64 "BACKPORT" || die
+set_aside_commit_build_artifacts || die
+select_build "build_current" || die
+popd || die
 check_download_dir || die
 activate_virtualenv || die
 generate_tests || die
