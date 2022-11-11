@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21ec0313_3cf56eb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-11T08:56:42Z",
+      "side": 1,
+      "message": "Since I can\u0027t give +2 and merge, please Vratko can you do it instead?",
+      "revId": "6688c4c82079ed93db224b9bae4785397d0549df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}

@@ -16,6 +16,24 @@
       "message": "Now I noticed HOSTS_ tags are inconsistent (sometimes in separate line, sometimes at the end of the previous line), but they are also inconsistent in Base so not need to fix here.",
       "revId": "95a94ccfd23ff0d1c0af3d210c803d44426e578d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "203ae2ca_4883d408",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-11T08:56:42Z",
+      "side": 1,
+      "message": "I\u0027ve applied this as well. I like to have it consistent and since I\u0027d done trex tests I fixed it now.",
+      "parentUuid": "bf24ce70_ef71b4f8",
+      "revId": "95a94ccfd23ff0d1c0af3d210c803d44426e578d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
