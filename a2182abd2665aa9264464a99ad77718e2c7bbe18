@@ -56,6 +56,30 @@
       },
       "revId": "a2182abd2665aa9264464a99ad77718e2c7bbe18",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a80d631_16f8516c",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-11T08:25:20Z",
+      "side": 1,
+      "message": "fixed in: https://gerrit.fd.io/r/c/csit/+/37549",
+      "parentUuid": "208aae73_e0ad29a3",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 126,
+        "endChar": 36
+      },
+      "revId": "a2182abd2665aa9264464a99ad77718e2c7bbe18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
