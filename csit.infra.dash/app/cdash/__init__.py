@@ -31,9 +31,8 @@ def init_app():
         level=C.LOG_LEVEL
     )
 
-    logging.info("Application started.")
-
     app = Flask(__name__, instance_relative_config=False)
+    app.logger.info("Application started.")
     app.config.from_object("config.Config")
 
     with app.app_context():

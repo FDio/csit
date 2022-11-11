@@ -6,6 +6,9 @@ services:
     depends_on:
       - "minio"
       - "mc"
+    environment:
+      FLASK_DEBUG: 1
+      FLASK_ENV: "development"
     mem_limit: "4g"
     ports:
       - "5000:5000"
@@ -15,13 +18,13 @@ services:
       - "${PWD}/../resources/libraries/python/jumpavg/:/app/cdash/jumpavg"
       - "${HOME}/.aws:/.aws"
   minio:
-    image: "quay.io/minio/minio:RELEASE.2022-11-08T05-27-07Z"
+    image: "quay.io/minio/minio:latest"
     command: server --console-address ":9001" /data
-    expose:
-      - "9000"
     environment:
       MINIO_ROOT_USER: "minioadmin"
       MINIO_ROOT_PASSWORD: "minioadmin"
+    expose:
+      - "9000"
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
       interval: "30s"
@@ -32,7 +35,7 @@ services:
     volumes:
       - "data:/data"
   mc:
-    image: "quay.io/minio/mc:RELEASE.2022-11-07T23-47-39Z"
+    image: "quay.io/minio/mc:latest"
     depends_on:
       - "minio"
     entrypoint: >
@@ -42,6 +45,8 @@ services:
       /usr/bin/mc mb --quiet --ignore-existing local/fdio-docs-s3-cloudfront-index/;
       /usr/bin/mc anonymous set public local/fdio-docs-s3-cloudfront-index;
       "
+    # mc alias set aws https://s3.amazon.com/endpoint ACCESS_KEY SECRET KEY
+    # mc admin info aws
 volumes:
   data:
 #    external: true
