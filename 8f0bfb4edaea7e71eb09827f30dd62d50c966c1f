@@ -84,6 +84,23 @@
       "message": "csit-vpp-report-cov-3n-icx-perftest l2-00",
       "revId": "8f0bfb4edaea7e71eb09827f30dd62d50c966c1f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16abf372_d885eedf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-14T08:18:17Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-3n-tsh-perftest dpdk-mlr-00",
+      "revId": "8f0bfb4edaea7e71eb09827f30dd62d50c966c1f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
