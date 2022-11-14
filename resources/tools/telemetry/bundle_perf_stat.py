@@ -68,14 +68,14 @@ class BundlePerfStat:
 
         if text == u"":
             getLogger("console_stdout").info(event[u"eventcode"])
-        elif text.count(u";") < 6:
-            getLogger("console_stdout").info(
-                f"Could not get counters for event "\
-                f"{event[u'eventcode']}. "\
-                f"Is it supported by CPU?"
-            )
         else:
             for line in text.splitlines():
+                if line.count(u";") < 6:
+                    getLogger("console_stdout").info(
+                        f"Could not get counters for current thread."
+                        f"{line}"
+                    )
+                    continue
                 item = dict()
                 labels = dict()
                 item[u"name"] = self.metrics['counter'][0]['name']
