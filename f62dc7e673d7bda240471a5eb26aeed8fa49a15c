@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d719be17_9a6d2892",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-15T08:07:59Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-icx-perftest srv6-00",
+      "revId": "f62dc7e673d7bda240471a5eb26aeed8fa49a15c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
