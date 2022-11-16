@@ -7080,6 +7080,40 @@
     layout: "plot-throughput"
 
 - type: "plot"
+  title: "Throughput: 2n-dnv-x553-100b-{core}-nat44ed-ip4routing-tcp-tput-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-100b-{core}-nat44ed-ip4routing-tcp-tput-{test_type}"
+  data: "vpp-2n-dnv-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Tput-Ndrpdr.100B-{core}-ethip4tcp-ip4base-h1024-p63-s64512-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H16384-P63-S1032192-Tput-Ndrpdr.100B-{core}-ethip4tcp-ip4base-h16384-p63-s1032192-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H65536-P63-S4128768-Tput-Ndrpdr.100B-{core}-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.100B-{core}-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.100B-{core}-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.100B-{core}-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-100b-{core}-nat44ed-ip4routing-tcp-tput-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-1518b-{core}-nat44ed-ip4routing-tcp-tput-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-1518b-{core}-nat44ed-ip4routing-tcp-tput-{test_type}"
+  data: "vpp-2n-dnv-curr-iter"
+  core: ["1t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Tput-Ndrpdr.1518b-{core}-ethip4tcp-ip4base-h1024-p63-s64512-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H16384-P63-S1032192-Tput-Ndrpdr.1518b-{core}-ethip4tcp-ip4base-h16384-p63-s1032192-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H65536-P63-S4128768-Tput-Ndrpdr.1518b-{core}-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.1518b-{core}-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.1518b-{core}-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.1518b-{core}-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-1518b-{core}-nat44ed-ip4routing-tcp-tput-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 3n-dnv-x553-78b-{core}-ip6routing-base-scale-ixgbe-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-{core}-ip6routing-base-scale-ixgbe-{test_type}"
@@ -8098,6 +8132,38 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-.t.c-af-xdp-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-dnv-x553-100b-nat44ed-ip4routing-tcp-tput-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-100b-nat44ed-ip4routing-tcp-tput-{test_type}-tsa"
+  data: "vpp-2n-dnv-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Tput-Ndrpdr.100B-.t.c-ethip4tcp-ip4base-h1024-p63-s64512-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H16384-P63-S1032192-Tput-Ndrpdr.100B-.t.c-ethip4tcp-ip4base-h16384-p63-s1032192-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H65536-P63-S4128768-Tput-Ndrpdr.100B-.t.c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.100B-.t.c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.100B-.t.c-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.100B-.t.c-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-100b-nat44ed-ip4routing-tcp-tput-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 2n-dnv-x553-1518b-nat44ed-ip4routing-tcp-tput-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-1518b-nat44ed-ip4routing-tcp-tput-{test_type}-tsa"
+  data: "vpp-2n-dnv-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H1024-P63-S64512-Tput-Ndrpdr.1518b-.t.c-ethip4tcp-ip4base-h1024-p63-s64512-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H16384-P63-S1032192-Tput-Ndrpdr.1518b-.t.c-ethip4tcp-ip4base-h16384-p63-s1032192-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Ip4Base-H65536-P63-S4128768-Tput-Ndrpdr.1518b-.t.c-ethip4tcp-ip4base-h65536-p63-s4128768-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H1024-P63-S64512-Tput-Ndrpdr.1518b-.t.c-ethip4tcp-nat44ed-h1024-p63-s64512-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H16384-P63-S1032192-Tput-Ndrpdr.1518b-.t.c-ethip4tcp-nat44ed-h16384-p63-s1032192-tput-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Tput-Ndrpdr.1518b-.t.c-ethip4tcp-nat44ed-h65536-p63-s4128768-tput-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-1518b-nat44ed-ip4routing-tcp-tput-{test_type}"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
