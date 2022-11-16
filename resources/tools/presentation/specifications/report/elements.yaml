@@ -8128,7 +8128,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-rnd-ndrpdr"
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-af-xdp-ethip4-ip4base-ndrpdr"
-    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-af-xdp-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-af-xdp-ethip4-ip4scale20k-ndrpdr"f
     - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-af-xdp-Ethip4-Ip4Scale20K-rnd-Ndrpdr.64B-.t.c-af-xdp-ethip4-ip4scale20k-rnd-ndrpdr"
   layout:
     title: "2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-{test_type}"
@@ -10067,7 +10067,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Cps-ndrpdr.64B-{core}-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
   layout:
     title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
-    layout: "plot-throughput"
+    layout: "plot-cps"
 
 - type: "plot"
   title: "Throughput: 2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
@@ -10084,7 +10084,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Cps-ndrpdr.64B-{core}-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
   layout:
     title: "2n-icx-xxv710-64b-{core}-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
-    layout: "plot-throughput"
+    layout: "plot-cps"
 
 - type: "plot"
   title: "Throughput: 2n-icx-xxv710-100b-{core}-nat44ed-ip4routing-udp-tput-avf-{test_type}"
@@ -10353,7 +10353,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Udp-Nat44Ed-H65536-P63-S4128768-Cps-ndrpdr.64B-.t.c-avf-ethip4udp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
   layout:
     title: "2n-icx-xxv710-64b-nat44ed-ip4routing-udp-stf-cps-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
+    layout: "plot-throughput-speedup-analysis-cps"
 
 - type: "plot"
   title: "Speedup: 2n-icx-xxv710-64b-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}-tsa"
@@ -10369,7 +10369,7 @@
     - "Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4Tcp-Nat44Ed-H65536-P63-S4128768-Cps-ndrpdr.64B-.t.c-avf-ethip4tcp-nat44ed-h65536-p63-s4128768-cps-ndrpdr"
   layout:
     title: "2n-icx-xxv710-64b-nat44ed-ip4routing-tcp-stf-cps-avf-{test_type}"
-    layout: "plot-throughput-speedup-analysis"
+    layout: "plot-throughput-speedup-analysis-cps"
 
 - type: "plot"
   title: "Speedup: 2n-icx-xxv710-100b-nat44ed-ip4routing-tcp-tput-avf-{test_type}-tsa"
