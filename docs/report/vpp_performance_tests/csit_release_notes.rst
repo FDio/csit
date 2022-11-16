@@ -77,10 +77,10 @@ ___
 |  2 | `CSIT-1864                              | 2n-clx: half of the packets lost on PDR tests.                                                            |
 |    | <https://jira.fd.io/browse/CSIT-1864>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `CSIT-1868                              | 2n-clx: ALL hoststack tests fails when trying to start nginx.                                             |
+|  3 | `CSIT-1868                              | 2n-clx: ALL ldpreload-nginx tests fails when trying to start nginx.                                       |
 |    | <https://jira.fd.io/browse/CSIT-1868>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1871                              | 3n-snr: 25Ge Interface goes down randomly.                                                                |
+|  4 | `CSIT-1871                              | 3n-snr: 25GE interface between SUT and TG/TRex goes down randomly.                                        |
 |    | <https://jira.fd.io/browse/CSIT-1871>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  5 | `CSIT-1877                              | 3n-alt, 3n-tsh: VM tests failing to boot VM.                                                              |
@@ -95,7 +95,7 @@ ___
 |  8 | `CSIT-1885                              | 3n-icx: 9000b ip4 ip6 l2 NDRPDR AVF tests are failing to forward traffic.                                 |
 |    | <https://jira.fd.io/browse/CSIT-1885>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  9 | `CSIT-1886                              | 3n-icx: Wireguard tests with 100 and more tunnels are failing to forward traffic.                         |
+|  9 | `CSIT-1886                              | 3n-icx: Wireguard tests with 100 and more tunnels are failing PDR criteria.                               |
 |    | <https://jira.fd.io/browse/CSIT-1886>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
@@ -143,7 +143,7 @@ Issues reported in previous releases which still affect the current results.
 | 10 | `CSIT-1827                              | 3n-icx, 3n-skx: all AVF crypto tests sporadically fail. 1518B with no traffic, IMIX with excessive        |
 |    | <https://jira.fd.io/browse/CSIT-1827>`_ | packet loss.                                                                                              |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1835                              | 3n-icx: vppecho BPS tests failing on timeout when checking hoststack finished.                            |
+| 11 | `CSIT-1835                              | 3n-icx: QUIC vppecho BPS tests failing on timeout when checking hoststack finished.                       |
 |    | <https://jira.fd.io/browse/CSIT-1835>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 | 12 | `CSIT-1849                              | 2n-skx, 2n-clx, 2n-icx: UDP 16m TPUT tests fail to create all sessions.                                   |
