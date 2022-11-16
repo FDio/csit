@@ -4,19 +4,21 @@ services:
     build: "."
     command: "uwsgi --ini app.ini --workers 1"
     depends_on:
-      - "minio"
-      - "mc"
+      - "reverse"
     environment:
       FLASK_DEBUG: 1
       FLASK_ENV: "development"
     mem_limit: "4g"
+    networks:
+      - "lntk"
     ports:
       - "5000:5000"
     user: "${UID}:${GID}"
     volumes:
       - "${PWD}/app/:/app"
       - "${PWD}/../resources/libraries/python/jumpavg/:/app/cdash/jumpavg"
-      - "${HOME}/.aws:/.aws"
+      - "${PWD}/.aws:/.aws"
+      - "${PWD}/nginx/ssl/myCA.pem:/myCA.pem"
   minio:
     image: "quay.io/minio/minio:latest"
     command: server --console-address ":9001" /data
@@ -30,6 +32,8 @@ services:
       interval: "30s"
       timeout: "20s"
       retries: 3
+    networks:
+      - "lntk"
     ports:
       - "9001:9001"
     volumes:
@@ -44,9 +48,30 @@ services:
       /usr/bin/mc config host add --quiet --api s3v4 local http://minio:9000 minioadmin minioadmin;
       /usr/bin/mc mb --quiet --ignore-existing local/fdio-docs-s3-cloudfront-index/;
       /usr/bin/mc anonymous set public local/fdio-docs-s3-cloudfront-index;
+      #/usr/bin/mc cp --recursive /data/ local/fdio-docs-s3-cloudfront-index/;
       "
-    # mc alias set aws https://s3.amazon.com/endpoint ACCESS_KEY SECRET KEY
-    # mc admin info aws
+    networks:
+      - "lntk"
+    volumes:
+      - type: "bind"
+        source: "${HOME}/fdio-docs-s3-cloudfront-index/"
+        target: "/data/"
+  reverse:
+    image: "nginx:latest"
+    depends_on:
+      - "minio"
+      - "mc"
+    volumes:
+      - "./nginx/conf.d:/etc/nginx/conf.d"
+      - "./nginx/ssl:/etc/nginx/certs"
+    networks:
+      lntk:
+        aliases:
+          - "s3.amazonaws.com"
+          - "fdio-docs-s3-cloudfront-index.s3.amazonaws.com"
 volumes:
   data:
-#    external: true
+
+networks:
+  lntk:
+    driver: bridge
