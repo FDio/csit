@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eae880e_582f3fe4",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-16T12:08:46Z",
+      "side": 1,
+      "message": "missing in rls notes\nhttps://jira.fd.io/browse/CSIT-1835\n3n-icx: vppecho BPS tests failing on timeout when checking hoststack finished\n\nShouldn\u0027t title read:\n3n-icx: QUIC vppecho BPS tests failing on timeout when checking hoststack finished",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 12
+      },
+      "revId": "8d15b327f49486aaaf83f4ba058349ea0a77c371",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ffee1d0_c512f065",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-16T12:08:46Z",
+      "side": 1,
+      "message": "Shouldn\u0027t title read:\n2n-clx: ALL ldpreload-nginx tests fails when trying to start nginx",
+      "range": {
+        "startLine": 80,
+        "startChar": 49,
+        "endLine": 80,
+        "endChar": 110
+      },
+      "revId": "8d15b327f49486aaaf83f4ba058349ea0a77c371",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce11f08d_1f4ad3ae",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-16T12:08:46Z",
+      "side": 1,
+      "message": "Shouldn\u0027t title read:\n3n-snr: 25GE interface between SUT and TG/TRex goes down randomly",
+      "range": {
+        "startLine": 83,
+        "startChar": 49,
+        "endLine": 83,
+        "endChar": 91
+      },
+      "revId": "8d15b327f49486aaaf83f4ba058349ea0a77c371",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e95f234_0a305989",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2022-11-16T12:08:46Z",
+      "side": 1,
+      "message": "3n-icx: Wireguard tests with 100 and more tunnels are failing PDR criteria.",
+      "range": {
+        "startLine": 98,
+        "startChar": 49,
+        "endLine": 98,
+        "endChar": 130
+      },
+      "revId": "8d15b327f49486aaaf83f4ba058349ea0a77c371",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
