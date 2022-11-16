@@ -77,20 +77,26 @@ ___
 |  2 | `CSIT-1864                              | 2n-clx: half of the packets lost on PDR tests.                                                            |
 |    | <https://jira.fd.io/browse/CSIT-1864>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `CSIT-1871                              | 3n-snr: 25Ge Interface goes down randomly.                                                                |
+|  3 | `CSIT-1868                              | 2n-clx: ALL hoststack tests fails when trying to start nginx.                                             |
+|    | <https://jira.fd.io/browse/CSIT-1868>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  4 | `CSIT-1871                              | 3n-snr: 25Ge Interface goes down randomly.                                                                |
 |    | <https://jira.fd.io/browse/CSIT-1871>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1877                              | 3n-alt, 3n-tsh: VM tests failing to boot VM.                                                              |
+|  5 | `CSIT-1877                              | 3n-alt, 3n-tsh: VM tests failing to boot VM.                                                              |
 |    | <https://jira.fd.io/browse/CSIT-1877>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1883                              | 3n-snr: All hwasync wireguard tests failing when trying to verify device.                                 |
+|  6 | `CSIT-1883                              | 3n-snr: All hwasync wireguard tests failing when trying to verify device.                                 |
 |    | <https://jira.fd.io/browse/CSIT-1883>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1884                              | 2n-clx, 2n-icx: All NDR PDR IMIX over 1M sessions BIDIR tests failing to create enough sessions.          |
+|  7 | `CSIT-1884                              | 2n-clx, 2n-icx: All NAT44DET NDR PDR IMIX over 1M sessions BIDIR tests failing to create enough sessions. |
 |    | <https://jira.fd.io/browse/CSIT-1884>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1885                              | 3n-icx: 9000b ip4 NDRPDR AVF tests are failing to forward traffic.                                        |
+|  8 | `CSIT-1885                              | 3n-icx: 9000b ip4 ip6 l2 NDRPDR AVF tests are failing to forward traffic.                                 |
 |    | <https://jira.fd.io/browse/CSIT-1885>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  9 | `CSIT-1886                              | 3n-icx: Wireguard tests with 100 and more tunnels are failing to forward traffic.                         |
+|    | <https://jira.fd.io/browse/CSIT-1886>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
 Previous
