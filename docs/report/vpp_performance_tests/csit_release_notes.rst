@@ -176,18 +176,14 @@ Root Cause Analysis for Performance Changes
 
 List of RCAs in |csit-release| for VPP performance changes:
 
-+----+-----------------------------------------+-------------------------------------------------------------------------------------+
-|  # | JiraID                                  | Issue Description                                                                   |
-+====+=========================================+=====================================================================================+
-|  1 | `VPP-2030                               | regression: ip6base on ICX around 2022-03-23                                        |
-|    | <https://jira.fd.io/browse/VPP-2030>`_  | "Loads blocked due to overlapping with a preceding store that cannot be forwarded." |
-|    |                                         | started happening in ip6-lookup graph node.                                         |
-+----+-----------------------------------------+-------------------------------------------------------------------------------------+
-|  2 | `CSIT-1852                              | 2n-zn2 mellanox performance cap                                                     |
-|    | <https://jira.fd.io/browse/CSIT-1852>`_ | Old issue, only now distinguished from CSIT-1751.                                   |
-|    |                                         | This testbed+nic combination is capped below 28 Mpps, cause not identified yet.     |
-+----+-----------------------------------------+-------------------------------------------------------------------------------------+
-|  3 | `CSIT-1853                              | trending regression: nat44ed cps around 2202-04-01                                  |
-|    | <https://jira.fd.io/browse/CSIT-1853>`_ | VPP change added more computation to slow path (in order to support multiple VRFs). |
-|    |                                         | Not clear if the VPP implementation is optimized enough.                            |
-+----+-----------------------------------------+-------------------------------------------------------------------------------------+
++----+-----------------------------------------+--------------------------------------------------------------------+
+|  # | JiraID                                  | Issue Description                                                  |
++====+=========================================+====================================================================+
+|  1 | `CSIT-1887                              | rls2210 RCA: ASTF tests                                            |
+|    | <https://jira.fd.io/browse/CSIT-1887>`_ | TRex upgrade decreased TRex performance. NAT results not affected, |
+|    |                                         | except on Denverton due to interference from VPP-2010.             |
++----+-----------------------------------------+--------------------------------------------------------------------+
+|  2 | `CSIT-1888                              | rls2210 RCA: testbed differences, especially for ipsec             |
+|    | <https://jira.fd.io/browse/CSIT-1888>`_ | Not caused by VPP code nor CSIT code.                              |
+|    |                                         | Most probable cause is clang-14 behavior.                          |
++----+-----------------------------------------+--------------------------------------------------------------------+
