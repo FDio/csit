@@ -22,6 +22,30 @@
       },
       "revId": "2df720197bb6dad3a91d031edbaa88d6184bc57d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "835568b9_0b39479a",
+        "filename": "docs/report/introduction/environment/intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-21T15:44:07Z",
+      "side": 1,
+      "message": "I prefer not doing that in this Change, as lines 85, 86, 131 and 133 also need to be fixed in a similar way.",
+      "parentUuid": "dc2a5db2_d990d3b7",
+      "range": {
+        "startLine": 118,
+        "startChar": 26,
+        "endLine": 118,
+        "endChar": 56
+      },
+      "revId": "2df720197bb6dad3a91d031edbaa88d6184bc57d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
