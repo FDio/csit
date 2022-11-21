@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc2a5db2_d990d3b7",
+        "filename": "docs/report/introduction/environment/intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-21T15:14:31Z",
+      "side": 1,
+      "message": "remove ``_ or make it working.",
+      "range": {
+        "startLine": 118,
+        "startChar": 26,
+        "endLine": 118,
+        "endChar": 56
+      },
+      "revId": "2df720197bb6dad3a91d031edbaa88d6184bc57d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
