@@ -115,6 +115,7 @@ Following is the list of CSIT versions to date:
     matrix.
   - Intel IceLake all core turbo frequency turned off. Current base frequency
     is 2.6GHz.
+  - TRex version upgrade: `increase from 2.88 to 2.97`_.
 
 - Ver. 11 associated with CSIT rls2210 branch (`HW
   <https://git.fd.io/csit/tree/docs/lab?h=rls2210>`_, `Linux

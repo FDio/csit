@@ -4,8 +4,6 @@
 
 .. include:: ../introduction/environment/intro.rst
 
-.. include:: ../introduction/environment/changes_tg.rst
-
 
 SUT Settings - TRex
 -------------------
