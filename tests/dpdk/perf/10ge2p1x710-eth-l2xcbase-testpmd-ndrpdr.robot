@@ -81,6 +81,7 @@
 | | When Start testpmd on all DUTs | ${nodes} | ${topology_info}
 | | ... | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
+| | When Check testpmd on all DUTs | ${nodes} | ${topology_info}
 
 *** Test Cases ***
 | 64B-1c-eth-l2xcbase-testpmd-ndrpdr
