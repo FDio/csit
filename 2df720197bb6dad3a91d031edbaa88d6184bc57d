@@ -46,6 +46,30 @@
       },
       "revId": "2df720197bb6dad3a91d031edbaa88d6184bc57d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a713a39_3589b59a",
+        "filename": "docs/report/introduction/environment/intro.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-11-22T06:59:52Z",
+      "side": 1,
+      "message": "fixed in https://gerrit.fd.io/r/c/csit/+/37684",
+      "parentUuid": "835568b9_0b39479a",
+      "range": {
+        "startLine": 118,
+        "startChar": 26,
+        "endLine": 118,
+        "endChar": 56
+      },
+      "revId": "2df720197bb6dad3a91d031edbaa88d6184bc57d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
