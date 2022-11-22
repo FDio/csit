@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2199dc6f_dd216888",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-22T09:36:18Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest eth-ip4tcphttp-ldpreload-nginx-1_15_0ANDnic_mellanox-cx556a\ncsit-2n-clx-perftest eth-ip4tcphttp-ldpreload-nginx-1_15_0ANDnic_intel-e810cq",
+      "revId": "9a65c9e5884e4ad26b21b6f35bc23822ca1e592b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
