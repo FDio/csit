@@ -187,3 +187,7 @@ List of RCAs in |csit-release| for VPP performance changes:
 |    | <https://jira.fd.io/browse/CSIT-1888>`_ | Not caused by VPP code nor CSIT code.                              |
 |    |                                         | Most probable cause is clang-14 behavior.                          |
 +----+-----------------------------------------+--------------------------------------------------------------------+
+|  3 | `CSIT-1889                              | rls2210 RCA: policy-outbound-nocrypto                              |
+|    | <https://jira.fd.io/browse/CSIT-1889>`_ | When VPP added spd fast path matching (Gerrit 36097),              |
+|    |                                         | it decreased MRR of the corresponding tests, at least on 3-alt.    |
++----+-----------------------------------------+--------------------------------------------------------------------+
