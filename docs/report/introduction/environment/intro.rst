@@ -73,8 +73,7 @@ Following is the list of CSIT versions to date:
   <https://docs.fd.io/csit/rls2101/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
   `CSIT <https://git.fd.io/csit/tree/?h=rls2101>`_).
 
-  - The main change is TRex version upgrade:
-    `increase from 2.82 to 2.86 <https://gerrit.fd.io/r/c/csit/+/29980>`_.
+  - The main change is TRex version upgrade: increase from 2.82 to 2.86.
 - Ver. 7 associated with CSIT rls2106 branch (`HW
   <https://git.fd.io/csit/tree/docs/lab?h=rls2106>`_, `Linux
   <https://s3-docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
@@ -82,8 +81,8 @@ Following is the list of CSIT versions to date:
   <https://s3-docs.fd.io/csit/rls2106/report/vpp_performance_tests/test_environment.html#tg-settings-trex>`_,
   `CSIT <https://git.fd.io/csit/tree/?h=rls2106>`_).
 
-  - TRex version upgrade: `increase from 2.86 to 2.88`_.
-  - Ubuntu upgrade: `upgrade from 18.04 LTS to 20.04.2 LTS`_.
+  - TRex version upgrade: increase from 2.86 to 2.88.
+  - Ubuntu upgrade from 18.04 LTS to 20.04.2 LTS.
 - Ver. 8 associated with CSIT rls2110 branch (`HW
   <https://git.fd.io/csit/tree/docs/lab?h=rls2110>`_, `Linux
   <https://s3-docs.fd.io/csit/rls2110/report/vpp_performance_tests/test_environment.html#sut-settings-linux>`_,
@@ -115,6 +114,7 @@ Following is the list of CSIT versions to date:
     matrix.
   - Intel IceLake all core turbo frequency turned off. Current base frequency
     is 2.6GHz.
+  - TRex version upgrade: increase from 2.88 to 2.97.
 
 - Ver. 11 associated with CSIT rls2210 branch (`HW
   <https://git.fd.io/csit/tree/docs/lab?h=rls2210>`_, `Linux
@@ -127,6 +127,6 @@ Following is the list of CSIT versions to date:
     matrix.
   - Mellanox 556A series firmware upgrade based on DPDK compatibility
     matrix.
-  - Ubuntu upgrade: `upgrade from 20.04.2 LTS to 22.04.1 LTS`_.
+  - Ubuntu upgrade from 20.04.2 LTS to 22.04.1 LTS.
     (2n-dnv and 3n-dnv keeps the Ubuntu 20.04.2LTS as a part of decomission).
-  - TRex version upgrade: `increase from 2.97 to 3.00`_.
+  - TRex version upgrade: increase from 2.97 to 3.00.
