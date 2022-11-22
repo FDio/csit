@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2022 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -74,12 +74,12 @@ class NGINXTools:
         :type nginx_version: str
         :raises RuntimeError: If command returns nonzero return code.
         """
-        nginx_path = f"{pkg_dir}/nginx-{nginx_version}/sbin/nginx"
+        #nginx_path = f"{pkg_dir}/nginx-{nginx_version}/sbin/nginx"
         cmd_options = NginxUtil.get_cmd_options(path=nginx_path)
-        ret_code, _, stderr = exec_cmd(node, cmd_options, sudo=True)
-        if nginx_version in stderr and ret_code == 0:
-            logger.info(f"NGINX Version: {stderr}")
-            return
+        #ret_code, _, stderr = exec_cmd(node, cmd_options, sudo=True)
+        #if nginx_version in stderr and ret_code == 0:
+        #    logger.info(f"NGINX Version: {stderr}")
+        #    return
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}" \
                   f"/entry/install_nginx.sh nginx-{nginx_version}"
         message = u"Install the NGINX failed!"
