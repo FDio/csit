@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c38932f_d834fc2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-23T09:12:57Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*ANDeth-l2xcbase-testpmd",
+      "revId": "ad5fecb3975d3c589610638d6836f8a477b3c11b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
