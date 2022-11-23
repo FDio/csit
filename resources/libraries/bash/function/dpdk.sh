@@ -331,16 +331,23 @@ function dpdk_testpmd_check () {
 
     set -exuo pipefail
 
-    for attempt in {1..60}; do
+    for attempt in {1..120}; do
         echo "Checking if testpmd links state changed, attempt nr ${attempt}"
-        if fgrep "link state change event" screenlog.0; then
-            cat screenlog.0
-            exit 0
+        if fgrep "Port 0: link state change event" screenlog.0; then
+            echo "0: OK"
+        else
+            sleep 1
+            continue
         fi
-        sleep 1
+        if fgrep "Port 1: link state change event" screenlog.0; then
+            echo "1: OK"
+            return 0
+        else
+            sleep 1
+            continue
+        fi
     done
     cat screenlog.0
-
     exit 1
 }
 
