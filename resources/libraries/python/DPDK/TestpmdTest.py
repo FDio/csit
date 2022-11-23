@@ -22,16 +22,19 @@ from resources.libraries.python.DpdkUtil import DpdkUtil
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
+from robot.api import logger
+
 
 class TestpmdTest:
     """
     This class start testpmd on topology nodes and check if properly started.
     """
-    
+
     @staticmethod
     def start_testpmd_on_all_duts(
-            nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
-            rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None):
+        nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
+        rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None
+    ):
         """
         Start the testpmd with M worker threads and rxqueues N and jumbo
         support frames on/off on all DUTs.
@@ -57,7 +60,6 @@ class TestpmdTest:
         :type nic_txq_size: int
         :raises RuntimeError: If bash return code is not 0.
         """
-
         cpu_count_int = dp_count_int = int(phy_cores)
         dp_cores = cpu_count_int+1
         for node in nodes:
@@ -84,28 +86,60 @@ class TestpmdTest:
                     jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
                     txq_size=nic_txq_size
                 )
-        for node in nodes:
-            if u"DUT" in node:
-                for i in range(3):
+        TestpmdTest.check_testpmd_on_all_duts(
+            nodes, topology_info, phy_cores, rx_queues, jumbo_frames,
+            rxd, txd, nic_rxq_size, nic_txq_size, retries=1, fail=False
+        )
+
+    @staticmethod
+    def check_testpmd_on_all_duts(
+        nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
+        rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None, retries=0,
+        fail=True
+    ):
+        """FIXME"""
+        cpu_count_int = dp_count_int = int(phy_cores)
+        dp_cores = cpu_count_int+1
+        retry = 0
+        while 1:
+            okay = True
+            for node in nodes:
+                if u"DUT" in node:
+                    compute_resource_info = CpuUtils.get_affinity_vswitch(
+                        nodes, node, phy_cores, rx_queues=rx_queues,
+                        rxd=rxd, txd=txd
+                    )
+                    cpu_dp = compute_resource_info[u"cpu_dp"]
+                    rxq_count_int = compute_resource_info[u"rxq_count_int"]
+                    if1 = topology_info[f"{node}_pf1"][0]
+                    if2 = topology_info[f"{node}_pf2"][0]
                     try:
                         TestpmdTest.check_testpmd(nodes[node])
-                        break
                     except RuntimeError:
-                        TestpmdTest.start_testpmd(
-                            nodes[node], if1=if1, if2=if2,
-                            lcores_list=cpu_dp, nb_cores=dp_count_int,
-                            queue_nums=rxq_count_int,
-                            jumbo_frames=jumbo_frames,
-                            rxq_size=nic_rxq_size, txq_size=nic_txq_size
-                        )
-                else:
-                    message = f"Failed to start testpmd at node {node}"
+                        okay = False
+                        retry += 1
+                        if retry <= retries:
+                            TestpmdTest.start_testpmd(
+                                nodes[node], if1=if1, if2=if2,
+                                lcores_list=cpu_dp, nb_cores=dp_count_int,
+                                queue_nums=rxq_count_int,
+                                jumbo_frames=jumbo_frames,
+                                rxq_size=nic_rxq_size, txq_size=nic_txq_size
+                            )
+            if okay:
+                break
+            if retry > retries:
+                message = f"Failed to start some testpmd."
+                if fail:
                     raise RuntimeError(message)
+                logger.info(message)
+                break
 
     @staticmethod
     def start_testpmd(
-            node, if1, if2, lcores_list, nb_cores, queue_nums,
-            jumbo_frames, rxq_size=1024, txq_size=1024):
+        node, if1, if2, lcores_list, nb_cores, queue_nums,
+        jumbo_frames, rxq_size=1024, txq_size=1024
+    ):
         """
         Execute the testpmd on the DUT node.
 
