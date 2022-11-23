@@ -98,7 +98,12 @@ function build_vpp_ubuntu_amd64 () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
+    # ARM numa runtime initialization fix for ubuntu2204.
+    git cherry-pick fecb2524ab71b105422a9a4377429c1871220234 || die
+    # Disable LTO, so DPDK compilation does not starve on memory.
+    git cherry-pick 738eaa6f4965956a592392834bd1b6fcd0a20633 || die
     make UNATTENDED=y pkg-verify || die "VPP build with make pkg-verify failed."
+    git reset --hard HEAD~~ || die
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
