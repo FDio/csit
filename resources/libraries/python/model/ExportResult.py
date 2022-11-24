@@ -114,7 +114,6 @@ def append_mrr_value(mrr_value, unit):
     rate_node[u"unit"] = str(unit)
     values_list = descend(rate_node, u"values", list)
     values_list.append(float(mrr_value))
-    # TODO: Fill in the bandwidth part for pps?
 
 
 def export_search_bound(text, value, unit, bandwidth=None):

@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.model.export_json
+| Library | resources.libraries.python.model.ExportJson
 |
 | Suite Setup | Global Suite Setup
 | Suite Teardown | Global Suite Teardown
