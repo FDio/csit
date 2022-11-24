@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.model.export_json
+| Library | resources.libraries.python.model.ExportJson
 |
 | Suite Setup | Global Suite Setup
 | Suite Teardown | Global Suite Teardown

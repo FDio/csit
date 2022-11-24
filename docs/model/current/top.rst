@@ -22,7 +22,7 @@ especially the export side (UTI), not import side (PAL).
 Version
 ~~~~~~~
 
-This document is valid for CSIT model version 1.0.1.
+This document is valid for CSIT model version 1.1.0.
 
 It is recommended to use semantic versioning: https://semver.org/
 That means, if the new model misses a field present in the old model,
@@ -54,15 +54,7 @@ If the suite name contains spaces (Robot converts underscores to spaces),
 they are replaced with underscores.
 
 The filesystem tree is rooted under tests/ (as suites in git are there),
-and for each component (test case, suite setup, suite teardown)
-two files are generated.
-The "raw" variant is suitable for debugging (can contain lower level logging),
-while the "info" variant is suitable for processing by PAL
-(can contain derivative values so PAL does not need to compute them
-on every download).
-Their structure and content is mostly identical, model definition mentions
-if a particular subschema is not identical in the two variants.
-It is possible to convert from raw to info, but not the other way.
+and for each component (test case, suite setup, suite teardown).
 
 Although we expect only ASCII text in the exported files,
 we manipulate files using UTF-8 encoding,
