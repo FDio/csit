@@ -52,7 +52,7 @@ def descend(parent_node, key, default_factory=None):
 
 
 def get_export_data():
-    """Return raw_data member of export_json library instance.
+    """Return data member of export_json library instance.
 
     This assumes the data has been initialized already.
     Return None if Robot is not running.
@@ -66,4 +66,4 @@ def get_export_data():
     )
     if instance is None:
         return None
-    return instance.raw_data
+    return instance.data
