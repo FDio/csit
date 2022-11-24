@@ -616,28 +616,11 @@ function move_archives () {
 function post_process_robot_outputs () {
 
     # Generate INFO level output_info.xml by rebot.
-    # Archive UTI raw json outputs.
     #
     # Variables read:
     # - ARCHIVE_DIR - Path to post-processed files.
 
     set -exuo pipefail
-
-    # Compress raw json outputs, as they will never be post-processed.
-    pushd "${ARCHIVE_DIR}" || die
-    if [ -d "tests" ]; then
-        # Use deterministic order.
-        options+=("--sort=name")
-        # We are keeping info outputs where they are.
-        # Assuming we want to move anything but info files (and dirs).
-        options+=("--exclude=*.info.json")
-        tar czf "generated_output_raw.tar.gz" "${options[@]}" "tests" || true
-        # Tar can remove when archiving, but chokes (not deterministically)
-        # on attempting to remove dirs (not empty as info files are there).
-        # So we need to delete the raw files manually.
-        find "tests" -type f -name "*.raw.json" -delete || true
-    fi
-    popd || die
 
     # Generate INFO level output_info.xml for post-processing.
     all_options=("--loglevel" "INFO")
@@ -756,7 +739,6 @@ function run_pybot () {
 
     # Run pybot with options based on input variables.
     # Generate INFO level output_info.xml by rebot.
-    # Archive UTI raw json outputs.
     #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
