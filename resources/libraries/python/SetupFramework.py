@@ -14,8 +14,6 @@
 """This module exists to provide setup utilities for the framework on topology
 nodes. All tasks required to be run before the actual tests are started is
 supposed to end up here.
-
-TODO: Figure out how to export JSON from SSH outside main Robot thread.
 """
 
 from os import environ, remove
@@ -108,7 +106,7 @@ def extract_tarball_at_node(tarball, node):
         node, cmd,
         message=f"Failed to extract {tarball} at node {node[u'type']} "
         f"host {node[u'host']}, port {node[u'port']}",
-        timeout=240, include_reason=True, export=False
+        timeout=240, include_reason=True
     )
     logger.console(
         f"Extracting tarball to {con.REMOTE_FW_DIR} on {node[u'type']} "
@@ -137,7 +135,7 @@ def create_env_directory_at_node(node):
         f"&& source env/bin/activate && ANSIBLE_SKIP_CONFLICT_CHECK=1 " \
         f"pip3 install -r requirements.txt"
     stdout, stderr = exec_cmd_no_error(
-        node, cmd, timeout=300, include_reason=True, export=False,
+        node, cmd, timeout=300, include_reason=True,
         message=f"Failed install at node {node[u'type']} host {node[u'host']}, "
         f"port {node[u'port']}"
     )
@@ -217,7 +215,7 @@ def delete_framework_dir(node):
         node, f"sudo rm -rf {con.REMOTE_FW_DIR}",
         message=f"Framework delete failed at node {node[u'type']} "
         f"host {node[u'host']}, port {node[u'port']}",
-        timeout=100, include_reason=True, export=False
+        timeout=100, include_reason=True,
     )
     logger.console(
         f"Deleting framework directory on {node[u'type']} host {node[u'host']},"
