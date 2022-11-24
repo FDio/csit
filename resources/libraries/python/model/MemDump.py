@@ -11,23 +11,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Module for converting in-memory data into raw JSON output.
+"""Module for converting in-memory data into JSON output.
 
-CSIT and VPP PAPI are using custom data types
-that are not directly serializable into JSON.
+CSIT and VPP PAPI are using custom data types that are not directly serializable
+into JSON.
 
-Thus, before writing the raw outpt onto disk,
-the data is recursively converted to equivalent serializable types,
-in extreme cases replaced by string representation.
+Thus, before writing the output onto disk, the data is recursively converted to
+equivalent serializable types, in extreme cases replaced by string
+representation.
 
-Validation is outside the scope of this module,
-as it should use the JSON data read from disk.
+Validation is outside the scope of this module, as it should use the JSON data
+read from disk.
 """
 
 import json
 import os
 
 from collections.abc import Iterable, Mapping, Set
+from dateutil.parser import parse
 from enum import IntFlag
 
 
@@ -107,7 +108,7 @@ def _pre_serialize_root(data):
     to make it more human friendly.
     We are moving "version" to the top,
     followed by start time and end time.
-    and various long fields (such as "log") to the bottom.
+    and various long fields to the bottom.
 
     Some edits are done in-place, do not trust the argument value after calling.
 
@@ -122,24 +123,72 @@ def _pre_serialize_root(data):
     if not isinstance(data, dict):
         raise RuntimeError(f"Root data object needs to be a dict: {data!r}")
     data = _pre_serialize_recursive(data)
-    log = data.pop(u"log")
     new_data = dict(version=data.pop(u"version"))
     new_data[u"start_time"] = data.pop(u"start_time")
     new_data[u"end_time"] = data.pop(u"end_time")
     new_data.update(data)
-    new_data[u"log"] = log
     return new_data
 
 
-def write_raw_output(raw_file_path, raw_data):
+def _merge_into_suite_info_file(teardown_path):
+    """Move setup and teardown data into a singe file, remove old files.
+
+    The caller has to confirm the argument is correct, e.g. ending in
+    "/teardown.info.json".
+
+    :param teardown_path: Local filesystem path to teardown file.
+    :type teardown_path: str
+    :returns: Local filesystem path to newly created suite file.
+    :rtype: str
+    """
+    # Manual right replace: https://stackoverflow.com/a/9943875
+    setup_path = u"setup".join(teardown_path.rsplit(u"teardown", 1))
+    with open(teardown_path, u"rt", encoding="utf-8") as file_in:
+        teardown_data = json.load(file_in)
+    # Transforming setup data into suite data.
+    with open(setup_path, u"rt", encoding="utf-8") as file_in:
+        suite_data = json.load(file_in)
+
+    end_time = teardown_data[u"end_time"]
+    suite_data[u"end_time"] = end_time
+    start_float = parse(suite_data[u"start_time"]).timestamp()
+    end_float = parse(suite_data[u"end_time"]).timestamp()
+    suite_data[u"duration"] = end_float - start_float
+    setup_telemetry = suite_data.pop(u"telemetry")
+    suite_data[u"setup_telemetry"] = setup_telemetry
+    suite_data[u"teardown_telemetry"] = teardown_data[u"telemetry"]
+
+    suite_path = u"suite".join(teardown_path.rsplit(u"teardown", 1))
+    with open(suite_path, u"wt", encoding="utf-8") as file_out:
+        json.dump(suite_data, file_out, indent=1)
+    # We moved everything useful from temporary setup/teardown info files.
+    os.remove(setup_path)
+    os.remove(teardown_path)
+
+    return suite_path
+
+
+def write_output(file_path, data):
     """Prepare data for serialization and dump into a file.
 
     Ancestor directories are created if needed.
 
-    :param to_raw_path: Local filesystem path, including the file name.
-    :type to_raw_path: str
+    :param file_path: Local filesystem path, including the file name.
+    :param data: Root data to make serializable, dictized when applicable.
+    :type file_path: str
+    :type data: dict
     """
-    raw_data = _pre_serialize_root(raw_data)
-    os.makedirs(os.path.dirname(raw_file_path), exist_ok=True)
-    with open(raw_file_path, u"wt", encoding="utf-8") as file_out:
-        json.dump(raw_data, file_out, indent=1)
+    data = _pre_serialize_root(data)
+
+    # Lets move Telemetry to the end.
+    telemetry = data.pop(u"telemetry")
+    data[u"telemetry"] = telemetry
+
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    with open(file_path, u"wt", encoding="utf-8") as file_out:
+        json.dump(data, file_out, indent=1)
+
+    if file_path.endswith(u"/teardown.info.json"):
+        file_path = _merge_into_suite_info_file(file_path)
+
+    return file_path
