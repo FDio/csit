@@ -243,8 +243,11 @@ class NodePath:
         :raises RuntimeError: If unsupported combination of parameters.
         """
         t_dict = dict()
+        t_dict[u"hosts"] = set()
         if topo_has_dut:
             duts = [key for key in nodes if u"DUT" in key]
+            for host in [nodes[dut][u"host"] for dut in duts]:
+                t_dict[u"hosts"].add(host)
             t_dict[u"duts"] = duts
             t_dict[u"duts_count"] = len(duts)
             t_dict[u"int"] = u"pf"
@@ -259,6 +262,7 @@ class NodePath:
                 for dut in duts:
                     self.append_node(nodes[dut], filter_list=filter_list)
         if topo_has_tg:
+            t_dict[u"hosts"].add(nodes[u"TG"][u"host"])
             if topo_has_dut:
                 self.append_node(nodes[u"TG"])
             else:
