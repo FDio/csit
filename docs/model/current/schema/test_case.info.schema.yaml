@@ -13,7 +13,7 @@
 
 ---
 
-$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.1
+$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.1.0
 $schema: https://json-schema.org/draft/2020-12/schema
 description: >-
     Schema for info output of test case.
@@ -55,12 +55,16 @@ allOf:
                 description: >-
                     Host identifier, usually numeric IPv4 address.
                 type: string
-        log:
+        telemetry:
             description: >-
-                No log items are implemented in the current version,
-                but the (empty) list is present to simplify logic
-                in multi-version importers.
-            $ref: "#/$defs/types/empty_array"
+                Array of telemetry entries. Each entry represent one captured
+                metric.
+            type: array
+            minItems: 0
+            items:
+                description: >-
+                    Telemetry entry.
+                type: string
         message:
             description: >-
                 If passed is true, this value is empty.
@@ -298,14 +302,13 @@ allOf:
                 CSIT model version (semver format)
                 the exporting code adhered to.
             type: string
-            const: 1.0.1
+            const: 1.1.0
     required:
     -   duration
     -   dut_type
     -   dut_version
     -   end_time
     -   hosts
-    -   log
     -   message
     -   passed
     -   result

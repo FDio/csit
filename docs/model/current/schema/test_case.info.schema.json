@@ -1,5 +1,5 @@
 {
-  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.0.1",
+  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.1.0",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Schema for info output of test case.",
   "allOf": [
@@ -35,9 +35,14 @@
             "type": "string"
           }
         },
-        "log": {
-          "description": "No log items are implemented in the current version, but the (empty) list is present to simplify logic in multi-version importers.",
-          "$ref": "#/$defs/types/empty_array"
+        "telemetry": {
+          "description": "Array of telemetry entries. Each entry represent one captured metric.",
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "description": "Telemetry entry.",
+            "type": "string"
+          }
         },
         "message": {
           "description": "If passed is true, this value is empty. Otherwise, value taken directly from TEST_MESSAGE Robot variable, read at the end of test case (in test teardown, before export and validation). It contains information from the exception that caused the failure, probably with additional exceptions from teardown keywords.",
@@ -198,7 +203,7 @@
         "version": {
           "description": "CSIT model version (semver format) the exporting code adhered to.",
           "type": "string",
-          "const": "1.0.1"
+          "const": "1.1.0"
         }
       },
       "required": [
@@ -207,7 +212,7 @@
         "dut_version",
         "end_time",
         "hosts",
-        "log",
+        "telemetry",
         "message",
         "passed",
         "result",
