@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -24,29 +24,12 @@ import argparse
 import sys
 import yaml
 
-from resources.libraries.python.ssh import exec_cmd as _exec_cmd
+from resources.libraries.python.ssh import exec_cmd
 
 
 RESERVATION_DIR = u"/tmp/reservation_dir"
 RESERVATION_NODE = u"TG"
 
-
-def exec_cmd(node, cmd):
-    """A wrapper around ssh.exec_cmd with disabled JSON export.
-
-    Using this, maintainers can use "exec_cmd" without worrying
-    about interaction with json export.
-
-    TODO: Instead this, divide ssh module into reusable and robot-bound parts.
-
-    :param node: Node object as parsed from topology file to execute cmd on.
-    :param cmd: Command to execute.
-    :type node: dict
-    :type cmd: str
-    :returns: RC, Stdout, Stderr.
-    :rtype: Tuple[int, str, str]
-    """
-    return _exec_cmd(node, cmd, export=False)
 
 def diag_cmd(node, cmd):
     """Execute cmd, print cmd and stdout, ignore stderr and rc; return None.

@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -52,7 +52,7 @@ def descend(parent_node, key, default_factory=None):
 
 
 def get_export_data():
-    """Return raw_data member of export_json library instance.
+    """Return data member of ExportJson library instance.
 
     This assumes the data has been initialized already.
     Return None if Robot is not running.
@@ -62,8 +62,8 @@ def get_export_data():
     :raises AttributeError: If library is not imported yet.
     """
     instance = BuiltIn().get_library_instance(
-        u"resources.libraries.python.model.export_json"
+        u"resources.libraries.python.model.ExportJson"
     )
     if instance is None:
         return None
-    return instance.raw_data
+    return instance.data
