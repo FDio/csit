@@ -55,12 +55,6 @@ allOf:
                 description: >-
                     Host identifier, usually numeric IPv4 address.
                 type: string
-        log:
-            description: >-
-                No log items are implemented in the current version,
-                but the (empty) list is present to simplify logic
-                in multi-version importers.
-            $ref: "#/$defs/types/empty_array"
         message:
             description: >-
                 If passed is true, this value is empty.
@@ -305,7 +299,6 @@ allOf:
     -   dut_version
     -   end_time
     -   hosts
-    -   log
     -   message
     -   passed
     -   result

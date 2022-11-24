@@ -107,7 +107,7 @@ def _pre_serialize_root(data):
     to make it more human friendly.
     We are moving "version" to the top,
     followed by start time and end time.
-    and various long fields (such as "log") to the bottom.
+    and various long fields to the bottom.
 
     Some edits are done in-place, do not trust the argument value after calling.
 
@@ -122,12 +122,10 @@ def _pre_serialize_root(data):
     if not isinstance(data, dict):
         raise RuntimeError(f"Root data object needs to be a dict: {data!r}")
     data = _pre_serialize_recursive(data)
-    log = data.pop(u"log")
     new_data = dict(version=data.pop(u"version"))
     new_data[u"start_time"] = data.pop(u"start_time")
     new_data[u"end_time"] = data.pop(u"end_time")
     new_data.update(data)
-    new_data[u"log"] = log
     return new_data
 
 
