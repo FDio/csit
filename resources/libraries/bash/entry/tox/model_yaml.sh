@@ -33,7 +33,7 @@ common_dirs || die
 
 impl_log="edited_files.log"
 git diff --name-only HEAD~ > "${impl_log}"
-if ! grep -q '^docs/model/current/schema/' "${impl_log}"; then
+if ! grep -q '^docs/model/schema/' "${impl_log}"; then
     # Failing grep means no model edits.
     warn "No model schema edits detected."
     warn
@@ -41,7 +41,7 @@ if ! grep -q '^docs/model/current/schema/' "${impl_log}"; then
     exit 0
 fi
 
-pushd "${CSIT_DIR}/docs/model/current/schema"
+pushd "${CSIT_DIR}/docs/model/schema"
 if ! python3 "check_yaml2json.py"; then
     warn
     warn "CSIT model yaml checker: FAIL"
