@@ -67,6 +67,184 @@
       "message": "\u003e https://jenkins.fd.io/job/csit-dpdk-perf-verify-master-3n-alt/79/ : FAILURE\n\nAlright. With 10 retries and 120s per check, 1 test out of 18 have failed on 3n-alt, which is good enough compromise by me.\n\nrecheck",
       "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9199bc4a_b9a1124b",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-25T18:30:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 337,
+        "startChar": 8,
+        "endLine": 337,
+        "endChar": 71
+      },
+      "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "077e638f_5f5328bf",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-25T18:30:01Z",
+      "side": 1,
+      "message": "no double echo",
+      "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05f0886e_3eb19d7a",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-25T18:30:01Z",
+      "side": 1,
+      "message": "no echo",
+      "range": {
+        "startLine": 341,
+        "startChar": 12,
+        "endLine": 341,
+        "endChar": 53
+      },
+      "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b521a48_a33bf9f7",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-25T18:30:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 350,
+        "endChar": 50
+      },
+      "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d722d62a_b963132f",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-25T18:30:01Z",
+      "side": 1,
+      "message": "should not be controlled from outside",
+      "range": {
+        "startLine": 34,
+        "startChar": 67,
+        "endLine": 34,
+        "endChar": 76
+      },
+      "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06fbbf91_19fb1040",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-25T18:30:01Z",
+      "side": 1,
+      "message": "make it back and readable:\n        for node in nodes:\n            if u\"DUT\" in node:",
+      "range": {
+        "startLine": 63,
+        "startChar": 8,
+        "endLine": 63,
+        "endChar": 63
+      },
+      "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41aa4d1a_104f9200",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-25T18:30:01Z",
+      "side": 1,
+      "message": "for : break: else: is pythonic. not a C code here",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 31
+      },
+      "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b774bd07_317ac4e4",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-25T18:30:01Z",
+      "side": 1,
+      "message": "started",
+      "range": {
+        "startLine": 122,
+        "startChar": 12,
+        "endLine": 122,
+        "endChar": 16
+      },
+      "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
