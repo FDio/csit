@@ -86,12 +86,12 @@
 | |
 | | [Arguments] | ${result}
 | |
-| | ${ppta} = | Get Packets Per Transaction Aggregated
-| | ${packet_rate} = | Evaluate | ${result.target_tr} * ${ppta}
+| | ${bandwidth} | ${packet_rate}= | Compute Bandwidth | ${result.target_tr}
 | | ${packet_loss} = | Set Variable | ${result.loss_count}
 | | ${time_loss} = | Evaluate | ${packet_loss} / ${packet_rate}
 | | Set Test Message | Packets lost due to reconfig: ${packet_loss}
 | | Set Test Message | ${\n}Implied time lost: ${time_loss} | append=yes
+| | Export Reconf Result | ${packet_rate} | ${packet_loss} | ${bandwidth * 1e9}
 
 | Display result of NDRPDR search
 | | [Documentation]
