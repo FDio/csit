@@ -25,16 +25,17 @@ from resources.libraries.python.topology import NodeType, Topology
 
 class TestpmdTest:
     """
-    This class start testpmd on topology nodes and check if properly started.
+    This class starts testpmd on topology nodes and checks if properly started.
     """
-    
+
     @staticmethod
     def start_testpmd_on_all_duts(
-            nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
-            rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None):
-        """
-        Start the testpmd with M worker threads and rxqueues N and jumbo
-        support frames on/off on all DUTs.
+        nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
+        rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None, retries=10
+    ):
+        """Start the testpmd, restart few times if not started properly.
+
+        Also set test tags. Retries are done via check_testpmd_on_all_duts.
 
         :param nodes: All the nodes info from the topology file.
         :param topology_info: All the info from the topology file.
@@ -45,7 +46,7 @@ class TestpmdTest:
         :param txd: Number of TX descriptors.
         :param nic_rxq_size: RX queue size.
         :param nic_txq_size: TX queue size.
-
+        :param retries: Give up after this testpmd restarts (sum across DUTs).
         :type nodes: dict
         :type topology_info: dict
         :type phy_cores: int
@@ -55,57 +56,101 @@ class TestpmdTest:
         :type txd: int
         :type nic_rxq_size: int
         :type nic_txq_size: int
-        :raises RuntimeError: If bash return code is not 0.
+        :type retries: int
+        :raises RuntimeError: If not started properly after all the retries.
         """
-
         cpu_count_int = dp_count_int = int(phy_cores)
-        dp_cores = cpu_count_int+1
-        for node in nodes:
-            if u"DUT" in node:
-                compute_resource_info = CpuUtils.get_affinity_vswitch(
+        for node in (node for node in nodes if u"DUT" in node):
+            if dp_count_int > 1:
+                BuiltIn().set_tags('MTHREAD')
+            else:
+                BuiltIn().set_tags('STHREAD')
+            BuiltIn().set_tags(
+                f"{dp_count_int}T{cpu_count_int}C"
+            )
+
+            compute_info = CpuUtils.get_affinity_vswitch(
+                nodes, node, phy_cores, rx_queues=rx_queues,
+                rxd=rxd, txd=txd
+            )
+            cpu_dp = compute_info[u"cpu_dp"]
+            rxq_count_int = compute_info[u"rxq_count_int"]
+            if1 = topology_info[f"{node}_pf1"][0]
+            if2 = topology_info[f"{node}_pf2"][0]
+            TestpmdTest.start_testpmd(
+                nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
+                nb_cores=dp_count_int, queue_nums=rxq_count_int,
+                jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
+                txq_size=nic_txq_size
+            )
+        TestpmdTest.check_testpmd_on_all_duts(
+            nodes, topology_info, phy_cores, rx_queues, jumbo_frames,
+            rxd, txd, nic_rxq_size, nic_txq_size, retries=retries
+        )
+
+    @staticmethod
+    def check_testpmd_on_all_duts(
+        nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
+        rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None, retries=0
+    ):
+        """Call check_testpmd and keep restarting until retries run out.
+
+        :param nodes: All the nodes info from the topology file.
+        :param topology_info: All the info from the topology file.
+        :param phy_cores: Number of physical cores to use.
+        :param rx_queues: Number of RX queues.
+        :param jumbo_frames: Jumbo frames on/off.
+        :param rxd: Number of RX descriptors.
+        :param txd: Number of TX descriptors.
+        :param nic_rxq_size: RX queue size.
+        :param nic_txq_size: TX queue size.
+        :param retries: Give up after this testpmd restarts (sum across DUTs).
+        :type nodes: dict
+        :type topology_info: dict
+        :type phy_cores: int
+        :type rx_queues: int
+        :type jumbo_frames: bool
+        :type rxd: int
+        :type txd: int
+        :type nic_rxq_size: int
+        :type nic_txq_size: int
+        :type retries: int
+        :raises RuntimeError: If not started properly after all the retries.
+        """
+        retry = 0
+        while retry <= retries:
+            okay = True
+            for node in (node for node in nodes if u"DUT" in node):
+                compute_info = CpuUtils.get_affinity_vswitch(
                     nodes, node, phy_cores, rx_queues=rx_queues,
                     rxd=rxd, txd=txd
                 )
-                if dp_count_int > 1:
-                    BuiltIn().set_tags('MTHREAD')
-                else:
-                    BuiltIn().set_tags('STHREAD')
-                BuiltIn().set_tags(
-                    f"{dp_count_int}T{cpu_count_int}C"
-                )
-
-                cpu_dp = compute_resource_info[u"cpu_dp"]
-                rxq_count_int = compute_resource_info[u"rxq_count_int"]
-                if1 = topology_info[f"{node}_pf1"][0]
-                if2 = topology_info[f"{node}_pf2"][0]
-                TestpmdTest.start_testpmd(
-                    nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
-                    nb_cores=dp_count_int, queue_nums=rxq_count_int,
-                    jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
-                    txq_size=nic_txq_size
-                )
-        for node in nodes:
-            if u"DUT" in node:
-                for i in range(3):
-                    try:
-                        TestpmdTest.check_testpmd(nodes[node])
-                        break
-                    except RuntimeError:
-                        TestpmdTest.start_testpmd(
-                            nodes[node], if1=if1, if2=if2,
-                            lcores_list=cpu_dp, nb_cores=dp_count_int,
-                            queue_nums=rxq_count_int,
-                            jumbo_frames=jumbo_frames,
-                            rxq_size=nic_rxq_size, txq_size=nic_txq_size
-                        )
-                else:
-                    message = f"Failed to start testpmd at node {node}"
-                    raise RuntimeError(message)
+                try:
+                    TestpmdTest.check_testpmd(nodes[node])
+                except RuntimeError:
+                    okay = False
+                    retry += 1
+                    if retry > retries:
+                        continue
+                    TestpmdTest.start_testpmd(
+                        nodes[node], if1=topology_info[f"{node}_pf1"][0],
+                        if2=topology_info[f"{node}_pf2"][0],
+                        lcores_list=compute_info[u"cpu_dp"],
+                        nb_cores=int(phy_cores),
+                        queue_nums=compute_info[u"rxq_count_int"],
+                        jumbo_frames=jumbo_frames,
+                        rxq_size=nic_rxq_size, txq_size=nic_txq_size,
+                    )
+            if okay:
+                return
+        message = f"Failed to start testpmd."
+        raise RuntimeError(message)
 
     @staticmethod
     def start_testpmd(
-            node, if1, if2, lcores_list, nb_cores, queue_nums,
-            jumbo_frames, rxq_size=1024, txq_size=1024):
+        node, if1, if2, lcores_list, nb_cores, queue_nums,
+        jumbo_frames, rxq_size=1024, txq_size=1024
+    ):
         """
         Execute the testpmd on the DUT node.
 
