@@ -33,7 +33,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 
 impl_log="edited_files.log"
 git diff --name-only HEAD~ > "${impl_log}"
-if ! grep -q '^docs/model/current/schema/test_case*' "${impl_log}"; then
+if ! grep -q '^docs/model/current/schema/.*\.schema\.json' "${impl_log}"; then
     # Failing grep means no model edits.
     warn "No model implementation edits detected."
     warn
