@@ -33,6 +33,23 @@
       "message": "csit-2n-tx2-perftest mrrANDnic_*ANDdrv_vfio_pciAND1cAND64bANDeth-l2bdbasemaclrn-macip-iacl50sl-10kflows",
       "revId": "cd51e833849b14417967557e76070b1f71a3c8e7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8149a240_332886c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-25T17:29:54Z",
+      "side": 1,
+      "message": "csit-2n-tx2-perftest ndrpdrANDnic_*ANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
+      "revId": "cd51e833849b14417967557e76070b1f71a3c8e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
