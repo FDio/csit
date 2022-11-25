@@ -25,7 +25,7 @@
 | Suite Setup | Setup suite topology interfaces | performance | dpdk
 | Suite Teardown | Tear down suite | performance | dpdk
 | Test Setup | Start Test Export
-| Test Teardown | Finalize Test Export
+| Test Teardown | My Teardown
 |
 | Test Template | Local Template
 |
@@ -75,12 +75,19 @@
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | |
 | | Set Test Variable | \${frame_size}
+| | Set Test Variable | \${phy_cores}
+| | Set Test Variable | \${rxq}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Pre-initialize layer driver | ${nic_driver}
 | | When Start testpmd on all DUTs | ${nodes} | ${topology_info}
 | | ... | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
+
+| My Teardown
+| | When Check testpmd on all DUTs | ${nodes} | ${topology_info}
+| | ... | ${phy_cores} | ${rxq} | ${jumbo}
+| | Finalize Test Export
 
 *** Test Cases ***
 | 64B-1c-eth-l2xcbase-testpmd-ndrpdr
