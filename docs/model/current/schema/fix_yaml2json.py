@@ -1,0 +1,29 @@
+# Copyright (c) 2022 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""Utility to convert from .schema.yaml to .schema.json.
+
+TODO: Read the input file names from command line argument.
+TODO: Make callable from another working directory.
+"""
+
+import glob
+import json
+import yaml
+
+
+for filename in glob.glob(u"*.schema.yaml"):
+    name = filename[:-5]
+    with open(f"{name}.yaml", u"rt", encoding="utf-8") as fin:
+        with open(f"{name}.json", u"wt", encoding="utf-8") as fout:
+            json.dump(yaml.safe_load(fin.read()), fout, indent=2)
