@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-icx-perftest mrrANDnic_intel-xxv710ANDeth-l2xcbase-testpmdNOT9000b",
       "revId": "b845ffbed4261b5a3e0f9ce853273355160013bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "346a08c7_da6089ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-25T12:53:35Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*ANDeth-l2xcbase-testpmdNOT9000b",
+      "revId": "b845ffbed4261b5a3e0f9ce853273355160013bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
