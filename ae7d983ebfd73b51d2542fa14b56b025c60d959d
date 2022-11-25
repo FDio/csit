@@ -50,6 +50,23 @@
       "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*ANDeth-l2xcbase-testpmdNOT9000b",
       "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dcc9b53_ea5b0511",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-25T15:24:39Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-dpdk-perf-verify-master-3n-alt/79/ : FAILURE\n\nAlright. With 10 retries and 120s per check, 1 test out of 18 have failed on 3n-alt, which is good enough compromise by me.\n\nrecheck",
+      "revId": "ae7d983ebfd73b51d2542fa14b56b025c60d959d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
