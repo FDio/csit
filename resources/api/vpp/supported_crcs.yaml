@@ -147,8 +147,8 @@
     ipsec_set_async_mode_reply: '0xe8d4e804'  # perf
     ipsec_spd_add_del: '0x20e89a95'  # dev
     ipsec_spd_add_del_reply: '0xe8d4e804'  # dev
-    ipsec_spd_entry_add_del: '0x338b7411'  # dev
-    ipsec_spd_entry_add_del_reply: '0x9ffac24b'  # dev
+    ipsec_spd_entry_add_del_v2: '0x7bfe69fc'  # dev
+    ipsec_spd_entry_add_del_v2_reply: '0x9ffac24b'  # dev
     ipsec_tunnel_protect_update: '0x30d5f133'  # dev
     ipsec_tunnel_protect_update_reply: '0xe8d4e804'  # dev
     # ^^ 64B-1c-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-ndrpdr
