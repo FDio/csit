@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,6 +17,9 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.model.ExportResult import (
+    export_hoststack_iperf_result, export_hoststack_vpp_echo_result,
+)
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.DUTSetup import DUTSetup
@@ -293,15 +296,10 @@ class HoststackUtil():
         sleep(1)
 
     @staticmethod
-    def analyze_hoststack_test_program_output(
-            node, role, nsim_attr, program):
+    def _analyze_hoststack_output_no_export(node, role, nsim_attr, program):
         """Gather HostStack test program output and check for errors.
 
-        The [defer_fail] return bool is used instead of failing immediately
-        to allow the analysis of both the client and server instances of
-        the test program for debugging a test failure.  When [defer_fail]
-        is true, then the string returned is debug output instead of
-        JSON formatted test program results.
+        This internal keyword prepares the outputs without UTI export yet.
 
         :param node: DUT node.
         :param role: Role (client|server) of test program.
@@ -312,14 +310,16 @@ class HoststackUtil():
         :type role: str
         :type nsim_attr: dict
         :type program: dict
-        :returns: tuple of [defer_fail] bool and either JSON formatted hoststack
-            test program output or failure debug output.
-        :rtype: bool, str
+        :returns: tuple of [defer_fail] bool and either JSON-ready object
+            with parsed hoststack test program output, or failure debug output.
+            When not failing, return also the full parset object for export.
+        :rtype: Tuple[bool, Union[str, dict], Optional[dict]]
         :raises RuntimeError: If node subtype is not a DUT.
         """
         if node[u"type"] != u"DUT":
             raise RuntimeError(u"Node type is not a DUT!")
 
+        parsed = None
         program_name = program[u"name"]
         program_stdout, program_stderr = \
             HoststackUtil.get_hoststack_test_program_logs(node, program)
@@ -353,13 +353,13 @@ class HoststackUtil():
 
         if u"error" in program_stderr.lower():
             test_results += f"ERROR DETECTED:\n{program_stderr}"
-            return (True, test_results)
+            return (True, test_results, None)
         if not program_stdout:
             test_results += f"\nNo {program} test data retrieved!\n"
             ls_stdout, _ = exec_cmd_no_error(node, u"ls -l /tmp/*.log",
                                              sudo=True)
             test_results += f"{ls_stdout}\n"
-            return (True, test_results)
+            return (True, test_results, None)
         if program[u"name"] == u"vpp_echo":
             if u"JSON stats" in program_stdout and \
                     u'"has_failed": "0"' in program_stdout:
@@ -371,16 +371,57 @@ class HoststackUtil():
                 program_json = json.loads(json_results)
             else:
                 test_results += u"Invalid test data output!\n" + program_stdout
-                return (True, test_results)
+                return (True, test_results, None)
         elif program[u"name"] == u"iperf3":
             test_results += program_stdout
-            iperf3_json = json.loads(program_stdout)
-            program_json = iperf3_json[u"intervals"][0][u"sum"]
+            parsed = json.loads(program_stdout)
+            program_json = parsed[u"intervals"][0][u"sum"]
         else:
             test_results += u"Unknown HostStack Test Program!\n" + \
                             program_stdout
-            return (True, program_stdout)
-        return (False, json.dumps(program_json))
+            return (True, test_results, None)
+        return (False, program_json, parsed)
+
+    @staticmethod
+    def analyze_hoststack_test_program_output(node, role, nsim_attr, program):
+        """Gather HostStack test program output and check for errors.
+
+        The [defer_fail] return bool is used instead of failing immediately
+        to allow the analysis of both the client and server instances of
+        the test program for debugging a test failure.  When [defer_fail]
+        is true, then the string returned is debug output instead of
+        JSON formatted test program results.
+
+        This keyword also exports the UTI results.
+
+        :param node: DUT node.
+        :param role: Role (client|server) of test program.
+        :param nsim_attr: Network Simulation Attributes.
+        :param program: Test program.
+        :type node: dict
+        :type role: str
+        :type nsim_attr: dict
+        :type program: dict
+        :returns: tuple of [defer_fail] bool and either JSON formatted hoststack
+            test program output or failure debug output.
+        :rtype: bool, str
+        :raises RuntimeError: If node subtype is not a DUT.
+        """
+        analyzed = HoststackUtil._analyze_hoststack_output_no_export(
+            node=node,
+            role=role,
+            nsim_attr=nsim_attr,
+            program=program,
+        )
+        defer_fail, output, parsed = analyzed
+        if defer_fail:
+            return (True, output)
+        if program[u"name"] == u"iperf3":
+            export_hoststack_iperf_result(parsed)
+        else:
+            # Assuming vpp_echo.
+            export_hoststack_vpp_echo_result(output)
+        return (False, json.dumps(output))
 
     @staticmethod
     def hoststack_test_program_defer_fail(server_defer_fail, client_defer_fail):

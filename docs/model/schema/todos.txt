@@ -6,3 +6,8 @@ Add multiplicity field to MRR result, so PAL can detect incomplete samples.
 Add link explaining our L1 bandwidth calculation.
 
 Add a link to URL explaining how to decode the hdrh data.
+
+In iperf3 passed object, what is "bits_per_second" and "bytes" referring to?
+Is is goodput or bandwidth?
+Is is upload, download, or sum of both?
+Also, what exactly is "omitted"?
