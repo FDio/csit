@@ -130,6 +130,16 @@
         },
         {
             "metadata": {},
+            "name": "telemetry",
+            "nullable": true,
+            "type": {
+                "containsNull": true,
+                "elementType": "string",
+                "type": "array"
+            }
+        },
+        {
+            "metadata": {},
             "name": "test_id",
             "nullable": true,
             "type": "string"
