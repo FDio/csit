@@ -747,6 +747,7 @@ class QemuUtils:
 
     def qemu_kill(self):
         """Kill qemu process."""
+        self.qemu_version()
         exec_cmd(
             self._node, f"chmod +r {self._temp.get(u'pidfile')}", sudo=True
         )
