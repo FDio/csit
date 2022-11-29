@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -161,11 +161,11 @@ class HoststackUtil():
         :type program: dict
         """
         program_name = program[u"name"]
-        cmd = f"sh -c \'cat /tmp/{program_name}_stdout.log\'"
+        cmd = f"cat /tmp/{program_name}_stdout.log"
         stdout_log, _ = exec_cmd_no_error(node, cmd, sudo=True, \
             message=f"Get {program_name} stdout log failed!")
 
-        cmd = f"sh -c \'cat /tmp/{program_name}_stderr.log\'"
+        cmd = f"cat /tmp/{program_name}_stderr.log"
         stderr_log, _ = exec_cmd_no_error(node, cmd, sudo=True, \
             message=f"Get {program_name} stderr log failed!")
         return stdout_log, stderr_log
@@ -199,7 +199,7 @@ class HoststackUtil():
 
         nginx_cmd[u"name"] = u"nginx"
         nginx_cmd[u"path"] = f"{nginx_ins_dir}nginx-{nginx_version}/sbin/"
-        nginx_cmd[u"args"] = f"-c {nginx_ins_dir}/" \
+        nginx_cmd[u"args"] = f"-c {nginx_ins_dir}" \
                              f"nginx-{nginx_version}/conf/nginx.conf"
         return nginx_cmd
 
@@ -238,15 +238,18 @@ class HoststackUtil():
         taskset_cmd = u"" if program_name == u"nginx" else \
                                              f"taskset --cpu-list {core_list}"
         cmd = f"nohup {shell_cmd} \'{env_vars}{taskset_cmd} " \
-              f"{program_path}{program_name} {args} >/tmp/{program_name}_" \
+              f"{program_path}{program_name} {args} 1>/tmp/{program_name}_" \
               f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
             exec_cmd_no_error(node, cmd, sudo=True)
+            stdout_log, stderr_log = \
+                HoststackUtil.get_hoststack_test_program_logs(node, program)
+            logger.trace(f"STDOUT: {stdout_log}\n"
+                         f"STDERR: {stderr_log}")
             return DUTSetup.get_pid(node, program_name)[0]
         except RuntimeError:
             stdout_log, stderr_log = \
-                HoststackUtil.get_hoststack_test_program_logs(node,
-                                                              program)
+                HoststackUtil.get_hoststack_test_program_logs(node, program)
             raise RuntimeError(f"Start {program_name} failed!\nSTDERR:\n" \
                                f"{stderr_log}\nSTDOUT:\n{stdout_log}")
         return None
