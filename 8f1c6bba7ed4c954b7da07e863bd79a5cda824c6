@@ -16,6 +16,23 @@
       "message": "csit-2n-clx-perftest drv_vfio_pciANDeth-ip4tcphttp-ldpreload-nginx-1_22_1ANDnic_intel-e810cq",
       "revId": "8f1c6bba7ed4c954b7da07e863bd79a5cda824c6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17eb49b9_9e47f96c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-29T15:44:02Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest drv_vfio_pciANDeth-ip4tcphttp-ldpreload-nginx-1_23_2ANDnic_intel-e810cq",
+      "revId": "8f1c6bba7ed4c954b7da07e863bd79a5cda824c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
