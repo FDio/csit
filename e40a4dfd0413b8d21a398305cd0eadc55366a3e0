@@ -50,6 +50,52 @@
       "message": "Comments addressed, still works.",
       "revId": "e40a4dfd0413b8d21a398305cd0eadc55366a3e0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca40a8f_cfec3d05",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-29T12:47:06Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it make sense to put these 2 lines before for cycle? This way if1 and if2 are calculated in each for cycle.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 67
+      },
+      "revId": "e40a4dfd0413b8d21a398305cd0eadc55366a3e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75fcbb4e_89754dd9",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 906
+      },
+      "writtenOn": "2022-11-29T12:47:06Z",
+      "side": 1,
+      "message": "The same here. First calculate the values, then use in for cycle.",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 73
+      },
+      "revId": "e40a4dfd0413b8d21a398305cd0eadc55366a3e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
