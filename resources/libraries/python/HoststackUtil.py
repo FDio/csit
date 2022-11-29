@@ -238,10 +238,11 @@ class HoststackUtil():
         taskset_cmd = u"" if program_name == u"nginx" else \
                                              f"taskset --cpu-list {core_list}"
         cmd = f"nohup {shell_cmd} \'{env_vars}{taskset_cmd} " \
-              f"{program_path}{program_name} {args} >/tmp/{program_name}_" \
-              f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
+              f"{program_path}{program_name} {args} &\'"
         try:
-            exec_cmd_no_error(node, cmd, sudo=True)
+            stdout_log, stderr_log = exec_cmd_no_error(node, cmd, sudo=True)
+            logger.trace(f"STDOUT: {stdout_log}\n"
+                         f"STDERR: {stderr_log}")
             return DUTSetup.get_pid(node, program_name)[0]
         except RuntimeError:
             stdout_log, stderr_log = \
