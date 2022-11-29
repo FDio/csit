@@ -327,20 +327,37 @@ function dpdk_testpmd () {
 
 function dpdk_testpmd_check () {
 
-    # DPDK testpmd check links state.
+    # Exit with error code 1 if testpmd is not ready in time.
+    #
+    # The logic is not obvios due to CSIT-1848:
+    # When testpmd launches, ports are grabbed reporting link as down.
+    # After some time, link goes up, visible as an event in output.
+    # The time can take quite long, depending on testbed.
+    # This function checks each second for two minutes before giving up.
+    # Apparently, port number can be reported wrong.
+    # The best heuristic is thus to wait for at least two link events
+    # regardless of their port number.
+    # As the second event may not arrive in time,
+    # caller can restart testpmd and call this function again,
+    # perhaps several times to improve success rate.
+    #
+    # Whether the check succeeds or not, output is echoed
+    # so we can monitor CSIT-1848 behavior across DPDK upgrades.
 
     set -exuo pipefail
 
-    for attempt in {1..60}; do
-        echo "Checking if testpmd links state changed, attempt nr ${attempt}"
-        if fgrep "link state change event" screenlog.0; then
+    for attempt in {1..120}; do
+        echo "Checking for two link state change events, attempt nr ${attempt}"
+        lines=$(fgrep -c "link state change event" screenlog.0) || true
+        if [[ "$lines" != "" && "$lines" != "1" ]]; then
             cat screenlog.0
-            exit 0
+            return 0
+        else
+            sleep 1
+            continue
         fi
-        sleep 1
     done
     cat screenlog.0
-
     exit 1
 }
 
