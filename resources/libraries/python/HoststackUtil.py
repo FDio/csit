@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -242,11 +242,14 @@ class HoststackUtil():
               f"stdout.log 2>/tmp/{program_name}_stderr.log &\'"
         try:
             exec_cmd_no_error(node, cmd, sudo=True)
+            stdout_log, stderr_log = \
+                HoststackUtil.get_hoststack_test_program_logs(node, program)
+            logger.trace(f"STDOUT: {stdout_log}\n"
+                         f"STDERR: {stderr_log}")
             return DUTSetup.get_pid(node, program_name)[0]
         except RuntimeError:
             stdout_log, stderr_log = \
-                HoststackUtil.get_hoststack_test_program_logs(node,
-                                                              program)
+                HoststackUtil.get_hoststack_test_program_logs(node, program)
             raise RuntimeError(f"Start {program_name} failed!\nSTDERR:\n" \
                                f"{stderr_log}\nSTDOUT:\n{stdout_log}")
         return None
