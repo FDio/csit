@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bf2bc20_62aeb63d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-11-30T17:11:19Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest ndrpdrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND1518bANDethip4ipsec40tnlsw-ip4base-int-aes256gcm",
+      "revId": "c32d6559b8d3cc00fe89ed25e604a93950b674d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
