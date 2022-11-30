@@ -114,6 +114,7 @@
 | | ... | ${nodes} | ${tun_if1_ip4} | ${tun_if2_ip4} | ${DUT1_${int}2}[0]
 | | ... | ${TG_pf2}[0] | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | And VPP Set Interface MTU | ${nodes['DUT1']} | ${dut1_if1} | ${1000}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
