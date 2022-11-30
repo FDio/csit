@@ -210,3 +210,12 @@ def export_ndrpdr_latency(text, latency):
     if len(latency) < 2:
         return
     _add_latency(result_node, percent, u"reverse", latency[1])
+
+def append_telemetry(telemetry_item):
+    """Append telemetry entry to proper place so it is dumped into json.
+
+    :param telemetry_item: Telemetry entry.
+    :type telemetry_item: str
+    """
+    data = get_export_data()
+    data[u"telemetry"].append(telemetry_item)

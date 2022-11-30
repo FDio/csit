@@ -50,4 +50,3 @@ class Constants:
 
     # Could not successfuly run perf stat command
     err_linux_perf_stat = 53
-

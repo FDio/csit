@@ -91,10 +91,16 @@ class BundlePerfStat:
 
 
     def detach(self):
+        """
+        Detach function.
+        """
         pass
 
     def fetch_data(self):
-       pass
+        """
+        Fetch data function.
+        """
+        pass
 
     def process_data(self):
         """
