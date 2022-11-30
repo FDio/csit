@@ -16,8 +16,8 @@
 from robot.api import logger
 from time import sleep
 
+from resources.libraries.python.model.ExportResult import append_telemetry
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.VppCounters import VppCounters
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
@@ -88,15 +88,19 @@ class TelemetryUtil:
                 )
 
     @staticmethod
-    def run_telemetry(node, profile, hook=None):
-        """Get telemetry stat read for duration.
+    def run_telemetry(node, profile, hook=None, place="", export=False):
+        """Get telemetry read on node.
 
         :param node: Node in the topology.
         :param profile: Telemetry configuration profile.
-        :param hook: Process ID or socket path (optional).
+        :param hook: Dict of Process IDs or socket paths (optional).
+        :param place: Telemetry id, unique within the test (optional).
+        :param export: If false, do not attempt JSON export (default false).
         :type node: dict
         :type profile: str
-        :type hook: str
+        :type hook: dict
+        :type place: str
+        :type export: bool
         """
         config = u""
         config += f"{Constants.REMOTE_FW_DIR}/"
@@ -111,33 +115,42 @@ class TelemetryUtil:
         hostname = node[u"host"]
 
         exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
+
+        if not export:
+            return
         stdout, _ = exec_cmd_no_error(
             node, u"cat /tmp/metric.prom", sudo=True, log_stdout_err=False
         )
-        logger.info(
-            u"# TYPE target info\n"
-            u"# HELP target Target metadata\n"
-            f"target_info{{hostname=\"{hostname}\",hook=\"{hook}\"}} 1\n"
-            f"{stdout}"
-        )
+        prefix = f"{{"
+        prefix += f"hostname=\"{hostname}\","
+        prefix += f"hook=\"{hook}\","
+        prefix += f"place=\"{place}\","
+        for line in stdout.splitlines():
+            if line and not line.startswith("#"):
+                append_telemetry(
+                    prefix.join(line.rsplit("{", 1)).replace("\"", "'")
+                )
 
     @staticmethod
-    def run_telemetry_on_all_duts(nodes, profile):
-        """Get telemetry stat read on all DUTs.
+    def run_telemetry_on_all_duts(nodes, profile, place="", export=False):
+        """Get telemetry read on all DUTs.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
-        :param hooks: Dict of Process IDs or socket paths (optional).
+        :param place: Telemetry id, unique within the test (optional).
+        :param export: If false, do not attempt JSON export (default false).
         :type nodes: dict
         :type profile: str
-        :type hooks: dict
+        :type place: str
+        :type export: bool
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 try:
-                    for socket in node[u"sockets"][u"CLI"].values():
+                    for hook in node[u"sockets"][u"CLI"].values():
                         TelemetryUtil.run_telemetry(
-                            node, profile=profile, hook=socket
+                            node, profile=profile, hook=hook, place=place,
+                            export=export
                         )
                 except IndexError:
                     pass

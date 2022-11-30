@@ -57,10 +57,14 @@ allOf:
                 type: string
         telemetry:
             description: >-
-                No telemetry items are implemented in the current version,
-                but the (empty) list is present to simplify logic
-                in multi-version importers.
-            $ref: "#/$defs/types/empty_array"
+                Array of telemetry entries. Each entry represent one captured
+                metric.
+            type: array
+            minItems: 0
+            items:
+                description: >-
+                    Telemetry entry.
+                type: string
         message:
             description: >-
                 If passed is true, this value is empty.
