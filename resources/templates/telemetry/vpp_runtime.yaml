@@ -38,24 +38,13 @@ scheduler:
 programs:
   - name: bundle_vpp
     metrics:
-      info:
-        - name: version
-          documentation: VPP version
-          namespace: vpp
-          subsystem: version
-          labelnames:
-            - version
-    code: |
-      show version
-  - name: bundle_vpp
-    metrics:
       gauge:
         - name: calls
           documentation: Number of calls total
           namespace: vpp
           subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
@@ -65,7 +54,7 @@ programs:
           namespace: vpp
           subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
@@ -75,7 +64,7 @@ programs:
           namespace: vpp
           subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
@@ -85,7 +74,7 @@ programs:
           namespace: vpp
           subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
@@ -95,7 +84,7 @@ programs:
           namespace: vpp
           subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
@@ -107,166 +96,12 @@ programs:
   - name: bundle_vpp
     metrics:
       gauge:
-        - name: rx_packets
-          documentation: Number of received packets for interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: rx_bytes
-          documentation: Number of received bytes for interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: rx_error
-          documentation: Number of errors on interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: tx_packets
-          documentation: Number of transitted packets for interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: tx_bytes
-          documentation: Number of transitted bytes for interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: tx_error
-          documentation: Number of errors on interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: drops
-          documentation: Number of dropped packets for interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: punt
-          documentation: Number of punted packets for interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: ip4
-          documentation: Number of IPv4 packets for interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: ip6
-          documentation: Number of IPv6 packets for interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: mpls
-          documentation: Number of MPLS packets for interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: rx_no_buf
-          documentation: Number of out of buffer RX packets on interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-        - name: rx_miss
-          documentation: Number of missed RX packets on interface
-          namespace: vpp
-          subsystem: interface
-          labelnames:
-            - name
-            - index
-    code: |
-      clear interfaces
-      wait {duration}
-      show interface
-  - name: bundle_vpp
-    metrics:
-      gauge:
-        - name: node_counter
-          documentation: Node counter
-          namespace: vpp
-          subsystem: counters
-          labelnames:
-            - name
-            - reason
-            - severity
-            - thread_name
-            - thread_id
-    code: |
-      clear node counters
-      wait {duration}
-      show node counters verbose
-  - name: bundle_vpp
-    metrics:
-      gauge:
-        - name: context_switches
-          documentation: Per-thread context switches
-          namespace: vpp
-          subsystem: context_switches
-          labelnames:
-            - name
-            - id
-    code: |
-      perfmon reset
-      perfmon start bundle context-switches
-      wait {duration}
-      perfmon stop
-      show perfmon statistics
-  - name: bundle_vpp
-    metrics:
-      gauge:
-        - name: minor_page_faults
-          documentation: Per-thread page faults (minor)
-          namespace: vpp
-          subsystem: page_faults
-          labelnames:
-            - name
-            - id
-        - name: major_page_faults
-          documentation: Per-thread page faults (major)
-          namespace: vpp
-          subsystem: page_faults
-          labelnames:
-            - name
-            - id
-    code: |
-      perfmon reset
-      perfmon start bundle page-faults
-      wait {duration}
-      perfmon stop
-      show perfmon statistics
-  - name: bundle_vpp
-    metrics:
-      gauge:
         - name: calls
           documentation: Instructions/packet, cycles/packet and IPC (calls)
           namespace: vpp
           subsystem: inst_and_clock
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: packets
@@ -274,7 +109,7 @@ programs:
           namespace: vpp
           subsystem: inst_and_clock
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: packets_per_call
@@ -282,7 +117,7 @@ programs:
           namespace: vpp
           subsystem: inst_and_clock
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: clocks_per_packets
@@ -290,7 +125,7 @@ programs:
           namespace: vpp
           subsystem: inst_and_clock
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: instructions_per_packets
@@ -298,7 +133,7 @@ programs:
           namespace: vpp
           subsystem: inst_and_clock
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: ipc
@@ -306,7 +141,7 @@ programs:
           namespace: vpp
           subsystem: inst_and_clock
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
     code: |
@@ -323,7 +158,7 @@ programs:
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: l1_miss
@@ -331,7 +166,7 @@ programs:
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: l2_hit
@@ -339,7 +174,7 @@ programs:
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: l2_miss
@@ -347,7 +182,7 @@ programs:
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: l3_hit
@@ -355,7 +190,7 @@ programs:
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
         - name: l3_miss
@@ -363,160 +198,12 @@ programs:
           namespace: vpp
           subsystem: cache_hierarchy
           labelnames:
-            - name
+            - node_name
             - thread_name
             - thread_id
     code: |
       perfmon reset
       perfmon start bundle cache-hierarchy
-      wait {duration}
-      perfmon stop
-      show perfmon statistics
-  - name: bundle_vpp
-    metrics:
-      gauge:
-        - name: calls
-          documentation: Load operations (calls)
-          namespace: vpp
-          subsystem: load_blocks
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-        - name: packets
-          documentation: Load operations (packets)
-          namespace: vpp
-          subsystem: load_blocks
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-    code: |
-      perfmon reset
-      perfmon start bundle load-blocks
-      wait {duration}
-      perfmon stop
-      show perfmon statistics
-  - name: bundle_vpp
-    metrics:
-      gauge:
-        - name: branches_per_call
-          documentation: Branches/call
-          namespace: vpp
-          subsystem: branch_mispred
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-        - name: branches_per_packet
-          documentation: Branches/packet
-          namespace: vpp
-          subsystem: branch_mispred
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-        - name: taken_per_call
-          documentation: Taken/call
-          namespace: vpp
-          subsystem: branch_mispred
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-        - name: taken_per_packet
-          documentation: Taken/packet
-          namespace: vpp
-          subsystem: branch_mispred
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-        - name: mis_predictions
-          documentation: Mis-predictions
-          namespace: vpp
-          subsystem: branch_mispred
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-    code: |
-      perfmon reset
-      perfmon start bundle branch-mispred
-      wait {duration}
-      perfmon stop
-      show perfmon statistics
-  - name: bundle_vpp
-    metrics:
-      gauge:
-        - name: lvl0
-          documentation: Branches/call
-          namespace: vpp
-          subsystem: power_licensing
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-        - name: lvl1
-          documentation: Branches/packet
-          namespace: vpp
-          subsystem: power_licensing
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-        - name: lvl2
-          documentation: Taken/call
-          namespace: vpp
-          subsystem: power_licensing
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-        - name: throttle
-          documentation: Taken/packet
-          namespace: vpp
-          subsystem: power_licensing
-          labelnames:
-            - name
-            - thread_name
-            - thread_id
-    code: |
-      perfmon reset
-      perfmon start bundle power-licensing
-      wait {duration}
-      perfmon stop
-      show perfmon statistics
-  - name: bundle_vpp
-    metrics:
-      gauge:
-        - name: runtime
-          documentation: RunTime
-          namespace: vpp
-          subsystem: memory_bandwidth
-          labelnames:
-            - name
-        - name: reads_mbs
-          documentation: Reads (MB/s)
-          namespace: vpp
-          subsystem: memory_bandwidth
-          labelnames:
-            - name
-        - name: writes_mbs
-          documentation: Writes (MB/s)
-          namespace: vpp
-          subsystem: memory_bandwidth
-          labelnames:
-            - name
-        - name: total_mbs
-          documentation: Total (MB/s)
-          namespace: vpp
-          subsystem: memory_bandwidth
-          labelnames:
-            - name
-    code: |
-      perfmon reset
-      perfmon start bundle memory-bandwidth
       wait {duration}
       perfmon stop
       show perfmon statistics
