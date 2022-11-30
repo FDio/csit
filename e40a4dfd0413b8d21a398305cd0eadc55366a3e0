@@ -54,6 +54,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e031e79e_064d6c27",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-30T08:20:08Z",
+      "side": 1,
+      "message": "remove jira ticket reference from code.",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 45
+      },
+      "revId": "e40a4dfd0413b8d21a398305cd0eadc55366a3e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89848c3f_32b1c220",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-11-30T08:20:08Z",
+      "side": 1,
+      "message": "the function is called \"check\" and you are doing \"start\" here. Rename the function or rewrite the logic. That is why separating those 2 functions (start,check) cannot be done horizontally as you did.",
+      "range": {
+        "startLine": 135,
+        "startChar": 28,
+        "endLine": 135,
+        "endChar": 54
+      },
+      "revId": "e40a4dfd0413b8d21a398305cd0eadc55366a3e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fca40a8f_cfec3d05",
         "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
         "patchSetId": 23
