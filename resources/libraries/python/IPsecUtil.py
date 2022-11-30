@@ -218,7 +218,7 @@ class IPsecUtil:
         :returns: Key length.
         :rtype: int
         """
-        return crypto_alg.key_len
+        return 0 if crypto_alg is None else crypto_alg.key_len
 
     @staticmethod
     def get_crypto_alg_scapy_name(crypto_alg):
