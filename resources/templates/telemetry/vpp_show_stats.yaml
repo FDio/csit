@@ -41,40 +41,50 @@ programs:
       counter:
         - name: calls
           documentation: Number of calls total
+          namespace: vpp
+          subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
             - thread_lcore
         - name: vectors
           documentation: Number of vectors total
+          namespace: vpp
+          subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
             - thread_lcore
         - name: suspends
           documentation: Number of suspends total
+          namespace: vpp
+          subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
             - thread_lcore
         - name: clocks
           documentation: Number of clocks total
+          namespace: vpp
+          subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
             - thread_lcore
         - name: vectors_calls
           documentation: Number of vectors per call
+          namespace: vpp
+          subsystem: runtime
           labelnames:
-            - name
+            - node_name
             - state
             - thread_name
             - thread_id
@@ -86,66 +96,92 @@ programs:
       counter:
         - name: rx_packets
           documentation: Number of received packets for interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: rx_bytes
           documentation: Number of received bytes for interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: rx_error
           documentation: Number of errors on interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: tx_packets
           documentation: Number of transitted packets for interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: tx_bytes
           documentation: Number of transitted bytes for interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: tx_error
           documentation: Number of errors on interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: drops
           documentation: Number of dropped packets for interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: punt
           documentation: Number of punted packets for interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: ip4
           documentation: Number of IPv4 packets for interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: ip6
           documentation: Number of IPv6 packets for interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: mpls
           documentation: Number of MPLS packets for interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: rx_no_buf
           documentation: Number of out of buffer RX packets on interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
         - name: rx_miss
           documentation: Number of missed RX packets on interface
+          namespace: vpp
+          subsystem: interface
           labelnames:
             - name
             - index
@@ -156,31 +192,43 @@ programs:
       gauge:
         - name: rx_frames
           documentation: Number of RX frames for interface
+          namespace: vpp
+          subsystem: hardware
           labelnames:
             - name
             - index
         - name: rx_bytes
           documentation: Number of RX bytes for interface
+          namespace: vpp
+          subsystem: hardware
           labelnames:
             - name
             - index
         - name: tx_frames
           documentation: Number of TX frames for interface
+          namespace: vpp
+          subsystem: hardware
           labelnames:
             - name
             - index
         - name: tx_bytes
           documentation: Number of TX bytes for interface
+          namespace: vpp
+          subsystem: hardware
           labelnames:
             - name
             - index
         - name: rx_missed
           documentation: Number of missed RX packets on interface
+          namespace: vpp
+          subsystem: hardware
           labelnames:
             - name
             - index
         - name: tx_missed
           documentation: Number of missed TX packets on interface
+          namespace: vpp
+          subsystem: hardware
           labelnames:
             - name
             - index
@@ -191,6 +239,8 @@ programs:
       counter:
         - name: node_counter
           documentation: Node counter
+          namespace: vpp
+          subsystem: node
           labelnames:
             - name
             - reason
