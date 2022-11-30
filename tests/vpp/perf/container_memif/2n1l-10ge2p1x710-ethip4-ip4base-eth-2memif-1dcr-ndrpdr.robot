@@ -56,7 +56,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | memif_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | Intel-X710
+| ${nic_name}= | Intel-XXV710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
@@ -95,7 +95,7 @@
 | | And Initialize layer interface
 | | And Start containers for test
 | | And Initialize IPv4 routing with memif pairs
-| | Then Find NDR and PDR intervals using optimized search
+| | Then Traffic should pass with maximum rate
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
@@ -107,7 +107,7 @@
 | | frame_size=${64} | phy_cores=${2}
 
 | 64B-4c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
-| | [Tags] | 64B | 4C
+| | [Tags] | 64B | 4C | THIS
 | | frame_size=${64} | phy_cores=${4}
 
 | 1518B-1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr

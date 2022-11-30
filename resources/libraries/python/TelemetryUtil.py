@@ -13,131 +13,84 @@
 
 """Telemetry utility."""
 
-from robot.api import logger
-from time import sleep
-
+from resources.libraries.python.model.ExportResult import append_telemetry
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.VppCounters import VppCounters
-from resources.libraries.python.OptionString import OptionString
-from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
-__all__ = [u"TelemetryUtil"]
+__all__ = ["TelemetryUtil"]
 
 
 class TelemetryUtil:
     """Class contains methods for telemetry utility."""
 
     @staticmethod
-    def perf_stat(node, cpu_list=None, duration=1):
-        """Get perf stat read for duration.
-
-        :param node: Node in the topology.
-        :param cpu_list: CPU List as a string separated by comma.
-        :param duration: Measure time in seconds.
-        :type node: dict
-        :type cpu_list: str
-        :type duration: int
-        """
-        if cpu_list:
-            cpu_list = list(dict.fromkeys(cpu_list.split(u",")))
-            cpu_list = ",".join(str(cpu) for cpu in cpu_list)
-
-        cmd_opts = OptionString(prefix=u"--")
-        cmd_opts.add(u"no-aggr")
-        cmd_opts.add_with_value_if(
-            u"cpu", cpu_list, cpu_list
-        )
-        cmd_opts.add_if(
-            u"all-cpus", not(cpu_list)
-        )
-        cmd_opts.add_with_value_if(
-            u"event", f"'{{{Constants.PERF_STAT_EVENTS}}}'",
-            Constants.PERF_STAT_EVENTS
-        )
-        cmd_opts.add_with_value(
-            u"interval-print", 1000
-        )
-        cmd_opts.add_with_value(
-            u"field-separator", u"';'"
-        )
-
-        cmd_base = OptionString()
-        cmd_base.add(f"perf stat")
-        cmd_base.extend(cmd_opts)
-        cmd_base.add(u"--")
-        cmd_base.add_with_value(u"sleep", int(duration))
-
-        exec_cmd(node, cmd_base, sudo=True)
-
-    @staticmethod
-    def perf_stat_on_all_duts(nodes, cpu_list=None, duration=1):
-        """Get perf stat read for duration on all DUTs.
-
-        :param nodes: Nodes in the topology.
-        :param cpu_list: CPU List.
-        :param duration: Measure time in seconds.
-        :type nodes: dict
-        :type cpu_list: str
-        :type duration: int
-        """
-        for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                TelemetryUtil.perf_stat(
-                    node, cpu_list=cpu_list, duration=duration
-                )
-
-    @staticmethod
-    def run_telemetry(node, profile, hook=None):
-        """Get telemetry stat read for duration.
+    def run_telemetry(node, profile, hook=None, oload="", export=False):
+        """Get telemetry read on node.
 
         :param node: Node in the topology.
         :param profile: Telemetry configuration profile.
-        :param hook: Process ID or socket path (optional).
+        :param hook: Process IDs or socket paths (optional).
+        :param oload: Telemetry offered load, unique within the test (optional).
+        :param export: If false, do not attempt JSON export (default false).
         :type node: dict
         :type profile: str
-        :type hook: str
+        :type hook: dict
+        :type oload: str
+        :type export: bool
         """
-        config = u""
+        config = ""
         config += f"{Constants.REMOTE_FW_DIR}/"
         config += f"{Constants.RESOURCES_TPL_TELEMETRY}/"
         config += f"{profile}"
 
-        cd_cmd = u""
+        cd_cmd = ""
         cd_cmd += f"sh -c \"cd {Constants.REMOTE_FW_DIR}/"
         cd_cmd += f"{Constants.RESOURCES_TOOLS}"
 
         bin_cmd = f"python3 -m telemetry --config {config} --hook {hook}\""
-        hostname = node[u"host"]
+        hostname = exec_cmd_no_error(node, "hostname")[0].strip()
+        hook = list(node["sockets"]["CLI"].keys())[
+            list(node["sockets"]["CLI"].values()).index(hook)
+        ]
 
         exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
+
+        if not export:
+            return
         stdout, _ = exec_cmd_no_error(
-            node, u"cat /tmp/metric.prom", sudo=True, log_stdout_err=False
+            node, "cat /tmp/metric.prom", sudo=True, log_stdout_err=False
         )
-        logger.info(
-            u"# TYPE target info\n"
-            u"# HELP target Target metadata\n"
-            f"target_info{{hostname=\"{hostname}\",hook=\"{hook}\"}} 1\n"
-            f"{stdout}"
-        )
+        prefix = "{"
+        prefix += f"hostname=\"{hostname}\","
+        prefix += f"hook=\"{hook}\","
+        prefix += f"oload=\"{oload}\","
+        for line in stdout.splitlines():
+            if line and not line.startswith("#"):
+                append_telemetry(
+                    prefix.join(line.rsplit("{", 1)).replace("\"", "'")
+                )
 
     @staticmethod
-    def run_telemetry_on_all_duts(nodes, profile):
-        """Get telemetry stat read on all DUTs.
+    def run_telemetry_on_all_duts(nodes, profile, oload="", export=False):
+        """Get telemetry read on all DUTs.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
-        :param hooks: Dict of Process IDs or socket paths (optional).
+        :param oload: Telemetry offered load, unique within the test (optional).
+        :param export: If false, do not attempt JSON export (default false).
         :type nodes: dict
         :type profile: str
-        :type hooks: dict
+        :type oload: str
+        :type export: bool
         """
         for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
+            if node["type"] == NodeType.DUT:
                 try:
-                    for socket in node[u"sockets"][u"CLI"].values():
+                    for hook in node["sockets"]["CLI"].values():
                         TelemetryUtil.run_telemetry(
-                            node, profile=profile, hook=socket
+                            node, profile=profile, hook=hook, oload=oload,
+                            export=export
                         )
                 except IndexError:
                     pass
