@@ -16,8 +16,8 @@
 from robot.api import logger
 from time import sleep
 
+from resources.libraries.python.model.ExportResult import append_telemetry
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.VppCounters import VppCounters
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
@@ -88,15 +88,17 @@ class TelemetryUtil:
                 )
 
     @staticmethod
-    def run_telemetry(node, profile, hook=None):
+    def run_telemetry(node, profile, hook=None, export=False):
         """Get telemetry stat read for duration.
 
         :param node: Node in the topology.
         :param profile: Telemetry configuration profile.
         :param hook: Process ID or socket path (optional).
+        :param export: If false, do not attempt JSON export.
         :type node: dict
         :type profile: str
         :type hook: str
+        :type export: bool
         """
         config = u""
         config += f"{Constants.REMOTE_FW_DIR}/"
@@ -114,30 +116,33 @@ class TelemetryUtil:
         stdout, _ = exec_cmd_no_error(
             node, u"cat /tmp/metric.prom", sudo=True, log_stdout_err=False
         )
-        logger.info(
-            u"# TYPE target info\n"
-            u"# HELP target Target metadata\n"
-            f"target_info{{hostname=\"{hostname}\",hook=\"{hook}\"}} 1\n"
-            f"{stdout}"
-        )
+        for line in stdout.splitlines():
+            if line and not line.startswith("#"):
+                prefix = f"{{hostname=\"{hostname}\",hook=\"{hook}\","
+                if export:
+                    append_telemetry(
+                        prefix.join(line.rsplit("{", 1)).replace("\"", "'")
+                    )
 
     @staticmethod
-    def run_telemetry_on_all_duts(nodes, profile):
+    def run_telemetry_on_all_duts(nodes, profile, export=False):
         """Get telemetry stat read on all DUTs.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
         :param hooks: Dict of Process IDs or socket paths (optional).
+        :param export: If false, do not attempt JSON export.
         :type nodes: dict
         :type profile: str
         :type hooks: dict
+        :type export: bool
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 try:
                     for socket in node[u"sockets"][u"CLI"].values():
                         TelemetryUtil.run_telemetry(
-                            node, profile=profile, hook=socket
+                            node, profile=profile, hook=socket, export=export
                         )
                 except IndexError:
                     pass

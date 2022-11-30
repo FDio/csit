@@ -104,7 +104,7 @@ class Metric:
             u"Sample", [u"name", u"labels", u"value", u"timestamp"]
         )
 
-        if not re.compile(r"^[a-zA-Z_:][a-zA-Z0-9_:]*$").match(name):
+        if not re.compile(r"^[a-zA-Z._:][a-zA-Z0-9._:]*$").match(name):
             raise ValueError(f"Invalid metric name: {name}!")
         if typ not in self.metric_types:
             raise ValueError(f"Invalid metric type: {typ}!")
@@ -210,11 +210,11 @@ class MetricBase:
         :rasies ValueError: If name does not conform with naming conventions.
         """
         full_name = u""
-        full_name += f"{namespace}_" if namespace else u""
-        full_name += f"{subsystem}_" if subsystem else u""
+        full_name += f"{namespace}." if namespace else u""
+        full_name += f"{subsystem}." if subsystem else u""
         full_name += name
 
-        if not re.compile(r"^[a-zA-Z_:][a-zA-Z0-9_:]*$").match(full_name):
+        if not re.compile(r"^[a-zA-Z._:][a-zA-Z0-9._:]*$").match(full_name):
             raise ValueError(
                 f"Invalid metric name: {full_name}!"
             )

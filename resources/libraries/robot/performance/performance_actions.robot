@@ -94,7 +94,7 @@
 | | ... | ramp_up_duration=${ramp_up_duration}
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Run Telemetry On All DUTs
-| | ... | ${nodes} | profile=vppctl_runtime.yaml
+| | ... | ${nodes} | profile=vppctl_runtime.yaml | export=${True}
 | | Stop traffic on tg
 
 | Additional Statistics Action For bpf-runtime
