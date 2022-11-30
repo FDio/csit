@@ -194,14 +194,13 @@
 | | ... | Additional teardown for tests which uses performance measurement.
 | | ... | Optionally, call \${resetter} (if defined) to reset DUT state.
 | |
-| | Run Keyword If Test Passed | Return From Keyword
 | | ${use_latency} = | Get Use Latency
 | | ${rate_for_teardown} = | Get Rate For Teardown
 | | Call Resetter
 | | Set Test Variable | \${extended_debug} | ${True}
 | | Send traffic at specified rate
 | | ... | trial_duration=${1.0}
-| | ... | rate=${rate_for_teardown}
+| | ... | rate=${9001.0}
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
