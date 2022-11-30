@@ -30,7 +30,7 @@ M_RUN_SEPARATOR = (
     r"(-)+"
 )
 M_RUN_NODES = (
-    r"(?P<name>\S+)\s+"
+    r"(?P<node_name>\S+)\s+"
     r"(?P<state>\S+\s\S+|\S+)\s+"
     r"(?P<calls>\d+)\s+"
     r"(?P<vectors>\d+)\s+"
@@ -284,7 +284,7 @@ class BundleVppctl:
                     item = dict()
                     labels = dict()
                     item["name"] = metric
-                    labels["name"] = nodes["name"]
+                    labels["node_name"] = nodes["node_name"]
                     labels["state"] = nodes["state"]
                     try:
                         labels["thread_name"] = thread["thread_name"]
@@ -364,7 +364,7 @@ class BundleVppctl:
                         item = dict()
                         labels = dict()
                         item["name"] = metric
-                        labels["name"] = node["node_name"]
+                        labels["node_name"] = node["node_name"]
                         labels["thread_name"] = thread["thread_name"]
                         labels["thread_id"] = thread["thread_id"]
                         item["labels"] = labels

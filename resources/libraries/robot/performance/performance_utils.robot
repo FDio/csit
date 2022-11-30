@@ -113,6 +113,7 @@
 | | ... | ${average} | ${stdev}
 | | Set Test Variable | \${rate for teardown} | ${lower}
 | | # Stats at the discovered critical rate.
+| | Set Test Variable | ${telemetry_oload} | plr
 | | Send traffic at specified rate
 | | ... | rate=${lower}
 | | ... | trial_duration=${1.0}
@@ -196,12 +197,14 @@
 | | ${pdr} = | Set Variable | ${result[1].measured_low.target_tr}
 | | ${ndr} = | Set Variable | ${result[0].measured_low.target_tr}
 | | # We expect NDR and PDR to have different-looking stats.
+| | Set Test Variable | ${telemetry_oload} | pdr
 | | Send traffic at specified rate
 | | ... | rate=${pdr}
 | | ... | trial_duration=${1.0}
 | | ... | trial_multiplicity=${1}
 | | ... | use_latency=${use_latency}
 | | ... | duration_limit=${1.0}
+| | Set Test Variable | ${telemetry_oload} | ndr
 | | Run Keyword If | ${ndr} != ${pdr}
 | | ... | Send traffic at specified rate
 | | ... | rate=${ndr}
@@ -627,7 +630,6 @@
 | | ... | transaction_scale=${transaction_scale}
 | | ... | transaction_type=${transaction_type}
 | | ... | use_latency=${use_latency}
-| | # TODO: Ramp-up?
 
 | Stop Running Traffic
 | | [Documentation]
@@ -672,6 +674,7 @@
 | | ${unit} = | Set Variable If | """_cps""" in """${transaction_type}"""
 | | ... | cps | pps
 | | # The following also sets \${rate_for_teardown}
+| | Set Test Variable | ${telemetry_oload} | mrr
 | | ${results} = | Send traffic at specified rate
 | | ... | rate=${max_rate}
 | | ... | trial_duration=${trial_duration}
