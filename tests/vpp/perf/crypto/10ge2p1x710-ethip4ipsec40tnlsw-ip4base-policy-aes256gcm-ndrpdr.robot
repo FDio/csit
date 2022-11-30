@@ -83,6 +83,7 @@
 | ${n_tunnels}= | ${40}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -117,6 +118,7 @@
 | | ... | ${nodes} | ${DUT1_${int}2}[0] | ${DUT2_${int}1}[0] | ${n_tunnels}
 | | ... | ${encr_alg} | ${auth_alg} | ${dut1_if2_ip4} | ${dut2_if1_ip4}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | And VPP Set Interface MTU | ${nodes['DUT2']} | ${dut2_if1} | ${1000}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
