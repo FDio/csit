@@ -75,6 +75,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f2ff9f1_389d4a07",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-01T12:33:51Z",
+      "side": 1,
+      "message": "Not sure why, but comments in the bash function are more detailed, so referencing that now.",
+      "parentUuid": "e031e79e_064d6c27",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 45
+      },
+      "revId": "e40a4dfd0413b8d21a398305cd0eadc55366a3e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89848c3f_32b1c220",
@@ -88,6 +112,30 @@
       "writtenOn": "2022-11-30T08:20:08Z",
       "side": 1,
       "message": "the function is called \"check\" and you are doing \"start\" here. Rename the function or rewrite the logic. That is why separating those 2 functions (start,check) cannot be done horizontally as you did.",
+      "range": {
+        "startLine": 135,
+        "startChar": 28,
+        "endLine": 135,
+        "endChar": 54
+      },
+      "revId": "e40a4dfd0413b8d21a398305cd0eadc55366a3e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c64e262e_c1e96b2d",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-01T12:33:51Z",
+      "side": 1,
+      "message": "Having a separate function was useful for debugging, but in production having one integrated function leads to simpler code, so done that in next patch.",
+      "parentUuid": "89848c3f_32b1c220",
       "range": {
         "startLine": 135,
         "startChar": 28,
@@ -121,6 +169,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "634e78cb_251efdb8",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-01T12:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fca40a8f_cfec3d05",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 67
+      },
+      "revId": "e40a4dfd0413b8d21a398305cd0eadc55366a3e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75fcbb4e_89754dd9",
@@ -134,6 +206,30 @@
       "writtenOn": "2022-11-29T12:47:06Z",
       "side": 1,
       "message": "The same here. First calculate the values, then use in for cycle.",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 73
+      },
+      "revId": "e40a4dfd0413b8d21a398305cd0eadc55366a3e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6ed2541_c4fc0a19",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-01T12:33:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75fcbb4e_89754dd9",
       "range": {
         "startLine": 139,
         "startChar": 0,
