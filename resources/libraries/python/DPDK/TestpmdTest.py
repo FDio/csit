@@ -25,16 +25,23 @@ from resources.libraries.python.topology import NodeType, Topology
 
 class TestpmdTest:
     """
-    This class start testpmd on topology nodes and check if properly started.
+    This class starts testpmd on topology nodes and checks if ready for traffic.
     """
-    
+
     @staticmethod
     def start_testpmd_on_all_duts(
-            nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
-            rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None):
-        """
-        Start the testpmd with M worker threads and rxqueues N and jumbo
-        support frames on/off on all DUTs.
+        nodes, topology_info, phy_cores, rx_queues=None, jumbo_frames=False,
+        rxd=None, txd=None, nic_rxq_size=None, nic_txq_size=None
+    ):
+        """Start the testpmd, make sure it is ready for traffic.
+
+        Also set test tags.
+
+        Just launching testpmd does not ensure it is also ready for traffic,
+        see bash function dpdk_testpmd_check for symptoms and workarounds.
+
+        On this level, it suffices to say repeated testpmd restarts do help,
+        and check_testpmd is called to detect whether testpmd is ready.
 
         :param nodes: All the nodes info from the topology file.
         :param topology_info: All the info from the topology file.
@@ -45,7 +52,6 @@ class TestpmdTest:
         :param txd: Number of TX descriptors.
         :param nic_rxq_size: RX queue size.
         :param nic_txq_size: TX queue size.
-
         :type nodes: dict
         :type topology_info: dict
         :type phy_cores: int
@@ -55,52 +61,40 @@ class TestpmdTest:
         :type txd: int
         :type nic_rxq_size: int
         :type nic_txq_size: int
-        :raises RuntimeError: If bash return code is not 0.
+        :raises RuntimeError: If still not ready for traffic after the restarts.
         """
-
-        cpu_count_int = dp_count_int = int(phy_cores)
-        dp_cores = cpu_count_int+1
+        dp_count_int = int(phy_cores)
+        if dp_count_int > 1:
+            BuiltIn().set_tags('MTHREAD')
+        else:
+            BuiltIn().set_tags('STHREAD')
+        BuiltIn().set_tags(
+            f"{dp_count_int}T{dp_count_int}C"
+        )
         for node in nodes:
             if u"DUT" in node:
-                compute_resource_info = CpuUtils.get_affinity_vswitch(
+                compute_info = CpuUtils.get_affinity_vswitch(
                     nodes, node, phy_cores, rx_queues=rx_queues,
                     rxd=rxd, txd=txd
                 )
-                if dp_count_int > 1:
-                    BuiltIn().set_tags('MTHREAD')
-                else:
-                    BuiltIn().set_tags('STHREAD')
-                BuiltIn().set_tags(
-                    f"{dp_count_int}T{cpu_count_int}C"
-                )
-
-                cpu_dp = compute_resource_info[u"cpu_dp"]
-                rxq_count_int = compute_resource_info[u"rxq_count_int"]
+                cpu_dp = compute_info[u"cpu_dp"]
+                rxq_count_int = compute_info[u"rxq_count_int"]
                 if1 = topology_info[f"{node}_pf1"][0]
                 if2 = topology_info[f"{node}_pf2"][0]
-                TestpmdTest.start_testpmd(
-                    nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
-                    nb_cores=dp_count_int, queue_nums=rxq_count_int,
-                    jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
-                    txq_size=nic_txq_size
-                )
-        for node in nodes:
-            if u"DUT" in node:
-                for i in range(3):
+                for _ in range(10):
+                    TestpmdTest.start_testpmd(
+                        nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
+                        nb_cores=dp_count_int, queue_nums=rxq_count_int,
+                        jumbo_frames=jumbo_frames, rxq_size=nic_rxq_size,
+                        txq_size=nic_txq_size
+                    )
                     try:
                         TestpmdTest.check_testpmd(nodes[node])
-                        break
                     except RuntimeError:
-                        TestpmdTest.start_testpmd(
-                            nodes[node], if1=if1, if2=if2,
-                            lcores_list=cpu_dp, nb_cores=dp_count_int,
-                            queue_nums=rxq_count_int,
-                            jumbo_frames=jumbo_frames,
-                            rxq_size=nic_rxq_size, txq_size=nic_txq_size
-                        )
+                        continue
+                    break
                 else:
-                    message = f"Failed to start testpmd at node {node}"
-                    raise RuntimeError(message)
+                    raise RuntimeError(f"Testpmd failed to start properly.")
 
     @staticmethod
     def start_testpmd(
