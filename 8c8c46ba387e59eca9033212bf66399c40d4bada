@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6654136_e1a9e87f",
+        "filename": "resources/libraries/bash/function/dpdk.sh",
+        "patchSetId": 24
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-12-02T09:08:19Z",
+      "side": 1,
+      "message": "remove the Jira reference from code.",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 47
+      },
+      "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2188ad9_6d573054",
         "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
         "patchSetId": 24
