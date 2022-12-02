@@ -79,6 +79,30 @@
       },
       "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd73d6a_a1bc16ff",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-02T11:55:19Z",
+      "side": 1,
+      "message": "I do not understand what is incorrect here. First DUT1 is restarted until ready, then DUT2 is processed.\nIf the restart loop was outside the code would be more complicated, unless we want to restart on both DUTs when only one fails to start properly, and verify jobs prove we do not need to do that.",
+      "parentUuid": "b2188ad9_6d573054",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
