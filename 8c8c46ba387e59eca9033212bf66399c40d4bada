@@ -33,6 +33,29 @@
       "message": "csit-dpdk-3n-icx-perftest mrrANDnic_intel-xxv710ANDeth-l2xcbase-testpmdNOT9000b",
       "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2188ad9_6d573054",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-12-02T09:07:37Z",
+      "side": 1,
+      "message": "the inner cycle is incorrect. You need both instances on both DUTs to be running. Must be outside of primary loop. Revert to original one.",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
