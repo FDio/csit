@@ -103,6 +103,30 @@
       },
       "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab35896d_ca12f66a",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-12-02T12:51:20Z",
+      "side": 1,
+      "message": "This is wrong approach because to be able to proceed you need to set both end of the link to operational state UP. Otherwise in some corner cases (like both end down) only one side UP means connection will remain DOWN and there is no trigger to set operational state.",
+      "parentUuid": "cbd73d6a_a1bc16ff",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
