@@ -127,6 +127,30 @@
       },
       "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3c24fdf_950352a8",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-12-05T07:13:17Z",
+      "side": 1,
+      "message": "+ it is time saver to start both",
+      "parentUuid": "ab35896d_ca12f66a",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
