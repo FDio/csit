@@ -1286,7 +1286,7 @@ class InterfaceUtil:
     @staticmethod
     def vpp_create_af_xdp_interface(
             node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
-            mode=u"auto"):
+            mode=u"zero_copy"):
         """Create AF_XDP interface on VPP node.
 
         :param node: DUT node from topology.
