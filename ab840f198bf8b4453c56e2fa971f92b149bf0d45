@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7ddb289_6c69a396",
+        "filename": "docs/model/current/schema/test_case.info.schema.yaml",
+        "patchSetId": 15
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-12-05T09:31:48Z",
+      "side": 1,
+      "message": "Add \"telemetry\"",
+      "range": {
+        "startLine": 311,
+        "startChar": 9,
+        "endLine": 311,
+        "endChar": 11
+      },
+      "revId": "ab840f198bf8b4453c56e2fa971f92b149bf0d45",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
