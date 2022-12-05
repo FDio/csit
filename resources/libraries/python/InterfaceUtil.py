@@ -1887,6 +1887,9 @@ class InterfaceUtil:
                 )
             )
             vf_ifc_keys.append(vf_ifc_key)
+            InterfaceUtil.set_linux_interface_state(
+                node, pf_dev, state=u"down"
+            )
 
         return vf_ifc_keys
 
