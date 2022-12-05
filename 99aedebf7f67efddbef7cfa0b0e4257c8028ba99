@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "773335f4_6ece8198",
+        "filename": "resources/libraries/python/TelemetryUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-12-05T09:53:50Z",
+      "side": 1,
+      "message": "rework",
+      "range": {
+        "startLine": 53,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 9
+      },
+      "revId": "99aedebf7f67efddbef7cfa0b0e4257c8028ba99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
