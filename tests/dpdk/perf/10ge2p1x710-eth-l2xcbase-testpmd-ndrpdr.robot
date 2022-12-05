@@ -76,6 +76,12 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
+| | Pci Driver Unbind | ${nodes['DUT1']} | ${DUT1_pf_pci[0]}
+| | Pci Driver Unbind | ${nodes['DUT1']} | ${DUT1_pf_pci[1]}
+| | Pci Driver Unbind | ${nodes['DUT2']} | ${DUT2_pf_pci[0]}
+| | Pci Driver Unbind | ${nodes['DUT2']} | ${DUT2_pf_pci[1]}
+| | Set Interface State PCI | ${nodes['DUT1']} | ${DUT1_pf_pci} | state=down
+| | Set Interface State PCI | ${nodes['DUT2']} | ${DUT2_pf_pci} | state=down
 | | Given Set Max Rate And Jumbo
 | | And Pre-initialize layer driver | ${nic_driver}
 | | When Start testpmd on all DUTs | ${nodes} | ${topology_info}
