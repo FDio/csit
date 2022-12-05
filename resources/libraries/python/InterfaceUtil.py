@@ -116,6 +116,11 @@ class AfXdpMode(IntEnum):
     AF_XDP_API_MODE_COPY = 1
     AF_XDP_API_MODE_ZERO_COPY = 2
 
+class AfXdpFlag(IntEnum):
+    """AF_XDP interface mode."""
+    AF_XDP_API_FLAGS_NONE = 0
+    AF_XDP_API_FLAGS_NO_SYSCALL_LOCK = 1
+
 
 class InterfaceUtil:
     """General utilities for managing interfaces"""
@@ -1286,7 +1291,7 @@ class InterfaceUtil:
     @staticmethod
     def vpp_create_af_xdp_interface(
             node, if_key, num_rx_queues=None, rxq_size=0, txq_size=0,
-            mode=u"auto"):
+            mode=u"zero_copy", flag=u"no_syscall_lock"):
         """Create AF_XDP interface on VPP node.
 
         :param node: DUT node from topology.
@@ -1319,7 +1324,8 @@ class InterfaceUtil:
             rxq_num=int(num_rx_queues) if num_rx_queues else 0,
             rxq_size=rxq_size,
             txq_size=txq_size,
-            mode=getattr(AfXdpMode, f"AF_XDP_API_MODE_{mode.upper()}").value
+            mode=getattr(AfXdpMode, f"AF_XDP_API_MODE_{mode.upper()}").value,
+            flag=getattr(AfXdpFlag, f"AF_XDP_API_FLAGS_{flag.upper()}").value,
         )
         err_msg = f"Failed to create AF_XDP interface on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
