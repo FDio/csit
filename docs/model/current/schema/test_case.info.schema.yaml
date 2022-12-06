@@ -13,10 +13,10 @@
 
 ---
 
-$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.1.0
+$id: https://fd.io/FIXME/CSIT/UTI/test_case/info/1.2.0
 $schema: https://json-schema.org/draft/2020-12/schema
 description: >-
-    Schema for info output of test case.
+    Schema for output of test case.
 allOf:
 -   description: >-
         The main structure, without conditional relations between fields yet.
@@ -25,8 +25,8 @@ allOf:
     properties:
         duration:
             description: >-
-                A derived quantity, present only in info output files.
-                Difference between start_time and end_time, in seconds.
+                A derived quantity. Difference between start_time and end_time,
+                in seconds.
             $ref: "#/$defs/types/nonnegative_number"
         dut_type:
             description: >-
@@ -213,6 +213,29 @@ allOf:
                     required:
                     -   type
                     -   critical_rate
+                -   description: >-
+                        Result type RECONF case.
+                    additionalProperties: false
+                    properties:
+                        type:
+                            const: reconf
+                        aggregate_rate:
+                            description: >-
+                                Load used when reconfiguring, found as NDR lower
+                                bound. This is an aggregate (bidirectional)
+                                rate. Note that packets which the Traffic
+                                Generator did not send, are also counted as lost
+                                packets.
+                            $ref: "#/$defs/types/rate_with_bandwidth"
+                        loss:
+                            description: >-
+                                Number of packets lost during reconfiguration,
+                                with the time that equals packet loss divided by
+                                packet rate.
+                            $ref: "#/$defs/types/packet_with_time"
+                    required:
+                    -   loss
+                    -   aggregate_rate
         start_time:
             description: >-
                 UTC date and time in RFC 3339 format, specifying calendar time
@@ -236,7 +259,7 @@ allOf:
             type: string
         test_id:
             description: >-
-                A derived quantity, present only in info output files.
+                A derived quantity.
                 It is the most complete and unique identifier for a test case.
                 This property has a value, of the following form:
                 {suite_name}.{test_name}
@@ -248,7 +271,7 @@ allOf:
             minLength: 3
         test_name_long:
             description: >-
-                A derived quantity, present only in info output files.
+                A derived quantity.
                 This property has a value, of the following form:
                 {nic_short_name}-{frame_size}-{threads_and_cores}-{suite_part}
                 Here, suite part is very similar to suite tag,
@@ -259,7 +282,7 @@ allOf:
             minLength: 3
         test_name_short:
             description: >-
-                A derived quantity, present only in info output files.
+                A derived quantity.
                 This property has a value very similar to suite tag,
                 but additionally may contain a prefix describing NIC driver used
                 (if it is not the default one, drv_vfio_pci for VPP tests).
@@ -268,7 +291,7 @@ allOf:
             minLength: 3
         test_type:
             description: >-
-                A derived quantity, present only in info output files.
+                A derived quantity.
                 Test type identifier, PAL uses it to group similar tests,
                 e.g. for comparison tables.
                 Ideally, this information should be parseable from test name,
@@ -302,7 +325,7 @@ allOf:
                 CSIT model version (semver format)
                 the exporting code adhered to.
             type: string
-            const: 1.1.0
+            const: 1.2.0
     required:
     -   duration
     -   dut_type
@@ -377,6 +400,36 @@ $defs:
                 may allow more units.
             enum:
             -   bps
+        count_packets:
+            description: >-
+                Type, for counting packets.
+            allOf:
+            -   $ref: "#/$defs/types/value_with_unit"
+            -   properties:
+                    value:
+                        description: >-
+                            A number of packets of interest.
+                    unit:
+                        description: >-
+                            Unit suitable for displaying packet counts.
+                        enum:
+                        -   packets
+        time_quantity:
+            description: >-
+                Reusable type, for various time quantites.
+            allOf:
+            -   $ref: "#/$defs/types/value_with_unit"
+            -   properties:
+                    value:
+                        description: >-
+                            Unless specified otherwise, this is a duration
+                            between two events.
+                    unit:
+                        description: >-
+                            Only seconds are the unit supported for time
+                            quantities.
+                        enum:
+                        -   s
         value_with_unit:
             description: >-
                 Reusable composite type, value together with its
@@ -443,6 +496,20 @@ $defs:
                     $ref: "#/$defs/types/bandwidth"
             required:
             - rate
+        packet_with_time:
+            description: >-
+                Reusable composite type, joining packet count with the
+                time quantity.
+            type: object
+            additionalProperties: false
+            properties:
+                packet:
+                    $ref: "#/$defs/types/count_packets"
+                time:
+                    $ref: "#/$defs/types/time_quantity"
+            required:
+            - packet
+            - time
         value_list_with_unit_and_stats:
             description: >-
                 Reusable composite type, multiple values together with their
@@ -457,19 +524,18 @@ $defs:
                     minItmes: 1
                     items:
                         description: >-
-                            Numeric value, context specified elsewhere.
-                            The only assumption is that the value is nonnegative.
+                            Numeric value, context specified elsewhere. The only
+                            assumption is that the value is nonnegative.
                         $ref: "#/$defs/types/nonnegative_number"
                 avg:
                     description: >-
-                        A derived quantity, present only in info output files.
-                        It is the arithmetic average of the values list.
+                        A derived quantity. It is the arithmetic average of the
+                        values list.
                     $ref: "#/$defs/types/nonnegative_number"
                 stdev:
                     description: >-
-                        A derived quantity, present only in info output files.
-                        It is the standard deviation for the values list,
-                        as computed by jumpavg library.
+                        A derived quantity. It is the standard deviation for the
+                        values list, as computed by jumpavg library.
                     $ref: "#/$defs/types/nonnegative_number"
                 unit:
                     description: >-
@@ -501,9 +567,8 @@ $defs:
                         $ref: "#/$defs/types/rate_unit"
         bandwidth_list:
             description: >-
-                Reusable composite type, multiple bandwidth values.
-                This is a derived entity, thus it only appears in info output,
-                and only if rate unit is pps.
+                Reusable composite type, multiple bandwidth values. This is a
+                derived quantity.
             allOf:
             -   $ref: "#/$defs/types/value_list_with_unit_and_stats"
             -   properties:
