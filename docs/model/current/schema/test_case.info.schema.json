@@ -1,7 +1,7 @@
 {
-  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.1.0",
+  "$id": "https://fd.io/FIXME/CSIT/UTI/test_case/info/1.2.0",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Schema for info output of test case.",
+  "description": "Schema for output of test case.",
   "allOf": [
     {
       "description": "The main structure, without conditional relations between fields yet.",
@@ -9,7 +9,7 @@
       "additionalProperties": false,
       "properties": {
         "duration": {
-          "description": "A derived quantity, present only in info output files. Difference between start_time and end_time, in seconds.",
+          "description": "A derived quantity. Difference between start_time and end_time, in seconds.",
           "$ref": "#/$defs/types/nonnegative_number"
         },
         "dut_type": {
@@ -141,6 +141,27 @@
                     "type",
                     "critical_rate"
                   ]
+                },
+                {
+                  "description": "Result type RECONF case.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "const": "reconf"
+                    },
+                    "aggregate_rate": {
+                      "description": "Load used when reconfiguring, found as NDR lower bound. This is aggregate (bidirectional) rate. Note that packets the Traffic Generator did not send are also counted as lost packets.",
+                      "$ref": "#/$defs/types/rate_with_bandwidth"
+                    },
+                    "loss": {
+                      "description": "Number of packets lost during reconfiguration, with the time that equals packet loss divided by packet rate.",
+                      "$ref": "#/$defs/types/packet_with_time"
+                    }
+                  },
+                  "required": [
+                    "loss",
+                    "aggregate_rate"
+                  ]
                 }
               ]
             }
@@ -162,22 +183,22 @@
           "type": "string"
         },
         "test_id": {
-          "description": "A derived quantity, present only in info output files. It is the most complete and unique identifier for a test case. This property has a value, of the following form: {suite_name}.{test_name} Here, suite name comes from SUITE_NAME robot variable, test name comes from TEST_NAME robot variable, but both are converted to lower case, and spaces are replaced by underscores.",
+          "description": "A derived quantity. It is the most complete and unique identifier for a test case. This property has a value, of the following form: {suite_name}.{test_name} Here, suite name comes from SUITE_NAME robot variable, test name comes from TEST_NAME robot variable, but both are converted to lower case, and spaces are replaced by underscores.",
           "type": "string",
           "minLength": 3
         },
         "test_name_long": {
-          "description": "A derived quantity, present only in info output files. This property has a value, of the following form: {nic_short_name}-{frame_size}-{threads_and_cores}-{suite_part} Here, suite part is very similar to suite tag, but additionally may contain a prefix describing NIC driver used (if it is not the default one, drv_vfio_pci for VPP tests). Any space is replaced by underscore and letters are lower case.",
+          "description": "A derived quantity. This property has a value, of the following form: {nic_short_name}-{frame_size}-{threads_and_cores}-{suite_part} Here, suite part is very similar to suite tag, but additionally may contain a prefix describing NIC driver used (if it is not the default one, drv_vfio_pci for VPP tests). Any space is replaced by underscore and letters are lower case.",
           "type": "string",
           "minLength": 3
         },
         "test_name_short": {
-          "description": "A derived quantity, present only in info output files. This property has a value very similar to suite tag, but additionally may contain a prefix describing NIC driver used (if it is not the default one, drv_vfio_pci for VPP tests). Any space is replaced by underscore and letters are lower case.",
+          "description": "A derived quantity. This property has a value very similar to suite tag, but additionally may contain a prefix describing NIC driver used (if it is not the default one, drv_vfio_pci for VPP tests). Any space is replaced by underscore and letters are lower case.",
           "type": "string",
           "minLength": 3
         },
         "test_type": {
-          "description": "A derived quantity, present only in info output files. Test type identifier, PAL uses it to group similar tests, e.g. for comparison tables. Ideally, this information should be parseable from test name, but the current naming scheme is not simple/consistent enough. The current implementation queries the robot test tags. The resulting value is frequently identical to result type, but this schema version does not require any relation there, as PAL may want to group tests differently.",
+          "description": "A derived quantity. Test type identifier, PAL uses it to group similar tests, e.g. for comparison tables. Ideally, this information should be parseable from test name, but the current naming scheme is not simple/consistent enough. The current implementation queries the robot test tags. The resulting value is frequently identical to result type, but this schema version does not require any relation there, as PAL may want to group tests differently.",
           "type": "string",
           "enum": [
             "device",
@@ -203,7 +224,7 @@
         "version": {
           "description": "CSIT model version (semver format) the exporting code adhered to.",
           "type": "string",
-          "const": "1.1.0"
+          "const": "1.2.0"
         }
       },
       "required": [
@@ -298,6 +319,48 @@
           "bps"
         ]
       },
+      "count_packets": {
+        "description": "Type, for counting packets.",
+        "allOf": [
+          {
+            "$ref": "#/$defs/types/value_with_unit"
+          },
+          {
+            "properties": {
+              "value": {
+                "description": "A number of packets of interest."
+              },
+              "unit": {
+                "description": "Unit suitable for displaying packet counts.",
+                "enum": [
+                  "packets"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "time_quantity": {
+        "description": "Reusable type, for various time quantites.",
+        "allOf": [
+          {
+            "$ref": "#/$defs/types/value_with_unit"
+          },
+          {
+            "properties": {
+              "value": {
+                "description": "Unless specified otherwise, this is a duration between two events."
+              },
+              "unit": {
+                "description": "Only seconds are the unit supported for time quantities.",
+                "enum": [
+                  "s"
+                ]
+              }
+            }
+          }
+        ]
+      },
       "value_with_unit": {
         "description": "Reusable composite type, value together with its unit of measurement.",
         "type": "object",
@@ -370,6 +433,23 @@
           "rate"
         ]
       },
+      "packet_with_time": {
+        "description": "Reusable composite type, joining packet count with the time quantity.",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "packet": {
+            "$ref": "#/$defs/types/count_packets"
+          },
+          "time": {
+            "$ref": "#/$defs/types/time_quantity"
+          }
+        },
+        "required": [
+          "packet",
+          "time"
+        ]
+      },
       "value_list_with_unit_and_stats": {
         "description": "Reusable composite type, multiple values together with their unit of measurement and derived statistics.",
         "type": "object",
@@ -385,11 +465,11 @@
             }
           },
           "avg": {
-            "description": "A derived quantity, present only in info output files. It is the arithmetic average of the values list.",
+            "description": "A derived quantity. It is the arithmetic average of the values list.",
             "$ref": "#/$defs/types/nonnegative_number"
           },
           "stdev": {
-            "description": "A derived quantity, present only in info output files. It is the standard deviation for the values list, as computed by jumpavg library.",
+            "description": "A derived quantity. It is the standard deviation for the values list, as computed by jumpavg library.",
             "$ref": "#/$defs/types/nonnegative_number"
           },
           "unit": {
@@ -425,7 +505,7 @@
         ]
       },
       "bandwidth_list": {
-        "description": "Reusable composite type, multiple bandwidth values. This is a derived entity, thus it only appears in info output, and only if rate unit is pps.",
+        "description": "Reusable composite type, multiple bandwidth values. This is a derived entity.",
         "allOf": [
           {
             "$ref": "#/$defs/types/value_list_with_unit_and_stats"
