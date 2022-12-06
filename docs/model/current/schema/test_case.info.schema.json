@@ -141,6 +141,27 @@
                     "type",
                     "critical_rate"
                   ]
+                },
+                {
+                  "description": "Result type RECONF case.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "const": "reconf"
+                    },
+                    "aggregate_rate": {
+                      "description": "Load used when reconfiguring, found as NDR lower bound. This is aggregate (bidirectional) rate. Note that packets the Traffic Generator did not send are also counted as lost packets.",
+                      "$ref": "#/$defs/types/rate_with_bandwidth"
+                    },
+                    "loss": {
+                      "description": "Number of packets lost during reconfiguration, with the time that equals packet loss divided by packet rate.",
+                      "$ref": "#/$defs/types/packet_with_time"
+                    }
+                  },
+                  "required": [
+                    "loss",
+                    "aggregate_rate"
+                  ]
                 }
               ]
             }
@@ -298,6 +319,48 @@
           "bps"
         ]
       },
+      "count_packets": {
+        "description": "Type, for counting packets.",
+        "allOf": [
+          {
+            "$ref": "#/$defs/value_with_unit"
+          },
+          {
+            "properties": {
+              "value": {
+                "description": "A number of packets of interest."
+              },
+              "unit": {
+                "description": "Unit suitable for displaying packet counts.",
+                "enum": [
+                  "packets"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "time_quantity": {
+        "description": "Reusable type, for various time quantites.",
+        "allOf": [
+          {
+            "$ref": "#/$defs/value_with_unit"
+          },
+          {
+            "properties": {
+              "value": {
+                "description": "Unless specified otherwise, this is a duration between two events."
+              },
+              "unit": {
+                "description": "Only seconds are the unit supported for time quantities.",
+                "enum": [
+                  "s"
+                ]
+              }
+            }
+          }
+        ]
+      },
       "value_with_unit": {
         "description": "Reusable composite type, value together with its unit of measurement.",
         "type": "object",
@@ -368,6 +431,23 @@
         },
         "required": [
           "rate"
+        ]
+      },
+      "packet_with_time": {
+        "description": "Reusable composite type, joining packet count with the time quantity.",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "packet": {
+            "$ref": "#/$defs/types/count_packets"
+          },
+          "time": {
+            "$ref": "#/$defs/types/time_quantity"
+          }
+        },
+        "required": [
+          "packet",
+          "time"
         ]
       },
       "value_list_with_unit_and_stats": {

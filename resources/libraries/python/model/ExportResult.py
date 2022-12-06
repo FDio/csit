@@ -143,8 +143,7 @@ def export_search_bound(text, value, unit, bandwidth=None):
     upper_or_lower = u"upper" if u"upper" in text else u"lower"
     ndr_or_pdr = u"ndr" if u"ndr" in text else u"pdr"
 
-    data = get_export_data()
-    result_node = data[u"result"]
+    result_node = get_export_data()[u"result"]
     result_node[u"type"] = result_type
     rate_item = dict(rate=dict(value=value, unit=unit))
     if bandwidth:
@@ -196,8 +195,7 @@ def export_ndrpdr_latency(text, latency):
     :type text: str
     :type latency: 1-tuple or 2-tuple of str
     """
-    data = get_export_data()
-    result_node = data[u"result"]
+    result_node = get_export_data()[u"result"]
     percent = 0
     if u"90" in text:
         percent = 90
@@ -210,6 +208,43 @@ def export_ndrpdr_latency(text, latency):
     if len(latency) < 2:
         return
     _add_latency(result_node, percent, u"reverse", latency[1])
+
+
+def export_reconf_result(packet_rate, packet_loss, bandwidth):
+    """Export the results from a reconf test.
+
+    :param packet_rate: Aggregate offered load in packets per second.
+    :param packet_loss: How many of the packets were dropped or unsent.
+    :param bandwidth: The offered load recomputed into L1 bits per second.
+    :type packet_rate: float
+    :type packet_loss: int
+    :type bandwidth: float
+    """
+    result_node = get_export_data()["result"]
+    result_node["type"] = "reconf"
+
+    time_loss = int(packet_loss) / float(packet_rate)
+    result_node["aggregate_rate"] = dict(
+        bandwidth=dict(
+            unit="bps",
+            value=float(bandwidth)
+        ),
+        rate=dict(
+            unit="pps",
+            value=float(packet_rate)
+        )
+    )
+    result_node["loss"] = dict(
+        packet=dict(
+            unit="packets",
+            value=int(packet_loss)
+        ),
+        time=dict(
+            unit="s",
+            value=time_loss
+        )
+    )
+
 
 def append_telemetry(telemetry_item):
     """Append telemetry entry to proper place so it is dumped into json.
