@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Helper functions for starting testpmd.
+# A single check for whether this testpms is ready for traffic.
 
 set -exuo pipefail
 
