@@ -109,6 +109,36 @@ job "${job_name}" {
         memory = ${memory}
       }
     }
+    task "${job_name}-trending-reconf" {
+      artifact {
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
+      }
+      driver = "docker"
+      config {
+        image   = "${image}"
+        command = "gluesparksubmit"
+        args = [
+          "--driver-memory", "30g",
+          "--executor-memory", "30g",
+          "trending_reconf.py"
+        ]
+        work_dir = "/local/csit/csit.infra.etl"
+      }
+      env {
+        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
+        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
+        AWS_DEFAULT_REGION        = "${aws_default_region}"
+        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
+        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
+        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
+        ${ envs }
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
     task "${job_name}-stats" {
       artifact {
         source      = "git::https://github.com/FDio/csit"

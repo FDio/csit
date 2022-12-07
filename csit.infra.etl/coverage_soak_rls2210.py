@@ -143,7 +143,7 @@ paths = wr.s3.list_objects(
 
 filtered_paths = [path for path in paths if "report-coverage-2210" in path]
 
-out_sdf = process_json_to_dataframe("mrr", filtered_paths)
+out_sdf = process_json_to_dataframe("soak", filtered_paths)
 out_sdf.printSchema()
 out_sdf = out_sdf \
     .withColumn("year", lit(datetime.now().year)) \
