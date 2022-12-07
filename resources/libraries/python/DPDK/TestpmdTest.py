@@ -15,11 +15,13 @@
 This module exists to start testpmd on topology nodes.
 """
 
+import time
+
 from robot.libraries.BuiltIn import BuiltIn
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DpdkUtil import DpdkUtil
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -30,8 +32,22 @@ class TestpmdTest:
 
     @staticmethod
     def start_testpmd_on_all_duts(nodes, topology_info, phy_cores, jumbo):
-        """Start the testpmd with M worker threads and rxqueues N and jumbo
-        support frames on/off on all DUTs.
+        """Start the testpmd, make sure it is ready for traffic.
+
+        Also set test tags.
+
+        Just launching testpmd does not ensure it is also ready for traffic,
+        see bash function dpdk_testpmd_check for symptoms and workarounds.
+
+        On this level, it suffices to say repeated testpmd restarts do help,
+        and check_testpmd is called to detect whether testpmd is ready.
+
+        Testpmd is restarted on both DUTs even if only one of the was not ready,
+        to reduce the possibility of any other future error
+        (the current DPDK version is not affected by such partial restart).
+
+        Regardless of whether all duts are ready for traffic,
+        screenlog is dumped so we can monitor future CSIT-1848 behavior.
 
         :param nodes: All the nodes info from the topology file.
         :param topology_info: Suite variables as computed from path.
@@ -51,75 +67,66 @@ class TestpmdTest:
         BuiltIn().set_tags(
             f"{dp_count_int}T{dp_count_int}C"
         )
-        for node in nodes:
-            if u"DUT" in node:
-                compute_resource_info = CpuUtils.get_affinity_vswitch(
-                    nodes, node, phy_cores,
-                )
-                cpu_dp = compute_resource_info[u"cpu_dp"]
-                rxq_count_int = compute_resource_info[u"rxq_count_int"]
-                if1_pci = topology_info[f"{node.lower()}_if1_pci"]
-                if2_pci = topology_info[f"{node.lower()}_if2_pci"]
-                TestpmdTest.start_testpmd(
-                    node=nodes[node],
-                    if1_pci=if1_pci,
-                    if2_pci=if2_pci,
-                    lcores_list=cpu_dp,
-                    nb_cores=dp_count_int,
-                    queue_nums=rxq_count_int,
-                    jumbo=jumbo,
-                )
-        for node in nodes:
-            if u"DUT" in node:
-                for i in range(3):
-                    try:
-                        TestpmdTest.check_testpmd(nodes[node])
-                        break
-                    except RuntimeError:
-                        TestpmdTest.start_testpmd(
-                            node=nodes[node],
-                            if1_pci=if1_pci,
-                            if2_pci=if2_pci,
-                            lcores_list=cpu_dp,
-                            nb_cores=dp_count_int,
-                            queue_nums=rxq_count_int,
-                            jumbo=jumbo,
-                        )
-                else:
-                    message = f"Failed to start testpmd at node {node}"
-                    raise RuntimeError(message)
+        duts = [node for node in nodes if u"DUT" in node]
+        try:
+            for restart in range(10):
+                for dut in duts:
+                    TestpmdTest.kill_dpdk(nodes[dut])
+                for dut in duts:
+                    TestpmdTest.start_testpmd(
+                        nodes=nodes,
+                        dut=dut,
+                        topology_info=topology_info,
+                        nb_cores=dp_count_int,
+                        jumbo=jumbo,
+                    )
+                not_ready = list(duts)
+                for check in range(120):
+                    for dut in list(not_ready):
+                        if not TestpmdTest.is_testpmd_ready(nodes[dut]):
+                            break
+                        not_ready.remove(dut)
+                    else:  # All duts are ready for traffic.
+                        return
+                    time.sleep(1)
+                    # Continue with next check iteration.
+                # Restart all testpmds.
+            raise RuntimeError(f"Testpmd failed to start properly.")
+        finally:
+            for dut in duts:
+                exec_cmd(nodes[dut], u"cat screenlog.0")
 
     @staticmethod
-    def start_testpmd(
-        node, if1_pci, if2_pci, lcores_list, nb_cores, queue_nums, jumbo,
-    ):
+    def start_testpmd(nodes, dut, topology_info, nb_cores, jumbo):
         """Launch testpmd on the DUT node. No not check readiness yet.
 
-        :param node: DUT node.
-        :param if1_pci: PCI address of the test link interface 1.
-        :param if2_pci: PCI address of the test link interface 2.
-        :param lcores_list: The DPDK run cores.
+        Any previous testpmd instance is assumed to be killed already.
+
+        :param nodes: All the nodes info from the topology file.
+        :param node: Name of the intended DUT node.
+        :param topology_info: Suite variables as computed from path.
         :param nb_cores: The cores number for the forwarding.
-        :param queue_nums: The queues number for the NIC.
         :param jumbo: Indication if the jumbo frames are used (True) or
             not (False).
-        :type node: dict
-        :type if1_pci: str
-        :type if2_pci: str
-        :type lcores_list: str
+        :type nodes: dict
+        :type node: str
+        :type topology_info: dict
         :type nb_cores: int
-        :type queue_nums: str
         :type jumbo: bool
         :raises RuntimeError: If the script "run_testpmd.sh" fails.
         """
+        node = nodes[dut]
         if node[u"type"] != NodeType.DUT:
-            raise RuntimeError(f"Testpmd starts only on DUTs.")
+            raise RuntimeError(f"Testpmd starts only on DUTs, not {dut}")
 
+        compute_info = CpuUtils.get_affinity_vswitch(
+            nodes, dut, nb_cores,
+        )
         testpmd_args = DpdkUtil.get_testpmd_args(
-            eal_corelist=f"1,{lcores_list}",
+            eal_corelist=f"1,{compute_info[u'cpu_dp']}",
             eal_driver=False,
-            eal_pci_whitelist0=if1_pci,
-            eal_pci_whitelist1=if2_pci,
+            eal_pci_whitelist0=topology_info[f"{dut.lower()}_if1_pci"],
+            eal_pci_whitelist1=topology_info[f"{dut.lower()}_if2_pci"],
             eal_in_memory=True,
             pmd_num_mbufs=32768,
             pmd_fwd_mode=u"io",
@@ -129,8 +136,8 @@ class TestpmdTest:
             pmd_mbuf_size=u"16384",
             pmd_rxd=None,
             pmd_txd=None,
-            pmd_rxq=queue_nums,
-            pmd_txq=queue_nums,
+            pmd_rxq=compute_info[u"rxq_count_int"],
+            pmd_txq=compute_info[u"rxq_count_int"],
             pmd_nb_cores=nb_cores,
             pmd_disable_link_check=False,
             pmd_auto_start=True,
@@ -143,15 +150,32 @@ class TestpmdTest:
         exec_cmd_no_error(node, command, timeout=1800, message=message)
 
     @staticmethod
-    def check_testpmd(node):
-        """Execute the testpmd check on the DUT node.
+    def kill_dpdk(node):
+        """Kill any dpdk app in the node.
 
         :param node: DUT node.
         :type node: dict
-        :raises RuntimeError: If the script "check_testpmd.sh" fails.
+        :raises RuntimeError: If the script "kill_dpdk.sh" fails.
         """
-        if node[u"type"] == NodeType.DUT:
-            command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
-                      f"/entry/check_testpmd.sh"
-            message = "Testpmd not started properly"
-            exec_cmd_no_error(node, command, timeout=1800, message=message)
+        command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
+            f"/entry/kill_dpdk.sh"
+        message = f"Failed to kill dpdk at node {node['host']}"
+        exec_cmd_no_error(node, command, message=message)
+
+    @staticmethod
+    def is_testpmd_ready(node):
+        """Execute the testpmd check on the DUT node.
+
+        See description in dpdk_testpmd_check bach function for more details.
+
+        :param node: DUT node.
+        :type node: dict
+        :returns: False if testpmd is not ready for traffic yet.
+        :rtype: bool
+        """
+        if node[u"type"] != NodeType.DUT:
+            return True
+        command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
+                  f"/entry/check_testpmd.sh"
+        rc, _, _ = exec_cmd(node, command)
+        return rc == 0
