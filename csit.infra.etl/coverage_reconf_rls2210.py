@@ -143,7 +143,8 @@ paths = wr.s3.list_objects(
 
 filtered_paths = [path for path in paths if "report-coverage-2210" in path]
 
-out_sdf = process_json_to_dataframe("device", filtered_paths)
+out_sdf = process_json_to_dataframe("reconf", filtered_paths)
+out_sdf.show(truncate=False)
 out_sdf.printSchema()
 out_sdf = out_sdf \
     .withColumn("year", lit(datetime.now().year)) \
