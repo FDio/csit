@@ -8,7 +8,7 @@ Overview
 
 Multiple Loss Ratio search (MLRsearch) tests use an optimized search algorithm
 implemented in FD.io CSIT project. MLRsearch discovers any number of
-loss ratio loads in a single search.
+conditional throughputs in a single search.
 
 Two loss ratio goals are of interest in FD.io CSIT, leading to Non-Drop Rate
 (NDR, loss ratio goal is exact zero) and Partial Drop Rate
@@ -44,32 +44,35 @@ MLRsearch is also available as a `PyPI (Python Package Index) library
 Algorithm highlights
 ~~~~~~~~~~~~~~~~~~~~
 
+Shorter trial durations are used to approximate the result,
+so time is saved due to fewer trials at the final duration.
 MRR and receive rate at MRR load are used as initial guesses for the search.
-
-All previously measured trials (except the very first one which can act
-as a warm-up) are taken into consideration, unless superseded
-by a trial at the same load but higher duration.
-
-For every loss ratio goal, tightest upper and lower bound
-(from results of large enough trial duration) form an interval.
-Exit condition is given by that interval reaching low enough relative width.
-Small enough width is achieved by bisecting the current interval.
-The bisection can be uneven, to save measurements based on information theory.
 
 Switching to higher trial duration generally requires a re-measure
 at a load from previous trial duration.
+
+All previously measured trials (except the very first one which can act
+as a warm-up) are taken into consideration (unless superseded
+by re-measuring trial).
+
 When the re-measurement does not confirm previous bound classification
 (e.g. tightest lower bound at shorter trial duration becomes
 a newest tightest upper bound upon re-measurement),
 external search is used to find close enough bound of the lost type.
 External search is a generalization of the first stage of `exponential search`_.
 
-Shorter trial durations use double width goal,
-because one bisection is always safe before risking external search.
+For every loss ratio goal, tightest upper and lower bound
+(from results of large enough trial duration) form an interval.
+Exit condition is given by that interval reaching low enough relative width.
+Small enough width is achieved by bisecting the current interval
+(once both upper and lower bound exists at this trial duration).
+The bisection can be uneven, to save measurements based on information theory.
 
 Within an iteration for a specific trial duration, smaller loss ratios (NDR)
 are narrowed down first before search continues with higher loss ratios (PDR).
 
+Shorter trial durations use double relative width goal,
+because one bisection is always safe before risking external search.
 Other heuristics are there, aimed to prevent unneccessarily narrow intervals,
 and to handle corner cases around min and max load.
 
@@ -81,6 +84,11 @@ CSIT does not have any explicit wait times before and after trial traffic.
 Small differences between intended and offered load are tolerated,
 mainly due to various time overheads preventing precise measurement
 of the traffic duration (and TRex can sometimes suffer from duration stretching).
+Larger differences manifest as "unsent packets" as the implementation
+forces the traffic explicitly after the specified duration.
+Unsent packets are treated the same way as packets lost,
+so the (conditional) throughput can be limited not only by DUT perfrmance,
+but also by TG quality.
 
 The final trial duration is only 30s (10s for reconf tests).
 
