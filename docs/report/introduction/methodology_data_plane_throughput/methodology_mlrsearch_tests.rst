@@ -31,12 +31,10 @@ Search Implementation
 ~~~~~~~~~~~~~~~~~~~~~
 
 Detailed description of the MLRsearch algorithm is included in the IETF
-draft `draft-ietf-bmwg-mlrsearch-02
-<https://datatracker.ietf.org/doc/html/draft-ietf-bmwg-mlrsearch-02>`_
+draft `draft-ietf-bmwg-mlrsearch-03
+<https://datatracker.ietf.org/doc/html/draft-ietf-bmwg-mlrsearch-03>`_
 that is in the process of being standardized in the IETF Benchmarking
 Methodology Working Group (BMWG).
-(Newer version is published in IETF, describing improvements not yet used
-in CSIT production.)
 
 MLRsearch is also available as a `PyPI (Python Package Index) library
 <https://pypi.org/project/MLRsearch/>`_.
@@ -67,11 +65,22 @@ Exit condition is given by that interval reaching low enough relative width.
 Small enough width is achieved by bisecting the current interval
 (once both upper and lower bound exists at this trial duration).
 The bisection can be uneven, to save measurements based on information theory.
+The forwarding rate at the lower end of the final interval
+is returned as the (conditional) throughput.
+The corresponding intended load is also returned.
 
-Within an iteration for a specific trial duration, smaller loss ratios (NDR)
-are narrowed down first before search continues with higher loss ratios (PDR).
+Smaller loss ratios are found first (NDR with final trial duration)
+before search for higher loss ratios resumes (shorter trial durations
+for PDR).
 
-Shorter trial durations use double relative width goal,
+Integer units are used internally, even though inputs are floating point numbers.
+(This is required as other rounding schemes do not work across multiple
+trial durations.)
+The integer unit does not correspond to a load in packets per second,
+but to a logarithm of that load (so exit condition is absolute difference
+in integer units).
+
+Shorter trial durations use double (in integer units) width goal,
 because one bisection is always safe before risking external search.
 Other heuristics are there, aimed to prevent unneccessarily narrow intervals,
 and to handle corner cases around min and max load.
