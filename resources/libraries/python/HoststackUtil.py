@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,9 +17,12 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.model.ExportResult import (
+    export_hoststack_results
+)
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 
 class HoststackUtil():
     """Utilities for Host Stack tests."""
@@ -84,7 +87,6 @@ class HoststackUtil():
         ip_address = f" {iperf3_attributes[u'ip_address']}" if u"ip_address" \
                      in iperf3_attributes else u""
         iperf3_cmd[u"name"] = u"iperf3"
-        # TODO: Use OptionString library.
         iperf3_cmd[u"args"] = f"--{iperf3_attributes[u'role']}{ip_address} " \
                               f"--interval 0{json_results} " \
                               f"--version{iperf3_attributes[u'ip_version']}"
@@ -289,7 +291,6 @@ class HoststackUtil():
         cmd = f"sh -c 'strace -qqe trace=none -p {program_pid}'"
         exec_cmd(node, cmd, sudo=True)
         # Wait a bit for stdout/stderr to be flushed to log files
-        # TODO: see if sub-second sleep works e.g. sleep(0.1)
         sleep(1)
 
     @staticmethod
@@ -346,7 +347,6 @@ class HoststackUtil():
                 f"bits/sec, pkt-drop-rate {nsim_attr[u'packets_per_drop']} " \
                 f"pkts/drop\n"
 
-        # TODO: Incorporate show error stats into results analysis
         test_results += \
             f"\n{role} VPP 'show errors' on host {node[u'host']}:\n" \
             f"{PapiSocketExecutor.run_cli_cmd(node, u'show error')}\n"
@@ -364,11 +364,13 @@ class HoststackUtil():
             if u"JSON stats" in program_stdout and \
                     u'"has_failed": "0"' in program_stdout:
                 json_start = program_stdout.find(u"{")
-                #TODO: Fix parsing once vpp_echo produces valid
-                # JSON output. Truncate for now.
                 json_end = program_stdout.find(u',\n  "closing"')
                 json_results = f"{program_stdout[json_start:json_end]}\n}}"
                 program_json = json.loads(json_results)
+                export_hoststack_results(
+                    bandwidth=program_json["rx_bits_per_second"],
+                    duration=program_json["time"]
+                )
             else:
                 test_results += u"Invalid test data output!\n" + program_stdout
                 return (True, test_results)
@@ -376,6 +378,11 @@ class HoststackUtil():
             test_results += program_stdout
             iperf3_json = json.loads(program_stdout)
             program_json = iperf3_json[u"intervals"][0][u"sum"]
+            export_hoststack_results(
+                bandwidth=program_json["bits_per_second"],
+                duration=program_json["seconds"],
+                retransmits=program_json["retransmits"]
+            )
         else:
             test_results += u"Unknown HostStack Test Program!\n" + \
                             program_stdout
