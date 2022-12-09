@@ -159,8 +159,43 @@
                     }
                   },
                   "required": [
+                    "type",
                     "loss",
                     "aggregate_rate"
+                  ]
+                },
+                {
+                  "description": "Result type HOSTSTACK case.",
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "const": "hoststack"
+                    },
+                    "bandwidth": {
+                      "description": "Goodput measured in bits per second.",
+                      "$ref": "#/$defs/types/bandwidth"
+                    },
+                    "completed_requests": {
+                      "description": "How many requests were completed.",
+                      "$ref": "#/$defs/types/count_requests"
+                    },
+                    "failed_requests": {
+                      "description": "How many requests failed.",
+                      "$ref": "#/$defs/types/count_requests"
+                    },
+                    "latency": {
+                      "description": "Value and unit of latency.",
+                      "$ref": "#/$defs/types/value_with_unit"
+                    },
+                    "rate": {
+                      "description": "RPS or CPS rate, with corresponding unit, as reported by TG.",
+                      "$ref": "#/$defs/types/rate_without_bandwidth"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "bandwidth",
+                    "rate"
                   ]
                 }
               ]
@@ -306,11 +341,12 @@
         "maxItems": 0
       },
       "rate_unit": {
-        "description": "Packets per second (pps) or connections per second (cps).",
+        "description": "Packets per second (pps), connections per second (cps), requests per second (rps).",
         "type": "string",
         "enum": [
           "pps",
-          "cps"
+          "cps",
+          "rps"
         ]
       },
       "bandwidth_unit": {
@@ -334,6 +370,27 @@
                 "description": "Unit suitable for displaying packet counts.",
                 "enum": [
                   "packets"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "count_requests": {
+        "description": "Type, for counting requests.",
+        "allOf": [
+          {
+            "$ref": "#/$defs/types/value_with_unit"
+          },
+          {
+            "properties": {
+              "value": {
+                "description": "A number of requests of interest."
+              },
+              "unit": {
+                "description": "Unit suitable for displaying request counts.",
+                "enum": [
+                  "requests"
                 ]
               }
             }
