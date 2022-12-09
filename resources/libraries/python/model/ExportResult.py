@@ -246,6 +246,53 @@ def export_reconf_result(packet_rate, packet_loss, bandwidth):
     )
 
 
+def export_hoststack_results(
+    bandwidth, rate=None, rate_unit=None, latency=None, failed_requests=None,
+    completed_requests=None, retransmits=None, duration=None
+):
+    """Add test result coming from hoststack tests.
+
+    Test type is set to hoststack.
+
+    :param bandwidth: Measured transfer rate using bps as a unit.
+    :param rate: Resulting rate measured by hoststack test. [Optional]
+    :param rate_unit: CPS or RPS. [Optional]
+    :param latency: Measure latency. [Optional]
+    :param failed_requests: Number of failed requests. [Optional]
+    :param completed_requests: Number of completed requests. [Optional]
+    :type bandwidth: float
+    :type rate: float
+    :type rate_unit: str
+    :type latency: float
+    :failed_requests: int
+    :duration: float
+    """
+    result_node = get_export_data()[u"result"]
+    result_node["type"] = "hoststack"
+
+    if rate is not None:
+        result_node["rate"] = \
+            dict(unit=rate_unit, value=rate)
+    if bandwidth is not None:
+        result_node["bandwidth"] = \
+            dict(unit="bps", value=bandwidth)
+    if latency is not None:
+        result_node["latency"] = \
+            dict(unit="ms", value=latency)
+    if failed_requests is not None:
+        result_node["failed_requests"] = \
+            dict(unit="requests", value=failed_requests)
+    if completed_requests is not None:
+        result_node["completed_requests"] = \
+            dict(unit="requests", value=completed_requests)
+    if retransmits is not None:
+        result_node["retransmits"] = \
+            dict(unit="packets", value=retransmits)
+    if duration is not None:
+        result_node["duration"] = \
+            dict(unit="s", value=duration)
+
+
 def append_telemetry(telemetry_item):
     """Append telemetry entry to proper place so it is dumped into json.
 
@@ -253,4 +300,4 @@ def append_telemetry(telemetry_item):
     :type telemetry_item: str
     """
     data = get_export_data()
-    data[u"telemetry"].append(telemetry_item)
+    data["telemetry"].append(telemetry_item)
