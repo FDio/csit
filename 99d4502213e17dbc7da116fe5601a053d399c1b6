@@ -33,6 +33,98 @@
       "message": "csit-3n-icx-perftest nic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4ipsec40tnlsw-1atnl-ip4base-int-aes256gcm",
       "revId": "99d4502213e17dbc7da116fe5601a053d399c1b6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f7a76f3_3a1d4131",
+        "filename": "docs/model/current/schema/test_case.info.schema.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-12-09T06:08:57Z",
+      "side": 1,
+      "message": "This is an aggregate (bidirectional) rate. Note that packets which the Traffic Generator did not send, are also counted as lost packets.",
+      "range": {
+        "startLine": 153,
+        "startChar": 94,
+        "endLine": 153,
+        "endChar": 220
+      },
+      "revId": "99d4502213e17dbc7da116fe5601a053d399c1b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e7e969d_653503c2",
+        "filename": "docs/model/current/schema/test_case.info.schema.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-12-09T06:08:57Z",
+      "side": 1,
+      "message": "quantity?",
+      "range": {
+        "startLine": 508,
+        "startChar": 94,
+        "endLine": 508,
+        "endChar": 100
+      },
+      "revId": "99d4502213e17dbc7da116fe5601a053d399c1b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea8fa85_0095ceb6",
+        "filename": "docs/model/current/schema/test_case.info.schema.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-12-09T06:08:57Z",
+      "side": 1,
+      "message": "This is an aggregate (bidirectional) rate. Note that packets which the Traffic Generator did not send, are also counted as lost packets.",
+      "range": {
+        "startLine": 225,
+        "startChar": 39,
+        "endLine": 227,
+        "endChar": 70
+      },
+      "revId": "99d4502213e17dbc7da116fe5601a053d399c1b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82b3b06e_2ed7c928",
+        "filename": "docs/model/current/schema/test_case.info.schema.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-12-09T06:08:57Z",
+      "side": 1,
+      "message": "quantity?",
+      "range": {
+        "startLine": 570,
+        "startChar": 24,
+        "endLine": 570,
+        "endChar": 30
+      },
+      "revId": "99d4502213e17dbc7da116fe5601a053d399c1b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
