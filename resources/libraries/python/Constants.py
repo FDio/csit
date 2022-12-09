@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -120,7 +120,7 @@ class Constants:
     """Constants used in CSIT."""
 
     # Version for CSIT data model. See docs/model/.
-    MODEL_VERSION = u"1.2.0"
+    MODEL_VERSION = u"1.3.0"
 
     # Global off-switch in case JSON export is large or slow.
     EXPORT_JSON = get_optimistic_bool_from_env(u"EXPORT_JSON")
