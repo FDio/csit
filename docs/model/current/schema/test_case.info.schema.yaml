@@ -234,8 +234,48 @@ allOf:
                                 packet rate.
                             $ref: "#/$defs/types/packet_with_time"
                     required:
+                    -   type
                     -   loss
                     -   aggregate_rate
+                -   description: >-
+                        Result type HOSTSTACK case.
+                    additionalProperties: false
+                    properties:
+                        type:
+                            const: hoststack
+                        bandwidth:
+                            description: >-
+                                Goodput measured in bits per second.
+                            $ref: "#/$defs/types/bandwidth"
+                        completed_requests:
+                            description: >-
+                                Number of completed requests.
+                            $ref: "#/$defs/types/count_requests"
+                        failed_requests:
+                            description: >-
+                                Number of failed requests.
+                            $ref: "#/$defs/types/count_requests"
+                        retransmits:
+                            description: >-
+                                Number of retransmits.
+                            $ref: "#/$defs/types/count_packets"
+                        latency:
+                            description: >-
+                                Value and unit of latency.
+                            $ref: "#/$defs/types/value_with_unit"
+                        duration:
+                            description: >-
+                                The relative time difference (in seconds)
+                                between program start and end.
+                            $ref: "#/$defs/types/time_quantity"
+                        rate:
+                            description: >-
+                                RPS or CPS rate, with corresponding unit, as
+                                reported by TG.
+                            $ref: "#/$defs/types/rate_without_bandwidth"
+                    required:
+                    -   type
+                    -   bandwidth
         start_time:
             description: >-
                 UTC date and time in RFC 3339 format, specifying calendar time
@@ -388,11 +428,14 @@ $defs:
             maxItems: 0
         rate_unit:
             description: >-
-                Packets per second (pps) or connections per second (cps).
+                Packets per second (pps),
+                connections per second (cps),
+                requests per second (rps).
             type: string
             enum:
             -   pps
             -   cps
+            -   rps
         bandwidth_unit:
             description: >-
                 Unit of measurement for bandwidth values.
@@ -414,6 +457,20 @@ $defs:
                             Unit suitable for displaying packet counts.
                         enum:
                         -   packets
+        count_requests:
+            description: >-
+                Type, for counting requests.
+            allOf:
+            -   $ref: "#/$defs/types/value_with_unit"
+            -   properties:
+                    value:
+                        description: >-
+                            A number of requests of interest.
+                    unit:
+                        description: >-
+                            Unit suitable for displaying request counts.
+                        enum:
+                        -   requests
         time_quantity:
             description: >-
                 Reusable type, for various time quantites.
@@ -477,8 +534,8 @@ $defs:
             -   properties:
                     value:
                         description: >-
-                            Bandwidth value computed
-                            from the corresponding rate.
+                            Bandwidth value computed from the corresponding
+                            rate.
                     unit:
                         $ref: "#/$defs/types/bandwidth_unit"
         rate_with_bandwidth:
