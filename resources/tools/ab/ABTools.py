@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,11 +13,13 @@
 
 """ab implementation into CSIT framework."""
 
-from robot.api import logger
-from resources.libraries.python.topology import NodeType
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.model.ExportResult import (
+    export_hoststack_results
+)
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.topology import NodeType
 
 
 class ABTools:
@@ -153,66 +155,31 @@ class ABTools:
             port=port,
             mode=rps_cps,
         )
-        stdout, _ = exec_cmd_no_error(tg_node, cmd, timeout=180, sudo=True,
-                                      message=u"ab runtime error!")
-        log_msg = ABTools._parse_ab_output(stdout, rps_cps, tls_tcp)
+        stdout, _ = exec_cmd_no_error(
+            tg_node, cmd, timeout=180, sudo=True, message=u"ab runtime error!"
+        )
 
-        logger.info(log_msg)
-
-        return log_msg
-
-    @staticmethod
-    def _parse_ab_output(msg, rps_cps, tls_tcp):
-        """Parse the ab stdout with the results.
-
-        :param msg: Ab Stdout.
-        :param rps_cps: RPS or CPS.
-        :param tls_tcp: TLS or TCP.
-        :type msg: str
-        :type rps_cps: str
-        :type tls_tcp: str
-        :return: Message with measured data.
-        :rtype: str
-        """
-
-        msg_lst = msg.splitlines(keepends=False)
-
-        total_cps = u""
-        latency = u""
-        processing = u""
-        complete_req = u""
-        failed_req = u""
-        total_bytes = u""
-        rate = u""
-
-        if tls_tcp == u"tls":
-            log_msg = u"\nMeasured HTTPS values:\n"
-        else:
-            log_msg = u"\nMeasured HTTP values:\n"
-
-        for line in msg_lst:
+        rate_unit = rps_cps
+        rate = None
+        bandwidth = None
+        latency = None
+        completed_requests = None
+        failed_requests = None
+        for line in stdout.splitlines():
             if f"Connection {rps_cps} rate:" in line:
-                # rps (cps)
-                total_cps = line + u"\n"
+                rate = float(line.split(u" ")[3])
             elif u"Transfer Rate:" in line:
-                # Rate
-                rate = line + u"\n"
+                bandwidth = float(line.split(u" ")[2]) * 8000
             elif u"Latency:" in line:
-                # Latency
-                latency = line + u"\n"
-            elif u"Total data transferred" in line:
-                total_bytes = line + u"\n"
-            elif u"Completed requests" in line:
-                complete_req = line + u"\n"
+                latency = float(line.split(u" ")[1])
+            elif u"Completed requests:" in line:
+                completed_requests = int(line.split(u" ")[2])
             elif u"Failed requests" in line:
-                failed_req = line + u"\n"
+                failed_requests = int(line.split(u" ")[2])
 
-        log_msg += rate
-        log_msg += latency
-        log_msg += processing
-        log_msg += complete_req
-        log_msg += failed_req
-        log_msg += total_bytes
-        log_msg += total_cps
+        export_hoststack_results(
+            rate, rate_unit, bandwidth, latency, failed_requests,
+            completed_requests
+        )
 
-        return log_msg
+        return stdout
