@@ -174,9 +174,6 @@ class ABTools:
         :return: Message with measured data.
         :rtype: str
         """
-
-        msg_lst = msg.splitlines(keepends=False)
-
         total_cps = u""
         latency = u""
         processing = u""
@@ -190,7 +187,7 @@ class ABTools:
         else:
             log_msg = u"\nMeasured HTTP values:\n"
 
-        for line in msg_lst:
+        for line in msg.splitlines(keepends=False):
             if f"Connection {rps_cps} rate:" in line:
                 # rps (cps)
                 total_cps = line + u"\n"
