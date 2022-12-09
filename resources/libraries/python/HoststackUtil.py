@@ -17,9 +17,12 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.model.ExportResult import (
+    export_hoststack_results
+)
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 
 class HoststackUtil():
     """Utilities for Host Stack tests."""
@@ -364,8 +367,6 @@ class HoststackUtil():
             if u"JSON stats" in program_stdout and \
                     u'"has_failed": "0"' in program_stdout:
                 json_start = program_stdout.find(u"{")
-                #TODO: Fix parsing once vpp_echo produces valid
-                # JSON output. Truncate for now.
                 json_end = program_stdout.find(u',\n  "closing"')
                 json_results = f"{program_stdout[json_start:json_end]}\n}}"
                 program_json = json.loads(json_results)
@@ -376,6 +377,11 @@ class HoststackUtil():
             test_results += program_stdout
             iperf3_json = json.loads(program_stdout)
             program_json = iperf3_json[u"intervals"][0][u"sum"]
+            export_hoststack_results(
+                bandwidth=program_json["bits_per_second"],
+                duration=program_json["seconds"],
+                retransmits=program_json["retransmits"]
+            )
         else:
             test_results += u"Unknown HostStack Test Program!\n" + \
                             program_stdout

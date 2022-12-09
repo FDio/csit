@@ -136,7 +136,7 @@ def main():
     # Output results.
     print(f"Transfer Rate: {round(info_list[6], 2)} [Kbytes/sec]")
     print(f"Latency: {round(info_list[4] / 8, 2)} ms")
-    print(f"Connection {mode} rate:{round(info_list[3], 2)} per sec")
+    print(f"Connection {mode} rate: {round(info_list[3], 2)} per sec")
     print(f"Total data transferred: {round(info_list[2])} bytes")
     print(f"Completed requests: {round(info_list[0])} ")
     print(f"Failed requests: {round(info_list[1])} ")
