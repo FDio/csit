@@ -246,6 +246,38 @@ def export_reconf_result(packet_rate, packet_loss, bandwidth):
     )
 
 
+def export_hoststack_results(results):
+    """Add test result coming from hoststack tests.
+
+    Test type is set to hoststack.
+
+    :param orig_result: Resulting values as parsed by ABTools.
+    :type orig_result: Mapping[str, Union[str, float, int]]
+    """
+    result_node = get_export_data()[u"result"]
+    result_node.update(dict(latency=dict(), transfer_rate=dict(), rate=dict()))
+    for key, value in results.items():
+        if key == u"latency_unit":
+            result_node[u"latency"][u"unit"] = value
+        elif key == u"latency_value":
+            result_node[u"latency"][u"value"] = value
+        elif key == u"transfer_unit":
+            result_node[u"transfer_rate"][u"unit"] = value
+            # To be converted when creating .info.
+        elif key == u"transfer_rate":
+            result_node[u"transfer_rate"][u"value"] = value
+        elif key == u"quantity":
+            result_node[u"rate"][u"unit"] = value
+            result_node[u"type"] = f"ab_{value}"
+        elif key == u"rate":
+            result_node[u"rate"][u"value"] = value
+        elif key == u"protocol":
+            result_node[key] = value
+        else:
+            # The rest are values, units will be added to .info.
+            result_node[key] = dict(value=value)
+
+
 def append_telemetry(telemetry_item):
     """Append telemetry entry to proper place so it is dumped into json.
 
