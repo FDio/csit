@@ -373,7 +373,7 @@ class Constants:
         u"Intel-E822CQ": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Intel-E810CQ": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Amazon-Nitro-50G": [u"vfio-pci"],
-        u"Mellanox-CX556A": [u"rdma-core", u"af_xdp"],
+        u"Mellanox-CX556A": [u"rdma-core", u"vfio-pci", u"af_xdp"],
     }
 
     # Each driver needs different prugin to work.
