@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03faabfe_91b50344",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-12T13:01:21Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest ndrpdrANDnic_mellanox-cx556aAND1cAND64bANDeth-l2patch",
+      "revId": "abb4fb0f48374d82a0d70e1c79d7690d8e76107f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
