@@ -26,20 +26,20 @@ class TelemetryUtil:
 
     @staticmethod
     def _run_telemetry(
-            node, profile, sid=None, spath=None, oload="", export=False):
+            node, profile, sid=None, spath=None, rate="", export=False):
         """Get telemetry read on node.
 
         :param node: Node in the topology.
         :param profile: Telemetry configuration profile.
         :param sid: Socket ID used to describe recipient side of socket.
         :param spath: Socket path.
-        :param oload: Telemetry offered load, unique within the test (optional).
+        :param rate: Telemetry load, unique within the test (optional).
         :param export: If false, do not attempt JSON export (default false).
         :type node: dict
         :type profile: str
         :type sid: str
         :type spath: str
-        :type oload: str
+        :type rate: str
         :type export: bool
         """
         config = ""
@@ -68,23 +68,23 @@ class TelemetryUtil:
         prefix += f"hostname=\"{hostname}\","
         if sid:
             prefix += f"hook=\"{sid}\","
-        prefix += f"oload=\"{oload}\","
+        prefix += f"rate=\"{rate}\","
         for line in stdout.splitlines():
             if line and not line.startswith("#"):
                 append_telemetry(
                     prefix.join(line.rsplit("{", 1)).replace("\"", "'")
                 )
 
-    def run_telemetry_on_all_duts(self, nodes, profile, oload="", export=False):
+    def run_telemetry_on_all_duts(self, nodes, profile, rate="", export=False):
         """Get telemetry read on all DUTs.
 
         :param nodes: Nodes in the topology.
         :param profile: Telemetry configuration profile.
-        :param oload: Telemetry offered load, unique within the test (optional).
+        :param rate: Telemetry load, unique within the test (optional).
         :param export: If false, do not attempt JSON export (default false).
         :type nodes: dict
         :type profile: str
-        :type oload: str
+        :type rate: str
         :type export: bool
         """
         for node in nodes.values():
@@ -93,7 +93,7 @@ class TelemetryUtil:
                     for sid, spath in node["sockets"]["CLI"].items():
                         self._run_telemetry(
                             node, profile=profile, sid=sid, spath=spath,
-                            oload=oload, export=export
+                            rate=rate, export=export
                         )
                 except IndexError:
                     pass
