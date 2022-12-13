@@ -68,10 +68,9 @@ class TestpmdTest:
             f"{dp_count_int}T{dp_count_int}C"
         )
         duts = [node for node in nodes if u"DUT" in node]
-        for restart in range(10):
-            for dut in duts:
+        for dut in duts:
+            for restart in range(10):
                 TestpmdTest.kill_dpdk(nodes[dut])
-            for dut in duts:
                 TestpmdTest.start_testpmd(
                     nodes=nodes,
                     dut=dut,
@@ -79,17 +78,13 @@ class TestpmdTest:
                     nb_cores=dp_count_int,
                     jumbo=jumbo,
                 )
-            ready = True
-            for dut in duts:
-                if not TestpmdTest.is_testpmd_ready(nodes[dut]):
-                    ready = False
+                if TestpmdTest.is_testpmd_ready(nodes[dut]):
+                    exec_cmd(nodes[dut], u"cat screenlog.0")
                     break
-            for dut in duts:
+            else:
                 exec_cmd(nodes[dut], u"cat screenlog.0")
-            if ready:
-                return
-            # Restart all testpmds.
-        raise RuntimeError(f"Testpmd failed to start properly.")
+                raise RuntimeError(f"Testpmd on {dut} not started properly.")
+
 
     @staticmethod
     def start_testpmd(nodes, dut, topology_info, nb_cores, jumbo):
