@@ -367,16 +367,14 @@
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock1}
 | | ... | ${1} | dut1-memif-1-if1 | dut1-memif-1-if2 | ${rxq_count_int}
 | | ... | ${rxq_count_int}
-| | VPP Set interface MTU | ${dut1} | ${dut1-memif-1-if1}
-| | VPP Set interface MTU | ${dut1} | ${dut1-memif-1-if2}
+| | VPP Set interface MTU and bring up | ${dut1} | ${dut1-memif-1-if1}
+| | VPP Set interface MTU and bring up | ${dut1} | ${dut1-memif-1-if2}
 | | Run Keyword If | ${dut2_status}
 | | ... | Set up memif interfaces on DUT node | ${dut2} | ${sock2} | ${sock2}
 | | ... | ${1} | dut2-memif-1-if1 | dut2-memif-1-if2 | ${rxq_count_int}
 | | ... | ${rxq_count_int}
 | | Run Keyword If | ${dut2_status}
-| | ... | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if1}
-| | Run Keyword If | ${dut2_status}
-| | ... | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if2}
+| | ... | VPP Set interface MTU and bring up | ${dut2} | ${dut2-memif-1-if2}
 | | FOR | ${dut} | IN | @{duts}
 | | | Show Memif | ${nodes['${dut}']}
 | | END
