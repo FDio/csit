@@ -491,8 +491,7 @@
 | | Set interfaces in path up
 | | ${dut1_eth_bond_if1}= | VPP Create Bond Interface
 | | ... | ${dut1} | ${bond_mode} | ${lb_mode}
-| | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
+| | VPP Set interface MTU and bring up | ${dut1} | ${dut1_eth_bond_if1}
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | ${_even}= | Evaluate | ${pf} % 2
 | | | Run Keyword If | not ${even}
@@ -501,8 +500,7 @@
 | | END
 | | ${dut2_eth_bond_if1}= | VPP Create Bond Interface
 | | ... | ${dut2} | ${bond_mode} | ${lb_mode}
-| | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
+| | VPP Set interface MTU and bring up | ${dut2} | ${dut2_eth_bond_if1}
 | | FOR | ${pf} | IN RANGE | 1 | ${nic_pfs} + 1
 | | | ${_even}= | Evaluate | ${pf} % 2
 | | | Run Keyword If | ${even}
