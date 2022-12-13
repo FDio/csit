@@ -16,6 +16,23 @@
       "message": "csit-3n-icx-perftest mrrANDnic_intel-xxv710ANDdrv_af_xdpAND1cAND64bANDeth-l2patch mrrANDnic_intel-xxv710ANDdrv_avfAND1cAND64bANDeth-l2xcbase-eth-2memif-1dcr mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bAND2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND78bANDethip6srhip6-ip6base-srv6proxy-dyn",
       "revId": "ea0899813417098a7dbaf899178eba6a3958b75c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee1803e2_11b32656",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-13T13:59:29Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2patch mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase-eth-2memif-1dcr mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bAND2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND78bANDethip6srhip6-ip6base-srv6proxy-stat",
+      "revId": "ea0899813417098a7dbaf899178eba6a3958b75c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
