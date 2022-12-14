@@ -356,8 +356,11 @@ class InterfaceUtil:
             mtu=int(mtu)
         )
         InterfaceUtil.set_interface_state(node, interface, u"down")
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_reply(err_msg)
+        #try:
+        #    with PapiSocketExecutor(node) as papi_exec:
+        #        papi_exec.add(cmd, **args).get_reply(err_msg)
+        #except AssertionError:
+        #    logger.debug("Ignoring MTU set error.")
         InterfaceUtil.set_interface_state(node, interface, u"up")
 
     @staticmethod
