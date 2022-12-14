@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df1af17c_671c23f3",
+        "filename": "docs/model/current/schema/test_case.info.schema.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2022-12-14T14:26:50Z",
+      "side": 1,
+      "message": "\"Number of completed requests.\"\nCheck also on other places.",
+      "range": {
+        "startLine": 179,
+        "startChar": 38,
+        "endLine": 179,
+        "endChar": 71
+      },
+      "revId": "4478b64c5699a9a34b46db765a134463b4b4f8a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
