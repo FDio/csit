@@ -96,7 +96,7 @@
 | | ... | Variable Should Exist | @{${dut}_${int}${pf}_1}
 | | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
 | | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
-| | | VPP Set Interface MTU and bring up | ${nodes['${dut}']} | ${if}
+| | | Set Interface State | ${nodes['${dut}']} | ${if} | up
 | | END
 
 | Pre-initialize layer driver
