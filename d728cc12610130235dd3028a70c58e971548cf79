@@ -33,6 +33,23 @@
       "message": "One test did see some traffic, and the start command is identical, so this should not break anything (not broken already).",
       "revId": "d728cc12610130235dd3028a70c58e971548cf79",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4752dc15_b368771c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-14T13:11:00Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "d728cc12610130235dd3028a70c58e971548cf79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
