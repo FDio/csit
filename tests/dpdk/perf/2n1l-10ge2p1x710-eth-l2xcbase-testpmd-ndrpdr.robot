@@ -72,14 +72,14 @@
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | - **[Ver]** Measure NDR and PDR values using MLRsearch algorithm.
 | |
-| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
+| | [Arguments] | ${frame_size} | ${phy_cores}
 | |
 | | Set Test Variable | \${frame_size}
 | |
 | | Given Set Max Rate And Jumbo
 | | And Pre-initialize layer driver | ${nic_driver}
 | | When Start testpmd on all DUTs | ${nodes} | ${topology_info}
-| | ... | ${phy_cores} | ${rxq} | ${jumbo}
+| | ... | ${phy_cores} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
