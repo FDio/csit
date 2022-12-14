@@ -67,6 +67,29 @@
       "message": "remove the rxq changes from this commit entirely, you got it wrong, do not \"simplify\", as they are doing two different things.",
       "revId": "d728cc12610130235dd3028a70c58e971548cf79",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66d3f1ae_da8b0ba1",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-12-14T15:02:36Z",
+      "side": 1,
+      "message": "keep public",
+      "range": {
+        "startLine": 101,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "d728cc12610130235dd3028a70c58e971548cf79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
