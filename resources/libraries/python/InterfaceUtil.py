@@ -332,8 +332,10 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_set_interface_mtu(node, interface, mtu=9200):
-        """Set Ethernet MTU on interface.
+    def vpp_set_interface_mtu_and_bring_up(node, interface, mtu=9200):
+        """Set Ethernet MTU on interface and set interface state to "up".
+
+        The interface is brought down before MTU can be changed.
 
         :param node: VPP node.
         :param interface: Interface to setup MTU. Default: 9200.
@@ -353,11 +355,13 @@ class InterfaceUtil:
             sw_if_index=sw_if_index,
             mtu=int(mtu)
         )
+        InterfaceUtil.set_interface_state(node, interface, u"down")
         try:
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         except AssertionError as err:
-            logger.debug(f"Setting MTU failed.\n{err}")
+            logger.warn(f"Setting MTU failed.\n{err}")
+        InterfaceUtil.set_interface_state(node, interface, u"up")
 
     @staticmethod
     def vpp_node_interfaces_ready_wait(node, retries=15):
