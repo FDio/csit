@@ -355,7 +355,7 @@ class InterfaceUtil:
             sw_if_index=sw_if_index,
             mtu=int(mtu)
         )
-        InterfaceUtil.set_interface_state(node, interface, u"down")
+        #InterfaceUtil.set_interface_state(node, interface, u"down")
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
         InterfaceUtil.set_interface_state(node, interface, u"up")
