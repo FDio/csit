@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f480364f_40d004c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-15T12:49:02Z",
+      "side": 1,
+      "message": "Alt will take a while (looking at dialy run failing), so icx in the meantime.\n\ncsit-dpdk-3n-icx-perftest mrrANDnic_intel-xxv710ANDeth-l2xcbase-testpmdNOT9000b",
+      "revId": "eda20187b325c9d99ccc8284e672b58ea36e5564",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
