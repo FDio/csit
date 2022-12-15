@@ -471,14 +471,6 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="icx"
             ;;
-        *"2n-dnv"*)
-            NODENESS="2n"
-            FLAVOR="dnv"
-            ;;
-        *"3n-dnv"*)
-            NODENESS="3n"
-            FLAVOR="dnv"
-            ;;
         *"3n-snr"*)
             NODENESS="3n"
             FLAVOR="snr"
@@ -858,9 +850,6 @@ function select_tags () {
 
     # Select default NIC tag.
     case "${TEST_CODE}" in
-        *"3n-dnv"* | *"2n-dnv"*)
-            default_nic="nic_intel-x553"
-            ;;
         *"3n-snr"*)
             default_nic="nic_intel-e822cq"
             ;;
@@ -890,7 +879,6 @@ function select_tags () {
     awk_nics_sub_cmd+='gsub("x710","10ge2p1x710");'
     awk_nics_sub_cmd+='gsub("xl710","40ge2p1xl710");'
     awk_nics_sub_cmd+='gsub("x520-da2","10ge2p1x520");'
-    awk_nics_sub_cmd+='gsub("x553","10ge2p1x553");'
     awk_nics_sub_cmd+='gsub("cx556a","100ge2p1cx556a");'
     awk_nics_sub_cmd+='gsub("e810cq","100ge2p1e810cq");'
     awk_nics_sub_cmd+='gsub("vic1227","10ge2p1vic1227");'
@@ -994,22 +982,8 @@ function select_tags () {
         *"2n-zn2"*)
             test_tag_array+=("!ipsechw")
             ;;
-        *"2n-dnv"*)
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
-            test_tag_array+=("!drv_avf")
-            ;;
         *"2n-tx2"* | *"3n-alt"*)
             test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-dnv"*)
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
-            test_tag_array+=("!drv_avf")
             ;;
         *"3n-snr"*)
             ;;
@@ -1116,14 +1090,6 @@ function select_topology () {
         "2n_icx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
-            ;;
-        "2n_dnv")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_dnv*.yaml )
-            TOPOLOGIES_TAGS="2_node_single_link_topo"
-            ;;
-        "3n_dnv")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_dnv*.yaml )
-            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "3n_snr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr*.yaml )

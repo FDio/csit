@@ -11,7 +11,6 @@ all:
         10.30.51.86: #s86-t214-tg1 - icelake
         10.30.51.88: #s88-t215-tg1 - icelake
         10.30.51.89: #s89-t39t310-tg1 - icelake
-        10.32.8.10: #s28-t26t35-tg1 - skylake
         10.32.8.19: #s34-t27-tg1 - cascadelake
         10.32.8.21: #s36-t28-tg1 - cascadelake
         10.32.8.23: #s38-t29-tg1 - cascadelake
@@ -32,9 +31,6 @@ all:
         10.30.51.87: #s87-t215-sut1 - icelake
         10.30.51.93: #s93-t39-sut1 - snowridge
         10.30.51.94: #s94-t39-sut2 - snowridge
-        10.32.8.11: #s29-t26-sut1 - denverton
-        10.32.8.12: #s30-t35-sut1 - denverton
-        10.32.8.13: #s31-t35-sut2 - denverton
         10.32.8.18: #s33-t27-sut1 - cascadelake
         10.32.8.20: #s35-t28-sut1 - cascadelake
         10.32.8.22: #s37-t29-sut1 - cascadelake
@@ -66,6 +62,10 @@ all:
         10.30.51.38: #fdio-marvell-dev - thunderx 88xx
     decomission:
       hosts:
+        10.32.8.10: #s28-t26t35-tg1 - skylake
+        10.32.8.11: #s29-t26-sut1 - denverton
+        10.32.8.12: #s30-t35-sut1 - denverton
+        10.32.8.13: #s31-t35-sut2 - denverton
         10.30.51.44: #s3-t21-sut1 - skylake
         10.30.51.45: #s4-t21-tg1 - skylake
         10.30.51.46: #s11-t31-sut1 - skylake

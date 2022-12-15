@@ -111,10 +111,6 @@ s64-t34-tg1,up,t34,3n-alt,SYS-740GP-TNRT,C7470KK40P50249,10.30.51.74,10.30.50.74
 
 name,oper-status,testbed-id,role,model,s/n,mgmt-ip4,ipmi-ip4,rackid,rackunit
 yul1-12-lb4m,up,switch,uplink,?,?,?,?,3016.12,u47
-s31-t35-sut2/dnv3,up,t35,3n-dnv,SYS-E300-9A,CE300AG39040898,10.32.8.13,10.30.55.13,3016.12,u45
-s30-t35-sut1/dnv2,up,t35,3n-dnv,SYS-E300-9A,CE300AG39040866,10.32.8.12,10.30.55.12,3016.12,u44
-s29-t26-sut1/dnv1,up,t26,2n-dnv,SYS-E300-9A,CE300AG39040897,10.32.8.11,10.30.55.11,3016.12,u43
-s28-t26t35-tg1,up,t26t35,2n/3n-dnv,SYS-7049GP-TRT,C7470KH06A20137,10.32.8.10,10.30.55.10,3016.12,u39-u42
 s91-nomad,up,nomad-cluster1,nomad-client,R152-P30-00,GLG4P9912A0016,10.30.51.91,10.30.50.91,3016.12,u36
 s92-nomad,up,nomad-cluster1,nomad-client,R152-P30-00,GLG4P9912A0004,10.30.51.92,10.30.50.92,3016.12,u35
 s23-nomad,up,nomad-cluster1,nomad-server,SYS-1029P-WTRT,C1160LI12NM0256,10.30.51.23,10.30.51.23,3016.12,u34

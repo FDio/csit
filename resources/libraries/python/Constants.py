@@ -307,7 +307,6 @@ class Constants:
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
         u"Intel-X520-DA2": 10000000000,
-        u"Intel-X553": 10000000000,
         u"Intel-X710": 10000000000,
         u"Intel-XL710": 24500000000,
         u"Intel-XXV710": 24500000000,
@@ -322,7 +321,6 @@ class Constants:
     # Mapping from NIC name to its pps limit.
     NIC_NAME_TO_PPS_LIMIT = {
         u"Intel-X520-DA2": 14880952,
-        u"Intel-X553": 14880952,
         u"Intel-X710": 14880952,
         u"Intel-XL710": 18750000,
         u"Intel-XXV710": 18750000,
@@ -337,7 +335,6 @@ class Constants:
     # Suite file names use codes for NICs.
     NIC_NAME_TO_CODE = {
         u"Intel-X520-DA2": u"10ge2p1x520",
-        u"Intel-X553": u"10ge2p1x553",
         u"Intel-X710": u"10ge2p1x710",
         u"Intel-XL710": u"40ge2p1xl710",
         u"Intel-XXV710": u"25ge2p1xxv710",
@@ -351,7 +348,6 @@ class Constants:
     # Shortened lowercase NIC model name, useful for presentation.
     NIC_CODE_TO_SHORT_NAME = {
         u"10ge2p1x520": u"x520",
-        u"10ge2p1x553": u"x553",
         u"10ge2p1x710": u"x710",
         u"40ge2p1xl710": u"xl710",
         u"25ge2p1xxv710": u"xxv710",
@@ -365,7 +361,6 @@ class Constants:
     # Not each driver is supported by each NIC.
     NIC_NAME_TO_DRIVER = {
         u"Intel-X520-DA2": [u"vfio-pci", u"af_xdp"],
-        u"Intel-X553": [u"vfio-pci", u"af_xdp"],
         u"Intel-X710": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Intel-XL710": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Intel-XXV710": [u"vfio-pci", u"avf", u"af_xdp"],
@@ -411,7 +406,6 @@ class Constants:
     # Not each driver is supported by each NIC.
     DPDK_NIC_NAME_TO_DRIVER = {
         u"Intel-X520-DA2": [u"vfio-pci"],
-        u"Intel-X553": [u"vfio-pci"],
         u"Intel-X710": [u"vfio-pci"],
         u"Intel-XL710": [u"vfio-pci"],
         u"Intel-XXV710": [u"vfio-pci"],
@@ -447,7 +441,6 @@ class Constants:
 
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.
     NIC_NAME_TO_CRYPTO_HW = {
-        u"Intel-X553": u"HW_C3xxx",
         u"Intel-E822CQ": u"HW_C4xxx",
         u"Intel-X710": u"HW_DH895xcc",
         u"Intel-XL710": u"HW_DH895xcc",
