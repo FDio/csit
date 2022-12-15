@@ -97,7 +97,6 @@
 | | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
 | | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
 | | | Set Interface State | ${nodes['${dut}']} | ${if} | up
-| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
 | | END
 
 | Pre-initialize layer driver
@@ -336,7 +335,7 @@
 | Initialize layer vfio-pci on node
 | | [Documentation]
 | | ... | Initialize vfio-pci interfaces on DUT on NIC PF.
-| | ... | Currently no operation.
+| | ... | Currently just set MTU to a fixed value.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -348,7 +347,8 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | No operation
+| | VPP Set Interface MTU and bring up
+| | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0]
 
 | Initialize layer avf on node
 | | [Documentation]
@@ -432,6 +432,7 @@
 | | ... | num_rx_queues=${rxq_count_int}
 | | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
 | | Set List Value | ${${dut}_vf${pf}} | 0 | ${_rdma}
+| | VPP Set Interface MTU and bring up | ${nodes['${dut}']} | ${_rdma}
 
 | Initialize layer mlx5_core on node
 | | [Documentation]
