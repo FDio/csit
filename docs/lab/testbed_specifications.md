@@ -6,7 +6,6 @@
    1. [1-Node-Skylake Xeon Intel (1n-skx)](#1-node-skylake-xeon-intel-1n-skx)
    1. [1-Node-ThunderX2 Arm Marvell (1n-tx2)](#1-node-thunderx2-arm-marvell-1n-tx2)
    1. [1-Node-Cascadelake Xeon Intel (1n-clx)](#1-node-cascadelake-xeon-intel-1n-clx)
-   1. [2-Node-Denverton Atom Intel (2n-dnv)](#2-node-denverton-atom-intel-2n-dnv)
    1. [2-Node-IxiaPS1L47 Ixia PSOne L47 (2n-ps1)](#2-node-ixiaps1l47-ixia-psone-l47-2n-ps1)
    1. [2-Node-Cascadelake Xeon Intel (2n-clx)](#2-node-cascadelake-xeon-intel-2n-clx)
    1. [2-Node-Zen2 EPYC AMD (2n-zn2)](#2-node-zen2-epyc-amd-2n-zn)
@@ -30,7 +29,6 @@
       1. [1-Node-Skylake Servers (1n-skx) PROD](#1-node-skylake-servers-1n-skx-prod)
       1. [1-Node-ThunderX2 Servers (1n-tx2) PROD](#1-node-thunderx2-servers-1n-tx2-prod)
       1. [1-Node-Cascadelake Servers (1n-clx) PROD](#1-node-cascadelake-servers-1n-clx-prod)
-      1. [2-Node-Denverton Servers (2n-dnv) PROD](#2-node-denverton-servers-2n-dnv-prod)
       1. [2-Node-IxiaPS1L47 Servers (2n-ps1) VERIFY](#2-node-ixiaps1l47-servers-2n-ps1-verify)
       1. [2-Node-Cascadelake Servers (2n-clx) PROD](#2-node-cascadelake-servers-2n-clx-prod)
       1. [2-Node-Zen2 Servers (2n-zn2) PROD](#2-node-zen2-servers-2n-zn2-prod])
@@ -45,7 +43,6 @@
       1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
       1. [1-Node-ThunderX2 Wiring (1n-tx2) PROD](#1-node-thunderx2-wiring-1n-tx2-prod)
       1. [1-Node-Cascadelake Wiring (1n-clx) PROD](#1-node-cascadelake-wiring-1n-clx-prod)
-      1. [2-Node-Denverton Wiring (2n-dnv) PROD](#2-node-denverton-wiring-2n-dnv-prod)
       1. [2-Node-IxiaPS1L47 Wiring (2n-ps1) VERIFY](#2-node-ixiaps1l47-wiring-2n-ps1-verify)
       1. [2-Node-Cascadelake Wiring (2n-clx) PROD](#2-node-cascadelake-wiring-2n-clx-prod)
       1. [2-Node-Zen2 Wiring (2n-zn2) PROD](#2-node-zen2-wiring-2n-zn2-prod])
@@ -74,27 +71,26 @@ hosted by LFN FD.io CSIT project.
 ### Summary List
 
 ```
- #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #dnv #tx2 #tsh #alt #clx #zn2 #icx #snr
- 1. 1-Node-Haswell     nomad  hsw   na    4    4    0    4    0    0    0    0    0    0    0    0    0    0    0
- 2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0    0    0    0
- 3. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    0    2    0    0    0    0    0    0
- 4. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    0    1    0    0    0
- 5. 1-Node-AmpereAltra nomad  alt   na    2    2    0    0    0    0    0    0    0    0    2    0    0    0    0
- 6. 2-Node-Skylake     perf   skx   skx   3    3    3    0    6    0    0    0    0    0    0    0    0    0    0
- 7. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    1    0    0    0    0    0    0    0
- 8. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0    0    0    0
- 9. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    0    6    0    0    0
-10. 2-Node-ThunderX2   perf   tx2   skx   1    1    .5   0    .5   0    0    0    1    0    0    0    0    0    0
-11. 2-Node-Icelake     perf   icx   icx   4    4    4    0    0    0    0    0    0    0    0    0    0    8    0
-12. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0    0    0    0
-13. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0    0    0    0
-14. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    0    2    0    0    0    0    0
-15. 3-Node-Altra       perf   alt   icx   1    2    1    0    0    0    0    0    0    0    2    0    0    1    0
-16. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0    0    0    0    0
-17. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    0    2    0    0
-18. 3-Node-Icelake     perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    0    0    6    0
-19. 3-Node-SnowRidge   perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    0    0    .5   2
-                                 Totals: 34   44  21.5   4   17    1    2    3    3    2    4    7    2  15.5   2
+ #. CSIT_tb          Purpose  SUT   TG    #TB  #SUT #TG  #hsw #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr
+ 1. 1-Node-Haswell     nomad  hsw   na    4    4    0    4    0    0    0    0    0    0    0    0    0    0
+ 2. 1-Node-Skylake     dev    skx   na    2    2    0    0    2    0    0    0    0    0    0    0    0    0
+ 3. 1-Node-ThunderX2   dev    tx2   na    2    2    0    0    0    0    0    2    0    0    0    0    0    0
+ 4. 1-Node-Cascadelake dev    clx   lcx   1    1    0    0    0    0    0    0    0    0    1    0    0    0
+ 5. 1-Node-AmpereAltra nomad  alt   na    2    2    0    0    0    0    0    0    0    2    0    0    0    0
+ 6. 2-Node-Skylake     perf   skx   skx   3    3    3    0    6    0    0    0    0    0    0    0    0    0
+ 7. 2-Node-Denverton   perf   dnv   skx   1    1    1    0    .5   0    0    0    0    0    0    0    0    0
+ 8. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    0    1    1    0    0    0    0    0    0    0    0
+ 9. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    0    6    0    0    0
+10. 2-Node-ThunderX2   perf   tx2   skx   1    1    .5   0    .5   0    0    1    0    0    0    0    0    0
+11. 2-Node-Icelake     perf   icx   icx   4    4    4    0    0    0    0    0    0    0    0    0    8    0
+12. 3-Node-Skylake     perf   skx   skx   2    4    2    0    6    0    0    0    0    0    0    0    0    0
+13. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    0    2    0    0    0    0    0    0    0
+14. 3-Node-Taishan     perf   tsh   skx   1    2    .5   0    .5   0    0    0    2    0    0    0    0    0
+15. 3-Node-Altra       perf   alt   icx   1    2    1    0    0    0    0    0    0    2    0    0    1    0
+17. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    0    2    0    0
+18. 3-Node-Icelake     perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    0    6    0
+19. 3-Node-SnowRidge   perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    0    .5   2
+                                 Totals: 32   41  20.5   4   17    1    2    3    2    4    7    2  15.5   2
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -115,13 +111,6 @@ Each 1-Node-Cascadelake testbed includes one SUT (Server-Type-C1) with
 NIC ports connected back-to-back ([Server Types](#server-types)).
 
 Used for FD.io VPP_Device functional driver tests.
-
-### 2-Node-Denverton Atom Intel (2n-dnv)
-
-Each 2-Node-Skylake testbed includes one SUT (Server-Type-B10) and one
-TG (Server-Type-B2) connected in a 2-node circular topology
-([Server Types](#server-types)).
-Used for FD.io performance tests.
 
 ### 2-Node-IxiaPS1L47 Ixia PSOne L47 (2n-ps1)
 
@@ -1020,41 +1009,6 @@ connectivity and wiring across defined CSIT testbeds:
         - s32-t14-sut1-c4/p4 - 10GE-port4 x710-4p10GE.
 ```
 
-#### 2-Node-Denverton Servers (2n-dnv) PROD
-
-Note: ServerB28 (TG) is shared between testbed26 & testbed35
-
-```
-- TG [Server-Type-B2]:
-    - testbednames: testbed26 and testbed35.
-    - hostname: s28-t26t35-tg1.
-    - IPMI IP: 10.30.55.10
-    - Host IP: 10.32.8.10
-    - portnames:
-        - s28-t26t35-tg1-c2/p1 - 10GE-port1 x710da2-2p10GE.
-        - s28-t26t35-tg1-c2/p2 - 10GE-port2 x710da2-2p10GE.
-        - s28-t26t35-tg1-c4/p1 - 10GE-port1 x550t2-2p10GE.
-        - s28-t26t35-tg1-c4/p2 - 10GE-port2 x550t2-2p10GE.
-        - s28-t26t35-tg1-c9/p1 - 10GE-port1 x550t2-2p10GE.
-        - s28-t26t35-tg1-c9/p2 - 10GE-port2 x550t2-2p10GE.
-        - s28-t26t35-tg1-c6/p1 - 10GE-port1 x710da2-2p10GE.
-        - s28-t26t35-tg1-c6/p2 - 10GE-port2 x710da2-2p10GE.
-        - s28-t26t35-tg1-c8/p1 - 10GE-port1 x550t2-2p10GE.
-        - s28-t26t35-tg1-c8/p2 - 10GE-port2 x550t2-2p10GE.
-        - s28-t26t35-tg1-c10/p1 - 10GE-port1 x550t2-2p10GE.
-        - s28-t26t35-tg1-c10/p2 - 10GE-port2 x550t2-2p10GE.
-- SUT [Server-Type-B10]:
-    - testbednames: testbed26.
-    - hostname: s29-t26-sut1.
-    - IPMI IP: 10.30.55.11
-    - Host IP: 10.32.8.11
-    - portnames:
-        - s29-t26-sut1-p1 - 10GE-port1 x553 copper port.
-        - s29-t26-sut1-p2 - 10GE-port2 x553 copper port.
-        - s29-t26-sut1-p3 - 10GE-port3 x553 fiber port.
-        - s29-t26-sut1-p4 - 10GE-port4 x553 fiber port.
-```
-
 #### 2-Node-IxiaPS1L47 Servers (2n-ps1) VERIFY
 
 ```
@@ -1492,31 +1446,6 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s64-t34-tg1-c8/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 ```
 
-#### 3-Node-Denverton Servers (3n-dnv) PROD
-
-```
-- ServerB30 [Server-Type-B10]:
-    - testbednames: testbed35.
-    - hostname: s30-t35-sut1.
-    - IPMI IP: 10.30.55.12
-    - Host IP: 10.32.8.12
-    - portnames:
-        - s30-t35-sut1-p1 - 10GE-port1 x553 copper port.
-        - s30-t35-sut1-p2 - 10GE-port2 x553 copper port.
-        - s30-t35-sut1-p3 - 10GE-port3 x553 fiber port.
-        - s30-t35-sut1-p4 - 10GE-port4 x553 fiber port.
-- ServerB31 [Server-Type-B10]:
-    - testbednames: testbed35.
-    - hostname: s31-t35-sut2.
-    - IPMI IP: 10.30.55.13
-    - Host IP: 10.32.8.13
-    - portnames:
-        - s31-t35-sut2-p1 - 10GE-port1 x553 copper port.
-        - s31-t35-sut2-p2 - 10GE-port2 x553 copper port.
-        - s31-t35-sut2-p3 - 10GE-port3 x553 fiber port.
-        - s31-t35-sut2-p4 - 10GE-port4 x553 fiber port.
-```
-
 #### 3-Node-Icelake Servers (3n-icx) PROD
 
 ```
@@ -1696,18 +1625,6 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s56-t14-sut1-c8/p1 - s56-t14-sut1-c26/p1.
     - ring4 10/25GE-ports ConnectX5-2p10/25GE on SUTs:
         - s56-t14-sut1-c8/p2 - s56-t14-sut1-c26/p2.
-```
-
-#### 2-Node-Denverton Wiring (2n-dnv) PROD
-
-```
-- testbed26:
-    - ring1 10GE-ports x553 copper port on SUT:
-        - s28-t26t35-tg1-c4/p1 to s29-t26-sut1-p1.
-        - s28-t26t35-tg1-c9/p1 to s29-t26-sut1-p2.
-    - ring2 10GE-ports x553 fiber port on SUT:
-        - s28-t26t35-tg1-c2/p1 to s29-t26-sut1-p3.
-        - s28-t26t35-tg1-c2/p2 to s29-t26-sut1-p4.
 ```
 
 #### 2-Node-IxiaPS1L47 Wiring (2n-ps1) VERIFY
@@ -1903,20 +1820,6 @@ To be completed.
         - s64-t34-tg1-c4/p1 - s62-t34-sut1-c1/p2.
         - s62-t34-sut1-c1/p1 - s63-t34-sut2-c1/p2.
         - s63-t34-sut2-c1/p1 - s64-t34-tg1-c4/p2.
-```
-
-#### 3-Node-Denverton Wiring (3n-dnv) PROD
-
-```
-- testbed35:
-    - ring1 10GE-ports x553 copper port on SUTs:
-        - s28-t26t35-tg1-c8/p1 to s30-t35-sut1-p2.
-        - s30-t35-sut1-p1 to s31-t35-sut2-p1.
-        - s28-t26t35-tg1-c10/p1 to s31-t35-sut2-p2.
-    - ring2 10GE-ports x553 fiber port on SUTs:
-        - s28-t26t35-tg1-c6/p1 to s30-t35-sut1-p4.
-        - s30-t35-sut1-p3 to s31-t35-sut2-p3.
-        - s28-t26t35-tg1-c6/p2 to s31-t35-sut2-p4.
 ```
 
 #### 3-Node-Icelake Wiring (3n-icx) PROD
