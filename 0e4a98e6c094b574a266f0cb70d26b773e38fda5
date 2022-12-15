@@ -33,6 +33,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_*ANDdrv_rdma_coreAND1cAND64bANDeth-l2patch mrrANDnic_*ANDdrv_rdma_coreAND1cAND64bANDeth-l2xcbase-eth-2memif-1dcr mrrANDnic_*ANDdrv_rdma_coreAND1cAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
       "revId": "0e4a98e6c094b574a266f0cb70d26b773e38fda5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd15163f_c52efc84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-15T13:18:09Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_*ANDdrv_rdma_coreAND1cAND9000bANDeth-l2patch mrrANDnic_*ANDdrv_rdma_coreAND1cAND9000bANDeth-l2xcbase-eth-2memif-1dcr mrrANDnic_*ANDdrv_rdma_coreAND1cAND9000bANDeth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
+      "revId": "0e4a98e6c094b574a266f0cb70d26b773e38fda5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
