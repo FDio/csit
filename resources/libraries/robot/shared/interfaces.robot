@@ -21,8 +21,8 @@
 *** Keywords ***
 | Set single interfaces in path up
 | | [Documentation]
-| | ... | *Set UP state on single physical VPP interfaces in path on all DUT
-| | ... | nodes and set maximal MTU.*
+| | ... | *Set UP state on single physical VPP interfaces in path
+| | ... | on all DUT nodes.*
 | |
 | | ... | *Arguments:*
 | | ... | - pf - NIC physical function (physical port).
@@ -41,8 +41,7 @@
 
 | Set interfaces in path up
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
-| | ... | maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on all DUT nodes.*
 | |
 | | ... | *Arguments:*
 | | ... | - validate - Validate interfaces are up.
@@ -58,8 +57,7 @@
 
 | Set interfaces in path up on node
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
-| | ... | set maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node.*
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node on which to set the interfaces up.
@@ -77,8 +75,7 @@
 
 | Set interfaces in path up on node on PF
 | | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
-| | ... | set maximal MTU.*
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node.*
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node on which to set the interfaces up.
@@ -97,7 +94,6 @@
 | | ${_id}= | Set Variable If | '${_chains}' == 'PASS' | _1 | ${EMPTY}
 | | FOR | ${if} | IN | @{${dut}_${int}${pf}${_id}}
 | | | Set Interface State | ${nodes['${dut}']} | ${if} | up
-| | | VPP Set Interface MTU | ${nodes['${dut}']} | ${if}
 | | END
 
 | Pre-initialize layer driver
@@ -158,15 +154,24 @@
 
 | Pre-initialize layer avf on all DUTs
 | | [Documentation]
-| | ... | Pre-initialize avf driver. Currently no operation.
+| | ... | Pre-initialize avf driver. Currently only sets MTU on PF.
 | |
-| | No operation
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${jumbo}
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | ELSE
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1800
+| | END
 
 | Pre-initialize layer af_xdp on all DUTs
 | | [Documentation]
 | | ... | Pre-initialize af_xdp driver.
 | |
 | | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${jumbo}
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
+| | | ... | ELSE
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1800
 | | | Set Interface State PCI
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | state=up
 | | | Set Interface Channels
@@ -182,7 +187,7 @@
 | | | Run Keyword If | ${jumbo}
 | | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
 | | | ... | ELSE
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1800
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
 | | END
@@ -195,7 +200,7 @@
 | | | Run Keyword If | ${jumbo}
 | | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=9200
 | | | ... | ELSE
-| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1518
+| | | ... | Set Interface MTU | ${nodes['${dut}']} | ${${dut}_pf_pci} | mtu=1800
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
 | | END
@@ -336,7 +341,7 @@
 | Initialize layer vfio-pci on node
 | | [Documentation]
 | | ... | Initialize vfio-pci interfaces on DUT on NIC PF.
-| | ... | Currently no operation.
+| | ... | Currently just set MTU to a fixed value.
 | |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -348,7 +353,8 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | No operation
+| | VPP Set Interface MTU and bring up
+| | ... | ${nodes['${dut}']} | ${${dut}_pf${pf}}[0]
 
 | Initialize layer avf on node
 | | [Documentation]
