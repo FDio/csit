@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e4c14e_35417447",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2022-12-15T10:23:38Z",
+      "side": 1,
+      "message": "************* Module resources.libraries.python.DPDK.TestpmdTest\nresources/libraries/python/DPDK/TestpmdTest.py:31: [C0330(bad-continuation), ] Wrong hanging indentation before block (add 4 spaces).\n        nodes, topology_info, phy_cores, rx_queues\u003dNone, jumbo_frames\u003dFalse,\n        ^   |\nresources/libraries/python/DPDK/TestpmdTest.py:32: [C0330(bad-continuation), ] Wrong hanging indentation before block (add 4 spaces).\n        rxd\u003dNone, txd\u003dNone, nic_rxq_size\u003dNone, nic_txq_size\u003dNone,\n        ^   |\nresources/libraries/python/DPDK/TestpmdTest.py:67: [W0311(bad-indentation), ] Bad indentation. Found 16 spaces, expected 12\nresources/libraries/python/DPDK/TestpmdTest.py:71: [W0311(bad-indentation), ] Bad indentation. Found 16 spaces, expected 12\nresources/libraries/python/DPDK/TestpmdTest.py:72: [W0311(bad-indentation), ] Bad indentation. Found 16 spaces, expected 12\nresources/libraries/python/DPDK/TestpmdTest.py:73: [W0311(bad-indentation), ] Bad indentation. Found 16 spaces, expected 12\nresources/libraries/python/DPDK/TestpmdTest.py:74: [W0311(bad-indentation), ] Bad indentation. Found 16 spaces, expected 12\nresources/libraries/python/DPDK/TestpmdTest.py:75: [W0311(bad-indentation), ] Bad indentation. Found 16 spaces, expected 12\nresources/libraries/python/DPDK/TestpmdTest.py:82: [W0311(bad-indentation), ] Bad indentation. Found 16 spaces, expected 12\nresources/libraries/python/DPDK/TestpmdTest.py:83: [W0311(bad-indentation), ] Bad indentation. Found 20 spaces, expected 16\nresources/libraries/python/DPDK/TestpmdTest.py:84: [W0311(bad-indentation), ] Bad indentation. Found 24 spaces, expected 20\nresources/libraries/python/DPDK/TestpmdTest.py:85: [W0311(bad-indentation), ] Bad indentation. Found 24 spaces, expected 20\nresources/libraries/python/DPDK/TestpmdTest.py:86: [W0311(bad-indentation), ] Bad indentation. Found 20 spaces, expected 16\nresources/libraries/python/DPDK/TestpmdTest.py:87: [W0311(bad-indentation), ] Bad indentation. Found 24 spaces, expected 20\nresources/libraries/python/DPDK/TestpmdTest.py:94: [W0311(bad-indentation), ] Bad indentation. Found 16 spaces, expected 12\nresources/libraries/python/DPDK/TestpmdTest.py:95: [W0311(bad-indentation), ] Bad indentation. Found 20 spaces, expected 16\nresources/libraries/python/DPDK/TestpmdTest.py:96: [W0311(bad-indentation), ] Bad indentation. Found 20 spaces, expected 16\nresources/libraries/python/DPDK/TestpmdTest.py:100: [C0330(bad-continuation), ] Wrong hanging indentation before block (add 4 spaces).\n        node, if1, if2, lcores_list, nb_cores, queue_nums,\n        ^   |\nresources/libraries/python/DPDK/TestpmdTest.py:101: [C0330(bad-continuation), ] Wrong hanging indentation before block (add 4 spaces).\n        jumbo_frames, rxq_size\u003d1024, txq_size\u003d1024,\n        ^   |",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 8
+      },
+      "revId": "134895c5f9542e4bc99909fd239928af35f54463",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
