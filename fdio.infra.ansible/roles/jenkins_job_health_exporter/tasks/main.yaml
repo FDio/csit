@@ -9,7 +9,7 @@
     group: "root"
     mode: "0644"
   when:
-    - ansible_hostname == "s16-nomad"
+    - ansible_hostname == "s22-nomad"
   tags:
     - conf-jenkins-job-json
 
@@ -19,7 +19,7 @@
     dest: "{{ jenkins_job_health_exporter_target_dir }}/jenkins-job-health-exporter"
     mode: "0755"
   when:
-    - ansible_hostname == "s16-nomad"
+    - ansible_hostname == "s22-nomad"
   tags:
     - inst-jenkins-job-binary
 
@@ -31,7 +31,7 @@
     group: "root"
     mode: "0644"
   when:
-    - ansible_hostname == "s16-nomad"
+    - ansible_hostname == "s22-nomad"
   notify:
     - "Restart Jenkins Job Health Exporter"
   tags:
