@@ -11,7 +11,7 @@ module "elastic_beanstalk_application" {
   source = "../terraform-aws-elastic-beanstalk-application"
 
   # application
-  application_description                    = "FD.io CSIT Results Dashboard"
+  application_description                    = "FD.io CDASH"
   application_name                           = "fdio-csit-dash-app"
   appversion_lifecycle_service_role_arn      = ""
   appversion_lifecycle_max_count             = 2
@@ -34,13 +34,13 @@ module "elastic_beanstalk_environment" {
   environment_application            = module.elastic_beanstalk_application.application_name
   environment_description            = module.elastic_beanstalk_application.application_description
   environment_name                   = "fdio-csit-dash-env"
-  environment_solution_stack_name    = "64bit Amazon Linux 2 v3.4.0 running Python 3.8"
+  environment_solution_stack_name    = "64bit Amazon Linux 2 v3.4.2 running Python 3.8"
   environment_tier                   = "WebServer"
   environment_wait_for_ready_timeout = "25m"
   environment_version_label          = ""
 
   # aws:ec2:instances
-  instances_instance_types = "t3a.medium"
+  instances_instance_types = "t3a.large"
 
   # aws:ec2:vpc
   associate_public_ip_address = true

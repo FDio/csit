@@ -1,6 +1,6 @@
 terraform {
   backend "consul" {
-    address = "10.32.8.14:8500"
+    address = "consul.service.consul:8500"
     scheme  = "http"
     path    = "terraform/dash"
   }

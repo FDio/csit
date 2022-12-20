@@ -422,6 +422,12 @@ resource "aws_elastic_beanstalk_environment" "environment" {
     value     = aws_iam_instance_profile.ec2_iam_instance_profile.name
   }
 
+  setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "DisableIMDSv1"
+    value     = true
+  }
+
   # aws:autoscaling:updatepolicy:rollingupdate
   setting {
     namespace = "aws:autoscaling:updatepolicy:rollingupdate"
