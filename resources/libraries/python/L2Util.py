@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2022 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -254,8 +254,9 @@ class L2Util:
             f"on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd1, **args1).add(cmd2, **args2).add(cmd2, **args3)
-            papi_exec.get_replies(err_msg)
+            papi_exec.add(cmd1, **args1).get_reply(err_msg)
+            papi_exec.add(cmd2, **args2).get_reply(err_msg)
+            papi_exec.add(cmd2, **args3).get_reply(err_msg)
 
     @staticmethod
     def vpp_setup_bidirectional_cross_connect(node, interface1, interface2):
@@ -293,7 +294,8 @@ class L2Util:
             f"on host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
+            papi_exec.add(cmd, **args1).get_reply(err_msg)
+            papi_exec.add(cmd, **args2).get_reply(err_msg)
 
     @staticmethod
     def vpp_setup_bidirectional_l2_patch(node, interface1, interface2):
@@ -331,7 +333,8 @@ class L2Util:
             f"on host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
+            papi_exec.add(cmd, **args1).get_reply(err_msg)
+            papi_exec.add(cmd, **args2).get_reply(err_msg)
 
     @staticmethod
     def linux_add_bridge(node, br_name, if_1, if_2, set_up=True):
