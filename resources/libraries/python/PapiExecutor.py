@@ -42,6 +42,15 @@ from resources.libraries.python.ssh import (
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
+# https://stackoverflow.com/a/53475728
+from pathlib import Path
+from resource import getpagesize
+
+PAGESIZE = getpagesize()
+PATH = Path('/proc/self/statm')
+
+def log_mem():
+    logger.debug([int(v) * PAGESIZE for v in PATH.read_text().split()])
 
 __all__ = [
     u"PapiExecutor",
@@ -1037,10 +1046,12 @@ class PapiSocketExecutor:
         vpp_instance = self.get_connected_client()
         api_object = vpp_instance.api
         # Send all commands.
+        log_mem()
         for command in local_list:
             func = getattr(api_object, command[u"api_name"])
             func(**command[u"api_args"])
         # Read all replies.
+        log_mem()
         ret_list = list()
         try:
             for index, command in enumerate(local_list):
@@ -1053,8 +1064,10 @@ class PapiSocketExecutor:
                     raise RuntimeError(f"{err_msg}\n{time_msg}")
                 ret_list.append(dictize_and_check_retval(reply, err_msg))
         finally:
+            log_mem()
             # Discard any unprocessed replies to avoid secondary failures.
             PapiSocketExecutor._drain(vpp_instance, err_msg)
+            log_mem()
         return ret_list
 
 
