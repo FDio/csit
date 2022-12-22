@@ -14,6 +14,7 @@
 """Python API executor library."""
 
 import copy
+import gc
 import glob
 import json
 import logging
@@ -42,6 +43,15 @@ from resources.libraries.python.ssh import (
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
+# https://stackoverflow.com/a/53475728
+from pathlib import Path
+#from resource import getpagesize
+
+#PAGESIZE = getpagesize()
+PATH = Path('/proc/self/status')
+
+def log_mem():
+    logger.debug(PATH.read_text())
 
 __all__ = [
     u"PapiExecutor",
@@ -534,6 +544,7 @@ class PapiSocketExecutor:
         logger.trace(
             f"Establishing socket connection took {time.time()-time_enter}s"
         )
+        log_mem()
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -1034,27 +1045,40 @@ class PapiSocketExecutor:
         :rtype: None or list of dict
         :raises RuntimeError: If the replies are not all correct.
         """
-        vpp_instance = self.get_connected_client()
-        api_object = vpp_instance.api
-        # Send all commands.
-        for command in local_list:
-            func = getattr(api_object, command[u"api_name"])
-            func(**command[u"api_args"])
-        # Read all replies.
-        ret_list = list()
+        gc_was_enabled = gc.isenabled()
+        logger.debug(f"gc was enabled: {gc_was_enabled}")
+        gc.disable()
         try:
-            for index, command in enumerate(local_list):
-                # Blocks up to timeout.
-                reply = PapiSocketExecutor._read(vpp_instance)
-                if reply is None:
-                    time_msg = (
-                        f"Fast papi timeout: index {index} cmd {command!r}"
-                    )
-                    raise RuntimeError(f"{err_msg}\n{time_msg}")
-                ret_list.append(dictize_and_check_retval(reply, err_msg))
+            vpp_instance = self.get_connected_client()
+            api_object = vpp_instance.api
+            # Send all commands.
+            log_mem()
+            for command in local_list:
+                func = getattr(api_object, command[u"api_name"])
+                func(**command[u"api_args"])
+            # Read all replies.
+            log_mem()
+            ret_list = list()
+            try:
+                for index, command in enumerate(local_list):
+                    # Blocks up to timeout.
+                    reply = PapiSocketExecutor._read(vpp_instance)
+                    if reply is None:
+                        time_msg = (
+                            f"Fast papi timeout: index {index} cmd {command!r}"
+                        )
+                        raise RuntimeError(f"{err_msg}\n{time_msg}")
+                    ret_list.append(dictize_and_check_retval(reply, err_msg))
+            finally:
+                log_mem()
+                # Discard any unprocessed replies to avoid secondary failures.
+                PapiSocketExecutor._drain(vpp_instance, err_msg)
+                unreachable = gc.collect()
+                logger.debug(f"{unreachable} unreachable objects")
+                log_mem()
         finally:
-            # Discard any unprocessed replies to avoid secondary failures.
-            PapiSocketExecutor._drain(vpp_instance, err_msg)
+            if gc_was_enabled:
+                gc.enable()
         return ret_list
 
 
