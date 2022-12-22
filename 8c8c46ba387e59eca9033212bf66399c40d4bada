@@ -151,6 +151,30 @@
       },
       "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfd0589c_004cb61c",
+        "filename": "resources/libraries/python/DPDK/TestpmdTest.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-22T12:12:59Z",
+      "side": 1,
+      "message": "I still do not see a reason to restart both, but done.",
+      "parentUuid": "c3c24fdf_950352a8",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 35
+      },
+      "revId": "8c8c46ba387e59eca9033212bf66399c40d4bada",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
