@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c3ea09c_e432a816",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2022-12-22T15:11:22Z",
+      "side": 1,
+      "message": "I do not like the memory consumption, investigating ways to avoid holding all 1M requests in memory.",
+      "revId": "307bfeb1b60b271f14b1e522fdce36d7d15f0125",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
