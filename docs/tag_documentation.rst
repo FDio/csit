@@ -98,6 +98,10 @@ Scaling Tags
 
     2x100,000 entries in single fib table
 
+.. topic:: FIB_1M
+
+    2x500,000 entries in single fib table
+
 .. topic:: FIB_2M
 
     2x1,000,000 entries in single fib table
