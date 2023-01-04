@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -878,7 +878,7 @@ def _generate_all_charts(spec, input_data):
             ltc_prog_lst = []
             max_len = MaxLens(0, 0, 0, 0, 0, 0)
 
-            # tb - testbed (2n-skx, 3n-dnv, etc)
+            # tb - testbed (2n-icx, etc)
             tb = u"-".join(job_name.split(u"-")[-2:])
             # data - read all txt dashboard files for tb
             for file in listdir(f"{spec.cpta[u'output-file']}"):

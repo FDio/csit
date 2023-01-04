@@ -18,7 +18,7 @@ There are jobs available for multiple types of testbeds,
 based on various processors.
 Their Gerrit triggers words are of the form "perftest-{node_arch}"
 where the node_arch combinations currently supported are:
-2n-clx, 2n-dnv, 2n-tx2, 2n-zn2, 3n-dnv, 3n-tsh.
+2n-clx, 2n-tx2, 2n-zn2, 3n-tsh.
 
 Test selection
 ~~~~~~~~~~~~~~
