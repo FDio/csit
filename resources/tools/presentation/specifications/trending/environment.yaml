@@ -69,7 +69,6 @@
     "10.30.51.60": "LF-3n-SKX-32"
     "10.30.51.49": "LF-3n-TSH-33"
     "10.32.8.25": "LF-2n-ZN2-210"
-    "10.32.8.10": "LF-DNV"
 
   # Data sources are used in this order:
   data-sources:
@@ -116,8 +115,6 @@
           - "last-failed-tests-vpp-2n-zn2-mrr"
           - "last-failed-tests-vpp-3n-tsh-mrr"
           - "last-failed-tests-vpp-2n-tx2-mrr"
-          - "last-failed-tests-vpp-2n-dnv-mrr"
-          - "last-failed-tests-vpp-3n-dnv-mrr"
           - "last-failed-tests-vpp-2n-aws-mrr"
           - "last-failed-tests-dpdk-2n-skx-mrr"
           - "last-failed-tests-dpdk-3n-skx-mrr"
@@ -138,8 +135,6 @@
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-zn2"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-tx2"
-          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-dnv"
-          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-dnv"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-2n-aws"
           - "https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-2n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-3n-skx"

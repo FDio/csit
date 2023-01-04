@@ -120,8 +120,6 @@
       - "2n-clx"
       - "3n-hsw"
       - "3n-tsh"
-      - "2n-dnv"
-      - "3n-dnv"
       - "2n-aws"
       - "3n-aws"
     level-3:
@@ -169,8 +167,6 @@
       - "2n-clx"
       - "3n-hsw"
       - "3n-tsh"
-      - "2n-dnv"
-      - "3n-dnv"
       - "2n-aws"
       - "3n-aws"
     level-3:
@@ -218,8 +214,6 @@
       - "2n-clx"
       - "3n-hsw"
       - "3n-tsh"
-      - "2n-dnv"
-      - "3n-dnv"
       - "2n-aws"
       - "3n-aws"
     level-3:
