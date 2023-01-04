@@ -11,8 +11,7 @@ below.
 |                |                                                             |
 +----------------+-------------------------------------------------------------+
 | .46            | 1. Added wireguard tests for 3n-icx and 3n-snr.             |
-|                | 2. Added NAT44 ED TCP tput tests for 2n-dnv.                |
-|                | 3. Added iterative and coverage data.                       |
+|                | 2. Added iterative and coverage data.                       |
 |                |                                                             |
 +----------------+-------------------------------------------------------------+
 | .45            | Initial revision                                            |

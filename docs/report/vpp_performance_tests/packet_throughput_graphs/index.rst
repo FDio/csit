@@ -47,8 +47,6 @@ Graphs are split into sections as follows:
      - 3n-alt: 2-node Arm Altra
      - 3n-tsh: 3-node Arm TaiShan
      - 2n-tx2: 2-node Arm ThunderX2
-     - 2n-dnv: 2-node Atom Denverton
-     - 3n-dnv: 3-node Atom Denverton
      - 3n-snr: 3-node Atom Snowridge
 
    - **nic_model**:
@@ -143,9 +141,7 @@ Additional information about graph data:
     `build logs from FD.io vpp performance job 3n-alt`_,
     `build logs from FD.io vpp performance job 3n-tsh`_,
     `build logs from FD.io vpp performance job 2n-tx2`_,
-    `build logs from FD.io vpp performance job 3n-snr`_,
-    `build logs from FD.io vpp performance job 2n-dnv`_ and
-    `build logs from FD.io vpp performance job 3n-dnv`_ with RF
+    `build logs from FD.io vpp performance job 3n-snr`_ with RF
     result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
     Required per test case data set size is **10**, but for VPP tests

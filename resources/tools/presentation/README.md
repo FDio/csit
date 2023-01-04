@@ -20,14 +20,14 @@ Run the script with the path to a local XML file, e.g.:
 
 Store all XML files in a directory, e.g.:
 
-    csit-vpp-perf-verify-2001-3n-dnv/
-    ├── csit-vpp-perf-verify-2001-3n-dnv__5__output_info.xml
-    ├── csit-vpp-perf-verify-2001-3n-dnv__6__output_info.xml
-    └── csit-vpp-perf-verify-2001-3n-dnv__7__output_info.xml
+    csit-vpp-perf-verify-2001-3n-icx/
+    ├── csit-vpp-perf-verify-2001-3n-icx__5__output_info.xml
+    ├── csit-vpp-perf-verify-2001-3n-icx__6__output_info.xml
+    └── csit-vpp-perf-verify-2001-3n-icx__7__output_info.xml
 
 and use:
 
-    ./run_local_report.sh --directory csit-vpp-perf-verify-2001-3n-dnv/
+    ./run_local_report.sh --directory csit-vpp-perf-verify-2001-3n-icx/
 
 ### Using a directory with directories of XML files.
 
@@ -37,10 +37,10 @@ Store all XML files in a directory structure, e.g.:
     ├── csit-vpp-perf-verify-2001-2n-clx
     │   ├── csit-vpp-perf-verify-2001-2n-clx__28__output_info.xml
     │   └── csit-vpp-perf-verify-2001-2n-clx__29__output_info.xml
-    └── csit-vpp-perf-verify-2001-3n-dnv
-        ├── csit-vpp-perf-verify-2001-3n-dnv__5__output_info.xml
-        ├── csit-vpp-perf-verify-2001-3n-dnv__6__output_info.xml
-        └── csit-vpp-perf-verify-2001-3n-dnv__7__output_info.xml
+    └── csit-vpp-perf-verify-2001-3n-icx
+        ├── csit-vpp-perf-verify-2001-3n-icx__5__output_info.xml
+        ├── csit-vpp-perf-verify-2001-3n-icx__6__output_info.xml
+        └── csit-vpp-perf-verify-2001-3n-icx__7__output_info.xml
 
 and use:
 

@@ -878,7 +878,7 @@ def _generate_all_charts(spec, input_data):
             ltc_prog_lst = []
             max_len = MaxLens(0, 0, 0, 0, 0, 0)
 
-            # tb - testbed (2n-skx, 3n-dnv, etc)
+            # tb - testbed (2n-icx, etc)
             tb = u"-".join(job_name.split(u"-")[-2:])
             # data - read all txt dashboard files for tb
             for file in listdir(f"{spec.cpta[u'output-file']}"):

@@ -9,8 +9,7 @@ Changes in |csit-release|
 #. VPP PERFORMANCE TESTS
 
    - **Added new performance testbed 3n-snr** (3 Node SnowRidge, with Intel
-     Atom processors), to later replace 3n-dnv and 2n-dnv (3 and 2 Node
-     Denverton) testbeds.
+     Atom processors).
 
    - **Added GTPU HW offload tests** using VPP GTPU hardware offload
      with Intel e810 4p25ge NICs (3n-icx testbeds only). These tests
@@ -71,31 +70,28 @@ ___
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1850                              | 2n-dnv: sporadic 1518B tput tests failing to establish required sessions.                                 |
-|    | <https://jira.fd.io/browse/CSIT-1850>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  2 | `CSIT-1864                              | 2n-clx: half of the packets lost on PDR tests.                                                            |
+|  1 | `CSIT-1864                              | 2n-clx: half of the packets lost on PDR tests.                                                            |
 |    | <https://jira.fd.io/browse/CSIT-1864>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `CSIT-1868                              | 2n-clx: ALL ldpreload-nginx tests fails when trying to start nginx.                                       |
+|  2 | `CSIT-1868                              | 2n-clx: ALL ldpreload-nginx tests fails when trying to start nginx.                                       |
 |    | <https://jira.fd.io/browse/CSIT-1868>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1871                              | 3n-snr: 25GE interface between SUT and TG/TRex goes down randomly.                                        |
+|  3 | `CSIT-1871                              | 3n-snr: 25GE interface between SUT and TG/TRex goes down randomly.                                        |
 |    | <https://jira.fd.io/browse/CSIT-1871>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1877                              | 3n-alt, 3n-tsh: VM tests failing to boot VM.                                                              |
+|  4 | `CSIT-1877                              | 3n-alt, 3n-tsh: VM tests failing to boot VM.                                                              |
 |    | <https://jira.fd.io/browse/CSIT-1877>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1883                              | 3n-snr: All hwasync wireguard tests failing when trying to verify device.                                 |
+|  5 | `CSIT-1883                              | 3n-snr: All hwasync wireguard tests failing when trying to verify device.                                 |
 |    | <https://jira.fd.io/browse/CSIT-1883>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1884                              | 2n-clx, 2n-icx: All NAT44DET NDR PDR IMIX over 1M sessions BIDIR tests failing to create enough sessions. |
+|  6 | `CSIT-1884                              | 2n-clx, 2n-icx: All NAT44DET NDR PDR IMIX over 1M sessions BIDIR tests failing to create enough sessions. |
 |    | <https://jira.fd.io/browse/CSIT-1884>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  8 | `CSIT-1885                              | 3n-icx: 9000b ip4 ip6 l2 NDRPDR AVF tests are failing to forward traffic.                                 |
+|  7 | `CSIT-1885                              | 3n-icx: 9000b ip4 ip6 l2 NDRPDR AVF tests are failing to forward traffic.                                 |
 |    | <https://jira.fd.io/browse/CSIT-1885>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  9 | `CSIT-1886                              | 3n-icx: Wireguard tests with 100 and more tunnels are failing PDR criteria.                               |
+|  8 | `CSIT-1886                              | 3n-icx: Wireguard tests with 100 and more tunnels are failing PDR criteria.                               |
 |    | <https://jira.fd.io/browse/CSIT-1886>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 

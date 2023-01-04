@@ -72,7 +72,3 @@ Additional information about graph data:
     3n-tsh-x520
     2n-tx2-xl710
     3n-snr-e822cq
-
-..
-    2n-dnv-x553
-    3n-dnv-x553

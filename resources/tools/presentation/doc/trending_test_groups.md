@@ -51,8 +51,6 @@ will be on the Trending web page.
    - [3n-skx]
    - [3n-hsw]
    - [3n-tsh]
-   - [2n-dnv]
-   - [3n-dnv]
    - [2n-clx]
 
    and on the lists of selected tests (test_select_list_*.md) stored in
@@ -176,46 +174,6 @@ will be on the Trending web page.
     10ge2p1x520-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr
     10ge2p1x520-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr
 
-### 2n-dnv-x553
-
-#### 64b-?t?c-l2switching-base-ixgbe
-    10ge2p1x553-dot1q-l2xcbase-mrr
-    10ge2p1x553-eth-l2xcbase-mrr
-    10ge2p1x553-dot1q-l2bdbasemaclrn-mrr
-    10ge2p1x553-eth-l2bdbasemaclrn-mrr
-
-#### 64b-?t?c-l2switching-base-scale-ixgbe
-    10ge2p1x553-eth-l2patch-mrr
-    10ge2p1x553-eth-l2xcbase-mrr
-    10ge2p1x553-eth-l2bdbasemaclrn-mrr
-    10ge2p1x553-eth-l2bdscale10kmaclrn-mrr
-    10ge2p1x553-eth-l2bdscale100kmaclrn-mrr
-    10ge2p1x553-eth-l2bdscale1mmaclrn-mrr
-
-### 3n-dnv-x553
-
-#### 64b-?t?c-l2switching-base-ixgbe
-    10ge2p1x553-dot1q-l2xcbase-mrr
-    10ge2p1x553-eth-l2xcbase-mrr
-    10ge2p1x553-dot1q-l2bdbasemaclrn-mrr
-    10ge2p1x553-eth-l2bdbasemaclrn-mrr
-
-#### 64b-?t?c-l2switching-base-scale-ixgbe
-    10ge2p1x553-eth-l2patch-mrr
-    10ge2p1x553-eth-l2xcbase-mrr
-    10ge2p1x553-eth-l2bdbasemaclrn-mrr
-    10ge2p1x553-eth-l2bdscale10kmaclrn-mrr
-    10ge2p1x553-eth-l2bdscale100kmaclrn-mrr
-    10ge2p1x553-eth-l2bdscale1mmaclrn-mrr
-
-####  64b-?t?c-features-l2switching-base-ixgbe
-    10ge2p1x553-eth-l2bdbasemaclrn-mrr
-    10ge2p1x553-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr
-    10ge2p1x553-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr
-    10ge2p1x553-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr
-    10ge2p1x553-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr
-    10ge2p1x553-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr
-
 ### 2n-clx-xxv710
 
 #### 64b-?t?c-l2switching-base-avf
@@ -338,40 +296,6 @@ will be on the Trending web page.
     10ge2p1x520-ethip4udp-ip4base-oacl50sl-10kflows-mrr
     10ge2p1x520-ethip4udp-ip4base-nat44-mrr
 
-### 2n-dnv-x553
-
-#### 64b-?t?c-ip4routing-base-scale-ixgbe
-    10ge2p1x553-dot1q-ip4base-mrr
-    10ge2p1x553-ethip4-ip4base-mrr
-    10ge2p1x553-ethip4-ip4scale20k-mrr
-    10ge2p1x553-ethip4-ip4scale200k-mrr
-    10ge2p1x553-ethip4-ip4scale2m-mrr
-
-#### 64b-?t?c-features-ip4routing-base-ixgbe
-    10ge2p1x553-ethip4-ip4base-mrr
-    10ge2p1x553-ethip4udp-ip4base-iacl50sf-10kflows-mrr
-    10ge2p1x553-ethip4udp-ip4base-iacl50sl-10kflows-mrr
-    10ge2p1x553-ethip4udp-ip4base-oacl50sf-10kflows-mrr
-    10ge2p1x553-ethip4udp-ip4base-oacl50sl-10kflows-mrr
-    10ge2p1x553-ethip4udp-ip4base-nat44-mrr
-
-### 3n-dnv-x553
-
-#### 64b-?t?c-ip4routing-base-scale-ixgbe
-    10ge2p1x553-dot1q-ip4base-mrr
-    10ge2p1x553-ethip4-ip4base-mrr
-    10ge2p1x553-ethip4-ip4scale20k-mrr
-    10ge2p1x553-ethip4-ip4scale200k-mrr
-    10ge2p1x553-ethip4-ip4scale2m-mrr
-
-#### 64b-?t?c-features-ip4routing-base-ixgbe
-    10ge2p1x553-ethip4-ip4base-mrr
-    10ge2p1x553-ethip4udp-ip4base-iacl50sf-10kflows-mrr
-    10ge2p1x553-ethip4udp-ip4base-iacl50sl-10kflows-mrr
-    10ge2p1x553-ethip4udp-ip4base-oacl50sf-10kflows-mrr
-    10ge2p1x553-ethip4udp-ip4base-oacl50sl-10kflows-mrr
-    10ge2p1x553-ethip4udp-ip4base-nat44-mrr
-
 ### 2n-clx-xxv710
 
 #### 64b-?t?c-ip4routing-base-scale-avf
@@ -453,24 +377,6 @@ will be on the Trending web page.
     10ge2p1x520-ethip6-ip6scale200k-mrr
     10ge2p1x520-ethip6-ip6scale2m-mrr
 
-### 2n-dnv-x553
-
-#### 78b-?t?c-ip6routing-base-scale-ixgbe
-    10ge2p1x553-dot1q-ip6base-mrr
-    10ge2p1x553-ethip6-ip6base-mrr
-    10ge2p1x553-ethip6-ip6scale20k-mrr
-    10ge2p1x553-ethip6-ip6scale200k-mrr
-    10ge2p1x553-ethip6-ip6scale2m-mrr
-
-### 3n-dnv-x553
-
-#### 78b-?t?c-ip6routing-base-scale-ixgbe
-    10ge2p1x553-dot1q-ip6base-mrr
-    10ge2p1x553-ethip6-ip6base-mrr
-    10ge2p1x553-ethip6-ip6scale20k-mrr
-    10ge2p1x553-ethip6-ip6scale200k-mrr
-    10ge2p1x553-ethip6-ip6scale2m-mrr
-
 ### 2n-clx-xxv710
 
 #### 78b-?t?c-ip6routing-base-scale-i40e
@@ -518,16 +424,6 @@ will be on the Trending web page.
     10ge2p1x520-ethip6srhip6-ip6base-srv6proxy-masq-mrr
     10ge2p1x520-ethip6srhip6-ip6base-srv6proxy-stat-mrr
 
-### 3n-dnv-x553
-
-#### 78b-?t?c-srv6-ip6routing-base-ixgbe
-    10ge2p1x553-ethip6ip6-ip6base-srv6enc1sid-mrr
-    10ge2p1x553-ethip6srhip6-ip6base-srv6enc2sids-mrr
-    10ge2p1x553-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
-    10ge2p1x553-ethip6srhip6-ip6base-srv6proxy-dyn-mrr
-    10ge2p1x553-ethip6srhip6-ip6base-srv6proxy-masq-mrr
-    10ge2p1x553-ethip6srhip6-ip6base-srv6proxy-stat-mrr
-
 ## IPv4 Tunnels
 
 ### 3n-skx-xxv710
@@ -551,14 +447,6 @@ will be on the Trending web page.
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-mrr
     10ge2p1x520-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-mrr
     10ge2p1x520-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr
-
-### 3n-dnv-x553
-
-#### 64b-?t?c-ip4tunnel-base-scale-ixgbe
-    10ge2p1x553-ethip4vxlan-l2xcbase-mrr
-    10ge2p1x553-ethip4vxlan-l2bdbasemaclrn-mrr
-    10ge2p1x553-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-mrr
-    10ge2p1x553-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr
 
 ## KVM VMs vhost-user
 
@@ -745,16 +633,6 @@ will be on the Trending web page.
     10ge2p1x520-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-mrr
     10ge2p1x520-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
 
-### 3n-dnv-x553
-
-#### imix-?t?c-ipsec-ip4routing-base-scale-sw-ixgbe
-    10ge2p1x553-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-mrr
-    10ge2p1x553-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
-    10ge2p1x553-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-mrr
-    10ge2p1x553-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
-    10ge2p1x553-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-mrr
-    10ge2p1x553-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
-
 ## Virtual Topology System
 
 ### 3n-skx-xxv710
@@ -910,8 +788,6 @@ will be on the Trending web page.
 [3n-skx]: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-skx/
 [3n-hsw]: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master/
 [3n-tsh]: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh/
-[2n-dnv]: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-dnv/
-[3n-dnv]: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-dnv/
 [2n-clx]: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx/
 [Performance Tests Job Specifications, chapter NICs]: https://github.com/FDio/csit/blob/master/docs/job_specs/perf_tests_job_specs.md#nics
 [Performance Tests Job Specifications, chapter Frame Sizes]: https://github.com/FDio/csit/blob/master/docs/job_specs/perf_tests_job_specs.md#frame-sizes

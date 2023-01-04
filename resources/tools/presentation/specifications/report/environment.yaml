@@ -40,8 +40,6 @@
     DIR[DTR,PERF,DPDK,3N,ICX]: "{DIR[DTR]}/dpdk_performance_results_3n_icx"
     DIR[DTR,PERF,DPDK,2N,ZN2]: "{DIR[DTR]}/dpdk_performance_results_2n_zn2"
     DIR[DTR,PERF,DPDK,2N,CLX]: "{DIR[DTR]}/dpdk_performance_results_2n_clx"
-    DIR[DTR,PERF,DPDK,2N,DNV]: "{DIR[DTR]}/dpdk_performance_results_2n_dnv"
-    DIR[DTR,PERF,DPDK,3N,DNV]: "{DIR[DTR]}/dpdk_performance_results_3n_dnv"
     DIR[DTR,PERF,DPDK,3N,SNR]: "{DIR[DTR]}/dpdk_performance_results_3n_snr"
     DIR[DTR,PERF,DPDK,3N,ALT]: "{DIR[DTR]}/dpdk_performance_results_3n_alt"
     DIR[DTR,PERF,DPDK,3N,TSH]: "{DIR[DTR]}/dpdk_performance_results_3n_tsh"
@@ -56,8 +54,6 @@
     DIR[DTR,PERF,VPP,3N,ALT]: "{DIR[DTR]}/vpp_performance_results_3n_alt"
     DIR[DTR,PERF,VPP,3N,TSH]: "{DIR[DTR]}/vpp_performance_results_3n_tsh"
     DIR[DTR,PERF,VPP,2N,TX2]: "{DIR[DTR]}/vpp_performance_results_2n_tx2"
-    DIR[DTR,PERF,VPP,3N,DNV]: "{DIR[DTR]}/vpp_performance_results_3n_dnv"
-    DIR[DTR,PERF,VPP,2N,DNV]: "{DIR[DTR]}/vpp_performance_results_2n_dnv"
     DIR[DTR,PERF,VPP,3N,SNR]: "{DIR[DTR]}/vpp_performance_results_3n_snr"
     DIR[DTR,PERF,VPP,3N,AWS]: "{DIR[DTR]}/vpp_performance_results_3n_aws"
     DIR[DTR,PERF,VPP,2N,AWS]: "{DIR[DTR]}/vpp_performance_results_2n_aws"
@@ -69,8 +65,6 @@
     DIR[DTR,MRR,VPP,3N,ALT]: "{DIR[DTR]}/vpp_mrr_results_3n_alt"
     DIR[DTR,MRR,VPP,3N,TSH]: "{DIR[DTR]}/vpp_mrr_results_3n_tsh"
     DIR[DTR,MRR,VPP,2N,TX2]: "{DIR[DTR]}/vpp_mrr_results_2n_tx2"
-    DIR[DTR,MRR,VPP,3N,DNV]: "{DIR[DTR]}/vpp_mrr_results_3n_dnv"
-    DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
     DIR[DTR,MRR,VPP,3N,SNR]: "{DIR[DTR]}/vpp_mrr_results_3n_snr"
     DIR[DTR,MRR,VPP,3N,AWS]: "{DIR[DTR]}/vpp_mrr_results_3n_aws"
     DIR[DTR,MRR,VPP,2N,AWS]: "{DIR[DTR]}/vpp_mrr_results_2n_aws"
@@ -86,8 +80,6 @@
     DIR[DTC,PERF,VPP,3N,ALT]: "{DIR[DTC]}/vpp_performance_configuration_3n_alt"
     DIR[DTC,PERF,VPP,3N,TSH]: "{DIR[DTC]}/vpp_performance_configuration_3n_tsh"
     DIR[DTC,PERF,VPP,2N,TX2]: "{DIR[DTC]}/vpp_performance_configuration_2n_tx2"
-    DIR[DTC,PERF,VPP,3N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_3n_dnv"
-    DIR[DTC,PERF,VPP,2N,DNV]: "{DIR[DTC]}/vpp_performance_configuration_2n_dnv"
     DIR[DTC,PERF,VPP,3N,SNR]: "{DIR[DTC]}/vpp_performance_configuration_3n_snr"
     DIR[DTC,PERF,VPP,3N,AWS]: "{DIR[DTC]}/vpp_performance_configuration_3n_aws"
     DIR[DTC,PERF,VPP,2N,AWS]: "{DIR[DTC]}/vpp_performance_configuration_2n_aws"
@@ -99,8 +91,6 @@
     DIR[DTC,MRR,VPP,3N,ALT]: "{DIR[DTC]}/vpp_mrr_configuration_3n_alt"
     DIR[DTC,MRR,VPP,3N,TSH]: "{DIR[DTC]}/vpp_mrr_configuration_3n_tsh"
     DIR[DTC,MRR,VPP,2N,TX2]: "{DIR[DTC]}/vpp_mrr_configuration_2n_tx2"
-    DIR[DTC,MRR,VPP,3N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_3n_dnv"
-    DIR[DTC,MRR,VPP,2N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_2n_dnv"
     DIR[DTC,MRR,VPP,3N,SNR]: "{DIR[DTC]}/vpp_mrr_configuration_3n_snr"
     DIR[DTC,MRR,VPP,3N,AWS]: "{DIR[DTC]}/vpp_mrr_configuration_3n_aws"
     DIR[DTC,MRR,VPP,2N,AWS]: "{DIR[DTC]}/vpp_mrr_configuration_2n_aws"
@@ -116,8 +106,6 @@
     DIR[DTO,PERF,VPP,3N,ALT]: "{DIR[DTO]}/vpp_performance_operational_data_3n_alt"
     DIR[DTO,PERF,VPP,3N,TSH]: "{DIR[DTO]}/vpp_performance_operational_data_3n_tsh"
     DIR[DTO,PERF,VPP,2N,TX2]: "{DIR[DTO]}/vpp_performance_operational_data_2n_tx2"
-    DIR[DTO,PERF,VPP,3N,DNV]: "{DIR[DTO]}/vpp_performance_operational_data_3n_dnv"
-    DIR[DTO,PERF,VPP,2N,DNV]: "{DIR[DTO]}/vpp_performance_operational_data_2n_dnv"
     DIR[DTO,PERF,VPP,3N,SNR]: "{DIR[DTO]}/vpp_performance_operational_data_3n_snr"
     DIR[DTO,PERF,VPP,3N,AWS]: "{DIR[DTO]}/vpp_performance_operational_data_3n_aws"
     DIR[DTO,PERF,VPP,2N,AWS]: "{DIR[DTO]}/vpp_performance_operational_data_2n_aws"
@@ -210,7 +198,6 @@
 
   frequency:  # [GHz]
     2n-aws: 1.000
-    2n-dnv: 2.000
     2n-clx: 2.300
     2n-icx: 2.600
     2n-skx: 2.500
@@ -218,7 +205,6 @@
     2n-zn2: 2.900
     3n-alt: 3.000
     3n-aws: 1.000
-    3n-dnv: 2.000
     3n-icx: 2.600
     3n-skx: 2.500
     3n-tsh: 2.200

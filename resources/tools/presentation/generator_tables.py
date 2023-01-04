@@ -1146,34 +1146,25 @@ def _generate_url(testbed, test_name):
         frame_size = u""
 
     if u"1t1c" in test_name or \
-        (u"-1c-" in test_name and
-         testbed in (u"3n-hsw", u"3n-tsh", u"2n-dnv", u"3n-dnv", u"2n-tx2")):
+        (u"-1c-" in test_name and testbed in (u"3n-tsh", u"2n-tx2")):
         cores = u"1t1c"
     elif u"2t2c" in test_name or \
-         (u"-2c-" in test_name and
-          testbed in (u"3n-hsw", u"3n-tsh", u"2n-dnv", u"3n-dnv", u"2n-tx2")):
+         (u"-2c-" in test_name and testbed in (u"3n-tsh", u"2n-tx2")):
         cores = u"2t2c"
     elif u"4t4c" in test_name or \
-         (u"-4c-" in test_name and
-          testbed in (u"3n-hsw", u"3n-tsh", u"2n-dnv", u"3n-dnv", u"2n-tx2")):
+         (u"-4c-" in test_name and testbed in (u"3n-tsh", u"2n-tx2")):
         cores = u"4t4c"
     elif u"2t1c" in test_name or \
          (u"-1c-" in test_name and
-          testbed in
-          (u"2n-icx", u"3n-icx", u"2n-skx", u"3n-skx", u"2n-clx", u"2n-zn2",
-           u"2n-aws", u"3n-aws")):
+          testbed in (u"2n-icx", u"3n-icx", u"2n-clx", u"2n-zn2", u"2n-aws")):
         cores = u"2t1c"
     elif u"4t2c" in test_name or \
          (u"-2c-" in test_name and
-          testbed in
-          (u"2n-icx", u"3n-icx", u"2n-skx", u"3n-skx", u"2n-clx", u"2n-zn2",
-           u"2n-aws", u"3n-aws")):
+          testbed in (u"2n-icx", u"3n-icx", u"2n-clx", u"2n-zn2", u"2n-aws")):
         cores = u"4t2c"
     elif u"8t4c" in test_name or \
          (u"-4c-" in test_name and
-          testbed in
-          (u"2n-icx", u"3n-icx", u"2n-skx", u"3n-skx", u"2n-clx", u"2n-zn2",
-           u"2n-aws", u"3n-aws")):
+          testbed in (u"2n-icx", u"3n-icx", u"2n-clx", u"2n-zn2", u"2n-aws")):
         cores = u"8t4c"
     else:
         cores = u""
@@ -1188,7 +1179,7 @@ def _generate_url(testbed, test_name):
         driver = u"af_xdp"
     elif u"rdma" in test_name:
         driver = u"rdma"
-    elif u"dnv" in testbed or u"tsh" in testbed:
+    elif u"tsh" in testbed:
         driver = u"ixgbe"
     elif u"ena" in test_name:
         driver = u"ena"
