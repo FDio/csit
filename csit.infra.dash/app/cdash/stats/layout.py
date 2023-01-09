@@ -246,7 +246,7 @@ class Layout:
                             self._add_navbar()
                         ]
                     ),
-                    dcc.Loading(
+                    dbc.Spinner(
                         dbc.Offcanvas(
                             class_name="w-50",
                             id="offcanvas-metadata",
@@ -328,7 +328,7 @@ class Layout:
         return dbc.Col(
             id="col-plotting-area",
             children=[
-                dcc.Loading(
+                dbc.Spinner(
                     children=[
                         dbc.Row(
                             id="plotting-area",

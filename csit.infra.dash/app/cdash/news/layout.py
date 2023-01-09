@@ -358,7 +358,7 @@ class Layout:
         return dbc.Col(
             id="col-plotting-area",
             children=[
-                dcc.Loading(
+                dbc.Spinner(
                     children=[
                         dbc.Row(
                             id="plotting-area",

@@ -249,6 +249,9 @@ class Layout:
                 id="div-main",
                 className="small",
                 children=[
+                    dcc.Store(id="store-selected-tests"),
+                    dcc.Store(id="store-control-panel"),
+                    dcc.Location(id="url", refresh=False),
                     dbc.Row(
                         id="row-navbar",
                         class_name="g-0",
@@ -256,7 +259,15 @@ class Layout:
                             self._add_navbar()
                         ]
                     ),
-                    dcc.Loading(
+                    dbc.Row(
+                        id="row-main",
+                        class_name="g-0",
+                        children=[
+                            self._add_ctrl_col(),
+                            self._add_plotting_col()
+                        ]
+                    ),
+                    dbc.Spinner(
                         dbc.Offcanvas(
                             class_name="w-50",
                             id="offcanvas-metadata",
@@ -268,17 +279,6 @@ class Layout:
                                 dbc.Row(id="metadata-hdrh-graph")
                             ]
                         )
-                    ),
-                    dbc.Row(
-                        id="row-main",
-                        class_name="g-0",
-                        children=[
-                            dcc.Store(id="store-selected-tests"),
-                            dcc.Store(id="store-control-panel"),
-                            dcc.Location(id="url", refresh=False),
-                            self._add_ctrl_col(),
-                            self._add_plotting_col()
-                        ]
                     )
                 ]
             )
@@ -342,7 +342,7 @@ class Layout:
         return dbc.Col(
             id="col-plotting-area",
             children=[
-                dcc.Loading(
+                dbc.Spinner(
                     children=[
                         dbc.Row(
                             id="plotting-area",
