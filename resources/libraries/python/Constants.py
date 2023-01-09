@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -143,9 +143,6 @@ class Constants:
     # Templates location
     RESOURCES_TPL = u"resources/templates"
 
-    # vat templates location
-    RESOURCES_TPL_VAT = u"resources/templates/vat"
-
     # Kubernetes templates location
     RESOURCES_TPL_K8S = u"resources/templates/kubernetes"
 
@@ -160,9 +157,6 @@ class Constants:
 
     # VPP Communications Library LD_PRELOAD library
     VCL_LDPRELOAD_LIBRARY = u"/usr/lib/x86_64-linux-gnu/libvcl_ldpreload.so"
-
-    # OpenVPP VAT binary name
-    VAT_BIN_NAME = u"vpp_api_test"
 
     # VPP service unit name
     VPP_UNIT = u"vpp"
