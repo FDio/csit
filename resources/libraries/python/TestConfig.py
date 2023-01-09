@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -174,7 +174,7 @@ class TestConfig:
             vlan_id=None
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, is_async=True) as papi_exec:
             for i in range(0, vxlan_count):
                 try:
                     src_ip = src_ip_start + i * ip_step
@@ -198,9 +198,9 @@ class TestConfig:
                 args2[u"vni"] = int(vni_start) + i
                 args3[u"vlan_id"] = i + 1
                 history = bool(not 1 < i < vxlan_count - 1)
-                papi_exec.add(cmd1, history=history, **args1).\
-                    add(cmd2, history=history, **args2).\
-                    add(cmd3, history=history, **args3)
+                papi_exec.add(cmd1, history=history, **args1)
+                papi_exec.add(cmd2, history=history, **args2)
+                papi_exec.add(cmd3, history=history, **args3)
             papi_exec.get_replies()
 
         return vxlan_count
@@ -274,7 +274,7 @@ class TestConfig:
             flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, is_async=True) as papi_exec:
             for i in range(0, vxlan_count):
                 vxlan_subif_key = Topology.add_new_port(node, u"vxlan_tunnel")
                 vxlan_subif_name = f"vxlan_tunnel{i}"
@@ -310,9 +310,8 @@ class TestConfig:
                 )
                 args2[u"sw_if_index"] = vlan_idx
                 history = bool(not 1 < i < vxlan_count - 1)
-                papi_exec.add(cmd, history=history, **args1). \
-                    add(cmd, history=history, **args2)
-                papi_exec.add(cmd, **args1).add(cmd, **args2)
+                papi_exec.add(cmd, history=history, **args1)
+                papi_exec.add(cmd, history=history, **args2)
             papi_exec.get_replies()
 
     @staticmethod
@@ -422,7 +421,7 @@ class TestConfig:
             enable=1
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, is_async=True) as papi_exec:
             for i in range(0, vxlan_count):
                 args1[u"neighbor"][u"ip_address"] = \
                     str(dst_ip_start + i * ip_step)
@@ -439,8 +438,8 @@ class TestConfig:
                 )
                 args4[u"bd_id"] = int(bd_id_start+i)
                 history = bool(not 1 < i < vxlan_count - 1)
-                papi_exec.add(cmd1, history=history, **args1). \
-                    add(cmd2, history=history, **args2). \
-                    add(cmd3, history=history, **args3). \
-                    add(cmd3, history=history, **args4)
+                papi_exec.add(cmd1, history=history, **args1)
+                papi_exec.add(cmd2, history=history, **args2)
+                papi_exec.add(cmd3, history=history, **args3)
+                papi_exec.add(cmd3, history=history, **args4)
             papi_exec.get_replies()

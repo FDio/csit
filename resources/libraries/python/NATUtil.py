@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -182,10 +182,9 @@ class NATUtil:
             """Delete and re-add the NAT range setting."""
             with PapiSocketExecutor(node) as papi_exec:
                 args_in[u"is_add"] = False
-                papi_exec.add(cmd, **args_in)
+                papi_exec.add(cmd, **args_in).get_reply(err_msg)
                 args_in[u"is_add"] = True
-                papi_exec.add(cmd, **args_in)
-                papi_exec.get_replies(err_msg)
+                papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
         return resetter
 
@@ -427,10 +426,9 @@ class NATUtil:
             """Delete and re-add the deterministic NAT mapping."""
             with PapiSocketExecutor(node) as papi_exec:
                 args_in[u"is_add"] = False
-                papi_exec.add(cmd, **args_in)
+                papi_exec.add(cmd, **args_in).get_reply(err_msg)
                 args_in[u"is_add"] = True
-                papi_exec.add(cmd, **args_in)
-                papi_exec.get_replies(err_msg)
+                papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
         return resetter
 
