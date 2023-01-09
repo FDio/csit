@@ -1,5 +1,5 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
-# Copyright (c) 2021 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -92,7 +92,8 @@ function gather_dpdk () {
     then
         echo "Downloading latest DPDK packages from repo..."
         # URL is not in quotes, calling command from variable keeps them.
-        wget_command=("wget" "--no-check-certificate" "-nv" "-O" "-")
+        wget_command=("wget" "--no-check-certificate" "--compression=auto")
+        wget_command+=("-nv" "-O" "-")
         wget_command+=("${dpdk_repo}")
         dpdk_stable_ver="$("${wget_command[@]}" | grep -v "2015"\
             | grep -Eo 'dpdk-[^\"]+xz' | tail -1)" || {
