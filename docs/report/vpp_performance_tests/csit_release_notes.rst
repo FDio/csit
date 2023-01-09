@@ -103,46 +103,40 @@ Issues reported in previous releases which still affect the current results.
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much   |
-|    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                      |
-|    +-----------------------------------------+ Currently, the time critical code uses VAT running large files with exec statements and CLI commands.     |
-|    | `VPP-1763                               | Still, we needed to reduce the number of scale tests run to keep overall duration reasonable.             |
-|    | <https://jira.fd.io/browse/VPP-1763>`_  | More improvements needed to achieve sufficient configuration speed.                                       |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  2 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
+|  1 | `CSIT-1782                              | Multicore AVF tests are failing when trying to create interface.                                          |
 |    | <https://jira.fd.io/browse/CSIT-1782>`_ | Frequency is reduced by CSIT workaround, but occasional failures do still happen.                         |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
+|  2 | `CSIT-1785                              | NAT44ED tests failing to establish all TCP sessions.                                                      |
 |    | <https://jira.fd.io/browse/CSIT-1785>`_ | At least for max scale, in allotted time (limited by session 500s timeout) due to worse                   |
 |    +-----------------------------------------+ slow path performance than previously measured and calibrated for.                                        |
 |    | `VPP-1972                               | CSIT removed the max scale NAT tests to avoid this issue.                                                 |
 |    | <https://jira.fd.io/browse/VPP-1972>`_  |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1799                              | All NAT44-ED 16M sessions CPS scale tests fail while setting NAT44 address range.                         |
+|  3 | `CSIT-1799                              | All NAT44-ED 16M sessions CPS scale tests fail while setting NAT44 address range.                         |
 |    | <https://jira.fd.io/browse/CSIT-1799>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1800                              | All Geneve L3 mode scale tests (1024 tunnels) are failing.                                                |
+|  4 | `CSIT-1800                              | All Geneve L3 mode scale tests (1024 tunnels) are failing.                                                |
 |    | <https://jira.fd.io/browse/CSIT-1800>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1801                              | 9000B payload frames not forwarded over tunnels due to violating supported Max Frame Size (VxLAN, LISP,   |
+|  5 | `CSIT-1801                              | 9000B payload frames not forwarded over tunnels due to violating supported Max Frame Size (VxLAN, LISP,   |
 |    | <https://jira.fd.io/browse/CSIT-1801>`_ | SRv6).                                                                                                    |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1802                              | AF-XDP - NDR tests failing from time to time.                                                             |
+|  6 | `CSIT-1802                              | AF-XDP - NDR tests failing from time to time.                                                             |
 |    | <https://jira.fd.io/browse/CSIT-1802>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  8 | `CSIT-1804                              | All testbeds: NDR tests failing from time to time.                                                        |
+|  7 | `CSIT-1804                              | All testbeds: NDR tests failing from time to time.                                                        |
 |    | <https://jira.fd.io/browse/CSIT-1804>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  9 | `CSIT-1808                              | All tests with 9000B payload frames not forwarded over memif interfaces.                                  |
+|  8 | `CSIT-1808                              | All tests with 9000B payload frames not forwarded over memif interfaces.                                  |
 |    | <https://jira.fd.io/browse/CSIT-1808>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 10 | `CSIT-1827                              | 3n-icx, 3n-skx: all AVF crypto tests sporadically fail. 1518B with no traffic, IMIX with excessive        |
+|  9 | `CSIT-1827                              | 3n-icx, 3n-skx: all AVF crypto tests sporadically fail. 1518B with no traffic, IMIX with excessive        |
 |    | <https://jira.fd.io/browse/CSIT-1827>`_ | packet loss.                                                                                              |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1835                              | 3n-icx: QUIC vppecho BPS tests failing on timeout when checking hoststack finished.                       |
+| 10 | `CSIT-1835                              | 3n-icx: QUIC vppecho BPS tests failing on timeout when checking hoststack finished.                       |
 |    | <https://jira.fd.io/browse/CSIT-1835>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-| 12 | `CSIT-1849                              | 2n-skx, 2n-clx, 2n-icx: UDP 16m TPUT tests fail to create all sessions.                                   |
+| 11 | `CSIT-1849                              | 2n-skx, 2n-clx, 2n-icx: UDP 16m TPUT tests fail to create all sessions.                                   |
 |    | <https://jira.fd.io/browse/CSIT-1849>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 
@@ -151,19 +145,15 @@ _____
 
 Issues reported in previous releases which were fixed in this release:
 
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  # | JiraID                                  | Issue Description                                                                                         |
-+====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1834                              | 2n-icx, 2n-skx: sporadic AVF soak tests failing to find critical load with PLRsearch.                     |
-|    | <https://jira.fd.io/browse/CSIT-1834>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  2 | `CSIT-1846                              | 2n-skx, 2n-clx, 2n-icx: ALL 1518B TCP tput tests failing with big packet loss.                            |
-|    | <https://jira.fd.io/browse/CSIT-1846>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `CSIT-1851                              | trending regression: various icelake tests around 2202-04-15                                              |
-|    | <https://jira.fd.io/browse/CSIT-1851>`_ | Somewhat expected consequence of a VPP usability fix,                                                     |
-|    |                                         | the previous VPP compiler version was too new for the OS used.                                            |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
++----+-----------------------------------------+---------------------------------------------------------------------------------------------------------+
+|  # | JiraID                                  | Issue Description                                                                                       |
++====+=========================================+=========================================================================================================+
+|  1 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much |
+|    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                    |
+|    +-----------------------------------------+ Currently, the time critical code uses VAT running large files with exec statements and CLI commands.   |
+|    | `VPP-1763                               | Still, we needed to reduce the number of scale tests run to keep overall duration reasonable.           |
+|    | <https://jira.fd.io/browse/VPP-1763>`_  | More improvements needed to achieve sufficient configuration speed.                                     |
++----+-----------------------------------------+---------------------------------------------------------------------------------------------------------+
 
 .. _vpp_rca:
 
