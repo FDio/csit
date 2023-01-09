@@ -17,6 +17,7 @@ TODO: Document sync and async handling properly.
 """
 
 import copy
+import gc
 import glob
 import json
 import logging
@@ -45,6 +46,15 @@ from resources.libraries.python.ssh import (
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
+# https://stackoverflow.com/a/53475728
+from pathlib import Path
+#from resource import getpagesize
+
+#PAGESIZE = getpagesize()
+PATH = Path('/proc/self/status')
+
+def log_mem():
+    logger.debug(PATH.read_text())
 
 __all__ = [
     "PapiExecutor",
@@ -426,6 +436,7 @@ class PapiSocketExecutor:
         :returns: self
         :rtype: PapiSocketExecutor
         """
+        log_mem()
         # Do we have the connected instance in the cache?
         vpp_instance = self.get_connected_client(check_connected=False)
         if vpp_instance is not None:
@@ -1061,18 +1072,30 @@ class PapiSocketExecutor:
         """
         vpp_instance = self.get_connected_client()
         # Commands were already sent upon .add().
-        ret_list = list()
+        gc_was_enabled = gc.isenabled()
+        logger.debug(f"gc was enabled: {gc_was_enabled}")
+        gc.disable()
         try:
-            for index, _ in enumerate(local_list):
-                # Blocks up to timeout.
-                reply = PapiSocketExecutor._read(vpp_instance)
-                if reply is None:
-                    time_msg = "PAPI async timeout: idx {index}"
-                    raise RuntimeError(f"{err_msg}\n{time_msg}")
-                ret_list.append(dictize_and_check_retval(reply, err_msg))
+            log_mem()
+            ret_list = list()
+            try:
+                for index, command in enumerate(local_list):
+                    # Blocks up to timeout.
+                    reply = PapiSocketExecutor._read(vpp_instance)
+                    if reply is None:
+                        time_msg = "PAPI async timeout: idx {index}"
+                        raise RuntimeError(f"{err_msg}\n{time_msg}")
+                    ret_list.append(dictize_and_check_retval(reply, err_msg))
+            finally:
+                log_mem()
+                # Discard any unprocessed replies to avoid secondary failures.
+                PapiSocketExecutor._drain(vpp_instance, err_msg)
+                unreachable = gc.collect()
+                logger.debug(f"{unreachable} unreachable objects")
+                log_mem()
         finally:
-            # Discard any unprocessed replies to avoid secondary failures.
-            PapiSocketExecutor._drain(vpp_instance, err_msg)
+            if gc_was_enabled:
+                gc.enable()
         return ret_list
 
 
