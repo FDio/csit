@@ -1,5 +1,5 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
-# Copyright (c) 2021 PANTHEON.tech s.r.o.
+# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -796,7 +796,7 @@ class IPUtil:
             ip_network(f"{network}/{prefix_len}", strict=strict),
             format=u"addr"
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, is_async=True) as papi_exec:
             for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, netiter.inc_fmt(), prefix_len, **kwargs
