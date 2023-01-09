@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -253,7 +253,7 @@ class L2Util:
         err_msg = f"Failed to add L2 bridge domain with 2 interfaces " \
             f"on host {node[u'host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, is_async=True) as papi_exec:
             papi_exec.add(cmd1, **args1).add(cmd2, **args2).add(cmd2, **args3)
             papi_exec.get_replies(err_msg)
 
@@ -292,7 +292,7 @@ class L2Util:
         err_msg = f"Failed to add L2 cross-connect between two interfaces " \
             f"on host {node['host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, is_async=True) as papi_exec:
             papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
 
     @staticmethod
@@ -330,7 +330,7 @@ class L2Util:
         err_msg = f"Failed to add L2 patch between two interfaces " \
             f"on host {node['host']}"
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, is_async=True) as papi_exec:
             papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
 
     @staticmethod
