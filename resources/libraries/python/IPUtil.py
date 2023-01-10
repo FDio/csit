@@ -20,6 +20,7 @@ import os
 from enum import IntEnum
 
 from ipaddress import ip_address, ip_network
+from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.IncrementUtil import ObjIncrement
@@ -735,6 +736,7 @@ class IPUtil:
         :type kwargs: dict
         :raises RuntimeError: If the argument combination is not supported.
         """
+        logger.debug("route add init")
         count = kwargs.get(u"count", 1)
 
         cmd = u"ip_route_add_del"
@@ -750,13 +752,17 @@ class IPUtil:
             format=u"addr"
         )
         with PapiSocketExecutor(node, is_async=True) as papi_exec:
+            logger.debug("sending starts")
             for i in range(count):
                 args[u"route"] = IPUtil.compose_vpp_route_structure(
                     node, netiter.inc_fmt(), prefix_len, **kwargs
                 )
                 history = bool(not 0 < i < count - 1)
                 papi_exec.add(cmd, history=history, **args)
+            logger.debug("sending ends, checking starts")
             papi_exec.get_replies(err_msg)
+            logger.debug("checking ends")
+        logger.debug("done")
 
     @staticmethod
     def flush_ip_addresses(node, interface):
