@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,7 +17,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | HOSTSTACK | LDP_NGINX | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | TCP_RPS | eth-ip4tcphttp-ldpreload-nginx-1_21_5
+| ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1_23_3
 |
 | Suite Setup | Setup suite topology interfaces | ab | nginx
 | Suite Teardown | Tear down suite | ab
@@ -50,19 +50,19 @@
 | ${nic_vfs}= | 0
 | ${overhead}= | ${0}
 | ${ciphers}= | 0
-| ${rps_cps}= | rps
+| ${rps_cps}= | cps
 | ${qat}= | ${0}
 | ${r_total}= | ${1000000}
 | ${c_total}= | ${2000}
 | ${listen_port}= | ${80}
 | ${mode}= | ldp
 | ${tls_tcp}= | tcp
-| ${keep_time}= | 300
+| ${keep_time}= | 0
 | ${ab_ip_prefix}= | 24
 | @{ab_ip_addrs}= | 192.168.10.2
 | ${dut_ip_prefix}= | 24
 | @{dut_ip_addrs}= | 192.168.10.1
-| ${nginx_version}= | 1.21.5
+| ${nginx_version}= | 1.23.3
 
 *** Keywords ***
 | Local template
@@ -90,34 +90,34 @@
 | | ... | ${ciphers} | ${frame_size} | ${tls_tcp} | ${rps_cps}
 
 *** Test Cases ***
-| 0B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| 0B-1c-eth-ip4tcphttp-ldpreload-nginx-1_23_3-cps
 | | [Tags] | 0B | 1C
 | | frame_size=${0} | phy_cores=${1}
 
-| 0B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| 0B-2c-eth-ip4tcphttp-ldpreload-nginx-1_23_3-cps
 | | [Tags] | 0B | 2C
 | | frame_size=${0} | phy_cores=${2}
 
-| 64B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| 64B-1c-eth-ip4tcphttp-ldpreload-nginx-1_23_3-cps
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| 64B-2c-eth-ip4tcphttp-ldpreload-nginx-1_23_3-cps
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 1024B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| 1024B-1c-eth-ip4tcphttp-ldpreload-nginx-1_23_3-cps
 | | [Tags] | 1024B | 1C
 | | frame_size=${1024} | phy_cores=${1}
 
-| 1024B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| 1024B-2c-eth-ip4tcphttp-ldpreload-nginx-1_23_3-cps
 | | [Tags] | 1024B | 2C
 | | frame_size=${1024} | phy_cores=${2}
 
-| 2048B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| 2048B-1c-eth-ip4tcphttp-ldpreload-nginx-1_23_3-cps
 | | [Tags] | 2048B | 1C
 | | frame_size=${2048} | phy_cores=${1}
 
-| 2048B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-rps
+| 2048B-2c-eth-ip4tcphttp-ldpreload-nginx-1_23_3-cps
 | | [Tags] | 2048B | 2C
 | | frame_size=${2048} | phy_cores=${2}
