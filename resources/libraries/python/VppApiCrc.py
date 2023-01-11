@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -282,6 +282,7 @@ class VppApiCrcChecker:
                     continue
                 with open(f"{root}/{filename}", u"rt") as file_in:
                     json_obj = json.load(file_in)
+                    print(f"\n{json_obj}\n")
                 version = json_obj[u"options"].get(u"version", None)
                 msgs = json_obj[u"messages"]
                 for msg_obj in msgs:
