@@ -8,8 +8,6 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    focal:
-      - "apache2-utils"
     jammy:
       - "apache2-utils"
 

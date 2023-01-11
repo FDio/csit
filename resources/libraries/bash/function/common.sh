@@ -1,5 +1,5 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
-# Copyright (c) 2022 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -775,11 +775,6 @@ function select_arch_os () {
     case "${ID}" in
         "ubuntu"*)
             case "${VERSION}" in
-                *"LTS (Focal Fossa)"*)
-                    IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
-                    VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_FOCAL"
-                    PKG_SUFFIX="deb"
-                    ;;
                 *"LTS (Jammy Jellyfish)"*)
                     IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU_JAMMY"
                     VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_JAMMY"

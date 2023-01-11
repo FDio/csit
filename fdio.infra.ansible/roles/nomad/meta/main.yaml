@@ -13,7 +13,6 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - focal
         - jammy
   galaxy_tags:
     - nomad

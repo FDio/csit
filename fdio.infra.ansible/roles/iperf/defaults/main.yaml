@@ -8,9 +8,6 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    focal:
-      - "build-essential"
-      - "lib32z1"
     jammy:
       - "build-essential"
       - "lib32z1"

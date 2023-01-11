@@ -29,6 +29,5 @@ Test Methodology
     methodology_nfv_service_density
     methodology_vpp_device_functional
     methodology_autogen
-    methodology_aws/index
     methodology_rca/index
     methodology_trending/index

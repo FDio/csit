@@ -9,9 +9,6 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    focal:
-      - "build-essential"
-      - "dmidecode"
     jammy:
       - "build-essential"
       - "dmidecode"
@@ -27,12 +24,6 @@ kernel_version: "{{ kernel_version_by_distro_by_arch[ansible_distribution | lowe
 
 kernel_version_by_distro_by_arch:
   ubuntu:
-    focal:
-      x86_64:
-        - "5.4.0-65-generic"
-        - "5.4.0-1035-aws"
-      aarch64:
-        - "5.4.0-65-generic"
     jammy:
       x86_64:
         - "5.15.0-46-generic" # Placeholder

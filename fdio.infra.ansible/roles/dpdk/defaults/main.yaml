@@ -8,9 +8,6 @@ packages_base:
 
 packages_by_distro:
   ubuntu:
-    focal:
-      - "build-essential"
-      - "libnuma-dev"
     jammy:
       - "build-essential"
       - "libnuma-dev"
