@@ -282,6 +282,7 @@ class VppApiCrcChecker:
                     continue
                 with open(f"{root}/{filename}", u"rt") as file_in:
                     json_obj = json.load(file_in)
+                    print(f"\n{json_obj}\n")
                 version = json_obj[u"options"].get(u"version", None)
                 msgs = json_obj[u"messages"]
                 for msg_obj in msgs:
