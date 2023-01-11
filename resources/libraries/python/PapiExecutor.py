@@ -11,18 +11,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Python API executor library."""
+"""Python API executor library.
+
+TODO: Document sync and async handling properly.
+"""
 
 import copy
 import glob
 import json
+import logging
 import shutil
 import struct  # vpp-papi can raise struct.error
 import subprocess
 import sys
 import tempfile
 import time
-from collections import UserDict
+from collections import deque, UserDict
 
 
 from pprint import pformat
@@ -68,15 +72,37 @@ def dictize(obj):
     :param obj: Arbitrary object to dictize.
     :type obj: object
     :returns: Dictized object.
-    :rtype: same as obj type or collections.OrderedDict
+    :rtype: same as obj type or collections.UserDict
     """
     if not hasattr(obj, "_asdict"):
         return obj
     overriden = UserDict(obj._asdict())
     old_get = overriden.__getitem__
-    new_get = lambda self, key: dictize(old_get(self, key))
-    overriden.__getitem__ = new_get
+    overriden.__getitem__ = lambda self, key: dictize(old_get(self, key))
     return overriden
+
+
+def dictize_and_check_retval(obj, err_msg):
+    """Make namedtuple-like object accessible as dict, check retval if exists.
+
+    If the object contains "retval" field, raise when the value is non-zero.
+
+    See dictize() for what it means to dictize.
+
+    :param obj: Arbitrary object to dictize.
+    :param err_msg: The (additional) text for the raised exception.
+    :type obj: object
+    :type err_msg: str
+    :returns: Dictized object.
+    :rtype: same as obj type or collections.UserDict
+    :raises AssertionError: If retval field is present with nonzero value.
+    """
+    ret = dictize(obj)
+    # *_details messages do not contain retval.
+    retval = ret.get("retval", 0)
+    if retval != 0:
+        raise AssertionError(f"{err_msg}\nRetval nonzero in object {ret!r}")
+    return ret
 
 
 class PapiSocketExecutor:
@@ -144,7 +170,7 @@ class PapiSocketExecutor:
     b. Three requests with arguments, the second and the third ones are the same
        but with different arguments.
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, is_async=True) as papi_exec:
             replies = papi_exec.add(cmd1, **args1).add(cmd2, **args2).\
                 add(cmd2, **args3).get_replies(err_msg)
 
@@ -177,16 +203,21 @@ class PapiSocketExecutor:
     conn_cache = dict()
     """Mapping from node key to connected client instance."""
 
-    def __init__(self, node, remote_vpp_socket=Constants.SOCKSVR_PATH):
+    def __init__(
+        self, node, remote_vpp_socket=Constants.SOCKSVR_PATH, is_async=False
+    ):
         """Store the given arguments, declare managed variables.
 
         :param node: Node to connect to and forward unix domain socket from.
         :param remote_vpp_socket: Path to remote socket to tunnel to.
+        :param is_async: Whether to use async handling.
         :type node: dict
         :type remote_vpp_socket: str
+        :type is_async: bool
         """
         self._node = node
         self._remote_vpp_socket = remote_vpp_socket
+        self._is_async = is_async
         # The list of PAPI commands to be executed on the node.
         self._api_command_list = list()
 
@@ -263,15 +294,19 @@ class PapiSocketExecutor:
 
             vpp_class.apidir = cls.api_json_path
             # We need to create instance before removing from sys.path.
+            # Cannot use loglevel parameter, robot.api.logger lacks the support.
             vpp_instance = vpp_class(
                 use_socket=True,
                 server_address="TBD",
                 async_thread=False,
+                # Large read timeout was originally there for VPP-1722,
+                # it may still be helping against AVF device creation failures.
                 read_timeout=14,
                 logger=FilteredLogger(logger, "INFO"),
             )
-            # Cannot use loglevel parameter, robot.api.logger lacks support.
-            # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
+            # The following is needed to prevent union (e.g. Ip4) debug logging
+            # of VPP part of PAPI from spamming robot logs.
+            logging.getLogger("vpp_papi.serializer").setLevel(logging.INFO)
         finally:
             if sys.path[-1] == cls.api_package_path:
                 sys.path.pop()
@@ -343,10 +378,11 @@ class PapiSocketExecutor:
         If check_connected, RuntimeError is raised when the client is
         not in cache. None is returned if client is not in cache
         (and the check is disabled).
+        Successful retrieval from cache is logged only when check_connected.
 
         This hides details of what the node key is.
 
-        :param check_connected: Whether cache miss raises.
+        :param check_connected: Whether cache miss raises (and success logs).
         :type check_connected: bool
         :returns: Connected client instance, or None if uncached and no check.
         :rtype: Optional[vpp_papi.VPPApiClient]
@@ -355,10 +391,9 @@ class PapiSocketExecutor:
         key = self.key_for_self()
         ret = self.__class__.conn_cache.get(key, None)
 
-        if ret is None:
-            if check_connected:
+        if check_connected:
+            if ret is None:
                 raise RuntimeError(f"Client not cached for key: {key}")
-        else:
             # When reading logs, it is good to see which VPP is accessed.
             logger.debug(f"Activated cached PAPI client for key: {key}")
         return ret
@@ -380,6 +415,8 @@ class PapiSocketExecutor:
             - This socket controls the local ssh process doing the forwarding.
         csit_local_vpp_socket
             - This is the forwarded socket to talk with remote VPP.
+        csit_deque
+            - Queue for responses.
 
         The attribute names do not start with underscore,
         so pylint does not complain about accessing private attribute.
@@ -394,7 +431,7 @@ class PapiSocketExecutor:
         if vpp_instance is not None:
             return self
         # No luck, create and connect a new instance.
-        time_enter = time.time()
+        time_enter = time.monotonic()
         node = self._node
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.ensure_vpp_instance()
@@ -435,7 +472,7 @@ class PapiSocketExecutor:
             ssh_socket,
             "-M",
             "-L",
-            api_socket + ":" + self._remote_vpp_socket,
+            f"{api_socket}:{self._remote_vpp_socket}",
             "-p",
             str(node["port"]),
             "-o",
@@ -446,7 +483,7 @@ class PapiSocketExecutor:
             "StrictHostKeyChecking=no",
             "-o",
             "ExitOnForwardFailure=yes",
-            node["username"] + "@" + node["host"],
+            f"{node['username']}@{node['host']}",
             "sleep",
             "30",
         ]
@@ -464,19 +501,19 @@ class PapiSocketExecutor:
         if password:
             # Prepend sshpass command to set password.
             ssh_cmd[:0] = ["sshpass", "-p", password]
-        time_stop = time.time() + 10.0
+        time_stop = time.monotonic() + 10.0
         # subprocess.Popen seems to be the best way to run commands
         # on background. Other ways (shell=True with "&" and ssh with -f)
         # seem to be too dependent on shell behavior.
         # In particular, -f does NOT return values for run().
         subprocess.Popen(ssh_cmd)
         # Check socket presence on local side.
-        while time.time() < time_stop:
+        while time.monotonic() < time_stop:
             # It can take a moment for ssh to create the socket file.
             ret_code, _ = run(["ls", "-l", api_socket], check=False)
             if not ret_code:
                 break
-            time.sleep(0.1)
+            time.sleep(0.01)
         else:
             raise RuntimeError("Local side socket has not appeared.")
         if priv_key:
@@ -488,7 +525,7 @@ class PapiSocketExecutor:
         # Single retry seems to help.
         for _ in range(2):
             try:
-                vpp_instance.connect_sync("csit_socket")
+                vpp_instance.connect("csit_socket", do_async=True)
             except (IOError, struct.error) as err:
                 logger.warn(f"Got initial connect error {err!r}")
                 vpp_instance.disconnect()
@@ -496,9 +533,15 @@ class PapiSocketExecutor:
                 break
         else:
             raise RuntimeError("Failed to connect to VPP over a socket.")
-        logger.trace(
-            f"Establishing socket connection took {time.time()-time_enter}s"
-        )
+        # Only after rls2302 all relevant VPP builds should have do_async.
+        if hasattr(vpp_instance.transport, "do_async"):
+            deq = deque()
+            vpp_instance.csit_deque = deq
+            vpp_instance.register_event_callback(lambda x, y: deq.append(y))
+        else:
+            vpp_instance.csit_deque = None
+        duration_conn = time.monotonic() - time_enter
+        logger.trace(f"Establishing socket connection took {duration_conn}s.")
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -633,20 +676,37 @@ class PapiSocketExecutor:
         """
         self.crc_checker.report_initial_conflicts()
         if history:
+            # No need for deepcopy yet, serialization isolates from edits.
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs
             )
         self.crc_checker.check_api_name(csit_papi_command)
-        self._api_command_list.append(
-            dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs))
-        )
+        if self._is_async:
+            # Save memory but still count the number of expected replies.
+            self._api_command_list.append(0)
+            api_object = self.get_connected_client(check_connected=False).api
+            func = getattr(api_object, csit_papi_command)
+            # No need for deepcopy yet, serialization isolates from edits.
+            func(**kwargs)
+        else:
+            # No serialization, so deepcopy is needed here.
+            self._api_command_list.append(
+                dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs))
+            )
         return self
 
     def get_replies(self, err_msg="Failed to get replies."):
-        """Get replies from VPP Python API.
+        """Get reply for each command from VPP Python API.
+
+        This method expects one reply per command,
+        and gains performance by reading replies only after
+        sending all commands.
 
         The replies are parsed into dict-like objects,
         "retval" field is guaranteed to be zero on success.
+
+        Do not use this for messages with variable number of replies,
+        use get_details instead.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :type err_msg: str
@@ -654,15 +714,18 @@ class PapiSocketExecutor:
         :rtype: list of dict
         :raises RuntimeError: If retval is nonzero, parsing or ssh error.
         """
-        return self._execute(err_msg=err_msg)
+        if not self._is_async:
+            raise RuntimeError("Sync handling does not suport get_replies.")
+        return self._execute(err_msg=err_msg, do_async=True)
 
     def get_reply(self, err_msg="Failed to get reply."):
-        """Get reply from VPP Python API.
+        """Get reply to single command from VPP Python API.
 
-        The reply is parsed into dict-like object,
+        This method waits for a single reply (no control ping),
+        thus avoiding bugs like VPP-2033.
+
+        The reply is parsed into a dict-like object,
         "retval" field is guaranteed to be zero on success.
-
-        TODO: Discuss exception types to raise, unify with inner methods.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :type err_msg: str
@@ -670,7 +733,9 @@ class PapiSocketExecutor:
         :rtype: dict
         :raises AssertionError: If retval is nonzero, parsing or ssh error.
         """
-        replies = self.get_replies(err_msg=err_msg)
+        if self._is_async:
+            raise RuntimeError("Async handling does not suport get_reply.")
+        replies = self._execute(err_msg=err_msg, do_async=False)
         if len(replies) != 1:
             raise RuntimeError(f"Expected single reply, got {replies!r}")
         return replies[0]
@@ -679,9 +744,8 @@ class PapiSocketExecutor:
         """Get sw_if_index from reply from VPP Python API.
 
         Frequently, the caller is only interested in sw_if_index field
-        of the reply, this wrapper makes such call sites shorter.
-
-        TODO: Discuss exception types to raise, unify with inner methods.
+        of the reply, this wrapper around get_reply
+        makes such call sites shorter.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :type err_msg: str
@@ -689,12 +753,13 @@ class PapiSocketExecutor:
         :rtype: int
         :raises AssertionError: If retval is nonzero, parsing or ssh error.
         """
+        if self._is_async:
+            raise RuntimeError("Async handling does not suport get_sw_if_index")
         reply = self.get_reply(err_msg=err_msg)
-        logger.trace(f"Getting index from {reply!r}")
         return reply["sw_if_index"]
 
     def get_details(self, err_msg="Failed to get dump details."):
-        """Get dump details from VPP Python API.
+        """Get details (for possibly multiple dumps) from VPP Python API.
 
         The details are parsed into dict-like objects.
         The number of details per single dump command can vary,
@@ -703,12 +768,17 @@ class PapiSocketExecutor:
         logging everything at once for debugging purposes),
         it is recommended to call get_details for each dump (type) separately.
 
+        This method uses control ping to detect end of replies,
+        so it is not suitable for commands sensitive to VPP-2033.
+
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :type err_msg: str
         :returns: Details, dict objects with fields due to API without "retval".
         :rtype: list of dict
         """
-        return self._execute(err_msg)
+        if self._is_async:
+            raise RuntimeError("Async handling does not suport get_details.")
+        return self._execute(err_msg, do_async=False, single_reply=False)
 
     @staticmethod
     def run_cli_cmd(
@@ -717,6 +787,7 @@ class PapiSocketExecutor:
         """Run a CLI command as cli_inband, return the "reply" field of reply.
 
         Optionally, log the field value.
+        This is a convenience wrapper around get_reply.
 
         :param node: Node to run command on.
         :param cli_cmd: The CLI command to be run on the node.
@@ -749,6 +820,8 @@ class PapiSocketExecutor:
     def run_cli_cmd_on_all_sockets(node, cli_cmd, log=True):
         """Run a CLI command as cli_inband, on all sockets in topology file.
 
+        Just a run_cli_cmd, looping over sockets.
+
         :param node: Node to run command on.
         :param cli_cmd: The CLI command to be run on the node.
         :param log: If True, the response is logged.
@@ -767,6 +840,8 @@ class PapiSocketExecutor:
     def dump_and_log(node, cmds):
         """Dump and log requested information, return None.
 
+        Just a get_details (with logging), looping over commands.
+
         :param node: DUT node.
         :param cmds: Dump commands to be executed.
         :type node: dict
@@ -777,7 +852,90 @@ class PapiSocketExecutor:
                 dump = papi_exec.add(cmd).get_details()
                 logger.debug(f"{cmd}:\n{pformat(dump)}")
 
-    def _execute(self, err_msg="Undefined error message", exp_rv=0):
+    @staticmethod
+    def _read_internal(vpp_instance, timeout=None):
+        """Blockingly read within timeout.
+
+        This covers behaviors both before and after 37758.
+        One read attempt is guaranteed even with zero timeout.
+
+        :param vpp_instance: Client instance to read from.
+        :param timeout: How long to wait for reply (or transport default).
+        :type vpp_instance: vpp_papi.VPPApiClient
+        :type timeout: Optional[float]
+        :returns: Message read or None if nothing got read.
+        :rtype: Optional[namedtuple]
+        """
+        timeout = vpp_instance.read_timeout if timeout is None else timeout
+        if vpp_instance.csit_deque is None:
+            return vpp_instance.read_blocking(timeout=timeout)
+        time_stop = time.monotonic() + timeout
+        while 1:
+            try:
+                return vpp_instance.csit_deque.popleft()
+            except IndexError:
+                # We could busy-wait but that seems to starve the reader thread.
+                time.sleep(0.01)
+            if time.monotonic() > time_stop:
+                return None
+
+    @staticmethod
+    def _read(vpp_instance, tries=3):
+        """Blockingly read within timeout, retry on early None.
+
+        For unknown reasons, VPP client in async mode likes
+        to return None before timeout sometimes.
+        This function retries in that case.
+
+        Most of the time, early None means VPP crashed (see VPP-2033),
+        but is is better to give VPP more chances to respond without failure.
+
+        :param vpp_instance: Client instance to read from.
+        :param tries: Maximum number of tries to attempt.
+        :type vpp_instance: vpp_papi.VPPApiClient
+        :type tries: int
+        :returns: Message read or None if nothing got read even with retries.
+        :rtype: Optional[namedtuple]
+        """
+        timeout = vpp_instance.read_timeout
+        for _ in range(tries):
+            time_stop = time.monotonic() + 0.9 * timeout
+            reply = PapiSocketExecutor._read_internal(vpp_instance)
+            if reply is None and time.monotonic() < time_stop:
+                logger.trace("Early None. Retry?")
+                continue
+            return reply
+        logger.trace(f"Got {tries} early Nones, probably a real None.")
+        return None
+
+    @staticmethod
+    def _drain(vpp_instance, err_msg, timeout=30.0):
+        """Keep reading with until None or timeout.
+
+        This is needed to mitigate the risk of a state with unread responses
+        (e.g. after non-zero retval in the middle of get_replies)
+        causing failures in everything subsequent (until disconnect).
+
+        The reads are done without any waiting.
+
+        It is possible some responses have not arrived yet,
+        but that is unlikely as Python is usually slower than VPP.
+
+        :param vpp_instance: Client instance to read from.
+        :param err_msg: Error message to use when overstepping timeout.
+        :param timeout: How long to try before giving up.
+        :type vpp_instance: vpp_papi.VPPApiClient
+        :type err_msg: str
+        :type timeout: float
+        :raises RuntimeError: If read keeps returning nonzero after timeout.
+        """
+        time_stop = time.monotonic() + timeout
+        while time.monotonic() < time_stop:
+            if PapiSocketExecutor._read_internal(vpp_instance, 0.0) is None:
+                return
+        raise RuntimeError(f"{err_msg}\nTimed out while draining.")
+
+    def _execute(self, err_msg, do_async, single_reply=True):
         """Turn internal command list into data and execute; return replies.
 
         This method also clears the internal command list.
@@ -790,52 +948,134 @@ class PapiSocketExecutor:
         - get_details()
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param do_async: If true, assume one reply per command and do not wait
+            for each reply before sending next request.
+            Dump commands (and call causing VPP-2033) need False.
+        :param single_reply: For sync emulation mode (cannot be False
+            if do_async is True). When false use control ping.
+            When true, wait for a single reply.
         :type err_msg: str
-        :returns: Papi responses parsed into a dict-like object,
+        :type do_async: bool
+        :type single_reply: bool
+        :returns: Papi replies parsed into a dict-like object,
+            with fields due to API (possibly including retval).
+        :rtype: NoneType or list of dict
+        :raises RuntimeError: If the replies are not all correct.
+        """
+        local_list = self._api_command_list
+        # Clear first as execution may fail.
+        self._api_command_list = list()
+        if do_async:
+            if not single_reply:
+                raise RuntimeError("Async papi needs one reply per request.")
+            return self._execute_async(local_list, err_msg=err_msg)
+        return self._execute_sync(
+            local_list, err_msg=err_msg, single_reply=single_reply
+        )
+
+    def _execute_sync(self, local_list, err_msg, single_reply):
+        """Execute command waiting for replies one by one; return replies.
+
+        This implementation either expect single response per request,
+        or uses control ping to emulate sync PAPI calls.
+        Reliable, but slow. Required for dumps.
+
+        :param local_list: The list of PAPI commands to be executed on the node.
+        :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param single_reply: When false use control ping.
+            When true, wait for a single reply.
+        :type local_list: list of dict
+        :type err_msg: str
+        :type single_reply: bool
+        :returns: Papi replies parsed into a dict-like object,
             with fields due to API (possibly including retval).
         :rtype: list of dict
         :raises RuntimeError: If the replies are not all correct.
         """
         vpp_instance = self.get_connected_client()
-        local_list = self._api_command_list
-        # Clear first as execution may fail.
-        self._api_command_list = list()
-        replies = list()
+        control_ping_fn = getattr(vpp_instance.api, "control_ping")
+        ret_list = list()
         for command in local_list:
             api_name = command["api_name"]
             papi_fn = getattr(vpp_instance.api, api_name)
+            replies = list()
             try:
-                try:
-                    reply = papi_fn(**command["api_args"])
-                except (IOError, struct.error) as err:
-                    # Occasionally an error happens, try reconnect.
-                    logger.warn(f"Reconnect after error: {err!r}")
-                    vpp_instance.disconnect()
-                    # Testing shows immediate reconnect fails.
-                    time.sleep(1)
-                    vpp_instance.connect_sync("csit_socket")
-                    logger.trace("Reconnected.")
-                    reply = papi_fn(**command["api_args"])
+                # Send the command followed by control ping.
+                main_context = papi_fn(**command["api_args"])
+                if single_reply:
+                    replies.append(PapiSocketExecutor._read(vpp_instance))
+                else:
+                    ping_context = control_ping_fn()
+                    # Receive the replies.
+                    while 1:
+                        reply = PapiSocketExecutor._read(vpp_instance)
+                        if reply is None:
+                            raise RuntimeError(
+                                f"{err_msg}\nSync PAPI timed out."
+                            )
+                        if reply.context == ping_context:
+                            break
+                        if reply.context != main_context:
+                            message = (
+                                f"{err_msg}\nUnexpected context: {reply!r}"
+                            )
+                            raise RuntimeError(message)
+                        replies.append(reply)
             except (AttributeError, IOError, struct.error) as err:
-                raise AssertionError(err_msg) from err
-            # *_dump commands return list of objects, convert, ordinary reply.
-            if not isinstance(reply, list):
-                reply = [reply]
-            for item in reply:
-                message_name = item.__class__.__name__
-                self.crc_checker.check_api_name(message_name)
-                dict_item = dictize(item)
-                if "retval" in dict_item.keys():
-                    # *_details messages do not contain retval.
-                    retval = dict_item["retval"]
-                    if retval != exp_rv:
-                        raise AssertionError(
-                            f"Retval {retval!r} does not match expected"
-                            f" retval {exp_rv!r} in message {message_name}"
-                            f" for command {command}."
-                        )
-                replies.append(dict_item)
-        return replies
+                # TODO: Add retry if it is still needed.
+                raise AssertionError(f"{err_msg}") from err
+            finally:
+                # Discard any unprocessed replies to avoid secondary failures.
+                PapiSocketExecutor._drain(vpp_instance, err_msg)
+            # Process replies for this command.
+            for reply in replies:
+                # Request CRC was checked in add, here check CRC of each reply.
+                self.crc_checker.check_api_name(reply.__class__.__name__)
+                dictized_reply = dictize_and_check_retval(reply, err_msg)
+                ret_list.append(dictized_reply)
+        return ret_list
+
+    def _execute_async(self, local_list, err_msg):
+        """Send all command messages, then read, process and return replies.
+
+        Beware: It is not clear what to do when socket read fails
+        in the middle of async processing.
+        Yet another reason to use sync execution for *_dump commands.
+
+        The implementation assumes each command results in exactly one reply,
+        there is no reordering in either commands nor replies,
+        and context numbers increase one by one (and are matching for replies).
+
+        To speed processing up, reply CRC values are not checked.
+
+        The current implementation does not limit the number of messages
+        in-flight, we rely on VPP PAPI background thread to move replies
+        from socket to queue fast enough.
+
+        :param local_list: The list of PAPI commands to be executed on the node.
+        :param err_msg: The message used if the PAPI command(s) execution fails.
+        :type local_list: list of dict
+        :type err_msg: str
+        :returns: Papi replies parsed into a dict-like object, with fields
+            according to API (possibly including retval). None for fast_receive.
+        :rtype: None or list of dict
+        :raises RuntimeError: If the replies are not all correct.
+        """
+        vpp_instance = self.get_connected_client()
+        # Commands were already sent upon .add().
+        ret_list = list()
+        try:
+            for index, _ in enumerate(local_list):
+                # Blocks up to timeout.
+                reply = PapiSocketExecutor._read(vpp_instance)
+                if reply is None:
+                    time_msg = "PAPI async timeout: idx {index}"
+                    raise RuntimeError(f"{err_msg}\n{time_msg}")
+                ret_list.append(dictize_and_check_retval(reply, err_msg))
+        finally:
+            # Discard any unprocessed replies to avoid secondary failures.
+            PapiSocketExecutor._drain(vpp_instance, err_msg)
+        return ret_list
 
 
 class Disconnector:
@@ -922,11 +1162,9 @@ class PapiExecutor:
     def __enter__(self):
         try:
             self._ssh.connect(self._node)
-        except IOError:
-            raise RuntimeError(
-                f"Cannot open SSH connection to host {self._node[u'host']}"
-                f" to execute PAPI command(s)"
-            )
+        except IOError as err:
+            msg = f"PAPI: Cannot open SSH connection to {self._node[u'host']}"
+            raise RuntimeError(msg) from err
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
