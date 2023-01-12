@@ -1,4 +1,4 @@
-# copyright (c) 2022 Intel and/or its affiliates.
+# copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -454,7 +454,7 @@ class FlowUtil:
             hw_if_index=int(sw_if_index)
         )
 
-        err_msg = u"Failed to enable flow on host {node[u'host']}"
+        err_msg = f"Failed to enable flow on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
