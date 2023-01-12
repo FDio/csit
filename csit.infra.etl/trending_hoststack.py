@@ -143,7 +143,7 @@ paths = wr.s3.list_objects(
 
 filtered_paths = [path for path in paths if "daily" in path or "weekly" in path]
 
-out_sdf = process_json_to_dataframe("soak", filtered_paths)
+out_sdf = process_json_to_dataframe("hoststack", filtered_paths)
 out_sdf.show(truncate=False)
 out_sdf.printSchema()
 out_sdf = out_sdf \
