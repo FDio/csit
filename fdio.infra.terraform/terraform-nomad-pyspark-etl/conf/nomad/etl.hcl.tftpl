@@ -139,6 +139,36 @@ job "${job_name}" {
         memory = ${memory}
       }
     }
+    task "${job_name}-trending-hoststack" {
+      artifact {
+        source      = "git::https://github.com/FDio/csit"
+        destination = "local/csit"
+      }
+      driver = "docker"
+      config {
+        image   = "${image}"
+        command = "gluesparksubmit"
+        args = [
+          "--driver-memory", "30g",
+          "--executor-memory", "30g",
+          "trending_hoststack.py"
+        ]
+        work_dir = "/local/csit/csit.infra.etl"
+      }
+      env {
+        AWS_ACCESS_KEY_ID         = "${aws_access_key_id}"
+        AWS_SECRET_ACCESS_KEY     = "${aws_secret_access_key}"
+        AWS_DEFAULT_REGION        = "${aws_default_region}"
+        OUT_AWS_ACCESS_KEY_ID     = "${out_aws_access_key_id}"
+        OUT_AWS_SECRET_ACCESS_KEY = "${out_aws_secret_access_key}"
+        OUT_AWS_DEFAULT_REGION    = "${out_aws_default_region}"
+        ${ envs }
+      }
+      resources {
+        cpu    = ${cpu}
+        memory = ${memory}
+      }
+    }
     task "${job_name}-stats" {
       artifact {
         source      = "git::https://github.com/FDio/csit"
@@ -170,7 +200,7 @@ job "${job_name}" {
       }
     }
   }
-#  group "${job_name}-rls2210" {
+#  group "${job_name}-rls2302" {
 #    restart {
 #      mode = "fail"
 #    }
@@ -197,7 +227,7 @@ job "${job_name}" {
 #          "--executor-memory", "20g",
 #          "--executor-cores", "2",
 #          "--master", "local[2]",
-#          "coverage_device_rls2210.py"
+#          "coverage_device_rls2302.py"
 #        ]
 #        work_dir = "/local/csit/csit.infra.etl"
 #      }
@@ -229,7 +259,7 @@ job "${job_name}" {
 #          "--executor-memory", "20g",
 #          "--executor-cores", "2",
 #          "--master", "local[2]",
-#          "coverage_mrr_rls2210.py"
+#          "coverage_mrr_rls2302.py"
 #        ]
 #        work_dir = "/local/csit/csit.infra.etl"
 #      }
@@ -261,7 +291,7 @@ job "${job_name}" {
 #          "--executor-memory", "20g",
 #          "--executor-cores", "2",
 #          "--master", "local[2]",
-#          "coverage_ndrpdr_rls2210.py"
+#          "coverage_ndrpdr_rls2302.py"
 #        ]
 #        work_dir = "/local/csit/csit.infra.etl"
 #      }
@@ -293,7 +323,7 @@ job "${job_name}" {
 #          "--executor-memory", "20g",
 #          "--executor-cores", "2",
 #          "--master", "local[2]",
-#          "coverage_soak_rls2210.py"
+#          "coverage_soak_rls2302.py"
 #        ]
 #        work_dir = "/local/csit/csit.infra.etl"
 #      }
@@ -325,7 +355,7 @@ job "${job_name}" {
 #          "--executor-memory", "20g",
 #          "--executor-cores", "2",
 #          "--master", "local[2]",
-#          "iterative_mrr_rls2210.py"
+#          "iterative_mrr_rls2302.py"
 #        ]
 #        work_dir = "/local/csit/csit.infra.etl"
 #      }
@@ -357,7 +387,7 @@ job "${job_name}" {
 #          "--executor-memory", "20g",
 #          "--executor-cores", "2",
 #          "--master", "local[2]",
-#          "iterative_ndrpdr_rls2210.py"
+#          "iterative_ndrpdr_rls2302.py"
 #        ]
 #        work_dir = "/local/csit/csit.infra.etl"
 #      }
@@ -389,7 +419,7 @@ job "${job_name}" {
 #          "--executor-memory", "20g",
 #          "--executor-cores", "2",
 #          "--master", "local[2]",
-#          "iterative_soak_rls2210.py"
+#          "iterative_soak_rls2302.py"
 #        ]
 #        work_dir = "/local/csit/csit.infra.etl"
 #      }

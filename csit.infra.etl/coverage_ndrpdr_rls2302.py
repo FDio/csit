@@ -93,7 +93,7 @@ def process_json_to_dataframe(schema_name, paths):
     ]
 
     # load schemas
-    with open(f"trending_{schema_name}.json", "r", encoding="UTF-8") as f_schema:
+    with open(f"coverage_{schema_name}.json", "r", encoding="UTF-8") as f_schema:
         schema = StructType.fromJson(load(f_schema))
 
     # create empty DF out of schemas
@@ -141,10 +141,9 @@ paths = wr.s3.list_objects(
     ignore_empty=True
 )
 
-filtered_paths = [path for path in paths if "daily" in path or "weekly" in path]
+filtered_paths = [path for path in paths if "report-coverage-2302" in path]
 
-out_sdf = process_json_to_dataframe("soak", filtered_paths)
-out_sdf.show(truncate=False)
+out_sdf = process_json_to_dataframe("ndrpdr", filtered_paths)
 out_sdf.printSchema()
 out_sdf = out_sdf \
     .withColumn("year", lit(datetime.now().year)) \
@@ -155,7 +154,7 @@ out_sdf = out_sdf \
 try:
     wr.s3.to_parquet(
         df=out_sdf.toPandas(),
-        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/trending",
+        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/coverage_rls2302",
         dataset=True,
         partition_cols=["test_type", "year", "month", "day"],
         compression="snappy",

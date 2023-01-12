@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -93,7 +93,7 @@ def process_json_to_dataframe(schema_name, paths):
     ]
 
     # load schemas
-    with open(f"iterative_{schema_name}.json", "r", encoding="UTF-8") as f_schema:
+    with open(f"coverage_{schema_name}.json", "r", encoding="UTF-8") as f_schema:
         schema = StructType.fromJson(load(f_schema))
 
     # create empty DF out of schemas
@@ -141,7 +141,7 @@ paths = wr.s3.list_objects(
     ignore_empty=True
 )
 
-filtered_paths = [path for path in paths if "report-iterative-2210" in path]
+filtered_paths = [path for path in paths if "report-coverage-2302" in path]
 
 out_sdf = process_json_to_dataframe("soak", filtered_paths)
 out_sdf.printSchema()
@@ -154,7 +154,7 @@ out_sdf = out_sdf \
 try:
     wr.s3.to_parquet(
         df=out_sdf.toPandas(),
-        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/iterative_rls2210",
+        path=f"s3://{S3_DOCS_BUCKET}/csit/parquet/coverage_rls2302",
         dataset=True,
         partition_cols=["test_type", "year", "month", "day"],
         compression="snappy",
