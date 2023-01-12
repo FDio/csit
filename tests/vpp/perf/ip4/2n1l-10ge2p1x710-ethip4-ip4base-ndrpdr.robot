@@ -54,8 +54,8 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | Intel-X710
-| ${nic_driver}= | vfio-pci
+| ${nic_name}= | Mellanox-CX556A
+| ${nic_driver}= | mlx5_core
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
@@ -93,7 +93,7 @@
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | 64B-2c-ethip4-ip4base-ndrpdr
