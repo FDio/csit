@@ -98,6 +98,11 @@ function build_vpp_ubuntu_amd64 () {
              "using build default ($(grep -c ^processor /proc/cpuinfo))."
     fi
 
+    git status || die
+    git branch "build" HEAD || die
+    git checkout "build" || die
+    git branch -u master || die
+    git pull -r || die
     make UNATTENDED=y pkg-verify || die "VPP build with make pkg-verify failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
