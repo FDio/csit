@@ -37,8 +37,7 @@ function archive_test_results () {
     cd "${VPP_DIR}" || die "Change directory command failed."
     TARGET="$(readlink -f "$1")"
     mkdir -p "${TARGET}" || die "Directory creation failed."
-    file_list=("output.xml" "log.html" "report.html")
-    file_list+=("tests" "generated_output_raw.tar.gz")
+    file_list=("output.xml" "log.html" "report.html" "tests")
     for filename in "${file_list[@]}"; do
         mv "${ARCHIVE_DIR}/${filename}" "${TARGET}/${filename}" || {
             die "Attempt to move '${filename}' failed."
