@@ -199,6 +199,25 @@
 | | | Set Interface Flow Control
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | rxf="off" | txf="off"
 | | END
+| | ${index}= | Get Index From List | ${TEST TAGS} | DPDK
+| | Run Keyword If | ${index} >= 0 | Return From Keyword
+| | FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Dev | @{${dut}_pf_pci}
+| | | Run Keyword If | ${dpdk_no_tx_checksum_offload}
+| | | ... | ${dut}.Add DPDK No Tx Checksum Offload
+| | | Run Keyword | ${dut}.Add DPDK Log Level | debug
+| | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
+| | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
+| | | Run Keyword If | not ${jumbo}
+| | | ... | ${dut}.Add DPDK No Multi Seg
+| | | Run Keyword If | ${nic_rxq_size} > 0
+| | | ... | ${dut}.Add DPDK Dev Default RXD | ${nic_rxq_size}
+| | | Run Keyword If | ${nic_txq_size} > 0
+| | | ... | ${dut}.Add DPDK Dev Default TXD | ${nic_txq_size}
+| | | Run Keyword If | '${crypto_type}' != '${None}'
+| | | ... | ${dut}.Add DPDK Cryptodev | ${dp_count_int}
+| | | Run Keyword | ${dut}.Add DPDK Max Simd Bitwidth | ${GRAPH_NODE_VARIANT}
+| | END
 
 | Initialize layer driver
 | | [Documentation]
@@ -437,6 +456,16 @@
 | | [Documentation]
 | | ... | Initialize mlx5_core interfaces on DUT on NIC PF.
 | | ... | Currently no operation.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - pf - NIC physical function (physical port). Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Initialize layer rdma-core on node \| DUT1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${pf}
 | |
 | | No operation
 

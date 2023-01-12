@@ -368,14 +368,15 @@ class Constants:
         u"Intel-E822CQ": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Intel-E810CQ": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Amazon-Nitro-50G": [u"vfio-pci"],
-        u"Mellanox-CX556A": [u"rdma-core", u"af_xdp"],
+        u"Mellanox-CX556A": [u"rdma-core", u"mlx5_core", u"af_xdp"],
     }
 
-    # Each driver needs different prugin to work.
+    # Each driver needs different plugin to work.
     NIC_DRIVER_TO_PLUGINS = {
         u"vfio-pci": u"dpdk_plugin.so",
         u"avf": u"avf_plugin.so",
         u"rdma-core": u"rdma_plugin.so",
+        u"mlx5_core": u"dpdk_plugin.so",
         u"af_xdp": u"af_xdp_plugin.so",
     }
 
@@ -384,6 +385,7 @@ class Constants:
         u"vfio-pci": u"DRV_VFIO_PCI",
         u"avf": u"DRV_AVF",
         u"rdma-core": u"DRV_RDMA_CORE",
+        u"mlx5_core": u"DRV_MLX5_CORE",
         u"af_xdp": u"DRV_AF_XDP",
     }
 
@@ -392,6 +394,7 @@ class Constants:
         u"vfio-pci": u"",
         u"avf": u"avf-",
         u"rdma-core": u"rdma-",
+        u"mlx5_core": u"mlx5-",
         u"af_xdp": u"af-xdp-",
     }
 
@@ -400,6 +403,7 @@ class Constants:
         u"vfio-pci": u"nic_vfs}= | 0",
         u"avf": u"nic_vfs}= | 1",
         u"rdma-core": u"nic_vfs}= | 0",
+        u"mlx5_core": u"nic_vfs}= | 0",
         u"af_xdp": u"nic_vfs}= | 0",
     }
 
