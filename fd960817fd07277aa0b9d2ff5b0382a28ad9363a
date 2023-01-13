@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cdf38c9_5675632a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-13T14:49:22Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest ndrpdrANDnic_mellanox-cx556aAND1cAND64bANDeth-l2patch ndrpdrANDnic_intel-xxv710AND1cAND64bANDeth-l2patch",
+      "revId": "fd960817fd07277aa0b9d2ff5b0382a28ad9363a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
