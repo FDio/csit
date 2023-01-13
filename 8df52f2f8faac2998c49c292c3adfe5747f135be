@@ -16,6 +16,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_mellanox-cx556aAND1cAND64bANDeth-l2xcbase-eth-2memif-1dcr",
       "revId": "8df52f2f8faac2998c49c292c3adfe5747f135be",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "377826d5_e7636df5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-13T17:02:10Z",
+      "side": 1,
+      "message": "csit-dpdk-2n-clx-perftest mrrANDnic_mellanox-cx556aAND1cAND64bANDethip4-ip4base-l3fwd",
+      "revId": "8df52f2f8faac2998c49c292c3adfe5747f135be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
