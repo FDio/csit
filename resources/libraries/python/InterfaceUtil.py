@@ -140,6 +140,8 @@ class InterfaceUtil:
     def pci_to_eth(node, pci_str):
         """Convert PCI address on DUT to Linux ethernet name.
 
+        May return "*" if the device does not (currently) have a Linux name.
+
         :param node: DUT node
         :param pci_str: PCI address.
         :type node: dict
@@ -262,6 +264,8 @@ class InterfaceUtil:
     def set_interface_mtu(node, pf_pcis, mtu=9200):
         """Set Ethernet MTU for specified interfaces.
 
+        Noop is the Linux interface name is not detected.
+
         :param node: Topology node.
         :param pf_pcis: List of node's interfaces PCI addresses.
         :param mtu: MTU to set. Default: 9200.
@@ -272,8 +276,9 @@ class InterfaceUtil:
         """
         for pf_pci in pf_pcis:
             pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
-            cmd = f"ip link set {pf_eth} mtu {mtu}"
-            exec_cmd_no_error(node, cmd, sudo=True)
+            if "*" not in pf_eth:
+                cmd = f"ip link set {pf_eth} mtu {mtu}"
+                exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def set_interface_channels(
@@ -1773,6 +1778,10 @@ class InterfaceUtil:
         :rtype: list
         :raises RuntimeError: If a reason preventing initialization is found.
         """
+        pf_pci_addr = Topology.get_interface_pci_addr(node, ifc_key)
+        current_driver = DUTSetup.get_pci_dev_driver(
+            node, pf_pci_addr.replace(u":", r"\:"))
+        logger.trace(f"before interface init kernel driver is {current_driver}")
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
         vf_keys = []
         if driver == u"avf":
@@ -1800,6 +1809,9 @@ class InterfaceUtil:
             vf_keys = InterfaceUtil.init_generic_interface(
                 node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
             )
+        current_driver = DUTSetup.get_pci_dev_driver(
+            node, pf_pci_addr.replace(u":", r"\:"))
+        logger.trace(f"after interface init kernel driver is {current_driver}")
         return vf_keys
 
     @staticmethod
