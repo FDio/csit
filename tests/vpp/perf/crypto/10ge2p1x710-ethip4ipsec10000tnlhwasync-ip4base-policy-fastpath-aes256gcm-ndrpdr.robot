@@ -1,5 +1,5 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,7 +18,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECHW | ASYNC | IPSECTUN | NIC_Intel-X710 | TNL_10000
-| ... | AES_256_GCM | AES | DRV_VFIO_PCI
+| ... | FASTPATH | AES_256_GCM | AES | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
 |
