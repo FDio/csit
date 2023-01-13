@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -249,7 +249,7 @@
 | | ... | Enable IPv4 Outbound SPD flow cache in VPP configuration file.
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword | ${dut}.Add SPD Flow Cache IPv4 Outbound
+| | | Run Keyword | ${dut}.Add IPsec SPD Flow cache IPv4 Outbound | on
 | | END
 
 | Enable IPsec SPD Fast Path IPv4 Outbound
@@ -262,6 +262,7 @@
 | | [Arguments] | ${value}
 | |
 | | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword | ${dut}.Add IPsec SPD Flow cache IPv4 Outbound | off
 | | | Run Keyword | ${dut}.Add IPsec SPD Fast Path IPv4 Outbound | on
 | | | Run Keyword | ${dut}.Add IPsec SPD Fast Path Num Buckets | ${value}
 | | END
