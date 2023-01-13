@@ -1826,6 +1826,7 @@ class InterfaceUtil:
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
         current_driver = DUTSetup.get_pci_dev_driver(
             node, pf_pci_addr.replace(u":", r"\:"))
+        logger.trace(f"before interface init: kernel driver is {current_driver"})
         pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
 
         VPPUtil.stop_vpp_service(node)
@@ -1888,6 +1889,9 @@ class InterfaceUtil:
             )
             vf_ifc_keys.append(vf_ifc_key)
 
+        current_driver = DUTSetup.get_pci_dev_driver(
+            node, pf_pci_addr.replace(u":", r"\:"))
+        logger.trace(f"after interface init: kernel driver is {current_driver"})
         return vf_ifc_keys
 
     @staticmethod

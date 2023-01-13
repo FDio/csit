@@ -368,7 +368,7 @@ class Constants:
         u"Intel-E822CQ": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Intel-E810CQ": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Amazon-Nitro-50G": [u"vfio-pci"],
-        u"Mellanox-CX556A": [u"rdma-core", u"mlx5_core", u"af_xdp"],
+        u"Mellanox-CX556A": [u"rdma-core", u"mlx5_core", u"vfio-pci"],
     }
 
     # Each driver needs different plugin to work.

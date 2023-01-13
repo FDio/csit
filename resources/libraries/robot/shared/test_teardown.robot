@@ -33,6 +33,7 @@
 | |
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show PAPI History On All DUTs | ${nodes}
+| | Vpp Show PCI on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Show Log On All DUTs | ${nodes}
 | | Run Keyword If Test Failed

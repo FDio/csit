@@ -410,3 +410,23 @@ class VPPUtil:
             reply = papi_exec.add(cmd, **args).get_reply()
 
         return reply[u"next_index"]
+
+    @staticmethod
+    def vpp_show_pci(node):
+        """Call show_pci on a DUT node.
+
+        :param node: Topology DUT node info.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, "show pci")
+
+    @staticmethod
+    def vpp_show_pci_on_all_duts(nodes):
+        """Call show_pci on all DUT nodes.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        for node_data in nodes.values():
+            if node_data[u"type"] == NodeType.DUT:
+                InterfaceUtil.vpp_show_pci(node_data)
