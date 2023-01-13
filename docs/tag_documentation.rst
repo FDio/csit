@@ -812,6 +812,10 @@ Encryption Tags
 
     IPSec using crypto sw scheduler engine.
 
+.. topic:: FASTPATH
+
+    IPSec policy mode with spd fast path enabled.
+
 Client-Workload Tags
 --------------------
 
