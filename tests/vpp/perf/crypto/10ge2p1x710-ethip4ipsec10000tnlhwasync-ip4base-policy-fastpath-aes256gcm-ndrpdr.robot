@@ -18,7 +18,7 @@
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECHW | ASYNC | IPSECTUN | NIC_Intel-X710 | TNL_10000
-| ... | AES_256_GCM | AES | DRV_VFIO_PCI
+| ... | FASTPATH | AES_256_GCM | AES | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec10000tnlhwasync-ip4base-policy-fastpath-aes256gcm
 |

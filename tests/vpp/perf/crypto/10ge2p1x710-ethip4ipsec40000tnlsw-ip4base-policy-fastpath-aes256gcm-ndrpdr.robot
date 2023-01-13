@@ -1,5 +1,5 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,11 +16,11 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 |
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_10000
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_40000
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | FASTPATH | NIC_Intel-X710 | SCALE
 | ... | AES_256_GCM | AES | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
-| ... | ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm
+| ... | ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm
 |
 | Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
@@ -81,9 +81,9 @@
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
-| ${n_tunnels}= | ${10000}
+| ${n_tunnels}= | ${40000}
 # Main heap size multiplicator
-| ${heap_size_mult}= | ${2}
+| ${heap_size_mult}= | ${4}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4dst${n_tunnels}
 
@@ -127,50 +127,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| 64B-1c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| 64B-1c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| 64B-2c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 64B-4c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| 64B-4c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| 1518B-1c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| 1518B-1c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| 1518B-2c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| 1518B-2c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| 1518B-4c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| 1518B-4c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| 9000B-1c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| 9000B-1c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| 9000B-2c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| 9000B-2c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| 9000B-4c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| 9000B-4c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| IMIX-1c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| IMIX-1c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| IMIX-2c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| IMIX-2c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| IMIX-4c-ethip4ipsec10000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
+| IMIX-4c-ethip4ipsec40000tnlsw-ip4base-policy-fastpath-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

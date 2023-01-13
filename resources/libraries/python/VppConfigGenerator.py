@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -433,10 +433,14 @@ class VppConfigGenerator:
         path = [u"ip6", u"heap-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_spd_flow_cache_ipv4_outbound(self):
-        """Add SPD flow cache for IP4 outbound traffic"""
+    def add_ipsec_spd_flow_cache_ipv4_outbound(self, value):
+        """Add IPsec spd flow cache for IP4 outbound.
+
+        :param value: "on" to enable spd flow cache.
+        :type value: str
+        """
         path = [u"ipsec", u"ipv4-outbound-spd-flow-cache"]
-        self.add_config_item(self._nodeconfig, "on", path)
+        self.add_config_item(self._nodeconfig, value, path)
 
     def add_ipsec_spd_fast_path_ipv4_outbound(self, value):
         """Add IPsec spd fast path for IP4 outbound.
