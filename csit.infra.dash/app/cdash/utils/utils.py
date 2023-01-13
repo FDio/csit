@@ -76,6 +76,22 @@ def classify_anomalies(data):
     return classification, avgs, stdevs
 
 
+def classify_anomalies_skip_over_nan(data):
+    """Process the data and return anomalies and trending values.
+
+    Contrary to classify_anomalies, this does not treat NaN (failed test)
+    as a zero performance.
+
+    :param data: Full data set with unavailable samples replaced by nan.
+    :type data: OrderedDict
+    :returns: Classification and trend values
+    :rtype: 3-tuple, list of strings, list of floats and list of floats
+    """
+    filtered = {k: v for k, v in data.items() if not isnan(v)}
+    # TODO: Make jumpavg tolerate empty data.
+    return ([], None, None) if not filtered else classify_anomalies(filtered)
+
+
 def get_color(idx: int) -> str:
     """Returns a color from the list defined in Constants.PLOT_COLORS defined by
     its index.

@@ -113,6 +113,7 @@ def _generate_trending_traces(ttype: str, name: str, df: pd.DataFrame,
     else:
         y_data = [(itm * norm_factor) for itm in df[C.VALUE[ttype]].tolist()]
 
+    # Failed tests are already filtered out, so no need to skip over NaNs.
     anomalies, trend_avg, trend_stdev = classify_anomalies(
         {k: v for k, v in zip(x_axis, y_data)}
     )

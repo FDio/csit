@@ -27,7 +27,9 @@ from yaml import load, FullLoader, YAMLError
 
 from ..data.data import Data
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies, show_tooltip, gen_new_url
+from ..utils.utils import (
+    classify_anomalies_skip_over_nan, show_tooltip, gen_new_url,
+)
 from ..utils.url_processing import url_decode
 from ..data.data import Data
 from .tables import table_summary
@@ -153,7 +155,7 @@ class Layout:
                     if tst_data.empty:
                         continue
                     try:
-                        anomalies, _, _ = classify_anomalies({
+                        anomalies, _, _ = classify_anomalies_skip_over_nan({
                             k: v for k, v in zip(
                                 x_axis,
                                 tst_data["result_ndr_lower_rate_value"].tolist()
@@ -172,7 +174,7 @@ class Layout:
                             x_axis[_get_rindex(anomalies, "regression")]
                         ))
                     try:
-                        anomalies, _, _ = classify_anomalies({
+                        anomalies, _, _ = classify_anomalies_skip_over_nan({
                             k: v for k, v in zip(
                                 x_axis,
                                 tst_data["result_pdr_lower_rate_value"].tolist()
@@ -197,7 +199,7 @@ class Layout:
                     if tst_data.empty:
                         continue
                     try:
-                        anomalies, _, _ = classify_anomalies({
+                        anomalies, _, _ = classify_anomalies_skip_over_nan({
                             k: v for k, v in zip(
                                 x_axis,
                                 tst_data["result_receive_rate_rate_avg"].\
