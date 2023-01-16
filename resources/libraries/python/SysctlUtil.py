@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,7 +13,7 @@
 
 """Linux sysctl library."""
 
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 
 __all__ = [u"SysctlUtil"]
 
@@ -50,3 +50,16 @@ class SysctlUtil:
         message = f"Node {node[u'host']} failed to run: {command}"
 
         exec_cmd_no_error(node, command, sudo=True, message=message)
+
+    @staticmethod
+    def enable_userspace_access_to_perf_counters(node):
+        """Execute a sysctl command to grant access.
+
+        :param node: Node in the topology.
+        :type node: dict
+        """
+        command = u"uname -a"
+        exec_cmd(node, command)
+
+        command = u"sysctl kernel/perf_user_access=1"
+        exec_cmd(node, command, sudo=True)

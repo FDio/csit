@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -36,6 +36,7 @@
 | Library | resources.libraries.python.Namespaces
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.SchedUtils
+| Library | resources.libraries.python.SysctlUtil
 | Library | resources.libraries.python.Tap
 | Library | resources.libraries.python.Tap.TapFeatureMask
 | Library | resources.libraries.python.TestConfig
@@ -363,3 +364,12 @@
 | | ... | ${setup_vpp_pids} | ${teardown_vpp_pids}
 | | Run Keyword And Return If | '${rc}'=='FAIL' | Log | ${err_msg}
 | | ... | console=yes | level=WARN
+
+| Enable Userspace Access To Perf Counters On All Duts
+| | [Documentation]
+| | ... | This is needed for perfmon to work on ARM testbeds.
+| |
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | FOR | ${dut} | IN | @{duts}
+| | | Enable Userspace Access To Perf Counters | ${nodes}[${dut}]
+| | END
