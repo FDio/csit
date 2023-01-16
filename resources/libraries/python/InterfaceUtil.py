@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -882,7 +882,7 @@ class InterfaceUtil:
         err_msg = f"Failed to set VXLAN bypass on interface " \
             f"on host {node[u'host']}"
         with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vxlan_dump(node, interface=None):
