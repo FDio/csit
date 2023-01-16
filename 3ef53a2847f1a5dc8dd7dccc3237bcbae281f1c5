@@ -33,6 +33,23 @@
       "message": "csit-2n-tx2-perftest mrrANDnic_intel-*ANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
       "revId": "3ef53a2847f1a5dc8dd7dccc3237bcbae281f1c5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "308eea74_36902a1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-16T12:53:41Z",
+      "side": 1,
+      "message": "Also, this does not make perfmon work, at least not on tx2.",
+      "revId": "3ef53a2847f1a5dc8dd7dccc3237bcbae281f1c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
