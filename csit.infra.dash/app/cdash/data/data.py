@@ -16,18 +16,18 @@
 
 import logging
 import awswrangler as wr
+import pandas as pd
+import pyarrow.parquet as pq
+import s3fs
 
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 from time import time
 from pytz import UTC
-from pandas import DataFrame
 from awswrangler.exceptions import EmptyDataFrame, NoFilesFound
+from pyarrow import ArrowException
 
-
-ADD_DUMMY_TELEMETRY_DATA = True
-PATH_DUMMY_TELEMETRY_MRR = "cdash/data/vpp_runtime_mrr.json"
-PATH_DUMMY_TELEMETRY_NDRPDR = "cdash/data/vpp_runtime_ndrpdr.json"
+from ..utils.constants import Constants as C
 
 
 class Data:
@@ -71,28 +71,6 @@ class Data:
                 f"{self._data_spec_file,}\n"
                 f"{err}"
             )
-
-        # Read dummy telemetry data:
-        if ADD_DUMMY_TELEMETRY_DATA:
-            import json
-            try:
-                with open(PATH_DUMMY_TELEMETRY_MRR, "r") as fr:
-                    self._tele_mrr = json.load(fr)["telemetry"]
-            except (IOError, json.JSONDecodeError, KeyError) as err:
-                logging.warning(
-                    f"It is not possible to read or decode the file with dummy "
-                    f"telemetry data {PATH_DUMMY_TELEMETRY_MRR}\n{err}"
-                )
-                self._tele_mrr = list()
-            try:
-                with open(PATH_DUMMY_TELEMETRY_NDRPDR, "r") as fr:
-                    self._tele_ndrpdr = json.load(fr)["telemetry"]
-            except (IOError, json.JSONDecodeError, KeyError) as err:
-                logging.warning(
-                    f"It is not possible to read or decode the file with dummy "
-                    f"telemetry data {PATH_DUMMY_TELEMETRY_NDRPDR}\n{err}"
-                )
-                self._tele_ndrpdr = list()
 
     @property
     def data(self):
@@ -181,48 +159,21 @@ class Data:
         except EmptyDataFrame as err:
             logging.error(f"No data.\n{err}")
 
-        return file_list
-
-    def _get_dummy_telemetry_data(self, df: DataFrame) -> list:
-        """Return the list with dummy telemetry data depending on the test type.
-        """
-
-        if df["test_type"] == "mrr":
-            return self._tele_mrr
-        elif df["test_type"] == "ndrpdr":
-            return self._tele_ndrpdr
+        if isinstance(file_list, list):
+            return file_list
         else:
-            return list()
+            return [file_list, ]
 
-    def _add_dummy_telemetry_data(self, df: DataFrame) -> DataFrame:
-        """Add dummy telemetry data to a dataframe.
-
-        This method adds the column "telemetry" to provided pandas dataframe
-        and fills it with dummy telemetry data. It supports ndrpdr amd mrr
-        tests.
-        The dummy telemetry data is read from json files with the structure:
-        {
-            "telemetry": [
-                "list of strings, each string is a telemetry data item in open
-                metrics format"
-            ]
-        }
-
-        :param df: A pandas dataframe to be filled with dummy telemetry data.
-        :type df: pandas.DataFrame
-        :returns: A pandas dataframe with "telemetry" column.
-        :rtype: pandas.DataFrame
-        """
-        df["telemetry"] = df.apply(self._get_dummy_telemetry_data, axis=1)
-        return df
-
-    def _create_dataframe_from_parquet(self,
-        path, partition_filter=None,
-        columns=None,
-        validate_schema=False,
-        last_modified_begin=None,
-        last_modified_end=None,
-        days=None) -> DataFrame:
+    def _create_dataframe_from_parquet(
+            self,
+            path,
+            partition_filter=None,
+            columns=None,
+            validate_schema=False,
+            last_modified_begin=None,
+            last_modified_end=None,
+            days=None
+        ) -> pd.DataFrame:
         """Read parquet stored in S3 compatible storage and returns Pandas
         Dataframe.
 
@@ -274,8 +225,7 @@ class Data:
                 last_modified_end=last_modified_end
             )
             if self._debug:
-                if not ADD_DUMMY_TELEMETRY_DATA:
-                    df.info(verbose=True, memory_usage='deep')
+                df.info(verbose=True, memory_usage='deep')
                 logging.info(
                     u"\n"
                     f"Creation of dataframe {path} took: {time() - start}"
@@ -285,12 +235,6 @@ class Data:
             logging.error(f"No parquets found.\n{err}")
         except EmptyDataFrame as err:
             logging.error(f"No data.\n{err}")
-
-        # Add dummy telemetry data:
-        if ADD_DUMMY_TELEMETRY_DATA:
-            df = self._add_dummy_telemetry_data(df)
-            if self._debug:
-                df.info(verbose=True, memory_usage='deep')
 
         self._data = df
         return df
@@ -346,7 +290,7 @@ class Data:
             )
         )
 
-    def read_trending_mrr(self, days: int=None) -> DataFrame:
+    def read_trending_mrr(self, days: int=None) -> pd.DataFrame:
         """Read MRR data partition from parquet.
 
         :param days: Number of days back to the past for which the data will be
@@ -365,7 +309,26 @@ class Data:
             days=days
         )
 
-    def read_trending_ndrpdr(self, days: int=None) -> DataFrame:
+    def read_trending_mrr_tm(self, days: int=None) -> pd.DataFrame:
+        """Read MRR data partition from parquet.
+
+        :param days: Number of days back to the past for which the data will be
+            read.
+        :type days: int
+        :returns: Pandas DataFrame with read data.
+        :rtype: DataFrame
+        """
+
+        lambda_f = lambda part: True if part["test_type"] == "mrr" else False
+
+        return self._create_dataframe_from_parquet(
+            path=self._get_path("trending-telemetry-mrr"),
+            partition_filter=lambda_f,
+            columns=self._get_columns("trending-telemetry-mrr"),
+            days=days
+        )
+
+    def read_trending_ndrpdr(self, days: int=None) -> pd.DataFrame:
         """Read NDRPDR data partition from iterative parquet.
 
         :param days: Number of days back to the past for which the data will be
@@ -384,7 +347,26 @@ class Data:
             days=days
         )
 
-    def read_iterative_mrr(self, release: str) -> DataFrame:
+    def read_trending_ndrpdr_tm(self, days: int=None) -> pd.DataFrame:
+        """Read NDRPDR data partition from iterative parquet.
+
+        :param days: Number of days back to the past for which the data will be
+            read.
+        :type days: int
+        :returns: Pandas DataFrame with read data.
+        :rtype: DataFrame
+        """
+
+        lambda_f = lambda part: True if part["test_type"] == "ndrpdr" else False
+
+        return self._create_dataframe_from_parquet(
+            path=self._get_path("trending-telemetry-ndrpdr"),
+            partition_filter=lambda_f,
+            columns=self._get_columns("trending-telemetry-ndrpdr"),
+            days=days
+        )
+
+    def read_iterative_mrr(self, release: str) -> pd.DataFrame:
         """Read MRR data partition from iterative parquet.
 
         :param release: The CSIT release from which the data will be read.
@@ -401,7 +383,7 @@ class Data:
             columns=self._get_columns("iterative-mrr")
         )
 
-    def read_iterative_ndrpdr(self, release: str) -> DataFrame:
+    def read_iterative_ndrpdr(self, release: str) -> pd.DataFrame:
         """Read NDRPDR data partition from parquet.
 
         :param release: The CSIT release from which the data will be read.
@@ -417,3 +399,52 @@ class Data:
             partition_filter=lambda_f,
             columns=self._get_columns("iterative-ndrpdr")
         )
+
+    def read_telemetry_data(
+            self,
+            parquet: str,
+            test_type: str,
+            days: int=C.TIME_PERIOD
+        ) -> pd.DataFrame:
+        """
+        """
+        
+        df = pd.DataFrame()
+        start = time()
+        paths = self._get_list_of_files(path=self._get_path(parquet), days=days)
+        paths = [p for p in paths if f"test_type={test_type}" in p]
+        paths_nr = len(paths)
+
+        fs = s3fs.S3FileSystem()
+
+        for idx, path in enumerate(paths):
+            logging.info(f"{idx+1}/{paths_nr}: {path}")
+            try:
+                dataset = pq.ParquetDataset(
+                    path,
+                    filesystem=fs,
+                    use_legacy_dataset=False,
+                    pre_buffer=False,
+                    # filters=[('test_id', '=', 'tests.vpp.perf.ip4.2n1l-25ge2p1xxv710-avf-ethip4-ip4base-mrr.64b-1c-avf-ethip4-ip4base-mrr')]
+                )
+                chunk = dataset.read_pandas(
+                    columns=self._get_columns(parquet)
+                ).to_pandas(
+                    strings_to_categorical=True,
+                    deduplicate_objects=True,
+                    self_destruct=True
+                )
+                chunk.info(verbose=True, memory_usage='deep')
+                if not chunk.empty:
+                    df = pd.concat([df, chunk], ignore_index=True, copy=False)
+            except ArrowException as err:
+                logging.info(err)
+                continue
+
+        if self._debug:
+            df.info(verbose=True, memory_usage='deep')
+            logging.info(
+                f"\nCreation of dataframes {paths} took: {time() - start}\n"
+            )
+
+        return df
