@@ -111,18 +111,50 @@ class Layout:
         self._tooltip_file = tooltip_file
         self._time_period = time_period
 
+
+        # Data(
+        #     data_spec_file=self._data_spec_file,
+        #     debug=True
+        # ).check_datasets(20)
+
         # Read the data:
-        data_mrr = Data(
+        # tele = Data(
+        #     data_spec_file=self._data_spec_file,
+        #     debug=True
+        # ).read_telemetry_data(
+        #     parquet="trending-telemetry-mrr",
+        #     test_id="tests.vpp.perf.ip6.2n1l-25ge2p1xxv710-avf-ethip6-ip6base-mrr.78b-1c-avf-ethip6-ip6base-mrr",
+        #     days=self._time_period
+        # )
+
+        data_mrr_tm = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_mrr(days=self._time_period)
+        ).read_telemetry_data(
+            parquet="trending-mrr",
+            test_type="mrr",
+            days=self._time_period
+        )
 
-        data_ndrpdr = Data(
+        data_ndrpdr_tm = Data(
             data_spec_file=self._data_spec_file,
             debug=True
-        ).read_trending_ndrpdr(days=self._time_period)
+        ).read_telemetry_data(
+            parquet="trending-ndrpdr",
+            test_type="ndrpdr",
+            days=self._time_period
+        )
 
-        self._data = pd.concat([data_mrr, data_ndrpdr], ignore_index=True)
+        # data_ndrpdr = Data(
+        #     data_spec_file=self._data_spec_file,
+        #     debug=True
+        # ).read_trending_ndrpdr(days=self._time_period)
+
+        self._data = pd.concat(
+            [data_mrr_tm, data_ndrpdr_tm],
+            ignore_index=True,
+            copy=False
+        )
 
         # Get structure of tests:
         tbs = dict()
