@@ -34,7 +34,7 @@ module "elastic_beanstalk_environment" {
   environment_application            = module.elastic_beanstalk_application.application_name
   environment_description            = module.elastic_beanstalk_application.application_description
   environment_name                   = "fdio-csit-dash-env"
-  environment_solution_stack_name    = "64bit Amazon Linux 2 v3.4.2 running Python 3.8"
+  environment_solution_stack_name    = "64bit Amazon Linux 2 v3.4.3 running Python 3.8"
   environment_tier                   = "WebServer"
   environment_wait_for_ready_timeout = "25m"
   environment_version_label          = ""
@@ -50,7 +50,8 @@ module "elastic_beanstalk_environment" {
   default_listener_enabled = true
 
   # aws:elasticbeanstalk:environment
-  environment_loadbalancer_type = "network"
+  environment_loadbalancer_type               = "classic"
+  environment_loadbalancer_ssl_certificate_id = "arn:aws:acm:eu-central-1:407116685360:certificate/737ad419-36f1-460d-919a-9110b0aac26a"
 
   # aws:elasticbeanstalk:environment:process:default
   environment_process_default_healthcheck_interval      = 10

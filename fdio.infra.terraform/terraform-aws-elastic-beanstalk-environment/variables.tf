@@ -135,7 +135,37 @@ variable "default_listener_enabled" {
 variable "environment_loadbalancer_type" {
   description = "Load Balancer type, e.g. 'application' or 'classic'."
   type        = string
-  default     = "network"
+  default     = "classic"
+}
+
+variable "environment_loadbalancer_crosszone" {
+  description = "Configure the classic load balancer to route traffic evenly across all instances in all Availability Zones rather than only within each zone."
+  type        = bool
+  default     = true
+}
+
+variable "environment_loadbalancer_security_groups" {
+  description = "Load balancer security groups"
+  type        = list(string)
+  default     = []
+}
+
+variable "environment_loadbalancer_managed_security_group" {
+  description = "Load balancer managed security group"
+  type        = string
+  default     = ""
+}
+
+variable "environment_loadbalancer_ssl_certificate_id" {
+  type        = string
+  default     = ""
+  description = "Load Balancer SSL certificate ARN. The certificate must be present in AWS Certificate Manager"
+}
+
+variable "loadbalancer_connection_settings_idle_timeout" {
+  description = "Classic load balancer only: Number of seconds that the load balancer waits for any data to be sent or received over the connection. If no data has been sent or received after this time period elapses, the load balancer closes the connection."
+  type        = number
+  default     = 60
 }
 
 # aws:elasticbeanstalk:environment:process:default
@@ -182,6 +212,12 @@ variable "autoscaling_updatepolicy_min_instance_in_service" {
   default     = 1
 }
 
+variable "application_healthcheck_url" {
+  description = "The path where health check requests are sent to."
+  type        = string
+  default     = "HTTP:5000/"
+}
+
 # aws:elasticbeanstalk:command
 variable "command_deployment_policy" {
   description = "Use the DeploymentPolicy option to set the deployment type. The following values are supported: `AllAtOnce`, `Rolling`, `RollingWithAdditionalBatch`, `Immutable`, `TrafficSplitting`."
@@ -225,6 +261,12 @@ variable "managedactions_platformupdate_update_level" {
 
 variable "managedactions_platformupdate_instance_refresh_enabled" {
   description = "Enable weekly instance replacement."
+  type        = bool
+  default     = true
+}
+
+variable "command_ignore_health_check" {
+  description = "Do not cancel a deployment due to failed health checks"
   type        = bool
   default     = true
 }
