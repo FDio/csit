@@ -50,7 +50,8 @@ module "elastic_beanstalk_environment" {
   default_listener_enabled = true
 
   # aws:elasticbeanstalk:environment
-  environment_loadbalancer_type = "network"
+  environment_loadbalancer_type               = "network"
+  environment_loadbalancer_ssl_certificate_id = "arn:aws:acm:eu-central-1:407116685360:certificate/737ad419-36f1-460d-919a-9110b0aac26a"
 
   # aws:elasticbeanstalk:environment:process:default
   environment_process_default_healthcheck_interval      = 10
