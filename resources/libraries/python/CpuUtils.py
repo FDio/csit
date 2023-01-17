@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -348,6 +348,9 @@ class CpuUtils:
         """Get affinity of NF (network function). Result will be used to compute
         the amount of CPUs and also affinity.
 
+        Also numa node is returned, so caller can ensure other resources
+        are co-located.
+
         :param nodes: Physical topology nodes.
         :param node: SUT node.
         :param nf_chains: Number of NF chains.
@@ -368,8 +371,8 @@ class CpuUtils:
         :type nf_dtc: int or float
         :type nf_mtcr: int
         :type nf_dtcr: int
-        :returns: List of CPUs allocated to NF.
-        :rtype: list
+        :returns: List of CPUs allocated to NF and their numa node index.
+        :rtype: Tuple[List[int], int]
         """
         skip_cnt = Constants.CPU_CNT_SYSTEM + Constants.CPU_CNT_MAIN + vs_dtc
 
@@ -384,7 +387,7 @@ class CpuUtils:
             node=nodes[node], cpu_node=cpu_node, nf_chains=nf_chains,
             nf_nodes=nf_nodes, nf_chain=nf_chain, nf_node=nf_node,
             nf_mtcr=nf_mtcr, nf_dtcr=nf_dtcr, nf_dtc=nf_dtc, skip_cnt=skip_cnt
-        )
+        ), cpu_node
 
     @staticmethod
     def get_affinity_trex(

@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -98,12 +98,12 @@
 | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
 | | ... | ${root}/usr/lib/${node_arch}-linux-gnu/:/usr/lib/${node_arch}-linux-gnu/
 | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
-| | ${nf_cpus}= | Set Variable | ${None}
-| | ${nf_cpus}= | Run Keyword If | ${pinning}
+| | ${cpus_and_numa}= | Run Keyword If | ${pinning}
 | | ... | Get Affinity NF | ${nodes} | ${dut}
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | ... | nf_chain=${nf_chain} | nf_node=${nf_node}
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
+| | ${nf_cpus}= | Set Variable If | ${pinning} | ${cpus_and_numa[0]} | ${None}
 | | &{cont_args}= | Create Dictionary
 | | ... | name=${name} | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
 | | ... | root=${root} | page_size=${page_size}
