@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -296,6 +296,10 @@ function dpdk_testpmd () {
 
     # Run DPDK testpmd.
     #
+    # No check for "Press enter to exit" is done here,
+    # as the later check in dpdk_testpmd_check is more important.
+    # This way testpmd can be starting on multiple DUTs.
+    #
     # Variables read:
     # - DPDK_DIR - Path to DPDK framework.
     # Functions called:
@@ -305,43 +309,50 @@ function dpdk_testpmd () {
 
     rm -f screenlog.0 || true
     binary="${DPDK_DIR}/build/app/dpdk-testpmd"
-
     sudo sh -c "screen -dmSL DPDK-test ${binary} ${@}" || {
         die "Failed to start testpmd"
     }
-
-    for attempt in {1..60}; do
-        echo "Checking if testpmd is alive, attempt nr ${attempt}"
-        if fgrep "Press enter to exit" screenlog.0; then
-            cat screenlog.0
-            dpdk_testpmd_pid
-            exit 0
-        fi
-        sleep 1
-    done
-    cat screenlog.0
-
-    exit 1
 }
 
 
 function dpdk_testpmd_check () {
 
-    # DPDK testpmd check links state.
+    # Return with error code 1 if testpmd is not ready in time.
+    #
+    # The logic is not obvious, due to CSIT-1848:
+    #
+    # When testpmd launches, ports are grabbed reporting link as down.
+    # After some time, a link goes up, visible as an event in output.
+    # The time can take quite long, depending on testbed.
+    # But, apparently the port number can be reported wrong.
+    #
+    # The best heuristic is thus to wait for at least two link events
+    # (visible in the log) regardless of their port number.
+    # This function performs such check each second,
+    # for given time before giving up.
+    #
+    # As the second event may not arrive in that time,
+    # the caller can restart testpmd and start calling this function again,
+    # perhaps repeat several times to improve success rate.
+    #
+    # Arguments:
+    # - ${1} - How many checks to perform once a second before giving up.
 
     set -exuo pipefail
 
-    for attempt in {1..60}; do
-        echo "Checking if testpmd links state changed, attempt nr ${attempt}"
-        if fgrep "link state change event" screenlog.0; then
-            cat screenlog.0
-            exit 0
+    set +x
+    for attempt in $(seq ${1}); do
+        lines=$(fgrep -c "link state change event" screenlog.0) || true
+        echo "Attempt ${attempt} sees ${lines} link state change events."
+        if [[ "$lines" != "" && "$lines" != "0" && "$lines" != "1" ]]; then
+            set -x
+            return 0
+        else
+            sleep 1
         fi
-        sleep 1
     done
-    cat screenlog.0
-
-    exit 1
+    set -x
+    return 1
 }
 
 
