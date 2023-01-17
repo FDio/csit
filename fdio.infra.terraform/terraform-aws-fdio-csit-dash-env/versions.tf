@@ -1,6 +1,6 @@
 terraform {
   backend "consul" {
-    address = "consul.service.consul:8500"
+    address = "10.30.51.21:8500"
     scheme  = "http"
     path    = "terraform/dash"
   }
@@ -10,8 +10,8 @@ terraform {
       version = ">= 4.3.0"
     }
     vault = {
-      version = ">= 3.2.1"
+      version = ">= 3.12.0"
     }
   }
-  required_version = ">= 1.1.4"
+  required_version = ">= 1.3.7"
 }
