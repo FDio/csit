@@ -423,7 +423,7 @@
 | | ${_af_xdp}= | VPP Create AF XDP Interface
 | | ... | ${nodes['${dut}']} | ${${dut}_vf${pf}}[0]
 | | ... | num_rx_queues=${65535}
-| | ... | rxq_size=${nic_rxq_size} | txq_size=${nic_txq_size}
+| | ... | rxq_size=${1024} | txq_size=${2048}
 | | ${cpu_skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM}+${CPU_CNT_MAIN}
 | | ${cpu_skip_cnt}= | Evaluate | ${cpu_skip_cnt}+${cpu_count_int}
 | | ${cpu_skip_cnt}= | Evaluate | ${cpu_skip_cnt}+(${pf}-${1})*${rxq_count_int}
