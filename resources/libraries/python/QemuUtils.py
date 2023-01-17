@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -492,19 +492,24 @@ class QemuUtils:
         stdout, _ = exec_cmd_no_error(self._node, command)
         return stdout.splitlines()
 
-    def qemu_set_affinity(self, *host_cpus):
+    def qemu_set_affinity(self, affinity):
         """Set qemu affinity by getting thread PIDs via QMP and taskset to list
         of CPU cores. Function tries to execute 3 times to avoid race condition
         in getting thread PIDs.
 
-        :param host_cpus: List of CPU cores.
-        :type host_cpus: list
+        Numactl is assumed to be already applied.
+
+        :param affinity: List of CPU cores and numa node.
+        :type affinity: Tuple[List[int], int]
         """
+        host_cpus = affinity[0]
         for _ in range(3):
             try:
                 qemu_cpus = self.get_qemu_pids()
 
                 if len(qemu_cpus) != len(host_cpus):
+                    logger.debug(u"Qemu and host cpus do not match:")
+                    logger.debug(f"{qemu_cpus} {host_cpus}")
                     sleep(1)
                     continue
                 for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
@@ -720,13 +725,22 @@ class QemuUtils:
             else:
                 interface[u"name"] = if_name
 
-    def qemu_start(self):
+    def qemu_start(self, affinity):
         """Start QEMU and wait until VM boot.
 
+        Affinity is given here, as qemu could assign resources
+        on wrong numa node otherwise.
+
+        :param affinity: Optional object containing the desired numa.
+        :type affinity: Optional[Tuple[Any, int]]
         :returns: VM node info.
         :rtype: dict
         """
         cmd_opts = OptionString()
+        if affinity:
+            cmd_opts.add(u"numactl")
+            cmd_opts.add_equals(u"--preferred", affinity[1])
+            cmd_opts.add(u"--")
         cmd_opts.add(f"{Constants.QEMU_BIN_PATH}/qemu-system-{self._arch}")
         cmd_opts.extend(self._params)
         message = f"QEMU: Start failed on {self._node[u'host']}!"
