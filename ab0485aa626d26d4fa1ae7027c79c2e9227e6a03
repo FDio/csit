@@ -33,6 +33,23 @@
       "message": "csit-3n-skx-perftest nic_intel-xxv710ANDdrv_vfio_pciANDhoststack",
       "revId": "ab0485aa626d26d4fa1ae7027c79c2e9227e6a03",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dc3d576_be65f05f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2023-01-18T14:48:16Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest drv_vfio_pciANDeth-ip4tcphttp-ldpreload-nginx-1_21_5ANDnic_intel-e810cqAND64bAND1c",
+      "revId": "ab0485aa626d26d4fa1ae7027c79c2e9227e6a03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
