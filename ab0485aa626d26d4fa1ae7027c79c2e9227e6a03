@@ -50,6 +50,69 @@
       "message": "csit-2n-clx-perftest drv_vfio_pciANDeth-ip4tcphttp-ldpreload-nginx-1_21_5ANDnic_intel-e810cqAND64bAND1c",
       "revId": "ab0485aa626d26d4fa1ae7027c79c2e9227e6a03",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73b50232_14d5afb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2023-01-18T16:37:52Z",
+      "side": 1,
+      "message": "Could you try a rebase to avoid the merge conflict? More inline",
+      "revId": "ab0485aa626d26d4fa1ae7027c79c2e9227e6a03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca641d98_2a27a761",
+        "filename": "resources/templates/vcl/vcl_iperf3.conf",
+        "patchSetId": 23
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2023-01-18T16:37:52Z",
+      "side": 1,
+      "message": "Let\u0027s maybe add segment size related config and set it to 4G, just to be on the safe side",
+      "range": {
+        "startLine": 9,
+        "startChar": 45,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "ab0485aa626d26d4fa1ae7027c79c2e9227e6a03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4c7eff0_dd8027ea",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2023-01-18T16:37:52Z",
+      "side": 1,
+      "message": "The default values for other config parameters are a bit low, e.g., bihash lookup tables sizes. Could we change those?",
+      "range": {
+        "startLine": 75,
+        "startChar": 5,
+        "endLine": 75,
+        "endChar": 33
+      },
+      "revId": "ab0485aa626d26d4fa1ae7027c79c2e9227e6a03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
