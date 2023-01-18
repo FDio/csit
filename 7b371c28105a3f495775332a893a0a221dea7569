@@ -3,6 +3,29 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "103dbfec_2aa12dd5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 45
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-18T12:31:40Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-dpdk-perf-verify-master-3n-icx/37/ : FAILURE\n\nOther NICs work fine, but 100Ge2P1E810Cq always fails:\nDUT1 sees two events fairly quick, but DUT2 always sees only one event.\n\n\u003e https://jenkins.fd.io/job/csit-dpdk-perf-verify-master-2n-clx/51/ : FAILURE\n\nOther NICs (including 100Ge2P1E810Cq this time) pass, but 100Ge2P1Cx556A-Mlx5 always fails, DUT1 never sees any event.\n\nNot going to fix those this cycle. Currently trying to just improve 3n-alt passrate.",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 19
+      },
+      "revId": "7b371c28105a3f495775332a893a0a221dea7569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "816207a4_239336e7",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 45
