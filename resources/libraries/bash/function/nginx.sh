@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -95,6 +95,9 @@ function nginx_compile () {
     set -exuo pipefail
     NGINX_INS_PATH="${DOWNLOAD_DIR}/${NGINX_VER}"
     pushd "${NGINX_DIR}" || die "Pushd failed."
+
+    # Modify NGX_CONF_BUFFER
+    sed -i "s/4096/1024 \* 1024 \* 10/" ${NGINX_DIR}/src/core/ngx_conf_file.c
 
     # Set installation prefix.
     param="--prefix=${NGINX_INS_PATH} "

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,7 +14,6 @@
 """VPP Configuration File Generator library."""
 
 import re
-
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
@@ -322,6 +321,11 @@ class VppConfigGenerator:
         path = [u"dpdk", u"dev default", u"num-tx-desc"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dpdk_dev_default_tso(self):
+        """Add DPDK dev default tso configuration."""
+        path = [u"dpdk", u"dev default", u"tso"]
+        self.add_config_item(self._nodeconfig, "on", path)
+
     def add_dpdk_log_level(self, value):
         """Add DPDK log-level configuration.
 
@@ -505,6 +509,16 @@ class VppConfigGenerator:
         path = [u"dpdk", u"no-tx-checksum-offload"]
         self.add_config_item(self._nodeconfig, u"", path)
 
+    def add_dpdk_no_dsa(self):
+        """Add DPDK no-dsa configuration."""
+        path = [u"dpdk", u"no-dsa"]
+        self.add_config_item(self._nodeconfig, u"", path)
+
+    def add_dpdk_enable_tcp_udp_checksum(self):
+        """Add DPDK enable-tcp-udp-checksum configuration."""
+        path = [u"dpdk", u"enable-tcp-udp-checksum"]
+        self.add_config_item(self._nodeconfig, u"", path)
+
     def add_nat(self, value=u"deterministic"):
         """Add NAT mode configuration.
 
@@ -554,6 +568,11 @@ class VppConfigGenerator:
         """
         path = [u"tcp", u"preallocated-half-open-connections"]
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_tcp_tso(self):
+        """Add TCP tso configuration."""
+        path = [u"tcp", u"tso"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_session_enable(self):
         """Add session enable."""
@@ -645,6 +664,21 @@ class VppConfigGenerator:
         """
         path = [u"session", u"local-endpoints-table-memory"]
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_session_use_dma(self):
+        """Add session use-dma configuration."""
+        path = [u"session", u"use-dma"]
+        self.add_config_item(self._nodeconfig, u"", path)
+
+    def add_dma_dev(self, wq_list):
+        """Add DMA device configuration.
+
+        :param wq_list: List of work queue for DMA device.
+        :type wq_list: list
+        """
+        for wq in wq_list:
+            path = [u"dsa", f"dev {wq}"]
+            self.add_config_item(self._nodeconfig, u"", path)
 
     def write_config(self, filename=None):
         """Generate and write VPP startup configuration to file.

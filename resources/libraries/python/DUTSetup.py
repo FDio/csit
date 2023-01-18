@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -223,14 +223,9 @@ class DUTSetup:
 
         retval = None
         for i in range(3):
+            sleep(3)
             logger.trace(f"Try {i}: Get {process} PID")
             ret_code, stdout, stderr = ssh.exec_command(f"pidof {process}")
-
-            if int(ret_code):
-                raise RuntimeError(
-                    f"Not possible to get PID of {process} process on node: "
-                    f"{node[u'host']}\n {stdout + stderr}"
-                )
 
             pid_list = stdout.split()
             if len(pid_list) == 1:
@@ -241,6 +236,11 @@ class DUTSetup:
             logger.debug(f"More than one {process} PID found " \
                          f"on node {node[u'host']}")
             retval = [int(pid) for pid in pid_list]
+
+        if not retval:
+            raise RuntimeError(
+                f"Not found any PID of {process} process on node"
+            )
 
         return retval
 
