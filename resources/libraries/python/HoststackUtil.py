@@ -376,12 +376,15 @@ class HoststackUtil():
                 return (True, test_results)
         elif program[u"name"] == u"iperf3":
             test_results += program_stdout
-            iperf3_json = json.loads(program_stdout)
-            program_json = iperf3_json[u"intervals"][0][u"sum"]
+            program_json = json.loads(program_stdout)[u"intervals"][0][u"sum"]
+            try:
+                retransmits = program_json["retransmits"]
+            except(KeyError):
+                retransmits = None
             export_hoststack_results(
                 bandwidth=program_json["bits_per_second"],
                 duration=program_json["seconds"],
-                retransmits=program_json["retransmits"]
+                retransmits=retransmits
             )
         else:
             test_results += u"Unknown HostStack Test Program!\n" + \
