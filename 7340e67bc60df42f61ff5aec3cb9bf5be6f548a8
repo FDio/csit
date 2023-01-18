@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96769ce7_7bc588da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-18T15:24:14Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest mrrANDnic_intel-xxv710ANDdrv_af_xdpAND1cAND9000bANDeth-l2patch mrrANDnic_intel-xxv710ANDdrv_avfAND1cAND9000bANDeth-l2xcbase-eth-2memif-1dcr mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND9000bANDeth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND9000bAND1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND9000bANDethip6srhip6-ip6base-srv6proxy-stat",
+      "revId": "7340e67bc60df42f61ff5aec3cb9bf5be6f548a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
