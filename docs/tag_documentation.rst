@@ -757,6 +757,10 @@ Feature Tags
 
     SRv6 endpoint to SR-unaware appliance via masquerading proxy.
 
+.. topic:: DMA
+
+    DMA plugin configured and tested with DMA device.
+
 Encryption Tags
 ---------------
 
