@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -24,6 +24,7 @@
 | Library | resources.libraries.python.Classify
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.CoreDumpUtil
+| Library | resources.libraries.python.DMAUtil
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.FlowUtil
 | Library | resources.libraries.python.L2Util
@@ -218,6 +219,36 @@
 | | | Run Keyword If | ${cpu_count_int} > 0
 | | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
 | | | Run Keyword | ${dut}.Add Buffers Per Numa | ${buffers_numa}
+| | END
+
+| Enable DMA device work queues on all DUTs
+| | [Documentation] | Using accel-config tool to set up DMA work queues on all
+| | ... | DUTs.
+| |
+| | ... | *Arguments:*
+| | ... | - queues_count - Number of DMA work queues to use. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Enable DMA device work queues on all DUTs \| ${1} \|
+| |
+| | [Arguments] | ${queue_count}
+| |
+| | ${queue_count}= | Run Keyword If | ${smt_used}
+| | ... | Set Variable | ${queue_count*2}
+| | FOR | ${dut} | IN | @{duts}
+| | | &{dma_resource_info}= | Get DMA Device Info on DUT | ${nodes['${dut}']}
+| | | ${len} | Get Length | ${dma_resource_info.dma_list}
+| | | ${dma_name} | Set Variable If
+| | | ... | ${len} >= ${1}
+| | | ... | ${dma_resource_info.dma_list}[0]
+| | | Run Keyword If | '${dma_name}' == '${NONE}' | Fail
+| | | ... | Can't find enough DMA devices!
+| | | Run Keyword | Disable DMA Device on DUT | ${nodes['${dut}']}
+| | | ... | ${dma_name}
+| | | ${enabled_wq_list}= | Enable DMA Device on DUT | ${nodes['${dut}']}
+| | | ... | ${dma_name} | ${queue_count}
+| | | Run keyword | ${dut}.Add DMA dev | ${enabled_wq_list}
 | | END
 
 | Create compute resources variables
