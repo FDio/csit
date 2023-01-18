@@ -33,6 +33,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_*ANDdrv_rdma_coreAND1cAND9000bANDeth-l2patch mrrANDnic_*ANDdrv_rdma_coreAND1cAND9000bANDeth-l2xcbase-eth-2memif-1dcr mrrANDnic_*ANDdrv_rdma_coreAND1cAND9000bANDeth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
       "revId": "a8a14d286a8ff1ae4d6f1ffd7325fcf5e9d46fea",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f7e28fe_f1bcc862",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-18T16:44:42Z",
+      "side": 1,
+      "message": "I think the two verify runs cover the known failure modes.\n\n\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/174/ : FAILURE\n\nAVF is not ready for jumbo traffic, consistent with VPP having no avf_set_max_frame_size function defined. Setting MTU on Linux interface before VPP starts leads to VPP crash in l2output_node_fn_icl: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-icx/174/log.html.gz#s1-s1-s1-s1-s1-t1-k3-k4-k1\n\nAF_XDP is also not ready for jumbo traffic, consistent with af_xdp_set_max_frame_size being defined but unconditionally responding with \"set mtu not supported yet\" error. Setting MTU on Linux interface before VPP starts leads to VPP refusing af_xdp_create_v2 PAPI call with retval -12 (as xsk_socket__create syscall fails).\n\n\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-clx/915/ : FAILURE\n\nFinally, RDMA plugin is also not ready for jumbo traffic, consistent with rdma_set_max_frame_size being defined but unconditionally returning VNET_ERR_UNSUPPORTED. Setting MTU on Linux interface before VPP starts leads to VPP crash (similar to AVF): https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-clx/915/log.html.gz#s1-s1-s1-s1-s1-t1-k3-k4-k1",
+      "revId": "a8a14d286a8ff1ae4d6f1ffd7325fcf5e9d46fea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
