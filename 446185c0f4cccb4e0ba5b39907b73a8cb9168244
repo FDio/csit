@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "bcbf7464_6a1b1c36",
         "filename": "VPP_STABLE_VER_UBUNTU_FOCAL",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "Please do not change this outside of the normal verification process.\n\nIt is ok if this is required temporarily for testing purposes, but must not be merged with this gerrit change.\nPlease note any dependency on a specific VPP version in the commit message.",
       "revId": "446185c0f4cccb4e0ba5b39907b73a8cb9168244",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": true
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "a079d1d7_9a462cb9",
         "filename": "resources/libraries/robot/hoststack/hoststack.robot",
@@ -37,10 +38,34 @@
         "endChar": 54
       },
       "revId": "446185c0f4cccb4e0ba5b39907b73a8cb9168244",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": true
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dac9eb33_5eab10a9",
+        "filename": "resources/libraries/robot/hoststack/hoststack.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2023-01-18T11:47:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a079d1d7_9a462cb9",
+      "range": {
+        "startLine": 53,
+        "startChar": 23,
+        "endLine": 53,
+        "endChar": 54
+      },
+      "revId": "446185c0f4cccb4e0ba5b39907b73a8cb9168244",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "7f95317f_9cb77a92",
         "filename": "resources/templates/vcl/vcl_iperf3.conf",
@@ -60,8 +85,31 @@
         "endChar": 48
       },
       "revId": "446185c0f4cccb4e0ba5b39907b73a8cb9168244",
-      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
-      "unresolved": true
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c60cc14_c42ad253",
+        "filename": "resources/templates/vcl/vcl_iperf3.conf",
+        "patchSetId": 13
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2023-01-18T11:47:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f95317f_9cb77a92",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 48
+      },
+      "revId": "446185c0f4cccb4e0ba5b39907b73a8cb9168244",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
