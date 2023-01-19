@@ -1,9 +1,4 @@
 # 2n-zn2
-### tests 108
-### job hrs est. 8.65
-### job hrs real 8.65
-### test mins est. 4.81
-### test mins real 4.81
 ## ./container_memif
 ## ./crypto
 ## ./ip4

@@ -1,9 +1,4 @@
 # 2n-zn2
-### tests 54
-### job hrs est. 3.9
-### job hrs real ?.?
-### test mins est. 4.3
-### test mins real 4.3
 ## ./container_memif
 ### intel-xxv710
 #### avf

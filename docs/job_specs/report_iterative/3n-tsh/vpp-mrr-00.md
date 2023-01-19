@@ -1,5 +1,4 @@
 # 3n-tsh
-### tests 156
 ## ./container_memif
 ## ./crypto
 ### intel-x520-da2
