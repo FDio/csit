@@ -57,7 +57,7 @@ class L3fwdTest:
         dp_cores = cpu_count_int+1
         tg_flip = topology_info[f"tg_if1_pci"] > topology_info[f"tg_if2_pci"]
         for node in nodes:
-            if u"DUT" in node:
+            if u"DUT2" in node:
                 compute_resource_info = CpuUtils.get_affinity_vswitch(
                     nodes, node, phy_cores, rx_queues=rx_queues,
                     rxd=rxd, txd=txd
@@ -80,7 +80,7 @@ class L3fwdTest:
                     jumbo_frames=jumbo_frames, tg_flip=tg_flip
                 )
         for node in nodes:
-            if u"DUT" in node:
+            if u"DUT2" in node:
                 for i in range(3):
                     try:
                         L3fwdTest.check_l3fwd(nodes[node])
