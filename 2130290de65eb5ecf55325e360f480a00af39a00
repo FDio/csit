@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d864af9_2702ec36",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 46
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-01-19T15:35:15Z",
+      "side": 1,
+      "message": "If the timeout is too long, then instead of improving passrate we may just be masking a real failure.\nThat said, the failure is in DPDK and we\u0027re interested in performance numbers, so this workaround may be acceptable because of our needs.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 38
+      },
+      "revId": "2130290de65eb5ecf55325e360f480a00af39a00",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5bf0e745_8249ec89",
@@ -31,6 +54,23 @@
       "writtenOn": "2023-01-18T17:09:21Z",
       "side": 1,
       "message": "\u003e https://jenkins.fd.io/job/csit-dpdk-perf-verify-master-3n-alt/113/ : FAILURE\n\n1 fail out of 9 tests. I guess it is not worth trying to get better (without risking job run taking too long).\nReady for review\n\nrecheck",
+      "revId": "2130290de65eb5ecf55325e360f480a00af39a00",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f6e467b_9b185bdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 46
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-01-19T15:35:15Z",
+      "side": 1,
+      "message": "Just to document it here as well:\nWe may benefit from using the --no-lsc-interrupt EAL parameter, which prints out which port are up/down after port initialization:\nChecking link statuses...\ni40e_dev_alarm_handler(): ICR0: adminq event\nPort 0 Link down\nPort 1 Link up at 40 Gbps FDX Autoneg\nDone\n\nIt\u0027s possible that we may need to wait just for the ports that are down to change their state.",
       "revId": "2130290de65eb5ecf55325e360f480a00af39a00",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
