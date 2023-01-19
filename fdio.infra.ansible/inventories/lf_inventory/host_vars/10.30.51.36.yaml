@@ -6,6 +6,7 @@ grub:
   audit: "0"
   default_hugepagesz: "2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768"
   iommu.passthrough: "1"
+  vfio.enable_unsafe_noiommu_mode: 1
   isolcpus: "1-10,17-26,33-42,49-58"
   nmi_watchdog: "0"
   nohz_full: "1-10,17-26,33-42,49-58"
