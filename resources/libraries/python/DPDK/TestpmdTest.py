@@ -158,7 +158,7 @@ class TestpmdTest:
                 pmd_numa=True,
             )
             command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
-                f"/entry/run_testpmd.sh \"{testpmd_args}\""
+                f"/entry/run_testpmd.sh \"{testpmd_args} --no-lsc-interrupt\""
             message = f"Failed to execute testpmd at node {node['host']}"
             exec_cmd_no_error(node, command, timeout=1800, message=message)
 
