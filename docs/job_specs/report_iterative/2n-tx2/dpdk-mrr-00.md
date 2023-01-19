@@ -1,5 +1,4 @@
 # 2n-tx2
-### tests 6
 ### intel-xl710
 #### dpdk-vfio-pci
 ##### eth-l2xcbase-testpmd

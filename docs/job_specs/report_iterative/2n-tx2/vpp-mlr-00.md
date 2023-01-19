@@ -1,5 +1,4 @@
 # 2n-tx2
-### tests 192
 ## ./container_memif
 ### intel-xl710
 #### dpdk-vfio-pci

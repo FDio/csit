@@ -1,9 +1,4 @@
 # 3n-alt
-### tests 48
-### job hrs est. 5.8
-### job hrs real ?.?
-### test mins est. 7.25
-### test mins real 7.25
 ## ./container_memif
 ### intel-xl710
 #### dpdk-vfio-pci

@@ -1,9 +1,4 @@
 # 3n-alt
-### tests 24
-### job hrs est. 3.5
-### job hrs real ?.?
-### test mins est. 8.75
-### test mins real 8.75
 ## ./container_memif
 ## ./crypto
 ## ./ip4
