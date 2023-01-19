@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f00d6840_f532e2cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2023-01-19T14:19:04Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest drv_vfio_pciANDeth-ip4tcphttp-ldpreload-nginx-1_21_5ANDnic_intel-e810cqAND64bAND1c",
+      "revId": "7ac35e0a0cea9ffe7beca954f7ca132c423a2f51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
