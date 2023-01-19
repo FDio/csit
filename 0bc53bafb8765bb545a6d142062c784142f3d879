@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d326fd58_d8180975",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-19T13:08:02Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-alt-perftest mrrANDnic_intel-xl710ANDdrv_vfio_pciAND1cAND64bANDethip4-ip4base-l3fwd",
+      "revId": "0bc53bafb8765bb545a6d142062c784142f3d879",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
