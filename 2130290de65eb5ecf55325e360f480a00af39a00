@@ -73,6 +73,23 @@
       "message": "Just to document it here as well:\nWe may benefit from using the --no-lsc-interrupt EAL parameter, which prints out which port are up/down after port initialization:\nChecking link statuses...\ni40e_dev_alarm_handler(): ICR0: adminq event\nPort 0 Link down\nPort 1 Link up at 40 Gbps FDX Autoneg\nDone\n\nIt\u0027s possible that we may need to wait just for the ports that are down to change their state.",
       "revId": "2130290de65eb5ecf55325e360f480a00af39a00",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d5428c1_899753d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 46
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-01-19T20:22:58Z",
+      "side": 1,
+      "message": "does not solve the problem rather makes code more complicated",
+      "revId": "2130290de65eb5ecf55325e360f480a00af39a00",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
