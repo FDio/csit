@@ -53,6 +53,7 @@ class L3fwdTest:
         :type txd: int
         :raises RuntimeError: If bash return code is not 0.
         """
+        nodes = {"DUT1": nodes["DUT1"]}
         cpu_count_int = dp_count_int = int(phy_cores)
         dp_cores = cpu_count_int+1
         tg_flip = topology_info[f"tg_if1_pci"] > topology_info[f"tg_if2_pci"]
