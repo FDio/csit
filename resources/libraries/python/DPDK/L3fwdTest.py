@@ -56,7 +56,7 @@ class L3fwdTest:
         cpu_count_int = dp_count_int = int(phy_cores)
         dp_cores = cpu_count_int+1
         for node in nodes:
-            if u"DUT" in node:
+            if u"DUT1" in node:
                 compute_resource_info = CpuUtils.get_affinity_vswitch(
                     nodes, node, phy_cores, rx_queues=rx_queues,
                     rxd=rxd, txd=txd
@@ -79,7 +79,7 @@ class L3fwdTest:
                     jumbo_frames=jumbo_frames
                 )
         for node in nodes:
-            if u"DUT" in node:
+            if u"DUT1" in node:
                 for i in range(3):
                     try:
                         L3fwdTest.check_l3fwd(nodes[node])
