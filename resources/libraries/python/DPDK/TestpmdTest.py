@@ -156,6 +156,7 @@ class TestpmdTest:
                 pmd_disable_link_check=False,
                 pmd_auto_start=True,
                 pmd_numa=True,
+                pmd_no_lsc_interrupt=True,
             )
             command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
                 f"/entry/run_testpmd.sh \"{testpmd_args}\""
