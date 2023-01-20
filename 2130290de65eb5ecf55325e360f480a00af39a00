@@ -90,6 +90,23 @@
       "message": "does not solve the problem rather makes code more complicated",
       "revId": "2130290de65eb5ecf55325e360f480a00af39a00",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c39796fb_0aac721a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 46
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-20T13:50:59Z",
+      "side": 1,
+      "message": "I am testing --no-lsc-interrupt in 37959 but today it behaves differently than yesterday to triggering this to compare.\n\ncsit-dpdk-3n-icx-perftest mrrANDnic_*AND1cAND64bANDeth-l2xcbase-testpmdNOT9000b",
+      "revId": "2130290de65eb5ecf55325e360f480a00af39a00",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
