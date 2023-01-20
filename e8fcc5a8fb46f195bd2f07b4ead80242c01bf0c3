@@ -50,6 +50,23 @@
       "message": "Works on 3n-alt as well when the links aren\u0027t broken. One more run with more testcases to see whether l3fwd breaks the links.\n\ncsit-dpdk-3n-alt-perftest mrrANDnic_intel-xl710ANDdrv_vfio_pciAND64bANDethip4-ip4base-l3fwd",
       "revId": "e8fcc5a8fb46f195bd2f07b4ead80242c01bf0c3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce37925b_b6a8ef86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-01-20T09:45:07Z",
+      "side": 1,
+      "message": "Looks like l3fwd exhibits the same behavior as testpmd - it breaks the link after shutdown.",
+      "revId": "e8fcc5a8fb46f195bd2f07b4ead80242c01bf0c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
