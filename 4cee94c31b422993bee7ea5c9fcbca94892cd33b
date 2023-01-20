@@ -33,6 +33,23 @@
       "message": "csit-dpdk-3n-icx-perftest mrrANDnic_*AND1cAND64bANDeth-l2xcbase-testpmdNOT9000b",
       "revId": "4cee94c31b422993bee7ea5c9fcbca94892cd33b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e50eb180_03802950",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-20T12:43:34Z",
+      "side": 1,
+      "message": "csit-dpdk-2n-clx-perftest mrrANDnic_*AND1cAND64bANDeth-l2xcbase-testpmdNOT9000b",
+      "revId": "4cee94c31b422993bee7ea5c9fcbca94892cd33b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
