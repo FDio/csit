@@ -38,29 +38,29 @@ class ABTools:
         :rtype: OptionString
         """
         cmd = OptionString()
-        cmd.add(u"python3")
+        cmd.add("python3")
         dirname = f"{Constants.REMOTE_FW_DIR}/resources/tools/ab"
         cmd.add(f"{dirname}/ABFork.py")
-        cmd_options = OptionString(prefix=u"-")
+        cmd_options = OptionString(prefix="-")
         # Number of requests to perform.
-        cmd_options.add_with_value_from_dict(u"r", u"requests", kwargs)
+        cmd_options.add_with_value_from_dict("r", "requests", kwargs)
         # Server port number to use.
-        cmd_options.add_with_value_from_dict(u"p", u"port", kwargs)
+        cmd_options.add_with_value_from_dict("p", "port", kwargs)
         # Number of clients being processed at the same time.
-        cmd_options.add_with_value_from_dict(u"c", u"clients", kwargs)
+        cmd_options.add_with_value_from_dict("c", "clients", kwargs)
         # Filename to be requested from the servers.
-        cmd_options.add_with_value_from_dict(u"f", u"files", kwargs)
+        cmd_options.add_with_value_from_dict("f", "files", kwargs)
         # Server ip address.
-        cmd_options.add_with_value_from_dict(u"i", u"ip", kwargs)
+        cmd_options.add_with_value_from_dict("i", "ip", kwargs)
         # tg ip address.
-        cmd_options.add_with_value_from_dict(u"g", u"tip", kwargs)
+        cmd_options.add_with_value_from_dict("g", "tip", kwargs)
         # Specify SSL/TLS cipher suite.
-        cmd_options.add_with_value_from_dict(u"z", u"cipher", kwargs, default=0)
+        cmd_options.add_with_value_from_dict("z", "cipher", kwargs, default=0)
         # Specify SSL/TLS protocol.
-        cmd_options.add_with_value_from_dict(u"t", u"protocol", kwargs,
+        cmd_options.add_with_value_from_dict("t", "protocol", kwargs,
                                              default=0)
         # Mode: RPS or CPS.
-        cmd_options.add_with_value_from_dict(u"m", u"mode", kwargs)
+        cmd_options.add_with_value_from_dict("m", "mode", kwargs)
         return cmd.extend(cmd_options)
 
     @staticmethod
@@ -73,11 +73,11 @@ class ABTools:
             command is not available.
         """
 
-        if tg_node[u"type"] != NodeType.TG:
-            raise RuntimeError(u"Node type is not a TG!")
+        if tg_node["type"] != NodeType.TG:
+            raise RuntimeError("Node type is not a TG!")
 
-        cmd = u"command -v ab"
-        message = u"ab not installed on TG node!"
+        cmd = "command -v ab"
+        message = "ab not installed on TG node!"
         exec_cmd_no_error(tg_node, cmd, message=message)
 
     @staticmethod
@@ -101,13 +101,13 @@ class ABTools:
         :rtype: str
         """
         command = f"ab -V | head -1 | cut -d',' -f2"
-        message = u"Get AB version failed!"
+        message = "Get AB version failed!"
         stdout, _ = exec_cmd_no_error(node, command, message=message)
         return stdout.strip()
 
     @staticmethod
     def run_ab(tg_node, ip_addr, tg_addr, tls_tcp, cipher, files_num, rps_cps,
-               r_total, c_total, port, protocol=u"TLS1.3"):
+               r_total, c_total, port, protocol="TLS1.3"):
         """ Run ab test.
 
         :param tg_node: Topology node.
@@ -138,7 +138,7 @@ class ABTools:
         :raises: RuntimeError if node type is not a TG.
         """
         if files_num == 0:
-            files = u"return"
+            files = "return"
         elif files_num >= 1024:
             files = f"{int(files_num / 1024)}KB.json"
         else:
@@ -156,7 +156,7 @@ class ABTools:
             mode=rps_cps,
         )
         stdout, _ = exec_cmd_no_error(
-            tg_node, cmd, timeout=180, sudo=True, message=u"ab runtime error!"
+            tg_node, cmd, timeout=180, sudo=True, message="ab runtime error!"
         )
 
         rate_unit = rps_cps
@@ -167,18 +167,18 @@ class ABTools:
         failed_requests = None
         for line in stdout.splitlines():
             if f"Connection {rps_cps} rate:" in line:
-                rate = float(line.split(u" ")[3])
-            elif u"Transfer Rate:" in line:
-                bandwidth = float(line.split(u" ")[2]) * 8000
-            elif u"Latency:" in line:
-                latency = float(line.split(u" ")[1])
-            elif u"Completed requests:" in line:
-                completed_requests = int(line.split(u" ")[2])
-            elif u"Failed requests" in line:
-                failed_requests = int(line.split(u" ")[2])
+                rate = float(line.split(" ")[3])
+            elif "Transfer Rate:" in line:
+                bandwidth = float(line.split(" ")[2]) * 8000
+            elif "Latency:" in line:
+                latency = float(line.split(" ")[1])
+            elif "Completed requests:" in line:
+                completed_requests = int(line.split(" ")[2])
+            elif "Failed requests" in line:
+                failed_requests = int(line.split(" ")[2])
 
         export_hoststack_results(
-            rate, rate_unit, bandwidth, latency, failed_requests,
+            bandwidth, rate, rate_unit, latency, failed_requests,
             completed_requests
         )
 
