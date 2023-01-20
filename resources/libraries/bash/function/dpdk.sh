@@ -342,15 +342,22 @@ function dpdk_testpmd_check () {
 
     set +x
     for attempt in $(seq ${1}); do
-        lines=$(fgrep -c "link state change event" screenlog.0) || true
-        echo "Attempt ${attempt} sees ${lines} link state change events."
-        if [[ "$lines" != "" && "$lines" != "0" && "$lines" != "1" ]]; then
-            set -x
-            return 0
-        else
-            sleep 1
+        dones=$(fgrep -c "Done" screenlog.0) || true
+        if [[ "${dones}" == "" || "${dones}" == "0" ]]; then
+            echo "Attempt ${attempt} does not see Done yet."
+            continue
         fi
+        downs=$(fgrep -c "Link down" screenlog.0) || true
+        events=$(fgrep -c "link state change event" screenlog.0) || true
+        echo "Attempt ${attempt} sees ${events}/${downs} links go back up."
+        if [[ "${events}" == "${downs}" ]]; then
+            set -x
+            echo "Testpmd is ready after ${attempt} checks."
+            return 0
+        fi
+        sleep 1
     done
+    echo "Testpmd is still not ready after ${attempt} checks."
     set -x
     return 1
 }
