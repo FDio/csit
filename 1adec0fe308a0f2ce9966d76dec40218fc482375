@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5611979b_499b7983",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-20T13:43:15Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*AND1cAND64bANDeth-l2xcbase-testpmdNOT9000b",
+      "revId": "1adec0fe308a0f2ce9966d76dec40218fc482375",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
