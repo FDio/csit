@@ -478,6 +478,7 @@
 | | ... | ${trial_multiplicity}=${trial_multiplicity}
 | | ... | ${traffic_directions}=${1}
 | |
+| | Set Test Variable | ${telemetry_rate} | mrr
 | | ${results}= | Send iPerf3 traffic at specified rate
 | | ... | ${trial_duration} | ${None} | ${None}
 | | ... | ${trial_multiplicity} | ${traffic_directions}
