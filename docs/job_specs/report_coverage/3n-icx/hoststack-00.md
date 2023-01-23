@@ -1,18 +1,4 @@
 # 3n-icx
-## ./container_memif
-## ./crypto
-## ./ip4
-## ./ip4_tunnels
-## ./ip6
-## ./ip6_tunnels
-## ./l2
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./nfv_density/vm_vhost/chain_dot1qip4vxlan
-## ./srv6
 ## ./hoststack
 ### intel-e810xxv
 #### dpdk-vfio-pci
@@ -32,4 +18,3 @@
 1c AND 1280b AND bps AND e810xxv AND drv_vfio_pci AND eth-ip4udpquicscale10cl1s-vppecho
 ##### eth-ip4udpquicscale10cl10s-vppecho
 1c AND 1280b AND bps AND e810xxv AND drv_vfio_pci AND eth-ip4udpquicscale10cl10s-vppecho
-## ./vm_vhost
