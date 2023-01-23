@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad5d319b_acc1ac07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 47
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-23T09:28:12Z",
+      "side": 1,
+      "message": "Still debugging 37959 so I can squash it here.",
+      "revId": "f7bf53d59098f9d05b961a60b34d138156ec4412",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
