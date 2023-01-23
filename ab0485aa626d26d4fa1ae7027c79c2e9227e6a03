@@ -92,6 +92,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf782d78_ea8f02f4",
+        "filename": "resources/templates/vcl/vcl_iperf3.conf",
+        "patchSetId": 23
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2023-01-23T10:07:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca641d98_2a27a761",
+      "range": {
+        "startLine": 9,
+        "startChar": 45,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "ab0485aa626d26d4fa1ae7027c79c2e9227e6a03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4c7eff0_dd8027ea",
@@ -105,6 +129,30 @@
       "writtenOn": "2023-01-18T16:37:52Z",
       "side": 1,
       "message": "The default values for other config parameters are a bit low, e.g., bihash lookup tables sizes. Could we change those?",
+      "range": {
+        "startLine": 75,
+        "startChar": 5,
+        "endLine": 75,
+        "endChar": 33
+      },
+      "revId": "ab0485aa626d26d4fa1ae7027c79c2e9227e6a03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b1f79ae_72eb5714",
+        "filename": "tests/vpp/perf/hoststack/2n1l-10ge2p1x710-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2023-01-23T10:07:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4c7eff0_dd8027ea",
       "range": {
         "startLine": 75,
         "startChar": 5,

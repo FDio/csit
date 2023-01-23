@@ -18,6 +18,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62175d9a_7e8c699f",
+        "filename": "VPP_STABLE_VER_UBUNTU_FOCAL",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2023-01-23T10:07:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcbf7464_6a1b1c36",
+      "revId": "446185c0f4cccb4e0ba5b39907b73a8cb9168244",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a079d1d7_9a462cb9",
