@@ -16,6 +16,23 @@
       "message": "Still debugging 37959 so I can squash it here.",
       "revId": "f7bf53d59098f9d05b961a60b34d138156ec4412",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be15d3fe_19138659",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 47
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-23T09:28:53Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-icx-perftest mrrANDnic_intel-xxv710AND1cAND64bANDeth-l2xcbase-testpmdNOT9000b",
+      "revId": "f7bf53d59098f9d05b961a60b34d138156ec4412",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
