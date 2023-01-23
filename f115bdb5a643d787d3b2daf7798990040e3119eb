@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea0b97cf_13c5c1f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-23T18:18:03Z",
+      "side": 1,
+      "message": "csit-dpdk-3n-icx-perftest mrrANDnic_intel-xxv710AND1cAND64bANDeth-l2xcbase-testpmdNOT9000b",
+      "revId": "f115bdb5a643d787d3b2daf7798990040e3119eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
