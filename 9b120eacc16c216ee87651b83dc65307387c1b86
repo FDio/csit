@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-2n-icx-perftest hoststack-00",
       "revId": "9b120eacc16c216ee87651b83dc65307387c1b86",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9764ee7_d492fdf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-01-24T06:42:08Z",
+      "side": 1,
+      "message": "csit-trex-report-cov-2n-icx-perftest trex-00",
+      "revId": "9b120eacc16c216ee87651b83dc65307387c1b86",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
