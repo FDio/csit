@@ -50,9 +50,9 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-report_week = '47'
-project = 'FD.io CSIT-2210.{week}'.format(week=report_week)
-copyright = '2022, FD.io'
+report_week = '4'
+project = 'FD.io CSIT-2302.{week}'.format(week=report_week)
+copyright = '2023, FD.io'
 author = 'FD.io CSIT'
 
 # The version info for the project yo're documenting, acts as replacement for
@@ -101,7 +101,6 @@ rst_epilog = """
 .. _build logs from FD.io vpp performance job 2n-icx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-icx
 .. _build logs from FD.io vpp performance job 3n-icx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-icx
 .. _build logs from FD.io vpp performance job 2n-zn2: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-zn2
-.. _build logs from FD.io vpp performance job 3n-aws: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-3n-aws
 .. _build logs from FD.io vpp performance job 2n-aws: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-iterative-{srelease}-2n-aws
 .. _build logs from FD.io dpdk coverage job 2n-icx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-coverage-{srelease}-2n-icx
 .. _build logs from FD.io dpdk coverage job 3n-icx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-dpdk-perf-report-coverage-{srelease}-3n-icx
@@ -119,20 +118,19 @@ rst_epilog = """
 .. _build logs from FD.io vpp coverage job 2n-icx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-2n-icx
 .. _build logs from FD.io vpp coverage job 3n-icx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-3n-icx
 .. _build logs from FD.io vpp coverage job 2n-zn2: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-2n-zn2
-.. _build logs from FD.io vpp coverage job 3n-aws: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-3n-aws
 .. _build logs from FD.io vpp coverage job 2n-aws: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-2n-aws
 .. _build logs from FD.io vpp device jobs using Ubuntu: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-device-{srelease}-ubuntu2004-1n-skx
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu2004-x86_64/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/fdio.infra.ansible?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
-""".format(release='rls2210',
+""".format(release='rls2302',
            report_week=report_week,
-           prev_release='rls2206',
-           srelease='2210',
-           csitrelease='2210',
-           csit_prev_release='2206',
-           vpprelease='22.10',
-           vpp_prev_release='22.06',
+           prev_release='rls2210',
+           srelease='2302',
+           csitrelease='2302',
+           csit_prev_release='2210',
+           vpprelease='23.020',
+           vpp_prev_release='22.10',
            dpdkrelease='22.07',
            dpdk_prev_release='22.03',
            sdpdkrelease='22.07',
