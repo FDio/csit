@@ -22,13 +22,16 @@ module "elastic_beanstalk_environment" {
   source = "../terraform-aws-elastic-beanstalk-environment"
 
   # vpc
-  vpc_cidr_block           = "192.168.0.0/24"
+  vpc_cidr_block           = "10.0.0.0/16"
   vpc_enable_dns_hostnames = true
   vpc_enable_dns_support   = true
   vpc_instance_tenancy     = "default"
 
   # subnet
-  subnet_availability_zone = "eu-central-1a"
+  subnet_a_availability_zone = "eu-central-1a"
+  subnet_a_cidr_block        = "10.0.0.0/20"
+  subnet_b_availability_zone = "eu-central-1b"
+  subnet_b_cidr_block        = "10.0.16.0/20"
 
   # environment
   environment_application            = module.elastic_beanstalk_application.application_name
@@ -40,7 +43,7 @@ module "elastic_beanstalk_environment" {
   environment_version_label          = ""
 
   # aws:ec2:instances
-  instances_instance_types = "t3a.large"
+  instances_instance_types = "t3a.2xlarge"
 
   # aws:ec2:vpc
   associate_public_ip_address = true
@@ -50,7 +53,7 @@ module "elastic_beanstalk_environment" {
   default_listener_enabled = true
 
   # aws:elasticbeanstalk:environment
-  environment_loadbalancer_type               = "classic"
+  environment_loadbalancer_type               = "application"
   environment_loadbalancer_ssl_certificate_id = "arn:aws:acm:eu-central-1:407116685360:certificate/737ad419-36f1-460d-919a-9110b0aac26a"
 
   # aws:elasticbeanstalk:environment:process:default
