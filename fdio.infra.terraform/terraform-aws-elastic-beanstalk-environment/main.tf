@@ -1,5 +1,6 @@
 locals {
   tags = {
+    "Name"        = "${var.application_name}"
     "Environment" = "${var.application_name}"
   }
 
@@ -12,82 +13,11 @@ locals {
     }
   ]
 
-  classic_elb_settings = [
-    {
-      namespace = "aws:elb:loadbalancer"
-      name      = "CrossZone"
-      value     = var.environment_loadbalancer_crosszone
-    },
-    {
-      namespace = "aws:elb:loadbalancer"
-      name      = "SecurityGroups"
-      value     = join(",", sort(var.environment_loadbalancer_security_groups))
-    },
-    {
-      namespace = "aws:elb:loadbalancer"
-      name      = "ManagedSecurityGroup"
-      value     = var.environment_loadbalancer_managed_security_group
-    },
-    {
-      namespace = "aws:elb:listener"
-      name      = "ListenerProtocol"
-      value     = "HTTP"
-    },
-    {
-      namespace = "aws:elb:listener"
-      name      = "InstancePort"
-      value     = var.environment_process_default_port
-    },
-    {
-      namespace = "aws:elb:listener"
-      name      = "ListenerEnabled"
-      value     = var.default_listener_enabled || var.environment_loadbalancer_ssl_certificate_id == "" ? "true" : "false"
-    },
-    {
-      namespace = "aws:elb:listener:443"
-      name      = "ListenerProtocol"
-      value     = "HTTPS"
-    },
-    {
-      namespace = "aws:elb:listener:443"
-      name      = "InstancePort"
-      value     = var.environment_process_default_port
-    },
-    {
-      namespace = "aws:elb:listener:443"
-      name      = "SSLCertificateId"
-      value     = var.environment_loadbalancer_ssl_certificate_id
-    },
-    {
-      namespace = "aws:elb:listener:443"
-      name      = "ListenerEnabled"
-      value     = var.environment_loadbalancer_ssl_certificate_id == "" ? "false" : "true"
-    },
-    {
-      namespace = "aws:elb:policies"
-      name      = "ConnectionSettingIdleTimeout"
-      value     = var.loadbalancer_connection_settings_idle_timeout
-    },
-    {
-      namespace = "aws:elb:policies"
-      name      = "ConnectionDrainingEnabled"
-      value     = "true"
-    }
-  ]
-
-  nlb_settings = [
-    {
-      namespace = "aws:elbv2:listener:default"
-      name      = "ListenerEnabled"
-      value     = var.default_listener_enabled
-    }
-  ]
-
-  beanstalk_elb_settings = [
+  elb_settings = [
     {
       namespace = "aws:ec2:vpc"
       name      = "ELBSubnets"
-      value     = aws_subnet.subnet.id
+      value     = join(",", [aws_subnet.subnet_a.id, aws_subnet.subnet_b.id])
     },
     {
       namespace = "aws:elasticbeanstalk:environment:process:default"
@@ -120,11 +50,71 @@ locals {
       value     = var.environment_process_default_unhealthy_threshold_count
     }
   ]
-  elb_settings_nlb    = var.environment_loadbalancer_type == "network" ? concat(local.nlb_settings, local.generic_elb_settings, local.beanstalk_elb_settings) : []
-  elb_setting_classic = var.environment_loadbalancer_type == "classic" ? concat(local.classic_elb_settings, local.generic_elb_settings, local.beanstalk_elb_settings) : []
+
+  generic_alb_settings = [
+    {
+      namespace = "aws:elbv2:loadbalancer"
+      name      = "SecurityGroups"
+      value     = join(",", sort(var.environment_loadbalancer_security_groups))
+    }
+  ]
+
+  alb_settings = [
+    {
+      namespace = "aws:elbv2:listener:default"
+      name      = "ListenerEnabled"
+      value     = var.default_listener_enabled || var.environment_loadbalancer_ssl_certificate_id == "" ? "true" : "false"
+    },
+    {
+      namespace = "aws:elbv2:loadbalancer"
+      name      = "ManagedSecurityGroup"
+      value     = var.environment_loadbalancer_managed_security_group
+    },
+    {
+      namespace = "aws:elbv2:listener:443"
+      name      = "ListenerEnabled"
+      value     = var.environment_loadbalancer_ssl_certificate_id == "" ? "false" : "true"
+    },
+    {
+      namespace = "aws:elbv2:listener:443"
+      name      = "Protocol"
+      value     = "HTTPS"
+    },
+    {
+      namespace = "aws:elbv2:listener:443"
+      name      = "SSLCertificateArns"
+      value     = var.environment_loadbalancer_ssl_certificate_id
+    },
+    {
+      namespace = "aws:elasticbeanstalk:environment:process:default"
+      name      = "HealthCheckPath"
+      value     = var.application_healthcheck_url
+    },
+    {
+      namespace = "aws:elasticbeanstalk:environment:process:default"
+      name      = "MatcherHTTPCode"
+      value     = join(",", sort(var.default_matcher_http_code))
+    },
+    {
+      namespace = "aws:elasticbeanstalk:environment:process:default"
+      name      = "HealthCheckTimeout"
+      value     = var.default_health_check_timeout
+    }
+  ]
+
+  nlb_settings = [
+    {
+      namespace = "aws:elbv2:listener:default"
+      name      = "ListenerEnabled"
+      value     = var.default_listener_enabled
+    }
+  ]
+
+  settings_nlb = var.environment_loadbalancer_type == "network" ? concat(local.nlb_settings, local.generic_elb_settings, local.elb_settings) : []
+  settings_alb = var.environment_loadbalancer_type == "application" ? concat(local.generic_alb_settings, local.alb_settings, local.generic_elb_settings, local.elb_settings) : []
 
   # Full set of LoadBlanacer settings.
-  elb_settings = var.environment_tier == "WebServer" ? concat(local.elb_settings_nlb, local.elb_setting_classic) : []
+  elb = var.environment_tier == "WebServer" ? concat(local.settings_nlb, local.settings_alb) : []
 }
 
 # Create elastic beanstalk VPC
@@ -138,14 +128,27 @@ resource "aws_vpc" "vpc" {
 }
 
 # Create elastic beanstalk Subnets
-resource "aws_subnet" "subnet" {
+resource "aws_subnet" "subnet_a" {
   depends_on = [
     aws_vpc.vpc
   ]
-  availability_zone               = var.subnet_availability_zone
+  availability_zone               = var.subnet_a_availability_zone
   assign_ipv6_address_on_creation = true
-  cidr_block                      = aws_vpc.vpc.cidr_block
+  cidr_block                      = var.subnet_a_cidr_block
   ipv6_cidr_block                 = cidrsubnet(aws_vpc.vpc.ipv6_cidr_block, 8, 1)
+  map_public_ip_on_launch         = true
+  vpc_id                          = aws_vpc.vpc.id
+  tags                            = local.tags
+}
+
+resource "aws_subnet" "subnet_b" {
+  depends_on = [
+    aws_vpc.vpc
+  ]
+  availability_zone               = var.subnet_b_availability_zone
+  assign_ipv6_address_on_creation = true
+  cidr_block                      = var.subnet_b_cidr_block
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.vpc.ipv6_cidr_block, 8, 2)
   map_public_ip_on_launch         = true
   vpc_id                          = aws_vpc.vpc.id
   tags                            = local.tags
@@ -430,7 +433,8 @@ resource "aws_iam_role_policy" "default" {
 resource "aws_elastic_beanstalk_environment" "environment" {
   depends_on = [
     aws_vpc.vpc,
-    aws_subnet.subnet,
+    aws_subnet.subnet_a,
+    aws_subnet.subnet_b,
     aws_ssm_activation.ec2
   ]
   application            = var.environment_application
@@ -459,7 +463,7 @@ resource "aws_elastic_beanstalk_environment" "environment" {
   setting {
     namespace = "aws:ec2:vpc"
     name      = "Subnets"
-    value     = aws_subnet.subnet.id
+    value     = join(",", [aws_subnet.subnet_a.id, aws_subnet.subnet_b.id])
   }
 
   setting {
@@ -488,7 +492,7 @@ resource "aws_elastic_beanstalk_environment" "environment" {
   }
 
   dynamic "setting" {
-    for_each = local.elb_settings
+    for_each = local.elb
     content {
       namespace = setting.value["namespace"]
       name      = setting.value["name"]
