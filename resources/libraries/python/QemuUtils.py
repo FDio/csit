@@ -22,7 +22,7 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.DpdkUtil import DpdkUtil
+from resources.libraries.python.DPDK.DpdkUtil import DpdkUtil
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
