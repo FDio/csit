@@ -55,7 +55,6 @@
     DIR[DTR,PERF,VPP,3N,TSH]: "{DIR[DTR]}/vpp_performance_results_3n_tsh"
     DIR[DTR,PERF,VPP,2N,TX2]: "{DIR[DTR]}/vpp_performance_results_2n_tx2"
     DIR[DTR,PERF,VPP,3N,SNR]: "{DIR[DTR]}/vpp_performance_results_3n_snr"
-    DIR[DTR,PERF,VPP,3N,AWS]: "{DIR[DTR]}/vpp_performance_results_3n_aws"
     DIR[DTR,PERF,VPP,2N,AWS]: "{DIR[DTR]}/vpp_performance_results_2n_aws"
     DIR[DTR,MRR,VPP,ALL]: "{DIR[DTR]}/vpp_mrr_results"
     DIR[DTR,MRR,VPP,2N,ZN2]: "{DIR[DTR]}/vpp_mrr_results_2n_zn2"
@@ -66,7 +65,6 @@
     DIR[DTR,MRR,VPP,3N,TSH]: "{DIR[DTR]}/vpp_mrr_results_3n_tsh"
     DIR[DTR,MRR,VPP,2N,TX2]: "{DIR[DTR]}/vpp_mrr_results_2n_tx2"
     DIR[DTR,MRR,VPP,3N,SNR]: "{DIR[DTR]}/vpp_mrr_results_3n_snr"
-    DIR[DTR,MRR,VPP,3N,AWS]: "{DIR[DTR]}/vpp_mrr_results_3n_aws"
     DIR[DTR,MRR,VPP,2N,AWS]: "{DIR[DTR]}/vpp_mrr_results_2n_aws"
     DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
 
@@ -81,7 +79,6 @@
     DIR[DTC,PERF,VPP,3N,TSH]: "{DIR[DTC]}/vpp_performance_configuration_3n_tsh"
     DIR[DTC,PERF,VPP,2N,TX2]: "{DIR[DTC]}/vpp_performance_configuration_2n_tx2"
     DIR[DTC,PERF,VPP,3N,SNR]: "{DIR[DTC]}/vpp_performance_configuration_3n_snr"
-    DIR[DTC,PERF,VPP,3N,AWS]: "{DIR[DTC]}/vpp_performance_configuration_3n_aws"
     DIR[DTC,PERF,VPP,2N,AWS]: "{DIR[DTC]}/vpp_performance_configuration_2n_aws"
     DIR[DTC,MRR,VPP,ALL]: "{DIR[DTC]}/vpp_mrr_configuration"
     DIR[DTC,MRR,VPP,2N,ZN2]: "{DIR[DTC]}/vpp_mrr_configuration_2n_zn2"
@@ -92,7 +89,6 @@
     DIR[DTC,MRR,VPP,3N,TSH]: "{DIR[DTC]}/vpp_mrr_configuration_3n_tsh"
     DIR[DTC,MRR,VPP,2N,TX2]: "{DIR[DTC]}/vpp_mrr_configuration_2n_tx2"
     DIR[DTC,MRR,VPP,3N,SNR]: "{DIR[DTC]}/vpp_mrr_configuration_3n_snr"
-    DIR[DTC,MRR,VPP,3N,AWS]: "{DIR[DTC]}/vpp_mrr_configuration_3n_aws"
     DIR[DTC,MRR,VPP,2N,AWS]: "{DIR[DTC]}/vpp_mrr_configuration_2n_aws"
     DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTC]}/vpp_device_configuration_ubuntu"
 
@@ -107,7 +103,6 @@
     DIR[DTO,PERF,VPP,3N,TSH]: "{DIR[DTO]}/vpp_performance_operational_data_3n_tsh"
     DIR[DTO,PERF,VPP,2N,TX2]: "{DIR[DTO]}/vpp_performance_operational_data_2n_tx2"
     DIR[DTO,PERF,VPP,3N,SNR]: "{DIR[DTO]}/vpp_performance_operational_data_3n_snr"
-    DIR[DTO,PERF,VPP,3N,AWS]: "{DIR[DTO]}/vpp_performance_operational_data_3n_aws"
     DIR[DTO,PERF,VPP,2N,AWS]: "{DIR[DTO]}/vpp_performance_operational_data_2n_aws"
 
     # Latencies:
@@ -230,5 +225,5 @@
   format:
     html:
       - full
-    pdf:
-      - minimal
+    # pdf:
+    #   - minimal
