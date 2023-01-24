@@ -16,6 +16,23 @@
       "message": "csit-trex-report-iter-1n-aws-perftest trex-mlr-00",
       "revId": "74da65fde227915064cd7b0718110eab18b435fe",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06c73d05_b7a1f4be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-01-24T05:28:17Z",
+      "side": 1,
+      "message": "csit-dpdk-report-iter-3n-icx-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-2n-icx-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-2n-clx-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-3n-snr-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-3n-alt-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-3n-tsh-perftest dpdk-mlr-00\ncsit-dpdk-report-iter-2n-tx2-perftest dpdk-mlr-00",
+      "revId": "74da65fde227915064cd7b0718110eab18b435fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
