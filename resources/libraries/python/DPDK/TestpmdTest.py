@@ -99,6 +99,7 @@ class TestpmdTest:
                     all_ready = False
                     break
             for dut in duts:
+                exec_cmd(nodes[dut], u"ls")
                 exec_cmd(nodes[dut], u"cat screenlog.0")
             if all_ready:
                 return
@@ -156,6 +157,7 @@ class TestpmdTest:
                 pmd_disable_link_check=False,
                 pmd_auto_start=True,
                 pmd_numa=True,
+                pmd_no_lsc_interrupt=True,
             )
             command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
                 f"/entry/run_testpmd.sh \"{testpmd_args}\""

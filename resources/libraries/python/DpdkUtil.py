@@ -134,6 +134,10 @@ class DpdkUtil:
         options.add_equals_from_dict(
             u"nb-cores", u"pmd_nb_cores", kwargs
         )
+#        # Disable LSC interrupts for all ports, helps with CSIT-1848.
+#        options.add_if_from_dict(
+#            u"no-lsc-interrupt", u"no_lsc_interrupt", kwargs
+#        )
         return options
 
     @staticmethod
