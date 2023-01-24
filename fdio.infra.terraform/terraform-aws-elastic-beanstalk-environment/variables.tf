@@ -2,7 +2,7 @@
 variable "vpc_cidr_block" {
   description = "The CIDR block for the association."
   type        = string
-  default     = "192.168.0.0/24"
+  default     = "10.0.0.0/16"
 }
 
 variable "vpc_enable_dns_hostnames" {
@@ -24,10 +24,28 @@ variable "vpc_instance_tenancy" {
 }
 
 # Variables for elastic beanstalk Subnet
-variable "subnet_availability_zone" {
-  description = "AWS availability zone"
+variable "subnet_a_availability_zone" {
+  description = "AZ for the subnet."
   type        = string
   default     = "us-east-1a"
+}
+
+variable "subnet_a_cidr_block" {
+  description = "The IPv4 CIDR block for the subnet."
+  type        = string
+  default     = "10.0.0.0/20"
+}
+
+variable "subnet_b_availability_zone" {
+  description = "AZ for the subnet."
+  type        = string
+  default     = "us-east-1b"
+}
+
+variable "subnet_b_cidr_block" {
+  description = "The IPv4 CIDR block for the subnet."
+  type        = string
+  default     = "10.0.16.0/20"
 }
 
 # Variables for elastic beanstalk Application
@@ -138,12 +156,6 @@ variable "environment_loadbalancer_type" {
   default     = "classic"
 }
 
-variable "environment_loadbalancer_crosszone" {
-  description = "Configure the classic load balancer to route traffic evenly across all instances in all Availability Zones rather than only within each zone."
-  type        = bool
-  default     = true
-}
-
 variable "environment_loadbalancer_security_groups" {
   description = "Load balancer security groups"
   type        = list(string)
@@ -160,12 +172,6 @@ variable "environment_loadbalancer_ssl_certificate_id" {
   type        = string
   default     = ""
   description = "Load Balancer SSL certificate ARN. The certificate must be present in AWS Certificate Manager"
-}
-
-variable "loadbalancer_connection_settings_idle_timeout" {
-  description = "Classic load balancer only: Number of seconds that the load balancer waits for any data to be sent or received over the connection. If no data has been sent or received after this time period elapses, the load balancer closes the connection."
-  type        = number
-  default     = 60
 }
 
 # aws:elasticbeanstalk:environment:process:default
@@ -215,7 +221,25 @@ variable "autoscaling_updatepolicy_min_instance_in_service" {
 variable "application_healthcheck_url" {
   description = "The path where health check requests are sent to."
   type        = string
-  default     = "HTTP:5000/"
+  default     = "/"
+}
+
+variable "environment_listener_ssl_policy" {
+  description = "Specify a security policy to apply to the listener. This option is only applicable to environments with an application load balancer."
+  type        = string
+  default     = ""
+}
+
+variable "default_matcher_http_code" {
+  description = "List of HTTP codes that indicate that an instance is healthy. Note that this option is only applicable to environments with a network or application load balancer."
+  type        = list(string)
+  default     = ["200"]
+}
+
+variable "default_health_check_timeout" {
+  description = "The amount of time, in seconds, to wait for a response during a health check. Note that this option is only applicable to environments with an application load balancer"
+  type        = number
+  default     = 5
 }
 
 # aws:elasticbeanstalk:command
