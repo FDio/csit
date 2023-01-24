@@ -1,0 +1,64 @@
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <script type="text/javascript">
+
+        function getDocHeight(doc) {
+            doc = doc || document;
+            var body = doc.body, html = doc.documentElement;
+            var height = Math.max( body.scrollHeight, body.offsetHeight,
+                html.clientHeight, html.scrollHeight, html.offsetHeight );
+            return height;
+        }
+
+        function setIframeHeight(id) {
+            var ifrm = document.getElementById(id);
+            var doc = ifrm.contentDocument? ifrm.contentDocument:
+                ifrm.contentWindow.document;
+            ifrm.style.visibility = 'hidden';
+            ifrm.style.height = "10px"; // reset to minimal height ...
+            // IE opt. for bing/msn needs a bit added or scrollbar appears
+            ifrm.style.height = getDocHeight( doc ) + 4 + "px";
+            ifrm.style.visibility = 'visible';
+        }
+
+    </script>
+
+TCP/IP with nginx
+~~~~~~~~~~~~~~~~~
+
+.. raw:: latex
+
+    \clearpage
+
+0b-2t1c-e810xxv-ip4tcp-base
+---------------------------
+
+.. raw:: html
+
+    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../../_static/vpp/2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-cps.html"></iframe>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-cps}
+            \label{fig:2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-cps}
+    \end{figure}
+
+.. raw:: html
+
+    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../../_static/vpp/2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-rps.html"></iframe>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-rps}
+            \label{fig:2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-rps}
+    \end{figure}
