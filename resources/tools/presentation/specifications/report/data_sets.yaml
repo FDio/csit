@@ -207,10 +207,10 @@
       - 4   # 2302 NDRPDR iter env 11
       - 5   # 2302 NDRPDR iter env 11
       - 6   # 2302 NDRPDR iter env 11
-      # - 7   # 2302 NDRPDR iter env 11
+      - 7   # 2302 NDRPDR iter env 11
       - 8   # 2302 NDRPDR iter env 11
       - 9   # 2302 NDRPDR iter env 11
-      # - 10  # 2302 NDRPDR iter env 11
+      - 10  # 2302 NDRPDR iter env 11
 
   dpdk-2n-zn2-curr-iter-best:
     csit-dpdk-perf-report-iterative-2302-2n-zn2:
@@ -565,7 +565,7 @@
       - 7   # 2302 NDRPDR iter env 11
       # - 8   # 2302 NDRPDR iter env 11
       - 9   # 2302 NDRPDR iter env 11
-      # - 10  # 2302 NDRPDR iter env 11
+      - 10  # 2302 NDRPDR iter env 11
 
   dpdk-2n-tx2-curr-iter-best:
     csit-dpdk-perf-report-iterative-2302-2n-tx2:
