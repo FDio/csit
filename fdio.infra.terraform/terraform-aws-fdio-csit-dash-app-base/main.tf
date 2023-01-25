@@ -1,6 +1,9 @@
 locals {
-  name    = "fdio-csit-dash-app"
-  version = "fdio-csit-dash-app-base-${var.version}"
+  bucket       = var.application_bucket
+  description  = var.application_description
+  name         = var.application_name
+  name_version = "${var.application_name}-base-${var.application_version}"
+  source       = var.application_source
 }
 
 data "vault_aws_access_credentials" "creds" {
@@ -10,7 +13,9 @@ data "vault_aws_access_credentials" "creds" {
 
 module "elastic_beanstalk_application_version" {
   source                   = "../terraform-aws-elastic-beanstalk-application-version"
-  application_description  = "FD.io CDASH"
+  application_bucket       = local.bucket
+  application_description  = local.description
   application_name         = local.name
-  application_version_name = local.version
+  application_name_version = local.name_version
+  application_source       = local.source
 }
