@@ -16,7 +16,7 @@
 from robot.libraries.BuiltIn import BuiltIn
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
-from resources.libraries.python.DpdkUtil import DpdkUtil
+from resources.libraries.python.DPDK.DpdkUtil import DpdkUtil
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -156,6 +156,7 @@ class TestpmdTest:
                 pmd_disable_link_check=False,
                 pmd_auto_start=True,
                 pmd_numa=True,
+                pmd_no_lsc_interrupt=True,
             )
             command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
                 f"/entry/run_testpmd.sh \"{testpmd_args}\""
@@ -190,7 +191,7 @@ class TestpmdTest:
         :returns: False if testpmd is not ready for traffic yet.
         :rtype: bool
         """
-        wait_seconds = 10 * 60 * 1.2 ** iteration
+        wait_seconds = int(10 * 60 * 1.2 ** iteration)
         command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
         command += f"/entry/check_testpmd.sh {wait_seconds}"
         return_code, _, _ = exec_cmd(node, command, timeout=wait_seconds + 60)

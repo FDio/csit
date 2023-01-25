@@ -18,7 +18,7 @@ This module exists to start l3fwd on topology nodes.
 from robot.libraries.BuiltIn import BuiltIn
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
-from resources.libraries.python.DpdkUtil import DpdkUtil
+from resources.libraries.python.DPDK.DpdkUtil import DpdkUtil
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import NodeType, Topology
 
