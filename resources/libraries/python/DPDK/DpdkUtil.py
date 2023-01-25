@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -133,6 +133,10 @@ class DpdkUtil:
         # Set the number of forwarding cores based on coremask.
         options.add_equals_from_dict(
             u"nb-cores", u"pmd_nb_cores", kwargs
+        )
+        # Disable LSC interrupts for all ports, helps with CSIT-1848.
+        options.add_if_from_dict(
+            u"no-lsc-interrupt", u"no_lsc_interrupt", kwargs
         )
         return options
 
