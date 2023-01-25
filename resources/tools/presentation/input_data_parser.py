@@ -92,7 +92,7 @@ class ExecutionChecker(ResultVisitor):
         r'Connection [c|r]ps rate: (\d*).*\n'
         r'Total data transferred: (\d*).*\n'
         r'Completed requests: (\d*).*\n'
-        r'Failed requests:\s*(\d*.\d*)/gm'
+        r'Failed requests:\s*(\d*.\d*)'
     )
 
     # Needed for CPS and PPS tests
