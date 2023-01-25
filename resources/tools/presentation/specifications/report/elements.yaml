@@ -1137,18 +1137,18 @@
 
 # TRex Performance Changes 1n-aws pdr
 - type: "table"
-  title: "VPP Performance Changes 1n-aws pdr"
+  title: "TRex Performance Changes 1n-aws pdr"
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,TREX]}/performance-changes-1n-aws-pdr"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NDRPDR'"
   columns:
     # - title: "2206.0-10"
-    #   data-set: "vpp-1n-aws-hist-iter"
+    #   data-set: "trex-1n-aws-hist-iter"
     - title: "2210.0-11"
-      data-set: "vpp-1n-aws-prev-iter"
+      data-set: "trex-1n-aws-prev-iter"
     - title: "2302.0-11"
-      data-set: "vpp-1n-aws-curr-iter"
+      data-set: "trex-1n-aws-curr-iter"
   comparisons:
     - title: "2302.0-11 vs 2210.0-11"
       reference: 1
@@ -1162,18 +1162,18 @@
 
 # TRex Performance Changes 1n-aws ndr
 - type: "table"
-  title: "VPP Performance Changes 1n-aws ndr"
+  title: "TRex Performance Changes 1n-aws ndr"
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,TREX]}/performance-changes-1n-aws-ndr"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NDRPDR'"
   columns:
     # - title: "2206.0-10"
-    #   data-set: "vpp-1n-aws-hist-iter"
+    #   data-set: "trex-1n-aws-hist-iter"
     - title: "2210.0-11"
-      data-set: "vpp-1n-aws-prev-iter"
+      data-set: "trex-1n-aws-prev-iter"
     - title: "2302.0-11"
-      data-set: "vpp-1n-aws-curr-iter"
+      data-set: "trex-1n-aws-curr-iter"
   comparisons:
     - title: "2302.0-11 vs 2210.0-11"
       reference: 1
@@ -1187,18 +1187,18 @@
 
 # TRex Performance Changes 2n-icx pdr
 - type: "table"
-  title: "VPP Performance Changes 2n-icx pdr"
+  title: "TRex Performance Changes 2n-icx pdr"
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,TREX]}/performance-changes-2n-icx-pdr"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NDRPDR'"
   columns:
     # - title: "2206.0-10"
-    #   data-set: "vpp-2n-icx-hist-iter"
+    #   data-set: "trex-2n-icx-hist-iter"
     - title: "2210.0-11"
-      data-set: "vpp-2n-icx-prev-iter"
+      data-set: "trex-2n-icx-prev-iter"
     - title: "2302.0-11"
-      data-set: "vpp-2n-icx-curr-iter"
+      data-set: "trex-2n-icx-curr-iter"
   comparisons:
     - title: "2302.0-11 vs 2210.0-11"
       reference: 1
@@ -1212,18 +1212,18 @@
 
 # TRex Performance Changes 2n-icx ndr
 - type: "table"
-  title: "VPP Performance Changes 2n-icx ndr"
+  title: "TRex Performance Changes 2n-icx ndr"
   algorithm: "table_comparison"
   output-file: "{DIR[STATIC,TREX]}/performance-changes-2n-icx-ndr"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NDRPDR'"
   columns:
     # - title: "2206.0-10"
-    #   data-set: "vpp-2n-icx-hist-iter"
+    #   data-set: "trex-2n-icx-hist-iter"
     - title: "2210.0-11"
-      data-set: "vpp-2n-icx-prev-iter"
+      data-set: "trex-2n-icx-prev-iter"
     - title: "2302.0-11"
-      data-set: "vpp-2n-icx-curr-iter"
+      data-set: "trex-2n-icx-curr-iter"
   comparisons:
     - title: "2302.0-11 vs 2210.0-11"
       reference: 1
