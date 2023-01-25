@@ -1133,6 +1133,107 @@
     - "parent"
 
 ################################################################################
+# TRex
+
+# TRex Performance Changes 1n-aws pdr
+- type: "table"
+  title: "VPP Performance Changes 1n-aws pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,TREX]}/performance-changes-1n-aws-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'"
+  columns:
+    # - title: "2206.0-10"
+    #   data-set: "vpp-1n-aws-hist-iter"
+    - title: "2210.0-11"
+      data-set: "vpp-1n-aws-prev-iter"
+    - title: "2302.0-11"
+      data-set: "vpp-1n-aws-curr-iter"
+  comparisons:
+    - title: "2302.0-11 vs 2210.0-11"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: PDR throughput on 1n-aws with nitro50g.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210 and rls2302).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2302.0-11 vs 2210.0-11: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# TRex Performance Changes 1n-aws ndr
+- type: "table"
+  title: "VPP Performance Changes 1n-aws ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,TREX]}/performance-changes-1n-aws-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'"
+  columns:
+    # - title: "2206.0-10"
+    #   data-set: "vpp-1n-aws-hist-iter"
+    - title: "2210.0-11"
+      data-set: "vpp-1n-aws-prev-iter"
+    - title: "2302.0-11"
+      data-set: "vpp-1n-aws-curr-iter"
+  comparisons:
+    - title: "2302.0-11 vs 2210.0-11"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: NDR throughput on 1n-aws with nitro50g.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210 and rls2302).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2302.0-11 vs 2210.0-11: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# TRex Performance Changes 2n-icx pdr
+- type: "table"
+  title: "VPP Performance Changes 2n-icx pdr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,TREX]}/performance-changes-2n-icx-pdr"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'"
+  columns:
+    # - title: "2206.0-10"
+    #   data-set: "vpp-2n-icx-hist-iter"
+    - title: "2210.0-11"
+      data-set: "vpp-2n-icx-prev-iter"
+    - title: "2302.0-11"
+      data-set: "vpp-2n-icx-curr-iter"
+  comparisons:
+    - title: "2302.0-11 vs 2210.0-11"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: PDR throughput on 2n-icx with e810cq.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210 and rls2302).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2302.0-11 vs 2210.0-11: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
+
+# TRex Performance Changes 2n-icx ndr
+- type: "table"
+  title: "VPP Performance Changes 2n-icx ndr"
+  algorithm: "table_comparison"
+  output-file: "{DIR[STATIC,TREX]}/performance-changes-2n-icx-ndr"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'NDRPDR'"
+  columns:
+    # - title: "2206.0-10"
+    #   data-set: "vpp-2n-icx-hist-iter"
+    - title: "2210.0-11"
+      data-set: "vpp-2n-icx-prev-iter"
+    - title: "2302.0-11"
+      data-set: "vpp-2n-icx-curr-iter"
+  comparisons:
+    - title: "2302.0-11 vs 2210.0-11"
+      reference: 1
+      compare: 2
+  legend:
+    - ''
+    - 'Test Case:              Test cases executed for: NDR throughput on 2n-icx with e810cq.'
+    - 'YYMM.V-E:               [uSec +- StDev] results for VPP (YY year, MM month, V minor version) tested in CSIT (E environment version, "10" for CSIT rls2206, "11" for CSIT rls2210 and rls2302).'
+    - 'YYMM.V-E vs YYMM.V-E:   [% +- StDev] Relative difference, latter is the base. [N] for Root Cause Analysis (RCA) reference, see RCA list below.'
+    - '2302.0-11 vs 2210.0-11: Compares current VPP code in the current CSIT environment vs previous VPP code in the previous CSIT environment.'
 
 ################################################################################
 # VPP
