@@ -50,6 +50,23 @@
       "message": "csit-dpdk-3n-snr-perftest mrrANDnic_intel-*ANDdrv_vfio_pciAND1cAND64bANDethip4-ip4base-l3fwd csit-dpdk-3n-snr-perftest mrrANDnic_intel-*ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase-testpmd",
       "revId": "5a345b19222a68409c05a3b8627d4019c47cc469",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b86ae3e_a5e38782",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-25T12:12:42Z",
+      "side": 1,
+      "message": "csit-dpdk-2n-clx-perftest mrrANDnic_*AND1cAND64bANDethip4-ip4base-l3fwd csit-dpdk-2n-clx-perftest mrrANDnic_*AND1cAND64bANDeth-l2xcbase-testpmd",
+      "revId": "5a345b19222a68409c05a3b8627d4019c47cc469",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
