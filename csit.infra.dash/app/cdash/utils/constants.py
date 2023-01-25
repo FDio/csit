@@ -74,7 +74,7 @@ class Constants:
     # List of releases used for iterative data processing.
     # The releases MUST be in the order from the current (newest) to the last
     # (oldest).
-    RELEASES = ["rls2210", "rls2206", "rls2202", ]
+    RELEASES = ["rls2302", "rls2210", "rls2206", ]
 
     ############################################################################
     # General, application wide, layout affecting constants.
