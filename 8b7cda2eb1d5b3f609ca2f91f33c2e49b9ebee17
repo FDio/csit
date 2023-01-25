@@ -50,6 +50,23 @@
       "message": "csit-dpdk-3n-tsh-perftest mrrANDnic_*AND1cAND64bANDeth-l2xcbase-testpmdNOT9000b",
       "revId": "8b7cda2eb1d5b3f609ca2f91f33c2e49b9ebee17",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3309460b_88f693bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-01-25T13:50:35Z",
+      "side": 1,
+      "message": "\u003e \nhttps://jenkins.fd.io/job/csit-dpdk-perf-verify-master-3n-alt/135/ : SUCCESS\n\nFinally it works.",
+      "revId": "8b7cda2eb1d5b3f609ca2f91f33c2e49b9ebee17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
