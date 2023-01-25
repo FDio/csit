@@ -1,3 +1,9 @@
+variable "application_bucket" {
+  description = "The name of the bucket."
+  type        = string
+  default     = "elasticbeanstalk-eu-central-1"
+}
+
 variable "application_description" {
   description = "Short description of the Application Version."
   type        = string
@@ -5,13 +11,19 @@ variable "application_description" {
 }
 
 variable "application_name" {
-  description = "Name of the Beanstalk Application the version is associated."
+  description = "Name of the Beanstalk Application."
   type        = string
-  default     = "Beanstalk"
+  default     = "beanstalk"
 }
 
-variable "application_version_name" {
-  description = "Unique name for the this Application Version."
+variable "application_name_version" {
+  description = "Version of the Beanstalk Application."
   type        = string
-  default     = "Beanstalk Version"
+  default     = "beanstalk-1"
+}
+
+variable "application_source" {
+  description = "The source file with application code."
+  type        = string
+  default     = "app.zip"
 }
