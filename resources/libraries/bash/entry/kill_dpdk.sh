@@ -13,8 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Helper functions for starting testpmd.
-# Any previous dpdk app is assumed to be already killed by kill_dpdk.sh script.
+# Helper function to clean up testbed before launching a DPDK app.
 
 set -exuo pipefail
 
@@ -37,4 +36,4 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/dpdk.sh" || die "Source failed."
 common_dirs || die
-dpdk_testpmd "${@}" || die
+dpdk_kill || die
