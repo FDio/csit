@@ -89,10 +89,10 @@ class ExecutionChecker(ResultVisitor):
     REGEX_VSAP_MSG_INFO = re.compile(
         r'Transfer Rate: (\d*.\d*).*\n'
         r'Latency: (\d*.\d*).*\n'
-        r'Completed requests: (\d*).*\n'
-        r'Failed requests: (\d*).*\n'
+        r'Connection [c|r]ps rate: (\d*).*\n'
         r'Total data transferred: (\d*).*\n'
-        r'Connection [cr]ps rate:\s*(\d*.\d*)'
+        r'Completed requests: (\d*).*\n'
+        r'Failed requests:\s*(\d*.\d*)/gm'
     )
 
     # Needed for CPS and PPS tests
@@ -822,13 +822,13 @@ class ExecutionChecker(ResultVisitor):
             try:
                 result["transfer-rate"] = float(groups.group(1)) * 1e3
                 result["latency"] = float(groups.group(2))
-                result["completed-requests"] = int(groups.group(3))
-                result["failed-requests"] = int(groups.group(4))
-                result["bytes-transferred"] = int(groups.group(5))
+                result["completed-requests"] = int(groups.group(5))
+                result["failed-requests"] = int(groups.group(6))
+                result["bytes-transferred"] = int(groups.group(4))
                 if "TCP_CPS"in tags:
-                    result["cps"] = float(groups.group(6))
+                    result["cps"] = float(groups.group(3))
                 elif "TCP_RPS" in tags:
-                    result["rps"] = float(groups.group(6))
+                    result["rps"] = float(groups.group(3))
                 else:
                     return result, status
                 status = "PASS"
