@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86da3d68_5a632c7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-01-25T15:14:22Z",
+      "side": 1,
+      "message": "Sooner or later l3fwd will be removed. This exercise will just speed up their removal. ",
+      "revId": "dd694f7c30baeae2cafb43e0d5a7bf505b99a680",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
