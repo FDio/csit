@@ -78,7 +78,7 @@ class TestpmdTest:
         duts = [node for node in nodes if u"DUT" in node]
         for iteration in range(5):
             for dut in duts:
-                TestpmdTest.kill_dpdk(nodes[dut])
+                DpdkUtil.kill_dpdk(nodes[dut])
             for dut in duts:
                 compute_resource_info = CpuUtils.get_affinity_vswitch(
                     nodes, dut, phy_cores, rx_queues=rx_queues,
@@ -163,19 +163,6 @@ class TestpmdTest:
                 f"/entry/run_testpmd.sh \"{testpmd_args}\""
             message = f"Failed to execute testpmd at node {node['host']}"
             exec_cmd_no_error(node, command, timeout=1800, message=message)
-
-    @staticmethod
-    def kill_dpdk(node):
-        """Kill any dpdk app in the node.
-
-        :param node: DUT node.
-        :type node: dict
-        :raises RuntimeError: If the script "kill_dpdk.sh" fails.
-        """
-        command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
-            f"/entry/kill_dpdk.sh"
-        message = f"Failed to kill dpdk at node {node['host']}"
-        exec_cmd_no_error(node, command, message=message)
 
     @staticmethod
     def is_testpmd_ready(node, iteration):

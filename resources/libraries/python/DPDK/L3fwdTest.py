@@ -16,6 +16,7 @@ This module exists to start l3fwd on topology nodes.
 """
 
 from robot.libraries.BuiltIn import BuiltIn
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DPDK.DpdkUtil import DpdkUtil
@@ -54,46 +55,44 @@ class L3fwdTest:
         :raises RuntimeError: If bash return code is not 0.
         """
         cpu_count_int = dp_count_int = int(phy_cores)
-        dp_cores = cpu_count_int+1
-        for node in nodes:
-            if u"DUT" in node:
+        if dp_count_int > 1:
+            BuiltIn().set_tags('MTHREAD')
+        else:
+            BuiltIn().set_tags('STHREAD')
+        BuiltIn().set_tags(
+            f"{dp_count_int}T{cpu_count_int}C"
+        )
+        duts = [node for node in nodes if u"DUT" in node]
+        for iteration in range(5):
+            for dut in duts:
+                DpdkUtil.kill_dpdk(nodes[dut])
+            for dut in duts:
                 compute_resource_info = CpuUtils.get_affinity_vswitch(
-                    nodes, node, phy_cores, rx_queues=rx_queues,
-                    rxd=rxd, txd=txd
+                    nodes, dut, phy_cores, rx_queues=rx_queues,
+                    rxd=rxd, txd=txd,
                 )
-                if dp_count_int > 1:
-                    BuiltIn().set_tags('MTHREAD')
-                else:
-                    BuiltIn().set_tags('STHREAD')
-                BuiltIn().set_tags(
-                    f"{dp_count_int}T{cpu_count_int}C"
-                )
-
                 cpu_dp = compute_resource_info[u"cpu_dp"]
                 rxq_count_int = compute_resource_info[u"rxq_count_int"]
-                if1 = topology_info[f"{node}_pf1"][0]
-                if2 = topology_info[f"{node}_pf2"][0]
+                if1 = topology_info[f"{dut}_pf1"][0]
+                if2 = topology_info[f"{dut}_pf2"][0]
                 L3fwdTest.start_l3fwd(
-                    nodes, nodes[node], if1=if1, if2=if2, lcores_list=cpu_dp,
+                    nodes[dut], if1=if1, if2=if2, lcores_list=cpu_dp,
                     nb_cores=dp_count_int, queue_nums=rxq_count_int,
-                    jumbo_frames=jumbo_frames
+                    jumbo_frames=jumbo_frames,
                 )
-        for node in nodes:
-            if u"DUT" in node:
-                for i in range(3):
-                    try:
-                        L3fwdTest.check_l3fwd(nodes[node])
-                        break
-                    except RuntimeError:
-                        L3fwdTest.start_l3fwd(
-                            nodes, nodes[node], if1=if1, if2=if2,
-                            lcores_list=cpu_dp, nb_cores=dp_count_int,
-                            queue_nums=rxq_count_int, jumbo_frames=jumbo_frames,
-                            tg_flip=tg_flip
-                        )
-                else:
-                    message = f"Failed to start l3fwd at node {node}"
-                    raise RuntimeError(message)
+                # TODO: Add nic_rxq_size, and nic_txq_size.
+            all_ready = True
+            for dut in duts:
+                if not L3fwdTest.is_l3fwd_ready(nodes[dut], iteration):
+                    all_ready = False
+                    break
+            for dut in duts:
+                exec_cmd(nodes[dut], u"cat screenlog.0")
+            if all_ready:
+                return
+            # Restart all testpmds.
+        raise RuntimeError(f"L3fwd failed to start properly.")
+
 
     @staticmethod
     def start_l3fwd(
@@ -170,21 +169,6 @@ class L3fwdTest:
             exec_cmd_no_error(node, command, timeout=1800, message=message)
 
     @staticmethod
-    def check_l3fwd(node):
-        """
-        Execute the l3fwd check on the DUT node.
-
-        :param node: DUT node.
-        :type node: dict
-        :raises RuntimeError: If the script "check_l3fwd.sh" fails.
-        """
-        if node[u"type"] == NodeType.DUT:
-            command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
-                f"/entry/check_l3fwd.sh"
-            message = "L3fwd not started properly"
-            exec_cmd_no_error(node, command, timeout=1800, message=message)
-
-    @staticmethod
     def get_adj_mac(nodes, node, if1, if2):
         """
         Get MAC addresses adjacent to interfaces (by PCI address) of the DUT.
@@ -255,3 +239,24 @@ class L3fwdTest:
         ret_code, stdout, _ = exec_cmd(node, command, timeout=1800)
         if ret_code != 0 and u"Skipping patch." not in stdout:
             raise RuntimeError(message)
+
+    @staticmethod
+    def is_l3fwd_ready(node, iteration):
+        """Execute the l3fwd check on the DUT node.
+
+        The time this method waits for readiness increases exponentially
+        with iteration number.
+        See description in dpdk_l3fwd_check bash function for more details.
+
+        :param node: DUT node.
+        :param iteration: Wait time is (in minutes) 1.35 to the power of this.
+        :type node: dict
+        :type iteration: int
+        :returns: False if l3fwd is not ready for traffic yet.
+        :rtype: bool
+        """
+        wait_seconds = int(10 * 60 * 1.35 ** iteration)
+        command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"
+        command += f"/entry/check_l3fwd.sh {wait_seconds}"
+        return_code, _, _ = exec_cmd(node, command, timeout=wait_seconds + 60)
+        return return_code == 0

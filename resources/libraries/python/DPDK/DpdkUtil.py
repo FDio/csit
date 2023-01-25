@@ -13,6 +13,7 @@
 
 """Dpdk Utilities Library."""
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd_no_error
 
@@ -243,3 +244,16 @@ class DpdkUtil:
         options.add(u"--")
         options.extend(DpdkUtil.get_l3fwd_pmd_options(**kwargs))
         return options
+
+    @staticmethod
+    def kill_dpdk(node):
+        """Kill any dpdk app in the node.
+
+        :param node: DUT node.
+        :type node: dict
+        :raises RuntimeError: If the script "kill_dpdk.sh" fails.
+        """
+        command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
+            f"/entry/kill_dpdk.sh"
+        message = f"Failed to kill dpdk at node {node['host']}"
+        exec_cmd_no_error(node, command, message=message)

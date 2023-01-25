@@ -315,9 +315,12 @@ function dpdk_testpmd () {
 }
 
 
-function dpdk_testpmd_check () {
+function dpdk_app_check () {
 
-    # Return with error code 1 if testpmd is not ready in time.
+    # Return with error code 1 if a dpdk is not ready in time.
+    #
+    # This function holds a logic common to testpmd and l3fwd,
+    # as the only difference between them is the "done string".
     #
     # The logic is not obvious, due to CSIT-1848:
     #
@@ -340,6 +343,7 @@ function dpdk_testpmd_check () {
     #
     # Arguments:
     # - ${1} - How many checks to perform once a second before giving up.
+    # - ${2} - String that signifies a place in log where port status is known.
 
     set -exuo pipefail
 
@@ -347,13 +351,13 @@ function dpdk_testpmd_check () {
     event_cmd=""
     for attempt in $(seq ${1}); do
         sleep 1
-        dones=$(fgrep -c "Done" screenlog.0) || true
+        dones=$(fgrep -c "${2}" screenlog.0) || true
         if [[ "${dones}" == "" || "${dones}" == "0" ]]; then
             echo "Attempt ${attempt} does not see Done yet."
             continue
         fi
         if [[ "${event_cmd}" == "" ]]; then
-            done_line=$(fgrep -n 'Done' screenlog.0 | cut -d ':' -f 1) || true
+            done_line=$(fgrep -n "${2}" screenlog.0 | cut -d ':' -f 1) || true
             if [[ "${done_line}" == "" ]]; then
                 echo "Failed to detect a line with Done."
                 return 1
@@ -373,6 +377,20 @@ function dpdk_testpmd_check () {
     echo "Testpmd is still not ready after ${attempt} checks."
     set -x
     return 1
+}
+
+
+function dpdk_l3fwd_check () {
+
+    dpdk_app_check "${1}" "....done"
+
+}
+
+
+function dpdk_testpmd_check () {
+
+    dpdk_app_check "${1}" "Done"
+
 }
 
 
