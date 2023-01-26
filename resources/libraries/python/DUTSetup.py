@@ -234,6 +234,7 @@ class DUTSetup:
 
             pid_list = stdout.split()
             if len(pid_list) == 1:
+                ssh.exec_command(f"cat /proc/{pid}/numa_maps")
                 return [int(stdout)]
             if not pid_list:
                 logger.debug(f"No {process} PID found on node {node[u'host']}")
@@ -241,6 +242,8 @@ class DUTSetup:
             logger.debug(f"More than one {process} PID found " \
                          f"on node {node[u'host']}")
             retval = [int(pid) for pid in pid_list]
+            for pid in pid_list:
+                ssh.exec_command(f"cat /proc/{pid}/numa_maps")
 
         return retval
 
