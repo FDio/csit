@@ -241,6 +241,8 @@ class DUTSetup:
             logger.debug(f"More than one {process} PID found " \
                          f"on node {node[u'host']}")
             retval = [int(pid) for pid in pid_list]
+            for pid in pid_list:
+                ssh.exec_command(f"cat /proc/{pid}/numa_maps")
 
         return retval
 

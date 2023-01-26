@@ -37,10 +37,8 @@
 | | ... | Show Log On All DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Get Core Files on All Nodes | ${nodes}
-| | Run Keyword If Test Failed
-| | ... | Verify VPP PID in Teardown
-| | Run Keyword If Test Failed
-| | ... | VPP Show Memory On All DUTs | ${nodes}
+| | Verify VPP PID in Teardown
+| | VPP Show Memory On All DUTs | ${nodes}
 | | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
