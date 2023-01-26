@@ -14,6 +14,7 @@
 # limitations under the License.
 
 # Helper functions for starting l3fwd.
+# Any previous dpdk app is assumed to be already killed by kill_dpdk.sh script.
 
 set -exuo pipefail
 
@@ -36,5 +37,4 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/dpdk.sh" || die "Source failed."
 common_dirs || die
-dpdk_kill || die
 dpdk_l3fwd "${@}" || die
