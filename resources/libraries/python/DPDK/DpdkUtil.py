@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,6 +13,7 @@
 
 """Dpdk Utilities Library."""
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd_no_error
 
@@ -134,6 +135,10 @@ class DpdkUtil:
         options.add_equals_from_dict(
             u"nb-cores", u"pmd_nb_cores", kwargs
         )
+        # Disable LSC interrupts for all ports, helps with CSIT-1848.
+        options.add_if_from_dict(
+            u"no-lsc-interrupt", u"no_lsc_interrupt", kwargs
+        )
         return options
 
     @staticmethod
@@ -239,3 +244,16 @@ class DpdkUtil:
         options.add(u"--")
         options.extend(DpdkUtil.get_l3fwd_pmd_options(**kwargs))
         return options
+
+    @staticmethod
+    def kill_dpdk(node):
+        """Kill any dpdk app in the node.
+
+        :param node: DUT node.
+        :type node: dict
+        :raises RuntimeError: If the script "kill_dpdk.sh" fails.
+        """
+        command = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}"\
+            f"/entry/kill_dpdk.sh"
+        message = f"Failed to kill dpdk at node {node['host']}"
+        exec_cmd_no_error(node, command, message=message)
