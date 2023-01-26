@@ -17,7 +17,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | HOSTSTACK | LDP_NGINX | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
-| ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1_21_5
+| ... | TCP_CPS | eth-ip4tcphttp-ldpreload-nginx-1_15_0
 |
 | Suite Setup | Setup suite topology interfaces | ab | nginx
 | Suite Teardown | Tear down suite | ab
@@ -62,7 +62,7 @@
 | @{ab_ip_addrs}= | 192.168.10.2
 | ${dut_ip_prefix}= | 24
 | @{dut_ip_addrs}= | 192.168.10.1
-| ${nginx_version}= | 1.21.5
+| ${nginx_version}= | 1.15.0
 | ${sess_evt_q_length}= | 100000
 | ${sess_prealloc_sess}= | 1100000
 | ${v4_sess_tbl_buckets}= | 250000
@@ -95,34 +95,34 @@
 | | ... | ${ciphers} | ${frame_size} | ${tls_tcp} | ${rps_cps}
 
 *** Test Cases ***
-| 0B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| 0B-1c-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps
 | | [Tags] | 0B | 1C
 | | frame_size=${0} | phy_cores=${1}
 
-| 0B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| 0B-2c-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps
 | | [Tags] | 0B | 2C
 | | frame_size=${0} | phy_cores=${2}
 
-| 64B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| 64B-1c-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| 64B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| 64B-2c-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| 1024B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| 1024B-1c-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps
 | | [Tags] | 1024B | 1C
 | | frame_size=${1024} | phy_cores=${1}
 
-| 1024B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| 1024B-2c-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps
 | | [Tags] | 1024B | 2C
 | | frame_size=${1024} | phy_cores=${2}
 
-| 2048B-1c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| 2048B-1c-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps
 | | [Tags] | 2048B | 1C
 | | frame_size=${2048} | phy_cores=${1}
 
-| 2048B-2c-eth-ip4tcphttp-ldpreload-nginx-1_21_5-cps
+| 2048B-2c-eth-ip4tcphttp-ldpreload-nginx-1_15_0-cps
 | | [Tags] | 2048B | 2C
 | | frame_size=${2048} | phy_cores=${2}
