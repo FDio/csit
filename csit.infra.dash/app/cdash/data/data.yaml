@@ -1,42 +1,18 @@
-statistics:
+- data_type: statistics
+  partition: stats_type
+  partition_name: sra
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/stats
   columns:
     - job
     - build
     - start_time
     - duration
-statistics-trending-ndrpdr:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
-  columns:
+  categories:
     - job
     - build
-    - dut_type
-    - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - result_pdr_lower_rate_value
-    - result_ndr_lower_rate_value
-statistics-trending-mrr:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - result_receive_rate_rate_avg
-trending:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
-  columns:
-    - job
-    - build
-    - start_time
-trending-mrr:
+- data_type: trending
+  partition: test_type
+  partition_name: mrr
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
   columns:
     - job
@@ -52,7 +28,15 @@ trending-mrr:
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
     - telemetry
-trending-ndrpdr:
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - version
+- data_type: trending
+  partition: test_type
+  partition_name: ndrpdr
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
   columns:
     - job
@@ -79,8 +63,17 @@ trending-ndrpdr:
     - result_latency_forward_pdr_10_hdrh
     - result_latency_forward_pdr_0_hdrh
     - telemetry
-iterative-mrr:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_{release}
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - version
+- data_type: iterative
+  partition: test_type
+  partition_name: mrr
+  release: rls2206
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2206
   columns:
     - job
     - build
@@ -95,8 +88,67 @@ iterative-mrr:
     - result_receive_rate_rate_stdev
     - result_receive_rate_rate_unit
     - result_receive_rate_rate_values
-iterative-ndrpdr:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_{release}
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - version
+- data_type: iterative
+  partition: test_type
+  partition_name: mrr
+  release: rls2210
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2210
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - hosts
+    - start_time
+    - passed
+    - test_id
+    - version
+    - result_receive_rate_rate_avg
+    - result_receive_rate_rate_stdev
+    - result_receive_rate_rate_unit
+    - result_receive_rate_rate_values
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - version
+- data_type: iterative
+  partition: test_type
+  partition_name: mrr
+  release: rls2302
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - hosts
+    - start_time
+    - passed
+    - test_id
+    - version
+    - result_receive_rate_rate_avg
+    - result_receive_rate_rate_stdev
+    - result_receive_rate_rate_unit
+    - result_receive_rate_rate_values
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - version
+- data_type: iterative
+  partition: test_type
+  partition_name: ndrpdr
+  release: rls2206
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2206
   columns:
     - job
     - build
@@ -113,7 +165,63 @@ iterative-ndrpdr:
     - result_ndr_lower_rate_value
     - result_latency_forward_pdr_50_avg
     - result_latency_forward_pdr_50_unit
-# coverage-ndrpdr:
-#   path: str
-#   columns:
-#     - list
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - version
+- data_type: iterative
+  partition: test_type
+  partition_name: ndrpdr
+  release: rls2210
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2210
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - hosts
+    - start_time
+    - passed
+    - test_id
+    - version
+    - result_pdr_lower_rate_unit
+    - result_pdr_lower_rate_value
+    - result_ndr_lower_rate_unit
+    - result_ndr_lower_rate_value
+    - result_latency_forward_pdr_50_avg
+    - result_latency_forward_pdr_50_unit
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - version
+- data_type: iterative
+  partition: test_type
+  partition_name: ndrpdr
+  release: rls2302
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - hosts
+    - start_time
+    - passed
+    - test_id
+    - version
+    - result_pdr_lower_rate_unit
+    - result_pdr_lower_rate_value
+    - result_ndr_lower_rate_unit
+    - result_ndr_lower_rate_value
+    - result_latency_forward_pdr_50_avg
+    - result_latency_forward_pdr_50_unit
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - version
