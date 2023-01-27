@@ -2,7 +2,7 @@ version: "3.7"
 services:
   cdash:
     build: "."
-    command: "uwsgi --ini app.ini --workers 1"
+    command: "uwsgi --ini app.ini"
     environment:
       FLASK_DEBUG: 1
       FLASK_ENV: "development"
