@@ -111,7 +111,7 @@ class Constants:
     PLACEHOLDER = html.Nobr("")
 
     # List of drivers used in CSIT.
-    DRIVERS = ("avf", "af-xdp", "rdma", "dpdk")
+    DRIVERS = ("avf", "af-xdp", "rdma", "dpdk", "mlx5")
 
     # Labels for input elements (dropdowns, ...).
     LABELS = {
