@@ -14,16 +14,25 @@
 """Instantiate the News Dash application.
 """
 import dash
+import pandas as pd
 
 from ..utils.constants import Constants as C
 from .layout import Layout
 
 
-def init_news(server):
+def init_news(
+        server,
+        data_stats: pd.DataFrame,
+        data_trending: pd.DataFrame
+    ) -> dash.Dash:
     """Create a Plotly Dash dashboard.
 
     :param server: Flask server.
     :type server: Flask
+    :param data_stats: Pandas dataframe with staistical data.
+    :param data_trending: Pandas dataframe with trending data.
+    :type data_stats: pandas.DataFrame
+    :type data_trending: pandas.DataFrame
     :returns: Dash app server.
     :rtype: Dash
     """
@@ -37,9 +46,9 @@ def init_news(server):
 
     layout = Layout(
         app=dash_app,
-        html_layout_file=C.HTML_LAYOUT_FILE,
-        data_spec_file=C.DATA_SPEC_FILE,
-        tooltip_file=C.TOOLTIP_FILE,
+        data_stats=data_stats,
+        data_trending=data_trending,
+        html_layout_file=C.HTML_LAYOUT_FILE
     )
     dash_app.index_string = layout.html_layout
     dash_app.layout = layout.add_content()

@@ -36,7 +36,6 @@ from ..utils.telemetry_data import TelemetryData
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
     generate_options, get_list_group_items
 from ..utils.url_processing import url_decode
-from ..data.data import Data
 from .graphs import graph_trending, graph_hdrh_latency, select_trending_data, \
     graph_tm_trending
 
@@ -74,9 +73,13 @@ class Layout:
     """The layout of the dash app and the callbacks.
     """
 
-    def __init__(self, app: Flask, html_layout_file: str,
-        graph_layout_file: str, data_spec_file: str, tooltip_file: str,
-        time_period: str=None) -> None:
+    def __init__(self,
+            app: Flask,
+            data_trending: pd.DataFrame,
+            html_layout_file: str,
+            graph_layout_file: str,
+            tooltip_file: str
+        ) -> None:
         """Initialization:
         - save the input parameters,
         - read and pre-process the data,
@@ -85,48 +88,26 @@ class Layout:
         - read tooltips from the tooltip file.
 
         :param app: Flask application running the dash application.
+        :param data_trending: Pandas dataframe with trending data.
         :param html_layout_file: Path and name of the file specifying the HTML
             layout of the dash application.
         :param graph_layout_file: Path and name of the file with layout of
             plot.ly graphs.
-        :param data_spec_file: Path and name of the file specifying the data to
-            be read from parquets for this application.
         :param tooltip_file: Path and name of the yaml file specifying the
             tooltips.
-        :param time_period: It defines the time period for data read from the
-            parquets in days from now back to the past.
         :type app: Flask
+        :type data_trending: pandas.DataFrame
         :type html_layout_file: str
         :type graph_layout_file: str
-        :type data_spec_file: str
         :type tooltip_file: str
-        :type time_period: int
         """
 
         # Inputs
         self._app = app
+        self._data = data_trending
         self._html_layout_file = html_layout_file
         self._graph_layout_file = graph_layout_file
-        self._data_spec_file = data_spec_file
         self._tooltip_file = tooltip_file
-        self._time_period = time_period
-
-        # Read the data:
-        data_mrr = Data(
-            data_spec_file=self._data_spec_file,
-            debug=True
-        ).read_trending_mrr(days=self._time_period)
-
-        data_ndrpdr = Data(
-            data_spec_file=self._data_spec_file,
-            debug=True
-        ).read_trending_ndrpdr(days=self._time_period)
-
-        self._data = pd.concat(
-            [data_mrr, data_ndrpdr],
-            ignore_index=True,
-            copy=False
-        )
 
         # Get structure of tests:
         tbs = dict()

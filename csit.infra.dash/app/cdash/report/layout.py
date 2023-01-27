@@ -33,7 +33,6 @@ from ..utils.trigger import Trigger
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
     generate_options, get_list_group_items
 from ..utils.url_processing import url_decode
-from ..data.data import Data
 from .graphs import graph_iterative, select_iterative_data
 
 
@@ -76,8 +75,14 @@ class Layout:
     """The layout of the dash app and the callbacks.
     """
 
-    def __init__(self, app: Flask, releases: list, html_layout_file: str,
-        graph_layout_file: str, data_spec_file: str, tooltip_file: str) -> None:
+    def __init__(
+            self,
+            app: Flask,
+            data_iterative: pd.DataFrame,
+            html_layout_file: str,
+            graph_layout_file: str,
+            tooltip_file: str
+        ) -> None:
         """Initialization:
         - save the input parameters,
         - read and pre-process the data,
@@ -86,45 +91,24 @@ class Layout:
         - read tooltips from the tooltip file.
 
         :param app: Flask application running the dash application.
-        :param releases: Lis of releases to be displayed.
         :param html_layout_file: Path and name of the file specifying the HTML
             layout of the dash application.
         :param graph_layout_file: Path and name of the file with layout of
             plot.ly graphs.
-        :param data_spec_file: Path and name of the file specifying the data to
-            be read from parquets for this application.
         :param tooltip_file: Path and name of the yaml file specifying the
             tooltips.
         :type app: Flask
-        :type releases: list
         :type html_layout_file: str
         :type graph_layout_file: str
-        :type data_spec_file: str
         :type tooltip_file: str
         """
 
         # Inputs
         self._app = app
-        self.releases = releases
         self._html_layout_file = html_layout_file
         self._graph_layout_file = graph_layout_file
-        self._data_spec_file = data_spec_file
         self._tooltip_file = tooltip_file
-
-        # Read the data:
-        self._data = pd.DataFrame()
-        for rls in releases:
-            data_mrr = Data(self._data_spec_file, True).\
-                read_iterative_mrr(release=rls)
-            data_mrr["release"] = rls
-            data_ndrpdr = Data(self._data_spec_file, True).\
-                read_iterative_ndrpdr(release=rls)
-            data_ndrpdr["release"] = rls
-            self._data = pd.concat(
-                [self._data, data_mrr, data_ndrpdr],
-                ignore_index=True,
-                copy=False
-            )
+        self._data = data_iterative
 
         # Get structure of tests:
         tbs = dict()

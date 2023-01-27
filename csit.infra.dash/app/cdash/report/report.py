@@ -14,12 +14,16 @@
 """Instantiate the Report Dash application.
 """
 import dash
+import pandas as pd
 
 from ..utils.constants import Constants as C
 from .layout import Layout
 
 
-def init_report(server, releases):
+def init_report(
+        server,
+        data_iterative: pd.DataFrame
+    ) -> dash.Dash:
     """Create a Plotly Dash dashboard.
 
     :param server: Flask server.
@@ -37,11 +41,10 @@ def init_report(server, releases):
 
     layout = Layout(
         app=dash_app,
-        releases=releases,
+        data_iterative=data_iterative,
         html_layout_file=C.HTML_LAYOUT_FILE,
         graph_layout_file=C.REPORT_GRAPH_LAYOUT_FILE,
-        data_spec_file=C.DATA_SPEC_FILE,
-        tooltip_file=C.TOOLTIP_FILE,
+        tooltip_file=C.TOOLTIP_FILE
     )
     dash_app.index_string = layout.html_layout
     dash_app.layout = layout.add_content()
