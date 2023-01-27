@@ -70,31 +70,9 @@ ___
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                         |
 +====+=========================================+===========================================================================================================+
-|  1 | `CSIT-1864                              | 2n-clx: half of the packets lost on PDR tests.                                                            |
-|    | <https://jira.fd.io/browse/CSIT-1864>`_ |                                                                                                           |
+|  1 | `CSIT-1890                              | 3n-alt: Tests failing until 40Ge Interface comes up.                                                      |
+|    | <https://jira.fd.io/browse/CSIT-1890>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  2 | `CSIT-1868                              | 2n-clx: ALL ldpreload-nginx tests fails when trying to start nginx.                                       |
-|    | <https://jira.fd.io/browse/CSIT-1868>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  3 | `CSIT-1871                              | 3n-snr: 25GE interface between SUT and TG/TRex goes down randomly.                                        |
-|    | <https://jira.fd.io/browse/CSIT-1871>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  4 | `CSIT-1877                              | 3n-alt, 3n-tsh: VM tests failing to boot VM.                                                              |
-|    | <https://jira.fd.io/browse/CSIT-1877>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  5 | `CSIT-1883                              | 3n-snr: All hwasync wireguard tests failing when trying to verify device.                                 |
-|    | <https://jira.fd.io/browse/CSIT-1883>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1884                              | 2n-clx, 2n-icx: All NAT44DET NDR PDR IMIX over 1M sessions BIDIR tests failing to create enough sessions. |
-|    | <https://jira.fd.io/browse/CSIT-1884>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  7 | `CSIT-1885                              | 3n-icx: 9000b ip4 ip6 l2 NDRPDR AVF tests are failing to forward traffic.                                 |
-|    | <https://jira.fd.io/browse/CSIT-1885>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  8 | `CSIT-1886                              | 3n-icx: Wireguard tests with 100 and more tunnels are failing PDR criteria.                               |
-|    | <https://jira.fd.io/browse/CSIT-1886>`_ |                                                                                                           |
-+----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-
 Previous
 ________
 
@@ -121,7 +99,7 @@ Issues reported in previous releases which still affect the current results.
 |  5 | `CSIT-1801                              | 9000B payload frames not forwarded over tunnels due to violating supported Max Frame Size (VxLAN, LISP,   |
 |    | <https://jira.fd.io/browse/CSIT-1801>`_ | SRv6).                                                                                                    |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
-|  6 | `CSIT-1802                              | AF-XDP - NDR tests failing from time to time.                                                             |
+|  6 | `CSIT-1802                              | all testbeds: AF-XDP - NDR tests failing from time to time.                                               |
 |    | <https://jira.fd.io/browse/CSIT-1802>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 |  7 | `CSIT-1804                              | All testbeds: NDR tests failing from time to time.                                                        |
@@ -139,6 +117,25 @@ Issues reported in previous releases which still affect the current results.
 | 11 | `CSIT-1849                              | 2n-skx, 2n-clx, 2n-icx: UDP 16m TPUT tests fail to create all sessions.                                   |
 |    | <https://jira.fd.io/browse/CSIT-1849>`_ |                                                                                                           |
 +----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 12 | `CSIT-1864                              | 2n-clx: half of the packets lost on PDR tests.                                                            |
+|    | <https://jira.fd.io/browse/CSIT-1864>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 13 | `CSIT-1877                              | 3n-tsh: all VM tests failing to boot VM.                                                              |
+|    | <https://jira.fd.io/browse/CSIT-1877>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 14 | `CSIT-1883                              | 3n-snr: All hwasync wireguard tests failing when trying to verify device.                                 |
+|    | <https://jira.fd.io/browse/CSIT-1883>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 15 | `CSIT-1884                              | 2n-clx, 2n-icx: All NAT44DET NDR PDR IMIX over 1M sessions BIDIR tests failing to create enough sessions. |
+|    | <https://jira.fd.io/browse/CSIT-1884>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 16 | `CSIT-1885                              | 3n-icx: 9000b ip4 ip6 l2 NDRPDR AVF tests are failing to forward traffic.                                 |
+|    | <https://jira.fd.io/browse/CSIT-1885>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| 17 | `CSIT-1886                              | 3n-icx: Wireguard tests with 100 and more tunnels are failing PDR criteria.                               |
+|    | <https://jira.fd.io/browse/CSIT-1886>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+
 
 Fixed
 _____
@@ -148,13 +145,12 @@ Issues reported in previous releases which were fixed in this release:
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------+
 |  # | JiraID                                  | Issue Description                                                                                       |
 +====+=========================================+=========================================================================================================+
-|  1 | `CSIT-1671                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much |
-|    | <https://jira.fd.io/browse/CSIT-1671>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                    |
-|    +-----------------------------------------+ Currently, the time critical code uses VAT running large files with exec statements and CLI commands.   |
-|    | `VPP-1763                               | Still, we needed to reduce the number of scale tests run to keep overall duration reasonable.           |
-|    | <https://jira.fd.io/browse/VPP-1763>`_  | More improvements needed to achieve sufficient configuration speed.                                     |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------+
-
+|  1 | `CSIT-1868                              | 2n-clx: ALL ldpreload-nginx tests fails when trying to start nginx.                                       |
+|    | <https://jira.fd.io/browse/CSIT-1868>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
+|  2 | `CSIT-1871                              | 3n-snr: 25GE interface between SUT and TG/TRex goes down randomly.                                        |
+|    | <https://jira.fd.io/browse/CSIT-1871>`_ |                                                                                                           |
++----+-----------------------------------------+-----------------------------------------------------------------------------------------------------------+
 .. _vpp_rca:
 
 Root Cause Analysis for Performance Changes
