@@ -63,7 +63,7 @@ class Constants:
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
-    MAX_TIME_PERIOD = 150  # 180
+    MAX_TIME_PERIOD = 20  # 130
 
     # It defines the time period for data read from the parquets in days from
     # now back to the past.
@@ -74,7 +74,7 @@ class Constants:
     # List of releases used for iterative data processing.
     # The releases MUST be in the order from the current (newest) to the last
     # (oldest).
-    RELEASES = ["rls2302", "rls2210", "rls2206", ]
+    # RELEASES = ["rls2302", "rls2210", "rls2206", ]
 
     ############################################################################
     # General, application wide, layout affecting constants.
