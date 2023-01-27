@@ -15,13 +15,14 @@
 """
 
 import logging
+import resource
 import awswrangler as wr
+import pandas as pd
 
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
 from time import time
 from pytz import UTC
-from pandas import DataFrame
 from awswrangler.exceptions import EmptyDataFrame, NoFilesFound
 
 
@@ -47,10 +48,10 @@ class Data:
         self._debug = debug
 
         # Specification of data to be read from parquets:
-        self._data_spec = None
+        self._data_spec = dict()
 
         # Data frame to keep the data:
-        self._data = None
+        self._data = pd.DataFrame()
 
         # Read from files:
         try:
@@ -156,13 +157,15 @@ class Data:
 
         return file_list
 
-    def _create_dataframe_from_parquet(self,
-        path, partition_filter=None,
-        columns=None,
-        validate_schema=False,
-        last_modified_begin=None,
-        last_modified_end=None,
-        days=None) -> DataFrame:
+    def _create_dataframe_from_parquet(
+            self,
+            path, partition_filter=None,
+            columns=None,
+            validate_schema=False,
+            last_modified_begin=None,
+            last_modified_end=None,
+            days=None
+        ) -> pd.DataFrame:
         """Read parquet stored in S3 compatible storage and returns Pandas
         Dataframe.
 
@@ -214,7 +217,7 @@ class Data:
                 last_modified_end=last_modified_end
             )
             if self._debug:
-                df.info(verbose=True, memory_usage='deep')
+                # df.info(verbose=True, memory_usage='deep')
                 logging.info(
                     f"\nCreation of dataframe {path} took: {time() - start}\n"
                 )
@@ -223,8 +226,73 @@ class Data:
         except EmptyDataFrame as err:
             logging.error(f"No data.\n{err}")
 
-        self._data = df
         return df
+
+    def read_all_data(self, releases, days: int=None) -> dict:
+        """Read all data necessary for all applications.
+
+        :param releases: List of releases which data will be downloaded.
+        :param days: Number of days to filter. If None, all data will be
+            downloaded.
+        :type releases: list
+        :type days: int
+        :returns: A dictionary where keys are names of parquets and values are
+            the pandas dataframes with fetched data.
+        :rtype: dict(str: pandas.DataFrame)
+        """
+
+        self._data = dict()
+        self._data["iterative"] = pd.DataFrame()
+
+        for p_name in self._data_spec.keys():
+            if p_name == "statistics":
+                partition_filter = \
+                    lambda part: True if part["stats_type"] == "sra" else False
+                cat_cols = ("job", "build")
+            else:
+                t_type = p_name.split("-")[-1]
+                partition_filter = \
+                    lambda part: True if part["test_type"] == t_type else False
+                cat_cols = ("job", "build", "dut_type", "dut_version")
+
+            if "iterative" in p_name:
+                for release in releases:
+                    logging.info(
+                        f"Reading data for {p_name}, release {release}..."
+                    )
+                    data = self._create_dataframe_from_parquet(
+                        path=self._get_path(p_name).format(release=release),
+                        partition_filter=partition_filter,
+                        columns=self._get_columns(p_name)
+                    )
+                    data["release"] = release
+                    for col in ("release", "job", "build", "dut_type",
+                            "dut_version"):
+                        data[col] = data[col].astype("category")
+                    data.info(verbose=True, memory_usage='deep')
+                    self._data["iterative"] = pd.concat(
+                        [self._data["iterative"], data],
+                        ignore_index=True,
+                        copy=False
+                    )
+            else:
+                logging.info(f"Reading data for {p_name}...")
+                data = self._create_dataframe_from_parquet(
+                    path=self._get_path(p_name),
+                    partition_filter=partition_filter,
+                    columns=self._get_columns(p_name),
+                    days=days
+                )
+                for col in cat_cols:
+                    data[col] = data[col].astype("category")
+                data.info(verbose=True, memory_usage='deep')
+                self._data[p_name] = data
+
+            mem_alloc = \
+                resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000
+            logging.info(f"Memory allocation: {mem_alloc:.0f}MB")
+
+        return self._data
 
     def check_datasets(self, days: int=None):
         """Read structure from parquet.
@@ -233,118 +301,4 @@ class Data:
             read.
         :type days: int
         """
-        self._get_list_of_files(path=self._get_path("trending"), days=days)
         self._get_list_of_files(path=self._get_path("statistics"), days=days)
-
-    def read_stats(self, days: int=None) -> tuple:
-        """Read statistics from parquet.
-
-        It reads from:
-        - Suite Result Analysis (SRA) partition,
-        - NDRPDR trending partition,
-        - MRR trending partition.
-
-        :param days: Number of days back to the past for which the data will be
-            read.
-        :type days: int
-        :returns: tuple of pandas DataFrame-s with data read from specified
-            parquets.
-        :rtype: tuple of pandas DataFrame-s
-        """
-
-        l_stats = lambda part: True if part["stats_type"] == "sra" else False
-        l_mrr = lambda part: True if part["test_type"] == "mrr" else False
-        l_ndrpdr = lambda part: True if part["test_type"] == "ndrpdr" else False
-
-        return (
-            self._create_dataframe_from_parquet(
-                path=self._get_path("statistics"),
-                partition_filter=l_stats,
-                columns=self._get_columns("statistics"),
-                days=days
-            ),
-            self._create_dataframe_from_parquet(
-                path=self._get_path("statistics-trending-mrr"),
-                partition_filter=l_mrr,
-                columns=self._get_columns("statistics-trending-mrr"),
-                days=days
-            ),
-            self._create_dataframe_from_parquet(
-                path=self._get_path("statistics-trending-ndrpdr"),
-                partition_filter=l_ndrpdr,
-                columns=self._get_columns("statistics-trending-ndrpdr"),
-                days=days
-            )
-        )
-
-    def read_trending_mrr(self, days: int=None) -> DataFrame:
-        """Read MRR data partition from parquet.
-
-        :param days: Number of days back to the past for which the data will be
-            read.
-        :type days: int
-        :returns: Pandas DataFrame with read data.
-        :rtype: DataFrame
-        """
-
-        lambda_f = lambda part: True if part["test_type"] == "mrr" else False
-
-        return self._create_dataframe_from_parquet(
-            path=self._get_path("trending-mrr"),
-            partition_filter=lambda_f,
-            columns=self._get_columns("trending-mrr"),
-            days=days
-        )
-
-    def read_trending_ndrpdr(self, days: int=None) -> DataFrame:
-        """Read NDRPDR data partition from iterative parquet.
-
-        :param days: Number of days back to the past for which the data will be
-            read.
-        :type days: int
-        :returns: Pandas DataFrame with read data.
-        :rtype: DataFrame
-        """
-
-        lambda_f = lambda part: True if part["test_type"] == "ndrpdr" else False
-
-        return self._create_dataframe_from_parquet(
-            path=self._get_path("trending-ndrpdr"),
-            partition_filter=lambda_f,
-            columns=self._get_columns("trending-ndrpdr"),
-            days=days
-        )
-
-    def read_iterative_mrr(self, release: str) -> DataFrame:
-        """Read MRR data partition from iterative parquet.
-
-        :param release: The CSIT release from which the data will be read.
-        :type release: str
-        :returns: Pandas DataFrame with read data.
-        :rtype: DataFrame
-        """
-
-        lambda_f = lambda part: True if part["test_type"] == "mrr" else False
-
-        return self._create_dataframe_from_parquet(
-            path=self._get_path("iterative-mrr").format(release=release),
-            partition_filter=lambda_f,
-            columns=self._get_columns("iterative-mrr")
-        )
-
-    def read_iterative_ndrpdr(self, release: str) -> DataFrame:
-        """Read NDRPDR data partition from parquet.
-
-        :param release: The CSIT release from which the data will be read.
-        :type release: str
-        :returns: Pandas DataFrame with read data.
-        :rtype: DataFrame
-        """
-
-        lambda_f = lambda part: True if part["test_type"] == "ndrpdr" else False
-
-        return self._create_dataframe_from_parquet(
-            path=self._get_path("iterative-ndrpdr").format(release=release),
-            partition_filter=lambda_f,
-            columns=self._get_columns("iterative-ndrpdr")
-        )

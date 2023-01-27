@@ -14,7 +14,6 @@
 """Plotly Dash HTML layout override.
 """
 
-import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -23,13 +22,10 @@ from dash import dcc
 from dash import html
 from dash import callback_context
 from dash import Input, Output, State
-from yaml import load, FullLoader, YAMLError
 
-from ..data.data import Data
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies, show_tooltip, gen_new_url
+from ..utils.utils import classify_anomalies, gen_new_url
 from ..utils.url_processing import url_decode
-from ..data.data import Data
 from .tables import table_summary
 
 
@@ -37,8 +33,14 @@ class Layout:
     """The layout of the dash app and the callbacks.
     """
 
-    def __init__(self, app: Flask, html_layout_file: str, data_spec_file: str,
-        tooltip_file: str) -> None:
+    def __init__(
+            self,
+            app: Flask,
+            data_stats: pd.DataFrame,
+            data_mrr: pd.DataFrame,
+            data_ndrpdr: pd.DataFrame,
+            html_layout_file: str
+        ) -> None:
         """Initialization:
         - save the input parameters,
         - read and pre-process the data,
@@ -47,29 +49,21 @@ class Layout:
         - read tooltips from the tooltip file.
 
         :param app: Flask application running the dash application.
+        :param data_stats: Pandas dataframe with staistical data.
+        :param data_mrr: Pandas dataframe with trending MRR data.
+        :param data_ndrpdr: Pandas dataframe with trending NDRPDR data.
         :param html_layout_file: Path and name of the file specifying the HTML
             layout of the dash application.
-        :param data_spec_file: Path and name of the file specifying the data to
-            be read from parquets for this application.
-        :param tooltip_file: Path and name of the yaml file specifying the
-            tooltips.
         :type app: Flask
+        :type data_stats: pandas.DataFrame
+        :type data_mrr: pandas.DataFrame
+        :type data_ndrpdr: pandas.DataFrame
         :type html_layout_file: str
-        :type data_spec_file: str
-        :type tooltip_file: str
         """
 
         # Inputs
         self._app = app
         self._html_layout_file = html_layout_file
-        self._data_spec_file = data_spec_file
-        self._tooltip_file = tooltip_file
-
-        # Read the data:
-        data_stats, data_mrr, data_ndrpdr = Data(
-            data_spec_file=self._data_spec_file,
-            debug=True
-        ).read_stats(days=C.NEWS_TIME_PERIOD)
 
         df_tst_info = pd.concat(
             [data_mrr, data_ndrpdr],
@@ -230,7 +224,6 @@ class Layout:
 
         # Read from files:
         self._html_layout = str()
-        self._tooltips = dict()
 
         try:
             with open(self._html_layout_file, "r") as file_read:
@@ -238,19 +231,6 @@ class Layout:
         except IOError as err:
             raise RuntimeError(
                 f"Not possible to open the file {self._html_layout_file}\n{err}"
-            )
-
-        try:
-            with open(self._tooltip_file, "r") as file_read:
-                self._tooltips = load(file_read, Loader=FullLoader)
-        except IOError as err:
-            logging.warning(
-                f"Not possible to open the file {self._tooltip_file}\n{err}"
-            )
-        except YAMLError as err:
-            logging.warning(
-                f"An error occurred while parsing the specification file "
-                f"{self._tooltip_file}\n{err}"
             )
 
         self._default_period = C.NEWS_SHORT

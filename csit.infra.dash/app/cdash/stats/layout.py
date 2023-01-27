@@ -25,14 +25,12 @@ from dash import callback_context, no_update
 from dash import Input, Output, State
 from dash.exceptions import PreventUpdate
 from yaml import load, FullLoader, YAMLError
-from datetime import datetime
 
 from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.utils import show_tooltip, gen_new_url, get_ttypes, get_cadences, \
     get_test_beds, get_job, generate_options, set_job_params
 from ..utils.url_processing import url_decode
-from ..data.data import Data
 from .graphs import graph_statistics, select_data
 
 
@@ -40,9 +38,16 @@ class Layout:
     """The layout of the dash app and the callbacks.
     """
 
-    def __init__(self, app: Flask, html_layout_file: str,
-        graph_layout_file: str, data_spec_file: str, tooltip_file: str,
-        time_period: int=None) -> None:
+    def __init__(
+            self,
+            app: Flask,
+            data_stats: pd.DataFrame,
+            data_mrr: pd.DataFrame,
+            data_ndrpdr: pd.DataFrame,
+            html_layout_file: str,
+            graph_layout_file: str,
+            tooltip_file: str
+        ) -> None:
         """Initialization:
         - save the input parameters,
         - read and pre-process the data,
@@ -51,37 +56,29 @@ class Layout:
         - read tooltips from the tooltip file.
 
         :param app: Flask application running the dash application.
+        :param data_stats: Pandas dataframe with staistical data.
+        :param data_mrr: Pandas dataframe with trending MRR data.
+        :param data_ndrpdr: Pandas dataframe with trending NDRPDR data.
         :param html_layout_file: Path and name of the file specifying the HTML
             layout of the dash application.
         :param graph_layout_file: Path and name of the file with layout of
             plot.ly graphs.
-        :param data_spec_file: Path and name of the file specifying the data to
-            be read from parquets for this application.
         :param tooltip_file: Path and name of the yaml file specifying the
             tooltips.
-        :param time_period: It defines the time period for data read from the
-            parquets in days from now back to the past.
         :type app: Flask
+        :type data_stats: pandas.DataFrame
+        :type data_mrr: pandas.DataFrame
+        :type data_ndrpdr: pandas.DataFrame
         :type html_layout_file: str
         :type graph_layout_file: str
-        :type data_spec_file: str
         :type tooltip_file: str
-        :type time_period: int
         """
 
         # Inputs
         self._app = app
         self._html_layout_file = html_layout_file
         self._graph_layout_file = graph_layout_file
-        self._data_spec_file = data_spec_file
         self._tooltip_file = tooltip_file
-        self._time_period = time_period
-
-        # Read the data:
-        data_stats, data_mrr, data_ndrpdr = Data(
-            data_spec_file=self._data_spec_file,
-            debug=True
-        ).read_stats(days=self._time_period)
 
         df_tst_info = pd.concat(
             [data_mrr, data_ndrpdr],
@@ -94,11 +91,6 @@ class Layout:
         data_stats = data_stats[~data_stats.job.str.contains("-coverage-")]
         data_stats = data_stats[~data_stats.job.str.contains("-iterative-")]
         data_stats = data_stats[["job", "build", "start_time", "duration"]]
-
-        data_time_period = \
-            (datetime.utcnow() - data_stats["start_time"].min()).days
-        if self._time_period > data_time_period:
-            self._time_period = data_time_period
 
         jobs = sorted(list(data_stats["job"].unique()))
         d_job_info = {

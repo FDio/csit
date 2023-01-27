@@ -15,11 +15,13 @@
 """
 
 import logging
+import pandas as pd
 
 from flask import Flask
 from flask_assets import Environment, Bundle
 
 from .utils.constants import Constants as C
+from .data.data import Data
 
 
 def init_app():
@@ -55,24 +57,45 @@ def init_app():
         assets.register("sass_all", sass_bundle)
         sass_bundle.build()
 
-        # Set the time period for Trending
         if C.TIME_PERIOD is None or C.TIME_PERIOD > C.MAX_TIME_PERIOD:
             time_period = C.MAX_TIME_PERIOD
         else:
             time_period = C.TIME_PERIOD
 
+        data = Data(
+            data_spec_file=C.DATA_SPEC_FILE,
+            debug=True
+        ).read_all_data(releases=C.RELEASES, days=time_period)
+
         # Import Dash applications.
         from .news.news import init_news
-        app = init_news(app)
+        app = init_news(
+            app,
+            data_stats=data["statistics"],
+            data_mrr=data["trending-mrr"],
+            data_ndrpdr=data["trending-ndrpdr"]
+        )
 
         from .stats.stats import init_stats
-        app = init_stats(app, time_period=time_period)
+        app = init_stats(
+            app,
+            data_stats=data["statistics"],
+            data_mrr=data["trending-mrr"],
+            data_ndrpdr=data["trending-ndrpdr"]
+        )
 
         from .trending.trending import init_trending
-        app = init_trending(app, time_period=time_period)
+        app = init_trending(
+            app,
+            data_mrr=data["trending-mrr"],
+            data_ndrpdr=data["trending-ndrpdr"]
+        )
 
         from .report.report import init_report
-        app = init_report(app, releases=C.RELEASES)
+        app = init_report(
+            app,
+            data_iterative=data["iterative"]
+        )
 
     return app
 
