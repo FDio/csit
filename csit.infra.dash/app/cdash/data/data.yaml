@@ -5,37 +5,37 @@ statistics:
     - build
     - start_time
     - duration
-statistics-trending-ndrpdr:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - result_pdr_lower_rate_value
-    - result_ndr_lower_rate_value
-statistics-trending-mrr:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - result_receive_rate_rate_avg
-trending:
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
-  columns:
-    - job
-    - build
-    - start_time
+# statistics-trending-ndrpdr:
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - start_time
+#     - passed
+#     - test_id
+#     - result_pdr_lower_rate_value
+#     - result_ndr_lower_rate_value
+# statistics-trending-mrr:
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - start_time
+#     - passed
+#     - test_id
+#     - result_receive_rate_rate_avg
+# trending:
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+#   columns:
+#     - job
+#     - build
+#     - start_time
 trending-mrr:
   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
   columns:
@@ -113,7 +113,3 @@ iterative-ndrpdr:
     - result_ndr_lower_rate_value
     - result_latency_forward_pdr_50_avg
     - result_latency_forward_pdr_50_unit
-# coverage-ndrpdr:
-#   path: str
-#   columns:
-#     - list

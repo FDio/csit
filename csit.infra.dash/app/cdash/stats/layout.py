@@ -40,9 +40,18 @@ class Layout:
     """The layout of the dash app and the callbacks.
     """
 
-    def __init__(self, app: Flask, html_layout_file: str,
-        graph_layout_file: str, data_spec_file: str, tooltip_file: str,
-        time_period: int=None) -> None:
+    def __init__(
+            self,
+            app: Flask,
+            data_stats: pd.DataFrame,
+            data_mrr: pd.DataFrame,
+            data_ndrpdr: pd.DataFrame,
+            html_layout_file: str,
+            graph_layout_file: str,
+            # data_spec_file: str,
+            tooltip_file: str,
+            # time_period: int=None
+        ) -> None:
         """Initialization:
         - save the input parameters,
         - read and pre-process the data,
@@ -73,15 +82,15 @@ class Layout:
         self._app = app
         self._html_layout_file = html_layout_file
         self._graph_layout_file = graph_layout_file
-        self._data_spec_file = data_spec_file
+        # self._data_spec_file = data_spec_file
         self._tooltip_file = tooltip_file
-        self._time_period = time_period
+        # self._time_period = time_period
 
         # Read the data:
-        data_stats, data_mrr, data_ndrpdr = Data(
-            data_spec_file=self._data_spec_file,
-            debug=True
-        ).read_stats(days=self._time_period)
+        # data_stats, data_mrr, data_ndrpdr = Data(
+        #     data_spec_file=self._data_spec_file,
+        #     debug=True
+        # ).read_stats(days=self._time_period)
 
         df_tst_info = pd.concat(
             [data_mrr, data_ndrpdr],
@@ -95,10 +104,10 @@ class Layout:
         data_stats = data_stats[~data_stats.job.str.contains("-iterative-")]
         data_stats = data_stats[["job", "build", "start_time", "duration"]]
 
-        data_time_period = \
-            (datetime.utcnow() - data_stats["start_time"].min()).days
-        if self._time_period > data_time_period:
-            self._time_period = data_time_period
+        # data_time_period = \
+        #     (datetime.utcnow() - data_stats["start_time"].min()).days
+        # if self._time_period > data_time_period:
+        #     self._time_period = data_time_period
 
         jobs = sorted(list(data_stats["job"].unique()))
         d_job_info = {
