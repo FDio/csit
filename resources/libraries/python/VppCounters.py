@@ -149,6 +149,9 @@ class VppCounters:
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"show memory verbose api-segment stats-segment main-heap"
         )
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"show threads"
+        )
 
     @staticmethod
     def vpp_show_memory_on_all_duts(nodes):
