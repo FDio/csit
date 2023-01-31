@@ -104,6 +104,7 @@ class DUTSetup:
             if DUTSetup.running_in_container(node) \
             else f"service {service} restart"
         message = f"Node {node[u'host']} failed to start service {service}"
+        command = f"numactl --preferred 0 -- {command}"
 
         exec_cmd_no_error(
             node, command, timeout=180, sudo=True, message=message
@@ -234,6 +235,7 @@ class DUTSetup:
 
             pid_list = stdout.split()
             if len(pid_list) == 1:
+                ssh.exec_command_sudo(f"cat /proc/{pid_list[0]}/numa_maps")
                 return [int(stdout)]
             if not pid_list:
                 logger.debug(f"No {process} PID found on node {node[u'host']}")
@@ -241,6 +243,8 @@ class DUTSetup:
             logger.debug(f"More than one {process} PID found " \
                          f"on node {node[u'host']}")
             retval = [int(pid) for pid in pid_list]
+            for pid in pid_list:
+                ssh.exec_command_sudo(f"cat /proc/{pid}/numa_maps")
 
         return retval
 
