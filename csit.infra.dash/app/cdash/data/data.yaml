@@ -69,6 +69,46 @@
     - dut_type
     - dut_version
     - version
+- data_type: trending
+  partition: test_type
+  partition_name: hoststack
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - hosts
+    - tg_type
+    # - tg_version
+    - result_bandwidth_unit
+    - result_bandwidth_value
+    - result_rate_unit
+    - result_rate_value
+    - result_latency_unit
+    - result_latency_value
+    - result_failed_requests_unit
+    - result_failed_requests_value
+    - result_completed_requests_unit
+    - result_completed_requests_value
+    - result_retransmits_unit
+    - result_retransmits_value
+    - result_duration_unit
+    - result_duration_value
+    # - result_type
+    - start_time
+    - passed
+    - telemetry
+    - test_id
+    - test_type
+    - version
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - tg_type
+    - version
 - data_type: iterative
   partition: test_type
   partition_name: mrr
@@ -224,4 +264,50 @@
     - build
     - dut_type
     - dut_version
+    - version
+- data_type: iterative
+  partition: test_type
+  partition_name: hoststack
+  release: rls2302
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
+  columns:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - hosts
+    - tg_type
+    # - tg_version
+    - result_bandwidth_unit
+    - result_bandwidth_value
+    - result_rate_unit
+    - result_rate_value
+    - result_latency_unit
+    - result_latency_value
+    - result_failed_requests_unit
+    - result_failed_requests_value
+    - result_completed_requests_unit
+    - result_completed_requests_value
+    - result_retransmits_unit
+    - result_retransmits_value
+    - result_duration_unit
+    - result_duration_value
+    - start_time
+    - passed
+    - telemetry
+    - test_id
+    - test_type
+    - version
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - version
+  categories:
+    - job
+    - build
+    - dut_type
+    - dut_version
+    - tg_type
     - version
