@@ -52,6 +52,23 @@
       "parentUuid": "4d3114ab_9a9fa8f0",
       "revId": "6702e1ad43764a853a67edd7dfb54777809831b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d661f5d_981644bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2023-02-01T20:37:57Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest 1cAND1280bANDbpsANDe810xxvANDdrv_vfio_pciANDeth-ip4udpquicbase-vppecho",
+      "revId": "6702e1ad43764a853a67edd7dfb54777809831b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
