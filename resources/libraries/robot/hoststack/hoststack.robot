@@ -33,7 +33,6 @@
 | ... | rxd=${256}
 | ... | txd=${256}
 | ... | phy_cores=${1}
-| ... | vpp_api_socket=${SOCKSVR_PATH}
 | ... | app_api_socket=/run/vpp/app_ns_sockets/default
 | ... | tcp_cc_algo=cubic
 | ... | sess_evt_q_length=16384
@@ -133,7 +132,7 @@
 | | ... | - ${rxd} - Number of Rx Descriptors Type: int
 | | ... | - ${txd} - Number of Tx Descriptors Type: int
 | | ... | - ${phy_cores} - Number of cores for workers Type: int
-| | ... | - ${vpp_api_socket} - Path to VPP api socket file Type: string
+| | ... | - ${app_api_socket} - Path to application api socket file Type: string
 | | ... | - ${tcp_cc_algo} - TCP congestion control algorithm Type: string
 | | ... | Type: string
 | | ... | - ${sess_evt_q_length} - Session event queue length Type: string
@@ -161,7 +160,7 @@
 | | ... | ${rxd}=${vpp_hoststack_attr}[rxd]
 | | ... | ${txd}=${vpp_hoststack_attr}[txd]
 | | ... | ${phy_cores}=${vpp_hoststack_attr}[phy_cores]
-| | ... | ${vpp_api_socket}=${vpp_hoststack_attr}[vpp_api_socket]
+| | ... | ${app_api_socket}=${vpp_hoststack_attr}[app_api_socket]
 | | ... | ${tcp_cc_algo}=${vpp_hoststack_attr}[tcp_cc_algo]
 | | ... | ${sess_evt_q_length}=${vpp_hoststack_attr}[sess_evt_q_length]
 | | ... | ${sess_prealloc_sess}=${vpp_hoststack_attr}[sess_prealloc_sess]
@@ -177,7 +176,7 @@
 | | Set To Dictionary | ${vpp_hoststack_attr} | txd | ${txd}
 | | Set To Dictionary | ${vpp_hoststack_attr} | phy_cores | ${phy_cores}
 | | Set To Dictionary | ${vpp_hoststack_attr}
-| | ... | vpp_api_socket | ${vpp_api_socket}
+| | ... | app_api_socket | ${app_api_socket}
 | | Set To Dictionary | ${vpp_hoststack_attr}
 | | ... | tcp_cc_algo | ${tcp_cc_algo}
 | | Set To Dictionary | ${vpp_hoststack_attr}
@@ -448,7 +447,6 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Add socksvr | ${vpp_hoststack_attr}[vpp_api_socket]
 | | | Run Keyword If
 | | | ... | '${dut}' == 'DUT1' and ${vpp_nsim_attr}[output_nsim_enable]
 | | | ... | ${dut}.Add Nsim poll main thread

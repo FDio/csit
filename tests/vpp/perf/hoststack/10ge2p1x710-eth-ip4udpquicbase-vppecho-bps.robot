@@ -40,7 +40,7 @@
 | ... | - **[Ref] Applicable standard specifications:**
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | quic_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | quic_plugin.so | crypto_openssl_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
@@ -50,7 +50,7 @@
 | ${overhead}= | ${0}
 | ${frame_size}= | ${9000}
 | ${crypto_type}= | ${None}
-| ${bytes}= | 10G
+| ${bytes}= | 5G
 
 *** Keywords ***
 | Local template

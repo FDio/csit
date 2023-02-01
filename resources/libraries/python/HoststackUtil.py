@@ -44,7 +44,7 @@ class HoststackUtil():
         vpp_echo_cmd = {}
         vpp_echo_cmd[u"name"] = u"vpp_echo"
         vpp_echo_cmd[u"args"] = f"{vpp_echo_attributes[u'role']} " \
-            f"socket-name {vpp_echo_attributes[u'vpp_api_socket']} " \
+            f"socket-name {vpp_echo_attributes[u'app_api_socket']} " \
             f"{vpp_echo_attributes[u'json_output']} " \
             f"uri {proto}://{addr}/{port} " \
             f"nthreads {vpp_echo_attributes[u'nthreads']} " \
