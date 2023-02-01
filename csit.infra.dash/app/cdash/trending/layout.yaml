@@ -4,7 +4,7 @@ plot-trending-tput:
   yaxis:
     showticklabels: True
     tickformat: ".3s"
-    title: "Throughput [pps]"
+    title: "Throughput [pps|cps|rps|bps]"
     hoverformat: ".5s"
     gridcolor: "rgb(238, 238, 238)"
     linecolor: "rgb(238, 238, 238)"

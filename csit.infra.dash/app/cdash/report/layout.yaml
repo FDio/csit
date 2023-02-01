@@ -13,7 +13,7 @@ plot-throughput:
     tickmode: "array"
     zeroline: False
   yaxis:
-    title: "Packet Throughput [pps]"
+    title: "Throughput [pps|cps|rps|bps]"
     gridcolor: "rgb(230, 230, 230)"
     hoverformat: ".3s"
     tickformat: ".3s"

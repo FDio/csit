@@ -127,6 +127,7 @@ class Constants:
         "nfv_density-vm_vhost-chain": "VNF Service Chains Routing",
         "nfv_density-dcr_memif-pipeline": "CNF Service Pipelines Routing",
         "nfv_density-dcr_memif-chain": "CNF Service Chains Routing",
+        "hoststack": "Hoststack"
     }
 
     # URL style.
@@ -201,21 +202,30 @@ class Constants:
         "mrr": "result_receive_rate_rate_avg",
         "ndr": "result_ndr_lower_rate_value",
         "pdr": "result_pdr_lower_rate_value",
-        "pdr-lat": "result_latency_forward_pdr_50_avg"
+        "pdr-lat": "result_latency_forward_pdr_50_avg",
+        "cps": "result_bandwidth_value",
+        "rps": "result_bandwidth_value",
+        "bps": "result_bandwidth_value"
     }
 
     VALUE_ITER = {
         "mrr": "result_receive_rate_rate_values",
         "ndr": "result_ndr_lower_rate_value",
         "pdr": "result_pdr_lower_rate_value",
-        "pdr-lat": "result_latency_forward_pdr_50_avg"
+        "pdr-lat": "result_latency_forward_pdr_50_avg",
+        "cps": "result_bandwidth_value",
+        "rps": "result_bandwidth_value",
+        "bps": "result_bandwidth_value"
     }
 
     UNIT = {
         "mrr": "result_receive_rate_rate_unit",
         "ndr": "result_ndr_lower_rate_unit",
         "pdr": "result_pdr_lower_rate_unit",
-        "pdr-lat": "result_latency_forward_pdr_50_unit"
+        "pdr-lat": "result_latency_forward_pdr_50_unit",
+        "cps": "result_bandwidth_unit",
+        "rps": "result_bandwidth_unit",
+        "bps": "result_bandwidth_unit"
     }
 
     # Latencies.
