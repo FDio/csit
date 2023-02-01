@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7735b49_cafb2ab7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 61
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-02-01T09:24:25Z",
+      "side": 1,
+      "message": "L3fwd does not care to report link state change events. :(",
+      "revId": "6e2bf47a0bf6e0202061f441c7c2a575903b08d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
