@@ -349,7 +349,6 @@ allOf:
             -   ndrpdr
             -   reconf
             -   soak
-            -   vsap
         tg_type:
             description: >-
                 TG type used, e.g. TREX.
