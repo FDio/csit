@@ -112,10 +112,11 @@ class Layout:
 
         # Get structure of tests:
         tbs = dict()
-        cols = ["job", "test_id", "test_type", "dut_version", "release"]
+        cols = [
+            "job", "test_id", "test_type", "dut_version", "tg_type", "release"
+        ]
         for _, row in self._data[cols].drop_duplicates().iterrows():
             rls = row["release"]
-            ttype = row["test_type"]
             lst_job = row["job"].split("-")
             dut = lst_job[1]
             d_ver = row["dut_version"]
@@ -167,17 +168,30 @@ class Layout:
                 tbs[rls][dut][d_ver][infra][area][test]["frame-size"].append(
                     framesize.upper()
                 )
-            if ttype == "mrr":
+            if row["test_type"] == "mrr":
                 if "MRR" not in \
                         tbs[rls][dut][d_ver][infra][area][test]["test-type"]:
                     tbs[rls][dut][d_ver][infra][area][test]["test-type"].append(
                         "MRR"
                     )
-            elif ttype == "ndrpdr":
+            elif row["test_type"] == "ndrpdr":
                 if "NDR" not in \
                         tbs[rls][dut][d_ver][infra][area][test]["test-type"]:
                     tbs[rls][dut][d_ver][infra][area][test]["test-type"].extend(
                         ("NDR", "PDR", )
+                    )
+            elif row["test_type"] == "hoststack" and \
+                    row["tg_type"] in ("iperf", "vpp"):
+                if "BPS" not in \
+                        tbs[rls][dut][d_ver][infra][area][test]["test-type"]:
+                    tbs[rls][dut][d_ver][infra][area][test]["test-type"].append(
+                        "BPS"
+                    )
+            elif row["test_type"] == "hoststack" and row["tg_type"] == "ab":
+                if "CPS" not in \
+                        tbs[rls][dut][d_ver][infra][area][test]["test-type"]:
+                    tbs[rls][dut][d_ver][infra][area][test]["test-type"].extend(
+                        ("CPS", "RPS")
                     )
         self._spec_tbs = tbs
 
