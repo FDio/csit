@@ -33,6 +33,7 @@
     - build
     - dut_type
     - dut_version
+    - test_id
     - version
 - data_type: trending
   partition: test_type
@@ -68,6 +69,7 @@
     - build
     - dut_type
     - dut_version
+    - test_id
     - version
 - data_type: iterative
   partition: test_type
@@ -93,6 +95,7 @@
     - build
     - dut_type
     - dut_version
+    - test_id
     - version
 - data_type: iterative
   partition: test_type
@@ -118,6 +121,7 @@
     - build
     - dut_type
     - dut_version
+    - test_id
     - version
 - data_type: iterative
   partition: test_type
@@ -143,6 +147,7 @@
     - build
     - dut_type
     - dut_version
+    - test_id
     - version
 - data_type: iterative
   partition: test_type
@@ -170,6 +175,7 @@
     - build
     - dut_type
     - dut_version
+    - test_id
     - version
 - data_type: iterative
   partition: test_type
@@ -197,6 +203,7 @@
     - build
     - dut_type
     - dut_version
+    - test_id
     - version
 - data_type: iterative
   partition: test_type
@@ -224,4 +231,5 @@
     - build
     - dut_type
     - dut_version
+    - test_id
     - version

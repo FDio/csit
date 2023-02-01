@@ -18,6 +18,7 @@ import logging
 import resource
 import awswrangler as wr
 import pandas as pd
+import numpy as np
 
 from yaml import load, FullLoader, YAMLError
 from datetime import datetime, timedelta
@@ -170,7 +171,7 @@ class Data:
                 use_threads=True,
                 dataset=True,
                 columns=columns,
-                # categories=categories,
+                categories=categories,
                 partition_filter=partition_filter,
                 last_modified_begin=last_modified_begin,
                 last_modified_end=last_modified_end
@@ -226,7 +227,7 @@ class Data:
                 lst_trending.append(data)
             elif data_set["data_type"] == "iterative":
                 data["release"] = data_set["release"]
-                data["release"] = data["release"].astype("category")
+                # data["release"] = data["release"].astype("category")
                 lst_iterative.append(data)
             else:
                 raise NotImplementedError(
@@ -243,6 +244,12 @@ class Data:
             ignore_index=True,
             copy=False
         )
+        self._data["iterative"].fillna(value=np.nan, inplace=True)
+        self._data["trending"].fillna(value=np.nan, inplace=True)
+        for cat in ("job", "build", "dut_type", "dut_version", "version", "test_id"):
+            self._data["iterative"][cat] = self._data["iterative"][cat].astype("category")
+            self._data["trending"][cat] = self._data["trending"][cat].astype("category")
+        self._data["iterative"]["release"] = self._data["iterative"]["release"].astype("category")
 
         for key in self._data.keys():
             logging.info(
