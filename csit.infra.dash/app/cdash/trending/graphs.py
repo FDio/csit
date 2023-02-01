@@ -13,7 +13,7 @@
 
 """
 """
-
+import logging
 import plotly.graph_objects as go
 import pandas as pd
 
@@ -68,14 +68,19 @@ def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
     else:
         return None
 
-    core = str() if itm["dut"] == "trex" else f"{itm['core']}"
-    ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
-
+    if itm["testtype"] in ("ndr", "pdr"):
+        test_type = "ndrpdr"
+    elif itm["testtype"] == "mrr":
+        test_type = "mrr"
+    elif itm["area"] == "hoststack":
+        test_type = "hoststack"
     df = data.loc[(
-        (data["test_type"] == ttype) &
+        (data["test_type"] == test_type) &
         (data["passed"] == True)
     )]
     df = df[df.job.str.endswith(f"{topo}-{arch}")]
+    core = str() if itm["dut"] == "trex" else f"{itm['core']}"
+    ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
     df = df[df.test_id.str.contains(
         f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$",
         regex=True
@@ -133,7 +138,7 @@ def graph_trending(
         :returns: Traces (samples, trending line, anomalies)
         :rtype: list
         """
-
+        logging.info(ttype)
         df = df.dropna(subset=[C.VALUE[ttype], ])
         if df.empty:
             return list()

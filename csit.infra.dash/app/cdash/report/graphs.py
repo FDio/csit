@@ -14,7 +14,6 @@
 """
 """
 
-import re
 import plotly.graph_objects as go
 import pandas as pd
 
@@ -47,13 +46,20 @@ def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
     else:
         return None
 
-    core = str() if itm["dut"] == "trex" else f"{itm['core']}"
-    ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
+    if itm["testtype"] in ("ndr", "pdr"):
+        test_type = "ndrpdr"
+    elif itm["testtype"] == "mrr":
+        test_type = "mrr"
+    elif itm["area"] == "hoststack":
+        test_type = "hoststack"
     df = data.loc[(
         (data["release"] == itm["rls"]) &
-        (data["test_type"] == ttype) &
+        (data["test_type"] == test_type) &
         (data["passed"] == True)
     )]
+
+    core = str() if itm["dut"] == "trex" else f"{itm['core']}"
+    ttype = "ndrpdr" if itm["testtype"] in ("ndr", "pdr") else itm["testtype"]
     regex_test = \
         f"^.*[.|-]{nic}.*{itm['framesize']}-{core}-{drv}{itm['test']}-{ttype}$"
     df = df[

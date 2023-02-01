@@ -111,11 +111,10 @@ class Layout:
 
         # Get structure of tests:
         tbs = dict()
-        for _, row in self._data[["job", "test_id"]].drop_duplicates().\
-                iterrows():
+        cols = ["job", "test_id", "test_type", "tg_type"]
+        for _, row in self._data[cols].drop_duplicates().iterrows():
             lst_job = row["job"].split("-")
             dut = lst_job[1]
-            ttype = lst_job[3]
             tbed = "-".join(lst_job[-2:])
             lst_test = row["test_id"].split(".")
             if dut == "dpdk":
@@ -160,14 +159,23 @@ class Layout:
                 tbs[dut][infra][area][test]["frame-size"].append(
                     framesize.upper()
                 )
-            if ttype == "mrr":
+            if row["test_type"] == "mrr":
                 if "MRR" not in tbs[dut][infra][area][test]["test-type"]:
                     tbs[dut][infra][area][test]["test-type"].append("MRR")
-            elif ttype == "ndrpdr":
+            elif row["test_type"] == "ndrpdr":
                 if "NDR" not in tbs[dut][infra][area][test]["test-type"]:
                     tbs[dut][infra][area][test]["test-type"].extend(
                         ("NDR", "PDR")
                     )
+            elif row["test_type"] == "hoststack":
+                if row["tg_type"] in ("iperf", "vpp"):
+                    if "BPS" not in tbs[dut][infra][area][test]["test-type"]:
+                        tbs[dut][infra][area][test]["test-type"].append("BPS")
+                elif row["tg_type"] == "ab":
+                    if "CPS" not in tbs[dut][infra][area][test]["test-type"]:
+                        tbs[dut][infra][area][test]["test-type"].extend(
+                            ("CPS", "RPS")
+                        )
         self._spec_tbs = tbs
 
         # Read from files:
