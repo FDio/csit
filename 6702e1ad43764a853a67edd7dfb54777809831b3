@@ -16,6 +16,24 @@
       "message": "csit-3n-clx-perftest eth-ip4udpquicbase-vppechoANDNIC_Intel-XL710ANDdrv_vfio_pci",
       "revId": "6702e1ad43764a853a67edd7dfb54777809831b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d3114ab_9a9fa8f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2023-02-01T18:10:50Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest eth-ip4udpquicbase-vppechoANDNIC_Intel-XL710ANDdrv_vfio_pci",
+      "parentUuid": "9b3cd374_d707b612",
+      "revId": "6702e1ad43764a853a67edd7dfb54777809831b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
