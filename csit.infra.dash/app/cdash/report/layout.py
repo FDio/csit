@@ -179,6 +179,18 @@ class Layout:
                     tbs[rls][dut][d_ver][infra][area][test]["test-type"].extend(
                         ("NDR", "PDR", )
                     )
+            elif ttype == "hoststack":  # rewrite
+                if "BPS" not in \
+                        tbs[rls][dut][d_ver][infra][area][test]["test-type"]:
+                    tbs[rls][dut][d_ver][infra][area][test]["test-type"].append(
+                        "BPS"
+                    )
+            elif ttype == "vsap":  # To be removed
+                if "CPS" not in \
+                        tbs[rls][dut][d_ver][infra][area][test]["test-type"]:
+                    tbs[rls][dut][d_ver][infra][area][test]["test-type"].extend(
+                        ("CPS", "RPS")
+                    )
         self._spec_tbs = tbs
 
         # Read from files:
