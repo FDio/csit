@@ -69,6 +69,23 @@
       "message": "csit-3n-icx-perftest 1cAND1280bANDbpsANDe810xxvANDdrv_vfio_pciANDeth-ip4udpquicbase-vppecho",
       "revId": "6702e1ad43764a853a67edd7dfb54777809831b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5955cd1_b246dcb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2023-02-01T20:41:45Z",
+      "side": 1,
+      "message": "csit-3n-icx-perftest 1cAND1280bANDbpsANDe810xxvANDdrv_vfio_pciANDeth-ip4udpquicscale1cl10s-vppecho 1cAND1280bANDbpsANDe810xxvANDdrv_vfio_pciANDeth-ip4udpquicscale10cl1s-vppecho 1cAND1280bANDbpsANDe810xxvANDdrv_vfio_pciANDeth-ip4udpquicscale10cl10s-vppecho",
+      "revId": "6702e1ad43764a853a67edd7dfb54777809831b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
