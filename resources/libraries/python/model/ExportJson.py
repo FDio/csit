@@ -65,7 +65,7 @@ class ExportJson():
         if u"DEVICETEST" in tags:
             test_type = u"device"
         elif u"LDP_NGINX" in tags:
-            test_type = u"vsap"
+            test_type = u"hoststack"
         elif u"HOSTSTACK" in tags:
             test_type = u"hoststack"
         elif u"GSO_TRUE" in tags or u"GSO_FALSE" in tags:
