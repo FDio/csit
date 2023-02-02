@@ -16,6 +16,24 @@
       "message": "we already have 2m flows and routes tests, do we need 1m ?",
       "revId": "d08a474e0e00e939b8726a39e7261c92fc1ef023",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c95f786_b96002bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2023-02-02T05:14:34Z",
+      "side": 1,
+      "message": "Hi Maciek,\n\nYes, Customer often asked that VPP performance number of 1M flows and routes, further they interested in 10M and 100M, VPP can get better performance number with 1M flows on modern hardware platforms since fib rules are all in the cache, then with flow increased, due to cache size limitation of hardware platform, VPP performance dropped much because of larger cache misses, so 1M flows is a good indicator for VPP performance benchmark.",
+      "parentUuid": "6aea82e5_abd0c628",
+      "revId": "d08a474e0e00e939b8726a39e7261c92fc1ef023",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
