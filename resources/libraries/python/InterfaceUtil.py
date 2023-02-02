@@ -262,6 +262,12 @@ class InterfaceUtil:
     def set_interface_mtu(node, pf_pcis, mtu=9200):
         """Set Ethernet MTU for specified interfaces.
 
+        If the interface Linux name is not found, skip the operation.
+        This is expected to happen when access to a PF is not allowed,
+        e.g. on devicetest testbed when AVF driver is used.
+
+        Once a PF is visible in Linux, failure to set MTU raises an exception.
+
         :param node: Topology node.
         :param pf_pcis: List of node's interfaces PCI addresses.
         :param mtu: MTU to set. Default: 9200.
@@ -272,8 +278,12 @@ class InterfaceUtil:
         """
         for pf_pci in pf_pcis:
             pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
-            cmd = f"ip link set {pf_eth} mtu {mtu}"
-            exec_cmd_no_error(node, cmd, sudo=True)
+            if "*" not in pf_eth:
+                DUTSetup.get_pci_dev_driver(node, pf_pci.replace(u":", r"\:"))
+                cmd = f"ip -d link show {pf_eth}"
+                exec_cmd_no_error(node, cmd)
+                cmd = f"ip link set {pf_eth} mtu {mtu}"
+                exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def set_interface_channels(
@@ -332,8 +342,14 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_set_interface_mtu(node, interface, mtu=9200):
-        """Set Ethernet MTU on interface.
+    def vpp_set_interface_mtu_and_bring_up(node, interface, mtu=9200):
+        """Set Ethernet MTU on interface and set interface state to "up".
+
+        The interface is brought down before MTU can be changed.
+
+        As some VPP plugins (or NIC drivers they rely on) do not support
+        MTU editing, this part can fail.
+        Such failure is logged as a warning, but otherwise tolerated.
 
         :param node: VPP node.
         :param interface: Interface to setup MTU. Default: 9200.
@@ -353,11 +369,13 @@ class InterfaceUtil:
             sw_if_index=sw_if_index,
             mtu=int(mtu)
         )
+        InterfaceUtil.set_interface_state(node, interface, u"down")
         try:
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         except AssertionError as err:
-            logger.debug(f"Setting MTU failed.\n{err}")
+            logger.warn(f"Setting MTU failed.\n{err}")
+        InterfaceUtil.set_interface_state(node, interface, u"up")
 
     @staticmethod
     def vpp_node_interfaces_ready_wait(node, retries=15):
