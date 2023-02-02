@@ -50,6 +50,23 @@
       "message": "csit-dpdk-2n-icx-perftest mrrANDnic_*ANDethip4-ip4base-l3fwd mrrANDnic_*ANDeth-l2xcbase-testpmd",
       "revId": "176b558bb6f3aa23f00ac81830da07347d6955a2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b514571_bcd3e4fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-02-02T09:34:40Z",
+      "side": 1,
+      "message": "csit-dpdk-2n-clx-perftest mrrANDnic_*ANDethip4-ip4base-l3fwd mrrANDnic_*ANDeth-l2xcbase-testpmd",
+      "revId": "176b558bb6f3aa23f00ac81830da07347d6955a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
