@@ -118,6 +118,23 @@
       "message": "\ncsit-2n-clx-perftest mrrANDnic_*xxv*AND1cAND9000bANDeth-l2patch",
       "revId": "75ef9dcadc943b4cf752d1836c84c9c721236a37",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65e303bb_c8e65cd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-02-02T13:37:47Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_*xxv*AND1cANDeth-l2patchNOTimixNOT1518b",
+      "revId": "75ef9dcadc943b4cf752d1836c84c9c721236a37",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
