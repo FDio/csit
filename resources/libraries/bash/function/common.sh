@@ -898,9 +898,15 @@ function select_tags () {
                 awk {"$awk_nics_sub_cmd"} || echo "devicetest") || die
             SELECTION_MODE="--test"
             ;;
+        *"hoststack-daily"* )
+            readarray -t test_tag_array <<< $(grep -v "#" \
+                ${tfd}/hoststack_daily/${DUT}-${NODENESS}-${FLAVOR}.md |
+                awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
+            SELECTION_MODE="--test"
+            ;;
         *"ndrpdr-weekly"* )
             readarray -t test_tag_array <<< $(grep -v "#" \
-                ${tfd}/mlr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
+                ${tfd}/ndrpdr_weekly/${DUT}-${NODENESS}-${FLAVOR}.md |
                 awk {"$awk_nics_sub_cmd"} || echo "perftest") || die
             SELECTION_MODE="--test"
             ;;
