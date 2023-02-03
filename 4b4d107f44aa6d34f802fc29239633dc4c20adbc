@@ -50,6 +50,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_*xxv*ANDdrv_af_xdpAND64bAND1cANDethip4-ip4base mrrANDnic_*xxv*ANDdrv_avfAND9000bAND1cANDeth-l2patch",
       "revId": "4b4d107f44aa6d34f802fc29239633dc4c20adbc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21345190_8b62d19c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-02-03T09:02:23Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_*xxv*ANDdrv_af_xdpAND1cAND64bANDethip4-ip4base mrrANDnic_*xxv*ANDdrv_vfio_pciAND1cAND1518bANDethip6-ip6base mrrANDnic_*xxv*ANDdrv_avfAND1cAND9000bANDeth-l2patch",
+      "revId": "4b4d107f44aa6d34f802fc29239633dc4c20adbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
