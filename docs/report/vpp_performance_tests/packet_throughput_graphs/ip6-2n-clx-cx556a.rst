@@ -69,3 +69,46 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-pdr}
             \label{fig:2n-clx-cx556a-78b-2t1c-rdma-ip6routing-base-scale-pdr}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+78b-2t1c-ip6routing-base-scale-mlx5
+-----------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-78b-2t1c-ip6-base-scale-mlx5-ndr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-78b-2t1c-ip6-base-scale-mlx5-ndr}
+            \label{fig:2n-clx-cx556a-78b-2t1c-ip6-base-scale-mlx5-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-78b-2t1c-ip6-base-scale-mlx5-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-78b-2t1c-ip6-base-scale-mlx5-pdr}
+            \label{fig:2n-clx-cx556a-78b-2t1c-ip6-base-scale-mlx5-pdr}
+    \end{figure}

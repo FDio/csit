@@ -69,3 +69,46 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-rdma-l2-vhost-base-pdr-tsa}
             \label{fig:2n-clx-cx556a-64b-rdma-l2-vhost-base-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-vhost-base-mlx5
+-------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-vhost-base-mlx5-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-vhost-base-mlx5-ndr-tsa}
+            \label{fig:2n-clx-cx556a-64b-vhost-base-mlx5-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-vhost-base-mlx5-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-vhost-base-mlx5-pdr-tsa}
+            \label{fig:2n-clx-cx556a-64b-vhost-base-mlx5-pdr-tsa}
+    \end{figure}
