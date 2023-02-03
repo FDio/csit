@@ -262,6 +262,12 @@ class InterfaceUtil:
     def set_interface_mtu(node, pf_pcis, mtu=9200):
         """Set Ethernet MTU for specified interfaces.
 
+        If the interface Linux name is not found, skip the operation.
+        This is expected to happen when access to a PF is not allowed,
+        e.g. on devicetest testbed when AVF driver is used.
+
+        Once a PF is visible in Linux, failure to set MTU raises an exception.
+
         :param node: Topology node.
         :param pf_pcis: List of node's interfaces PCI addresses.
         :param mtu: MTU to set. Default: 9200.
@@ -272,8 +278,18 @@ class InterfaceUtil:
         """
         for pf_pci in pf_pcis:
             pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
-            cmd = f"ip link set {pf_eth} mtu {mtu}"
-            exec_cmd_no_error(node, cmd, sudo=True)
+            if "*" not in pf_eth:
+                DUTSetup.get_pci_dev_driver(node, pf_pci.replace(u":", r"\:"))
+                cmd = u"lspci -v"
+                exec_cmd_no_error(node, cmd)
+                cmd = f"ip -d link show {pf_eth}"
+                exec_cmd_no_error(node, cmd)
+                cmd = f"ip link set {pf_eth} down"
+                exec_cmd_no_error(node, cmd, sudo=True)
+                cmd = f"ip -d link show {pf_eth}"
+                exec_cmd_no_error(node, cmd)
+                cmd = f"ip link set {pf_eth} mtu {mtu}"
+                exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def set_interface_channels(
@@ -332,8 +348,14 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_set_interface_mtu(node, interface, mtu=9200):
-        """Set Ethernet MTU on interface.
+    def vpp_set_interface_mtu_and_bring_up(node, interface, mtu=9200):
+        """Set Ethernet MTU on interface and set interface state to "up".
+
+        The interface is brought down before MTU can be changed.
+
+        As some VPP plugins (or NIC drivers they rely on) do not support
+        MTU editing, this part can fail.
+        Such failure is logged as a warning, but otherwise tolerated.
 
         :param node: VPP node.
         :param interface: Interface to setup MTU. Default: 9200.
@@ -353,11 +375,13 @@ class InterfaceUtil:
             sw_if_index=sw_if_index,
             mtu=int(mtu)
         )
+        InterfaceUtil.set_interface_state(node, interface, u"down")
         try:
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         except AssertionError as err:
-            logger.debug(f"Setting MTU failed.\n{err}")
+            logger.warn(f"Setting MTU failed.\n{err}")
+        InterfaceUtil.set_interface_state(node, interface, u"up")
 
     @staticmethod
     def vpp_node_interfaces_ready_wait(node, retries=15):
@@ -1754,9 +1778,15 @@ class InterfaceUtil:
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def init_interface(node, ifc_key, driver, numvfs=0, osi_layer=u"L2"):
+    def init_interface(
+        node, ifc_key, driver, numvfs=0, osi_layer=u"L2", mtu=None
+    ):
         """Init PCI device. Check driver compatibility and bind to proper
         drivers. Optionally create NIC VFs.
+
+        If MTU is specified, it is set to the specified value.
+        This logic is integrated here as some drivers need this step
+        to happen at a precise point during the initialization.
 
         :param node: DUT node.
         :param ifc_key: Interface key from topology file.
@@ -1764,11 +1794,13 @@ class InterfaceUtil:
         :param numvfs: Number of VIFs to initialize, 0 - disable the VIFs.
         :param osi_layer: OSI Layer type to initialize TG with.
             Default value "L2" sets linux interface spoof off.
+        :param mtu: MTU value to set, or None for no MTU setting.
         :type node: dict
         :type ifc_key: str
         :type driver: str
         :type numvfs: int
         :type osi_layer: str
+        :type mtu: int
         :returns: Virtual Function topology interface keys.
         :rtype: list
         :raises RuntimeError: If a reason preventing initialization is found.
@@ -1783,7 +1815,7 @@ class InterfaceUtil:
                     f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
                 )
             vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer, mtu=mtu,
             )
         elif driver == u"af_xdp":
             if kernel_driver not in (
@@ -1794,16 +1826,18 @@ class InterfaceUtil:
                     f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
                 )
             vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer, mtu=mtu,
             )
         elif driver == u"rdma-core":
             vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer, mtu=mtu,
             )
         return vf_keys
 
     @staticmethod
-    def init_generic_interface(node, ifc_key, numvfs=0, osi_layer=u"L2"):
+    def init_generic_interface(
+        node, ifc_key, numvfs=0, osi_layer=u"L2", mtu=None
+    ):
         """Init PCI device. Bind to proper drivers. Optionally create NIC VFs.
 
         :param node: DUT node.
@@ -1811,10 +1845,12 @@ class InterfaceUtil:
         :param numvfs: Number of VIFs to initialize, 0 - disable the VIFs.
         :param osi_layer: OSI Layer type to initialize TG with.
             Default value "L2" sets linux interface spoof off.
+        :param mtu: MTU value to set, or None for no MTU setting.
         :type node: dict
         :type ifc_key: str
         :type numvfs: int
         :type osi_layer: str
+        :type mtu: int
         :returns: Virtual Function topology interface keys.
         :rtype: list
         :raises RuntimeError: If a reason preventing initialization is found.
@@ -1828,16 +1864,21 @@ class InterfaceUtil:
             node, pf_pci_addr.replace(u":", r"\:"))
         pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
 
+        # Stop VPP to prevent deadlock.
         VPPUtil.stop_vpp_service(node)
-        if current_driver != kernel_driver:
+        if mtu or current_driver != kernel_driver:
             # PCI device must be re-bound to kernel driver before creating VFs.
             DUTSetup.verify_kernel_module(node, kernel_driver, force_load=True)
-            # Stop VPP to prevent deadlock.
             # Unbind from current driver if bound.
             if current_driver:
                 DUTSetup.pci_driver_unbind(node, pf_pci_addr)
             # Bind to kernel driver.
             DUTSetup.pci_driver_bind(node, pf_pci_addr, kernel_driver)
+
+        if mtu:
+            InterfaceUtil.set_interface_mtu(node, pf_pci_addr, mtu=mtu)
+            # Debug THIS.
+            return None
 
         # Initialize PCI VFs.
         DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs)
@@ -1971,7 +2012,7 @@ class InterfaceUtil:
         thread_data = VPPUtil.vpp_show_threads(node)
         worker_cnt = len(thread_data) - 1
         if not worker_cnt:
-            return None
+            return
         worker_ids = list()
         if workers:
             for item in thread_data:
