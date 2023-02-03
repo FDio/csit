@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48fc0ee6_f4b2d70f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-02-03T15:19:27Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_*ANDdrv_*AND1cANDeth-l2patch !1518b !imix",
+      "revId": "775403c2f9070e4bb57157b1bc09b7bc667660bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
