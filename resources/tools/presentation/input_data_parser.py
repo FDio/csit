@@ -825,7 +825,7 @@ class ExecutionChecker(ResultVisitor):
                 result["completed-requests"] = int(groups.group(5))
                 result["failed-requests"] = int(groups.group(6))
                 result["bytes-transferred"] = int(groups.group(4))
-                if "TCP_CPS"in tags:
+                if "TCP_CPS" in tags:
                     result["cps"] = float(groups.group(3))
                 elif "TCP_RPS" in tags:
                     result["rps"] = float(groups.group(3))
