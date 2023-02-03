@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b4b4f18_2dab9603",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2023-02-03T08:10:22Z",
+      "side": 1,
+      "message": "Hi Kai and Gabriel,  I will set the patch public when vpp patch https://gerrit.fd.io/r/c/vpp/+/37764 merged",
+      "revId": "bcfb44cd884a1f4bed8752a0e6efe5590524340f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
