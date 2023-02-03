@@ -262,10 +262,11 @@
   vpp-2n-clx-curr-iter:
     csit-vpp-perf-report-iterative-2302-2n-clx:
       - 2   # 2302.rc1 NDRPDR iter env 11
+      - 9   # 2302.rc1 NDRPDR iter env 11
 
   vpp-2n-clx-curr-iter-best:
     csit-vpp-perf-report-iterative-2302-2n-clx:
-      - 2   # 2302.rc1 NDRPDR iter env 11
+      - 9   # 2302.rc1 NDRPDR iter env 11
 
   vpp-2n-clx-hist-iter-mrr:
     csit-vpp-perf-report-iterative-2206-2n-clx:
@@ -283,7 +284,7 @@
 
   vpp-2n-clx-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-2n-clx:
-      - 1   # 2302.rc1 MRR iter env 11
+      - 10  # 2302.rc1 MRR iter env 11
 
   vpp-2n-clx-curr-iter-gso:
     csit-vpp-perf-report-iterative-2302-2n-clx:
@@ -307,9 +308,11 @@
   vpp-soak-vs-ndr-2n-clx-ref:
     csit-vpp-perf-report-iterative-2302-2n-clx:
       - 2   # 2302.rc1 NDRPDR iter env 11
+      - 9   # 2302.rc1 NDRPDR iter env 11
   vpp-soak-vs-ndr-2n-clx:
     csit-vpp-perf-report-iterative-2302-2n-clx:
       - 2   # 2302.rc1 NDRPDR iter env 11
+      - 9   # 2302.rc1 NDRPDR iter env 11
       - 7   # 2302.rc1 soak env 11
 
   vpp-2n-clx-curr-cov:
@@ -724,6 +727,7 @@
     csit-vpp-perf-report-iterative-2302-2n-icx:
       - 10  # 2302.rc1 hoststack iter env 11
       - 12  # 2302.rc1 hoststack iter env 11
+      - 14  # 2302.rc1 hoststack iter env 11
 
   vpp-2n-icx-curr-cov:
     # csit-vpp-perf-report-coverage-2302-2n-icx:
