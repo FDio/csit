@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -287,12 +287,12 @@ class WireGuardUtil:
             #Configure WireGuard interface on DUT1
             WireGuardUtil._wireguard_create_tunnel_interface_on_dut(
                 nodes[u'DUT1'], if1_key, if2_mac_addr, if1_ipaddr, if2_ipaddr,
-                dut1_allowed_ips, 1, wg_if1_ipaddr, port,
+                dut1_allowed_ips, 1, wg_if1_ipaddr, port+i,
                 keepalive_time, dut1_privatekey, dut2_pubkey
             )
             #Configure WireGuard interface on DUT2
             WireGuardUtil._wireguard_create_tunnel_interface_on_dut(
                 nodes[u'DUT2'], if2_key, if1_mac_addr, if2_ipaddr, if1_ipaddr,
-                dut2_allowed_ips, 1, wg_if2_ipaddr, port,
+                dut2_allowed_ips, 1, wg_if2_ipaddr, port+i,
                 keepalive_time, dut2_privatekey, dut1_pubkey
             )
