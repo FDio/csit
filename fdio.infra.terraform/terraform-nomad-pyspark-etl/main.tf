@@ -3,9 +3,9 @@ locals {
   envs        = join("\n", concat([], var.envs))
 }
 
-resource "nomad_job" "nomad_job_etl" {
+resource "nomad_job" "nomad_job" {
   jobspec = templatefile(
-    "${path.module}/conf/nomad/etl.hcl.tftpl",
+    "${path.module}/conf/nomad/${var.job_name}.hcl.tftpl",
     {
       aws_access_key_id         = var.aws_access_key_id,
       aws_secret_access_key     = var.aws_secret_access_key,
