@@ -74,13 +74,13 @@
 
     \clearpage
 
-64b-ip4routing-features
------------------------
+64b-ip4routing-features-rdma-core
+---------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ethip4-features-ndr-tsa.html"></iframe>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ethip4-features-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -100,7 +100,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ethip4-features-pdr-tsa.html"></iframe>
+    <iframe id="04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-rdma-ethip4-features-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -111,4 +111,90 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-rdma-ethip4-features-pdr-tsa}
             \label{fig:2n-clx-cx556a-64b-rdma-ethip4-features-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-ip4routing-base-scale-mlx5
+------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-ip4-base-scale-mlx5-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-ip4-base-scale-mlx5-ndr-tsa}
+            \label{fig:2n-clx-cx556a-64b-ip4-base-scale-mlx5-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-ip4-base-scale-mlx5-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-ip4-base-scale-mlx5-pdr-tsa}
+            \label{fig:2n-clx-cx556a-64b-ip4-base-scale-mlx5-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-ip4routing-features-mlx5
+----------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-ip4-features-mlx5-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-ip4-features-mlx5-ndr-tsa}
+            \label{fig:2n-clx-cx556a-64b-ip4-features-mlx5-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-clx-cx556a-64b-ip4-features-mlx5-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-clx-cx556a-64b-ip4-features-mlx5-pdr-tsa}
+            \label{fig:2n-clx-cx556a-64b-ip4-features-mlx5-pdr-tsa}
     \end{figure}
