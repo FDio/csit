@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -207,41 +207,26 @@ class DUTSetup:
         exec_cmd_no_error(node, cmd, message=f"{program} is not installed")
 
     @staticmethod
-    def get_pid(node, process):
+    def get_pid(node, process, retries=3):
         """Get PID of running process.
 
         :param node: DUT node.
         :param process: process name.
+        :param retries: How many times to retry on failure.
         :type node: dict
         :type process: str
+        :type retries: int
         :returns: PID
         :rtype: int
         :raises RuntimeError: If it is not possible to get the PID.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         retval = None
-        for i in range(3):
-            logger.trace(f"Try {i}: Get {process} PID")
-            ret_code, stdout, stderr = ssh.exec_command(f"pidof {process}")
-
-            if int(ret_code):
-                raise RuntimeError(
-                    f"Not possible to get PID of {process} process on node: "
-                    f"{node[u'host']}\n {stdout + stderr}"
-                )
-
-            pid_list = stdout.split()
-            if len(pid_list) == 1:
-                return [int(stdout)]
-            if not pid_list:
-                logger.debug(f"No {process} PID found on node {node[u'host']}")
-                continue
-            logger.debug(f"More than one {process} PID found " \
-                         f"on node {node[u'host']}")
-            retval = [int(pid) for pid in pid_list]
-
+        cmd = f"pidof {process}"
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, retries=retries,
+            message=f"No {process} PID found on node {node[u'host']}")
+        pid_list = stdout.split()
+        retval = [int(pid) for pid in pid_list]
         return retval
 
     @staticmethod
@@ -846,3 +831,4 @@ class DUTSetup:
                 raise RuntimeError(
                     f"Not enough availablehuge pages: {huge_available}!"
                 )
+
