@@ -13,6 +13,7 @@
 
 """ab implementation into CSIT framework."""
 
+from re import search
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.model.ExportResult import (
     export_hoststack_results
@@ -167,15 +168,16 @@ class ABTools:
         failed_requests = None
         for line in stdout.splitlines():
             if f"Connection {rps_cps} rate:" in line:
-                rate = float(line.split(" ")[3])
+                rate = float(search(r":\s*(\d+\.?\d+)", line).group(1))
             elif "Transfer Rate:" in line:
-                bandwidth = float(line.split(" ")[2]) * 8000
+                bandwidth = \
+                    float(search(r":\s*(\d+\.?\d+)", line).group(1)) * 8000
             elif "Latency:" in line:
-                latency = float(line.split(" ")[1])
+                latency = float(search(r":\s*(\d+\.?\d+)", line).group(1))
             elif "Completed requests:" in line:
-                completed_requests = int(line.split(" ")[2])
+                completed_requests = int(search(r":\s*(\d+)", line).group(1))
             elif "Failed requests" in line:
-                failed_requests = int(line.split(" ")[2])
+                failed_requests = int(search(r":\s*(\d+)", line).group(1))
 
         export_hoststack_results(
             bandwidth, rate, rate_unit, latency, failed_requests,
