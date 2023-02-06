@@ -868,6 +868,7 @@
   vpp-3n-icx-curr-iter-hoststack:
     csit-vpp-perf-report-iterative-2302-3n-icx:
       - 3   # 2302.rc1 hoststack iter env 11
+      - 4   # 2302.rc1 hoststack iter env 11
 
   vpp-3n-icx-curr-cov:
     # csit-vpp-perf-report-coverage-2302-3n-icx:

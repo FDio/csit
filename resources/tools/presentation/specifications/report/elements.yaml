@@ -11709,19 +11709,19 @@
     title: "3n-icx-e810xxv-1460b-2t1c-eth-ip4udp-ldpreload-iperf3"
     layout: "plot-hoststack"
 
-# - type: "plot"
-#   title: "Bandwidth: 3n-icx-e810xxv-1280b-2t1c-eth-ip4udpquic-vppecho"
-#   algorithm: "plot_perf_box_name"
-#   output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-1280b-2t1c-eth-ip4udpquic-vppecho-bps"
-#   data: "vpp-3n-icx-curr-iter-hoststack"
-#   include:
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1E810Xxv-Eth-Ip4Udpquicbase-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicbase-vppecho-bps"
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1E810Xxv-Eth-Ip4Udpquicscale1Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale1cl10s-vppecho-bps"
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1E810Xxv-Eth-Ip4Udpquicscale10Cl1S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl1s-vppecho-bps"
-#     - "Tests.Vpp.Perf.Hoststack.25Ge2P1E810Xxv-Eth-Ip4Udpquicscale10Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl10s-vppecho-bps"
-#   layout:
-#     title: "3n-icx-e810xxv-1280b-2t1c-eth-ip4udpquic-vppecho"
-#     layout: "plot-hoststack"
+- type: "plot"
+  title: "Bandwidth: 3n-icx-e810xxv-1280b-2t1c-eth-ip4udpquic-vppecho"
+  algorithm: "plot_perf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-1280b-2t1c-eth-ip4udpquic-vppecho-bps"
+  data: "vpp-3n-icx-curr-iter-hoststack"
+  include:
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1E810Xxv-Eth-Ip4Udpquicbase-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicbase-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1E810Xxv-Eth-Ip4Udpquicscale1Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale1cl10s-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1E810Xxv-Eth-Ip4Udpquicscale10Cl1S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl1s-vppecho-bps"
+    - "Tests.Vpp.Perf.Hoststack.25Ge2P1E810Xxv-Eth-Ip4Udpquicscale10Cl10S-Vppecho-Bps.1280B-2t1c-eth-ip4udpquicscale10cl10s-vppecho-bps"
+  layout:
+    title: "3n-icx-e810xxv-1280b-2t1c-eth-ip4udpquic-vppecho"
+    layout: "plot-hoststack"
 
 # Hoststack tests 2n-icx
 

@@ -34,27 +34,6 @@
 64b-2t1c-memif-base-rdma
 ------------------------
 
-..
-    .. raw:: html
-
-        <center>
-        <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr.html"></iframe>
-        <p><br></p>
-        </center>
-
-    .. raw:: latex
-
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr}
-                \label{fig:hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-rdma-dot1q-l2bdbasemaclrn-eth-2memif-1dcr}
-        \end{figure}
-
-    .. raw:: latex
-
-        \clearpage
-
 .. raw:: html
 
     <center>
@@ -109,4 +88,67 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-rdma-ethip4-ip4base-eth-2memif-1dcr}
             \label{fig:hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-rdma-ethip4-ip4base-eth-2memif-1dcr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t1c-memif-base-mlx5
+------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-eth-l2bdbasemaclrn-eth-2memif-1dcr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-eth-l2bdbasemaclrn-eth-2memif-1dcr}
+            \label{fig:hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-eth-l2bdbasemaclrn-eth-2memif-1dcr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-eth-l2xcbase-eth-2memif-1dcr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-eth-l2xcbase-eth-2memif-1dcr}
+            \label{fig:hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-eth-l2xcbase-eth-2memif-1dcr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-ethip4-ip4base-eth-2memif-1dcr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-ethip4-ip4base-eth-2memif-1dcr}
+            \label{fig:hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-ethip4-ip4base-eth-2memif-1dcr}
     \end{figure}
