@@ -162,6 +162,7 @@ def graph_trending(
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                 f"<prop> [{row[C.UNIT[ttype]]}]: {y_data[idx]:,.0f}<br>"
                 f"<stdev>"
+                f"<additional-info>"
                 f"{d_type}-ref: {row['dut_version']}<br>"
                 f"csit-ref: {row['job']}/{row['build']}<br>"
                 f"hosts: {', '.join(row['hosts'])}"
@@ -172,10 +173,19 @@ def graph_trending(
                     f"{row['result_receive_rate_rate_stdev']:,.0f}<br>"
                 )
             else:
-                stdev = ""
+                stdev = str()
+            if ttype in ("hoststack-cps", "hoststack-rps"):
+                add_info = (
+                    f"bandwidth [{row[C.UNIT['hoststack-bps']]}]: "
+                    f"{row[C.VALUE['hoststack-bps']]:,.0f}<br>"
+                    f"latency [{row[C.UNIT['hoststack-lat']]}]: "
+                    f"{row[C.VALUE['hoststack-lat']]:,.0f}<br>"
+                )
+            else:
+                add_info = str()
             hover_itm = hover_itm.replace(
                 "<prop>", "latency" if ttype == "pdr-lat" else "average"
-            ).replace("<stdev>", stdev)
+            ).replace("<stdev>", stdev).replace("<additional-info>", add_info)
             hover.append(hover_itm)
             if ttype == "pdr-lat":
                 customdata_samples.append(_get_hdrh_latencies(row, name))
@@ -191,8 +201,8 @@ def graph_trending(
             d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
             hover_itm = (
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
-                f"trend [pps]: {avg:,.0f}<br>"
-                f"stdev [pps]: {stdev:,.0f}<br>"
+                f"trend [{row[C.UNIT[ttype]]}]: {avg:,.0f}<br>"
+                f"stdev [{row[C.UNIT[ttype]]}]: {stdev:,.0f}<br>"
                 f"{d_type}-ref: {row['dut_version']}<br>"
                 f"csit-ref: {row['job']}/{row['build']}<br>"
                 f"hosts: {', '.join(row['hosts'])}"
@@ -311,8 +321,16 @@ def graph_trending(
                 if topo_arch else 1.0
         else:
             norm_factor = 1.0
-        traces = _generate_trending_traces(itm["testtype"], itm["id"], df,
-            get_color(idx), norm_factor)
+        if itm["area"] == "hoststack":
+            prefix = "hoststack-"
+        else:
+            prefix = ""
+        traces = _generate_trending_traces(
+            f"{prefix}{itm['testtype']}",
+            itm["id"],
+            df,
+            get_color(idx),
+            norm_factor)
         if traces:
             if not fig_tput:
                 fig_tput = go.Figure()
