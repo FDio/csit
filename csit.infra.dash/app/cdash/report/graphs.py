@@ -98,28 +98,40 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
     lat_traces = list()
     y_lat_max = 0
     x_lat = list()
+    y_units = set()
     show_latency = False
     show_tput = False
     for idx, itm in enumerate(sel):
+
         itm_data = select_iterative_data(data, itm)
         if itm_data.empty:
             continue
+
         phy = itm["phy"].split("-")
         topo_arch = f"{phy[0]}-{phy[1]}" if len(phy) == 4 else str()
         norm_factor = (C.NORM_FREQUENCY / C.FREQUENCY[topo_arch]) \
             if normalize else 1.0
+
+        if itm["area"] == "hoststack":
+            ttype = f"hoststack-{itm['testtype']}"
+        else:
+            ttype = itm["testtype"]
+
+        y_units.update(itm_data[C.UNIT[ttype]].unique().tolist())
+
         if itm["testtype"] == "mrr":
-            y_data_raw = itm_data[C.VALUE_ITER[itm["testtype"]]].to_list()[0]
+            y_data_raw = itm_data[C.VALUE_ITER[ttype]].to_list()[0]
             y_data = [(y * norm_factor) for y in y_data_raw]
             if len(y_data) > 0:
                 y_tput_max = \
                     max(y_data) if max(y_data) > y_tput_max else y_tput_max
         else:
-            y_data_raw = itm_data[C.VALUE_ITER[itm["testtype"]]].to_list()
+            y_data_raw = itm_data[C.VALUE_ITER[ttype]].to_list()
             y_data = [(y * norm_factor) for y in y_data_raw]
             if y_data:
                 y_tput_max = \
                     max(y_data) if max(y_data) > y_tput_max else y_tput_max
+
         nr_of_samples = len(y_data)
         tput_kwargs = dict(
             y=y_data,
@@ -137,7 +149,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
         tput_traces.append(go.Box(**tput_kwargs))
         show_tput = True
 
-        if itm["testtype"] == "pdr":
+        if ttype == "pdr":
             y_lat_row = itm_data[C.VALUE_ITER["pdr-lat"]].to_list()
             y_lat = [(y / norm_factor) for y in y_lat_row]
             if y_lat:
@@ -166,8 +178,9 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
         pl_tput = deepcopy(layout["plot-throughput"])
         pl_tput["xaxis"]["tickvals"] = [i for i in range(len(sel))]
         pl_tput["xaxis"]["ticktext"] = [str(i + 1) for i in range(len(sel))]
+        pl_tput["yaxis"]["title"] = f"Throughput [{'|'.join(sorted(y_units))}]"
         if y_tput_max:
-            pl_tput["yaxis"]["range"] = [0, (int(y_tput_max / 1e6) + 1) * 1e6]
+            pl_tput["yaxis"]["range"] = [0, (int(y_tput_max / 1e6) + 2) * 1e6]
         fig_tput = go.Figure(data=tput_traces, layout=pl_tput)
 
     if show_latency:

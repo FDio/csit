@@ -203,9 +203,10 @@ class Constants:
         "ndr": "result_ndr_lower_rate_value",
         "pdr": "result_pdr_lower_rate_value",
         "pdr-lat": "result_latency_forward_pdr_50_avg",
-        "cps": "result_bandwidth_value",
-        "rps": "result_bandwidth_value",
-        "bps": "result_bandwidth_value"
+        "hoststack-cps": "result_rate_value",
+        "hoststack-rps": "result_rate_value",
+        "hoststack-bps": "result_bandwidth_value",
+        "hoststack-lat": "result_latency_value"
     }
 
     VALUE_ITER = {
@@ -213,9 +214,10 @@ class Constants:
         "ndr": "result_ndr_lower_rate_value",
         "pdr": "result_pdr_lower_rate_value",
         "pdr-lat": "result_latency_forward_pdr_50_avg",
-        "cps": "result_bandwidth_value",
-        "rps": "result_bandwidth_value",
-        "bps": "result_bandwidth_value"
+        "hoststack-cps": "result_rate_value",
+        "hoststack-rps": "result_rate_value",
+        "hoststack-bps": "result_bandwidth_value",
+        "hoststack-lat": "result_latency_value"
     }
 
     UNIT = {
@@ -223,9 +225,10 @@ class Constants:
         "ndr": "result_ndr_lower_rate_unit",
         "pdr": "result_pdr_lower_rate_unit",
         "pdr-lat": "result_latency_forward_pdr_50_unit",
-        "cps": "result_bandwidth_unit",
-        "rps": "result_bandwidth_unit",
-        "bps": "result_bandwidth_unit"
+        "hoststack-cps": "result_rate_unit",
+        "hoststack-rps": "result_rate_unit",
+        "hoststack-bps": "result_bandwidth_unit",
+        "hoststack-lat": "result_latency_unit"
     }
 
     # Latencies.
