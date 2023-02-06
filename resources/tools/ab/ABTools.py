@@ -13,6 +13,7 @@
 
 """ab implementation into CSIT framework."""
 
+import re
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.model.ExportResult import (
     export_hoststack_results
@@ -167,19 +168,77 @@ class ABTools:
         failed_requests = None
         for line in stdout.splitlines():
             if f"Connection {rps_cps} rate:" in line:
-                rate = float(line.split(" ")[3])
+                rate = float(re.search(r":\s*(\d+\.?\d+)", line).group(1))
             elif "Transfer Rate:" in line:
-                bandwidth = float(line.split(" ")[2]) * 8000
+                bandwidth = \
+                    float(re.search(r":\s*(\d+\.?\d+)", line).group(1)) * 8000
             elif "Latency:" in line:
-                latency = float(line.split(" ")[1])
+                latency = float(re.search(r":\s*(\d+\.?\d+)", line).group(1))
             elif "Completed requests:" in line:
-                completed_requests = int(line.split(" ")[2])
+                completed_requests = int(re.search(r":\s*(\d+)", line).group(1))
             elif "Failed requests" in line:
-                failed_requests = int(line.split(" ")[2])
+                failed_requests = int(re.search(r":\s*(\d+)", line).group(1))
 
         export_hoststack_results(
             bandwidth, rate, rate_unit, latency, failed_requests,
             completed_requests
         )
 
-        return stdout
+        log_msg = ABTools._format_ab_output(stdout, rps_cps, tls_tcp)
+        return log_msg
+
+    @staticmethod
+    def _format_ab_output(msg, rps_cps, tls_tcp):
+        """Parse the ab stdout with the results.
+
+        :param msg: Ab Stdout.
+        :param rps_cps: RPS or CPS.
+        :param tls_tcp: TLS or TCP.
+        :type msg: str
+        :type rps_cps: str
+        :type tls_tcp: str
+        :return: Message with measured data.
+        :rtype: str
+        """
+
+        msg_lst = msg.splitlines(keepends=False)
+
+        total_cps = ""
+        latency = ""
+        processing = ""
+        complete_req = ""
+        failed_req = ""
+        total_bytes = ""
+        rate = ""
+
+        if tls_tcp == "tls":
+            log_msg = "\nMeasured HTTPS values:\n"
+        else:
+            log_msg = "\nMeasured HTTP values:\n"
+
+        for line in msg_lst:
+            if f"Connection {rps_cps} rate:" in line:
+                # rps (cps)
+                total_cps = line + "\n"
+            elif "Transfer Rate:" in line:
+                # Rate
+                rate = line + "\n"
+            elif "Latency:" in line:
+                # Latency
+                latency = line + "\n"
+            elif "Total data transferred" in line:
+                total_bytes = line + "\n"
+            elif "Completed requests" in line:
+                complete_req = line + "\n"
+            elif "Failed requests" in line:
+                failed_req = line + "\n"
+
+        log_msg += rate
+        log_msg += latency
+        log_msg += processing
+        log_msg += complete_req
+        log_msg += failed_req
+        log_msg += total_bytes
+        log_msg += total_cps
+
+        return log_msg
