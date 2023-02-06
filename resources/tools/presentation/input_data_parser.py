@@ -833,8 +833,7 @@ class ExecutionChecker(ResultVisitor):
                     return result, status
                 status = "PASS"
             except (IndexError, ValueError) as err:
-                logging.info(err)
-        logging.info(result)
+                logging.warning(err)
         return result, status
 
     def visit_suite(self, suite):

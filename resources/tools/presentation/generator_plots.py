@@ -734,7 +734,6 @@ def plot_perf_box_name(plot, input_data):
                             test_type = u"HOSTSTACK"
 
                         elif test[u"type"] in (u"LDP_NGINX",):
-                            logging.info(test)
                             if u"TCP_CPS" in test[u"tags"]:
                                 test_type = u"VSAP_CPS"
                                 y_vals[test[u"parent"]].append(
@@ -796,7 +795,10 @@ def plot_perf_box_name(plot, input_data):
         try:
             val_max = max(df_y[col])
             if val_max:
-                y_max.append(int(val_max / 1e6))
+                if test_type in (u"VSAP_CPS", u"VSAP_RPS"):
+                    y_max.append(int(val_max))
+                else:
+                    y_max.append(int(val_max / 1e6))
         except (ValueError, TypeError) as err:
             logging.error(repr(err))
             continue
