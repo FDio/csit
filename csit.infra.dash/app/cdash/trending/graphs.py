@@ -141,13 +141,14 @@ def graph_trending(
 
         df = df.dropna(subset=[C.VALUE[ttype], ])
         if df.empty:
-            return list()
+            return list(), list()
 
         x_axis = df["start_time"].tolist()
         if ttype == "pdr-lat":
             y_data = [(v / norm_factor) for v in df[C.VALUE[ttype]].tolist()]
         else:
             y_data = [(v * norm_factor) for v in df[C.VALUE[ttype]].tolist()]
+        units = df[C.UNIT[ttype]].unique().tolist()
 
         anomalies, trend_avg, trend_stdev = classify_anomalies(
             {k: v for k, v in zip(x_axis, y_data)}
@@ -162,6 +163,7 @@ def graph_trending(
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                 f"<prop> [{row[C.UNIT[ttype]]}]: {y_data[idx]:,.0f}<br>"
                 f"<stdev>"
+                f"<additional-info>"
                 f"{d_type}-ref: {row['dut_version']}<br>"
                 f"csit-ref: {row['job']}/{row['build']}<br>"
                 f"hosts: {', '.join(row['hosts'])}"
@@ -172,10 +174,19 @@ def graph_trending(
                     f"{row['result_receive_rate_rate_stdev']:,.0f}<br>"
                 )
             else:
-                stdev = ""
+                stdev = str()
+            if ttype in ("hoststack-cps", "hoststack-rps"):
+                add_info = (
+                    f"bandwidth [{row[C.UNIT['hoststack-bps']]}]: "
+                    f"{row[C.VALUE['hoststack-bps']]:,.0f}<br>"
+                    f"latency [{row[C.UNIT['hoststack-lat']]}]: "
+                    f"{row[C.VALUE['hoststack-lat']]:,.0f}<br>"
+                )
+            else:
+                add_info = str()
             hover_itm = hover_itm.replace(
                 "<prop>", "latency" if ttype == "pdr-lat" else "average"
-            ).replace("<stdev>", stdev)
+            ).replace("<stdev>", stdev).replace("<additional-info>", add_info)
             hover.append(hover_itm)
             if ttype == "pdr-lat":
                 customdata_samples.append(_get_hdrh_latencies(row, name))
@@ -191,8 +202,8 @@ def graph_trending(
             d_type = "trex" if row["dut_type"] == "none" else row["dut_type"]
             hover_itm = (
                 f"date: {row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
-                f"trend [pps]: {avg:,.0f}<br>"
-                f"stdev [pps]: {stdev:,.0f}<br>"
+                f"trend [{row[C.UNIT[ttype]]}]: {avg:,.0f}<br>"
+                f"stdev [{row[C.UNIT[ttype]]}]: {stdev:,.0f}<br>"
                 f"{d_type}-ref: {row['dut_version']}<br>"
                 f"csit-ref: {row['job']}/{row['build']}<br>"
                 f"hosts: {', '.join(row['hosts'])}"
@@ -294,11 +305,12 @@ def graph_trending(
                 )
             )
 
-        return traces
+        return traces, units
 
 
     fig_tput = None
     fig_lat = None
+    y_units = set()
     for idx, itm in enumerate(sel):
         df = select_trending_data(data, itm)
         if df is None or df.empty:
@@ -311,23 +323,44 @@ def graph_trending(
                 if topo_arch else 1.0
         else:
             norm_factor = 1.0
-        traces = _generate_trending_traces(itm["testtype"], itm["id"], df,
-            get_color(idx), norm_factor)
+
+        if itm["area"] == "hoststack":
+            ttype = f"hoststack-{itm['testtype']}"
+        else:
+            ttype = itm["testtype"]
+
+        traces, units = _generate_trending_traces(
+            ttype,
+            itm["id"],
+            df,
+            get_color(idx),
+            norm_factor
+        )
         if traces:
             if not fig_tput:
                 fig_tput = go.Figure()
             fig_tput.add_traces(traces)
 
         if itm["testtype"] == "pdr":
-            traces = _generate_trending_traces("pdr-lat", itm["id"], df,
-                get_color(idx), norm_factor)
+            traces, _ = _generate_trending_traces(
+                "pdr-lat",
+                itm["id"],
+                df,
+                get_color(idx),
+                norm_factor
+            )
             if traces:
                 if not fig_lat:
                     fig_lat = go.Figure()
                 fig_lat.add_traces(traces)
 
+        y_units.update(units)
+
     if fig_tput:
-        fig_tput.update_layout(layout.get("plot-trending-tput", dict()))
+        fig_layout = layout.get("plot-trending-tput", dict())
+        fig_layout["yaxis"]["title"] = \
+            f"Throughput [{'|'.join(sorted(y_units))}]"
+        fig_tput.update_layout(fig_layout)
     if fig_lat:
         fig_lat.update_layout(layout.get("plot-trending-lat", dict()))
 
