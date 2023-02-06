@@ -734,6 +734,7 @@ def plot_perf_box_name(plot, input_data):
                             test_type = u"HOSTSTACK"
 
                         elif test[u"type"] in (u"LDP_NGINX",):
+                            logging.info(test)
                             if u"TCP_CPS" in test[u"tags"]:
                                 test_type = u"VSAP_CPS"
                                 y_vals[test[u"parent"]].append(
