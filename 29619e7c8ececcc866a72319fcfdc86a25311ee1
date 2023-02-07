@@ -16,6 +16,24 @@
       "message": "These two job-specs are completely different:\n- docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md - runs weekly\n- docs/job_specs/mrr_weekly/vpp-3n-icx.md - does not run, the tests were failing for more than 2 years on 3n-skx. If we need these tests, \u0027someone\u0027 should make them run, create a job for them, ...",
       "revId": "29619e7c8ececcc866a72319fcfdc86a25311ee1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5f4db7c_c35328a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-02-07T09:48:37Z",
+      "side": 1,
+      "message": "\u003e docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md - runs weekly\n\nDo you mean daily? The weekly running one is (symlinked to) docs/job_specs/report_iterative/3n-icx/vpp-ndrpdr-00.md.\n\nAnyway, I was also confused and did not realize docs/job_specs/mrr_weekly/vpp-3n-icx.md defines the nfv_density tests. So it should be there (waiting for job), but the other VPP symlinks in docs/job_specs/mrr_weekly/ should be removed instead (as we already have mrr_daily symlinking to the same report_iterative jobspecs and runnig in daily jobs).",
+      "parentUuid": "e3116667_78024054",
+      "revId": "29619e7c8ececcc866a72319fcfdc86a25311ee1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
