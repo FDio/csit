@@ -14,11 +14,12 @@ popd
 
 pushd "../fdio.infra.terraform/"
 pushd "terraform-aws-fdio-csit-dash-app-base"
-export BUILD_ID=43
+export BUILD_ID=44
 export TF_VAR_application_version="${BUILD_ID-}"
 export TF_LOG=INFO
-terraform validate
+terraform state rm
 terraform init
+terraform validate
 terraform apply -no-color -auto-approve
 application_version="$(terraform output application_version)"
 popd
