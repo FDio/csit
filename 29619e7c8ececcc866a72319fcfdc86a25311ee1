@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3116667_78024054",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-07T05:54:00Z",
+      "side": 1,
+      "message": "These two job-specs are completely different:\n- docs/job_specs/report_iterative/3n-icx/vpp-mrr-00.md - runs weekly\n- docs/job_specs/mrr_weekly/vpp-3n-icx.md - does not run, the tests were failing for more than 2 years on 3n-skx. If we need these tests, \u0027someone\u0027 should make them run, create a job for them, ...",
+      "revId": "29619e7c8ececcc866a72319fcfdc86a25311ee1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
