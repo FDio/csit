@@ -34,6 +34,24 @@
       "parentUuid": "e3116667_78024054",
       "revId": "29619e7c8ececcc866a72319fcfdc86a25311ee1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8192137_df39bb8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-07T12:54:44Z",
+      "side": 1,
+      "message": "leave it. please abandon patch.",
+      "parentUuid": "b5f4db7c_c35328a6",
+      "revId": "29619e7c8ececcc866a72319fcfdc86a25311ee1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
