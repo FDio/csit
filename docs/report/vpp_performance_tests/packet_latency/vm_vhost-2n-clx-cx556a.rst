@@ -60,7 +60,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc.html"></iframe>
+    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-rdma-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc.html"></iframe>
     <p><br></p>
     </center>
 
@@ -106,7 +106,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc.html"></iframe>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/hdrh-lat-percentile-2n-clx-100ge2p1cx556a-64b-2t1c-mlx5-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc.html"></iframe>
     <p><br></p>
     </center>
 
