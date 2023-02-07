@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecea4259_b09e32a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-07T12:55:31Z",
+      "side": 1,
+      "message": "I will handle changes if required. Please abandon patch.",
+      "revId": "c6f521fd99bf928574bd0af05089eb313ccf475c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
