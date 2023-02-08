@@ -14,7 +14,7 @@ popd
 
 pushd "../fdio.infra.terraform/"
 pushd "terraform-aws-fdio-csit-dash-app-base"
-export BUILD_ID=44
+export BUILD_ID=45
 export TF_VAR_application_version="${BUILD_ID-}"
 export TF_LOG=INFO
 terraform state rm
