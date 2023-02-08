@@ -111,6 +111,8 @@ s64-t34-tg1,up,t34,3n-alt,SYS-740GP-TNRT,C7470KK40P50249,10.30.51.74,10.30.50.74
 
 name,oper-status,testbed-id,role,model,s/n,mgmt-ip4,ipmi-ip4,rackid,rackunit
 yul1-12-lb4m,up,switch,uplink,?,?,?,?,3016.12,u47
+s28-nomad,up,nomad-cluster1.nomad-client,SYS-7049GP-TRT,C7470KH06A20196,10.30.51.28,10.30.50.28,3016.12,u41-u44
+s27-nomad,up,nomad-cluster1,nomad-client,SYS-7049GP-TRT,C7470KH06A20055,10.30.51.27,10.30.50.27,3016.12,u37-u40
 s91-nomad,up,nomad-cluster1,nomad-client,R152-P30-00,GLG4P9912A0016,10.30.51.91,10.30.50.91,3016.12,u36
 s92-nomad,up,nomad-cluster1,nomad-client,R152-P30-00,GLG4P9912A0004,10.30.51.92,10.30.50.92,3016.12,u35
 s23-nomad,up,nomad-cluster1,nomad-server,SYS-1029P-WTRT,C1160LI12NM0256,10.30.51.23,10.30.51.23,3016.12,u34
