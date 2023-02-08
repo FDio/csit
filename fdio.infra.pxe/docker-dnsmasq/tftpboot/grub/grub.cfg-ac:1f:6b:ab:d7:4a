@@ -1,4 +1,0 @@
-menuentry "Install s6-t22-tg1" {
-    linux    /casper/ubuntu-jammy-amd64/vmlinuz ip=dhcp interface=ac:1f:6b:ab:d7:4a url=https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.20:8081/ubuntu_jammy_amd64/ac:1f:6b:ab:d7:4a/ --- console=ttyS0,115200n8 quiet
-    initrd   /casper/ubuntu-jammy-amd64/initrd
-}
