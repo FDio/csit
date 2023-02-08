@@ -16,6 +16,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_*ANDdrv_*AND1cANDeth-l2patch !1518b !imix",
       "revId": "5fbba27ed8628b155df0df74559a129d4b155879",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72d92d28_6aceccf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-02-08T13:46:02Z",
+      "side": 1,
+      "message": "Many new failures.",
+      "revId": "5fbba27ed8628b155df0df74559a129d4b155879",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
