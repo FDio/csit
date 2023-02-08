@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54277df0_154a46e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-08T16:09:54Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest reconf-00\ncsit-vpp-report-iter-2n-clx-perftest reconf-00",
+      "revId": "7fa6a4b3c680b45b5ab65a89ee5357a56d2b711e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
