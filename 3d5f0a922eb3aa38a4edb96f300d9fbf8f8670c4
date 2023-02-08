@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-3n-icx-perftest vpp-hoststack-00",
       "revId": "3d5f0a922eb3aa38a4edb96f300d9fbf8f8670c4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d129544_3583a320",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-08T16:01:59Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest vpp-hoststack-00",
+      "revId": "3d5f0a922eb3aa38a4edb96f300d9fbf8f8670c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
