@@ -112,48 +112,6 @@ yul1:
         mgmt_ip4: N/A
         lom_ip4: N/A
         lom_type: N/A
-      - unit: 42..45
-        name: s11-t31-sut1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20037
-        mgmt_ip4: 10.30.51.46
-        lom_ip4: 10.30.50.43
-      - unit: 38..41
-        name: s12-t31-sut2
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20018
-        mgmt_ip4: 10.30.51.47
-        lom_ip4: 10.30.50.44
-      - unit: 34..37
-        name: s13-t31-tg1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20043
-        mgmt_ip4: 10.30.51.48
-        lom_ip4: 10.30.50.45
-      - unit: 30..33
-        name: s14-t32-sut1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20075
-        mgmt_ip4: 10.30.51.58
-        lom_ip4: 10.30.50.55
-      - unit: 26..29
-        name: s15-t32-sut2
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20010
-        mgmt_ip4: 10.30.51.59
-        lom_ip4: 10.30.50.56
-      - unit: 22..25
-        name: s16-t32-tg1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20047
-        mgmt_ip4: 10.30.51.60
-        lom_ip4: 10.30.50.57
       - unit: 18..21
         name: s25-t25-sut1
         oper_status: stage
@@ -220,48 +178,6 @@ yul1:
         serial_number: C7470KH06A20154
         mgmt_ip4: 10.30.51.50
         lom_ip4: 10.30.50.47
-      - unit: 34..37
-        name: s3-t21-sut1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20167
-        mgmt_ip4: 10.30.51.44
-        lom_ip4: 10.30.50.41
-      - unit: 30..33
-        name: s4-t21-tg1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20158
-        mgmt_ip4: 10.30.51.45
-        lom_ip4: 10.30.50.42
-      - unit: 26..29
-        name: s5-t22-sut1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.52
-        lom_ip4: 10.30.50.49
-      - unit: 22..25
-        name: s6-t22-tg1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.53
-        lom_ip4: 10.30.50.50
-      - unit: 18..21
-        name: s7-t23-sut1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: N/A
-        mgmt_ip4: 10.30.51.54
-        lom_ip4: 10.30.50.51
-      - unit: 14..17
-        name: s8-t23-tg1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20035
-        mgmt_ip4: 10.30.51.55
-        lom_ip4: 10.30.50.52
       - unit: 10..13
         name: s93-t39-sut1
         oper_status: production
@@ -327,27 +243,6 @@ yul1:
         serial_number: N/A
         mgmt_ip4: 10.30.51.71
         lom_ip4: 10.30.50.71
-      - unit: 39..40
-        name: s20-nomad
-        oper_status: production
-        device_type: UCSC-C240-M4SX
-        serial_number: FCH1950V1FQ
-        mgmt_ip4: 10.30.51.20
-        lom_ip4: 10.30.50.20
-      - unit: 37..38
-        name: s22-nomad
-        oper_status: production
-        device_type: UCSC-C240-M4SX
-        serial_number: FCH2013V0HZ
-        mgmt_ip4: 10.30.51.22
-        lom_ip4: 10.30.50.22
-      - unit: 35..36
-        name: s21-nomad
-        oper_status: production
-        device_type: UCSC-C240-M4SX
-        serial_number: FCH2013V0J2
-        mgmt_ip4: 10.30.51.21
-        lom_ip4: 10.30.50.21
       - unit: 31..34
         name: s78-t38-sut1
         oper_status: production
@@ -369,34 +264,6 @@ yul1:
         serial_number: C7470KL03P50454
         mgmt_ip4: 10.30.51.80
         lom_ip4: 10.30.50.80
-      - unit: 19..20
-        name: s16-nomad
-        oper_status: production
-        device_type: UCSC-C240-M4S
-        serial_number: FCH1950V1FN
-        mgmt_ip4: 10.30.51.16
-        lom_ip4: 10.30.50.16
-      - unit: 17..18
-        name: s17-nomad
-        oper_status: production
-        device_type: UCSC-C240-M4S
-        serial_number: FCH1950V1H5
-        mgmt_ip4: 10.30.51.17
-        lom_ip4: 10.30.50.17
-      - unit: 15..16
-        name: s18-nomad
-        oper_status: production
-        device_type: UCSC-C240-M4S
-        serial_number: FCH1950V1FS
-        mgmt_ip4: 10.30.51.18
-        lom_ip4: 10.30.50.18
-      - unit: 13..14
-        name: s19-nomad
-        oper_status: production
-        device_type: UCSC-C240-M4S
-        serial_number: FCH1950V1FL
-        mgmt_ip4: 10.30.51.19
-        lom_ip4: 10.30.50.19
       - unit: 11..12
         name: s55-t13-sut1
         oper_status: production
@@ -438,34 +305,6 @@ yul1:
       - unit: 47
         name: yul1-12-lb4m
         oper_status: production
-      - unit: 45
-        name: s31-t35-sut2
-        oper_status: production
-        device_type: SYS-E300-9A
-        serial_number: CE300AG39040898
-        mgmt_ip4: 10.32.8.13
-        lom_ip4: 10.30.55.13
-      - unit: 44
-        name: s30-t35-sut1
-        oper_status: production
-        device_type: SYS-E300-9A
-        serial_number: CE300AG39040866
-        mgmt_ip4: 10.32.8.12
-        lom_ip4: 10.30.55.12
-      - unit: 43
-        name: s29-t26-sut1
-        oper_status: production
-        device_type: SYS-E300-9A
-        serial_number: CE300AG39040897
-        mgmt_ip4: 10.32.8.11
-        lom_ip4: 10.30.55.11
-      - unit: 39..42
-        name: s28-t26t35-tg1
-        oper_status: production
-        device_type: SYS-7049GP-TRT
-        serial_number: C7470KH06A20137
-        mgmt_ip4: 10.32.8.10
-        lom_ip4: 10.30.55.10
       - unit: 36
         name: s58-nomad
         oper_status:

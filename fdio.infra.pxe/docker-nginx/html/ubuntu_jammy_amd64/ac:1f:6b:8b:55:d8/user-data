@@ -10,10 +10,10 @@ autoinstall:
     - arches: [default]
       uri: http://ports.ubuntu.com/ubuntu-ports
   identity:
-    hostname: s7-t24-sut1
-    password: $6$Y62lhMGJD8YNzmJn$H4DSqjrwFp5WN3tOvIrF.g/G2duOV76zXHAmaA/RU8jfT8H8sDumLQe/Q.EmI5pjPv7dzgI8j9BQPWes7efBK0
-    realname: testuser
-    username: testuser
+    hostname: s27-nomad
+    password: $6$FIsbVDQR$5D0wgufOd2FtnmOiRNsGlgg6Loh.0x3dWSj72DSQnqisSyE9DROfgSgA6s0yxDwz4Jd5SRTXiTKuRYuSQ5POI1
+    realname: localadmin
+    username: localadmin
   keyboard:
     layout: us
     toggle: null
@@ -22,7 +22,7 @@ autoinstall:
   network:
     ethernets:
       eno1:
-        addresses: [ 10.30.51.56/24 ]
+        addresses: [ 10.30.51.27/24 ]
         dhcp4: false
         gateway4: 10.30.51.1
         nameservers:
