@@ -16,6 +16,23 @@
       "message": "What about coverage tests?",
       "revId": "4d2942bdde447e2c019d444a672caa5c1f0deab8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3b1e5a2_10e118d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-08T07:26:56Z",
+      "side": 1,
+      "message": "Is there a reason, why 3n-icx keeps e810xxv in the list? While on the 2n-icx there is only xxv710 and e810cq in the list.",
+      "revId": "4d2942bdde447e2c019d444a672caa5c1f0deab8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
