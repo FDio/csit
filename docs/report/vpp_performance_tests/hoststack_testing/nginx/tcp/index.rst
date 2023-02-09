@@ -30,10 +30,6 @@
 TCP/IP with nginx
 ~~~~~~~~~~~~~~~~~
 
-.. raw:: latex
-
-    \clearpage
-
 0b-2t1c-e810xxv-ip4tcp-base
 ---------------------------
 
@@ -50,6 +46,10 @@ TCP/IP with nginx
             \label{fig:2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-cps}
     \end{figure}
 
+.. raw:: latex
+
+    \clearpage
+
 .. raw:: html
 
     <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../../_static/vpp/2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-rps.html"></iframe>
@@ -61,4 +61,41 @@ TCP/IP with nginx
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-rps}
             \label{fig:2n-icx-e810xxv-0b-2t1c-eth-ip4tcp-ldpreload-nginx-rps}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+0b-2t1c-e810cq-ip4tcp-base
+--------------------------
+
+.. raw:: html
+
+    <iframe id="3" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../../_static/vpp/2n-icx-e810cq-0b-2t1c-eth-ip4tcp-ldpreload-nginx-cps.html"></iframe>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-0b-2t1c-eth-ip4tcp-ldpreload-nginx-cps}
+            \label{fig:2n-icx-e810cq-0b-2t1c-eth-ip4tcp-ldpreload-nginx-cps}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <iframe id="4" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../../_static/vpp/2n-icx-e810cq-0b-2t1c-eth-ip4tcp-ldpreload-nginx-rps.html"></iframe>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-0b-2t1c-eth-ip4tcp-ldpreload-nginx-rps}
+            \label{fig:2n-icx-e810cq-0b-2t1c-eth-ip4tcp-ldpreload-nginx-rps}
     \end{figure}
