@@ -30,10 +30,6 @@
 UDP/IP with iperf3
 ~~~~~~~~~~~~~~~~~~
 
-.. raw:: latex
-
-    \clearpage
-
 1460b-2t1c-e810xxv-ip4udp-base-scale
 ------------------------------------
 
@@ -48,4 +44,24 @@ UDP/IP with iperf3
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810xxv-1460b-2t1c-eth-ip4udp-ldpreload-iperf3-bps}
             \label{fig:3n-icx-e810xxv-1460b-2t1c-eth-ip4udp-ldpreload-iperf3-bps}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+1460b-2t1c-e810cq-ip4udp-base-scale
+-----------------------------------
+
+.. raw:: html
+
+    <iframe id="3" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../../_static/vpp/3n-icx-e810cq-1460b-2t1c-eth-ip4udp-ldpreload-iperf3-bps.html"></iframe>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-1460b-2t1c-eth-ip4udp-ldpreload-iperf3-bps}
+            \label{fig:3n-icx-e810cq-1460b-2t1c-eth-ip4udp-ldpreload-iperf3-bps}
     \end{figure}
