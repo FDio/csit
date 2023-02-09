@@ -467,9 +467,17 @@ function get_test_code () {
             NODENESS="2n"
             FLAVOR="icx"
             ;;
+        *"2n-spr"*)
+            NODENESS="2n"
+            FLAVOR="spr"
+            ;;
         *"3n-icx"*)
             NODENESS="3n"
             FLAVOR="icx"
+            ;;
+        *"3n-spr"*)
+            NODENESS="3n"
+            FLAVOR="spr"
             ;;
         *"3n-snr"*)
             NODENESS="3n"
@@ -854,10 +862,13 @@ function select_tags () {
         *"3n-icx"* | *"2n-icx"*)
             default_nic="nic_intel-xxv710"
             ;;
+        *"3n-spr"* | *"2n-spr"*)
+            default_nic="nic_intel-e810cq"
+            ;;
         *"2n-clx"* | *"2n-zn2"*)
             default_nic="nic_intel-xxv710"
             ;;
-        *"2n-tx2"* | *"3n-alt"* | *"mrr-daily-master")
+        *"2n-tx2"* | *"3n-alt"*)
             default_nic="nic_intel-xl710"
             ;;
         *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
@@ -976,21 +987,28 @@ function select_tags () {
         *"2n-icx"*)
             test_tag_array+=("!ipsechw")
             ;;
-        *"3n-icx"*)
+        *"2n-spr"*)
             test_tag_array+=("!ipsechw")
-            # Not enough nic_intel-xxv710 to support double link tests.
-            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            ;;
+        *"2n-tx2"*)
+            test_tag_array+=("!ipsechw")
             ;;
         *"2n-zn2"*)
             test_tag_array+=("!ipsechw")
             ;;
-        *"2n-tx2"* | *"3n-alt"*)
+        *"3n-alt"*)
             test_tag_array+=("!ipsechw")
+            ;;
+        *"3n-icx"*)
+            test_tag_array+=("!ipsechw")
+            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             ;;
         *"3n-snr"*)
             ;;
+        *"3n-spr"*)
+            test_tag_array+=("!ipsechw")
+            ;;
         *"3n-tsh"*)
-            # 3n-tsh only has x520 NICs which don't work with AVF
             test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
             ;;
