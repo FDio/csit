@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f6b647f_99b2ee89",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-09T07:56:32Z",
+      "side": 1,
+      "message": "i will not allow any sleep() function outside ssh library. \n\nplease take a look how this can be rewritten with exec_cmd_no_error from ssh.py\n\nthat solves the problem of non reliability of syscall.\nwith exec_cmd_no_error(retries\u003d10) you can directly control various timeout issues.",
+      "range": {
+        "startLine": 227,
+        "startChar": 12,
+        "endLine": 227,
+        "endChar": 20
+      },
+      "revId": "eb879b12dbc9d076d2ca8238f5d6b11ec1c1e37a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "094cf0f9_86ee24b1",
+        "filename": "resources/tools/ab/ABTools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-09T07:56:32Z",
+      "side": 1,
+      "message": "from re import search",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 9
+      },
+      "revId": "eb879b12dbc9d076d2ca8238f5d6b11ec1c1e37a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a9b2a5_d9507928",
+        "filename": "resources/tools/ab/ABTools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-09T07:56:32Z",
+      "side": 1,
+      "message": "what is this required for? Results are now parsed in \"export_hoststack_results\" to json.\n\nAnything else we want to log as pure stddout for debug purposes.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 22
+      },
+      "revId": "eb879b12dbc9d076d2ca8238f5d6b11ec1c1e37a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
