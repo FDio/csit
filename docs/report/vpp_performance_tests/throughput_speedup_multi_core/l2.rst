@@ -22,6 +22,7 @@ CSIT source code for the test cases used for plots can be found in
     l2-2n-icx-xxv710
     l2-2n-icx-e810cq
     l2-3n-icx-xxv710
+    l2-3n-icx-e810cq
     l2-2n-clx-xxv710
     l2-2n-clx-x710
     l2-2n-clx-cx556a

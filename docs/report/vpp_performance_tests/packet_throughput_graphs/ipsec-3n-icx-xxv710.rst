@@ -31,49 +31,48 @@
 3n-icx-xxv710
 ~~~~~~~~~~~~~
 
-..
-    imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf
-    ------------------------------------------------------
+imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf
+------------------------------------------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="1" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-ndr}
-                \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-ndr}
+            \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-pdr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-pdr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-pdr}
-                \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-pdr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-pdr}
+            \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-pdr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 imix-2t1c-ipsec-aes256gcm-ip4routing-base-scale-sw-avf
 ------------------------------------------------------
@@ -161,92 +160,91 @@ imix-2t1c-ipsec-ip4routing-base-scale-sw-dpdk
 
     \clearpage
 
-..
-    imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf
-    ------------------------------------------------------
+imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf
+------------------------------------------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="7" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="7" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr}
-                \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr}
+            \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="8" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="8" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr}
-                \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr}
+            \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk
-    -------------------------------------------------------
+imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk
+-------------------------------------------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="9" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="9" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr}
-                \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr}
+            \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr}
-                \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr}
+            \label{fig:3n-icx-xxv710-imix-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 1518b-2t1c-ipsec-aes128cbc-ip4routing-base-scale-sw-avf
 -------------------------------------------------------
@@ -377,85 +375,84 @@ imix-2t1c-ipsec-ip4routing-base-scale-sw-dpdk
 
     \clearpage
 
-..
-    1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf
-    -------------------------------------------------------
+1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf
+-------------------------------------------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="7i" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="7i" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr}
-                \label{fig:3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr}
+            \label{fig:3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="8i" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="8i" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr}
-                \label{fig:3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr}
+            \label{fig:3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-avf-pdr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk
-    --------------------------------------------------------
+1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk
+--------------------------------------------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="9i" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="9i" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr}
-                \label{fig:3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr}
+            \label{fig:3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-ndr}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="10i" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="10i" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr}
-                \label{fig:3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr}
+            \label{fig:3n-icx-xxv710-1518b-2t1c-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-pdr}
+    \end{figure}
