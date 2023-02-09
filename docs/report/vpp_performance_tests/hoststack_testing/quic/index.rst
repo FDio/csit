@@ -31,10 +31,6 @@
 QUIC/UDP/IP with vpp_echo
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. raw:: latex
-
-    \clearpage
-
 1280b-2t1c-e810xxv-base-scale
 -----------------------------
 
@@ -49,4 +45,25 @@ QUIC/UDP/IP with vpp_echo
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810xxv-1280b-2t1c-eth-ip4udpquic-vppecho-bps}
             \label{fig:3n-icx-e810xxv-1280b-2t1c-eth-ip4udpquic-vppecho-bps}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+
+1280b-2t1c-e810cq-base-scale
+----------------------------
+
+.. raw:: html
+
+    <iframe id="2" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../../_static/vpp/3n-icx-e810cq-1280b-2t1c-eth-ip4udpquic-vppecho-bps.html"></iframe>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-icx-e810cq-1280b-2t1c-eth-ip4udpquic-vppecho-bps}
+            \label{fig:3n-icx-e810cq-1280b-2t1c-eth-ip4udpquic-vppecho-bps}
     \end{figure}
