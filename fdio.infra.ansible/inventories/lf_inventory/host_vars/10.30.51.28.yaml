@@ -1,8 +1,8 @@
 ---
-# file: host_vars/10.30.51.19.yaml
+# file: host_vars/10.30.51.28.yaml
 
-hostname: "s19-nomad"
-inventory_cimc_hostname: "10.30.50.19"
+hostname: "s28-nomad"
+inventory_cimc_hostname: "10.30.50.28"
 
 # User management.
 users:
@@ -59,7 +59,6 @@ consul_retry_servers:
   - "10.30.51.24"
   - "10.30.51.25"
 consul_service_mgr: "systemd"
-
 
 # Docker daemon settings.
 docker_daemon:
