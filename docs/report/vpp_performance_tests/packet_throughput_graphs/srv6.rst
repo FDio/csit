@@ -18,4 +18,5 @@ CSIT source code for the test cases used for plots can be found in
 .. toctree::
 
     srv6-3n-icx-xxv710
+    srv6-3n-icx-e810cq
     srv6-3n-tsh-x520
