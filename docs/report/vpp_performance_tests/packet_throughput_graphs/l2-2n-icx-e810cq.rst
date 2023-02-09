@@ -28,16 +28,16 @@
 
     </script>
 
-2n-icx-xxv710
+2n-icx-e810cq
 ~~~~~~~~~~~~~
 
-64b-l2switching-base-scale-avf
-------------------------------
+64b-2t1c-l2switching-base-scale-avf
+-----------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="121" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-l2switching-base-scale-avf-ndr-tsa.html"></iframe>
+    <iframe id="121" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-l2switching-base-scale-avf-ndr-tsa}
-            \label{fig:2n-icx-xxv710-64b-l2switching-base-scale-avf-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-ndr}
+            \label{fig:2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="122" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-l2switching-base-scale-avf-pdr-tsa.html"></iframe>
+    <iframe id="122" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,21 +66,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-l2switching-base-scale-avf-pdr-tsa}
-            \label{fig:2n-icx-xxv710-64b-l2switching-base-scale-avf-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-pdr}
+            \label{fig:2n-icx-e810cq-64b-2t1c-l2switching-base-scale-avf-pdr}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-l2switching-base-scale-dpdk
--------------------------------
+64b-2t1c-l2switching-base-scale-dpdk
+------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-l2switching-base-scale-dpdk-ndr-tsa.html"></iframe>
+    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -89,8 +89,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-l2switching-base-scale-dpdk-ndr-tsa}
-            \label{fig:2n-icx-xxv710-64b-l2switching-base-scale-dpdk-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-ndr}
+            \label{fig:2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -100,7 +100,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-xxv710-64b-l2switching-base-scale-dpdk-pdr-tsa.html"></iframe>
+    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -109,6 +109,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-xxv710-64b-l2switching-base-scale-dpdk-pdr-tsa}
-            \label{fig:2n-icx-xxv710-64b-l2switching-base-scale-dpdk-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-pdr}
+            \label{fig:2n-icx-e810cq-64b-2t1c-l2switching-base-scale-dpdk-pdr}
     \end{figure}
