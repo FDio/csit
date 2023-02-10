@@ -164,7 +164,7 @@ nodes:
     interfaces:
       port1:
         # s66-t37-sut2-c9/p1 - 100GE port1 Intel E810-CQDA2 2p100GE.
-        mac_address: "40:a6:b7:67:27:5c"
+        mac_address: "40:a6:b7:67:27:54"
         pci_address: "0000:17:00.0"
         ip4_address: "172.16.10.3"
         driver: ice

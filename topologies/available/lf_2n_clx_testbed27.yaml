@@ -179,7 +179,7 @@ nodes:
         model: Mellanox-CX556A
       port8:
         # s33-t27-sut1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
-        mac_address: "ec:0d:9a:8c:c6:96"
+        mac_address: "ec:0d:9a:8c:c6:97"
         pci_address: "0000:5e:00.1"
         ip4_address: "172.16.80.1"
         driver: mlx5_core
