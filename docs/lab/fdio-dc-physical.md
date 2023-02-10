@@ -80,9 +80,6 @@ yul1-11-lf-tor-switch,up,switch,uplink,?,?,?,?,3016.11,u47
 mtl1-6-7050QX-32,up,switch,uplink,?,?,?,?,3016.11,u46
 fdio-marvell-dev,up,N/A,dev,ThunderX-88XX,N/A,10.30.51.38,10.30.50.38,3016.11,u45
 s56-t14-sut1,up,t14,1n-tx2,ThunderX2-9980,N/A,10.30.51.71,10.30.50.71,3016.11,u41-u42
-s20-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH1950V1FQ,10.30.51.20,10.30.50.20,3016.11,u39-u40
-s22-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0HZ,10.30.51.22,10.30.50.22,3016.11,u37-u38
-s21-nomad,up,nomad-cluster1,nomad-client,UCSC-C240-M4SX,FCH2013V0J2,10.30.51.21,10.30.50.21,3016.11,u35-u36
 s78-t38-sut1,up,t38,3n-icx,SYS-740GP-TNRT,C7470KL03P50450,10.30.51.78,10.30.50.78,3016.11,u31-u34
 s79-t38-sut2,up,t38,3n-icx,SYS-740GP-TNRT,C7470KL07P50297,10.30.51.79,10.30.50.79,3016.11,u27-u30
 s80-t38-tg1,up,t38,3n-icx,SYS-740GP-TNRT,C7470KL03P50454,10.30.51.80,10.30.50.80,3016.11,u23-u26

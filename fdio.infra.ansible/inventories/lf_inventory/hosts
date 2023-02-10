@@ -44,13 +44,6 @@ all:
         10.30.51.71: #s56-t14-sut1 - thunderx2 9980
     nomad:
       hosts:
-        10.30.51.16: #s16-nomad - haswell
-        10.30.51.17: #s17-nomad - haswell
-        10.30.51.18: #s18-nomad - haswell
-        10.30.51.19: #s19-nomad - haswell
-        10.30.51.20: #s20-nomad - haswell
-        10.30.51.21: #s21-nomad - haswell
-        10.30.51.22: #s22-nomad - haswell
         10.30.51.23: #s23-nomad - skylake
         10.30.51.24: #s24-nomad - skylake
         10.30.51.25: #s25-nomad - skylake
