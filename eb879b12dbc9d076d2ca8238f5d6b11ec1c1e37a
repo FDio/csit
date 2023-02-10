@@ -24,6 +24,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "995f473a_4640940a",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2023-02-10T09:13:11Z",
+      "side": 1,
+      "message": "Change to use exec_cmd_no_error in patchset 2",
+      "parentUuid": "2f6b647f_99b2ee89",
+      "range": {
+        "startLine": 227,
+        "startChar": 12,
+        "endLine": 227,
+        "endChar": 20
+      },
+      "revId": "eb879b12dbc9d076d2ca8238f5d6b11ec1c1e37a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "094cf0f9_86ee24b1",
@@ -47,6 +71,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fafc4e1_69055614",
+        "filename": "resources/tools/ab/ABTools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2023-02-10T09:13:11Z",
+      "side": 1,
+      "message": "changed in patchset 2",
+      "parentUuid": "094cf0f9_86ee24b1",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 9
+      },
+      "revId": "eb879b12dbc9d076d2ca8238f5d6b11ec1c1e37a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4a9b2a5_d9507928",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-02-09T07:56:32Z",
       "side": 1,
       "message": "what is this required for? Results are now parsed in \"export_hoststack_results\" to json.\n\nAnything else we want to log as pure stddout for debug purposes.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 22
+      },
+      "revId": "eb879b12dbc9d076d2ca8238f5d6b11ec1c1e37a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56cd7dc4_dcfa60e8",
+        "filename": "resources/tools/ab/ABTools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2023-02-10T09:13:11Z",
+      "side": 1,
+      "message": "The initial purpose is to keep test case output as its original, yes, it is not a must, so remove it in patchset 2",
+      "parentUuid": "a4a9b2a5_d9507928",
       "range": {
         "startLine": 190,
         "startChar": 0,
