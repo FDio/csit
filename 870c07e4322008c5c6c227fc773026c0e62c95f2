@@ -16,6 +16,86 @@
       "message": "Hi Peter, all your comments were addressed,  please help review again, thanks a lot.",
       "revId": "870c07e4322008c5c6c227fc773026c0e62c95f2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98772795_ab079673",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-10T18:37:19Z",
+      "side": 1,
+      "message": "almost perfect. please fix minor bugs",
+      "revId": "870c07e4322008c5c6c227fc773026c0e62c95f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d1a657b_7e7d933c",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-10T18:37:19Z",
+      "side": 1,
+      "message": "return",
+      "range": {
+        "startLine": 229,
+        "startChar": 8,
+        "endLine": 229,
+        "endChar": 16
+      },
+      "revId": "870c07e4322008c5c6c227fc773026c0e62c95f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a7897a5_89a4e01a",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-10T18:37:19Z",
+      "side": 1,
+      "message": "not needed merge with L229",
+      "range": {
+        "startLine": 230,
+        "startChar": 9,
+        "endLine": 230,
+        "endChar": 21
+      },
+      "revId": "870c07e4322008c5c6c227fc773026c0e62c95f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4b14577_4947578e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-10T18:37:19Z",
+      "side": 1,
+      "message": "no two lines",
+      "revId": "870c07e4322008c5c6c227fc773026c0e62c95f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
