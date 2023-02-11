@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12478d82_2471e0fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-11T12:34:44Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest nfv-density-ndrpdr-00",
+      "revId": "e49c62f191ff67407ac51e976d282ead6ef8550c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
