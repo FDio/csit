@@ -4308,17 +4308,17 @@
   - "name"
   - "conf-history"
 
-# Detailed Test Results - VPP Device Results - Ubuntu
+# Detailed Test Results - VPP Device Results - 1n-skx
 - type: "table"
-  title: "Detailed Test Results - VPP Device Results - Ubuntu"
+  title: "Detailed Test Results - VPP Device Results - 1n-skx"
   algorithm: "table_merged_details"
-  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_results_ubuntu"
+  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,1N,SKX]}/vpp_device_results_1n_skx"
   columns:
     - title: " |prein| Test Name |preout| "
       data: "data name"
     - title: " |prein| Status |preout| "
       data: "data status"
-  data: "vpp-device-results-ubuntu"
+  data: "vpp-device-1n-skx"
   filter: "all"
   parameters:
   - "name"
@@ -4326,17 +4326,52 @@
   - "doc"
   - "status"
 
-# Test configuration - VPP Device Test Configs - Ubuntu
+# Detailed Test Results - VPP Device Results - 1n-tx2
 - type: "table"
-  title: "Test configuration - VPP Device Test Configs - Ubuntu"
+  title: "Detailed Test Results - VPP Device Results - 1n-tx2"
   algorithm: "table_merged_details"
-  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}/vpp_device_configuration_ubuntu"
+  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,1N,TX2]}/vpp_device_results_1n_tx2"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| Status |preout| "
+      data: "data status"
+  data: "vpp-device-1n-tx2"
+  filter: "all"
+  parameters:
+  - "name"
+  - "parent"
+  - "doc"
+  - "status"
+
+# Test configuration - VPP Device Test Configs - 1n-skx
+- type: "table"
+  title: "Test configuration - VPP Device Test Configs - 1n-skx"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,1N,SKX]}/vpp_device_configuration_1n_skx"
   columns:
     - title: " |prein| Test Name |preout| "
       data: "data name"
     - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
       data: "data conf-history"
-  data: "vpp-device-results-ubuntu"
+  data: "vpp-device-1n-skx"
+  filter: "all"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP Device Test Configs - 1n-tx2
+- type: "table"
+  title: "Test configuration - VPP Device Test Configs - 1n-tx2"
+  algorithm: "table_merged_details"
+  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,1N,TX2]}/vpp_device_configuration_1n_tx2"
+  columns:
+    - title: " |prein| Test Name |preout| "
+      data: "data name"
+    - title: " |prein| VPP API Test Commands History - Commands Used Per Test Case |preout| "
+      data: "data conf-history"
+  data: "vpp-device-1n-tx2"
   filter: "all"
   parameters:
   - "parent"
@@ -5423,23 +5458,43 @@
       - "vic1385"
       - "ena"
 
-# VPP Device Results - Ubuntu
+# VPP Device Results - 1n-skx
 - type: "file"
-  title: "VPP Device Results - Ubuntu"
+  title: "VPP Device Results - 1n-skx"
   algorithm: "file_test_results"
-  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}"
-  dir-tables: "{DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]}"
-  data: "vpp-device-results-ubuntu"
+  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,1N,SKX]}"
+  dir-tables: "{DIR[DTR,FUNC,VPP,DEVICE,1N,SKX]}"
+  data: "vpp-device-1n-skx"
   filter: "all"
   data-start-level: 4
 
-# VPP Device Configuration - Ubuntu
+# VPP Device Results - 1n-tx2
 - type: "file"
-  title: "VPP Device Configuration - Ubuntu"
+  title: "VPP Device Results - 1n-tx2"
   algorithm: "file_test_results"
-  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}"
-  dir-tables: "{DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]}"
-  data: "vpp-device-results-ubuntu"
+  output-file: "{DIR[DTR,FUNC,VPP,DEVICE,1N,TX2]}"
+  dir-tables: "{DIR[DTR,FUNC,VPP,DEVICE,1N,TX2]}"
+  data: "vpp-device-1n-tx2"
+  filter: "all"
+  data-start-level: 4
+
+# VPP Device Configuration - 1n-skx
+- type: "file"
+  title: "VPP Device Configuration - 1n-skx"
+  algorithm: "file_test_results"
+  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,1N,SKX]}"
+  dir-tables: "{DIR[DTC,FUNC,VPP,DEVICE,1N,SKX]}"
+  data: "vpp-device-1n-skx"
+  filter: "all"
+  data-start-level: 4
+
+# VPP Device Configuration - 1n-tx2
+- type: "file"
+  title: "VPP Device Configuration - 1n-tx2"
+  algorithm: "file_test_results"
+  output-file: "{DIR[DTC,FUNC,VPP,DEVICE,1N,TX2]}"
+  dir-tables: "{DIR[DTC,FUNC,VPP,DEVICE,1N,TX2]}"
+  data: "vpp-device-1n-tx2"
   filter: "all"
   data-start-level: 4
 

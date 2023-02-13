@@ -66,7 +66,8 @@
     DIR[DTR,MRR,VPP,2N,TX2]: "{DIR[DTR]}/vpp_mrr_results_2n_tx2"
     DIR[DTR,MRR,VPP,3N,SNR]: "{DIR[DTR]}/vpp_mrr_results_3n_snr"
     DIR[DTR,MRR,VPP,2N,AWS]: "{DIR[DTR]}/vpp_mrr_results_2n_aws"
-    DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
+    DIR[DTR,FUNC,VPP,DEVICE,1N,SKX]: "{DIR[DTR]}/vpp_device_results_1n_skx"
+    DIR[DTR,FUNC,VPP,DEVICE,1N,TX2]: "{DIR[DTR]}/vpp_device_results_1n_tx2"
 
     # Detailed test configurations
     DIR[DTC]: "{DIR[WORKING,SRC]}/test_configuration"
@@ -90,7 +91,8 @@
     DIR[DTC,MRR,VPP,2N,TX2]: "{DIR[DTC]}/vpp_mrr_configuration_2n_tx2"
     DIR[DTC,MRR,VPP,3N,SNR]: "{DIR[DTC]}/vpp_mrr_configuration_3n_snr"
     DIR[DTC,MRR,VPP,2N,AWS]: "{DIR[DTC]}/vpp_mrr_configuration_2n_aws"
-    DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTC]}/vpp_device_configuration_ubuntu"
+    DIR[DTC,FUNC,VPP,DEVICE,1N,SKX]: "{DIR[DTC]}/vpp_device_configuration_1n_skx"
+    DIR[DTC,FUNC,VPP,DEVICE,1N,TX2]: "{DIR[DTC]}/vpp_device_configuration_1n_tx2"
 
     # Detailed tests operational data
     DIR[DTO]: "{DIR[WORKING,SRC]}/test_operational_data"

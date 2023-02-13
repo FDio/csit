@@ -70,7 +70,7 @@ CSIT-2302
     detailed_test_results/vpp_mrr_results/index
     detailed_test_results/dpdk_performance_results/index
     detailed_test_results/trex_performance_results/index
-    detailed_test_results/vpp_device_results_ubuntu/index
+    detailed_test_results/vpp_device_results/index
 
 .. toctree::
     :maxdepth: 2
@@ -78,7 +78,7 @@ CSIT-2302
 
     test_configuration/vpp_performance_configuration/index
     test_configuration/vpp_mrr_configuration/index
-    test_configuration/vpp_device_configuration_ubuntu/index
+    test_configuration/vpp_device_configuration/index
 
 .. toctree::
     :maxdepth: 2
