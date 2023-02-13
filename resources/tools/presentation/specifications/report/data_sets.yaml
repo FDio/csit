@@ -4,9 +4,13 @@
 
 - type: "data-sets"
 
-  vpp-device-results-ubuntu:
+  vpp-device-1n-skx:
     csit-vpp-device-2302-ubuntu2204-x86_64-1n-skx:
       - 61  # 2302.rc2 VPP DEV env 11
+
+  vpp-device-1n-tx2:
+    csit-vpp-device-2302-ubuntu2204-aarch64-1n-tx2:
+      - 87  # 2302.rc2 VPP DEV env 11
 
 ################################################################################
 
