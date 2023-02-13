@@ -16,6 +16,23 @@
       "message": "csit-dpdk-3n-alt-perftest mrrANDnic_*ANDdpdkNOT9000b",
       "revId": "da9cff3f6513da2cac6a8cb7eb2fc0b72458dcae",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b10a98f_c2a374db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 65
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-13T17:47:08Z",
+      "side": 1,
+      "message": "84minutes for one test?\nhttps://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-master-3n-alt/152/console\n97:39:23.380 ------------------------------------------------------------------------------\n97:39:23.381 64B-4c-ethip4-ip4base-l3fwd-mrr                                       | FAIL |\n99:03:28.240 L3fwd failed to start properly.\n99:03:28.240 ------------------------------------------------------------------------------\n",
+      "revId": "da9cff3f6513da2cac6a8cb7eb2fc0b72458dcae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
