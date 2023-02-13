@@ -119,8 +119,8 @@ rst_epilog = """
 .. _build logs from FD.io vpp coverage job 3n-icx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-3n-icx
 .. _build logs from FD.io vpp coverage job 2n-zn2: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-2n-zn2
 .. _build logs from FD.io vpp coverage job 2n-aws: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-perf-report-coverage-{srelease}-2n-aws
-.. _build logs from FD.io vpp device job 1n-skx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-device-{srelease}-ubuntu2204-1n-skx
-.. _build logs from FD.io vpp device job 1n-tx2: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-device-{srelease}-ubuntu2204-1n-tx2
+.. _build logs from FD.io vpp device job 1n-skx: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-device-{srelease}-ubuntu2204-x86_64-1n-skx
+.. _build logs from FD.io vpp device job 1n-tx2: https://s3-logs.fd.io/vex-yul-rot-jenkins-1/csit-vpp-device-{srelease}-ubuntu2204-aarch64-1n-tx2
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-{srelease}-ubuntu2004-x86_64/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/fdio.infra.ansible?h={release}
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}&id={vpp_release_commit_id}
