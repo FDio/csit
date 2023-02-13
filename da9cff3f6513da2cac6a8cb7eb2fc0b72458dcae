@@ -51,6 +51,23 @@
       "parentUuid": "5b10a98f_c2a374db",
       "revId": "da9cff3f6513da2cac6a8cb7eb2fc0b72458dcae",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ec82f10_607150af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 65
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-02-13T19:47:12Z",
+      "side": 1,
+      "message": "- breaking testbeds constantly.\n- huge code changes for no gain (can be written in few lines).\n- impacting release cycle.",
+      "revId": "da9cff3f6513da2cac6a8cb7eb2fc0b72458dcae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
