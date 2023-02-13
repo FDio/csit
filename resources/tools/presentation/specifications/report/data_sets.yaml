@@ -4,9 +4,13 @@
 
 - type: "data-sets"
 
-  vpp-device-results-ubuntu:
+  vpp-device-1n-skx:
     csit-vpp-device-2302-ubuntu2204-x86_64-1n-skx:
       - 61  # 2302.rc2 VPP DEV env 11
+
+  vpp-device-1n-tx2:
+    csit-vpp-device-2302-ubuntu2204-aarch64-1n-tx2:
+      - 87  # 2302.rc2 VPP DEV env 11
 
 ################################################################################
 
@@ -882,7 +886,7 @@
       - 9   # 2302.rc2 NDRPDR iter env 11
       - 11  # 2302.rc2 NDRPDR iter env 11
       - 12  # 2302.rc2 NDRPDR iter env 11
-      # - 15  # 2302.rc2 NDRPDR iter env 11
+      - 15  # 2302.rc2 NDRPDR iter env 11
 
   vpp-3n-icx-curr-iter-best:
     csit-vpp-perf-report-iterative-2302-3n-icx:
@@ -931,6 +935,8 @@
       - 8   # 2302.rc2 hoststack iter env 11
       - 10  # 2302.rc2 hoststack iter env 11
       - 14  # 2302.rc2 hoststack iter env 11
+      - 17  # 2302.rc2 hoststack iter env 11
+      - 18  # 2302.rc2 hoststack iter env 11
 
   vpp-3n-icx-curr-cov:
     # csit-vpp-perf-report-coverage-2302-3n-icx:
@@ -1017,9 +1023,6 @@
     csit-vpp-perf-report-iterative-2302-3n-alt:
       - 5   # 2302.rc2 NDRPDR iter env 11
       - 6   # 2302.rc2 NDRPDR iter env 11
-      # - 7   # 2302.rc2 NDRPDR iter env 11
-      - 8   # 2302.rc2 NDRPDR iter env 11
-      - 9   # 2302.rc2 NDRPDR iter env 11
 
   vpp-3n-alt-curr-iter-best:
     csit-vpp-perf-report-iterative-2302-3n-alt:
