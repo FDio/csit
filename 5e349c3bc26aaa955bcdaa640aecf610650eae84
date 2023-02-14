@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cffa58b_881d4f43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2023-02-14T18:47:30Z",
+      "side": 1,
+      "message": "first cut - need to review the NIC placement approach",
+      "revId": "5e349c3bc26aaa955bcdaa640aecf610650eae84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
