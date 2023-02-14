@@ -7,7 +7,7 @@ variable "nomad_acl" {
 variable "nomad_provider_address" {
   description = "FD.io Nomad cluster address."
   type        = string
-  default     = "http://nomad.service.consul:4646"
+  default     = "http://10.30.51.23:4646"
 }
 
 variable "nomad_provider_ca_file" {
@@ -31,7 +31,7 @@ variable "nomad_provider_key_file" {
 variable "vault_provider_address" {
   description = "Vault cluster address."
   type        = string
-  default     = "http://vault.service.consul:8200"
+  default     = "http://10.30.51.23:8200"
 }
 
 variable "vault_provider_skip_tls_verify" {

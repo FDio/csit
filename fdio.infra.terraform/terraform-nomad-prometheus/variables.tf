@@ -21,7 +21,7 @@ variable "volume_source" {
 variable "pm_version" {
   description = "Prometheus version"
   type        = string
-  default     = "2.33.1"
+  default     = "2.42.0"
 }
 
 variable "auto_promote" {
@@ -46,6 +46,12 @@ variable "cpu" {
   description = "CPU allocation"
   type        = number
   default     = 2000
+}
+
+variable "constraint_value" {
+  description = "The constraint allows restricting the set of eligible nodes."
+  type        = string
+  default     = "builder"
 }
 
 variable "data_dir" {
@@ -100,6 +106,12 @@ variable "use_host_volume" {
   description = "Use Nomad host volume feature"
   type        = bool
   default     = true
+}
+
+variable "artifact_source_checksum" {
+  description = "Prometheus release checksum"
+  type        = string
+  default     = "422dab055ed9c7bcaff52b718705f9192c6fac0de6b7e78dd278e70ee2663dcc"
 }
 
 variable "volume_destination" {
