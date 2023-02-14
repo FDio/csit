@@ -1,6 +1,6 @@
 terraform {
   backend "consul" {
-    address = "vault.service.consul:8500"
+    address = "10.30.51.23:8500"
     scheme  = "http"
     path    = "terraform/etl"
   }

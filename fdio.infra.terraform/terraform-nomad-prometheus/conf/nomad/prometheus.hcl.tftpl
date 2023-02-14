@@ -8,18 +8,15 @@ job "${job_name}" {
   datacenters = "${datacenters}"
 
   # The "type" parameter controls the type of job, which impacts the scheduler's
-  # decision on placement. This configuration is optional and defaults to
-  # "service". For a full list of job types and their differences, please see
-  # the online documentation.
+  # decision on placement.
   #
-  #     https://www.nomadproject.io/docs/jobspec/schedulers
+  # https://www.nomadproject.io/docs/jobspec/schedulers
   #
   type        = "service"
 
   update {
     # The "max_parallel" parameter specifies the maximum number of updates to
-    # perform in parallel. In this case, this specifies to update a single task
-    # at a time.
+    # perform in parallel.
     max_parallel      = ${max_parallel}
 
     health_check      = "checks"
@@ -73,12 +70,11 @@ job "${job_name}" {
   # the same Nomad client. Any task within a group will be placed on the same
   # client.
   #
-  #     https://www.nomadproject.io/docs/job-specification/group
+  # https://www.nomadproject.io/docs/job-specification/group
   #
   group "${job_name}-group-1" {
     # The "count" parameter specifies the number of the task groups that should
-    # be running under this group. This value must be non-negative and defaults
-    # to 1.
+    # be running under this group. This value must be non-negative.
     count = ${group_count}
 
     # The volume stanza allows the group to specify that it requires a given
@@ -86,6 +82,7 @@ job "${job_name}" {
     # as it will be exposed to task configuration.
     #
     # https://www.nomadproject.io/docs/job-specification/volume
+    #
     %{ if use_host_volume }
     volume "${job_name}-volume-1" {
       type      = "host"
@@ -100,23 +97,22 @@ job "${job_name}" {
     # https://www.nomadproject.io/docs/job-specification/restart
     #
     restart {
-      interval  = "30m"
-      attempts  = 40
-      delay     = "15s"
-      mode      = "delay"
+      interval = "30m"
+      attempts = 40
+      delay    = "15s"
+      mode     = "delay"
     }
 
     # The constraint allows restricting the set of eligible nodes. Constraints
     # may filter on attributes or client metadata.
     #
-    #     https://www.nomadproject.io/docs/job-specification/constraint
+    # https://www.nomadproject.io/docs/job-specification/constraint
     #
     constraint {
       attribute = "$${attr.cpu.arch}"
       operator  = "!="
       value     = "arm64"
     }
-
     constraint {
       attribute = "$${node.class}"
       value     = "builder"
@@ -129,7 +125,7 @@ job "${job_name}" {
     # your job will be provisioned on, Nomad will provide your tasks with
     # network configuration when they start up.
     #
-    #     https://www.nomadproject.io/docs/job-specification/network
+    # https://www.nomadproject.io/docs/job-specification/network
     #
     network {
       port "${service_name}" {
@@ -141,49 +137,164 @@ job "${job_name}" {
     # The "task" stanza creates an individual unit of work, such as a Docker
     # container, web application, or batch processing.
     #
-    #     https://www.nomadproject.io/docs/job-specification/task
+    # https://www.nomadproject.io/docs/job-specification/task
     #
     task "${job_name}-task-1" {
       # The "driver" parameter specifies the task driver that should be used to
       # run the task.
       driver = "exec"
 
-    %{ if use_host_volume }
+      %{ if use_host_volume }
       volume_mount {
         volume      = "${job_name}-volume-1"
         destination = "${volume_destination}"
         read_only   = false
       }
-    %{ endif }
+      %{ endif }
 
-    %{ if use_vault_provider }
+      %{ if use_vault_provider }
       vault {
         policies = "${vault_kv_policy_name}"
       }
-    %{ endif }
+      %{ endif }
 
       # The "config" stanza specifies the driver configuration, which is passed
       # directly to the driver to start the task. The details of configurations
       # are specific to each driver, so please see specific driver
       # documentation for more information.
       config {
-        command         = "local/prometheus-${version}.linux-amd64/prometheus"
-        args            = [
+        command = "local/prometheus-${version}.linux-amd64/prometheus"
+        args    = [
           "--config.file=secrets/prometheus.yml",
+          "--web.config.file=secrets/web-config.yml",
           "--storage.tsdb.path=${volume_destination}prometheus/",
           "--storage.tsdb.retention.time=7d"
         ]
       }
 
-      # The artifact stanza instructs Nomad to fetch and unpack a remote resource,
-      # such as a file, tarball, or binary. Nomad downloads artifacts using the
-      # popular go-getter library, which permits downloading artifacts from a
-      # variety of locations using a URL as the input source.
+      # The artifact stanza instructs Nomad to fetch and unpack a remote
+      # resource, such as a file, tarball, or binary. Nomad downloads artifacts
+      # using the popular go-getter library, which permits downloading artifacts
+      # from a variety of locations using a URL as the input source.
       #
-      #     https://www.nomadproject.io/docs/job-specification/artifact
+      # https://www.nomadproject.io/docs/job-specification/artifact
       #
       artifact {
-        source = "${url}"
+        source = "${artifact_source}"
+        options {
+          checksum = "sha256:${artifact_source_checksum}"
+        }
+      }
+
+      # The "template" stanza instructs Nomad to manage a template, such as
+      # a configuration file or script. This template can optionally pull data
+      # from Consul or Vault to populate runtime configuration data.
+      #
+      # https://www.nomadproject.io/docs/job-specification/template
+      #
+      template {
+        change_mode     = "noop"
+        change_signal   = "SIGINT"
+        destination     = "secrets/cert_file.crt"
+        left_delimiter  = "{{{"
+        right_delimiter = "}}}"
+        data            = <<EOH
+-----BEGIN CERTIFICATE-----
+MIIFszCCA5ugAwIBAgIUDtmFbbnYaXbXH5ddtHi9l25wM7owDQYJKoZIhvcNAQEL
+BQAwaTELMAkGA1UEBhMCU0sxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoM
+GEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEiMCAGA1UEAwwZcHJvbWV0aGV1cy5z
+ZXJ2aWNlLmNvbnN1bDAeFw0yMjEyMzEyMDMxMDFaFw0yMzAxMzAyMDMxMDFaMGkx
+CzAJBgNVBAYTAlNLMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRl
+cm5ldCBXaWRnaXRzIFB0eSBMdGQxIjAgBgNVBAMMGXByb21ldGhldXMuc2Vydmlj
+ZS5jb25zdWwwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCGH4Tyj+9G
+wYJNb3ubIdr5r0/DZL6XEnRIMiz88TN2QmdwAGKyQqQd7ka0IkdDHPhpRuK8IV1g
+ELQhKab7YJCa6zWuy+rQ6JFlotGC+2tIXd3MDriUd1VPVoX6fw/5zUK/2j6exBk4
+iqxPXHchQLzZ0viUXhQIBS1IUMTbfc0vjA8U0uPgpmAR7ieePWFwmUDxjOLMvJw6
++goeOfaHhW4yYgT+kg7L3rT62G+KG6Op/p7k7BNZ6G6Y6K6uJ7Z/AayAClF2sPZz
+UIGr0uEDvD4IcAsfQgpR5vK/SVBFU5+DSO68mm11m+8IH/HA6GvNSEvCRC0Wtrsm
+Dyq+9S3wZ7tNi7msjQWWKTB1GvTbCbPE1G/q5GJdoKUnioys6AMP4DTEV9o3lCSg
+0sjYnkSTKgRplnuY/7Y2qSNnD1Rw0ZneSkF+8ocgiYcTvtyOY2fkhlT2VaQLX987
+m7892ikPvoCnc/LVeREWW7hCuIQ1E1CCqg304Kd9gCgKoOGXoYmC/3wgJW0RkaM0
+x5DpNLYx0y11CPVg315dvprOuedap6J3CNhBE3fO8ymwepFTzTcWLWgSVWrRLZnx
+Lgb4SPhjxPg6cCZptkmXrPA+9SgW8iNHd/Fer6MAs82Kcp2T1C+qq9RurL/jjxTD
+JaFrwZC2lgWELToMyVDrkBJJbA/2cU9CMQIDAQABo1MwUTAdBgNVHQ4EFgQUx1Mi
+fylZExNnIz0EkrPRdXYmHmAwHwYDVR0jBBgwFoAUx1MifylZExNnIz0EkrPRdXYm
+HmAwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAgEAbvlpMg4YRTNe
+0cgqMZky/GpNjvE/zFManUGgYns8TKyZ8U0laBxRQ4XU/fASwAcOBJYtrkG7w8z+
+FaOUptaOlNGW1VWsPDJt8ZQ2gAcTwKSW2EsBWCmOUJVNH5F0f6fTSqIUIXyxhP2w
+JVniSkfarhb/Y1EDCACdr7Xpu6iF+nQo2o4/HE4Wkto4qwvlrdApYv4dl5J1TWjq
+72fO9axDlNnEGVxa3C3xvKOQqWrEUy/HqC9p4it1yCiq6IYVLyve0meVFBY9xNXU
+137AN7ks4ouuR1FZQkhLtqFuIekSZ5l4G4alwdv1NB8vohJMuMJyk9DarTLqXcYU
+1uypZSmgREn8ByYrj4ochkSpiPw7wgK4H1Aa2cy4KUuzmLLShYu6Mov7hyJDoJSe
+JsDVNoEBuhql4jENATqbWT3pIgYwBvBEXuYXqekcNmVZkKiSOlsxKFfSz21HYDgA
+lCu4SMtlRYHcm4TuoTuy/FEPxHSjFY3pMciJrnO/qUrv9LlWPe1wjKhZLRPEebTk
+r+Oh+aVWpy3ps7shPTjczOrmQykWWBGAjndZjZi4VvZNRxkGZuNwzzZcEkzt0Db7
+l83pTRD58mvLHWl2QXoBS3t7IM6sOMwQvPx1Inp7hb7UIpNsJQaUrhhfKqy0sK18
+mXs4VRtrxYycXxsLbk0SaZGh+juT53M=
+-----END CERTIFICATE-----
+EOH
+      }
+
+      template {
+        change_mode     = "noop"
+        change_signal   = "SIGINT"
+        destination     = "secrets/key_file.key"
+        left_delimiter  = "{{{"
+        right_delimiter = "}}}"
+        data            = <<EOH
+-----BEGIN PRIVATE KEY-----
+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
+775JbZNCKpaELqxy4BNPfRDEJGBh
+-----END PRIVATE KEY-----
+EOH
       }
 
       # The "template" stanza instructs Nomad to manage a template, such as
@@ -335,24 +446,6 @@ groups:
     annotations:
       summary: "Host EDAC Uncorrectable Errors detected (instance {{ $labels.instance }})."
       description: '{{ $labels.instance }} has had {{ printf "%.0f" $value }} uncorrectable memory errors reported by EDAC in the last 5 minutes.'
-- name: "Min.io"
-  rules:
-  - alert: MinioDiskOffline
-    expr: minio_offline_disks > 0
-    for: 0m
-    labels:
-      severity: critical
-    annotations:
-      summary: "Minio disk offline (instance {{ $labels.instance }})"
-      description: "Minio disk is offline."
-  - alert: MinioStorageSpaceExhausted
-    expr: minio_disk_storage_free_bytes / 1024 / 1024 / 1024 < 10
-    for: 2m
-    labels:
-      severity: warning
-    annotations:
-      summary: "Minio storage space exhausted (instance {{ $labels.instance }})."
-      description: "Minio storage space is low (< 10 GB)."
 - name: "Prometheus"
   rules:
   - alert: PrometheusConfigurationReloadFailure
@@ -451,7 +544,6 @@ rule_files:
   - 'alerts.yml'
 
 scrape_configs:
-
   - job_name: 'Nomad Cluster'
     consul_sd_configs:
     - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
@@ -466,17 +558,12 @@ scrape_configs:
 
   - job_name: 'Consul Cluster'
     static_configs:
-      - targets: [ '10.30.51.16:8500' ]
-      - targets: [ '10.30.51.17:8500' ]
-      - targets: [ '10.30.51.18:8500' ]
-      - targets: [ '10.30.51.19:8500' ]
-      - targets: [ '10.30.51.20:8500' ]
-      - targets: [ '10.30.51.21:8500' ]
-      - targets: [ '10.30.51.22:8500' ]
       - targets: [ '10.30.51.23:8500' ]
       - targets: [ '10.30.51.24:8500' ]
       - targets: [ '10.30.51.25:8500' ]
       - targets: [ '10.30.51.26:8500' ]
+      - targets: [ '10.30.51.27:8500' ]
+      - targets: [ '10.30.51.28:8500' ]
       - targets: [ '10.30.51.50:8500' ]
       - targets: [ '10.30.51.51:8500' ]
       - targets: [ '10.30.51.70:8500' ]
@@ -503,17 +590,12 @@ scrape_configs:
 
   - job_name: 'Node Exporter'
     static_configs:
-      - targets: [ '10.30.51.16:9100' ]
-      - targets: [ '10.30.51.17:9100' ]
-      - targets: [ '10.30.51.18:9100' ]
-      - targets: [ '10.30.51.19:9100' ]
-      - targets: [ '10.30.51.20:9100' ]
-      - targets: [ '10.30.51.21:9100' ]
-      - targets: [ '10.30.51.22:9100' ]
       - targets: [ '10.30.51.23:9100' ]
       - targets: [ '10.30.51.24:9100' ]
       - targets: [ '10.30.51.25:9100' ]
       - targets: [ '10.30.51.26:9100' ]
+      - targets: [ '10.30.51.27:9100' ]
+      - targets: [ '10.30.51.28:9100' ]
       - targets: [ '10.30.51.50:9100' ]
       - targets: [ '10.30.51.51:9100' ]
       - targets: [ '10.30.51.70:9100' ]
@@ -526,39 +608,55 @@ scrape_configs:
     - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
       services: [ 'alertmanager' ]
 
-  - job_name: 'Grafana'
-    consul_sd_configs:
-    - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
-      services: [ 'grafana' ]
-
   - job_name: 'Prometheus'
+    honor_timestamps: true
+    params:
+      format:
+      - prometheus
+    scheme: https
+    follow_redirects: true
+    enable_http2: true
     consul_sd_configs:
-    - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
-      services: [ 'prometheus' ]
+    - server: {{ env "CONSUL_HTTP_ADDR" }}
+      services:
+      - prometheus
+    tls_config:
+      cert_file: cert_file.crt
+      key_file: key_file.key
+      insecure_skip_verify: true
+EOH
+      }
 
-  - job_name: 'Minio'
-    bearer_token: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ3NjQ1ODEzMzcsImlzcyI6InByb21ldGhldXMiLCJzdWIiOiJtaW5pbyJ9.oeTw3EIaiFmlDikrHXWiWXMH2vxLfDLkfjEC7G2N3M_keH_xyA_l2ofLLNYtopa_3GCEZnxLQdPuFZrmgpkDWg
-    consul_sd_configs:
-    - server: '{{ env "NOMAD_IP_prometheus" }}:8500'
-      services: [ 'storage' ]
-    metrics_path: /minio/prometheus/metrics
+      template {
+        change_mode     = "noop"
+        change_signal   = "SIGINT"
+        destination     = "secrets/web-config.yml"
+        left_delimiter  = "{{{"
+        right_delimiter = "}}}"
+        data            = <<EOH
+---
+tls_server_config:
+  cert_file: cert_file.crt
+  key_file: key_file.key
 EOH
       }
 
       # The service stanza instructs Nomad to register a service with Consul.
       #
-      #     https://www.nomadproject.io/docs/job-specification/service
+      # https://www.nomadproject.io/docs/job-specification/service
       #
       service {
         name       = "${service_name}"
         port       = "${service_name}"
         tags       = [ "${service_name}$${NOMAD_ALLOC_INDEX}" ]
         check {
-          name     = "Prometheus Check Live"
-          type     = "http"
-          path     = "/-/healthy"
-          interval = "10s"
-          timeout  = "2s"
+          name            = "Prometheus Check Live"
+          type            = "http"
+          path            = "/-/healthy"
+          protocol        = "https"
+          tls_skip_verify = true
+          interval        = "10s"
+          timeout         = "2s"
         }
       }
 
@@ -567,7 +665,7 @@ EOH
       # This ensures the task will execute on a machine that contains enough
       # resource capacity.
       #
-      #     https://www.nomadproject.io/docs/job-specification/resources
+      # https://www.nomadproject.io/docs/job-specification/resources
       #
       resources {
         cpu    = ${cpu}
