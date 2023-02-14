@@ -16,6 +16,8 @@
    1. [3-Node-Altra Arm Ampere (3n-alt)](#3-node-altra-arm-armpere-3n-alt)
    1. [3-Node-Icelake Xeon Intel (3n-icx)](#3-node-icelake-xeon-intel-3n-icx)
    1. [3-Node-SnowRidge Atom Intel (3n-snr)](#3-node-snowridge-atom-intel-3n-snr)
+   1. [2-Node-Full-SapphireRapids Xeon Intel (2nf-spr)](#2-node-full-sapphirerapids-xeon-intel-2nf-spr)
+   1. [2-Node-SapphireRapids Xeon Intel (2n-spr)](#2-Node-SapphireRapids-Xeon-Intel-2n-spr)
 1. [Server Management](#server-management)
    1. [Requirements](#requirements)
    1. [Addressing](#addressing)
@@ -39,6 +41,8 @@
       1. [3-Node-Altra Servers (3n-alt) PROD](#3-node-altra-servers-3n-alt-prod)
       1. [3-Node-Icelake Servers (3n-icx) PROD](#3-node-icelake-servers-3n-icx-prod)
       1. [3-Node-SnowRidge Servers (3n-snr) PROD](#3-node-snowridge-servers-3n-snr-prod)
+      1. ...
+      1. ...
    1. [Per Testbed Wiring](#per-testbed-wiring)
       1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
       1. [1-Node-ThunderX2 Wiring (1n-tx2) PROD](#1-node-thunderx2-wiring-1n-tx2-prod)
@@ -53,6 +57,8 @@
       1. [3-Node-Altra Wiring (3n-alt) PROD](#3-node-altra-wiring-3n-alt-prod)
       1. [3-Node-Icelake Wiring (3n-icx) PROD](#3-node-icelake-wiring-3n-icx-prod)
       1. [3-Node-SnowRidge Wiring (3n-snr) PROD](#3-node-snowridge-wiring-3n-snr-prod)
+      1. ...
+      1. ...
 1. [Inventory](#inventory)
    1. [Appliances](#appliances)
    1. [Arm Servers](#arm-servers)
@@ -177,6 +183,17 @@ TG (Server-Type-F4) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
+### 2-Node-Full-SapphireRapids Xeon Intel (2nf-spr)
+
+One 2-Node-Full-SapphireRapids testbed includes one SUT (Server-Type-TODO) and
+one TG (Server-Type-TODO) connected in a 2-node physical topology with NUMA (socket) daisy chaining. For more detail see [Server Types](#server-types) and [Testbed Topology-TODO](#TODO).
+Used for FD.io performance tests in a full system SUT setup with all PCIe Gen5 x16 lane slots populated with 2p200GbE NICs.
+
+### 2-Node-SapphireRapids Xeon Intel (2n-spr)
+
+Each 2-Node-SapphireRapids testbed includes one SUT (Server-Type-TODO) and
+one TG (Server-Type-TODO) connected in a 2-node circular topology. For more detail see [Server Types](#server-types) and [Testbed Topology-TODO](#TODO).
+Used for FD.io performance tests.
 
 ## Server Management
 
@@ -513,11 +530,11 @@ FD.io CSIT lab contains following server types:
         - RAM Memory: 16* 16GB DDR4-3200.
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
-        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
+        - Numa0: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot2 18:00.xx: xxv710-DA2-2p25GE Intel.
             - PCIe Slot4 3b:00.xx: e810-XXVDA4-4p25GE Intel.
             - PCIe Slot9 5e:00.xx: e810-2CQDA2-2p100GE Intel.
-        - Numa1: (x16, x16, x16 PCIe3.0 lanes)
+        - Numa1: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
@@ -533,11 +550,11 @@ FD.io CSIT lab contains following server types:
         - RAM Memory: 16* 16GB DDR4-3200.
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
-        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
+        - Numa0: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot2 18:00.xx: xxv710-DA2-2p25GE Intel.
             - PCIe Slot4 3b:00.xx: e810-XXVDA4-4p25GE Intel.
             - PCIe Slot9 5e:00.xx: e810-2CQDA2-2p100GE Intel.
-        - Numa1: (x16, x16, x16 PCIe3.0 lanes)
+        - Numa1: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot6 86:00.xx: e810-2CQDA2-2p100GE Intel.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
@@ -553,11 +570,11 @@ FD.io CSIT lab contains following server types:
         - RAM Memory: 16* 16GB DDR4-3200.
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
-        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
+        - Numa0: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot2 18:00.xx: xxv710-DA2-2p25GE Intel.
             - PCIe Slot4 3b:00.xx: e810-XXVDA4-4p25GE Intel.
             - PCIe Slot9 5e:00.xx: e810-2CQDA2-2p100GE Intel.
-        - Numa1: (x16, x16, x16 PCIe3.0 lanes)
+        - Numa1: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
@@ -573,11 +590,11 @@ FD.io CSIT lab contains following server types:
         - RAM Memory: 16* 16GB DDR4-3200.
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
-        - Numa0: (x16, x16, x16 PCIe3.0 lanes)
+        - Numa0: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot2 18:00.xx: xxv710-DA2-2p25GE Intel.
             - PCIe Slot4 3b:00.xx: empty.
             - PCIe Slot9 5e:00.xx: empty.
-        - Numa1: (x16, x16, x16 PCIe3.0 lanes)
+        - Numa1: (x16, x16, x16 PCIe4.0 lanes)
             - PCIe Slot6 86:00.xx: e810-XXVDA4-4p25GE Intel.
             - PCIe Slot8 af:00.xx: e810-2CQDA2-2p100GE Intel.
             - PCIe Slot10 d8:00.xx: empty.
@@ -595,6 +612,86 @@ FD.io CSIT lab contains following server types:
     - NICs configuration:
         - Numa0: (x16, PCIe3.0 lane)
             - PCIe BuiltIn ec:00.xx: e810-XXVDA4-4p25GE Intel.
+22. TODO-REVIEW Server-Type-H1: Purpose - SapphireRapids Xeon SUT for FD.io full system performance testing.
+    - Quantity: 1.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node or 3-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-741GE-TNRT.
+        - Motherboard: Super X13DEG-QT-P.
+        - Processors: 2* Intel Platinum 8462Y+ 32 core 2.8 GHz 300W TDP.
+        - RAM Memory: 16* 32GB DDR5-4800.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot2 18:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot4 3b:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot9 5e:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot6 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot8 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot10 d8:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+23. TODO-REVIEW Server-Type-H2: Purpose - SapphireRapids Xeon TG for FD.io full system performance testing.
+    - Quantity: 1.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node or 3-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-741GE-TNRT.
+        - Motherboard: Super X13DEG-QT-P.
+        - Processors: 2* Intel Platinum 8462Y+ 32 core 2.8 GHz 300W TDP.
+        - RAM Memory: 16* 32GB DDR5-4800.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot2 18:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot4 3b:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot9 5e:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot6 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot8 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot10 d8:00.xx: empty.
+24. TODO-REVIEW Server-Type-H3: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
+    - Quantity: 3.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node and 3-numa-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-741GE-TNRT.
+        - Motherboard: Super X13DEG-QT-P.
+        - Processors: 2* Intel Platinum 8462Y+ 32 core 2.8 GHz 300W TDP.
+        - RAM Memory: 16* 32GB DDR5-4800.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot2 18:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot4 3b:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot9 5e:00.xx: e810-XXVDA4-4p25GE Intel.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot6 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot8 af:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot10 d8:00.xx: e810-XXVDA4-4p25GE Intel.
+25. TODO-REVIEW Server-Type-H4: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
+    - Quantity: 3.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-741GE-TNRT.
+        - Motherboard: Super X13DEG-QT-P.
+        - Processors: 2* Intel Platinum 8462Y+ 32 core 2.8 GHz 300W TDP.
+        - RAM Memory: 16* 32GB DDR5-4800.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot2 18:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot4 3b:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot9 5e:00.xx: e810-XXVDA4-4p25GE Intel.
+        - Numa1: (x16, x16, x16 PCIe5.0 lanes)
+            - PCIe Slot6 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot8 af:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot10 d8:00.xx: e810-XXVDA4-4p25GE Intel.
 ```
 
 ### Naming Convention
