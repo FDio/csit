@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76023af3_e95c0c6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2023-02-15T20:42:39Z",
+      "side": 1,
+      "message": "two open questions:\n1. can trex run on two numas for system full setup?\n2. for 3-numa-node setup, we are short of one e810cq nic and one e810xxv nic - we got 8 of each type, and would need 9 of each type per updated spec in this patchset2.",
+      "revId": "358238cdf7e7ba0f03a4bc1513ed3f13969aac39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
