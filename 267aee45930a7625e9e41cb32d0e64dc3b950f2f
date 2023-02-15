@@ -33,6 +33,23 @@
       "message": "csit-2n-icx-perftest mrrANDnic_*cqANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
       "revId": "267aee45930a7625e9e41cb32d0e64dc3b950f2f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82c59612_ddd50bb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-02-15T15:55:44Z",
+      "side": 1,
+      "message": "csit-2n-zn2-perftest mrrANDnic_*ANDdrv_rdma_coreAND4cAND64bANDethip4-ip4base",
+      "revId": "267aee45930a7625e9e41cb32d0e64dc3b950f2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
