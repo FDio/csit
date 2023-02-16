@@ -60,6 +60,7 @@ archive_tests || die
 reserve_and_cleanup_testbed || die
 select_tags || die
 compose_pybot_arguments || die
+set_environment_variables || die
 # Support for interleaved measurements is kept for future.
 iterations=1 # 8
 for ((iter=0; iter<iterations; iter++)); do
