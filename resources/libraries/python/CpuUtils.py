@@ -13,6 +13,7 @@
 
 """CPU utilities library."""
 
+from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
@@ -157,7 +158,9 @@ class CpuUtils:
         :rtype: list
         :raises RuntimeError: If we require more cpus than available.
         """
+        logger.trace(f"node {node} cpu_node {cpu_node} skip_cnt {skip_cnt} cpu_cnt {cpu_cnt} smt_used {smt_used}")
         cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
+        logger.trace(f"cpu_list {cpu_list}")
 
         cpu_list_len = len(cpu_list)
         if cpu_cnt + skip_cnt > cpu_list_len:
