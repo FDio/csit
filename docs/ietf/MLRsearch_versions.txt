@@ -1,0 +1,95 @@
+
+The python code went through multiple updates,
+but many of them can be ignored from IETF point of view
+(e.g. adding support for ASTF where
+offered trial duration can be way different
+from intended duration).
+
+But some of code updates require changes in IETF draft,
+and we now have multiple code changes prepared or planned
+so here will be a table tracking them.
+
++---------+--------+-----------+----------+---------+-------+-------+
+| Version | Gerrit | Status    | Goals    | IOrder  | Track | trial |
++=========+========+===========+==========+=========+=======+=======+
+| v1      |        | obsolete  | NDR+PDR  | GiP     | 2pG   | 1     |
++---------+--------+-----------+----------+---------+-------+-------+
+| v2      | 30954  | current   | Multiple | GiP     | AFS   | 1     |
++---------+--------+-----------+----------+---------+-------+-------+
+| v3      | 36061  | in review | Multiple | PiG     | AFS   | 1     |
++---------+--------+-----------+----------+---------+-------+-------+
+| v4      | 37418  | cancelled | Multiple | PiG     | AFS   | n     |
++---------+--------+-----------+----------+---------+-------+-------+
+| v5      | no yet | cancelled | Multiple | PiG     | 2     | n     |
++---------+--------+-----------+----------+---------+-------+-------+
+| v6      | no yet | planning  | Multiple | PiG     | 2     | 1     |
++---------+--------+-----------+----------+---------+-------+-------+
+
+Legend:
++ Version:
+ + Numeric value to simplify referencing.
+ + v6 may be considered v3.5 in terms of complexity.
++ Gerrit:
+ + The number in Gerrit URL.
++ Status: Self-explanatory?
++ Goals: How many loss ratio goals are supported.
+ + NDR+PDR: Unconditional NDR goal, optional configurable PDR goal.
+ + Multiple: One or more goals, sorted from low to high loss.
++ IOrder: Iteration order of phases.
+ + GiP: Goal in phase, meaning all goals at 1s are bounded before 5s starts.
+ + PiG: Phase in goal, meaning first goal to 30s before second goal starts.
++ Track: How much data from shorter load results is tracked.
+ + 2pG: Uper/lower bound from previus phase is tracked for each goal separately.
+ + AFS: All results are tracked, but Forgetting Short if a load is re-measured.
+ + 2: Only upper and lower bound from immediately preceding phase is tracked.
++ Trial: Whether "sub-trials" are suppoerted.
+ + 1: No. Load time is always spent in a single trial.
+ + n: Yes. Multiple trials are added (behaves as "1" if load time is short).
+
+Comments to Track:
+
+In other words, the Track column describes what are the starting two values
+when a phase starts, and whether older short results are seen
+during external search.
+With 2 or 2pG, two values come directly from a previous phase, other values
+are not seen during external search.
+With AFS, the whole result database is searched for the best fit
+for starting values, but other values are seen during external search.
+
+Recall that intermediate phase has 4 actions: initial halving, remeasurement,
+external search and internal search.
+At least 2 values are required for the first 2 actions, additional values
+may (or may not) be helpful in external search (and ignored in internal search).
+AFS is better than 2pG in GiP ordering, as it avoids logic complications
+v1 had to do in order to share single trial result between goals.
+But in PiG ordering, multiple trial durations come into play,
+making AFS logic similarly more complicated than "2" tracking
+(and simulator shows no benefit of old results on external search).
+
+Additionally, in AFS with subtrials (v4), there can be multiple
+"maybe does not satisfy" loads from earlier phases
+which currently need adding more trials to see if they are a real upper bound.
+That is conservative, but maybe too conservative (when acceptance ratio
+is 50% and higher). Tracking only 2 bounds (and not seeing old short results
+in external) will simplify the code and may lead to faster search overall.
+
+Due to the complicated and uncertain logic around adding more subtrials
+to partially explored load, Vratko decided to cancel v4 and v5.
+The state of the art algorithms (TODO: add link to the paper about
+recognizing letter boundaries from blurry/noisy photos)
+would execute each subtrial at slightly different load,
+which fits well into PLRsearch sructure,
+not into "hard boundaries" MLRsearch.
+MLRsearch is expected to refine (or ignore) many partially explored loads,
+thus losing much of the effectivity we wanted to gain from subtrials.
+With "2" tracking (v5) the effectivity loss would be smaller,
+so perhaps cancellation of v5 is premature, but other objections remain
+(ignoring loads even if they are likely to become upper bounds,
+complicated logic, not following the state of the art).
+
+Reducing Track from AFS to 2 (from v3 to v6) is still expected
+to simplify the logic (definitely) and probably also to gain some speed
+(has to be verified).
+
+One more open question: If we want to be conservative, should lossy short trials
+be hard upper bounds (not erased by remeasurement)?
