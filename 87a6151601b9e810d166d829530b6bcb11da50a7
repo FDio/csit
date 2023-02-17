@@ -16,6 +16,23 @@
       "message": "csit-3n-tsh-tesftest mrrANDnic_*ANDdrv_vfio_pciAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
       "revId": "87a6151601b9e810d166d829530b6bcb11da50a7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4777596d_ef7d1205",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-02-17T13:41:23Z",
+      "side": 1,
+      "message": "csit-3n-tsh-perftest mrrANDnic_*ANDdrv_vfio_pciAND64bANDeth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc",
+      "revId": "87a6151601b9e810d166d829530b6bcb11da50a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
