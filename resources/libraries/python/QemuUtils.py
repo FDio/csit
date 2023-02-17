@@ -604,14 +604,16 @@ class QemuUtils:
         return json.loads(stdout.split(u"\n", 1)[0]) if stdout else dict()
 
     def _wait_until_vm_boot(self):
-        """Wait until QEMU VM is booted."""
-        try:
-            getattr(self, f'_wait_{self._opt["vnf"]}')()
-        except AttributeError:
-            self._wait_default()
+        """Wait until QEMU VM is booted.
 
-    def _wait_default(self, retries=60):
+        Call _wait_default, or a known _wait_* method for specific vnf.
+        """
+        getattr(self, f"_wait_{self._opt['vnf']}", self._wait_default)()
+
+    def _wait_default(self, retries=180):
         """Wait until QEMU with VPP is booted.
+
+        TODO: Reduce retries when we stop testing Taishan.
 
         :param retries: Number of retries.
         :type retries: int
