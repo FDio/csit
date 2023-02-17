@@ -123,14 +123,12 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             y_data_raw = itm_data[C.VALUE_ITER[ttype]].to_list()[0]
             y_data = [(y * norm_factor) for y in y_data_raw]
             if len(y_data) > 0:
-                y_tput_max = \
-                    max(y_data) if max(y_data) > y_tput_max else y_tput_max
+                y_tput_max = max(max(y_data), y_tput_max)
         else:
             y_data_raw = itm_data[C.VALUE_ITER[ttype]].to_list()
             y_data = [(y * norm_factor) for y in y_data_raw]
             if y_data:
-                y_tput_max = \
-                    max(y_data) if max(y_data) > y_tput_max else y_tput_max
+                y_tput_max = max(max(y_data), y_tput_max)
 
         nr_of_samples = len(y_data)
         tput_kwargs = dict(
@@ -153,7 +151,10 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
             y_lat_row = itm_data[C.VALUE_ITER["pdr-lat"]].to_list()
             y_lat = [(y / norm_factor) for y in y_lat_row]
             if y_lat:
-                y_lat_max = max(y_lat) if max(y_lat) > y_lat_max else y_lat_max
+                try:
+                    y_lat_max = max(max(y_lat), y_lat_max)
+                except TypeError:
+                    continue
             nr_of_samples = len(y_lat)
             lat_kwargs = dict(
                 y=y_lat,
