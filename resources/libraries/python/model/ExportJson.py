@@ -23,9 +23,11 @@ as serialization might have introduced subtle errors.
 import datetime
 import os.path
 
+from binascii import b2a_base64
 from dateutil.parser import parse
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
+from zlib import compress
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.jumpavg.AvgStdevStats import AvgStdevStats
@@ -357,6 +359,11 @@ class ExportJson():
         Results are used to avoid future post processing, making it more
         efficient to consume.
         """
+        if self.data["telemetry"]:
+            telemetry_encode = "\n".join(self.data["telemetry"]).encode()
+            telemetry_compress = compress(telemetry_encode, level=9)
+            telemetry_base64 = b2a_base64(telemetry_compress, newline=False)
+            self.data["telemetry"] = [telemetry_base64.decode()]
         if u"result" not in self.data:
             return
         result_node = self.data[u"result"]
