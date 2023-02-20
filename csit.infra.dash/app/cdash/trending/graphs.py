@@ -487,10 +487,33 @@ def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
             y_data = [float(itm) for itm in df["tm_value"].tolist()]
             hover = list()
             for i, (_, row) in enumerate(df.iterrows()):
+                if row["test_type"] == "mrr":
+                    rate = (
+                        f"mrr avg [{row[C.UNIT['mrr']]}]: "
+                        f"{row[C.VALUE['mrr']]:,.0f}<br>"
+                        f"mrr stdev [{row[C.UNIT['mrr']]}]: "
+                        f"{row['result_receive_rate_rate_stdev']:,.0f}<br>"
+                    )
+                elif row["test_type"] == "ndrpdr":
+                    if "-pdr" in test:
+                        rate = (
+                            f"pdr [{row[C.UNIT['pdr']]}]: "
+                            f"{row[C.VALUE['pdr']]:,.0f}<br>"
+                        )
+                    elif "-ndr" in test:
+                        rate = (
+                            f"ndr [{row[C.UNIT['ndr']]}]: "
+                            f"{row[C.VALUE['ndr']]:,.0f}<br>"
+                        )
+                    else:
+                        rate = str()
+                else:
+                    rate = str()
                 hover.append(
                     f"date: "
                     f"{row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
                     f"value: {y_data[i]:,.0f}<br>"
+                    f"{rate}"
                     f"{row['dut_type']}-ref: {row['dut_version']}<br>"
                     f"csit-ref: {row['job']}/{row['build']}<br>"
                 )
