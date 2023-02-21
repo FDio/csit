@@ -1,4 +1,4 @@
 menuentry "Install s83-t213-sut1" {
-    linux    /casper/ubuntu-jammy-amd64/vmlinuz ip=dhcp interface=3c:ec:ef:bc:a1:ea url=https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.20:8081/ubuntu_jammy_amd64/3c:ec:ef:bc:a1:ea/ --- console=ttyS0,115200n8 quiet
+    linux    /casper/ubuntu-jammy-amd64/vmlinuz ip=dhcp interface=3c:ec:ef:bc:a1:ea url=https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.24:8081/ubuntu_jammy_amd64/3c:ec:ef:bc:a1:ea/ --- console=ttyS0,115200n8 quiet
     initrd   /casper/ubuntu-jammy-amd64/initrd
 }
