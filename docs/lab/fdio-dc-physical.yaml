@@ -112,6 +112,48 @@ yul1:
         mgmt_ip4: N/A
         lom_ip4: N/A
         lom_type: N/A
+      - unit: 42..45
+        name: s52-t21-sut1
+        oper_status: production
+        device_type: SYS-741GE-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.52
+        lom_ip4: 10.30.50.52
+      - unit: 38..41
+        name: s53-t21-tg1
+        oper_status: production
+        device_type: SYS-741GE-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.53
+        lom_ip4: 10.30.50.53
+      - unit: 34..37
+        name: s54-t22-sut1
+        oper_status: production
+        device_type: SYS-741GE-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.54
+        lom_ip4: 10.30.50.54
+      - unit: 30..33
+        name: s55-t22-tg1
+        oper_status: production
+        device_type: SYS-741GE-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.55
+        lom_ip4: 10.30.50.55
+      - unit: 26..29
+        name: s56-t23-sut1
+        oper_status: production
+        device_type: SYS-741GE-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.56
+        lom_ip4: 10.30.50.56
+      - unit: 22..25
+        name: s57-t23-tg1
+        oper_status: production
+        device_type: SYS-741GE-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.57
+        lom_ip4: 10.30.50.57
       - unit: 18..21
         name: s25-t25-sut1
         oper_status: stage
@@ -178,6 +220,20 @@ yul1:
         serial_number: C7470KH06A20154
         mgmt_ip4: 10.30.51.50
         lom_ip4: 10.30.50.47
+      - unit: 34..37
+        name: s58-t24-sut1
+        oper_status: production
+        device_type: SYS-741GE-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.58
+        lom_ip4: 10.30.50.58
+      - unit: 30..33
+        name: s59-t24-tg1
+        oper_status: production
+        device_type: SYS-741GE-TNRT
+        serial_number: ?
+        mgmt_ip4: 10.30.51.59
+        lom_ip4: 10.30.50.59
       - unit: 10..13
         name: s93-t39-sut1
         oper_status: production
