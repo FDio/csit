@@ -508,6 +508,8 @@ class QemuUtils:
                     sleep(1)
                     continue
                 for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
+                    command = f"cat /proc/{qemu_cpu}/numa_maps"
+                    exec_cmd(self._node, command, sudo=True)
                     command = f"taskset -pc {host_cpu} {qemu_cpu}"
                     message = f"QEMU: Set affinity failed " \
                         f"on {self._node[u'host']}!"
@@ -605,7 +607,7 @@ class QemuUtils:
         except AttributeError:
             self._wait_default()
 
-    def _wait_default(self, retries=60):
+    def _wait_default(self, retries=600):
         """Wait until QEMU with VPP is booted.
 
         :param retries: Number of retries.
