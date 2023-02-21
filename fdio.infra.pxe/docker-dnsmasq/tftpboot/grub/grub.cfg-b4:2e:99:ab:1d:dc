@@ -1,4 +1,4 @@
 menuentry "Install s56-t14-sut1" {
-    linux    /casper/ubuntu-jammy-arm64/vmlinuz ip=dhcp interface=b4:2e:99:ab:1d:dc url=http://10.30.51.20:8081/ubuntu_jammy_arm64/ubuntu-20.04.4-live-server-arm64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.20:8081/ubuntu_jammy_arm64/b4:2e:99:ab:1d:dc/ --- console=ttyAMA0,115200n8 quiet
+    linux    /casper/ubuntu-jammy-arm64/vmlinuz ip=dhcp interface=b4:2e:99:ab:1d:dc url=http://10.30.51.24:8081/ubuntu_jammy_arm64/ubuntu-22.04.1-live-server-arm64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.24:8081/ubuntu_jammy_arm64/b4:2e:99:ab:1d:dc/ --- console=ttyAMA0,115200n8 quiet
     initrd   /casper/ubuntu-jammy-arm64/initrd
 }

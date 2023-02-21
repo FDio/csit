@@ -3,6 +3,10 @@ all:
     tg:
       hosts:
         10.30.51.49: #s19-t33t211-tg1 - skylake
+        10.30.51.53: #s53-t21-tg1 - sapphirerapids
+        10.30.51.55: #s55-t22-tg1 - sapphirerapids
+        10.30.51.57: #s57-t23-tg1 - sapphirerapids
+        10.30.51.59: #s59-t24-tg1 - sapphirerapids
         10.30.51.74: #s64-t34-tg1 - icelake
         10.30.51.77: #s67-t37-tg1 - icelake
         10.30.51.80: #s80-t38-tg1 - icelake
@@ -19,6 +23,10 @@ all:
       hosts:
         10.30.51.36: #s17-t33-sut1 - taishan
         10.30.51.37: #s18-t33-sut2 - taishan
+        10.30.51.52: #s52-t21-sut1 - sapphirerapids
+        10.30.51.54: #s54-t22-sut1 - sapphirerapids
+        10.30.51.56: #s56-t23-sut1 - sapphirerapids
+        10.30.51.58: #s58-t24-sut1 - sapphirerapids
         10.30.51.72: #s62-t34-sut1 - altra
         10.30.51.73: #s63-t34-sut2 - altra
         10.30.51.75: #s65-t37-sut1 - icelake

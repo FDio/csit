@@ -1,4 +1,0 @@
-menuentry "Install s42-nomad" {
-    linux    /casper/ubuntu-jammy-amd64/vmlinuz ip=dhcp interface=6c:41:6a:1f:39:26 url=https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.20:8081/ubuntu_jammy_amd64/6c:41:6a:1f:39:26/ --- console=ttyS0,115200n8 quiet
-    initrd   /casper/ubuntu-jammy-amd64/initrd
-}

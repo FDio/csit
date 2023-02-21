@@ -1,4 +1,0 @@
-menuentry "Install s43-nomad" {
-    linux    /casper/ubuntu-jammy-amd64/vmlinuz ip=dhcp interface=4c:00:82:ae:5a:f8 url=https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.20:8081/ubuntu_jammy_amd64/4c:00:82:ae:5a:f8/ --- console=ttyS0,115200n8 quiet
-    initrd   /casper/ubuntu-jammy-amd64/initrd
-}

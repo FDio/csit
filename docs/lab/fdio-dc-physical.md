@@ -55,6 +55,12 @@ s88-t215-tg1,up,t215,2n-icx,SYS-740GP-TNRT,C7470KL07P50301,10.30.51.88,10.30.50.
 #### Rack YUL1-9 (3016.9)
 name,oper-status,testbed-id,role,model,s/n,mgmt-ip4,ipmi-ip4,rackid,rackunit
 mtl1-5-lb4m,up,switch,uplink,?,?,?,?,3016.9,u47,?,?
+s52-t21-sut1,up,t21,2n-spr,SYS-741GE-TNRT,???,10.30.51.52,10.30.50.52,3016.9,u42-u45
+s53-t21-tg1,up,t21,2n-spr,SYS-741GE-TNRT,???,10.30.51.53,10.30.50.53,3016.9,u38-u41
+s54-t22-sut1,up,t22,2n-spr,SYS-741GE-TNRT,???,10.30.51.54,10.30.50.54,3016.9,u34-u37
+s55-t22-tg1,up,t22,2n-spr,SYS-741GE-TNRT,???,10.30.51.55,10.30.50.55,3016.9,u30-u33
+s56-t23-sut1,up,t23,2n-spr,SYS-741GE-TNRT,???,10.30.51.56,10.30.50.56,3016.9,u26-u29
+s57-t23-tg1,up,t23,2n-spr,SYS-741GE-TNRT,???,10.30.51.57,10.30.50.57,3016.9,u22-u25
 s25-t25-sut1,down,t25,2n-p1,SYS-7049GP-TRT,C7470KH06A20022,10.30.51.61,10.30.50.58,3016.9,u18-u21
 s19-t33t211-tg1,up,t33t211,3n-tsh/2n-tx2,SYS-7049GP-TRT,C7470KH06A20056,10.30.51.49,10.30.50.46,3016.9,u14-u17
 s27-t211-sut1,up,t211,2n-tx2,ThunderX2-9975,K61186073100003,10.30.51.69,10.30.50.69,3016.9,u13
@@ -68,6 +74,8 @@ name,oper-status,testbed-id,role,model,s/n,mgmt-ip4,ipmi-ip4,rackid,rackunit
 yul1-10-lb4m,up,switch,uplink,?,?,?,?,3016.10,u47,?,?
 s2-t12-sut1,up,t12,1n-skx,SYS-7049GP-TRT,C7470KH06A20119,10.30.51.51,10.30.50.48,3016.10,u42-u45
 s1-t11-sut1,up,t11,1n-skx,SYS-7049GP-TRT,C7470KH06A20154,10.30.51.50,10.30.50.47,3016.10,u38-u41
+s58-t24-sut1,up,t24,2n-spr,SYS-741GE-TNRT,???,10.30.51.58,10.30.50.58,3016.10,u34-u37
+s59-t24-tg1,up,t24,2n-spr,SYS-741GE-TNRT,???,10.30.51.59,10.30.50.59,3016.10,u30-u33
 s93-t39-sut1,up,t39,3n-snr,?,?,10.30.51.93,10.30.50.93,3016.10,u10-u13
 s94-t39-sut2,up,t39,3n-snr,?,?,10.30.51.94,10.30.50.94,3016.10,u6-u9
 s89-t39t310-tg1,up,t39,3n-snr,?,?,10.30.51.89,10.30.50.89,3016.10,u2-u5

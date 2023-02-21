@@ -1,5 +1,2 @@
 ---
 # file: sample_inventory/group_vars/all.yaml
-
-# Ansible interpreter (for PIP)
-ansible_python_interpreter: "python3"

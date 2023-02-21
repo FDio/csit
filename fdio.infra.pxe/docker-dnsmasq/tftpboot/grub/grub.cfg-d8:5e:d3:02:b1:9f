@@ -1,4 +1,4 @@
 menuentry "Install s92-nomad" {
-    linux    /casper/ubuntu-jammy-arm64/vmlinuz ip=dhcp interface=d8:5e:d3:02:b1:9f url=http://10.30.51.20:8081/ubuntu_jammy_arm64/ubuntu-22.04.1-live-server-arm64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.20:8081/ubuntu_jammy_arm64/d8:5e:d3:02:b1:9f/ --- console=ttyAMA0,115200n8 quiet
+    linux    /casper/ubuntu-jammy-arm64/vmlinuz ip=dhcp interface=d8:5e:d3:02:b1:9f url=http://10.30.51.24:8081/ubuntu_jammy_arm64/ubuntu-22.04.1-live-server-arm64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.24:8081/ubuntu_jammy_arm64/d8:5e:d3:02:b1:9f/ --- console=ttyAMA0,115200n8 quiet
     initrd   /casper/ubuntu-jammy-arm64/initrd
 }
