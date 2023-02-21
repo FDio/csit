@@ -95,7 +95,7 @@
 | | ... | ramp_up_rate=${ramp_up_rate}
 | | Run Telemetry On All DUTs
 | | ... | ${nodes} | profile=vppctl_runtime.yaml
-| | ... | rate=${telemetry_rate} | export=${True}
+| | ... | rate=${telemetry_rate} | export=${telemetry_export}
 | | Stop traffic on tg
 
 | Additional Statistics Action For bpf-runtime
@@ -195,7 +195,7 @@
 | | | ... | affinity=${iperf_client_affinity}
 | | Run Telemetry On All DUTs
 | | ... | ${nodes} | profile=vppctl_runtime.yaml
-| | ... | rate=${telemetry_rate} | export=${True}
+| | ... | rate=${telemetry_rate} | export=${telemetry_export}
 | | iPerf Client Stop Remote Exec | ${nodes['${iperf_client_node}']} | ${pids}
 
 | Additional Statistics Action For noop
