@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -199,6 +199,8 @@
 | | ${rate_for_teardown} = | Get Rate For Teardown
 | | Call Resetter
 | | Set Test Variable | \${extended_debug} | ${True}
+| | Set Test Variable | ${telemetry_rate} | ${EMPTY}
+| | Set Test Variable | ${telemetry_export} | ${False}
 | | Send traffic at specified rate
 | | ... | trial_duration=${1.0}
 | | ... | rate=${rate_for_teardown}
