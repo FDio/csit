@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,6 +29,11 @@ class TelemetryUtil:
             node, profile, sid=None, spath=None, rate="", export=False):
         """Get telemetry read on node.
 
+        The special rate value "teardown" means the test failed
+        and there is additional trial at some small load.
+        In that case, we want to run the telemetry without export,
+        regardless of export argument value.
+
         :param node: Node in the topology.
         :param profile: Telemetry configuration profile.
         :param sid: Socket ID used to describe recipient side of socket.
@@ -57,7 +62,7 @@ class TelemetryUtil:
             bin_cmd = f"python3 -m telemetry --config {config}\""
         exec_cmd_no_error(node, f"{cd_cmd} && {bin_cmd}", sudo=True)
 
-        if not export:
+        if not export or rate == "teardown":
             return
 
         hostname = exec_cmd_no_error(node, "hostname")[0].strip()
