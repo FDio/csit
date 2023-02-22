@@ -2,7 +2,7 @@ terraform {
   backend "consul" {
     address = "10.30.51.23:8500"
     scheme  = "http"
-    path    = "terraform/etl"
+    path    = "terraform/prometheus"
   }
   required_providers {
     nomad = {
