@@ -116,7 +116,7 @@ yul1:
         name: s52-t21-sut1
         oper_status: production
         device_type: SYS-741GE-TNRT
-        serial_number: ?
+        serial_number: C7490FL36A40118
         mgmt_ip4: 10.30.51.52
         lom_ip4: 10.30.50.52
       - unit: 38..41
