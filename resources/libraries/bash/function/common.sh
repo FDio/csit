@@ -1111,6 +1111,10 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_icx*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
+        "2n_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_spr*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
+            ;;
         "3n_snr")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_snr*.yaml )
             TOPOLOGIES_TAGS="3_node_single_link_topo"
