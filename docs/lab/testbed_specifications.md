@@ -219,7 +219,7 @@ To access these hosts, VPN connection is required.
 FD.io CSIT lab contains following server types:
 ```
 1. Server-Type-B2: Purpose - Skylake Xeon hosts for FD.io builds and data processing.
-    - Quantity: ---
+    - Quantity: 2
     - Physical connectivity:
         - IPMI and host management ports.
     - Main HW configuration:
@@ -1408,8 +1408,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - TG [Server-Type-H2]:
     - testbedname: testbed21.
     - hostname: s53-t21-tg1.
-    - IPMI IP: 10.30.51.53
-    - Host IP: 10.30.50.53
+    - IPMI IP: 10.30.50.53
+    - Host IP: 10.30.51.53
     - portnames:
         - s53-t21-tg1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
         - s53-t21-tg1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
@@ -1442,8 +1442,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - TG [Server-Type-H4]:
     - testbedname: testbed22.
     - hostname: s55-t22-tg1.
-    - IPMI IP: 10.30.51.55
-    - Host IP: 10.30.50.55
+    - IPMI IP: 10.30.50.55
+    - Host IP: 10.30.51.55
     - portnames:
         - s55-t22-tg1-c2/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s55-t22-tg1-c2/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
@@ -1468,8 +1468,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - TG [Server-Type-H6]:
     - testbedname: testbed23.
     - hostname: s57-t23-tg1.
-    - IPMI IP: 10.30.51.57
-    - Host IP: 10.30.50.57
+    - IPMI IP: 10.30.50.57
+    - Host IP: 10.30.51.57
     - portnames:
         - s57-t23-tg1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
         - s57-t23-tg1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
@@ -1483,6 +1483,38 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s57-t23-tg1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
         - s57-t23-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
         - s57-t23-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+- SUT [Server-Type-H5]:
+    - testbedname: testbed24.
+    - hostname: s58-t24-sut1.
+    - IPMI IP: 10.30.50.58
+    - Host IP: 10.30.51.58
+    - portnames:
+        - s58-t24-sut1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s58-t24-sut1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s58-t24-sut1-c4/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s58-t24-sut1-c4/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s58-t24-sut1-c10/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s58-t24-sut1-c10/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s58-t24-sut1-c10/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s58-t24-sut1-c10/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+- TG [Server-Type-H6]:
+    - testbedname: testbed24.
+    - hostname: s59-t24-tg1.
+    - IPMI IP: 10.30.50.59
+    - Host IP: 10.30.51.59
+    - portnames:
+        - s59-t24-tg1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s59-t24-tg1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s59-t24-tg1-c4/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s59-t24-tg1-c4/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s59-t24-tg1-c10/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s59-t24-tg1-c10/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s59-t24-tg1-c10/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s59-t24-tg1-c10/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s59-t24-tg1-c7/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s59-t24-tg1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s59-t24-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s59-t24-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 ```
 
 ### Per Testbed Wiring
@@ -1778,7 +1810,7 @@ To be completed.
 
 ```
 - testbed39:
-    - ring1 25GE-ports e810-XXVDA4-4p25GE on SUTs and TG:
+    - ring1 25GE-ports e810-XXVDA4-4p25GE:
         - s89-t39t310-tg1-c6/p1 to s93-t39-sut1-c1/p1.
         - s93-t39-sut1-c1/p2 to s94-t39-sut2-c1/p2.
         - s94-t39-sut2-c1/p1 to s89-t39t310-tg1-c6/p2.
@@ -1790,5 +1822,46 @@ To be completed.
 #### 2-Node-SapphireRapids Wiring (2n-spr) PROD
 
 ```
-TBD
+- testbed21:
+    - ring1 200GE-ports ConnectX7-2p200GE:
+        - ??
+        - ??
+        - ??
+- testbed22:
+    - ring1 100GE-ports e810-2CQDA2-2p100GE:
+        - s53-t21-tg1-c2/p1 to s54-t22-sut1-c2/p2.
+        - s54-t22-sut1-c2/p1 to s54-t22-sut1-c7/p2.
+        - s54-t22-sut1-c7/p1 to s55-t22-tg1-c2/p2.
+- testbed23:
+    - ring1 200GE-ports ConnectX7-2p200GE:
+        - s56-t23-sut1-c2/p1 to s57-t23-tg1-c2/p1.
+        - s57-t23-tg1-c2/p2 to s56-t23-sut1-c2/p2.
+    - ring2 100GE-ports e810-2CQDA2-2p100GE:
+        - s56-t23-sut1-c4/p1 to s57-t23-tg1-c4/p1.
+        - s57-t23-tg1-c4/p2 to s56-t23-sut1-c4/p2.
+    - ring3 25GE-ports e810-XXVDA4-2p25GE:
+        - s56-t23-sut1-c10/p1 to s57-t23-tg1-c10/p1.
+        - s56-t23-sut1-c10/p2 to s57-t23-tg1-c10/p2.
+        - s56-t23-sut1-c10/p3 to s57-t23-tg1-c10/p3.
+        - s56-t23-sut1-c10/p4 to s57-t23-tg1-c10/p4.
+    - ring4 200GE-ports ConnectX7-2p200GE:
+        - s57-t23-tg1-c7/p1 to s57-t23-tg1-c7/p2.
+    - ring5 100GE-ports e810-2CQDA2-2p100GE:
+        - s57-t23-tg1-c9/p1 to s57-t23-tg1-c9/p2.
+- testbed24:
+    - ring1 200GE-ports ConnectX7-2p200GE:
+        - s58-t24-sut1-c2/p1 to s59-t24-tg1-c2/p1.
+        - s59-t24-tg1-c2/p2 to s58-t24-sut1-c2/p2.
+    - ring2 100GE-ports e810-2CQDA2-2p100GE:
+        - s58-t24-sut1-c4/p1 to s59-t24-tg1-c4/p1.
+        - s59-t24-tg1-c4/p2 to s58-t24-sut1-c4/p2.
+    - ring3 25GE-ports e810-XXVDA4-2p25GE:
+        - s58-t24-sut1-c10/p1 to s59-t24-tg1-c10/p1.
+        - s58-t24-sut1-c10/p2 to s59-t24-tg1-c10/p2.
+        - s58-t24-sut1-c10/p3 to s59-t24-tg1-c10/p3.
+        - s58-t24-sut1-c10/p4 to s59-t24-tg1-c10/p4.
+    - ring4 200GE-ports ConnectX7-2p200GE:
+        - s59-t24-tg1-c7/p1 to s59-t24-tg1-c7/p2.
+    - ring5 100GE-ports e810-2CQDA2-2p100GE:
+        - s59-t24-tg1-c9/p1 to s59-t24-tg1-c9/p2.
 ```
