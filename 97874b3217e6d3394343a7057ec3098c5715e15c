@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e758ad2_1199f939",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-23T05:36:56Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-icx-perftest vpp-hoststack-00",
+      "revId": "97874b3217e6d3394343a7057ec3098c5715e15c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
