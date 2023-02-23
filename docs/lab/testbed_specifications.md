@@ -19,10 +19,7 @@
    1. [2-Node-Full-SapphireRapids Xeon Intel (2nf-spr)](#2-node-full-sapphirerapids-xeon-intel-2nf-spr)
    1. [2-Node-SapphireRapids Xeon Intel (2n-spr)](#2-Node-SapphireRapids-Xeon-Intel-2n-spr)
 1. [Server Management](#server-management)
-   1. [Requirements](#requirements)
    1. [Addressing](#addressing)
-   1. [LOM (IPMI) VLAN IP Addresses](#lom-ipmi-vlan-ip-addresses)
-   1. [Management VLAN IP Addresses](#management-vlan-ip-addresses)
 1. [Server Specifications](#server-specifications)
    1. [Server Types](#server-types)
    1. [Naming Convention](#naming-convention)
@@ -41,8 +38,7 @@
       1. [3-Node-Altra Servers (3n-alt) PROD](#3-node-altra-servers-3n-alt-prod)
       1. [3-Node-Icelake Servers (3n-icx) PROD](#3-node-icelake-servers-3n-icx-prod)
       1. [3-Node-SnowRidge Servers (3n-snr) PROD](#3-node-snowridge-servers-3n-snr-prod)
-      1. ...
-      1. ...
+      1. [2-Node-SapphireRapids Servers (2n-spr) PROD](#2-Node-sapphirerapids-servers-2n-spr-prod)
    1. [Per Testbed Wiring](#per-testbed-wiring)
       1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
       1. [1-Node-ThunderX2 Wiring (1n-tx2) PROD](#1-node-thunderx2-wiring-1n-tx2-prod)
@@ -57,15 +53,7 @@
       1. [3-Node-Altra Wiring (3n-alt) PROD](#3-node-altra-wiring-3n-alt-prod)
       1. [3-Node-Icelake Wiring (3n-icx) PROD](#3-node-icelake-wiring-3n-icx-prod)
       1. [3-Node-SnowRidge Wiring (3n-snr) PROD](#3-node-snowridge-wiring-3n-snr-prod)
-      1. ...
-      1. ...
-1. [Inventory](#inventory)
-   1. [Appliances](#appliances)
-   1. [Arm Servers](#arm-servers)
-   1. [Xeon and Atom Servers](#xeon-and-atom-servers)
-   1. [Network Interface Cards](#network-interface-cards)
-   1. [Pluggables and Cables](#pluggables-and-cables)
-   1. [Other Parts](#other-parts)
+      1. [2-Node-SapphireRapids Wiring (2n-spr) PROD](#2-Node-sapphirerapids-wiring-2n-spr-prod)
 
 ## Purpose
 
@@ -77,21 +65,22 @@ hosted by LFN FD.io CSIT project.
 ### Summary List
 
 ```
- #. Type             Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr
- 1. 1-Node-Skylake     nomad  skx   na    5    5    0    5    0    0    0    0    0    0    0    0    0
- 2. 1-Node-Cascadelake nomad  clx   na    1    1    0    0    0    0    0    0    0    1    0    0    0
- 3. 1-Node-AmpereAltra nomad  alt   na    2    2    0    0    0    0    0    0    2    0    0    0    0
- 4. 2-Node-IxiaPS1L47  tcp    skx   ps1   1    1    1    1    1    0    0    0    0    0    0    0    0
- 5. 2-Node-Cascadelake perf   clx   clx   3    3    3    0    0    0    0    0    0    6    0    0    0
- 6. 2-Node-ThunderX2   perf   tx2   skx   1    1    .5   .5   0    0    1    0    0    0    0    0    0
- 7. 2-Node-Icelake     perf   icx   icx   4    4    4    0    0    0    0    0    0    0    0    8    0
- 8. 3-Node-Rangeley    perf   rng   skx   1    3    1    0    0    2    0    0    0    0    0    0    0
- 9. 3-Node-Taishan     perf   tsh   skx   1    2    .5   .5   0    0    0    2    0    0    0    0    0
-10. 3-Node-Altra       perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0
-11. 2-Node-Zen2        perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0
-12. 3-Node-Icelake     perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0
-13. 3-Node-SnowRidge   perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    .5   2
-                                 Totals: 23   31  14.5   7    1    2    1    2    4    7    2  15.5   2
+ #. Type                 Purpose  SUT   TG    #TB  #SUT #TG  #skx #ps1 #rng #tx2 #tsh #alt #clx #zn2 #icx #snr #spr
+ 1. 1-Node-Skylake         nomad  skx   na    5    5    0    5    0    0    0    0    0    0    0    0    0    0
+ 2. 1-Node-Cascadelake     nomad  clx   na    1    1    0    0    0    0    0    0    0    1    0    0    0    0
+ 3. 1-Node-AmpereAltra     nomad  alt   na    2    2    0    0    0    0    0    0    2    0    0    0    0    0
+ 4. 2-Node-IxiaPS1L47      tcp    skx   ps1   1    1    1    1    1    0    0    0    0    0    0    0    0    0
+ 5. 2-Node-Cascadelake     perf   clx   clx   3    3    3    0    0    0    0    0    0    6    0    0    0    0
+ 6. 2-Node-ThunderX2       perf   tx2   skx   1    1    .5   .5   0    0    1    0    0    0    0    0    0    0
+ 7. 2-Node-Icelake         perf   icx   icx   4    4    4    0    0    0    0    0    0    0    0    8    0    0
+ 8. 3-Node-Rangeley        perf   rng   skx   1    3    1    0    0    2    0    0    0    0    0    0    0    0
+ 9. 3-Node-Taishan         perf   tsh   skx   1    2    .5   .5   0    0    0    2    0    0    0    0    0    0
+10. 3-Node-Altra           perf   alt   icx   1    2    1    0    0    0    0    0    2    0    0    1    0    0
+11. 2-Node-Zen2            perf   zn2   zn2   1    1    1    0    0    0    0    0    0    0    2    0    0    0
+12. 3-Node-Icelake         perf   icx   icx   2    4    2    0    0    0    0    0    0    0    0    6    0    0
+13. 3-Node-SnowRidge       perf   snr   icx   1    2    .5   0    0    0    0    0    0    0    0    .5   2    0
+13. 2-Node-SapphireRapids  perf   spr   spr   4    4    4    0    0    0    0    0    0    0    0    0    0    8
+                                     Totals: 23   31  14.5   7    1    2    1    2    4    7    2   15.5  2    8
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -185,31 +174,21 @@ Used for FD.io performance tests.
 
 ### 2-Node-Full-SapphireRapids Xeon Intel (2nf-spr)
 
-One 2-Node-Full-SapphireRapids testbed includes one SUT (Server-Type-TODO) and
-one TG (Server-Type-TODO) connected in a 2-node physical topology with NUMA (socket) daisy chaining. For more detail see [Server Types](#server-types) and [Testbed Topology-TODO](#TODO).
-Used for FD.io performance tests in a full system SUT setup with all PCIe Gen5 x16 lane slots populated with 2p200GbE NICs.
+One 2-Node-Full-SapphireRapids testbed includes one SUT (Server-Type-H1) and
+one TG (Server-Type-H2) connected in a 2-node physical topology
+with NUMA (socket) daisy chaining. For more detail see
+[Server Types](#server-types) and [Testbed Topology-TODO](#TODO).
+Used for FD.io performance tests in a full system SUT setup with all PCIe
+Gen5 x16 lane slots populated with 2p200GbE NICs.
 
 ### 2-Node-SapphireRapids Xeon Intel (2n-spr)
 
-Each 2-Node-SapphireRapids testbed includes one SUT (Server-Type-TODO) and
-one TG (Server-Type-TODO) connected in a 2-node circular topology. For more detail see [Server Types](#server-types) and [Testbed Topology-TODO](#TODO).
+Each 2-Node-SapphireRapids testbed includes one SUT (Server-Type-H5) and
+one TG (Server-Type-H6) connected in a 2-node circular topology. For more
+detail see [Server Types](#server-types) and [Testbed Topology-TODO](#TODO).
 Used for FD.io performance tests.
 
 ## Server Management
-
-### Requirements
-
-For management purposes, each server must have following two ports
-connected to the management network:
-
-```
-- 1GE IPMI port
-  - IPMI - Intelligent Platform Management Interface.
-  - Required for access to embedded server management with WebUI, CLI,
-    SNMPv3, IPMIv2.0, for firmware (BIOS) and OS updates.
-- 1GE/10GE/40GE management port
-  - hostOS management port for general system management.
-```
 
 ### Addressing
 
@@ -627,12 +606,12 @@ FD.io CSIT lab contains following server types:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot2 18:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot4 3b:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot9 5e:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot10 5e:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot6 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot8 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot10 d8:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-23. TODO-REVIEW Server-Type-H2: Purpose - SapphireRapids Xeon TG for FD.io full system performance testing.
+            - PCIe Slot7 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot9 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot11 d8:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+23. Server-Type-H2: Purpose - SapphireRapids Xeon TG for FD.io full system performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -647,11 +626,11 @@ FD.io CSIT lab contains following server types:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot2 18:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot4 3b:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot9 5e:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot10 5e:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot6 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot8 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot10 d8:00.xx: empty.
+            - PCIe Slot7 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot9 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot11 d8:00.xx: empty.
 24. Server-Type-H3: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
@@ -667,11 +646,11 @@ FD.io CSIT lab contains following server types:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot2 18:00.xx: e810-2CQDA2-2p100GE Intel.
             - PCIe Slot4 3b:00.xx: e810-XXVDA4-4p25GE Intel.
-            - PCIe Slot9 5e:00.xx: 
+            - PCIe Slot10 5e:00.xx: empty.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot6 86:00.xx: e810-2CQDA2-2p100GE Intel.
-            - PCIe Slot8 af:00.xx: e810-XXVDA4-4p25GE Intel.
-            - PCIe Slot10 d8:00.xx: empty.
+            - PCIe Slot7 86:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot9 af:00.xx: e810-XXVDA4-4p25GE Intel.
+            - PCIe Slot11 d8:00.xx: empty.
 25. Server-Type-H4: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
@@ -687,11 +666,11 @@ FD.io CSIT lab contains following server types:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot2 18:00.xx: e810-2CQDA2-2p100GE Intel.
             - PCIe Slot4 3b:00.xx: e810-XXVDA4-4p25GE Intel.
-            - PCIe Slot9 5e:00.xx: empty.
+            - PCIe Slot10 5e:00.xx: empty.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot6 86:00.xx: empty.
-            - PCIe Slot8 af:00.xx: empty.
-            - PCIe Slot10 d8:00.xx: empty.
+            - PCIe Slot7 86:00.xx: empty.
+            - PCIe Slot9 af:00.xx: empty.
+            - PCIe Slot11 d8:00.xx: empty.
 26. Server-Type-H5: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
@@ -707,11 +686,11 @@ FD.io CSIT lab contains following server types:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot2 18:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot4 3b:00.xx: e810-2CQDA2-2p100GE Intel.
-            - PCIe Slot9 5e:00.xx: e810-XXVDA4-4p25GE Intel.
+            - PCIe Slot10 5e:00.xx: e810-XXVDA4-4p25GE Intel.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot6 86:00.xx: empty.
-            - PCIe Slot8 af:00.xx: empty.
-            - PCIe Slot10 d8:00.xx: empty.
+            - PCIe Slot7 86:00.xx: empty.
+            - PCIe Slot9 af:00.xx: empty.
+            - PCIe Slot11 d8:00.xx: empty.
 27. Server-Type-H6: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
@@ -727,11 +706,11 @@ FD.io CSIT lab contains following server types:
         - Numa0: (x16, x16, x16 PCIe5.0 lanes)
             - PCIe Slot2 18:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot4 3b:00.xx: e810-2CQDA2-2p100GE Intel.
-            - PCIe Slot9 5e:00.xx: e810-XXVDA4-4p25GE Intel.
+            - PCIe Slot10 5e:00.xx: e810-XXVDA4-4p25GE Intel.
         - Numa1: (x16, x16, x16 PCIe5.0 lanes)
-            - PCIe Slot6 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
-            - PCIe Slot8 af:00.xx: e810-2CQDA2-2p100GE Intel.
-            - PCIe Slot10 d8:00.xx: empty.
+            - PCIe Slot7 86:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
+            - PCIe Slot9 af:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot11 d8:00.xx: empty.
 ```
 
 ### Naming Convention
@@ -1046,8 +1025,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - SUT [Server-Type-F1]:
     - testbedname: testbed212.
     - hostname: s71-t212-sut1.
-    - IPMI IP: 10.30.51.81
-    - Host IP: 10.30.50.81
+    - IPMI IP: 10.30.50.81
+    - Host IP: 10.30.51.81
     - portnames:
         - s71-t212-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s71-t212-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
@@ -1060,8 +1039,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - TG [Server-Type-F2]:
     - testbedname: testbed212.
     - hostname: s72-t212-tg1.
-    - IPMI IP: 10.30.51.82
-    - Host IP: 10.30.50.82
+    - IPMI IP: 10.30.50.82
+    - Host IP: 10.30.51.82
     - portnames:
         - s72-t212-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s72-t212-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
@@ -1076,8 +1055,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - SUT [Server-Type-F1]:
     - testbedname: testbed213.
     - hostname: s83-t213-sut1.
-    - IPMI IP: 10.30.51.83
-    - Host IP: 10.30.50.83
+    - IPMI IP: 10.30.50.83
+    - Host IP: 10.30.51.83
     - portnames:
         - s83-t213-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s83-t213-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
@@ -1090,8 +1069,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - TG [Server-Type-F2]:
     - testbedname: testbed213.
     - hostname: s84-t213-tg1.
-    - IPMI IP: 10.30.51.84
-    - Host IP: 10.30.50.84
+    - IPMI IP: 10.30.50.84
+    - Host IP: 10.30.51.84
     - portnames:
         - s84-t213-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s84-t213-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
@@ -1106,8 +1085,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - SUT [Server-Type-F1]:
     - testbedname: testbed214.
     - hostname: s85-t214-sut1.
-    - IPMI IP: 10.30.51.85
-    - Host IP: 10.30.50.85
+    - IPMI IP: 10.30.50.85
+    - Host IP: 10.30.51.85
     - portnames:
         - s85-t214-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s85-t214-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
@@ -1120,8 +1099,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - TG [Server-Type-F2]:
     - testbedname: testbed214.
     - hostname: s86-t214-tg1.
-    - IPMI IP: 10.30.51.86
-    - Host IP: 10.30.50.86
+    - IPMI IP: 10.30.50.86
+    - Host IP: 10.30.51.86
     - portnames:
         - s86-t214-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s86-t214-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
@@ -1136,8 +1115,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - SUT [Server-Type-F1]:
     - testbedname: testbed215.
     - hostname: s87-t215-sut1.
-    - IPMI IP: 10.30.51.87
-    - Host IP: 10.30.50.87
+    - IPMI IP: 10.30.50.87
+    - Host IP: 10.30.51.87
     - portnames:
         - s87-t215-sut1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s87-t215-sut1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
@@ -1150,8 +1129,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 - TG [Server-Type-F2]:
     - testbedname: testbed215.
     - hostname: s88-t215-tg1.
-    - IPMI IP: 10.30.51.88
-    - Host IP: 10.30.50.88
+    - IPMI IP: 10.30.50.88
+    - Host IP: 10.30.51.88
     - portnames:
         - s88-t215-tg1-c2/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s88-t215-tg1-c2/p2 - 25GE-port2 xxv710-DA2-2p25GE.
@@ -1403,6 +1382,107 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
         - s89-t39t310-tg1-c6/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
         - s89-t39t310-tg1-c6/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
         - s89-t39t310-tg1-c6/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+```
+
+#### 2-Node-SapphireRapids Servers (2n-spr) PROD
+
+```
+- SUT [Server-Type-H1]:
+    - testbedname: testbed21.
+    - hostname: s52-t21-sut1.
+    - IPMI IP: 10.30.50.52
+    - Host IP: 10.30.51.52
+    - portnames:
+        - s52-t21-sut1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s52-t21-sut1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s52-t21-sut1-c4/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s52-t21-sut1-c4/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s52-t21-sut1-c10/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s52-t21-sut1-c10/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s52-t21-sut1-c7/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s52-t21-sut1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s52-t21-sut1-c9/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s52-t21-sut1-c9/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s52-t21-sut1-c11/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s52-t21-sut1-c11/p2 - 200GE-port2 ConnectX7-2p200GE.
+- TG [Server-Type-H2]:
+    - testbedname: testbed21.
+    - hostname: s53-t21-tg1.
+    - IPMI IP: 10.30.51.53
+    - Host IP: 10.30.50.53
+    - portnames:
+        - s53-t21-tg1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s53-t21-tg1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s53-t21-tg1-c4/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s53-t21-tg1-c4/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s53-t21-tg1-c10/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s53-t21-tg1-c10/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s53-t21-tg1-c7/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s53-t21-tg1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s53-t21-tg1-c9/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s53-t21-tg1-c9/p2 - 200GE-port2 ConnectX7-2p200GE.
+- SUT [Server-Type-H3]:
+    - testbedname: testbed22.
+    - hostname: s54-t22-sut1.
+    - IPMI IP: 10.30.50.54
+    - Host IP: 10.30.51.54
+    - portnames:
+        - s54-t22-sut1-c2/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s54-t22-sut1-c2/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s54-t22-sut1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s54-t22-sut1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s54-t22-sut1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s54-t22-sut1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s54-t22-sut1-c7/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s54-t22-sut1-c7/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s54-t22-sut1-c9/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s54-t22-sut1-c9/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s54-t22-sut1-c9/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s54-t22-sut1-c9/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+- TG [Server-Type-H4]:
+    - testbedname: testbed22.
+    - hostname: s55-t22-tg1.
+    - IPMI IP: 10.30.51.55
+    - Host IP: 10.30.50.55
+    - portnames:
+        - s55-t22-tg1-c2/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s55-t22-tg1-c2/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s55-t22-tg1-c4/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s55-t22-tg1-c4/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s55-t22-tg1-c4/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s55-t22-tg1-c4/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+- SUT [Server-Type-H5]:
+    - testbedname: testbed23.
+    - hostname: s56-t23-sut1.
+    - IPMI IP: 10.30.50.56
+    - Host IP: 10.30.51.56
+    - portnames:
+        - s56-t23-sut1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s56-t23-sut1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s56-t23-sut1-c4/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s56-t23-sut1-c4/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s56-t23-sut1-c10/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s56-t23-sut1-c10/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s56-t23-sut1-c10/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s56-t23-sut1-c10/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+- TG [Server-Type-H6]:
+    - testbedname: testbed23.
+    - hostname: s57-t23-tg1.
+    - IPMI IP: 10.30.51.57
+    - Host IP: 10.30.50.57
+    - portnames:
+        - s57-t23-tg1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s57-t23-tg1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s57-t23-tg1-c4/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s57-t23-tg1-c4/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
+        - s57-t23-tg1-c10/p1 - 25GE-port1 e810-XXVDA4-4p25GE.
+        - s57-t23-tg1-c10/p2 - 25GE-port2 e810-XXVDA4-4p25GE.
+        - s57-t23-tg1-c10/p3 - 25GE-port3 e810-XXVDA4-4p25GE.
+        - s57-t23-tg1-c10/p4 - 25GE-port4 e810-XXVDA4-4p25GE.
+        - s57-t23-tg1-c7/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s57-t23-tg1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s57-t23-tg1-c9/p1 - 100GE-port1 e810-2CQDA2-2p100GE.
+        - s57-t23-tg1-c9/p2 - 100GE-port2 e810-2CQDA2-2p100GE.
 ```
 
 ### Per Testbed Wiring
@@ -1707,117 +1787,8 @@ To be completed.
         - s94-t39-sut2-c1/p3 to s89-t39t310-tg1-c6/p4.
 ```
 
-## Inventory
-
-### Appliances
+#### 2-Node-SapphireRapids Wiring (2n-spr) PROD
 
 ```
-1. Ixia PerfectStorm One Appliance
-    - 1 * PS10GE4NG
-        - Chassis: PS10GE4NG.
-        - Motherboard: SuperMicro X11DPG-QT.
-        - Processors: Quad-Core, Intel Processor.
-        - HW accelerators: FPGA offload.
-        - RAM Memory: 64GB.
-        - Disks: 1 * 1 TB, Enterprise Class, High MTBF.
-        - Physical Interfaces: 4 * 10GE SFP+.
-        - Operating System: Native IxOS.
+TBD
 ```
-
-### Arm Servers
-
-```
-1. Arm Cortex A-72 servers
-    - 2 * ThunderX2 (VPP Device)
-        - Chassis: GIGABYTE Rack Mount
-        - Processors: 2* ThunderX2 CN9980 ~ 32* ThunderX2
-        - RAM Memory: 16* 16GB DIMM
-        - Disks: 2* 480GB 6G SATA SSD SAMSUNG MZ7LH480
-    - 1 * ThunderX2 (Performance)
-        - Chassis: GIGABYTE Rack Mount
-        - Processors: 2* ThunderX2 CN9975 ~ 28* ThunderX2.
-        - RAM Memory: 4* 32GB RDIMM
-        - Disks: 1* 480GB SSD Micron, 1* 1000GB HDD Seagate_25
-    - 2 * Huawei TaiShan 2280.
-        - Chassis: Huawei TaiShan 2280.
-        - Processors: 2* hip07-d05 ~ 32* Arm Cortex-A72.
-        - RAM Memory: 8* 16GB DDR4-2400MT/s.
-        - Disks: 1* 4TB SATA HDD.
-2. Arm Neoverse N1 servers
-    - 2 * Ampere Altra (Performance)
-        - Chassis: WIWYNN Mt.Jade Server System B81.030Z1.0007 2U
-        - Processors: 2* Ampere(R) Altra(R) Q80-30 Processor (Neoverse N1)
-        - Processor Signature: Implementor 0x41, Variant 0x3, Architecture 15, Part 0xd0c, Revision 1
-        - RAM Memory: 16* 8GB DDR4-3200MT/s
-        - Disks: 2* 960GB SSD Samsung M.2 NVMe PM983
-    - 2 * Ampere Altra (Build)
-        - Chassis: Gigabyte R152-P30-00 1U
-        - Motherboard: MP32-AR1-00
-        - Processors: 1* Ampere(R) Altra(R) Q80-30 Processor (Neoverse N1)
-        - Processor Signature: Implementor 0x0a, Variant 0x1, Architecture 6, Part 0x000, Revision 1
-        - RAM Memory: 12* 16GB DDR4-3200MT/s
-        - Disks: 1* 960GB SSD Samsung M.2 NVMe PM983
-```
-
-### Xeon and Atom Servers
-
-```
-1. Intel Xeon servers:
-    - 20 * SuperMicro SYS-7049GP-TRT with Xeon Skylake processors.
-        - Chassis: SuperMicro SYS-7049GP-TRT.
-        - Motherboard: SuperMicro X11DPG-QT.
-        - Processors: 2* Intel Platinum 8180 2.5 GHz.
-        - RAM Memory: 16* 16GB DDR4-2666MHz.
-        - Disks: 2* 1.6TB 6G SATA SSD.
-2. Intel Atom servers with Rangely processors.
-    - 3 * Netgate XG-2758-1u
-        - Chassis: Netgate XG-2758-1u
-        - Processors: 1* Rangely (Atom) C2758 2.4 GHz
-        - RAM Memory: 16GB ECC
-        - Disks: 150 GB
-```
-
-### Network Interface Cards
-
-```
-1. 10GE NICs
-    - ?
-2. 25GE NICs
-    - ?
-3. 40GE NICs
-    - ?
-4. 100GE NICs
-    - ?
-```
-
-### Pluggables and Cables
-
-Pluggables:
-
-```
-1. 10GE SFP+
-    - ?
-2. 25GE SFP28
-    - ?
-3. 40GE QSFP+
-    - ?
-4. 100GE
-    - ?
-```
-
-Standalone cables:
-
-```
-1. 10GE
-    - ?
-2. 25GE
-    - ?
-3. 40GE QSFP+
-    - ?
-4. 100GE
-    - ?
-```
-
-### Other Parts
-
-None.

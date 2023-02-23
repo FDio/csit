@@ -55,7 +55,7 @@ s88-t215-tg1,up,t215,2n-icx,SYS-740GP-TNRT,C7470KL07P50301,10.30.51.88,10.30.50.
 #### Rack YUL1-9 (3016.9)
 name,oper-status,testbed-id,role,model,s/n,mgmt-ip4,ipmi-ip4,rackid,rackunit
 mtl1-5-lb4m,up,switch,uplink,?,?,?,?,3016.9,u47,?,?
-s52-t21-sut1,up,t21,2n-spr,SYS-741GE-TNRT,???,10.30.51.52,10.30.50.52,3016.9,u42-u45
+s52-t21-sut1,up,t21,2n-spr,SYS-741GE-TNRT,C7490FL36A40118,10.30.51.52,10.30.50.52,3016.9,u42-u45
 s53-t21-tg1,up,t21,2n-spr,SYS-741GE-TNRT,???,10.30.51.53,10.30.50.53,3016.9,u38-u41
 s54-t22-sut1,up,t22,2n-spr,SYS-741GE-TNRT,???,10.30.51.54,10.30.50.54,3016.9,u34-u37
 s55-t22-tg1,up,t22,2n-spr,SYS-741GE-TNRT,???,10.30.51.55,10.30.50.55,3016.9,u30-u33
