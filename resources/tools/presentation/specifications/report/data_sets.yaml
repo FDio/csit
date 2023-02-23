@@ -6,11 +6,11 @@
 
   vpp-device-1n-skx:
     csit-vpp-device-2302-ubuntu2204-x86_64-1n-skx:
-      - 61  # 2302.rc2 VPP DEV env 11
+      - 110  # 2302.rel VPP DEV env 11
 
   vpp-device-1n-tx2:
     csit-vpp-device-2302-ubuntu2204-aarch64-1n-tx2:
-      - 87  # 2302.rc2 VPP DEV env 11
+      - 110  # 2302.rel VPP DEV env 11
 
 ################################################################################
 
@@ -170,7 +170,7 @@
 
   vpp-2n-zn2-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-2n-zn2:
-      - 5   # 2302.rc2 MRR iter env 11
+      - 13  # 2302.rel MRR iter env 11
 
   vpp-2n-zn2-curr-iter-gso:
     csit-vpp-perf-report-iterative-2302-2n-zn2:
@@ -296,11 +296,11 @@
 
   vpp-2n-clx-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-2n-clx:
-      - 33  # 2302.rc2 MRR iter env 11
+      - 34  # 2302.rel MRR iter env 11
 
   vpp-2n-clx-curr-iter-gso:
     csit-vpp-perf-report-iterative-2302-2n-clx:
-      - 14  # 2302.rc2 MRR GSO iter env 11
+      - 36  # 2302.rel MRR GSO iter env 11
 
   vpp-2n-clx-curr-nfv-ndrpdr:
     csit-vpp-perf-report-iterative-2302-2n-clx:
@@ -312,7 +312,7 @@
 
   vpp-2n-clx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2302-2n-clx:
-      - 15  # 2302.rc2 MRR nf-density iter env 11
+      - 37  # 2302.rel MRR nf-density iter env 11
 
   vpp-2n-clx-curr-nfv-reconf:
     csit-vpp-perf-report-iterative-2302-2n-clx:
@@ -453,7 +453,7 @@
 
   vpp-3n-tsh-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-3n-tsh:
-      - 3   # 2302.rc2 MRR iter env 11
+      - 10  # 2302.rel MRR iter env 11
 
   vpp-3n-tsh-curr-cov:
     # csit-vpp-perf-report-coverage-2302-3n-tsh:
@@ -563,7 +563,7 @@
 
   vpp-2n-tx2-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-2n-tx2:
-      - 3   # 2302.rc2 MRR iter env 11
+      - 10  # 2302.rel MRR iter env 11
 
   vpp-2n-tx2-curr-cov:
     # csit-vpp-perf-report-coverage-2302-2n-tx2:
@@ -643,11 +643,7 @@
 
   vpp-2n-aws-curr-iter:
     csit-vpp-perf-report-iterative-2302-2n-aws:
-      - 4   # 2302.rc2 NDRPDR iter env 11
-      - 5   # 2302.rc2 NDRPDR iter env 11
-      - 6   # 2302.rc2 NDRPDR iter env 11
-      - 8   # 2302.rc2 NDRPDR iter env 11
-      - 9   # 2302.rc2 NDRPDR iter env 11
+      - 11  # 2302.rel NDRPDR iter env 11
 
   vpp-2n-aws-curr-iter-best:
     csit-vpp-perf-report-iterative-2302-2n-aws:
@@ -663,12 +659,11 @@
 
   vpp-2n-aws-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-2n-aws:
-      - 3   # 2302.rc2 MRR iter env 11
+      - 10  # 2302.rel MRR iter env 11
 
   vpp-2n-aws-curr-cov:
-    # csit-vpp-perf-report-coverage-2302-2n-aws:
-    csit-vpp-perf-report-coverage-2210-2n-aws:
-      - 1   # 2210.rel NDRPDR cov env 11
+    csit-vpp-perf-report-coverage-2302-2n-aws:
+      - 1   # 2302.rel NDRPDR cov env 11
 
   # 2n-icx
 
@@ -742,7 +737,7 @@
 
   vpp-2n-icx-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-2n-icx:
-      - 15  # 2302.rc2 MRR iter env 11
+      - 60  # 2302.rel MRR iter env 11
 
   vpp-2n-icx-curr-nfv-ndrpdr:
     csit-vpp-perf-report-iterative-2302-2n-icx:
@@ -752,7 +747,7 @@
 
   vpp-2n-icx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2302-2n-icx:
-      - 25  # 2302.rc2 MRR nf-density iter env 11
+      - 57  # 2302.rel MRR nf-density iter env 11
 
   vpp-2n-icx-curr-nfv-reconf:
     csit-vpp-perf-report-iterative-2302-2n-icx:
@@ -787,7 +782,7 @@
 
   vpp-2n-icx-curr-iter-gso:
     csit-vpp-perf-report-iterative-2302-2n-icx:
-      - 18  # 2302.rc2 MRR GSO iter env 11
+      - 56  # 2302.rel MRR GSO iter env 11
 
   vpp-2n-icx-curr-iter-hoststack:
     csit-vpp-perf-report-iterative-2302-2n-icx:
@@ -915,7 +910,7 @@
 
   vpp-3n-icx-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-3n-icx:
-      - 20  # 2302.rc2 MRR iter env 11
+      - 21  # 2302.rel MRR iter env 11
 
   # vpp-3n-icx-hist-iter-hoststack-new-env:
   #   csit-vpp-perf-report-iterative-2110-3n-icx:
@@ -1053,7 +1048,7 @@
 
   vpp-3n-alt-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-3n-alt:
-      - 3   # 2302.rc2 MRR iter env 11
+      - 13  # 2302.rel MRR iter env 11
 
   vpp-3n-alt-curr-cov:
     # csit-vpp-perf-report-coverage-2302-3n-alt:
@@ -1138,16 +1133,11 @@
 
   vpp-3n-snr-curr-iter:
     csit-vpp-perf-report-iterative-2302-3n-snr:
-      - 5   # 2302.rc2 NDRPDR iter env 11
-      - 6   # 2302.rc2 NDRPDR iter env 11
-      - 7   # 2302.rc2 NDRPDR iter env 11
-      - 8   # 2302.rc2 NDRPDR iter env 11
-      - 9   # 2302.rc2 NDRPDR iter env 11
-      - 10  # 2302.rc2 NDRPDR iter env 11
+      - 13  # 2302.rel NDRPDR iter env 11
 
   vpp-3n-snr-curr-iter-best:
     csit-vpp-perf-report-iterative-2302-3n-snr:
-      - 10  # 2302.rc2 NDRPDR iter env 11
+      - 13  # 2302.rel NDRPDR iter env 11
 
   # vpp-3n-snr-hist-iter-mrr:
   #   csit-vpp-perf-report-iterative-2206-3n-snr:
@@ -1163,7 +1153,7 @@
 
   vpp-3n-snr-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-3n-snr:
-      - 3   # 2302.rc2 MRR iter env 11
+      - 11  # 2302.rel MRR iter env 11
 
   vpp-3n-snr-curr-cov:
     # csit-vpp-perf-report-coverage-2302-3n-snr:
