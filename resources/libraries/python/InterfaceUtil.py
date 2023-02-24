@@ -295,6 +295,21 @@ class InterfaceUtil:
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
+    def set_interface_xdp_off(node, pf_pcis):
+        """Detaches any currently attached XDP/BPF program from the specified
+        interfaces.
+
+        :param node: Topology node.
+        :param pf_pcis: List of node's interfaces PCI addresses.
+        :type nodes: dict
+        :type pf_pcis: list
+        """
+        for pf_pci in pf_pcis:
+            pf_eth = InterfaceUtil.pci_to_eth(node, pf_pci)
+            cmd = f"ip link set dev {pf_eth} xdp off"
+            exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def set_interface_flow_control(node, pf_pcis, rxf=u"off", txf=u"off"):
         """Set Ethernet flow control for specified interfaces.
 

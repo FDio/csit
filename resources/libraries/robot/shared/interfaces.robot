@@ -169,6 +169,8 @@
 | | FOR | ${dut} | IN | @{duts}
 | | | Set Interface State PCI
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | state=up
+| | | Set Interface XDP off
+| | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci}
 | | | Set Interface Channels
 | | | ... | ${nodes['${dut}']} | ${${dut}_pf_pci} | num_queues=${rxq_count_int}
 | | | ... | channel=combined
