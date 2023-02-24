@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "563706e8_c426e80e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-24T15:32:38Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-2n-icx-perftest reconf-00",
+      "revId": "ad89b41290586dc1f32111930a7bd282e2c93276",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
