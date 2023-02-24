@@ -6,8 +6,8 @@ LABEL Version="2.0"
 RUN apt update \
  && apt install -y wget
 
-ENV ISO_JAMMY_AMD64 https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso
-ENV ISO_JAMMY_ARM64 https://cdimage.ubuntu.com/releases/22.04/release/ubuntu-22.04.1-live-server-arm64.iso
+ENV ISO_JAMMY_AMD64 https://old-releases.ubuntu.com/releases/22.04.1/ubuntu-22.04.1-live-server-amd64.iso
+ENV ISO_JAMMY_ARM64 https://old-releases.ubuntu.com/releases/22.04.1/ubuntu-22.04.1-live-server-arm64.iso
 
 RUN echo "Preparing ISO Pre-cache" \
  && wget $ISO_JAMMY_AMD64 -O /ubuntu-22.04.1-live-server-amd64.iso \

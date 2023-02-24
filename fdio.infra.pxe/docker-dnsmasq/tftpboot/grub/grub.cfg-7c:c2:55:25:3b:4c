@@ -1,0 +1,4 @@
+menuentry "Install s56-t23-sut1" {
+    linux    /casper/ubuntu-jammy-amd64/vmlinuz ip=dhcp interface=7c:c2:55:25:3b:4c url=https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.30.51.24:8081/ubuntu_jammy_amd64/7c:c2:55:25:3b:4c/ --- console=ttyS0,115200n8 quiet
+    initrd   /casper/ubuntu-jammy-amd64/initrd
+}
