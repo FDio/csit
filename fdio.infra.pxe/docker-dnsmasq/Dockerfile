@@ -6,22 +6,27 @@ LABEL Version="2.0"
 RUN apt update \
  && apt install -y wget genisoimage syslinux-common \
  && mkdir -p /var/lib/tftpboot/grub \
+ && mkdir -p /var/lib/tftpboot/grub/fonts \
  && mkdir -p /var/lib/tftpboot/casper/ubuntu-jammy-amd64/ \
  && mkdir -p /var/lib/tftpboot/casper/ubuntu-jammy-arm64/
 
-ENV ISO_JAMMY_AMD64 https://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso
-ENV ISO_JAMMY_ARM64 https://cdimage.ubuntu.com/releases/22.04/release/ubuntu-22.04.1-live-server-arm64.iso
+ENV ISO_JAMMY_AMD64 https://old-releases.ubuntu.com/releases/22.04.1/ubuntu-22.04.1-live-server-amd64.iso
+ENV ISO_JAMMY_ARM64 https://old-releases.ubuntu.com/releases/22.04.1/ubuntu-22.04.1-live-server-arm64.iso
 ENV EFI_JAMMY_AMD64 http://archive.ubuntu.com/ubuntu/dists/jammy/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
 ENV EFI_JAMMY_ARM64 http://ports.ubuntu.com/ubuntu-ports/dists/jammy/main/uefi/grub2-arm64/current/grubnetaa64.efi.signed
 
 RUN echo "Preparing Grub EFI Binary" \
- && wget $EFI_JAMMY_AMD64 -O /var/lib/tftpboot/grub/grubnetx64.efi.signed \
- && wget $EFI_JAMMY_ARM64 -O /var/lib/tftpboot/grub/grubnetaa64.efi.signed
+ && wget $EFI_JAMMY_AMD64 -O /var/lib/tftpboot/grubx64.efi \
+ && wget $EFI_JAMMY_ARM64 -O /var/lib/tftpboot/grubaa64.efi \
+ && apt download shim-signed \
+ && dpkg-deb --fsys-tarfile shim-signed*deb | tar x ./usr/lib/shim/shimx64.efi.signed.latest -O > /var/lib/tftpboot/bootx64.efi \
+ && apt download grub-common \
+ && dpkg-deb --fsys-tarfile grub-common*deb | tar x ./usr/share/grub/unicode.pf2 -O > /var/lib/tftpboot/grub/fonts/unicode.pf2
 
 RUN echo "Preparing Casper Kernel" \
  && wget $ISO_JAMMY_AMD64 -O /ubuntu-22.04.1-live-server-amd64.iso \
  && isoinfo -i /ubuntu-22.04.1-live-server-amd64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-jammy-amd64/initrd \
- && isoinfo -i /ubuntu-22.04.1-live-server-amd64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-jammy-amd64/vmlinuz\
+ && isoinfo -i /ubuntu-22.04.1-live-server-amd64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-jammy-amd64/vmlinuz \
  && wget $ISO_JAMMY_ARM64 -O /ubuntu-22.04.1-live-server-arm64.iso \
  && isoinfo -i /ubuntu-22.04.1-live-server-arm64.iso -x "/CASPER/INITRD.;1" > /var/lib/tftpboot/casper/ubuntu-jammy-arm64/initrd \
  && isoinfo -i /ubuntu-22.04.1-live-server-arm64.iso -x "/CASPER/VMLINUZ.;1" > /var/lib/tftpboot/casper/ubuntu-jammy-arm64/vmlinuz
