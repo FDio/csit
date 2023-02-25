@@ -16,6 +16,23 @@
       "message": "csit-vpp-report-iter-2n-icx-perftest reconf-00",
       "revId": "ad89b41290586dc1f32111930a7bd282e2c93276",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68bd4776_c8b19b3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-25T19:28:29Z",
+      "side": 1,
+      "message": "csit-vpp-report-iter-3n-icx-perftest vpp-hoststack-00",
+      "revId": "ad89b41290586dc1f32111930a7bd282e2c93276",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
