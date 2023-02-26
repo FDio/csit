@@ -67,6 +67,23 @@
       "message": "csit-vpp-report-iter-2n-clx-perftest nfv-density-ndrpdr-00",
       "revId": "ad89b41290586dc1f32111930a7bd282e2c93276",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9893a87_6a13d8c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-26T21:15:22Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-snr-perftest ip4tun-01",
+      "revId": "ad89b41290586dc1f32111930a7bd282e2c93276",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
