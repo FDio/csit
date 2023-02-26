@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9bf65d8_eac56679",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-02-26T21:16:06Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-snr-perftest ip6-00",
+      "revId": "c5ce9532ae80387db7706b929df401c6bd4bc832",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
