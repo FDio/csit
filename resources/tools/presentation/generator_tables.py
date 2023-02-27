@@ -2014,8 +2014,13 @@ def table_comparison(table, input_data):
             for itm in footnote.split("\n"):
                 file_handler.write(f'"{itm}"\n')
 
-    tbl_tmp = list()
-    max_lens = [0, ] * len(tbl_cmp_lst[0])
+    try:
+        max_lens = [0, ] * len(tbl_cmp_lst[0])
+    except IndexError as err:
+        logging.error(f"Generator tables: {err}")
+        return
+
+    tbl_tmp = list()    
     for line in tbl_cmp_lst:
         row = [line[0], ]
         for idx, itm in enumerate(line[1:]):

@@ -722,12 +722,13 @@
 
   vpp-2n-icx-curr-iter-mrr:
     csit-vpp-perf-report-iterative-2302-2n-icx:
-      - 60  # 2302.rel MRR iter env 11
+      - 74  # 2302.rel MRR iter env 11
 
   vpp-2n-icx-curr-nfv-ndrpdr:
     csit-vpp-perf-report-iterative-2302-2n-icx:
       - 97  # 2302.rel NDRPDR nf-density iter env 11
       - 98  # 2302.rel NDRPDR nf-density iter env 11
+      - 100 # 2302.rel NDRPDR nf-density iter env 11
 
   vpp-2n-icx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2302-2n-icx:
@@ -1149,6 +1150,7 @@
   vpp-3n-snr-curr-cov:
     csit-vpp-perf-report-coverage-2302-3n-snr:
       - 1   # 2302.rel NDRPDR cov env 11
+      - 5   # 2302.rel NDRPDR cov env 11
 
   # dpdk-3n-snr-hist-iter:
   #   csit-dpdk-perf-report-iterative-2206-3n-snr:
