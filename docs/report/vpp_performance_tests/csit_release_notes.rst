@@ -8,52 +8,38 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Added new performance testbed 3n-snr** (3 Node SnowRidge, with Intel
-     Atom processors).
+   - **Enhanced and added VPP hoststack tests** to daily and weekly
+     trending including: Quic VPP Echo, UDP+TCP LD_PRELOAD iPerf3,
+     LD_PRELOAD NGINX.
 
-   - **Added GTPU HW offload tests** using VPP GTPU hardware offload
-     with Intel e810 4p25ge NICs (3n-icx testbeds only). These tests
-     were already there in CSIT-2206, but were yielding invalid
-     results due to using TRex v2.97 that was incompatible with e810
-     NICs used for those tests.
+   - **Added Nvidia/Mellanox DPDK tests** to daily and weekly trending
+     and report, in addition to RDMA_CORE ones that were already
+     there.
 
-   - **Added Wireguard tests** using VPP software crypto (3n-icx, 3n-snr
-     testbeds) and using built-in hardware crypto QAT device (3n-snr testbed
-     only).
+   - **Jumbo frames tests** got fixed and re-added number of to report
+     coverage tests.
 
-   - **Reduction of tests**: Removed certain test variations executed
-     iteratively for the report (as well as in daily and weekly
-     trending) due to physical testbeds overload.
+   - **Intel Xeon SKX performance testbeds** got decommissioned and
+     removed from FD.io performance lab.
 
 #. TEST FRAMEWORK
 
-   - CSIT-2210 executes all VPP v22.10 performance tests using vpp ubuntu2204
-     images, due to CSIT execution environment change as noted below. This
-     applies to all performance testbeds except Denverton. Consequently, VPP
-     v22.06 has not been re-tested in CSIT-2210 environment, as no ubuntu204
-     images are available for that VPP version. Performance comparison
-     between VPP v22.10 (current version) vs VPP v22.06 (previous version)
-     may be impacted by VPP build environment change (ubuntu2004 to ubuntu
-     2204) change and CSIT environment change. See :ref:`vpp_rca` for
-     details.
+   - **CSIT test environment** version has not changed from ver. 11 used
+     in previous release, see :ref:`test_environment_versioning`.
 
-   - **CSIT test environment** version has been updated to ver. 11, see
-     :ref:`test_environment_versioning`.
-
-   - **TCP TPUT profiles** had to be changed, as newer TRex versions
-     are not deterministic enough when deciding when to send an ACK.
-
-   - **CSIT PAPI support**: Due to issues with PAPI performance, and
-     deprecation of VAT, VPP CLI is used in CSIT for many VPP scale
-     tests. See :ref:`vpp_known_issues`.
+   - **CSIT PAPI optimizations for scale** got applied improving PAPI
+     programming speed especially for large scale tests. VAT has been
+     now completely deprecated from CSIT.
 
    - **General Code Housekeeping**: Ongoing code optimizations and bug
      fixes.
 
 #. PRESENTATION AND ANALYTICS LAYER
 
-   - **C-Dash** `performance dashboard <http://csit.fd.io/>`_ got updated UI and
-     updated backend increasing its performance and robustness.
+   - `Performance dashboard <http://csit.fd.io/>`_ got updated with
+   addition of VPP telemetry trending across all VPP tests. A number
+   of code and AWS resource usage optimizations got applied to the
+   data processing pipeline and UI frontend and backend.
 
 .. raw:: latex
 
@@ -63,6 +49,8 @@ Changes in |csit-release|
 
 Known Issues
 ------------
+
+Editing Note: below listed known issues need to be updated to reflect the current state as tracked on `CSIT TestFailuresTracking wiki <https://wiki.fd.io/view/CSIT/TestFailuresTracking>`_.
 
 New
 ___
