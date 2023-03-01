@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8218f1ea_a4a9cf9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-03-01T15:54:02Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest mrrANDnic_*AND64bANDeth-l2xcbaseNOTdrv_af_xdpNOT1c",
+      "revId": "6aef401a306e833ba9dc69d8361a5083752962e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
