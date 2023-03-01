@@ -33,6 +33,23 @@
       "message": "csit-3n-snr-perftest mrrANDnic_*AND64bANDeth-l2xcbaseNOTdrv_af_xdpNOT1c",
       "revId": "def2d493e7c9e3b402dbf93e683d1ad358985ba0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54994725_e716db4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-03-01T15:51:59Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest mrrANDnic_*ANDdrv_avfAND64bANDeth-l2xcbaseNOTdrv_af_xdpNOT1c",
+      "revId": "def2d493e7c9e3b402dbf93e683d1ad358985ba0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
