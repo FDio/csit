@@ -146,7 +146,7 @@
   vpp-2n-zn2-curr-iter:
     csit-vpp-perf-report-iterative-2302-2n-zn2:
       - 16  # 2302.rel NDRPDR iter env 11
-      # - 17  # 2302.rel NDRPDR iter env 11
+      - 17  # 2302.rel NDRPDR iter env 11
       - 18  # 2302.rel NDRPDR iter env 11
       - 19  # 2302.rel NDRPDR iter env 11
       - 20  # 2302.rel NDRPDR iter env 11
@@ -306,6 +306,7 @@
     csit-vpp-perf-report-iterative-2302-2n-clx:
       - 40  # 2302.rel NDRPDR nf-density iter env 11
       - 46  # 2302.rel NDRPDR nf-density iter env 11
+      - 55  # 2302.rel NDRPDR nf-density iter env 11
       - 56  # 2302.rel NDRPDR nf-density iter env 11
       - 57  # 2302.rel NDRPDR nf-density iter env 11
       - 59  # 2302.rel NDRPDR nf-density iter env 11
@@ -436,6 +437,7 @@
       - 18  # 2302.rel NDRPDR iter env 11
       - 19  # 2302.rel NDRPDR iter env 11
       - 20  # 2302.rel NDRPDR iter env 11
+      - 21  # 2302.rel NDRPDR iter env 11
 
   vpp-3n-tsh-curr-iter-best:
     csit-vpp-perf-report-iterative-2302-3n-tsh:
@@ -727,10 +729,12 @@
       - 76  # 2302.rel NDRPDR iter env 11
       - 99  # 2302.rel NDRPDR iter env 11
       - 104 # 2302.rel NDRPDR iter env 11
+      - 105 # 2302.rel NDRPDR iter env 11
+      - 106 # 2302.rel NDRPDR iter env 11
 
   vpp-2n-icx-curr-iter-best:
     csit-vpp-perf-report-iterative-2302-2n-icx:
-      - 76  # 2302.rel NDRPDR iter env 11
+      - 105  # 2302.rel NDRPDR iter env 11
 
   vpp-2n-icx-hist-iter-mrr:
     csit-vpp-perf-report-iterative-2206-2n-icx:
@@ -758,6 +762,8 @@
       - 101 # 2302.rel NDRPDR nf-density iter env 11
       - 102 # 2302.rel NDRPDR nf-density iter env 11
       - 103 # 2302.rel NDRPDR nf-density iter env 11
+      - 107 # 2302.rel NDRPDR nf-density iter env 11
+      - 108 # 2302.rel NDRPDR nf-density iter env 11
 
   vpp-2n-icx-curr-nfv-mrr:
     csit-vpp-perf-report-iterative-2302-2n-icx:
@@ -788,6 +794,8 @@
       - 76  # 2302.rel NDRPDR iter env 11
       - 99  # 2302.rel NDRPDR iter env 11
       - 104 # 2302.rel NDRPDR iter env 11
+      - 105 # 2302.rel NDRPDR iter env 11
+      - 106 # 2302.rel NDRPDR iter env 11
   vpp-soak-vs-ndr-2n-icx:
     csit-vpp-perf-report-iterative-2302-2n-icx:
       - 58  # 2302.rel NDRPDR iter env 11 - replace
@@ -796,6 +804,8 @@
       - 76  # 2302.rel NDRPDR iter env 11
       - 99  # 2302.rel NDRPDR iter env 11
       - 104 # 2302.rel NDRPDR iter env 11
+      - 105 # 2302.rel NDRPDR iter env 11
+      - 106 # 2302.rel NDRPDR iter env 11
       - 78  # 2302.rel soak env 11
       - 80  # 2302.rel soak env 11
 
@@ -913,6 +923,7 @@
       - 28  # 2302.rel NDRPDR iter env 11
       - 29  # 2302.rel NDRPDR iter env 11
       - 31  # 2302.rel NDRPDR iter env 11
+      - 40  # 2302.rel NDRPDR iter env 11
 
   vpp-3n-icx-curr-iter-best:
     csit-vpp-perf-report-iterative-2302-3n-icx:
@@ -960,10 +971,13 @@
     csit-vpp-perf-report-iterative-2302-3n-icx:
       - 25  # 2302.rel hoststack iter env 11
       - 27  # 2302.rel hoststack iter env 11
+      - 32  # 2302.rel hoststack iter env 11
       - 33  # 2302.rel hoststack iter env 11
+      - 34  # 2302.rel hoststack iter env 11
       - 35  # 2302.rel hoststack iter env 11
       - 37  # 2302.rel hoststack iter env 11
       - 38  # 2302.rel hoststack iter env 11
+      - 39  # 2302.rel hoststack iter env 11
       - 41  # 2302.rel hoststack iter env 11
 
   vpp-3n-icx-curr-cov:
@@ -1052,6 +1066,7 @@
       - 16  # 2302.rel NDRPDR iter env 11
       - 17  # 2302.rel NDRPDR iter env 11
       - 18  # 2302.rel NDRPDR iter env 11
+      - 19  # 2302.rel NDRPDR iter env 11
       - 20  # 2302.rel NDRPDR iter env 11
 
   vpp-3n-alt-curr-iter-best:
