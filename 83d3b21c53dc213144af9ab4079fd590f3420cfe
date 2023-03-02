@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "280a97c4_09a4ab4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-03-02T12:35:45Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-tsh-perftest srv6-00",
+      "revId": "83d3b21c53dc213144af9ab4079fd590f3420cfe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
