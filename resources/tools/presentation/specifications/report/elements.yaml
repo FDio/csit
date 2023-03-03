@@ -5174,7 +5174,7 @@
       - "vts"
       - "lb"
       - "nfv_density"
-      - "hoststack"
+      # - "hoststack"
     level-2:
       - "2n-clx"
       - "2n-icx"
@@ -5240,7 +5240,7 @@
       - "vts"
       - "lb"
       - "nfv_density"
-      - "hoststack"
+      # - "hoststack"
     level-2:
       - "2n-clx"
       - "2n-icx"
@@ -5306,7 +5306,7 @@
       - "vts"
       - "lb"
       - "nfv_density"
-      - "hoststack"
+      # - "hoststack"
     level-2:
       - "2n-clx"
       - "2n-icx"
@@ -5372,7 +5372,7 @@
       - "vts"
       - "lb"
       - "nfv_density"
-      - "hoststack"
+      # - "hoststack"
     level-2:
       - "2n-clx"
       - "2n-icx"
@@ -5438,7 +5438,7 @@
       - "vts"
       - "lb"
       - "nfv_density"
-      - "hoststack"
+      # - "hoststack"
     level-2:
       - "2n-clx"
       - "2n-icx"
