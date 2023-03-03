@@ -33,6 +33,23 @@
       "message": "csit-vpp-report-cov-3n-tsh-perftest srv6-01",
       "revId": "4fd1a0369c3ad8055997a9f7e5bcc890fd623cb2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d23db6a_8f6f8f42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-03-03T06:47:59Z",
+      "side": 1,
+      "message": "csit-vpp-report-cov-3n-icx-perftest crypto-03",
+      "revId": "4fd1a0369c3ad8055997a9f7e5bcc890fd623cb2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
