@@ -1824,14 +1824,26 @@ To be completed.
 ```
 - testbed21:
     - ring1 200GE-ports ConnectX7-2p200GE:
-        - ??
-        - ??
-        - ??
+        - s52-t21-tg1-c2/p1  to s53-t21-sut1-c2/p1
+        - s52-t21-tg1-c7/p1  to s53-t21-sut1-c7/p1
+        - s53-t21-sut1-c4/p2 to s53-t21-sut1-c9/p2
+    - ring2 200GE-ports ConnectX7-2p200GE:
+        - s52-t21-tg1-c2/p2   to s53-t21-sut1-c2/p2
+        - s52-t21-tg1-c7/p2   to s53-t21-sut1-c7/p2
+        - s53-t21-sut1-c10/p1 to s53-t21-sut1-c11/p1
+    - ring3 200GE-ports ConnectX7-2p200GE:
+        - s52-t21-tg1-c4/p1   to s53-t21-sut1-c4/p1
+        - s52-t21-tg1-c9/p1   to s53-t21-sut1-c9/p1
+        - s53-t21-sut1-c10/p2 to s53-t21-sut1-c11/p2
 - testbed22:
     - ring1 100GE-ports e810-2CQDA2-2p100GE:
-        - s53-t21-tg1-c2/p1 to s54-t22-sut1-c2/p2.
-        - s54-t22-sut1-c2/p1 to s54-t22-sut1-c7/p2.
-        - s54-t22-sut1-c7/p1 to s55-t22-tg1-c2/p2.
+        - s54-t22-tg1-c2/p1  to s55-t22-sut1-c2/p1
+        - s54-t22-tg1-c2/p2  to s55-t22-sut1-c7/p1
+        - s54-t22-sut1-c2/p2 to s55-t22-sut1-c7/p2
+    - ring2 25GE-ports e810-XXVDA4-4p25GE:
+        - s54-t22-tg1-c4/p1  to s55-t22-sut1-c4/p1
+        - s54-t22-tg1-c4/p2  to s55-t22-sut1-c9/p1
+        - s54-t22-sut1-c4/p2 to s55-t22-sut1-c9/p2
 - testbed23:
     - ring1 200GE-ports ConnectX7-2p200GE:
         - s56-t23-sut1-c2/p1 to s57-t23-tg1-c2/p1.
