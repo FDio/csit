@@ -10288,7 +10288,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-icx-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-icx-curr-iter"
-  core: ["1t1c", "2t2c"]
+  core: ["2t1c", "4t2c"]
   include:
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -10315,7 +10315,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/3n-icx-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-3n-icx-curr-iter"
-  core: ["1t1c", "1t2c"]
+  core: ["2t1c", "4t2c"]
   include:
     - "tests.dpdk.perf.25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -10342,7 +10342,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-clx-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-clx-curr-iter"
-  core: ["1t1c", "2t2c"]
+  core: ["2t1c", "4t2c"]
   include:
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -10355,7 +10355,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-clx-x710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-clx-curr-iter"
-  core: ["1t1c", "2t2c"]
+  core: ["2t1c", "4t2c"]
   include:
     - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -11397,7 +11397,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-zn2-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-zn2-curr-iter"
-  core: ["1t1c", "2t2c"]
+  core: ["2t1c", "4t2c"]
   include:
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -11410,7 +11410,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-zn2-x710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-zn2-curr-iter"
-  core: ["1t1c", "2t2c"]
+  core: ["2t1c", "4t2c"]
   include:
     - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -11447,6 +11447,34 @@
 # 3n-icx Throughput
 
 - type: "plot"
+  title: "Throughput: 3n-icx-e810xxv-1518b-{core}-ipsec-fixtnlip-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-1518b-{core}-ipsec-fixtnlip-{test_type}"
+  data: "vpp-3n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Aes256Gcm-Ndrpdr.1518B-{core}-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Flow-Dir-Aes256Gcm-Ndrpdr.1518B-{core}-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-dir-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Flow-Rss-Aes256Gcm-Ndrpdr.1518B-{core}-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-icx-e810xxv-1518b-{core}-ipsec-fixtnlip-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 3n-icx-e810xxv-imix-{core}-ipsec-fixtnlip-{test_type}"
+  algorithm: "plot_ndrpdr_box_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-imix-{core}-ipsec-fixtnlip-{test_type}"
+  data: "vpp-3n-icx-curr-iter"
+  core: ["2t1c", ]
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Flow-Dir-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-dir-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Flow-Rss-Aes256Gcm-Ndrpdr.IMIX-{core}-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-icx-e810xxv-imix-{core}-ipsec-fixtnlip-{test_type}"
+    layout: "plot-throughput"
+
+- type: "plot"
   title: "Throughput: 3n-icx-xxv710-1518b-{core}-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-{test_type}"
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-1518b-{core}-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-{test_type}"
@@ -11481,7 +11509,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-1518b-{core}-ipsec-scheduler-ip4routing-base-scale-sw-avf-{test_type}"
   data: "vpp-3n-icx-curr-iter"
-  core: ["2t1c", ]
+  core: ["2t2c", ]
   include:
     - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
@@ -11510,7 +11538,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-1518b-{core}-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-{test_type}"
   data: "vpp-3n-icx-curr-iter"
-  core: ["2t1c", ]
+  core: ["2t2c", ]
   include:
     - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
@@ -11553,7 +11581,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-imix-{core}-ipsec-scheduler-ip4routing-base-scale-sw-avf-{test_type}"
   data: "vpp-3n-icx-curr-iter"
-  core: ["2t1c", ]
+  core: ["2t2c", ]
   include:
     - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Avf-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
@@ -11582,7 +11610,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-xxv710-imix-{core}-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-{test_type}"
   data: "vpp-3n-icx-curr-iter"
-  core: ["2t1c", ]
+  core: ["2t2c", ]
   include:
     - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.25Ge2P1Xxv710-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
@@ -11763,7 +11791,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-e810cq-1518b-{core}-ipsec-scheduler-ip4routing-base-scale-sw-avf-{test_type}"
   data: "vpp-3n-icx-curr-iter"
-  core: ["2t1c", ]
+  core: ["2t2c", ]
   include:
     - "Tests.Vpp.Perf.Crypto.100Ge2P1E810Cq-Avf-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.100Ge2P1E810Cq-Avf-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.1518B-{core}-avf-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
@@ -11792,7 +11820,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-e810cq-1518b-{core}-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-{test_type}"
   data: "vpp-3n-icx-curr-iter"
-  core: ["2t1c", ]
+  core: ["2t2c", ]
   include:
     - "Tests.Vpp.Perf.Crypto.100Ge2P1E810Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.100Ge2P1E810Cq-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.1518B-{core}-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
@@ -11835,7 +11863,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-e810cq-imix-{core}-ipsec-scheduler-ip4routing-base-scale-sw-avf-{test_type}"
   data: "vpp-3n-icx-curr-iter"
-  core: ["2t1c", ]
+  core: ["2t2c", ]
   include:
     - "Tests.Vpp.Perf.Crypto.100Ge2P1E810Cq-Avf-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.100Ge2P1E810Cq-Avf-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes128Cbc-Hmac512Sha-ndrpdr.imix-{core}-avf-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
@@ -11864,7 +11892,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-icx-e810cq-imix-{core}-ipsec-scheduler-ip4routing-base-scale-sw-dpdk-{test_type}"
   data: "vpp-3n-icx-curr-iter"
-  core: ["2t1c", ]
+  core: ["2t2c", ]
   include:
     - "Tests.Vpp.Perf.Crypto.100Ge2P1E810Cq-Ethip4Ipsec1Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-ethip4ipsec1tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
     - "Tests.Vpp.Perf.Crypto.100Ge2P1E810Cq-Ethip4Ipsec8Tnlswasync-Scheduler-Ip4Base-Int-Aes256Gcm-ndrpdr.imix-{core}-ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes256gcm-ndrpdr"
@@ -11985,6 +12013,32 @@
     layout: "plot-throughput"
 
 # 3n-icx Speedup
+
+- type: "plot"
+  title: "Speedup: 3n-icx-e810xxv-1518b-ipsec-fixtnlip-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-1518b-ipsec-fixtnlip-{test_type}-tsa"
+  data: "vpp-3n-icx-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Aes256Gcm-Ndrpdr.1518B-.t.c-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Flow-Dir-Aes256Gcm-Ndrpdr.1518B-.t.c-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-dir-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Flow-Rss-Aes256Gcm-Ndrpdr.1518B-.t.c-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-icx-e810xxv-1518b-ipsec-fixtnlip-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: 3n-icx-e810xxv-imix-ipsec-fixtnlip-{test_type}-tsa"
+  algorithm: "plot_tsa_name"
+  output-file: "{DIR[STATIC,VPP]}/3n-icx-e810xxv-imix-ipsec-fixtnlip-{test_type}-tsa"
+  data: "vpp-3n-icx-curr-iter"
+  include:
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Flow-Dir-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-dir-aes256gcm-ndrpdr"
+    - "Tests.Vpp.Perf.Crypto.25Ge2P1E810Xxv-Ethip4Ipsec1000Tnlsw-Fixtnlip-Ip4Base-Policy-Flow-Rss-Aes256Gcm-Ndrpdr.IMIX-.t.c-ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm-ndrpdr"
+  layout:
+    title: "3n-icx-e810xxv-imix-ipsec-fixtnlip-{test_type}"
+    layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
   title: "Speedup: 3n-icx-xxv710-1518b-ipsec-aes128cbc-ip4routing-base-scale-sw-avf-{test_type}-tsa"
@@ -12960,7 +13014,7 @@
   output-file-links: "{DIR[LAT,DPDK]}/2n_icx.rst"
   target-links: "../../_static/dpdk"
   data: "dpdk-2n-icx-curr-iter-best"
-  filter: "'1T1C' and 'NIC_Intel-XXV710'"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
@@ -12971,7 +13025,7 @@
   output-file-links: "{DIR[LAT,DPDK]}/3n_icx.rst"
   target-links: "../../_static/dpdk"
   data: "dpdk-3n-icx-curr-iter-best"
-  filter: "'1T1C' and 'NIC_Intel-XXV710'"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
@@ -12982,7 +13036,7 @@
   output-file-links: "{DIR[LAT,DPDK]}/2n_clx.rst"
   target-links: "../../_static/dpdk"
   data: "dpdk-2n-clx-curr-iter-best"
-  filter: "'1T1C' and 'NIC_Intel-XXV710'"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
@@ -12993,7 +13047,7 @@
   output-file-links: "{DIR[LAT,DPDK]}/2n_zn2.rst"
   target-links: "../../_static/dpdk"
   data: "dpdk-2n-zn2-curr-iter-best"
-  filter: "'1T1C' and 'NIC_Intel-XXV710'"
+  filter: "'2T1C' and 'NIC_Intel-XXV710'"
   layout:
     layout: "plot-hdrh-latency-percentile-x-log"
 
