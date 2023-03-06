@@ -648,6 +648,7 @@
       - 9   # 2302.rel NDRPDR cov env 11
       - 11  # 2302.rel NDRPDR cov env 11
       - 12  # 2302.rel NDRPDR cov env 11
+      - 13  # 2302.rel NDRPDR cov env 11
       - 14  # 2302.rel NDRPDR cov env 11
 
   dpdk-2n-tx2-hist-iter:
@@ -1108,7 +1109,7 @@
       - 14  # 2302.rel NDRPDR cov env 11
       - 15  # 2302.rel NDRPDR cov env 11
       - 16  # 2302.rel NDRPDR cov env 11
-      # - 17  # 2302.rel NDRPDR cov env 11
+      - 17  # 2302.rel NDRPDR cov env 11
       - 18  # 2302.rel NDRPDR cov env 11
       - 19  # 2302.rel NDRPDR cov env 11
       - 20  # 2302.rel NDRPDR cov env 11
@@ -1247,6 +1248,7 @@
       - 3   # 2302.rel NDRPDR cov env 11
       - 4   # 2302.rel NDRPDR cov env 11
       - 5   # 2302.rel NDRPDR cov env 11
+      - 7   # 2302.rel NDRPDR cov env 11
 
   dpdk-3n-alt-hist-iter:
     csit-dpdk-perf-report-iterative-2206-3n-alt:
