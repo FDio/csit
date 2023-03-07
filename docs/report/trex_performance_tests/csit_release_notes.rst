@@ -6,27 +6,12 @@ Changes in |csit-release|
 
 #. TREX PERFORMANCE TESTS
 
-   - **Intel Ice Lake**: Added tests for testing latency between 2 ports on
-     Intel-E810Cq on the TRex. Used 2n-icx test bed. Added tests:
-
-     - IP4Base
-     - IP4scale2m
-     - IP6Base
-     - IP6scale2m
-     - L2bscale1mmaclrn
-
-   - **Amazon 1n-aws**: Added tests for testing latency between 2 ports on
-     Amazon Nitro 50G on the TRex. Added tests:
-
-     - IP4Base
-     - IP4scale2m
-     - IP6Base
-     - IP6scale2m
+   - No updates.
 
 #. TEST FRAMEWORK
 
-   - **CSIT test environment** version has been updated to ver. 11, see
-     :ref:`test_environment_versioning`.
+   - **CSIT test environment** version has not changed from ver. 11 used
+     in previous release, see :ref:`test_environment_versioning`.
 
 .. _trex_known_issues:
 

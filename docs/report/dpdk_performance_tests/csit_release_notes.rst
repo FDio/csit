@@ -6,12 +6,13 @@ Changes in |csit-release|
 
 #. TEST FRAMEWORK
 
-   - **CSIT test environment** version has been updated to ver. 11, see
-     :ref:`test_environment_versioning`.
+   - **CSIT test environment** version has not changed from ver. 11 used
+     in previous release, see :ref:`test_environment_versioning`.
 
 #. DPDK PERFORMANCE TESTS
 
-   - No updates
+   - **Intel Xeon SKX performance testbeds** got decommissioned and
+     removed from FD.io performance lab.
 
 #. DPDK RELEASE VERSION CHANGE
 
