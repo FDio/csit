@@ -28,7 +28,6 @@
 ## Linux lscpu
 
 ```
-$ lscpu
 Architecture:        x86_64
 CPU op-mode(s):      32-bit, 64-bit
 Byte Order:          Little Endian
@@ -67,7 +66,6 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
 ```
 
 ```
-$ lscpu
 Architecture:        x86_64
 CPU op-mode(s):      32-bit, 64-bit
 Byte Order:          Little Endian
@@ -312,7 +310,6 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
 ## Linux dmidecode pci
 
 ```
-  $ dmidecode -t slot
   Handle 0x000B, DMI type 9, 17 bytes
   System Slot Information
         Designation: CPU1 SLOT2 PCI-E 3.0 X16
@@ -420,16 +417,6 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
 ## Linux dmidecode memory
 
 ```
-  $ dmidecode -t memory
-  Handle 0x0021, DMI type 16, 23 bytes
-  Physical Memory Array
-	Location: System Board Or Motherboard
-	Use: System Memory
-	Error Correction Type: Single-bit ECC
-	Maximum Capacity: 2304 GB
-	Error Information Handle: Not Provided
-	Number Of Devices: 4
-
   Handle 0x0023, DMI type 17, 84 bytes
   Memory Device
 	Array Handle: 0x0021

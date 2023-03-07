@@ -28,8 +28,8 @@
       tags: docker
     - role: vpp
       tags: vpp
-    - role: dpdk
-      tags: dpdk
+    #- role: dpdk
+    #  tags: dpdk
     - role: kernel_vm
       tags: kernel_vm
     - role: csit_sut_image

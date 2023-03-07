@@ -28,11 +28,11 @@
   tags:
     - mellanox-inst-drivers
 
-- name: Inst - Switch Infiniband to Ethernet
-  ansible.builtin.command: "mlxconfig --yes --dev {{ item }} set LINK_TYPE_P1=2 LINK_TYPE_P2=2"
-  with_items: "{{ mellanox_pcis.stdout_lines }}"
-  tags:
-    - mellanox-inst-drivers
+#- name: Inst - Switch Infiniband to Ethernet
+#  ansible.builtin.command: "mlxconfig --yes --dev {{ item }} set LINK_TYPE_P1=2 LINK_TYPE_P2=2"
+#  with_items: "{{ mellanox_pcis.stdout_lines }}"
+#  tags:
+#    - mellanox-inst-drivers
 
 - name: FIX qemu-system removal
   ansible.builtin.package:
