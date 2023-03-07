@@ -37,9 +37,17 @@ Changes in |csit-release|
 #. PRESENTATION AND ANALYTICS LAYER
 
    - `Performance dashboard <http://csit.fd.io/>`_ got updated with
-   addition of VPP telemetry trending across all VPP tests. A number
-   of code and AWS resource usage optimizations got applied to the
-   data processing pipeline and UI frontend and backend.
+     addition of VPP telemetry trending across all VPP tests. A number
+     of code and AWS resource usage optimizations got applied to the
+     data processing pipeline and UI frontend and backend.
+
+   - Examples of release iterative data visualisation:
+
+     - `Packet throughput 2n-icx-e810cq-ip4-base-scale-pdr <https://csit.fd.io/report/#eNrdVcluwjAQ_Zr0ggbZDml64QDkP5BxhhJlwYxNVPr1OAhpYiGO7cEHb3pv1qeRnT8T7h1266zYZuU2U2VThy3LN4twUOdULhSM1oLKl-FG2KF2CGqAxvyAFOIblZX4JYW5gB6P0NgVfK4OIA2gP02vsA6Tja1pcq12T9cvcRitr57RED1CRiQGo7SYZk-3GeddsszXhJoNQsYMeXSzZOKamHUk3aNrfpGpoQuMm9BohqSJ_fubnaHPRpXVg_F3qjijO1RCtEBDnZo8UXFJ6NQmKlGbgjp9ujPU_8cEFdXHcKb-8Q8V1R2PI8PX>`_
+     - `Speedup Multi-Core throughput graph for 2n-icx-e810cq-ip4-base-pdr <https://csit.fd.io/report/#eNrtlM8OgjAMxp8GL6aGFRAvHlTew8xRhAR1bpOoT-8wJIUYEg8mXjjsX35fu65fMusuhvaW6nWQbIN0G2Ba5X4Kos3cL6a2GIUIjdaA0cLvDNUkLQGeoVJ3EGF4JNSCViJUV5BNAZWOYRkfQCggV7YnPw5tjM5Nmxp3XeqPe5jmN8fU3z4gDRmGg7JYpstHTzNWLOulIckBvmJGjmyvmOGbWFUYeSJbPYmlvgvMlW80I6GG-d1D92jXqDR7K37qCk6ujLuC_3IlnlwZdyX-0pUkm50v5vT-yZLsBXP6Swk>`_
+     - `MRR, NDR and PDR comparison for 2n-icx-e810cq-ip4-base <https://csit.fd.io/report/#eNrtVMsOgjAQ_Bq8mDW0gHjxoPIfppZVSQDrthLx6y2GuBBj4kVPHvrKzG6nM0mtOxFuLZbLIFkH6TqQaZH7KYhWU79QaWUUSmiMARnN_I6wRGURZA2FvoIIwwNKI3AhQn0G1eyhMDHM4x0IDeiO3cmPXVdTEXWt5aZv_XIPo_nFMepvHyENEoMjWUwzx3bAeSeW-YpQcYFXzJBDOxAzfhOz9qQqtMUNmepdYFx7oxkSetzftWaA9kal2YPx5VTq_J_KR6n0Rv0mFfNP5bNUzDOVJJvUJ6oeP1mS3QG2H0sT>`_
+     - `Normalized throughput architecture comparison for 2n-[icx|clx]-e810cq-ip4-base-pdr <https://csit.fd.io/report/#eNrVk00OgjAQhU-DGzOGFhA3LlTuYUoZhKRibSsRT28hJANRF-500b98rzOvM6l1F4NHi2obJPsg3Qc8rQs_BdFu6RejLI9CDq3WwKOV3xlUKCwCb0CqO7AwPCHXDDcslFcQbQm1jmEd58AkoKv6kx95f0cXpg_ND2PolzxEi5sj6rPPSIuG4MwWyXTVTTSfzJJeGBR0wTsm5NBOzMzfRKrSiDPa-oEk9VUgLn2hCTE5j-86PaFjodJsUHzXlVr-UVfem_35riTZormY8_BneNpvhRpzJNkT6FzkMw>`_
+     - `NICs comparison for 2n-icx-ip4-base-pdr <https://csit.fd.io/report/#eNrll99ugyAUh5_G3SxnESx1N7to53s0FI6rmbYMnKF7-qFrcmRmV7vReuG__A74wSckuvZi8eCwfknEPsn3Cc8rHU5JtnsMF1s7nqUcOmOAZ0_hzmKN0iHwM6jaA0vTN-SGKS_EVkJTewGV2cB2cwSmANtT_xSOY9_IaNv3zV9vfU9eRKn-bCkNr4-SDi2FEReVmdN1VPMnLTWQFiW1CMgUtehGNPGgqKq0skFXfSGVhmmgXIWppoipuP_2akbpbabyYqj4txerG7kcLz3tnXvBZ5aqD5BduQAtBLsOK9ro9-Vo6Wnv1sswUJ-zdPZLJSJdgY_ZL5IY9U6NcPEzTN8NX14JXpsZW_mNewi46zAz691rwroKJzPfwaaws7ciiofzxTbDv6QovgETwNPp>`_
 
 .. raw:: latex
 

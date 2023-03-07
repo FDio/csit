@@ -10288,7 +10288,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-icx-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-icx-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -10315,7 +10315,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/3n-icx-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-3n-icx-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -10342,7 +10342,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-clx-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-clx-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -10355,7 +10355,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-clx-x710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-clx-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -11397,7 +11397,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-zn2-xxv710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-zn2-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-25ge2p1xxv710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
@@ -11410,7 +11410,7 @@
   algorithm: "plot_ndrpdr_box_name"
   output-file: "{DIR[STATIC,DPDK]}/2n-zn2-x710-64b-{core}-base-{test_type}"
   data: "dpdk-2n-zn2-curr-iter"
-  core: ["2t1c", "4t2c"]
+  core: ["1t1c", "2t2c"]
   include:
     - "tests.dpdk.perf.2n1l-10ge2p1x710-eth-l2xcbase-testpmd-ndrpdr.64b-{core}-eth-l2xcbase-testpmd-ndrpdr"
     - "tests.dpdk.perf.2n1l-10ge2p1x710-ethip4-ip4base-l3fwd-ndrpdr.64b-{core}-ethip4-ip4base-l3fwd-ndrpdr"
