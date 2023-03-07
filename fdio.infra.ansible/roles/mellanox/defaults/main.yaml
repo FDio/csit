@@ -1,5 +1,5 @@
 ---
-# file: roles/mellanox/defaults/main.yaml
+# file: defaults/main.yaml
 
 packages: "{{ packages_base + packages_by_distro[ansible_distribution | lower] + packages_by_arch[ansible_machine] }}"
 
@@ -21,10 +21,10 @@ packages_by_arch:
 mellanox_download_url: "http://content.mellanox.com/ofed"
 mellanox_extract_dir: "/opt"
 
-mellanox_cx5_compatibility_matrix:
+mellanox_compatibility_matrix:
   dpdk22.03:
     # https://doc.dpdk.org/guides/rel_notes/release_22_03.html
-    ofed: "5.6-1.0.3.3"
+    ofed: "5.9-0.5.6.0"
   dpdk22.07:
     # https://doc.dpdk.org/guides/rel_notes/release_22_07.html
-    ofed: "5.6-1.0.3.3"
+    ofed: "5.9-0.5.6.0"

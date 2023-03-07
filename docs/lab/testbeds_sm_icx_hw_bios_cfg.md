@@ -2,7 +2,6 @@
 
 1. [Linux lscpu](#linux-lscpu)
 1. [Linux dmidecode](#dmidecode)
-1. [Linux dmidecode pci](#linux-dmidecode-pci)
 1. [Linux dmidecode memory](#linux-dmidecode-memory)
 1. [Xeon ICX Server BIOS Configuration](#xeon-icx-server-bios-configuration)
    1. [Boot Feature](#boot-feature)
@@ -290,132 +289,9 @@ Processor Information
                 Power/Performance Control
 ```
 
-## Linux dmidecode pci
-
-```
-  $ dmidecode -t slot
-Handle 0x000A, DMI type 9, 17 bytes
-System Slot Information
-        Designation: CPU1 SLOT2 PCI-E 4.0 X16
-        Type: x16 <OUT OF SPEC>
-        Current Usage: In Use
-        Length: Short
-        Characteristics:
-                3.3 V is provided
-                Opening is shared
-                PME signal is supported
-        Bus Address: 0000:4b:00.0
-
-Handle 0x000B, DMI type 9, 17 bytes
-System Slot Information
-        Designation: CPU1 SlOT4 PCI-E 4.0 X16
-        Type: x16 <OUT OF SPEC>
-        Current Usage: In Use
-        Length: Short
-        Characteristics:
-                3.3 V is provided
-                Opening is shared
-                PME signal is supported
-        Bus Address: 0000:31:00.0
-
-Handle 0x000C, DMI type 9, 17 bytes
-System Slot Information
-        Designation: CPU2 SLOT6 PCI-E 4.0 X16
-        Type: x16 <OUT OF SPEC>
-        Current Usage: Available
-        Length: Short
-        Characteristics:
-                3.3 V is provided
-                Opening is shared
-                PME signal is supported
-        Bus Address: 0000:ff:00.0
-
-Handle 0x000D, DMI type 9, 17 bytes
-System Slot Information
-        Designation: CPU2 SLOT8 PCI-E 4.0 X16
-        Type: x16 <OUT OF SPEC>
-        Current Usage: Available
-        Length: Short
-        Characteristics:
-                3.3 V is provided
-                Opening is shared
-                PME signal is supported
-        Bus Address: 0000:ff:00.0
-
-Handle 0x000E, DMI type 9, 17 bytes
-System Slot Information
-        Designation: CPU1 SLOT9 PCI-E 4.0 X16
-        Type: x16 <OUT OF SPEC>
-        Current Usage: In Use
-        Length: Short
-        Characteristics:
-                3.3 V is provided
-                Opening is shared
-                PME signal is supported
-        Bus Address: 0000:17:00.0
-
-Handle 0x000F, DMI type 9, 17 bytes
-System Slot Information
-        Designation: CPU2 SLOT10 PCI-E 4.0 X16
-        Type: x16 <OUT OF SPEC>
-        Current Usage: Available
-        Length: Short
-        Characteristics:
-                3.3 V is provided
-                Opening is shared
-                PME signal is supported
-        Bus Address: 0000:ff:00.0
-
-Handle 0x0010, DMI type 9, 17 bytes
-System Slot Information
-        Designation: CPU2 SLOT11 PCI-E 4.0 X8
-        Type: x8 <OUT OF SPEC>
-        Current Usage: Available
-        Length: Short
-        Characteristics:
-                3.3 V is provided
-                Opening is shared
-                PME signal is supported
-        Bus Address: 0000:ff:00.0
-
-Handle 0x0011, DMI type 9, 17 bytes
-System Slot Information
-        Designation: M.2-HC1
-        Type: x4 M.2 Socket 2
-        Current Usage: Available
-        Length: Short
-        Characteristics:
-                3.3 V is provided
-                Opening is shared
-                PME signal is supported
-        Bus Address: 0000:ff:00.0
-
-Handle 0x0012, DMI type 9, 17 bytes
-System Slot Information
-        Designation: M.2-HC2
-        Type: x4 M.2 Socket 2
-        Current Usage: Available
-        Length: Short
-        Characteristics:
-                3.3 V is provided
-                Opening is shared
-                PME signal is supported
-        Bus Address: 0000:ff:00.0
-```
-
 ## Linux dmidecode memory
 
 ```
-  $ dmidecode -t memory
-Handle 0x0033, DMI type 16, 23 bytes
-Physical Memory Array
-        Location: System Board Or Motherboard
-        Use: System Memory
-        Error Correction Type: Single-bit ECC
-        Maximum Capacity: 12 TB
-        Error Information Handle: Not Provided
-        Number Of Devices: 16
-
 Handle 0x0034, DMI type 17, 92 bytes
 Memory Device
         Array Handle: 0x0033

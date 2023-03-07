@@ -1,5 +1,5 @@
 ---
-# file: roles/mellanox/tasks/main.yaml
+# file: tasks/main.yaml
 
 - name: Inst - Update Package Cache (APT)
   apt:
@@ -17,7 +17,7 @@
   tags:
     - mellanox-inst-drivers
 
-- name: Inst - Check Presence of Mellanox CX-5
+- name: Inst - Check Presence of Mellanox
   shell: "lspci | grep Mellanox | awk '{print $1}'"
   register: mellanox_pcis
   failed_when: false
@@ -25,19 +25,19 @@
   tags:
     - mellanox-inst-drivers
 
-- name: Inst - Get Mellanox CX-5 OFED driver versions
+- name: Inst - Get Mellanox OFED driver versions
   set_fact:
-    ofed: "{{ mellanox_cx5_compatibility_matrix[mellanox_cx5_matrix]['ofed'] }}"
+    ofed: "{{ mellanox_compatibility_matrix[mellanox_matrix]['ofed'] }}"
   when: >
     mellanox_pcis.stdout_lines | length > 0 and
-    mellanox_cx5_matrix is defined
+    mellanox_matrix is defined
   tags:
     - mellanox-inst-drivers
 
-- name: Inst - Driver Mellanox CX-5
+- name: Inst - Driver Mellanox
   import_tasks: ofed.yaml
   when: >
     mellanox_pcis.stdout_lines | length > 0 and
-    mellanox_cx5_matrix is defined
+    mellanox_matrix is defined
   tags:
     - mellanox-inst-drivers

@@ -22,7 +22,7 @@ autoinstall:
   network:
     ethernets:
       eno1:
-        addresses: [ 10.30.51.54/24 ]
+        addresses: [ 10.30.51.55/24 ]
         dhcp4: false
         gateway4: 10.30.51.1
         nameservers:
