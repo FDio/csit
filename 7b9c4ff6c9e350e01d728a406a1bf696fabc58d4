@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "633d1999_a973a248",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2023-03-07T20:55:31Z",
+      "side": 1,
+      "message": "|vpp-release| variable should be correct to `VPP-2302` from `VPP-23020`.",
+      "revId": "7b9c4ff6c9e350e01d728a406a1bf696fabc58d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
