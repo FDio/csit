@@ -185,11 +185,19 @@
     csit-vpp-perf-report-coverage-2302-2n-zn2:
       - 1   # 2302.rel NDRPDR cov env 11
       - 2   # 2302.rel NDRPDR cov env 11
+      - 3   # 2302.rel NDRPDR cov env 11
       - 4   # 2302.rel NDRPDR cov env 11
       - 5   # 2302.rel NDRPDR cov env 11
+      - 6   # 2302.rel NDRPDR cov env 11
       - 7   # 2302.rel NDRPDR cov env 11
+      - 8   # 2302.rel NDRPDR cov env 11
       - 9   # 2302.rel NDRPDR cov env 11
       - 10  # 2302.rel NDRPDR cov env 11
+      # - 11  # 2302.rel NDRPDR cov env 11
+      - 12  # 2302.rel NDRPDR cov env 11
+      - 13  # 2302.rel NDRPDR cov env 11
+      # - 14  # 2302.rel NDRPDR cov env 11
+      # - 15  # 2302.rel NDRPDR cov env 11
 
   dpdk-2n-zn2-hist-iter:
     csit-dpdk-perf-report-iterative-2206-2n-zn2:
@@ -1248,14 +1256,22 @@
   vpp-3n-alt-curr-cov:
     csit-vpp-perf-report-coverage-2302-3n-alt:
       - 1   # 2302.rel NDRPDR cov env 11
+      - 2   # 2302.rel NDRPDR cov env 11
       - 3   # 2302.rel NDRPDR cov env 11
       - 4   # 2302.rel NDRPDR cov env 11
       - 5   # 2302.rel NDRPDR cov env 11
       - 6   # 2302.rel NDRPDR cov env 11
       - 7   # 2302.rel NDRPDR cov env 11
+      - 8   # 2302.rel NDRPDR cov env 11
+      - 9   # 2302.rel NDRPDR cov env 11
       - 10  # 2302.rel NDRPDR cov env 11
       - 11  # 2302.rel NDRPDR cov env 11
       - 12  # 2302.rel NDRPDR cov env 11
+      - 13  # 2302.rel NDRPDR cov env 11
+      # - 14  # 2302.rel NDRPDR cov env 11
+      # - 15  # 2302.rel NDRPDR cov env 11
+      # - 16  # 2302.rel NDRPDR cov env 11
+      # - 17  # 2302.rel NDRPDR cov env 11
 
   dpdk-3n-alt-hist-iter:
     csit-dpdk-perf-report-iterative-2206-3n-alt:
