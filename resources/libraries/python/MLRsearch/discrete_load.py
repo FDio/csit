@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from functools import total_ordering
-from typing import Callable, Union
+from typing import Callable, Optional, Union
 
 from .load_rounding import LoadRounding
 from .discrete_width import DiscreteWidth
@@ -31,7 +31,7 @@ class DiscreteLoad:
     LoadRounding instance is needed to enable conversion between two forms.
     Conversion methods and factories are added for convenience.
 
-    In general, the int form is allowed to differ from conversion from int.
+    In general, the float form is allowed to differ from conversion from int.
 
     Comparisons are supported, acting on the float load component.
     Additive operations are supported, acting on int form.
@@ -39,6 +39,9 @@ class DiscreteLoad:
 
     As for all user defined classes by default, all instances are truthy.
     That is useful when dealing with Optional values, as None is falsy.
+
+    This dataclass is effectively frozen, but cannot be marked as such
+    as that would prevent LoadStats from being its subclass.
     """
 
     # For most debugs, rounding in repr just takes space.
@@ -65,16 +68,23 @@ class DiscreteLoad:
             self.float_load = float(self.float_load)
             self.int_load = self.rounding.float2int(self.float_load)
 
-    # Explicit comparson operators.
+    # Explicit comparison operators.
     # Those generated with dataclass order=True do not allow subclass instances.
 
-    def __eq__(self, other):
+    def __eq__(self, other: Optional[DiscreteLoad]) -> bool:
         """FIXME"""
+        if other is None:
+            return False
         return float(self) == float(other)
 
-    def __lt__(self, other):
+    def __lt__(self, other: DiscreteLoad) -> bool:
         """FIXME"""
         return float(self) < float(other)
+        # Raises if other is None.
+
+    def __hash__(self) -> int:
+        """FIXME"""
+        return hash(float(self))
 
     @property
     def is_round(self) -> bool:
@@ -135,7 +145,9 @@ class DiscreteLoad:
         """
 
         def factory_float(float_load: float) -> DiscreteLoad:
-            """Use rounding and float load to create discrete load.
+            """Use rounding instance and float load to create discrete load.
+
+            The float form is not rounded yet.
 
             :param int_load: Intended load in float form [tps].
             :type int_load: float
@@ -145,6 +157,23 @@ class DiscreteLoad:
             return DiscreteLoad(rounding=rounding, float_load=float_load)
 
         return factory_float
+
+    def rounded_down(self) -> DiscreteLoad:
+        """FIXME"""
+        return DiscreteLoad(
+            rounding=self.rounding,
+            int_load=int(self),
+            float_load=None,
+        )
+
+    def hashable(self) -> DiscreteLoad:
+        """FIXME"""
+        # For conversion from LoadStats.
+        return DiscreteLoad(
+            rounding=self.rounding,
+            int_load=None,
+            float_load=float(self),
+        )
 
     def __add__(self, width: DiscreteWidth) -> DiscreteLoad:
         """Return newly constructed instance with width added to int load.
