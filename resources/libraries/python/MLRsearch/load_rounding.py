@@ -13,6 +13,8 @@
 
 """Module defining LoadRounding class."""
 
+from __future__ import annotations
+
 import math
 
 from dataclasses import dataclass, field
@@ -46,6 +48,10 @@ class LoadRounding:
     Even more convenience is offered when (integer) goals are offered
     as DiscreteWidth instances. To avoid circular dependencies (type hints),
     this class does not offer that convenience; see LoadRounding.
+
+    The implementation is mutable in the sense it contains a cache
+    of previously computed values.
+    TODO: Hide the cache and present as frozen hashable object.
     """
 
     min_load: float
@@ -61,7 +67,7 @@ class LoadRounding:
     int_goals: List[int] = field(init=False, repr=False)
     """These amounts of units are within quality to float goals."""
     max_int_load: int = field(init=False, repr=False)
-    """Integer for max load (min load is int zero)."""
+    """Integer for max load (min load int is zero)."""
     _int2load: List[Tuple[int, float]] = field(init=False, repr=False)
     """Known int values (sorted) and their float equivalents."""
 
@@ -101,8 +107,8 @@ class LoadRounding:
         An actual implementation is smarter with the increment,
         so it is expected to find the resulting values faster.
 
-        :returns: Value to be stored as max_int_load and int goals.
-        :rtype: Tuple[int, List[int]]
+        :returns: Value to be stored as max_int_load.
+        :rtype: int
         """
         minmax_log_width = math.log(self.max_load) - math.log(self.min_load)
         log_goals = [-math.log1p(-goal) for goal in self.float_goals]
