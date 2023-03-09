@@ -1,23 +1,11 @@
-..
-   Copyright (c) 2021 Cisco and/or its affiliates.
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at:
-..
-       http://www.apache.org/licenses/LICENSE-2.0
-..
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+---
+bookHidden: true
+title: "VPP API Flag Day Algorithms"
+---
 
+# VPP API Flag Day Algorithm
 
-VPP API Flag Day Algorithm
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Abstract
-~~~~~~~~
+## Abstract
 
 This document describes the current solution to the problem of
 automating the detection of VPP API changes which are not backwards
@@ -30,8 +18,7 @@ Eventually the detection algorithm could be extended to include
 other integration points such as "directory" structure of stats
 segment or PAPI python library dependencies.
 
-Motivation
-~~~~~~~~~~
+## Motivation
 
 Aside of per-release activities (release report), CSIT also provides testing
 that requires somewhat tight coupling to the latest (merged but not released)
@@ -75,8 +62,7 @@ and rebasing to HEAD should result in +1 from the api-crc job.
 Secondly, no more than one VPP change is allowed to be processed
 (at the same time).
 
-Naming
-~~~~~~
+## Naming
 
 It is easier to define the process after chosing shorter names
 for notions that need long definition.
@@ -86,8 +72,7 @@ in practice it can be a set of jobs covering parts of functionality.
 A "run" of the set of jobs passes only if each job within the set
 has been run (again) and passed.
 
-Jobs
-----
+## Jobs
 
 + A *vpp verify* job: Any job run automatically, and voting on open VPP changes.
   Some verify jobs compile and package VPP for target operating system
@@ -129,8 +114,7 @@ Jobs
 + A *manual verification* is done by a CSIT committer, locally executing steps
   equivalent to the patch-on-patch job. This can to save time and resources.
 
-CRC Collections
----------------
+## CRC Collections
 
 Any commit in/for the CSIT repository contains a file (supported_crcs.yaml),
 which contains either one or two collections. A collection is a mapping
@@ -153,8 +137,7 @@ targeted at the VPP build (pointed out by the collection name).
   This is safe, because api-crc job on the active API change will fail
   if the older patch is no longer API-equivalent to the newer patch.
 
-Changes
--------
+## Changes
 
 + An *API change*: The name for any Gerrit Change for VPP repository
   that does not pass api-crc job right away, and needs this whole process.
@@ -164,9 +147,6 @@ Changes
   Full name could be VPP API Change, but as no CSIT change is named "API change"
   (and this document does not talk about other FD.io or external projects),
   "API change" is shorter.
-
-  TODO: Is there a magic incantation for Gerrit WebUI to search for API changes?
-  Open, -1 from api-crc job, +1 from other (non-csit) jobs.
 
 + A *blocked change*: The name for open Gerrit Change for VPP repository
   that got -1 from some of voting verify jobs.
@@ -228,8 +208,7 @@ When this documents says a change is activating or deactivating,
 it allows the possibility for the change to fullfill also other purposes
 (e.g. acting as deactivating / activating change for another API change).
 
-Algorithm Steps
-~~~~~~~~~~~~~~~
+## Algorithm Steps
 
 The following steps describe the application of the API "Flag Day" algorithm:
 
@@ -303,8 +282,7 @@ The following steps describe the application of the API "Flag Day" algorithm:
    submitter to rebase the patch to pick up the compatible VPP API
    version files.
 
-Real life examples
-~~~~~~~~~~~~~~~~~~
+### Real life examples
 
 Simple API change: https://gerrit.fd.io/r/c/vpp/+/23829
 
