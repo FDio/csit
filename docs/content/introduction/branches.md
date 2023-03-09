@@ -1,10 +1,9 @@
+---
+bookHidden: true
+title: "Git Branches in CSIT"
+---
+
 # Git Branches in CSIT
-
-#### Content
-
-- [Overview](#overview)
-- [Operational Branches](#operational-branches)
-- [Release Branches](#release-branches)
 
 ## Overview
 

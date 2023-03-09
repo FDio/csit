@@ -1,29 +1,29 @@
-CSIT Test Code Guidelines
-^^^^^^^^^^^^^^^^^^^^^^^^^
+---
+bookHidden: true
+title: "CSIT Test Code Guidelines"
+---
+
+# CSIT Test Code Guidelines
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
 "MAY", and "OPTIONAL" in this document are to be interpreted as
-described in `BCP 14 <https://tools.ietf.org/html/bcp14>`_
-`[RFC2119] <https://tools.ietf.org/html/rfc2119>`_
-`[RFC8174] <https://tools.ietf.org/html/rfc8174>`_
+described in [BCP 14](https://tools.ietf.org/html/bcp14),
+[RFC2119](https://tools.ietf.org/html/rfc2119),
+[RFC8174](https://tools.ietf.org/html/rfc8174)
 when, and only when, they appear in all capitals, as shown here.
 
 This document SHALL describe guidelines for writing reliable, maintainable,
 reusable and readable code for CSIT.
 
-TODO: Decide whether to use "you SHALL", "contributors SHALL",
-or "code SHALL be"; convert other forms to the chosen one.
-
-RobotFramework test case files and resource files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# RobotFramework test case files and resource files
 
 + General
 
   + Contributors SHOULD look at requirements.txt in root CSIT directory
     for the currently used Robot Framework version.
-    Contributors SHOULD read `Robot Framework User Guide
-    <http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html>`_
+    Contributors SHOULD read
+    [Robot Framework User Guide](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html)
     for more details.
 
   + RobotFramework test case files and resource files
@@ -37,14 +37,13 @@ RobotFramework test case files and resource files
 
   + Files SHALL be encoded in UTF-8 (the default Robot source file encoding).
     Usage of non-ASCII characters SHOULD be avoided if possible.
-    It is RECOMMENDED to `escape
-    <http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#escaping>`_
+    It is RECOMMENDED to
+    [escape](http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#escaping)
     non-ASCII characters.
 
   + Line length SHALL be limited to 80 characters.
 
-  + There SHALL be licence text (FIXME: add link) present
-    at the beginning of each file.
+  + There SHALL be licence text present at the beginning of each file.
 
   + Copy-pasting of the code NOT RECOMMENDED practice, any code that could be
     re-used SHOULD be put into a library (Robot resource, Python library, ...).
@@ -54,7 +53,7 @@ RobotFramework test case files and resource files
   + It is RECOMMENDED to use data-driven test case definitions
     anytime suite contains test cases similar in structure.
     Typically, a suite SHOULD define a Template keyword, and test cases
-    SHOULD only specify tags and argument values::
+    SHOULD only specify tags and argument values
 
         *** Settings ***
         | Test Template | Local Template
@@ -67,7 +66,7 @@ RobotFramework test case files and resource files
 
   + Test case templates (or testcases) SHALL be written in Behavior-driven style
     i.e. in readable English, so that even non-technical project stakeholders
-    can understand it::
+    can understand it
 
         *** Keywords ***
         | Local Template
@@ -97,14 +96,12 @@ RobotFramework test case files and resource files
   + Every suite and test case template (or testcase)
     SHALL contain short documentation.
     Generated CSIT web pages display the documentation.
-    For an example generated page, see:
-    https://docs.fd.io/csit/rls1807/doc/tests.vpp.perf.tcp.html
 
   + You SHOULD NOT use hard-coded constants.
     It is RECOMMENDED to use the variable table
     (\*\*\*Variables\*\*\*) to define test case specific values.
     You SHALL use the assignment sign = after the variable name
-    to make assigning variables slightly more explicit::
+    to make assigning variables slightly more explicit
 
         *** Variables ***
         | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src254
@@ -124,7 +121,7 @@ RobotFramework test case files and resource files
     the system in “broken” state for investigation.
 
   + Every testcase SHALL be correctly tagged. List of defined tags is in
-    csit/docs/tag_documentation.rst (FIXME: rst-ize the link) file.
+    csit/docs/introduction/test_tag_documentation.rst
 
     + Whenever possible, common tags SHALL be set using Force Tags
       in Settings table.
@@ -141,7 +138,6 @@ RobotFramework test case files and resource files
   + All test case names (and suite names) SHALL conform
     to current naming convention.
     https://wiki.fd.io/view/CSIT/csit-test-naming
-    TODO: Migrate the convention document to .rst and re-link.
 
   + Frequently, different suites use the same test case layout.
     It is RECOMMENDED to use autogeneration scripts available,
@@ -163,9 +159,6 @@ RobotFramework test case files and resource files
     + The reason was possbile usage of Robot's libdoc tool
       to generate tests and resources documentation. In that case
       example keyword usage would be rendered in table.
-
-    + TODO: We should adapt it for current tool
-      used to generate the documentation.
 
   + Keyword name SHALL describe what the keyword does,
     specifically and in a reasonable length (“short sentence”).
@@ -194,18 +187,12 @@ RobotFramework test case files and resource files
     and it makes it harder for the line containing the resulting long name
     to fit into the maximum character limit, so you SHOULD NOT use them.
 
-Python library files
-~~~~~~~~~~~~~~~~~~~~
-
-TODO: Add guidelines for Python scripts (both utilities called by test on nodes
-and unrelated ones such as PAL) if there are any (in addition to library ones).
+# Python library files
 
 + General
 
   + SHALL be used to implement low-level keywords that are called from
     resource files (of higher-level keywords) or from test cases.
-
-  + TODO: Discuss debugability, speed, logging, complexity of logic.
 
   + Higher-level keywords MAY be implemented in python library file too.
     it is RECOMMENDED especially in the case that their implementation
@@ -217,16 +204,11 @@ and unrelated ones such as PAL) if there are any (in addition to library ones).
     and possible return value(s) or raised exceptions.
 
     + The docstrings SHOULD conform to
-      `PEP 257 <https://www.python.org/dev/peps/pep-0257/>`_
+      [PEP 257](https://www.python.org/dev/peps/pep-0257/)
       and other quality standards.
 
     + CSIT contributions SHALL use a specific formatting for documenting
       arguments, return values and similar.
-
-      + FIXME: Find a link which documents sthis style.
-        it is based on Sphinx, but very different from
-        `Napoleon style
-        <https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html>`_.
 
   + Keyword usage examples MAY be grouped and used
     in the class/module documentation string, to provide better overview
@@ -240,13 +222,11 @@ and unrelated ones such as PAL) if there are any (in addition to library ones).
     so its name in the python library should be lowercase_with_underscores.
     Robot call sites should usename with first letter capitalized, and spaces.
 
-    + FIXME: create Robot keyword naming item in proper place.
-
 + Coding
 
   + It is RECOMMENDED to use some standard development tool
     (e.g. PyCharm Community Edition) and follow
-    `PEP-8 <https://www.python.org/dev/peps/pep-0008/>`_ recommendations.
+    [PEP-8](https://www.python.org/dev/peps/pep-0008/) recommendations.
 
   + All python code (not only Robot libraries) SHALL adhere to PEP-8 standard.
     This is reported by CSIT Jenkins verify job.
@@ -258,15 +238,15 @@ and unrelated ones such as PAL) if there are any (in addition to library ones).
 
   + CSIT Python code assumes PYTHONPATH is set
     to the root of cloned CSIT git repository, creating a tree of sub-packages.
-    You SHALL use that tree for importing, for example::
+    You SHALL use that tree for importing, for example
 
-       from resources.libraries.python.ssh import exec_cmd_no_error
+        from resources.libraries.python.ssh import exec_cmd_no_error
 
   + Imports SHALL be grouped in the following order:
 
-      #. standard library imports,
-      #. related third party imports,
-      #. local application/library specific imports.
+      1. standard library imports,
+      2. related third party imports,
+      3. local application/library specific imports.
 
     You SHALL put a blank line between each group of imports.
 
@@ -312,8 +292,3 @@ and unrelated ones such as PAL) if there are any (in addition to library ones).
   + For composing and formatting strings, you SHOULD use .format()
     with named arguments.
     Example: "repr() of name: {name!r}".format(name=name)
-
-Bash scripts and libraries
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-TODO: Link or copy the bash_code_style.rst document here.
