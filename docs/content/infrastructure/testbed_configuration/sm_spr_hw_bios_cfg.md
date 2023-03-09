@@ -1,9 +1,9 @@
-# SuperMicro SapphireRapids Servers - HW and BIOS Configuration
+---
+bookToc: true
+title: "SuperMicro SapphireRapids"
+---
 
-1. [Linux lscpu](#linux-lscpu)
-1. [Linux dmidecode](#dmidecode)
-1. [Linux dmidecode memory](#linux-dmidecode-memory)
-1. [Xeon SPR Server Firmware Inventory](#xeon-spr-server-firmware-inventory)
+# SuperMicro SapphireRapids
 
 ## Linux lscpu
 

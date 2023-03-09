@@ -80,9 +80,7 @@ See below for more concrete examples.
 Suite tags
 ``````````
 
-Traditionally, CSIT maintains broad Robot tags that can be used to select tests,
-for details on existing tags, see
-`CSIT Tags <https://github.com/FDio/csit/blob/master/docs/tag_documentation.rst>`_.
+Traditionally, CSIT maintains broad Robot tags that can be used to select tests.
 
 But it is not recommended to use them for test selection,
 as it is not that easy to determine how many test cases are selected.

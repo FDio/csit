@@ -1,0 +1,7 @@
+release: "rls2302"
+release_prev: "rls2210"
+release_csit: "CSIT 23.02"
+release_vpp: "VPP 23.02"
+release_dpdk: "DPDK 22.07"
+version_trex: "v3.00"
+vpp_release_commit_id: "07e0c05e698cf5ffd1e2d2de0296d1907519dc3d"
