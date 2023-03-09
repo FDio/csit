@@ -1,0 +1,16 @@
+version: "3"
+services:
+  build:
+    image: "klakegg/hugo:ext-alpine"
+    command: "mod get -u"
+    volumes:
+      - ".:/src"
+  server:
+    image: "klakegg/hugo:ext-alpine"
+    command: "server --minify"
+    depends_on:
+      - "build"
+    volumes:
+      - ".:/src"
+    ports:
+      - "1313:1313"
