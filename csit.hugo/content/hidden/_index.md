@@ -1,0 +1,4 @@
+---
+bookHidden: true
+title: "Hidden"
+---
