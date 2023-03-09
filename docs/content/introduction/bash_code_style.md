@@ -1,17 +1,7 @@
-..
-   Copyright (c) 2019 Cisco and/or its affiliates.
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at:
-..
-       http://www.apache.org/licenses/LICENSE-2.0
-..
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
+---
+bookHidden: true
+title: "Bash Code Style"
+---
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
@@ -24,16 +14,9 @@ when, and only when, they appear in all capitals, as shown here.
 This document SHALL describe guidelines for writing reliable, maintainable,
 reusable and readable code for CSIT.
 
-Motivation
-^^^^^^^^^^
+# Proposed Style
 
-TODO: List reasons why we need code style document for Bash.
-
-Proposed style
-^^^^^^^^^^^^^^
-
-File types
-~~~~~~~~~~
+# File Types
 
 Bash files SHOULD NOT be monolithic. Generally, this document
 considers two types of bash files:
@@ -53,8 +36,7 @@ considers two types of bash files:
 
   + Defines multiple functions other scripts can call.
 
-Safety
-~~~~~~
+# Safety
 
 + Variable expansions MUST be quoted, to prevent word splitting.
 
@@ -79,8 +61,6 @@ Safety
       ordinary strings.
 
     + Example: cp "logs"/*."log" "."/
-
-    + TODO: Consider giving examples both for good and bad usage.
 
   + Command substitution on right hand side of assignment are safe
     without quotes.
@@ -150,8 +130,7 @@ Safety
 + When error happens at an unexpected place, it is RECOMMENDED for the message
   to be short and generic, instead of speculative.
 
-Bash options
-~~~~~~~~~~~~
+# Bash Options
 
 + Code MUST apply "-x" to make debugging easier.
 
@@ -213,8 +192,7 @@ Bash options
   + Also code MUST put the line near start of function bodies
     and subshell invocations.
 
-Functions
-~~~~~~~~~
+# Functions
 
 There are (at least) two possibilities how a code from an external file
 can be executed. Either the file contains a code block to execute
@@ -292,16 +270,9 @@ here are some pros and cons:
         + And using "set +x" would take too much vertical space
           (when compared to entry script implementation).
 
-Variables
-~~~~~~~~~
+# Variables
 
 This document describes two kinds of variables: called "local" and "global".
-
-TODO: Find better adjectives for the two kinds defined here,
-if the usual bash meaning makes reader forget other specifics.
-For example, variable with lowercase name and not marked by "local" builtin,
-is cosidered "global" from bash point of view, but "local" from this document
-point of view.
 
 + Local variables:
 
@@ -320,10 +291,6 @@ point of view.
     + Code SHOULD have a comment if a reader might have missed
       the initialization.
 
-  + TODO: Agree on level of defensiveness (against local values
-    being influenced by other functions) needed.
-    Possible alternatives / additions to the "always initialize" rule:
-
     + Unset local variables when leaving the function.
 
     + Explicitly typeset by "local" builtin command.
@@ -336,10 +303,6 @@ point of view.
 
   + They SHOULD NOT be exported, unless external commands need them
     (e.g. PYTHONPATH).
-
-  + TODO: Propose a strict naming convention, or a central document
-    of all used global variables, to prevent contributors
-    from causing variable name conflicts.
 
   + Code MUST document if a function (or its inner call)
     reads a global variable.
@@ -363,21 +326,18 @@ point of view.
 
   + It looks more similar to Robot Framework variables (which is good).
 
-Arguments
-~~~~~~~~~
+# Arguments
 
 Bash scripts and functions MAY accept arguments, named "${1}", "${2}" and so on.
 As a whole available via "$@".
 You MAY use "shift" command to consume an argument.
 
-Contexts
-````````
+## Contexts
 
 Functions never have access to parent arguments, but they can read and write
 variables set or read by parent contexts.
 
-Arguments or variables
-``````````````````````
+### Arguments Or Variables
 
 + Both arguments and global variables MAY act as an input.
 
@@ -401,8 +361,7 @@ Arguments or variables
 
   + For most Linux distros, "getopt" is RECOMMENDED.
 
-Working directory handling
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Working Directory Handling
 
 + Functions SHOULD act correctly without neither assuming
   what the currect working directory is, nor changing it.
@@ -473,8 +432,7 @@ Working directory handling
   + That is because "exit" command, as well as the default behavior
     of "die" or "set -e" cause direct exit (without skipping function returns).
 
-Function size
-~~~~~~~~~~~~~
+# Function Size
 
 + In general, code SHOULD follow reasoning similar to how pylint
   limits code complexity.
@@ -489,8 +447,7 @@ Function size
     not readable just because external commands do not have
     obvious enough parameters. Use common sense.
 
-Documentation
-~~~~~~~~~~~~~
+# Documentation
 
 + The library path and filename is visible from source sites. It SHOULD be
   descriptive enough, so reader do not need to look inside to determine
@@ -533,8 +490,7 @@ Documentation
 
 Then it depends on script type.
 
-Library documentation
-`````````````````````
+## Library Documentation
 
 + Following "set -exuo pipefail" SHALL come the "import part" documentation.
 
@@ -547,10 +503,6 @@ Library documentation
     Similar to Robot [Documentation] or Python function-level docstring.
 
     + See below.
-
-  + Following that SHALL be various top-level TODOs and FIXMEs.
-
-    + TODO: Document (in an appropriate place) how TODOs differ from FIXMEs.
 
   + "set -exuo pipefail" SHALL be the first executable line
     in the function body, except functions which legitimely need
@@ -619,18 +571,9 @@ not obvious from the funtion name.
         redefine that function, if there is a good reason for not exiting
         on function failure.
 
-  + TODO: Programs installed, services started, URLs downloaded from, ...
-
-  + TODO: Add more items when you spot them.
-
-  + TODO: Is the current order recommended?
-
-Entry script documentation
-``````````````````````````
+## Entry Script Documentation
 
 + After "set -exuo pipefail", high-level description SHALL come.
-
-  + Then TODOs and FIXMEs SHALL be placed (if any).
 
   + Entry scripts are rarely reused, so detailed side effects
     are OPTIONAL to document.
@@ -648,8 +591,7 @@ Entry script documentation
 
 + Then SHALL come block of function calls (with parameters as needed).
 
-Other general recommendations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Other General Recommendations
 
 + Code SHOULD NOT not repeat itself, even in documentation:
 
@@ -664,9 +606,6 @@ Other general recommendations
   + If most of side effects come from an inner call,
     documentation MAY point the reader to the documentation
     of the called function (instead of listing all the side effects).
-
-    + TODO: Composite functions can have large effects. Should we require
-      intermediate functions to actively hide them whenever possible?
 
 + But documentation SHOULD repeat it if the information crosses functions.
 
@@ -710,9 +649,3 @@ Other general recommendations
     + Next line has the die commands (indented one level deeper),
 
     + Final line closes with "}" at original intent level.
-
-  + TODO: Recommend what to do with other constructs.
-
-    + For example multiple piped commands.
-
-    + No, "eval" is too unsafe to use.

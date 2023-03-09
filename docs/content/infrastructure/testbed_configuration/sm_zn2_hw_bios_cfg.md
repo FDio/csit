@@ -1,29 +1,9 @@
-# SuperMicro Cascadelake Servers - HW and BIOS Configuration
+---
+bookToc: true
+title: "SuperMicro EPYC Zen2"
+---
 
-1. [Linux lscpu](#linux-lscpu)
-1. [Linux dmidecode](#dmidecode)
-1. [Linux dmidecode pci](#linux-dmidecode-pci)
-1. [Linux dmidecode memory](#linux-dmidecode-memory)
-1. [EPYC zn2 Server BIOS Configuration](#epyc-zn2-server-bios-configuration)
-   1. [Boot Feature](#boot-feature)
-   1. [CPU Configuration](#cpu-configuration)
-      1. [Advanced Power Management Configuration](#advanced-power-management-configuration)
-         1. [CPU P State Control](#cpu-p-state-control)
-         1. [Hardware PM State Control](#hardware-pm-state-control)
-         1. [CPU C State Control](#cpu-c-state-control)
-         1. [Package C State Control](#package-c-state-control)
-         1. [CPU T State Control](#cpu-t-state-control)
-      1. [Chipset Configuration](#chipset-configuration)
-         1. [North Bridge](#north-bridge)
-         1. [UPI Configuration](#upi-configuration)
-         1. [Memory Configuration](#memory-configuration)
-         1. [IIO Configuration](#iio-configuration)
-         1. [CPU1 Configuration](#cpu1-configuration)
-         1. [CPU2 Configuration](#cpu2-configuration)
-      1. [South Bridge](#south-bridge)
-   1. [PCIe/PCI/PnP Configuration](#pciepcipnp-configuration)
-   1. [ACPI Settings](#acpi-settings)
-1. [EPYC zn2 Server Firmware Inventory](#epyc-zn2-server-firmware-inventory)
+# SuperMicro EPYC Zen2
 
 ## Linux lscpu
 
