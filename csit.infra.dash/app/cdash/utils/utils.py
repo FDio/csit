@@ -346,34 +346,48 @@ def set_job_params(df: pd.DataFrame, job: str) -> dict:
     }
 
 
-def get_list_group_items(items: list, type: str, colorize: bool=True) -> list:
+def get_list_group_items(
+        items: list,
+        type: str,
+        colorize: bool=True,
+        add_index: bool=False
+    ) -> list:
     """Generate list of ListGroupItems with checkboxes with selected items.
 
     :param items: List of items to be displayed in the ListGroup.
     :param type: The type part of an element ID.
     :param colorize: If True, the color of labels is set, otherwise the default
         color is used.
+    :param add_index: Add index to the list items.
     :type items: list
     :type type: str
     :type colorize: bool
+    :type add_index: bool
     :returns: List of ListGroupItems with checkboxes with selected items.
     :rtype: list
     """
-    return [
-        dbc.ListGroupItem(
-            children=[
-                dbc.Checkbox(
-                    id={"type": type, "index": i},
-                    label=l["id"] if isinstance(l, dict) else l,
-                    value=False,
-                    label_class_name="m-0 p-0",
-                    label_style={
-                        "font-size": ".875em",
-                        "color": get_color(i) if colorize else "#55595c"
-                    },
-                    class_name="info"
-                )
-            ],
-            class_name="p-0"
-        ) for i, l in enumerate(items)
-    ]
+
+    children = list()
+    for i, l in enumerate(items):
+        idx = f"{i + 1}. " if add_index else str()
+        label = f"{idx}{l['id']}" if isinstance(l, dict) else f"{idx}{l}"
+        children.append(
+            dbc.ListGroupItem(
+                children=[
+                    dbc.Checkbox(
+                        id={"type": type, "index": i},
+                        label=label,
+                        value=False,
+                        label_class_name="m-0 p-0",
+                        label_style={
+                            "font-size": ".875em",
+                            "color": get_color(i) if colorize else "#55595c"
+                        },
+                        class_name="info"
+                    )
+                ],
+                class_name="p-0"
+            )
+        )
+
+    return children

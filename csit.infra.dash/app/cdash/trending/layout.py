@@ -614,7 +614,7 @@ class Layout:
                         class_name="overflow-auto p-0",
                         id="lg-selected",
                         children=[],
-                        style={"max-height": "14em"},
+                        style={"max-height": "20em"},
                         flush=True
                     )
                 ]

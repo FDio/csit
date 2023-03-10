@@ -682,7 +682,7 @@ class Layout:
                         class_name="overflow-auto p-0",
                         id="lg-selected",
                         children=[],
-                        style={"max-height": "14em"},
+                        style={"max-height": "20em"},
                         flush=True
                     )
                 ]
@@ -1250,7 +1250,9 @@ class Layout:
 
             if on_draw:
                 if store_sel:
-                    lg_selected = get_list_group_items(store_sel, "sel-cl")
+                    lg_selected = get_list_group_items(
+                        store_sel, "sel-cl", add_index=True
+                    )
                     plotting_area = self._get_plotting_area(
                         store_sel,
                         bool(normalize),
