@@ -63,7 +63,7 @@ class Constants:
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
-    MAX_TIME_PERIOD = 130
+    MAX_TIME_PERIOD = 20  # 130
 
     # It defines the time period for data read from the parquets in days from
     # now back to the past.
@@ -289,6 +289,18 @@ class Constants:
 
     # Default name of downloaded file with selected data.
     REPORT_DOWNLOAD_FILE_NAME = "iterative_data.csv"
+
+    ############################################################################
+    # Comparisons.
+
+    # The title.
+    COMP_TITLE = "Per Release Performance Comparisons"
+
+    # The pathname prefix for the application.
+    COMP_ROUTES_PATHNAME_PREFIX = "/comparisons/"
+
+    # Default name of downloaded file with selected data.
+    COMP_DOWNLOAD_FILE_NAME = "comparison_data.csv"
 
     ############################################################################
     # Statistics.
