@@ -789,9 +789,9 @@ will be on the Trending web page.
 [3n-hsw]: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master/
 [3n-tsh]: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh/
 [2n-clx]: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-clx/
-[Performance Tests Job Specifications, chapter NICs]: https://github.com/FDio/csit/blob/master/docs/job_specs/perf_tests_job_specs.md#nics
-[Performance Tests Job Specifications, chapter Frame Sizes]: https://github.com/FDio/csit/blob/master/docs/job_specs/perf_tests_job_specs.md#frame-sizes
-[Performance Tests Job Specifications, chapter Processor Cores]: https://github.com/FDio/csit/blob/master/docs/job_specs/perf_tests_job_specs.md#processor-cores
-[Jobs specifications]: https://github.com/FDio/csit/tree/master/docs/job_specs
+[Performance Tests Job Specifications, chapter NICs]: https://github.com/FDio/csit/blob/master/resources/job_specs/perf_tests_job_specs.md#nics
+[Performance Tests Job Specifications, chapter Frame Sizes]: https://github.com/FDio/csit/blob/master/resources/job_specs/perf_tests_job_specs.md#frame-sizes
+[Performance Tests Job Specifications, chapter Processor Cores]: https://github.com/FDio/csit/blob/master/resources/job_specs/perf_tests_job_specs.md#processor-cores
+[Jobs specifications]: https://github.com/FDio/csit/tree/master/resources/job_specs
 
 # END OF DOCUMENT

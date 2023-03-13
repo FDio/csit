@@ -227,7 +227,7 @@ function common_dirs () {
     TOPOLOGIES_DIR=$(readlink -e "${CSIT_DIR}/topologies/available") || {
         die "Readlink failed."
     }
-    JOB_SPECS_DIR=$(readlink -e "${CSIT_DIR}/docs/job_specs") || {
+    JOB_SPECS_DIR=$(readlink -e "${CSIT_DIR}/resources/job_specs") || {
         die "Readlink failed."
     }
     RESOURCES_DIR=$(readlink -e "${CSIT_DIR}/resources") || {

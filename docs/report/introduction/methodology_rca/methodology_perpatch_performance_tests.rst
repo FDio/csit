@@ -124,10 +124,8 @@ and more for dot1q and other encapsulated traffic;
 As there are more test cases than CSIT can periodically test,
 it is possible to encounter an old test case that currently fails.
 To avoid that, you can look at "job spec" files we use for periodic testing,
-for example `this one <https://github.com/FDio/csit/blob/master/docs/job_specs/report_iterative/2n-icx/vpp-mrr-00.md>`_.
+for example `this one <https://github.com/FDio/csit/blob/master/resources/job_specs/report_iterative/2n-icx/vpp-mrr-00.md>`_.
 
-..
-    TODO: Explain why "periodic" job spec link lands at report_iterative.
 
 Shortening triggers
 ```````````````````
