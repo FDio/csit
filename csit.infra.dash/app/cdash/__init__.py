@@ -93,6 +93,12 @@ def init_app():
             data_iterative=data["iterative"]
         )
 
+        from .comparisons.comparisons import init_comparisons
+        app = init_comparisons(
+            app,
+            data_iterative=data["iterative"]
+        )
+
     return app
 
 
