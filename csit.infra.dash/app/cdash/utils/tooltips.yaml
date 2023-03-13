@@ -6,6 +6,8 @@ help-cores:
   Number of cores the DUT uses during the test.
 help-download:
   Download the selected data as a csv file.
+help-driver:
+  The NIC driver used in the tests.
 help-dut:
   Device Under Test (DUT) - In software networking, “device” denotes a specific
   piece of software tasked with packet processing. Such device is surrounded
@@ -19,6 +21,8 @@ help-framesize:
 help-infra:
   Infrastructure is defined by the toplology (number of nodes), processor
   architecture, NIC and driver.
+help-nic:
+  The NIC used in the tests.
 help-normalize:
   Normalize the results to CPU frequency 2GHz. The results from AWS environment
   are not normalized as we do not know the exact value of CPU frequency.
