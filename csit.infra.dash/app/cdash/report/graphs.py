@@ -80,7 +80,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
     :param data: Data frame with iterative data.
     :param sel: Selected tests.
     :param layout: Layout of plot.ly graph.
-    :param normalize: If True, the data is normalized to CPU frquency
+    :param normalize: If True, the data is normalized to CPU frequency
         Constants.NORM_FREQUENCY.
     :param data: pandas.DataFrame
     :param sel: dict
