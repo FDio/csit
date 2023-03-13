@@ -31,7 +31,7 @@ def get_validators():
     :rtype: Mapping[str, jsonschema.validators.Validator]
     :raises RuntimeError: If schemas are not readable or not valid.
     """
-    relative_path = "docs/model/current/schema/test_case.info.schema.yaml"
+    relative_path = "resources/model_schema/test_case.schema.yaml"
     # Robot is always started when CWD is CSIT_DIR.
     with open(relative_path, "rt", encoding="utf-8") as file_in:
         schema = json.loads(
