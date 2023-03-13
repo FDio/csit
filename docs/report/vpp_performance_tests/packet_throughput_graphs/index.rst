@@ -16,7 +16,7 @@ plots are used to display variations in measured throughput values.
 
 Lists of tests selected for multiple execution and graphing are captured
 per testbed type in `test_select_list_{testbed_type}.md
-<https://git.fd.io/csit/tree/docs/job_specs>`_ files.
+<https://git.fd.io/csit/tree/resources/job_specs>`_ files.
 
 Graphs are split into sections as follows:
 
