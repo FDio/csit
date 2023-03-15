@@ -3,7 +3,7 @@ title: "FD.io DC Vexxhost Inventory"
 weight: 1
 ---
 
-## FD.io DC Vexxhost Inventory
+# FD.io DC Vexxhost Inventory
 
 - for each DC location, per rack .csv table with server inventory
 - captured inventory data: name,oper-status,testbed-id,role,model,s/n,rackid,rackunit,mgmt-ip4,ipmi-ip4,new-rackid,new-rackunit,new-mgmt-ip4,new-ipmi-ip4
@@ -19,7 +19,7 @@ weight: 1
   - rackid: new location rack id.
   - rackunit: new location rack unit id.
 
-### Missing Equipment Inventory
+## Missing Equipment Inventory
 
 1. Ixia PerfectStorm One Appliance
    - [Specification: Ixia PerfectStorm One Appliance TG for FD.io TCP/IP performance tests](https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md#n554)
@@ -27,9 +27,9 @@ weight: 1
    - [mgmt-ip4 10.30.51.62 s26-t25-tg1](https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md#n374)
    - [ipmi-ip4 10.30.50.59 s26-t25-tg1](https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md#n281)
 
-### YUL1 Inventory
+## YUL1 Inventory
 
-#### Rack YUL1-8 (3016.8)
+### Rack YUL1-8 (3016.8)
 
  **name**      | **oper-status** | **testbed-id** | **role** | **model**      | **s/n**         | **mgmt-ip4** | **ipmi-ip4** | **rackid** | **rackunit**
 ---------------|-----------------|----------------|----------|----------------|-----------------|--------------|--------------|------------|--------------
@@ -46,7 +46,7 @@ weight: 1
  s87-t215-sut1 | up              | t215           | 2n-icx   | SYS-740GP-TNRT | C7470KL03P50171 | 10.30.51.87  | 10.30.50.87  | 3016.8     | u6-u9
  s88-t215-tg1  | up              | t215           | 2n-icx   | SYS-740GP-TNRT | C7470KL07P50301 | 10.30.51.88  | 10.30.50.88  | 3016.8     | u2-u5
 
-#### Rack YUL1-9 (3016.9)
+### Rack YUL1-9 (3016.9)
 
  **name**        | **oper-status** | **testbed-id** | **role**      | **model**           | **s/n**         | **mgmt-ip4** | **ipmi-ip4** | **rackid** | **rackunit**
 -----------------|-----------------|----------------|---------------|---------------------|-----------------|--------------|--------------|------------|--------------
@@ -64,7 +64,7 @@ weight: 1
  s17-t33-sut1    | up              | t33            | 3n-tsh        | HUAWEI-TAISHAN-2280 | N/A             | 10.30.51.36  | 10.30.50.36  | 3016.9     | u9-u10
  s79-t39t310-tg1 | in-transit      | t39t310        | tbd           | SYS-740GP-TNRT      | ???             | 10.30.51.89  | 10.30.50.89  | 3016.9     | u5-u8
 
-#### Rack YUL1-10 (3016.10)
+### Rack YUL1-10 (3016.10)
 
  **name**        | **oper-status** | **testbed-id** | **role** | **model**      | **s/n**         | **mgmt-ip4** | **ipmi-ip4** | **rackid** | **rackunit**
 -----------------|-----------------|----------------|----------|----------------|-----------------|--------------|--------------|------------|--------------
@@ -78,7 +78,7 @@ weight: 1
  s89-t39t310-tg1 | up              | t39            | 3n-snr   | ?              | ?               | 10.30.51.89  | 10.30.50.89  | 3016.10    | u2-u5
 
 
-#### Rack YUL1-11 (3016.11)
+### Rack YUL1-11 (3016.11)
 
  **name**              | **oper-status** | **testbed-id** | **role**   | **model**      | **s/n**         | **mgmt-ip4** | **ipmi-ip4** | **rackid** | **rackunit**
 -----------------------|-----------------|----------------|------------|----------------|-----------------|--------------|--------------|------------|--------------
@@ -95,7 +95,7 @@ weight: 1
  s63-t34-sut2          | up              | t34            | 3n-alt     | WIWYNN         | 0390003EN0SC    | 10.30.51.73  | 10.30.50.73  | 3016.11    | u7-u8
  s64-t34-tg1           | up              | t34            | 3n-alt     | SYS-740GP-TNRT | C7470KK40P50249 | 10.30.51.74  | 10.30.50.74  | 3016.11    | u3-u6
 
-#### Rack YUL1-12 (3016.12)
+### Rack YUL1-12 (3016.12)
 
  **name**      | **oper-status** | **testbed-id**              | **role**       | **model**       | **s/n**         | **mgmt-ip4** | **ipmi-ip4** | **rackid** | **rackunit**
 ---------------|-----------------|-----------------------------|----------------|-----------------|-----------------|--------------|--------------|------------|--------------
