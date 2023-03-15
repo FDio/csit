@@ -8,7 +8,7 @@ services:
   cdocs-build:
     image: "klakegg/hugo:ext-alpine"
     depends_on:
-      - "init"
+      - "cdocs-init"
     volumes:
       - "../docs:/src"
       - "../csit.infra.dash:/cdash"
@@ -16,7 +16,7 @@ services:
     image: "klakegg/hugo:ext-alpine"
     command: "server --minify"
     depends_on:
-      - "init"
+      - "cdocs-init"
     volumes:
       - "../docs:/src"
     ports:
