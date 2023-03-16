@@ -11,6 +11,6 @@ services:
       - "5000:5000"
     user: "${UID}:${GID}"
     volumes:
-      - "${PWD}/app/:/app"
-      - "${PWD}/../resources/libraries/python/jumpavg/:/app/cdash/jumpavg"
+      - "${PWD}/app/:/var/app/current"
+      - "${PWD}/../resources/libraries/python/jumpavg/:/var/app/current/cdash/jumpavg"
       - "${HOME}/.aws:/.aws"
