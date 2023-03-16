@@ -1,5 +1,4 @@
 ---
-bookFlatSection: true
 title: "Trending Presentation"
 weight: 3
 ---

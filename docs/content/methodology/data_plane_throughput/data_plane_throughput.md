@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Data Plane Throughput"
 weight: 1
 ---

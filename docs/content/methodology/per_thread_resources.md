@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Per Thread Resources"
 weight: 2
 ---

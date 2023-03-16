@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "QUIC/UDP/IP with vpp_echo"
 weight: 1
 ---

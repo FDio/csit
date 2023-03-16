@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Telemetry"
 weight: 20
 ---

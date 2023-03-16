@@ -1,5 +1,4 @@
 ---
-bookFlatSection: true
 title: "Overview"
 weight: 1
 ---

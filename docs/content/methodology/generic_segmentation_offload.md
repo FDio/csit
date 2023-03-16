@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Generic Segmentation Offload"
 weight: 15
 ---

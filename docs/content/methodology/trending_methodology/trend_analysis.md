@@ -1,5 +1,4 @@
 ---
-bookFlatSection: true
 title: "Trending Analysis"
 weight: 2
 ---

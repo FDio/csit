@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Multi-Core Speedup"
 weight: 13
 ---

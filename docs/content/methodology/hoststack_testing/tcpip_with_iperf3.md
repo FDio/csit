@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "TCP/IP with iperf3"
 weight: 2
 ---

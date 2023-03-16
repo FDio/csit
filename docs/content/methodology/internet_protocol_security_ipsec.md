@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Internet Protocol Security (IPsec)"
 weight: 11
 ---

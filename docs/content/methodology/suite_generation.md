@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Suite Generation"
 weight: 19
 ---

@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "PLRsearch"
 weight: 3
 ---
@@ -325,7 +324,7 @@ With that in mind, the apparent narrowness of the interval
 is not a sign of low quality, just a consequence of PLRsearch assuming
 the performance stays constant.
 
-{{< svg "static/PLR_patch.svg" >}}
+{{< figure src="/cdocs/PLR_patch.svg" >}}
 
 #### Vhost
 
@@ -343,7 +342,7 @@ In other words, human only seeing estimates from one fitting function
 would expect narrower end interval, but human seeing the measured loss ratios
 agrees that the interval should be wider than that.
 
-{{< svg "static/PLR_vhost.svg" >}}
+{{< figure src="/cdocs/PLR_vhost.svg" >}}
 
 #### Summary
 

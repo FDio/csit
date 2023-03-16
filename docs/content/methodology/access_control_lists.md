@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Access Control Lists"
 weight: 12
 ---

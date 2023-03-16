@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "VPP Forwarding Modes"
 weight: 3
 ---

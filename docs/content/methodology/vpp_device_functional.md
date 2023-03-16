@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "VPP_Device Functional"
 weight: 18
 ---

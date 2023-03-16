@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "UDP/IP with iperf3"
 weight: 3
 ---

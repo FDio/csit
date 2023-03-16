@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "MLRsearch"
 weight: 2
 ---

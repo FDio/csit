@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "VPP Startup Settings"
 weight: 17
 ---

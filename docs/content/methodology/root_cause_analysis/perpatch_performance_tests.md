@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Per-patch performance tests"
 weight: 1
 ---

@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Reconfiguration Tests"
 weight: 16
 ---

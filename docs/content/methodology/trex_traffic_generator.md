@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "TRex Traffic Generator"
 weight: 5
 ---

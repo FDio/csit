@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "VSAP ab with nginx"
 weight: 4
 ---

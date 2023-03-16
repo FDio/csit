@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "MRR Throughput"
 weight: 4
 ---

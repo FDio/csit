@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Packet Latency"
 weight: 8
 ---

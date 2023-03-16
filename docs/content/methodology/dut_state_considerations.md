@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "DUT state considerations"
 weight: 6
 ---

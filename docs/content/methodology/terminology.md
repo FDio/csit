@@ -1,5 +1,4 @@
 ---
-bookToc: false
 title: "Terminology"
 weight: 1
 ---

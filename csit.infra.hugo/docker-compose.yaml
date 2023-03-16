@@ -11,7 +11,7 @@ services:
       - "cdocs-init"
     volumes:
       - "../docs:/src"
-      - "../csit.infra.dash:/cdash"
+      - "../csit.infra.dash:/csit.infra.dash"
   cdocs-run:
     image: "klakegg/hugo:ext-alpine"
     command: "server --minify"
