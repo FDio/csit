@@ -1,7 +1,7 @@
 ARG PYTHON_VERSION=3.8
 FROM python:${PYTHON_VERSION}-buster
 
-WORKDIR /app
+WORKDIR /var/app/current
 
 COPY ./app/requirements.txt .
 
