@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -22,8 +22,7 @@ function terraform_apply () {
     #
     # Variable read:
     # - ${CSIT_DIR} - CSIT main directory, where terraform modules are located.
-    # - ${NODENESS} - Node multiplicity of desired testbed.
-    # - ${FLAVOR} - Node flavor string, see common.sh
+    # - ${TERRAFORM_MODULE_DIR} - Terraform module directory.
 
     set -exuo pipefail
 
@@ -32,15 +31,13 @@ function terraform_apply () {
     fi
 
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
-    pushd "terraform-aws-${NODENESS}-${FLAVOR}-c5n" || die "Pushd failed!"
+    pushd "${TERRAFORM_MODULE_DIR}" || die "Pushd failed!"
     export TF_LOG=INFO
-    trap 'terraform_destroy' ERR || {
-         die "Trap attempt failed, please cleanup manually. Aborting!"
-    }
     terraform apply -no-color -auto-approve  || die "Terraform apply failed!"
     popd || die "Popd failed!"
     popd || die "Popd failed!"
 }
+
 
 function terraform_destroy () {
 
@@ -48,8 +45,7 @@ function terraform_destroy () {
     #
     # Variable read:
     # - ${CSIT_DIR} - CSIT main directory, where terraform modules are located.
-    # - ${NODENESS} - Node multiplicity of desired testbed.
-    # - ${FLAVOR} - Node flavor string, see common.sh
+    # - ${TERRAFORM_MODULE_DIR} - Terraform module directory.
 
     set -exuo pipefail
 
@@ -58,7 +54,7 @@ function terraform_destroy () {
     fi
 
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
-    pushd "terraform-aws-${NODENESS}-${FLAVOR}-c5n" || die "Pushd failed!"
+    pushd "${TERRAFORM_MODULE_DIR}" || die "Pushd failed!"
     export TF_LOG=INFO
     terraform destroy -auto-approve -no-color || die "Terraform destroy failed!"
     popd || die "Popd failed!"
@@ -72,23 +68,16 @@ function terraform_init () {
     #
     # Variable read:
     # - ${CSIT_DIR} - CSIT main directory, where terraform modules are located.
-    # - ${NODENESS} - Node multiplicity of desired testbed.
-    # - ${FLAVOR} - Node flavor string, see common.sh
+    # - ${TERRAFORM_MODULE_DIR} - Terraform module directory.
 
     set -exuo pipefail
 
     if ! installed terraform; then
-        curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-        os="$(lsb_release -cs)" || die "Failed to get OS release!"
-        repo="deb [arch=amd64] https://apt.releases.hashicorp.com ${os} main"
-        sudo apt-add-repository "${repo}" || die "Failed to add repo!"
-        apt update -y
-        apt install -y terraform
-        #die "Please install terraform!"
+        die "Please install terraform!"
     fi
 
     pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
-    pushd "terraform-aws-${NODENESS}-${FLAVOR}-c5n" || die "Pushd failed!"
+    pushd "${TERRAFORM_MODULE_DIR}" || die "Pushd failed!"
 
     plugin_url="https://github.com/radekg/terraform-provisioner-ansible/"
     plugin_url+="releases/download/v2.5.0/"
@@ -100,9 +89,69 @@ function terraform_init () {
     wget -O "${plugin_path}" "${plugin_url}" || die "Failed to download plugin!"
     chmod +x "${plugin_path}" || die "Failed to add execute rights!"
 
+    rm -f terraform.tfstate || die "Failed to clear terraform state!"
     export TF_LOG=INFO
     terraform init || die "Failed to run terraform init!"
+    popd || die "Popd failed!"
+    popd || die "Popd failed!"
+}
 
+
+function terraform_install () {
+
+    # Install terraform.
+
+    terraform_version="1.4.2/terraform_1.4.2_linux_arm64.zip"
+    terraform_url="https://releases.hashicorp.com/terraform"
+    terraform_link="${terraform_url}/${terraform_version}"
+    wget "${terraform_link}" || die "Failed to install Terraform!"
+    unzip "terraform_1.4.2_linux_arm64.zip" || die "Failed to install Terraform!"
+    mv "terraform" "/usr/local/bin" || die "Failed to install Terraform!"
+    rm "terraform_1.4.2_linux_arm64.zip" || die "Failed to install Terraform!"
+}
+
+
+function terraform_output () {
+
+    # Run terraform output command to prepare module.
+    #
+    # Variable read:
+    # - ${CSIT_DIR} - CSIT main directory, where terraform modules are located.
+    # - ${TERRAFORM_MODULE_DIR} - Terraform module directory.
+    # - ${TERRAFORM_OUTPUT_VAR} - Terraform variable to export.
+
+    set -exuo pipefail
+
+    if ! installed terraform; then
+        die "Please install terraform!"
+    fi
+
+    pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
+    pushd "${TERRAFORM_MODULE_DIR}" || die "Pushd failed!"
+    TERRAFORM_OUTPUT_VAL=$(terraform output --raw "${TERRAFORM_OUTPUT_VAR}")
+    popd || die "Popd failed!"
+    popd || die "Popd failed!"
+}
+
+
+function terraform_validate () {
+
+    # Run terraform validate command to prepare module.
+    #
+    # Variable read:
+    # - ${CSIT_DIR} - CSIT main directory, where terraform modules are located.
+    # - ${TERRAFORM_MODULE_DIR} - Terraform module directory.
+
+    set -exuo pipefail
+
+    if ! installed terraform; then
+        die "Please install terraform!"
+    fi
+
+    pushd "${CSIT_DIR}"/fdio.infra.terraform || die "Pushd failed!"
+    pushd "${TERRAFORM_MODULE_DIR}" || die "Pushd failed!"
+    export TF_LOG=INFO
+    terraform validate || die "Terraform validate failed!"
     popd || die "Popd failed!"
     popd || die "Popd failed!"
 }

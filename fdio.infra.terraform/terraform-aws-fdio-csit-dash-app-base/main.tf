@@ -2,7 +2,7 @@ locals {
   bucket       = var.application_bucket
   description  = var.application_description
   name         = var.application_name
-  name_version = "${var.application_name}-base-${var.application_version}"
+  name_version = "${var.application_name}-base-1.${var.application_version}"
   source       = var.application_source
 }
 

@@ -640,6 +640,8 @@ function prepare_topology () {
     # - TEST_CODE - String affecting test selection, usually jenkins job name.
     # - NODENESS - Node multiplicity of testbed, either "2n" or "3n".
     # - FLAVOR - Node flavor string, e.g. "clx" or "skx".
+    # Variables set:
+    # - TERRAFORM_MODULE_DIR - Terraform module directory.
     # Functions called:
     # - die - Print to stderr and exit.
     # - terraform_init - Terraform init topology.
@@ -651,7 +653,11 @@ function prepare_topology () {
     case "${case_text}" in
         "1n_aws" | "2n_aws" | "3n_aws")
             export TF_VAR_testbed_name="${TEST_CODE}"
+            TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}-c5n"
             terraform_init || die "Failed to call terraform init."
+            trap 'terraform_destroy' ERR || {
+                die "Trap attempt failed, please cleanup manually. Aborting!"
+            }
             terraform_apply || die "Failed to call terraform apply."
             ;;
     esac
@@ -1197,7 +1203,8 @@ function untrap_and_unreserve_testbed () {
     # Variables read (by inner function):
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - PYTHON_SCRIPTS_DIR - Path to directory holding Python scripts.
-    # Variables written:
+    # Variables set:
+    # - TERRAFORM_MODULE_DIR - Terraform module directory.
     # - WORKING_TOPOLOGY - Set to empty string on successful unreservation.
     # Trap unregistered:
     # - EXIT - Failure to untrap is reported, but ignored otherwise.
@@ -1219,6 +1226,7 @@ function untrap_and_unreserve_testbed () {
         }
         case "${TEST_CODE}" in
             *"1n-aws"* | *"2n-aws"* | *"3n-aws"*)
+                TERRAFORM_MODULE_DIR="terraform-aws-${NODENESS}-${FLAVOR}-c5n"
                 terraform_destroy || die "Failed to call terraform destroy."
                 ;;
             *)

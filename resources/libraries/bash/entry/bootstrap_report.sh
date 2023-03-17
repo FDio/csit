@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,8 +25,8 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
-source "${BASH_FUNCTION_DIR}/docs.sh" || die "Source failed."
+source "${BASH_FUNCTION_DIR}/eb_version.sh" || die "Source failed."
 common_dirs || die
 activate_virtualenv || die
 generate_report || die
-die_on_docs_error || die
+die_on_error || die
