@@ -101,13 +101,23 @@ function terraform_install () {
 
     # Install terraform.
 
-    terraform_version="1.4.2/terraform_1.4.2_linux_arm64.zip"
+    OS_ARCH=$(uname -m) || die "Failed to get arch."
+    case "${OS_ARCH}" in
+        x86_64) architecture="amd64" ;;
+        aarch64) architecture="arm64" ;;
+    esac
+
+    terraform_version="1.4.2/terraform_1.4.2_linux_${architecture}.zip"
     terraform_url="https://releases.hashicorp.com/terraform"
     terraform_link="${terraform_url}/${terraform_version}"
     wget "${terraform_link}" || die "Failed to install Terraform!"
-    unzip "terraform_1.4.2_linux_arm64.zip" || die "Failed to install Terraform!"
+    unzip "terraform_1.4.2_linux_${architecture}.zip" || {
+        die "Failed to install Terraform!"
+    }
     mv "terraform" "/usr/local/bin" || die "Failed to install Terraform!"
-    rm "terraform_1.4.2_linux_arm64.zip" || die "Failed to install Terraform!"
+    rm "terraform_1.4.2_linux_${architecture}.zip" || {
+        die "Failed to install Terraform!"
+    }
 }
 
 
