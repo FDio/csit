@@ -20,12 +20,18 @@ function go_install () {
 
     # Install Go.
 
-    go_version="go1.20.2.linux-arm64.tar.gz"
+    OS_ARCH=$(uname -m) || die "Failed to get arch."
+    case "${OS_ARCH}" in
+        x86_64) architecture="amd64" ;;
+        aarch64) architecture="arm64" ;;
+    esac
+
+    go_version="go1.20.2.linux-${architecture}.tar.gz"
     go_url="https://go.dev/dl"
     wget "${go_url}/${go_version}"
     rm -rf "/usr/local/go"
-    tar -C "/usr/local" -xzf "go1.20.2.linux-arm64.tar.gz"
-    rm "go1.20.2.linux-arm64.tar.gz"
+    tar -C "/usr/local" -xzf "go1.20.2.linux-${architecture}.tar.gz"
+    rm "go1.20.2.linux-${architecture}.tar.gz"
     export PATH=$PATH:/usr/local/go/bin
 }
 
@@ -75,7 +81,13 @@ function hugo_install () {
 
     # Install Hugo Extended.
 
-    hugo_version="v0.111.3/hugo_extended_0.111.3_linux-arm64.deb"
+    OS_ARCH=$(uname -m) || die "Failed to get arch."
+    case "${OS_ARCH}" in
+        x86_64) architecture="amd64" ;;
+        aarch64) architecture="arm64" ;;
+    esac
+
+    hugo_version="v0.111.3/hugo_extended_0.111.3_linux-${architecture}.deb"
     hugo_url="https://github.com/gohugoio/hugo/releases/download"
     hugo_link="${hugo_url}/${hugo_version}"
     wget -O "hugo.deb" "${hugo_link}" || die "Failed to install Hugo!"
