@@ -604,6 +604,12 @@ Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cm
   |                                                                    |                             |
 ```
 
+## Linux cmdline
+
+```
+$ cat /proc/cmdline
+BOOT_IMAGE=/boot/vmlinuz-5.15.0-46-generic root=UUID=cac1254f-9426-4ea6-a8db-2554f075db99 ro amd_iommu=on audit=0 default_hugepagesz=2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768 hpet=disable iommu=pt isolcpus=1-15,17-31,33-47,49-63 nmi_watchdog=0 nohz_full=off nosoftlockup numa_balancing=disable processor.max_cstate=0 rcu_nocbs=1-15,17-31,33-47,49-63 tsc=reliable console=ttyS0,115200n8 quiet
+```
 
 ## EPYC zn2 Server Firmware Inventory
 
