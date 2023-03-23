@@ -13,8 +13,8 @@ module "elastic_beanstalk_application" {
   # application
   application_description                    = "FD.io CDASH"
   application_name                           = "fdio-csit-dash-app"
-  appversion_lifecycle_service_role_arn      = ""
-  appversion_lifecycle_max_count             = 2
+  appversion_lifecycle_service_role_arn      = "AWSServiceRoleForElasticBeanstalk"
+  appversion_lifecycle_max_count             = 10
   appversion_lifecycle_delete_source_from_s3 = false
 }
 
