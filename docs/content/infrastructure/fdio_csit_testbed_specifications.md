@@ -1541,6 +1541,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 
 #### 2-Node-Cascadelake Wiring (2n-clx) PROD
 
+{{< figure src="/cdocs/testbed-2n-clx.svg" >}}
+
 ```
 - testbed27:
     - ring1 10GE-ports x710-4p10GE on SUT:
@@ -1600,6 +1602,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 
 #### 2-Node-Zen2 Wiring (2n-zn2) PROD
 
+{{< figure src="/cdocs/testbed-2n-zn2.svg" >}}
+
 ```
 - testbed210:
     - ring1 10GE-ports x710-4p10GE on SUT:
@@ -1618,6 +1622,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 
 #### 2-Node-ThunderX2 Wiring (2n-tx2) PROD
 
+{{< figure src="/cdocs/testbed-2n-tx2.svg" >}}
+
 ```
 - testbed211:
     - ring1 10GE-ports x520-2p10GE on SUTs:
@@ -1626,6 +1632,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 ```
 
 #### 2-Node-Icelake Wiring (2n-icx) PROD
+
+{{< figure src="/cdocs/testbed-2n-icx.svg" >}}
 
 ```
 - testbed212:
@@ -1698,6 +1706,8 @@ To be completed.
 
 #### 3-Node-Taishan Wiring (3n-tsh) PROD
 
+{{< figure src="/cdocs/testbed-3n-tsh.svg" >}}
+
 ```
 - testbed33:
     - ring1 10GE-ports x520-2p10GE on SUTs:
@@ -1712,6 +1722,8 @@ To be completed.
 
 #### 3-Node-Altra Wiring (3n-alt) PROD
 
+{{< figure src="/cdocs/testbed-3n-alt.svg" >}}
+
 ```
 - testbed34:
     - ring1 40GE-ports xl710-QDA2-2p40GE on SUTs:
@@ -1721,6 +1733,8 @@ To be completed.
 ```
 
 #### 3-Node-Icelake Wiring (3n-icx) PROD
+
+{{< figure src="/cdocs/testbed-3n-icx.svg" >}}
 
 ```
 - testbed37:
@@ -1758,6 +1772,8 @@ To be completed.
 ```
 
 #### 3-Node-SnowRidge Wiring (3n-snr) PROD
+
+{{< figure src="/cdocs/testbed-3n-snr.svg" >}}
 
 ```
 - testbed39:

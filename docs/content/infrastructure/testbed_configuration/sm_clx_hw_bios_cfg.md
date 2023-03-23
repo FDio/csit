@@ -1405,6 +1405,12 @@ pku ospke avx512_vnni md_clear flush_l1d arch_capabilities
   |  High Precision Event Timer                [Enabled]               |                             |
 ```
 
+##  Linux cmdline
+
+```
+$ cat /proc/cmdline
+BOOT_IMAGE=/boot/vmlinuz-5.15.0-46-generic root=UUID=2d6f4d44-76b1-4343-bc73-c066a3e95b32 ro audit=0 default_hugepagesz=2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768 hpet=disable intel_idle.max_cstate=1 intel_iommu=on intel_pstate=disable iommu=pt isolcpus=1-23,25-47,49-71,73-95 mce=off nmi_watchdog=0 nohz_full=1-23,25-47,49-71,73-95 nosoftlockup numa_balancing=disable processor.max_cstate=1 rcu_nocbs=1-23,25-47,49-71,73-95 tsc=reliable console=ttyS0,115200n8 quiet
+```
 
 ## Xeon Clx Server Firmware Inventory
 

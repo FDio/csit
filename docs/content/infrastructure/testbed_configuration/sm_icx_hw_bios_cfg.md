@@ -1092,6 +1092,13 @@ Memory Device
   |> Network Stack Configuration                                       |                             |
 ```
 
+## Linux cmdline
+
+```
+$ cat /proc/cmdline
+BOOT_IMAGE=/boot/vmlinuz-5.15.0-46-generic root=UUID=6ff26c8a-8c65-4025-a6e7-d97dee6025d0 ro audit=0 default_hugepagesz=2M hugepagesz=1G hugepages=32 hugepagesz=2M hugepages=32768 hpet=disable intel_idle.max_cstate=1 intel_iommu=on intel_pstate=disable iommu=pt isolcpus=1-31,33-63,65-95,97-127 mce=off nmi_watchdog=0 nohz_full=1-31,33-63,65-95,97-127 nosoftlockup numa_balancing=disable processor.max_cstate=1 rcu_nocbs=1-31,33-63,65-95,97-127 tsc=reliable console=ttyS0,115200n8 quiet
+```
+
 ## Xeon ICX Server Firmware Inventory
 
 ```
