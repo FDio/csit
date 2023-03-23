@@ -801,6 +801,8 @@ connectivity and wiring across defined CSIT testbeds:
 
 #### 2-Node-Cascadelake Servers (2n-clx) PROD
 
+{{< figure src="/cdocs/testbed-2n-clx.svg" >}}
+
 ```
 - SUT [Server-Type-C2]:
     - testbedname: testbed27.
@@ -906,6 +908,8 @@ connectivity and wiring across defined CSIT testbeds:
 
 #### 2-Node-Zen2 Servers (2n-zn2) PROD
 
+{{< figure src="/cdocs/testbed-2n-zn2.svg" >}}
+
 ```
 - SUT [Server-Type-D1]:
     - testbedname: testbed210.
@@ -939,7 +943,7 @@ connectivity and wiring across defined CSIT testbeds:
 
 #### 2-Node-ThunderX2 Servers (2x-tx2) PROD
 
-Note: Server19 (TG) is shared between testbed33 & testbed211
+{{< figure src="/cdocs/testbed-2n-tx2.svg" >}}
 
 ```
 - SUT [Server-Type-E22]:
@@ -971,6 +975,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 ```
 
 #### 2-Node-Icelake Servers (2n-icx) PROD
+
+{{< figure src="/cdocs/testbed-2n-icx.svg" >}}
 
 ```
 - SUT [Server-Type-F1]:
@@ -1131,7 +1137,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
 
 #### 3-Node-Taishan Servers (3n-tsh) PROD
 
-Note: Server19 (TG) is shared between testbed33 & testbed211
+{{< figure src="/cdocs/testbed-3n-tsh.svg" >}}
 
 ```
 - SUT [Server-Type-E21]:
@@ -1176,6 +1182,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 
 #### 3-Node-Altra Servers (3n-alt) PROD
 
+{{< figure src="/cdocs/testbed-3n-alt.svg" >}}
+
 ```
 - SUT [Server-Type-E23]:
     - testbedname: testbed34.
@@ -1212,6 +1220,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 ```
 
 #### 3-Node-Icelake Servers (3n-icx) PROD
+
+{{< figure src="/cdocs/testbed-3n-icx.svg" >}}
 
 ```
 - ServerF1 [Server-Type-F1]:
@@ -1302,6 +1312,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 
 #### 3-Node-SnowRidge Servers (3n-snr) PROD
 
+{{< figure src="/cdocs/testbed-3n-snr.svg" >}}
+
 ```
 - ServerG1 [Server-Type-G1]:
     - testbedname: testbed39.
@@ -1336,6 +1348,8 @@ Note: Server19 (TG) is shared between testbed33 & testbed211
 ```
 
 #### 2-Node-SapphireRapids Servers (2n-spr) PROD
+
+{{< figure src="/cdocs/testbed-2n-spr.svg" >}}
 
 ```
 - SUT [Server-Type-H1]:
