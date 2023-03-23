@@ -5,10 +5,9 @@ weight: 1
 
 # FD.io DC Vexxhost Inventory
 
-- for each DC location, per rack .csv table with server inventory
 - captured inventory data: name,oper-status,testbed-id,role,model,s/n,rackid,rackunit,mgmt-ip4,ipmi-ip4,new-rackid,new-rackunit,new-mgmt-ip4,new-ipmi-ip4
   - name: CSIT functional server name as tracked in [CSIT testbed specification](https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md), followed by "/" and the actual configured hostname, unless it is the same as CSIT name.
-  - oper-status: operational status (up|down|ipmi).
+  - oper-status: operational status (up|down).
   - testbed-id: CSIT testbed identifier.
   - role: 2n/3n-xxx performance testbed, nomad-client, nomad-server.
     - role exceptions: decommission, repurpose, spare.

@@ -20,7 +20,7 @@ of the hierarchy, presentation level at the top level and a number of functional
 layers in-between. The current CSIT system design including CSIT framework is
 depicted in the figure below.
 
-{{< figure src="/cdocs/csit_design_picture.svg" title="Steve Francia" >}}
+{{< figure src="/cdocs/csit_design_picture.svg" title="CSIT Design" >}}
 
 A brief bottom-up description is provided here:
 

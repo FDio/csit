@@ -37,4 +37,5 @@ Documentation is structured as follows:
      testbed infrastructure.
    - **FD.io CSIT Testbed Configuration**: Configuration of the physical
      testbed infrastructure.
-   - **Test Environment**: Performance test environment configuration.
+   - **FD.io CSIT Testbed Versioning**: CSIT testbed versioning.
+   - **FD.io CSIT Logical Topologies**: CSIT Logical Topologies.
