@@ -21,7 +21,7 @@ function die_on_error () {
     # Source this fragment if you want to abort on any failure.
     #
     # Variables read:
-    # - CODE_EXIT_STATUS - Exit status of report generation.
+    # - ${CODE_EXIT_STATUS} - Exit status of report generation.
     # Functions called:
     # - die - Print to stderr and exit.
 
@@ -41,8 +41,8 @@ function eb_version_deploy () {
     # - ${CSIT_DIR} - CSIT main directory.
     # - ${TERRAFORM_OUTPUT_VAL} - Terraform output value.
     # Variables set:
-    # - CODE_EXIT_STATUS - Exit status of report generation.
-    # - TERRAFORM_OUTPUT_VAR - Register Terraform output variable name.
+    # - ${CODE_EXIT_STATUS} - Exit status of report generation.
+    # - ${TERRAFORM_OUTPUT_VAR} - Register Terraform output variable name.
     # Functions called:
     # - eb_version_verify - Build and verify EB version.
     # - terraform_apply - Apply EB version by Terraform.
@@ -51,7 +51,7 @@ function eb_version_deploy () {
 
     set -exuo pipefail
 
-    eb_version_verify || die "Failed to call Elastic Beanstalk verify!"
+    eb_version_build_verify || die "Failed to call Elastic Beanstalk verify!"
     terraform_apply || die "Failed to call Terraform apply!"
 
     TERRAFORM_OUTPUT_VAR="application_version"
@@ -63,7 +63,7 @@ function eb_version_deploy () {
 }
 
 
-function eb_version_verify () {
+function eb_version_build_verify () {
 
     # Build and verify Elastic Beanstalk CDash integrity.
     #
@@ -84,6 +84,9 @@ function eb_version_verify () {
         die "Please install zip!"
     fi
 
+    hugo_init_modules || die "Failed to call Hugo initialize!"
+    hugo_build_site || die "Failed to call Hugo build!"
+
     pushd "${CSIT_DIR}"/csit.infra.dash || die "Pushd failed!"
     pushd app || die "Pushd failed!"
     find . -type d -name "__pycache__" -exec rm -rf "{}" \;
@@ -94,11 +97,9 @@ function eb_version_verify () {
 
     TERRAFORM_MODULE_DIR="terraform-aws-fdio-csit-dash-app-base"
 
-    export TF_VAR_application_version="${BUILD_ID-50}"
-    hugo_init_modules || die "Failed to call Hugo initialize!"
-    hugo_build_site || die "Failed to call Hugo build!"
-    terraform_init || die "Failed to call terraform init!"
-    terraform_validate || die "Failed to call terraform validate!"
+    export TF_VAR_application_version="${BUILD_ID}"
+    terraform_init || die "Failed to call Terraform init!"
+    terraform_validate || die "Failed to call Terraform validate!"
 }
 
 
