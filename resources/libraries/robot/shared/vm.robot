@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021-2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -58,9 +58,9 @@
 | | ... | auto_scale=${auto_scale} | fixed_auto_scale=${fixed_auto_scale}
 | | ... | vnf=${vnf} | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | ... | rxq_count_int=${rxq_count_int}
+| | ... | rxq_count_int=${rxq_count_int} | pinning=${pinning}
 | | ... | virtio_feature_mask=${virtio_feature_mask} | page_size=${page_size}
-| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs
 | | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
 | | Set Test Variable | ${cpu_alloc_str}
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
@@ -105,7 +105,6 @@
 | | ... | gso=${enable_gso} | csum=${enable_csum}
 | | Import Library | resources.libraries.python.QemuManager | ${nodes}
 | | ... | WITH NAME | vnf_manager
-| | Run Keyword | vnf_manager.Initialize
 | | Run Keyword | vnf_manager.Construct VMs on node
 | | ... | node=${node}
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
@@ -113,9 +112,9 @@
 | | ... | auto_scale=${auto_scale} | fixed_auto_scale=${fixed_auto_scale}
 | | ... | vnf=${vnf} | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | ... | rxq_count_int=${rxq_count_int}
+| | ... | rxq_count_int=${rxq_count_int} | pinning=${pinning}
 | | ... | virtio_feature_mask=${virtio_feature_mask} | page_size=${page_size}
-| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs
 | | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
 | | Set Test Variable | ${cpu_alloc_str}
 | | Run Keyword If | ${validate}
@@ -163,9 +162,9 @@
 | | ... | auto_scale=${auto_scale} | fixed_auto_scale=${fixed_auto_scale}
 | | ... | vnf=${vnf} | tg_pf1_mac=${TG_pf1_mac}[0] | tg_pf2_mac=${TG_pf2_mac}[0]
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | ... | rxq_count_int=${rxq_count_int}
+| | ... | rxq_count_int=${rxq_count_int} | pinning=${pinning}
 | | ... | virtio_feature_mask=${virtio_feature_mask} | page_size=${page_size}
 | | ... | if1=${DUT1_${int}1}[0] | if2=${DUT1_${int}2}[0]
-| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs | pinning=${pinning}
+| | ${cpu_wt}= | Run Keyword | vnf_manager.Start All VMs
 | | ${cpu_alloc_str}= | Catenate | SEPARATOR=, | ${cpu_alloc_str} | ${cpu_wt}
 | | Set Test Variable | ${cpu_alloc_str}
