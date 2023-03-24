@@ -29,4 +29,4 @@ source "${BASH_FUNCTION_DIR}/eb_version.sh" || die "Source failed."
 source "${BASH_FUNCTION_DIR}/hugo.sh" || die "Source failed."
 source "${BASH_FUNCTION_DIR}/terraform.sh" || die "Source failed."
 common_dirs || die
-eb_version_verify || die
+eb_version_build_verify || die
