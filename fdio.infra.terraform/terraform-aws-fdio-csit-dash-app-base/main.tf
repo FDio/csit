@@ -19,3 +19,19 @@ module "elastic_beanstalk_application_version" {
   application_name_version = local.name_version
   application_source       = local.source
 }
+
+resource "terraform_data" "example1" {
+  depends_on = [
+    elastic_beanstalk_application_version
+  ]
+
+  provisioner "local-exec" {
+    command = "aws --region eu-central-1 elasticbeanstalk update-environment --environment-name fdio-csit-dash-env --version-label"
+    interpreter = ["bash"]
+    environment = {
+      AWS_ACCESS_KEY_ID = data.vault_aws_access_credentials.creds.access_key
+      AWS_SECRET_ACCESS_KEY = data.vault_aws_access_credentials.creds.secret_key
+      AWS_DEFAULT_REGION = "eu-central-1"
+    }
+  }
+}
