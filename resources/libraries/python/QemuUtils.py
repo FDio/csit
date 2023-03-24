@@ -1,4 +1,5 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2021-2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -41,25 +42,34 @@ class QemuUtils:
     ROBOT_LIBRARY_SCOPE = u"TEST CASE"
 
     def __init__(
-            self, node, qemu_id=1, smp=1, mem=512, vnf=None,
-            img=Constants.QEMU_VM_IMAGE, page_size=u""):
+            self, node, name, host_cpus, qemu_id=1, mem=512, vnf=None,
+            img=Constants.QEMU_VM_IMAGE, page_size=u"", pinning=False):
         """Initialize QemuUtil class.
 
         :param node: Node to run QEMU on.
+        :param name: The name of the VM.
+        :param host_cpus: A list of baremetal cores that this VM will use
+            if pinning=True. The number of cores will be used as the number of virtual
+            SMP units (cores).
         :param qemu_id: QEMU identifier.
-        :param smp: Number of virtual SMP units (cores).
         :param mem: Amount of memory.
         :param vnf: Network function workload.
         :param img: QEMU disk image or kernel image path.
         :param page_size: Hugepage Size.
+        :param pinning: If True, then do also QEMU process pinning.
         :type node: dict
+        :type name: str
+        :type host_cpus: list[int]
         :type qemu_id: int
-        :type smp: int
         :type mem: int
         :type vnf: str
         :type img: str
         :type page_size: str
+        :type pinning: bool
         """
+        self.name = name
+        self.pinning = pinning
+        self.host_cpus = host_cpus
         self._nic_id = 0
         self._node = node
         self._arch = Topology.get_node_arch(self._node)
@@ -90,7 +100,7 @@ class QemuUtils:
         # Input Options.
         self._opt[u"qemu_id"] = qemu_id
         self._opt[u"mem"] = int(mem)
-        self._opt[u"smp"] = int(smp)
+        self._opt[u"smp"] = len(host_cpus)
         self._opt[u"img"] = img
         self._opt[u"vnf"] = vnf
         self._opt[u"page_size"] = page_size
@@ -492,22 +502,18 @@ class QemuUtils:
         stdout, _ = exec_cmd_no_error(self._node, command)
         return stdout.splitlines()
 
-    def qemu_set_affinity(self, *host_cpus):
+    def qemu_set_affinity(self):
         """Set qemu affinity by getting thread PIDs via QMP and taskset to list
         of CPU cores. Function tries to execute 3 times to avoid race condition
-        in getting thread PIDs.
-
-        :param host_cpus: List of CPU cores.
-        :type host_cpus: list
-        """
+        in getting thread PIDs."""
         for _ in range(3):
             try:
                 qemu_cpus = self.get_qemu_pids()
 
-                if len(qemu_cpus) != len(host_cpus):
+                if len(qemu_cpus) != len(self.host_cpus):
                     sleep(1)
                     continue
-                for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
+                for qemu_cpu, host_cpu in zip(qemu_cpus, self.host_cpus):
                     command = f"taskset -pc {host_cpu} {qemu_cpu}"
                     message = f"QEMU: Set affinity failed " \
                         f"on {self._node[u'host']}!"
@@ -739,6 +745,10 @@ class QemuUtils:
             exec_cmd_no_error(
                 self._node, cmd_opts, timeout=300, sudo=True, message=message
             )
+
+            if self.pinning:
+                self.qemu_set_affinity()
+
             self._wait_until_vm_boot()
         except RuntimeError:
             self.qemu_kill_all()
