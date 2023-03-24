@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba9cf587_d4421a24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-03-24T14:13:23Z",
+      "side": 1,
+      "message": "Assign 0xFF. DO not add pinning as param.  ",
+      "revId": "9034ad03e2d333ca777dae9c64f8d98cc7b4d843",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
