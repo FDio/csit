@@ -2543,8 +2543,8 @@
     #   reference: 3
     #   compare: 4
     - title: "2302.0-11 vs 2210.0-11"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - ''
     - 'Test Case:              Test cases executed for: PDR throughput on 3n-alt with xl710.'
@@ -2613,8 +2613,8 @@
     #   reference: 3
     #   compare: 4
     - title: "2302.0-11 vs 2210.0-11"
-      reference: 1
-      compare: 2
+      reference: 2
+      compare: 3
   legend:
     - ''
     - 'Test Case:              Test cases executed for: NDR throughput on 3n-alt with xl710.'
