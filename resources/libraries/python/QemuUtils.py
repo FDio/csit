@@ -720,9 +720,11 @@ class QemuUtils:
             else:
                 interface[u"name"] = if_name
 
-    def qemu_start(self):
+    def qemu_start(self, pinning, machine_affinity):
         """Start QEMU and wait until VM boot.
 
+        :param pinning: If True, then do also QEMU process pinning.
+        :type pinning: bool
         :returns: VM node info.
         :rtype: dict
         """
@@ -739,6 +741,10 @@ class QemuUtils:
             exec_cmd_no_error(
                 self._node, cmd_opts, timeout=300, sudo=True, message=message
             )
+
+            if pinning:
+                self.qemu_set_affinity(*machine_affinity)
+
             self._wait_until_vm_boot()
         except RuntimeError:
             self.qemu_kill_all()
