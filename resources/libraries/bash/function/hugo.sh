@@ -65,13 +65,11 @@ function hugo_init_modules () {
     # - die - Print to stderr and exit.
 
     if ! installed hugo; then
-        #die "Please install Hugo!"
-        go_install || die "Failed to install Go!"
-        hugo_install || die "Failed to install Hugo!"
-        terraform_install || die "Failed to install Terraform!"
+        die "Please install Hugo!"
     fi
 
     pushd "${CSIT_DIR}"/docs || die "Pushd failed!"
+    export PATH=$PATH:/usr/local/go/bin
     hugo mod get -u || die "Failed to run Hugo mod!"
     popd || die "Popd failed!"
 }
