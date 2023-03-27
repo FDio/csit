@@ -22,8 +22,8 @@ Run all commands from command line.
          VBoxManage --version
          Tested version: 6.1.16r140961
 
-2. Download and install latest vagrant
-   [from official page](https://www.vagrantup.com/downloads.html).
+2. Download and install latest vagrant from
+   [official page](https://www.vagrantup.com/downloads.html).
    To verify the installtion, run
 
        vagrant -v

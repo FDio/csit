@@ -5,26 +5,29 @@ weight: 1
 
 # FD.io DC Vexxhost Inventory
 
-- captured inventory data: name,oper-status,testbed-id,role,model,s/n,rackid,rackunit,mgmt-ip4,ipmi-ip4,new-rackid,new-rackunit,new-mgmt-ip4,new-ipmi-ip4
-  - name: CSIT functional server name as tracked in [CSIT testbed specification](https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md), followed by "/" and the actual configured hostname, unless it is the same as CSIT name.
-  - oper-status: operational status (up|down).
-  - testbed-id: CSIT testbed identifier.
-  - role: 2n/3n-xxx performance testbed, nomad-client, nomad-server.
+Captured inventory data:
+  - **name**: CSIT functional server name as tracked in
+    [CSIT testbed specification]({{< ref "fdio_csit_testbed_specifications#FD.io CSIT Testbed Specifications" >}}),
+    followed by "/" and the actual configured hostname, unless it is the same
+    as CSIT name.
+  - **oper-status**: operational status (up|down).
+  - **testbed-id**: CSIT testbed identifier.
+  - **role**: 2n/3n-xxx performance testbed, nomad-client, nomad-server.
     - role exceptions: decommission, repurpose, spare.
-  - model: server model.
-  - s/n: serial number.
-  - mgmt-ip4: current management IPv4 address on management VLAN.
-  - ipmi-ip4: current IPMI IPv4 address on LOM VLAN.
-  - rackid: new location rack id.
-  - rackunit: new location rack unit id.
+  - **model**: server model.
+  - **s/n**: serial number.
+  - **mgmt-ip4**: current management IPv4 address on management VLAN.
+  - **ipmi-ip4**: current IPMI IPv4 address on LOM VLAN.
+  - **rackid**: new location rack id.
+  - **rackunit**: new location rack unit id.
 
 ## Missing Equipment Inventory
 
 1. Ixia PerfectStorm One Appliance
-   - [Specification: Ixia PerfectStorm One Appliance TG for FD.io TCP/IP performance tests](https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md#n554)
-   - [Wiring: 2-Node-IxiaPS1L47 Servers (2n-ps1)](https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md#n1017)
-   - [mgmt-ip4 10.30.51.62 s26-t25-tg1](https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md#n374)
-   - [ipmi-ip4 10.30.50.59 s26-t25-tg1](https://git.fd.io/csit/tree/docs/lab/testbed_specifications.md#n281)
+   - [**Specification**]({{< ref "fdio_csit_testbed_specifications#2-node-ixiaps1l47-ixia-psone-l47-2n-ps1" >}})
+   - [**Wiring**]({{< ref "fdio_csit_testbed_specifications#2-node-ixiaps1l47-2n-ps1" >}})
+   - **mgmt-ip4**: 10.30.51.62 s26-t25-tg1
+   - **ipmi-ip4**: 10.30.50.59 s26-t25-tg1
 
 ## YUL1 Inventory
 

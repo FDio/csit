@@ -6,9 +6,9 @@ title: "Bash Code Style"
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
 "MAY", and "OPTIONAL" in this document are to be interpreted as
-described in `BCP 14 <https://tools.ietf.org/html/bcp14>`_
-`[RFC2119] <https://tools.ietf.org/html/rfc2119>`_
-`[RFC8174] <https://tools.ietf.org/html/rfc8174>`_
+described in [BCP 14](https://tools.ietf.org/html/bcp14),
+[RFC2119](https://tools.ietf.org/html/rfc2119),
+[RFC8174](https://tools.ietf.org/html/rfc8174)
 when, and only when, they appear in all capitals, as shown here.
 
 This document SHALL describe guidelines for writing reliable, maintainable,
