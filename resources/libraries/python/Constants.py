@@ -308,6 +308,7 @@ class Constants:
         u"Intel-E822CQ": 24500000000,
         u"Intel-E810CQ": 100000000000,
         u"Mellanox-CX556A": 100000000000,
+        u"Mellanox-CX7VEAT": 200000000000,
         u"Amazon-Nitro-50G": 10000000000,
         u"virtual": 100000000,
     }
@@ -322,6 +323,7 @@ class Constants:
         u"Intel-E822CQ": 29000000,
         u"Intel-E810CQ": 58500000,
         u"Mellanox-CX556A": 148809523,
+        u"Mellanox-CX7VEAT": 297619046,
         u"Amazon-Nitro-50G": 1200000,
         u"virtual": 14880952,
     }
@@ -337,6 +339,7 @@ class Constants:
         u"Intel-E810CQ": u"100ge2p1e810cq",
         u"Amazon-Nitro-50G": u"50ge1p1ena",
         u"Mellanox-CX556A": u"100ge2p1cx556a",
+        u"Mellanox-CX7VEAT": u"200ge2p1cx7veat",
     }
 
     # Shortened lowercase NIC model name, useful for presentation.
@@ -350,6 +353,7 @@ class Constants:
         u"100ge2p1e810cq": u"e810cq",
         u"50ge1p1ena": u"ena",
         u"100ge2p1cx556a": u"cx556a",
+        u"200ge2p1cx7veat": u"cx7veat",
     }
 
     # Not each driver is supported by each NIC.
@@ -363,6 +367,7 @@ class Constants:
         u"Intel-E810CQ": [u"vfio-pci", u"avf", u"af_xdp"],
         u"Amazon-Nitro-50G": [u"vfio-pci"],
         u"Mellanox-CX556A": [u"rdma-core", u"mlx5_core", u"af_xdp"],
+        u"Mellanox-CX7VEAT": [u"rdma-core", u"mlx5_core", u"af_xdp"],
     }
 
     # Each driver needs different plugin to work.
@@ -412,6 +417,7 @@ class Constants:
         u"Intel-E810CQ": [u"vfio-pci"],
         u"Amazon-Nitro-50G": [u"vfio-pci"],
         u"Mellanox-CX556A": [u"mlx5_core"],
+        u"Mellanox-CX7VEAT": [u"mlx5_core"],
     }
 
     # Tags to differentiate tests for different NIC driver.
