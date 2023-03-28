@@ -252,9 +252,10 @@
 | | | Run Keyword | ${dut}.Add IPsec SPD Flow cache IPv4 Outbound | on
 | | END
 
-| Enable IPsec SPD Fast Path IPv4 Outbound
+| Enable IPsec SPD Fast Path IPv4 Inbound and Outbound
 | | [Documentation]
-| | ... | Enable IPsec SPD fast path IPv4 outbound in VPP configuration file.
+| | ... | Enable IPsec SPD fast path IPv4 Inbound and outbound in VPP
+| | ... | configuration file.
 | |
 | | ... | *Arguments:*
 | | ... | - value - The number buckets for spd fast path. Type: int
@@ -262,7 +263,9 @@
 | | [Arguments] | ${value}
 | |
 | | FOR | ${dut} | IN | @{duts}
-| | | Run Keyword | ${dut}.Add IPsec SPD Flow cache IPv4 Outbound | off
+| | | Run Keyword | ${dut}.Add IPsec SPD Flow Cache IPv4 Outbound | off
+| | | Run Keyword | ${dut}.Add IPsec SPD Flow Cache IPv4 Inbound | off
 | | | Run Keyword | ${dut}.Add IPsec SPD Fast Path IPv4 Outbound | on
+| | | Run Keyword | ${dut}.Add IPsec SPD Fast Path IPv4 Inbound | on
 | | | Run Keyword | ${dut}.Add IPsec SPD Fast Path Num Buckets | ${value}
 | | END
