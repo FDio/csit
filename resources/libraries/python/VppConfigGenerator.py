@@ -433,6 +433,15 @@ class VppConfigGenerator:
         path = [u"ip6", u"heap-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_ipsec_spd_flow_cache_ipv4_inbound(self, value):
+        """Add IPsec spd flow cache for IP4 inbound.
+
+        :param value: "on" to enable spd flow cache.
+        :type value: str
+        """
+        path = [u"ipsec", u"ipv4-inbound-spd-flow-cache"]
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_ipsec_spd_flow_cache_ipv4_outbound(self, value):
         """Add IPsec spd flow cache for IP4 outbound.
 
@@ -440,6 +449,15 @@ class VppConfigGenerator:
         :type value: str
         """
         path = [u"ipsec", u"ipv4-outbound-spd-flow-cache"]
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_ipsec_spd_fast_path_ipv4_inbound(self, value):
+        """Add IPsec spd fast path for IP4 inbound.
+
+        :param value: "on" to enable spd fast path.
+        :type value: str
+        """
+        path = [u"ipsec", u"ipv4-inbound-spd-fast-path"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_ipsec_spd_fast_path_ipv4_outbound(self, value):

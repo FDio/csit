@@ -111,7 +111,8 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
-| | And Enable IPsec SPD Fast Path IPv4 Outbound | ${${n_tunnels}*10}
+| | And Enable IPsec SPD Fast Path IPv4 Inbound And Outbound
+| | ... | ${${n_tunnels}*10}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
