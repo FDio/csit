@@ -54,6 +54,24 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48b9011a_7ea2e615",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-03-29T11:14:01Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll rewrite it.",
+      "parentUuid": "d7fca03b_c7a1b952",
+      "revId": "9034ad03e2d333ca777dae9c64f8d98cc7b4d843",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "006faacf_f29b3b1a",
@@ -91,6 +109,30 @@
       "side": 1,
       "message": "It has a reason why it is like this. to avoid linux scheduler to assign dummy VM processes into poll mode cores and making interrupts.",
       "parentUuid": "006faacf_f29b3b1a",
+      "range": {
+        "startLine": 732,
+        "startChar": 8,
+        "endLine": 732,
+        "endChar": 75
+      },
+      "revId": "9034ad03e2d333ca777dae9c64f8d98cc7b4d843",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f37d29e8_92739501",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-03-29T11:14:01Z",
+      "side": 1,
+      "message": "Ok, thanks for the explanation.",
+      "parentUuid": "32ac14c0_ea2c08b4",
       "range": {
         "startLine": 732,
         "startChar": 8,
