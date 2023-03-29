@@ -366,27 +366,27 @@
 4c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND ethip4-ip4scale20k-rnd
 ## ./ip4_tunnels
 ### mellanox-cx7veat
-#### avf
+#### rdma-core
 ##### ethip4--ethip4udpgeneve-1tun-ip4base
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-1tun-ip4base
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-1tun-ip4base
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-1tun-ip4base
+1c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-1tun-ip4base
+2c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-1tun-ip4base
+4c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-1tun-ip4base
 ##### ethip4--ethip4udpgeneve-4tun-ip4base
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-4tun-ip4base
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-4tun-ip4base
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-4tun-ip4base
+1c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-4tun-ip4base
+2c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-4tun-ip4base
+4c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-4tun-ip4base
 ##### ethip4--ethip4udpgeneve-16tun-ip4base
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-16tun-ip4base
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-16tun-ip4base
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-16tun-ip4base
+1c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-16tun-ip4base
+2c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-16tun-ip4base
+4c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-16tun-ip4base
 ##### ethip4--ethip4udpgeneve-64tun-ip4base
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-64tun-ip4base
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-64tun-ip4base
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-64tun-ip4base
+1c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-64tun-ip4base
+2c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-64tun-ip4base
+4c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-64tun-ip4base
 ##### ethip4--ethip4udpgeneve-256tun-ip4base
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4--ethip4udpgeneve-256tun-ip4base
+1c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-256tun-ip4base
+2c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-256tun-ip4base
+4c AND 64b AND mrr AND cx7veat AND drv_rdma_core AND ethip4--ethip4udpgeneve-256tun-ip4base
 ### intel-e810cq
 #### avf
 ##### ethip4--ethip4udpgeneve-1tun-ip4base
