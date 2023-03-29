@@ -54,7 +54,6 @@
 1c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
 2c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
 4c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
-## ./crypto
 ## ./ip4
 ### intel-xxv710
 #### af_xdp
