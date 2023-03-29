@@ -16,6 +16,47 @@
       "message": "Assign 0xFF. DO not add pinning as param.  ",
       "revId": "9034ad03e2d333ca777dae9c64f8d98cc7b4d843",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "918e0260_eec69dec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-03-29T08:11:09Z",
+      "side": 1,
+      "message": "Why? I need to assign the cores that the VM should be using during its lifetime. When the qemu process starts, it looks like it uses cores (without pinning) which result in slow boot times. This may be because the cores it\u0027s using are on a farther NUMA node.\n\nThis is to address https://jira.fd.io/browse/CSIT-1877. The first sandbox results (with this patch) look promising: https://jenkins.fd.io/sandbox/job/csit-vpp-perf-mrr-daily-master-3n-tsh/",
+      "parentUuid": "ba9cf587_d4421a24",
+      "revId": "9034ad03e2d333ca777dae9c64f8d98cc7b4d843",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "006faacf_f29b3b1a",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-03-29T08:11:09Z",
+      "side": 1,
+      "message": "I thought about adding pinning right to the qemu command, but that\u0027s a bit different from the current behavior.\n\nThe current behavior gets the PIDs of the VM and assigns CPUs to the PIDs, giving us a nice bijection between qemu processes and cores.\n\nThe alternative (taskset -c n-m qemu-system-{self._arch}) would probably assign cores in a different fashion, possibly assigning all qemu processes the same set of cpus. I don\u0027t whether the current behavior is deliberate (and if so, why) or whether the alternative would be acceptable.",
+      "range": {
+        "startLine": 732,
+        "startChar": 8,
+        "endLine": 732,
+        "endChar": 75
+      },
+      "revId": "9034ad03e2d333ca777dae9c64f8d98cc7b4d843",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
