@@ -61,7 +61,7 @@ weight: 1
  s27-t211-sut1   | up              | t211           | 2n-tx2        | ThunderX2-9975      | K61186073100003 | 10.30.51.69  | 10.30.50.69  | 3016.9     | u13
  s18-t33-sut2    | up              | t33            | 3n-tsh        | HUAWEI-TAISHAN-2280 | N/A             | 10.30.51.37  | 10.30.50.37  | 3016.9     | u11-u12
  s17-t33-sut1    | up              | t33            | 3n-tsh        | HUAWEI-TAISHAN-2280 | N/A             | 10.30.51.36  | 10.30.50.36  | 3016.9     | u9-u10
- s79-t39t310-tg1 | in-transit      | t39t310        | tbd           | SYS-740GP-TNRT      | ???             | 10.30.51.89  | 10.30.50.89  | 3016.9     | u5-u8
+ s79-t39t310-tg1 | up              | t39t310        | tbd           | SYS-740GP-TNRT      | ???             | 10.30.51.79  | 10.30.50.79  | 3016.9     | u5-u8
 
 ### Rack YUL1-10 (3016.10)
 
@@ -96,22 +96,22 @@ weight: 1
 
 ### Rack YUL1-12 (3016.12)
 
- **name**      | **oper-status** | **testbed-id**              | **role**       | **model**       | **s/n**         | **mgmt-ip4** | **ipmi-ip4** | **rackid** | **rackunit**
----------------|-----------------|-----------------------------|----------------|-----------------|-----------------|--------------|--------------|------------|--------------
- yul1-12-lb4m  | up              | switch                      | uplink         | ?               | ?               | ?            | ?            | 3016.12    | u47
- s28-nomad     | up              | nomad-cluster1.nomad-client | SYS-7049GP-TRT | C7470KH06A20196 | 10.30.51.28     | 10.30.50.28  | 3016.12      | u41-u44    |
- s27-nomad     | up              | nomad-cluster1              | nomad-client   | SYS-7049GP-TRT  | C7470KH06A20055 | 10.30.51.27  | 10.30.50.27  | 3016.12    | u37-u40
- s91-nomad     | up              | nomad-cluster1              | nomad-client   | R152-P30-00     | GLG4P9912A0016  | 10.30.51.91  | 10.30.50.91  | 3016.12    | u36
- s92-nomad     | up              | nomad-cluster1              | nomad-client   | R152-P30-00     | GLG4P9912A0004  | 10.30.51.92  | 10.30.50.92  | 3016.12    | u35
- s23-nomad     | up              | nomad-cluster1              | nomad-server   | SYS-1029P-WTRT  | C1160LI12NM0256 | 10.30.51.23  | 10.30.51.23  | 3016.12    | u34
- s24-nomad     | up              | nomad-cluster1              | nomad-server   | SYS-1029P-WTRT  | C1160LI12NM0241 | 10.30.51.24  | 10.30.51.24  | 3016.12    | u33
- s25-nomad     | up              | nomad-cluster1              | nomad-server   | SYS-1029P-WTRT  | C1160LI12NM0540 | 10.30.51.25  | 10.30.51.25  | 3016.12    | u32
- s61-t210-tg1  | up              | t210                        | 2n-zn2         | AS-1014S-WTRT   | C8150LI50NS2689 | 10.32.8.25   | 10.30.55.25  | 3016.12    | u31
- s60-t210-sut1 | up              | t210                        | 2n-zn2         | AS-1114S-WTRT   | N/A             | 10.32.8.24   | 10.30.55.24  | 3016.12    | u30
- s26-nomad     | up              | nomad-cluster1              | nomad-server   | SYS-7049GP-TRT  | C7470KH37A30505 | 10.30.51.26  | 10.30.51.26  | 3016.12    | u26-u29
- s33-t27-sut1  | up              | t27                         | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30567 | 10.32.8.18   | 10.30.55.18  | 3016.12    | u22-u25
- s34-t27-tg1   | up              | t27                         | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30565 | 10.32.8.19   | 10.30.55.19  | 3016.12    | u18-u21
- s35-t28-sut1  | up              | t28                         | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30509 | 10.32.8.20   | 10.30.55.20  | 3016.12    | u14-u17
- s36-t28-tg1   | up              | t28                         | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30511 | 10.32.8.21   | 10.30.55.21  | 3016.12    | u10-u13
- s37-t29-sut1  | up              | t29                         | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30566 | 10.32.8.22   | 10.30.55.22  | 3016.12    | u6-u9
- s38-t29-tg1   | up              | t29                         | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30506 | 10.32.8.23   | 10.30.55.23  | 3016.12    | u2-u5
+ **name**      | **oper-status** | **testbed-id** | **role**       | **model**       | **s/n**         | **mgmt-ip4** | **ipmi-ip4** | **rackid** | **rackunit**
+---------------|-----------------|----------------|----------------|-----------------|-----------------|--------------|--------------|------------|--------------
+ yul1-12-lb4m  | up              | switch         | uplink         | ?               | ?               | ?            | ?            | 3016.12    | u47
+ s28-nomad     | up              | nomad          | nomad-client   | SYS-7049GP-TRT  | C7470KH06A20196 | 10.30.51.28  | 10.30.50.28  | 3016.12    | u41-u44
+ s27-nomad     | up              | nomad          | nomad-client   | SYS-7049GP-TRT  | C7470KH06A20055 | 10.30.51.27  | 10.30.50.27  | 3016.12    | u37-u40
+ s91-nomad     | up              | nomad          | nomad-client   | R152-P30-00     | GLG4P9912A0016  | 10.30.51.91  | 10.30.50.91  | 3016.12    | u36
+ s92-nomad     | up              | nomad          | nomad-client   | R152-P30-00     | GLG4P9912A0004  | 10.30.51.92  | 10.30.50.92  | 3016.12    | u35
+ s23-nomad     | up              | nomad          | nomad-server   | SYS-1029P-WTRT  | C1160LI12NM0256 | 10.30.51.23  | 10.30.51.23  | 3016.12    | u34
+ s24-nomad     | up              | nomad          | nomad-server   | SYS-1029P-WTRT  | C1160LI12NM0241 | 10.30.51.24  | 10.30.51.24  | 3016.12    | u33
+ s25-nomad     | up              | nomad          | nomad-server   | SYS-1029P-WTRT  | C1160LI12NM0540 | 10.30.51.25  | 10.30.51.25  | 3016.12    | u32
+ s61-t210-tg1  | up              | t210           | 2n-zn2         | AS-1014S-WTRT   | C8150LI50NS2689 | 10.32.8.25   | 10.30.55.25  | 3016.12    | u31
+ s60-t210-sut1 | up              | t210           | 2n-zn2         | AS-1114S-WTRT   | N/A             | 10.32.8.24   | 10.30.55.24  | 3016.12    | u30
+ s26-nomad     | up              | nomad          | nomad-server   | SYS-7049GP-TRT  | C7470KH37A30505 | 10.30.51.26  | 10.30.51.26  | 3016.12    | u26-u29
+ s33-t27-sut1  | up              | t27            | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30567 | 10.32.8.18   | 10.30.55.18  | 3016.12    | u22-u25
+ s34-t27-tg1   | up              | t27            | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30565 | 10.32.8.19   | 10.30.55.19  | 3016.12    | u18-u21
+ s35-t28-sut1  | up              | t28            | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30509 | 10.32.8.20   | 10.30.55.20  | 3016.12    | u14-u17
+ s36-t28-tg1   | up              | t28            | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30511 | 10.32.8.21   | 10.30.55.21  | 3016.12    | u10-u13
+ s37-t29-sut1  | up              | t29            | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30566 | 10.32.8.22   | 10.30.55.22  | 3016.12    | u6-u9
+ s38-t29-tg1   | up              | t29            | 2n-clx         | SYS-7049GP-TRT  | C7470KH37A30506 | 10.32.8.23   | 10.30.55.23  | 3016.12    | u2-u5
