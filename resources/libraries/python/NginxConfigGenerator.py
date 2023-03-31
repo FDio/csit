@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,6 +14,7 @@
 """Nginx Configuration File Generator library.
 """
 
+import re
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.NginxUtil import NginxUtil
@@ -153,6 +154,19 @@ class NginxConfigGenerator:
         path = [u"http", u"server", f"location /{key}", u"return"]
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_http_server_location_placeholder(self, size):
+        """Add Http Server location configuration with placeholder
+
+        :param size: File size.
+        :type size: int
+        """
+        if size >= 1024:
+            files = f"{int(size / 1024)}KB.json"
+            placeholder = "200 '#@#@#%sKB#@#@#'" % (int(size / 1024))
+        key = f"{files}"
+        path = [u"http", u"server", f"location /{key}", u"return"]
+        self.add_config_item(self._nodeconfig, placeholder, path)
+
     def add_http_access_log(self, value=u"off"):
         """Add Http access_log configuration."""
         path = [u"http", u"access_log"]
@@ -220,11 +234,10 @@ class NginxConfigGenerator:
 
     def add_worker_processes(self, value, smt_used):
         """Add worker processes configuration."""
-        # nginx workers : vpp used phy workers = 2:1
         if smt_used:
-            value = value * 4
+            value = int(value * 2)
         else:
-            value = value * 2
+            value = int(value)
         path = [u"worker_processes"]
         self.add_config_item(self._nodeconfig, value, path)
 
@@ -242,3 +255,29 @@ class NginxConfigGenerator:
         app_path = f"{self._nginx_path}/sbin/nginx"
         if verify_nginx:
             NginxUtil.nginx_config_verify(self._node, app_path)
+
+    def replace_placeholder_with_strings(self, filename=None):
+        """Replace placeholders with strings of corresponding size.
+
+        :param filename: NGINX configuration file name.
+        :type filename: str
+        """
+        if filename is None:
+            filename = f"{self._nginx_path}/conf/nginx.conf"
+
+        # get placeholder in nginx.conf
+        cmd = f"grep -Po '#@#@#\d+KB#@#@#' {filename}"
+        stdout, stderr = exec_cmd_no_error(
+            self._node, cmd, message=u"Not found any placeholder."
+        )
+        backslash = ' ' + '\\'*8
+        placeholder_list = stdout.split()
+        for i in placeholder_list:
+            size = int(re.search("(\d+)", i).group(1))
+            cmd = f"sed -i \"s/#@#@#{size}KB#@#@#/`printf " \
+                f"'{'x'*64 + backslash}\\\\\\\\n%0.s' " \
+                f"{{1..{size*1024//64}}}`/g\" " \
+                f"{filename}"
+            exec_cmd_no_error(
+                self._node, cmd, message=u"Change placeholder failed!"
+            )
