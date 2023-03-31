@@ -41,7 +41,14 @@ class VPPUtil:
         """
         # Containers have a separate lifecycle, but better be safe.
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
-        DUTSetup.restart_service(node, Constants.VPP_UNIT)
+
+        VPPUtil.stop_vpp_service(node)
+        command = "/usr/bin/vpp -c /etc/vpp/startup.conf"
+        message = f"Node {node[u'host']} failed to start VPP!"
+        exec_cmd_no_error(
+            node, command, timeout=180, sudo=True, message=message
+        )
+
         if node_key:
             Topology.add_new_socket(
                 node, SocketType.CLI, node_key, Constants.SOCKCLI_PATH)
@@ -72,12 +79,19 @@ class VPPUtil:
         :type node: dict
         :type node_key: str
         """
-        # Containers have a separate lifecycle, but better be safe.
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
-        DUTSetup.stop_service(node, Constants.VPP_UNIT)
+        command = "pkill vpp"
+        exec_cmd(node, command, timeout=180, sudo=True)
+        command = (
+            "/bin/rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api"
+        )
+        exec_cmd(node, command, timeout=180, sudo=True)
+
         if node_key:
-            Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
-            Topology.del_node_socket_id(node, SocketType.STATS, node_key)
+            if Topology.get_node_sockets(node, socket_type=SocketType.PAPI):
+                Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
+            if Topology.get_node_sockets(node, socket_type=SocketType.STATS):
+                Topology.del_node_socket_id(node, SocketType.STATS, node_key)
 
     @staticmethod
     def stop_vpp_service_on_all_duts(nodes):
@@ -89,6 +103,39 @@ class VPPUtil:
         for node_key, node in nodes.items():
             if node[u"type"] == NodeType.DUT:
                 VPPUtil.stop_vpp_service(node, node_key)
+
+    @staticmethod
+    def install_vpp_on_all_duts(nodes, vpp_pkg_dir):
+        """Install VPP on all DUT nodes.
+
+        :param nodes: Nodes in the topology.
+        :param vpp_pkg_dir: Path to directory where VPP packages are stored.
+        :type nodes: dict
+        :type vpp_pkg_dir: str
+        """
+        VPPUtil.stop_vpp_service_on_all_duts(nodes)
+        for node in nodes.values():
+            message = f"Failed to install VPP on host {node['host']}!"
+            if node["type"] == NodeType.DUT:
+                command = "mkdir -p /var/log/vpp/"
+                exec_cmd(node, command, sudo=True)
+
+                command = "ln -s /dev/null /etc/systemd/system/vpp.service"
+                exec_cmd(node, command, sudo=True)
+
+                command = "ln -s /dev/null /etc/sysctl.d/80-vpp.conf"
+                exec_cmd(node, command, sudo=True)
+
+                command = "apt-get purge -y '*vpp*' || true"
+                exec_cmd_no_error(node, command, timeout=120, sudo=True)
+
+                command = f"dpkg -i --force-all {vpp_pkg_dir}*.deb"
+                exec_cmd_no_error(
+                    node, command, timeout=120, sudo=True, message=message
+                )
+
+                command = "dpkg -l | grep vpp"
+                exec_cmd_no_error(node, command, sudo=True)
 
     @staticmethod
     def verify_vpp_installed(node):
