@@ -646,64 +646,6 @@ class DUTSetup:
 
         exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
 
-    @staticmethod
-    def install_vpp_on_all_duts(nodes, vpp_pkg_dir):
-        """Install VPP on all DUT nodes. Start the VPP service in case of
-        systemd is not available or does not support autostart.
-
-        :param nodes: Nodes in the topology.
-        :param vpp_pkg_dir: Path to directory where VPP packages are stored.
-        :type nodes: dict
-        :type vpp_pkg_dir: str
-        :raises RuntimeError: If failed to remove or install VPP.
-        """
-        for node in nodes.values():
-            message = f"Failed to install VPP on host {node[u'host']}!"
-            if node[u"type"] == NodeType.DUT:
-                command = "mkdir -p /var/log/vpp/"
-                exec_cmd(node, command, sudo=True)
-
-                command = u"ln -s /dev/null /etc/sysctl.d/80-vpp.conf || true"
-                exec_cmd_no_error(node, command, sudo=True)
-
-                command = u". /etc/lsb-release; echo \"${DISTRIB_ID}\""
-                stdout, _ = exec_cmd_no_error(node, command)
-
-                if stdout.strip() == u"Ubuntu":
-                    exec_cmd_no_error(
-                        node, u"apt-get purge -y '*vpp*' || true",
-                        timeout=120, sudo=True
-                    )
-                    # workaround to avoid installation of vpp-api-python
-                    exec_cmd_no_error(
-                        node, f"rm -f {vpp_pkg_dir}vpp-api-python.deb",
-                        timeout=120, sudo=True
-                    )
-                    exec_cmd_no_error(
-                        node, f"dpkg -i --force-all {vpp_pkg_dir}*.deb",
-                        timeout=120, sudo=True, message=message
-                    )
-                    exec_cmd_no_error(node, u"dpkg -l | grep vpp", sudo=True)
-                    if DUTSetup.running_in_container(node):
-                        DUTSetup.restart_service(node, Constants.VPP_UNIT)
-                else:
-                    exec_cmd_no_error(
-                        node, u"yum -y remove '*vpp*' || true",
-                        timeout=120, sudo=True
-                    )
-                    # workaround to avoid installation of vpp-api-python
-                    exec_cmd_no_error(
-                        node, f"rm -f {vpp_pkg_dir}vpp-api-python.rpm",
-                        timeout=120, sudo=True
-                    )
-                    exec_cmd_no_error(
-                        node, f"rpm -ivh {vpp_pkg_dir}*.rpm",
-                        timeout=120, sudo=True, message=message
-                    )
-                    exec_cmd_no_error(node, u"rpm -qai '*vpp*'", sudo=True)
-                    DUTSetup.restart_service(node, Constants.VPP_UNIT)
-
-    @staticmethod
     def running_in_container(node):
         """This method tests if topology node is running inside container.
 
@@ -713,18 +655,15 @@ class DUTSetup:
             to detect.
         :rtype: bool
         """
-        command = u"fgrep docker /proc/1/cgroup"
-        message = u"Failed to get cgroup settings."
+        command = "cat /.dockerenv"
         try:
-            exec_cmd_no_error(
-                node, command, timeout=30, sudo=False, message=message
-            )
+            exec_cmd_no_error(node, command, timeout=30)
         except RuntimeError:
             return False
         return True
 
     @staticmethod
-    def get_docker_mergeddir(node, uuid):
+    def get_docker_mergeddir(node, uuid=None):
         """Get Docker overlay for MergedDir diff.
 
         :param node: DUT node.
@@ -735,8 +674,16 @@ class DUTSetup:
         :rtype: str
         :raises RuntimeError: If getting output failed.
         """
-        command = f"docker inspect " \
+        if not uuid:
+            command = 'fgrep "hostname" /proc/self/mountinfo | cut -f 4 -d" "'
+            message = "Failed to get UUID!"
+            stdout, _ = exec_cmd_no_error(node, command, message=message)
+            uuid = stdout.split(sep="/")[-2]
+
+        command = (
+            f"docker inspect "
             f"--format='{{{{.GraphDriver.Data.MergedDir}}}}' {uuid}"
+        )
         message = f"Failed to get directory of {uuid} on host {node[u'host']}"
 
         stdout, _ = exec_cmd_no_error(node, command, sudo=True, message=message)
