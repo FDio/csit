@@ -22,7 +22,8 @@
   when: >
     cpu_microarchitecture == "skylake" or
     cpu_microarchitecture == "cascadelake" or
-    cpu_microarchitecture == "icelake"
+    cpu_microarchitecture == "icelake" or
+    cpu_microarchitecture == "sapphirerapids"
   tags:
     - perf-conf-turbo-boost
 
