@@ -212,7 +212,8 @@ class HoststackUtil():
         :rtype: dict
         """
         nginx_cmd = dict()
-        nginx_cmd[u"env_vars"] = f"VCL_CONFIG={Constants.REMOTE_FW_DIR}/" \
+        nginx_cmd[u"env_vars"] = f"VCL_DEBUG=1 " \
+                                 f"VCL_CONFIG={Constants.REMOTE_FW_DIR}/" \
                                  f"{Constants.RESOURCES_TPL_VCL}/" \
                                  f"{nginx_attributes[u'vcl_config']}"
         if nginx_attributes[u"ld_preload"]:
@@ -482,5 +483,16 @@ class HoststackUtil():
         if node[u"type"] != u"DUT":
             raise RuntimeError(u"Node type is not a DUT!")
 
+        program_stdout_log, program_stderr_log = \
+            HoststackUtil.get_hoststack_test_program_logs(node, "nginx")
+
+        logger.debug(program_stdout_log)
+        logger.debug(program_stderr_log)
+
         PapiSocketExecutor.run_cli_cmd(node, u"show error")
         PapiSocketExecutor.run_cli_cmd(node, u"show interface")
+        PapiSocketExecutor.run_cli_cmd(node, u"show dma config 0")
+        PapiSocketExecutor.run_cli_cmd(node, u"show ip neighbor")
+        PapiSocketExecutor.run_cli_cmd(node, u"show interface addr")
+        PapiSocketExecutor.run_cli_cmd(node, u"ping 192.168.10.2")
+        PapiSocketExecutor.run_cli_cmd(node, u"ping 192.168.11.2")

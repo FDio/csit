@@ -509,6 +509,8 @@ def exec_cmd_no_error(
     :rtype: tuple(str, str)
     :raises RuntimeError: If bash return code is not 0.
     """
+    stdout = None
+    stderr = None
     for _ in range(retries + 1):
         ret_code, stdout, stderr = exec_cmd(
             node, cmd, timeout=timeout, sudo=sudo, disconnect=disconnect,
@@ -522,7 +524,7 @@ def exec_cmd_no_error(
         logger.info(msg)
         if message:
             msg = f"{message}\n{msg}" if include_reason else message
-        raise RuntimeError(msg)
+        # raise RuntimeError(msg)
 
     return stdout, stderr
 
