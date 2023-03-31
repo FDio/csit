@@ -165,6 +165,13 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
+        cmd = "cat /proc/cmdline"
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=True, message=u"cat cmdline failed!", retries=3
+        )
+        logger.debug(stdout)
+        logger.console(stdout)
+
         cmd = u"echo \"show pci\" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock"
         exec_cmd_no_error(
             node, cmd, sudo=False, message=u"VPP failed to start!", retries=120
@@ -181,6 +188,42 @@ class VPPUtil:
         cmd = u"for i in $(sudo vppctl sho int | grep Eth | cut -d' ' -f1); do"\
               u" sudo vppctl set int sta $i up; done"
         exec_cmd(node, cmd, sudo=False)
+
+        # cmd = u"dmesg --clear"
+        # stdout, _ = exec_cmd_no_error(
+        #     node, cmd, sudo=True, message=u"Failed to get dmesg on DUT.")
+        # logger.debug(stdout)
+
+        # cmd = "lsmod | grep idxd | wc -l"
+        # stdout, _ = exec_cmd_no_error(
+        #         node, cmd, sudo=True,
+        #         message=u"Failed to lsmod on DUT.",
+        #         retries=3)
+        # logger.debug(stdout)
+
+        # if int(stdout.strip()) > 0:
+        #     cmd = "modinfo idxd"
+        #     stdout, _ = exec_cmd_no_error(
+        #         node, cmd, sudo=True, message=u"modinfo failed"
+        #     )
+        #     logger.debug(stdout)
+
+        #     cmd = "modprobe -r idxd"
+        #     stdout, _ = exec_cmd_no_error(
+        #         node, cmd, sudo=True, message=u"modprobe r failed"
+        #     )
+        #     logger.debug(stdout)
+
+        #     cmd = "modprobe idxd dyndbg==pmf"
+        #     stdout, _ = exec_cmd_no_error(
+        #         node, cmd, sudo=True, message=u"modprobe failed"
+        #     )
+        #     logger.debug(stdout)
+
+        #     cmd = u"dmesg"
+        #     stdout, _ = exec_cmd_no_error(
+        #         node, cmd, sudo=True, message=u"Failed to get dmesg on DUT.")
+        #     logger.debug(stdout)
 
     @staticmethod
     def verify_vpp(node):

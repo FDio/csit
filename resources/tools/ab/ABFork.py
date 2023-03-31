@@ -98,11 +98,20 @@ def main():
         print(u"Failed number of req_num!")
         return 1
 
+    # Get number of ip and tip
+    ip_num = len(ip_address.split(","))
+    tip_num = len(tg_address.split(","))
+    if ip_num != tip_num:
+        raise RuntimeError(f"The number of TG ip({tip_num}) and local ip\
+            ({ip_num}) is different")
+
     # The number of processing units available to the current process.
     _, cpu_num = subprocess.getstatusoutput(u"nproc --all")
     cpu_num = int(cpu_num)
     if cpu_num > 70:
-        cpu_num = 70
+        cpu_num = int(70 / ip_num)
+    else:
+        cpu_num = int(cpu_num / ip_num)
 
     # Requests and Clients are evenly distributed on each CPU.
     per_req = round(req_num / cpu_num)
@@ -114,13 +123,25 @@ def main():
 
     results = []
     # Start process pool.
-    pool = Pool(processes=cpu_num)
+    pool = Pool(processes=cpu_num*ip_num)
 
-    for i in range(1, cpu_num + 1):
-        results.append(
-            pool.apply_async(one, (
-                i, per_req_1st if i == 1 else per_req, per_cli, cipher,
-                protocol, ip_address, tg_address, files, port, mode)))
+    if int(ip_num) >= 2:
+        for index, p in enumerate(range(ip_num)):
+            start_num = 1 + index * cpu_num
+            end_num = cpu_num + 1 + index * cpu_num
+            ip = ip_address.split(",")[index]
+            tg = tg_address.split(",")[index]
+            for i in range(start_num, end_num):
+                results.append(
+                    pool.apply_async(one, (
+                        i, per_req_1st if i == 1 else per_req, per_cli, cipher,
+                        protocol, ip, tg, files, port, mode)))
+    else:
+        for i in range(1, cpu_num + 1):
+            results.append(
+                pool.apply_async(one, (
+                    i, per_req_1st if i == 1 else per_req, per_cli, cipher,
+                    protocol, ip_address, tg_address, files, port, mode)))
 
     pool.close()
     pool.join()
@@ -136,7 +157,7 @@ def main():
     # Output results.
     print(f"Transfer Rate: {round(info_list[6], 2)} [Kbytes/sec]")
     print(f"Latency: {round(info_list[4] / 8, 2)} ms")
-    print(f"Connection {mode} rate: {round(info_list[3], 2)} per sec")
+    print(f"Connection {mode} rate:{round(info_list[3], 2)} per sec")
     print(f"Total data transferred: {round(info_list[2])} bytes")
     print(f"Completed requests: {round(info_list[0])} ")
     print(f"Failed requests: {round(info_list[1])} ")

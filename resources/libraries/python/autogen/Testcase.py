@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -33,7 +33,7 @@ class Testcase:
         """
         self.template = Template(template_string)
 
-    def generate(self, frame_size, phy_cores=None):
+    def generate(self, frame_size, phy_cores=None, nginx_cores=None):
         """Return string of test case code with placeholders filled.
 
         Fail if there are placeholders left unfilled.
@@ -42,8 +42,10 @@ class Testcase:
         :param frame_size: Imix string or numeric frame size. Example: 74.
         :param phy_cores: Number of physical cores to use. Example: 2. It can
             be None in n2n testcases.
+        :param nginx_cores: Number of cores used by nginx.
         :type frame_size: str or int
         :type phy_cores: int, str or None
+        :type nginx_cores: int or None
         :returns: Filled template, usable as test case code.
         :rtype: str
         """
@@ -53,11 +55,17 @@ class Testcase:
                 u"frame_num": f"${{{fsize:d}}}",
                 u"frame_str": f"{fsize:d}B"
             }
-        except ValueError:  # Assuming an IMIX string.
-            subst_dict = {
-                u"frame_num": str(frame_size),
-                u"frame_str": u"IMIX"
-            }
+        except ValueError:  # Assuming an IMIX string or 'KB' in string
+            if "KB" in frame_size:
+                subst_dict = {
+                    u"frame_num": str(frame_size),
+                    u"frame_str": str(frame_size)
+                }
+            else:
+                subst_dict = {
+                    u"frame_num": str(frame_size),
+                    u"frame_str": u"IMIX"
+                }
         if phy_cores is None:
             return self.template.substitute(subst_dict)
         cores_str = str(phy_cores)
@@ -68,6 +76,15 @@ class Testcase:
                 u"cores_str": phy_cores,
             }
         )
+        if nginx_cores is not None:
+            cores_num = int(phy_cores) + int(nginx_cores)
+            subst_dict.update(
+                {
+                    u"cores_str": str(cores_num),
+                    u"v_core": f"${{{phy_cores:d}}}",
+                    u"n_core": f"${{{nginx_cores:d}}}"
+                }
+            )
         return self.template.substitute(subst_dict)
 
     @classmethod
@@ -103,7 +120,13 @@ class Testcase:
         # TODO: Choose a better frame size identifier for streamed protocols
         # (TCP, QUIC, SCTP, ...) where DUT (not TG) decides frame size.
         if u"tcphttp" in suite_id:
-            if u"rps" or u"cps" in suite_id:
+            if "http2cl" in suite_id and (u"rps" or u"cps" in suite_id):
+                template_string = f'''
+| ${{frame_str}}-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{frame_str}} | ${{cores_str}}C
+| | frame_size=${{frame_num}} | vpp_cores=${{v_core}} | nginx_cores=${{n_core}}
+'''
+            elif u"rps" or u"cps" in suite_id:
                 template_string = f'''
 | ${{frame_str}}-${{cores_str}}c-{suite_id}
 | | [Tags] | ${{frame_str}} | ${{cores_str}}C

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -774,6 +774,36 @@ class Regenerator:
             {u"frame_size": 2048, u"phy_cores": 2}
         ]
 
+        http_with_dma_kwargs_list = [
+            {u"frame_size": 0, u"phy_cores": 1, u"nginx_cores": 1},
+            {u"frame_size": 0, u"phy_cores": 1, u"nginx_cores": 2},
+            {u"frame_size": 0, u"phy_cores": 1, u"nginx_cores": 3},
+            {u"frame_size": 64, u"phy_cores": 1, u"nginx_cores": 1},
+            {u"frame_size": 64, u"phy_cores": 1, u"nginx_cores": 2},
+            {u"frame_size": 64, u"phy_cores": 1, u"nginx_cores": 3},
+            {u"frame_size": '1KB', u"phy_cores": 1, u"nginx_cores": 1},
+            {u"frame_size": '1KB', u"phy_cores": 1, u"nginx_cores": 2},
+            {u"frame_size": '1KB', u"phy_cores": 1, u"nginx_cores": 3},
+            {u"frame_size": '2KB', u"phy_cores": 1, u"nginx_cores": 1},
+            {u"frame_size": '2KB', u"phy_cores": 1, u"nginx_cores": 2},
+            {u"frame_size": '2KB', u"phy_cores": 1, u"nginx_cores": 3},
+            {u"frame_size": '4KB', u"phy_cores": 1, u"nginx_cores": 1},
+            {u"frame_size": '4KB', u"phy_cores": 1, u"nginx_cores": 2},
+            {u"frame_size": '4KB', u"phy_cores": 1, u"nginx_cores": 3},
+            {u"frame_size": '8KB', u"phy_cores": 1, u"nginx_cores": 1},
+            {u"frame_size": '8KB', u"phy_cores": 1, u"nginx_cores": 2},
+            {u"frame_size": '8KB', u"phy_cores": 1, u"nginx_cores": 3},
+            {u"frame_size": '16KB', u"phy_cores": 1, u"nginx_cores": 1},
+            {u"frame_size": '16KB', u"phy_cores": 1, u"nginx_cores": 2},
+            {u"frame_size": '16KB', u"phy_cores": 1, u"nginx_cores": 3},
+            {u"frame_size": '32KB', u"phy_cores": 1, u"nginx_cores": 1},
+            {u"frame_size": '32KB', u"phy_cores": 1, u"nginx_cores": 2},
+            {u"frame_size": '32KB', u"phy_cores": 1, u"nginx_cores": 3},
+            {u"frame_size": '64KB', u"phy_cores": 1, u"nginx_cores": 1},
+            {u"frame_size": '64KB', u"phy_cores": 1, u"nginx_cores": 2},
+            {u"frame_size": '64KB', u"phy_cores": 1, u"nginx_cores": 3}
+        ]
+
         device_kwargs_list = [
             {u"frame_size": min_frame_size, u"phy_cores": 0}
         ]
@@ -820,7 +850,12 @@ class Regenerator:
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename.endswith(u"-rps.robot") \
                     or in_filename.endswith(u"-cps.robot"):
-                write_tcp_files(in_filename, in_prolog, http_kwargs_list)
+                if u"http2cl" in in_filename:
+                    write_tcp_files(
+                        in_filename, in_prolog, http_with_dma_kwargs_list
+                    )
+                else:
+                    write_tcp_files(in_filename, in_prolog, http_kwargs_list)
             elif in_filename.endswith(u"-bps.robot"):
                 hoststack_kwargs_list = \
                     hs_quic_kwargs_list if u"quic" in in_filename \

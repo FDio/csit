@@ -599,7 +599,7 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **VIRTIO_1024**
 
-    All test cases which uses VIRTIO native VPP driver with qemu queue 
+    All test cases which uses VIRTIO native VPP driver with qemu queue
     size set to 1024.
 
 **CFS_OPT**
@@ -746,6 +746,10 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
     SRv6 endpoint to SR-unaware appliance via masquerading proxy.
 
+**DMA**
+
+    DMA plugin configured and tested with DMA device.
+
 ## Encryption Tags
 
 **IPSECSW**
@@ -867,6 +871,6 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
     *Dynamic tag*.
     {t} worker threads pinned to {c} dedicated physical cores. Main thread
     pinned to core 1. By default CSIT is configuring same amount of receive
-    queues per interface as worker threads. 
+    queues per interface as worker threads.
     {t}=(1,2,4,8),
     {c}=(1,2,4).
