@@ -1,0 +1,30 @@
+---
+# file: tasks/main.yaml
+
+- name: Copy csit-initialize-docker-sut.sh
+  ansible.builtin.copy:
+    src: "files/csit-initialize-docker-sut.sh"
+    dest: "/usr/local/bin/csit-initialize-docker-sut.sh"
+    owner: "root"
+    group: "root"
+    mode: 0744
+  when:
+    - docker_sut is defined
+  tags:
+    - sut-conf-docker
+
+- name: Copy csit-initialize-docker-sut.service
+  ansible.builtin.copy:
+    src: "files/csit-initialize-docker-sut.service"
+    dest: "/etc/systemd/system/"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify:
+    - "Start csit-initialize-docker-sut.service"
+  when:
+    - docker_sut is defined
+  tags:
+    - sut-conf-docker
+
+- meta: flush_handlers

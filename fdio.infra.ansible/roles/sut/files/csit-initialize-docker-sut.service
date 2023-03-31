@@ -1,0 +1,12 @@
+[Unit]
+Description=CSIT Initialize Docker SUT
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=True
+ExecStart=/usr/local/bin/csit-initialize-docker-sut.sh start 2
+ExecStop=/usr/local/bin/csit-initialize-docker-sut.sh stop
+
+[Install]
+WantedBy=default.target
