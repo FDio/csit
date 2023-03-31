@@ -15,10 +15,13 @@ services:
       - "6001:6001"
     restart: "always"
     shm_size: "4G"
-    devices:
-      - "/dev/hugepages:/dev/hugepages"
-      - "/dev/vfio:/dev/vfio"
     volumes:
+      - type: "bind"
+        source: "/dev/hugepages"
+        target: "/dev/hugepages"
+      - type: "bind"
+        source: "/dev/vfio"
+        target: "/dev/vfio"
       - type: "bind"
         source: "/etc/sudoers"
         target: "/etc/sudoers"
@@ -43,10 +46,13 @@ services:
       - "6002:6002"
     restart: "always"
     shm_size: "4G"
-    devices:
-      - "/dev/hugepages:/dev/hugepages"
-      - "/dev/vfio:/dev/vfio"
     volumes:
+      - type: "bind"
+        source: "/dev/hugepages"
+        target: "/dev/hugepages"
+      - type: "bind"
+        source: "/dev/vfio"
+        target: "/dev/vfio"
       - type: "bind"
         source: "/etc/sudoers"
         target: "/etc/sudoers"
