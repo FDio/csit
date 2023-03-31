@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -305,23 +305,25 @@
 | | Iface update numa node | ${tg}
 | | ${running}= | Is TRex running | ${tg}
 | | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
-| | ${curr_driver}= | Get PCI dev driver | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | Run keyword if | '${curr_driver}'!='${None}'
-| | ... | PCI Driver Unbind | ${tg} |
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | ${driver}= | Get Variable Value | ${tg['interfaces']['${tg_if1}']['driver']}
-| | PCI Driver Bind | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']} | ${driver}
-| | ${intf_name}= | Get Linux interface name | ${tg}
-| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
-| | FOR | ${ip_addr} | IN | @{ab_ip_addrs}
+| | ${len}= | Get Length | ${ab_ip_addrs}
+| | FOR | ${i} | IN RANGE | 1 | ${len+1}
+| | | ${curr_driver}= | Get PCI dev driver | ${tg}
+| | | ... | ${tg['interfaces']['${tg_if${i}}']['pci_address']}
+| | | Run keyword if | '${curr_driver}'!='${None}'
+| | | ... | PCI Driver Unbind | ${tg} |
+| | | ... | ${tg['interfaces']['${tg_if${i}}']['pci_address']}
+| | | ${driver}= | Get Variable Value |
+| | | ... | ${tg['interfaces']['${tg_if${i}}']['driver']}
+| | | PCI Driver Bind | ${tg}
+| | | ... | ${tg['interfaces']['${tg_if${i}}']['pci_address']} | ${driver}
+| | | ${intf_name}= | Get Linux interface name | ${tg}
+| | | ... | ${tg['interfaces']['${tg_if${i}}']['pci_address']}
 | | | ${ip_addr_on_intf}= | Linux interface has IP | ${tg} | ${intf_name}
-| | | ... | ${ip_addr} | ${ab_ip_prefix}
+| | | ... | ${ab_ip_addrs}[${i-1}] | ${ab_ip_prefix}
 | | | Run Keyword If | ${ip_addr_on_intf}==${False} | Set Linux interface IP
-| | | ... | ${tg} | ${intf_name} | ${ip_addr} | ${ab_ip_prefix}
+| | | ... | ${tg} | ${intf_name} | ${ab_ip_addrs}[${i-1}] | ${ab_ip_prefix}
+| | | Set Linux interface up | ${nodes}[TG] | ${intf_name}
 | | END
-| | Set Linux interface up | ${nodes}[TG] | ${intf_name}
 | | Check AB | ${tg}
 | | ${type} = | Get AB Type | ${nodes}[TG]
 | | ${version} = | Get AB Version | ${nodes}[TG]
