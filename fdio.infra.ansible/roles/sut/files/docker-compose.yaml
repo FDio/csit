@@ -1,0 +1,54 @@
+version: "3.9"
+services:
+  csit-numa-0:
+    build: .
+    command: ["/usr/sbin/sshd","-D", "-p", "6001"]
+    expose:
+      - "6001"
+    hostname: "s54-t22-sut1"
+    network_mode: "host"
+    privileged: true
+    restart: "always"
+    shm_size: "4G"
+    volumes:
+      - type: "bind"
+        source: "/dev"
+        target: "/dev"
+      - type: "bind"
+        source: "/dev/null"
+        target: "/etc/sysctl.d/80-vpp.conf"
+      - type: "bind"
+        source: "/opt/boot/"
+        target: "/opt/boot/"
+      - type: "bind"
+        source: "/var/run/docker.sock"
+        target: "/var/run/docker.sock"
+      - type: "bind"
+        source: "/dev/hugepages"
+        target: "/dev/hugepages"
+  csit-numa-1:
+    build: .
+    command: ["/usr/sbin/sshd","-D", "-p", "6002"]
+    expose:
+      - "6002"
+    hostname: "s54-t22-sut2"
+    network_mode: "host"
+    privileged: true
+    restart: "always"
+    shm_size: "4G"
+    volumes:
+      - type: "bind"
+        source: "/dev"
+        target: "/dev"
+      - type: "bind"
+        source: "/dev/null"
+        target: "/etc/sysctl.d/80-vpp.conf"
+      - type: "bind"
+        source: "/opt/boot/"
+        target: "/opt/boot/"
+      - type: "bind"
+        source: "/var/run/docker.sock"
+        target: "/var/run/docker.sock"
+      - type: "bind"
+        source: "/dev/hugepages"
+        target: "/dev/hugepages"
