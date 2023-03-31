@@ -106,8 +106,8 @@
 | |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
-| | ... | - /var/run/vpp/sock-\${VM_ID}-1
-| | ... | - /var/run/vpp/sock-\${VM_ID}-2
+| | ... | - /run/vpp/sock-\${VM_ID}-1
+| | ... | - /run/vpp/sock-\${VM_ID}-2
 | |
 | | ... | *Example:*
 | |
@@ -129,7 +129,7 @@
 | | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | | Configure vhost interfaces
 | | | ... | ${nodes['${dut}']}
-| | | ... | /var/run/vpp/sock-${qemu_id}-1 | /var/run/vpp/sock-${qemu_id}-2
+| | | ... | /run/vpp/sock-${qemu_id}-1 | /run/vpp/sock-${qemu_id}-2
 | | | ... | ${dut}-vhost-${qemu_id}-if1 | ${dut}-vhost-${qemu_id}-if2
 | | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | | ${bd_id1}= | Evaluate | ${qemu_id} + (${nf_chain} - 1)
@@ -314,7 +314,7 @@
 | | ${dut2s_vxlan}= | Create VXLAN interface
 | | ... | ${dut2} | 24 | 172.16.0.2 | 172.16.0.1
 | | Configure vhost interfaces | ${dut1}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
+| | ... | /run/vpp/sock-1-${bd_id1} | /run/vpp/sock-1-${bd_id2}
 | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
@@ -325,7 +325,7 @@
 | | Add interface to bridge domain
 | | ... | ${dut1} | ${dut1s_vxlan} | ${bd_id2}
 | | Configure vhost interfaces | ${dut2}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
+| | ... | /run/vpp/sock-1-${bd_id1} | /run/vpp/sock-1-${bd_id2}
 | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut2} | ${dut2s_vxlan} | ${bd_id1}
@@ -433,7 +433,7 @@
 | | ... | ELSE | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | Configure vhost interfaces | ${dut1}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
+| | ... | /run/vpp/sock-1-${bd_id1} | /run/vpp/sock-1-${bd_id2}
 | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
@@ -445,7 +445,7 @@
 | | ... | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure vhost interfaces | ${dut2}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
+| | ... | /run/vpp/sock-1-${bd_id1} | /run/vpp/sock-1-${bd_id2}
 | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Add interface to bridge domain | ${dut2} | ${subif_index_2}
@@ -517,7 +517,7 @@
 | | ... | ${dut1} | ${subif_index_1}
 | | ... | ${dut2} | ${subif_index_2} | ${tag_rewrite}
 | | Configure vhost interfaces | ${dut1}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
+| | ... | /run/vpp/sock-1-${bd_id1} | /run/vpp/sock-1-${bd_id2}
 | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut1} | ${DUT1_${int}1}[0] | ${bd_id1}
@@ -528,7 +528,7 @@
 | | Add interface to bridge domain
 | | ... | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Configure vhost interfaces | ${dut2}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
+| | ... | /run/vpp/sock-1-${bd_id1} | /run/vpp/sock-1-${bd_id2}
 | | ... | virtio_feature_mask=${virtio_feature_mask}
 | | Add interface to bridge domain
 | | ... | ${dut2} | ${subif_index_2} | ${bd_id1}

@@ -21,7 +21,7 @@ from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
-__all__ = [u"VppConfigGenerator"]
+__all__ = ["VppConfigGenerator", "VppInitConfig"]
 
 
 def pci_dev_check(pci_dev):
@@ -58,8 +58,6 @@ class VppConfigGenerator:
         self._vpp_config = u""
         # VPP Service name
         self._vpp_service_name = u"vpp"
-        # VPP Logfile location
-        self._vpp_logfile = u"/tmp/vpe.log"
         # VPP Startup config location
         self._vpp_startup_conf = u"/etc/vpp/startup.conf"
 
@@ -133,15 +131,13 @@ class VppConfigGenerator:
         if level >= 0:
             self._vpp_config += f"{level * indent}}}\n"
 
-    def add_unix_log(self, value=None):
+    def add_unix_log(self, value="/var/log/vpp/vpp.log"):
         """Add UNIX log configuration.
 
         :param value: Log file.
         :type value: str
         """
         path = [u"unix", u"log"]
-        if value is None:
-            value = self._vpp_logfile
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_unix_cli_listen(self, value=u"/run/vpp/cli.sock"):
@@ -708,3 +704,40 @@ class VppConfigGenerator:
         VPPUtil.restart_vpp_service(self._node, self._node_key)
         if verify_vpp:
             VPPUtil.verify_vpp(self._node)
+
+
+class VppInitConfig:
+    """VPP Initial Configuration."""
+    @staticmethod
+    def init_vpp_startup_configuration_on_all_duts(nodes):
+        """Apply initial VPP startup configuration on all DUTs.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        huge_size = Constants.DEFAULT_HUGEPAGE_SIZE
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                vpp_config = VppConfigGenerator()
+                vpp_config.set_node(node)
+                vpp_config.add_unix_log()
+                vpp_config.add_unix_cli_listen()
+                vpp_config.add_unix_cli_no_pager()
+                vpp_config.add_unix_gid()
+                vpp_config.add_unix_coredump()
+                vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
+                vpp_config.add_main_heap_size("2G")
+                vpp_config.add_main_heap_page_size(huge_size)
+                vpp_config.add_default_hugepage_size(huge_size)
+                vpp_config.add_statseg_size("2G")
+                vpp_config.add_statseg_page_size(huge_size)
+                vpp_config.add_statseg_per_node_counters("on")
+                vpp_config.add_plugin("disable", "default")
+                vpp_config.add_plugin("enable", "dpdk_plugin.so")
+                vpp_config.add_dpdk_dev(
+                    *[node["interfaces"][interface].get("pci_address") \
+                        for interface in node[u"interfaces"]]
+                )
+                vpp_config.add_ip6_hash_buckets(2000000)
+                vpp_config.add_ip6_heap_size("4G")
+                vpp_config.apply_config()
