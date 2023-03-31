@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -53,14 +53,14 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | memif_plugin.so
+| @{plugins_to_enable}= | avf_plugin.so | perfmon_plugin.so | memif_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | Intel-X710
-| ${nic_driver}= | vfio-pci
+| ${nic_name}= | Intel-E810CQ
+| ${nic_driver}= | avf
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
 | ${nic_pfs}= | 2
-| ${nic_vfs}= | 0
+| ${nic_vfs}= | 1
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -98,7 +98,7 @@
 
 *** Test Cases ***
 | 64B-1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THAT
 | | frame_size=${64} | phy_cores=${1}
 
 | 64B-2c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
