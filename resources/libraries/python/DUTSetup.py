@@ -17,7 +17,7 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -33,11 +33,13 @@ class DUTSetup:
         :type node: dict
         :type service: str
         """
-        command = u"cat /tmp/*supervisor*.log"\
-            if DUTSetup.running_in_container(node) \
-            else f"journalctl --no-pager _SYSTEMD_INVOCATION_ID=$(systemctl " \
-            f"show -p InvocationID --value {service})"
-
+        if DUTSetup.running_in_container(node):
+            command = u"cat /var/log/vpp/vpp.log"
+        else:
+            command = (
+                f"journalctl --no-pager _SYSTEMD_INVOCATION_ID=$(systemctl "
+                f"show -p InvocationID --value {service})"
+            )
         message = f"Node {node[u'host']} failed to get logs from unit {service}"
 
         exec_cmd_no_error(
@@ -66,9 +68,10 @@ class DUTSetup:
         :type node: dict
         :type service: str
         """
-        command = f"supervisorctl restart {service}" \
-            if DUTSetup.running_in_container(node) \
-            else f"service {service} restart"
+        if DUTSetup.running_in_container(node):
+            command = f"supervisorctl restart {service}"
+        else:
+            command = f"systemctl restart {service}"
         message = f"Node {node[u'host']} failed to restart service {service}"
 
         exec_cmd_no_error(
@@ -99,10 +102,10 @@ class DUTSetup:
         :type node: dict
         :type service: str
         """
-        # TODO: change command to start once all parent function updated.
-        command = f"supervisorctl restart {service}" \
-            if DUTSetup.running_in_container(node) \
-            else f"service {service} restart"
+        if DUTSetup.running_in_container(node):
+            command = f"supervisorctl restart {service}"
+        else:
+            command = f"systemctl restart {service}"
         message = f"Node {node[u'host']} failed to start service {service}"
 
         exec_cmd_no_error(
@@ -135,9 +138,10 @@ class DUTSetup:
         """
         DUTSetup.get_service_logs(node, service)
 
-        command = f"supervisorctl stop {service}" \
-            if DUTSetup.running_in_container(node) \
-            else f"service {service} stop"
+        if DUTSetup.running_in_container(node):
+            command = f"supervisorctl stop {service}"
+        else:
+            command = f"systemctl stop {service}"
         message = f"Node {node[u'host']} failed to stop service {service}"
 
         exec_cmd_no_error(
@@ -643,60 +647,6 @@ class DUTSetup:
         exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
 
     @staticmethod
-    def install_vpp_on_all_duts(nodes, vpp_pkg_dir):
-        """Install VPP on all DUT nodes. Start the VPP service in case of
-        systemd is not available or does not support autostart.
-
-        :param nodes: Nodes in the topology.
-        :param vpp_pkg_dir: Path to directory where VPP packages are stored.
-        :type nodes: dict
-        :type vpp_pkg_dir: str
-        :raises RuntimeError: If failed to remove or install VPP.
-        """
-        for node in nodes.values():
-            message = f"Failed to install VPP on host {node[u'host']}!"
-            if node[u"type"] == NodeType.DUT:
-                command = u"ln -s /dev/null /etc/sysctl.d/80-vpp.conf || true"
-                exec_cmd_no_error(node, command, sudo=True)
-
-                command = u". /etc/lsb-release; echo \"${DISTRIB_ID}\""
-                stdout, _ = exec_cmd_no_error(node, command)
-
-                if stdout.strip() == u"Ubuntu":
-                    exec_cmd_no_error(
-                        node, u"apt-get purge -y '*vpp*' || true",
-                        timeout=120, sudo=True
-                    )
-                    # workaround to avoid installation of vpp-api-python
-                    exec_cmd_no_error(
-                        node, f"rm -f {vpp_pkg_dir}vpp-api-python.deb",
-                        timeout=120, sudo=True
-                    )
-                    exec_cmd_no_error(
-                        node, f"dpkg -i --force-all {vpp_pkg_dir}*.deb",
-                        timeout=120, sudo=True, message=message
-                    )
-                    exec_cmd_no_error(node, u"dpkg -l | grep vpp", sudo=True)
-                    if DUTSetup.running_in_container(node):
-                        DUTSetup.restart_service(node, Constants.VPP_UNIT)
-                else:
-                    exec_cmd_no_error(
-                        node, u"yum -y remove '*vpp*' || true",
-                        timeout=120, sudo=True
-                    )
-                    # workaround to avoid installation of vpp-api-python
-                    exec_cmd_no_error(
-                        node, f"rm -f {vpp_pkg_dir}vpp-api-python.rpm",
-                        timeout=120, sudo=True
-                    )
-                    exec_cmd_no_error(
-                        node, f"rpm -ivh {vpp_pkg_dir}*.rpm",
-                        timeout=120, sudo=True, message=message
-                    )
-                    exec_cmd_no_error(node, u"rpm -qai '*vpp*'", sudo=True)
-                    DUTSetup.restart_service(node, Constants.VPP_UNIT)
-
-    @staticmethod
     def running_in_container(node):
         """This method tests if topology node is running inside container.
 
@@ -706,12 +656,9 @@ class DUTSetup:
             to detect.
         :rtype: bool
         """
-        command = u"fgrep docker /proc/1/cgroup"
-        message = u"Failed to get cgroup settings."
+        command = "cat /.dockerenv"
         try:
-            exec_cmd_no_error(
-                node, command, timeout=30, sudo=False, message=message
-            )
+            exec_cmd_no_error(node, command, timeout=30)
         except RuntimeError:
             return False
         return True
