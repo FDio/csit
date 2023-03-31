@@ -405,6 +405,13 @@ class InterfaceUtil:
                 if u"not_ready" in locals() else u"No check executed!"
             raise RuntimeError(err)
 
+        #---
+        for i in range(10):
+            PapiSocketExecutor.run_cli_cmd(node,"test dma transfers 1024 size 1024")
+            PapiSocketExecutor.run_cli_cmd(node,"show dma config 0")
+            logger.debug("--------------------------------")
+
+
     @staticmethod
     def all_vpp_interfaces_ready_wait(nodes, retries=15):
         """Wait until all interfaces with admin-up are in link-up state for all
