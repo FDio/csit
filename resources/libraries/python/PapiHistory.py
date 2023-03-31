@@ -16,6 +16,7 @@
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, DICT__nodes
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 __all__ = [u"DICT__DUTS_PAPI_HISTORY", u"PapiHistory"]
 
@@ -46,6 +47,12 @@ class PapiHistory:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 PapiHistory.reset_papi_history(node)
+                cmd = u"dmesg"
+                stdout, _ = exec_cmd_no_error(
+                    node, cmd, sudo=True,
+                    message=u"Failed to get dmesg on DUT.",
+                    retries=3)
+                logger.debug(stdout)
 
     @staticmethod
     def add_to_papi_history(node, csit_papi_command, **kwargs):
