@@ -21,7 +21,7 @@ from resources.libraries.python.model.ExportResult import (
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
-
+from robot.api import logger
 
 class ABTools:
     """This class implements:
@@ -145,6 +145,33 @@ class ABTools:
         else:
             files = f"{files_num}B.json"
 
+        # test connect
+        cmd = "wget --timeout 10 --tries 2 http://192.168.10.1/64KB.json; \
+            echo over"
+        stdout, _ = exec_cmd_no_error(
+            tg_node, cmd, timeout=30, sudo=True,
+            retries=3,
+            message="wget error!"
+        )
+        logger.debug(f"wget: {stdout}")
+
+        cmd = "ping 192.168.11.1 -c 10; echo over"
+        stdout, _ = exec_cmd_no_error(
+            tg_node, cmd, timeout=30, sudo=True,
+            retries=3,
+            message="ping error!"
+        )
+        logger.debug(f"ping: {stdout}")
+
+        cmd = "ip add"
+        stdout, _ = exec_cmd_no_error(
+            tg_node, cmd, timeout=30, sudo=True,
+            retries=3,
+            message="ip error!"
+        )
+        logger.debug(f"ip a: {stdout}")
+        #
+
         cmd = ABTools.get_cmd_options(
             requests=r_total,
             clients=c_total,
@@ -159,6 +186,7 @@ class ABTools:
         stdout, _ = exec_cmd_no_error(
             tg_node, cmd, timeout=180, sudo=True, message="ab runtime error!"
         )
+        logger.debug(f"cmd: {stdout}")
 
         rate_unit = rps_cps
         rate = None
@@ -183,5 +211,32 @@ class ABTools:
             bandwidth, rate, rate_unit, latency, failed_requests,
             completed_requests
         )
+
+        # test connect
+        cmd = "wget --timeout 10 --tries 2 http://192.168.10.1/64KB.json; \
+            echo over"
+        stdout, _ = exec_cmd_no_error(
+            tg_node, cmd, timeout=60, sudo=True,
+            retries=3,
+            message="wget error!"
+        )
+        logger.debug(f"wget: {stdout}")
+
+        cmd = "ping 192.168.11.1 -c 10; echo over"
+        stdout, _ = exec_cmd_no_error(
+            tg_node, cmd, timeout=30, sudo=True,
+            retries=3,
+            message="ping error!"
+        )
+        logger.debug(f"ping: {stdout}")
+
+        cmd = "ip add"
+        stdout, _ = exec_cmd_no_error(
+            tg_node, cmd, timeout=30, sudo=True,
+            retries=3,
+            message="ip error!"
+        )
+        logger.debug(f"ip a: {stdout}")
+        #
 
         return stdout
