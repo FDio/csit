@@ -1,19 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at:
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 FROM ubuntu:22.04
-LABEL Description="CSIT vpp-device ubuntu 22.04 SUT image"
-LABEL Version="master"
 
 # Setup the environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -37,6 +22,7 @@ RUN apt-get -q update \
         apt-transport-https \
         bridge-utils \
         ca-certificates \
+        cgroup-tools \
         cloud-init \
         cmake \
         curl \
@@ -55,7 +41,6 @@ RUN apt-get -q update \
         libpcap-dev \
         libpixman-1-dev \
         libssl-dev \
-        locales \
         net-tools \
         openssh-server \
         pciutils \
@@ -92,7 +77,8 @@ RUN chown root:syslog /var/log \
 # Create directory structure
 RUN mkdir -p /tmp/dumps \
  && mkdir -p /var/cache/vpp/python \
- && mkdir -p /var/run/sshd
+ && mkdir -p /var/run/sshd \
+ && mkdir -p /var/log/vpp
 
 # CSIT PIP pre-cache
 RUN pip3 install \
@@ -160,14 +146,7 @@ RUN pip3 install \
         snowballstemmer==2.2.0 \
         urllib3==1.26.10
 
-# SSH settings
-RUN echo 'root:Csit1234' | chpasswd \
- && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
- && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
- && echo "export VISIBLE=now" >> /etc/profile
+RUN useradd -rm -d /home/testuser -s /bin/bash -g root -G sudo -u 1000 testuser \
+ && echo 'testuser:Csit1234' | chpasswd
 
-EXPOSE 2222
-
-COPY supervisord.conf /etc/supervisor/supervisord.conf
-
-CMD ["sh", "-c", "rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api; /usr/bin/supervisord -c /etc/supervisor/supervisord.conf; /usr/sbin/sshd -D -p 2222"]
+RUN service ssh start

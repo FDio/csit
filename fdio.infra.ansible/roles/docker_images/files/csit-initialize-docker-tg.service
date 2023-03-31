@@ -1,0 +1,12 @@
+[Unit]
+Description=CSIT Initialize Docker TG
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=True
+ExecStart=docker compose -f /opt/csit-docker-images/docker-compose-tg.yaml up --detach
+ExecStop=docker compose -f /opt/csit-docker-images/docker-compose-tg.yaml down
+
+[Install]
+WantedBy=default.target
