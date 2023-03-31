@@ -84,9 +84,9 @@
 | | ... | ${nf_dtc}
 | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
-| | ${dut1_uuid_length} = | Get Length | ${DUT1_UUID}
-| | ${root}= | Run Keyword If | ${dut1_uuid_length}
-| | ... | Get Docker Mergeddir | ${nodes['DUT1']} | ${DUT1_UUID}
+| | ${in_container}= | Running in Container | ${nodes['${dut}']}
+| | ${root}= | Run Keyword If | ${in_container}
+| | ... | Get Docker Mergeddir | ${nodes['DUT1']}
 | | ... | ELSE | Set Variable | ${EMPTY}
 | | ${node_arch}= | Get Node Arch | ${nodes['${dut}']}
 | | ${name}= | Set Variable | ${dut}_${container_group}${nf_id}${DUT1_UUID}
