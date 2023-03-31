@@ -1,0 +1,10 @@
+---
+# file: handlers/main.yaml
+
+- name: Start csit-initialize-docker-sut.service
+  ansible.builtin.systemd:
+    enabled: true
+    state: "started"
+    name: "csit-initialize-docker-sut.service"
+  tags:
+    - docker-sut

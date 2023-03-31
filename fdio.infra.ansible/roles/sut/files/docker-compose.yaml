@@ -1,0 +1,60 @@
+version: "3.9"
+services:
+  csit-numa-0:
+    build: .
+    command: ["/usr/sbin/sshd","-D", "-p", "6001"]
+    expose:
+      - "6001"
+    hostname: "s54-t22-sut1"
+    network_mode: "host"
+    privileged: true
+    restart: "always"
+    shm_size: "4G"
+    devices:
+      - "/dev/hugepages:/dev/hugepages"
+      - "/dev/vfio:/dev/vfio"
+    volumes:
+      - type: "bind"
+        source: "/etc/sudoers"
+        target: "/etc/sudoers"
+      - type: "bind"
+        source: "/dev/null"
+        target: "/etc/sysctl.d/80-vpp.conf"
+      - type: "bind"
+        source: "/opt/boot/"
+        target: "/opt/boot/"
+      - type: "bind"
+        source: "/var/run/docker.sock"
+        target: "/var/run/docker.sock"
+      - type: "bind"
+        source: "/usr/lib/firmware/"
+        target: "/usr/lib/firmware/"
+  csit-numa-1:
+    build: .
+    command: ["/usr/sbin/sshd","-D", "-p", "6002"]
+    expose:
+      - "6002"
+    hostname: "s54-t22-sut2"
+    network_mode: "host"
+    privileged: true
+    restart: "always"
+    shm_size: "4G"
+    devices:
+      - "/dev/hugepages:/dev/hugepages"
+      - "/dev/vfio:/dev/vfio"
+    volumes:
+      - type: "bind"
+        source: "/etc/sudoers"
+        target: "/etc/sudoers"
+      - type: "bind"
+        source: "/dev/null"
+        target: "/etc/sysctl.d/80-vpp.conf"
+      - type: "bind"
+        source: "/opt/boot/"
+        target: "/opt/boot/"
+      - type: "bind"
+        source: "/var/run/docker.sock"
+        target: "/var/run/docker.sock"
+      - type: "bind"
+        source: "/usr/lib/firmware/"
+        target: "/usr/lib/firmware/"
