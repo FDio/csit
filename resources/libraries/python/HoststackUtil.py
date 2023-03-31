@@ -484,3 +484,8 @@ class HoststackUtil():
 
         PapiSocketExecutor.run_cli_cmd(node, u"show error")
         PapiSocketExecutor.run_cli_cmd(node, u"show interface")
+        PapiSocketExecutor.run_cli_cmd(node, u"show dma config 0")
+        PapiSocketExecutor.run_cli_cmd(node, u"show ip neighbor")
+        PapiSocketExecutor.run_cli_cmd(node, u"show interface addr")
+        PapiSocketExecutor.run_cli_cmd(node, u"ping 192.168.10.2")
+        PapiSocketExecutor.run_cli_cmd(node, u"ping 192.168.11.2")

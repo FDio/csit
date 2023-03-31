@@ -21,7 +21,7 @@ from resources.libraries.python.model.ExportResult import (
 from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
-
+from robot.api import logger
 
 class ABTools:
     """This class implements:
@@ -144,6 +144,16 @@ class ABTools:
             files = f"{int(files_num / 1024)}KB.json"
         else:
             files = f"{files_num}B.json"
+
+        # test connect
+        cmd = "wget http://192.168.10.1/64B.json"
+        stdout, _ = exec_cmd_no_error(
+            tg_node, cmd, timeout=30, sudo=True,
+            retries=3,
+            message="wget error!"
+        )
+        logger.debug(f"wget: {stdout}")
+        #
 
         cmd = ABTools.get_cmd_options(
             requests=r_total,
