@@ -1884,12 +1884,20 @@ class InterfaceUtil:
                 node, pf_dev, state=u"up"
             )
 
-            DUTSetup.pci_vf_driver_unbind(node, pf_pci_addr, vf_id)
-            DUTSetup.pci_vf_driver_bind(node, pf_pci_addr, vf_id, uio_driver)
+            vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
+            current_driver = DUTSetup.get_pci_dev_driver(
+                node, vf_pci_addr.replace(":", r"\:")
+            )
+            if current_driver and current_driver != uio_driver:
+                DUTSetup.pci_vf_driver_unbind(
+                    node, pf_pci_addr, vf_id
+                )
+            DUTSetup.pci_vf_driver_bind(
+                node, pf_pci_addr, vf_id, uio_driver
+            )
 
             # Add newly created ports into topology file
             vf_ifc_name = f"{ifc_key}_vif"
-            vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
             vf_ifc_key = Topology.add_new_port(node, vf_ifc_name)
             Topology.update_interface_name(
                 node, vf_ifc_key, vf_ifc_name+str(vf_id+1)

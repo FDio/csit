@@ -58,7 +58,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | perfmon_plugin.so | vhost_plugin.so
 | ${crypto_type}= | ${None}
-| ${nic_name}= | Intel-X710
+| ${nic_name}= | Intel-E810CQ
 | ${nic_driver}= | vfio-pci
 | ${nic_rxq_size}= | 0
 | ${nic_txq_size}= | 0
@@ -107,7 +107,7 @@
 
 *** Test Cases ***
 | 64B-1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | 64B-2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
