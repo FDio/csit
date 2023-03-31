@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -31,6 +31,7 @@ from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
+from .DUTSetup import DUTSetup as DS
 
 __all__ = [u"TGDropRateSearchImpl", u"TrafficGenerator", u"OptimizedSearch"]
 
@@ -424,36 +425,26 @@ class TrafficGenerator(AbstractMeasurer):
                 )
 
                 # Prepare interfaces for TRex.
-                mlx_ports = u""
+                tg_port_drv = Constants.TREX_PORT_DRIVER
                 mlx_driver = u""
-                itl_ports = u""
                 for port in tg_node[u"interfaces"].values():
                     if u"Mellanox" in port.get(u"model"):
-                        mlx_ports += f" {port.get(u'pci_address')}"
                         mlx_driver = port.get(u"driver")
-                    if u"Intel" in port.get(u"model"):
-                        itl_ports += f" {port.get(u'pci_address')}"
-
-                if itl_ports:
-                    cmd = (
-                        f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && ",
-                        f"./dpdk_nic_bind.py -u {itl_ports} || ",
-                        f"true\""
-                    )
-                    exec_cmd_no_error(
-                        tg_node, cmd, sudo=True,
-                        message=u"Unbind PCI ports from driver failed!"
-                    )
-                if mlx_ports:
-                    cmd = (
-                        f"sh -c \"cd {Constants.TREX_INSTALL_DIR}/scripts/ && ",
-                        f"./dpdk_nic_bind.py -b {mlx_driver} {mlx_ports} || ",
-                        f"true\""
-                    )
-                    exec_cmd_no_error(
-                        tg_node, cmd, sudo=True,
-                        message=u"Bind PCI ports from driver failed!"
-                    )
+                        pci_addr = port.get(u'pci_address')
+                        cur_driver = DS.get_pci_dev_driver(tg_node, pci_addr)
+                        if cur_driver == mlx_driver:
+                            pass
+                        elif not cur_driver:
+                            DS.pci_driver_bind(tg_node, pci_addr, mlx_driver)
+                        else:
+                            DS.pci_driver_unbind(tg_node, pci_addr)
+                            DS.pci_driver_bind(tg_node, pci_addr, mlx_driver)
+                    else:
+                        pci_addr = port.get(u'pci_address')
+                        cur_driver = DS.get_pci_dev_driver(tg_node, pci_addr)
+                        if cur_driver:
+                            DS.pci_driver_unbind(tg_node, pci_addr)
+                        DS.pci_driver_bind(tg_node, pci_addr, tg_port_drv)
 
                 # Start TRex.
                 cd_cmd = f"cd '{Constants.TREX_INSTALL_DIR}/scripts/'"
