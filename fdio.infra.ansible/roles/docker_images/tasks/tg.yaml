@@ -1,19 +1,17 @@
 ---
-# file: roles/tg/tasks/main.yaml
+# file: tasks/tg.yaml
 
-- name: Conf - csit-initialize-docker-tg.sh
+- name: "Copy csit-initialize-docker-tg.sh"
   ansible.builtin.copy:
     src: "files/csit-initialize-docker-tg.sh"
     dest: "/usr/local/bin/csit-initialize-docker-tg.sh"
     owner: "root"
     group: "root"
     mode: 0744
-  when:
-    - docker_tg is defined
   tags:
-    - tg-conf-docker
+    - docker-tg
 
-- name: Conf - Start csit-initialize-docker-tg.service
+- name: "Start csit-initialize-docker-tg.service"
   ansible.builtin.copy:
     src: "files/csit-initialize-docker-tg.service"
     dest: "/etc/systemd/system/"
@@ -22,9 +20,7 @@
     mode: 0644
   notify:
     - "Start csit-initialize-docker-tg.service"
-  when:
-    - docker_tg is defined
   tags:
-    - tg-conf-docker
+    - docker-tg
 
 - meta: flush_handlers

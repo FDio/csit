@@ -1,0 +1,26 @@
+---
+# file: tasks/dut.yaml
+
+- name: "Copy csit-initialize-docker-dut.sh"
+  ansible.builtin.copy:
+    src: "files/csit-initialize-docker-dut.sh"
+    dest: "/usr/local/bin/csit-initialize-docker-dut.sh"
+    owner: "root"
+    group: "root"
+    mode: 0744
+  tags:
+    - docker-dut
+
+- name: "Start csit-initialize-docker-dut.service"
+  ansible.builtin.copy:
+    src: "files/csit-initialize-docker-dut.service"
+    dest: "/etc/systemd/system/"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify:
+    - "Start csit-initialize-docker-dut.service"
+  tags:
+    - docker-dut
+
+- meta: flush_handlers

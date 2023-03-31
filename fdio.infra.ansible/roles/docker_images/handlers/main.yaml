@@ -1,0 +1,18 @@
+---
+# file: handlers/main.yaml
+
+- name: "Start csit-initialize-docker-dut.service"
+  ansible.builtin.systemd:
+    enabled: true
+    state: "started"
+    name: "csit-initialize-docker-dut.service"
+  tags:
+    - docker-dut
+
+- name: "Start csit-initialize-docker-tg.service"
+  ansible.builtin.systemd:
+    enabled: true
+    state: "started"
+    name: "csit-initialize-docker-tg.service"
+  tags:
+    - docker-tg

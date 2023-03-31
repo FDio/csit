@@ -1,0 +1,21 @@
+---
+# file: tasks/main.yaml
+
+- name: "Base Docker Image"
+  import_tasks: "base.yaml"
+  tags:
+    - docker-base
+
+- name: "Docker Image for TG"
+  import_tasks: "tg.yaml"
+  when: >
+    docker_tg is defined
+  tags:
+    - docker-tg
+
+- name: "Docker Image for SUT"
+  import_tasks: "sut.yaml"
+  when: >
+    docker_sut is defined
+  tags:
+    - docker-sut
