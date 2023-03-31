@@ -636,7 +636,7 @@ class ContainerEngine:
                 # Execute puts the command into single quotes,
                 # so inner arguments are enclosed in qouble quotes here.
                 self.execute(
-                    u'vppctl show pci 2>&1 | '
+                    u'/usr/bin/vppctl show pci 2>&1 | '
                     u'fgrep -v "Connection refused" | '
                     u'fgrep -v "No such file or directory"'
                 )
