@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -490,13 +490,54 @@ class CpuUtils:
         :type cpu_node: int
         :type smt_used: bool
         :type cpu_alloc_str: str
-        :type smt_used: bool
         :type sep: str
         :rtype: list
         """
         cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
         cpu_idle_list = [i for i in cpu_list
                          if str(i) not in cpu_alloc_str.split(sep)]
+        return cpu_idle_list
+
+    @staticmethod
+    def get_sorted_cpu_idle_list(node, cpu_node, smt_used, cpu_alloc_str,
+            sep=u","):
+        """Get idle CPU list, sorted by logical core number belonging to the
+        same physical core
+
+        :param node: Node dictionary with cpuinfo.
+        :param cpu_node: Numa node number.
+        :param smt_used: True - we want to use SMT, otherwise false.
+        :param cpu_alloc_str: vpp used cores.
+        :param sep: Separator, default: ",".
+        :type node: dict
+        :type cpu_node: int
+        :type smt_used: bool
+        :type cpu_alloc_str: str
+        :type sep: str
+        :rtype: list
+        """
+        cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
+        half = len(cpu_list)//2
+        cpu_list_1 = cpu_list[:half]
+        cpu_list_2 = cpu_list[half:]
+        cpu_alloc_list = cpu_alloc_str.split(sep)
+        the_index = []
+        for i in cpu_alloc_list:
+            i = int(i)
+            if i in cpu_list_1:
+                the_index = cpu_list_1.index(i)
+                cpu_list_1.pop(the_index)
+                cpu_list_2.pop(the_index)
+            if i in cpu_list_2:
+                the_index = cpu_list_2.index(i)
+                cpu_list_1.pop(the_index)
+                cpu_list_2.pop(the_index)
+
+        cpu_idle_list = []
+        for index, i in enumerate(cpu_list_1):
+            cpu_idle_list.append(cpu_list_1[index])
+            cpu_idle_list.append(cpu_list_2[index])
+
         return cpu_idle_list
 
     @staticmethod
