@@ -33,6 +33,23 @@
       "message": "csit-2n-icx-perftest mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm mrrANDdrv_vhostAND64bAND1cANDethip4-ip4base-2vhost-iperf3 mrrANDdrv_vfio_pciAND64bAND1cANDethip4-ip4base-eth-2vhost-1vm mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc mrrANDdrv_vhostAND64bAND1cANDethip4-ip4base-2vhost-iperf3 mrrANDdrv_vfio_pciAND64bAND1cANDethip4-ip4base-eth-2virtiovr1024-1vm-vppip4 mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bd-1ch-2vh-1vm1t-vppip4 mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bdbasemaclrn-eth-2virtiovr1024-1vm-vppl2xc",
       "revId": "edd312aaf6a8d4764b1157b9c02871686fba3d34",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6dff067_1e66d2de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-03-31T08:40:02Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm mrrANDdrv_vhostAND64bAND1cANDethip4-ip4base-2vhost-iperf3 mrrANDdrv_vfio_pciAND64bAND1cANDethip4-ip4base-eth-2vhost-1vm mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc mrrANDdrv_vhostAND64bAND1cANDethip4-ip4base-2vhost-iperf3 mrrANDdrv_vfio_pciAND64bAND1cANDethip4-ip4base-eth-2virtiovr1024-1vm-vppip4 mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bd-1ch-2vh-1vm1t-vppip4 mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bdbasemaclrn-eth-2virtiovr1024-1vm-vppl2xc",
+      "revId": "edd312aaf6a8d4764b1157b9c02871686fba3d34",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
