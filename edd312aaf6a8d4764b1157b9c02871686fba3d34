@@ -118,6 +118,23 @@
       "message": "csit-2n-clx-perftest 1cAND128kbANDmrrANDdrv_vhostANDethip4-ip4base-2vhost-iperf3 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base-eth-2vhostvr1024-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base-eth-2vhostvr1024-1vm-vppip4 1cAND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base-eth-2virtiovr1024-1vm-vppip4 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bd-1ch-2vh-1vm1t-vppip4 1cAND78bANDmrrANDdrv_vfio_pciANDethip6-ip6base-eth-2vhost-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2virtiovr1024-1vm-vppl2xc",
       "revId": "edd312aaf6a8d4764b1157b9c02871686fba3d34",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dddb087_be51c1b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-03-31T16:07:11Z",
+      "side": 1,
+      "message": "I\u0027ve tested this will all vnf values I could find in tests:\niperf3 # on 2n-clx\ntestpmd_io # on 2n-clx and 3n-tsh\ntestpmd_mac # on 2n-clx and 3n-tsh\nvppip4noarp_2vhostvr1024 # on 2n-clx and 3n-tsh\nvppip4noarp_2virtiovr1024 # on 2n-clx\nvppip4_2vhostvr1024 # on 2n-clx\nvppip6_2vhostvr1024 # on vpp device\nvppl2xc_2vhostvr1024 # on 2n-clx and 3n-tsh\nvppl2xc_2virtiovr1024 # on 2n-clx\n\nAll of them work, so there shouldn\u0027t be regressions. The sandbox testing strongly indicates (10 out of 10 passed daily runs) that this fixes https://jira.fd.io/browse/CSIT-1877.",
+      "revId": "edd312aaf6a8d4764b1157b9c02871686fba3d34",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
