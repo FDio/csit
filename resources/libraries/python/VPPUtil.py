@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,35 +29,6 @@ class VPPUtil:
     """General class for any VPP related methods/functions."""
 
     @staticmethod
-    def show_vpp_settings(node, *additional_cmds):
-        """Print default VPP settings. In case others are needed, can be
-        accepted as next parameters (each setting one parameter), preferably
-        in form of a string.
-
-        :param node: VPP node.
-        :param additional_cmds: Additional commands that the vpp should print
-            settings for.
-        :type node: dict
-        :type additional_cmds: tuple
-        """
-        def_setting_tb_displayed = {
-            u"IPv6 FIB": u"ip6 fib",
-            u"IPv4 FIB": u"ip fib",
-            u"Interface IP": u"int addr",
-            u"Interfaces": u"int",
-            u"ARP": u"ip arp",
-            u"Errors": u"err"
-        }
-
-        if additional_cmds:
-            for cmd in additional_cmds:
-                def_setting_tb_displayed[f"Custom Setting: {cmd}"] = cmd
-
-        for _, cmd in def_setting_tb_displayed.items():
-            command = f"vppctl sh {cmd}"
-            exec_cmd_no_error(node, command, timeout=30, sudo=True)
-
-    @staticmethod
     def restart_vpp_service(node, node_key=None):
         """Restart VPP service on the specified topology node.
 
@@ -70,7 +41,14 @@ class VPPUtil:
         """
         # Containers have a separate lifecycle, but better be safe.
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
-        DUTSetup.restart_service(node, Constants.VPP_UNIT)
+
+        VPPUtil.stop_vpp_service(node)
+        command = "/usr/bin/vpp -c /etc/vpp/startup.conf"
+        message = f"Node {node[u'host']} failed to start VPP!"
+        exec_cmd_no_error(
+            node, command, timeout=180, sudo=True, message=message
+        )
+
         if node_key:
             Topology.add_new_socket(
                 node, SocketType.CLI, node_key, Constants.SOCKCLI_PATH)
@@ -103,7 +81,13 @@ class VPPUtil:
         """
         # Containers have a separate lifecycle, but better be safe.
         PapiSocketExecutor.disconnect_all_sockets_by_node(node)
-        DUTSetup.stop_service(node, Constants.VPP_UNIT)
+        command = "pkill vpp"
+        exec_cmd(node, command, timeout=180, sudo=True)
+        command = (
+            "/bin/rm -f /dev/shm/db /dev/shm/global_vm /dev/shm/vpe-api"
+        )
+        exec_cmd(node, command, timeout=180, sudo=True)
+
         if node_key:
             Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
             Topology.del_node_socket_id(node, SocketType.STATS, node_key)
@@ -118,6 +102,40 @@ class VPPUtil:
         for node_key, node in nodes.items():
             if node[u"type"] == NodeType.DUT:
                 VPPUtil.stop_vpp_service(node, node_key)
+
+    @staticmethod
+    def install_vpp_on_all_duts(nodes, vpp_pkg_dir):
+        """Install VPP on all DUT nodes. Start the VPP service in case of
+        systemd is not available or does not support autostart.
+
+        :param nodes: Nodes in the topology.
+        :param vpp_pkg_dir: Path to directory where VPP packages are stored.
+        :type nodes: dict
+        :type vpp_pkg_dir: str
+        :raises RuntimeError: If failed to remove or install VPP.
+        """
+        for node in nodes.values():
+            message = f"Failed to install VPP on host {node[u'host']}!"
+            if node[u"type"] == NodeType.DUT:
+                VPPUtil.stop_vpp_service(node)
+
+                command = u"ln -s /dev/null /etc/systemd/system/vpp.service || true"
+                exec_cmd_no_error(node, command, sudo=True)
+
+                command = u"ln -s /dev/null /etc/sysctl.d/80-vpp.conf || true"
+                exec_cmd_no_error(node, command, sudo=True)
+
+                exec_cmd_no_error(
+                    node, u"apt-get purge -y '*vpp*' || true",
+                    timeout=120, sudo=True
+                )
+                exec_cmd_no_error(
+                    node, f"dpkg -i --force-all {vpp_pkg_dir}*.deb",
+                    timeout=120, sudo=True, message=message
+                )
+                exec_cmd_no_error(
+                    node, u"dpkg -l | grep vpp", sudo=True
+                )
 
     @staticmethod
     def verify_vpp_installed(node):
