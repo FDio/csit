@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -43,6 +43,7 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.VhostUser.VirtioFeatureMask
+| Library | resources.libraries.python.VppConfigGenerator.VppInitConfig
 | Library | resources.libraries.python.VppCounters
 | Library | resources.libraries.python.VPPUtil
 |
@@ -83,8 +84,6 @@
 | | ... | Check for a presence of test variable \${resetter}.
 | | ... | If it exists (and not None), call the resetter (as a Python callable).
 | | ... | This is usually used to reset any state on DUT before next trial.
-| |
-| | ... | TODO: Move to a more specific library if needed.
 | |
 | | ... | *Example:*
 | |
@@ -160,32 +159,6 @@
 | | ... | Fail | Keyname for ${dutx} not found
 | | ${keyname}= | Convert To Lowercase | ${key}
 | | Return From Keyword | ${keyname}
-
-| Create base startup configuration of VPP on all DUTs
-| | [Documentation] | Create base startup configuration of VPP to all DUTs.
-| |
-| | FOR | ${dut} | IN | @{duts}
-| | | Import Library | resources.libraries.python.VppConfigGenerator
-| | | ... | WITH NAME | ${dut}
-| | | Run Keyword | ${dut}.Set Node | ${nodes['${dut}']} | node_key=${dut}
-| | | Run Keyword | ${dut}.Add Unix Log
-| | | Run Keyword | ${dut}.Add Unix CLI Listen
-| | | Run Keyword | ${dut}.Add Unix CLI No Pager
-| | | Run Keyword | ${dut}.Add Unix Nodaemon
-| | | Run Keyword | ${dut}.Add Unix Coredump
-| | | Run Keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
-| | | Run Keyword | ${dut}.Add Main Heap Size | ${${heap_size_mult}*${2}}G
-| | | Run Keyword | ${dut}.Add Main Heap Page Size | ${page_size}
-| | | Run Keyword | ${dut}.Add Default Hugepage Size | ${page_size}
-| | | Run Keyword | ${dut}.Add Statseg Size | 2G
-| | | Run Keyword | ${dut}.Add Statseg Page Size | ${page_size}
-| | | Run Keyword | ${dut}.Add Statseg Per Node Counters | on
-| | | Run Keyword | ${dut}.Add Plugin | disable | default
-| | | Run Keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
-| | | Run Keyword | ${dut}.Add IP6 Hash Buckets | 2000000
-| | | Run Keyword | ${dut}.Add IP6 Heap Size | 4G
-| | | Run Keyword | ${dut}.Add Graph Node Variant | ${GRAPH_NODE_VARIANT}
-| | END
 
 | Add worker threads to all DUTs
 | | [Documentation] | Setup worker threads in vpp startup configuration on all
