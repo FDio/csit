@@ -216,6 +216,10 @@ class Constants:
     TREX_EXTRA_CMDLINE = get_str_from_env(
         u"TREX_EXTRA_CMDLINE", u"--mbuf-factor 32")
 
+    # TRex port driver default vfio-pci or set to igb_uio
+    TREX_PORT_DRIVER = get_str_from_env(
+        u"TREX_PORT_DRIVER", u"vfio-pci")
+
     # Graph node variant value
     GRAPH_NODE_VARIANT = get_str_from_env(u"GRAPH_NODE_VARIANT", u"")
 
