@@ -77,16 +77,23 @@ def select_comparison_data(
                 for l_itm in l_df:
                     tmp_df.extend(l_itm)
                 l_df = tmp_df
+            try:
+                mean_val = mean(l_df)
+                std_val = std(l_df)
+            except (TypeError, ValueError):
+                continue
             d_data["name"].append(f"{test.replace(f'{drv}-', '')}-{ttype}")
-            d_data["mean"].append(int(mean(l_df) * norm_factor))
-            d_data["stdev"].append(int(std(l_df) * norm_factor))
+            d_data["mean"].append(int(mean_val * norm_factor))
+            d_data["stdev"].append(int(std_val * norm_factor))
             d_data["unit"].append(df[C.UNIT[ttype]].to_list()[0])
         return pd.DataFrame(d_data)
 
     lst_df = list()
     for itm in selected:
-        if itm["ttype"] in ("NDR", "PDR"):
+        if itm["ttype"] in ("NDR", "PDR", "Latency"):
             test_type = "ndrpdr"
+        elif itm["ttype"] in ("CPS", "RPS", "BPS"):
+            test_type  = "hoststack"
         else:
             test_type = itm["ttype"].lower()
 
@@ -114,16 +121,23 @@ def select_comparison_data(
                     inplace=True
                 )
 
-        # Change the data type from ndrpdr to one of ("NDR", "PDR")
+        # Change the data type from ndrpdr to one of ("NDR", "PDR", "Latency")
         if test_type == "ndrpdr":
             tmp_df = tmp_df.assign(test_type=itm["ttype"].lower())
 
         if not tmp_df.empty:
+            if normalize:
+                if itm["ttype"] == "Latency":
+                    norm_factor = C.FREQUENCY[itm["tbed"]] / C.NORM_FREQUENCY
+                else:
+                    norm_factor = C.NORM_FREQUENCY / C.FREQUENCY[itm["tbed"]]
+            else:
+                norm_factor = 1.0
             tmp_df = _calculate_statistics(
                 tmp_df,
                 itm["ttype"].lower(),
                 itm["driver"],
-                C.NORM_FREQUENCY / C.FREQUENCY[itm["tbed"]] if normalize else 1
+                norm_factor
             )
 
         lst_df.append(tmp_df)
@@ -194,11 +208,14 @@ def comparison_table(
                     })
         return selection
 
-    unit_factor, s_unit_factor = (1e6, "M") if format == "html" else (1, str())
-
     r_sel = deepcopy(selected["reference"]["selection"])
     c_params = selected["compare"]
     r_selection = _create_selection(r_sel)
+
+    if format == "html" and "Latency" not in r_sel["ttype"]:
+        unit_factor, s_unit_factor = (1e6, "M")
+    else:
+        unit_factor, s_unit_factor = (1, str())
 
     # Create Table title and titles of columns with data
     params = list(r_sel)

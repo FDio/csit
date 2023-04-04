@@ -62,7 +62,7 @@ CMP_PARAMS = {
     "infra": "Infrastructure",
     "frmsize": "Frame Size",
     "core": "Number of Cores",
-    "ttype": "Test Type"
+    "ttype": "Measurement"
 }
 
 
@@ -142,7 +142,9 @@ class Layout:
                     tbs[dut][dver][infra]["ttype"].append("MRR")
             elif row["test_type"] == "ndrpdr":
                 if "NDR" not in tbs[dut][dver][infra]["ttype"]:
-                    tbs[dut][dver][infra]["ttype"].extend(("NDR", "PDR", ))
+                    tbs[dut][dver][infra]["ttype"].extend(
+                        ("NDR", "PDR", "Latency")
+                    )
             elif row["test_type"] == "hoststack" and \
                     row["tg_type"] in ("iperf", "vpp"):
                 if "BPS" not in tbs[dut][dver][infra]["ttype"]:
@@ -383,7 +385,7 @@ class Layout:
                 children=[
                     dbc.InputGroup(
                         [
-                            dbc.InputGroupText("Test Type"),
+                            dbc.InputGroupText("Measurement"),
                             dbc.Checklist(
                                 id={"type": "ctrl-cl", "index": "ttype"},
                                 inline=True,
@@ -865,6 +867,8 @@ class Layout:
                     for itm in ctrl_panel.get(f"{value}-opt"):
                         set_val = ctrl_panel.get(f"{value}-val")
                         if isinstance(set_val, list):
+                            if itm["value"] == "Latency":
+                                continue
                             if itm["value"] not in set_val:
                                 opts.append(itm)
                         else:
@@ -900,8 +904,13 @@ class Layout:
                 if all((ctrl_panel.get("core-val"),
                         ctrl_panel.get("frmsize-val"),
                         ctrl_panel.get("ttype-val"), )):
+                    if "Latency" in ctrl_panel.get("ttype-val"):
+                        ctrl_panel.set({"ttype-val": ["Latency", ]})
                     opts = list()
                     for itm, label in CMP_PARAMS.items():
+                        if "Latency" in ctrl_panel.get("ttype-val") and \
+                                itm == "ttype":
+                            continue
                         if len(ctrl_panel.get(f"{itm}-opt")) > 1:
                             if isinstance(ctrl_panel.get(f"{itm}-val"), list):
                                 if len(ctrl_panel.get(f"{itm}-opt")) == \
