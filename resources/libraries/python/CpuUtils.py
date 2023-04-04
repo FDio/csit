@@ -266,7 +266,7 @@ class CpuUtils:
         :type nf_dtcr: int
         :type skip_cnt: int
         :returns: List of CPUs allocated to NF.
-        :rtype: list
+        :rtype: Tuple[list[int], list[int]]
         :raises RuntimeError: If we require more cpus than available or if
             placement is not possible due to wrong parameters.
         """
@@ -308,7 +308,7 @@ class CpuUtils:
                 result = cpu_list[dt_skip:dt_skip + nf_dtc]
 
         result[0:0] = cpu_list[mt_skip:mt_skip + 1]
-        return result
+        return result, cpu_list
 
     @staticmethod
     def get_affinity_af_xdp(
@@ -349,7 +349,7 @@ class CpuUtils:
         the amount of CPUs and also affinity.
 
         :param nodes: Physical topology nodes.
-        :param node: SUT node.
+        :param node: SUT node name.
         :param nf_chains: Number of NF chains.
         :param nf_nodes: Number of NF nodes in chain.
         :param nf_chain: Chain number indexed from 1.
@@ -359,7 +359,7 @@ class CpuUtils:
         :param nf_mtcr: NF main thread per core ratio.
         :param nf_dtcr: NF data plane thread per core ratio.
         :type nodes: dict
-        :type node: dict
+        :type node: str
         :type nf_chains: int
         :type nf_nodes: int
         :type nf_chain: int
@@ -369,7 +369,7 @@ class CpuUtils:
         :type nf_mtcr: int
         :type nf_dtcr: int
         :returns: List of CPUs allocated to NF.
-        :rtype: list
+        :rtype: Tuple[list[int], list[int]]
         """
         skip_cnt = Constants.CPU_CNT_SYSTEM + Constants.CPU_CNT_MAIN + vs_dtc
 
