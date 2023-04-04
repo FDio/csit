@@ -1,4 +1,5 @@
-# Copyright (c) 2022-2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,7 +18,7 @@ import json
 
 from re import match
 from string import Template
-from time import sleep
+from time import monotonic, sleep
 
 from robot.api import logger
 
@@ -492,7 +493,7 @@ class QemuUtils:
         stdout, _ = exec_cmd_no_error(self._node, command)
         return stdout.splitlines()
 
-    def qemu_set_affinity(self, *host_cpus):
+    def qemu_set_affinity(self, host_cpus):
         """Set qemu affinity by getting thread PIDs via QMP and taskset to list
         of CPU cores. Function tries to execute 3 times to avoid race condition
         in getting thread PIDs.
@@ -720,13 +721,23 @@ class QemuUtils:
             else:
                 interface[u"name"] = if_name
 
-    def qemu_start(self):
+    def qemu_start(self, numa_cpus=None):
         """Start QEMU and wait until VM boot.
+
+        :param numa_cpus: List of CPU cores on a NUMA node.
+        :type numa_cpus: list
 
         :returns: VM node info.
         :rtype: dict
         """
         cmd_opts = OptionString()
+
+        if numa_cpus:
+            cmd_opts.add(u"taskset")
+            cmd_opts.add_with_value(
+                u"-c", u",".join((str(numa_cpu) for numa_cpu in numa_cpus))
+            )
+
         cmd_opts.add(f"{Constants.QEMU_BIN_PATH}/qemu-system-{self._arch}")
         cmd_opts.extend(self._params)
         message = f"QEMU: Start failed on {self._node[u'host']}!"
@@ -736,13 +747,18 @@ class QemuUtils:
                 int(self._opt.get(u"mem"))
             )
 
+            _qemu_vm_start_time = monotonic()
             exec_cmd_no_error(
                 self._node, cmd_opts, timeout=300, sudo=True, message=message
             )
             self._wait_until_vm_boot()
+            _qemu_vm_boot_time = monotonic()
         except RuntimeError:
             self.qemu_kill_all()
             raise
+
+        logger.info(f"VM boot on {(self._node[u'host'], self._node[u'port'])} took "
+                    f"{_qemu_vm_boot_time - _qemu_vm_start_time}.")
         return self._vm_info
 
     def qemu_kill(self):

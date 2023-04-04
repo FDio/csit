@@ -1,4 +1,5 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -113,9 +114,11 @@ class QemuManager:
                 zip(self.machines.values(), self.machines_affinity.values()):
             index = list(self.machines.values()).index(machine)
             name = list(self.machines.keys())[index]
-            self.nodes[name] = machine.qemu_start()
+            vm_cpus = machine_affinity[0]
+            numa_cpus = machine_affinity[1] if pinning else None
+            self.nodes[name] = machine.qemu_start(numa_cpus)
             if pinning:
-                machine.qemu_set_affinity(*machine_affinity)
+                machine.qemu_set_affinity(vm_cpus)
                 cpus.extend(machine_affinity)
         return ",".join(str(cpu) for cpu in cpus)
 
@@ -151,7 +154,7 @@ class QemuManager:
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
             qemu_id=qemu_id,
-            smp=len(self.machines_affinity[name]),
+            smp=len(self.machines_affinity[name][0]),
             mem=4096,
             vnf=kwargs[u"vnf"],
             img=Constants.QEMU_VM_KERNEL,
@@ -194,7 +197,7 @@ class QemuManager:
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
             qemu_id=qemu_id,
-            smp=len(self.machines_affinity[name]),
+            smp=len(self.machines_affinity[name][0]),
             mem=4096,
             vnf=kwargs[u"vnf"],
             img=Constants.QEMU_VM_KERNEL
@@ -254,7 +257,7 @@ class QemuManager:
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
             qemu_id=qemu_id,
-            smp=len(self.machines_affinity[name]),
+            smp=len(self.machines_affinity[name][0]),
             mem=4096,
             vnf=kwargs[u"vnf"],
             img=Constants.QEMU_VM_KERNEL
@@ -314,7 +317,7 @@ class QemuManager:
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
             qemu_id=qemu_id,
-            smp=len(self.machines_affinity[name]),
+            smp=len(self.machines_affinity[name][0]),
             mem=4096,
             vnf=kwargs[u"vnf"],
             img=Constants.QEMU_VM_KERNEL
@@ -374,7 +377,7 @@ class QemuManager:
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
             qemu_id=qemu_id,
-            smp=len(self.machines_affinity[name]),
+            smp=len(self.machines_affinity[name][0]),
             mem=4096,
             vnf=kwargs[u"vnf"],
             img=Constants.QEMU_VM_KERNEL
@@ -436,7 +439,7 @@ class QemuManager:
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
             qemu_id=qemu_id,
-            smp=len(self.machines_affinity[name]),
+            smp=len(self.machines_affinity[name][0]),
             mem=4096,
             vnf=kwargs[u"vnf"],
             img=Constants.QEMU_VM_KERNEL
