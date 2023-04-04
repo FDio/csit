@@ -41,11 +41,12 @@ class QemuUtils:
     ROBOT_LIBRARY_SCOPE = u"TEST CASE"
 
     def __init__(
-            self, node, qemu_id=1, smp=1, mem=512, vnf=None,
+            self, node, numa_node, qemu_id=1, smp=1, mem=512, vnf=None,
             img=Constants.QEMU_VM_IMAGE, page_size=u""):
         """Initialize QemuUtil class.
 
         :param node: Node to run QEMU on.
+        :param numa_node: The NUMA node id on which to start the VM.
         :param qemu_id: QEMU identifier.
         :param smp: Number of virtual SMP units (cores).
         :param mem: Amount of memory.
@@ -53,6 +54,7 @@ class QemuUtils:
         :param img: QEMU disk image or kernel image path.
         :param page_size: Hugepage Size.
         :type node: dict
+        :type numa_node: int
         :type qemu_id: int
         :type smp: int
         :type mem: int
@@ -60,6 +62,7 @@ class QemuUtils:
         :type img: str
         :type page_size: str
         """
+        self._numa_node = numa_node
         self._nic_id = 0
         self._node = node
         self._arch = Topology.get_node_arch(self._node)
@@ -727,6 +730,10 @@ class QemuUtils:
         :rtype: dict
         """
         cmd_opts = OptionString()
+        cmd_opts.add(u"numactl")
+        cmd_opts.add_equals(u"--cpunodebind", self._numa_node)
+        cmd_opts.add_equals(u"--preferred", self._numa_node)
+        cmd_opts.add(u"--")
         cmd_opts.add(f"{Constants.QEMU_BIN_PATH}/qemu-system-{self._arch}")
         cmd_opts.extend(self._params)
         message = f"QEMU: Start failed on {self._node[u'host']}!"
