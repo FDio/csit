@@ -1,4 +1,5 @@
-# Copyright (c) 2022-2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -22,6 +23,7 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DpdkUtil import DpdkUtil
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.OptionString import OptionString
@@ -41,11 +43,12 @@ class QemuUtils:
     ROBOT_LIBRARY_SCOPE = u"TEST CASE"
 
     def __init__(
-            self, node, qemu_id=1, smp=1, mem=512, vnf=None,
+            self, node, numa_node, qemu_id=1, smp=1, mem=512, vnf=None,
             img=Constants.QEMU_VM_IMAGE, page_size=u""):
         """Initialize QemuUtil class.
 
         :param node: Node to run QEMU on.
+        :param numa_node: The NUMA node id on which to start the VM.
         :param qemu_id: QEMU identifier.
         :param smp: Number of virtual SMP units (cores).
         :param mem: Amount of memory.
@@ -53,6 +56,7 @@ class QemuUtils:
         :param img: QEMU disk image or kernel image path.
         :param page_size: Hugepage Size.
         :type node: dict
+        :type numa_node: int
         :type qemu_id: int
         :type smp: int
         :type mem: int
@@ -60,6 +64,7 @@ class QemuUtils:
         :type img: str
         :type page_size: str
         """
+        self._numa_node = numa_node
         self._nic_id = 0
         self._node = node
         self._arch = Topology.get_node_arch(self._node)
@@ -726,7 +731,15 @@ class QemuUtils:
         :returns: VM node info.
         :rtype: dict
         """
+        smt_used = CpuUtils.is_smt_enabled(self._node[u"cpuinfo"])
+        numa_cpus = CpuUtils.cpu_list_per_node(
+            self._node, self._numa_node, smt_used
+        )
         cmd_opts = OptionString()
+        cmd_opts.add(u"taskset")
+        cmd_opts.add_with_value(
+            u"-c", u",".join((str(numa_cpu) for numa_cpu in numa_cpus))
+        )
         cmd_opts.add(f"{Constants.QEMU_BIN_PATH}/qemu-system-{self._arch}")
         cmd_opts.extend(self._params)
         message = f"QEMU: Start failed on {self._node[u'host']}!"

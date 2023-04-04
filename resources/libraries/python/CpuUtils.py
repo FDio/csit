@@ -1,4 +1,5 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -341,6 +342,24 @@ class CpuUtils:
         )
 
     @staticmethod
+    def get_numa_node(node, node_name):
+        """Get the numa node of interfaces on the node named node_name.
+        The selected numa node is the node where most of the tested interfaces reside.
+
+        :param node: SUT node.
+        :param node_name: SUT node name.
+        :type node: dict
+        :type node_name: str
+        :returns: Numa node of the majority of tested interfaces or 0.
+        :rtype: int
+        """
+        interface_list = list()
+        interface_list.append(BuiltIn().get_variable_value(f"${{{node_name}_if1}}"))
+        interface_list.append(BuiltIn().get_variable_value(f"${{{node_name}_if2}}"))
+
+        return Topology.get_interfaces_numa_node(node, *interface_list)
+
+    @staticmethod
     def get_affinity_nf(
             nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
             vs_dtc=1, nf_dtc=1, nf_mtcr=2, nf_dtcr=1):
@@ -349,7 +368,7 @@ class CpuUtils:
         the amount of CPUs and also affinity.
 
         :param nodes: Physical topology nodes.
-        :param node: SUT node.
+        :param node: SUT node name.
         :param nf_chains: Number of NF chains.
         :param nf_nodes: Number of NF nodes in chain.
         :param nf_chain: Chain number indexed from 1.
@@ -359,7 +378,7 @@ class CpuUtils:
         :param nf_mtcr: NF main thread per core ratio.
         :param nf_dtcr: NF data plane thread per core ratio.
         :type nodes: dict
-        :type node: dict
+        :type node: str
         :type nf_chains: int
         :type nf_nodes: int
         :type nf_chain: int
@@ -373,12 +392,7 @@ class CpuUtils:
         """
         skip_cnt = Constants.CPU_CNT_SYSTEM + Constants.CPU_CNT_MAIN + vs_dtc
 
-        interface_list = list()
-        interface_list.append(BuiltIn().get_variable_value(f"${{{node}_if1}}"))
-        interface_list.append(BuiltIn().get_variable_value(f"${{{node}_if2}}"))
-
-        cpu_node = Topology.get_interfaces_numa_node(
-            nodes[node], *interface_list)
+        cpu_node = CpuUtils.get_numa_node(nodes[node], node)
 
         return CpuUtils.cpu_slice_of_list_for_nf(
             node=nodes[node], cpu_node=cpu_node, nf_chains=nf_chains,
