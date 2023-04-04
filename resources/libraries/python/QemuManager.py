@@ -1,4 +1,5 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2021-2023 Cisco and/or its affiliates.
+# Copyright (c) 2023 PANTHEON.tech s.r.o.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -47,6 +48,7 @@ class QemuManager:
         :type kwargs: dict
         """
         node = kwargs[u"node"]
+        numa_node = CpuUtils.get_numa_node(self.nodes[node], node)
         nf_chains = int(kwargs[u"nf_chains"])
         nf_nodes = int(kwargs[u"nf_nodes"])
         queues = kwargs[u"rxq_count_int"] if kwargs[u"auto_scale"] else 1
@@ -83,11 +85,11 @@ class QemuManager:
 
                 try:
                     getattr(self, f'_c_{kwargs["vnf"]}')(
-                        qemu_id=qemu_id, name=name, queues=queues, **kwargs
+                        qemu_id=qemu_id, name=name, queues=queues, numa_node=numa_node, **kwargs
                     )
                 except AttributeError:
                     self._c_default(
-                        qemu_id=qemu_id, name=name, queues=queues,
+                        qemu_id=qemu_id, name=name, queues=queues, numa_node=numa_node,
                         vif1_mac=vif1_mac, vif2_mac=vif2_mac, **kwargs
                     )
 
@@ -150,6 +152,7 @@ class QemuManager:
 
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
+            numa_node=kwargs[u"numa_node"],
             qemu_id=qemu_id,
             smp=len(self.machines_affinity[name]),
             mem=4096,
@@ -193,6 +196,7 @@ class QemuManager:
 
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
+            numa_node=kwargs[u"numa_node"],
             qemu_id=qemu_id,
             smp=len(self.machines_affinity[name]),
             mem=4096,
@@ -253,6 +257,7 @@ class QemuManager:
 
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
+            numa_node=kwargs[u"numa_node"],
             qemu_id=qemu_id,
             smp=len(self.machines_affinity[name]),
             mem=4096,
@@ -313,6 +318,7 @@ class QemuManager:
 
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
+            numa_node=kwargs[u"numa_node"],
             qemu_id=qemu_id,
             smp=len(self.machines_affinity[name]),
             mem=4096,
@@ -373,6 +379,7 @@ class QemuManager:
 
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
+            numa_node=kwargs[u"numa_node"],
             qemu_id=qemu_id,
             smp=len(self.machines_affinity[name]),
             mem=4096,
@@ -435,6 +442,7 @@ class QemuManager:
 
         self.machines[name] = QemuUtils(
             node=self.nodes[kwargs[u"node"]],
+            numa_node=kwargs[u"numa_node"],
             qemu_id=qemu_id,
             smp=len(self.machines_affinity[name]),
             mem=4096,
