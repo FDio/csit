@@ -135,6 +135,23 @@
       "message": "I\u0027ve tested this will all vnf values I could find in tests:\niperf3 # on 2n-clx\ntestpmd_io # on 2n-clx and 3n-tsh\ntestpmd_mac # on 2n-clx and 3n-tsh\nvppip4noarp_2vhostvr1024 # on 2n-clx and 3n-tsh\nvppip4noarp_2virtiovr1024 # on 2n-clx\nvppip4_2vhostvr1024 # on 2n-clx\nvppip6_2vhostvr1024 # on vpp device\nvppl2xc_2vhostvr1024 # on 2n-clx and 3n-tsh\nvppl2xc_2virtiovr1024 # on 2n-clx\n\nAll of them work, so there shouldn\u0027t be regressions. The sandbox testing strongly indicates (10 out of 10 passed daily runs) that this fixes https://jira.fd.io/browse/CSIT-1877.",
       "revId": "edd312aaf6a8d4764b1157b9c02871686fba3d34",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2af16f97_921b380d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-04-04T07:38:02Z",
+      "side": 1,
+      "message": "My preference is to set full numa. Also I am missing intialize(). For me -1.",
+      "revId": "edd312aaf6a8d4764b1157b9c02871686fba3d34",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
