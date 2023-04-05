@@ -63,7 +63,7 @@ class Constants:
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
-    MAX_TIME_PERIOD = 130
+    MAX_TIME_PERIOD = 20  # 130
 
     # It defines the time period for data read from the parquets in days from
     # now back to the past.
@@ -204,23 +204,21 @@ class Constants:
         "mrr": "result_receive_rate_rate_avg",
         "ndr": "result_ndr_lower_rate_value",
         "pdr": "result_pdr_lower_rate_value",
-        "pdr-lat": "result_latency_forward_pdr_50_avg",
+        "latency": "result_latency_forward_pdr_50_avg",
         "hoststack-cps": "result_rate_value",
         "hoststack-rps": "result_rate_value",
         "hoststack-bps": "result_bandwidth_value",
-        "hoststack-lat": "result_latency_value"
+        "hoststack-latency": "result_latency_value"
     }
 
     VALUE_ITER = {
         "mrr": "result_receive_rate_rate_values",
         "ndr": "result_ndr_lower_rate_value",
         "pdr": "result_pdr_lower_rate_value",
-        "pdr-lat": "result_latency_forward_pdr_50_avg",
         "latency": "result_latency_forward_pdr_50_avg",
         "hoststack-cps": "result_rate_value",
         "hoststack-rps": "result_rate_value",
         "hoststack-bps": "result_bandwidth_value",
-        "hoststack-lat": "result_latency_value",
         "hoststack-latency": "result_latency_value"
     }
 
@@ -228,12 +226,10 @@ class Constants:
         "mrr": "result_receive_rate_rate_unit",
         "ndr": "result_ndr_lower_rate_unit",
         "pdr": "result_pdr_lower_rate_unit",
-        "pdr-lat": "result_latency_forward_pdr_50_unit",
         "latency": "result_latency_forward_pdr_50_unit",
         "hoststack-cps": "result_rate_unit",
         "hoststack-rps": "result_rate_unit",
         "hoststack-bps": "result_bandwidth_unit",
-        "hoststack-lat": "result_latency_unit",
         "hoststack-latency": "result_latency_unit"
     }
 
