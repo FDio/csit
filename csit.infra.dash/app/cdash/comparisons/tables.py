@@ -70,8 +70,12 @@ def select_comparison_data(
         for itm in data_in["test_id"].unique().tolist():
             itm_lst = itm.split(".")
             test = itm_lst[-1].rsplit("-", 1)[0]
+            if "hoststack" in itm:
+                test_type = f"hoststack-{ttype}"
+            else:
+                test_type = ttype
             df = data_in.loc[(data_in["test_id"] == itm)]
-            l_df = df[C.VALUE_ITER[ttype]].to_list()
+            l_df = df[C.VALUE_ITER[test_type]].to_list()
             if len(l_df) and isinstance(l_df[0], list):
                 tmp_df = list()
                 for l_itm in l_df:
@@ -85,7 +89,7 @@ def select_comparison_data(
             d_data["name"].append(f"{test.replace(f'{drv}-', '')}-{ttype}")
             d_data["mean"].append(int(mean_val * norm_factor))
             d_data["stdev"].append(int(std_val * norm_factor))
-            d_data["unit"].append(df[C.UNIT[ttype]].to_list()[0])
+            d_data["unit"].append(df[C.UNIT[test_type]].to_list()[0])
         return pd.DataFrame(d_data)
 
     lst_df = list()
@@ -108,11 +112,17 @@ def select_comparison_data(
 
         drv = "" if itm["driver"] == "dpdk" else itm["driver"].replace("_", "-")
         core = str() if itm["dut"] == "trex" else itm["core"].lower()
-        reg_id = \
-            f"^.*[.|-]{itm['nic']}.*{itm['frmsize'].lower()}-{core}-{drv}.*$"
+        ttype = "ndrpdr" if itm["ttype"] in ("NDR", "PDR", "Latency") \
+            else itm["ttype"].lower()
         tmp_df = tmp_df[
             (tmp_df.job.str.endswith(itm["tbed"])) &
-            (tmp_df.test_id.str.contains(reg_id, regex=True))
+            (tmp_df.test_id.str.contains(
+                (
+                    f"^.*[.|-]{itm['nic']}.*{itm['frmsize'].lower()}-"
+                    f"{core}-{drv}.*-{ttype}$"
+                ),
+                regex=True
+            ))
         ]
         if itm["driver"] == "dpdk":
             for drv in C.DRIVERS:

@@ -220,7 +220,8 @@ class Constants:
         "hoststack-cps": "result_rate_value",
         "hoststack-rps": "result_rate_value",
         "hoststack-bps": "result_bandwidth_value",
-        "hoststack-lat": "result_latency_value"
+        "hoststack-lat": "result_latency_value",
+        "hoststack-latency": "result_latency_value"
     }
 
     UNIT = {
@@ -232,7 +233,8 @@ class Constants:
         "hoststack-cps": "result_rate_unit",
         "hoststack-rps": "result_rate_unit",
         "hoststack-bps": "result_bandwidth_unit",
-        "hoststack-lat": "result_latency_unit"
+        "hoststack-lat": "result_latency_unit",
+        "hoststack-latency": "result_latency_unit"
     }
 
     # Latencies.
