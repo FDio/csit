@@ -672,7 +672,7 @@
 | | ... | \| Traffic should pass with maximum rate \|
 | |
 | | Set Test Variable | ${telemetry_rate} | mrr
-| | Set Test Variable | ${telemetry_export} | ${False}
+| | Set Test Variable | ${telemetry_export} | ${True}
 | | ${max_rate} = | Get Max Rate
 | | ${transaction_type} = | Get Transaction Type
 | | ${trial_duration} = | Get Mrr Trial Duration
