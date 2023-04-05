@@ -144,7 +144,7 @@ def graph_trending(
             return list(), list()
 
         x_axis = df["start_time"].tolist()
-        if ttype == "pdr-lat":
+        if ttype == "latency":
             y_data = [(v / norm_factor) for v in df[C.VALUE[ttype]].tolist()]
         else:
             y_data = [(v * norm_factor) for v in df[C.VALUE[ttype]].tolist()]
@@ -185,10 +185,10 @@ def graph_trending(
             else:
                 add_info = str()
             hover_itm = hover_itm.replace(
-                "<prop>", "latency" if ttype == "pdr-lat" else "average"
+                "<prop>", "latency" if ttype == "latency" else "average"
             ).replace("<stdev>", stdev).replace("<additional-info>", add_info)
             hover.append(hover_itm)
-            if ttype == "pdr-lat":
+            if ttype == "latency":
                 customdata_samples.append(_get_hdrh_latencies(row, name))
                 customdata.append({"name": name})
             else:
@@ -208,7 +208,7 @@ def graph_trending(
                 f"csit-ref: {row['job']}/{row['build']}<br>"
                 f"hosts: {', '.join(row['hosts'])}"
             )
-            if ttype == "pdr-lat":
+            if ttype == "latency":
                 hover_itm = hover_itm.replace("[pps]", "[us]")
             hover_trend.append(hover_itm)
 
@@ -262,7 +262,7 @@ def graph_trending(
                         f"trend [pps]: {trend_avg[idx]:,.0f}<br>"
                         f"classification: {anomaly}"
                     )
-                    if ttype == "pdr-lat":
+                    if ttype == "latency":
                         hover_itm = hover_itm.replace("[pps]", "[us]")
                     hover.append(hover_itm)
             anomaly_color.extend([0.0, 0.5, 1.0])
@@ -282,7 +282,7 @@ def graph_trending(
                         "symbol": "circle-open",
                         "color": anomaly_color,
                         "colorscale": C.COLORSCALE_LAT \
-                            if ttype == "pdr-lat" else C.COLORSCALE_TPUT,
+                            if ttype == "latency" else C.COLORSCALE_TPUT,
                         "showscale": True,
                         "line": {
                             "width": 2
@@ -295,7 +295,7 @@ def graph_trending(
                             "tickmode": "array",
                             "tickvals": [0.167, 0.500, 0.833],
                             "ticktext": C.TICK_TEXT_LAT \
-                                if ttype == "pdr-lat" else C.TICK_TEXT_TPUT,
+                                if ttype == "latency" else C.TICK_TEXT_TPUT,
                             "ticks": "",
                             "ticklen": 0,
                             "tickangle": -90,
@@ -343,7 +343,7 @@ def graph_trending(
 
         if itm["testtype"] == "pdr":
             traces, _ = _generate_trending_traces(
-                "pdr-lat",
+                "latency",
                 itm["id"],
                 df,
                 get_color(idx),

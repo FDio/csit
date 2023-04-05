@@ -145,7 +145,7 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
         show_tput = True
 
         if ttype == "pdr":
-            y_lat_row = itm_data[C.VALUE_ITER["pdr-lat"]].to_list()
+            y_lat_row = itm_data[C.VALUE_ITER["latency"]].to_list()
             y_lat = [(y / norm_factor) for y in y_lat_row]
             if y_lat:
                 try:
