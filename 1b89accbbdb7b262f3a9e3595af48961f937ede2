@@ -16,6 +16,23 @@
       "message": "csit-2n-clx-perftest 1cANDmrrANDethip4-ip4base-2vhost-iperf3 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base-eth-2vhostvr1024-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base-eth-2vhostvr1024-1vm-vppip4 1cAND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base-eth-2virtiovr1024-1vm-vppip4 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bd-1ch-2vh-1vm1t-vppip4 1cAND78bANDmrrANDdrv_vfio_pciANDethip6-ip6base-eth-2vhost-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2virtiovr1024-1vm-vppl2xc",
       "revId": "1b89accbbdb7b262f3a9e3595af48961f937ede2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "543c35e4_8067f60b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-04-06T08:25:13Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest 1cANDmrrANDethip4-ip4base-2vhost-iperf3 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base-eth-2vhostvr1024-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base-eth-2vhostvr1024-1vm-vppip4 1cAND64bANDmrrANDdrv_vfio_pciANDethip4-ip4base-eth-2virtiovr1024-1vm-vppip4 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bd-1ch-2vh-1vm1t-vppip4 1cAND78bANDmrrANDdrv_vfio_pciANDethip6-ip6base-eth-2vhost-1vm 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc 1cAND64bANDmrrANDdrv_vfio_pciANDeth-l2bdbasemaclrn-eth-2virtiovr1024-1vm-vppl2xc",
+      "revId": "1b89accbbdb7b262f3a9e3595af48961f937ede2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
