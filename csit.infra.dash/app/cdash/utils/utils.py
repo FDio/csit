@@ -15,7 +15,11 @@
 """
 
 import pandas as pd
+import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
+
+import hdrh.histogram
+import hdrh.codec
 
 from math import sqrt
 from numpy import isnan
@@ -393,6 +397,7 @@ def get_list_group_items(
 
     return children
 
+
 def relative_change_stdev(mean1, mean2, std1, std2):
     """Compute relative standard deviation of change of two values.
 
@@ -417,3 +422,101 @@ def relative_change_stdev(mean1, mean2, std1, std2):
     second = std2 / mean2
     std = quotient * sqrt(first * first + second * second)
     return (quotient - 1) * 100, std * 100
+
+
+def get_hdrh_latencies(row: pd.Series, name: str) -> dict:
+    """Get the HDRH latencies from the test data.
+
+    :param row: A row fron the data frame with test data.
+    :param name: The test name to be displayed as the graph title.
+    :type row: pandas.Series
+    :type name: str
+    :returns: Dictionary with HDRH latencies.
+    :rtype: dict
+    """
+
+    latencies = {"name": name}
+    for key in C.LAT_HDRH:
+        try:
+            latencies[key] = row[key]
+        except KeyError:
+            return None
+
+    return latencies
+
+
+def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
+    """Generate HDR Latency histogram graphs.
+
+    :param data: HDRH data.
+    :param layout: Layout of plot.ly graph.
+    :type data: dict
+    :type layout: dict
+    :returns: HDR latency Histogram.
+    :rtype: plotly.graph_objects.Figure
+    """
+
+    fig = None
+
+    traces = list()
+    for idx, (lat_name, lat_hdrh) in enumerate(data.items()):
+        try:
+            decoded = hdrh.histogram.HdrHistogram.decode(lat_hdrh)
+        except (hdrh.codec.HdrLengthException, TypeError):
+            continue
+        previous_x = 0.0
+        prev_perc = 0.0
+        xaxis = list()
+        yaxis = list()
+        hovertext = list()
+        for item in decoded.get_recorded_iterator():
+            # The real value is "percentile".
+            # For 100%, we cut that down to "x_perc" to avoid
+            # infinity.
+            percentile = item.percentile_level_iterated_to
+            x_perc = min(percentile, C.PERCENTILE_MAX)
+            xaxis.append(previous_x)
+            yaxis.append(item.value_iterated_to)
+            hovertext.append(
+                f"<b>{C.GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
+                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
+                f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
+                f"Latency: {item.value_iterated_to}uSec"
+            )
+            next_x = 100.0 / (100.0 - x_perc)
+            xaxis.append(next_x)
+            yaxis.append(item.value_iterated_to)
+            hovertext.append(
+                f"<b>{C.GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
+                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
+                f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
+                f"Latency: {item.value_iterated_to}uSec"
+            )
+            previous_x = next_x
+            prev_perc = percentile
+
+        traces.append(
+            go.Scatter(
+                x=xaxis,
+                y=yaxis,
+                name=C.GRAPH_LAT_HDRH_DESC[lat_name],
+                mode="lines",
+                legendgroup=C.GRAPH_LAT_HDRH_DESC[lat_name],
+                showlegend=bool(idx % 2),
+                line=dict(
+                    color=get_color(int(idx/2)),
+                    dash="solid",
+                    width=1 if idx % 2 else 2
+                ),
+                hovertext=hovertext,
+                hoverinfo="text"
+            )
+        )
+    if traces:
+        fig = go.Figure()
+        fig.add_traces(traces)
+        layout_hdrh = layout.get("plot-hdrh-latency", None)
+        if lat_hdrh:
+            fig.update_layout(layout_hdrh)
+
+    return fig

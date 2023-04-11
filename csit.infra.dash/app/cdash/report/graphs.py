@@ -20,7 +20,7 @@ import pandas as pd
 from copy import deepcopy
 
 from ..utils.constants import Constants as C
-from ..utils.utils import get_color
+from ..utils.utils import get_color, get_hdrh_latencies
 
 
 def select_iterative_data(data: pd.DataFrame, itm:dict) -> pd.DataFrame:
@@ -145,6 +145,12 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
         show_tput = True
 
         if ttype == "pdr":
+            customdata = list()
+            for _, row in itm_data.iterrows():
+                customdata.append(
+                    get_hdrh_latencies(row, f"{row['job']}/{row['build']}")
+                )
+
             y_lat_row = itm_data[C.VALUE_ITER["latency"]].to_list()
             y_lat = [(y / norm_factor) for y in y_lat_row]
             if y_lat:
@@ -164,7 +170,8 @@ def graph_iterative(data: pd.DataFrame, sel:dict, layout: dict,
                 hoverinfo="all",
                 boxpoints="all",
                 jitter=0.3,
-                marker=dict(color=get_color(idx))
+                marker=dict(color=get_color(idx)),
+                customdata=customdata
             )
             x_lat.append(idx + 1)
             lat_traces.append(go.Box(**lat_kwargs))
