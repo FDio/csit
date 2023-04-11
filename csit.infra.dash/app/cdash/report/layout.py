@@ -31,7 +31,7 @@ from ..utils.constants import Constants as C
 from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
-    generate_options, get_list_group_items
+    generate_options, get_list_group_items, graph_hdrh_latency
 from ..utils.url_processing import url_decode
 from .graphs import graph_iterative, select_iterative_data
 
@@ -279,6 +279,20 @@ class Layout:
                             self._add_ctrl_col(),
                             self._add_plotting_col()
                         ]
+                    ),
+                    dbc.Spinner(
+                        dbc.Offcanvas(
+                            class_name="w-50",
+                            id="offcanvas-metadata",
+                            title="Throughput And Latency",
+                            placement="end",
+                            is_open=False,
+                            children=[
+                                dbc.Row(id="metadata-tput-lat"),
+                                dbc.Row(id="metadata-hdrh-graph")
+                            ]
+                        ),
+                        delay_show=C.SPINNER_DELAY
                     )
                 ]
             )
@@ -1320,3 +1334,103 @@ class Layout:
                 df = pd.concat([df, sel_data], ignore_index=True)
 
             return dcc.send_data_frame(df.to_csv, C.REPORT_DOWNLOAD_FILE_NAME)
+
+        @app.callback(
+            Output("metadata-tput-lat", "children"),
+            Output("metadata-hdrh-graph", "children"),
+            Output("offcanvas-metadata", "is_open"),
+            Input({"type": "graph", "index": ALL}, "clickData"),
+            prevent_initial_call=True
+        )
+        def _show_metadata_from_graphs(graph_data: dict) -> tuple:
+            """Generates the data for the offcanvas displayed when a particular
+            point in a graph is clicked on.
+
+            :param graph_data: The data from the clicked point in the graph.
+            :type graph_data: dict
+            :returns: The data to be displayed on the offcanvas and the
+                information to show the offcanvas.
+            :rtype: tuple(list, list, bool)
+            """
+
+            trigger = Trigger(callback_context.triggered)
+
+            try:
+                idx = 0 if trigger.idx == "tput" else 1
+                graph_data = graph_data[idx]["points"]
+            except (IndexError, KeyError, ValueError, TypeError):
+                raise PreventUpdate
+            
+            def _process_stats(data: list, param: str) -> list:
+                """
+                """
+                if len(data) == 7:
+                    stats = ("max", "upper fence", "q3", "median", "q1",
+                            "lower fence", "min")
+                elif len(data) == 9:
+                    stats = ("outlier", "max", "upper fence", "q3", "median",
+                            "q1", "lower fence", "min", "outlier")
+                elif len(data) == 1:
+                    if param == "lat":
+                        stats = ("Average Latency at 50% PDR", )
+                    else:
+                        stats = ("Throughput", )
+                else:
+                    return list()
+                unit = " [us]" if param == "lat" else str()
+                return [(f"{k}{unit}", f"{v['y']:,.0f}")
+                        for k, v in zip(stats, data)]
+
+            graph = list()
+            if trigger.idx == "tput":
+                title = "Throughput"
+            elif trigger.idx == "lat":
+                title = "Latency"
+                if len(graph_data) == 1:
+                    hdrh_data = graph_data[0].get("customdata", None)
+                    if hdrh_data:
+                        graph = [dbc.Card(
+                            class_name="gy-2 p-0",
+                            children=[
+                                dbc.CardHeader(hdrh_data.pop("name")),
+                                dbc.CardBody(children=[
+                                    dcc.Graph(
+                                        id="hdrh-latency-graph",
+                                        figure=graph_hdrh_latency(
+                                            hdrh_data, self._graph_layout
+                                        )
+                                    )
+                                ])
+                            ])
+                        ]
+            else:
+                raise PreventUpdate
+            metadata = [
+                dbc.Card(
+                    class_name="gy-2 p-0",
+                    children=[
+                        dbc.CardHeader(children=[
+                            dcc.Clipboard(
+                                target_id="tput-lat-metadata",
+                                title="Copy",
+                                style={"display": "inline-block"}
+                            ),
+                            title
+                        ]),
+                        dbc.CardBody(
+                            id="tput-lat-metadata",
+                            class_name="p-0",
+                            children=[dbc.ListGroup(
+                                [
+                                    dbc.ListGroupItem([dbc.Badge(k), v])
+                                        for k, v in _process_stats(
+                                            graph_data, trigger.idx)
+                                ],
+                                flush=True)
+                            ]
+                        )
+                    ]
+                )
+            ]
+
+            return metadata, graph, True
