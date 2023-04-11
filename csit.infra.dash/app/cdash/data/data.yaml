@@ -193,8 +193,16 @@
     - result_pdr_lower_rate_value
     - result_ndr_lower_rate_unit
     - result_ndr_lower_rate_value
+    - result_latency_reverse_pdr_90_hdrh
+    - result_latency_reverse_pdr_50_hdrh
+    - result_latency_reverse_pdr_10_hdrh
+    - result_latency_reverse_pdr_0_hdrh
+    - result_latency_forward_pdr_90_hdrh
     - result_latency_forward_pdr_50_avg
+    - result_latency_forward_pdr_50_hdrh
     - result_latency_forward_pdr_50_unit
+    - result_latency_forward_pdr_10_hdrh
+    - result_latency_forward_pdr_0_hdrh
   categories:
     - job
     - build
@@ -220,8 +228,16 @@
     - result_pdr_lower_rate_value
     - result_ndr_lower_rate_unit
     - result_ndr_lower_rate_value
+    - result_latency_reverse_pdr_90_hdrh
+    - result_latency_reverse_pdr_50_hdrh
+    - result_latency_reverse_pdr_10_hdrh
+    - result_latency_reverse_pdr_0_hdrh
+    - result_latency_forward_pdr_90_hdrh
     - result_latency_forward_pdr_50_avg
+    - result_latency_forward_pdr_50_hdrh
     - result_latency_forward_pdr_50_unit
+    - result_latency_forward_pdr_10_hdrh
+    - result_latency_forward_pdr_0_hdrh
   categories:
     - job
     - build
@@ -247,8 +263,16 @@
     - result_pdr_lower_rate_value
     - result_ndr_lower_rate_unit
     - result_ndr_lower_rate_value
+    - result_latency_reverse_pdr_90_hdrh
+    - result_latency_reverse_pdr_50_hdrh
+    - result_latency_reverse_pdr_10_hdrh
+    - result_latency_reverse_pdr_0_hdrh
+    - result_latency_forward_pdr_90_hdrh
     - result_latency_forward_pdr_50_avg
+    - result_latency_forward_pdr_50_hdrh
     - result_latency_forward_pdr_50_unit
+    - result_latency_forward_pdr_10_hdrh
+    - result_latency_forward_pdr_0_hdrh
   categories:
     - job
     - build

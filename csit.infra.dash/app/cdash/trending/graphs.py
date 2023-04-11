@@ -17,32 +17,8 @@
 import plotly.graph_objects as go
 import pandas as pd
 
-import hdrh.histogram
-import hdrh.codec
-
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies, get_color
-
-
-def _get_hdrh_latencies(row: pd.Series, name: str) -> dict:
-    """Get the HDRH latencies from the test data.
-
-    :param row: A row fron the data frame with test data.
-    :param name: The test name to be displayed as the graph title.
-    :type row: pandas.Series
-    :type name: str
-    :returns: Dictionary with HDRH latencies.
-    :rtype: dict
-    """
-
-    latencies = {"name": name}
-    for key in C.LAT_HDRH:
-        try:
-            latencies[key] = row[key]
-        except KeyError:
-            return None
-
-    return latencies
+from ..utils.utils import classify_anomalies, get_color, get_hdrh_latencies
 
 
 def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:
@@ -189,7 +165,7 @@ def graph_trending(
             ).replace("<stdev>", stdev).replace("<additional-info>", add_info)
             hover.append(hover_itm)
             if ttype == "latency":
-                customdata_samples.append(_get_hdrh_latencies(row, name))
+                customdata_samples.append(get_hdrh_latencies(row, name))
                 customdata.append({"name": name})
             else:
                 customdata_samples.append(
@@ -365,83 +341,6 @@ def graph_trending(
         fig_lat.update_layout(layout.get("plot-trending-lat", dict()))
 
     return fig_tput, fig_lat
-
-
-def graph_hdrh_latency(data: dict, layout: dict) -> go.Figure:
-    """Generate HDR Latency histogram graphs.
-
-    :param data: HDRH data.
-    :param layout: Layout of plot.ly graph.
-    :type data: dict
-    :type layout: dict
-    :returns: HDR latency Histogram.
-    :rtype: plotly.graph_objects.Figure
-    """
-
-    fig = None
-
-    traces = list()
-    for idx, (lat_name, lat_hdrh) in enumerate(data.items()):
-        try:
-            decoded = hdrh.histogram.HdrHistogram.decode(lat_hdrh)
-        except (hdrh.codec.HdrLengthException, TypeError):
-            continue
-        previous_x = 0.0
-        prev_perc = 0.0
-        xaxis = list()
-        yaxis = list()
-        hovertext = list()
-        for item in decoded.get_recorded_iterator():
-            # The real value is "percentile".
-            # For 100%, we cut that down to "x_perc" to avoid
-            # infinity.
-            percentile = item.percentile_level_iterated_to
-            x_perc = min(percentile, C.PERCENTILE_MAX)
-            xaxis.append(previous_x)
-            yaxis.append(item.value_iterated_to)
-            hovertext.append(
-                f"<b>{C.GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
-                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
-                f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
-                f"Latency: {item.value_iterated_to}uSec"
-            )
-            next_x = 100.0 / (100.0 - x_perc)
-            xaxis.append(next_x)
-            yaxis.append(item.value_iterated_to)
-            hovertext.append(
-                f"<b>{C.GRAPH_LAT_HDRH_DESC[lat_name]}</b><br>"
-                f"Direction: {('W-E', 'E-W')[idx % 2]}<br>"
-                f"Percentile: {prev_perc:.5f}-{percentile:.5f}%<br>"
-                f"Latency: {item.value_iterated_to}uSec"
-            )
-            previous_x = next_x
-            prev_perc = percentile
-
-        traces.append(
-            go.Scatter(
-                x=xaxis,
-                y=yaxis,
-                name=C.GRAPH_LAT_HDRH_DESC[lat_name],
-                mode="lines",
-                legendgroup=C.GRAPH_LAT_HDRH_DESC[lat_name],
-                showlegend=bool(idx % 2),
-                line=dict(
-                    color=get_color(int(idx/2)),
-                    dash="solid",
-                    width=1 if idx % 2 else 2
-                ),
-                hovertext=hovertext,
-                hoverinfo="text"
-            )
-        )
-    if traces:
-        fig = go.Figure()
-        fig.add_traces(traces)
-        layout_hdrh = layout.get("plot-hdrh-latency", None)
-        if lat_hdrh:
-            fig.update_layout(layout_hdrh)
-
-    return fig
 
 
 def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:

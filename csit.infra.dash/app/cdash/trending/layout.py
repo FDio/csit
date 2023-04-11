@@ -34,10 +34,9 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.telemetry_data import TelemetryData
 from ..utils.utils import show_tooltip, label, sync_checklists, gen_new_url, \
-    generate_options, get_list_group_items
+    generate_options, get_list_group_items, graph_hdrh_latency
 from ..utils.url_processing import url_decode
-from .graphs import graph_trending, graph_hdrh_latency, select_trending_data, \
-    graph_tm_trending
+from .graphs import graph_trending, select_trending_data, graph_tm_trending
 
 
 # Control panel partameters and their default values.
