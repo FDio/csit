@@ -18,6 +18,7 @@ import pandas as pd
 
 from numpy import mean, std
 from copy import deepcopy
+
 from ..utils.constants import Constants as C
 from ..utils.utils import relative_change_stdev
 
