@@ -1887,10 +1887,6 @@ class IPsecUtil:
         sa_id_2 = 200000
         spi_1 = 300000
         spi_2 = 400000
-        dut1_local_outbound_range = ip_network(f"{tunnel_ip1}/8", False).\
-            with_prefixlen
-        dut1_remote_outbound_range = ip_network(f"{tunnel_ip2}/8", False).\
-            with_prefixlen
 
         crypto_key = gen_key(
             IPsecUtil.get_crypto_alg_key_len(crypto_alg)
@@ -1908,16 +1904,27 @@ class IPsecUtil:
 
         IPsecUtil.vpp_ipsec_add_spd(nodes[u"DUT1"], spd_id)
         IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT1"], spd_id, interface1)
-        IPsecUtil.vpp_ipsec_add_spd_entry(
-            nodes[u"DUT1"], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
-            proto=50, laddr_range=dut1_local_outbound_range,
-            raddr_range=dut1_remote_outbound_range
-        )
-        IPsecUtil.vpp_ipsec_add_spd_entry(
-            nodes[u"DUT1"], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
-            proto=50, laddr_range=dut1_remote_outbound_range,
-            raddr_range=dut1_local_outbound_range
-        )
+
+        addr_incr = 1 << (128 - 96) if ip_address(tunnel_ip1).version == 6 \
+            else 1 << (32 - 24)
+        for i in range(n_tunnels//(addr_incr**2)+1):
+            dut1_local_outbound_range = \
+                ip_network(f"{ip_address(tunnel_ip1) + i*(addr_incr**3)}/8",
+                False).with_prefixlen
+            dut1_remote_outbound_range = \
+                ip_network(f"{ip_address(tunnel_ip2) + i*(addr_incr**3)}/8",
+                False).with_prefixlen
+
+            IPsecUtil.vpp_ipsec_add_spd_entry(
+                nodes[u"DUT1"], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
+                proto=50, laddr_range=dut1_local_outbound_range,
+                raddr_range=dut1_remote_outbound_range
+            )
+            IPsecUtil.vpp_ipsec_add_spd_entry(
+                nodes[u"DUT1"], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
+                proto=50, laddr_range=dut1_remote_outbound_range,
+                raddr_range=dut1_local_outbound_range
+            )
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
             nodes[u"DUT1"], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
@@ -1950,16 +1957,24 @@ class IPsecUtil:
 
             IPsecUtil.vpp_ipsec_add_spd(nodes[u"DUT2"], spd_id)
             IPsecUtil.vpp_ipsec_spd_add_if(nodes[u"DUT2"], spd_id, interface2)
-            IPsecUtil.vpp_ipsec_add_spd_entry(
-                nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS,
-                inbound=False, proto=50, laddr_range=dut1_remote_outbound_range,
-                raddr_range=dut1_local_outbound_range
-            )
-            IPsecUtil.vpp_ipsec_add_spd_entry(
-                nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS,
-                inbound=True, proto=50, laddr_range=dut1_local_outbound_range,
-                raddr_range=dut1_remote_outbound_range
-            )
+            for i in range(n_tunnels//(addr_incr**2)+1):
+                dut2_local_outbound_range = \
+                    ip_network(f"{ip_address(tunnel_ip1) + i*(addr_incr**3)}/8",
+                    False).with_prefixlen
+                dut2_remote_outbound_range = \
+                    ip_network(f"{ip_address(tunnel_ip2) + i*(addr_incr**3)}/8",
+                    False).with_prefixlen
+
+                IPsecUtil.vpp_ipsec_add_spd_entry(
+                    nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS,
+                    inbound=False, proto=50, laddr_range=dut2_remote_outbound_range,
+                    raddr_range=dut2_local_outbound_range
+                )
+                IPsecUtil.vpp_ipsec_add_spd_entry(
+                    nodes[u"DUT2"], spd_id, p_hi, PolicyAction.BYPASS,
+                    inbound=True, proto=50, laddr_range=dut2_local_outbound_range,
+                    raddr_range=dut2_remote_outbound_range
+                )
 
             IPsecUtil.vpp_ipsec_add_sad_entries(
                 nodes[u"DUT2"], n_tunnels, sa_id_1, spi_1, crypto_alg,
