@@ -117,9 +117,11 @@ class Constants:
         "container_memif": "LXC/DRC Container Memif",
         "crypto": "IPSec IPv4 Routing",
         "ip4": "IPv4 Routing",
-        "ip6": "IPv6 Routing",
         "ip4_tunnels": "IPv4 Tunnels",
+        "ip6": "IPv6 Routing",
+        "ip6_tunnels": "IPv6 Tunnels",
         "l2": "L2 Ethernet Switching",
+        "lb": "Load Balancer",
         "srv6": "SRv6 Routing",
         "vm_vhost": "VMs vhost-user",
         "nfv_density-dcr_memif-chain_ipsec": "CNF Service Chains Routing IPSec",
@@ -336,3 +338,17 @@ class Constants:
 
     # Default name of downloaded file with selected data.
     TREND_DOWNLOAD_FILE_NAME = "trending_data.csv"
+
+    ############################################################################
+    # Coverage data.
+
+    # The title.
+    COVERAGE_TITLE = "Per Release Coverage Data"
+
+    # The pathname prefix for the application.
+    COVERAGE_ROUTES_PATHNAME_PREFIX = "/coverage/"
+
+    # Default name of downloaded file with selected data.
+    COVERAGE_DOWNLOAD_FILE_NAME = "coverage_data.csv"
+
+    ############################################################################
