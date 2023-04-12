@@ -69,86 +69,86 @@
     - dut_type
     - dut_version
     - version
-- data_type: trending
-  partition: test_type
-  partition_name: hoststack
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - tg_type
-    - result_bandwidth_unit
-    - result_bandwidth_value
-    - result_rate_unit
-    - result_rate_value
-    - result_latency_unit
-    - result_latency_value
-    - start_time
-    - passed
-    - telemetry
-    - test_id
-    - test_type
-    - version
-  categories:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - tg_type
-    - version
-- data_type: iterative
-  partition: test_type
-  partition_name: mrr
-  release: rls2206
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2206
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_receive_rate_rate_avg
-    - result_receive_rate_rate_stdev
-    - result_receive_rate_rate_unit
-    - result_receive_rate_rate_values
-  categories:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - version
-- data_type: iterative
-  partition: test_type
-  partition_name: mrr
-  release: rls2210
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2210
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_receive_rate_rate_avg
-    - result_receive_rate_rate_stdev
-    - result_receive_rate_rate_unit
-    - result_receive_rate_rate_values
-  categories:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - version
+# - data_type: trending
+#   partition: test_type
+#   partition_name: hoststack
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/trending
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - tg_type
+#     - result_bandwidth_unit
+#     - result_bandwidth_value
+#     - result_rate_unit
+#     - result_rate_value
+#     - result_latency_unit
+#     - result_latency_value
+#     - start_time
+#     - passed
+#     - telemetry
+#     - test_id
+#     - test_type
+#     - version
+#   categories:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - tg_type
+#     - version
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: mrr
+#   release: rls2206
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2206
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_receive_rate_rate_avg
+#     - result_receive_rate_rate_stdev
+#     - result_receive_rate_rate_unit
+#     - result_receive_rate_rate_values
+#   categories:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - version
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: mrr
+#   release: rls2210
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2210
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_receive_rate_rate_avg
+#     - result_receive_rate_rate_stdev
+#     - result_receive_rate_rate_unit
+#     - result_receive_rate_rate_values
+#   categories:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - version
 - data_type: iterative
   partition: test_type
   partition_name: mrr
@@ -174,11 +174,81 @@
     - dut_type
     - dut_version
     - version
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: ndrpdr
+#   release: rls2206
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2206
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_pdr_lower_rate_unit
+#     - result_pdr_lower_rate_value
+#     - result_ndr_lower_rate_unit
+#     - result_ndr_lower_rate_value
+#     - result_latency_reverse_pdr_90_hdrh
+#     - result_latency_reverse_pdr_50_hdrh
+#     - result_latency_reverse_pdr_10_hdrh
+#     - result_latency_reverse_pdr_0_hdrh
+#     - result_latency_forward_pdr_90_hdrh
+#     - result_latency_forward_pdr_50_avg
+#     - result_latency_forward_pdr_50_hdrh
+#     - result_latency_forward_pdr_50_unit
+#     - result_latency_forward_pdr_10_hdrh
+#     - result_latency_forward_pdr_0_hdrh
+#   categories:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - version
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: ndrpdr
+#   release: rls2210
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2210
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - start_time
+#     - passed
+#     - test_id
+#     - version
+#     - result_pdr_lower_rate_unit
+#     - result_pdr_lower_rate_value
+#     - result_ndr_lower_rate_unit
+#     - result_ndr_lower_rate_value
+#     - result_latency_reverse_pdr_90_hdrh
+#     - result_latency_reverse_pdr_50_hdrh
+#     - result_latency_reverse_pdr_10_hdrh
+#     - result_latency_reverse_pdr_0_hdrh
+#     - result_latency_forward_pdr_90_hdrh
+#     - result_latency_forward_pdr_50_avg
+#     - result_latency_forward_pdr_50_hdrh
+#     - result_latency_forward_pdr_50_unit
+#     - result_latency_forward_pdr_10_hdrh
+#     - result_latency_forward_pdr_0_hdrh
+#   categories:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - version
 - data_type: iterative
   partition: test_type
   partition_name: ndrpdr
-  release: rls2206
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2206
+  release: rls2302
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
   columns:
     - job
     - build
@@ -209,110 +279,75 @@
     - dut_type
     - dut_version
     - version
-- data_type: iterative
-  partition: test_type
-  partition_name: ndrpdr
-  release: rls2210
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2210
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_pdr_lower_rate_unit
-    - result_pdr_lower_rate_value
-    - result_ndr_lower_rate_unit
-    - result_ndr_lower_rate_value
-    - result_latency_reverse_pdr_90_hdrh
-    - result_latency_reverse_pdr_50_hdrh
-    - result_latency_reverse_pdr_10_hdrh
-    - result_latency_reverse_pdr_0_hdrh
-    - result_latency_forward_pdr_90_hdrh
-    - result_latency_forward_pdr_50_avg
-    - result_latency_forward_pdr_50_hdrh
-    - result_latency_forward_pdr_50_unit
-    - result_latency_forward_pdr_10_hdrh
-    - result_latency_forward_pdr_0_hdrh
-  categories:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - version
-- data_type: iterative
+# - data_type: iterative
+#   partition: test_type
+#   partition_name: hoststack
+#   release: rls2302
+#   path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
+#   columns:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - hosts
+#     - tg_type
+#     - result_bandwidth_unit
+#     - result_bandwidth_value
+#     - result_rate_unit
+#     - result_rate_value
+#     # - result_latency_unit
+#     # - result_latency_value
+#     - start_time
+#     - passed
+#     - telemetry
+#     - test_id
+#     - test_type
+#     - version
+#   categories:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - version
+#   categories:
+#     - job
+#     - build
+#     - dut_type
+#     - dut_version
+#     - tg_type
+#     - version
+- data_type: coverage
   partition: test_type
   partition_name: ndrpdr
   release: rls2302
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - start_time
-    - passed
-    - test_id
-    - version
-    - result_pdr_lower_rate_unit
-    - result_pdr_lower_rate_value
-    - result_ndr_lower_rate_unit
-    - result_ndr_lower_rate_value
-    - result_latency_reverse_pdr_90_hdrh
-    - result_latency_reverse_pdr_50_hdrh
-    - result_latency_reverse_pdr_10_hdrh
-    - result_latency_reverse_pdr_0_hdrh
-    - result_latency_forward_pdr_90_hdrh
-    - result_latency_forward_pdr_50_avg
-    - result_latency_forward_pdr_50_hdrh
-    - result_latency_forward_pdr_50_unit
-    - result_latency_forward_pdr_10_hdrh
-    - result_latency_forward_pdr_0_hdrh
+  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/coverage_rls2302
+  # columns:
+  #   - job
+  #   - build
+  #   - dut_type
+  #   - dut_version
+  #   - hosts
+  #   - start_time
+  #   - passed
+  #   - test_id
+  #   - version
+  #   - result_pdr_lower_rate_unit
+  #   - result_pdr_lower_rate_value
+  #   - result_ndr_lower_rate_unit
+  #   - result_ndr_lower_rate_value
+  #   - result_latency_reverse_pdr_90_hdrh
+  #   - result_latency_reverse_pdr_50_hdrh
+  #   - result_latency_reverse_pdr_10_hdrh
+  #   - result_latency_reverse_pdr_0_hdrh
+  #   - result_latency_forward_pdr_90_hdrh
+  #   - result_latency_forward_pdr_50_avg
+  #   - result_latency_forward_pdr_50_hdrh
+  #   - result_latency_forward_pdr_50_unit
+  #   - result_latency_forward_pdr_10_hdrh
+  #   - result_latency_forward_pdr_0_hdrh
   categories:
     - job
     - build
     - dut_type
     - dut_version
-    - version
-- data_type: iterative
-  partition: test_type
-  partition_name: hoststack
-  release: rls2302
-  path: s3://fdio-docs-s3-cloudfront-index/csit/parquet/iterative_rls2302
-  columns:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - hosts
-    - tg_type
-    - result_bandwidth_unit
-    - result_bandwidth_value
-    - result_rate_unit
-    - result_rate_value
-    # - result_latency_unit
-    # - result_latency_value
-    - start_time
-    - passed
-    - telemetry
-    - test_id
-    - test_type
-    - version
-  categories:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - version
-  categories:
-    - job
-    - build
-    - dut_type
-    - dut_version
-    - tg_type
     - version
