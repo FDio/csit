@@ -99,6 +99,12 @@ def init_app():
             data_iterative=data["iterative"]
         )
 
+        from .coverage.coverage import init_coverage
+        app = init_coverage(
+            app,
+            data_coverage=data["coverage"]
+        )
+
     return app
 
 
