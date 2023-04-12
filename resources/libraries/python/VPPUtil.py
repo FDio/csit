@@ -410,3 +410,20 @@ class VPPUtil:
             reply = papi_exec.add(cmd, **args).get_reply()
 
         return reply[u"next_index"]
+
+    @staticmethod
+    def vpp_set_neighbor_limit_on_all_duts(nodes, count):
+        """VPP set neighbor count limit on all DUTs in the given topology.
+
+        :param nodes: Nodes in the topology.
+        :param count: Neighbor count need to set.
+        :type nodes: dict
+        :type count: int
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                cmd = f"set ip neighbor-config ip4 limit {count}"
+                PapiSocketExecutor.run_cli_cmd(node, cmd)
+
+                cmd = f"set ip neighbor-config ip6 limit {count}"
+                PapiSocketExecutor.run_cli_cmd(node, cmd)
