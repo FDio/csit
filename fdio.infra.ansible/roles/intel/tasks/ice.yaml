@@ -1,7 +1,7 @@
 ---
-# file: roles/intel/tasks/ice.yaml
+# file: tasks/ice.yaml
 
-- name: Inst - Get ice Network Adapter Driver
+- name: Get ice Network Adapter Driver
   ansible.builtin.uri:
     url: "{{ intel_sourceforge_download_url }}/{{ intel_ice_url[ice] }}"
     follow_redirects: "all"
@@ -12,7 +12,7 @@
   tags:
     - intel-inst
 
-- name: Inst - Extract ice Network Adapter Driver
+- name: Extract ice Network Adapter Driver
   ansible.builtin.unarchive:
     remote_src: true
     src: "{{ intel_extract_dir }}/ice-{{ ice }}.tar.gz"
@@ -22,7 +22,7 @@
   tags:
     - intel-inst
 
-- name: Inst - ice Network Adapter Driver
+- name: Install ice Network Adapter Driver
   ansible.builtin.command: "{{ item }}"
   args:
     chdir: "{{ intel_extract_dir }}/ice-{{ ice }}/src"
@@ -36,7 +36,7 @@
   tags:
     - intel-inst
 
-- name: Inst - Get Dynamic Device Personalization (DDP) Package
+- name: Get Dynamic Device Personalization (DDP) Package
   ansible.builtin.get_url:
     url: "{{ intel_download_url }}/{{ intel_ddp_url[ddp] }}"
     dest: "{{ intel_extract_dir }}/800-Series-Comms-Binary-Package-{{ ddp }}.zip"
@@ -44,7 +44,7 @@
   tags:
     - intel-inst
 
-- name: Inst - Extract Dynamic Device Personalization (DDP) Package
+- name: Extract Dynamic Device Personalization (DDP) Package
   ansible.builtin.unarchive:
     remote_src: true
     src: "{{ intel_extract_dir }}/800-Series-Comms-Binary-Package-{{ ddp }}.zip"
@@ -54,7 +54,7 @@
   tags:
     - intel-inst
 
-- name: Inst - Extract Dynamic Device Personalization (DDP) Package
+- name: Extract Dynamic Device Personalization (DDP) Package
   ansible.builtin.unarchive:
     remote_src: true
     src: "{{ intel_extract_dir }}/ice_comms-{{ ddp }}.zip"
@@ -63,7 +63,7 @@
   tags:
     - intel-inst
 
-- name: Inst - Copy Dynamic Device Personalization (DDP) Package
+- name: Copy Dynamic Device Personalization (DDP) Package
   ansible.builtin.copy:
     src: "{{ intel_extract_dir }}/ice_comms-{{ ddp }}.pkg"
     dest: "/lib/firmware/updates/intel/ice/ddp/ice-{{ ddp }}.pkg"
@@ -72,7 +72,7 @@
   tags:
     - intel-inst
 
-- name: Inst - Link Dynamic Device Personalization (DDP) Package
+- name: Link Dynamic Device Personalization (DDP) Package
   ansible.builtin.file:
     src: "ice-{{ ddp }}.pkg"
     dest: "/lib/firmware/updates/intel/ice/ddp/ice.pkg"
@@ -80,7 +80,7 @@
   tags:
     - intel-inst
 
-- name: Inst - Extract Dynamic Device Personalization (DDP) Package (cleanup)
+- name: Extract Dynamic Device Personalization (DDP) Package (cleanup)
   ansible.builtin.file:
     path: "{{ item }}"
     state: absent

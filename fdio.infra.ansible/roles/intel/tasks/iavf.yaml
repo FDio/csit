@@ -1,7 +1,7 @@
 ---
-# file: roles/intel/tasks/iavf.yaml
+# file: tasks/iavf.yaml
 
-- name: Inst - Get iavf Network Adapter Driver
+- name: Get iavf Network Adapter Driver
   ansible.builtin.uri:
     url: "{{ intel_sourceforge_download_url }}/{{ intel_iavf_url[iavf] }}"
     follow_redirects: "all"
@@ -12,7 +12,7 @@
   tags:
     - intel-inst
 
-- name: Inst - Extract iavf Network Adapter Driver
+- name: Extract iavf Network Adapter Driver
   ansible.builtin.unarchive:
     remote_src: true
     src: "{{ intel_extract_dir }}/iavf-{{ iavf }}.tar.gz"
@@ -22,7 +22,7 @@
   tags:
     - intel-inst
 
-- name: Inst - iavf Network Adapter Driver
+- name: Install iavf Network Adapter Driver
   ansible.builtin.command: "{{ item }}"
   args:
     chdir: "{{ intel_extract_dir }}/iavf-{{ iavf }}/src"

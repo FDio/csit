@@ -1,7 +1,7 @@
 ---
-# file: roles/intel/tasks/main.yaml
+# file: tasks/main.yaml
 
-- name: Inst - Update Package Cache (APT)
+- name: Update Package Cache (APT)
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
@@ -10,14 +10,14 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Prerequisites
+- name: Install Prerequisites
   ansible.builtin.package:
     name: "{{ packages | flatten(levels=1) }}"
     state: latest
   tags:
     - intel-inst-drivers
 
-- name: Inst - Check Presence of Intel Ethernet 700 Series
+- name: Check Presence of Intel Ethernet 700 Series
   ansible.builtin.shell: "lspci -d 8086:1583; lspci -d 8086:1585; lspci -d 8086:1572; lspci -d 8086:158a; lspci -d 8086:158b"
   register: intel_700_pcis
   failed_when: false
@@ -25,7 +25,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Check Presence of Intel Ethernet 800 Series
+- name: Check Presence of Intel Ethernet 800 Series
   ansible.builtin.shell: "lspci -d 8086:1592; lspci -d 8086:1891"
   register: intel_800_pcis
   failed_when: false
@@ -33,7 +33,15 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Get Intel Ethernet 700 Series driver versions
+- name: Check Presence of Intel DSA
+  ansible.builtin.shell: "lspci -d 8086:0b25"
+  register: intel_dsa_pcis
+  failed_when: false
+  changed_when: false
+  tags:
+    - intel-inst-drivers
+
+- name: Get Intel Ethernet 700 Series driver versions
   ansible.builtin.set_fact:
     i40e: "{{ intel_700_compatibility_matrix[intel_700_matrix]['i40e'] }}"
     iavf: "{{ intel_700_compatibility_matrix[intel_700_matrix]['iavf'] }}"
@@ -43,7 +51,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Get Intel Ethernet 800 Series driver versions
+- name: Get Intel Ethernet 800 Series driver versions
   ansible.builtin.set_fact:
     ice: "{{ intel_800_compatibility_matrix[intel_800_matrix]['ice'] }}"
     ddp: "{{ intel_800_compatibility_matrix[intel_800_matrix]['ddp'] }}"
@@ -54,7 +62,15 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Driver Intel Ethernet 700 Series
+- name: Get Intel DSA driver versions
+  ansible.builtin.set_fact:
+    dsa: "{{ intel_dsa_compatibility_matrix['dsa'] }}"
+  when: >
+    intel_dsa_matrix is defined
+  tags:
+    - intel-inst-drivers
+
+- name: Driver Intel Ethernet 700 Series
   import_tasks: i40e.yaml
   when: >
     intel_700_pcis.stdout_lines | length > 0 and
@@ -62,7 +78,7 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Driver Intel Ethernet 800 Series
+- name: Driver Intel Ethernet 800 Series
   import_tasks: ice.yaml
   when: >
     intel_800_pcis.stdout_lines | length > 0 and
@@ -70,12 +86,20 @@
   tags:
     - intel-inst-drivers
 
-- name: Inst - Driver Intel iAVF
+- name: Driver Intel iAVF
   import_tasks: iavf.yaml
   when: >
     (intel_700_pcis.stdout_lines | length > 0 and
-    intel_700_matrix is defined ) or
+    intel_700_matrix is defined) or
     (intel_800_pcis.stdout_lines | length > 0 and
     intel_800_matrix is defined)
+  tags:
+    - intel-inst-drivers
+
+- name: Driver Intel DSA
+  import_tasks: dsa.yaml
+  when: >
+    intel_dsa_pcis.stdout_lines | length > 0 and
+    intel_dsa_matrix is defined
   tags:
     - intel-inst-drivers
