@@ -32,3 +32,4 @@ cpu_microarchitecture: "sapphirerapids"
 intel_700_matrix: "dpdk22.07"
 intel_800_matrix: "dpdk22.07"
 mellanox_matrix: "dpdk22.07"
+intel_dsa_matrix: true

@@ -1,0 +1,39 @@
+---
+# file: tasks/dsa.yaml
+
+- name: Get DSA Driver
+  ansible.builtin.uri:
+    url: "{{ intel_dsa_url[dsa] }}"
+    follow_redirects: "all"
+    force: true
+    dest: "{{ intel_extract_dir }}/accel-config-v{{ dsa }}.tar.gz"
+    mode: "0644"
+  failed_when: false
+  tags:
+    - intel-inst
+
+- name: Extract DSA Driver
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: "{{ intel_extract_dir }}/accel-config-v{{ dsa }}.tar.gz"
+    dest: "{{ intel_extract_dir }}/"
+    creates: "{{ intel_extract_dir }}/idxd-config-accel-config-v{{ dsa }}"
+  register: intel_driver_extracted
+  tags:
+    - intel-inst
+
+- name: Install DSA Driver
+  ansible.builtin.command: "{{ item }}"
+  args:
+    chdir: "{{ intel_extract_dir }}/idxd-config-accel-config-v{{ dsa }}"
+  become: true
+  with_items:
+    - "./autogen.sh"
+    - "./configure CFLAGS='-g -O2' --prefix=/usr --sysconfdir=/etc --libdir=/usr/lib64"
+    - "make"
+    - "make check"
+    - "make install"
+  when:
+    - intel_driver_extracted
+  tags:
+    - intel-inst
