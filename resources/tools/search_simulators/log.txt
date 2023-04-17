@@ -1,0 +1,901 @@
+optimized search, stretch measurer, printing
+config: Config(criteria=Criteria(criteria={Criterion(loss_ratio=0.005, exceed_ratio=0.1, relative_width=0.001, single_duration_min=1.6, single_duration_max=8.0, sum_duration_min=31.0, intermediate_phases=3, expansion_coefficient=2), Criterion(loss_ratio=0.0, exceed_ratio=0.0, relative_width=0.01, single_duration_min=2.0, single_duration_max=5.0, sum_duration_min=11.0, intermediate_phases=1, expansion_coefficient=8), Criterion(loss_ratio=0.0, exceed_ratio=0.8, relative_width=0.003, single_duration_min=1.0, single_duration_max=3.5, sum_duration_min=61.0, intermediate_phases=2, expansion_coefficient=4)}), min_load=10000.0, max_load=1000000000.0, search_duration_max=1800.0, warmup_duration=None)
+DEBUG:root:Init ratio 0.005 duration 1.6 width int_width=8
+DEBUG:root:First measurement at max rate: int_load=11508
+DEBUG:root:Measured d=1.6,il=11508,lr=0.90001051375
+DEBUG:root:Second measurement at (corrected) mrr: int_load=9211
+DEBUG:root:Measured d=1.6,il=9211,lr=0.03684639969820206
+DEBUG:root:Third measurement at (corrected) mrr2: int_load=9178
+DEBUG:root:Measured d=1.6,il=9178,lr=0.023227879556368087
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: No current lower bound, extending down: int_load=9170
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: No current lower bound, extending down: int_load=9174
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: No current lower bound, extending down: int_load=9176
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: No current lower bound, extending down: int_load=9158
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: No current lower bound, extending down: int_load=9168
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: No current lower bound, extending down: int_load=9166
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=9158,lr=0.017222130690211203
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: No current lower bound, extending down: int_load=9150
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: No current lower bound, extending down: int_load=9154
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: No current lower bound, extending down: int_load=9156
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: No current lower bound, extending down: int_load=8998
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: No current lower bound, extending down: int_load=9148
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: No current lower bound, extending down: int_load=9146
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=8998,lr=0.0014112726810438067
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: No current lower bound, extending down: int_load=7718
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: No current lower bound, extending down: int_load=8988
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: No current lower bound, extending down: int_load=8986
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=7718,lr=1.1082062316830134e-07
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: No current lower bound, extending down: int_load=-2522
+DEBUG:root:Min not excluded, rounding to minimum.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: No current lower bound, extending down: int_load=7708
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: No current lower bound, extending down: int_load=7706
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=0,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=2598.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=7706.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=2598,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=5158.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=7706.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=5158,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=6438.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=7706.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=6438,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7078.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=7706.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=7078,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7398.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=7706.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=7398,lr=6.105402322507254e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7238.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: No current lower bound, extending down: int_load=7388
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=7386.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=7238,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7318.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=7386.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=7318,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7358.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=7386.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=7358,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7378.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=7386.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=7378,lr=3.1143965503199744e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Halving available: int_load=7368
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7366.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=1.0,il=7366,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Halving available: int_load=7368
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Halving available: int_load=7372
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=7368,lr=2.5165681092612335e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Lowerbound re-measurement available: int_load=7358
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.16666666666666666 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=7358,lr=1.2709354686201521e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7338.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: No current lower bound, extending down: int_load=7348
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.16666666666666666 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=2.0,il=7338,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.16666666666666666 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=7348,lr=3.851142210910191e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: No current lower bound, extending down: int_load=7268
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Halving available: int_load=7342
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=7268,lr=1.3906784796274017e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7258.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: No current lower bound, extending down: int_load=6628
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6628,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7258.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: No current upper bound, extending up: int_load=6634
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6628,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7258.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6948.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=6634,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7258.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6948.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: No current upper bound, extending up: int_load=6658
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=6658,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7258.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6948.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: No current upper bound, extending up: int_load=6754
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=6754,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7258.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6948.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: No current upper bound, extending up: int_load=7138
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6948,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=7258.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6948.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6948,lr=1.915404255645175e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to extend down: int_load=6928.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6788.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6788,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to extend down: int_load=6928.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6788.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6788,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to extend down: int_load=6928.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6868.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6868,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to extend down: int_load=6928.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6868.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6868,lr=2.0750037064753706e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to extend down: int_load=6848.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6828.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=7256.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6828,lr=4.319446385195702e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Preferring to bisect: int_load=6808.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6808.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to extend down: int_load=6816.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6808,lr=2.203371352065339e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6798.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Preferring to bisect: int_load=6796.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=1.0,il=6796,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6798.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6798,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Preferring to bisect: int_load=6798.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=5.0,il=6798,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7138,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: No current upper bound, extending up: int_load=8674
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=8674,lr=2.1944694328220734e-05
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Continue investigating extended hi candi.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=8674,lr=2.189602567812488e-05
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Not extending down, so doing bisect: int_load=7906
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7906,lr=1.259248564196917e-07
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Not extending down, so doing bisect: int_load=7906
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7906,lr=5.246869017487153e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7522.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7522,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7714.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7714,lr=6.357998957161012e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7714.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7714,lr=7.629598748593214e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7618.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7618,lr=1.399782521388782e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7618.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7618,lr=0.0
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7666.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7666,lr=4.002457829303819e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7666.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7666,lr=2.6683052195358794e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7642.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7642,lr=8.19944180113421e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7642.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7642,lr=2.7331472670447366e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7630.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7630,lr=2.766156807260874e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7630.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7630,lr=4.149235210891311e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7624.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7624,lr=1.3914054001556705e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Preferring to bisect: int_load=7624.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=3.5,il=7624,lr=1.3914054001556705e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Halving available: int_load=7621
+DEBUG:root:Measured d=3.5,il=7621,lr=2.7911753418861832e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Halving available: int_load=7621
+DEBUG:root:Measured d=3.5,il=7621,lr=2.7911753418861832e-08
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9150.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9154.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=1.6,il=9150,lr=0.015232369330547885
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9134.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9146.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: No current lower bound, extending down: int_load=9148
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=1.6,il=9134,lr=0.011865506236497644
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to extend down: int_load=9102.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9130.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: No current lower bound, extending down: int_load=9132
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=1.6,il=9102,lr=0.0071480686376662935
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to bisect: int_load=9038.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9098.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: No current lower bound, extending down: int_load=9100
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=1.6,il=9038,lr=0.0026048137172298784
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to bisect: int_load=9070.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9098.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=1.6,il=9070,lr=0.00431301284711989
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to bisect: int_load=9086.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9098.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=1.6,il=9086,lr=0.005537212610137808
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Preferring to bisect: int_load=9078.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Preferring to extend down: int_load=9082.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: No current lower bound, extending down: int_load=9084
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=1.6,il=9078,lr=0.004885983554496804
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Halving available: int_load=9082
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=4.297348283955867,il=9082,lr=0.0052051213267659425
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Lowerbound re-measurement available: int_load=9078
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: No current lower bound, extending down: int_load=9080
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: No current lower bound, extending down: int_load=9081
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=4.297348283955867,il=9078,lr=0.004886830610822154
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Halving available: int_load=9080
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=8.0,il=9080,lr=0.005043917530320867
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 0.25 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Lowerbound re-measurement available: int_load=9078
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: No current lower bound, extending down: int_load=9079
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=8.0,il=9078,lr=0.004888291807008372
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 0.25 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Lowerbound re-measurement available: int_load=9078
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Continue investigating extended lo candi.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=8.0,il=9078,lr=0.004887618092913247
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 0.25 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Halving available: int_load=9079
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=8.0,il=9079,lr=0.004966677711534633
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 0.125 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Width 0.25 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Halving available: int_load=9079
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=8.0,il=9079,lr=0.004961142876947041
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 0.125 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Width 0.25 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Lowerbound re-measurement available: int_load=9079
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=8.0,il=9079,lr=0.004965612774146051
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 0.125 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Width 0.25 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Lowerbound re-measurement available: int_load=9079
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Measured d=8.0,il=9079,lr=0.0049615177349078225
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Width 0.125 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=1.6: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Width 0.25 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=4.297348283955867: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=11.542001421011516: Target achieved.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.005,er=0.1,sd=31.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=2.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Width 1.0 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.0,sd=11.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Width 0.8333333333333334 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=1.0: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Width 0.5 goals small enough, phase can end now.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=7.810249675906655: Target achieved.
+DEBUG:root:Tracker lr=0.0,er=0.8,sd=61.0: Doing nothing waiting for clo or chi.
+DEBUG:root:Search done.
+result string: {Criterion(loss_ratio=0.005, exceed_ratio=0.1, relative_width=0.001, single_duration_min=1.6, single_duration_max=8.0, sum_duration_min=31.0, intermediate_phases=3, expansion_coefficient=2): DiscreteInterval(low_end=LoadStats(float_load=88033344.57515126, int_load=9079, spec_to_stat={TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=8, float_width=0.007971481902654998), single_duration_whole=1.6, sum_duration_whole=1.6): TargetStat(abide_dursum_full=34.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=4, float_width=0.003993715834409857), single_duration_whole=4.297348283955867, sum_duration_whole=4.297348283955867): TargetStat(abide_dursum_full=34.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=2, float_width=0.0019988556291176585), single_duration_whole=8.0, sum_duration_whole=11.542001421011516): TargetStat(abide_dursum_full=34.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=1, float_width=0.000999927742303084), single_duration_whole=8.0, sum_duration_whole=31.0): TargetStat(abide_dursum_full=34.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=20, float_width=0.01980971722776946), single_duration_whole=2.0, sum_duration_whole=2.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=34.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=10, float_width=0.009954403690299601), single_duration_whole=5.0, sum_duration_whole=11.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=34.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=12, float_width=0.011933361903565516), single_duration_whole=1.0, sum_duration_whole=1.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=34.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=6, float_width=0.005984588602151863), single_duration_whole=3.5, sum_duration_whole=7.810249675906655): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=34.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=3, float_width=0.0029967846602254322), single_duration_whole=3.5, sum_duration_whole=61.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=34.0, abide_dursum_short=0.0, exceed_dursum_short=0.0)}), high_end=LoadStats(float_load=88121459.66736491, int_load=9080, spec_to_stat={TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=8, float_width=0.007971481902654998), single_duration_whole=1.6, sum_duration_whole=1.6): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=8.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=4, float_width=0.003993715834409857), single_duration_whole=4.297348283955867, sum_duration_whole=4.297348283955867): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=8.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=2, float_width=0.0019988556291176585), single_duration_whole=8.0, sum_duration_whole=11.542001421011516): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=8.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=1, float_width=0.000999927742303084), single_duration_whole=8.0, sum_duration_whole=31.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=8.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=20, float_width=0.01980971722776946), single_duration_whole=2.0, sum_duration_whole=2.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=8.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=10, float_width=0.009954403690299601), single_duration_whole=5.0, sum_duration_whole=11.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=8.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=12, float_width=0.011933361903565516), single_duration_whole=1.0, sum_duration_whole=1.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=8.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=6, float_width=0.005984588602151863), single_duration_whole=3.5, sum_duration_whole=7.810249675906655): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=8.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=3, float_width=0.0029967846602254322), single_duration_whole=3.5, sum_duration_whole=61.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=8.5, abide_dursum_short=0.0, exceed_dursum_short=0.0)})), Criterion(loss_ratio=0.0, exceed_ratio=0.0, relative_width=0.01, single_duration_min=2.0, single_duration_max=5.0, sum_duration_min=11.0, intermediate_phases=1, expansion_coefficient=8): DiscreteInterval(low_end=LoadStats(float_load=8986643.16510667, int_load=6798, spec_to_stat={TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=8, float_width=0.007971481902654998), single_duration_whole=1.6, sum_duration_whole=1.6): TargetStat(abide_dursum_full=11.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=4, float_width=0.003993715834409857), single_duration_whole=4.297348283955867, sum_duration_whole=4.297348283955867): TargetStat(abide_dursum_full=11.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=2, float_width=0.0019988556291176585), single_duration_whole=8.0, sum_duration_whole=11.542001421011516): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=11.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=1, float_width=0.000999927742303084), single_duration_whole=8.0, sum_duration_whole=31.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=11.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=20, float_width=0.01980971722776946), single_duration_whole=2.0, sum_duration_whole=2.0): TargetStat(abide_dursum_full=11.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=10, float_width=0.009954403690299601), single_duration_whole=5.0, sum_duration_whole=11.0): TargetStat(abide_dursum_full=11.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=12, float_width=0.011933361903565516), single_duration_whole=1.0, sum_duration_whole=1.0): TargetStat(abide_dursum_full=11.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=6, float_width=0.005984588602151863), single_duration_whole=3.5, sum_duration_whole=7.810249675906655): TargetStat(abide_dursum_full=11.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=3, float_width=0.0029967846602254322), single_duration_whole=3.5, sum_duration_whole=61.0): TargetStat(abide_dursum_full=11.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0)}), high_end=LoadStats(float_load=9076999.280238725, int_load=6808, spec_to_stat={TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=8, float_width=0.007971481902654998), single_duration_whole=1.6, sum_duration_whole=1.6): TargetStat(abide_dursum_full=5.5, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=4, float_width=0.003993715834409857), single_duration_whole=4.297348283955867, sum_duration_whole=4.297348283955867): TargetStat(abide_dursum_full=5.5, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=2, float_width=0.0019988556291176585), single_duration_whole=8.0, sum_duration_whole=11.542001421011516): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=5.5, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=1, float_width=0.000999927742303084), single_duration_whole=8.0, sum_duration_whole=31.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=5.5, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=20, float_width=0.01980971722776946), single_duration_whole=2.0, sum_duration_whole=2.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=5.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=10, float_width=0.009954403690299601), single_duration_whole=5.0, sum_duration_whole=11.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=5.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=12, float_width=0.011933361903565516), single_duration_whole=1.0, sum_duration_whole=1.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=5.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=6, float_width=0.005984588602151863), single_duration_whole=3.5, sum_duration_whole=7.810249675906655): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=5.5, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=3, float_width=0.0029967846602254322), single_duration_whole=3.5, sum_duration_whole=61.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=5.5, abide_dursum_short=0.0, exceed_dursum_short=0.0)})), Criterion(loss_ratio=0.0, exceed_ratio=0.8, relative_width=0.003, single_duration_min=1.0, single_duration_max=3.5, sum_duration_min=61.0, intermediate_phases=2, expansion_coefficient=4): DiscreteInterval(low_end=LoadStats(float_load=10000.0, int_load=0, spec_to_stat={TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=8, float_width=0.007971481902654998), single_duration_whole=1.6, sum_duration_whole=1.6): TargetStat(abide_dursum_full=2.5, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=4, float_width=0.003993715834409857), single_duration_whole=4.297348283955867, sum_duration_whole=4.297348283955867): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=2.5, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=2, float_width=0.0019988556291176585), single_duration_whole=8.0, sum_duration_whole=11.542001421011516): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=2.5, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=1, float_width=0.000999927742303084), single_duration_whole=8.0, sum_duration_whole=31.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=2.5, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=20, float_width=0.01980971722776946), single_duration_whole=2.0, sum_duration_whole=2.0): TargetStat(abide_dursum_full=2.5, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=10, float_width=0.009954403690299601), single_duration_whole=5.0, sum_duration_whole=11.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=2.5, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=12, float_width=0.011933361903565516), single_duration_whole=1.0, sum_duration_whole=1.0): TargetStat(abide_dursum_full=2.5, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=6, float_width=0.005984588602151863), single_duration_whole=3.5, sum_duration_whole=7.810249675906655): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=2.5, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=3, float_width=0.0029967846602254322), single_duration_whole=3.5, sum_duration_whole=61.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=2.5, exceed_dursum_short=0.0)}), high_end=LoadStats(float_load=1000000000.0, int_load=11508, spec_to_stat={TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=8, float_width=0.007971481902654998), single_duration_whole=1.6, sum_duration_whole=1.6): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=2.1, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=4, float_width=0.003993715834409857), single_duration_whole=4.297348283955867, sum_duration_whole=4.297348283955867): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=2.1), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=2, float_width=0.0019988556291176585), single_duration_whole=8.0, sum_duration_whole=11.542001421011516): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=2.1), TargetSpec(loss_ratio=0.005, exceed_ratio=0.1, discrete_width=DiscreteWidth(int_width=1, float_width=0.000999927742303084), single_duration_whole=8.0, sum_duration_whole=31.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=2.1), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=20, float_width=0.01980971722776946), single_duration_whole=2.0, sum_duration_whole=2.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=2.1, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.0, discrete_width=DiscreteWidth(int_width=10, float_width=0.009954403690299601), single_duration_whole=5.0, sum_duration_whole=11.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=2.1), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=12, float_width=0.011933361903565516), single_duration_whole=1.0, sum_duration_whole=1.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=2.1, abide_dursum_short=0.0, exceed_dursum_short=0.0), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=6, float_width=0.005984588602151863), single_duration_whole=3.5, sum_duration_whole=7.810249675906655): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=2.1), TargetSpec(loss_ratio=0.0, exceed_ratio=0.8, discrete_width=DiscreteWidth(int_width=3, float_width=0.0029967846602254322), single_duration_whole=3.5, sum_duration_whole=61.0): TargetStat(abide_dursum_full=0.0, exceed_dursum_full=0.0, abide_dursum_short=0.0, exceed_dursum_short=2.1)}))}
+search took 308.0946965679117 seconds 74 measurements
