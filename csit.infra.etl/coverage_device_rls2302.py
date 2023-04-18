@@ -31,7 +31,7 @@ from pyspark.sql.types import StructType
 
 S3_LOGS_BUCKET="fdio-logs-s3-cloudfront-index"
 S3_DOCS_BUCKET="fdio-docs-s3-cloudfront-index"
-PATH=f"s3://{S3_LOGS_BUCKET}/vex-yul-rot-jenkins-1/csit-*-perf-*"
+PATH=f"s3://{S3_LOGS_BUCKET}/vex-yul-rot-jenkins-1/csit-vpp-device-*"
 SUFFIX="info.json.gz"
 IGNORE_SUFFIX=[
     "suite.info.json.gz",
