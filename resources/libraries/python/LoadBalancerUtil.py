@@ -108,9 +108,10 @@ class LoadBalancerUtil:
             target_port = kwargs.pop(u"target_port", 0)
             node_port = kwargs.pop(u"node_port", 0)
             new_len = kwargs.pop(u"new_len", 1024)
+            src_ip_sticky = kwargs.pop(u"src_ip_sticky", 0)
             is_del = kwargs.pop(u"is_del", 0)
 
-            cmd = u"lb_add_del_vip"
+            cmd = u"lb_add_del_vip_v2"
             err_msg = f"Failed to add vip on host {node[u'host']}"
 
             vip_addr = ip_address(vip_addr).packed
@@ -127,7 +128,8 @@ class LoadBalancerUtil:
                 target_port=target_port,
                 node_port=node_port,
                 new_flows_table_length=int(new_len),
-                is_del=is_del
+                src_ip_sticky=src_ip_sticky,
+                is_del=is_del,
             )
 
             with PapiSocketExecutor(node) as papi_exec:

@@ -879,7 +879,7 @@ class IPsecUtil:
         local_net = ip_network(laddr_range, strict=False)
         remote_net = ip_network(raddr_range, strict=False)
 
-        cmd = u"ipsec_spd_entry_add_del"
+        cmd = u"ipsec_spd_entry_add_del_v2"
 
         spd_entry = dict(
             spd_id=int(spd_id),

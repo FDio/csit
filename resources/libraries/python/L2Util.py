@@ -156,7 +156,7 @@ class L2Util:
         :type learn: bool
         :type arp_term: bool
         """
-        cmd = u"bridge_domain_add_del"
+        cmd = u"bridge_domain_add_del_v2"
         err_msg = f"Failed to create L2 bridge domain on host {node[u'host']}"
         args = dict(
             bd_id=int(bd_id),
@@ -222,7 +222,7 @@ class L2Util:
         sw_if_index1 = Topology.get_interface_sw_index(node, port_1)
         sw_if_index2 = Topology.get_interface_sw_index(node, port_2)
 
-        cmd1 = u"bridge_domain_add_del"
+        cmd1 = u"bridge_domain_add_del_v2"
         args1 = dict(
             bd_id=int(bd_id),
             flood=True,
