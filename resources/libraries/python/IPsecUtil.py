@@ -879,7 +879,7 @@ class IPsecUtil:
         local_net = ip_network(laddr_range, strict=False)
         remote_net = ip_network(raddr_range, strict=False)
 
-        cmd = u"ipsec_spd_entry_add_del"
+        cmd = u"ipsec_spd_entry_add_del_v2"
 
         spd_entry = dict(
             spd_id=int(spd_id),
@@ -887,7 +887,7 @@ class IPsecUtil:
             is_outbound=not inbound,
             sa_id=int(sa_id) if sa_id else 0,
             policy=int(action),
-            protocol=int(proto) if proto else 0,
+            protocol=255 if proto is None else int(proto),
             remote_address_start=IPAddress.create_ip_address_object(
                 remote_net.network_address
             ),
