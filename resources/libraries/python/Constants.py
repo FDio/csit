@@ -312,7 +312,8 @@ class Constants:
         u"Intel-E822CQ": 24500000000,
         u"Intel-E810CQ": 100000000000,
         u"Mellanox-CX556A": 100000000000,
-        u"Mellanox-CX7VEAT": 200000000000,
+        # Change back to 200G after upgrading TRex from v3.00 to v3.03 or later.
+        u"Mellanox-CX7VEAT": 100000000000,
         u"Amazon-Nitro-50G": 10000000000,
         u"virtual": 100000000,
     }
