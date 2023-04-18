@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4-loadbalancer-maglev",
       "revId": "e6a4fe9739c7b26eff10b359119f68d625e0c113",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6df3b78_c50eb23f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-04-18T11:57:11Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4-loadbalancer-maglev",
+      "revId": "e6a4fe9739c7b26eff10b359119f68d625e0c113",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
