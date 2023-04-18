@@ -125,7 +125,7 @@ class Layout:
             if dut == "dpdk":
                 area = "dpdk"
             else:
-                area = "-".join(lst_test_id[3:-2])
+                area = ".".join(lst_test_id[3:-2])
             suite = lst_test_id[-2].replace("2n1l-", "").replace("1n1l-", "").\
                 replace("2n-", "")
             test = lst_test_id[-1]
@@ -1312,7 +1312,7 @@ class Layout:
             Input("plot-btn-download", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_trending_data(store_sel, _):
+        def _download_iterative_data(store_sel, _):
             """Download the data
 
             :param store_sel: List of tests selected by user stored in the

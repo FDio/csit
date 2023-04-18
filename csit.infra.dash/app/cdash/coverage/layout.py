@@ -92,7 +92,7 @@ class Layout:
             if dut == "dpdk":
                 area = "dpdk"
             else:
-                area = "-".join(lst_test_id[3:-2])
+                area = ".".join(lst_test_id[3:-2])
             suite = lst_test_id[-2].replace("2n1l-", "").replace("1n1l-", "").\
                 replace("2n-", "")
             test = lst_test_id[-1]

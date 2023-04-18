@@ -124,12 +124,23 @@ class Constants:
         "lb": "Load Balancer",
         "srv6": "SRv6 Routing",
         "vm_vhost": "VMs vhost-user",
-        "nfv_density-dcr_memif-chain_ipsec": "CNF Service Chains Routing IPSec",
-        "nfv_density-vm_vhost-chain_dot1qip4vxlan":"VNF Service Chains Tunnels",
-        "nfv_density-vm_vhost-chain": "VNF Service Chains Routing",
-        "nfv_density-dcr_memif-pipeline": "CNF Service Pipelines Routing",
-        "nfv_density-dcr_memif-chain": "CNF Service Chains Routing",
-        "hoststack": "Hoststack"
+        "nfv_density.dcr_memif.chain_ipsec": "CNF Service Chains Routing IPSec",
+        "nfv_density.vm_vhost.chain_dot1qip4vxlan":"VNF Service Chains Tunnels",
+        "nfv_density.vm_vhost.chain": "VNF Service Chains Routing",
+        "nfv_density.dcr_memif.pipeline": "CNF Service Pipelines Routing",
+        "nfv_density.dcr_memif.chain": "CNF Service Chains Routing",
+        "hoststack": "Hoststack",
+        "flow": "Flow",
+        "l2bd": "L2 Bridge Domain",
+        "crypto.ethip4": "IPSec IPv4 Routing",
+        "crypto.ethip6": "IPSec IPv6 Routing",
+        "interfaces": "Interfaces",
+        "ip4_tunnels.lisp": "IPv4 Tunnels LISP",
+        "ip6_tunnels.lisp": "IPv6 Tunnels LISP",
+        "l2patch": "L2 Patch",
+        "l2xc": "L2 Cross Connect",
+        "vm_vhost.ethip4": "VMs vhost-user IPv4 Routing",
+        "vm_vhost.ethip6": "VMs vhost-user IPv6 Routing"
     }
 
     # URL style.

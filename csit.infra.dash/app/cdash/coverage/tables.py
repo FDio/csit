@@ -75,8 +75,10 @@ def select_coverage_data(
                 inplace=True
             )
 
+    ttype = df["test_type"].to_list()[0]
+
     # Prepare the coverage data
-    def _latency(hdrh_string: str, percentile: float) -> int:
+    def _laten(hdrh_string: str, percentile: float) -> int:
         """Get latency from HDRH string for given percentile.
 
         :param hdrh_string: Encoded HDRH string.
@@ -105,109 +107,118 @@ def select_coverage_data(
         return test_id.split(".")[-1].replace("-ndrpdr", "")
 
     cov = pd.DataFrame()
-    cov["suite"] = df.apply(lambda row: _get_suite(row["test_id"]), axis=1)
+    cov["Suite"] = df.apply(lambda row: _get_suite(row["test_id"]), axis=1)
     cov["Test Name"] = df.apply(lambda row: _get_test(row["test_id"]), axis=1)
-    cov["Throughput_Unit"] = df["result_pdr_lower_rate_unit"]
-    cov["Throughput_NDR"] = df.apply(
-        lambda row: row["result_ndr_lower_rate_value"] / 1e6, axis=1
-    )
-    cov["Throughput_NDR_Mbps"] = df.apply(
-        lambda row: row["result_ndr_lower_bandwidth_value"] /1e9, axis=1
-    )
-    cov["Throughput_PDR"] = \
-        df.apply(lambda row: row["result_pdr_lower_rate_value"] / 1e6, axis=1)
-    cov["Throughput_PDR_Mbps"] = df.apply(
-        lambda row: row["result_pdr_lower_bandwidth_value"] /1e9, axis=1
-    )
-    cov["Latency Forward [us]_10% PDR_P50"] = df.apply(
-        lambda row: _latency(row["result_latency_forward_pdr_10_hdrh"], 50.0),
-        axis=1
-    )
-    cov["Latency Forward [us]_10% PDR_P90"] = df.apply(
-        lambda row: _latency(row["result_latency_forward_pdr_10_hdrh"], 90.0),
-        axis=1
-    )
-    cov["Latency Forward [us]_10% PDR_P99"] = df.apply(
-        lambda row: _latency(row["result_latency_forward_pdr_10_hdrh"], 99.0),
-        axis=1
-    )
-    cov["Latency Forward [us]_50% PDR_P50"] = df.apply(
-        lambda row: _latency(row["result_latency_forward_pdr_50_hdrh"], 50.0),
-        axis=1
-    )
-    cov["Latency Forward [us]_50% PDR_P90"] = df.apply(
-        lambda row: _latency(row["result_latency_forward_pdr_50_hdrh"], 90.0),
-        axis=1
-    )
-    cov["Latency Forward [us]_50% PDR_P99"] = df.apply(
-        lambda row: _latency(row["result_latency_forward_pdr_50_hdrh"], 99.0),
-        axis=1
-    )
-    cov["Latency Forward [us]_90% PDR_P50"] = df.apply(
-        lambda row: _latency(row["result_latency_forward_pdr_90_hdrh"], 50.0),
-        axis=1
-    )
-    cov["Latency Forward [us]_90% PDR_P90"] = df.apply(
-        lambda row: _latency(row["result_latency_forward_pdr_90_hdrh"], 90.0),
-        axis=1
-    )
-    cov["Latency Forward [us]_90% PDR_P99"] = df.apply(
-        lambda row: _latency(row["result_latency_forward_pdr_90_hdrh"], 99.0),
-        axis=1
-    )
-    cov["Latency Reverse [us]_10% PDR_P50"] = df.apply(
-        lambda row: _latency(row["result_latency_reverse_pdr_10_hdrh"], 50.0),
-        axis=1
-    )
-    cov["Latency Reverse [us]_10% PDR_P90"] = df.apply(
-        lambda row: _latency(row["result_latency_reverse_pdr_10_hdrh"], 90.0),
-        axis=1
-    )
-    cov["Latency Reverse [us]_10% PDR_P99"] = df.apply(
-        lambda row: _latency(row["result_latency_reverse_pdr_10_hdrh"], 99.0),
-        axis=1
-    )
-    cov["Latency Reverse [us]_50% PDR_P50"] = df.apply(
-        lambda row: _latency(row["result_latency_reverse_pdr_50_hdrh"], 50.0),
-        axis=1
-    )
-    cov["Latency Reverse [us]_50% PDR_P90"] = df.apply(
-        lambda row: _latency(row["result_latency_reverse_pdr_50_hdrh"], 90.0),
-        axis=1
-    )
-    cov["Latency Reverse [us]_50% PDR_P99"] = df.apply(
-        lambda row: _latency(row["result_latency_reverse_pdr_50_hdrh"], 99.0),
-        axis=1
-    )
-    cov["Latency Reverse [us]_90% PDR_P50"] = df.apply(
-        lambda row: _latency(row["result_latency_reverse_pdr_90_hdrh"], 50.0),
-        axis=1
-    )
-    cov["Latency Reverse [us]_90% PDR_P90"] = df.apply(
-        lambda row: _latency(row["result_latency_reverse_pdr_90_hdrh"], 90.0),
-        axis=1
-    )
-    cov["Latency Reverse [us]_90% PDR_P99"] = df.apply(
-        lambda row: _latency(row["result_latency_reverse_pdr_90_hdrh"], 99.0),
-        axis=1
-    )
+
+    if ttype == "device":
+        cov = cov.assign(Result="PASS")
+    else:
+        cov["Throughput_Unit"] = df["result_pdr_lower_rate_unit"]
+        cov["Throughput_NDR"] = df.apply(
+            lambda row: row["result_ndr_lower_rate_value"] / 1e6, axis=1
+        )
+        cov["Throughput_NDR_Mbps"] = df.apply(
+            lambda row: row["result_ndr_lower_bandwidth_value"] /1e9, axis=1
+        )
+        cov["Throughput_PDR"] = df.apply(
+            lambda row: row["result_pdr_lower_rate_value"] / 1e6, axis=1
+        )
+        cov["Throughput_PDR_Mbps"] = df.apply(
+            lambda row: row["result_pdr_lower_bandwidth_value"] /1e9, axis=1
+        )
+        cov["Latency Forward [us]_10% PDR_P50"] = df.apply(
+            lambda row: _laten(row["result_latency_forward_pdr_10_hdrh"], 50.0),
+            axis=1
+        )
+        cov["Latency Forward [us]_10% PDR_P90"] = df.apply(
+            lambda row: _laten(row["result_latency_forward_pdr_10_hdrh"], 90.0),
+            axis=1
+        )
+        cov["Latency Forward [us]_10% PDR_P99"] = df.apply(
+            lambda row: _laten(row["result_latency_forward_pdr_10_hdrh"], 99.0),
+            axis=1
+        )
+        cov["Latency Forward [us]_50% PDR_P50"] = df.apply(
+            lambda row: _laten(row["result_latency_forward_pdr_50_hdrh"], 50.0),
+            axis=1
+        )
+        cov["Latency Forward [us]_50% PDR_P90"] = df.apply(
+            lambda row: _laten(row["result_latency_forward_pdr_50_hdrh"], 90.0),
+            axis=1
+        )
+        cov["Latency Forward [us]_50% PDR_P99"] = df.apply(
+            lambda row: _laten(row["result_latency_forward_pdr_50_hdrh"], 99.0),
+            axis=1
+        )
+        cov["Latency Forward [us]_90% PDR_P50"] = df.apply(
+            lambda row: _laten(row["result_latency_forward_pdr_90_hdrh"], 50.0),
+            axis=1
+        )
+        cov["Latency Forward [us]_90% PDR_P90"] = df.apply(
+            lambda row: _laten(row["result_latency_forward_pdr_90_hdrh"], 90.0),
+            axis=1
+        )
+        cov["Latency Forward [us]_90% PDR_P99"] = df.apply(
+            lambda row: _laten(row["result_latency_forward_pdr_90_hdrh"], 99.0),
+            axis=1
+        )
+        cov["Latency Reverse [us]_10% PDR_P50"] = df.apply(
+            lambda row: _laten(row["result_latency_reverse_pdr_10_hdrh"], 50.0),
+            axis=1
+        )
+        cov["Latency Reverse [us]_10% PDR_P90"] = df.apply(
+            lambda row: _laten(row["result_latency_reverse_pdr_10_hdrh"], 90.0),
+            axis=1
+        )
+        cov["Latency Reverse [us]_10% PDR_P99"] = df.apply(
+            lambda row: _laten(row["result_latency_reverse_pdr_10_hdrh"], 99.0),
+            axis=1
+        )
+        cov["Latency Reverse [us]_50% PDR_P50"] = df.apply(
+            lambda row: _laten(row["result_latency_reverse_pdr_50_hdrh"], 50.0),
+            axis=1
+        )
+        cov["Latency Reverse [us]_50% PDR_P90"] = df.apply(
+            lambda row: _laten(row["result_latency_reverse_pdr_50_hdrh"], 90.0),
+            axis=1
+        )
+        cov["Latency Reverse [us]_50% PDR_P99"] = df.apply(
+            lambda row: _laten(row["result_latency_reverse_pdr_50_hdrh"], 99.0),
+            axis=1
+        )
+        cov["Latency Reverse [us]_90% PDR_P50"] = df.apply(
+            lambda row: _laten(row["result_latency_reverse_pdr_90_hdrh"], 50.0),
+            axis=1
+        )
+        cov["Latency Reverse [us]_90% PDR_P90"] = df.apply(
+            lambda row: _laten(row["result_latency_reverse_pdr_90_hdrh"], 90.0),
+            axis=1
+        )
+        cov["Latency Reverse [us]_90% PDR_P99"] = df.apply(
+            lambda row: _laten(row["result_latency_reverse_pdr_90_hdrh"], 99.0),
+            axis=1
+        )
 
     if csv:
         return cov
 
-    # Split data into tabels depending on the test suite.
-    for suite in cov["suite"].unique().tolist():
-        df_suite = pd.DataFrame(cov.loc[(cov["suite"] == suite)])
-        unit = df_suite["Throughput_Unit"].tolist()[0]
-        df_suite.rename(
-            columns={
-                "Throughput_NDR": f"Throughput_NDR_M{unit}",
-                "Throughput_PDR": f"Throughput_PDR_M{unit}"
-            },
-            inplace=True
-        )
-        df_suite.drop(["suite", "Throughput_Unit"], axis=1, inplace=True)
+    # Split data into tables depending on the test suite.
+    for suite in cov["Suite"].unique().tolist():
+        df_suite = pd.DataFrame(cov.loc[(cov["Suite"] == suite)])
+
+        if ttype !="device":
+            unit = df_suite["Throughput_Unit"].tolist()[0]
+            df_suite.rename(
+                columns={
+                    "Throughput_NDR": f"Throughput_NDR_M{unit}",
+                    "Throughput_PDR": f"Throughput_PDR_M{unit}"
+                },
+                inplace=True
+            )
+            df_suite.drop(["Suite", "Throughput_Unit"], axis=1, inplace=True)
+
         l_data.append((suite, df_suite, ))
+
     return l_data
 
 
@@ -224,34 +235,59 @@ def coverage_tables(data: pd.DataFrame, selected: dict) -> list:
 
     accordion_items = list()
     for suite, cov_data in select_coverage_data(data, selected):
-        cols = list()
-        for idx, col in enumerate(cov_data.columns):
-            if idx == 0:
-                cols.append({
-                    "name": ["", "", col],
+        if len(cov_data.columns) == 3:  # VPP Device
+            cols = [
+                {
+                    "name": col,
                     "id": col,
                     "deletable": False,
                     "selectable": False,
                     "type": "text"
-                })
-            elif idx < 5:
-                cols.append({
-                    "name": col.split("_"),
-                    "id": col,
-                    "deletable": False,
-                    "selectable": False,
-                    "type": "numeric",
-                    "format": Format(precision=2, scheme=Scheme.fixed)
-                })
-            else:
-                cols.append({
-                    "name": col.split("_"),
-                    "id": col,
-                    "deletable": False,
-                    "selectable": False,
-                    "type": "numeric",
-                    "format": Format(precision=0, scheme=Scheme.fixed)
-                })
+                } for col in cov_data.columns
+            ]
+            style_cell={"textAlign": "left"}
+            style_cell_conditional=[
+                {
+                    "if": {"column_id": "Result"},
+                    "textAlign": "right"
+                }
+            ]
+        else:  # Performance
+            cols = list()
+            for idx, col in enumerate(cov_data.columns):
+                if idx == 0:
+                    cols.append({
+                        "name": ["", "", col],
+                        "id": col,
+                        "deletable": False,
+                        "selectable": False,
+                        "type": "text"
+                    })
+                elif idx < 5:
+                    cols.append({
+                        "name": col.split("_"),
+                        "id": col,
+                        "deletable": False,
+                        "selectable": False,
+                        "type": "numeric",
+                        "format": Format(precision=2, scheme=Scheme.fixed)
+                    })
+                else:
+                    cols.append({
+                        "name": col.split("_"),
+                        "id": col,
+                        "deletable": False,
+                        "selectable": False,
+                        "type": "numeric",
+                        "format": Format(precision=0, scheme=Scheme.fixed)
+                    })
+            style_cell={"textAlign": "right"}
+            style_cell_conditional=[
+                {
+                    "if": {"column_id": "Test Name"},
+                    "textAlign": "left"
+                }
+            ]
 
         accordion_items.append(
             dbc.AccordionItem(
@@ -267,18 +303,14 @@ def coverage_tables(data: pd.DataFrame, selected: dict) -> list:
                     selected_columns=[],
                     selected_rows=[],
                     page_action="none",
-                    style_cell={"textAlign": "right"},
-                    style_cell_conditional=[{
-                        "if": {"column_id": "Test Name"},
-                        "textAlign": "left"
-                    }]
+                    style_cell=style_cell,
+                    style_cell_conditional=style_cell_conditional
                 )
             )
         )
-
     return dbc.Accordion(
-            children=accordion_items,
-            class_name="gy-2 p-0",
-            start_collapsed=True,
-            always_open=True
-        )
+        children=accordion_items,
+        class_name="gy-1 p-0",
+        start_collapsed=True,
+        always_open=True
+    )
