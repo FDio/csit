@@ -122,7 +122,6 @@ class Data:
     def _create_dataframe_from_parquet(
             path, partition_filter=None,
             columns=None,
-            categories=None,
             validate_schema=False,
             last_modified_begin=None,
             last_modified_end=None,
@@ -141,8 +140,6 @@ class Data:
             extracted from S3. This function MUST return a bool, True to read
             the partition or False to ignore it. Ignored if dataset=False.
         :param columns: Names of columns to read from the file(s).
-        :param categories: List of columns names that should be returned as
-            pandas.Categorical.
         :param validate_schema: Check that individual file schemas are all the
             same / compatible. Schemas within a folder prefix should all be the
             same. Disable if you have schemas that are different and want to
@@ -156,7 +153,6 @@ class Data:
         :type path: Union[str, List[str]]
         :type partition_filter: Callable[[Dict[str, str]], bool], optional
         :type columns: List[str], optional
-        :type categories: List[str], optional
         :type validate_schema: bool, optional
         :type last_modified_begin: datetime, optional
         :type last_modified_end: datetime, optional
@@ -177,7 +173,6 @@ class Data:
                 use_threads=True,
                 dataset=True,
                 columns=columns,
-                categories=categories,
                 partition_filter=partition_filter,
                 last_modified_begin=last_modified_begin,
                 last_modified_end=last_modified_end
@@ -234,7 +229,6 @@ class Data:
                 path=data_set["path"],
                 partition_filter=partition_filter,
                 columns=data_set.get("columns", None),
-                categories=data_set.get("categories", None),
                 days=time_period
             )
 
