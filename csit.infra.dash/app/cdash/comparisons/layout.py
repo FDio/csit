@@ -29,7 +29,7 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.url_processing import url_decode
 from ..utils.utils import generate_options, gen_new_url
-from .tables import comparison_table
+from .tables import comparison_table, filter_table_data
 
 
 # Control panel partameters and their default values.
@@ -204,6 +204,8 @@ class Layout:
                         children=[
                             dcc.Store(id="store-control-panel"),
                             dcc.Store(id="store-selected"),
+                            dcc.Store(id="store-table-data"),
+                            dcc.Store(id="store-filtered-table-data"),
                             dcc.Location(id="url", refresh=False),
                             self._add_ctrl_col(),
                             self._add_plotting_col()
@@ -505,28 +507,26 @@ class Layout:
             )
         ]
 
+    @staticmethod
     def _get_plotting_area(
-            self,
-            selected: dict,
-            url: str,
-            normalize: bool
+            title: str,
+            table: pd.DataFrame,
+            url: str
         ) -> list:
         """Generate the plotting area with all its content.
 
-        :param selected: Selected parameters of tests.
-        :param normalize: If true, the values in tables are normalized.
+        :param title: The title of the comparison table..
+        :param table: Comparison table to be displayed.
         :param url: URL to be displayed in the modal window.
-        :type selected: dict
-        :type normalize: bool
+        :type title: str
+        :type table: pandas.DataFrame
         :type url: str
         :returns: List of rows with elements to be displayed in the plotting
             area.
         :rtype: list
         """
 
-        title, df = comparison_table(self._data, selected, normalize)
-
-        if df.empty:
+        if table.empty:
             return dbc.Row(
                 dbc.Col(
                     children=dbc.Alert(
@@ -539,7 +539,7 @@ class Layout:
             )
 
         cols = list()
-        for idx, col in enumerate(df.columns):
+        for idx, col in enumerate(table.columns):
             if idx == 0:
                 cols.append({
                     "name": ["", col],
@@ -568,11 +568,13 @@ class Layout:
                 children=[
                     dbc.Col(
                         children=dash_table.DataTable(
+                            id={"type": "table", "index": "comparison"},
                             columns=cols,
-                            data=df.to_dict("records"),
+                            data=table.to_dict("records"),
                             merge_duplicate_headers=True,
-                            editable=True,
-                            filter_action="native",
+                            editable=False,
+                            filter_action="custom",
+                            filter_query="",
                             sort_action="native",
                             sort_mode="multi",
                             selected_columns=[],
@@ -648,7 +650,10 @@ class Layout:
             [
                 Output("store-control-panel", "data"),
                 Output("store-selected", "data"),
+                Output("store-table-data", "data"),
+                Output("store-filtered-table-data", "data"),
                 Output("plotting-area", "children"),
+                Output({"type": "table", "index": ALL}, "data"),
                 Output({"type": "ctrl-dd", "index": "dut"}, "value"),
                 Output({"type": "ctrl-dd", "index": "dutver"}, "options"),
                 Output({"type": "ctrl-dd", "index": "dutver"}, "disabled"),
@@ -672,11 +677,13 @@ class Layout:
             ],
             [
                 State("store-control-panel", "data"),
-                State("store-selected", "data")
+                State("store-selected", "data"),
+                State("store-table-data", "data"),
             ],
             [
                 Input("url", "href"),
                 Input("normalize", "value"),
+                Input({"type": "table", "index": ALL}, "filter_query"),
                 Input({"type": "ctrl-dd", "index": ALL}, "value"),
                 Input({"type": "ctrl-cl", "index": ALL}, "value"),
                 Input({"type": "ctrl-btn", "index": ALL}, "n_clicks")
@@ -685,8 +692,10 @@ class Layout:
         def _update_application(
                 control_panel: dict,
                 selected: dict,
+                store_table_data: list,
                 href: str,
                 normalize: list,
+                table_filter: str,
                 *_
             ) -> tuple:
             """Update the application when the event is detected.
@@ -713,6 +722,8 @@ class Layout:
 
             on_draw = False
             plotting_area = no_update
+            table_data = list()
+            filtered_data = None
 
             trigger = Trigger(callback_context.triggered)
             if trigger.type == "url" and url_params:
@@ -934,19 +945,35 @@ class Layout:
                         "cmp-val-dis": True,
                         "cmp-val-val": str()
                     })
+            elif trigger.type == "table" and trigger.idx == "comparison":
+                table_data = filter_table_data(
+                    store_table_data,
+                    table_filter[0]
+                )
+                filtered_data = table_data
+                table_data = [table_data, ] 
 
             if all((on_draw, selected["reference"]["set"],
                     selected["compare"]["set"], )):
+                title, table = comparison_table(self._data, selected, normalize)
                 plotting_area = self._get_plotting_area(
-                    selected=selected,
-                    normalize=bool(normalize),
+                    title=title,
+                    table=table,
                     url=gen_new_url(
                         parsed_url,
                         params={"selected": selected, "norm": normalize}
                     )
                 )
+                store_table_data = table.to_dict("records")
 
-            ret_val = [ctrl_panel.panel, selected, plotting_area]
+            ret_val = [
+                ctrl_panel.panel,
+                selected,
+                store_table_data,
+                filtered_data,
+                plotting_area,
+                table_data
+            ]
             ret_val.extend(ctrl_panel.values)
             return ret_val
 
@@ -964,28 +991,33 @@ class Layout:
 
         @app.callback(
             Output("download-iterative-data", "data"),
-            State("store-selected", "data"),
-            State("normalize", "value"),
+            State("store-table-data", "data"),
+            State("store-filtered-table-data", "data"),
             Input("plot-btn-download", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_trending_data(selected: dict, normalize: list, _: int):
+        def _download_comparison_data(
+                table_data: list,
+                filtered_table_data: list,
+                _: int
+            ) -> dict:
             """Download the data.
 
-            :param selected: List of tests selected by user stored in the
-                browser.
-            :param normalize: If set, the data is normalized to 2GHz CPU
-                frequency.
-            :type selected: list
-            :type normalize: list
+            :param table_data: Original unfiltered table data.
+            :param filtered_table_data: Filtered table data.
+            :type table_data: list
+            :type filtered_table_data: list
             :returns: dict of data frame content (base64 encoded) and meta data
                 used by the Download component.
             :rtype: dict
             """
 
-            if not selected:
+            if not table_data:
                 raise PreventUpdate
-
-            _, table = comparison_table(self._data, selected, normalize, "csv")
+            
+            if filtered_table_data:
+                table = pd.DataFrame.from_records(filtered_table_data)
+            else:
+                table = pd.DataFrame.from_records(table_data)
 
             return dcc.send_data_frame(table.to_csv, C.COMP_DOWNLOAD_FILE_NAME)

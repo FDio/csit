@@ -174,7 +174,7 @@ class Constants:
     }
 
     ############################################################################
-    # General, plots constants.
+    # General, plots and tables constants.
 
     PLOT_COLORS = (
         "#1A1110", "#DA2647", "#214FC6", "#01786F", "#BD8260", "#FFD12A",
@@ -272,6 +272,18 @@ class Constants:
         "result_latency_forward_pdr_90_hdrh": "High-load, 90% PDR.",
         "result_latency_reverse_pdr_90_hdrh": "High-load, 90% PDR."
     }
+
+    # Operators used to filter data in comparison tables.
+    OPERATORS = [
+        ["contains "],        
+        ["lt ", "<"],
+        ["gt ", ">"],
+        ["eq ", "="],
+        ["ge ", ">="],
+        ["le ", "<="],
+        ["ne ", "!="],
+        ["datestartswith "]
+    ]
 
     ############################################################################
     # News.
