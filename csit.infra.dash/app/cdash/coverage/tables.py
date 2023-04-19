@@ -296,7 +296,7 @@ def coverage_tables(data: pd.DataFrame, selected: dict) -> list:
                     columns=cols,
                     data=cov_data.to_dict("records"),
                     merge_duplicate_headers=True,
-                    editable=True,
+                    editable=False,
                     filter_action="none",
                     sort_action="native",
                     sort_mode="multi",
