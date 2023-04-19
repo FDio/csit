@@ -59,137 +59,137 @@
 ### mellanox-cx7veat
 #### avf
 ##### ethip4-ip4base
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4base
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4base
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4base
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4base
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4base
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4base
 ##### ethip4-ip4scale20k
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale20k
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale20k
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale20k
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale20k
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale20k
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale20k
 ##### ethip4-ip4scale20k-rnd
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale20k-rnd
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale20k-rnd
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale20k-rnd
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale20k-rnd
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale20k-rnd
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale20k-rnd
 ##### ethip4-ip4scale200k
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale200k
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale200k
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale200k
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k
 ##### ethip4-ip4scale200k-rnd
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale200k-rnd
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale200k-rnd
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale200k-rnd
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k-rnd
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k-rnd
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale200k-rnd
 ##### ethip4-ip4scale2m
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale2m
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale2m
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale2m
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale2m
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale2m
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale2m
 ##### ethip4-ip4scale2m-rnd
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale2m-rnd
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale2m-rnd
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4-ip4scale2m-rnd
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale2m-rnd
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale2m-rnd
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4scale2m-rnd
 ##### ethip4udp-ip4base-iacl50sf-10kflows
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-iacl50sf-10kflows
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-iacl50sf-10kflows
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-iacl50sf-10kflows
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-iacl50sf-10kflows
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-iacl50sf-10kflows
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-iacl50sf-10kflows
 ##### ethip4udp-ip4base-iacl50sl-10kflows
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-iacl50sl-10kflows
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-iacl50sl-10kflows
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-iacl50sl-10kflows
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-iacl50sl-10kflows
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-iacl50sl-10kflows
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-iacl50sl-10kflows
 ##### ethip4udp-ip4base-oacl50sf-10kflows
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-oacl50sf-10kflows
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-oacl50sf-10kflows
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-oacl50sf-10kflows
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-oacl50sf-10kflows
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-oacl50sf-10kflows
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-oacl50sf-10kflows
 ##### ethip4udp-ip4base-oacl50sl-10kflows
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-oacl50sl-10kflows
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-oacl50sl-10kflows
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-oacl50sl-10kflows
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-oacl50sl-10kflows
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-oacl50sl-10kflows
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-oacl50sl-10kflows
 ##### ethip4udp-nat44det-h1024-p63-s64512
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44det-h1024-p63-s64512
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44det-h1024-p63-s64512
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44det-h1024-p63-s64512
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44det-h1024-p63-s64512
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44det-h1024-p63-s64512
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44det-h1024-p63-s64512
 ##### ethip4udp-nat44det-h16384-p63-s1032192
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44det-h16384-p63-s1032192
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44det-h16384-p63-s1032192
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44det-h16384-p63-s1032192
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44det-h16384-p63-s1032192
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44det-h16384-p63-s1032192
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44det-h16384-p63-s1032192
 ##### ethip4udp-nat44det-h65536-p63-s4128758
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44det-h65536-p63-s4128758
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44det-h65536-p63-s4128758
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44det-h65536-p63-s4128758
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44det-h65536-p63-s4128758
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44det-h65536-p63-s4128758
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44det-h65536-p63-s4128758
 ##### ethip4udp-nat44ed-h1024-p63-s64512-udir
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-udir
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-udir
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-udir
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-udir
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-udir
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-udir
 ##### ethip4udp-nat44ed-h1024-p63-s64512-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-cps
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-cps
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-cps
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-cps
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-cps
 ##### ethip4udp-nat44ed-h16384-p63-s1032192-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h16384-p63-s1032192-cps
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h16384-p63-s1032192-cps
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h16384-p63-s1032192-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h16384-p63-s1032192-cps
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h16384-p63-s1032192-cps
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h16384-p63-s1032192-cps
 ##### ethip4udp-nat44ed-h65536-p63-s4128768-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-cps
 ##### ethip4udp-nat44ed-h1024-p63-s64512-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-tput
-2c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-tput
-4c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h1024-p63-s64512-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-tput
+2c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-tput
+4c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h1024-p63-s64512-tput
 ##### ethip4udp-nat44ed-h16384-p63-s1032192-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h16384-p63-s1032192-tput
-2c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h16384-p63-s1032192-tput
-4c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h16384-p63-s1032192-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h16384-p63-s1032192-tput
+2c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h16384-p63-s1032192-tput
+4c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h16384-p63-s1032192-tput
 ##### ethip4udp-nat44ed-h65536-p63-s4128768-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
-2c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
-4c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
+2c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
+4c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-nat44ed-h65536-p63-s4128768-tput
 ##### ethip4udp-ip4base-h1024-p63-s64512-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-h1024-p63-s64512-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h1024-p63-s64512-cps
 ##### ethip4udp-ip4base-h16384-p63-s1032192-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-h16384-p63-s1032192-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h16384-p63-s1032192-cps
 ##### ethip4udp-ip4base-h65536-p63-s4128768-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h65536-p63-s4128768-cps
 ##### ethip4udp-ip4base-h1024-p63-s64512-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-h1024-p63-s64512-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h1024-p63-s64512-tput
 ##### ethip4udp-ip4base-h16384-p63-s1032192-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4udp-ip4base-h16384-p63-s1032192-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4udp-ip4base-h16384-p63-s1032192-tput
 ##### ethip4udp-ip4base-h65536-p63-s4128768-tput
 1c AND 100b AND mrr AND e810cq AND drv_avf AND ethip4udp-ip4base-h65536-p63-s4128768-tput
 ##### ethip4tcp-nat44ed-h1024-p63-s64512-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-cps
 ##### ethip4tcp-nat44ed-h16384-p63-s1032192-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h16384-p63-s1032192-cps
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h16384-p63-s1032192-cps
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h16384-p63-s1032192-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h16384-p63-s1032192-cps
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h16384-p63-s1032192-cps
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h16384-p63-s1032192-cps
 ##### ethip4tcp-nat44ed-h65536-p63-s4128768-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
-2c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
-4c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
+4c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-cps
 ##### ethip4tcp-nat44ed-h1024-p63-s64512-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
-2c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
-4c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
+2c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
+4c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h1024-p63-s64512-tput
 ##### ethip4tcp-nat44ed-h16384-p63-s1032192-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
-2c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
-4c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+2c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
+4c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h16384-p63-s1032192-tput
 ##### ethip4tcp-nat44ed-h65536-p63-s4128768-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
-2c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
-4c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+2c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
+4c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-nat44ed-h65536-p63-s4128768-tput
 ##### ethip4tcp-ip4base-h1024-p63-s64512-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-ip4base-h1024-p63-s64512-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-ip4base-h1024-p63-s64512-cps
 ##### ethip4tcp-ip4base-h16384-p63-s1032192-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-ip4base-h16384-p63-s1032192-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-ip4base-h16384-p63-s1032192-cps
 ##### ethip4tcp-ip4base-h65536-p63-s4128768-cps
-1c AND 64b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
+1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-ip4base-h65536-p63-s4128768-cps
 ##### ethip4tcp-ip4base-h1024-p63-s64512-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-ip4base-h1024-p63-s64512-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-ip4base-h1024-p63-s64512-tput
 ##### ethip4tcp-ip4base-h16384-p63-s1032192-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-ip4base-h16384-p63-s1032192-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-ip4base-h16384-p63-s1032192-tput
 ##### ethip4tcp-ip4base-h65536-p63-s4128768-tput
-1c AND 100b AND mrr AND cx7veat AND drv_avf AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
+1c AND 100b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4tcp-ip4base-h65536-p63-s4128768-tput
 ### intel-e810xxv
 #### avf
 ##### ethip4-ip4base
