@@ -309,3 +309,15 @@ def comparison_table(
     )
 
     return (title, df_cmp)
+
+
+def table_from_records(table: list) -> pd.DataFrame:
+    """
+    """
+    return pd.DataFrame.from_records(table)
+
+
+def filter_table_data(table: list, table_filter: str) -> list:
+    """
+    """
+    return list()

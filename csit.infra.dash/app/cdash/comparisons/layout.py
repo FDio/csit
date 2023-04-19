@@ -13,7 +13,7 @@
 
 """Plotly Dash HTML layout override.
 """
-
+import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -29,7 +29,7 @@ from ..utils.control_panel import ControlPanel
 from ..utils.trigger import Trigger
 from ..utils.url_processing import url_decode
 from ..utils.utils import generate_options, gen_new_url
-from .tables import comparison_table
+from .tables import comparison_table, filter_table_data
 
 
 # Control panel partameters and their default values.
@@ -568,11 +568,13 @@ class Layout:
                 children=[
                     dbc.Col(
                         children=dash_table.DataTable(
+                            id={"type": "table", "index": "comparison"},
                             columns=cols,
                             data=df.to_dict("records"),
                             merge_duplicate_headers=True,
-                            editable=True,
-                            filter_action="native",
+                            editable=False,
+                            filter_action="custom",  # "native",
+                            filter_query="",
                             sort_action="native",
                             sort_mode="multi",
                             selected_columns=[],
@@ -649,6 +651,7 @@ class Layout:
                 Output("store-control-panel", "data"),
                 Output("store-selected", "data"),
                 Output("plotting-area", "children"),
+                Output({"type": "table", "index": ALL}, "data"),
                 Output({"type": "ctrl-dd", "index": "dut"}, "value"),
                 Output({"type": "ctrl-dd", "index": "dutver"}, "options"),
                 Output({"type": "ctrl-dd", "index": "dutver"}, "disabled"),
@@ -672,11 +675,13 @@ class Layout:
             ],
             [
                 State("store-control-panel", "data"),
-                State("store-selected", "data")
+                State("store-selected", "data"),
+                State({"type": "table", "index": ALL}, "data")
             ],
             [
                 Input("url", "href"),
                 Input("normalize", "value"),
+                Input({"type": "table", "index": ALL}, "filter_query"),
                 Input({"type": "ctrl-dd", "index": ALL}, "value"),
                 Input({"type": "ctrl-cl", "index": ALL}, "value"),
                 Input({"type": "ctrl-btn", "index": ALL}, "n_clicks")
@@ -685,8 +690,10 @@ class Layout:
         def _update_application(
                 control_panel: dict,
                 selected: dict,
+                table_data: list,
                 href: str,
                 normalize: list,
+                table_filter: str,
                 *_
             ) -> tuple:
             """Update the application when the event is detected.
@@ -934,6 +941,14 @@ class Layout:
                         "cmp-val-dis": True,
                         "cmp-val-val": str()
                     })
+            elif trigger.type == "table" and trigger.idx == "comparison":
+                logging.info(f"Trigger:\n{trigger}")
+                logging.info(f"Filter:\n{table_filter}")
+                logging.info(f"Table data:\n{table_data}")
+
+                table_data = [filter_table_data(table_data, table_filter), ]
+
+                
 
             if all((on_draw, selected["reference"]["set"],
                     selected["compare"]["set"], )):
@@ -946,7 +961,7 @@ class Layout:
                     )
                 )
 
-            ret_val = [ctrl_panel.panel, selected, plotting_area]
+            ret_val = [ctrl_panel.panel, selected, plotting_area, table_data]
             ret_val.extend(ctrl_panel.values)
             return ret_val
 
@@ -969,7 +984,7 @@ class Layout:
             Input("plot-btn-download", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_trending_data(selected: dict, normalize: list, _: int):
+        def _download_comparison_data(selected: dict, normalize: list, _: int):
             """Download the data.
 
             :param selected: List of tests selected by user stored in the
