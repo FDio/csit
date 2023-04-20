@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "375d6f5d_f62783c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-04-20T16:02:59Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest mrrANDnic_*ANDdrv_vfio_pciAND2cAND1518bANDethip4udpwireguard1tnlsw-ip4base",
+      "revId": "51f093138b2fb7702defdfcc3dbb9b7395da904b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
