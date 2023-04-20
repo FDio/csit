@@ -369,7 +369,7 @@
 | |
 | | [Arguments] | ${dut} | ${pf}
 | |
-| | No operation
+| | Set Rss Key | ${nodes[${dut}]} | ${pf}
 
 | Initialize layer avf on node
 | | [Documentation]
