@@ -1,5 +1,4 @@
 # 3n-icx
-## ./container_memif
 ## ./crypto
 ### intel-e810xxv
 #### dpdk-vfio-pci
@@ -33,16 +32,3 @@
 1c AND imix AND ndrpdr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm
 2c AND imix AND ndrpdr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm
 4c AND imix AND ndrpdr AND e810xxv AND drv_vfio_pci AND ethip4ipsec1000tnlsw-fixtnlip-ip4base-policy-flow-rss-aes256gcm
-## ./ip4
-## ./ip4_tunnels
-## ./ip6
-## ./ip6_tunnels
-## ./l2
-## ./lb
-## ./nfv_density/dcr_memif/chain
-## ./nfv_density/dcr_memif/chain_ipsec
-## ./nfv_density/dcr_memif/pipeline
-## ./nfv_density/vm_vhost/chain
-## ./srv6
-## ./tcp
-## ./vm_vhost
