@@ -34,50 +34,51 @@ from ..utils.url_processing import url_encode
 def classify_anomalies(data):
     """Process the data and return anomalies and trending values.
 
-    Gather data into groups with average as trend value.
+    Ignore (skip over) data values that are NaN
+    (failed tests should not introduce a performance anomaly).
+
+    Gather data values into groups with average as trend value.
     Decorate values within groups to be normal,
     the first value of changed average as a regression, or a progression.
 
     :param data: Full data set with unavailable samples replaced by nan.
-    :type data: OrderedDict
+    :type data: Mapping
     :returns: Classification and trend values
     :rtype: 3-tuple, list of strings, list of floats and list of floats
     """
-    # NaN means something went wrong.
-    # Use 0.0 to cause that being reported as a severe regression.
-    bare_data = [0.0 if isnan(sample) else sample for sample in data.values()]
+    values = [sample for sample in data.values() if not isnan(sample)]
+    if not values:
+        return list(), list(), list()
     # TODO: Make BitCountingGroupList a subclass of list again?
-    group_list = classify(bare_data).group_list
+    group_list = classify(values).group_list
     group_list.reverse()  # Just to use .pop() for FIFO.
     classification = list()
     avgs = list()
     stdevs = list()
     active_group = None
-    values_left = 0
+    group_samples_left = 0
     avg = 0.0
     stdv = 0.0
-    for sample in data.values():
-        if isnan(sample):
-            classification.append("outlier")
-            avgs.append(sample)
-            stdevs.append(sample)
-            continue
-        if values_left < 1 or active_group is None:
-            values_left = 0
-            while values_left < 1:  # Ignore empty groups (should not happen).
-                active_group = group_list.pop()
-                values_left = len(active_group.run_list)
-            avg = active_group.stats.avg
-            stdv = active_group.stats.stdev
-            classification.append(active_group.comment)
+    while 1:
+        if group_samples_left >= 1: # Group starting empty leads to -1 left.
+            # The rest of the group samples are normal.
             avgs.append(avg)
             stdevs.append(stdv)
-            values_left -= 1
+            classification.append("normal")
+            group_samples_left -= 1
             continue
-        classification.append("normal")
+        # Start emptying the next group, if any.
+        if not group_list
+            break
+        active_group = group_list.pop()
+        avg = active_group.stats.avg
+        stdv = active_group.stats.stdev
+        group_samples_left = len(active_group.run_list)
+        # First sample of the group is the non-normal one.
         avgs.append(avg)
         stdevs.append(stdv)
-        values_left -= 1
+        classification.append(active_group.comment)
+        group_samples_left -= 1
     return classification, avgs, stdevs
 
 
