@@ -17,6 +17,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 
+HALF_DAY_IN_MILLISECONDS = 12 * 2600 * 1000
 
 def select_data(data: pd.DataFrame, itm:str) -> pd.DataFrame:
     """Select the data for graphs from the provided data frame.
@@ -104,6 +105,7 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict) -> tuple:
             go.Bar(
                 x=data["start_time"],
                 y=data["passed"],
+                width=HALF_DAY_IN_MILLISECONDS,
                 name=u"Passed",
                 hovertext=hover,
                 hoverinfo=u"text"
@@ -111,6 +113,7 @@ def graph_statistics(df: pd.DataFrame, job:str, layout: dict) -> tuple:
             go.Bar(
                 x=data["start_time"],
                 y=data["failed"],
+                width=HALF_DAY_IN_MILLISECONDS,
                 name=u"Failed",
                 hovertext=hover,
                 hoverinfo=u"text"
