@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1222db35_a78a4363",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-04-21T09:08:41Z",
+      "side": 1,
+      "message": "Here is an example of the current buggy state.\nFirst go to https://csit.fd.io/news/ select all runs and expand csit-dpdk-perf-mrr-weekly-master-3n-alt. This week it shows 2 failures, 1 regression and 1 progression (all for testpmd). Then compare with [0] (I added one l3fwd for comparison) to see there is just one lonely testpmd dot, no regressions nor progressions.\n\n[0] https://csit.fd.io/trending/#eNrllFELgjAQxz-NvcSBzplPPWR-j5h6pjR1bIu0T98cwZISgiAEH3Z7-N3-d_fnmNKdxJNCvveixIsTj8R1YYIXHrbmKkRxgbAFxjVQ_4xEBD2PAx8ssGFHMwhyQF0BJ32eMYWgUWnRFNBIOWqRo9W66qmwQ6IaHJor59KZRDYnNZZ27FNXLreUrEFV39E9MNM4nhtvHAryaRU9iBf6HDVObcZvRtaCgjm2aR6Wt2UY-dbVko0ka9hI8gcj6RqMpF8aGaWbtpON_Suj9AHVjHCn",
+      "revId": "01c705146b1401e7f19a8b200bbab9e59cee556f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
