@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3813f146_c06242b5",
+        "filename": "docs/content/infrastructure/fdio_csit_testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-04-21T09:29:24Z",
+      "side": 1,
+      "message": "There are two x16 PCIe4.0 lanes. Dmidecode says this about the second one:\nHandle 0x0017, DMI type 9, 17 bytes\nSystem Slot Information\n        Designation: S0 OCP NIC 3.0\n        Type: x16 PCI Express 4\n        Current Usage: Available\n        Length: Long\n        ID: 8\n        Characteristics:\n                3.3 V is provided\n                PME signal is supported\n        Bus Address: 0001:00:00.0\n\nThe designation is a bit different from the first slot (Designation: S0 Riser x32 - Slot 1).\nThe pci address is on NUMA0.\nI expect pci and/or numa to change when we actually plug the NIC, as that seems to be the current Linux behavior. More in other comments below.",
+      "range": {
+        "startLine": 448,
+        "startChar": 12,
+        "endLine": 448,
+        "endChar": 66
+      },
+      "revId": "1bc00aab5b5883261b7ebc33f6948a8dfb67fa28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "313ae79a_7a55ed7f",
+        "filename": "docs/content/infrastructure/fdio_csit_testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-04-21T09:29:24Z",
+      "side": 1,
+      "message": "I added an extra type since the 3n-alt TG has an extra NIC (xl710-QDA2-2p40GE Intel). Otherwise it\u0027s the same as F4.",
+      "range": {
+        "startLine": 485,
+        "startChar": 4,
+        "endLine": 485,
+        "endChar": 23
+      },
+      "revId": "1bc00aab5b5883261b7ebc33f6948a8dfb67fa28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d5b1372_b734fdf0",
+        "filename": "docs/content/infrastructure/fdio_csit_testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-04-21T09:29:24Z",
+      "side": 1,
+      "message": "There should be a 100GE NIC we can use, but Linux only sees one port on E32:\ntestuser@s64-t34-tg1:~$ sudo python3 dpdk-devbind.py -s\n\nNetwork devices using DPDK-compatible driver\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n0000:31:00.0 \u0027Ethernet Controller XL710 for 40GbE QSFP+ 1583\u0027 drv\u003dvfio-pci unused\u003di40e,igb_uio\n0000:31:00.1 \u0027Ethernet Controller XL710 for 40GbE QSFP+ 1583\u0027 drv\u003dvfio-pci unused\u003di40e,igb_uio\n\nNetwork devices using kernel driver\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n0000:04:00.0 \u0027Ethernet Controller 10G X550T 1563\u0027 if\u003deno1 drv\u003dixgbe unused\u003digb_uio,vfio-pci *Active*\n0000:04:00.1 \u0027Ethernet Controller 10G X550T 1563\u0027 if\u003deno2 drv\u003dixgbe unused\u003digb_uio,vfio-pci \n0000:4b:00.0 \u0027Ethernet Controller XXV710 for 25GbE SFP28 158b\u0027 if\u003dens2f0 drv\u003di40e unused\u003digb_uio,vfio-pci \n0000:4b:00.1 \u0027Ethernet Controller XXV710 for 25GbE SFP28 158b\u0027 if\u003dens2f1 drv\u003di40e unused\u003digb_uio,vfio-pci \n0000:b1:00.0 \u0027Ethernet Controller E810-C for QSFP 1592\u0027 if\u003dens8 drv\u003dice unused\u003digb_uio,vfio-pci \n0000:ca:00.0 \u0027Ethernet Controller E810-C for SFP 1593\u0027 if\u003dens6f0 drv\u003dice unused\u003digb_uio,vfio-pci \n0000:ca:00.1 \u0027Ethernet Controller E810-C for SFP 1593\u0027 if\u003dens6f1 drv\u003dice unused\u003digb_uio,vfio-pci \n0000:ca:00.2 \u0027Ethernet Controller E810-C for SFP 1593\u0027 if\u003dens6f2 drv\u003dice unused\u003digb_uio,vfio-pci \n0000:ca:00.3 \u0027Ethernet Controller E810-C for SFP 1593\u0027 if\u003dens6f3 drv\u003dice unused\u003digb_uio,vfio-pci\n\n\nThis is the 100GE NIC:\n0000:b1:00.0 \u0027Ethernet Controller E810-C for QSFP 1592\u0027 if\u003dens8 drv\u003dice unused\u003digb_uio,vfio-pci\n\nOnly one port. Lspci says the same, as well as devices under /sys/bus/pci/devices/.\n\nF4 shows two ports (the servers are the same except for an extra XL710 in E32). Could the NIC be not properly seated?",
+      "range": {
+        "startLine": 503,
+        "startChar": 12,
+        "endLine": 503,
+        "endChar": 61
+      },
+      "revId": "1bc00aab5b5883261b7ebc33f6948a8dfb67fa28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabd6a73_996e4209",
+        "filename": "docs/content/infrastructure/fdio_csit_testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-04-21T09:29:24Z",
+      "side": 1,
+      "message": "I looked at the 3n-snr TG and updated the pci addresses here.\n\nOne thing to note is that when the slot is empty, dmidecode says the pci address is 0000:ff:00.0. This is true for PCIe Slot4 (empty on F4, populated on E32 by XL710). I\u0027ve used the pci address from E32.\nThis leads me to believe that the pci/numa values of 3n-alt mlx cx6 will change when plugged in.",
+      "range": {
+        "startLine": 580,
+        "startChar": 0,
+        "endLine": 588,
+        "endChar": 42
+      },
+      "revId": "1bc00aab5b5883261b7ebc33f6948a8dfb67fa28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
