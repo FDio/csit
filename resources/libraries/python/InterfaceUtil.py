@@ -510,6 +510,16 @@ class InterfaceUtil:
         return if_data.get(u"interface_name")
 
     @staticmethod
+    def set_rss_key(node_dict, sw_if_index):
+        """FIXME"""
+        if_name = InterfaceUtil.vpp_get_interface_name(node_dict, sw_if_index)
+        cmd = f"set interface rss hash key {if_name} {Constants.RSS_HASH_KEY}"
+        try:
+            PapiSocketExecutor.run_cli_cmd(node_dict, cmd)
+        except AssertionError:
+            logger.debug(u"Driver of VPP does not allow setting RSS hash.")
+
+    @staticmethod
     def vpp_get_interface_sw_index(node, interface_name):
         """Get interface name for the given SW interface index from actual
         interface dump.
