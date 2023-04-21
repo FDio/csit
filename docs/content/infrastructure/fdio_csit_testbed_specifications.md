@@ -129,7 +129,7 @@ Used for FD.io performance tests.
 ### 3-Node-Altra Arm Ampere (3n-alt)
 
 Each 3-Node-Altra testbed includes two SUTs (Server-Type-E23) and one
-TG (Server-Type-F4) connected in a 3-node circular topology
+TG (Server-Type-E32) connected in a 3-node circular topology
 ([Server Types](#server-types)).
 Used for FD.io performance tests.
 
@@ -381,7 +381,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot3 81:00.xx: xxv710-DA2 2p25GE Intel.
 
 11. **Server-Type-E11**: Purpose - ThunderX2 Arm Marvell SUT for FD.io VPP_Device functional tests.
-    - Quantity: 2
+    - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
         - NIC ports connected into 1-node topologies.
@@ -400,7 +400,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot26 9a:00.xx: ConnectX5-2p10/25GE Mellanox.
 
 12. **Server-Type-E21**: Purpose - TaiShan Arm Huawei SUT for FD.io performance testing.
-    - Quantity: 2
+    - Quantity: 2.
     - Physical connectivity:
         - IPMI(?) and host management ports.
         - NIC ports connected into 3-node topology.
@@ -414,7 +414,7 @@ FD.io CSIT lab contains following server types:
         - PCIe Slot6 11:00.xx: x520-2p10GE Intel.
 
 13. **Server-Type-E22**: Purpose - ThunderX2 Arm Marvell SUT for FD.io performance testing.
-    - Quantity: 1
+    - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
         - NIC ports connected into 2-node topologies.
@@ -431,7 +431,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot18 91:00.xx: XL710-QDA2-2p40GE Intel.
 
 14. **Server-Type-E23**: Purpose - Altra Arm Ampere SUT for FD.io performance testing.
-    - Quantity: 2
+    - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
         - NIC ports connected into 3-node topologies.
@@ -443,10 +443,12 @@ FD.io CSIT lab contains following server types:
         - RAM Memory: 16* 8GB DDR4-3200MT/s
         - Disks: 2* 960GB SSD Samsung M.2 NVMe PM983
     - NICs configuration:
-        - Numa0:
+        - Numa0: (x16, x16 PCIe4.0 lanes)
             - PCIe Slot1 0004:04:00.x: xl710-QDA2-2p40GE Intel.
+            - PCIe Slot8 0001:00:00.x: ConnectX6-2p100GE Mellanox.
         - Numa1:
             - no cards.
+
 15. **Server-Type-E24**: Purpose - Altra Arm Ampere for FD.io build.
     - Quantity: 2.
     - Physical connectivity:
@@ -459,8 +461,8 @@ FD.io CSIT lab contains following server types:
         - RAM Memory: 12* 16GB DDR4-3200MT/s
         - Disks: 1* 960GB SSD Samsung M.2 NVMe PM983
 
-16. **Server-Type-E31**: Purpose - Skylake Xeon TG for FD.io performance testing.
-    - Quantity: 1
+16. **Server-Type-E31**: Purpose - Skylake Xeon Shared TG for FD.io performance testing.
+    - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
         - NIC ports connected into 2-node and 3-node topologies.
@@ -480,7 +482,28 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot8 af:00.xx: XL710-QDA2-2p40GE Intel.
             - PCIe Slot10 d8:00.xx: x710-4p10GE Intel.
 
-17. **Server-Type-F1**: Purpose - Icelake Xeon SUT for FD.io performance testing.
+17. **Server-Type-E32**: Purpose - Icelake Xeon Shared TG for FD.io performance testing.
+    - Quantity: 1.
+    - Physical connectivity:
+        - IPMI and host management ports.
+        - NIC ports connected into 2-node and/or 3-node testbed topologies.
+    - Main HW configuration:
+        - Chassis: SuperMicro SYS-740GP-TNRT.
+        - Motherboard: Super X12DPG-QT6.
+        - Processors: 2* Intel Platinum 8358 2.6 GHz.
+        - RAM Memory: 16* 16GB DDR4-3200.
+        - Disks: 2* 960GB SATA SSD.
+    - NICs configuration:
+        - Numa0: (x16, x16, x16 PCIe4.0 lanes)
+            - PCIe Slot2 4b:00.xx: xxv710-DA2-2p25GE Intel.
+            - PCIe Slot4 31:00.xx: xl710-QDA2-2p40GE Intel.
+            - PCIe Slot9 ff:00.xx: empty.
+        - Numa1: (x16, x16, x16 PCIe4.0 lanes)
+            - PCIe Slot6 ca:00.xx: e810-XXVDA4-4p25GE Intel.
+            - PCIe Slot8 b1:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot10 ff:00.xx: empty.
+
+18. **Server-Type-F1**: Purpose - Icelake Xeon SUT for FD.io performance testing.
     - Quantity: 8.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -501,7 +524,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 
-18. **Server-Type-F2**: Purpose - Icelake Xeon TG for FD.io performance testing.
+19. **Server-Type-F2**: Purpose - Icelake Xeon TG for FD.io performance testing.
     - Quantity: 3.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -522,7 +545,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 
-19. **Server-Type-F3**: Purpose - Icelake Xeon TG for FD.io performance testing.
+20. **Server-Type-F3**: Purpose - Icelake Xeon TG for FD.io performance testing.
     - Quantity: 3.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -542,8 +565,9 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-20. **Server-Type-F4**: Purpose - Icelake Xeon Shared TG for FD.io performance testing.
-    - Quantity: 3.
+
+21. **Server-Type-F4**: Purpose - Icelake Xeon Shared TG for FD.io performance testing.
+    - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
         - NIC ports connected into 2-node and/or 3-node testbed topologies.
@@ -555,15 +579,15 @@ FD.io CSIT lab contains following server types:
         - Disks: 2* 960GB SATA SSD.
     - NICs configuration:
         - Numa0: (x16, x16, x16 PCIe4.0 lanes)
-            - PCIe Slot2 18:00.xx: xxv710-DA2-2p25GE Intel.
-            - PCIe Slot4 3b:00.xx: empty.
-            - PCIe Slot9 5e:00.xx: empty.
+            - PCIe Slot2 4b:00.xx: xxv710-DA2-2p25GE Intel.
+            - PCIe Slot4 31:00.xx: empty.
+            - PCIe Slot9 ff:00.xx: empty.
         - Numa1: (x16, x16, x16 PCIe4.0 lanes)
-            - PCIe Slot6 86:00.xx: e810-XXVDA4-4p25GE Intel.
-            - PCIe Slot8 af:00.xx: e810-2CQDA2-2p100GE Intel.
-            - PCIe Slot10 d8:00.xx: empty.
+            - PCIe Slot6 ca:00.xx: e810-XXVDA4-4p25GE Intel.
+            - PCIe Slot8 b1:00.xx: e810-2CQDA2-2p100GE Intel.
+            - PCIe Slot10 ff:00.xx: empty.
 
-21. **Server-Type-G1**: Purpose - SnowRidge Atom SUT for FD.io performance testing.
+22. **Server-Type-G1**: Purpose - SnowRidge Atom SUT for FD.io performance testing.
     - Quantity: 2
     - Physical connectivity:
         - IPMI and host management ports.
@@ -578,7 +602,7 @@ FD.io CSIT lab contains following server types:
         - Numa0: (x16, PCIe3.0 lane)
             - PCIe BuiltIn ec:00.xx: e810-XXVDA4-4p25GE Intel.
 
-22. **Server-Type-H1**: Purpose - SapphireRapids Xeon SUT for FD.io full system performance testing.
+23. **Server-Type-H1**: Purpose - SapphireRapids Xeon SUT for FD.io full system performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -599,7 +623,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot11 d8:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
 
-23. **Server-Type-H2**: Purpose - SapphireRapids Xeon TG for FD.io full system performance testing.
+24. **Server-Type-H2**: Purpose - SapphireRapids Xeon TG for FD.io full system performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -620,7 +644,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: MCX713106AS-VEAT ConnectX7-2p200GE Nvidia.
             - PCIe Slot11 d8:00.xx: empty.
 
-24. **Server-Type-H3**: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
+25. **Server-Type-H3**: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -641,7 +665,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: e810-XXVDA4-4p25GE Intel.
             - PCIe Slot11 d8:00.xx: empty.
 
-25. **Server-Type-H4**: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
+26. **Server-Type-H4**: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -662,7 +686,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: empty.
             - PCIe Slot11 d8:00.xx: empty.
 
-26. **Server-Type-H5**: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
+27. **Server-Type-H5**: Purpose - SapphireRapids Xeon SUT for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -683,7 +707,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot9 af:00.xx: empty.
             - PCIe Slot11 d8:00.xx: empty.
 
-27. **Server-Type-H6**: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
+28. **Server-Type-H6**: Purpose - SapphireRapids Xeon TG for FD.io performance testing.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -1210,6 +1234,8 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - portnames:
         - s62-t34-sut1-c1/p1 - 40GE-port1 xl710-QDA2-2p40GE.
         - s62-t34-sut1-c1/p2 - 40GE-port2 xl710-QDA2-2p40GE.
+        - s62-t34-sut1-c8/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
+        - s62-t34-sut1-c8/p2 - 100GE-port1 ConnectX6-2p100GE Mellanox.
 - SUT [Server-Type-E23]:
     - testbedname: testbed34.
     - hostname: s63-t34-sut2.
@@ -1218,7 +1244,9 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - portnames:
         - s63-t34-sut2-c1/p1 - 40GE-port1 xl710-QDA2-2p40GE.
         - s63-t34-sut2-c1/p2 - 40GE-port2 xl710-QDA2-2p40GE.
-- TG [Server-Type-F4]:
+        - s63-t34-sut2-c8/p1 - 100GE-port1 ConnectX6-2p100GE Mellanox.
+        - s63-t34-sut2-c8/p2 - 100GE-port1 ConnectX6-2p100GE Mellanox.
+- TG [Server-Type-E32]:
     - testbedname: testbed34.
     - hostname: s64-t34-tg1.
     - IPMI IP: 10.30.50.74
@@ -1749,6 +1777,10 @@ To be completed.
         - s64-t34-tg1-c4/p1 - s62-t34-sut1-c1/p2.
         - s62-t34-sut1-c1/p1 - s63-t34-sut2-c1/p2.
         - s63-t34-sut2-c1/p1 - s64-t34-tg1-c4/p2.
+    - ring2 100GE-ports ConnectX6-2p100GE Mellanox on SUTs:
+        - s64-t34-tg1-c8/p1 - s62-t34-sut1-c8/p2.
+        - s62-t34-sut1-c8/p1 - s63-t34-sut2-c8/p2.
+        - s63-t34-sut2-c8/p1 - s64-t34-tg1-c8/p2.
 ```
 
 ### 3-Node-Icelake (3n-icx)
