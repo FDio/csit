@@ -1788,9 +1788,15 @@ class InterfaceUtil:
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def init_interface(node, ifc_key, driver, numvfs=0, osi_layer=u"L2"):
+    def init_interface(
+        node, ifc_key, driver, numvfs=0, osi_layer=u"L2", mtu=None
+    ):
         """Init PCI device. Check driver compatibility and bind to proper
         drivers. Optionally create NIC VFs.
+
+        If MTU is specified, it is set to the specified value.
+        This logic is integrated here as some drivers need this step
+        to happen at a precise point during the initialization.
 
         :param node: DUT node.
         :param ifc_key: Interface key from topology file.
@@ -1798,11 +1804,13 @@ class InterfaceUtil:
         :param numvfs: Number of VIFs to initialize, 0 - disable the VIFs.
         :param osi_layer: OSI Layer type to initialize TG with.
             Default value "L2" sets linux interface spoof off.
+        :param mtu: MTU value to set, or None for no MTU setting.
         :type node: dict
         :type ifc_key: str
         :type driver: str
         :type numvfs: int
         :type osi_layer: str
+        :type mtu: Optional[int]
         :returns: Virtual Function topology interface keys.
         :rtype: list
         :raises RuntimeError: If a reason preventing initialization is found.
@@ -1817,7 +1825,7 @@ class InterfaceUtil:
                     f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
                 )
             vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer, mtu=mtu,
             )
         elif driver == u"af_xdp":
             if kernel_driver not in (
@@ -1828,27 +1836,33 @@ class InterfaceUtil:
                     f"{kernel_driver} at node {node[u'host']} ifc {ifc_key}"
                 )
             vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer, mtu=mtu,
             )
         elif driver == u"rdma-core":
             vf_keys = InterfaceUtil.init_generic_interface(
-                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer
+                node, ifc_key, numvfs=numvfs, osi_layer=osi_layer, mtu=mtu,
             )
         return vf_keys
 
     @staticmethod
-    def init_generic_interface(node, ifc_key, numvfs=0, osi_layer=u"L2"):
+    def init_generic_interface(
+        node, ifc_key, numvfs=0, osi_layer=u"L2", mtu=None
+    ):
         """Init PCI device. Bind to proper drivers. Optionally create NIC VFs.
+
+        If MTU is specified, it is set to the specified value.
 
         :param node: DUT node.
         :param ifc_key: Interface key from topology file.
         :param numvfs: Number of VIFs to initialize, 0 - disable the VIFs.
         :param osi_layer: OSI Layer type to initialize TG with.
             Default value "L2" sets linux interface spoof off.
+        :param mtu: MTU value to set, or None for no MTU setting.
         :type node: dict
         :type ifc_key: str
         :type numvfs: int
         :type osi_layer: str
+        :type mtu: Optional[int]
         :returns: Virtual Function topology interface keys.
         :rtype: list
         :raises RuntimeError: If a reason preventing initialization is found.
@@ -1862,16 +1876,21 @@ class InterfaceUtil:
             node, pf_pci_addr.replace(u":", r"\:"))
         pf_dev = f"`basename /sys/bus/pci/devices/{pf_pci_addr}/net/*`"
 
+        # Stop VPP to prevent deadlock.
         VPPUtil.stop_vpp_service(node)
-        if current_driver != kernel_driver:
+        if mtu or current_driver != kernel_driver:
             # PCI device must be re-bound to kernel driver before creating VFs.
             DUTSetup.verify_kernel_module(node, kernel_driver, force_load=True)
-            # Stop VPP to prevent deadlock.
             # Unbind from current driver if bound.
             if current_driver:
                 DUTSetup.pci_driver_unbind(node, pf_pci_addr)
             # Bind to kernel driver.
             DUTSetup.pci_driver_bind(node, pf_pci_addr, kernel_driver)
+
+        if mtu:
+            InterfaceUtil.set_interface_mtu(node, [pf_pci_addr], mtu=mtu)
+            # PCI VFs for AVF were initialized from suite setup already.
+            return None
 
         # Initialize PCI VFs.
         DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs)
