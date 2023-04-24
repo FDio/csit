@@ -18,7 +18,8 @@ import plotly.graph_objects as go
 import pandas as pd
 
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies, get_color, get_hdrh_latencies
+from ..utils.utils import get_color, get_hdrh_latencies
+from ..utils.anomalies import classify_anomalies
 
 
 def select_trending_data(data: pd.DataFrame, itm: dict) -> pd.DataFrame:

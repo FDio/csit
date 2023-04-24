@@ -13,7 +13,7 @@
 
 """Plotly Dash HTML layout override.
 """
-
+import logging
 import pandas as pd
 import dash_bootstrap_components as dbc
 
@@ -24,7 +24,8 @@ from dash import callback_context
 from dash import Input, Output, State
 
 from ..utils.constants import Constants as C
-from ..utils.utils import classify_anomalies, gen_new_url
+from ..utils.utils import gen_new_url
+from ..utils.anomalies import classify_anomalies
 from ..utils.url_processing import url_decode
 from .tables import table_summary
 
@@ -132,15 +133,17 @@ class Layout:
 
             tests = df_job["test_id"].unique()
             for test in tests:
-                tst_data = df_job.loc[df_job["test_id"] == test].sort_values(
-                    by="start_time", ignore_index=True)
-                x_axis = tst_data["start_time"].tolist()
+                tst_data = df_job.loc[(
+                    (df_job["test_id"] == test) &
+                    (df_job["passed"] == True)
+                )].sort_values(by="start_time", ignore_index=True)
                 if "-ndrpdr" in test:
                     tst_data = tst_data.dropna(
                         subset=["result_pdr_lower_rate_value", ]
                     )
                     if tst_data.empty:
                         continue
+                    x_axis = tst_data["start_time"].tolist()
                     try:
                         anomalies, _, _ = classify_anomalies({
                             k: v for k, v in zip(
@@ -185,6 +188,7 @@ class Layout:
                     )
                     if tst_data.empty:
                         continue
+                    x_axis = tst_data["start_time"].tolist()
                     try:
                         anomalies, _, _ = classify_anomalies({
                             k: v for k, v in zip(
