@@ -737,7 +737,7 @@ class Layout:
                         (selected["reference"]["set"] == True) and
                         (c_sel["set"] == True)
                     )
-                except (KeyError, IndexError):
+                except (KeyError, IndexError, AttributeError):
                     pass
                 if process_url:
                     ctrl_panel.set({
