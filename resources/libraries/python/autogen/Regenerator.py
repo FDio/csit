@@ -190,8 +190,8 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
             # Soak test take too long, do not risk other than tc01.
             if kwargs[u"phy_cores"] != 1:
                 emit = False
-            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
-                emit = False
+#            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
+#                emit = False
         kwargs = filter_and_edit_kwargs_for_astf(suite_id, kwargs)
         if emit and kwargs is not None:
             file_out.write(testcase.generate(**kwargs))

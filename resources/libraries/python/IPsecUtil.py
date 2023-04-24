@@ -71,6 +71,7 @@ class PolicyAction(Enum):
 
 class CryptoAlg(Enum):
     """Encryption algorithms."""
+    NONE = (u"none", 0, u"NONE", 0)
     AES_CBC_128 = (u"aes-cbc-128", 1, u"AES-CBC", 16)
     AES_CBC_256 = (u"aes-cbc-256", 3, u"AES-CBC", 32)
     AES_GCM_128 = (u"aes-gcm-128", 7, u"AES-GCM", 16)
@@ -85,6 +86,7 @@ class CryptoAlg(Enum):
 
 class IntegAlg(Enum):
     """Integrity algorithm."""
+    NONE = (u"none", 0, u"NONE", 0)
     SHA_256_128 = (u"sha-256-128", 4, u"SHA2-256-128", 32)
     SHA_512_256 = (u"sha-512-256", 6, u"SHA2-512-256", 64)
 
@@ -173,6 +175,15 @@ class IPsecUtil:
         return PolicyAction.PROTECT
 
     @staticmethod
+    def crypto_alg_none():
+        """Return encryption algorithm NONE.
+
+        :returns: CryptoAlg enum NONE object.
+        :rtype: CryptoAlg
+        """
+        return CryptoAlg.NONE
+
+    @staticmethod
     def crypto_alg_aes_cbc_128():
         """Return encryption algorithm aes-cbc-128.
 
@@ -217,7 +228,7 @@ class IPsecUtil:
         :returns: Key length.
         :rtype: int
         """
-        return crypto_alg.key_len
+        return 0 if crypto_alg is None else crypto_alg.key_len
 
     @staticmethod
     def get_crypto_alg_scapy_name(crypto_alg):
@@ -229,6 +240,15 @@ class IPsecUtil:
         :rtype: str
         """
         return crypto_alg.scapy_name
+
+    @staticmethod
+    def integ_alg_none():
+        """Return integrity algorithm NONE.
+
+        :returns: IntegAlg enum NONE object.
+        :rtype: IntegAlg
+        """
+        return IntegAlg.NONE
 
     @staticmethod
     def integ_alg_sha_256_128():
