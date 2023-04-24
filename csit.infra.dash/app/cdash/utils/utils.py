@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Function used by Dash applications.
+"""Functions used by Dash applications.
 """
 
 import pandas as pd
@@ -22,63 +22,11 @@ import hdrh.histogram
 import hdrh.codec
 
 from math import sqrt
-from numpy import isnan
 from dash import dcc
 from datetime import datetime
 
-from ..jumpavg import classify
 from ..utils.constants import Constants as C
 from ..utils.url_processing import url_encode
-
-
-def classify_anomalies(data):
-    """Process the data and return anomalies and trending values.
-
-    Gather data into groups with average as trend value.
-    Decorate values within groups to be normal,
-    the first value of changed average as a regression, or a progression.
-
-    :param data: Full data set with unavailable samples replaced by nan.
-    :type data: OrderedDict
-    :returns: Classification and trend values
-    :rtype: 3-tuple, list of strings, list of floats and list of floats
-    """
-    # NaN means something went wrong.
-    # Use 0.0 to cause that being reported as a severe regression.
-    bare_data = [0.0 if isnan(sample) else sample for sample in data.values()]
-    # TODO: Make BitCountingGroupList a subclass of list again?
-    group_list = classify(bare_data).group_list
-    group_list.reverse()  # Just to use .pop() for FIFO.
-    classification = list()
-    avgs = list()
-    stdevs = list()
-    active_group = None
-    values_left = 0
-    avg = 0.0
-    stdv = 0.0
-    for sample in data.values():
-        if isnan(sample):
-            classification.append("outlier")
-            avgs.append(sample)
-            stdevs.append(sample)
-            continue
-        if values_left < 1 or active_group is None:
-            values_left = 0
-            while values_left < 1:  # Ignore empty groups (should not happen).
-                active_group = group_list.pop()
-                values_left = len(active_group.run_list)
-            avg = active_group.stats.avg
-            stdv = active_group.stats.stdev
-            classification.append(active_group.comment)
-            avgs.append(avg)
-            stdevs.append(stdv)
-            values_left -= 1
-            continue
-        classification.append("normal")
-        avgs.append(avg)
-        stdevs.append(stdv)
-        values_left -= 1
-    return classification, avgs, stdevs
 
 
 def get_color(idx: int) -> str:

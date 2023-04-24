@@ -240,7 +240,6 @@
     # - result_latency_value
     - start_time
     - passed
-    - telemetry
     - test_id
     - version
 - data_type: coverage
