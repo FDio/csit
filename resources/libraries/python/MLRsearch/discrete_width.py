@@ -20,7 +20,7 @@ from dataclasses import dataclass, field
 from .load_rounding import LoadRounding
 
 
-@dataclass(order=True)
+@dataclass(order=True)  # TODO: Make properly frozen.
 class DiscreteWidth:
     """Structure to store float width together with its rounded integer form.
 
@@ -28,13 +28,14 @@ class DiscreteWidth:
     has to be larger than zero.
 
     LoadRounding instance is needed to enable conversion between two forms.
-    In practice, LoadRounding instances will be used by callers,
-    but LoadRounding definition depends on DiscreteWidth,
-    hence two rounding classes to avoid circular type hints.
 
     Conversion and arithmetic methods are added for convenience.
-    Division and non-integer multiplication are intentionally _not_ supported,
+    Division and non-integer multiplication are intentionally not supported,
     as MLRsearch should not seek unround widths when round ones are available.
+
+    The instance is effectively immutable, but not hashable as it refers
+    to the rounding instance, which is implemented as mutable
+    (although the mutations are not visible).
     """
 
     # For most debugs, rounding in repr just takes space.
@@ -57,7 +58,7 @@ class DiscreteWidth:
         If both forms are specified, the float form is taken as primary
         (thus the integer form is recomputed to match).
 
-        :raises RuntimeError: Is int width is not positive.
+        :raises RuntimeError: If int width is not positive.
         """
         if self.float_width is None and self.int_width is None:
             raise RuntimeError("Float or int value is needed.")
@@ -80,6 +81,10 @@ class DiscreteWidth:
         if self.int_width < 0:
             raise RuntimeError(f"Got negative iwidth: {self.int_width}")
 
+    def __str__(self) -> str:
+        """FIXME"""
+        return f"int_width={int(self)}"
+
     def __int__(self) -> int:
         """Return the integer form.
 
@@ -95,6 +100,14 @@ class DiscreteWidth:
         :rtype: float
         """
         return self.float_width
+
+    def __hash__(self) -> int:
+        """FIXME"""
+        return hash(float(self))
+
+    def rounded_down(self) -> DiscreteWidth:
+        """FIXME"""
+        return DiscreteWidth(rounding=self.rounding, int_width=int(self))
 
     def __add__(self, width: DiscreteWidth) -> DiscreteWidth:
         """Return newly constructed instance with int widths added.
