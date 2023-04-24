@@ -919,7 +919,7 @@ class Layout:
                 try:
                     store_sel = literal_eval(url_params["store_sel"][0])
                     normalize = literal_eval(url_params["norm"][0])
-                except (KeyError, IndexError):
+                except (KeyError, IndexError, AttributeError):
                     pass
                 if store_sel:
                     row_card_sel_tests = C.STYLE_ENABLED
