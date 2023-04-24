@@ -13,6 +13,8 @@
 
 """Module defining AbstractMeasurer class."""
 
+from __future__ import annotations
+
 from abc import ABCMeta, abstractmethod
 
 from .measurement_result import MeasurementResult as Result
