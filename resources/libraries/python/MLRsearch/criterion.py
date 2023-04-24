@@ -23,7 +23,7 @@ class Criterion:
 
     loss_ratio: float = 0.0
     """FIXME."""
-    bad_ratio: float = 0.5
+    exceed_ratio: float = 0.5
     """FIXME."""
     relative_width: float = field(compare=False, default=0.005)
     """FIXME."""
@@ -37,7 +37,7 @@ class Criterion:
     def __post_init__(self):
         """FIXME"""
         super().__setattr__("loss_ratio", float(self.loss_ratio))
-        super().__setattr__("bad_ratio", float(self.bad_ratio))
+        super().__setattr__("exceed_ratio", float(self.exceed_ratio))
         super().__setattr__("relative_width", float(self.relative_width))
         super().__setattr__(
             "self.trials_duration", int(ceil(float(self.trials_duration)))
@@ -56,9 +56,9 @@ class Criterion:
             raise ValueError(f"Loss ratio cannot be negative: {self}")
         if self.loss_ratio >= 1.0:
             raise ValueError(f"Loss ratio must be lower than 1: {self}")
-        if self.bad_ratio < 0.0:
+        if self.exceed_ratio < 0.0:
             raise ValueError(f"Bad ratio cannot be negative: {self}")
-        if self.bad_ratio >= 1.0:
+        if self.exceed_ratio >= 1.0:
             raise ValueError(f"Bad ratio must be lower than 1: {self}")
         if self.relative_width <= 0.0:
             raise ValueError(f"Relative width must be positive: {self}")

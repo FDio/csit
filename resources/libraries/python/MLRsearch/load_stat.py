@@ -91,7 +91,7 @@ class LoadStat(DiscreteLoad):
         if duration:
             final_count = int(ceil(duration / self.duration_per_trial))
             final_count = max(final_count, self.all_count)
-        percentage = criterion.bad_ratio
+        percentage = criterion.exceed_ratio
         optimistic = (bad_count / final_count) <= percentage
         pessimistic = ((final_count - good_count) / final_count) <= percentage
         return optimistic, pessimistic

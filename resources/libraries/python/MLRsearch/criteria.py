@@ -44,7 +44,7 @@ class Criteria:
             not_ok = False
             if cr1.trials_duration > cr0.trials_duration:
                 not_ok = True
-            if cr1.bad_ratio < cr0.bad_ratio:
+            if cr1.exceed_ratio < cr0.exceed_ratio:
                 not_ok = True
             if not_ok:
                 raise ValueError(f"Unsafe criteria at {index}: {criteria}")
