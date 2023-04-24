@@ -28,7 +28,8 @@ from ..utils.constants import Constants as C
 def select_coverage_data(
         data: pd.DataFrame,
         selected: dict,
-        csv: bool=False
+        csv: bool=False,
+        show_latency=True
     ) -> list:
     """Select coverage data for the tables and generate tables as pandas data
     frames.
@@ -37,9 +38,11 @@ def select_coverage_data(
     :param selected: Dictionary with user selection.
     :param csv: If True, pandas data frame with selected coverage data is
         returned for "Download Data" feature.
+    :param show_latency: If True, latency is displayed in the tables.
     :type data: pandas.DataFrame
     :type selected: dict
     :type csv: bool
+    :type show_latency: bool
     :returns: List of tuples with suite name (str) and data (pandas dataframe)
         or pandas dataframe if csv is True.
     :rtype: list[tuple[str, pandas.DataFrame], ] or pandas.DataFrame
@@ -78,7 +81,7 @@ def select_coverage_data(
     ttype = df["test_type"].to_list()[0]
 
     # Prepare the coverage data
-    def _laten(hdrh_string: str, percentile: float) -> int:
+    def _latency(hdrh_string: str, percentile: float) -> int:
         """Get latency from HDRH string for given percentile.
 
         :param hdrh_string: Encoded HDRH string.
@@ -126,78 +129,16 @@ def select_coverage_data(
         cov["Throughput_PDR_Mbps"] = df.apply(
             lambda row: row["result_pdr_lower_bandwidth_value"] /1e9, axis=1
         )
-        cov["Latency Forward [us]_10% PDR_P50"] = df.apply(
-            lambda row: _laten(row["result_latency_forward_pdr_10_hdrh"], 50.0),
-            axis=1
-        )
-        cov["Latency Forward [us]_10% PDR_P90"] = df.apply(
-            lambda row: _laten(row["result_latency_forward_pdr_10_hdrh"], 90.0),
-            axis=1
-        )
-        cov["Latency Forward [us]_10% PDR_P99"] = df.apply(
-            lambda row: _laten(row["result_latency_forward_pdr_10_hdrh"], 99.0),
-            axis=1
-        )
-        cov["Latency Forward [us]_50% PDR_P50"] = df.apply(
-            lambda row: _laten(row["result_latency_forward_pdr_50_hdrh"], 50.0),
-            axis=1
-        )
-        cov["Latency Forward [us]_50% PDR_P90"] = df.apply(
-            lambda row: _laten(row["result_latency_forward_pdr_50_hdrh"], 90.0),
-            axis=1
-        )
-        cov["Latency Forward [us]_50% PDR_P99"] = df.apply(
-            lambda row: _laten(row["result_latency_forward_pdr_50_hdrh"], 99.0),
-            axis=1
-        )
-        cov["Latency Forward [us]_90% PDR_P50"] = df.apply(
-            lambda row: _laten(row["result_latency_forward_pdr_90_hdrh"], 50.0),
-            axis=1
-        )
-        cov["Latency Forward [us]_90% PDR_P90"] = df.apply(
-            lambda row: _laten(row["result_latency_forward_pdr_90_hdrh"], 90.0),
-            axis=1
-        )
-        cov["Latency Forward [us]_90% PDR_P99"] = df.apply(
-            lambda row: _laten(row["result_latency_forward_pdr_90_hdrh"], 99.0),
-            axis=1
-        )
-        cov["Latency Reverse [us]_10% PDR_P50"] = df.apply(
-            lambda row: _laten(row["result_latency_reverse_pdr_10_hdrh"], 50.0),
-            axis=1
-        )
-        cov["Latency Reverse [us]_10% PDR_P90"] = df.apply(
-            lambda row: _laten(row["result_latency_reverse_pdr_10_hdrh"], 90.0),
-            axis=1
-        )
-        cov["Latency Reverse [us]_10% PDR_P99"] = df.apply(
-            lambda row: _laten(row["result_latency_reverse_pdr_10_hdrh"], 99.0),
-            axis=1
-        )
-        cov["Latency Reverse [us]_50% PDR_P50"] = df.apply(
-            lambda row: _laten(row["result_latency_reverse_pdr_50_hdrh"], 50.0),
-            axis=1
-        )
-        cov["Latency Reverse [us]_50% PDR_P90"] = df.apply(
-            lambda row: _laten(row["result_latency_reverse_pdr_50_hdrh"], 90.0),
-            axis=1
-        )
-        cov["Latency Reverse [us]_50% PDR_P99"] = df.apply(
-            lambda row: _laten(row["result_latency_reverse_pdr_50_hdrh"], 99.0),
-            axis=1
-        )
-        cov["Latency Reverse [us]_90% PDR_P50"] = df.apply(
-            lambda row: _laten(row["result_latency_reverse_pdr_90_hdrh"], 50.0),
-            axis=1
-        )
-        cov["Latency Reverse [us]_90% PDR_P90"] = df.apply(
-            lambda row: _laten(row["result_latency_reverse_pdr_90_hdrh"], 90.0),
-            axis=1
-        )
-        cov["Latency Reverse [us]_90% PDR_P99"] = df.apply(
-            lambda row: _laten(row["result_latency_reverse_pdr_90_hdrh"], 99.0),
-            axis=1
-        )
+        if show_latency:
+            for way in ("Forward", "Reverse"):
+                for pdr in (10, 50, 90):
+                    for perc in (50, 90, 99):
+                        latency = f"result_latency_{way.lower()}_pdr_{pdr}_hdrh"
+                        cov[f"Latency {way} [us]_{pdr}% PDR_P{perc}"] = \
+                            df.apply(
+                                lambda row: _latency(row[latency], perc),
+                                axis=1
+                            )
 
     if csv:
         return cov
@@ -222,19 +163,26 @@ def select_coverage_data(
     return l_data
 
 
-def coverage_tables(data: pd.DataFrame, selected: dict) -> list:
+def coverage_tables(
+        data: pd.DataFrame,
+        selected: dict,
+        show_latency: bool=True
+    ) -> list:
     """Generate an accordion with coverage tables.
 
     :param data: Coverage data.
     :param selected: Dictionary with user selection.
+    :param show_latency: If True, latency is displayed in the tables.
     :type data: pandas.DataFrame
     :type selected: dict
+    :type show_latency: bool
     :returns: Accordion with suite names (titles) and tables.
     :rtype: dash_bootstrap_components.Accordion
     """
 
     accordion_items = list()
-    for suite, cov_data in select_coverage_data(data, selected):
+    sel_data = select_coverage_data(data, selected, show_latency=show_latency)
+    for suite, cov_data in sel_data:
         if len(cov_data.columns) == 3:  # VPP Device
             cols = [
                 {
