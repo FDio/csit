@@ -48,7 +48,8 @@ CP_PARAMS = {
     "phy-val": str(),
     "area-opt": list(),
     "area-dis": True,
-    "area-val": str()
+    "area-val": str(),
+    "show-latency": ["show_latency", ]
 }
 
 
@@ -342,16 +343,45 @@ class Layout:
                         size="sm"
                     )
                 ]
+            ),
+            dbc.Row(
+                class_name="g-0 p-1",
+                children=[
+                    dbc.InputGroup(
+                        [
+                            dbc.InputGroupText("Latency"),
+                            dbc.Checklist(
+                                id="show-latency",
+                                options=[{
+                                    "value": "show_latency",
+                                    "label": "Show Latency"
+                                }],
+                                value=["show_latency"],
+                                inline=True,
+                                class_name="ms-2"
+                            )
+                        ],
+                        style={"align-items": "center"},
+                        size="sm"
+                    )
+                ]
             )
         ]
 
-    def _get_plotting_area(self, selected: dict, url: str) -> list:
+    def _get_plotting_area(
+            self,
+            selected: dict,
+            url: str,
+            show_latency: bool
+        ) -> list:
         """Generate the plotting area with all its content.
 
         :param selected: Selected parameters of tests.
         :param url: URL to be displayed in the modal window.
+        :param show_latency: If True, latency is displayed in the tables.
         :type selected: dict
         :type url: str
+        :type show_latency: bool
         :returns: List of rows with elements to be displayed in the plotting
             area.
         :rtype: list
@@ -361,7 +391,7 @@ class Layout:
 
         return [
             dbc.Row(
-                children=coverage_tables(self._data, selected),
+                children=coverage_tables(self._data, selected, show_latency),
                 class_name="g-0 p-0",
             ),
             dbc.Row(
@@ -441,6 +471,7 @@ class Layout:
                 Output({"type": "ctrl-dd", "index": "area"}, "options"),
                 Output({"type": "ctrl-dd", "index": "area"}, "disabled"),
                 Output({"type": "ctrl-dd", "index": "area"}, "value"),
+                Output("show-latency", "value"),
             ],
             [
                 State("store-control-panel", "data"),
@@ -448,6 +479,7 @@ class Layout:
             ],
             [
                 Input("url", "href"),
+                Input("show-latency", "value"),
                 Input({"type": "ctrl-dd", "index": ALL}, "value")
             ]
         )
@@ -455,6 +487,7 @@ class Layout:
                 control_panel: dict,
                 selected: dict,
                 href: str,
+                show_latency: list,
                 *_
             ) -> tuple:
             """Update the application when the event is detected.
@@ -477,8 +510,9 @@ class Layout:
 
             if trigger.type == "url" and url_params:
                 try:
+                    show_latency = literal_eval(url_params["show_latency"][0])
                     selected = literal_eval(url_params["selection"][0])
-                except (KeyError, IndexError):
+                except (KeyError, IndexError, AttributeError):
                     pass
                 if selected:
                     ctrl_panel.set({
@@ -508,9 +542,13 @@ class Layout:
                                         [selected["phy"]]
                             )
                         ],
-                        "area-dis": False
+                        "area-dis": False,
+                        "show-latency": show_latency
                     })
                     on_draw = True
+            elif trigger.type == "show-latency":
+                ctrl_panel.set({"show-latency": show_latency})
+                on_draw = True
             elif trigger.type == "ctrl-dd":
                 if trigger.idx == "rls":
                     try:
@@ -610,7 +648,14 @@ class Layout:
                 if selected:
                     plotting_area = self._get_plotting_area(
                         selected,
-                        gen_new_url(parsed_url, {"selection": selected})
+                        gen_new_url(
+                            parsed_url,
+                            {
+                                "selection": selected,
+                                "show_latency": show_latency
+                            }
+                        ),
+                        show_latency=bool(show_latency)
                     )
                 else:
                     plotting_area = C.PLACEHOLDER
@@ -639,15 +684,18 @@ class Layout:
         @app.callback(
             Output("download-iterative-data", "data"),
             State("store-selected-tests", "data"),
+            State("show-latency", "value"),
             Input("plot-btn-download", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_coverage_data(selection, _):
+        def _download_coverage_data(selection, show_latency, _):
             """Download the data
 
             :param selection: List of tests selected by user stored in the
                 browser.
+            :param show_latency: If True, latency is displayed in the tables.
             :type selection: dict
+            :type show_latency: bool
             :returns: dict of data frame content (base64 encoded) and meta data
                 used by the Download component.
             :rtype: dict
@@ -656,6 +704,11 @@ class Layout:
             if not selection:
                 raise PreventUpdate
 
-            df = select_coverage_data(self._data, selection, csv=True)
+            df = select_coverage_data(
+                self._data,
+                selection,
+                csv=True,
+                show_latency=bool(show_latency)
+            )
 
             return dcc.send_data_frame(df.to_csv, C.COVERAGE_DOWNLOAD_FILE_NAME)
