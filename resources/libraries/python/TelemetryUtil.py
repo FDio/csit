@@ -62,7 +62,8 @@ class TelemetryUtil:
 
         hostname = exec_cmd_no_error(node, "hostname")[0].strip()
         stdout, _ = exec_cmd_no_error(
-            node, "cat /tmp/metric.prom", sudo=True, log_stdout_err=False
+            node, "cat /tmp/metric.prom", sudo=True, log_stdout_err=False,
+            timeout=9999
         )
         prefix = "{"
         prefix += f"hostname=\"{hostname}\","
