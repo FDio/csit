@@ -15,8 +15,8 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Tuple
+from dataclasses import dataclass
+from typing import Set
 
 from .criterion import Criterion
 
@@ -25,32 +25,17 @@ from .criterion import Criterion
 class Criteria:
     """FIXME."""
 
-    criteria: Tuple[Criterion, ...]
-    """FIXME."""
-    loss_ratios: Tuple[float, ...] = field(repr=False, init=False)
+    criteria: Set[Criterion]
     """FIXME."""
 
     def __post_init__(self):
         """FIXME"""
-        # Support generators.
-        super().__setattr__("criteria", tuple(self.criteria))
-        criteria = tuple(sorted(set(self.criteria)))
-        if not criteria:
+        super().__setattr__("criteria", set(self.criteria))
+        if not self.criteria:
             raise ValueError(f"Cannot be empty: {self.criteria}")
-        if len(criteria) != len(self.criteria):  # Generators do not have len.
-            raise ValueError(f"Duplicate or conflicting: {self.criteria}")
-        for index in range(len(criteria) - 1):
-            cr0, cr1 = criteria[index], criteria[index + 1]
-            not_ok = False
-            if cr1.trials_duration > cr0.trials_duration:
-                not_ok = True
-            if cr1.bad_ratio < cr0.bad_ratio:
-                not_ok = True
-            if not_ok:
-                raise ValueError(f"Unsafe criteria at {index}: {criteria}")
-        super().__setattr__("criteria", criteria)
-        loss_ratios = (criterion.loss_ratio for criterion in self)
-        super().__setattr__("loss_ratios", tuple(sorted(set(loss_ratios))))
+        for criterion in self.criteria:
+            if not isinstance(criterion, Criterion):
+                raise TypeError(f"Must by Criterion instance: {criterion}")
 
     def __iter__(self):
         """FIXME"""

@@ -11,18 +11,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-__init__ file for Python package "MLRsearch".
-"""
+"""Module defining ActionEnum class."""
 
-# TODO: Move submodules to separate modules.
-# Not obvious how to do that from PyPI point of view
-# without affecting the current CSIT global "resources" package root.
-# Probably it can be done by specifying multiple directories
-# in PYTHONPATH used throughout CSIT.
+from __future__ import annotations
 
-# Import user-facing (API) stuff, so users do not need to know submodules.
-from .config import Config
-from .criteria import Criteria
-from .criterion import Criterion
-from .multiple_loss_ratio_search import MultipleLossRatioSearch
+from enum import IntEnum, auto
+
+
+class ActionEnum(IntEnum):
+    """FIXME"""
+
+    WAIT = auto()
+    REFINE_MIN = auto()
+    REFINE_MAX = auto()
+    HALVE = auto()
+    REFINE_LO = auto()
+    REFINE_HI = auto()
+    EXT_LO = auto()
+    EXT_HI = auto()
+    BISECT = auto()
+    DONE = auto()
