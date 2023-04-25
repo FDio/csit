@@ -33,6 +33,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_*AND1cANDethip4-ip4base mrrANDnic_*AND1cANDethip6-ip6base mrrANDnic_*AND1cANDeth-l2xcbase-eth-2memif-1dcr mrrANDnic_*AND1cAND1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc mrrANDnic_*AND1cANDethip6srhip6-ip6base-srv6proxy-dyn !imix !1518b !drv_avf !drv_af_xdp !drv_rdma_core",
       "revId": "96fb94a6e36e3e86faa02c2364d90dea14b2a001",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c95fa93_155fb98f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-04-25T10:37:51Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_*AND1cANDethip4-ip4base mrrANDnic_*AND1cANDethip6-ip6base !imix !1518b !drv_avf !drv_af_xdp !drv_rdma_core",
+      "revId": "96fb94a6e36e3e86faa02c2364d90dea14b2a001",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
