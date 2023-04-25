@@ -20,6 +20,6 @@ class KeyboardMeasurer(AbstractMeasurer):
     def measure(self, intended_duration, intended_load):
         """Print context and ask user for Dx."""
         tx = int(intended_duration * intended_load)
-        print(f"Tr {intended_load} Tx {tx} d {intended_duration} 0.5% {tx / 200.0}")
+        print(f"Tr {intended_load/1e6}M Tx {tx/1e6}M d {intended_duration} 0.5% {tx / 200.0}")
         dx = input(u"Enter Dx:")
         return MeasurementResult(intended_duration, intended_load, tx, dx)
