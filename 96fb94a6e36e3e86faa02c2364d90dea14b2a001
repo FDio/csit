@@ -50,6 +50,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_*AND1cANDethip4-ip4base mrrANDnic_*AND1cANDethip6-ip6base !imix !1518b !drv_avf !drv_af_xdp !drv_rdma_core",
       "revId": "96fb94a6e36e3e86faa02c2364d90dea14b2a001",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f387729_25994bba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-04-26T08:19:58Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_intel-e810cqAND1cANDethip4-ip4base mrrANDnic_*AND1cANDethip6-ip6base !imix !1518b !drv_avf !drv_af_xdp !drv_rdma_core",
+      "revId": "96fb94a6e36e3e86faa02c2364d90dea14b2a001",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
