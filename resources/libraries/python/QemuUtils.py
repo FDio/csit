@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2022-2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -605,7 +605,7 @@ class QemuUtils:
         except AttributeError:
             self._wait_default()
 
-    def _wait_default(self, retries=60):
+    def _wait_default(self, retries=120):
         """Wait until QEMU with VPP is booted.
 
         :param retries: Number of retries.
