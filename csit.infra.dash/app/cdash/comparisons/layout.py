@@ -678,7 +678,9 @@ class Layout:
             [
                 State("store-control-panel", "data"),
                 State("store-selected", "data"),
-                State("store-table-data", "data")
+                State("store-table-data", "data"),
+                State("store-filtered-table-data", "data"),
+                State({"type": "table", "index": ALL}, "data")
             ],
             [
                 Input("url", "href"),
@@ -693,6 +695,8 @@ class Layout:
                 control_panel: dict,
                 selected: dict,
                 store_table_data: list,
+                filtered_data: list,
+                table_data: list,
                 href: str,
                 normalize: list,
                 table_filter: str,
@@ -722,8 +726,6 @@ class Layout:
 
             on_draw = False
             plotting_area = no_update
-            table_data = list()
-            filtered_data = None
 
             trigger = Trigger(callback_context.triggered)
             if trigger.type == "url" and url_params:
@@ -946,12 +948,11 @@ class Layout:
                         "cmp-val-val": str()
                     })
             elif trigger.type == "table" and trigger.idx == "comparison":
-                table_data = filter_table_data(
+                filtered_data = filter_table_data(
                     store_table_data,
                     table_filter[0]
                 )
-                filtered_data = table_data
-                table_data = [table_data, ]
+                table_data = [filtered_data, ]
 
             if all((on_draw, selected["reference"]["set"],
                     selected["compare"]["set"], )):
@@ -965,6 +966,9 @@ class Layout:
                     )
                 )
                 store_table_data = table.to_dict("records")
+                filtered_data = store_table_data
+                if table_data:
+                    table_data = [store_table_data, ]
 
             ret_val = [
                 ctrl_panel.panel,
