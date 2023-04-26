@@ -257,6 +257,16 @@ class VppConfigGenerator:
                 path = [u"dpdk", f"dev {device}"]
                 self.add_config_item(self._nodeconfig, u"", path)
 
+    def add_dma_dev(self, wq_list):
+        """Add DMA device configuration.
+
+        :param wq_list: List of DMA work queues.
+        :type wq_list: list
+        """
+        for wq in wq_list:
+            path = [u"dsa", f"dev {wq}"]
+            self.add_config_item(self._nodeconfig, u"", path)
+
     def add_dpdk_cryptodev(self, count):
         """Add DPDK Crypto PCI device configuration.
 

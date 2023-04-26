@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,7 +28,7 @@ from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 from resources.libraries.python.VPPUtil import VPPUtil
-
+from resources.libraries.python.DMAUtil import DMAUtil
 
 __all__ = [
     u"ContainerManager", u"ContainerEngine", u"LXC", u"Docker", u"Container"
@@ -256,6 +256,11 @@ class ContainerManager:
                 self._configure_vpp_chain_ipsec(
                     mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
                     guest_dir=guest_dir, nf_instance=idx, **kwargs)
+            elif chain_topology == u"chain_dma":
+                self._configure_vpp_chain_dma(
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    guest_dir=guest_dir, **kwargs
+                )
             else:
                 raise RuntimeError(
                     f"Container topology {chain_topology} not implemented"
@@ -270,6 +275,39 @@ class ContainerManager:
         self.engine.create_vpp_startup_config()
         self.engine.create_vpp_exec_config(
             u"memif_create_chain_l2xc.exec",
+            mid1=kwargs[u"mid1"], mid2=kwargs[u"mid2"],
+            sid1=kwargs[u"sid1"], sid2=kwargs[u"sid2"],
+            socket1=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid1']}",
+            socket2=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid2']}"
+        )
+
+    def _configure_vpp_chain_dma(self, **kwargs):
+        """Configure VPP in chain topology with l2xc (dma).
+
+        :param kwargs: Named parameters.
+        :type kwargs: dict
+        """
+        dut = self.engine.container.name.split(u"_")[0]
+        intf = BuiltIn().get_variable_value(f"${{{dut}_if1}}")
+        cpu_node = Topology.get_interfaces_numa_node(
+            self.engine.container.node, intf)
+
+        cpuset_cpus = self.engine.container.cpuset_cpus
+        workers_num = len(cpuset_cpus) - 1
+        dma_resource = DMAUtil.get_dma_device_info_on_dut(
+            self.engine.container.node, cpu_node)
+        dma_name = list(dma_resource.keys())[0]
+        DMAUtil.disable_dma_device_on_dut(
+           self.engine.container.node, dma_name)
+        enabled_wq = DMAUtil.enable_dma_device_on_dut(
+           self.engine.container.node, dma_name, workers_num)
+
+        self.engine.create_vpp_startup_config_dma(enabled_wq)
+
+        self.engine.create_vpp_exec_config(
+            u"memif_create_chain_dma.exec",
             mid1=kwargs[u"mid1"], mid2=kwargs[u"mid2"],
             sid1=kwargs[u"sid1"], sid2=kwargs[u"sid2"],
             socket1=f"{kwargs[u'guest_dir']}/memif-"
@@ -726,6 +764,22 @@ class ContainerEngine:
         self.execute(
             f'echo "{vpp_config.get_config_str()}" | '
             f'tee /etc/vpp/startup.conf'
+        )
+
+    def create_vpp_startup_config_dma(self, devices):
+        """Create startup configuration of VPP dma.
+
+        :param devices: Dma devices.
+        :type devices: list
+        """
+        vpp_config = self.create_base_vpp_startup_config()
+        vpp_config.add_plugin(u"enable", u"dma_intel_plugin.so")
+        vpp_config.add_dma_dev(devices)
+
+        # Apply configuration
+        self.execute(u"mkdir -p /etc/vpp/")
+        self.execute(
+            f'echo "{vpp_config.get_config_str()}" | tee /etc/vpp/startup.conf'
         )
 
     def create_vpp_startup_config_vswitch(self, cpuset_cpus, rxq, *devices):
