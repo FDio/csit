@@ -1,0 +1,28 @@
+---
+# file: tasks/tg.yaml
+
+- name: "Template Compose File"
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/opt/csit-docker-images/{{ item }}"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  with_items:
+    - "docker-compose-tg.yaml"
+  tags:
+    - docker-tg
+
+- name: "Start csit-initialize-docker-tg.service"
+  ansible.builtin.copy:
+    src: "files/csit-initialize-docker-tg.service"
+    dest: "/etc/systemd/system/"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify:
+    - "Start csit-initialize-docker-tg.service"
+  tags:
+    - docker-tg
+
+- meta: flush_handlers

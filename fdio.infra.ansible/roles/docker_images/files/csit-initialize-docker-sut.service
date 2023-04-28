@@ -1,0 +1,12 @@
+[Unit]
+Description=CSIT Initialize Docker SUT
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=True
+ExecStart=docker compose -f /opt/csit-docker-images/docker-compose-sut.yaml up --detach
+ExecStop=docker compose -f /opt/csit-docker-images/docker-compose-sut.yaml down
+
+[Install]
+WantedBy=default.target

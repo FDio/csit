@@ -1,0 +1,28 @@
+---
+# file: tasks/sut.yaml
+
+- name: "Template Compose File"
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/opt/csit-docker-images/{{ item }}"
+    owner: "root"
+    group: "root"
+    mode: 0755
+  with_items:
+    - "docker-compose-sut.yaml"
+  tags:
+    - docker-sut
+
+- name: "Copy csit-initialize-docker-sut.service"
+  ansible.builtin.copy:
+    src: "files/csit-initialize-docker-sut.service"
+    dest: "/etc/systemd/system/"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  notify:
+    - "Start csit-initialize-docker-sut.service"
+  tags:
+    - docker-sut
+
+- meta: flush_handlers
