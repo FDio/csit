@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "557353b6_87f5bd65",
+        "filename": "docs/content/infrastructure/fdio_csit_testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-04-28T10:02:42Z",
+      "side": 1,
+      "message": "i would merge and leave that once installed. my experience is that it won\u0027t be 0001 but we will fix afterward.",
+      "parentUuid": "3813f146_c06242b5",
+      "range": {
+        "startLine": 448,
+        "startChar": 12,
+        "endLine": 448,
+        "endChar": 66
+      },
+      "revId": "1bc00aab5b5883261b7ebc33f6948a8dfb67fa28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "313ae79a_7a55ed7f",
         "filename": "docs/content/infrastructure/fdio_csit_testbed_specifications.md",
         "patchSetId": 1
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce17f428_7cf400db",
+        "filename": "docs/content/infrastructure/fdio_csit_testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-04-28T10:02:42Z",
+      "side": 1,
+      "message": "as per our internal talk. i will make 2 ports by applying magic",
+      "parentUuid": "4d5b1372_b734fdf0",
+      "range": {
+        "startLine": 503,
+        "startChar": 12,
+        "endLine": 503,
+        "endChar": 61
+      },
+      "revId": "1bc00aab5b5883261b7ebc33f6948a8dfb67fa28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eabd6a73_996e4209",
         "filename": "docs/content/infrastructure/fdio_csit_testbed_specifications.md",
         "patchSetId": 1
@@ -83,6 +131,30 @@
       "writtenOn": "2023-04-21T09:29:24Z",
       "side": 1,
       "message": "I looked at the 3n-snr TG and updated the pci addresses here.\n\nOne thing to note is that when the slot is empty, dmidecode says the pci address is 0000:ff:00.0. This is true for PCIe Slot4 (empty on F4, populated on E32 by XL710). I\u0027ve used the pci address from E32.\nThis leads me to believe that the pci/numa values of 3n-alt mlx cx6 will change when plugged in.",
+      "range": {
+        "startLine": 580,
+        "startChar": 0,
+        "endLine": 588,
+        "endChar": 42
+      },
+      "revId": "1bc00aab5b5883261b7ebc33f6948a8dfb67fa28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f84ca69_11de67a7",
+        "filename": "docs/content/infrastructure/fdio_csit_testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-04-28T10:02:42Z",
+      "side": 1,
+      "message": "yes it will recomputed. no issue.",
+      "parentUuid": "eabd6a73_996e4209",
       "range": {
         "startLine": 580,
         "startChar": 0,
