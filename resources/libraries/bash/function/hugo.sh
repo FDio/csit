@@ -68,9 +68,12 @@ function hugo_init_modules () {
         die "Please install Hugo!"
     fi
 
+    hugo_book_url="github.com/alex-shpak/hugo-book"
+    hugo_book_version="v0.0.0-20230424134111-d86d5e70c7c0"
+    hugo_book_link="${hugo_book_url}@${hugo_book_version}"
     pushd "${CSIT_DIR}"/docs || die "Pushd failed!"
     export PATH=$PATH:/usr/local/go/bin
-    hugo mod get -u || die "Failed to run Hugo mod!"
+    hugo mod get "${hugo_book_link}" || die "Failed to run Hugo mod!"
     popd || die "Popd failed!"
 }
 
