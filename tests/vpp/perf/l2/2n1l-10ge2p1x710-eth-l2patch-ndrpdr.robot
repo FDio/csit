@@ -84,6 +84,10 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
+| | And Configure VPP startup configuration for NGINX | 1100000
+| | ... | 100000 | 250000 | 1g
+| | ... | 250000 | 1g
+| | ... | 1100000 | 1100000
 | | And Apply Startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
