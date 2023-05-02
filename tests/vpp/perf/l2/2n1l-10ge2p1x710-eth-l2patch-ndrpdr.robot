@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2PATCH | BASE | DRV_VFIO_PCI
@@ -84,6 +85,10 @@
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
+| | And Configure VPP startup configuration for NGINX | 1100000
+| | ... | 100000 | 250000 | 1g
+| | ... | 250000 | 1g
+| | ... | 1100000 | 1100000
 | | And Apply Startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
