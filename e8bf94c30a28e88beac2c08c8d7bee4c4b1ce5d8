@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest nic_*xxv*ANDdrv_*AND1cAND0bANDeth-ip4tcphttp-ldpreload-nginx-*ANDtcp_cpsNOTdrv_af_xdp mrrANDnic_*xxv*ANDdrv_*AND1cAND64bANDeth-l2xcbase-eth-2memif-1dcrNOTdrv_af_xdp",
       "revId": "e8bf94c30a28e88beac2c08c8d7bee4c4b1ce5d8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c07dd51_ce2f239d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-02T13:52:37Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest nic_*AND1cAND0bANDeth-ip4tcphttp-ldpreload-nginx-ANDtcp_cps mrrANDnic_*AND1cAND64bANDeth-l2xcbase-eth-2memif-1dcr !drv_af_xdp !drv_avf",
+      "revId": "e8bf94c30a28e88beac2c08c8d7bee4c4b1ce5d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
