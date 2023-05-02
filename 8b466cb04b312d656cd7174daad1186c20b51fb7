@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48c72417_8247ffcb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-02T16:06:22Z",
+      "side": 1,
+      "message": "csit-2n-icx-perftest mrrANDnic_*ANDdrv_vfio_pciAND1cAND64bANDeth-l2patch",
+      "revId": "8b466cb04b312d656cd7174daad1186c20b51fb7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
