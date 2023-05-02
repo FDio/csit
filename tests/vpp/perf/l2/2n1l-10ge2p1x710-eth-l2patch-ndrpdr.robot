@@ -81,6 +81,7 @@
 | |
 | | Set Test Variable | \${frame_size}
 | |
+| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
