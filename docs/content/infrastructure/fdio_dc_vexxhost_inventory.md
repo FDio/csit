@@ -7,7 +7,7 @@ weight: 1
 
 Captured inventory data:
   - **name**: CSIT functional server name as tracked in
-    [CSIT testbed specification]({{< ref "fdio_csit_testbed_specifications#FD.io CSIT Testbed Specifications" >}}),
+    [CSIT testbed specification]({{< ref "fdio_dc_testbed_specifications#FD.io CSIT Testbed Specifications" >}}),
     followed by "/" and the actual configured hostname, unless it is the same
     as CSIT name.
   - **oper-status**: operational status (up|down).
@@ -24,8 +24,8 @@ Captured inventory data:
 ## Missing Equipment Inventory
 
 1. Ixia PerfectStorm One Appliance
-   - [**Specification**]({{< ref "fdio_csit_testbed_specifications#2-node-ixiaps1l47-ixia-psone-l47-2n-ps1" >}})
-   - [**Wiring**]({{< ref "fdio_csit_testbed_specifications#2-node-ixiaps1l47-2n-ps1" >}})
+   - [**Specification**]({{< ref "fdio_dc_testbed_specifications#2-node-ixiaps1l47-ixia-psone-l47-2n-ps1" >}})
+   - [**Wiring**]({{< ref "fdio_dc_testbed_specifications#2-node-ixiaps1l47-2n-ps1" >}})
    - **mgmt-ip4**: 10.30.51.62 s26-t25-tg1
    - **ipmi-ip4**: 10.30.50.59 s26-t25-tg1
 
