@@ -1,5 +1,6 @@
 ---
+bookCollapseSection: false
 bookFlatSection: true
-title: "Release notes"
-weight: 2
+title: "Release Notes"
+weight: 3
 ---

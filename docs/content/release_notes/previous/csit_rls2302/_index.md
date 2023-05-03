@@ -1,6 +1,6 @@
 ---
 bookCollapseSection: false
-bookFlatSection: true
-title: "Introduction"
+bookFlatSection: false
+title: "CSIT rls2302"
 weight: 1
 ---

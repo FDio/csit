@@ -1,5 +1,4 @@
 ---
-bookCollapseSection: false
 bookFlatSection: true
 title: "Introduction"
 weight: 1
