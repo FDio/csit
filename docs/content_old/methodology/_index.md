@@ -1,6 +1,6 @@
 ---
 bookCollapseSection: true
 bookFlatSection: true
-title: "Infrastructure"
-weight: 4
+title: "Methodology"
+weight: 2
 ---

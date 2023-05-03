@@ -1,5 +1,4 @@
 ---
-bookCollapseSection: true
 bookFlatSection: true
 title: "Infrastructure"
 weight: 4
