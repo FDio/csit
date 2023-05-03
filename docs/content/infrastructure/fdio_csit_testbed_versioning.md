@@ -1,7 +1,7 @@
 ---
 bookToc: true
 title: "FD.io CSIT Testbed Versioning"
-weight: 3
+weight: 4
 ---
 
 # FD.io CSIT Testbed Versioning
