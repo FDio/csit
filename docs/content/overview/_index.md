@@ -1,6 +1,6 @@
 ---
 bookCollapseSection: false
 bookFlatSection: true
-title: "Release Notes"
-weight: 3
+title: "Overview"
+weight: 1
 ---
