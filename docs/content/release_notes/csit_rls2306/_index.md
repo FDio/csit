@@ -1,6 +1,6 @@
 ---
 bookCollapseSection: true
 bookFlatSection: false
-title: "FD.io DC Testbed Configuration"
-weight: 3
+title: "CSIT rls2306"
+weight: 1
 ---
