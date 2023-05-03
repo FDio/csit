@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fc96aa7_688daeb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2023-05-03T09:32:32Z",
+      "side": 1,
+      "message": "csit-3n-tsh-perftest mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm mrrANDdrv_vhostAND64bAND1cANDethip4-ip4base-2vhost-iperf3 mrrANDdrv_vfio_pciAND64bAND1cANDethip4-ip4base-eth-2vhost-1vm mrrANDdrv_vfio_pciAND64bAND1cANDeth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc",
+      "revId": "cdd998bb8d479718dd081353cb9a6cef8440afea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
