@@ -19,10 +19,10 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | eth-l2patch
 |
-| Suite Setup | Setup suite topology interfaces | performance
-| Suite Teardown | Tear down suite | performance
-| Test Setup | Setup test | performance
-| Test Teardown | Tear down test | performance
+| Suite Setup | Setup suite topology interfaces | ab
+| Suite Teardown | Tear down suite | ab
+| Test Setup | Setup test
+| Test Teardown | Tear down test
 |
 | Test Template | Local Template
 |
@@ -61,6 +61,10 @@
 | ${nic_vfs}= | 0
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
+| ${ab_ip_prefix}= | 24
+| @{ab_ip_addrs}= | 192.168.10.2
+| ${dut_ip_prefix}= | 24
+| @{dut_ip_addrs}= | 192.168.10.1
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-2n-ethip4-ip4src254
 
