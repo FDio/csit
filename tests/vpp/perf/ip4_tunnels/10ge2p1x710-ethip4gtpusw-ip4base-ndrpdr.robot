@@ -65,6 +65,7 @@
 | ${overhead}= | ${36}
 # Traffic profile:
 | ${traffic_profile}= | trex-stl-3n-ethip4-ip4src253
+| ${traffic_directions}= | ${1}
 
 *** Keywords ***
 | Local Template
@@ -90,6 +91,12 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
+| | #  788 implies  802+782 (=1584)
+| | #  787 implies  794+790
+| | #  792 implies  802+782
+| | #  780 implies  794+790
+| | # 1042 implies 1050+534
+| | And VPP Set Interface MTU and bring up | ${nodes['DUT1']} | ${dut1_if2} | ${1006}
 | | And Initialize IP4 forwarding with GTPU tunnel in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
