@@ -1,6 +1,6 @@
 ---
 bookCollapseSection: true
 bookFlatSection: false
-title: "FD.io DC Testbed Configuration"
+title: "Test"
 weight: 3
 ---

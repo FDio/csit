@@ -1,6 +1,6 @@
 ---
 bookCollapseSection: true
 bookFlatSection: false
-title: "FD.io DC Testbed Configuration"
-weight: 3
+title: "Data Plane Throughput"
+weight: 1
 ---
