@@ -14,8 +14,7 @@
 """Module defining dataclass_property class.
 
 The main issue that needs support is dataclasses with properties
-(including setters) and with default values, including mutable ones
-(meaning default_factory would ordinarilty be used).
+(including setters) and with (immutable) default values.
 
 First, this explains how property ends up passed as default constructor value:
 https://florimond.dev/en/posts/2018/10/reconciling-dataclasses-and-properties-in-python/
@@ -28,12 +27,11 @@ TL;DR: It relies on the underscored field being replaced by the value.
 
 But that does not work for field which use default_factory (or no default)
 (the underscored class field is deleted instead).
-
-So another way is needed to store a mutable default value somewhere,
-so setter can use it when called with a property instead of a value.
+So another way is needed to cover those cases,
+ideally without the need to define both original and underscored field.
 
 This implementation relies on a fact that decorators are executed
-when the class field do yet exist, and decorated function
+when the class fields do yet exist, and decorated function
 does know its name, so the decorator can get the value stored in
 the class field, and store it as an additional attribute of the getter function.
 Then for setter, the property contains the getter (as an unbound function),
@@ -41,11 +39,16 @@ so it can access the additional attribute to get the value.
 
 This approach circumvents the precautions dataclasses take to prevent mishaps
 when a single mutable object is shared between multiple instances.
-So it is up to setters to create an appropriate copy of the default object.
+So it is up to setters to create an appropriate copy of the default object
+if the default value is mutable.
+
+The default value cannot be MISSING nor Field not dataclass_property,
+otherwise the intended logic breaks down.
 """
 
 from __future__ import annotations
 
+from dataclasses import Field, MISSING
 from functools import wraps
 from inspect import stack
 from typing import Callable, Optional, TypeVar, Union
@@ -116,9 +119,14 @@ class dataclass_property(property):
         :type fdel: Optional[Callable[[Self], None]]
         :type doc: Optional[str]
         """
-        default_value = _calling_scope_variable(fget.__name__)
-        if not isinstance(default_value, dataclass_property):
-            fget.default_value = default_value
+        variable_found = _calling_scope_variable(fget.__name__)
+        if not isinstance(variable_found, dataclass_property):
+            if isinstance(variable_found, Field):
+                if variable_found.default is not MISSING:
+                    fget.default_value = variable_found.default
+                # Else do not store any default value.
+            else:
+                fget.default_value = variable_found
         # Else this is the second time init is called (when setting setter),
         # in which case the default is already stored into fget.
         super().__init__(fget=fget, fset=fset, fdel=fdel, doc=doc)
