@@ -13,7 +13,10 @@
 
 """Module defining Config class."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
+from typing import Optional
 
 from .criteria import Criteria
 from .criterion import Criterion
@@ -53,23 +56,31 @@ class Config:
     """Each trial measurement must have intended load at least this [tps]."""
     max_load: float = 1e9
     """Each trial measurement must have intended load at most this [tps]."""
-    min_trial_duration: float = 1.0
-    """FIXME"""
-    subtrial_duration: float = 1.0
-    """FIXME"""
-    max_search_duration: float = 1800.0
+    search_duration_max: float = 1800.0
     """The search will end as a failure this long [s] after it is started."""
-    warmup_duration: float = 0.0
+    warmup_duration: Optional(float) = None
     """FIXME"""
-    # Internal private fields holding the values for properties to access.
-    _criteria: Criteria = field(init=False, repr=False)
-    _min_load: float = field(init=False, repr=False)
-    _max_load: float = field(init=False, repr=False)
-    _min_trial_duration: float = field(init=False, repr=False)
-    _subtrial_duration: float = field(init=False, repr=False)
-    _initial_trial_count: int = field(init=False, repr=False)
-    _max_search_duration: float = field(init=False, repr=False)
-    _warmup_duration: float = field(init=False, repr=False)
+
+    @dataclass_property
+    def criteria(self) -> Criteria:
+        """Return a copy of the current list.
+
+        :returns: The current list of loss ratios.
+        :rtype: Set[float]
+        """
+        return self._criteria
+
+    @criteria.setter
+    def criteria(self, criteria: Criteria) -> None:
+        """Copy, convert, check and store the argument list values.
+
+        :param criteria: List of ratios for the current search.
+        :type criteria: Criteria
+        :raises TypeError: If there is some problem with the argument.
+        """
+        if not isinstance(criteria, Criteria):
+            raise TypeError(f"Must be a Criteria instance: {criteria}")
+        self._criteria = criteria
 
     @dataclass_property
     def min_load(self) -> float:
@@ -119,100 +130,6 @@ class Config:
         self._max_load = load
 
     @dataclass_property
-    def min_trial_duration(self) -> float:
-        """Getter for max search duration, no logic here.
-
-        :returns: Currently set max search duration [s].
-        :rtype: float
-        """
-        return self._min_trial_duration
-
-    @min_trial_duration.setter
-    def min_trial_duration(self, duration: float) -> None:
-        """Set max search duration after converting and checking value.
-
-        :param duration: Max search duration [s] value to set.
-        :type duration: float
-        :raises ValueError: If the argument is found invalid.
-        """
-        duration = float(duration)
-        if duration <= 0.0:
-            raise ValueError(f"Min trial duration too small: {duration}")
-        if (
-            hasattr(self, "_subtrial_duration")
-            and duration > self.subtrial_duration
-        ):
-            raise ValueError(f"Min trial duration {duration} must be smaller.")
-        self._min_trial_duration = duration
-
-    @dataclass_property
-    def subtrial_duration(self) -> float:
-        """Getter for max search duration, no logic here.
-
-        :returns: Currently set max search duration [s].
-        :rtype: float
-        """
-        return self._subtrial_duration
-
-    @subtrial_duration.setter
-    def subtrial_duration(self, duration: float) -> None:
-        """Set max search duration after converting and checking value.
-
-        :param duration: Max search duration [s]ue to set.
-        :type duration: float
-        :raises ValueError: If the argument is found invalid.
-        """
-        duration = float(duration)
-        if duration < self.min_trial_duration:
-            raise ValueError(f"Single trial duration too small: {duration}")
-        self._subtrial_duration = duration
-
-    @dataclass_property
-    def criteria(self) -> Criteria:
-        """Return a copy of the current list.
-
-        :returns: The current list of loss ratios.
-        :rtype: List[float]
-        """
-        return self._criteria
-
-    @criteria.setter
-    def criteria(self, criteria: Criteria) -> None:
-        """Copy, convert, check and store the argument list values.
-
-        :param loss_ratios: List of ratios for the current search.
-        :type loss_ratios: Iterable[float]
-        :raises TypeError: If there is some problem with the argument.
-        """
-        if not isinstance(criteria, Criteria):
-            raise TypeError(f"Must by Criteria instance: {criteria}")
-        if len(criteria.loss_ratios) < 1:
-            raise ValueError(f"At least one criterion needed: {criteria}")
-        self._criteria = criteria
-
-    @dataclass_property
-    def max_search_duration(self) -> float:
-        """Getter for max search duration, no logic here.
-
-        :returns: Currently set max search duration [s].
-        :rtype: float
-        """
-        return self._max_search_duration
-
-    @max_search_duration.setter
-    def max_search_duration(self, duration: float) -> None:
-        """Set max search duration after converting and checking value.
-
-        :param duration: Max search duration [s]ue to set.
-        :type duration: float
-        :raises ValueError: If the argument is found invalid.
-        """
-        duration = float(duration)
-        if duration <= 0.0:
-            raise ValueError(f"Max search duration too small: {duration}")
-        self._max_search_duration = duration
-
-    @dataclass_property
     def warmup_duration(self) -> float:
         """Getter for max search duration, no logic here.
 
@@ -222,14 +139,17 @@ class Config:
         return self._warmup_duration
 
     @warmup_duration.setter
-    def warmup_duration(self, duration: float) -> None:
+    def warmup_duration(self, duration: Optional(float)) -> None:
         """Set max search duration after converting and checking value.
 
         :param duration: Max search duration [s]ue to set.
-        :type duration: float
+        :type duration: Optional(float)
         :raises ValueError: If the argument is found invalid.
         """
-        duration = float(duration)
-        if duration < 0.0:
-            raise ValueError(f"Warmup duration too small: {duration}")
+        if duration:
+            duration = float(duration)
+            if duration < 0.0:
+                raise ValueError(f"Warmup duration too small: {duration}")
+        else:
+            duration = None
         self._warmup_duration = duration
