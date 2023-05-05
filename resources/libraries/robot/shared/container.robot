@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -85,8 +85,9 @@
 | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
 | | ${dut1_uuid_length} = | Get Length | ${DUT1_UUID}
-| | ${root}= | Run Keyword If | ${dut1_uuid_length}
-| | ... | Get Docker Mergeddir | ${nodes['DUT1']} | ${DUT1_UUID}
+| | ${in_container}= | Running in Container | ${nodes['${dut}']}
+| | ${root}= | Run Keyword If | ${in_container}
+| | ... | Get Docker Mergeddir | ${nodes['DUT1']}
 | | ... | ELSE | Set Variable | ${EMPTY}
 | | ${node_arch}= | Get Node Arch | ${nodes['${dut}']}
 | | ${name}= | Set Variable | ${dut}_${container_group}${nf_id}${DUT1_UUID}
