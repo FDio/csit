@@ -713,18 +713,15 @@ class DUTSetup:
             to detect.
         :rtype: bool
         """
-        command = u"fgrep docker /proc/1/cgroup"
-        message = u"Failed to get cgroup settings."
+        command = "cat /.dockerenv"
         try:
-            exec_cmd_no_error(
-                node, command, timeout=30, sudo=False, message=message
-            )
+            exec_cmd_no_error(node, command, timeout=30)
         except RuntimeError:
             return False
         return True
 
     @staticmethod
-    def get_docker_mergeddir(node, uuid):
+    def get_docker_mergeddir(node, uuid=None):
         """Get Docker overlay for MergedDir diff.
 
         :param node: DUT node.
@@ -735,8 +732,15 @@ class DUTSetup:
         :rtype: str
         :raises RuntimeError: If getting output failed.
         """
-        command = f"docker inspect " \
+        if not uuid:
+            command = 'fgrep "hostname" /proc/self/mountinfo | cut -f 4 -d" "'
+            message = "Failed to get UUID!"
+            stdout, _ = exec_cmd_no_error(node, command, message=message)
+            uuid = stdout.split(sep="/")[-2]
+        command = (
+            f"docker inspect "
             f"--format='{{{{.GraphDriver.Data.MergedDir}}}}' {uuid}"
+        )
         message = f"Failed to get directory of {uuid} on host {node[u'host']}"
 
         stdout, _ = exec_cmd_no_error(node, command, sudo=True, message=message)
