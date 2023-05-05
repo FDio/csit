@@ -29,35 +29,6 @@ class VPPUtil:
     """General class for any VPP related methods/functions."""
 
     @staticmethod
-    def show_vpp_settings(node, *additional_cmds):
-        """Print default VPP settings. In case others are needed, can be
-        accepted as next parameters (each setting one parameter), preferably
-        in form of a string.
-
-        :param node: VPP node.
-        :param additional_cmds: Additional commands that the vpp should print
-            settings for.
-        :type node: dict
-        :type additional_cmds: tuple
-        """
-        def_setting_tb_displayed = {
-            u"IPv6 FIB": u"ip6 fib",
-            u"IPv4 FIB": u"ip fib",
-            u"Interface IP": u"int addr",
-            u"Interfaces": u"int",
-            u"ARP": u"ip arp",
-            u"Errors": u"err"
-        }
-
-        if additional_cmds:
-            for cmd in additional_cmds:
-                def_setting_tb_displayed[f"Custom Setting: {cmd}"] = cmd
-
-        for _, cmd in def_setting_tb_displayed.items():
-            command = f"vppctl sh {cmd}"
-            exec_cmd_no_error(node, command, timeout=30, sudo=True)
-
-    @staticmethod
     def restart_vpp_service(node, node_key=None):
         """Restart VPP service on the specified topology node.
 
