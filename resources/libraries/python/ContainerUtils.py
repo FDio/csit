@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -636,7 +636,7 @@ class ContainerEngine:
                 # Execute puts the command into single quotes,
                 # so inner arguments are enclosed in qouble quotes here.
                 self.execute(
-                    u'vppctl show pci 2>&1 | '
+                    u'/usr/bin/vppctl show pci 2>&1 | '
                     u'fgrep -v "Connection refused" | '
                     u'fgrep -v "No such file or directory"'
                 )
