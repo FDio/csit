@@ -11,9 +11,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-__init__ file for Python package "trial_measurement".
-"""
+"""Module defining a subclass of dict with an alternative str method."""
 
-from .abstract_measurer import AbstractMeasurer
-from .measurement_result import MeasurementResult
+class Pep3140Dict(dict):
+    """A dict with str support as proposed in PEP 3140."""
+
+    def __str__(self):
+        """Return comma+space separated str of items in curly brackets."""
+        body = ", ".join(f"{key}: {value}" for key, value in self.items())
+        return f"{{{body}}}"

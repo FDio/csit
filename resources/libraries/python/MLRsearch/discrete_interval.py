@@ -13,12 +13,15 @@
 
 """Module defining DiscreteInterval class."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 from .discrete_load import DiscreteLoad
 from .discrete_width import DiscreteWidth
 
 
+# TODO: Can this be frozen?
 @dataclass
 class DiscreteInterval:
     """Interval class with more computations available.
@@ -47,6 +50,10 @@ class DiscreteInterval:
             self.low_end, self.high_end = self.high_end, self.low_end
         self.discrete_width = self.high_end - self.low_end
 
+    def __str__(self) -> str:
+        """FIXME"""
+        return f"lower_bound=({self.low_end}),upper_bound=({self.high_end})"
+
     def width_in_goals(self, goal: DiscreteWidth) -> float:
         """Return relative width as a logaritmic multiple of given goal.
 
@@ -59,7 +66,7 @@ class DiscreteInterval:
         :returns: Current width as (logarithmic) multiple of goal width.
         :rtype: float
         """
-        return (int(self.high_end) - int(self.low_end)) / int(goal)
+        return int(self.discrete_width) / int(goal)
 
     @property
     def relative_width(self) -> float:
