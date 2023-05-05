@@ -660,6 +660,9 @@ class DUTSetup:
         for node in nodes.values():
             message = f"Failed to install VPP on host {node[u'host']}!"
             if node[u"type"] == NodeType.DUT:
+                command = "mkdir -p /var/log/vpp/"
+                exec_cmd(node, command, sudo=True)
+
                 command = u"ln -s /dev/null /etc/sysctl.d/80-vpp.conf || true"
                 exec_cmd_no_error(node, command, sudo=True)
 
