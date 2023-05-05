@@ -58,8 +58,6 @@ class VppConfigGenerator:
         self._vpp_config = u""
         # VPP Service name
         self._vpp_service_name = u"vpp"
-        # VPP Logfile location
-        self._vpp_logfile = u"/tmp/vpe.log"
         # VPP Startup config location
         self._vpp_startup_conf = u"/etc/vpp/startup.conf"
 
@@ -133,15 +131,13 @@ class VppConfigGenerator:
         if level >= 0:
             self._vpp_config += f"{level * indent}}}\n"
 
-    def add_unix_log(self, value=None):
+    def add_unix_log(self, value="/var/log/vpp/vpp.log"):
         """Add UNIX log configuration.
 
         :param value: Log file.
         :type value: str
         """
         path = [u"unix", u"log"]
-        if value is None:
-            value = self._vpp_logfile
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_unix_cli_listen(self, value=u"/run/vpp/cli.sock"):
