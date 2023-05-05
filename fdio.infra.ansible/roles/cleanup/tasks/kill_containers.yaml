@@ -4,7 +4,7 @@
 - name: Kill Docker Containers
   block:
     - name: Kill Container - Get Running Docker Containers
-      ansible.builtin.shell: "docker ps -aq"
+      ansible.builtin.shell: "docker ps -a --filter name=DUT -q"
       register: running_containers
       changed_when: false
       tags:

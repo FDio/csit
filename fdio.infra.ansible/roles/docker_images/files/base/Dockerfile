@@ -67,6 +67,7 @@ RUN apt-get -q update \
         vim \
         wget \
         zlib1g-dev \
+ && ln -s -f /usr/lib/x86_64-linux-gnu/libc.a /usr/lib/x86_64-linux-gnu/liblibc.a \
  && curl -fsSL https://get.docker.com | sh \
  && rm -rf /var/lib/apt/lists/*
 
@@ -146,7 +147,12 @@ RUN pip3 install \
         snowballstemmer==2.2.0 \
         urllib3==1.26.10
 
-RUN useradd -rm -d /home/testuser -s /bin/bash -g root -G sudo -u 1000 testuser \
+RUN groupadd -g 1000 testuser \
+ && useradd -rm -d /home/testuser -s /bin/bash -g testuser -G sudo -u 1000 testuser \
  && echo 'testuser:Csit1234' | chpasswd
+
+RUN echo 'root:Csit1234' | chpasswd \
+ && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+ && echo "export VISIBLE=now" >> /etc/profile
 
 RUN service ssh start
