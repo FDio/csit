@@ -17,7 +17,7 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -33,11 +33,13 @@ class DUTSetup:
         :type node: dict
         :type service: str
         """
-        command = u"cat /tmp/*supervisor*.log"\
-            if DUTSetup.running_in_container(node) \
-            else f"journalctl --no-pager _SYSTEMD_INVOCATION_ID=$(systemctl " \
-            f"show -p InvocationID --value {service})"
-
+        if DUTSetup.running_in_container(node):
+            command = u"cat /var/log/vpp/vpp.log"
+        else:
+            command = (
+                f"journalctl --no-pager _SYSTEMD_INVOCATION_ID=$(systemctl "
+                f"show -p InvocationID --value {service})"
+            )
         message = f"Node {node[u'host']} failed to get logs from unit {service}"
 
         exec_cmd_no_error(
@@ -66,9 +68,10 @@ class DUTSetup:
         :type node: dict
         :type service: str
         """
-        command = f"supervisorctl restart {service}" \
-            if DUTSetup.running_in_container(node) \
-            else f"service {service} restart"
+        if DUTSetup.running_in_container(node):
+            command = f"supervisorctl restart {service}"
+        else:
+            command = f"systemctl restart {service}"
         message = f"Node {node[u'host']} failed to restart service {service}"
 
         exec_cmd_no_error(
@@ -99,10 +102,10 @@ class DUTSetup:
         :type node: dict
         :type service: str
         """
-        # TODO: change command to start once all parent function updated.
-        command = f"supervisorctl restart {service}" \
-            if DUTSetup.running_in_container(node) \
-            else f"service {service} restart"
+        if DUTSetup.running_in_container(node):
+            command = f"supervisorctl restart {service}"
+        else:
+            command = f"systemctl restart {service}"
         message = f"Node {node[u'host']} failed to start service {service}"
 
         exec_cmd_no_error(
@@ -135,9 +138,10 @@ class DUTSetup:
         """
         DUTSetup.get_service_logs(node, service)
 
-        command = f"supervisorctl stop {service}" \
-            if DUTSetup.running_in_container(node) \
-            else f"service {service} stop"
+        if DUTSetup.running_in_container(node):
+            command = f"supervisorctl stop {service}"
+        else:
+            command = f"systemctl stop {service}"
         message = f"Node {node[u'host']} failed to stop service {service}"
 
         exec_cmd_no_error(
