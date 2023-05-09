@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.VhostUser
 
 *** Variables ***
-| ${dpdk_no_tx_checksum_offload}= | ${True}
+| ${dpdk_no_tx_checksum_offload}= | ${False}
 
 *** Keywords ***
 | Set single interfaces in path up
