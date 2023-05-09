@@ -16,6 +16,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4-ip4base",
       "revId": "00c783970e5b7d4e4773760dfd71c036ac989f8d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba458736_da26c330",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-09T12:44:44Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDeth-l2xcbase mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND64bANDethip4-ip4base",
+      "revId": "00c783970e5b7d4e4773760dfd71c036ac989f8d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
