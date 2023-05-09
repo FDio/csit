@@ -36,12 +36,13 @@ descriptions.
 
 **SKIP_PATCH**
 
-    Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP patch)
-    and csit-vpp-verify jobs (i.e. CSIT patch).
+    Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP
+    patch) and csit-vpp-verify jobs (i.e. CSIT patch).
 
 **SKIP_VPP_PATCH**
 
-    Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP patch).
+    Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP
+    patch).
 
 ## Environment Tags
 
@@ -164,29 +165,31 @@ descriptions.
 
 **100_FLOWS**
 
-    Traffic stream with 100 unique flows (10 IPs/users x 10 UDP ports) in one
-    direction.
+    Traffic stream with 100 unique flows (10 IPs/users x 10 UDP ports) in
+    one direction.
 
 **10k_FLOWS**
 
-    Traffic stream with 10 000 unique flows (10 IPs/users x 1000 UDP ports) in
-    one direction.
+    Traffic stream with 10 000 unique flows (10 IPs/users x 1000 UDP ports)
+    in one direction.
 
 **100k_FLOWS**
 
-    Traffic stream with 100 000 unique flows (100 IPs/users x 1000 UDP ports) in
-    one direction.
+    Traffic stream with 100 000 unique flows (100 IPs/users x 1000 UDP
+    ports) in one direction.
 
 **HOSTS_{h}**
 
-    Stateless or stateful traffic stream with {h} client source IP4 addresses,
-    usually with 63 flow differing in source port number. Could be UDP or TCP.
-    If NAT is used, the clients are inside. Outside IP range can differ.
+    Stateless or stateful traffic stream with {h} client source IP4
+    addresses, usually with 63 flow differing in source port number.
+    Could be UDP or TCP. If NAT is used, the clients are inside.
+    Outside IP range can differ.
     {h}=(1024,4096,16384,65536,262144).
 
 **GENEVE4_{t}TUN**
 
-    Test with {t} GENEVE IPv4 tunnel. {t}=(1,4,16,64,256,1024)
+    Test with {t} GENEVE IPv4 tunnel.
+    {t}=(1,4,16,64,256,1024)
 
 ## Test Category Tags
 
@@ -208,10 +211,11 @@ descriptions.
 
 **NDRPDR**
 
-    Single test finding both No Drop Rate and Partial Drop Rate simultaneously.
-    The search is done by optimized algorithm which performs
-    multiple trial runs at different durations and transmit rates.
-    The results come from the final trials, which have duration of 30 seconds.
+    Single test finding both No Drop Rate and Partial Drop Rate
+    simultaneously. The search is done by optimized algorithm which
+    performs multiple trial runs at different durations and transmit
+    rates. The results come from the final trials, which have duration
+    of 30 seconds.
 
 **MRR**
 
@@ -271,8 +275,8 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **L2PATCH**
 
-    L2PATCH baseline test cases, no encapsulation, no feature(s) configured in
-    tests.
+    L2PATCH baseline test cases, no encapsulation, no feature(s) configured
+    in tests.
 
 **SCALE**
 
@@ -285,7 +289,8 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **FEATURE**
 
-    At least one feature is configured in test cases. Use also feature tag(s).
+    At least one feature is configured in test cases. Use also feature
+    tag(s).
 
 **UDP**
 
@@ -297,7 +302,8 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **TREX**
 
-    Tests which test trex traffic without any software DUTs in the traffic path.
+    Tests which test trex traffic without any software DUTs in the
+    traffic path.
 
 **UDP_UDIR**
 
@@ -309,33 +315,28 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **UDP_CPS**
 
-    Tests which measure connections per second on minimal UDP pseudoconnections.
-    This implies ASTF traffic profile is used.
-    This tag selects specific output processing in PAL.
+    Tests which measure connections per second on minimal UDP
+    pseudoconnections. This implies ASTF traffic profile is used.
 
 **TCP_CPS**
 
     Tests which measure connections per second on empty TCP connections.
     This implies ASTF traffic profile is used.
-    This tag selects specific output processing in PAL.
 
 **TCP_RPS**
 
     Tests which measure requests per second on empty TCP connections.
     This implies ASTF traffic profile is used.
-    This tag selects specific output processing in PAL.
 
 **UDP_PPS**
 
     Tests which measure packets per second on lightweight UDP transactions.
     This implies ASTF traffic profile is used.
-    This tag selects specific output processing in PAL.
 
 **TCP_PPS**
 
     Tests which measure packets per second on lightweight TCP transactions.
     This implies ASTF traffic profile is used.
-    This tag selects specific output processing in PAL.
 
 **HTTP**
 
@@ -372,17 +373,18 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
     Service density matrix locator {r}R{c}C, {r}Row denoting number of
     service instances, {c}Column denoting number of NFs per service
-    instance. {r}=(1,2,4,6,8,10), {c}=(1,2,4,6,8,10).
+    instance.
+    {r}=(1,2,4,6,8,10), {c}=(1,2,4,6,8,10).
 
 **{n}VM{t}T**
 
-    Service density {n}VM{t}T, {n}Number of NF Qemu VMs, {t}Number of threads
-    per NF.
+    Service density {n}VM{t}T, {n}Number of NF Qemu VMs, {t}Number of
+    threads per NF.
 
 **{n}DCR{t}T**
 
-    Service density {n}DCR{t}T, {n}Number of NF Docker containers, {t}Number of
-    threads per NF.
+    Service density {n}DCR{t}T, {n}Number of NF Docker containers,
+    {t}Number of threads per NF.
 
 **{n}_ADDED_CHAINS**
 
@@ -597,8 +599,8 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **VIRTIO_1024**
 
-    All test cases which uses VIRTIO native VPP driver with qemu queue size set
-    to 1024.
+    All test cases which uses VIRTIO native VPP driver with qemu queue 
+    size set to 1024.
 
 **CFS_OPT**
 
@@ -623,8 +625,8 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 **SINGLE_MEMIF**
 
     All test cases which uses only single Memif connection per DUT. One DUT
-    instance is running in container having one physical interface exposed to
-    container.
+    instance is running in container having one physical interface exposed
+    to container.
 
 **LBOND**
 
@@ -656,23 +658,25 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **DRV_{d}**
 
-    All test cases which NIC Driver for DUT is set to {d}. Default is VFIO_PCI.
+    All test cases which NIC Driver for DUT is set to {d}.
+    Default is VFIO_PCI.
     {d}=(AVF, RDMA_CORE, VFIO_PCI, AF_XDP).
 
 **TG_DRV_{d}**
 
-    All test cases which NIC Driver for TG is set to {d}. Default is IGB_UIO.
+    All test cases which NIC Driver for TG is set to {d}.
+    Default is IGB_UIO.
     {d}=(RDMA_CORE, IGB_UIO).
 
 **RXQ_SIZE_{n}**
 
-    All test cases which RXQ size (RX descriptors) are set to {n}. Default is 0,
-    which means VPP (API) default.
+    All test cases which RXQ size (RX descriptors) are set to {n}.
+    Default is 0, which means VPP (API) default.
 
 **TXQ_SIZE_{n}**
 
-    All test cases which TXQ size (TX descriptors) are set to {n}. Default is 0,
-    which means VPP (API) default.
+    All test cases which TXQ size (TX descriptors) are set to {n}.
+    Default is 0, which means VPP (API) default.
 
 ## Feature Tags
 
@@ -706,11 +710,13 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **ACL_STATELESS**
 
-    ACL plugin configured and tested in stateless mode (permit action).
+    ACL plugin configured and tested in stateless mode
+    (permit action).
 
 **ACL_STATEFUL**
 
-    ACL plugin configured and tested in stateful mode (permit+reflect action).
+    ACL plugin configured and tested in stateful mode
+    (permit+reflect action).
 
 **ACL1**
 
@@ -836,12 +842,12 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
 **STHREAD**
 
-    *Dynamic tag*.
+    Dynamic tag.
     All test cases using single poll mode thread.
 
 **MTHREAD**
 
-    *Dynamic tag*.
+    Dynamic tag.
     All test cases using more then one poll mode driver thread.
 
 **{n}NUMA**
@@ -851,8 +857,9 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 **{c}C**
 
     {c} worker thread pinned to {c} dedicated physical core; or if
-    HyperThreading is enabled, {c}*2 worker threads each pinned to a separate
-    logical core within 1 dedicated physical core. Main thread pinned to core 1.
+    HyperThreading is enabled, {c}*2 worker threads each pinned to
+    a separate logical core within 1 dedicated physical core. Main
+    thread pinned to core 1.
     {t}=(1,2,4).
 
 **{t}T{c}C**
@@ -860,4 +867,6 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
     *Dynamic tag*.
     {t} worker threads pinned to {c} dedicated physical cores. Main thread
     pinned to core 1. By default CSIT is configuring same amount of receive
-    queues per interface as worker threads. {t}=(1,2,4,8), {t}=(1,2,4).
+    queues per interface as worker threads. 
+    {t}=(1,2,4,8),
+    {c}=(1,2,4).
