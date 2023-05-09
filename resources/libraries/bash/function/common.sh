@@ -475,8 +475,12 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="icx"
             ;;
-        *"3n-spr"*)
-            NODENESS="3n"
+        *"3na-spr"*)
+            NODENESS="3na"
+            FLAVOR="spr"
+            ;;
+        *"3nb-spr"*)
+            NODENESS="3nb"
             FLAVOR="spr"
             ;;
         *"3n-snr"*)
@@ -868,7 +872,13 @@ function select_tags () {
         *"3n-icx"* | *"2n-icx"*)
             default_nic="nic_intel-xxv710"
             ;;
-        *"3n-spr"* | *"2n-spr"*)
+        *"3na-spr"*)
+            default_nic="nic_mellanox-cx7veat"
+            ;;
+        *"3nb-spr"*)
+            default_nic="nic_intel-e810cq"
+            ;;
+        *"2n-spr"*)
             default_nic="nic_intel-e810cq"
             ;;
         *"2n-clx"* | *"2n-zn2"*)
@@ -1012,7 +1022,10 @@ function select_tags () {
             ;;
         *"3n-snr"*)
             ;;
-        *"3n-spr"*)
+        *"3na-spr"*)
+            test_tag_array+=("!ipsechw")
+            ;;
+        *"3nb-spr"*)
             test_tag_array+=("!ipsechw")
             ;;
         *"3n-tsh"*)

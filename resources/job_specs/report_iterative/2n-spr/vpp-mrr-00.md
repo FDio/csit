@@ -57,7 +57,7 @@
 4c AND 64b AND mrr AND e810cq AND drv_vfio_pci AND ethip4-ip4base-eth-2memif-1dcr
 ## ./ip4
 ### mellanox-cx7veat
-#### avf
+#### mlx5-core
 ##### ethip4-ip4base
 1c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4base
 2c AND 64b AND mrr AND cx7veat AND drv_mlx5_core AND ethip4-ip4base
