@@ -67,9 +67,9 @@ A brief bottom-up description is provided here:
      - VPP;
      - DPDK-Testpmd;
      - DPDK-L3Fwd;
+     - TRex
    - Tools:
-     - Documentation generator;
-     - Report generator;
+     - C-Dash
      - Testbed environment setup ansible playbooks;
      - Operational debugging scripts;
 
