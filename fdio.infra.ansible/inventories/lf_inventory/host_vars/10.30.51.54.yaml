@@ -30,5 +30,5 @@ inventory_ipmi_hostname: "10.30.50.54"
 cpu_microarchitecture: "sapphirerapids"
 docker_sut: true
 
-intel_800_matrix: "dpdk22.07"
+intel_800_matrix: "dpdk23.03"
 intel_dsa_matrix: true
