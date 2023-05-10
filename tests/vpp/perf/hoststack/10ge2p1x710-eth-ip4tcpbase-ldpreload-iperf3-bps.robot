@@ -56,7 +56,7 @@
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
-| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
+| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${True}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | ${defer_fail}= | Get Test Results From Hoststack Iperf3 Test
 | | Run Keyword If | ${defer_fail}==True | FAIL

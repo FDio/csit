@@ -57,7 +57,7 @@
 | Local template
 | | [Arguments] | ${phy_cores}
 | |
-| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${False}
+| | Set Test Variable | ${dpdk_no_tx_checksum_offload} | ${True}
 | | Set VPP Hoststack Attributes | phy_cores=${phy_cores}
 | | Set Iperf3 Client Attributes | parallel=${streams}
 | | ${defer_fail}= | Get Test Results From Hoststack Iperf3 Test
