@@ -920,7 +920,7 @@ class Layout:
         for graph in graphs:
             acc_items.append(
                 dbc.AccordionItem(
-                    title=f"Telemetry: {graph[1]}",
+                    title=f"Telemetry: {graph[1]}" if graph[1] else "Telemetry",
                     children=dcc.Graph(
                         id={"type": "graph-telemetry", "index": graph[1]},
                         figure=graph[0]
@@ -990,6 +990,16 @@ class Layout:
                 id="telemetry-dd",
                 class_name="g-0 p-1",
                 children=["Add content here."]
+            ),
+            dbc.Row(
+                id="telemetry-all-in-one",
+                class_name="g-0 p-2",
+                children=[
+                    dbc.Checkbox(
+                        id="cb-all-in-one",
+                        label="All Metrics in one Graph"
+                    ),
+                ]
             ),
             dbc.Row(
                 class_name="g-0 p-1",
@@ -1389,6 +1399,7 @@ class Layout:
             State("store-telemetry-data", "data"),
             State("store-telemetry-user", "data"),
             State("store-selected-tests", "data"),
+            State("cb-all-in-one", "value"),
             Input({"type": "tele-cl", "index": ALL}, "value"),
             Input("telemetry-search-in", "value"),
             Input({"type": "telemetry-btn", "index": ALL}, "n_clicks"),
@@ -1399,6 +1410,7 @@ class Layout:
                 tm_data: dict,
                 tm_user: dict,
                 store_sel: list,
+                all_in_one: bool,
                 cl_metrics: list,
                 search_in: str,
                 n_clicks: list,
@@ -1483,7 +1495,9 @@ class Layout:
                             tm.select_tm_trending_data(
                                 tm_user["selected_metrics_with_labels"]
                             ),
-                            self._graph_layout)
+                            self._graph_layout,
+                            all_in_one
+                        )
                     )
                     tm_user = None
                     is_open = (False, False)
