@@ -344,38 +344,52 @@ def graph_trending(
     return fig_tput, fig_lat
 
 
-def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
+def graph_tm_trending(
+        data: pd.DataFrame,
+        layout: dict,
+        all_in_one: bool=False
+    ) -> list:
     """Generates one trending graph per test, each graph includes all selected
     metrics.
 
     :param data: Data frame with telemetry data.
     :param layout: Layout of plot.ly graph.
+    :param all_in_one: If True, all telemetry traces are placed in one graph,
+        otherwise they are split to separate graphs grouped by test ID.
     :type data: pandas.DataFrame
     :type layout: dict
+    :type all_in_one: bool
     :returns: List of generated graphs together with test names.
         list(tuple(plotly.graph_objects.Figure(), str()), tuple(...), ...)
     :rtype: list
     """
 
+    if data.empty:
+        return list()
 
-    def _generate_graph(
+    def _generate_traces(
             data: pd.DataFrame,
             test: str,
-            layout: dict
-        ) -> go.Figure:
+            all_in_one: bool,
+            color_index: int
+        ) -> list:
         """Generates a trending graph for given test with all metrics.
 
         :param data: Data frame with telemetry data for the given test.
         :param test: The name of the test.
-        :param layout: Layout of plot.ly graph.
+        :param all_in_one: If True, all telemetry traces are placed in one
+            graph, otherwise they are split to separate graphs grouped by
+            test ID.
+        :param color_index: The index of the test used if all_in_one is True.
         :type data: pandas.DataFrame
         :type test: str
-        :type layout: dict
-        :returns: A trending graph.
-        :rtype: plotly.graph_objects.Figure
+        :type all_in_one: bool
+        :type color_index: int
+        :returns: List of traces.
+        :rtype: list
         """
-        graph = None
         traces = list()
+        nr_of_metrics = len(data.tm_metric.unique())
         for idx, metric in enumerate(data.tm_metric.unique()):
             if "-pdr" in test and "='pdr'" not in metric:
                 continue
@@ -412,7 +426,7 @@ def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
                 hover.append(
                     f"date: "
                     f"{row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
-                    f"value: {y_data[i]:,.0f}<br>"
+                    f"value: {y_data[i]:,.2f}<br>"
                     f"{rate}"
                     f"{row['dut_type']}-ref: {row['dut_version']}<br>"
                     f"csit-ref: {row['job']}/{row['build']}<br>"
@@ -427,19 +441,25 @@ def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
                     hover_trend.append(
                         f"date: "
                         f"{row['start_time'].strftime('%Y-%m-%d %H:%M:%S')}<br>"
-                        f"trend: {avg:,.0f}<br>"
-                        f"stdev: {stdev:,.0f}<br>"
+                        f"trend: {avg:,.2f}<br>"
+                        f"stdev: {stdev:,.2f}<br>"
                         f"{row['dut_type']}-ref: {row['dut_version']}<br>"
                         f"csit-ref: {row['job']}/{row['build']}"
                     )
             else:
                 anomalies = None
-            color = get_color(idx)
+            if all_in_one:
+                color = get_color(color_index * nr_of_metrics + idx)
+                metric_name = f"{test}<br>{metric}"
+            else:
+                color = get_color(idx)
+                metric_name = metric
+
             traces.append(
                 go.Scatter(  # Samples
                     x=x_axis,
                     y=y_data,
-                    name=metric,
+                    name=metric_name,
                     mode="markers",
                     marker={
                         "size": 5,
@@ -449,7 +469,7 @@ def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
                     text=hover,
                     hoverinfo="text+name",
                     showlegend=True,
-                    legendgroup=metric
+                    legendgroup=metric_name
                 )
             )
             if anomalies:
@@ -457,7 +477,7 @@ def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
                     go.Scatter(  # Trend line
                         x=x_axis,
                         y=trend_avg,
-                        name=metric,
+                        name=metric_name,
                         mode="lines",
                         line={
                             "shape": "linear",
@@ -467,7 +487,7 @@ def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
                         text=hover_trend,
                         hoverinfo="text+name",
                         showlegend=False,
-                        legendgroup=metric
+                        legendgroup=metric_name
                     )
                 )
 
@@ -495,8 +515,8 @@ def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
                         text=hover,
                         hoverinfo="text+name",
                         showlegend=False,
-                        legendgroup=metric,
-                        name=metric,
+                        legendgroup=metric_name,
+                        name=metric_name,
                         marker={
                             "size": 15,
                             "symbol": "circle-open",
@@ -523,23 +543,30 @@ def graph_tm_trending(data: pd.DataFrame, layout: dict) -> list:
                     )
                 )
 
-        if traces:
-            graph = go.Figure()
-            graph.add_traces(traces)
-            graph.update_layout(layout.get("plot-trending-telemetry", dict()))
-
-        return graph
-
+        return traces
 
     tm_trending_graphs = list()
+    graph_layout = layout.get("plot-trending-telemetry", dict())
 
-    if data.empty:
-        return tm_trending_graphs
+    if all_in_one:
+        all_traces = list()
 
-    for test in data.test_name.unique():
+    for idx, test in enumerate(data.test_name.unique()):
         df = data.loc[(data["test_name"] == test)]
-        graph = _generate_graph(df, test, layout)
-        if graph:
-            tm_trending_graphs.append((graph, test, ))
+        traces = _generate_traces(df, test, all_in_one, idx)
+        if traces:
+            if all_in_one:
+                all_traces.extend(traces)
+            else:
+                graph = go.Figure()
+                graph.add_traces(traces)
+                graph.update_layout(graph_layout)
+                tm_trending_graphs.append((graph, test, ))
+
+    if all_in_one:
+        graph = go.Figure()
+        graph.add_traces(all_traces)
+        graph.update_layout(graph_layout)
+        tm_trending_graphs.append((graph, str(), ))
 
     return tm_trending_graphs
