@@ -25,6 +25,6 @@ mellanox_compatibility_matrix:
   dpdk22.03:
     # https://doc.dpdk.org/guides/rel_notes/release_22_03.html
     ofed: "5.9-0.5.6.0"
-  dpdk22.07:
-    # https://doc.dpdk.org/guides/rel_notes/release_22_07.html
+  dpdk23.03:
+    # https://doc.dpdk.org/guides/rel_notes/release_23_03.html
     ofed: "5.9-0.5.6.0"

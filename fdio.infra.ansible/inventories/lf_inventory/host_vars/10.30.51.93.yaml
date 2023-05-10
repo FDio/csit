@@ -29,4 +29,4 @@ sysctl:
 inventory_ipmi_hostname: "10.30.50.93"
 cpu_microarchitecture: "snowridge"
 
-intel_800_matrix: "dpdk22.07"
+intel_800_matrix: "dpdk23.03"

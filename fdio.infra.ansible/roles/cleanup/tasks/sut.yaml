@@ -38,6 +38,13 @@
       tags:
         - kill-process
 
+    - name: Kill Processes - vpp
+      import_tasks: kill_process.yaml
+      vars:
+        process: "vpp"
+      tags:
+        - kill-process
+
     - name: Kill Processes - vpp_echo
       import_tasks: kill_process.yaml
       vars:
