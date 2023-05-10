@@ -21,7 +21,7 @@
     - mellanox-inst-drivers
 
 - name: Inst - OFED
-  ansible.builtin.command: "./mlnxofedinstall --with-mft --dpdk --force --upstream-libs" #--without-fw-update"
+  ansible.builtin.command: "./mlnxofedinstall --with-mft --dpdk --force --upstream-libs --without-fw-update"
   args:
     chdir: "{{ mellanox_extract_dir }}/MLNX_OFED_LINUX-{{ ofed }}-{{ ansible_distribution|lower }}{{ ansible_distribution_version }}-{{ ansible_machine }}"
   when: mellanox_firmware_extracted
