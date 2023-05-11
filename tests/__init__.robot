@@ -25,7 +25,7 @@
 | |
 | | Start Suite Setup Export
 | | # Nothing explicit here, implicitly a place to find global start timestamp.
-| | Finalize Suite Setup Export
+| | [Teardown] | Finalize Suite Setup Export
 
 | Global Suite Teardown
 | | [Documentation]
@@ -34,4 +34,4 @@
 | |
 | | Start Suite Teardown Export
 | | # Nothing explicit here, implicitly a place to find global end timestamp.
-| | Finalize Suite Teardown Export
+| | [Teardown] | Finalize Suite Teardown Export

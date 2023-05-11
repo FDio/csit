@@ -35,7 +35,7 @@
 | | | Run Keyword | Additional Suite Tear Down Action For ${action}
 | | END
 | | Remove All Added VIF Ports On All DUTs From Topology | ${nodes}
-| | Finalize Suite Teardown Export
+| | [Teardown] | Finalize Suite Teardown Export
 
 | Additional Suite Tear Down Action For ab
 | | [Documentation]
