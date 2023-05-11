@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,7 +25,7 @@
 | |
 | | Start Suite Setup Export
 | | # Nothing explicit here, implicitly a place to find global start timestamp.
-| | Finalize Suite Setup Export
+| | [Teardown] | Finalize Suite Setup Export
 
 | Global Suite Teardown
 | | [Documentation]
@@ -34,4 +34,4 @@
 | |
 | | Start Suite Teardown Export
 | | # Nothing explicit here, implicitly a place to find global end timestamp.
-| | Finalize Suite Teardown Export
+| | [Teardown] | Finalize Suite Teardown Export

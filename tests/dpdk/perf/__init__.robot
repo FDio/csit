@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,23 +14,12 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
-|
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.DPDK.DPDKTools
 |
-| Suite Setup | Run Keywords | Start Suite Setup Export
-| ... | AND | Setup performance global Variables
-| ... | AND | Setup Framework | ${nodes}
-| ... | AND | Install DPDK framework on all DUTs | ${nodes}
-| ... | AND | Get CPU Info from All Nodes | ${nodes}
-| ... | AND | Update All Interface Data on All Nodes | ${nodes}
-| ... | skip_tg=${True} | skip_vpp=${True}
-| ... | AND | Finalize Suite Setup Export
-|
-| Suite Teardown | Run Keywords | Start Suite Teardown Export
-| ... | AND | Cleanup Framework | ${nodes}
-| ... | AND | Finalize Suite Teardown Export
+| Suite Setup | DPDK Suite Setup
+| Suite Teardown | DPDK Suite Teardown
 
 *** Keywords ***
 | Setup performance global Variables
@@ -49,3 +38,27 @@
 | | Set Global Variable | ${stat_pre_trial}
 | | Set Global Variable | ${stat_post_trial}
 | | Set Global Variable | ${nodes}
+
+| DPDK Suite Setup
+| | [Documentation]
+| | ... | Execute setup steps.
+| |
+| | ... | This needs to be a keyword in order to guarantee
+| | ... | export is finalized even on failure.
+| |
+| | Start Suite Setup Export
+| | Setup performance global Variables
+| | Setup Framework | ${nodes}
+| | Install DPDK framework on all DUTs | ${nodes}
+| | Get CPU Info from All Nodes | ${nodes}
+| | Update All Interface Data on All Nodes | ${nodes}
+| | ... | skip_tg=${True} | skip_vpp=${True}
+| | [Teardown] | Finalize Suite Setup Export
+
+| DPDK Suite Teardown
+| | [Documentation]
+| | ... | Execute teardown steps, using same structure as setup.
+| |
+| | Start Suite Teardown Export
+| | Cleanup Framework | ${nodes}
+| | [Teardown] | Finalize Suite Teardown Export

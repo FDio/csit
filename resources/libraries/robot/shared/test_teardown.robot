@@ -45,7 +45,7 @@
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
-| | Finalize Test Export
+| | [Teardown] | Finalize Test Export
 
 | Tear down test raw
 | | [Documentation]
@@ -61,7 +61,7 @@
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 | | END
 | | Clean Sockets On All Nodes | ${nodes}
-| | Finalize Test Export
+| | [Teardown] | Finalize Test Export
 
 # Additional Test Tear Down Actions in alphabetical order
 | Additional Test Tear Down Action For acl
