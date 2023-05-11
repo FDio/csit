@@ -614,7 +614,7 @@ BOOT_IMAGE=/boot/vmlinuz-5.15.0-46-generic root=UUID=cac1254f-9426-4ea6-a8db-255
 ## EPYC zn2 Server Firmware Inventory
 
 ```
-Host.           IPMI IP.      BMC.       BIOS.  CPLD.      CPU Microcode.  PCI Bus.  X710 Firmware.  XXV710 Firmware.  i40e.    MLX5 Firmware.  mlx5_core
-s60-t210-sut1.  10.30.55.24.  03.10.04.  1.1a.  02.c2.00.  0x8301038.      ?.        8.70.           8.70.             2.19.3.  16.32.1010.     5.6-1.0.3.3.
-s61-t210-tg1.   10.30.55.25.  03.10.04.  1.1a.  02.c2.00.  0x8301038.      ?.        8.30.           8.30.             2.19.3.  16.32.1010.     5.6-1.0.3.3.
+Host.          IPMI IP.     BMC.      BIOS. CPLD.     CPU Microcode. PCI Bus. X710 Firmware. XXV710 Firmware. i40e.    MLX5 Firmware. mlx5_core
+s60-t210-sut1. 10.30.55.24. 03.10.04. 1.1a. 02.c2.00. 0x8301038.     ?.       9.20.          9.20.            2.22.18. 16.35.2000.    5.9-0.5.5.
+s61-t210-tg1.  10.30.55.25. 03.10.04. 1.1a. 02.c2.00. 0x8301038.     ?.       8.30.          8.30.            2.19.3.  16.32.1010.    5.6-1.0.3.3.
 ```
