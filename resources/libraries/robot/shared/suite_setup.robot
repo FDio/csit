@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -92,7 +92,7 @@
 | | ... | always_same_link=${False} | topo_has_tg=${True}
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
-| | Finalize Suite Setup Export
+| | [Teardown] | Finalize Suite Setup Export
 
 | Setup suite topology interfaces with no TG
 | | [Documentation]
@@ -115,7 +115,7 @@
 | | ... | always_same_link=${True} | topo_has_tg=${False}
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
-| | Finalize Suite Setup Export
+| | [Teardown] | Finalize Suite Setup Export
 
 | Setup suite topology interfaces with no DUT
 | | [Documentation]
@@ -138,7 +138,7 @@
 | | ... | always_same_link=${True} | topo_has_tg=${True} | topo_has_dut=${False}
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
-| | Finalize Suite Setup Export
+| | [Teardown] | Finalize Suite Setup Export
 
 | Additional Suite Setup Action For scapy
 | | [Documentation]
