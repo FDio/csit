@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,8 +17,8 @@ import collections
 import dataclasses
 import typing
 
-from .AvgStdevStats import AvgStdevStats  # Just for type hints.
-from .BitCountingGroup import BitCountingGroup
+from .avg_stdev_stats import AvgStdevStats  # Just for type hints.
+from .bit_counting_group import BitCountingGroup
 
 
 @dataclasses.dataclass
@@ -46,6 +46,8 @@ class BitCountingGroupList(collections.abc.Sequence):
 
     max_value: float
     """Maximal sample value to base bits computation on."""
+    unit: float = 1.0
+    """Typical resolution of the values."""
     group_list: typing.List[BitCountingGroup] = None
     """List of groups to compose this group list.
     Init also accepts None standing for an empty list.
@@ -62,7 +64,7 @@ class BitCountingGroupList(collections.abc.Sequence):
         e.g. whether the cached bits values (and bits_except_last) make sense.
         """
         if self.group_list is None:
-            self.group_list = list()
+            self.group_list = []
 
     def __getitem__(self, index: int) -> BitCountingGroup:
         """Return the group at the index.
@@ -90,6 +92,7 @@ class BitCountingGroupList(collections.abc.Sequence):
         """
         return self.__class__(
             max_value=self.max_value,
+            unit=self.unit,
             group_list=[group.copy() for group in self.group_list],
             bits_except_last=self.bits_except_last,
         )
@@ -114,6 +117,7 @@ class BitCountingGroupList(collections.abc.Sequence):
             # for users with many samples.
         return self.__class__(
             max_value=self.max_value,
+            unit=self.unit,
             group_list=group_list,
             bits_except_last=self.bits_except_last,
         )
@@ -152,11 +156,15 @@ class BitCountingGroupList(collections.abc.Sequence):
             # It is faster to avoid stats recalculation.
             new_group = runs.copy()
             new_group.max_value = self.max_value
+            # Unit is common.
             new_group.prev_avg = prev_avg
             new_group.cached_bits = None
         else:
             new_group = BitCountingGroup(
-                run_list=runs, max_value=self.max_value, prev_avg=prev_avg
+                run_list=runs,
+                max_value=self.max_value,
+                unit=self.unit,
+                prev_avg=prev_avg,
             )
         self.bits_except_last = self.bits
         self.group_list.append(new_group)

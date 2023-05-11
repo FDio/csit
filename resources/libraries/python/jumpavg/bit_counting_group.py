@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,8 +17,8 @@ import collections
 import dataclasses
 import typing
 
-from .AvgStdevStats import AvgStdevStats
-from .BitCountingStats import BitCountingStats
+from .avg_stdev_stats import AvgStdevStats
+from .bit_counting_stats import BitCountingStats
 
 
 @dataclasses.dataclass
@@ -46,7 +46,9 @@ class BitCountingGroup(collections.abc.Sequence):
     so the caller should clone it to avoid unexpected muations."""
     max_value: float
     """Maximal sample value to expect."""
-    comment: str = "unknown"
+    unit: float = 1.0
+    """Typical resolution of the values"""
+    comment: str = "normal"
     """Any string giving more info, e.g. "regression"."""
     prev_avg: typing.Optional[float] = None
     """Average of the previous group, if any."""
@@ -64,7 +66,7 @@ class BitCountingGroup(collections.abc.Sequence):
         e.g. whether the stats and bits values reflect the runs.
         """
         if self.stats is None:
-            self.stats = AvgStdevStats.for_runs(self.run_list)
+            self.stats = AvgStdevStats.for_runs(runs=self.run_list)
 
     @property
     def bits(self) -> float:
@@ -76,8 +78,11 @@ class BitCountingGroup(collections.abc.Sequence):
         :rtype: float
         """
         if self.cached_bits is None:
-            self.cached_bits = BitCountingStats.for_runs(
-                [self.stats], self.max_value, self.prev_avg
+            self.cached_bits = BitCountingStats.for_runs_and_params(
+                runs=[self.stats],
+                max_value=self.max_value,
+                unit=self.unit,
+                prev_avg=self.prev_avg,
             ).bits
         return self.cached_bits
 
@@ -115,6 +120,7 @@ class BitCountingGroup(collections.abc.Sequence):
             stats=stats,
             cached_bits=self.cached_bits,
             max_value=self.max_value,
+            unit=self.unit,
             prev_avg=self.prev_avg,
             comment=self.comment,
         )
