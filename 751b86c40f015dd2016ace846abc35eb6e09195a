@@ -16,6 +16,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_intel-e810cqANDdrv_avfAND1cAND64bANDeth-l2xcbase",
       "revId": "751b86c40f015dd2016ace846abc35eb6e09195a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08ee1c67_f496109d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2023-05-11T10:46:10Z",
+      "side": 1,
+      "message": "I do not want \"teardown\" in \"setup\" -  quite abuse of concept",
+      "revId": "751b86c40f015dd2016ace846abc35eb6e09195a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
