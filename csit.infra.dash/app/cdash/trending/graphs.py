@@ -128,7 +128,7 @@ def graph_trending(
         units = df[C.UNIT[ttype]].unique().tolist()
 
         anomalies, trend_avg, trend_stdev = classify_anomalies(
-            {k: v for k, v in zip(x_axis, y_data)}
+            data={k: v for k, v in zip(x_axis, y_data)}
         )
 
         hover = list()
@@ -433,7 +433,7 @@ def graph_tm_trending(
                 )
             if any(y_data):
                 anomalies, trend_avg, trend_stdev = classify_anomalies(
-                    {k: v for k, v in zip(x_axis, y_data)}
+                    data={k: v for k, v in zip(x_axis, y_data)}, unit=0.01
                 )
                 hover_trend = list()
                 for avg, stdev, (_, row) in \
