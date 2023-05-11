@@ -15,8 +15,8 @@
 __init__ file for "jumpavg" Python package.
 """
 
-from .AvgStdevStats import AvgStdevStats
-from .BitCountingStats import BitCountingStats
-from .BitCountingGroup import BitCountingGroup
-from .BitCountingGroupList import BitCountingGroupList
+from .avg_stdev_stats import AvgStdevStats
+from .bit_counting_stats import BitCountingStats
+from .bit_counting_group import BitCountingGroup
+from .bit_counting_group_list import BitCountingGroupList
 from .classify import classify

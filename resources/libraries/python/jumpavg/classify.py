@@ -13,7 +13,7 @@
 
 """Module holding the classify function
 
-Classification os one of primary purposes of this package.
+Classification is one of primary purposes of this package.
 
 Minimal message length principle is used
 for grouping results into the list of groups,
@@ -22,12 +22,13 @@ assuming each group is a population of different Gaussian distribution.
 
 import typing
 
-from .AvgStdevStats import AvgStdevStats
-from .BitCountingGroupList import BitCountingGroupList
+from .avg_stdev_stats import AvgStdevStats
+from .bit_counting_group_list import BitCountingGroupList
 
 
 def classify(
-    values: typing.Iterable[typing.Union[float, typing.Iterable[float]]]
+    values: typing.Iterable[typing.Union[float, typing.Iterable[float]]],
+    unit: float = 1.0,
 ) -> BitCountingGroupList:
     """Return the values in groups of optimal bit count.
 
@@ -38,12 +39,18 @@ def classify(
     Internally, such sequence is replaced by AvgStdevStats
     after maximal value is found.
 
+    If the values are smaller than expected (below one),
+    the underlying assumption break down and the classification is wrong.
+    Use the "unit" parameter to hint at what the input resolution is.
+
     :param values: Sequence of runs to classify.
+    :param unit: Typical resolution of the values.
     :type values: Iterable[Union[float, Iterable[float]]]
+    :type unit: float
     :returns: Classified group list.
     :rtype: BitCountingGroupList
     """
-    processed_values = list()
+    processed_values = []
     max_value = 0.0
     for value in values:
         if isinstance(value, (float, int)):
@@ -56,8 +63,8 @@ def classify(
                     max_value = subvalue
             processed_values.append(AvgStdevStats.for_runs(value))
     # Glist means group list (BitCountingGroupList).
-    open_glists = list()
-    record_glist = BitCountingGroupList(max_value=max_value)
+    open_glists = []
+    record_glist = BitCountingGroupList(max_value=max_value, unit=unit)
     for value in processed_values:
         new_open_glist = record_glist.copy_fast().append_group_of_runs([value])
         record_glist = new_open_glist
@@ -68,9 +75,7 @@ def classify(
         open_glists.append(new_open_glist)
     previous_average = record_glist[0].stats.avg
     for group in record_glist:
-        if group.stats.avg == previous_average:
-            group.comment = "normal"
-        elif group.stats.avg < previous_average:
+        if group.stats.avg < previous_average:
             group.comment = "regression"
         elif group.stats.avg > previous_average:
             group.comment = "progression"
