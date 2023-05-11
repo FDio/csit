@@ -19,15 +19,23 @@ from numpy import isnan
 from ..jumpavg import classify
 
 
-def classify_anomalies(data):
+def classify_anomalies(data, unit=1.0):
     """Process the data and return anomalies and trending values.
 
     Gather data into groups with average as trend value.
     Decorate values within groups to be normal,
     the first value of changed average as a regression, or a progression.
 
+    The jumpavg library is known to give wrong classification (too many groups)
+    when the values are too close to zero, and offers a "unit" parameter
+    to compensate. Throughput works well with 1.0, but telemetry
+    (especially cache misses) need value of 0.01 as VPP reports values
+    rounded to a multiple of that.
+
     :param data: Full data set with unavailable samples replaced by nan.
+    :param unit: Typical minimal value to expect.
     :type data: OrderedDict
+    :type unit: float
     :returns: Classification and trend values
     :rtype: 3-tuple, list of strings, list of floats and list of floats
     """
@@ -35,7 +43,7 @@ def classify_anomalies(data):
     # Use 0.0 to cause that being reported as a severe regression.
     bare_data = [0.0 if isnan(sample) else sample for sample in data.values()]
     # TODO: Make BitCountingGroupList a subclass of list again?
-    group_list = classify(bare_data).group_list
+    group_list = classify(bare_data, unit=unit).group_list
     group_list.reverse()  # Just to use .pop() for FIFO.
     classification = list()
     avgs = list()
