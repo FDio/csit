@@ -13,28 +13,9 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
 |
-| Library | resources.libraries.python.PapiExecutor.Disconnector
-| Library | resources.libraries.python.SetupFramework
-| Library | resources.libraries.python.SetupFramework.CleanupFramework
-|
-| Suite Setup | Run Keywords | Start Suite Setup Export
-| ... | AND | Setup Global Variables
-| ... | AND | Setup Framework | ${nodes}
-| ... | AND | Setup Corekeeper on All Nodes | ${nodes}
-| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
-| ... | AND | Init Vpp Startup Configuration on All Duts | ${nodes}
-| ... | AND | Show Vpp Version on All Duts | ${nodes}
-| ... | AND | Get CPU Info from All Nodes | ${nodes}
-| ... | AND | Update All Interface Data on All Nodes | ${nodes}
-| ... | skip_tg=${True}
-| ... | AND | Finalize Suite Setup Export
-|
-| Suite Teardown | Run Keywords | Start Suite Teardown Export
-| ... | AND | Disconnect All Papi Connections
-| ... | AND | Cleanup Framework | ${nodes}
-| ... | AND | Finalize Suite Teardown Export
+| Suite Setup | Wrap Suite Setup | Perf Suite Setup
+| Suite Teardown | Wrap Suite Teardown | Perf Suite Teardown
 
 *** Keywords ***
 | Setup Global Variables
@@ -58,3 +39,30 @@
 | | Set Global Variable | ${stat_post_trial}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
 | | Set Global Variable | ${nodes}
+
+| Perf Suite Setup
+| | [Documentation]
+| | ... | Execute setup steps relevant for all VPP perf tests.
+| |
+| | ... | This needs to be a keyword, because the AND separator for Run Keywords
+| | ... | does not work when passed to Wrap Suite Setup as an argument.
+| |
+| | Setup Global Variables
+| | Setup Framework | ${nodes}
+| | Setup Corekeeper on All Nodes | ${nodes}
+| | Install Vpp on All Duts | ${nodes} | ${packages_dir}
+| | Init Vpp Startup Configuration on All Duts | ${nodes}
+| | Show Vpp Version on All Duts | ${nodes}
+| | Get CPU Info from All Nodes | ${nodes}
+| | Update All Interface Data on All Nodes | ${nodes}
+| | ... | skip_tg=${True}
+
+| Perf Suite Teardown
+| | [Documentation]
+| | ... | Execute teardown steps relevant for all VPP perf tests.
+| |
+| | ... | This needs to be a keyword, because the AND separator for Run Keywords
+| | ... | does not work when passed to Wrap Suite Teardown as an argument.
+| |
+| | Disconnect All Papi Connections
+| | Cleanup Framework | ${nodes}

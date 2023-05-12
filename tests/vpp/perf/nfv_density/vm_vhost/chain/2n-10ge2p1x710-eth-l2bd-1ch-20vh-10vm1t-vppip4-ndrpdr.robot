@@ -20,7 +20,7 @@
 | ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 1R10C | 10VM1T
 | ... | eth-l2bd-1ch-20vh-10vm1t-vppip4
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | vhost

@@ -19,7 +19,8 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4-l2bdbasemaclrn-eth-2tap
 |
-| Suite Setup | Setup suite topology interfaces | scapy
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | scapy
+| Suite Teardown | Wrap Suite Teardown | No Operation
 | Test Setup | Setup test | namespace
 | Test Teardown | Tear down test | packet_trace | telemetry | namespace
 | ... | linux_bridge

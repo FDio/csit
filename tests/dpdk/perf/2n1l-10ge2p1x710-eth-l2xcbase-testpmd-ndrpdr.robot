@@ -13,8 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Library | resources.libraries.python.DPDK.DPDKTools
-| Library | resources.libraries.python.DPDK.TestpmdTest
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | HW_ENV | PERFTEST | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | ETH | L2XCFWD | BASE
@@ -22,7 +20,8 @@
 | ... | RXQ_SIZE_1024 | TXQ_SIZE_1024
 | ... | eth-l2xcbase-testpmd
 |
-| Suite Setup | Setup suite topology interfaces | performance | dpdk
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces
+| ... | performance | dpdk
 | Suite Teardown | Tear down suite | performance | dpdk
 | Test Setup | Start Test Export
 | Test Teardown | Finalize Test Export
