@@ -112,7 +112,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPSec in 3-node circular topology
+| | And VPP Set Interface MTU and bring up | ${nodes['DUT1']} | ${dut1_if2} | ${1043}
+| | And VPP Set Interface MTU and bring up | ${nodes['DUT2']} | ${dut2_if1} | ${1043}| | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${DUT1_${int}2}[0] | ${DUT2_${int}1}[0] | ${n_tunnels}
 | | ... | ${encr_alg} | ${auth_alg} | ${dut1_if2_ip4} | ${dut2_if1_ip4}
