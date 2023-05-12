@@ -90,6 +90,10 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
+| | And VPP Set Interface MTU and bring up
+| | ... | ${nodes['DUT1']} | ${dut1_if2} | ${1043}
+| | And VPP Set Interface MTU and bring up
+| | ... | ${nodes['DUT2']} | ${dut2_if1} | ${1043}
 | | And Initialize IP4 forwarding with GTPU tunnel in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
