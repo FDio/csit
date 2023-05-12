@@ -82,10 +82,10 @@ class Constants:
     CLEAR_ALL_INPUTS = False
 
     # The element is disabled.
-    STYLE_DISABLED = {"display": "none"}
+    STYLE_DISABLED = {"visibility": "hidden"}
 
     # The element is enabled and visible.
-    STYLE_ENABLED = {"display": "inherit"}
+    STYLE_ENABLED = {"visibility": "visible"}
 
     # Checklist "All" is disabled.
     CL_ALL_DISABLED = [
