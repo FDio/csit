@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,8 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Library | resources.libraries.python.DPDK.DPDKTools
-| Library | resources.libraries.python.DPDK.L3fwdTest
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | IP4FWD | BASE | ETH
@@ -22,8 +20,9 @@
 | ... | RXQ_SIZE_1024 | TXQ_SIZE_1024
 | ... | ethip4-ip4base-l3fwd
 |
-| Suite Setup | Setup suite topology interfaces | performance | dpdk
-| Suite Teardown | Tear down suite | performance | dpdk
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces
+| ... | performance | dpdk
+| Suite Teardown | Wrap Suite Teardown | Tear Down Suite | performance | dpdk
 | Test Setup | Start Test Export
 | Test Teardown | Finalize Test Export
 |
