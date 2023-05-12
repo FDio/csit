@@ -16,6 +16,23 @@
       "message": "csit-3n-snr-perftest nic_intel-ANDdrv_vfio_pciAND1518bANDethip4ipsec1tnlsw-ip4base-*-aes256gcm",
       "revId": "ab97aa0347998dabc8c9da976597f2b294432ed4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "937380f5_8b95ffa6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 62
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-12T16:17:13Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest nic_intel-*ANDdrv_vfio_pciAND1518bANDethip4ipsec1tnlsw-ip4base-*-aes256gcm",
+      "revId": "ab97aa0347998dabc8c9da976597f2b294432ed4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
