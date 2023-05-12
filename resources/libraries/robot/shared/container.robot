@@ -87,7 +87,7 @@
 | | ${dut1_uuid_length} = | Get Length | ${DUT1_UUID}
 | | ${in_container}= | Running in Container | ${nodes['${dut}']}
 | | ${root}= | Run Keyword If | ${in_container}
-| | ... | Get Docker Mergeddir | ${nodes['DUT1']}
+| | ... | Get Docker Mergeddir | ${nodes['${dut}']}
 | | ... | ELSE | Set Variable | ${EMPTY}
 | | ${node_arch}= | Get Node Arch | ${nodes['${dut}']}
 | | ${name}= | Set Variable | ${dut}_${container_group}${nf_id}${DUT1_UUID}
