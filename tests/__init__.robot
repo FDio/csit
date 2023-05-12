@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,26 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.model.ExportJson
+| Resource | resources/libraries/robot/shared/default.robot
 |
-| Suite Setup | Global Suite Setup
-| Suite Teardown | Global Suite Teardown
-
-*** Keywords ***
-| Global Suite Setup
-| | [Documentation]
-| | ... | Perform initializations needed for any subsequent suite.
-| | ... | Currently only a minimal JSON export of time.
-| |
-| | Start Suite Setup Export
-| | # Nothing explicit here, implicitly a place to find global start timestamp.
-| | Finalize Suite Setup Export
-
-| Global Suite Teardown
-| | [Documentation]
-| | ... | Perform cleanup needed after any preceding suite.
-| | ... | Currently only a minimal JSON export of time.
-| |
-| | Start Suite Teardown Export
-| | # Nothing explicit here, implicitly a place to find global end timestamp.
-| | Finalize Suite Teardown Export
+| Suite Setup | Wrap Suite Setup | No Operation
+| Suite Teardown | Wrap Suite Teardown | No Operation

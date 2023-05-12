@@ -21,7 +21,7 @@
 | Variables | resources/libraries/python/Constants.py
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/nsim/nsim.robot
-| Resource | resources/libraries/robot/nginx/default.robot
+| Resource | resources/libraries/robot/nginx/nginx.robot
 |
 | Documentation | *L2 keywords to set up VPP to test hoststack.*
 

@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Intel and/or its affiliates.
+# Copyright (c) 2023 Intel and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,7 +19,8 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6-flow-ip6-ntuple-tcp
 |
-| Suite Setup | Setup suite topology interfaces | scapy
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | scapy
+| Suite Teardown | Wrap Suite Teardown | No Operation
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | telemetry
 |

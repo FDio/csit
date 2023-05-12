@@ -24,10 +24,12 @@ import datetime
 import os.path
 
 from binascii import b2a_base64
+from typing import Optional
+from zlib import compress
+
 from dateutil.parser import parse
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
-from zlib import compress
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.jumpavg.AvgStdevStats import AvgStdevStats
@@ -35,9 +37,7 @@ from resources.libraries.python.model.ExportResult import (
     export_dut_type_and_version, export_tg_type_and_version
 )
 from resources.libraries.python.model.MemDump import write_output
-from resources.libraries.python.model.validate import (
-    get_validators, validate
-)
+from resources.libraries.python.model.validate import get_validators, validate
 
 
 class ExportJson():
@@ -91,13 +91,13 @@ class ExportJson():
         Create missing directories.
         Reset both file path and data to avoid writing multiple times.
 
-        Functions which finalize content for given file are calling this,
-        so make sure each test and non-empty suite setup or teardown
+        Functions which finalize content for a given file are calling this,
+        so make sure each test, suite setup and suite teardown
         is calling this as their last keyword.
 
         If no file path is set, do not write anything,
         as that is the failsafe behavior when caller from unexpected place.
-        Aso do not write anything when EXPORT_JSON constant is false.
+        Also do not write anything when EXPORT_JSON constant is false.
 
         Regardless of whether data was written, it is cleared.
         """
@@ -221,24 +221,31 @@ class ExportJson():
         self.data[u"hosts"] = BuiltIn().get_variable_value(u"\\${hosts}")
         self.data[u"telemetry"] = list()
 
-    def finalize_suite_setup_export(self):
-        """Add the missing fields to data. Do not write yet.
+    def finalize_suite_setup_export(self, status: str, message: Optional[str]):
+        """Add the missing fields and write the .setup.info.json file.
 
-        Should be run at the end of suite setup.
-        The write is done at next start (or at the end of global teardown).
+        Should be run at the end of suite setup, even if it failed.
+        Suite setup status and message are also exported as follows.
+        Status string is converted to "passed" bool.
+        If message is None (common on PASS), empty string is exported.
+
+        :param status: Suite setup status, as reported by Robot. PASS or FAIL.
+        :param message: None or failure message, as reported by Robot.
+        :type status: str
+        :type message: Optional[str]
         """
+        self.data[u"setup_passed"] = "PASS" == status
+        self.data[u"setup_message"] = message if message else u""
         end_time = datetime.datetime.utcnow().strftime(u"%Y-%m-%dT%H:%M:%S.%fZ")
         self.data[u"hosts"] = BuiltIn().get_variable_value(u"\\${hosts}")
         self.data[u"end_time"] = end_time
         self.export_pending_data()
 
     def finalize_test_export(self):
-        """Add the missing fields to data. Do not write yet.
+        """Add the missing fields and write the .info.json file.
 
         Should be at the end of test teardown, as the implementation
         reads various Robot variables, some of them only available at teardown.
-
-        The write is done at next start (or at the end of global teardown).
         """
         end_time = datetime.datetime.utcnow().strftime(u"%Y-%m-%dT%H:%M:%S.%fZ")
         message = BuiltIn().get_variable_value(u"\\${TEST_MESSAGE}")
@@ -254,13 +261,21 @@ class ExportJson():
         self.process_results()
         self.export_pending_data()
 
-    def finalize_suite_teardown_export(self):
-        """Add the missing fields to data. Do not write yet.
+    def finalize_suite_teardown_export(self, status, message):
+        """Add the missing fields and write the .teardown.info.json file.
 
-        Should be run at the end of suite teardown
-        (but before the explicit write in the global suite teardown).
-        The write is done at next start (or explicitly for global teardown).
+        Should be run at the end of suite teardown, even if it failed.
+        Suite teardown status and message are also exported as follows.
+        Status string is converted to "passed" bool.
+        If message is None (common on PASS), empty string is exported.
+
+        :param status: Suite teardown status as reported by Robot. PASS or FAIL.
+        :param message: None or failure message, as reported by Robot.
+        :type status: str
+        :type message: Optional[str]
         """
+        self.data[u"teardown_passed"] = "PASS" == status
+        self.data[u"teardown_message"] = message if message else u""
         end_time = datetime.datetime.utcnow().strftime(u"%Y-%m-%dT%H:%M:%S.%fZ")
         self.data[u"end_time"] = end_time
         self.export_pending_data()
@@ -348,7 +363,7 @@ class ExportJson():
         """
         status = BuiltIn().get_variable_value(u"\\${TEST_STATUS}")
         if status is not None:
-            self.data[u"passed"] = (status == u"PASS")
+            self.data[u"passed"] = u"PASS" == status
             if self.data[u"passed"]:
                 # Also truncate success test messages.
                 self.data[u"message"] = u""

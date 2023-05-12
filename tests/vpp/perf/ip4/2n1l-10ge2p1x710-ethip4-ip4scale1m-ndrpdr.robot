@@ -20,8 +20,8 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4-ip4scale1m
 |
-| Suite Setup | Setup suite topology interfaces | performance
-| Suite Teardown | Tear down suite | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
+| Suite Teardown | Wrap Suite Teardown | Tear Down Suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance
 |
