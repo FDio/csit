@@ -20,7 +20,8 @@
 | ... | SCALE | IP6SCALE2M | TG_DRV_IGB_UIO
 | ... | ethip6-ip6scale2m-tg
 |
-| Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces with no DUT
+| ... | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Start Test Export
 | Test Teardown | Tear down test raw | performance

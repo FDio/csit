@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_4096 | TXQ_SIZE_4096 | GSO_FALSE
 | ... | ethip4-ip4base-2tap-iperf3
 |
-| Suite Setup | Setup suite topology interfaces | iPerf3
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | iPerf3
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test | iPerf3 | namespace

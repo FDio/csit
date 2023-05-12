@@ -20,7 +20,7 @@
 | ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 6R2C | 12VM2T
 | ... | eth-l2bd-6ch-24vh-12vm2t-vppip4
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | vhost
