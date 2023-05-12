@@ -63,7 +63,7 @@ class Constants:
 
     # Maximal value of TIME_PERIOD for data read from the parquets in days.
     # Do not change without a good reason.
-    MAX_TIME_PERIOD = 130
+    MAX_TIME_PERIOD = 30  # 130
 
     # It defines the time period for data read from the parquets in days from
     # now back to the past.
@@ -82,10 +82,10 @@ class Constants:
     CLEAR_ALL_INPUTS = False
 
     # The element is disabled.
-    STYLE_DISABLED = {"display": "none"}
+    STYLE_DISABLED = {"visibility": "hidden"}
 
     # The element is enabled and visible.
-    STYLE_ENABLED = {"display": "inherit"}
+    STYLE_ENABLED = {"visibility": "visible"}
 
     # Checklist "All" is disabled.
     CL_ALL_DISABLED = [
