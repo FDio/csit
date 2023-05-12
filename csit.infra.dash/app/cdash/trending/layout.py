@@ -244,10 +244,7 @@ class Layout:
                 id="div-main",
                 className="small",
                 children=[
-                    dcc.Store(id="store-selected-tests"),
-                    dcc.Store(id="store-control-panel"),
-                    dcc.Store(id="store-telemetry-data"),
-                    dcc.Store(id="store-telemetry-user"),
+                    dcc.Store(id="store"),
                     dcc.Location(id="url", refresh=False),
                     dbc.Row(
                         id="row-navbar",
@@ -642,6 +639,34 @@ class Layout:
                         ]
                     )
                 ]
+            ),
+            dbc.Stack(
+                id="row-btns-add-tm",
+                class_name="g-0 p-1",
+                style=C.STYLE_DISABLED,
+                gap=2,
+                children=[
+                    dbc.Button(
+                        id={"type": "telemetry-btn", "index": "open"},
+                        children="Telemetry",
+                        color="info"
+                    ),
+                    dbc.Button(
+                        id="plot-btn-url",
+                        children="Show URL",
+                        color="info"
+                    ),
+                    dbc.Modal(
+                        [
+                            dbc.ModalHeader(dbc.ModalTitle("URL")),
+                            dbc.ModalBody(id="mod-url")
+                        ],
+                        id="plot-mod-url",
+                        size="xl",
+                        is_open=False,
+                        scrollable=True
+                    )
+                ]
             )
         ]
 
@@ -666,144 +691,23 @@ class Layout:
                     id="plotting-area-telemetry",
                     class_name="g-0 p-0",
                     children=C.PLACEHOLDER
-                ),
-                dbc.Row(
-                    id="plotting-area-buttons",
-                    class_name="g-0 p-0",
-                    children=C.PLACEHOLDER
                 )
             ],
-            width=9
+            width=9,
+            style=C.STYLE_DISABLED,
         )
 
-    def _get_plotting_area_buttons(self) -> dbc.Col:
-        """Add buttons and modals to the plotting area.
-
-        :returns: A column with buttons and modals for telemetry.
-        :rtype: dbc.Col
-        """
-        return dbc.Col([
-            html.Div(
-                [
-                    dbc.Button(
-                        id={"type": "telemetry-btn", "index": "open"},
-                        children="Add Panel with Telemetry",
-                        class_name="me-1",
-                        color="info",
-                        style={
-                            "text-transform": "none",
-                            "padding": "0rem 1rem"
-                        }
-                    ),
-                    dbc.Modal(
-                        [
-                            dbc.ModalHeader(
-                                dbc.ModalTitle(
-                                    "Select a Metric"
-                                ),
-                                close_button=False
-                            ),
-                            dbc.Spinner(
-                                dbc.ModalBody(
-                                    id="plot-mod-telemetry-body-1",
-                                    children=self._get_telemetry_step_1()
-                                ),
-                                delay_show=2*C.SPINNER_DELAY
-                            ),
-                            dbc.ModalFooter([
-                                dbc.Button(
-                                    "Select",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "select"
-                                    },
-                                    disabled=True
-                                ),
-                                dbc.Button(
-                                    "Cancel",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "cancel"
-                                    },
-                                    disabled=False
-                                )
-                            ])
-                        ],
-                        id="plot-mod-telemetry-1",
-                        size="lg",
-                        is_open=False,
-                        scrollable=False,
-                        backdrop="static",
-                        keyboard=False
-                    ),
-                    dbc.Modal(
-                        [
-                            dbc.ModalHeader(
-                                dbc.ModalTitle(
-                                    "Select Labels"
-                                ),
-                                close_button=False
-                            ),
-                            dbc.Spinner(
-                                dbc.ModalBody(
-                                    id="plot-mod-telemetry-body-2",
-                                    children=self._get_telemetry_step_2()
-                                ),
-                                delay_show=2*C.SPINNER_DELAY
-                            ),
-                            dbc.ModalFooter([
-                                dbc.Button(
-                                    "Back",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "back"
-                                    },
-                                    disabled=False
-                                ),
-                                dbc.Button(
-                                    "Add Telemetry",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "add"
-                                    },
-                                    disabled=True
-                                ),
-                                dbc.Button(
-                                    "Cancel",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "cancel"
-                                    },
-                                    disabled=False
-                                )
-                            ])
-                        ],
-                        id="plot-mod-telemetry-2",
-                        size="xl",
-                        is_open=False,
-                        scrollable=False,
-                        backdrop="static",
-                        keyboard=False
-                    )
-                ],
-                className="d-grid gap-0 d-md-flex justify-content-md-end"
-            )
-        ])
-
-    def _get_plotting_area_trending(
+    def _plotting_area_trending(
             self,
             tests: list,
-            normalize: bool,
-            url: str
+            normalize: bool
         ) -> dbc.Col:
         """Generate the plotting area with all its content.
 
         :param tests: A list of tests to be displayed in the trending graphs.
         :param normalize: If True, the data in graphs is normalized.
-        :param url: An URL to be displayed in the modal window.
         :type tests: list
         :type normalize: bool
-        :type url: str
         :returns: A collumn with trending graphs (tput and latency) in tabs.
         :rtype: dbc.Col
         """
@@ -851,34 +755,11 @@ class Layout:
                     dbc.Col([html.Div(
                         [
                             dbc.Button(
-                                id="plot-btn-url",
-                                children="Show URL",
-                                class_name="me-1",
-                                color="info",
-                                style={
-                                    "text-transform": "none",
-                                    "padding": "0rem 1rem"
-                                }
-                            ),
-                            dbc.Modal(
-                                [
-                                    dbc.ModalHeader(dbc.ModalTitle("URL")),
-                                    dbc.ModalBody(url)
-                                ],
-                                id="plot-mod-url",
-                                size="xl",
-                                is_open=False,
-                                scrollable=True
-                            ),
-                            dbc.Button(
                                 id="plot-btn-download",
                                 children="Download Data",
                                 class_name="me-1",
                                 color="info",
-                                style={
-                                    "text-transform": "none",
-                                    "padding": "0rem 1rem"
-                                }
+                                style={"padding": "0rem 1rem"}
                             ),
                             dcc.Download(id="download-trending-data")
                         ],
@@ -906,11 +787,81 @@ class Layout:
                         active_item=["item-0", ]
                     ),
                     class_name="g-0 p-0",
+                ),
+                dbc.Modal(
+                    [
+                        dbc.ModalHeader(
+                            dbc.ModalTitle("Select a Metric"),
+                            close_button=False
+                        ),
+                        dbc.Spinner(
+                            dbc.ModalBody(self._get_telemetry_step_1()),
+                            delay_show=2 * C.SPINNER_DELAY
+                        ),
+                        dbc.ModalFooter([
+                            dbc.Button(
+                                "Select",
+                                id={"type": "telemetry-btn", "index": "select"},
+                                disabled=True
+                            ),
+                            dbc.Button(
+                                "Cancel",
+                                id={"type": "telemetry-btn", "index": "cancel"},
+                                disabled=False
+                            ),
+                            dbc.Button(
+                                "Remove",
+                                id={"type": "telemetry-btn", "index": "remove"},
+                                disabled=False
+                            )
+                        ])
+                    ],
+                    id={"type": "plot-mod-telemetry", "index": 0},
+                    size="lg",
+                    is_open=False,
+                    scrollable=False,
+                    backdrop="static",
+                    keyboard=False
+                ),
+                dbc.Modal(
+                    [
+                        dbc.ModalHeader(
+                            dbc.ModalTitle("Select Labels"),
+                            close_button=False
+                        ),
+                        dbc.Spinner(
+                            dbc.ModalBody(self._get_telemetry_step_2()),
+                            delay_show=2 * C.SPINNER_DELAY
+                        ),
+                        dbc.ModalFooter([
+                            dbc.Button(
+                                "Back",
+                                id={"type": "telemetry-btn", "index": "back"},
+                                disabled=False
+                            ),
+                            dbc.Button(
+                                "Add Telemetry",
+                                id={"type": "telemetry-btn", "index": "add"},
+                                disabled=True
+                            ),
+                            dbc.Button(
+                                "Cancel",
+                                id={"type": "telemetry-btn", "index": "cancel"},
+                                disabled=False
+                            )
+                        ])
+                    ],
+                    id={"type": "plot-mod-telemetry", "index": 1},
+                    size="xl",
+                    is_open=False,
+                    scrollable=False,
+                    backdrop="static",
+                    keyboard=False
                 )
             ]
         )
 
-    def _get_plotting_area_telemetry(self, graphs: list) -> dbc.Col:
+    def _plotting_area_telemetry(self, graphs: list) -> dbc.Col:
         """Generate the plotting area with telemetry.
         """
         if not graphs:
@@ -956,7 +907,7 @@ class Layout:
                 class_name="g-0 p-1",
                 children=[
                     dbc.Input(
-                        id="telemetry-search-in",
+                        id={"type": "telemetry-search-in", "index": 0},
                         placeholder="Start typing a metric name...",
                         type="text"
                     )
@@ -967,7 +918,7 @@ class Layout:
                 children=[
                     dbc.ListGroup(
                         class_name="overflow-auto p-0",
-                        id="telemetry-search-out",
+                        id={"type": "telemetry-search-out", "index": 0},
                         children=[],
                         style={"max-height": "14em"},
                         flush=True
@@ -987,16 +938,15 @@ class Layout:
         """
         return [
             dbc.Row(
-                id="telemetry-dd",
+                id={"type": "tm-container", "index": 0},
                 class_name="g-0 p-1",
                 children=["Add content here."]
             ),
             dbc.Row(
-                id="telemetry-all-in-one",
                 class_name="g-0 p-2",
                 children=[
                     dbc.Checkbox(
-                        id="cb-all-in-one",
+                        id={"type": "cb-all-in-one", "index": 0},
                         label="All Metrics in one Graph"
                     ),
                 ]
@@ -1005,7 +955,7 @@ class Layout:
                 class_name="g-0 p-1",
                 children=[
                     dbc.Textarea(
-                        id="telemetry-list-metrics",
+                        id={"type": "tm-list-metrics", "index": 0},
                         rows=20,
                         size="sm",
                         wrap="off",
@@ -1023,66 +973,106 @@ class Layout:
         """
 
         @app.callback(
-            [
-                Output("store-control-panel", "data"),
-                Output("store-selected-tests", "data"),
-                Output("plotting-area-trending", "children"),
-                Output("plotting-area-buttons", "children"),
-                Output("row-card-sel-tests", "style"),
-                Output("row-btns-sel-tests", "style"),
-                Output("lg-selected", "children"),
-                Output({"type": "ctrl-dd", "index": "dut"}, "value"),
-                Output({"type": "ctrl-dd", "index": "phy"}, "options"),
-                Output({"type": "ctrl-dd", "index": "phy"}, "disabled"),
-                Output({"type": "ctrl-dd", "index": "phy"}, "value"),
-                Output({"type": "ctrl-dd", "index": "area"}, "options"),
-                Output({"type": "ctrl-dd", "index": "area"}, "disabled"),
-                Output({"type": "ctrl-dd", "index": "area"}, "value"),
-                Output({"type": "ctrl-dd", "index": "test"}, "options"),
-                Output({"type": "ctrl-dd", "index": "test"}, "disabled"),
-                Output({"type": "ctrl-dd", "index": "test"}, "value"),
-                Output({"type": "ctrl-cl", "index": "core"}, "options"),
-                Output({"type": "ctrl-cl", "index": "core"}, "value"),
-                Output({"type": "ctrl-cl", "index": "core-all"}, "value"),
-                Output({"type": "ctrl-cl", "index": "core-all"}, "options"),
-                Output({"type": "ctrl-cl", "index": "frmsize"}, "options"),
-                Output({"type": "ctrl-cl", "index": "frmsize"}, "value"),
-                Output({"type": "ctrl-cl", "index": "frmsize-all"}, "value"),
-                Output({"type": "ctrl-cl", "index": "frmsize-all"}, "options"),
-                Output({"type": "ctrl-cl", "index": "tsttype"}, "options"),
-                Output({"type": "ctrl-cl", "index": "tsttype"}, "value"),
-                Output({"type": "ctrl-cl", "index": "tsttype-all"}, "value"),
-                Output({"type": "ctrl-cl", "index": "tsttype-all"}, "options"),
-                Output({"type": "ctrl-btn", "index": "add-test"}, "disabled"),
-                Output("normalize", "value")
-            ],
-            [
-                State("store-control-panel", "data"),
-                State("store-selected-tests", "data"),
-                State({"type": "sel-cl", "index": ALL}, "value")
-            ],
-            [
-                Input("url", "href"),
-                Input("normalize", "value"),
-                Input({"type": "ctrl-dd", "index": ALL}, "value"),
-                Input({"type": "ctrl-cl", "index": ALL}, "value"),
-                Input({"type": "ctrl-btn", "index": ALL}, "n_clicks")
-            ],
+            Output("store", "data"),
+            Output("plotting-area-trending", "children"),
+            Output("plotting-area-telemetry", "children"),
+            Output("col-plotting-area", "style"),
+            Output("row-card-sel-tests", "style"),
+            Output("row-btns-sel-tests", "style"),
+            Output("row-btns-add-tm", "style"),
+            Output("lg-selected", "children"),
+            Output({"type": "telemetry-search-in", "index": ALL}, "value"),
+            Output({"type": "telemetry-search-out", "index": ALL}, "children"),
+            Output({"type": "plot-mod-telemetry", "index": ALL}, "is_open"),
+            Output({"type": "telemetry-btn", "index": ALL}, "disabled"),
+            Output({"type": "tm-container", "index": ALL}, "children"),
+            Output({"type": "tm-list-metrics", "index": ALL}, "value"),
+            Output({"type": "ctrl-dd", "index": "dut"}, "value"),
+            Output({"type": "ctrl-dd", "index": "phy"}, "options"),
+            Output({"type": "ctrl-dd", "index": "phy"}, "disabled"),
+            Output({"type": "ctrl-dd", "index": "phy"}, "value"),
+            Output({"type": "ctrl-dd", "index": "area"}, "options"),
+            Output({"type": "ctrl-dd", "index": "area"}, "disabled"),
+            Output({"type": "ctrl-dd", "index": "area"}, "value"),
+            Output({"type": "ctrl-dd", "index": "test"}, "options"),
+            Output({"type": "ctrl-dd", "index": "test"}, "disabled"),
+            Output({"type": "ctrl-dd", "index": "test"}, "value"),
+            Output({"type": "ctrl-cl", "index": "core"}, "options"),
+            Output({"type": "ctrl-cl", "index": "core"}, "value"),
+            Output({"type": "ctrl-cl", "index": "core-all"}, "value"),
+            Output({"type": "ctrl-cl", "index": "core-all"}, "options"),
+            Output({"type": "ctrl-cl", "index": "frmsize"}, "options"),
+            Output({"type": "ctrl-cl", "index": "frmsize"}, "value"),
+            Output({"type": "ctrl-cl", "index": "frmsize-all"}, "value"),
+            Output({"type": "ctrl-cl", "index": "frmsize-all"}, "options"),
+            Output({"type": "ctrl-cl", "index": "tsttype"}, "options"),
+            Output({"type": "ctrl-cl", "index": "tsttype"}, "value"),
+            Output({"type": "ctrl-cl", "index": "tsttype-all"}, "value"),
+            Output({"type": "ctrl-cl", "index": "tsttype-all"}, "options"),
+            Output({"type": "ctrl-btn", "index": "add-test"}, "disabled"),
+            Output("normalize", "value"),
+
+            State("store", "data"),
+            State({"type": "sel-cl", "index": ALL}, "value"),
+            State({"type": "cb-all-in-one", "index": ALL}, "value"),
+            State({"type": "telemetry-search-out", "index": ALL}, "children"),
+            State({"type": "plot-mod-telemetry", "index": ALL}, "is_open"),
+            State({"type": "telemetry-btn", "index": ALL}, "disabled"),
+            State({"type": "tm-container", "index": ALL}, "children"),
+            State({"type": "tm-list-metrics", "index": ALL}, "value"),
+
+            Input("url", "href"),
+            Input("normalize", "value"),
+            Input({"type": "telemetry-search-in", "index": ALL}, "value"),
+            Input({"type": "tele-cl", "index": ALL}, "value"),
+            Input({"type": "tm-dd", "index": ALL}, "value"),
+
+            Input({"type": "telemetry-btn", "index": ALL}, "n_clicks"),
+            Input({"type": "ctrl-dd", "index": ALL}, "value"),
+            Input({"type": "ctrl-cl", "index": ALL}, "value"),
+            Input({"type": "ctrl-btn", "index": ALL}, "n_clicks"),
+
             prevent_initial_call=True
         )
         def _update_application(
-                control_panel: dict,
-                store_sel: list,
+                store: dict,
                 lst_sel: list,
+                all_in_one: list,
+                search_out: list,
+                is_open: list,
+                tm_btns_disabled: list,
+                tm_dd: list,
+                list_metrics: list,
                 href: str,
                 normalize: list,
+                search_in: list,
+                cl_metrics: list,
+                tm_dd_in: list,
                 *_
             ) -> tuple:
             """Update the application when the event is detected.
             """
 
-            ctrl_panel = ControlPanel(CP_PARAMS, control_panel)
+            if store is None:
+                store = {
+                    "control-panel": dict(),
+                    "selected-tests": list(),
+                    "telemetry-data": dict(),
+                    "selected-metrics": dict(),
+                    "url": str()
+                }
+
+            ctrl_panel = ControlPanel(
+                CP_PARAMS,
+                store.get("control-panel", dict())
+            )
+            store_sel = store["selected-tests"]
+            tm_data = store["telemetry-data"]
+            tm_user = store["selected-metrics"]
+
+            plotting_area_telemetry = no_update
             on_draw = False
+            on_draw_tm = False
 
             # Parse the url:
             parsed_url = url_decode(href)
@@ -1091,12 +1081,35 @@ class Layout:
             else:
                 url_params = None
 
-            trigger = Trigger(callback_context.triggered)
+            if tm_user is None:
+                # Telemetry user data
+                # The data provided by user or result of user action
+                tm_user = {
+                    # List of unique metrics:
+                    "unique_metrics": list(),
+                    # List of metrics selected by user:
+                    "selected_metrics": list(),
+                    # Labels from metrics selected by user (key: label name,
+                    # value: list of all possible values):
+                    "unique_labels": dict(),
+                    # Labels selected by the user (subset of 'unique_labels'):
+                    "selected_labels": dict(),
+                    # All unique metrics with labels (output from the step 1)
+                    # converted from pandas dataframe to dictionary.
+                    "unique_metrics_with_labels": dict(),
+                    # Metrics with labels selected by the user using dropdowns.
+                    "selected_metrics_with_labels": dict()
+                }
+            tm = TelemetryData(store_sel) if store_sel else TelemetryData()
 
+            trigger = Trigger(callback_context.triggered)
             if trigger.type == "url" and url_params:
+                telemetry = None
                 try:
                     store_sel = literal_eval(url_params["store_sel"][0])
                     normalize = literal_eval(url_params["norm"][0])
+                    telemetry = literal_eval(url_params["telemetry"][0])
+                    all_in_one = literal_eval(url_params["all-in-one"][0])
                 except (KeyError, IndexError, AttributeError):
                     pass
                 if store_sel:
@@ -1140,6 +1153,13 @@ class Layout:
                         "btn-add-dis": False
                     })
                     on_draw = True
+                    if telemetry:
+                        tm = TelemetryData(store_sel)
+                        tm.from_dataframe(self._data)
+                        tm_data = tm.to_json()
+                        tm.from_json(tm_data)
+                        tm_user["selected_metrics_with_labels"] = telemetry
+                        on_draw_tm = True
             elif trigger.type == "normalize":
                 ctrl_panel.set({"cl-normalize-val": normalize})
                 on_draw = True
@@ -1331,142 +1351,21 @@ class Layout:
                     store_sel = new_store_sel
                 elif trigger.idx == "rm-test-all":
                     store_sel = list()
-
-            if on_draw:
-                if store_sel:
-                    lg_selected = get_list_group_items(store_sel, "sel-cl")
-                    plotting_area_trending = self._get_plotting_area_trending(
-                        store_sel,
-                        bool(normalize),
-                        gen_new_url(
-                            parsed_url,
-                            {"store_sel": store_sel, "norm": normalize}
-                        )
-                    )
-                    plotting_area_buttons = self._get_plotting_area_buttons()
-                    row_card_sel_tests = C.STYLE_ENABLED
-                    row_btns_sel_tests = C.STYLE_ENABLED
-                else:
-                    plotting_area_trending = C.PLACEHOLDER
-                    plotting_area_buttons = C.PLACEHOLDER
-                    row_card_sel_tests = C.STYLE_DISABLED
-                    row_btns_sel_tests = C.STYLE_DISABLED
-                    lg_selected = no_update
-                    store_sel = list()
-            else:
-                plotting_area_trending = no_update
-                plotting_area_buttons = no_update
-                row_card_sel_tests = no_update
-                row_btns_sel_tests = no_update
-                lg_selected = no_update
-
-            ret_val = [
-                ctrl_panel.panel,
-                store_sel,
-                plotting_area_trending,
-                plotting_area_buttons,
-                row_card_sel_tests,
-                row_btns_sel_tests,
-                lg_selected
-            ]
-            ret_val.extend(ctrl_panel.values)
-            return ret_val
-
-        @app.callback(
-            Output("plot-mod-url", "is_open"),
-            Input("plot-btn-url", "n_clicks"),
-            State("plot-mod-url", "is_open")
-        )
-        def toggle_plot_mod_url(n, is_open):
-            """Toggle the modal window with url.
-            """
-            if n:
-                return not is_open
-            return is_open
-
-        @app.callback(
-            Output("store-telemetry-data", "data"),
-            Output("store-telemetry-user", "data"),
-            Output("telemetry-search-in", "value"),
-            Output("telemetry-search-out", "children"),
-            Output("telemetry-list-metrics", "value"),
-            Output("telemetry-dd", "children"),
-            Output("plotting-area-telemetry", "children"),
-            Output("plot-mod-telemetry-1", "is_open"),
-            Output("plot-mod-telemetry-2", "is_open"),
-            Output({"type": "telemetry-btn", "index": "select"}, "disabled"),
-            Output({"type": "telemetry-btn", "index": "add"}, "disabled"),
-            State("store-telemetry-data", "data"),
-            State("store-telemetry-user", "data"),
-            State("store-selected-tests", "data"),
-            State("cb-all-in-one", "value"),
-            Input({"type": "tele-cl", "index": ALL}, "value"),
-            Input("telemetry-search-in", "value"),
-            Input({"type": "telemetry-btn", "index": ALL}, "n_clicks"),
-            Input({"type": "tm-dd", "index": ALL}, "value"),
-            prevent_initial_call=True
-        )
-        def _update_plot_mod_telemetry(
-                tm_data: dict,
-                tm_user: dict,
-                store_sel: list,
-                all_in_one: bool,
-                cl_metrics: list,
-                search_in: str,
-                n_clicks: list,
-                tm_dd_in: list
-            ) -> tuple:
-            """Toggle the modal window with telemetry.
-            """
-
-            if not any(n_clicks):
-                raise PreventUpdate
-
-            if tm_user is None:
-                # Telemetry user data
-                # The data provided by user or result of user action
-                tm_user = {
-                    # List of unique metrics:
-                    "unique_metrics": list(),
-                    # List of metrics selected by user:
-                    "selected_metrics": list(),
-                    # Labels from metrics selected by user (key: label name,
-                    # value: list of all possible values):
-                    "unique_labels": dict(),
-                    # Labels selected by the user (subset of 'unique_labels'):
-                    "selected_labels": dict(),
-                    # All unique metrics with labels (output from the step 1)
-                    # converted from pandas dataframe to dictionary.
-                    "unique_metrics_with_labels": dict(),
-                    # Metrics with labels selected by the user using dropdowns.
-                    "selected_metrics_with_labels": dict()
-                }
-
-            tm = TelemetryData(tests=store_sel)
-            tm_json = no_update
-            search_out = no_update
-            list_metrics = no_update
-            tm_dd = no_update
-            plotting_area_telemetry = no_update
-            is_open = (False, False)
-            is_btn_disabled = (True, True)
-
-            trigger = Trigger(callback_context.triggered)
-            if trigger.type == "telemetry-btn":
+            elif trigger.type == "telemetry-btn":
                 if trigger.idx in ("open", "back"):
                     tm.from_dataframe(self._data)
-                    tm_json = tm.to_json()
+                    tm_data = tm.to_json()
                     tm_user["unique_metrics"] = tm.unique_metrics
                     tm_user["selected_metrics"] = list()
                     tm_user["unique_labels"] = dict()
                     tm_user["selected_labels"] = dict()
-                    search_in = str()
-                    search_out = get_list_group_items(
-                        tm_user["unique_metrics"],
-                        "tele-cl",
-                        False
+                    search_in = (str(), )
+                    search_out = (
+                        get_list_group_items(tm_user["unique_metrics"],
+                            "tele-cl", False),
                     )
                     is_open = (True, False)
+                    tm_btns_disabled[1], tm_btns_disabled[5] = True, True
                 elif trigger.idx == "select":
                     tm.from_json(tm_data)
                     if any(cl_metrics):
@@ -1480,43 +1379,46 @@ class Layout:
                             tm.get_selected_labels(metrics)
                         tm_user["unique_metrics_with_labels"] = \
                             tm.unique_metrics_with_labels
-                        list_metrics = tm.str_metrics
-                        tm_dd = _get_dd_container(tm_user["unique_labels"])
-                        if list_metrics:
-                            is_btn_disabled = (True, False)
+                        list_metrics[0] = tm.str_metrics
+                        tm_dd[0] = _get_dd_container(tm_user["unique_labels"])
+                        if list_metrics[0]:
+                            tm_btns_disabled[1] = True
+                            tm_btns_disabled[4] = False
                         is_open = (False, True)
                     else:
                         tm_user = None
                         is_open = (False, False)
                 elif trigger.idx == "add":
                     tm.from_json(tm_data)
-                    plotting_area_telemetry = self._get_plotting_area_telemetry(
-                        graph_tm_trending(
-                            tm.select_tm_trending_data(
-                                tm_user["selected_metrics_with_labels"]
-                            ),
-                            self._graph_layout,
-                            all_in_one
-                        )
-                    )
-                    tm_user = None
                     is_open = (False, False)
+                    tm_btns_disabled[1], tm_btns_disabled[5] = True, True
+                    on_draw_tm, on_draw = True, True
                 elif trigger.idx == "cancel":
                     tm_user = None
                     is_open = (False, False)
+                    tm_btns_disabled[1], tm_btns_disabled[5] = True, True
+                elif trigger.idx == "remove":
+                    tm_user = None
+                    is_open = (False, False)
+                    tm_btns_disabled[1], tm_btns_disabled[5] = True, True
+                    plotting_area_telemetry = C.PLACEHOLDER
             elif trigger.type == "telemetry-search-in":
                 tm.from_metrics(tm_user["unique_metrics"])
                 tm_user["selected_metrics"] = \
-                    tm.search_unique_metrics(search_in)
-                search_out = get_list_group_items(
-                    tm_user["selected_metrics"],
-                    type="tele-cl",
-                    colorize=False
+                    tm.search_unique_metrics(search_in[0])
+                search_out = (
+                    get_list_group_items(
+                        tm_user["selected_metrics"],
+                        type="tele-cl",
+                        colorize=False
+                    ),
                 )
                 is_open = (True, False)
             elif trigger.type == "tele-cl":
                 if any(cl_metrics):
-                    is_btn_disabled = (False, True)
+                    tm_btns_disabled[1] = False
+                else:
+                    tm_btns_disabled[1] = True
                 is_open = (True, False)
             elif trigger.type == "tm-dd":
                 tm.from_metrics_with_labels(
@@ -1535,8 +1437,7 @@ class Layout:
                             selected[previous_itm] = itm
                         show_new = True
                     previous_itm = itm
-
-                tm_dd = _get_dd_container(
+                tm_dd[0] = _get_dd_container(
                     tm_user["unique_labels"],
                     selected,
                     show_new
@@ -1544,26 +1445,94 @@ class Layout:
                 sel_metrics = tm.filter_selected_metrics_by_labels(selected)
                 tm_user["selected_metrics_with_labels"] = sel_metrics.to_dict()
                 if not sel_metrics.empty:
-                    list_metrics = tm.metrics_to_str(sel_metrics)
+                    list_metrics[0] = tm.metrics_to_str(sel_metrics)
+                    tm_btns_disabled[5] = False
                 else:
-                    list_metrics = str()
-                if list_metrics:
-                    is_btn_disabled = (True, False)
-                is_open = (False, True)
+                    list_metrics[0] = str()
 
-            # Return values:
+            new_url_params = {"store_sel": store_sel, "norm": normalize}
+            if tm_user and tm_user.get("selected_metrics_with_labels", None):
+                new_url_params["telemetry"] = \
+                    tm_user["selected_metrics_with_labels"]
+                new_url_params["all-in-one"] = all_in_one
+
+            if on_draw:
+                if store_sel:
+                    lg_selected = get_list_group_items(store_sel, "sel-cl")
+                    plotting_area_trending = \
+                        self._plotting_area_trending(store_sel, bool(normalize))
+                    if on_draw_tm:
+                        plotting_area_telemetry = self._plotting_area_telemetry(
+                            graph_tm_trending(
+                                tm.select_tm_trending_data(
+                                    tm_user["selected_metrics_with_labels"]
+                                ),
+                                self._graph_layout,
+                                False if not all_in_one else all_in_one[0]
+                            )
+                        )
+                        tm_user = None
+                    col_plotting_area = C.STYLE_ENABLED
+                    row_card_sel_tests = C.STYLE_ENABLED
+                    row_btns_sel_tests = C.STYLE_ENABLED
+                    row_btns_add_tm = C.STYLE_ENABLED
+                else:
+                    plotting_area_trending = no_update
+                    plotting_area_telemetry = C.PLACEHOLDER
+                    col_plotting_area = C.STYLE_DISABLED
+                    row_card_sel_tests = C.STYLE_DISABLED
+                    row_btns_sel_tests = C.STYLE_DISABLED
+                    row_btns_add_tm = C.STYLE_DISABLED
+                    lg_selected = no_update
+                    store_sel = list()
+            else:
+                plotting_area_trending = no_update
+                col_plotting_area = no_update
+                row_card_sel_tests = no_update
+                row_btns_sel_tests = no_update
+                row_btns_add_tm = no_update
+                lg_selected = no_update
+
+            store["url"] = gen_new_url(parsed_url, new_url_params)
+            store["control-panel"] = ctrl_panel.panel
+            store["selected-tests"] = store_sel
+            store["telemetry-data"] = tm_data
+            store["selected-metrics"] = tm_user
             ret_val = [
-                tm_json,
-                tm_user,
+                store,
+                plotting_area_trending,
+                plotting_area_telemetry,
+                col_plotting_area,
+                row_card_sel_tests,
+                row_btns_sel_tests,
+                row_btns_add_tm,
+                lg_selected,
                 search_in,
                 search_out,
-                list_metrics,
+                is_open,
+                tm_btns_disabled,
                 tm_dd,
-                plotting_area_telemetry
+                list_metrics
             ]
-            ret_val.extend(is_open)
-            ret_val.extend(is_btn_disabled)
+            ret_val.extend(ctrl_panel.values)
             return ret_val
+
+        @app.callback(
+            Output("plot-mod-url", "is_open"),
+            Output("mod-url", "children"),
+            State("store", "data"),
+            State("plot-mod-url", "is_open"),
+            Input("plot-btn-url", "n_clicks")
+        )
+        def toggle_plot_mod_url(store, is_open, n_clicks):
+            """Toggle the modal window with url.
+            """
+            if not store:
+                raise PreventUpdate
+
+            if n_clicks:
+                return not is_open, store.get("url", str())
+            return is_open, store["url"]
 
         def _get_dd_container(
                 all_labels: dict,
@@ -1753,11 +1722,11 @@ class Layout:
 
         @app.callback(
             Output("download-trending-data", "data"),
-            State("store-selected-tests", "data"),
+            State("store", "data"),
             Input("plot-btn-download", "n_clicks"),
             prevent_initial_call=True
         )
-        def _download_trending_data(store_sel: list, _) -> dict:
+        def _download_trending_data(store: list, _) -> dict:
             """Download the data
 
             :param store_sel: List of tests selected by user stored in the
@@ -1768,11 +1737,13 @@ class Layout:
             :rtype: dict
             """
 
-            if not store_sel:
+            if not store:
+                raise PreventUpdate
+            if not store["selected-tests"]:
                 raise PreventUpdate
 
             df = pd.DataFrame()
-            for itm in store_sel:
+            for itm in store["selected-tests"]:
                 sel_data = select_trending_data(self._data, itm)
                 if sel_data is None:
                     continue
