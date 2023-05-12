@@ -18,12 +18,16 @@ set -exuo pipefail
 # This file does not have executable flag nor shebang,
 # to dissuade non-tox callers.
 
-# This script runs a few grep-based commands and fails
-# if it detects any file edited or added since HEAD~
-# containing a copyright notice in first 3 lines,
-# but not the current year (in the same line).
-# The offending lines are stored to copyright_year.log (overwriting).
-#
+# This is a fixer script, so be careful before starting it.
+# It is recommended to always commit your recent edits before running this,
+# and use "git diff" after running this to confirm the edits are correct.
+# Otherwise you can lose your edits and introduce bad edits.
+
+# This script runs a variant of "git diff" command
+# to get the list of edited files, and few sed commands to edit the year
+# if "20.." pattern matches in first 3 lines.
+# No detection of "copyright", so edits can apply at surprising places.
+
 # 3 lines were chosen, because first two lines could be shebang and empty line.
 
 # "set -eu" handles failures from the following two lines.
@@ -38,30 +42,14 @@ year=$(date +'%Y')
 IFS=$'\n'
 files=($(git diff --name-only HEAD~ || true))
 unset IFS
-truncate -s 0 "copyright_year.log" || die
 # A change can have thousands of files, supress console output for the cycle.
 set +x
 for fil in "${files[@]}"; do
-    # Greps do "fail" on 0 line output, we need to ignore that
-    # as 0 lines is good. We need both set +e to ensure everything executes,
-    # and || true later to avoid dying on zero.
-    piped_command="set +ex; head -n 3 '${fil}' | fgrep -i 'Copyright'"
-    piped_command+=" | fgrep -v '${year}' | awk '{print \"${fil}: \" \$0}'"
-    piped_command+=" >> 'copyright_year.log'"
-    wrong_strings="$(bash -c "${piped_command}" || true)" || die
+    if [[ -f "${fil}" ]]; then
+        sed -i "1 s/20../${year}/g" "${fil}"
+        sed -i "2 s/20../${year}/g" "${fil}"
+        sed -i "3 s/20../${year}/g" "${fil}"
+    # Else the file was actually deleted and sed would fail.
+    fi
 done
 set -x
-lines="$(< "copyright_year.log" wc -l)"
-if [ "${lines}" != "0" ]; then
-    # TODO: Decide which text goes to stdout and which to stderr.
-    warn "Copyright lines with wrong year detected: ${lines}"
-    # TODO: Disable when output size does more harm than good.
-    pwd
-    cat "copyright_year.log" >&2
-    warn
-    warn "Copyright year checker: FAIL"
-    exit 1
-fi
-
-warn
-warn "Copyright year checker: PASS"
