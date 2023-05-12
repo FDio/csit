@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udpwireguard4tnlhwasync-ip4base
 |
-| Suite Setup | Setup suite topology interfaces | performance | cryptohw
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance | cryptohw
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance

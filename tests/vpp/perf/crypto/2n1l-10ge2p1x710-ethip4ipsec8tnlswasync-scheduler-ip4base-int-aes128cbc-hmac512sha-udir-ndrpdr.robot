@@ -22,7 +22,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | TNL_8
 | ... | ethip4ipsec8tnlswasync-scheduler-ip4base-int-aes128cbc-hmac512sha-udir
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | ipsec_sa

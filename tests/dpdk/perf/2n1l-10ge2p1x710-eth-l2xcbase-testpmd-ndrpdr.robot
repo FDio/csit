@@ -22,7 +22,8 @@
 | ... | RXQ_SIZE_1024 | TXQ_SIZE_1024
 | ... | eth-l2xcbase-testpmd
 |
-| Suite Setup | Setup suite topology interfaces | performance | dpdk
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces
+| ... | performance | dpdk
 | Suite Teardown | Tear down suite | performance | dpdk
 | Test Setup | Start Test Export
 | Test Teardown | Finalize Test Export

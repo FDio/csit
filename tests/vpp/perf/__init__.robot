@@ -19,8 +19,7 @@
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 |
-| Suite Setup | Run Keywords | Start Suite Setup Export
-| ... | AND | Setup Global Variables
+| Suite Setup | Wrap Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
 | ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
@@ -29,7 +28,6 @@
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True}
-| ... | AND | Finalize Suite Setup Export
 |
 | Suite Teardown | Run Keywords | Start Suite Teardown Export
 | ... | AND | Disconnect All Papi Connections

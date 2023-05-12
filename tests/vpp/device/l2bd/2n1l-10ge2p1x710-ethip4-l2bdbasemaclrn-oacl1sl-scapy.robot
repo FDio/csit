@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4-l2bdbasemaclrn-oacl1sl
 |
-| Suite Setup | Setup suite topology interfaces | scapy
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | telemetry | acl
 |

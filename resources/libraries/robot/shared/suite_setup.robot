@@ -27,6 +27,27 @@
 | Documentation | Suite setup keywords.
 
 *** Keywords ***
+| Wrap Suite Setup
+| | [Documentation]
+| | ... | Add export and failure handling around the wrapped suite setup.
+| |
+| | ... | Ensuring that json export works correctly even when
+| | ... | the wrapped keyword fails is common to all suite setups,
+| | ... | and the syntax may be counter-intuitive to contributors
+| | ... | of new suite setups.
+| |
+| | ... | *Arguments*
+| | ... | - ${keyword} - The suite setup keyword to execute.
+| | ... | - @{args} - Positional arguments for the keyword, if any.
+| |
+| | [Arguments] | ${keyword} | @{args}
+| |
+| | Start Suite Setup Export
+| | ${status} | ${message} = | Run Keyword And Ignore Error
+| | ... | ${keyword} | @{args}
+| | Finalize Suite Setup Export | ${status} | ${message}
+| | Run Keyword If | "${status}" != "PASS" | Fail | ${message}
+
 | Create suite topology variables
 | | [Documentation]
 | | ... | Create suite topology variables
@@ -85,14 +106,13 @@
 | |
 | | [Arguments] | @{actions}
 | |
-| | Start Suite Setup Export
 | | ${nic_model_list}= | Create list | ${nic_name}
 | | &{info}= | Compute Circular Topology
 | | ... | ${nodes} | filter_list=${nic_model_list} | nic_pfs=${nic_pfs}
 | | ... | always_same_link=${False} | topo_has_tg=${True}
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
-| | Finalize Suite Setup Export
+| | Fail | FIXME: Is this exported?
 
 | Setup suite topology interfaces with no TG
 | | [Documentation]
@@ -108,14 +128,12 @@
 | |
 | | [Arguments] | @{actions}
 | |
-| | Start Suite Setup Export
 | | ${nic_model_list}= | Create list | ${nic_name}
 | | &{info}= | Compute Circular Topology
 | | ... | ${nodes} | filter_list=${nic_model_list} | nic_pfs=${nic_pfs}
 | | ... | always_same_link=${True} | topo_has_tg=${False}
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
-| | Finalize Suite Setup Export
 
 | Setup suite topology interfaces with no DUT
 | | [Documentation]
@@ -131,14 +149,12 @@
 | |
 | | [Arguments] | @{actions}
 | |
-| | Start Suite Setup Export
 | | ${nic_model_list}= | Create list | ${nic_name}
 | | &{info}= | Compute Circular Topology
 | | ... | ${nodes} | filter_list=${nic_model_list} | nic_pfs=${nic_pfs}
 | | ... | always_same_link=${True} | topo_has_tg=${True} | topo_has_dut=${False}
 | | Set suite variable | &{topology_info} | &{info}
 | | Create suite topology variables | @{actions}
-| | Finalize Suite Setup Export
 
 | Additional Suite Setup Action For scapy
 | | [Documentation]

@@ -19,7 +19,7 @@
 | ... | SCALE | HOSTS_16384 | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4tcp-ip4base-h16384-p63-s1032192-cps
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance

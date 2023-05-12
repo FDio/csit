@@ -14,19 +14,10 @@
 *** Settings ***
 | Library | resources.libraries.python.model.ExportJson
 |
-| Suite Setup | Global Suite Setup
+| Suite Setup | Wrap Suite Setup | No Operation
 | Suite Teardown | Global Suite Teardown
 
 *** Keywords ***
-| Global Suite Setup
-| | [Documentation]
-| | ... | Perform initializations needed for any subsequent suite.
-| | ... | Currently only a minimal JSON export of time.
-| |
-| | Start Suite Setup Export
-| | # Nothing explicit here, implicitly a place to find global start timestamp.
-| | Finalize Suite Setup Export
-
 | Global Suite Teardown
 | | [Documentation]
 | | ... | Perform cleanup needed after any preceding suite.

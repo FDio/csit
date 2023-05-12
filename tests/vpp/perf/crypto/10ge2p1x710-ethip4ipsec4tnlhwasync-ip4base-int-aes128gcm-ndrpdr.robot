@@ -22,7 +22,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec4tnlhwasync-ip4base-int-aes128gcm
 |
-| Suite Setup | Setup suite topology interfaces | performance | cryptohw
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance | cryptohw
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | ipsec_sa
