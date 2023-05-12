@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Cisco and/or its affiliates.
+# Copyright (c) 2023 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,7 +20,8 @@
 | ... | IP4BASE | UDP | UDP_TPUT | TG_DRV_IGB_UIO | SCALE | HOSTS_1024
 | ... | ethip4udp-ip4base-h1024-p63-s64512-tput-tg
 |
-| Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces with no DUT
+| ... | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Start Test Export
 | Test Teardown | Tear down test raw | performance

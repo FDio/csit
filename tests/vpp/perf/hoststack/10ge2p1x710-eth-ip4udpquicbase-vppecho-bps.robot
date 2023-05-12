@@ -12,16 +12,15 @@
 # limitations under the License.
 
 *** Settings ***
-| Library  | resources.libraries.python.HoststackUtil
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0 | UDP | QUIC | VPPECHO
 | ... | 1CLIENT | 1STREAM | HOSTSTACK | 1280B | eth-ip4udpquicbase-vppecho
 |
-| Suite Setup | Setup suite topology interfaces with no TG | vppecho
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces with no TG
+| ... | vppecho
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test

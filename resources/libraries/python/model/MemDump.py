@@ -133,6 +133,8 @@ def _pre_serialize_root(data):
 def _merge_into_suite_info_file(teardown_path):
     """Move setup and teardown data into a singe file, remove old files.
 
+    Duration is computed, telemetries are renamed.
+
     The caller has to confirm the argument is correct, e.g. ending in
     "/teardown.info.json".
 
@@ -145,23 +147,24 @@ def _merge_into_suite_info_file(teardown_path):
     setup_path = u"setup".join(teardown_path.rsplit(u"teardown", 1))
     with open(teardown_path, u"rt", encoding="utf-8") as file_in:
         teardown_data = json.load(file_in)
-    # Transforming setup data into suite data.
     with open(setup_path, u"rt", encoding="utf-8") as file_in:
+        # Transforming setup data into suite data.
         suite_data = json.load(file_in)
 
+    suite_data[u"teardown_passed"] = teardown_data[u"teardown_passed"]
+    suite_data[u"teardown_message"] = teardown_data[u"teardown_message"]
     end_time = teardown_data[u"end_time"]
     suite_data[u"end_time"] = end_time
     start_float = parse(suite_data[u"start_time"]).timestamp()
     end_float = parse(suite_data[u"end_time"]).timestamp()
     suite_data[u"duration"] = end_float - start_float
-    setup_telemetry = suite_data.pop(u"telemetry")
-    suite_data[u"setup_telemetry"] = setup_telemetry
+    suite_data[u"setup_telemetry"] = suite_data.pop(u"telemetry")
     suite_data[u"teardown_telemetry"] = teardown_data[u"telemetry"]
 
     suite_path = u"suite".join(teardown_path.rsplit(u"teardown", 1))
     with open(suite_path, u"wt", encoding="utf-8") as file_out:
         json.dump(suite_data, file_out, indent=1)
-    # We moved everything useful from temporary setup/teardown info files.
+    # We moved everything useful from temporary setup/teardown info new file.
     os.remove(setup_path)
     os.remove(teardown_path)
 
