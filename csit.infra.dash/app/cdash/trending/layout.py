@@ -642,6 +642,18 @@ class Layout:
                         ]
                     )
                 ]
+            ),
+            dbc.Row(
+                id="row-btns-add-tm",
+                class_name="g-0 p-1",
+                style=C.STYLE_DISABLED,
+                children=[
+                    dbc.Button(
+                        id={"type": "telemetry-btn", "index": "open"},
+                        children="Telemetry",
+                        color="info"
+                    )
+                ]
             )
         ]
 
@@ -675,120 +687,6 @@ class Layout:
             ],
             width=9
         )
-
-    def _get_plotting_area_buttons(self) -> dbc.Col:
-        """Add buttons and modals to the plotting area.
-
-        :returns: A column with buttons and modals for telemetry.
-        :rtype: dbc.Col
-        """
-        return dbc.Col([
-            html.Div(
-                [
-                    dbc.Button(
-                        id={"type": "telemetry-btn", "index": "open"},
-                        children="Add Panel with Telemetry",
-                        class_name="me-1",
-                        color="info",
-                        style={
-                            "text-transform": "none",
-                            "padding": "0rem 1rem"
-                        }
-                    ),
-                    dbc.Modal(
-                        [
-                            dbc.ModalHeader(
-                                dbc.ModalTitle(
-                                    "Select a Metric"
-                                ),
-                                close_button=False
-                            ),
-                            dbc.Spinner(
-                                dbc.ModalBody(
-                                    id="plot-mod-telemetry-body-1",
-                                    children=self._get_telemetry_step_1()
-                                ),
-                                delay_show=2*C.SPINNER_DELAY
-                            ),
-                            dbc.ModalFooter([
-                                dbc.Button(
-                                    "Select",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "select"
-                                    },
-                                    disabled=True
-                                ),
-                                dbc.Button(
-                                    "Cancel",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "cancel"
-                                    },
-                                    disabled=False
-                                )
-                            ])
-                        ],
-                        id="plot-mod-telemetry-1",
-                        size="lg",
-                        is_open=False,
-                        scrollable=False,
-                        backdrop="static",
-                        keyboard=False
-                    ),
-                    dbc.Modal(
-                        [
-                            dbc.ModalHeader(
-                                dbc.ModalTitle(
-                                    "Select Labels"
-                                ),
-                                close_button=False
-                            ),
-                            dbc.Spinner(
-                                dbc.ModalBody(
-                                    id="plot-mod-telemetry-body-2",
-                                    children=self._get_telemetry_step_2()
-                                ),
-                                delay_show=2*C.SPINNER_DELAY
-                            ),
-                            dbc.ModalFooter([
-                                dbc.Button(
-                                    "Back",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "back"
-                                    },
-                                    disabled=False
-                                ),
-                                dbc.Button(
-                                    "Add Telemetry",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "add"
-                                    },
-                                    disabled=True
-                                ),
-                                dbc.Button(
-                                    "Cancel",
-                                    id={
-                                        "type": "telemetry-btn",
-                                        "index": "cancel"
-                                    },
-                                    disabled=False
-                                )
-                            ])
-                        ],
-                        id="plot-mod-telemetry-2",
-                        size="xl",
-                        is_open=False,
-                        scrollable=False,
-                        backdrop="static",
-                        keyboard=False
-                    )
-                ],
-                className="d-grid gap-0 d-md-flex justify-content-md-end"
-            )
-        ])
 
     def _get_plotting_area_trending(
             self,
@@ -906,6 +804,77 @@ class Layout:
                         active_item=["item-0", ]
                     ),
                     class_name="g-0 p-0",
+                ),
+                dbc.Modal(
+                    [
+                        dbc.ModalHeader(
+                            dbc.ModalTitle("Select a Metric"),
+                            close_button=False
+                        ),
+                        dbc.Spinner(
+                            dbc.ModalBody(
+                                id="plot-mod-telemetry-body-1",
+                                children=self._get_telemetry_step_1()
+                            ),
+                            delay_show=2*C.SPINNER_DELAY
+                        ),
+                        dbc.ModalFooter([
+                            dbc.Button(
+                                "Select",
+                                id={"type": "telemetry-btn", "index": "select"},
+                                disabled=True
+                            ),
+                            dbc.Button(
+                                "Cancel",
+                                id={"type": "telemetry-btn", "index": "cancel"},
+                                disabled=False
+                            )
+                        ])
+                    ],
+                    id="plot-mod-telemetry-1",
+                    size="lg",
+                    is_open=False,
+                    scrollable=False,
+                    backdrop="static",
+                    keyboard=False
+                ),
+                dbc.Modal(
+                    [
+                        dbc.ModalHeader(
+                            dbc.ModalTitle("Select Labels"),
+                            close_button=False
+                        ),
+                        dbc.Spinner(
+                            dbc.ModalBody(
+                                id="plot-mod-telemetry-body-2",
+                                children=self._get_telemetry_step_2()
+                            ),
+                            delay_show=2*C.SPINNER_DELAY
+                        ),
+                        dbc.ModalFooter([
+                            dbc.Button(
+                                "Back",
+                                id={"type": "telemetry-btn", "index": "back"},
+                                disabled=False
+                            ),
+                            dbc.Button(
+                                "Add Telemetry",
+                                id={"type": "telemetry-btn", "index": "add"},
+                                disabled=True
+                            ),
+                            dbc.Button(
+                                "Cancel",
+                                id={"type": "telemetry-btn", "index": "cancel"},
+                                disabled=False
+                            )
+                        ])
+                    ],
+                    id="plot-mod-telemetry-2",
+                    size="xl",
+                    is_open=False,
+                    scrollable=False,
+                    backdrop="static",
+                    keyboard=False
                 )
             ]
         )
@@ -1027,9 +996,9 @@ class Layout:
                 Output("store-control-panel", "data"),
                 Output("store-selected-tests", "data"),
                 Output("plotting-area-trending", "children"),
-                Output("plotting-area-buttons", "children"),
                 Output("row-card-sel-tests", "style"),
                 Output("row-btns-sel-tests", "style"),
+                Output("row-btns-add-tm", "style"),
                 Output("lg-selected", "children"),
                 Output({"type": "ctrl-dd", "index": "dut"}, "value"),
                 Output({"type": "ctrl-dd", "index": "phy"}, "options"),
@@ -1343,30 +1312,30 @@ class Layout:
                             {"store_sel": store_sel, "norm": normalize}
                         )
                     )
-                    plotting_area_buttons = self._get_plotting_area_buttons()
                     row_card_sel_tests = C.STYLE_ENABLED
                     row_btns_sel_tests = C.STYLE_ENABLED
+                    row_btns_add_tm = C.STYLE_ENABLED
                 else:
                     plotting_area_trending = C.PLACEHOLDER
-                    plotting_area_buttons = C.PLACEHOLDER
                     row_card_sel_tests = C.STYLE_DISABLED
                     row_btns_sel_tests = C.STYLE_DISABLED
+                    row_btns_add_tm = C.STYLE_DISABLED
                     lg_selected = no_update
                     store_sel = list()
             else:
                 plotting_area_trending = no_update
-                plotting_area_buttons = no_update
                 row_card_sel_tests = no_update
                 row_btns_sel_tests = no_update
+                row_btns_add_tm = no_update
                 lg_selected = no_update
 
             ret_val = [
                 ctrl_panel.panel,
                 store_sel,
                 plotting_area_trending,
-                plotting_area_buttons,
                 row_card_sel_tests,
                 row_btns_sel_tests,
+                row_btns_add_tm,
                 lg_selected
             ]
             ret_val.extend(ctrl_panel.values)
