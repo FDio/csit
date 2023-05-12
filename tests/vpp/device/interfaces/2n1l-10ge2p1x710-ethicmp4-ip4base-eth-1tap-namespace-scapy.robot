@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethicmp4-ip4base-eth-1tap-namespace
 |
-| Suite Setup | Setup suite topology interfaces | scapy
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | scapy
 | Test Setup | Setup test | namespace
 | Test Teardown | Tear down test | packet_trace | telemetry | namespace
 |

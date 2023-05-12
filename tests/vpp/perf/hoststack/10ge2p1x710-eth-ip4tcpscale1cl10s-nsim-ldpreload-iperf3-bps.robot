@@ -12,9 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Library  | resources.libraries.python.HoststackUtil
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/hoststack/hoststack.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | TCP | NIC_Intel-X710 | DRV_VFIO_PCI
@@ -22,7 +20,7 @@
 | ... | NSIM | LDPRELOAD | IPERF3 | 1CLIENT | 10STREAM | 1460B
 | ... | eth-ip4tcpscale1cl10s-nsim-ldpreload-iperf3
 |
-| Suite Setup | Setup suite topology interfaces with no TG | iPerf3
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces with no TG | iPerf3
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test

@@ -19,7 +19,7 @@
 | ... | RXQ_SIZE_1024 | TXQ_SIZE_1024 | GSO_TRUE
 | ... | ethip4-ip4base-2vhost-iperf3
 |
-| Suite Setup | Setup suite topology interfaces | iPerf3
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | iPerf3
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test | iPerf3 | vhost
