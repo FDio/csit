@@ -1,0 +1,47 @@
+
+- Document MLRv7 code:
+ - Vratko to finish editing.
+ ?? Other subitems may be moved to come after other main items?
+ - Maciek to review for English.
+ - Tibor to review for logic and overall readability.
+- Terminology freeze:
+ - Vratko to compile current terms (perhaps also their old names).
+  - This includes the "MLRsearch" term itself.
+ - Maciek to review / tweak / approve.
+ - Vratko to update code for any changes.
+  - Maciek to review again.
+- Finite state machines (FSMs):
+ - Vratko to write/draw and describe the FSMs as implemented in MLRv7 code.
+ - Maciek to review / tweak / approve.
+  - Equivalent formulations are possible.
+ ?? Does the description of FSMs need specific terminology to agree upon?
+  - If yes, agree and update code.
+ ?? Restructure code if better FSMs are found and time permits.
+- Draft: high level description:
+ - Vratko to write.
+ - Maciek to review/tweak/approve.
+- Draft: low level description:
+ - Vratko and Maciek to agree which details should be in draft and which not.
+ - Vratko to write.
+ - Maciek to review/tweak/approve.
+- Draft: Finalize and present to BMWG on an IETF meeting.
+- CSIT productization:
+ - Vratko to finish integration and gather data with various configurations.
+ - Decide on open questions:
+  - Migrate reporting from intended load to forwarding rate.
+  - Choose the new configurations (ndrpdr, reconf) to use in CSIT production.
+ ?? Pilot deployment when most tests stay at v2 but few run also at v7 in trending?
+ - Prepare CSIT methodology page with shorter MLRv7 description.
+ - Switch CSIT to v7 and monitor for at least one release cycle.
+  - Publish the new methodology.
+- Logic freeze:
+ - Refrain from trying to optimize the code further.
+ - Minor tweaks are allowed:
+  - Improvements to methodology, code documentation, variable names if needed.
+  - Improvements to logging.
+  - Bumping Python versions.
+   - Apply new language features where convenient.
+ - Bigger improvement ideas should go to PLRsearch or a brand new search algorithm.
+?? Formal verification, proving MLRsearch cannot get stuck (or slow)
+   no mater what the measurement results are.
+ ?? Fuzz tests?
