@@ -19,7 +19,7 @@
 | ... | UDP | UDP_CPS | HOSTS_1024 | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-ip4base-h1024-p63-s64512-cps
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance

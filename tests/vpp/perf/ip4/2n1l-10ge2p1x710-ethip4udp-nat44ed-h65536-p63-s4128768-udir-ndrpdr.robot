@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-nat44ed-h65536-p63-s4128768-udir
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | nat-ed

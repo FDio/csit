@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | eth-l2bd-1ch-16mif-8dcr2t-vppip4
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | container

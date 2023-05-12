@@ -13,27 +13,20 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
 |
-| Library | resources.libraries.python.SetupFramework
-| Library | resources.libraries.python.SetupFramework.CleanupFramework
-| Library | resources.libraries.python.DPDK.DPDKTools
-|
-| Suite Setup | Run Keywords | Start Suite Setup Export
-| ... | AND | Setup performance global Variables
+| Suite Setup | Wrap Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Install DPDK framework on all DUTs | ${nodes}
 | ... | AND | Get CPU Info from All Nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True} | skip_vpp=${True}
-| ... | AND | Finalize Suite Setup Export
 |
 | Suite Teardown | Run Keywords | Start Suite Teardown Export
 | ... | AND | Cleanup Framework | ${nodes}
 | ... | AND | Finalize Suite Teardown Export
 
 *** Keywords ***
-| Setup performance global Variables
+| Setup Global Variables
 | | [Documentation]
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | |

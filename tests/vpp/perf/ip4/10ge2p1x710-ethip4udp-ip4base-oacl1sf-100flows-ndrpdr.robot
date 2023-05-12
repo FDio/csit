@@ -20,7 +20,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-ip4base-oacl1sf-100flows
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | acl
