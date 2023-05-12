@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b25badc_d90e3225",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 61
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-12T12:57:11Z",
+      "side": 1,
+      "message": "csit-3n-snr-perftest nic_intel-*ANDdrv_vfio_pciAND1518bANDethip4ipsec1000tnlsw-ip4base-*-aes256gcm",
+      "revId": "e95a5761f4988400c2fc8b6391f92c9f0c26d958",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
