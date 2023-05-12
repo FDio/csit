@@ -19,7 +19,8 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4-flow-ip4-gtpu
 |
-| Suite Setup | Setup suite topology interfaces | scapy
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | scapy
+| Suite Teardown | Wrap Suite Teardown | No Operation
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | telemetry
 |

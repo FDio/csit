@@ -20,7 +20,8 @@
 | ... | IP4BASE | TCP | TCP_CPS | TG_DRV_IGB_UIO | SCALE | HOSTS_262144
 | ... | ethip4tcp-ip4base-h262144-p63-s16515072-cps-tg
 |
-| Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces with no DUT
+| ... | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Start Test Export
 | Test Teardown | Tear down test raw | performance

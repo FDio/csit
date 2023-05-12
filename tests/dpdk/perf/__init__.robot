@@ -13,27 +13,12 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
 |
-| Library | resources.libraries.python.SetupFramework
-| Library | resources.libraries.python.SetupFramework.CleanupFramework
-| Library | resources.libraries.python.DPDK.DPDKTools
-|
-| Suite Setup | Run Keywords | Start Suite Setup Export
-| ... | AND | Setup performance global Variables
-| ... | AND | Setup Framework | ${nodes}
-| ... | AND | Install DPDK framework on all DUTs | ${nodes}
-| ... | AND | Get CPU Info from All Nodes | ${nodes}
-| ... | AND | Update All Interface Data on All Nodes | ${nodes}
-| ... | skip_tg=${True} | skip_vpp=${True}
-| ... | AND | Finalize Suite Setup Export
-|
-| Suite Teardown | Run Keywords | Start Suite Teardown Export
-| ... | AND | Cleanup Framework | ${nodes}
-| ... | AND | Finalize Suite Teardown Export
+| Suite Setup | Wrap Suite Setup | DPDK Suite Setup
+| Suite Teardown | Wrap Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
-| Setup performance global Variables
+| Setup Global Variables
 | | [Documentation]
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | |
@@ -49,3 +34,17 @@
 | | Set Global Variable | ${stat_pre_trial}
 | | Set Global Variable | ${stat_post_trial}
 | | Set Global Variable | ${nodes}
+
+| DPDK Suite Setup
+| | [Documentation]
+| | ... | Execute setup steps relevant for all DPDK perf tests.
+| |
+| | ... | This needs to be a keyword, because the AND separator for Run Keywords
+| | ... | does not work when passed to Wrap Suite Setup as an argument.
+| |
+| | Setup performance global Variables
+| | Setup Framework | ${nodes}
+| | Install DPDK framework on all DUTs | ${nodes}
+| | Get CPU Info from All Nodes | ${nodes}
+| | Update All Interface Data on All Nodes | ${nodes}
+| | ... | skip_tg=${True} | skip_vpp=${True}

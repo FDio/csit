@@ -12,26 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.model.ExportJson
+| Resource | resources/libraries/robot/shared/default.robot
 |
-| Suite Setup | Global Suite Setup
-| Suite Teardown | Global Suite Teardown
-
-*** Keywords ***
-| Global Suite Setup
-| | [Documentation]
-| | ... | Perform initializations needed for any subsequent suite.
-| | ... | Currently only a minimal JSON export of time.
-| |
-| | Start Suite Setup Export
-| | # Nothing explicit here, implicitly a place to find global start timestamp.
-| | Finalize Suite Setup Export
-
-| Global Suite Teardown
-| | [Documentation]
-| | ... | Perform cleanup needed after any preceding suite.
-| | ... | Currently only a minimal JSON export of time.
-| |
-| | Start Suite Teardown Export
-| | # Nothing explicit here, implicitly a place to find global end timestamp.
-| | Finalize Suite Teardown Export
+| Suite Setup | Wrap Suite Setup | No Operation
+| Suite Teardown | Wrap Suite Teardown | No Operation

@@ -13,8 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/ip/geneve.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Intel-X710 | ETH | IP4FWD | IP4BASE | UDP | ENCAP | GENEVE
@@ -22,7 +20,8 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4--ethip4udpgeneve-1tun-ip4base
 |
-| Suite Setup | Setup suite topology interfaces | scapy
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | scapy
+| Suite Teardown | Wrap Suite Teardown | No Operation
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | telemetry | geneve4
 |
