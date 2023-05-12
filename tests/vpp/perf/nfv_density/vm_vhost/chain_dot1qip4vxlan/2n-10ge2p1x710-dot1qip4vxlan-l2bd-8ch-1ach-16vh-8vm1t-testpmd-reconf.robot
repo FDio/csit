@@ -21,7 +21,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | vhost

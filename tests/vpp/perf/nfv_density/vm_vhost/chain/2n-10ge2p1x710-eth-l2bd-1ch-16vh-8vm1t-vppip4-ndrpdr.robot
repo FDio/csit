@@ -20,7 +20,7 @@
 | ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 1R8C | 8VM1T
 | ... | eth-l2bd-1ch-16vh-8vm1t-vppip4
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | vhost

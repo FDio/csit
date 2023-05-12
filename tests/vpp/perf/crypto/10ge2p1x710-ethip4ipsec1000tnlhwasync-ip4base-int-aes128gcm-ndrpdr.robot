@@ -14,7 +14,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECHW | ASYNC | IPSECINT | NIC_Intel-X710 | TNL_1000
@@ -22,7 +21,7 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec1000tnlhwasync-ip4base-int-aes128gcm
 |
-| Suite Setup | Setup suite topology interfaces | performance | cryptohw
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance | cryptohw
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | ipsec_sa

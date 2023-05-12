@@ -13,8 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Library | resources.libraries.python.DPDK.DPDKTools
-| Library | resources.libraries.python.DPDK.L3fwdTest
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | IP4FWD | BASE | ETH
@@ -22,7 +20,8 @@
 | ... | RXQ_SIZE_1024 | TXQ_SIZE_1024
 | ... | ethip4-ip4base-l3fwd
 |
-| Suite Setup | Setup suite topology interfaces | performance | dpdk
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces
+| ... | performance | dpdk
 | Suite Teardown | Tear down suite | performance | dpdk
 | Test Setup | Start Test Export
 | Test Teardown | Finalize Test Export

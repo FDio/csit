@@ -13,14 +13,13 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Library | resources.libraries.python.Policer
 |
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | IP4FWD | FEATURE | POLICE_MARK | DRV_VFIO_PCI
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4-ip4base-ipolicemarkbase
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | classify
