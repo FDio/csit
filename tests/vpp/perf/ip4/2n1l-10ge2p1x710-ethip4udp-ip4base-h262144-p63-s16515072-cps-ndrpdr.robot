@@ -19,7 +19,7 @@
 | ... | UDP | UDP_CPS | HOSTS_262144 | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4udp-ip4base-h262144-p63-s16515072-cps
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance

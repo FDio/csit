@@ -19,7 +19,8 @@
 | ... | DRV_VFIO_PCI | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6ip6-ip6base-srv6enc1sid
 |
-| Suite Setup | Setup suite topology interfaces | scapy
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | scapy
+| Suite Teardown | Wrap Suite Teardown | No Operation
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | telemetry
 |

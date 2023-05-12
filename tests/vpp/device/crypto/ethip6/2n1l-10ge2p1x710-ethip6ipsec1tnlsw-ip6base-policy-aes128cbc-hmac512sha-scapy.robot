@@ -20,7 +20,8 @@
 | ... | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip6ipsec1tnlsw-ip6base-policy-aes128cbc-hmac512sha
 |
-| Suite Setup | Setup suite topology interfaces | scapy
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | scapy
+| Suite Teardown | Wrap Suite Teardown | No Operation
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | telemetry | ipsec_sa
 |

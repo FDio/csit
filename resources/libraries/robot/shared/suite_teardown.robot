@@ -21,6 +21,28 @@
 | Documentation | Suite teardown keywords.
 
 *** Keywords ***
+| Wrap Suite Teardown
+| | [Documentation]
+| | ... | Add export and failure handling around the wrapped suite teardown.
+| |
+| | ... | Contrary to Wrap Suite Setup, failure in teardown
+| | ... | does not prevent JSON export finalization,
+| | ... | as in teardown the execution continues through failures.
+| | ... | Still, it is convenient to have a wrapper.
+| | ... | As a bonus, failure state of wrapped keyword is exported.
+| |
+| | ... | *Arguments*
+| | ... | - ${keyword} - The suite setup keyword to execute.
+| | ... | - @{args} - Positional arguments for the keyword, if any.
+| |
+| | [Arguments] | ${keyword} | @{args}
+| |
+| | Start Suite Teardown Export
+| | ${status} | ${message} = | Run Keyword And Ignore Error
+| | ... | ${keyword} | @{args}
+| | Finalize Suite Teardown Export | ${status} | ${message}
+| | Run Keyword If | "${status}" != "PASS" | Fail | ${message}
+
 | Tear down suite
 | | [Documentation]
 | | ... | Common suite teardown for tests.
@@ -30,12 +52,10 @@
 | |
 | | [Arguments] | @{actions}
 | |
-| | Start Suite Teardown Export
 | | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Suite Tear Down Action For ${action}
 | | END
 | | Remove All Added VIF Ports On All DUTs From Topology | ${nodes}
-| | Finalize Suite Teardown Export
 
 | Additional Suite Tear Down Action For ab
 | | [Documentation]

@@ -13,14 +13,13 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/crypto/ipsec.robot
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
 | ... | BASE | IPSEC | IPSECSW | IPSECSPD | SPD_OUTBOUND | SPE_1 | NOCRYPTO
 | ... | NIC_Intel-X710 | DRV_VFIO_PCI | RXQ_SIZE_0 | TXQ_SIZE_0
 | ... | ethip4ipsec1spe-ip4base-policy-outbound-nocrypto
 |
-| Suite Setup | Setup suite topology interfaces | performance
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test | performance
 | Test Teardown | Tear down test | performance | ipsec_all

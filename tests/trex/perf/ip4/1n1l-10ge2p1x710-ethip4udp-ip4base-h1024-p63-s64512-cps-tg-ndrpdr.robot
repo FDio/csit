@@ -20,7 +20,8 @@
 | ... | IP4BASE | UDP | UDP_CPS | TG_DRV_IGB_UIO | SCALE | HOSTS_1024
 | ... | ethip4udp-ip4base-h1024-p63-s64512-cps-tg
 |
-| Suite Setup | Setup suite topology interfaces with no DUT | performance_tg_nic
+| Suite Setup | Wrap Suite Setup | Setup suite topology interfaces with no DUT
+| ... | performance_tg_nic
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Start Test Export
 | Test Teardown | Tear down test raw | performance

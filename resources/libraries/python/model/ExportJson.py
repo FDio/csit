@@ -221,12 +221,15 @@ class ExportJson():
         self.data[u"hosts"] = BuiltIn().get_variable_value(u"\\${hosts}")
         self.data[u"telemetry"] = list()
 
-    def finalize_suite_setup_export(self):
+    def finalize_suite_setup_export(self, status, message):
         """Add the missing fields to data. Do not write yet.
 
         Should be run at the end of suite setup.
         The write is done at next start (or at the end of global teardown).
+        FIXME
         """
+        self.data[u"passed"] = "PASS" == status
+        self.data[u"message"] = message if message else u""
         end_time = datetime.datetime.utcnow().strftime(u"%Y-%m-%dT%H:%M:%S.%fZ")
         self.data[u"hosts"] = BuiltIn().get_variable_value(u"\\${hosts}")
         self.data[u"end_time"] = end_time
@@ -254,13 +257,16 @@ class ExportJson():
         self.process_results()
         self.export_pending_data()
 
-    def finalize_suite_teardown_export(self):
+    def finalize_suite_teardown_export(self, status, message):
         """Add the missing fields to data. Do not write yet.
 
         Should be run at the end of suite teardown
         (but before the explicit write in the global suite teardown).
         The write is done at next start (or explicitly for global teardown).
+        FIXME
         """
+        self.data[u"passed"] = "PASS" == status
+        self.data[u"message"] = message if message else u""
         end_time = datetime.datetime.utcnow().strftime(u"%Y-%m-%dT%H:%M:%S.%fZ")
         self.data[u"end_time"] = end_time
         self.export_pending_data()
