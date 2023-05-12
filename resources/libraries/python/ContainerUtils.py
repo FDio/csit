@@ -205,8 +205,8 @@ class ContainerManager:
         dut_cnt = len(
             Counter(
                 [
-                    self.containers[container].node[u"host"]
-                    for container in self.containers
+                    f"{container.node['host']}{container.node['port']}"
+                    for container in self.containers.values()
                 ]
             )
         )
@@ -581,8 +581,7 @@ class ContainerEngine:
     def start_vpp(self, verify=True):
         """Start VPP inside a container."""
         self.execute(
-            u"setsid /usr/bin/vpp -c /etc/vpp/startup.conf "
-            u">/tmp/vppd.log 2>&1 < /dev/null &")
+            u"/usr/bin/vpp -c /etc/vpp/startup.conf")
 
         topo_instance = BuiltIn().get_library_instance(
             u"resources.libraries.python.topology.Topology"
@@ -694,7 +693,6 @@ class ContainerEngine:
         vpp_config = VppConfigGenerator()
         vpp_config.set_node(self.container.node)
         vpp_config.add_unix_cli_listen()
-        vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec(u"/tmp/running.exec")
         vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
         if cpuset_cpus:
