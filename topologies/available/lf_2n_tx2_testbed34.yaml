@@ -1,4 +1,4 @@
-# Copyright (c) 2020 PANTHEON.tech and/or its affiliates.
+# Copyright (c) 2020-2023 PANTHEON.tech and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -30,13 +30,13 @@ nodes:
     password: Csit1234
     interfaces:
       port0:
-        mac_address: "3c:fd:fe:c3:e0:90"
+        mac_address: "3c:fd:fe:c3:e9:70"
         pci_address: "0000:af:00.0"
         link: link1
         driver: i40e
         model: Intel-XL710
       port1:
-        mac_address: "3c:fd:fe:c3:e0:91"
+        mac_address: "3c:fd:fe:c3:e9:71"
         pci_address: "0000:af:00.1"
         link: link2
         driver: i40e
@@ -51,13 +51,13 @@ nodes:
     password: Csit1234
     interfaces:
       port0:
-        mac_address: "3c:fd:fe:c3:e9:70"
+        mac_address: "3c:fd:fe:c3:e0:90"
         pci_address: "0000:91:00.0"
         link: link1
         driver: i40e
         model: Intel-XL710
       port1:
-        mac_address: "3c:fd:fe:c3:e9:71"
+        mac_address: "3c:fd:fe:c3:e0:91"
         pci_address: "0000:91:00.1"
         link: link2
         driver: i40e
