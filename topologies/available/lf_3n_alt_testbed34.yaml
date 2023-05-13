@@ -30,13 +30,13 @@ nodes:
     password: Csit1234
     interfaces:
       port0:
-        mac_address: "3c:fd:fe:c3:e7:a0"
+        mac_address: "40:a6:b7:85:e7:80"
         pci_address: "0000:31:00.0"
         link: link1
         driver: i40e
         model: Intel-XL710
       port1:
-        mac_address: "3c:fd:fe:c3:e7:a1"
+        mac_address: "40:a6:b7:85:e7:81"
         pci_address: "0000:31:00.1"
         link: link2
         driver: i40e
@@ -51,13 +51,13 @@ nodes:
     password: Csit1234
     interfaces:
       port0:
-        mac_address: "40:a6:b7:85:e7:80"
+        mac_address: "40:a6:b7:85:e7:78"
         pci_address: "0004:04:00.0"
         link: link3
         driver: i40e
         model: Intel-XL710
       port1:
-        mac_address: "40:a6:b7:85:e7:81"
+        mac_address: "40:a6:b7:85:e7:79"
         pci_address: "0004:04:00.1"
         link: link2
         driver: i40e
@@ -72,13 +72,13 @@ nodes:
     password: Csit1234
     interfaces:
       port0:
-        mac_address: "40:a6:b7:85:e7:78"
+        mac_address: "3c:fd:fe:c3:e7:a0"
         pci_address: "0004:04:00.0"
         link: link1
         driver: i40e
         model: Intel-XL710
       port1:
-        mac_address: "40:a6:b7:85:e7:79"
+        mac_address: "3c:fd:fe:c3:e7:a1"
         pci_address: "0004:04:00.1"
         link: link3
         driver: i40e
