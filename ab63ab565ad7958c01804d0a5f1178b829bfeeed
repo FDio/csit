@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6e11cc8_db27b1c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-15T15:37:45Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_intel-xxv710ANDdrv_avfAND1cAND64bANDeth-l2patch mrrANDnic_intel-xxv710ANDdrv_avfAND1cAND64bANDeth-l2xcbase",
+      "revId": "ab63ab565ad7958c01804d0a5f1178b829bfeeed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
