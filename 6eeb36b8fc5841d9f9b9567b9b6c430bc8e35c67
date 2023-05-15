@@ -16,6 +16,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_intel-xxv710ANDdrv_avfAND1cAND64bANDeth-l2patch mrrANDnic_intel-xxv710ANDdrv_avfAND1cAND64bANDeth-l2xcbase",
       "revId": "6eeb36b8fc5841d9f9b9567b9b6c430bc8e35c67",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c1ff442_539280f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-15T16:51:47Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-2n-clx/1010/ : SUCCESS\n\nThis passes, parent fails [1], and the failures are deterministic in trending, so this is a real fix.\n\n[1] https://gerrit.fd.io/r/c/csit/+/38818/3#message-f8e9be51cfdf60f3c8b055f012885fe1a1f81c5f",
+      "revId": "6eeb36b8fc5841d9f9b9567b9b6c430bc8e35c67",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
