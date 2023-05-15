@@ -1888,13 +1888,14 @@ class InterfaceUtil:
             current_driver = DUTSetup.get_pci_dev_driver(
                 node, vf_pci_addr.replace(":", r"\:")
             )
-            if current_driver and current_driver != uio_driver:
-                DUTSetup.pci_vf_driver_unbind(
-                    node, pf_pci_addr, vf_id
+            if current_driver != uio_driver:
+                if current_driver:
+                    DUTSetup.pci_vf_driver_unbind(
+                        node, pf_pci_addr, vf_id
+                    )
+                DUTSetup.pci_vf_driver_bind(
+                    node, pf_pci_addr, vf_id, uio_driver
                 )
-            DUTSetup.pci_vf_driver_bind(
-                node, pf_pci_addr, vf_id, uio_driver
-            )
 
             # Add newly created ports into topology file
             vf_ifc_name = f"{ifc_key}_vif"
