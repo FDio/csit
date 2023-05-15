@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2b32ed2_526383fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-15T15:00:32Z",
+      "side": 1,
+      "message": "Comparison base for 38763.\n\ncsit-2n-clx-perftest mrrANDnic_intel-xxv710ANDdrv_avfAND1cAND64bANDeth-l2patch mrrANDnic_intel-xxv710ANDdrv_avfAND1cAND64bANDeth-l2xcbase",
+      "revId": "5efb062fbad4c7710334e8b29f49be8c4d77ac7a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
