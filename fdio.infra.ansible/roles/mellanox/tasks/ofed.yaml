@@ -31,6 +31,8 @@
 - name: Inst - Switch Infiniband to Ethernet
   ansible.builtin.command: "mlxconfig --yes --dev {{ item }} set LINK_TYPE_P1=2 LINK_TYPE_P2=2"
   with_items: "{{ mellanox_pcis.stdout_lines }}"
+  failed_when: false
+  changed_when: false
   tags:
     - mellanox-inst-drivers
 

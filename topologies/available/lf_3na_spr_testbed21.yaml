@@ -1,0 +1,212 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "10.30.51.53"
+    arch: x86_64
+    port: 6001
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port1:
+        # s53-t21-tg1-c2/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:70"
+        pci_address: "0000:17:00.0"
+        ip4_address: "172.16.10.1"
+        driver: mlx5_core
+        link: link1
+        model: Mellanox-CX7VEAT
+      port2:
+        # s53-t21-tg1-c2/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:71"
+        pci_address: "0000:17:00.1"
+        ip4_address: "172.16.20.1"
+        driver: mlx5_core
+        link: link2
+        model: Mellanox-CX7VEAT
+      port3:
+        # s53-t21-tg1-c4/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:e8"
+        pci_address: "0000:2a:00.0"
+        ip4_address: "172.16.30.1"
+        driver: mlx5_core
+        link: link3
+        model: Mellanox-CX7VEAT
+      port4:
+        # s53-t21-tg1-c4/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:e9"
+        pci_address: "0000:2a:00.1"
+        ip4_address: "172.16.40.1"
+        driver: mlx5_core
+        link: link4
+        model: Mellanox-CX7VEAT
+      port5:
+        # s53-t21-tg1-c10/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:58"
+        pci_address: "0000:3d:00.0"
+        ip4_address: "172.16.50.1"
+        driver: mlx5_core
+        link: link5
+        model: Mellanox-CX7VEAT
+      port6:
+        # s53-t21-tg1-c10/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:59"
+        pci_address: "0000:3d:00.1"
+        ip4_address: "172.16.60.1"
+        driver: mlx5_core
+        link: link6
+        model: Mellanox-CX7VEAT
+      port7:
+        # s53-t21-tg1-c7/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:48"
+        pci_address: "0000:ab:00.0"
+        ip4_address: "172.16.70.1"
+        driver: mlx5_core
+        link: link7
+        model: Mellanox-CX7VEAT
+      port8:
+        # s53-t21-tg1-c7/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:49"
+        pci_address: "0000:ab:00.1"
+        ip4_address: "172.16.80.1"
+        driver: mlx5_core
+        link: link8
+        model: Mellanox-CX7VEAT
+      port9:
+        # s53-t21-tg1-c9/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:f8"
+        pci_address: "0000:bd:00.0"
+        ip4_address: "172.16.90.1"
+        driver: mlx5_core
+        link: link9
+        model: Mellanox-CX7VEAT
+      port10:
+        # s53-t21-tg1-c9/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:f9"
+        pci_address: "0000:bd:00.1"
+        ip4_address: "172.16.100.1"
+        driver: mlx5_core
+        link: link10
+        model: Mellanox-CX7VEAT
+  DUT1:
+    type: DUT
+    host: "10.30.51.52"
+    arch: x86_64
+    port: 6001
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        # s52-t21-sut1-c2/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:50"
+        pci_address: "0000:17:00.0"
+        ip4_address: "172.16.10.2"
+        driver: mlx5_core
+        link: link1
+        model: Mellanox-CX7VEAT
+      port2:
+        # s52-t21-sut1-c2/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:51"
+        pci_address: "0000:17:00.1"
+        ip4_address: "172.16.20.2"
+        driver: mlx5_core
+        link: link2
+        model: Mellanox-CX7VEAT
+      port3:
+        # s52-t21-sut1-c4/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a1:08"
+        pci_address: "0000:2a:00.0"
+        ip4_address: "172.16.30.2"
+        driver: mlx5_core
+        link: link3
+        model: Mellanox-CX7VEAT
+      port4:
+        # s52-t21-sut1-c4/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a1:09"
+        pci_address: "0000:2a:00.1"
+        ip4_address: "172.16.40.2"
+        driver: mlx5_core
+        link: link17
+        model: Mellanox-CX7VEAT
+      port5:
+        # s52-t21-sut1-c10/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a1:88"
+        pci_address: "0000:3d:00.0"
+        ip4_address: "172.16.50.2"
+        driver: mlx5_core
+        link: link28
+        model: Mellanox-CX7VEAT
+      port6:
+        # s52-t21-sut1-c10/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a1:89"
+        pci_address: "0000:3d:00.1"
+        ip4_address: "172.16.60.2"
+        driver: mlx5_core
+        link: link39
+        model: Mellanox-CX7VEAT
+  DUT2:
+    type: DUT
+    host: "10.30.51.52"
+    arch: x86_64
+    port: 6002
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        # s52-t21-sut2-c7/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:f0"
+        pci_address: "0000:ab:00.0"
+        ip4_address: "172.16.10.3"
+        driver: mlx5_core
+        link: link7
+        model: Mellanox-CX7VEAT
+      port2:
+        # s52-t21-sut2-c7/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a0:f1"
+        pci_address: "0000:ab:00.1"
+        ip4_address: "172.16.20.3"
+        driver: mlx5_core
+        link: link8
+        model: Mellanox-CX7VEAT
+      port3:
+        # s52-t21-sut2-c9/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a1:20"
+        pci_address: "0000:bd:00.0"
+        ip4_address: "172.16.30.3"
+        driver: mlx5_core
+        link: link9
+        model: Mellanox-CX7VEAT
+      port4:
+        # s52-t21-sut2-c9/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a1:21"
+        pci_address: "0000:bd:00.1"
+        ip4_address: "172.16.40.3"
+        driver: mlx5_core
+        link: link17
+        model: Mellanox-CX7VEAT
+      port5:
+        # s52-t21-sut2-c11/p1 - 200GE port1 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a1:10"
+        pci_address: "0000:cf:00.0"
+        ip4_address: "172.16.50.3"
+        driver: mlx5_core
+        link: link28
+        model: Mellanox-CX7VEAT
+      port6:
+        # s52-t21-sut2-c11/p2 - 200GE port2 Mellanox ConnectX7-2p200GE.
+        mac_address: "b8:3f:d2:b7:a1:11"
+        pci_address: "0000:cf:00.1"
+        ip4_address: "172.16.60.3"
+        driver: mlx5_core
+        link: link39
+        model: Mellanox-CX7VEAT
