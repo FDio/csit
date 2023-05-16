@@ -325,7 +325,7 @@ class Constants:
         u"Intel-XXV710": 18750000,
         u"Intel-E810XXV": 29000000,
         u"Intel-E822CQ": 29000000,
-        u"Intel-E810CQ": 58500000,
+        u"Intel-E810CQ": 585000000,
         u"Mellanox-CX556A": 148809523,
         u"Mellanox-CX7VEAT": 297619046,
         u"Amazon-Nitro-50G": 1200000,
