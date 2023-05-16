@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "619ef302_cd1034d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T12:43:34Z",
+      "side": 1,
+      "message": "csit-trex-2n-icx-perftest ndrpdrANDnic_intel-e810cqAND64bANDeth-l2bdscale1mmaclrn-tg",
+      "revId": "c1f9934e51e4de359aba73ed8a049246a1629a69",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
