@@ -8,14 +8,14 @@ services:
     expose:
       - "6001"
     hostname: "{{ ansible_hostname }}"
-    networks:
-      tg-nw-0:
+    network_mode: "host"
     privileged: true
-    ports:
-      - "6001:6001"
     restart: "always"
     shm_size: "4G"
     volumes:
+      - type: "bind"
+        source: "/usr/bin/ofed_info"
+        target: "/usr/bin/ofed_info"
       - type: "bind"
         source: "/dev/hugepages"
         target: "/dev/hugepages"
@@ -39,14 +39,14 @@ services:
     expose:
       - "6002"
     hostname: "{{ ansible_hostname }}"
-    networks:
-      tg-nw-1:
+    network_mode: "host"
     privileged: true
-    ports:
-      - "6002:6002"
     restart: "always"
     shm_size: "4G"
     volumes:
+      - type: "bind"
+        source: "/usr/bin/ofed_info"
+        target: "/usr/bin/ofed_info"
       - type: "bind"
         source: "/dev/hugepages"
         target: "/dev/hugepages"
@@ -62,6 +62,3 @@ services:
       - type: "bind"
         source: "/usr/lib/firmware/"
         target: "/usr/lib/firmware/"
-networks:
-  tg-nw-0:
-  tg-nw-1:
