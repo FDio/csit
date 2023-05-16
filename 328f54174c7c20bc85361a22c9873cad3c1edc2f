@@ -16,6 +16,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_*ANDdrv_*AND1cAND64bANDeth-l2patch",
       "revId": "328f54174c7c20bc85361a22c9873cad3c1edc2f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a100c6ad_89674f5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T16:06:35Z",
+      "side": 1,
+      "message": "csit-2n-clx-perftest mrrANDnic_*ANDdrv_*AND1cANDeth-l2patch",
+      "revId": "328f54174c7c20bc85361a22c9873cad3c1edc2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
