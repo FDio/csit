@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff56a9a8_6e54cfda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T11:07:25Z",
+      "side": 1,
+      "message": "Also, rebase.",
+      "revId": "7b318be719fcbe9a09b1f3210954e1b78e181c96",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2872051d_79060540",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T11:07:25Z",
+      "side": 1,
+      "message": "2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "7b318be719fcbe9a09b1f3210954e1b78e181c96",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c5678c_5aa35c51",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T11:07:25Z",
+      "side": 1,
+      "message": "named?",
+      "range": {
+        "startLine": 346,
+        "startChar": 55,
+        "endLine": 346,
+        "endChar": 60
+      },
+      "revId": "7b318be719fcbe9a09b1f3210954e1b78e181c96",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e754baf7_d680d498",
+        "filename": "resources/libraries/python/QemuManager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T11:07:25Z",
+      "side": 1,
+      "message": "2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "7b318be719fcbe9a09b1f3210954e1b78e181c96",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a150d2f5_5e3a239b",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T11:07:25Z",
+      "side": 1,
+      "message": "2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 25
+      },
+      "revId": "7b318be719fcbe9a09b1f3210954e1b78e181c96",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ed8fdb_e8ee2e25",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T11:07:25Z",
+      "side": 1,
+      "message": "Line too long (85/80)",
+      "range": {
+        "startLine": 736,
+        "startChar": 84,
+        "endLine": 736,
+        "endChar": 85
+      },
+      "revId": "7b318be719fcbe9a09b1f3210954e1b78e181c96",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5e1aade_e27defe3",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T11:07:25Z",
+      "side": 1,
+      "message": "I prefer this formatting:\n\n    cmd_opts.add_with_value(\n        u\"-c\", u\",\".join((str(numa_cpu) for numa_cpu in numa_cpus))\n    )",
+      "range": {
+        "startLine": 739,
+        "startChar": 37,
+        "endLine": 739,
+        "endChar": 38
+      },
+      "revId": "7b318be719fcbe9a09b1f3210954e1b78e181c96",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a1a8127_43c82f6f",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-16T11:07:25Z",
+      "side": 1,
+      "message": "Line too long (85/80)",
+      "range": {
+        "startLine": 740,
+        "startChar": 84,
+        "endLine": 740,
+        "endChar": 85
+      },
+      "revId": "7b318be719fcbe9a09b1f3210954e1b78e181c96",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
