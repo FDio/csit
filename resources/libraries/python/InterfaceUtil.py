@@ -1888,7 +1888,7 @@ class InterfaceUtil:
             current_driver = DUTSetup.get_pci_dev_driver(
                 node, vf_pci_addr.replace(":", r"\:")
             )
-            if current_driver and current_driver != uio_driver:
+            if current_driver:
                 DUTSetup.pci_vf_driver_unbind(
                     node, pf_pci_addr, vf_id
                 )
