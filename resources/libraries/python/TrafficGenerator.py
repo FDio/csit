@@ -1621,7 +1621,7 @@ class OptimizedSearch:
         algorithm = MultipleLossRatioSearch(
             measurer=tg_instance,
             final_trial_duration=final_trial_duration,
-            final_relative_width=final_relative_width,
+            final_relative_width=1e-5,
             number_of_intermediate_phases=number_of_intermediate_phases,
             initial_trial_duration=initial_trial_duration,
             timeout=timeout,
