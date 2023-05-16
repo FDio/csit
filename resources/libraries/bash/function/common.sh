@@ -1123,6 +1123,14 @@ function select_topology () {
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_icx*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
+        "3na_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3na_spr*.yaml )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "3nb_spr")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3nb_spr*.yaml )
+            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
         "2n_clx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
