@@ -300,6 +300,30 @@
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d5672e_ad715f73",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-17T10:44:31Z",
+      "side": 1,
+      "message": "VPP uses black. I thought I already prepared a patch for black (as tox environment) but I do not see it anywhere. The open questions is whether we want to keep u\" (black removes u, I thing everybody agrees to remove u) and what the line length should be (black default is 88, CSIT tradition is 80, we have to decide, I do not have a preference). We can discuss on the weekly call.\nFor small edits I use already \"black -l 80\" and restore unrelated u\" manually.",
+      "parentUuid": "26b7ddc9_965f6204",
+      "range": {
+        "startLine": 739,
+        "startChar": 37,
+        "endLine": 739,
+        "endChar": 38
+      },
+      "revId": "7b318be719fcbe9a09b1f3210954e1b78e181c96",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a1a8127_43c82f6f",
