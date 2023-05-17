@@ -574,6 +574,10 @@ For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
 
     All test cases with L2TPV3.
 
+**REASS**
+
+    All encap/decap tests where MTU induces IP fragmentation and reassembly.
+
 ## Interface Tags
 
 **PHY**
