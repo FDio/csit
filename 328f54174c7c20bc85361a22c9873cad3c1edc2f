@@ -84,6 +84,23 @@
       "message": "csit-2n-clx-perftest mrrANDnic_*xxv*ANDdrv_af_xdpAND1cAND64bANDethip4-ip4base mrrANDnic_*xxv*ANDdrv_vfio_pciAND1cAND64bANDethip4-ip4base  mrrANDnic_*xxv*ANDdrv_avfAND1cAND9000bANDethip6-ip6base mrrANDnic_*xxv*ANDdrv_af_xdpAND1cAND1518bANDeth-l2patch mrrANDnic_*xxv*ANDdrv_avfAND1cAND1518bANDeth-l2patch mrrANDnic_*xxv*ANDdrv_avfAND1cAND9000bANDeth-l2patch",
       "revId": "328f54174c7c20bc85361a22c9873cad3c1edc2f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa89c78f_35ff89eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-17T14:11:16Z",
+      "side": 1,
+      "message": "\u003e https://jenkins.fd.io/job/csit-vpp-perf-verify-master-3n-icx/265/ : FAILURE\n\nAF_XDP failures are expected, but not sure about the bonding, retrying.\n\ncsit-3n-icx-perftest mrrANDnic_*ANDdrv_*AND1cAND64bAND2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xcNOTdrv_af_xdp",
+      "revId": "328f54174c7c20bc85361a22c9873cad3c1edc2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
