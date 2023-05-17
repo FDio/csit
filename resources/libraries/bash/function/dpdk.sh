@@ -97,7 +97,7 @@ function dpdk_compile () {
     meson_options="${meson_options} -Dplatform=generic"
 
     # Compile using Meson and Ninja.
-    meson ${meson_options} build || {
+    meson setup ${meson_options} build || {
         die "Failed to compile DPDK!"
     }
     ninja -C build || die "Failed to compile DPDK!"
