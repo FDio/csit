@@ -16,6 +16,23 @@
       "message": "csit-2n-icx-perftest mrrANDnic_intel-xxv710ANDdrv_vfio_pciAND1cAND1518bANDethip4ipsec1tnlsw-ip4base-policy-aes256gcm-reass",
       "revId": "b7996774c7c6e3fc09194b1a5f620589e571dc73",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f6d8e25_f4e4dfff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2023-05-17T08:49:32Z",
+      "side": 1,
+      "message": "csit-3n-tsh-perftest mrrANDnic_*ANDdrv_vfio_pciAND1cAND1518bANDethip4ipsec1tnlsw-ip4base-policy-aes256gcm-reass",
+      "revId": "b7996774c7c6e3fc09194b1a5f620589e571dc73",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
     }
   ]
 }
