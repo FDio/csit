@@ -192,6 +192,7 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
                 emit = False
             if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
                 emit = False
+            # TODO: Allow 1518B instead of min size for reassembly tests.
         kwargs = filter_and_edit_kwargs_for_astf(suite_id, kwargs)
         if emit and kwargs is not None:
             file_out.write(testcase.generate(**kwargs))
