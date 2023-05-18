@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13bd1b16_65464529",
+        "filename": "csit.infra.dash/app/cdash/trending/graphs.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2023-05-18T06:45:49Z",
+      "side": 1,
+      "message": "The values in telemetry vary from very small (0.01) to very large (1e6). The \"unit\" should be detected automatically by jumpavg algorithm from input data. The values of input data coming from a test or metric vary in very small range.",
+      "range": {
+        "startLine": 436,
+        "startChar": 65,
+        "endLine": 436,
+        "endChar": 74
+      },
+      "revId": "8456ea522178dcd482416aba01b9ee011eb8d381",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2"
+    }
+  ]
+}
