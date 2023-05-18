@@ -27,6 +27,7 @@ RUN apt-get -q update \
         cmake \
         curl \
         dkms \
+        ethtool \
         gdb \
         gfortran \
         libapr1 \

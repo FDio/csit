@@ -388,25 +388,23 @@ class CpuUtils:
 
     @staticmethod
     def get_affinity_trex(
-            node, if1_pci, if2_pci, tg_mtc=1, tg_dtc=1, tg_ltc=1):
+            node, if_key, tg_mtc=1, tg_dtc=1, tg_ltc=1):
         """Get affinity for T-Rex. Result will be used to pin T-Rex threads.
 
         :param node: TG node.
-        :param if1_pci: TG first interface.
-        :param if2_pci: TG second interface.
+        :param if_key: TG first interface.
         :param tg_mtc: TG main thread count.
         :param tg_dtc: TG dataplane thread count.
         :param tg_ltc: TG latency thread count.
         :type node: dict
-        :type if1_pci: str
-        :type if2_pci: str
+        :type if_key: str
         :type tg_mtc: int
         :type tg_dtc: int
         :type tg_ltc: int
         :returns: List of CPUs allocated to T-Rex including numa node.
         :rtype: int, int, int, list
         """
-        interface_list = [if1_pci, if2_pci]
+        interface_list = [if_key]
         cpu_node = Topology.get_interfaces_numa_node(node, *interface_list)
 
         master_thread_id = CpuUtils.cpu_slice_of_list_per_node(

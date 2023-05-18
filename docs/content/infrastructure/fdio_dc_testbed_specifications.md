@@ -1375,16 +1375,16 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - IPMI IP: 10.30.50.52
     - Host IP: 10.30.51.52
     - portnames:
-        - s52-t21-sut1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s52-t21-sut1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
-        - s52-t21-sut1-c4/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s52-t21-sut1-c4/p2 - 200GE-port2 ConnectX7-2p200GE.
         - s52-t21-sut1-c10/p1 - 200GE-port1 ConnectX7-2p200GE.
         - s52-t21-sut1-c10/p2 - 200GE-port2 ConnectX7-2p200GE.
-        - s52-t21-sut1-c7/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s52-t21-sut1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s52-t21-sut1-c4/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s52-t21-sut1-c4/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s52-t21-sut1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s52-t21-sut1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
         - s52-t21-sut1-c9/p1 - 200GE-port1 ConnectX7-2p200GE.
         - s52-t21-sut1-c9/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s52-t21-sut1-c7/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s52-t21-sut1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
         - s52-t21-sut1-c11/p1 - 200GE-port1 ConnectX7-2p200GE.
         - s52-t21-sut1-c11/p2 - 200GE-port2 ConnectX7-2p200GE.
 - TG [Server-Type-H2]:
@@ -1393,16 +1393,16 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - IPMI IP: 10.30.50.53
     - Host IP: 10.30.51.53
     - portnames:
-        - s53-t21-tg1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s53-t21-tg1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
-        - s53-t21-tg1-c4/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s53-t21-tg1-c4/p2 - 200GE-port2 ConnectX7-2p200GE.
         - s53-t21-tg1-c10/p1 - 200GE-port1 ConnectX7-2p200GE.
         - s53-t21-tg1-c10/p2 - 200GE-port2 ConnectX7-2p200GE.
-        - s53-t21-tg1-c7/p1 - 200GE-port1 ConnectX7-2p200GE.
-        - s53-t21-tg1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s53-t21-tg1-c4/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s53-t21-tg1-c4/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s53-t21-tg1-c2/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s53-t21-tg1-c2/p2 - 200GE-port2 ConnectX7-2p200GE.
         - s53-t21-tg1-c9/p1 - 200GE-port1 ConnectX7-2p200GE.
         - s53-t21-tg1-c9/p2 - 200GE-port2 ConnectX7-2p200GE.
+        - s53-t21-tg1-c7/p1 - 200GE-port1 ConnectX7-2p200GE.
+        - s53-t21-tg1-c7/p2 - 200GE-port2 ConnectX7-2p200GE.
 - SUT [Server-Type-H3]:
     - testbedname: testbed22.
     - hostname: s54-t22-sut1.
@@ -1806,17 +1806,17 @@ To be completed.
 ```
 - testbed21:
     - ring1 200GE-ports ConnectX7-2p200GE:
-        - s53-t21-tg1-c2/p1 to s52-t21-sut1-c2/p1
-        - s53-t21-tg1-c7/p1 to s52-t21-sut1-c7/p1
-        - s52-t21-sut1-c4/p2 to s52-t21-sut1-c9/p2
+5       - s53-t21-tg1-c2/p1 to s52-t21-sut1-c2/p1
+9       - s53-t21-tg1-c7/p1 to s52-t21-sut1-c7/p1
+59      - s52-t21-sut1-c4/p2 to s52-t21-sut1-c9/p2
     - ring2 200GE-ports ConnectX7-2p200GE:
-        - s53-t21-tg1-c2/p2 to s52-t21-sut1-c2/p2
-        - s53-t21-tg1-c7/p2 to s52-t21-sut1-c7/p2
-        - s52-t21-sut1-c10/p1 to s52-t21-sut1-c11/p1
+6       - s53-t21-tg1-c2/p2 to s52-t21-sut1-c2/p2
+10      - s53-t21-tg1-c7/p2 to s52-t21-sut1-c7/p2
+610     - s52-t21-sut1-c10/p1 to s52-t21-sut1-c11/p1
     - ring3 200GE-ports ConnectX7-2p200GE:
-        - s53-t21-tg1-c4/p1 to s52-t21-sut1-c4/p1
-        - s53-t21-tg1-c9/p1 to s52-t21-sut1-c9/p1
-        - s52-t21-sut1-c10/p2 to s52-t21-sut1-c11/p2
+3       - s53-t21-tg1-c4/p1 to s52-t21-sut1-c4/p1
+7       - s53-t21-tg1-c9/p1 to s52-t21-sut1-c9/p1
+37      - s52-t21-sut1-c10/p2 to s52-t21-sut1-c11/p2
 - testbed22:
     - ring1 100GE-ports e810-2CQDA2-2p100GE:
         - s55-t22-tg1-c4/p1  to s54-t22-sut1-c9/p2
