@@ -120,14 +120,14 @@ def select_coverage_data(
         cov["Throughput_NDR"] = df.apply(
             lambda row: row["result_ndr_lower_rate_value"] / 1e6, axis=1
         )
-        cov["Throughput_NDR_Mbps"] = df.apply(
-            lambda row: row["result_ndr_lower_bandwidth_value"] /1e9, axis=1
+        cov["Throughput_NDR_Gbps"] = df.apply(
+            lambda row: row["result_ndr_lower_bandwidth_value"] / 1e9, axis=1
         )
         cov["Throughput_PDR"] = df.apply(
             lambda row: row["result_pdr_lower_rate_value"] / 1e6, axis=1
         )
-        cov["Throughput_PDR_Mbps"] = df.apply(
-            lambda row: row["result_pdr_lower_bandwidth_value"] /1e9, axis=1
+        cov["Throughput_PDR_Gbps"] = df.apply(
+            lambda row: row["result_pdr_lower_bandwidth_value"] / 1e9, axis=1
         )
         if show_latency:
             for way in ("Forward", "Reverse"):
